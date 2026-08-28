@@ -1,8 +1,7 @@
 use crate::LispError;
 use adva_ir::{
-    FunctionDefinition, FunctionName, FunctionSignature, ModuleDefinition, ModuleImport,
-    ModuleIr, ModuleName, OperationRef, ProgramTerm, QualifiedName, Rational, TypedPort,
-    ValueType,
+    FunctionDefinition, FunctionName, FunctionSignature, ModuleDefinition, ModuleImport, ModuleIr,
+    ModuleName, OperationRef, ProgramTerm, QualifiedName, Rational, TypedPort, ValueType,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -67,9 +66,7 @@ pub fn parse_module(source: &str) -> Result<ModuleIr, LispError> {
                 }
             }
             other => {
-                return Err(LispError::Syntax(format!(
-                    "unknown module form {other:?}"
-                )));
+                return Err(LispError::Syntax(format!("unknown module form {other:?}")));
             }
         }
     }
@@ -111,9 +108,7 @@ fn parse_import(items: &[SExpr]) -> Result<ModuleImport, LispError> {
     })
 }
 
-fn build_import_map(
-    imports: &[ModuleImport],
-) -> Result<BTreeMap<String, ModuleName>, LispError> {
+fn build_import_map(imports: &[ModuleImport]) -> Result<BTreeMap<String, ModuleName>, LispError> {
     let mut result = BTreeMap::new();
     for import in imports {
         for name in &import.names {
@@ -234,14 +229,12 @@ fn parse_term(
                 arguments: parse_arguments(&items[2..], module, local_names, imports)?,
             })
         }
-        "id" | "copy" | "discard" | "swap" | "add" | "mul" | "scale" | "neg"
-        | "sin" | "cos" | "exp" | "log" => Ok(ProgramTerm::Apply {
+        "id" | "copy" | "discard" | "swap" | "add" | "mul" | "scale" | "neg" | "sin" | "cos"
+        | "exp" | "log" => Ok(ProgramTerm::Apply {
             operation: OperationRef::builtin(head),
             arguments: parse_arguments(&items[1..], module, local_names, imports)?,
         }),
-        other => Err(LispError::Syntax(format!(
-            "unknown operation {other:?}"
-        ))),
+        other => Err(LispError::Syntax(format!("unknown operation {other:?}"))),
     }
 }
 
@@ -378,11 +371,8 @@ mod tests {
 
     #[test]
     fn bare_symbols_are_not_host_values() {
-        let error = parse_module(
-            "(module m (export f) (def f (fn ((x Real)) Real x)))",
-        )
-        .unwrap_err();
+        let error =
+            parse_module("(module m (export f) (def f (fn ((x Real)) Real x)))").unwrap_err();
         assert!(error.to_string().contains("bare symbol"));
     }
 }
-

@@ -103,4 +103,3 @@ fn _native(module: &Bound<'_, PyModule>) -> PyResult<()> {
     module.add_function(wrap_pyfunction!(link_modules, module)?)?;
     Ok(())
 }
-

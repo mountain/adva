@@ -1,6 +1,6 @@
 use crate::{
-    CellId, FunctionSignature, ModuleName, NodeId, OccurrenceId, OccurrencePath,
-    OperationRef, QualifiedName, SourceId, ValueType,
+    CellId, FunctionSignature, ModuleName, NodeId, OccurrenceId, OccurrencePath, OperationRef,
+    QualifiedName, SourceId, ValueType,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -157,10 +157,13 @@ pub enum ObservationPolicy {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum Observation {
-    Value { values: Vec<f64> },
+    Value {
+        values: Vec<f64>,
+    },
     SourcePartition {
         partition: BTreeMap<SourceId, Vec<OccurrenceId>>,
     },
-    History { history: History },
+    History {
+        history: History,
+    },
 }
-

@@ -63,4 +63,3 @@ pub enum IrError {
     #[error("JSON IR error: {0}")]
     Json(#[from] serde_json::Error),
 }
-

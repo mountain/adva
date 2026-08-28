@@ -93,18 +93,17 @@ fn k2_value_observation_does_not_collapse_source_or_history_observation() {
     assert_eq!(evaluate(&shared, &inputs).unwrap().values, vec![10.0]);
     assert_eq!(evaluate(&scale, &inputs).unwrap().values, vec![10.0]);
     assert_ne!(shared, scale);
-    assert_ne!(observe_source_partition(&shared), observe_source_partition(&scale));
+    assert_ne!(
+        observe_source_partition(&shared),
+        observe_source_partition(&scale)
+    );
     assert_ne!(observe_history(&shared), observe_history(&scale));
 }
 
 #[test]
 fn module_calls_are_typed_and_remain_in_history() {
     let artifact = compile_function(&workspace(), "client", "quadruple").unwrap();
-    let result = evaluate(
-        &artifact.result,
-        &BTreeMap::from([("x".to_owned(), 3.0)]),
-    )
-    .unwrap();
+    let result = evaluate(&artifact.result, &BTreeMap::from([("x".to_owned(), 3.0)])).unwrap();
     assert_eq!(result.values, vec![12.0]);
     let call_count = artifact
         .result
@@ -121,15 +120,22 @@ fn calculus_uses_the_same_checked_operation_graph() {
     let square = compile_function(&workspace(), "arithmetic", "square")
         .unwrap()
         .result;
-    let result = evaluate_with_differential(
-        &square,
-        &BTreeMap::from([("x".to_owned(), 3.0)]),
-    )
-    .unwrap();
+    let result =
+        evaluate_with_differential(&square, &BTreeMap::from([("x".to_owned(), 3.0)])).unwrap();
     assert_eq!(result.values, vec![9.0]);
     assert_eq!(result.jacobian[0]["x"], 6.0);
-    assert!(result.certificate.operation_rules.contains(&"copy".to_owned()));
-    assert!(result.certificate.operation_rules.contains(&"mul".to_owned()));
+    assert!(
+        result
+            .certificate
+            .operation_rules
+            .contains(&"copy".to_owned())
+    );
+    assert!(
+        result
+            .certificate
+            .operation_rules
+            .contains(&"mul".to_owned())
+    );
 }
 
 #[test]
@@ -140,7 +146,10 @@ fn serialization_round_trip_preserves_paths_partition_and_boundary() {
     let encoded = diagram.to_json().unwrap();
     let decoded = SharedProgramDiagram::from_json(&encoded).unwrap();
     assert_eq!(decoded.signature, diagram.signature);
-    assert_eq!(decoded.history.occurrence_paths, diagram.history.occurrence_paths);
+    assert_eq!(
+        decoded.history.occurrence_paths,
+        diagram.history.occurrence_paths
+    );
     assert_eq!(decoded.source_partition(), diagram.source_partition());
     assert_eq!(decoded, diagram);
 }
@@ -159,16 +168,18 @@ fn host_allocation_addresses_do_not_change_semantics() {
             .unwrap()
             .result,
     );
-    assert_ne!(std::ptr::from_ref(first.as_ref()), std::ptr::from_ref(second.as_ref()));
+    assert_ne!(
+        std::ptr::from_ref(first.as_ref()),
+        std::ptr::from_ref(second.as_ref())
+    );
     assert_eq!(first.to_json().unwrap(), second.to_json().unwrap());
 }
 
 #[test]
 fn implicit_aliasing_is_rejected() {
-    let module = parse_module(
-        "(module bad (export f) (def f (fn ((x Real)) Real (add (use x) (use x)))))",
-    )
-    .unwrap();
+    let module =
+        parse_module("(module bad (export f) (def f (fn ((x Real)) Real (add (use x) (use x)))))")
+            .unwrap();
     let linked = link_modules(vec![module]).unwrap();
     let error = compile_function(&linked, "bad", "f").unwrap_err();
     assert!(error.to_string().contains("explicit copy"));
@@ -183,6 +194,8 @@ fn observations_are_typed_variants_not_authority_to_rewrite() {
         observe_source_partition(&diagram),
         Observation::SourcePartition { .. }
     ));
-    assert!(matches!(observe_history(&diagram), Observation::History { .. }));
+    assert!(matches!(
+        observe_history(&diagram),
+        Observation::History { .. }
+    ));
 }
-
