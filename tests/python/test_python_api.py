@@ -95,7 +95,10 @@ def test_value_and_gradient_returns_auditable_certificate(workspace):
     assert value == 9.0
     assert gradient == {"x": 6.0}
     assert certificate["method"] == "forward-mode structural differential"
-    assert set(certificate["operation_rules"]) == {"copy", "mul"}
+    assert set(certificate["operation_rules"]) == {
+        "adva.builtin:copy@1",
+        "adva.builtin:mul@1",
+    }
 
 
 def test_scientific_adapters_do_not_mutate_native_ir(workspace):
@@ -106,4 +109,3 @@ def test_scientific_adapters_do_not_mutate_native_ir(workspace):
     function.scipy_objective().jac([2.0])
     after = json.dumps(function.ir, sort_keys=True)
     assert after == before
-

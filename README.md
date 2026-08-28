@@ -18,6 +18,8 @@ tool does not turn research targets into stable API promises.
 - stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and
   `History`;
 - Rust module parsing, imports, exports, linking, and typed lowering;
+- a single versioned Rust operation registry shared by parsing, typed lowering,
+  lineage transport, evaluation, and forward differentiation;
 - scalar evaluation and forward differential, each with a certificate;
 - JSON IR round-trips with an explicit schema version;
 - a PyO3 extension and typed Python facade;
@@ -97,4 +99,3 @@ code.
 Adva is a private pre-alpha research tool. No open-source license has yet been
 selected; see [`LICENSE`](LICENSE). Public licensing should be a separate,
 explicit decision.
-
