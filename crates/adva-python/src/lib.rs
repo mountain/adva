@@ -32,12 +32,7 @@ impl PyWorkspace {
     }
 }
 
-#[pyclass(
-    name = "Program",
-    frozen,
-    module = "adva._native",
-    skip_from_py_object
-)]
+#[pyclass(name = "Program", frozen, module = "adva._native", skip_from_py_object)]
 #[derive(Clone, Debug)]
 struct PyProgram {
     artifact: CompilationArtifact,
@@ -76,10 +71,7 @@ impl PyProgram {
         Ok((result.values, certificate))
     }
 
-    fn value_and_gradient(
-        &self,
-        inputs: BTreeMap<String, f64>,
-    ) -> PyResult<PyDifferential> {
+    fn value_and_gradient(&self, inputs: BTreeMap<String, f64>) -> PyResult<PyDifferential> {
         let result =
             evaluate_with_differential(&self.artifact.result, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
