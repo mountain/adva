@@ -29,9 +29,9 @@ forward differentiation resolve it again and reject an IR node whose
 parameters or boundaries no longer match the registered version.
 Differential certificates record the fully versioned rule identifier.
 
-`tensor` remains a term constructor rather than a scalar operation node.
-Numeric literals lower to the registered `constant` operation but `constant`
-is not exposed as a Lisp list form.
+`frontier` remains an ordered boundary constructor rather than a scalar
+operation node. Numeric literals lower to the registered `constant` operation
+but `constant` is not exposed as a Lisp list form.
 
 ## Consequences
 

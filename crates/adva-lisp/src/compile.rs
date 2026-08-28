@@ -130,7 +130,7 @@ impl<'a> Compiler<'a> {
                 let operation = OperationRef::constant(*value);
                 self.lower_operation(operation, Vec::new())
             }
-            ProgramTerm::Tensor { terms } => {
+            ProgramTerm::Frontier { terms } => {
                 let mut result = Vec::new();
                 for term in terms {
                     result.extend(self.lower_term(term, scope, current_module)?);

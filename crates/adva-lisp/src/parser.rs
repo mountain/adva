@@ -218,7 +218,7 @@ fn parse_term(
                 port: items[1].atom()?.to_owned(),
             })
         }
-        "tensor" => Ok(ProgramTerm::Tensor {
+        "frontier" => Ok(ProgramTerm::Frontier {
             terms: parse_arguments(&items[1..], module, local_names, imports)?,
         }),
         "call" => {

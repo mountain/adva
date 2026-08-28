@@ -150,7 +150,7 @@ pub enum ProgramTerm {
         function: QualifiedName,
         arguments: Vec<ProgramTerm>,
     },
-    Tensor {
+    Frontier {
         terms: Vec<ProgramTerm>,
     },
 }
