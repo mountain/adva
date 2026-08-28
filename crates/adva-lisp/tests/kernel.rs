@@ -161,8 +161,8 @@ fn serialization_rejects_an_unknown_diagram_version() {
         .result;
     let mut document = serde_json::to_value(&diagram).unwrap();
     document["version"] = serde_json::json!(2);
-    let error = SharedProgramDiagram::from_json(&serde_json::to_string(&document).unwrap())
-        .unwrap_err();
+    let error =
+        SharedProgramDiagram::from_json(&serde_json::to_string(&document).unwrap()).unwrap_err();
     assert!(error.to_string().contains("unsupported IR schema"));
 }
 
