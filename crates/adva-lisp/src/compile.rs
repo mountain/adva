@@ -1,9 +1,9 @@
 use crate::{LinkedModules, LispError};
 use adva_ir::{
-    CertificateId, CompilationArtifact, CompilationCertificate, FunctionDefinition, FunctionName,
-    History, HistoryEvent, IR_SCHEMA, IR_VERSION, ModuleName, NodeId, Occurrence, OccurrenceId,
-    OccurrencePath, OperationNode, OperationRef, ProgramTerm, QualifiedName, SharedProgramDiagram,
-    SourceId, ValueType, WireProducer, WireRef,
+    CertificateId, CheckStatus, CompilationArtifact, CompilationCertificate, FunctionDefinition,
+    FunctionName, History, HistoryEvent, IR_SCHEMA, IR_VERSION, ModuleName, NodeId, Occurrence,
+    OccurrenceId, OccurrencePath, OperationNode, OperationRef, ProgramTerm, QualifiedName,
+    SharedProgramDiagram, SourceId, ValueType, WireProducer, WireRef,
 };
 use std::collections::BTreeMap;
 
@@ -442,10 +442,10 @@ pub fn compile_function(
         id: CertificateId::explicit(format!("compile:{module}/{function}:v1")),
         scope: "PSC0 finite acyclic module lowering".to_owned(),
         boundary: definition.signature,
-        module_links_checked: true,
-        linear_use_checked: true,
-        types_checked: true,
-        call_history_preserved: true,
+        module_links: CheckStatus::Checked,
+        linear_use: CheckStatus::Checked,
+        types: CheckStatus::Checked,
+        call_history: CheckStatus::Checked,
     };
     Ok(CompilationArtifact {
         result: diagram,

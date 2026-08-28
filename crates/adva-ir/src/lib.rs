@@ -33,6 +33,12 @@ impl ModuleIr {
         }
     }
 
+    /// Check that the document uses the schema implemented by this crate.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`IrError::UnsupportedSchema`] for any other schema identifier
+    /// or version.
     pub fn validate_version(&self) -> Result<(), IrError> {
         if self.schema != IR_SCHEMA || self.version != IR_VERSION {
             return Err(IrError::UnsupportedSchema {
@@ -43,10 +49,21 @@ impl ModuleIr {
         Ok(())
     }
 
+    /// Serialize this versioned module IR as JSON.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`IrError::Json`] if serialization fails.
     pub fn to_json(&self) -> Result<String, IrError> {
         Ok(serde_json::to_string_pretty(self)?)
     }
 
+    /// Deserialize and version-check a module IR document.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`IrError::Json`] for malformed JSON and
+    /// [`IrError::UnsupportedSchema`] for unsupported documents.
     pub fn from_json(source: &str) -> Result<Self, IrError> {
         let ir: Self = serde_json::from_str(source)?;
         ir.validate_version()?;
@@ -60,6 +77,8 @@ pub enum IrError {
     UnsupportedSchema { schema: String, version: u32 },
     #[error("invalid rational denominator 0")]
     ZeroDenominator,
+    #[error("rational normalization exceeds the signed 64-bit representation")]
+    RationalOverflow,
     #[error("JSON IR error: {0}")]
     Json(#[from] serde_json::Error),
 }

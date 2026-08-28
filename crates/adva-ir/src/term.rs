@@ -43,15 +43,29 @@ impl Rational {
         denominator: 1,
     };
 
+    /// Construct a reduced rational with a positive denominator.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`IrError::ZeroDenominator`] for zero denominators and
+    /// [`IrError::RationalOverflow`] when sign normalization cannot fit in the
+    /// signed 64-bit representation.
     pub fn new(numerator: i64, denominator: i64) -> Result<Self, IrError> {
         if denominator == 0 {
             return Err(IrError::ZeroDenominator);
         }
-        let sign = if denominator < 0 { -1 } else { 1 };
-        let divisor = gcd(numerator.unsigned_abs(), denominator.unsigned_abs()) as i64;
+        let mut numerator = i128::from(numerator);
+        let mut denominator = i128::from(denominator);
+        if denominator < 0 {
+            numerator = -numerator;
+            denominator = -denominator;
+        }
+        let divisor = gcd(numerator.abs(), denominator);
         Ok(Self {
-            numerator: sign * numerator / divisor,
-            denominator: denominator.unsigned_abs() as i64 / divisor,
+            numerator: i64::try_from(numerator / divisor)
+                .map_err(|_| IrError::RationalOverflow)?,
+            denominator: i64::try_from(denominator / divisor)
+                .map_err(|_| IrError::RationalOverflow)?,
         })
     }
 
@@ -62,12 +76,14 @@ impl Rational {
         }
     }
 
+    /// Numerically realize the exact rational as an IEEE-754 scalar.
+    #[allow(clippy::cast_precision_loss)]
     pub fn as_f64(self) -> f64 {
         self.numerator as f64 / self.denominator as f64
     }
 }
 
-fn gcd(mut left: u64, mut right: u64) -> u64 {
+fn gcd(mut left: i128, mut right: i128) -> i128 {
     while right != 0 {
         (left, right) = (right, left % right);
     }

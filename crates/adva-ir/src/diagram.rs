@@ -129,10 +129,22 @@ impl SharedProgramDiagram {
         partition
     }
 
+    /// Serialize the lossless diagram representation as JSON.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error if a diagram field cannot be represented by the JSON
+    /// serializer.
     pub fn to_json(&self) -> Result<String, serde_json::Error> {
         serde_json::to_string_pretty(self)
     }
 
+    /// Deserialize a lossless diagram representation from JSON.
+    ///
+    /// # Errors
+    ///
+    /// Returns an error when the document does not match the diagram data
+    /// model. Callers must separately enforce the supported schema version.
     pub fn from_json(source: &str) -> Result<Self, serde_json::Error> {
         serde_json::from_str(source)
     }
