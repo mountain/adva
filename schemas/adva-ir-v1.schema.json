@@ -1,0 +1,24 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/mountain/adva/schemas/adva-ir-v1.schema.json",
+  "title": "Adva modular program IR v1",
+  "type": "object",
+  "required": ["schema", "version", "module"],
+  "properties": {
+    "schema": { "const": "adva.ir" },
+    "version": { "const": 1 },
+    "module": {
+      "type": "object",
+      "required": ["name", "imports", "exports", "definitions"],
+      "properties": {
+        "name": { "type": "string", "minLength": 1 },
+        "imports": { "type": "array" },
+        "exports": { "type": "array", "items": { "type": "string" } },
+        "definitions": { "type": "array" }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}
+
