@@ -155,6 +155,18 @@ fn serialization_round_trip_preserves_paths_partition_and_boundary() {
 }
 
 #[test]
+fn serialization_rejects_an_unknown_diagram_version() {
+    let diagram = compile_function(&workspace(), "arithmetic", "shared-double")
+        .unwrap()
+        .result;
+    let mut document = serde_json::to_value(&diagram).unwrap();
+    document["version"] = serde_json::json!(2);
+    let error = SharedProgramDiagram::from_json(&serde_json::to_string(&document).unwrap())
+        .unwrap_err();
+    assert!(error.to_string().contains("unsupported IR schema"));
+}
+
+#[test]
 fn host_allocation_addresses_do_not_change_semantics() {
     let first_workspace = workspace();
     let second_workspace = workspace();
