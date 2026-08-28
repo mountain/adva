@@ -1,0 +1,21 @@
+[package]
+name = "adva-python"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+authors.workspace = true
+repository.workspace = true
+
+[lib]
+name = "_native"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+adva-ir.workspace = true
+adva-lisp.workspace = true
+pyo3.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true
+

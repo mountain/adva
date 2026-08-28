@@ -1,0 +1,54 @@
+[build-system]
+requires = ["maturin>=1.14,<2"]
+build-backend = "maturin"
+
+[project]
+name = "adva"
+version = "0.1.0"
+description = "A typed Lisp engine and interoperable IR for program geometry"
+readme = "README.md"
+requires-python = ">=3.11"
+authors = [{ name = "Adva contributors" }]
+classifiers = [
+  "Development Status :: 2 - Pre-Alpha",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Rust",
+  "Typing :: Typed",
+]
+
+[project.optional-dependencies]
+scientific = [
+  "numpy>=1.26",
+  "scipy>=1.12",
+  "sympy>=1.12",
+]
+test = [
+  "numpy>=1.26",
+  "pytest>=8",
+  "scipy>=1.12",
+  "sympy>=1.12",
+]
+
+[tool.maturin]
+manifest-path = "crates/adva-python/Cargo.toml"
+python-source = "python"
+module-name = "adva._native"
+bindings = "pyo3"
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests/python"]
+
+[tool.ruff]
+target-version = "py311"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+packages = ["adva"]
+mypy_path = "python"
+
