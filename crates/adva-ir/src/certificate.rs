@@ -2,24 +2,35 @@ use crate::{CertificateId, FunctionSignature, SharedProgramDiagram};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum CheckStatus {
+    Checked,
+    Unchecked,
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct CompilationCertificate {
     pub id: CertificateId,
     pub scope: String,
     pub boundary: FunctionSignature,
-    pub module_links_checked: bool,
-    pub linear_use_checked: bool,
-    pub types_checked: bool,
-    pub call_history_preserved: bool,
+    pub module_links: CheckStatus,
+    pub linear_use: CheckStatus,
+    pub types: CheckStatus,
+    pub call_history: CheckStatus,
 }
 
 impl CompilationCertificate {
     pub fn certified(&self) -> bool {
-        self.module_links_checked
-            && self.linear_use_checked
-            && self.types_checked
-            && self.call_history_preserved
+        [
+            self.module_links,
+            self.linear_use,
+            self.types,
+            self.call_history,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
     }
 }
 

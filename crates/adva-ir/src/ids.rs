@@ -50,6 +50,7 @@ impl OccurrencePath {
         Self(Vec::new())
     }
 
+    #[must_use]
     pub fn branch(&self, index: u32) -> Self {
         let mut path = self.0.clone();
         path.push(index);
