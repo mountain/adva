@@ -1,0 +1,9 @@
+(module client
+  (import arithmetic shared-double)
+  (export quadruple)
+
+  (def quadruple
+    (fn ((x Real)) Real
+      (call arithmetic/shared-double
+        (call arithmetic/shared-double (use x))))))
+
