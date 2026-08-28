@@ -363,12 +363,7 @@ fn evaluate_product(
     let [left, right] = binary_arguments("product", arguments)?;
     Ok(vec![Dual {
         value: left.value * right.value,
-        gradient: combine_gradients(
-            &left.gradient,
-            right.value,
-            &right.gradient,
-            left.value,
-        ),
+        gradient: combine_gradients(&left.gradient, right.value, &right.gradient, left.value),
     }])
 }
 

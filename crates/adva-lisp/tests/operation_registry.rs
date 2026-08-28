@@ -1,18 +1,14 @@
 use adva_ir::{OperationRef, ProgramTerm, Rational, ValueType};
 use adva_lisp::{
-    LineageRule, builtin_operation_specs, compile_function, evaluate,
-    evaluate_with_differential, link_modules, parse_module, resolve_operation,
+    LineageRule, builtin_operation_specs, compile_function, evaluate, evaluate_with_differential,
+    link_modules, parse_module, resolve_operation,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
 fn operation_module(name: &str) -> String {
     let (inputs, outputs, body) = match name {
         "id" => ("((x Real))", "Real", "(id (use x))"),
-        "copy" => (
-            "((x Real))",
-            "(outputs Real Real)",
-            "(copy (use x))",
-        ),
+        "copy" => ("((x Real))", "(outputs Real Real)", "(copy (use x))"),
         "discard" => ("((x Real))", "(outputs)", "(discard (use x))"),
         "swap" => (
             "((x Real) (y Real))",
@@ -21,11 +17,7 @@ fn operation_module(name: &str) -> String {
         ),
         "add" => ("((x Real) (y Real))", "Real", "(add (use x) (use y))"),
         "mul" => ("((x Real) (y Real))", "Real", "(mul (use x) (use y))"),
-        "scale" => (
-            "((x Real) (y Real))",
-            "Real",
-            "(scale (use x) (use y))",
-        ),
+        "scale" => ("((x Real) (y Real))", "Real", "(scale (use x) (use y))"),
         "neg" => ("((x Real))", "Real", "(neg (use x))"),
         "sin" => ("((x Real))", "Real", "(sin (use x))"),
         "cos" => ("((x Real))", "Real", "(cos (use x))"),
@@ -39,8 +31,7 @@ fn operation_module(name: &str) -> String {
 #[test]
 fn every_surface_operation_uses_one_registered_semantic_declaration() {
     let expected = BTreeSet::from([
-        "add", "copy", "cos", "discard", "exp", "id", "log", "mul", "neg", "scale",
-        "sin", "swap",
+        "add", "copy", "cos", "discard", "exp", "id", "log", "mul", "neg", "scale", "sin", "swap",
     ]);
     let registered = builtin_operation_specs()
         .iter()
@@ -74,7 +65,10 @@ fn constants_are_registered_but_not_surface_operation_forms() {
     ])
     .unwrap();
     let artifact = compile_function(&linked, "constants", "two").unwrap();
-    assert_eq!(evaluate(&artifact.result, &BTreeMap::new()).unwrap().values, vec![2.0]);
+    assert_eq!(
+        evaluate(&artifact.result, &BTreeMap::new()).unwrap().values,
+        vec![2.0]
+    );
 
     let constant = OperationRef::constant(Rational::integer(2));
     let spec = resolve_operation(&constant).unwrap();
@@ -85,10 +79,9 @@ fn constants_are_registered_but_not_surface_operation_forms() {
 
 #[test]
 fn registry_rejects_unregistered_parameters_during_lowering() {
-    let mut module = parse_module(
-        "(module malformed (export f) (def f (fn ((x Real)) Real (neg (use x)))))",
-    )
-    .unwrap();
+    let mut module =
+        parse_module("(module malformed (export f) (def f (fn ((x Real)) Real (neg (use x)))))")
+            .unwrap();
     let ProgramTerm::Apply { operation, .. } = &mut module.module.definitions[0].body else {
         panic!("fixture must parse as an operation application");
     };
@@ -104,15 +97,11 @@ fn registry_rejects_unregistered_parameters_during_lowering() {
 #[test]
 fn evaluator_rechecks_registered_cell_boundaries() {
     let linked = link_modules(vec![
-        parse_module(
-            "(module malformed (export f) (def f (fn ((x Real)) Real (neg (use x)))))",
-        )
-        .unwrap(),
+        parse_module("(module malformed (export f) (def f (fn ((x Real)) Real (neg (use x)))))")
+            .unwrap(),
     ])
     .unwrap();
-    let mut diagram = compile_function(&linked, "malformed", "f")
-        .unwrap()
-        .result;
+    let mut diagram = compile_function(&linked, "malformed", "f").unwrap().result;
     diagram.nodes[0].output_types[0] = ValueType::Bool;
 
     let error = evaluate(&diagram, &BTreeMap::from([("x".to_owned(), 2.0)])).unwrap_err();
