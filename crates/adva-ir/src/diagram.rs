@@ -1,6 +1,6 @@
 use crate::{
-    CellId, FunctionSignature, ModuleName, NodeId, OccurrenceId, OccurrencePath, OperationRef,
-    QualifiedName, SourceId, ValueType,
+    CellId, FunctionSignature, IR_SCHEMA, IR_VERSION, IrError, ModuleName, NodeId, OccurrenceId,
+    OccurrencePath, OperationRef, QualifiedName, SourceId, ValueType,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -129,14 +129,30 @@ impl SharedProgramDiagram {
         partition
     }
 
+    /// Check that the diagram uses the schema implemented by this crate.
+    ///
+    /// # Errors
+    ///
+    /// Returns [`IrError::UnsupportedSchema`] for any other schema identifier
+    /// or version.
+    pub fn validate_version(&self) -> Result<(), IrError> {
+        if self.schema != IR_SCHEMA || self.version != IR_VERSION {
+            return Err(IrError::UnsupportedSchema {
+                schema: self.schema.clone(),
+                version: self.version,
+            });
+        }
+        Ok(())
+    }
+
     /// Serialize the lossless diagram representation as JSON.
     ///
     /// # Errors
     ///
     /// Returns an error if a diagram field cannot be represented by the JSON
     /// serializer.
-    pub fn to_json(&self) -> Result<String, serde_json::Error> {
-        serde_json::to_string_pretty(self)
+    pub fn to_json(&self) -> Result<String, IrError> {
+        Ok(serde_json::to_string_pretty(self)?)
     }
 
     /// Deserialize a lossless diagram representation from JSON.
@@ -144,9 +160,11 @@ impl SharedProgramDiagram {
     /// # Errors
     ///
     /// Returns an error when the document does not match the diagram data
-    /// model. Callers must separately enforce the supported schema version.
-    pub fn from_json(source: &str) -> Result<Self, serde_json::Error> {
-        serde_json::from_str(source)
+    /// model or uses an unsupported schema version.
+    pub fn from_json(source: &str) -> Result<Self, IrError> {
+        let diagram: Self = serde_json::from_str(source)?;
+        diagram.validate_version()?;
+        Ok(diagram)
     }
 }
 

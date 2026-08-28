@@ -7,7 +7,14 @@ use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use std::collections::BTreeMap;
 
-#[pyclass(name = "Workspace", frozen, module = "adva._native")]
+type PyDifferential = (Vec<f64>, Vec<BTreeMap<String, f64>>, String);
+
+#[pyclass(
+    name = "Workspace",
+    frozen,
+    module = "adva._native",
+    skip_from_py_object
+)]
 #[derive(Clone, Debug)]
 struct PyWorkspace {
     linked: LinkedModules,
@@ -25,7 +32,12 @@ impl PyWorkspace {
     }
 }
 
-#[pyclass(name = "Program", frozen, module = "adva._native")]
+#[pyclass(
+    name = "Program",
+    frozen,
+    module = "adva._native",
+    skip_from_py_object
+)]
 #[derive(Clone, Debug)]
 struct PyProgram {
     artifact: CompilationArtifact,
@@ -67,7 +79,7 @@ impl PyProgram {
     fn value_and_gradient(
         &self,
         inputs: BTreeMap<String, f64>,
-    ) -> PyResult<(Vec<f64>, Vec<BTreeMap<String, f64>>, String)> {
+    ) -> PyResult<PyDifferential> {
         let result =
             evaluate_with_differential(&self.artifact.result, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
