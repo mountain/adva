@@ -1,9 +1,9 @@
 use crate::{LinkedModules, LispError};
 use adva_ir::{
-    CertificateId, CompilationArtifact, CompilationCertificate, FunctionDefinition,
-    FunctionName, History, HistoryEvent, IR_SCHEMA, IR_VERSION, ModuleName, NodeId,
-    Occurrence, OccurrenceId, OccurrencePath, OperationNode, OperationRef, ProgramTerm,
-    QualifiedName, SharedProgramDiagram, SourceId, ValueType, WireProducer, WireRef,
+    CertificateId, CompilationArtifact, CompilationCertificate, FunctionDefinition, FunctionName,
+    History, HistoryEvent, IR_SCHEMA, IR_VERSION, ModuleName, NodeId, Occurrence, OccurrenceId,
+    OccurrencePath, OperationNode, OperationRef, ProgramTerm, QualifiedName, SharedProgramDiagram,
+    SourceId, ValueType, WireProducer, WireRef,
 };
 use std::collections::BTreeMap;
 
@@ -37,9 +37,10 @@ impl ResourceScope {
     }
 
     fn consume(&mut self, name: &str) -> Result<Vec<WireRef>, LispError> {
-        let resource = self.resources.get_mut(name).ok_or_else(|| {
-            LispError::Linearity(format!("unknown input resource {name:?}"))
-        })?;
+        let resource = self
+            .resources
+            .get_mut(name)
+            .ok_or_else(|| LispError::Linearity(format!("unknown input resource {name:?}")))?;
         if resource.used {
             return Err(LispError::Linearity(format!(
                 "input {name:?} is used more than once; use explicit copy"
@@ -289,7 +290,8 @@ impl<'a> Compiler<'a> {
             inputs,
             output_types: vec![ValueType::Real, ValueType::Real],
         });
-        self.history.push(HistoryEvent::Operation { node, operation });
+        self.history
+            .push(HistoryEvent::Operation { node, operation });
         Ok(output_lineages
             .into_iter()
             .enumerate()
@@ -315,7 +317,8 @@ impl<'a> Compiler<'a> {
             inputs,
             output_types: Vec::new(),
         });
-        self.history.push(HistoryEvent::Operation { node, operation });
+        self.history
+            .push(HistoryEvent::Operation { node, operation });
         Ok(Vec::new())
     }
 
@@ -333,7 +336,8 @@ impl<'a> Compiler<'a> {
             inputs,
             output_types: vec![ValueType::Real, ValueType::Real],
         });
-        self.history.push(HistoryEvent::Operation { node, operation });
+        self.history
+            .push(HistoryEvent::Operation { node, operation });
         Ok(lineages
             .into_iter()
             .enumerate()
@@ -363,7 +367,8 @@ impl<'a> Compiler<'a> {
             inputs,
             output_types: output_types.clone(),
         });
-        self.history.push(HistoryEvent::Operation { node, operation });
+        self.history
+            .push(HistoryEvent::Operation { node, operation });
         Ok(output_types
             .into_iter()
             .enumerate()
@@ -394,10 +399,8 @@ pub fn compile_function(
 
     let mut input_wires = Vec::new();
     for (index, port) in definition.signature.inputs.iter().enumerate() {
-        let source = SourceId::explicit(format!(
-            "source:{module}/{function}:{index}:{}",
-            port.name
-        ));
+        let source =
+            SourceId::explicit(format!("source:{module}/{function}:{index}:{}", port.name));
         let occurrence = compiler.fresh_occurrence(source.clone(), OccurrencePath::root());
         compiler.history.push(HistoryEvent::Source {
             source,
@@ -500,4 +503,3 @@ fn check_output_types(
         )))
     }
 }
-

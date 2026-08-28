@@ -92,7 +92,8 @@ fn run(
             .iter()
             .map(|wire| read_wire(wire, &input_values, &node_values))
             .collect::<Result<Vec<_>, _>>()?;
-        let outputs = execute_operation(&node.operation.name, &node.operation.parameters, &arguments)?;
+        let outputs =
+            execute_operation(&node.operation.name, &node.operation.parameters, &arguments)?;
         if outputs.len() != node.output_types.len() {
             return Err(LispError::Evaluation(format!(
                 "operation {} produced {} outputs, expected {}",
@@ -257,10 +258,7 @@ fn unary_argument<'a>(name: &str, arguments: &'a [Dual]) -> Result<&'a Dual, Lis
     }
 }
 
-fn binary_arguments<'a>(
-    name: &str,
-    arguments: &'a [Dual],
-) -> Result<[&'a Dual; 2], LispError> {
+fn binary_arguments<'a>(name: &str, arguments: &'a [Dual]) -> Result<[&'a Dual; 2], LispError> {
     match arguments {
         [left, right] => Ok([left, right]),
         _ => Err(LispError::Evaluation(format!(
@@ -288,4 +286,3 @@ fn combine_gradients(
     }
     result
 }
-

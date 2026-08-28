@@ -72,4 +72,3 @@ pub enum Decision<Yes, No> {
     No { countercertificate: No },
     Unknown { reason: String },
 }
-

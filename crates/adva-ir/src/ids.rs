@@ -10,7 +10,10 @@ macro_rules! string_id {
         impl $name {
             pub fn explicit(value: impl Into<String>) -> Self {
                 let value = value.into();
-                assert!(!value.is_empty(), concat!(stringify!($name), " must not be empty"));
+                assert!(
+                    !value.is_empty(),
+                    concat!(stringify!($name), " must not be empty")
+                );
                 Self(value)
             }
 
@@ -34,9 +37,7 @@ string_id!(OccurrenceId);
 string_id!(CellId);
 string_id!(CertificateId);
 
-#[derive(
-    Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize,
-)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(transparent)]
 pub struct NodeId(pub u32);
 
@@ -77,4 +78,3 @@ impl Display for QualifiedName {
         write!(formatter, "{}/{}", self.module, self.function)
     }
 }
-

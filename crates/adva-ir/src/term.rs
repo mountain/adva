@@ -173,4 +173,3 @@ mod tests {
         assert_eq!(Rational::new(6, -8).unwrap(), Rational::new(-3, 4).unwrap());
     }
 }
-

@@ -27,9 +27,7 @@ impl LinkedModules {
             .definitions
             .iter()
             .find(|definition| &definition.name == function)
-            .ok_or_else(|| {
-                LispError::Module(format!("unknown function {module}/{function}"))
-            })
+            .ok_or_else(|| LispError::Module(format!("unknown function {module}/{function}")))
     }
 }
 
@@ -154,4 +152,3 @@ mod tests {
         assert!(link_modules(vec![left, right]).is_err());
     }
 }
-
