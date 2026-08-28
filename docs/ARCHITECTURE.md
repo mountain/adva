@@ -69,6 +69,8 @@ are rejected until guarded recursion obtains its own semantics.
 
 Every builtin operation has one Rust definition of:
 
+- namespace, name, version, and surface visibility;
+- exact parameter schema;
 - input and output boundary rules;
 - scalar realization;
 - local forward differential;
@@ -77,6 +79,14 @@ Every builtin operation has one Rust definition of:
 The first registry contains `id`, `tensor`, `swap`, `copy`, `discard`,
 constants, `add`, `mul`, `scale`, `neg`, `sin`, `cos`, `exp`, and `log`.
 Structural operations are diagram nodes, not Rust or Python aliases.
+
+The parser, typed lowering, evaluator, and forward differential all resolve the
+same `OperationSpec`. Stored IR is checked against the registry again before
+execution, so changing a serialized node boundary cannot silently select a
+different realization. Differential certificates record versioned rule IDs
+such as `adva.builtin:mul@1`, rather than unqualified names. Adding or changing
+a builtin version is governed by
+[ADR 0003](adr/0003-single-operation-registry.md).
 
 ## Serialization
 
@@ -97,4 +107,3 @@ Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
 consume objectification certificates remain research targets. They must not be
 simulated with booleans or Python callbacks.
-

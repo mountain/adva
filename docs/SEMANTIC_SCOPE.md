@@ -15,6 +15,8 @@ claim that the surrounding calculus has been completely presented.
 - deterministic source and occurrence paths;
 - lossless history and JSON round-trip;
 - scalar realization and forward differentials;
+- one versioned Rust declaration for each builtin's boundary, realization,
+  differential, and lineage rule;
 - value and source/history observations as different interfaces.
 
 ## Explicitly excluded
@@ -53,4 +55,3 @@ only what its fields and scope record. It does not certify a general theorem.
 
 Search-style APIs, when introduced, must return `Yes`, `No` with a checked
 countercertificate, or `Unknown`. Timeout and exhaustion are `Unknown`.
-

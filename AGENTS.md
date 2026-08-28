@@ -46,3 +46,11 @@ full abstraction, and physical interpretations out of the stable API.
 All semantic transformations return a result together with a certificate.
 Tests are evidence for the declared finite scope, not unrestricted theorems.
 
+## Operation changes
+
+Stable Lisp builtins are declared through the Rust `OperationSpec` registry.
+Do not add separate parser, type-checker, evaluator, differential, or lineage
+name tables. A new operation must declare its versioned boundary, exact
+parameters, surface visibility, scalar differential realization, and explicit
+`LineageRule`, with a registry completeness test. Changing an existing rule is
+an IR-versioning decision, not an in-place reinterpretation.
