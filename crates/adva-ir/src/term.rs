@@ -62,8 +62,7 @@ impl Rational {
         }
         let divisor = gcd(numerator.abs(), denominator);
         Ok(Self {
-            numerator: i64::try_from(numerator / divisor)
-                .map_err(|_| IrError::RationalOverflow)?,
+            numerator: i64::try_from(numerator / divisor).map_err(|_| IrError::RationalOverflow)?,
             denominator: i64::try_from(denominator / divisor)
                 .map_err(|_| IrError::RationalOverflow)?,
         })
