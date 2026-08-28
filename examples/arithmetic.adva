@@ -1,0 +1,15 @@
+(module arithmetic
+  (export shared-double scale-double square)
+
+  (def shared-double
+    (fn ((x Real)) Real
+      (add (copy (use x)))))
+
+  (def scale-double
+    (fn ((x Real)) Real
+      (scale 2 (use x))))
+
+  (def square
+    (fn ((x Real)) Real
+      (mul (copy (use x))))))
+
