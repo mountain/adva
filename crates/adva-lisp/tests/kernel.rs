@@ -128,13 +128,13 @@ fn calculus_uses_the_same_checked_operation_graph() {
         result
             .certificate
             .operation_rules
-            .contains(&"copy".to_owned())
+            .contains(&"adva.builtin:copy@1".to_owned())
     );
     assert!(
         result
             .certificate
             .operation_rules
-            .contains(&"mul".to_owned())
+            .contains(&"adva.builtin:mul@1".to_owned())
     );
 }
 

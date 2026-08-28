@@ -1,4 +1,5 @@
 use crate::LispError;
+use crate::operation::builtin_surface_form;
 use adva_ir::{
     FunctionDefinition, FunctionName, FunctionSignature, ModuleDefinition, ModuleImport, ModuleIr,
     ModuleName, OperationRef, ProgramTerm, QualifiedName, Rational, TypedPort, ValueType,
@@ -229,9 +230,8 @@ fn parse_term(
                 arguments: parse_arguments(&items[2..], module, local_names, imports)?,
             })
         }
-        "id" | "copy" | "discard" | "swap" | "add" | "mul" | "scale" | "neg" | "sin" | "cos"
-        | "exp" | "log" => Ok(ProgramTerm::Apply {
-            operation: OperationRef::builtin(head),
+        operation if builtin_surface_form(operation) => Ok(ProgramTerm::Apply {
+            operation: OperationRef::builtin(operation),
             arguments: parse_arguments(&items[1..], module, local_names, imports)?,
         }),
         other => Err(LispError::Syntax(format!("unknown operation {other:?}"))),

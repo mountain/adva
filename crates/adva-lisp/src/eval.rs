@@ -1,15 +1,10 @@
 use crate::LispError;
+use crate::operation::{Dual, resolve_operation};
 use adva_ir::{
     CertificateId, DifferentialResult, DifferentiationCertificate, EvaluationCertificate,
     EvaluationResult, Observation, SharedProgramDiagram, WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
-
-#[derive(Clone, Debug)]
-struct Dual {
-    value: f64,
-    gradient: BTreeMap<String, f64>,
-}
 
 struct RunResult {
     outputs: Vec<Dual>,
@@ -87,13 +82,15 @@ fn run(
     let mut operation_rules = BTreeSet::new();
 
     for node in &diagram.nodes {
+        let spec = resolve_operation(&node.operation)?;
+        spec.validate_wires(&node.inputs)?;
+        spec.validate_outputs(&node.output_types)?;
         let arguments = node
             .inputs
             .iter()
             .map(|wire| read_wire(wire, &input_values, &node_values))
             .collect::<Result<Vec<_>, _>>()?;
-        let outputs =
-            execute_operation(&node.operation.name, &node.operation.parameters, &arguments)?;
+        let outputs = spec.evaluate(&node.operation.parameters, &arguments)?;
         if outputs.len() != node.output_types.len() {
             return Err(LispError::Evaluation(format!(
                 "operation {} produced {} outputs, expected {}",
@@ -102,7 +99,7 @@ fn run(
                 node.output_types.len()
             )));
         }
-        operation_rules.insert(node.operation.name.clone());
+        operation_rules.insert(spec.rule_id());
         executed_nodes.push(node.id.0);
         node_values.insert(node.id, outputs);
     }
@@ -153,136 +150,4 @@ fn read_wire(
     output.cloned().ok_or_else(|| {
         LispError::Evaluation(format!("wire references unavailable producer: {wire:?}"))
     })
-}
-
-fn execute_operation(
-    name: &str,
-    parameters: &BTreeMap<String, adva_ir::Rational>,
-    arguments: &[Dual],
-) -> Result<Vec<Dual>, LispError> {
-    match name {
-        "constant" => {
-            let value = parameters.get("value").ok_or_else(|| {
-                LispError::Evaluation("constant node has no value parameter".to_owned())
-            })?;
-            Ok(vec![Dual {
-                value: value.as_f64(),
-                gradient: BTreeMap::new(),
-            }])
-        }
-        "id" => Ok(vec![unary_argument(name, arguments)?.clone()]),
-        "copy" => {
-            let value = unary_argument(name, arguments)?.clone();
-            Ok(vec![value.clone(), value])
-        }
-        "discard" => {
-            unary_argument(name, arguments)?;
-            Ok(Vec::new())
-        }
-        "swap" => {
-            let [left, right] = binary_arguments(name, arguments)?;
-            Ok(vec![right.clone(), left.clone()])
-        }
-        "add" => {
-            let [left, right] = binary_arguments(name, arguments)?;
-            Ok(vec![Dual {
-                value: left.value + right.value,
-                gradient: combine_gradients(&left.gradient, 1.0, &right.gradient, 1.0),
-            }])
-        }
-        "mul" | "scale" => {
-            let [left, right] = binary_arguments(name, arguments)?;
-            Ok(vec![Dual {
-                value: left.value * right.value,
-                gradient: combine_gradients(
-                    &left.gradient,
-                    right.value,
-                    &right.gradient,
-                    left.value,
-                ),
-            }])
-        }
-        "neg" => {
-            let argument = unary_argument(name, arguments)?;
-            Ok(vec![Dual {
-                value: -argument.value,
-                gradient: scale_gradient(&argument.gradient, -1.0),
-            }])
-        }
-        "sin" => {
-            let argument = unary_argument(name, arguments)?;
-            Ok(vec![Dual {
-                value: argument.value.sin(),
-                gradient: scale_gradient(&argument.gradient, argument.value.cos()),
-            }])
-        }
-        "cos" => {
-            let argument = unary_argument(name, arguments)?;
-            Ok(vec![Dual {
-                value: argument.value.cos(),
-                gradient: scale_gradient(&argument.gradient, -argument.value.sin()),
-            }])
-        }
-        "exp" => {
-            let argument = unary_argument(name, arguments)?;
-            let value = argument.value.exp();
-            Ok(vec![Dual {
-                value,
-                gradient: scale_gradient(&argument.gradient, value),
-            }])
-        }
-        "log" => {
-            let argument = unary_argument(name, arguments)?;
-            if argument.value <= 0.0 {
-                return Err(LispError::Evaluation(
-                    "log expects a positive Real value".to_owned(),
-                ));
-            }
-            Ok(vec![Dual {
-                value: argument.value.ln(),
-                gradient: scale_gradient(&argument.gradient, 1.0 / argument.value),
-            }])
-        }
-        other => Err(LispError::Evaluation(format!(
-            "no scalar realization for operation {other:?}"
-        ))),
-    }
-}
-
-fn unary_argument<'a>(name: &str, arguments: &'a [Dual]) -> Result<&'a Dual, LispError> {
-    match arguments {
-        [argument] => Ok(argument),
-        _ => Err(LispError::Evaluation(format!(
-            "operation {name} expects one argument"
-        ))),
-    }
-}
-
-fn binary_arguments<'a>(name: &str, arguments: &'a [Dual]) -> Result<[&'a Dual; 2], LispError> {
-    match arguments {
-        [left, right] => Ok([left, right]),
-        _ => Err(LispError::Evaluation(format!(
-            "operation {name} expects two arguments"
-        ))),
-    }
-}
-
-fn scale_gradient(gradient: &BTreeMap<String, f64>, scale: f64) -> BTreeMap<String, f64> {
-    gradient
-        .iter()
-        .map(|(name, value)| (name.clone(), scale * value))
-        .collect()
-}
-
-fn combine_gradients(
-    left: &BTreeMap<String, f64>,
-    left_scale: f64,
-    right: &BTreeMap<String, f64>,
-    right_scale: f64,
-) -> BTreeMap<String, f64> {
-    let mut result = scale_gradient(left, left_scale);
-    for (name, value) in right {
-        *result.entry(name.clone()).or_default() += right_scale * value;
-    }
-    result
 }

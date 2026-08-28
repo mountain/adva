@@ -27,6 +27,19 @@ counterexample_boundary = "Imported legacy IR is accepted only after schema vali
 forbidden_conflations = ["Memory address", "Python id()", "Value equality", "Structural hash"]
 
 [[claim]]
+claim_id = "adva.exact.builtin-operation-registry.v1"
+canonical_name = "Single versioned builtin operation registry"
+code_symbol = "adva_lisp::builtin_operation_specs"
+dimension = "0/1"
+status = "exact"
+scope = "adva.builtin version 1 scalar Real operations"
+assumptions = ["All stable semantic entry points resolve OperationSpec"]
+dependencies = ["adva.definition.module-ir.v1", "adva.exact.explicit-source-identity.v1"]
+proof_or_certificate = "Registry completeness, malformed parameter, boundary recheck, evaluation, and differential tests"
+counterexample_boundary = "No claim for plugins, reverse mode, higher derivatives, symbolic normalization, or future operation versions"
+forbidden_conflations = ["Value rule with lineage rule", "Operation name with a versioned operation", "Registry entry with optimization authority"]
+
+[[claim]]
 claim_id = "adva.bounded-verified.k1.v1"
 canonical_name = "K1 source partition calibration"
 code_symbol = "adva_lisp::SharedProgramDiagram::source_partition"

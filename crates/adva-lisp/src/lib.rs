@@ -3,11 +3,16 @@
 mod compile;
 mod eval;
 mod module;
+mod operation;
 mod parser;
 
 pub use compile::compile_function;
 pub use eval::{evaluate, evaluate_with_differential, observe_history, observe_source_partition};
 pub use module::{LinkedModules, link_modules};
+pub use operation::{
+    BUILTIN_NAMESPACE, BUILTIN_VERSION, LineageRule, OperationSpec, builtin_operation_specs,
+    resolve_operation,
+};
 pub use parser::parse_module;
 
 use thiserror::Error;
