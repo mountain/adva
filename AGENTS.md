@@ -29,9 +29,11 @@ Keep `ProgramTerm`, `SharedProgramDiagram`, `History`, `Value`, `Occurrence`,
 serialization, and independent of memory addresses, object identity, value
 equality, structural hashing, or accidental AST sharing.
 
-Sharing is a program operation `copy : A -> A tensor A`; it is never a type
-modifier or host-language alias. Value equality and observational equivalence
-never authorize contraction, memoization, CSE, or a cell.
+Sharing is a program operation whose result has two ordered output ports on a
+`Frontier`; it is never a type modifier or host-language alias. `Frontier`
+records an open typed boundary and must not be presented as an implemented
+tensor product. Value equality and observational equivalence never authorize
+contraction, memoization, CSE, or a cell.
 
 Directed normalization steps, invertible equation cells, and coherence cells
 use different Rust types. Search exhaustion produces `Unknown`, never a proof

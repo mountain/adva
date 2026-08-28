@@ -27,6 +27,32 @@ counterexample_boundary = "Imported legacy IR is accepted only after schema vali
 forbidden_conflations = ["Memory address", "Python id()", "Value equality", "Structural hash"]
 
 [[claim]]
+claim_id = "adva.definition.ordered-frontier.v1"
+canonical_name = "Ordered typed open frontier"
+code_symbol = "adva_ir::ProgramTerm::Frontier"
+dimension = "0-boundary syntax"
+status = "definition"
+scope = "PSC0 finite function inputs, intermediate term boundaries, and outputs"
+assumptions = ["Frontier order is semantically retained"]
+dependencies = ["adva.definition.module-ir.v1"]
+proof_or_certificate = "Parser, lowering, serialization, ordering, and legacy-name rejection tests"
+counterexample_boundary = "No monoidal, Cartesian, direct-sum, polynomial, or matrix interpretation is asserted"
+forbidden_conflations = ["Frontier with tensor product", "Frontier with host tuple aliasing", "Frontier with source sharing"]
+
+[[claim]]
+claim_id = "adva.construction-target.compiled-presentations.v1"
+canonical_name = "Polynomial and action presentations"
+code_symbol = "not exposed"
+dimension = "1/representation"
+status = "construction-target"
+scope = "Future chart- and observer-relative compilation from checked diagrams"
+assumptions = ["Declared chart", "Declared observer", "Declared basis", "Residual and replay certificates"]
+dependencies = ["adva.definition.ordered-frontier.v1"]
+proof_or_certificate = "None in Adva; one research-local power-dominant calibration exists in process-geometry"
+counterexample_boundary = "Native process evaluation need not use either compiled presentation; no generic multi-variable interface is established"
+forbidden_conflations = ["PolynomialPresentation with ordinary polynomial", "ActionPresentation with runtime ontology", "Compiled presentation with Frontier"]
+
+[[claim]]
 claim_id = "adva.exact.builtin-operation-registry.v1"
 canonical_name = "Single versioned builtin operation registry"
 code_symbol = "adva_lisp::builtin_operation_specs"

@@ -13,8 +13,8 @@ tool does not turn research targets into stable API promises.
 ## Initial executable slice
 
 - immutable `ProgramTerm`, module IR, and `SharedProgramDiagram`;
-- explicit `copy`, `discard`, `swap`, `id`, `tensor`, arithmetic and elementary
-  unary operations;
+- explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,
+  arithmetic and elementary unary operations;
 - stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and
   `History`;
 - Rust module parsing, imports, exports, linking, and typed lowering;

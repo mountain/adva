@@ -76,9 +76,16 @@ Every builtin operation has one Rust definition of:
 - local forward differential;
 - source and occurrence transport.
 
-The first registry contains `id`, `tensor`, `swap`, `copy`, `discard`,
-constants, `add`, `mul`, `scale`, `neg`, `sin`, `cos`, `exp`, and `log`.
-Structural operations are diagram nodes, not Rust or Python aliases.
+The first registry contains `id`, `swap`, `copy`, `discard`, constants, `add`,
+`mul`, `scale`, `neg`, `sin`, `cos`, `exp`, and `log`. Structural operations
+are diagram nodes, not Rust or Python aliases. `frontier` is deliberately not
+an operation: it assembles an ordered typed open boundary without claiming a
+tensor-product semantics.
+
+Polynomial-like carriers and matrix-like transports are distinct compiled
+presentations, not replacements for this boundary constructor. They remain
+chart-, basis-, observer-, and certificate-relative construction targets; see
+[ADR 0004](adr/0004-frontier-before-compiled-presentations.md).
 
 The parser, typed lowering, evaluator, and forward differential all resolve the
 same `OperationSpec`. Stored IR is checked against the registry again before
