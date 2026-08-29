@@ -23,6 +23,8 @@ tool does not turn research targets into stable API promises.
   lineage transport, evaluation, and forward differentiation;
 - scalar evaluation and forward differential, each with a certificate;
 - JSON IR round-trips with an explicit schema version;
+- semantic diagram import in Rust with graph, linear-use, occurrence, source,
+  history, and boundary certificates;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -73,6 +75,19 @@ sympy_expression = quadruple.to_sympy()
 numpy_function = quadruple.numpy_callable()
 objective = quadruple.scipy_objective()
 ```
+
+Stored diagrams cross a separate checked boundary:
+
+```python
+from adva import load_program
+
+restored = load_program(quadruple.ir)
+assert restored.validation_certificate["linear_use"] == "checked"
+assert restored.compilation_certificate is None
+```
+
+Successful JSON decoding is not semantic authorization. `load_program` returns
+only a diagram accepted by the Rust validator.
 
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or

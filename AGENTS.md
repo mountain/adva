@@ -15,6 +15,9 @@ Before modifying semantic code, read:
 - Python may adapt checked IR to SymPy, NumPy, SciPy, plotting, search, or
   experiments. Python must not create or identify semantic identities.
 - The versioned JSON IR is the language-independent interchange boundary.
+- External or stored diagrams enter semantic code only through the Rust
+  `validate_diagram` / `import_diagram_json` boundary. Serde decoding alone is
+  not authorization.
 - `process-geometry` supplies theory and independent regression oracles. Do not
   silently copy its experimental claims into the stable API.
 

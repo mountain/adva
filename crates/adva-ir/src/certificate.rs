@@ -19,6 +19,7 @@ pub struct CompilationCertificate {
     pub linear_use: CheckStatus,
     pub types: CheckStatus,
     pub call_history: CheckStatus,
+    pub diagram_integrity: CheckStatus,
 }
 
 impl CompilationCertificate {
@@ -28,6 +29,7 @@ impl CompilationCertificate {
             self.linear_use,
             self.types,
             self.call_history,
+            self.diagram_integrity,
         ]
         .into_iter()
         .all(|status| status == CheckStatus::Checked)
@@ -41,6 +43,51 @@ pub struct CompilationArtifact {
     pub certificate: CompilationCertificate,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DiagramValidationCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub boundary: FunctionSignature,
+    pub schema: CheckStatus,
+    pub identifiers: CheckStatus,
+    pub graph: CheckStatus,
+    pub operation_boundaries: CheckStatus,
+    pub linear_use: CheckStatus,
+    pub occurrence_paths: CheckStatus,
+    pub source_partition: CheckStatus,
+    pub history: CheckStatus,
+    pub rewrite_trace: CheckStatus,
+    pub node_ids: Vec<crate::NodeId>,
+    pub source_partition_snapshot: BTreeMap<crate::SourceId, Vec<crate::OccurrenceId>>,
+    pub history_event_count: u32,
+}
+
+impl DiagramValidationCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.schema,
+            self.identifiers,
+            self.graph,
+            self.operation_boundaries,
+            self.linear_use,
+            self.occurrence_paths,
+            self.source_partition,
+            self.history,
+            self.rewrite_trace,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct DiagramValidationArtifact {
+    pub result: SharedProgramDiagram,
+    pub certificate: DiagramValidationCertificate,
+}
+
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EvaluationCertificate {
@@ -48,6 +95,7 @@ pub struct EvaluationCertificate {
     pub scope: String,
     pub executed_nodes: Vec<u32>,
     pub input_types_checked: bool,
+    pub diagram_integrity: CheckStatus,
     pub operation_rules_checked: bool,
 }
 
@@ -66,6 +114,7 @@ pub struct DifferentiationCertificate {
     pub method: String,
     pub operation_rules: Vec<String>,
     pub input_types_checked: bool,
+    pub diagram_integrity: CheckStatus,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
