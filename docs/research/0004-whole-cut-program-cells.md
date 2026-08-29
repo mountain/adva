@@ -21,11 +21,14 @@ This calibration raises the basic object by one small step.  Instead of an
 expression or an operator, use a **program cell** consisting of:
 
 1. a checked whole program;
-2. one declared way to cut it into checked stages;
-3. the typed boundary at every cut;
-4. the source occurrences that cross each boundary.
+2. its checked ordered trace of atomic calls;
+3. every sequential cut induced by that trace;
+4. the typed frontier and source occurrences carried by every cut.
 
 No vector space, module, polynomial algebra, basis, or matrix is introduced.
+The first version required the caller to declare one cut.  The refined
+experiment reconstructs the atomic stages from checked call history and
+generates the whole finite family of compatible cuts from the program itself.
 
 ## Two readings of one cell
 
@@ -115,17 +118,84 @@ This is the first useful clue about the later appearance of a numerical unit:
 objectified.  The current calibration does not identify it with a Jordan entry
 or a holonomy invariant.
 
+## Compatible cuts form a refinement lattice
+
+Let a checked flat call trace contain (n) atomic stages
+
+\[
+  P_n\circ\cdots\circ P_2\circ P_1.
+\]
+
+There are (n-1) internal call boundaries.  In the present sequential
+fragment, a compatible refinement is exactly a subset
+
+\[
+  R\subseteq\{1,\ldots,n-1\}.
+\]
+
+The subset partitions the ordered trace into consecutive blocks.  Refinement
+adds a cut but never permutes a stage, merges a source, or changes the checked
+whole.  Consequently the refinements form the finite Boolean lattice
+
+\[
+  \mathcal R(P)=\mathcal P(\{1,\ldots,n-1\}),
+\]
+
+decorated at every selected boundary by its typed frontier, left and right
+call traces, and checked source lineage.  If (r_i) means adding cut (i),
+then the finite data obey
+
+\[
+  r_i^2=r_i,
+  \qquad
+  r_ir_j=r_jr_i.
+\]
+
+This commutativity belongs to **resolution of one fixed program**, not to the
+program stages themselves.  Temporal composition remains ordered and need not
+commute.  The distinction gives a first precise form to the proposed duality:
+the temporal side is an ordered trace, while the spatial side is its decorated
+cut-refinement order.
+
+## The three-stage diamond is flat
+
+For three genuine stages there are two internal cuts.  Starting with the
+uncut whole, one may expose the left boundary and then the right boundary, or
+the right and then the left:
+
+\[
+\begin{array}{ccc}
+ & \varnothing & \\
+ \swarrow & & \searrow \\
+ \{1\} & & \{2\} \\
+ \searrow & & \swarrow \\
+ & \{1,2\}. &
+\end{array}
+\]
+
+The executable witness uses increment, shared doubling, and squaring.  The
+two intermediate refinements are different.  Their terminal refinement
+signature is nevertheless identical, including both typed boundaries and
+their checked source lineages.  Forward evaluation and backward neighborhood
+membership are unchanged by either refinement order.
+
+This is a bounded **flatness result for cut refinement**.  It is not an
+`EquationCell` or `CoherenceCell`, because Python is only reading Rust-checked
+data and may not create semantic identities.  It does show that ordinary
+three-stage sequential reassociation produces no holonomy at this level.
+
 ## What this supports
 
 The experiment supports the following bounded dependency:
 
 \[
   \boxed{
-  \text{checked whole + cut + source boundary}
+  \text{checked whole + atomic trace}
   \longrightarrow
   \begin{cases}
     \text{temporal composition},\\
-    \text{spatial inverse-neighborhood reading}.
+    \text{decorated spatial cut refinement},\\
+    \text{contravariant inverse-neighborhood reading}.
   \end{cases}
   }
 \]
@@ -143,12 +213,16 @@ linearizes the remaining finite data.
 
 The research-local `ProgramCell` is not a stable Adva API.  It reads checked
 call, operation, occurrence, and source data but does not create semantic
-identities.  The test uses one-input, one-output finite `Real` programs and
-open scalar intervals.
+identities.  The test uses flat leaf-call traces, one-input, one-output finite
+`Real` programs, and open scalar intervals.  The Boolean description is proved
+only for sequential call boundaries; it is not a theorem about arbitrary
+sharing diagrams.
 
-The next theorem must replace the declared two-stage cut by all compatible
-cuts of one checked program and prove their three-stage associativity.  After
-that, the first genuinely geometric test is whether two different cut paths
-form a coherent cell or leave a nontrivial history loop.  Only then is it
-responsible to ask whether numerical exponentials, spectral scales, or Jordan
-units are shadows of this structure.
+The next genuinely geometric test should leave the flat chain.  A branching
+program with sharing and later recombination can have cuts that are not
+independent.  Its compatible-cut family need not be a Boolean lattice, and
+transporting boundary lineage around two refinement paths may either produce
+a checked higher coherence or leave a nontrivial history loop.  That is the
+first responsible place to test holonomy.  Numerical exponentials, spectral
+scales, or Jordan-like residuals should remain downstream shadows until this
+non-flat case is understood.
