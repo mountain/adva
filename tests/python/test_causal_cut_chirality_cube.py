@@ -431,19 +431,25 @@ def test_checked_relation_generation_boundary_data_form_one_local_three_cube() -
     assert all(cube.diagram.is_open(vertex) for vertex in vertices)
 
     base_frontier = cube.diagram.frontier(cube.base)
-    assert len(base_frontier) == 3
+    object_ports = tuple(port for port in base_frontier if port.sources)
+    parameter_ports = tuple(port for port in base_frontier if not port.sources)
+    assert len(object_ports) == 3
+    assert len(parameter_ports) == 1
     assert all(port.value_type == "real" for port in base_frontier)
-    assert len({port.lineage for port in base_frontier}) == 3
-    assert len({source for port in base_frontier for source in port.sources}) == 1
+    assert len({port.lineage for port in object_ports}) == 3
+    assert len({source for port in object_ports for source in port.sources}) == 1
+    assert parameter_ports[0].lineage == ()
 
     for mask in range(8):
         for direction in range(3):
             if not mask & (1 << direction):
                 edge = cube.edge(mask, direction)
-                assert len(edge.consumed) == 1
-                assert len(edge.produced) == 1
-                assert {source for port in edge.consumed for source in port.sources} == {
-                    source for port in edge.produced for source in port.sources
+                consumed_objects = tuple(port for port in edge.consumed if port.sources)
+                produced_objects = tuple(port for port in edge.produced if port.sources)
+                assert len(consumed_objects) == 1
+                assert len(produced_objects) == 1
+                assert {source for port in consumed_objects for source in port.sources} == {
+                    source for port in produced_objects for source in port.sources
                 }
 
 
