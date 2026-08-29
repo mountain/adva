@@ -168,3 +168,55 @@ dependencies = ["adva.bounded-verified.k2.v1"]
 proof_or_certificate = "Explicit equal-action counterexample with unequal IR, history, source partition, and operation-rule certificates"
 counterexample_boundary = "The no-go does not exclude a history-augmented or task-relative observer from being faithful on a declared fragment"
 forbidden_conflations = ["Same action with same program", "Same spectrum with same history", "Weak spectral selection with strong objectification"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.whole-cut-program-cell.v0"
+canonical_name = "Whole-cut shared program cell calibration"
+code_symbol = "tests/python/test_shared_expression_program_cells.py"
+dimension = "1/2/shared-expression/research-calibration"
+status = "bounded-verified"
+scope = "Finite one-input one-output Real programs with a checked flat sequential call trace, checked source lineage, and scalar interval neighborhoods"
+assumptions = ["Rust-checked finite Adva diagrams", "Atomic stages are inferred from checked flat leaf-call history", "Every stage has Real -> Real boundary", "Research-local scalar neighborhoods"]
+dependencies = ["adva.exact.diagram-validation.v1", "adva.bounded-verified.k2.v1"]
+proof_or_certificate = "Checked whole-program replay equals left-to-right stage evaluation; output-neighborhood inverse reading reverses the same stages; equal scalar actions retain distinct source lineage at the cut; explicit identity call is an empty stage without erasing history"
+counterexample_boundary = "The calibration does not handle nested or branching call factorizations, construct a topology of expression neighborhoods, or expose a stable program-cell API"
+forbidden_conflations = ["Program cell with module", "Sequential call cut with arbitrary graph factorization", "Scalar inverse neighborhood with full spatial carrier", "Empty identity stage with history equality", "Equal scalar action with equal sharing geometry"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.compatible-cut-refinement.v0"
+canonical_name = "Flat compatible-cut refinement diamond"
+code_symbol = "tests/python/test_shared_expression_program_cells.py::test_three_stage_cut_refinement_forms_a_checked_diamond"
+dimension = "1/2/cut-refinement/research-calibration"
+status = "bounded-verified"
+scope = "Finite flat sequential traces of leaf Real -> Real calls, with compatible cuts restricted to checked internal call boundaries"
+assumptions = ["Rust-checked finite Adva diagrams", "Flat leaf-call history", "One scalar input and output", "Boundary lineage is read from checked wires"]
+dependencies = ["adva.bounded-verified.whole-cut-program-cell.v0"]
+proof_or_certificate = "All subsets of checked internal call boundaries are enumerated; refinement is idempotent and pairwise commutative; the two refinement orders of a genuine three-stage trace terminate in the same typed and source-decorated signature; checked values and inverse-neighborhood membership are preserved"
+counterexample_boundary = "No arbitrary DAG cut complex, rewrite-path coherence, semantic CoherenceCell, topology, or nontrivial holonomy is constructed"
+forbidden_conflations = ["Cut-refinement commutativity with commutative program composition", "Equal terminal signature with a Rust semantic identity", "Boolean lattice of a flat trace with the cut geometry of an arbitrary sharing diagram", "Refinement path with program execution history"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.causal-cut-alexandrov-topology.v0"
+canonical_name = "Causal-cut Alexandrov topology with shared frontiers"
+code_symbol = "tests/python/test_shared_expression_causal_topology.py"
+dimension = "1/2/causal-open/research-calibration"
+status = "bounded-verified"
+scope = "The checked five-operation fork-recombine Real program, with events ordered by wire reachability and opens chosen as completed causal pasts"
+assumptions = ["Rust-checked finite acyclic diagram", "Past-open orientation convention", "Python enumeration reads but does not authorize IR", "Cut frontiers use checked wire lineage"]
+dependencies = ["adva.exact.diagram-validation.v1", "adva.exact.explicit-source-identity.v1", "adva.bounded-verified.whole-cut-program-cell.v0"]
+proof_or_certificate = "Exhaustive closure and distributivity over all completed pasts; explicit failure of complementation; recovery of every causal comparison from open membership; two distinct cut occurrences with one checked source; rejection of a non-downward-closed cut"
+counterexample_boundary = "No stable topology API, boundary gluing or transport law, rewrite-path coherence, semantic higher cell, general DAG theorem certificate, or holonomy is constructed"
+forbidden_conflations = ["Causal-open lattice with boundary-refinement lattice", "Event topology with the full source-decorated program geometry", "Downward closure with scalar value order", "Finite distributive lattice with module carrier", "Recovered causal order with program equality"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.frontier-interchange-coherence.v0"
+canonical_name = "Shared-frontier transport interchange calibration"
+code_symbol = "tests/python/test_shared_expression_causal_topology.py::test_all_branch_schedules_are_connected_by_checked_interchange_squares"
+dimension = "1/2/frontier-transport/research-calibration"
+status = "bounded-verified"
+scope = "All three causal schedules of the checked five-operation fork-recombine program, with elementary transport derived by crossing-wire replacement"
+assumptions = ["Rust-checked finite acyclic diagram", "Completed-past endpoints", "Independent events are simultaneously enabled and consume disjoint frontier wires", "Python witnesses are research data, not semantic cells"]
+dependencies = ["adva.bounded-verified.causal-cut-alexandrov-topology.v0"]
+proof_or_certificate = "Exhaustive enumeration of linear extensions; connected adjacent-independent-swap graph; a closed source-decorated frontier square for every swap; preservation of checked source support at every elementary step; distinct histories with equal endpoint frontiers"
+counterexample_boundary = "No Rust CoherenceCell, general linear-extension theorem certificate, overlapping rewrite, confluence result, feedback transport, curvature, or holonomy is constructed"
+forbidden_conflations = ["Independent-step interchange with commutative arithmetic", "Equal endpoint frontiers with equal schedule histories", "Connected schedule graph with definitional path equality", "Research witness with stable semantic certificate", "Ordinary DAG concurrency with nontrivial holonomy"]
