@@ -16,21 +16,59 @@ from ._native import Program as _NativeProgram
 from ._native import Workspace as _NativeWorkspace
 from ._native import compile_module as _compile_module
 from ._native import link_modules as _link_modules
+from ._native import load_program_json as _load_program_json
 
 if TYPE_CHECKING:
     import numpy as np
 
 
 @dataclass(frozen=True, slots=True)
-class FunctionSignature:
-    """Python view of the Rust-checked 0-cell boundary."""
+class TypedFrontier:
+    """Orientation-free ordered port types checked by Rust."""
 
-    inputs: tuple[tuple[str, str], ...]
-    outputs: tuple[str, ...]
+    types: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class DomainFrontier:
+    """Named input orientation of a typed frontier."""
+
+    ports: tuple[tuple[str, str], ...]
+
+    @property
+    def typed(self) -> TypedFrontier:
+        return TypedFrontier(tuple(value_type for _, value_type in self.ports))
 
     @property
     def input_names(self) -> tuple[str, ...]:
-        return tuple(name for name, _ in self.inputs)
+        return tuple(name for name, _ in self.ports)
+
+
+@dataclass(frozen=True, slots=True)
+class CodomainFrontier:
+    """Output orientation of a typed frontier."""
+
+    typed: TypedFrontier
+
+
+@dataclass(frozen=True, slots=True)
+class FunctionSignature:
+    """Python view of the Rust-checked domain and codomain frontiers."""
+
+    domain: DomainFrontier
+    codomain: CodomainFrontier
+
+    @property
+    def inputs(self) -> tuple[tuple[str, str], ...]:
+        return self.domain.ports
+
+    @property
+    def outputs(self) -> tuple[str, ...]:
+        return self.codomain.typed.types
+
+    @property
+    def input_names(self) -> tuple[str, ...]:
+        return self.domain.input_names
 
 
 @dataclass(frozen=True, slots=True)
@@ -72,8 +110,10 @@ class KernelFunction:
         self._native = native
         raw = json.loads(native.signature_json())
         self._signature = FunctionSignature(
-            inputs=tuple((item["name"], item["value_type"]) for item in raw["inputs"]),
-            outputs=tuple(raw["outputs"]),
+            domain=DomainFrontier(
+                tuple((item["name"], item["value_type"]) for item in raw["inputs"])
+            ),
+            codomain=CodomainFrontier(TypedFrontier(tuple(raw["outputs"]))),
         )
 
     @property
@@ -89,8 +129,13 @@ class KernelFunction:
         return json.loads(self._native.ir_json())
 
     @property
-    def compilation_certificate(self) -> Mapping[str, Any]:
-        return json.loads(self._native.compilation_certificate_json())
+    def compilation_certificate(self) -> Mapping[str, Any] | None:
+        encoded = self._native.compilation_certificate_json()
+        return None if encoded is None else json.loads(encoded)
+
+    @property
+    def validation_certificate(self) -> Mapping[str, Any]:
+        return json.loads(self._native.validation_certificate_json())
 
     @property
     def history(self) -> Mapping[str, Any]:
@@ -256,3 +301,9 @@ def compile_module(source: str) -> Workspace:
 def link_modules(sources: Sequence[str]) -> Workspace:
     return Workspace(_link_modules(list(sources)))
 
+
+def load_program(document: str | Mapping[str, Any]) -> KernelFunction:
+    """Import only a diagram accepted by the Rust semantic validator."""
+
+    source = document if isinstance(document, str) else json.dumps(document)
+    return KernelFunction(_load_program_json(source))

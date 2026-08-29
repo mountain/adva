@@ -1,3 +1,5 @@
+use crate::operation::{LineageRule, resolve_operation};
+use crate::validate::validate_diagram_ref;
 use crate::{LinkedModules, LispError};
 use adva_ir::{
     CertificateId, CheckStatus, CompilationArtifact, CompilationCertificate, FunctionDefinition,
@@ -127,9 +129,9 @@ impl<'a> Compiler<'a> {
             ProgramTerm::Use { port } => scope.consume(port),
             ProgramTerm::Constant { value } => {
                 let operation = OperationRef::constant(*value);
-                self.emit_operation(operation, Vec::new(), vec![ValueType::Real])
+                self.lower_operation(operation, Vec::new())
             }
-            ProgramTerm::Tensor { terms } => {
+            ProgramTerm::Frontier { terms } => {
                 let mut result = Vec::new();
                 for term in terms {
                     result.extend(self.lower_term(term, scope, current_module)?);
@@ -181,7 +183,10 @@ impl<'a> Compiler<'a> {
                 argument_wires.len()
             )));
         }
-        for (wire, port) in argument_wires.iter().zip(&definition.signature.inputs) {
+        for (wire, port) in argument_wires
+            .iter()
+            .zip(definition.signature.inputs.ports())
+        {
             if wire.value_type != port.value_type {
                 return Err(LispError::Type(format!(
                     "call to {function} passes {:?} to {}:{:?}",
@@ -235,26 +240,17 @@ impl<'a> Compiler<'a> {
         operation: OperationRef,
         inputs: Vec<WireRef>,
     ) -> Result<Vec<WireRef>, LispError> {
-        ensure_builtin(&operation)?;
-        match operation.name.as_str() {
-            "copy" => self.emit_copy(operation, inputs),
-            "discard" => self.emit_discard(operation, inputs),
-            "swap" => self.emit_swap(operation, inputs),
-            "id" => {
-                check_arity_and_type(&operation.name, &inputs, 1, ValueType::Real)?;
-                self.emit_operation(operation, inputs, vec![ValueType::Real])
+        let spec = resolve_operation(&operation)?;
+        spec.validate_wires(&inputs)?;
+        match spec.lineage_rule {
+            LineageRule::Copy => self.emit_copy(operation, inputs, spec.output_types.to_vec()),
+            LineageRule::Discard => {
+                self.emit_discard(operation, inputs, spec.output_types.to_vec())
             }
-            "add" | "mul" | "scale" => {
-                check_arity_and_type(&operation.name, &inputs, 2, ValueType::Real)?;
-                self.emit_operation(operation, inputs, vec![ValueType::Real])
+            LineageRule::Swap => self.emit_swap(operation, inputs, spec.output_types.to_vec()),
+            LineageRule::MergeInputs => {
+                self.emit_operation(operation, inputs, spec.output_types.to_vec())
             }
-            "neg" | "sin" | "cos" | "exp" | "log" => {
-                check_arity_and_type(&operation.name, &inputs, 1, ValueType::Real)?;
-                self.emit_operation(operation, inputs, vec![ValueType::Real])
-            }
-            other => Err(LispError::Type(format!(
-                "operation {other:?} is not in the PSC0 builtin registry"
-            ))),
         }
     }
 
@@ -262,8 +258,8 @@ impl<'a> Compiler<'a> {
         &mut self,
         operation: OperationRef,
         inputs: Vec<WireRef>,
+        output_types: Vec<ValueType>,
     ) -> Result<Vec<WireRef>, LispError> {
-        check_arity_and_type(&operation.name, &inputs, 1, ValueType::Real)?;
         let input = &inputs[0];
         let node = self.fresh_node();
         let mut output_lineages = [Vec::new(), Vec::new()];
@@ -288,17 +284,18 @@ impl<'a> Compiler<'a> {
             id: node,
             operation: operation.clone(),
             inputs,
-            output_types: vec![ValueType::Real, ValueType::Real],
+            output_types: output_types.clone(),
         });
         self.history
             .push(HistoryEvent::Operation { node, operation });
         Ok(output_lineages
             .into_iter()
+            .zip(output_types)
             .enumerate()
-            .map(|(index, lineage)| WireRef {
+            .map(|(index, (lineage, value_type))| WireRef {
                 producer: WireProducer::Node { node },
                 output_index: index as u32,
-                value_type: ValueType::Real,
+                value_type,
                 lineage,
             })
             .collect())
@@ -308,14 +305,14 @@ impl<'a> Compiler<'a> {
         &mut self,
         operation: OperationRef,
         inputs: Vec<WireRef>,
+        output_types: Vec<ValueType>,
     ) -> Result<Vec<WireRef>, LispError> {
-        check_arity_and_type(&operation.name, &inputs, 1, ValueType::Real)?;
         let node = self.fresh_node();
         self.nodes.push(OperationNode {
             id: node,
             operation: operation.clone(),
             inputs,
-            output_types: Vec::new(),
+            output_types,
         });
         self.history
             .push(HistoryEvent::Operation { node, operation });
@@ -326,25 +323,26 @@ impl<'a> Compiler<'a> {
         &mut self,
         operation: OperationRef,
         inputs: Vec<WireRef>,
+        output_types: Vec<ValueType>,
     ) -> Result<Vec<WireRef>, LispError> {
-        check_arity_and_type(&operation.name, &inputs, 2, ValueType::Real)?;
         let node = self.fresh_node();
         let lineages = [inputs[1].lineage.clone(), inputs[0].lineage.clone()];
         self.nodes.push(OperationNode {
             id: node,
             operation: operation.clone(),
             inputs,
-            output_types: vec![ValueType::Real, ValueType::Real],
+            output_types: output_types.clone(),
         });
         self.history
             .push(HistoryEvent::Operation { node, operation });
         Ok(lineages
             .into_iter()
+            .zip(output_types)
             .enumerate()
-            .map(|(index, lineage)| WireRef {
+            .map(|(index, (lineage, value_type))| WireRef {
                 producer: WireProducer::Node { node },
                 output_index: index as u32,
-                value_type: ValueType::Real,
+                value_type,
                 lineage,
             })
             .collect())
@@ -398,7 +396,7 @@ pub fn compile_function(
     compiler.call_stack.push(qualified.clone());
 
     let mut input_wires = Vec::new();
-    for (index, port) in definition.signature.inputs.iter().enumerate() {
+    for (index, port) in definition.signature.inputs.ports().iter().enumerate() {
         let source =
             SourceId::explicit(format!("source:{module}/{function}:{index}:{}", port.name));
         let occurrence = compiler.fresh_occurrence(source.clone(), OccurrencePath::root());
@@ -438,6 +436,7 @@ pub fn compile_function(
             rewrite_trace: Vec::new(),
         },
     };
+    validate_diagram_ref(&diagram)?;
     let certificate = CompilationCertificate {
         id: CertificateId::explicit(format!("compile:{module}/{function}:v1")),
         scope: "PSC0 finite acyclic module lowering".to_owned(),
@@ -446,43 +445,12 @@ pub fn compile_function(
         linear_use: CheckStatus::Checked,
         types: CheckStatus::Checked,
         call_history: CheckStatus::Checked,
+        diagram_integrity: CheckStatus::Checked,
     };
     Ok(CompilationArtifact {
         result: diagram,
         certificate,
     })
-}
-
-fn ensure_builtin(operation: &OperationRef) -> Result<(), LispError> {
-    if operation.namespace == "adva.builtin" && operation.version == 1 {
-        Ok(())
-    } else {
-        Err(LispError::Type(format!(
-            "unsupported operation {}:{} v{}",
-            operation.namespace, operation.name, operation.version
-        )))
-    }
-}
-
-fn check_arity_and_type(
-    name: &str,
-    inputs: &[WireRef],
-    arity: usize,
-    expected_type: ValueType,
-) -> Result<(), LispError> {
-    if inputs.len() != arity {
-        return Err(LispError::Type(format!(
-            "operation {name} expects {arity} inputs, got {}",
-            inputs.len()
-        )));
-    }
-    if let Some(wire) = inputs.iter().find(|wire| wire.value_type != expected_type) {
-        return Err(LispError::Type(format!(
-            "operation {name} expects {expected_type:?}, got {:?}",
-            wire.value_type
-        )));
-    }
-    Ok(())
 }
 
 fn check_output_types(
@@ -494,7 +462,7 @@ fn check_output_types(
         .iter()
         .map(|wire| wire.value_type)
         .collect::<Vec<_>>();
-    if actual == definition.signature.outputs {
+    if actual.as_slice() == definition.signature.outputs.types() {
         Ok(())
     } else {
         Err(LispError::Type(format!(

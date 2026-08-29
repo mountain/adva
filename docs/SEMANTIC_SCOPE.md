@@ -8,13 +8,18 @@ claim that the surrounding calculus has been completely presented.
 
 - immutable typed module and function terms;
 - finite acyclic module linking;
-- typed input and output frontiers;
-- explicit `id`, composition by typed `call`, `tensor`, `swap`, `copy`, and
-  `discard`;
+- orientation-free `TypedFrontier` values and distinct `DomainFrontier` and
+  `CodomainFrontier` function boundaries;
+- explicit `id`, composition by typed `call`, ordered `frontier`, `swap`,
+  `copy`, and `discard`;
 - selected real arithmetic operations;
 - deterministic source and occurrence paths;
 - lossless history and JSON round-trip;
+- checked semantic import for canonical finite diagrams with empty rewrite
+  traces;
 - scalar realization and forward differentials;
+- one versioned Rust declaration for each builtin's boundary, realization,
+  differential, and lineage rule;
 - value and source/history observations as different interfaces.
 
 ## Explicitly excluded
@@ -48,9 +53,10 @@ cell.
 ## Certificates
 
 Compilation and module linking return a `CompilationCertificate`. Evaluation
-and forward differentiation return their own certificates. A certificate says
-only what its fields and scope record. It does not certify a general theorem.
+and forward differentiation return their own certificates. Semantic JSON
+import returns a distinct `DiagramValidationCertificate`; decoding alone does
+not. A certificate says only what its fields and scope record. It does not
+certify a general theorem.
 
 Search-style APIs, when introduced, must return `Yes`, `No` with a checked
 countercertificate, or `Unknown`. Timeout and exhaustion are `Unknown`.
-

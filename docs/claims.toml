@@ -27,6 +27,84 @@ counterexample_boundary = "Imported legacy IR is accepted only after schema vali
 forbidden_conflations = ["Memory address", "Python id()", "Value equality", "Structural hash"]
 
 [[claim]]
+claim_id = "adva.definition.ordered-frontier.v1"
+canonical_name = "Ordered typed open frontier"
+code_symbol = "adva_ir::{TypedFrontier, DomainFrontier, CodomainFrontier}; adva_ir::ProgramTerm::Frontier"
+dimension = "0-boundary syntax"
+status = "definition"
+scope = "PSC0 finite function inputs, intermediate term boundaries, and outputs"
+assumptions = ["Frontier order is semantically retained"]
+dependencies = ["adva.definition.module-ir.v1"]
+proof_or_certificate = "Parser, lowering, serialization, ordering, and legacy-name rejection tests"
+counterexample_boundary = "No monoidal, Cartesian, direct-sum, polynomial, or matrix interpretation is asserted"
+forbidden_conflations = ["Domain/Codomain with temporal/spatial polarity", "Frontier with tensor product", "Frontier with host tuple aliasing", "Frontier with source sharing"]
+
+[[claim]]
+claim_id = "adva.construction-target.frontier-star-action.v1"
+canonical_name = "Contravariant frontier observer pullback"
+code_symbol = "not exposed"
+dimension = "1/dual-action"
+status = "construction-target"
+scope = "Future checked diagrams with explicit Probe and PredicateRegion carriers"
+assumptions = ["Checked SharedProgramDiagram", "Declared observer carrier", "Explicit pairing law"]
+dependencies = ["adva.definition.ordered-frontier.v1"]
+proof_or_certificate = "None; the stable API currently has no probe pullback operation"
+counterexample_boundary = "No inverse, dagger, double-dual reflexivity, matrix transpose, or contraction law is implied"
+forbidden_conflations = ["StarAction with ProgramTerm", "Pullback with inverse", "Star with dagger", "Codomain-to-domain orientation with boundary duality"]
+
+[[claim]]
+claim_id = "adva.construction-target.dual-observation-spectrum.v1"
+canonical_name = "Dual observation spectrum and residual distinguishability tower"
+code_symbol = "not exposed"
+dimension = "0/1/representation"
+status = "construction-target"
+scope = "Future endoprocesses on a TypedFrontier under a declared finite ObservationPolicy"
+assumptions = ["Contravariant observer pullback", "History-observer pairing", "Explicit finite bounds for executable claims"]
+dependencies = ["adva.construction-target.frontier-star-action.v1"]
+proof_or_certificate = "None; finite stabilization and separation remain research obligations"
+counterexample_boundary = "Matrix spectra and Jordan forms are derived shadows only; observation equivalence does not collapse history fibres"
+forbidden_conflations = ["Dual spectrum with eigenvalue set", "Same spectral point with same SourceId", "Observation fibre with ObjectificationWitness", "Stable normal form with canonical rewrite path"]
+
+[[claim]]
+claim_id = "adva.construction-target.compiled-presentations.v1"
+canonical_name = "Polynomial and action presentations"
+code_symbol = "not exposed"
+dimension = "1/representation"
+status = "construction-target"
+scope = "Future chart- and observer-relative compilation from checked diagrams"
+assumptions = ["Declared chart", "Declared observer", "Declared basis", "Residual and replay certificates"]
+dependencies = ["adva.definition.ordered-frontier.v1", "adva.construction-target.frontier-star-action.v1"]
+proof_or_certificate = "None in Adva; one research-local power-dominant calibration exists in process-geometry"
+counterexample_boundary = "Native process evaluation need not use either compiled presentation; no generic multi-variable interface is established"
+forbidden_conflations = ["PolynomialPresentation with ordinary polynomial", "ActionPresentation with runtime ontology", "Compiled presentation with Frontier"]
+
+[[claim]]
+claim_id = "adva.exact.builtin-operation-registry.v1"
+canonical_name = "Single versioned builtin operation registry"
+code_symbol = "adva_lisp::builtin_operation_specs"
+dimension = "0/1"
+status = "exact"
+scope = "adva.builtin version 1 scalar Real operations"
+assumptions = ["All stable semantic entry points resolve OperationSpec"]
+dependencies = ["adva.definition.module-ir.v1", "adva.exact.explicit-source-identity.v1"]
+proof_or_certificate = "Registry completeness, malformed parameter, boundary recheck, evaluation, and differential tests"
+counterexample_boundary = "No claim for plugins, reverse mode, higher derivatives, symbolic normalization, or future operation versions"
+forbidden_conflations = ["Value rule with lineage rule", "Operation name with a versioned operation", "Registry entry with optimization authority"]
+
+[[claim]]
+claim_id = "adva.exact.diagram-validation.v1"
+canonical_name = "Checked finite diagram import"
+code_symbol = "adva_lisp::{validate_diagram, import_diagram_json}"
+dimension = "1/certificate"
+status = "exact"
+scope = "Finite adva.ir version 1 PSC0 diagrams over the builtin operation registry, canonical source/copy history, and empty rewrite traces"
+assumptions = ["Call identifiers are checked but linked callee provenance is not replayed", "Every semantic endpoint is linear", "Copy is the only creator of non-root occurrences"]
+dependencies = ["adva.definition.ordered-frontier.v1", "adva.exact.explicit-source-identity.v1", "adva.exact.builtin-operation-registry.v1"]
+proof_or_certificate = "DiagramValidationCertificate plus positive round-trip, forged-source, forged-path, non-topological-wire, implicit-alias, and rewrite-trace rejection tests"
+counterexample_boundary = "No claim for non-empty rewrite traces, external operations, binders, recursion, higher cells, objectification, or callee provenance replay"
+forbidden_conflations = ["JSON decoding with semantic validation", "Validation certificate with compilation certificate", "Observation equivalence with graph contraction", "Test coverage with an unrestricted theorem"]
+
+[[claim]]
 claim_id = "adva.bounded-verified.k1.v1"
 canonical_name = "K1 source partition calibration"
 code_symbol = "adva_lisp::SharedProgramDiagram::source_partition"
@@ -34,7 +112,7 @@ dimension = "1"
 status = "bounded-verified"
 scope = "One-output Real diagrams generated by input, copy, add, and scale"
 assumptions = ["Linear-use checker accepts the module", "No source merge operation"]
-dependencies = ["adva.exact.explicit-source-identity.v1"]
+dependencies = ["adva.exact.explicit-source-identity.v1", "adva.exact.diagram-validation.v1"]
 proof_or_certificate = "Rust and Python K1 tests"
 counterexample_boundary = "No statement for binders, recursion, or generic graph rewriting"
 forbidden_conflations = ["Equal values with equal sources", "OccurrenceId with SourceId"]
@@ -64,3 +142,29 @@ dependencies = []
 proof_or_certificate = "None"
 counterexample_boundary = "Observed equivalence alone is insufficient"
 forbidden_conflations = ["Witness existence with canonicity", "Search failure with nonexistence"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.paired-spectral-kernel.v0"
+canonical_name = "Paired two-mode spectral selection calibration"
+code_symbol = "tests/python/test_paired_spectral_objectification.py"
+dimension = "1/dual-action/research-calibration"
+status = "bounded-verified"
+scope = "Real two-by-two action under a declared Euclidean vector-covector pairing, including one diagonalizable non-normal family with a simple dominant eigenvalue"
+assumptions = ["Checked finite Adva diagram", "Declared coordinate pairing", "Nonzero left/right modal overlaps", "Explicit spectral gap", "NumPy results are candidate regression data"]
+dependencies = ["adva.exact.builtin-operation-registry.v1", "adva.exact.diagram-validation.v1", "adva.construction-target.frontier-star-action.v1"]
+proof_or_certificate = "Adva compilation/evaluation/differential certificates plus bounded numerical regression tests"
+counterexample_boundary = "No general pullback, program spectrum, spectral-gap checker, or ObjectificationWitness is exposed"
+forbidden_conflations = ["Coordinate transpose with general StarAction", "Numerical spectral convergence with strong objectification", "Fixed-basis covariance with parameter-dependent chart covariance", "Candidate matrix data with Rust semantic authority"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.spectrum-history-no-go.v0"
+canonical_name = "Spectrum and ordinary differential do not recover checked history"
+code_symbol = "tests/python/test_paired_spectral_objectification.py::test_value_differential_powers_and_spectrum_do_not_recover_history"
+dimension = "1/observation/no-go"
+status = "bounded-verified"
+scope = "The checked shared-double and scale-double programs in the finite Real PSC0 fragment"
+assumptions = ["Observers factor through realized linear action, ordinary differential, finite powers, or scalar matrix spectrum"]
+dependencies = ["adva.bounded-verified.k2.v1", "adva.bounded-verified.paired-spectral-kernel.v0"]
+proof_or_certificate = "Explicit equal-action counterexample with unequal IR, history, source partition, and operation-rule certificates"
+counterexample_boundary = "The no-go does not exclude a history-augmented or task-relative observer from being faithful on a declared fragment"
+forbidden_conflations = ["Same action with same program", "Same spectrum with same history", "Weak spectral selection with strong objectification"]

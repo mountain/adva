@@ -1,4 +1,5 @@
 use crate::LispError;
+use crate::operation::builtin_surface_form;
 use adva_ir::{
     FunctionDefinition, FunctionName, FunctionSignature, ModuleDefinition, ModuleImport, ModuleIr,
     ModuleName, OperationRef, ProgramTerm, QualifiedName, Rational, TypedPort, ValueType,
@@ -144,7 +145,7 @@ fn parse_definition(
     let body = parse_term(&function[3], module, local_names, imports)?;
     Ok(FunctionDefinition {
         name,
-        signature: FunctionSignature { inputs, outputs },
+        signature: FunctionSignature::new(inputs, outputs),
         body,
     })
 }
@@ -217,7 +218,7 @@ fn parse_term(
                 port: items[1].atom()?.to_owned(),
             })
         }
-        "tensor" => Ok(ProgramTerm::Tensor {
+        "frontier" => Ok(ProgramTerm::Frontier {
             terms: parse_arguments(&items[1..], module, local_names, imports)?,
         }),
         "call" => {
@@ -229,9 +230,8 @@ fn parse_term(
                 arguments: parse_arguments(&items[2..], module, local_names, imports)?,
             })
         }
-        "id" | "copy" | "discard" | "swap" | "add" | "mul" | "scale" | "neg" | "sin" | "cos"
-        | "exp" | "log" => Ok(ProgramTerm::Apply {
-            operation: OperationRef::builtin(head),
+        operation if builtin_surface_form(operation) => Ok(ProgramTerm::Apply {
+            operation: OperationRef::builtin(operation),
             arguments: parse_arguments(&items[1..], module, local_names, imports)?,
         }),
         other => Err(LispError::Syntax(format!("unknown operation {other:?}"))),
