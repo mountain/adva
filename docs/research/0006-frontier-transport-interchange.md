@@ -90,7 +90,7 @@ The witness has the causal shape
   \text{root copy}
   \longrightarrow
   \begin{cases}
-    \text{left scale},\\
+    \text{left negation},\\
     \text{right copy}\longrightarrow\text{right multiply},
   \end{cases}
   \longrightarrow
@@ -98,7 +98,7 @@ The witness has the causal shape
 \]
 
 The root copy is forced first and the final add is forced last.  The left
-scale can occur before, between, or after the dependent right-copy/multiply
+negation can occur before, between, or after the dependent right-copy/multiply
 pair.  Hence the checked event order has exactly three linear extensions.
 
 The experiment enumerates all three schedules.  Their operation histories are
