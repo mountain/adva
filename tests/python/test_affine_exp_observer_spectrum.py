@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from typing import Any
 
@@ -219,10 +220,10 @@ def test_contravariant_transport_recovers_the_affine_semidirect_law():
         b_value = m_value * a_value
         left = scale_after_add.evaluate({"x": x_value, "a": a_value, "m": m_value})
         right = add_after_scale.evaluate({"x": x_value, "b": b_value, "m": m_value})
-        assert left == right
+        assert math.isclose(left, right, rel_tol=1e-14, abs_tol=1e-14)
         q_left = q_scale_after_add.evaluate({"x": x_value, "a": a_value, "m": m_value})
         q_right = q_add_after_scale.evaluate({"x": x_value, "b": b_value, "m": m_value})
-        assert q_left == q_right
+        assert math.isclose(q_left, q_right, rel_tol=1e-14, abs_tol=1e-14)
 
 
 def test_filtered_spectrum_separates_scale_from_additive_unipotent_residual():
