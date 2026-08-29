@@ -182,7 +182,10 @@ impl<'a> Compiler<'a> {
                 argument_wires.len()
             )));
         }
-        for (wire, port) in argument_wires.iter().zip(&definition.signature.inputs) {
+        for (wire, port) in argument_wires
+            .iter()
+            .zip(definition.signature.inputs.ports())
+        {
             if wire.value_type != port.value_type {
                 return Err(LispError::Type(format!(
                     "call to {function} passes {:?} to {}:{:?}",
@@ -392,7 +395,7 @@ pub fn compile_function(
     compiler.call_stack.push(qualified.clone());
 
     let mut input_wires = Vec::new();
-    for (index, port) in definition.signature.inputs.iter().enumerate() {
+    for (index, port) in definition.signature.inputs.ports().iter().enumerate() {
         let source =
             SourceId::explicit(format!("source:{module}/{function}:{index}:{}", port.name));
         let occurrence = compiler.fresh_occurrence(source.clone(), OccurrencePath::root());
@@ -456,7 +459,7 @@ fn check_output_types(
         .iter()
         .map(|wire| wire.value_type)
         .collect::<Vec<_>>();
-    if actual == definition.signature.outputs {
+    if actual.as_slice() == definition.signature.outputs.types() {
         Ok(())
     } else {
         Err(LispError::Type(format!(

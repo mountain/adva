@@ -145,7 +145,7 @@ fn parse_definition(
     let body = parse_term(&function[3], module, local_names, imports)?;
     Ok(FunctionDefinition {
         name,
-        signature: FunctionSignature { inputs, outputs },
+        signature: FunctionSignature::new(inputs, outputs),
         body,
     })
 }

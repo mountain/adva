@@ -8,7 +8,8 @@ claim that the surrounding calculus has been completely presented.
 
 - immutable typed module and function terms;
 - finite acyclic module linking;
-- typed input and output frontiers;
+- orientation-free `TypedFrontier` values and distinct `DomainFrontier` and
+  `CodomainFrontier` function boundaries;
 - explicit `id`, composition by typed `call`, ordered `frontier`, `swap`,
   `copy`, and `discard`;
 - selected real arithmetic operations;
