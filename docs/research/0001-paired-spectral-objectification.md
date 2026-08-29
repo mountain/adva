@@ -1,9 +1,25 @@
 # Paired spectral selection and the objectification boundary
 
-Status: bounded research calibration  
-Date: 2026-08-29  
+Status: superseded as a theory calibration; retained as a linear-representation control
+Date: 2026-08-29
 Proposal slice: T0/T3/T4, Gate B/C, and the computation--learning loop  
-Executable witness: `tests/python/test_paired_spectral_objectification.py`
+Replacement: `0002-affine-exp-observer-spectrum.md`
+
+## Correction
+
+This note starts from an arbitrary real two-dimensional linear action and a
+chosen vector--covector presentation.  Its calculations remain correct inside
+that declared representation, but they do not derive the representation from
+Adva's native affine arithmetic programs.  In particular, its similarity
+transformations are basis/gauge changes, not AM chart changes, and its matrix
+transpose is not a general program pullback.
+
+It therefore cannot serve as positive evidence that a polynomial-like
+carrier, matrix-like transport, or program spectrum arises from program
+geometry.  The history non-faithfulness counterexample remains valid.  The
+replacement experiment begins with native affine programs, derives an
+exponential-polynomial observer carrier in the `y = log(x)` chart, and only
+then compiles the contravariant observer transport.
 
 ## Outcome
 
