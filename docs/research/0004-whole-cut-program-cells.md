@@ -120,13 +120,13 @@ or a holonomy invariant.
 
 ## Compatible cuts form a refinement lattice
 
-Let a checked flat call trace contain (n) atomic stages
+Let a checked flat call trace contain \(n\) atomic stages
 
 \[
   P_n\circ\cdots\circ P_2\circ P_1.
 \]
 
-There are (n-1) internal call boundaries.  In the present sequential
+There are \(n-1\) internal call boundaries.  In the present sequential
 fragment, a compatible refinement is exactly a subset
 
 \[
@@ -142,7 +142,7 @@ whole.  Consequently the refinements form the finite Boolean lattice
 \]
 
 decorated at every selected boundary by its typed frontier, left and right
-call traces, and checked source lineage.  If (r_i) means adding cut (i),
+call traces, and checked source lineage.  If \(r_i\) means adding cut \(i\),
 then the finite data obey
 
 \[
