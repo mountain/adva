@@ -175,9 +175,22 @@ canonical_name = "Whole-cut shared program cell calibration"
 code_symbol = "tests/python/test_shared_expression_program_cells.py"
 dimension = "1/2/shared-expression/research-calibration"
 status = "bounded-verified"
-scope = "Finite one-input one-output Real programs with a declared sequential call cut, checked source lineage, and scalar interval neighborhoods"
-assumptions = ["Rust-checked finite Adva diagrams", "Declared cut agrees exactly with checked call history", "Every stage has Real -> Real boundary", "Research-local scalar neighborhoods"]
+scope = "Finite one-input one-output Real programs with a checked flat sequential call trace, checked source lineage, and scalar interval neighborhoods"
+assumptions = ["Rust-checked finite Adva diagrams", "Atomic stages are inferred from checked flat leaf-call history", "Every stage has Real -> Real boundary", "Research-local scalar neighborhoods"]
 dependencies = ["adva.exact.diagram-validation.v1", "adva.bounded-verified.k2.v1"]
 proof_or_certificate = "Checked whole-program replay equals left-to-right stage evaluation; output-neighborhood inverse reading reverses the same stages; equal scalar actions retain distinct source lineage at the cut; explicit identity call is an empty stage without erasing history"
-counterexample_boundary = "The calibration does not enumerate all cuts, prove three-stage coherence, construct a topology of expression neighborhoods, or expose a stable program-cell API"
-forbidden_conflations = ["Program cell with module", "Declared cut with arbitrary graph factorization", "Scalar inverse neighborhood with full spatial carrier", "Empty identity stage with history equality", "Equal scalar action with equal sharing geometry"]
+counterexample_boundary = "The calibration does not handle nested or branching call factorizations, construct a topology of expression neighborhoods, or expose a stable program-cell API"
+forbidden_conflations = ["Program cell with module", "Sequential call cut with arbitrary graph factorization", "Scalar inverse neighborhood with full spatial carrier", "Empty identity stage with history equality", "Equal scalar action with equal sharing geometry"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.compatible-cut-refinement.v0"
+canonical_name = "Flat compatible-cut refinement diamond"
+code_symbol = "tests/python/test_shared_expression_program_cells.py::test_three_stage_cut_refinement_forms_a_checked_diamond"
+dimension = "1/2/cut-refinement/research-calibration"
+status = "bounded-verified"
+scope = "Finite flat sequential traces of leaf Real -> Real calls, with compatible cuts restricted to checked internal call boundaries"
+assumptions = ["Rust-checked finite Adva diagrams", "Flat leaf-call history", "One scalar input and output", "Boundary lineage is read from checked wires"]
+dependencies = ["adva.bounded-verified.whole-cut-program-cell.v0"]
+proof_or_certificate = "All subsets of checked internal call boundaries are enumerated; refinement is idempotent and pairwise commutative; the two refinement orders of a genuine three-stage trace terminate in the same typed and source-decorated signature; checked values and inverse-neighborhood membership are preserved"
+counterexample_boundary = "No arbitrary DAG cut complex, rewrite-path coherence, semantic CoherenceCell, topology, or nontrivial holonomy is constructed"
+forbidden_conflations = ["Cut-refinement commutativity with commutative program composition", "Equal terminal signature with a Rust semantic identity", "Boolean lattice of a flat trace with the cut geometry of an arbitrary sharing diagram", "Refinement path with program execution history"]
