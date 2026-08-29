@@ -153,8 +153,15 @@ def _polynomial(expression: Expr, source_key: str = "occurrence") -> Polynomial:
     """A commutative Real shadow used only for bounded comparison."""
 
     if expression.operation == "source":
-        occurrence, source, _ = expression.data
-        label = occurrence if source_key == "occurrence" else source
+        occurrence, source, input_name = expression.data
+        if source_key == "occurrence":
+            label = occurrence
+        elif source_key == "source":
+            label = source
+        elif source_key == "input":
+            label = input_name
+        else:
+            raise ValueError(f"unknown polynomial variable chart {source_key!r}")
         return {(label,): Fraction(1)}
     if expression.operation == "hole":
         return {(repr(expression.data[0]),): Fraction(1)}
@@ -512,7 +519,7 @@ def test_every_causal_cut_in_branch_fixture_has_one_multiaffine_lift() -> None:
     )
 
 
-def test_polynomial_shadow_forgets_the_shared_expression_presentation() -> None:
+def test_input_polynomial_shadow_forgets_the_shared_expression_presentation() -> None:
     workspace = _workspace()
     shared = _atlas(workspace, "shared-double")
     scaled = _atlas(workspace, "scale-double")
@@ -526,7 +533,11 @@ def test_polynomial_shadow_forgets_the_shared_expression_presentation() -> None:
         scaled_expression,
         "occurrence",
     )
-    assert _polynomial(shared_expression, "source") == _polynomial(
+    assert _polynomial(shared_expression, "source") != _polynomial(
         scaled_expression,
         "source",
+    )
+    assert _polynomial(shared_expression, "input") == _polynomial(
+        scaled_expression,
+        "input",
     )
