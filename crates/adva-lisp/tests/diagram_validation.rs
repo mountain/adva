@@ -1,6 +1,5 @@
 use adva_ir::{
-    DirectedRewrite, HistoryEvent, NormalizationStep, SharedProgramDiagram, SourceId,
-    WireProducer,
+    DirectedRewrite, HistoryEvent, NormalizationStep, SharedProgramDiagram, SourceId, WireProducer,
 };
 use adva_lisp::{
     compile_function, evaluate, import_diagram_json, link_modules, parse_module, validate_diagram,
