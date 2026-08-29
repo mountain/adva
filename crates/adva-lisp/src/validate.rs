@@ -2,8 +2,8 @@ use crate::LispError;
 use crate::operation::{LineageRule, resolve_operation};
 use adva_ir::{
     CertificateId, CheckStatus, DiagramValidationArtifact, DiagramValidationCertificate,
-    HistoryEvent, NodeId, Occurrence, OccurrenceId, OperationRef, SharedProgramDiagram, SourceId,
-    ValueType, WireProducer, WireRef,
+    HistoryEvent, NodeId, Occurrence, OccurrenceId, OperationRef, SharedProgramDiagram, ValueType,
+    WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
