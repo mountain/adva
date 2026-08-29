@@ -13,10 +13,12 @@ AFFINE_OBSERVER_KERNEL = r"""
 (module affine-observer
   (export
     add-state scale-state
+    affine-state q-after-affine
     scale-after-add add-after-scale
     y-after-add q-after-add
     y-after-scale q-after-scale
     q-after-scale-after-add q-after-add-after-scale
+    q-after-reciprocal-perturb
     shared-double scale-double)
 
   (def add-state
@@ -26,6 +28,17 @@ AFFINE_OBSERVER_KERNEL = r"""
   (def scale-state
     (fn ((x Real) (m Real)) Real
       (mul (use m) (use x))))
+
+  (def affine-state
+    (fn ((x Real) (m Real) (a Real)) Real
+      (add (mul (use m) (use x)) (use a))))
+
+  (def q-after-affine
+    (fn ((x Real) (m Real) (a Real)) Real
+      (exp
+        (neg
+          (log
+            (add (mul (use m) (use x)) (use a)))))))
 
   (def scale-after-add
     (fn ((x Real) (a Real) (m Real)) Real
@@ -65,6 +78,22 @@ AFFINE_OBSERVER_KERNEL = r"""
           (log
             (add (mul (use m) (use x)) (use b)))))))
 
+  (def reciprocal-perturb-expanded
+    (fn ((x0 Real) (x1 Real) (b Real)) Real
+      (add
+        (use x0)
+        (mul
+          (use b)
+          (exp (neg (log (use x1))))))))
+
+  (def q-after-reciprocal-perturb
+    (fn ((x Real) (b Real)) Real
+      (exp
+        (neg
+          (log
+            (call reciprocal-perturb-expanded
+              (frontier (copy (use x)) (use b))))))))
+
   (def shared-double
     (fn ((x Real)) Real
       (add (copy (use x)))))
@@ -87,6 +116,21 @@ class TruncatedPullback:
 
     matrix: sympy.Matrix
     first_omitted: tuple[sympy.Expr, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class BoundaryTwoJet:
+    """Marked ``q = 1/x`` coefficients through ``q^2``."""
+
+    linear: sympy.Expr
+    quadratic: sympy.Expr
+
+    def reconstruct_marked_affine_parameters(self) -> tuple[sympy.Expr, sympy.Expr]:
+        """Recover ``D(x) = m*x + a`` relative to the declared marked chart."""
+
+        scale = sympy.simplify(1 / self.linear)
+        translation = sympy.simplify(-self.quadratic / self.linear**2)
+        return scale, translation
 
 
 def _workspace():
@@ -121,6 +165,12 @@ def _derive_exp_ray_pullback(q_image: sympy.Expr, order: int) -> TruncatedPullba
             matrix[row, column] = sympy.expand(pulled).coeff(q, row + 1)
         first_omitted.append(sympy.expand(pulled).coeff(q, order + 1))
     return TruncatedPullback(matrix=matrix, first_omitted=tuple(first_omitted))
+
+
+def _boundary_two_jet(q_image: sympy.Expr) -> BoundaryTwoJet:
+    q = sympy.Symbol("q", positive=True)
+    series = sympy.series(q_image, q, 0, 3).removeO().expand()
+    return BoundaryTwoJet(linear=series.coeff(q, 1), quadratic=series.coeff(q, 2))
 
 
 def test_affine_program_generates_exp_polynomial_observer_carrier():
@@ -224,6 +274,116 @@ def test_contravariant_transport_recovers_the_affine_semidirect_law():
         q_left = q_scale_after_add.evaluate({"x": x_value, "a": a_value, "m": m_value})
         q_right = q_add_after_scale.evaluate({"x": x_value, "b": b_value, "m": m_value})
         assert math.isclose(q_left, q_right, rel_tol=1e-14, abs_tol=1e-14)
+
+
+def test_marked_boundary_two_jet_reconstructs_affine_program():
+    workspace = _workspace()
+    a = sympy.Symbol("a", positive=True)
+    m = sympy.Symbol("m", positive=True)
+    q = sympy.Symbol("q", positive=True)
+
+    q_affine = _checked_chart_image(
+        workspace.function("affine-observer", "q-after-affine"), {"m": m, "a": a}
+    )
+    assert sympy.simplify(q_affine - q / (m + a * q)) == 0
+
+    jet = _boundary_two_jet(q_affine)
+    assert jet == BoundaryTwoJet(linear=1 / m, quadratic=-a / m**2)
+    assert jet.reconstruct_marked_affine_parameters() == (m, a)
+
+    # Once the affine hypothesis and marked chart are declared, the two-jet
+    # determines every higher coefficient of this particular rational germ.
+    series = sympy.series(q_affine, q, 0, 7).removeO().expand()
+    for power in range(1, 7):
+        expected = (-1) ** (power - 1) * a ** (power - 1) / m**power
+        assert sympy.simplify(series.coeff(q, power) - expected) == 0
+
+    affine = workspace.function("affine-observer", "affine-state")
+    q_after_affine = workspace.function("affine-observer", "q-after-affine")
+    for x_value, m_value, a_value in ((2.0, 3.0, 0.25), (5.0, 0.5, 1.5)):
+        state_value = affine.evaluate({"x": x_value, "m": m_value, "a": a_value})
+        q_value = q_after_affine.evaluate({"x": x_value, "m": m_value, "a": a_value})
+        assert math.isclose(q_value, 1.0 / state_value, rel_tol=1e-14, abs_tol=1e-14)
+
+
+def test_affine_two_jet_action_is_faithful_and_contravariant():
+    workspace = _workspace()
+    m1, m2 = sympy.symbols("m1 m2", positive=True)
+    a1, a2 = sympy.symbols("a1 a2", positive=True)
+    q_after_affine = workspace.function("affine-observer", "q-after-affine")
+
+    q_first = _checked_chart_image(q_after_affine, {"m": m1, "a": a1})
+    q_second = _checked_chart_image(q_after_affine, {"m": m2, "a": a2})
+    q_composite = _checked_chart_image(
+        q_after_affine, {"m": m2 * m1, "a": m2 * a1 + a2}
+    )
+
+    c_first = _derive_exp_ray_pullback(q_first, 2).matrix
+    c_second = _derive_exp_ray_pullback(q_second, 2).matrix
+    c_composite = _derive_exp_ray_pullback(q_composite, 2).matrix
+
+    # D2 o D1 has parameters (m2*m1, m2*a1+a2), whereas observer pullback
+    # reverses the order: (D2 o D1)^* = D1^* o D2^*.
+    assert sympy.simplify(c_first * c_second - c_composite) == sympy.zeros(2, 2)
+
+    composite_jet = _boundary_two_jet(q_composite)
+    assert composite_jet.reconstruct_marked_affine_parameters() == (
+        m1 * m2,
+        a1 * m2 + a2,
+    )
+
+
+def test_unmarked_chart_changes_quadratic_extension_but_not_linear_multiplier():
+    c1, c2, u, v, t = sympy.symbols("c1 c2 u v t", nonzero=True)
+
+    # h(q)=u*q+v*q^2 is a change between adapted local parameters.  This is
+    # research-side formal algebra, deliberately not presented as Adva IR.
+    inverse_chart = t / u - v * t**2 / u**3
+    old_coordinate = c1 * inverse_chart + c2 * inverse_chart**2
+    new_coordinate = u * old_coordinate + v * old_coordinate**2
+    transformed = sympy.series(new_coordinate, t, 0, 3).removeO().expand()
+    expected_quadratic = c2 / u + v * (c1**2 - c1) / u**2
+
+    assert sympy.simplify(transformed.coeff(t, 1) - c1) == 0
+    assert sympy.simplify(transformed.coeff(t, 2) - expected_quadratic) == 0
+
+    # The same statement appears matrix-like only after choosing the jet basis
+    # (q,q^2): it is ordinary filtered conjugacy, not state-space ontology.
+    action = sympy.Matrix([[c1, 0], [c2, c1**2]])
+    chart = sympy.Matrix([[u, 0], [v, u**2]])
+    transformed_action = sympy.simplify(chart.inv() * action * chart)
+    assert transformed_action == sympy.Matrix(
+        [[c1, 0], [expected_quadratic, c1**2]]
+    )
+
+
+def test_non_affine_reciprocal_perturbation_is_neighboring_two_jet_no_go():
+    workspace = _workspace()
+    b = sympy.Symbol("b", positive=True)
+    q = sympy.Symbol("q", positive=True)
+
+    q_perturbed = _checked_chart_image(
+        workspace.function("affine-observer", "q-after-reciprocal-perturb"), {"b": b}
+    )
+    q_identity = _checked_chart_image(
+        workspace.function("affine-observer", "q-after-scale"), {"m": sympy.Integer(1)}
+    )
+
+    assert sympy.simplify(q_perturbed - q / (1 + b * q**2)) == 0
+    assert _boundary_two_jet(q_perturbed) == _boundary_two_jet(q_identity)
+    assert _boundary_two_jet(q_identity) == BoundaryTwoJet(
+        linear=sympy.Integer(1), quadratic=sympy.Integer(0)
+    )
+    assert sympy.simplify(q_perturbed - q_identity) != 0
+
+    perturbed_series = sympy.series(q_perturbed, q, 0, 5).removeO().expand()
+    assert perturbed_series.coeff(q, 3) == -b
+
+    perturb = workspace.function("affine-observer", "q-after-reciprocal-perturb")
+    for x_value, b_value in ((2.0, 0.25), (4.0, 1.5)):
+        checked = perturb.evaluate({"x": x_value, "b": b_value})
+        expected = 1.0 / (x_value + b_value / x_value)
+        assert math.isclose(checked, expected, rel_tol=1e-14, abs_tol=1e-14)
 
 
 def test_filtered_spectrum_separates_scale_from_additive_unipotent_residual():
