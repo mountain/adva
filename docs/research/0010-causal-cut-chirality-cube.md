@@ -34,7 +34,7 @@ The derivation also identifies exactly why interchange alone is insufficient.
 
 One checked input is copied twice to produce three distinct occurrences of
 one source.  At the resulting cut, three unary events are simultaneously
-enabled on disjoint frontier wires:
+enabled on disjoint source-bearing frontier wires:
 
 $$
 e_1=\mathrm{neg},\qquad
@@ -68,6 +68,13 @@ This local cube simultaneously carries the three readings:
 
 The cube is not imposed on an arbitrary value space.  Its vertices, edges,
 and frontier decorations are read from one Rust-checked program diagram.
+
+The checked cut also exposes one source-free constant control wire used by
+$\mathrm{scale}_2$.  This is not a fourth aspect direction.  The local carrier
+is selected by nonempty checked source lineage: its three object ports have
+distinct occurrences of one source, while the control port has empty lineage.
+This distinction prevents parameter plumbing from being mistaken for a
+geometric fibre.
 
 ## Generation edges and cut coordinates are dual
 
@@ -287,7 +294,8 @@ The file tests/python/test_causal_cut_chirality_cube.py verifies:
    frontier;
 2. the eight event subsets are completed causal pasts;
 3. every one of the twelve forward cube edges consumes and produces one
-   checked frontier port while preserving source support;
+   source-bearing checked frontier port while preserving source support; the
+   scale edge additionally consumes its source-free constant control;
 4. all six schedules and all six interchange faces close on identical
    decorated frontiers;
 5. the cut-coordinate differential is exactly the identity pairing;
@@ -322,6 +330,8 @@ The derivation still has boundaries.
   over a checked witness, not yet a Rust semantic two-cell.
 - The contraction is derived from event-membership cochains, not yet from the
   full expression-valued occurrence-affine frontier.
+- The aspect carrier is selected by checked source support; a future theory
+  must explain parameter and control ports without silently discarding them.
 - Overlapping rewrites, non-Boolean local intervals, feedback, and forgetting
   may obstruct or twist the construction.
 - No stable exterior, Clifford, complex, spectrum, or cubical API is added.
