@@ -142,3 +142,29 @@ dependencies = []
 proof_or_certificate = "None"
 counterexample_boundary = "Observed equivalence alone is insufficient"
 forbidden_conflations = ["Witness existence with canonicity", "Search failure with nonexistence"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.paired-spectral-kernel.v0"
+canonical_name = "Paired two-mode spectral selection calibration"
+code_symbol = "tests/python/test_paired_spectral_objectification.py"
+dimension = "1/dual-action/research-calibration"
+status = "bounded-verified"
+scope = "Real two-by-two action under a declared Euclidean vector-covector pairing, including one diagonalizable non-normal family with a simple dominant eigenvalue"
+assumptions = ["Checked finite Adva diagram", "Declared coordinate pairing", "Nonzero left/right modal overlaps", "Explicit spectral gap", "NumPy results are candidate regression data"]
+dependencies = ["adva.exact.builtin-operation-registry.v1", "adva.exact.diagram-validation.v1", "adva.construction-target.frontier-star-action.v1"]
+proof_or_certificate = "Adva compilation/evaluation/differential certificates plus bounded numerical regression tests"
+counterexample_boundary = "No general pullback, program spectrum, spectral-gap checker, or ObjectificationWitness is exposed"
+forbidden_conflations = ["Coordinate transpose with general StarAction", "Numerical spectral convergence with strong objectification", "Fixed-basis covariance with parameter-dependent chart covariance", "Candidate matrix data with Rust semantic authority"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.spectrum-history-no-go.v0"
+canonical_name = "Spectrum and ordinary differential do not recover checked history"
+code_symbol = "tests/python/test_paired_spectral_objectification.py::test_value_differential_powers_and_spectrum_do_not_recover_history"
+dimension = "1/observation/no-go"
+status = "bounded-verified"
+scope = "The checked shared-double and scale-double programs in the finite Real PSC0 fragment"
+assumptions = ["Observers factor through realized linear action, ordinary differential, finite powers, or scalar matrix spectrum"]
+dependencies = ["adva.bounded-verified.k2.v1", "adva.bounded-verified.paired-spectral-kernel.v0"]
+proof_or_certificate = "Explicit equal-action counterexample with unequal IR, history, source partition, and operation-rule certificates"
+counterexample_boundary = "The no-go does not exclude a history-augmented or task-relative observer from being faithful on a declared fragment"
+forbidden_conflations = ["Same action with same program", "Same spectrum with same history", "Weak spectral selection with strong objectification"]
