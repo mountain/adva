@@ -352,9 +352,8 @@ def test_unmarked_chart_changes_quadratic_extension_but_not_linear_multiplier():
     action = sympy.Matrix([[c1, 0], [c2, c1**2]])
     chart = sympy.Matrix([[u, 0], [v, u**2]])
     transformed_action = sympy.simplify(chart.inv() * action * chart)
-    assert transformed_action == sympy.Matrix(
-        [[c1, 0], [expected_quadratic, c1**2]]
-    )
+    expected_action = sympy.Matrix([[c1, 0], [expected_quadratic, c1**2]])
+    assert (transformed_action - expected_action).applyfunc(sympy.simplify) == sympy.zeros(2, 2)
 
 
 def test_non_affine_reciprocal_perturbation_is_neighboring_two_jet_no_go():
