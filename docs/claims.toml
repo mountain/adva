@@ -194,3 +194,16 @@ dependencies = ["adva.bounded-verified.whole-cut-program-cell.v0"]
 proof_or_certificate = "All subsets of checked internal call boundaries are enumerated; refinement is idempotent and pairwise commutative; the two refinement orders of a genuine three-stage trace terminate in the same typed and source-decorated signature; checked values and inverse-neighborhood membership are preserved"
 counterexample_boundary = "No arbitrary DAG cut complex, rewrite-path coherence, semantic CoherenceCell, topology, or nontrivial holonomy is constructed"
 forbidden_conflations = ["Cut-refinement commutativity with commutative program composition", "Equal terminal signature with a Rust semantic identity", "Boolean lattice of a flat trace with the cut geometry of an arbitrary sharing diagram", "Refinement path with program execution history"]
+
+[[claim]]
+claim_id = "adva.bounded-verified.causal-cut-alexandrov-topology.v0"
+canonical_name = "Causal-cut Alexandrov topology with shared frontiers"
+code_symbol = "tests/python/test_shared_expression_causal_topology.py"
+dimension = "1/2/causal-open/research-calibration"
+status = "bounded-verified"
+scope = "The checked five-operation fork-recombine Real program, with events ordered by wire reachability and opens chosen as completed causal pasts"
+assumptions = ["Rust-checked finite acyclic diagram", "Past-open orientation convention", "Python enumeration reads but does not authorize IR", "Cut frontiers use checked wire lineage"]
+dependencies = ["adva.exact.diagram-validation.v1", "adva.exact.explicit-source-identity.v1", "adva.bounded-verified.whole-cut-program-cell.v0"]
+proof_or_certificate = "Exhaustive closure and distributivity over all completed pasts; explicit failure of complementation; recovery of every causal comparison from open membership; two distinct cut occurrences with one checked source; rejection of a non-downward-closed cut"
+counterexample_boundary = "No stable topology API, boundary gluing or transport law, rewrite-path coherence, semantic higher cell, general DAG theorem certificate, or holonomy is constructed"
+forbidden_conflations = ["Causal-open lattice with boundary-refinement lattice", "Event topology with the full source-decorated program geometry", "Downward closure with scalar value order", "Finite distributive lattice with module carrier", "Recovered causal order with program equality"]
