@@ -29,7 +29,7 @@ forbidden_conflations = ["Memory address", "Python id()", "Value equality", "Str
 [[claim]]
 claim_id = "adva.definition.ordered-frontier.v1"
 canonical_name = "Ordered typed open frontier"
-code_symbol = "adva_ir::ProgramTerm::Frontier"
+code_symbol = "adva_ir::{TypedFrontier, DomainFrontier, CodomainFrontier}; adva_ir::ProgramTerm::Frontier"
 dimension = "0-boundary syntax"
 status = "definition"
 scope = "PSC0 finite function inputs, intermediate term boundaries, and outputs"
@@ -37,7 +37,33 @@ assumptions = ["Frontier order is semantically retained"]
 dependencies = ["adva.definition.module-ir.v1"]
 proof_or_certificate = "Parser, lowering, serialization, ordering, and legacy-name rejection tests"
 counterexample_boundary = "No monoidal, Cartesian, direct-sum, polynomial, or matrix interpretation is asserted"
-forbidden_conflations = ["Frontier with tensor product", "Frontier with host tuple aliasing", "Frontier with source sharing"]
+forbidden_conflations = ["Domain/Codomain with temporal/spatial polarity", "Frontier with tensor product", "Frontier with host tuple aliasing", "Frontier with source sharing"]
+
+[[claim]]
+claim_id = "adva.construction-target.frontier-star-action.v1"
+canonical_name = "Contravariant frontier observer pullback"
+code_symbol = "not exposed"
+dimension = "1/dual-action"
+status = "construction-target"
+scope = "Future checked diagrams with explicit Probe and PredicateRegion carriers"
+assumptions = ["Checked SharedProgramDiagram", "Declared observer carrier", "Explicit pairing law"]
+dependencies = ["adva.definition.ordered-frontier.v1"]
+proof_or_certificate = "None; the stable API currently has no probe pullback operation"
+counterexample_boundary = "No inverse, dagger, double-dual reflexivity, matrix transpose, or contraction law is implied"
+forbidden_conflations = ["StarAction with ProgramTerm", "Pullback with inverse", "Star with dagger", "Codomain-to-domain orientation with boundary duality"]
+
+[[claim]]
+claim_id = "adva.construction-target.dual-observation-spectrum.v1"
+canonical_name = "Dual observation spectrum and residual distinguishability tower"
+code_symbol = "not exposed"
+dimension = "0/1/representation"
+status = "construction-target"
+scope = "Future endoprocesses on a TypedFrontier under a declared finite ObservationPolicy"
+assumptions = ["Contravariant observer pullback", "History-observer pairing", "Explicit finite bounds for executable claims"]
+dependencies = ["adva.construction-target.frontier-star-action.v1"]
+proof_or_certificate = "None; finite stabilization and separation remain research obligations"
+counterexample_boundary = "Matrix spectra and Jordan forms are derived shadows only; observation equivalence does not collapse history fibres"
+forbidden_conflations = ["Dual spectrum with eigenvalue set", "Same spectral point with same SourceId", "Observation fibre with ObjectificationWitness", "Stable normal form with canonical rewrite path"]
 
 [[claim]]
 claim_id = "adva.construction-target.compiled-presentations.v1"
@@ -47,7 +73,7 @@ dimension = "1/representation"
 status = "construction-target"
 scope = "Future chart- and observer-relative compilation from checked diagrams"
 assumptions = ["Declared chart", "Declared observer", "Declared basis", "Residual and replay certificates"]
-dependencies = ["adva.definition.ordered-frontier.v1"]
+dependencies = ["adva.definition.ordered-frontier.v1", "adva.construction-target.frontier-star-action.v1"]
 proof_or_certificate = "None in Adva; one research-local power-dominant calibration exists in process-geometry"
 counterexample_boundary = "Native process evaluation need not use either compiled presentation; no generic multi-variable interface is established"
 forbidden_conflations = ["PolynomialPresentation with ordinary polynomial", "ActionPresentation with runtime ontology", "Compiled presentation with Frontier"]

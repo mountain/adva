@@ -20,8 +20,9 @@ Before modifying semantic code, read:
 
 ## Ontology discipline
 
-Keep `ProgramTerm`, `SharedProgramDiagram`, `History`, `Value`, `Occurrence`,
-`Source`, `ProjectiveDevelopment`, `Probe`, `ObservationPolicy`,
+Keep `TypedFrontier`, `DomainFrontier`, `CodomainFrontier`, `ProgramTerm`,
+`SharedProgramDiagram`, `History`, `Value`, `Occurrence`, `Source`,
+`ProjectiveDevelopment`, `Probe`, `ObservationPolicy`,
 `PredicateRegion`, `ProofObject`, `DirectedRewrite`, `EquationCell`,
 `CoherenceCell`, and `ObjectificationWitness` distinct.
 
@@ -30,10 +31,18 @@ serialization, and independent of memory addresses, object identity, value
 equality, structural hashing, or accidental AST sharing.
 
 Sharing is a program operation whose result has two ordered output ports on a
-`Frontier`; it is never a type modifier or host-language alias. `Frontier`
-records an open typed boundary and must not be presented as an implemented
-tensor product. Value equality and observational equivalence never authorize
-contraction, memoization, CSE, or a cell.
+`TypedFrontier`; it is never a type modifier or host-language alias.
+`DomainFrontier` and `CodomainFrontier` orient a 1-cell boundary; they do not
+stand for the temporal and spatial sides of the semantic duality. No frontier
+type may be presented as an implemented tensor product. Value equality and
+observational equivalence never authorize contraction, memoization, CSE, or a
+cell.
+
+For `D: DomainFrontier -> CodomainFrontier`, reserve `D*` for a future
+contravariant observer pullback. Do not implement it as a `ProgramTerm`,
+boundary swap, inverse, dagger, involution, or unconditional matrix transpose.
+Any executable pullback must be derived from a checked diagram and return a
+certificate.
 
 Directed normalization steps, invertible equation cells, and coherence cells
 use different Rust types. Search exhaustion produces `Unknown`, never a proof

@@ -12,7 +12,8 @@ tool does not turn research targets into stable API promises.
 
 ## Initial executable slice
 
-- immutable `ProgramTerm`, module IR, and `SharedProgramDiagram`;
+- immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
+  `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
 - explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,
   arithmetic and elementary unary operations;
 - stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and

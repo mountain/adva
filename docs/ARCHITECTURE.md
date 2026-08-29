@@ -82,6 +82,12 @@ are diagram nodes, not Rust or Python aliases. `frontier` is deliberately not
 an operation: it assembles an ordered typed open boundary without claiming a
 tensor-product semantics.
 
+The IR represents that boundary with an orientation-free `TypedFrontier` and
+distinct `DomainFrontier` and `CodomainFrontier` orientations. For a future
+observer semantics, `D*` runs contravariantly from codomain probes to domain
+probes. The executable spelling will be `pullback`, not a Lisp program term;
+it must be derived from checked diagram data and accompanied by a certificate.
+
 Polynomial-like carriers and matrix-like transports are distinct compiled
 presentations, not replacements for this boundary constructor. They remain
 chart-, basis-, observer-, and certificate-relative construction targets; see
