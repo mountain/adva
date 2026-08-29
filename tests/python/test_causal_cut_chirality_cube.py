@@ -287,6 +287,9 @@ CARRIER_BASIS = (
     (0b011, 1),
 )
 
+CARRIER_NAMES = ("T", "S", "R", "SR", "RT", "TS")
+GRADE_ONE = (0, 1, 2)
+
 
 def _wire_key(wire: dict[str, Any]) -> WireKey:
     producer = wire["producer"]
@@ -415,6 +418,81 @@ def _carrier_matrix(pairing: Pairing) -> sympy.Matrix:
         )
         columns.append(sympy.Matrix(coordinates))
     return sympy.Matrix.hstack(*columns)
+
+
+def _carrier_sparse_action(pairing: Pairing) -> tuple[tuple[int, int], ...]:
+    """Read the derived volume action without treating its matrix as ontology."""
+
+    carrier_masks = {mask for mask, _ in CARRIER_BASIS}
+    action: list[tuple[int, int]] = []
+    for input_blade, input_sign in CARRIER_BASIS:
+        output = _volume_action(_basis_form(input_blade, input_sign), pairing)
+        coordinates = tuple(
+            (index, output[output_blade] // output_sign)
+            for index, (output_blade, output_sign) in enumerate(CARRIER_BASIS)
+            if output[output_blade]
+        )
+        assert len(coordinates) == 1
+        assert all(
+            coefficient == 0
+            for blade, coefficient in enumerate(output)
+            if blade not in carrier_masks
+        )
+        target, coefficient = coordinates[0]
+        action.append((coefficient, target))
+    return tuple(action)
+
+
+def _causal_line_split(
+    action: tuple[tuple[int, int], ...],
+    causal_direction: int,
+) -> tuple[
+    tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...], tuple[int, ...]],
+    tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...]],
+    tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...]],
+]:
+    """Split the carrier after choosing one checked generation direction as time."""
+
+    if causal_direction not in GRADE_ONE:
+        raise ValueError("a causal line must be one of the three source-bearing directions")
+
+    causal_line = (causal_direction,)
+    transverse = tuple(direction for direction in GRADE_ONE if direction != causal_direction)
+    transverse_orientation = (action[causal_direction][1],)
+    causal_relations = tuple(action[direction][1] for direction in transverse)
+
+    one_two_two_one = (
+        causal_line,
+        transverse,
+        causal_relations,
+        transverse_orientation,
+    )
+    one_two_three = (
+        causal_line,
+        transverse,
+        tuple(sorted((*causal_relations, *transverse_orientation))),
+    )
+    one_three_two = (
+        causal_line,
+        tuple(sorted((*transverse, *transverse_orientation))),
+        causal_relations,
+    )
+    return one_two_two_one, one_two_three, one_three_two
+
+
+def _filtered_action_profile(
+    action: tuple[tuple[int, int], ...],
+    blocks: tuple[tuple[int, ...], tuple[int, ...], tuple[int, ...]],
+) -> tuple[tuple[int, int, int], ...]:
+    """Count derived action arrows from each source block to each target block."""
+
+    return tuple(
+        tuple(
+            sum(action[source][1] in target_block for source in source_block)
+            for source_block in blocks
+        )
+        for target_block in blocks
+    )
 
 
 def test_checked_relation_generation_boundary_data_form_one_local_three_cube() -> None:
@@ -577,3 +655,90 @@ def test_derived_volume_recovers_three_pairs_spectrum_and_chirality_reversal() -
                 parity,
                 _volume_action(value, pairing),
             )
+
+
+def test_every_causal_line_has_one_two_two_one_and_both_six_state_readings() -> None:
+    action = _carrier_sparse_action(_cube().incidence_pairing)
+
+    assert tuple((coefficient, CARRIER_NAMES[target]) for coefficient, target in action) == (
+        (1, "SR"),
+        (1, "RT"),
+        (1, "TS"),
+        (-1, "T"),
+        (-1, "S"),
+        (-1, "R"),
+    )
+
+    for causal_direction in GRADE_ONE:
+        split, one_two_three, one_three_two = _causal_line_split(
+            action,
+            causal_direction,
+        )
+        causal_line, transverse, causal_relations, transverse_orientation = split
+
+        assert tuple(map(len, split)) == (1, 2, 2, 1)
+        assert tuple(map(len, one_two_three)) == (1, 2, 3)
+        assert tuple(map(len, one_three_two)) == (1, 3, 2)
+        assert set().union(*map(set, split)) == set(range(6))
+        assert sum(map(len, split)) == len(set().union(*map(set, split)))
+
+        assert transverse_orientation == (action[causal_direction][1],)
+        assert set(causal_relations) == {action[direction][1] for direction in transverse}
+        assert set(one_three_two[1]) - set(one_two_three[1]) == set(
+            transverse_orientation
+        )
+        assert set(one_two_three[2]) - set(one_three_two[2]) == set(
+            transverse_orientation
+        )
+
+
+def test_regrouping_changes_filtered_reading_without_reversing_chirality() -> None:
+    pairing = _cube().incidence_pairing
+    action = _carrier_sparse_action(pairing)
+    _, one_two_three, one_three_two = _causal_line_split(action, 0)
+
+    assert _filtered_action_profile(action, one_two_three) == (
+        (0, 0, 1),
+        (0, 0, 2),
+        (1, 2, 0),
+    )
+    assert _filtered_action_profile(action, one_three_two) == (
+        (0, 1, 0),
+        (1, 0, 2),
+        (0, 2, 0),
+    )
+
+    # The two readings do not swap whole blocks.  They transfer only SR, the
+    # unique opposite face paired by Omega with the chosen causal line T.
+    assert set(one_three_two[1]) != set(one_two_three[2])
+    assert set(one_three_two[2]) != set(one_two_three[1])
+
+    # Relabelling the same carrier by a different filtration leaves Omega
+    # untouched.  An actual odd exchange of the two transverse directions is
+    # different: it conjugates Omega to -Omega.
+    transverse_exchange = (0, 2, 1)
+    for blade in range(8):
+        value = _basis_form(blade)
+        conjugated = _permute_form(
+            _volume_action(
+                _permute_form(value, transverse_exchange),
+                pairing,
+            ),
+            transverse_exchange,
+        )
+        assert conjugated == _scale_form(-1, _volume_action(value, pairing))
+
+
+def test_source_free_control_cannot_be_promoted_to_a_fourth_causal_line() -> None:
+    cube = _cube()
+    action = _carrier_sparse_action(cube.incidence_pairing)
+    parameter_ports = tuple(port for port in cube.diagram.frontier(cube.base) if not port.sources)
+
+    assert len(parameter_ports) == 1
+    assert parameter_ports[0].lineage == ()
+    try:
+        _causal_line_split(action, 3)
+    except ValueError as error:
+        assert str(error) == "a causal line must be one of the three source-bearing directions"
+    else:
+        raise AssertionError("a source-free control was accepted as a causal direction")
