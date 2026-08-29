@@ -163,7 +163,8 @@ No triangular matrix is needed in this presentation.
 The **polynomial-like** view expands (R_U) simultaneously over all lifted
 holes.  It is multi-affine before diagonals.  Powers arise when a diagonal
 identifies several lifted demands with branch relabellings of one boundary
-expression or, later, when a source observer forgets distinct occurrences.
+expression or, later, when an input-chart observer forgets distinct occurrences
+and whole-program source identity.
 
 For any selected hole (h), multi-affinity gives a canonical local split
 
@@ -203,11 +204,13 @@ from Rust-checked IR and checks four claims.
    the same whole occurrence-expanded expression.  Independent `neg` and
    `copy` orders have distinct traces and the same endpoint presentation.
 4. **Forgetting no-go.**  `shared-double` and `scale-double` have distinct
-   expression/occurrence presentations, but their commutative source-polynomial
-   shadows are both (2x).
+   expression, occurrence, and whole-program `SourceId` presentations, but
+   their commutative named-input polynomial shadows are both (2x).
 
-The source-polynomial computation is explicitly a derived Real-valued shadow.
-It is used to demonstrate loss of information, not as the semantic carrier.
+The named-input polynomial computation is explicitly a derived Real-valued
+chart.  It is used to demonstrate loss of occurrence and source information,
+not as the semantic carrier.  A `SourceId`-preserving polynomial correctly
+keeps the two whole programs distinct.
 
 ## Candidate structural theorem
 
