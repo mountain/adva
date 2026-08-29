@@ -168,7 +168,10 @@ def _permute_aspects(value: Carrier, permutation: tuple[int, int, int]) -> Carri
 
 
 def _action_matrix(metric: Metric = (1, 1, 1)) -> sympy.Matrix:
-    columns = [sympy.Matrix(_left_volume_action(_basis(index), metric)) for index in range(6)]
+    columns = [
+        sympy.Matrix(_left_volume_action(_basis(index), metric)).applyfunc(sympy.nsimplify)
+        for index in range(6)
+    ]
     return sympy.Matrix.hstack(*columns)
 
 
