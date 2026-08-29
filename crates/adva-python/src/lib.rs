@@ -86,8 +86,7 @@ impl PyProgram {
     }
 
     fn value_and_gradient(&self, inputs: BTreeMap<String, f64>) -> PyResult<PyDifferential> {
-        let result =
-            evaluate_with_differential(&self.diagram, &inputs).map_err(py_error)?;
+        let result = evaluate_with_differential(&self.diagram, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
         Ok((result.values, result.jacobian, certificate))
     }

@@ -1,5 +1,5 @@
-use crate::operation::{LineageRule, resolve_operation};
 use crate::LispError;
+use crate::operation::{LineageRule, resolve_operation};
 use adva_ir::{
     CertificateId, CheckStatus, DiagramValidationArtifact, DiagramValidationCertificate,
     HistoryEvent, NodeId, Occurrence, OccurrenceId, OperationRef, SharedProgramDiagram, SourceId,
@@ -60,9 +60,7 @@ pub(crate) fn validate_diagram_ref(
     diagram.validate_version()?;
     validate_identifiers(diagram)?;
     if !diagram.history.rewrite_trace.is_empty() {
-        return invalid(
-            "non-empty rewrite_trace is outside the checked PSC0 import scope",
-        );
+        return invalid("non-empty rewrite_trace is outside the checked PSC0 import scope");
     }
 
     let occurrences = collect_occurrences(diagram)?;
@@ -170,12 +168,13 @@ fn validate_operation_identifier(operation: &OperationRef) -> Result<(), LispErr
     require_non_empty("operation name", &operation.name)?;
     for (name, value) in &operation.parameters {
         require_non_empty("operation parameter name", name)?;
-        let normalized = adva_ir::Rational::new(value.numerator, value.denominator).map_err(|error| {
-            LispError::Validation(format!(
-                "operation {}:{} has invalid parameter {name:?}: {error}",
-                operation.namespace, operation.name
-            ))
-        })?;
+        let normalized =
+            adva_ir::Rational::new(value.numerator, value.denominator).map_err(|error| {
+                LispError::Validation(format!(
+                    "operation {}:{} has invalid parameter {name:?}: {error}",
+                    operation.namespace, operation.name
+                ))
+            })?;
         if normalized != *value {
             return invalid(format!(
                 "operation {}:{} parameter {name:?} is not canonically normalized",
@@ -395,7 +394,8 @@ fn validate_copy_history(
                 ))
             })?;
             for (branch, child_id) in record.children.iter().enumerate() {
-                if root_occurrences.contains(child_id) || !claimed_children.insert(child_id.clone()) {
+                if root_occurrences.contains(child_id) || !claimed_children.insert(child_id.clone())
+                {
                     return invalid(format!(
                         "copy child {child_id} is a root or is claimed more than once"
                     ));
@@ -406,8 +406,7 @@ fn validate_copy_history(
                         node.0
                     ))
                 })?;
-                if child.source != parent.source
-                    || child.path != parent.path.branch(branch as u32)
+                if child.source != parent.source || child.path != parent.path.branch(branch as u32)
                 {
                     return invalid(format!(
                         "copy child {child_id} does not preserve source and binary path"
