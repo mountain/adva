@@ -15,13 +15,17 @@ Before modifying semantic code, read:
 - Python may adapt checked IR to SymPy, NumPy, SciPy, plotting, search, or
   experiments. Python must not create or identify semantic identities.
 - The versioned JSON IR is the language-independent interchange boundary.
+- External or stored diagrams enter semantic code only through the Rust
+  `validate_diagram` / `import_diagram_json` boundary. Serde decoding alone is
+  not authorization.
 - `process-geometry` supplies theory and independent regression oracles. Do not
   silently copy its experimental claims into the stable API.
 
 ## Ontology discipline
 
-Keep `ProgramTerm`, `SharedProgramDiagram`, `History`, `Value`, `Occurrence`,
-`Source`, `ProjectiveDevelopment`, `Probe`, `ObservationPolicy`,
+Keep `TypedFrontier`, `DomainFrontier`, `CodomainFrontier`, `ProgramTerm`,
+`SharedProgramDiagram`, `History`, `Value`, `Occurrence`, `Source`,
+`ProjectiveDevelopment`, `Probe`, `ObservationPolicy`,
 `PredicateRegion`, `ProofObject`, `DirectedRewrite`, `EquationCell`,
 `CoherenceCell`, and `ObjectificationWitness` distinct.
 
@@ -29,9 +33,19 @@ Keep `ProgramTerm`, `SharedProgramDiagram`, `History`, `Value`, `Occurrence`,
 serialization, and independent of memory addresses, object identity, value
 equality, structural hashing, or accidental AST sharing.
 
-Sharing is a program operation `copy : A -> A tensor A`; it is never a type
-modifier or host-language alias. Value equality and observational equivalence
-never authorize contraction, memoization, CSE, or a cell.
+Sharing is a program operation whose result has two ordered output ports on a
+`TypedFrontier`; it is never a type modifier or host-language alias.
+`DomainFrontier` and `CodomainFrontier` orient a 1-cell boundary; they do not
+stand for the temporal and spatial sides of the semantic duality. No frontier
+type may be presented as an implemented tensor product. Value equality and
+observational equivalence never authorize contraction, memoization, CSE, or a
+cell.
+
+For `D: DomainFrontier -> CodomainFrontier`, reserve `D*` for a future
+contravariant observer pullback. Do not implement it as a `ProgramTerm`,
+boundary swap, inverse, dagger, involution, or unconditional matrix transpose.
+Any executable pullback must be derived from a checked diagram and return a
+certificate.
 
 Directed normalization steps, invertible equation cells, and coherence cells
 use different Rust types. Search exhaustion produces `Unknown`, never a proof
@@ -46,3 +60,11 @@ full abstraction, and physical interpretations out of the stable API.
 All semantic transformations return a result together with a certificate.
 Tests are evidence for the declared finite scope, not unrestricted theorems.
 
+## Operation changes
+
+Stable Lisp builtins are declared through the Rust `OperationSpec` registry.
+Do not add separate parser, type-checker, evaluator, differential, or lineage
+name tables. A new operation must declare its versioned boundary, exact
+parameters, surface visibility, scalar differential realization, and explicit
+`LineageRule`, with a registry completeness test. Changing an existing rule is
+an IR-versioning decision, not an in-place reinterpretation.

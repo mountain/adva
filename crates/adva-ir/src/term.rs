@@ -1,6 +1,7 @@
 use crate::{FunctionName, IrError, ModuleName, QualifiedName};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
+use std::ops::Deref;
 
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
@@ -96,11 +97,120 @@ pub struct TypedPort {
     pub value_type: ValueType,
 }
 
+/// An ordered, typed open boundary without a chosen process orientation.
+///
+/// A frontier records only its finite port types and their order. It does not
+/// imply tensor, product, source sharing, or a host-language tuple identity.
+#[derive(Clone, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct TypedFrontier(Vec<ValueType>);
+
+impl TypedFrontier {
+    pub fn new(types: Vec<ValueType>) -> Self {
+        Self(types)
+    }
+
+    pub fn types(&self) -> &[ValueType] {
+        &self.0
+    }
+
+    pub fn into_types(self) -> Vec<ValueType> {
+        self.0
+    }
+}
+
+impl Deref for TypedFrontier {
+    type Target = [ValueType];
+
+    fn deref(&self) -> &Self::Target {
+        self.types()
+    }
+}
+
+/// The named input orientation of a typed program boundary.
+#[derive(Clone, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct DomainFrontier(Vec<TypedPort>);
+
+impl DomainFrontier {
+    pub fn new(ports: Vec<TypedPort>) -> Self {
+        Self(ports)
+    }
+
+    pub fn ports(&self) -> &[TypedPort] {
+        &self.0
+    }
+
+    pub fn typed(&self) -> TypedFrontier {
+        TypedFrontier::new(self.0.iter().map(|port| port.value_type).collect())
+    }
+
+    pub fn into_ports(self) -> Vec<TypedPort> {
+        self.0
+    }
+}
+
+impl Deref for DomainFrontier {
+    type Target = [TypedPort];
+
+    fn deref(&self) -> &Self::Target {
+        self.ports()
+    }
+}
+
+/// The output orientation of a typed program boundary.
+#[derive(Clone, Debug, Default, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct CodomainFrontier(TypedFrontier);
+
+impl CodomainFrontier {
+    pub fn new(types: Vec<ValueType>) -> Self {
+        Self(TypedFrontier::new(types))
+    }
+
+    pub fn typed(&self) -> &TypedFrontier {
+        &self.0
+    }
+
+    pub fn types(&self) -> &[ValueType] {
+        self.0.types()
+    }
+
+    pub fn into_types(self) -> Vec<ValueType> {
+        self.0.into_types()
+    }
+}
+
+impl Deref for CodomainFrontier {
+    type Target = [ValueType];
+
+    fn deref(&self) -> &Self::Target {
+        self.types()
+    }
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct FunctionSignature {
-    pub inputs: Vec<TypedPort>,
-    pub outputs: Vec<ValueType>,
+    pub inputs: DomainFrontier,
+    pub outputs: CodomainFrontier,
+}
+
+impl FunctionSignature {
+    pub fn new(inputs: Vec<TypedPort>, outputs: Vec<ValueType>) -> Self {
+        Self {
+            inputs: DomainFrontier::new(inputs),
+            outputs: CodomainFrontier::new(outputs),
+        }
+    }
+
+    pub fn domain(&self) -> &DomainFrontier {
+        &self.inputs
+    }
+
+    pub fn codomain(&self) -> &CodomainFrontier {
+        &self.outputs
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -150,7 +260,7 @@ pub enum ProgramTerm {
         function: QualifiedName,
         arguments: Vec<ProgramTerm>,
     },
-    Tensor {
+    Frontier {
         terms: Vec<ProgramTerm>,
     },
 }
@@ -186,5 +296,39 @@ mod tests {
     #[test]
     fn rational_is_normalized() {
         assert_eq!(Rational::new(6, -8).unwrap(), Rational::new(-3, 4).unwrap());
+    }
+
+    #[test]
+    fn signature_keeps_domain_and_codomain_orientations() {
+        let signature = FunctionSignature::new(
+            vec![TypedPort {
+                name: "x".to_owned(),
+                value_type: ValueType::Real,
+            }],
+            vec![ValueType::Bool, ValueType::Real],
+        );
+
+        assert_eq!(signature.domain().ports()[0].name, "x");
+        assert_eq!(signature.domain().typed().types(), &[ValueType::Real]);
+        assert_eq!(
+            signature.codomain().typed().types(),
+            &[ValueType::Bool, ValueType::Real]
+        );
+    }
+
+    #[test]
+    fn frontier_newtypes_preserve_the_version_one_json_shape() {
+        let signature = FunctionSignature::new(
+            vec![TypedPort {
+                name: "x".to_owned(),
+                value_type: ValueType::Real,
+            }],
+            vec![ValueType::Real],
+        );
+
+        let encoded = serde_json::to_value(signature).unwrap();
+        assert_eq!(encoded["inputs"][0]["name"], "x");
+        assert_eq!(encoded["inputs"][0]["value_type"], "real");
+        assert_eq!(encoded["outputs"][0], "real");
     }
 }

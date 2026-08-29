@@ -12,14 +12,19 @@ tool does not turn research targets into stable API promises.
 
 ## Initial executable slice
 
-- immutable `ProgramTerm`, module IR, and `SharedProgramDiagram`;
-- explicit `copy`, `discard`, `swap`, `id`, `tensor`, arithmetic and elementary
-  unary operations;
+- immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
+  `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
+- explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,
+  arithmetic and elementary unary operations;
 - stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and
   `History`;
 - Rust module parsing, imports, exports, linking, and typed lowering;
+- a single versioned Rust operation registry shared by parsing, typed lowering,
+  lineage transport, evaluation, and forward differentiation;
 - scalar evaluation and forward differential, each with a certificate;
 - JSON IR round-trips with an explicit schema version;
+- semantic diagram import in Rust with graph, linear-use, occurrence, source,
+  history, and boundary certificates;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -71,6 +76,19 @@ numpy_function = quadruple.numpy_callable()
 objective = quadruple.scipy_objective()
 ```
 
+Stored diagrams cross a separate checked boundary:
+
+```python
+from adva import load_program
+
+restored = load_program(quadruple.ir)
+assert restored.validation_certificate["linear_use"] == "checked"
+assert restored.compilation_certificate is None
+```
+
+Successful JSON decoding is not semantic authorization. `load_program` returns
+only a diagram accepted by the Rust validator.
+
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
 certificates.
@@ -97,4 +115,3 @@ code.
 Adva is a private pre-alpha research tool. No open-source license has yet been
 selected; see [`LICENSE`](LICENSE). Public licensing should be a separate,
 explicit decision.
-
