@@ -15,7 +15,7 @@ CAUSAL_TOPOLOGY_KERNEL = r"""
     (fn ((left Real) (right Real)) Real
       (add
         (frontier
-          (scale 2 (use left))
+          (neg (use left))
           (mul (copy (use right)))))))
 
   (def fork-recombine
@@ -429,7 +429,7 @@ def test_all_branch_schedules_are_connected_by_checked_interchange_squares():
     schedules = topology.linear_extensions(start, target)
 
     # The root copy is forced first and the recombination is forced last.  The
-    # left scale can occur before, between, or after the dependent right-copy
+    # left negation can occur before, between, or after the dependent right-copy
     # and multiply pair, yielding exactly three intensional histories.
     assert len(schedules) == 3
     transports = tuple(topology.transport(start, schedule) for schedule in schedules)
