@@ -322,7 +322,7 @@ def test_minus_inverse_changes_aeg_frame_chirality_not_plane_orientation() -> No
             [sympy.diff(imaginary_part, x), sympy.diff(imaginary_part, y)],
         ]
     )
-    assert sympy.simplify(jacobian.det()) == 1 / radius_squared**2
+    assert sympy.simplify(jacobian.det() - 1 / radius_squared**2) == 0
 
 
 def test_projective_time_space_swap_has_two_oriented_lift_directions() -> None:
