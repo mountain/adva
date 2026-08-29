@@ -157,6 +157,19 @@ counterexample_boundary = "No stable pullback, general polynomial presentation, 
 forbidden_conflations = ["Exp-polynomial carrier with ordinary polynomial coordinates", "Derived observer action table with state-space ontology", "Basis matrix with program pullback", "Eigenvalue set with filtered spectral data", "Finite truncation with exact closure"]
 
 [[claim]]
+claim_id = "adva.bounded-verified.affine-boundary-two-jet-faithfulness.v0"
+canonical_name = "Marked affine boundary two-jet faithfulness"
+code_symbol = "tests/python/test_affine_exp_observer_spectrum.py"
+dimension = "1/formal-neighborhood/research-calibration"
+status = "bounded-verified"
+scope = "Positive affine Real maps D_(m,a)(x)=m*x+a at the invariant projective fiber F_infinity, in the marked q=1/x chart through q^2"
+assumptions = ["Checked finite Adva diagrams", "m>0 and positive numerical replay domain", "Declared affine fragment", "Marked q=1/x chart, unit, and decoder", "Formal series at q=0"]
+dependencies = ["adva.bounded-verified.affine-exp-observer-carrier.v0"]
+proof_or_certificate = "Exact derivation of D^*q=q/(m+aq), recovery m=1/c1 and a=-c2/c1^2, contravariant affine composition on the second-jet carrier, adapted-chart conjugacy, and checked numerical replay"
+counterexample_boundary = "The quadratic coefficient changes under a general adapted chart; the non-affine map x+b/x shares the identity second jet but differs at q^3"
+forbidden_conflations = ["Marked coefficients with unmarked invariants", "Formal-neighborhood carrier with Cartesian coordinates", "Jet action table with program ontology", "Second-jet faithfulness on the affine fragment with completeness for general programs", "Conormal multiplier with the full filtered action"]
+
+[[claim]]
 claim_id = "adva.bounded-verified.spectrum-history-no-go.v0"
 canonical_name = "Spectrum and ordinary differential do not recover checked history"
 code_symbol = "tests/python/test_affine_exp_observer_spectrum.py::test_value_differential_powers_and_scalar_spectrum_do_not_recover_history"
