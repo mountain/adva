@@ -1,8 +1,10 @@
 use crate::LispError;
 use crate::operation::{Dual, resolve_operation};
+use crate::validate::validate_diagram_ref;
 use adva_ir::{
-    CertificateId, DifferentialResult, DifferentiationCertificate, EvaluationCertificate,
-    EvaluationResult, Observation, SharedProgramDiagram, WireProducer, WireRef,
+    CertificateId, CheckStatus, DifferentialResult, DifferentiationCertificate,
+    EvaluationCertificate, EvaluationResult, Observation, SharedProgramDiagram, WireProducer,
+    WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -24,6 +26,7 @@ pub fn evaluate(
             scope: "PSC0 builtin scalar realization".to_owned(),
             executed_nodes: run.executed_nodes,
             input_types_checked: true,
+            diagram_integrity: CheckStatus::Checked,
             operation_rules_checked: true,
         },
     })
@@ -47,6 +50,7 @@ pub fn evaluate_with_differential(
             method: "forward-mode structural differential".to_owned(),
             operation_rules: run.operation_rules.into_iter().collect(),
             input_types_checked: true,
+            diagram_integrity: CheckStatus::Checked,
         },
     })
 }
@@ -67,6 +71,7 @@ fn run(
     diagram: &SharedProgramDiagram,
     inputs: &BTreeMap<String, f64>,
 ) -> Result<RunResult, LispError> {
+    validate_diagram_ref(diagram)?;
     validate_inputs(diagram, inputs)?;
     let input_values = diagram
         .signature

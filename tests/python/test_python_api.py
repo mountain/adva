@@ -1,13 +1,14 @@
 from __future__ import annotations
 
 import json
+from copy import deepcopy
 
 import numpy as np
 import pytest
 import sympy
 from scipy.optimize import minimize
 
-from adva import link_modules
+from adva import link_modules, load_program
 
 
 ARITHMETIC = """
@@ -51,6 +52,11 @@ def test_modules_link_and_calls_remain_executable(workspace):
 def test_python_type_guard_matches_rust_boundary(workspace):
     function = workspace.function("arithmetic", "shared-double")
     assert function.signature.inputs == (("x", "real"),)
+    assert function.signature.domain.typed.types == ("real",)
+    assert function.signature.codomain.typed.types == ("real",)
+    assert function.compilation_certificate is not None
+    assert function.compilation_certificate["diagram_integrity"] == "checked"
+    assert function.validation_certificate["graph"] == "checked"
     with pytest.raises(TypeError, match="expected inputs"):
         function.evaluate({"y": 1.0})
     with pytest.raises(TypeError, match="real scalar"):
@@ -99,6 +105,42 @@ def test_value_and_gradient_returns_auditable_certificate(workspace):
         "adva.builtin:copy@1",
         "adva.builtin:mul@1",
     }
+    assert certificate["diagram_integrity"] == "checked"
+
+
+def test_checked_json_import_has_validation_but_not_compilation_authority(workspace):
+    compiled = workspace.function("arithmetic", "shared-double")
+    imported = load_program(compiled.ir)
+
+    assert imported.evaluate({"x": 3.0}) == 6.0
+    assert imported.ir == compiled.ir
+    assert imported.compilation_certificate is None
+    assert imported.validation_certificate["linear_use"] == "checked"
+    assert imported.validation_certificate["source_partition"] == "checked"
+
+
+def test_python_cannot_import_an_implicitly_aliased_frontier(workspace):
+    compiled = workspace.function("arithmetic", "shared-double")
+    tampered = deepcopy(compiled.ir)
+    tampered["outputs"].append(deepcopy(tampered["outputs"][0]))
+    tampered["signature"]["outputs"].append("real")
+
+    with pytest.raises(ValueError, match="consumed exactly once"):
+        load_program(tampered)
+
+
+def test_python_cannot_reassign_a_copied_occurrence_source(workspace):
+    compiled = workspace.function("arithmetic", "shared-double")
+    tampered = deepcopy(compiled.ir)
+    copy_event = next(
+        event for event in tampered["history"]["prefix"] if event["kind"] == "copy"
+    )
+    child = copy_event["children"][0]
+    occurrence = next(item for item in tampered["occurrences"] if item["id"] == child)
+    occurrence["source"] = "source:forged"
+
+    with pytest.raises(ValueError, match="does not preserve source"):
+        load_program(tampered)
 
 
 def test_scientific_adapters_do_not_mutate_native_ir(workspace):

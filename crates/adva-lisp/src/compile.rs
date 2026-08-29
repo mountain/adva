@@ -1,4 +1,5 @@
 use crate::operation::{LineageRule, resolve_operation};
+use crate::validate::validate_diagram_ref;
 use crate::{LinkedModules, LispError};
 use adva_ir::{
     CertificateId, CheckStatus, CompilationArtifact, CompilationCertificate, FunctionDefinition,
@@ -435,6 +436,7 @@ pub fn compile_function(
             rewrite_trace: Vec::new(),
         },
     };
+    validate_diagram_ref(&diagram)?;
     let certificate = CompilationCertificate {
         id: CertificateId::explicit(format!("compile:{module}/{function}:v1")),
         scope: "PSC0 finite acyclic module lowering".to_owned(),
@@ -443,6 +445,7 @@ pub fn compile_function(
         linear_use: CheckStatus::Checked,
         types: CheckStatus::Checked,
         call_history: CheckStatus::Checked,
+        diagram_integrity: CheckStatus::Checked,
     };
     Ok(CompilationArtifact {
         result: diagram,

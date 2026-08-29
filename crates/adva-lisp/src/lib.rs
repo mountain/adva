@@ -5,6 +5,7 @@ mod eval;
 mod module;
 mod operation;
 mod parser;
+mod validate;
 
 pub use compile::compile_function;
 pub use eval::{evaluate, evaluate_with_differential, observe_history, observe_source_partition};
@@ -14,6 +15,7 @@ pub use operation::{
     resolve_operation,
 };
 pub use parser::parse_module;
+pub use validate::{import_diagram_json, validate_diagram};
 
 use thiserror::Error;
 
@@ -27,6 +29,8 @@ pub enum LispError {
     Type(String),
     #[error("linearity error: {0}")]
     Linearity(String),
+    #[error("diagram validation error: {0}")]
+    Validation(String),
     #[error("evaluation error: {0}")]
     Evaluation(String),
     #[error("IR error: {0}")]

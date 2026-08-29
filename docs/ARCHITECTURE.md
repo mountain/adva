@@ -108,6 +108,13 @@ The interchange format is JSON with schema identifier `adva.ir` and version
 Python `id()`, Rust pointer identity, hashes, values, or incidental object
 sharing. The repository also publishes a JSON Schema under `schemas/`.
 
+Decoding and semantic import are deliberately separate. The Rust Lisp kernel
+rechecks graph topology, operation boundaries, linear frontier use, occurrence
+paths, source-preserving copy history, and the final codomain before returning
+a `DiagramValidationArtifact`. Evaluation repeats this integrity check. Python
+can load stored diagrams only through this Rust boundary; see
+[ADR 0005](adr/0005-checked-diagram-import.md).
+
 Binary encoding is intentionally deferred until profiling justifies it. A
 future binary codec must preserve the same ontology and schema versioning.
 
