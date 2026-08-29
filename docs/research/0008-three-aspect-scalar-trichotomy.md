@@ -176,16 +176,206 @@ selects the complex case:
 
 None of these requirements has yet been derived from program geometry.
 
+## The stronger AEG inversion criterion
+
+The real AEG calibration supplies a less arbitrary candidate condition.  Let
+
+$$
+S(z)=-\frac{1}{z}.
+$$
+
+For a general quadratic scalar $z=a+bj\in A_\kappa$,
+
+$$
+S_\kappa(a,b)
+=
+\left(
+  \frac{-a}{a^2-\kappa b^2},
+  \frac{b}{a^2-\kappa b^2}
+\right).
+$$
+
+In the complex case the denominator is $a^2+b^2$.  Therefore $S_{-1}$:
+
+- is defined on the entire punctured real plane;
+- is an involution;
+- maps $z$ to a scalar satisfying $zS_{-1}(z)=-1$;
+- preserves the upper-half-plane condition $b>0$.
+
+The other two cases fail this global chart property.
+
+- For dual numbers, the whole nonzero nilpotent axis $a=0$ is
+  non-invertible.
+- For split-complex numbers, the two nonzero light rays $a=\pm b$ are
+  non-invertible.  Across the components separated by those rays, the sign of
+  the second coordinate need not be preserved.
+
+Hence the following strengthened condition does select the complex member of
+the tested family:
+
+> There is a globally defined negative-inverse involution on every nonzero
+> scalar, and it preserves one connected real AEG half-plane.
+
+This condition is not imported merely for field elegance.  It is motivated by
+the observed transition between two real AEG grids.
+
+## Oriented lift of the time-space exchange
+
+The chirality observation sharpens the inversion criterion.  Use a
+homogeneous time-space pair $(t,s)$ and let
+
+$$
+J(t,s)=(-s,t),
+\qquad
+J=
+\begin{pmatrix}
+0&-1\\
+1&0
+\end{pmatrix}.
+$$
+
+On the projective chart $z=t/s$, this induces
+
+$$
+[t:s]\longmapsto[-s:t],
+\qquad
+z\longmapsto-\frac1z.
+$$
+
+There are now two different orders in play:
+
+$$
+[J]^2=1
+\quad\hbox{projectively},
+\qquad
+J^2=-I
+\quad\hbox{on the oriented lift}.
+$$
+
+In particular,
+
+$$
+J^{-1}=-J.
+$$
+
+The forward exchange $J$ and reverse exchange $J^{-1}$ therefore induce the
+same projective involution, because projectivization forgets the central sign,
+but they remain distinct on the oriented lift.  This gives a more intrinsic
+meaning to chirality:
+
+> Chirality is the central sign distinguishing the forward and reverse
+> oriented lifts of one projective time-space exchange.
+
+This becomes a direct complex-selection mechanism under one explicit bridge
+hypothesis: the same oriented two-real-dimensional carrier represents both
+the time-space exchange lift and the action of the quadratic generator.  The
+action of $j$ on $(a,b)$ is
+
+$$
+L_j=
+\begin{pmatrix}
+0&\kappa\\
+1&0
+\end{pmatrix},
+\qquad
+L_j^2=\kappa I.
+$$
+
+For $\kappa=-1$, $L_j=J$: it is orientation-preserving, invertible, and has
+order four before projectivization.  For $\kappa=1$, the split exchange has
+square $+I$, determinant $-1$, and is already its own inverse on the lift.
+For $\kappa=0$, the dual generator is singular and nilpotent.  Thus, within
+the tested family, requiring an oriented time-space exchange whose projective
+class has order two but whose lift distinguishes forward from reverse selects
+the complex relation $j^2=-1$ once the bridge hypothesis is imposed.
+
+The role of $i$ is consequently not first introduced as a numerical scalar.
+It can be read as the oriented quarter-turn implementing time-space exchange;
+the complex algebra is the closure of composing and scaling that exchange.
+This does not yet prove that every program expression must use complex
+foundational scalars.
+
+There is a second boundary to the statement.  The matrix $J\in SL(2,\mathbb R)$
+already defines the real-coefficient Möbius map $-1/z$; complex notation is
+not, by itself, evidence that all underlying scalars are complex.  What is new
+is that retaining the lift rather than quotienting to $PSL(2,\mathbb R)$
+exposes the central sign.  Calling that sign chirality requires the oriented
+program carrier to remember it.  The AEG frame reversal supplies evidence for
+this reading, not yet a general theorem identifying the two carriers.
+
+## Hyperbolic grid, ripple grid, and chirality
+
+Write the real AEG generators in the upper-half-plane chart as
+
+$$
+A(z)=z+1,\qquad M_\lambda(z)=\lambda z,\qquad \lambda>0.
+$$
+
+Conjugation by $S(z)=-1/z$ gives
+
+$$
+S M_\lambda S=M_{\lambda^{-1}}
+$$
+
+and
+
+$$
+S A S(z)=\frac{z}{1-z}.
+$$
+
+Thus the scale direction is inverted, while the translation grid is changed
+into a parabolic or ripple-type grid organized around the other fixed point.
+For a Baumslag--Solitar-style relation
+
+$$
+M A M^{-1}=A^n,
+$$
+
+the conjugated presentation has scale generator $M^{-1}$ and the ripple
+generator $SAS$.  This is the visible AEG consequence of the lift-level
+chirality: exchanging time and space sends the selected scale direction from
+its forward presentation to its reverse presentation.
+
+It is important not to identify this with reversal of the ambient complex
+orientation.  In real coordinates
+
+$$
+S(x,y)=
+\left(
+  \frac{-x}{x^2+y^2},
+  \frac{y}{x^2+y^2}
+\right),
+$$
+
+whose Jacobian determinant is
+
+$$
+\det DS=\frac{1}{(x^2+y^2)^2}>0.
+$$
+
+The Möbius involution is holomorphic and orientation-preserving on the plane.
+The chirality change is not a reversal of that ambient plane.  It is the
+difference between $J$ and $J^{-1}=-J$ on the oriented time-space lift, read
+after projection as reversal of the selected real AEG generator frame.
+
+This suggests a more careful duality statement:
+
+> Complex inversion mediates between two real AEG presentations.  It preserves
+> the ambient oriented carrier, while its two oriented lifts retain the
+> forward/reverse chirality that the projective chart forgets.
+
 ## Consequence for the six-dimensional intuition
 
 The experiment leaves three live interpretations.
 
 ### One complex enrichment
 
-All three aspects may be complex lines. This requires program geometry to
-derive a positive norm, compact phase, or equivalent division property. The
-six real degrees of freedom would then form a locally complex rank-three
-carrier, though not necessarily a globally trivial $\mathbb C^3$.
+All three aspects may be complex lines.  For the time-space pair, the oriented
+lift above derives a local complex structure directly from exchange.  Extending
+it cyclically to the relational aspect still requires compatible exchange
+maps and overlap laws.  The six real degrees of freedom could then form a
+locally complex rank-three carrier, though not necessarily a globally trivial
+$\mathbb C^3$.
 
 ### Three different quadratic aspects
 
@@ -221,19 +411,28 @@ second.
 
 ## Result and next criterion
 
-The bounded result is negative but useful:
+The bounded result has a negative and a positive part:
 
 > Two real dimensions per aspect, cyclic rank-one action, recovery of a
 > function from its unit characteristic, conjugation, and multiplicative norm
 > do not select the complex field.
 
-The next theoretical question is therefore not “can the three aspects be
-written over $\mathbb C$?” They can. It is:
+But within the tested quadratic family:
 
-> Does the checked time-space-relation calculus intrinsically derive positive
-> norm and compact phase, or does it instead require a scalar geometry that
-> also contains parabolic and hyperbolic degeneration?
+> A global negative-inverse involution on the punctured carrier that preserves
+> a connected real AEG half-plane does select the complex case.
+
+The strengthened mechanism explains why:
+
+> The projective time-space exchange has order two, while its
+> orientation-preserving lift has order four: $J^2=-I$ and
+> $J^{-1}=-J$.  The central sign is exactly the retained forward/reverse
+> chirality.  Split and dual generators do not supply such a lift.
+
+The next theoretical question is whether a third, relational exchange closes
+with this time-space lift into the proposed cyclic internal-function object,
+and whether the overlap signs form a globally coherent complex carrier or a
+twisted expression-valued bundle.
 
 No stable complex type, quadratic scalar API, spectral carrier, triality
 object, or field-selection theorem is introduced by this calibration.
-
