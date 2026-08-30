@@ -1,9 +1,12 @@
+use crate::compile::validate_graft_trace;
 use crate::LispError;
 use crate::validate::validate_diagram_ref;
 use adva_ir::{
     CausalCut, CausalCutArtifact, CausalCutCertificate, CausalStep, CausalStepArtifact,
-    CausalStepCertificate, CertificateId, CheckStatus, CutConsumer, CutWire, NodeId,
-    SharedProgramDiagram, WireProducer, WireRef,
+    CausalStepCertificate, CertificateId, CheckStatus, CutConsumer, CutWire,
+    GraftArgumentIntersection, GraftFrameIntersection, GraftTrace, HistoryEvent, NodeId,
+    Occurrence, OccurrenceId, OperationNode, ProgramSlice, ProgramSliceArtifact,
+    ProgramSliceCertificate, SharedProgramDiagram, WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -144,6 +147,318 @@ pub fn advance_causal_cut(
             event,
         },
     })
+}
+
+/// Derive the exact program interval between two nested causal pasts.
+///
+/// This analysis preserves original nodes, wires, occurrences, lineage, and
+/// node-associated history. It never evaluates or lowers a fresh program.
+///
+/// # Errors
+///
+/// Returns a validation error if the diagram is invalid, either completed set
+/// is not a causal past, or the lower past is not contained in the upper past.
+pub fn analyze_program_slice(
+    diagram: &SharedProgramDiagram,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<ProgramSliceArtifact, LispError> {
+    analyze_program_slice_impl(diagram, None, lower_completed, upper_completed)
+}
+
+/// Derive a program slice and link every nonempty frame-region intersection.
+///
+/// The graft trace is revalidated against the unchanged diagram before its
+/// frame identifiers are admitted to the result.
+///
+/// # Errors
+///
+/// Returns the errors of [`analyze_program_slice`] and also rejects a graft
+/// trace that is inconsistent with the supplied diagram.
+pub fn analyze_program_slice_with_graft(
+    diagram: &SharedProgramDiagram,
+    graft_trace: &GraftTrace,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<ProgramSliceArtifact, LispError> {
+    analyze_program_slice_impl(
+        diagram,
+        Some(graft_trace),
+        lower_completed,
+        upper_completed,
+    )
+}
+
+fn analyze_program_slice_impl(
+    diagram: &SharedProgramDiagram,
+    graft_trace: Option<&GraftTrace>,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<ProgramSliceArtifact, LispError> {
+    validate_diagram_ref(diagram)?;
+    if let Some(trace) = graft_trace {
+        validate_graft_trace(diagram, trace)?;
+    }
+    let lower_set = checked_completed_past(diagram, lower_completed)?;
+    let upper_set = checked_completed_past(diagram, upper_completed)?;
+    if !lower_set.is_subset(&upper_set) {
+        return Err(invalid_error(format!(
+            "lower causal past is not contained in upper past; extra nodes {:?}",
+            lower_set
+                .difference(&upper_set)
+                .map(|node| node.0)
+                .collect::<Vec<_>>()
+        )));
+    }
+
+    let lower = analyze_causal_cut(diagram, lower_completed)?.result;
+    let upper = analyze_causal_cut(diagram, upper_completed)?.result;
+    let event_set = upper_set
+        .difference(&lower_set)
+        .copied()
+        .collect::<BTreeSet<_>>();
+    let events = diagram
+        .nodes
+        .iter()
+        .filter(|node| event_set.contains(&node.id))
+        .cloned()
+        .collect::<Vec<_>>();
+    let lower_boundary = lower
+        .frontier
+        .iter()
+        .filter(|cut_wire| match &cut_wire.consumer {
+            CutConsumer::Node { node, .. } => event_set.contains(node),
+            CutConsumer::Output { .. } => false,
+        })
+        .cloned()
+        .collect::<Vec<_>>();
+    let through_wires = lower
+        .frontier
+        .iter()
+        .filter(|cut_wire| upper.frontier.contains(cut_wire))
+        .cloned()
+        .collect::<Vec<_>>();
+    let upper_boundary = upper
+        .frontier
+        .iter()
+        .filter(|cut_wire| match &cut_wire.wire.producer {
+            WireProducer::Input { .. } => false,
+            WireProducer::Node { node } => event_set.contains(node),
+        })
+        .cloned()
+        .collect::<Vec<_>>();
+    validate_boundary_partition(
+        &lower,
+        &upper,
+        &lower_boundary,
+        &upper_boundary,
+        &through_wires,
+    )?;
+
+    let internal_events = events
+        .iter()
+        .map(|node| node.id)
+        .filter(|node| {
+            !upper.frontier.iter().any(|cut_wire| {
+                cut_wire.wire.producer == WireProducer::Node { node: *node }
+            })
+        })
+        .collect::<Vec<_>>();
+    let event_history = diagram
+        .history
+        .prefix
+        .iter()
+        .filter(|event| history_node(event).is_some_and(|node| event_set.contains(&node)))
+        .cloned()
+        .collect::<Vec<_>>();
+    let occurrences = slice_occurrences(
+        diagram,
+        &lower,
+        &upper,
+        &events,
+        &event_set,
+        &event_history,
+    )?;
+    let graft_intersections =
+        graft_trace.map(|trace| intersect_graft_frames(trace, &event_set));
+    let event_ids = events.iter().map(|node| node.id).collect::<Vec<_>>();
+    let lower_suffix = past_suffix(&lower.completed);
+    let upper_suffix = past_suffix(&upper.completed);
+
+    Ok(ProgramSliceArtifact {
+        result: ProgramSlice {
+            lower: lower.clone(),
+            upper: upper.clone(),
+            events,
+            lower_boundary,
+            upper_boundary,
+            through_wires,
+            internal_events,
+            occurrences,
+            event_history,
+            graft_intersections,
+        },
+        certificate: ProgramSliceCertificate {
+            id: CertificateId::explicit(format!(
+                "program-slice:{}:{lower_suffix}:{upper_suffix}:v1",
+                diagram.function
+            )),
+            scope: "one finite checked operation DAG; nested causal pasts; exact original identities"
+                .to_owned(),
+            diagram_integrity: CheckStatus::Checked,
+            lower_past: CheckStatus::Checked,
+            upper_past: CheckStatus::Checked,
+            past_inclusion: CheckStatus::Checked,
+            event_difference: CheckStatus::Checked,
+            boundary_partition: CheckStatus::Checked,
+            internal_events: CheckStatus::Checked,
+            original_id_preservation: CheckStatus::Checked,
+            lineage_preservation: CheckStatus::Checked,
+            graft_frame_consistency: graft_trace.map(|_| CheckStatus::Checked),
+            lower_completed: lower.completed,
+            upper_completed: upper.completed,
+            event_ids,
+        },
+    })
+}
+
+fn validate_boundary_partition(
+    lower: &CausalCut,
+    upper: &CausalCut,
+    lower_boundary: &[CutWire],
+    upper_boundary: &[CutWire],
+    through_wires: &[CutWire],
+) -> Result<(), LispError> {
+    let lower_is_partitioned = lower.frontier.iter().all(|wire| {
+        lower_boundary.contains(wire) ^ through_wires.contains(wire)
+    });
+    let upper_is_partitioned = upper.frontier.iter().all(|wire| {
+        upper_boundary.contains(wire) ^ through_wires.contains(wire)
+    });
+    if !lower_is_partitioned
+        || !upper_is_partitioned
+        || lower.frontier.len() != lower_boundary.len() + through_wires.len()
+        || upper.frontier.len() != upper_boundary.len() + through_wires.len()
+    {
+        return Err(invalid_error(
+            "program slice boundaries do not partition into changed and through wires",
+        ));
+    }
+    Ok(())
+}
+
+fn history_node(event: &HistoryEvent) -> Option<NodeId> {
+    match event {
+        HistoryEvent::Copy { node, .. } | HistoryEvent::Operation { node, .. } => Some(*node),
+        HistoryEvent::Source { .. } | HistoryEvent::Call { .. } => None,
+    }
+}
+
+fn slice_occurrences(
+    diagram: &SharedProgramDiagram,
+    lower: &CausalCut,
+    upper: &CausalCut,
+    events: &[OperationNode],
+    event_set: &BTreeSet<NodeId>,
+    event_history: &[HistoryEvent],
+) -> Result<Vec<Occurrence>, LispError> {
+    let mut occurrence_ids = BTreeSet::new();
+    for cut_wire in lower.frontier.iter().chain(upper.frontier.iter()) {
+        occurrence_ids.extend(cut_wire.wire.lineage.iter().cloned());
+    }
+    for wire in events.iter().flat_map(|node| node.inputs.iter()) {
+        occurrence_ids.extend(wire.lineage.iter().cloned());
+    }
+    for wire in diagram
+        .nodes
+        .iter()
+        .flat_map(|node| node.inputs.iter())
+        .chain(diagram.outputs.iter())
+        .filter(|wire| match &wire.producer {
+            WireProducer::Input { .. } => false,
+            WireProducer::Node { node } => event_set.contains(node),
+        })
+    {
+        occurrence_ids.extend(wire.lineage.iter().cloned());
+    }
+    for event in event_history {
+        if let HistoryEvent::Copy {
+            parent, children, ..
+        } = event
+        {
+            occurrence_ids.insert(parent.clone());
+            occurrence_ids.extend(children.iter().cloned());
+        }
+    }
+    let occurrences = diagram
+        .occurrences
+        .iter()
+        .filter(|occurrence| occurrence_ids.contains(&occurrence.id))
+        .cloned()
+        .collect::<Vec<_>>();
+    let found = occurrences
+        .iter()
+        .map(|occurrence| occurrence.id.clone())
+        .collect::<BTreeSet<OccurrenceId>>();
+    if found != occurrence_ids {
+        return Err(invalid_error(
+            "program slice references occurrences absent from the diagram",
+        ));
+    }
+    Ok(occurrences)
+}
+
+fn intersect_graft_frames(
+    trace: &GraftTrace,
+    event_set: &BTreeSet<NodeId>,
+) -> Vec<GraftFrameIntersection> {
+    trace
+        .frames
+        .iter()
+        .filter_map(|frame| {
+            let argument_events = frame
+                .arguments
+                .iter()
+                .map(|argument| GraftArgumentIntersection {
+                    argument_index: argument.argument_index,
+                    events: argument
+                        .nodes
+                        .iter()
+                        .copied()
+                        .filter(|node| event_set.contains(node))
+                        .collect(),
+                })
+                .collect::<Vec<_>>();
+            let body_events = frame
+                .body_region
+                .iter()
+                .copied()
+                .filter(|node| event_set.contains(node))
+                .collect::<Vec<_>>();
+            let intersects = !body_events.is_empty()
+                || argument_events
+                    .iter()
+                    .any(|argument| !argument.events.is_empty());
+            intersects.then_some(GraftFrameIntersection {
+                frame: frame.id.clone(),
+                argument_events,
+                body_events,
+                call_history_index: frame.call_history_index,
+            })
+        })
+        .collect()
+}
+
+fn past_suffix(completed: &[NodeId]) -> String {
+    if completed.is_empty() {
+        "root".to_owned()
+    } else {
+        completed
+            .iter()
+            .map(|node| node.0.to_string())
+            .collect::<Vec<_>>()
+            .join("-")
+    }
 }
 
 fn checked_completed_past(
