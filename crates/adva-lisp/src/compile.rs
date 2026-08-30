@@ -770,7 +770,7 @@ fn expected_call_frame_id(function: &QualifiedName, path: &GraftScopePath) -> Gr
     GraftFrameId::explicit(format!("graft:{function}:{}", scope_path_key(path)))
 }
 
-fn validate_graft_trace(
+pub(crate) fn validate_graft_trace(
     diagram: &SharedProgramDiagram,
     trace: &GraftTrace,
 ) -> Result<GraftTraceCertificate, LispError> {

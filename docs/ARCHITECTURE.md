@@ -27,7 +27,7 @@ judgments.
 - typed frontiers and qualified names;
 - `SharedProgramDiagram`;
 - compiler-emitted nested graft-trace companion types;
-- causal-cut and single-event frontier-replacement result types;
+- causal-cut, single-event, and exact program-slice result types;
 - explicit source, occurrence, path, and history data;
 - distinct directed rewrite, equation, and coherence types;
 - versioned JSON envelopes and certificate types.
@@ -42,6 +42,7 @@ judgments.
 - deterministic nested graft traces retained beside compiler-produced diagrams;
 - finite boundary substitution through checked module calls;
 - certified causal-cut and enabled-event analysis over checked diagrams;
+- exact same-diagram program-slice analysis between nested causal pasts;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
 
@@ -93,10 +94,16 @@ it is downward closed, and returns the exact `WireRef` values crossing from
 that past to its future. `advance_causal_cut` verifies one enabled event and
 returns the frontier wires it consumes and produces.
 
-Both analyses first revalidate the diagram and return Rust certificates. They
-preserve source and occurrence lineage without evaluation. They do not assert
-a topology object, an observer pullback, equality of alternative schedules,
-or a coherence cell.
+All analyses first revalidate the diagram and return Rust certificates.
+`analyze_program_slice(P,U,V)` additionally requires nested causal pasts and
+retains the exact events in `V` minus `U`, changed lower and upper boundaries,
+unchanged through wires, and internal events invisible at the upper frontier.
+Optional graft links are revalidated compiler provenance and may overlap; they
+are not an event partition or a frame/cut bijection.
+
+These analyses preserve source and occurrence lineage without evaluation.
+They do not assert a topology object, an observer pullback, equality of
+alternative schedules, or a coherence cell.
 
 The theoretical dependency and promotion gates are specified in
 [`PROGRAM_PROCESS_CORE.md`](PROGRAM_PROCESS_CORE.md) and
@@ -160,7 +167,7 @@ future binary codec must preserve the same ontology and schema versioning.
 The stable slice contains finite modules, terms, diagrams, compiler-emitted
 certified nested graft frames, evaluation, differentiation, explicit source
 partitions, certified finite causal cuts, single-event frontier replacement,
-and lossless serialization.
+exact program slices, and lossless serialization.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that

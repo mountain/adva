@@ -1,18 +1,53 @@
-use adva_ir::{CutConsumer, NodeId};
+use adva_ir::{CutConsumer, GraftFrameKind, NodeId};
 use adva_lisp::{
-    advance_causal_cut, analyze_causal_cut, compile_function, link_modules, parse_module,
+    advance_causal_cut, analyze_causal_cut, analyze_program_slice,
+    analyze_program_slice_with_graft, compile_function, link_modules, parse_module,
 };
 
-fn shared_sum() -> adva_ir::SharedProgramDiagram {
-    let module = parse_module(
-        "(module process (export shared-sum) \
-         (def shared-sum (fn ((x Real)) Real (add (copy (use x))))))",
-    )
-    .unwrap();
+const PROCESS_MODULE: &str = r#"
+(module process
+  (export shared-sum identity hidden-history wrapper identity-call)
+
+  (def shared-sum
+    (fn ((x Real)) Real
+      (add (copy (use x)))))
+
+  (def identity
+    (fn ((x Real)) Real
+      (use x)))
+
+  (def hidden-history
+    (fn ((x Real)) Real
+      (frontier
+        (discard 1)
+        (use x))))
+
+  (def neg-one
+    (fn ((x Real)) Real
+      (neg (use x))))
+
+  (def wrapper
+    (fn ((x Real)) Real
+      (call neg-one (use x))))
+
+  (def id-callee
+    (fn ((x Real)) Real
+      (use x)))
+
+  (def identity-call
+    (fn ((x Real)) Real
+      (call id-callee (use x))))
+)
+"#;
+
+fn compile(name: &str) -> adva_ir::CompilationArtifact {
+    let module = parse_module(PROCESS_MODULE).unwrap();
     let linked = link_modules(vec![module]).unwrap();
-    compile_function(&linked, "process", "shared-sum")
-        .unwrap()
-        .result
+    compile_function(&linked, "process", name).unwrap()
+}
+
+fn shared_sum() -> adva_ir::SharedProgramDiagram {
+    compile("shared-sum").result
 }
 
 #[test]
@@ -69,4 +104,124 @@ fn one_causal_step_records_frontier_replacement_without_evaluation() {
 fn a_cut_cannot_contain_an_event_without_its_causal_past() {
     let error = analyze_causal_cut(&shared_sum(), &[NodeId(1)]).unwrap_err();
     assert!(error.to_string().contains("without predecessors"));
+}
+
+#[test]
+fn identity_slice_retains_the_same_through_wire() {
+    let artifact = compile("identity");
+    let slice = analyze_program_slice(&artifact.result, &[], &[]).unwrap();
+
+    assert!(slice.certificate.certified());
+    assert!(slice.result.events.is_empty());
+    assert_eq!(slice.result.lower.frontier, slice.result.upper.frontier);
+    assert!(slice.result.lower_boundary.is_empty());
+    assert!(slice.result.upper_boundary.is_empty());
+    assert_eq!(slice.result.through_wires, slice.result.lower.frontier);
+    assert!(slice.result.internal_events.is_empty());
+    assert_eq!(slice.result.occurrences, artifact.result.occurrences);
+    assert!(slice.result.event_history.is_empty());
+    assert!(slice.result.graft_intersections.is_none());
+}
+
+#[test]
+fn explicit_copy_preserves_parent_and_distinct_child_occurrences() {
+    let artifact = compile("shared-sum");
+    let slice = analyze_program_slice(&artifact.result, &[], &[NodeId(0)]).unwrap();
+
+    assert!(slice.certificate.certified());
+    assert_eq!(slice.result.events.len(), 1);
+    assert_eq!(slice.result.lower_boundary.len(), 1);
+    assert_eq!(slice.result.upper_boundary.len(), 2);
+    assert!(slice.result.through_wires.is_empty());
+    assert!(slice.result.internal_events.is_empty());
+    assert_eq!(slice.result.event_history.len(), 2);
+    assert_eq!(slice.result.occurrences.len(), 3);
+    let children = slice
+        .result
+        .upper_boundary
+        .iter()
+        .map(|wire| wire.wire.lineage[0].clone())
+        .collect::<Vec<_>>();
+    assert_ne!(children[0], children[1]);
+    assert_eq!(
+        slice.result.upper_boundary[0].sources,
+        slice.result.upper_boundary[1].sources
+    );
+}
+
+#[test]
+fn equal_frontiers_do_not_erase_internal_constant_and_discard() {
+    let artifact = compile("hidden-history");
+    let slice = analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1)]).unwrap();
+
+    assert!(slice.certificate.certified());
+    assert_eq!(slice.result.lower.frontier, slice.result.upper.frontier);
+    assert_eq!(
+        slice
+            .result
+            .events
+            .iter()
+            .map(|node| node.id)
+            .collect::<Vec<_>>(),
+        vec![NodeId(0), NodeId(1)]
+    );
+    assert!(slice.result.lower_boundary.is_empty());
+    assert!(slice.result.upper_boundary.is_empty());
+    assert_eq!(slice.result.through_wires, slice.result.lower.frontier);
+    assert_eq!(slice.result.internal_events, vec![NodeId(0), NodeId(1)]);
+    assert_eq!(slice.result.event_history.len(), 2);
+}
+
+#[test]
+fn slice_requires_nested_causal_pasts() {
+    let artifact = compile("hidden-history");
+    let error = analyze_program_slice(&artifact.result, &[NodeId(0)], &[]).unwrap_err();
+    assert!(error.to_string().contains("not contained"));
+}
+
+#[test]
+fn slice_links_exact_nonempty_graft_frame_regions() {
+    let artifact = compile("wrapper");
+    let slice = analyze_program_slice_with_graft(
+        &artifact.result,
+        &artifact.graft_trace.result,
+        &[],
+        &[NodeId(0)],
+    )
+    .unwrap();
+
+    assert!(slice.certificate.certified());
+    assert!(slice.certificate.graft_frame_consistency.is_some());
+    let intersections = slice.result.graft_intersections.unwrap();
+    assert_eq!(intersections.len(), 2);
+    let root = artifact
+        .graft_trace
+        .result
+        .frames
+        .iter()
+        .find(|frame| frame.kind == GraftFrameKind::Root)
+        .unwrap();
+    let call = artifact
+        .graft_trace
+        .result
+        .frames
+        .iter()
+        .find(|frame| frame.kind == GraftFrameKind::Call)
+        .unwrap();
+    assert_eq!(intersections[0].frame, root.id);
+    assert_eq!(intersections[0].body_events, vec![NodeId(0)]);
+    assert_eq!(intersections[1].frame, call.id);
+    assert_eq!(intersections[1].body_events, vec![NodeId(0)]);
+}
+
+#[test]
+fn zero_event_call_frame_has_no_canonical_slice_intersection() {
+    let artifact = compile("identity-call");
+    assert_eq!(artifact.graft_trace.result.frames.len(), 2);
+    let slice =
+        analyze_program_slice_with_graft(&artifact.result, &artifact.graft_trace.result, &[], &[])
+            .unwrap();
+
+    assert!(slice.result.events.is_empty());
+    assert_eq!(slice.result.graft_intersections, Some(Vec::new()));
 }
