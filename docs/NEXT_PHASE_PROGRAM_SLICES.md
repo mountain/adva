@@ -523,3 +523,14 @@ and yields the empty relation. Retaining the exact frame stack, paths, and
 `callee_body` role while gluing the shared event once restores the forward and
 reverse factorizations. See
 `docs/research/0030-nested-frame-shared-surgery-gluing.md`.
+
+The finite E0 bridge now also passes on a nested ordered two-hole causal
+diamond. Each `neg`, `id`, or `add` event induces one mod-two dual-face surgery
+on the declared `J(G)` edge chart while carrying every exact intersecting
+frame role. Both legal surgery words reach the same decorated cut, and an
+adjacent-slice split composes to the direct outer slice without duplicating
+overlapping frames. Polarized relational composition gives the exact forward
+and reverse `P S P*` factorizations. The remaining obligation is a canonical
+grid-to-cellular-dual construction and a general certificate, not another
+fixture-level compatibility question. See
+`docs/research/0031-e0-nested-decorated-surgery-psp.md`.

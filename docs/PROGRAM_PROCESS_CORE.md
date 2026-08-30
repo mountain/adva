@@ -265,3 +265,14 @@ the event and cannot compose. A joint frame stack retaining IDs, paths,
 ordered holes, and `callee_body` role factors correctly when the shared surgery
 is glued once by original event identity. Frames are overlapping scope-readings
 of a slice, not disjoint owners of its events.
+
+The finite E0 return now realizes that glued surgery geometrically on the
+declared cellular dual of the checked copy--branch--recombine diamond. The
+three body events each toggle one dual-face boundary and carry the full exact
+frame-role incidence list once. The two independent schedule words reach the
+same decorated cut, exact adjacent slices compose with their decorated
+surgery subwords, and polarized finite relations factor the nested ordered
+transformation in both directions. This is the first common finite carrier
+for scope, substitution, cuts, and E0 dual-cycle surgery. The bridge from the
+bounded projective `G` and `J(G)` labels to the cellular dual is still declared
+rather than canonical, so no stable `P`, `P*`, or `S` is promoted.
