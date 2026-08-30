@@ -6,7 +6,8 @@ use adva_ir::{
     CausalStepCertificate, CertificateId, CheckStatus, CutConsumer, CutWire,
     GraftArgumentIntersection, GraftFrameIntersection, GraftTrace, HistoryEvent, NodeId,
     Occurrence, OccurrenceId, OperationNode, ProgramSlice, ProgramSliceArtifact,
-    ProgramSliceCertificate, SharedProgramDiagram, WireProducer, WireRef,
+    ProgramSliceCertificate, ProgramSliceCompositionArtifact, ProgramSliceCompositionCertificate,
+    SharedProgramDiagram, WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -188,6 +189,164 @@ pub fn analyze_program_slice_with_graft(
     analyze_program_slice_impl(diagram, Some(graft_trace), lower_completed, upper_completed)
 }
 
+/// Compose two adjacent program slices in one unchanged checked diagram.
+///
+/// Both inputs are rederived and compared exactly before their original event
+/// sets are united. The composed view is then checked against the direct outer
+/// slice. Use [`compose_program_slices_with_graft`] for slices carrying graft
+/// intersections.
+///
+/// # Errors
+///
+/// Returns a validation error if either input is not the canonical slice of
+/// this diagram, their middle cuts differ, or their event sets do not form the
+/// exact outer interval.
+pub fn compose_program_slices(
+    diagram: &SharedProgramDiagram,
+    left: &ProgramSlice,
+    right: &ProgramSlice,
+) -> Result<ProgramSliceCompositionArtifact, LispError> {
+    if left.graft_intersections.is_some() || right.graft_intersections.is_some() {
+        return Err(invalid_error(
+            "graft-linked slices require compose_program_slices_with_graft",
+        ));
+    }
+    compose_program_slices_impl(diagram, None, left, right)
+}
+
+/// Compose adjacent slices while preserving revalidated graft intersections.
+///
+/// # Errors
+///
+/// Returns the errors of [`compose_program_slices`] and also rejects a graft
+/// trace inconsistent with the diagram or either input slice.
+pub fn compose_program_slices_with_graft(
+    diagram: &SharedProgramDiagram,
+    graft_trace: &GraftTrace,
+    left: &ProgramSlice,
+    right: &ProgramSlice,
+) -> Result<ProgramSliceCompositionArtifact, LispError> {
+    compose_program_slices_impl(diagram, Some(graft_trace), left, right)
+}
+
+fn compose_program_slices_impl(
+    diagram: &SharedProgramDiagram,
+    graft_trace: Option<&GraftTrace>,
+    left: &ProgramSlice,
+    right: &ProgramSlice,
+) -> Result<ProgramSliceCompositionArtifact, LispError> {
+    validate_diagram_ref(diagram)?;
+    if let Some(trace) = graft_trace {
+        validate_graft_trace(diagram, trace)?;
+    }
+    let canonical_left = analyze_program_slice_impl(
+        diagram,
+        graft_trace,
+        &left.lower.completed,
+        &left.upper.completed,
+    )?
+    .result;
+    if &canonical_left != left {
+        return Err(invalid_error(
+            "left input is not the canonical slice of the supplied diagram",
+        ));
+    }
+    let canonical_right = analyze_program_slice_impl(
+        diagram,
+        graft_trace,
+        &right.lower.completed,
+        &right.upper.completed,
+    )?
+    .result;
+    if &canonical_right != right {
+        return Err(invalid_error(
+            "right input is not the canonical slice of the supplied diagram",
+        ));
+    }
+    if left.upper != right.lower {
+        return Err(invalid_error(
+            "adjacent program slices do not have the same middle causal cut",
+        ));
+    }
+
+    let left_events = left
+        .events
+        .iter()
+        .map(|node| node.id)
+        .collect::<BTreeSet<_>>();
+    let right_events = right
+        .events
+        .iter()
+        .map(|node| node.id)
+        .collect::<BTreeSet<_>>();
+    if !left_events.is_disjoint(&right_events) {
+        return Err(invalid_error(
+            "adjacent program slices have overlapping event sets",
+        ));
+    }
+    let event_union = left_events
+        .union(&right_events)
+        .copied()
+        .collect::<BTreeSet<_>>();
+    let lower_set = checked_completed_past(diagram, &left.lower.completed)?;
+    let upper_set = checked_completed_past(diagram, &right.upper.completed)?;
+    let expected_union = upper_set
+        .difference(&lower_set)
+        .copied()
+        .collect::<BTreeSet<_>>();
+    if event_union != expected_union {
+        return Err(invalid_error(
+            "adjacent slice events do not conserve the exact outer interval",
+        ));
+    }
+
+    let result = build_program_slice(
+        diagram,
+        graft_trace,
+        left.lower.clone(),
+        right.upper.clone(),
+        &event_union,
+    )?;
+    let direct = analyze_program_slice_impl(
+        diagram,
+        graft_trace,
+        &left.lower.completed,
+        &right.upper.completed,
+    )?
+    .result;
+    if result != direct {
+        return Err(invalid_error(
+            "composed program slice differs from the direct outer slice",
+        ));
+    }
+
+    let left_event_ids = left.events.iter().map(|node| node.id).collect::<Vec<_>>();
+    let right_event_ids = right.events.iter().map(|node| node.id).collect::<Vec<_>>();
+    let result_event_ids = result.events.iter().map(|node| node.id).collect::<Vec<_>>();
+    let lower_suffix = past_suffix(&result.lower.completed);
+    let upper_suffix = past_suffix(&result.upper.completed);
+    Ok(ProgramSliceCompositionArtifact {
+        result,
+        certificate: ProgramSliceCompositionCertificate {
+            id: CertificateId::explicit(format!(
+                "program-slice-compose:{}:{lower_suffix}:{upper_suffix}:v1",
+                diagram.function
+            )),
+            scope: "two adjacent finite slices of one unchanged checked operation DAG".to_owned(),
+            diagram_integrity: CheckStatus::Checked,
+            inputs_revalidated: CheckStatus::Checked,
+            boundary_agreement: CheckStatus::Checked,
+            event_partition: CheckStatus::Checked,
+            original_id_preservation: CheckStatus::Checked,
+            lineage_preservation: CheckStatus::Checked,
+            exact_composition: CheckStatus::Checked,
+            left_event_ids,
+            right_event_ids,
+            result_event_ids,
+        },
+    })
+}
+
 fn analyze_program_slice_impl(
     diagram: &SharedProgramDiagram,
     graft_trace: Option<&GraftTrace>,
@@ -216,6 +375,45 @@ fn analyze_program_slice_impl(
         .difference(&lower_set)
         .copied()
         .collect::<BTreeSet<_>>();
+    let result = build_program_slice(diagram, graft_trace, lower, upper, &event_set)?;
+    let event_ids = result.events.iter().map(|node| node.id).collect::<Vec<_>>();
+    let lower_suffix = past_suffix(&result.lower.completed);
+    let upper_suffix = past_suffix(&result.upper.completed);
+
+    Ok(ProgramSliceArtifact {
+        certificate: ProgramSliceCertificate {
+            id: CertificateId::explicit(format!(
+                "program-slice:{}:{lower_suffix}:{upper_suffix}:v1",
+                diagram.function
+            )),
+            scope:
+                "one finite checked operation DAG; nested causal pasts; exact original identities"
+                    .to_owned(),
+            diagram_integrity: CheckStatus::Checked,
+            lower_past: CheckStatus::Checked,
+            upper_past: CheckStatus::Checked,
+            past_inclusion: CheckStatus::Checked,
+            event_difference: CheckStatus::Checked,
+            boundary_partition: CheckStatus::Checked,
+            internal_events: CheckStatus::Checked,
+            original_id_preservation: CheckStatus::Checked,
+            lineage_preservation: CheckStatus::Checked,
+            graft_frame_consistency: graft_trace.map(|_| CheckStatus::Checked),
+            lower_completed: result.lower.completed.clone(),
+            upper_completed: result.upper.completed.clone(),
+            event_ids,
+        },
+        result,
+    })
+}
+
+fn build_program_slice(
+    diagram: &SharedProgramDiagram,
+    graft_trace: Option<&GraftTrace>,
+    lower: CausalCut,
+    upper: CausalCut,
+    event_set: &BTreeSet<NodeId>,
+) -> Result<ProgramSlice, LispError> {
     let events = diagram
         .nodes
         .iter()
@@ -272,47 +470,19 @@ fn analyze_program_slice_impl(
         .cloned()
         .collect::<Vec<_>>();
     let occurrences =
-        slice_occurrences(diagram, &lower, &upper, &events, &event_set, &event_history)?;
-    let graft_intersections = graft_trace.map(|trace| intersect_graft_frames(trace, &event_set));
-    let event_ids = events.iter().map(|node| node.id).collect::<Vec<_>>();
-    let lower_suffix = past_suffix(&lower.completed);
-    let upper_suffix = past_suffix(&upper.completed);
-
-    Ok(ProgramSliceArtifact {
-        result: ProgramSlice {
-            lower: lower.clone(),
-            upper: upper.clone(),
-            events,
-            lower_boundary,
-            upper_boundary,
-            through_wires,
-            internal_events,
-            occurrences,
-            event_history,
-            graft_intersections,
-        },
-        certificate: ProgramSliceCertificate {
-            id: CertificateId::explicit(format!(
-                "program-slice:{}:{lower_suffix}:{upper_suffix}:v1",
-                diagram.function
-            )),
-            scope:
-                "one finite checked operation DAG; nested causal pasts; exact original identities"
-                    .to_owned(),
-            diagram_integrity: CheckStatus::Checked,
-            lower_past: CheckStatus::Checked,
-            upper_past: CheckStatus::Checked,
-            past_inclusion: CheckStatus::Checked,
-            event_difference: CheckStatus::Checked,
-            boundary_partition: CheckStatus::Checked,
-            internal_events: CheckStatus::Checked,
-            original_id_preservation: CheckStatus::Checked,
-            lineage_preservation: CheckStatus::Checked,
-            graft_frame_consistency: graft_trace.map(|_| CheckStatus::Checked),
-            lower_completed: lower.completed,
-            upper_completed: upper.completed,
-            event_ids,
-        },
+        slice_occurrences(diagram, &lower, &upper, &events, event_set, &event_history)?;
+    let graft_intersections = graft_trace.map(|trace| intersect_graft_frames(trace, event_set));
+    Ok(ProgramSlice {
+        lower,
+        upper,
+        events,
+        lower_boundary,
+        upper_boundary,
+        through_wires,
+        internal_events,
+        occurrences,
+        event_history,
+        graft_intersections,
     })
 }
 

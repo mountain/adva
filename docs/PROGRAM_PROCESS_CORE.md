@@ -84,8 +84,11 @@ For a Rust-validated `SharedProgramDiagram`, Adva now exposes:
 - `analyze_program_slice(diagram, lower, upper)`, which checks nested causal
   pasts and retains exact interval events, changed boundary wires, unchanged
   through wires, internal events, occurrences, and node-associated history;
-- causal-cut, causal-step, and program-slice certificates, which record only
-  their checked finite obligations.
+- `compose_program_slices(diagram, left, right)`, which revalidates adjacent
+  views, checks middle-boundary and event agreement, and returns the exact
+  canonical outer view;
+- causal-cut, causal-step, slice, and composition certificates, which record
+  only their checked finite obligations.
 
 The cut reuses the diagram's `WireRef` values unchanged. It does not rebuild
 source or occurrence identities, evaluate expressions, simplify equal values,
@@ -93,7 +96,7 @@ or assert a higher cell. Python receives this result only as an adapter over
 the Rust judgment.
 
 This promotes the common carrier of causality and cuts into the semantic
-kernel without claiming a topology API, adjacent-slice composition, a general
+kernel without claiming a topology API, cross-diagram composition, a general
 cut-transport functor, or a stable observer pullback.  Equal cut frontiers may
 still bound a nonempty interval, and zero-event graft frames have no canonical
 nonempty event intersection.
@@ -210,8 +213,8 @@ Therefore:
 
 The next semantic promotions must occur in dependency order.
 
-1. Compose adjacent same-diagram program slices exactly while retaining
-   original identities and hidden events.
+1. Exhaust the slice laws over nontrivial independent finite diagrams and add
+   a read-only Python inspection facade after the Rust API stabilizes.
 2. Decide separately whether compiler graft traces belong in a future stored
    IR version; imported diagrams currently have no graft provenance.
 3. Introduce probes only with an explicit pairing and pullback certificate.

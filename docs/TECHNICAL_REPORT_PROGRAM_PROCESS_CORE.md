@@ -40,9 +40,12 @@ same-diagram program slices.  For downward-closed event sets `U` contained in
 cuts, changed boundary wires, unchanged through wires, internal events,
 occurrences, history, and optional graft intersections.
 
-The next missing exact law is adjacent-slice composition.  It must construct
-the outer interval from two adjacent slices and agree with the direct outer
-slice without recompilation or new semantic identities.
+Adjacent slices now compose exactly after input revalidation, literal
+middle-cut agreement, and event conservation.  The constructed outer view is
+required to equal the directly analyzed outer slice, and exact fixtures cover
+identity units, three-segment associativity, graft links, and hidden discard
+history.  The next evidence obligation is exhaustive nested-cut testing on a
+nontrivial independent diagram.
 
 Crucially, this next phase is exact and finite. It requires no floating-point
 comparison and no infinite-series truncation. Floating point and truncation
@@ -214,7 +217,8 @@ and records the before cut, after cut, consumed wires, and produced wires.
 `analyze_program_slice(P,U,V)` checks nested pasts and records the exact event
 interval, boundary changes, through wires, internal events, occurrences, and
 history.  With compiler provenance it also links nonempty graft-frame region
-intersections.
+intersections. `compose_program_slices(P,A,B)` revalidates adjacent inputs and
+returns the exact canonical outer view with a composition certificate.
 
 These judgments do not evaluate any scalar.
 
