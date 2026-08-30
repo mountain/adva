@@ -30,7 +30,10 @@ claim that the surrounding calculus has been completely presented.
 - exact same-diagram `ProgramSlice` analysis between nested causal pasts,
   including through wires, internal events, and optional graft intersections;
 - exact composition of adjacent canonical slices, including identity units,
-  event conservation, direct equality, and finite associativity.
+  event conservation, direct equality, and finite associativity;
+- exhaustive exact slice-law tests on all cuts and nested intervals of one
+  independent three-event causal diamond, with distinct schedule paths kept
+  separate from the common canonical interval.
 
 ## Explicitly excluded
 
