@@ -51,11 +51,14 @@ judgments.
 
 - PyO3 classes wrapping linked modules and checked diagrams;
 - JSON and certificate access;
+- read-only Rust-derived graft-trace, program-slice, and exact-composite
+  snapshots;
 - typed scalar evaluation and gradients.
 
 ### `python/adva`
 
 - ergonomic typed facade;
+- frozen inspection views over Rust-owned graft and slice artifacts;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
@@ -112,6 +115,12 @@ order.
 These analyses preserve source and occurrence lineage without evaluation.
 They do not assert a topology object, an observer pullback, equality of
 alternative schedules, or a coherence cell.
+
+The Python boundary exposes these artifacts only by invoking Rust and decoding
+the returned result/certificate JSON. Adjacent composition accepts three pasts
+and derives both input slices inside Rust; no Python-constructed slice, frame,
+or certificate is admitted as semantic input. Imported version-one diagrams
+still have no graft trace.
 
 The theoretical dependency and promotion gates are specified in
 [`PROGRAM_PROCESS_CORE.md`](PROGRAM_PROCESS_CORE.md) and
