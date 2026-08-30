@@ -67,7 +67,7 @@ Compilation and module linking return a `CompilationCertificate`.
 Compiler-produced artifacts additionally carry a `GraftTraceArtifact` whose
 certificate checks deterministic frame identity, nesting, regions, hole
 bindings, boundary maps, and call-history links. It does not certify an
-observer pullback or the factorization (T = P S P^*). Evaluation and forward
+observer pullback or the factorization `T = P S P*`. Evaluation and forward
 differentiation return their own certificates. Semantic JSON
 import returns a distinct `DiagramValidationCertificate`; decoding alone does
 not. A certificate says only what its fields and scope record. It does not
