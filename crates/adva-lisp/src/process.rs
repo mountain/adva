@@ -1,5 +1,5 @@
-use crate::compile::validate_graft_trace;
 use crate::LispError;
+use crate::compile::validate_graft_trace;
 use crate::validate::validate_diagram_ref;
 use adva_ir::{
     CausalCut, CausalCutArtifact, CausalCutCertificate, CausalStep, CausalStepArtifact,
@@ -181,12 +181,7 @@ pub fn analyze_program_slice_with_graft(
     lower_completed: &[NodeId],
     upper_completed: &[NodeId],
 ) -> Result<ProgramSliceArtifact, LispError> {
-    analyze_program_slice_impl(
-        diagram,
-        Some(graft_trace),
-        lower_completed,
-        upper_completed,
-    )
+    analyze_program_slice_impl(diagram, Some(graft_trace), lower_completed, upper_completed)
 }
 
 fn analyze_program_slice_impl(
@@ -259,9 +254,10 @@ fn analyze_program_slice_impl(
         .iter()
         .map(|node| node.id)
         .filter(|node| {
-            !upper.frontier.iter().any(|cut_wire| {
-                cut_wire.wire.producer == WireProducer::Node { node: *node }
-            })
+            !upper
+                .frontier
+                .iter()
+                .any(|cut_wire| cut_wire.wire.producer == WireProducer::Node { node: *node })
         })
         .collect::<Vec<_>>();
     let event_history = diagram
@@ -271,16 +267,9 @@ fn analyze_program_slice_impl(
         .filter(|event| history_node(event).is_some_and(|node| event_set.contains(&node)))
         .cloned()
         .collect::<Vec<_>>();
-    let occurrences = slice_occurrences(
-        diagram,
-        &lower,
-        &upper,
-        &events,
-        &event_set,
-        &event_history,
-    )?;
-    let graft_intersections =
-        graft_trace.map(|trace| intersect_graft_frames(trace, &event_set));
+    let occurrences =
+        slice_occurrences(diagram, &lower, &upper, &events, &event_set, &event_history)?;
+    let graft_intersections = graft_trace.map(|trace| intersect_graft_frames(trace, &event_set));
     let event_ids = events.iter().map(|node| node.id).collect::<Vec<_>>();
     let lower_suffix = past_suffix(&lower.completed);
     let upper_suffix = past_suffix(&upper.completed);
@@ -303,8 +292,9 @@ fn analyze_program_slice_impl(
                 "program-slice:{}:{lower_suffix}:{upper_suffix}:v1",
                 diagram.function
             )),
-            scope: "one finite checked operation DAG; nested causal pasts; exact original identities"
-                .to_owned(),
+            scope:
+                "one finite checked operation DAG; nested causal pasts; exact original identities"
+                    .to_owned(),
             diagram_integrity: CheckStatus::Checked,
             lower_past: CheckStatus::Checked,
             upper_past: CheckStatus::Checked,
@@ -329,12 +319,14 @@ fn validate_boundary_partition(
     upper_boundary: &[CutWire],
     through_wires: &[CutWire],
 ) -> Result<(), LispError> {
-    let lower_is_partitioned = lower.frontier.iter().all(|wire| {
-        lower_boundary.contains(wire) ^ through_wires.contains(wire)
-    });
-    let upper_is_partitioned = upper.frontier.iter().all(|wire| {
-        upper_boundary.contains(wire) ^ through_wires.contains(wire)
-    });
+    let lower_is_partitioned = lower
+        .frontier
+        .iter()
+        .all(|wire| lower_boundary.contains(wire) ^ through_wires.contains(wire));
+    let upper_is_partitioned = upper
+        .frontier
+        .iter()
+        .all(|wire| upper_boundary.contains(wire) ^ through_wires.contains(wire));
     if !lower_is_partitioned
         || !upper_is_partitioned
         || lower.frontier.len() != lower_boundary.len() + through_wires.len()

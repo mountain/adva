@@ -152,13 +152,17 @@ fn explicit_copy_preserves_parent_and_distinct_child_occurrences() {
 #[test]
 fn equal_frontiers_do_not_erase_internal_constant_and_discard() {
     let artifact = compile("hidden-history");
-    let slice =
-        analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1)]).unwrap();
+    let slice = analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1)]).unwrap();
 
     assert!(slice.certificate.certified());
     assert_eq!(slice.result.lower.frontier, slice.result.upper.frontier);
     assert_eq!(
-        slice.result.events.iter().map(|node| node.id).collect::<Vec<_>>(),
+        slice
+            .result
+            .events
+            .iter()
+            .map(|node| node.id)
+            .collect::<Vec<_>>(),
         vec![NodeId(0), NodeId(1)]
     );
     assert!(slice.result.lower_boundary.is_empty());
@@ -214,13 +218,9 @@ fn slice_links_exact_nonempty_graft_frame_regions() {
 fn zero_event_call_frame_has_no_canonical_slice_intersection() {
     let artifact = compile("identity-call");
     assert_eq!(artifact.graft_trace.result.frames.len(), 2);
-    let slice = analyze_program_slice_with_graft(
-        &artifact.result,
-        &artifact.graft_trace.result,
-        &[],
-        &[],
-    )
-    .unwrap();
+    let slice =
+        analyze_program_slice_with_graft(&artifact.result, &artifact.graft_trace.result, &[], &[])
+            .unwrap();
 
     assert!(slice.result.events.is_empty());
     assert_eq!(slice.result.graft_intersections, Some(Vec::new()));

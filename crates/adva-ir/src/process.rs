@@ -1,6 +1,4 @@
-use crate::{
-    GraftFrameId, HistoryEvent, NodeId, Occurrence, OperationNode, SourceId, WireRef,
-};
+use crate::{GraftFrameId, HistoryEvent, NodeId, Occurrence, OperationNode, SourceId, WireRef};
 use serde::{Deserialize, Serialize};
 
 /// The unique consumer of a checked linear wire at a causal cut.
