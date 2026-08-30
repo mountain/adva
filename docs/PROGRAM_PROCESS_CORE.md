@@ -274,5 +274,26 @@ same decorated cut, exact adjacent slices compose with their decorated
 surgery subwords, and polarized finite relations factor the nested ordered
 transformation in both directions. This is the first common finite carrier
 for scope, substitution, cuts, and E0 dual-cycle surgery. The bridge from the
-bounded projective `G` and `J(G)` labels to the cellular dual is still declared
-rather than canonical, so no stable `P`, `P*`, or `S` is promoted.
+bounded projective `G` and `J(G)` labels to the cellular dual was still
+declared at that stage.
+
+The next calibration replaces those arbitrary labels by exact rational points
+of the standard Paper 0 E0 upper-half-plane grid. The program diamond routes
+in finite `X_1`/`Y_2` paths whose inner cell is the exact `BS(2,1)` relation;
+pointwise `J(z)=-1/z` gives its exact curved image and, after scale-polarity
+compensation, the `BS(1,2)` relation. The shared program-wire index intertwines
+every certified cut and enabled event surgery with the cellular-dual cycle
+calculus. This bridge is intentionally only on wire-indexed one-chains. Seven
+geometric vertices versus two cellular-dual face-vertices rule out a full
+vertex bijection on the finite window, so no stable `P`, `P*`, or `S` is
+promoted. The remaining mathematical question is an oriented degree-reversing
+chain map on a suitable refinement, or a finite proof that the two incidence
+structures cannot be simultaneously preserved.
+
+This routing result also exposes a separate semantic gap. The standard E0
+generators are positive affine one-variable moves; they do not interpret the
+fixture's generic negation and binary addition. Consequently, sharing exact
+wire identities does not yet make the E0 assignment equal to the multi-hole
+program valuation. A faithful expression-level `P*` needs an explicit
+multi-hole configuration carrier and substitution maps, or a different
+elementary model that contains the missing operations.
