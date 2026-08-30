@@ -31,6 +31,8 @@ tool does not turn research targets into stable API promises.
   derived without evaluating or rebuilding checked wire lineage;
 - exact certified `ProgramSlice` intervals retaining changed boundaries,
   unchanged through wires, internal events, occurrences, and history;
+- exact adjacent-slice composition with identity, event-conservation, and
+  associativity certificates over one unchanged diagram;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 

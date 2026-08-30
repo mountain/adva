@@ -28,7 +28,9 @@ claim that the surrounding calculus has been completely presented.
 - Rust-certified downward-closed causal cuts and one-enabled-event frontier
   replacement over validated finite diagrams;
 - exact same-diagram `ProgramSlice` analysis between nested causal pasts,
-  including through wires, internal events, and optional graft intersections.
+  including through wires, internal events, and optional graft intersections;
+- exact composition of adjacent canonical slices, including identity units,
+  event conservation, direct equality, and finite associativity.
 
 ## Explicitly excluded
 
@@ -45,7 +47,7 @@ claim that the surrounding calculus has been completely presented.
   alternatives;
 - full HPC, sheaf/stack semantics, universality, faithfulness, fullness, and
   full abstraction;
-- enumeration as a stable topology API, adjacent-slice composition, probe
+- enumeration as a stable topology API, cross-diagram slice composition, probe
   pullback, process exponentials, resolvents, characteristic factorization,
   and program spectra;
 - physical interpretations of curvature, mass, or spacetime.
@@ -72,8 +74,10 @@ bindings, boundary maps, and call-history links. It does not certify an
 observer pullback or the factorization `T = P S P*`. `ProgramSliceArtifact`
 separately certifies nested causal pasts, exact event difference, boundary and
 through-wire partitions, internal-event retention, original identities,
-lineage, and optional graft consistency. Evaluation and forward
-differentiation return their own certificates. Semantic JSON
+lineage, and optional graft consistency. `ProgramSliceCompositionArtifact`
+certifies revalidated inputs, middle-boundary agreement, exact event
+partition, original identities, lineage, and equality with the direct outer
+slice. Evaluation and forward differentiation return their own certificates. Semantic JSON
 import returns a distinct `DiagramValidationCertificate`; decoding alone does
 not. A certificate says only what its fields and scope record. It does not
 certify a general theorem.
