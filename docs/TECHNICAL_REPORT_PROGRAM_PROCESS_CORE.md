@@ -631,12 +631,20 @@ substitution-scope nesting and reverse cut nesting are the same structure.
 Graft links remain overlapping and partial, and zero-event frames prevent a
 total frame-to-nonempty-slice map.
 
+The minimal parallel identity-call fixture sharpens this obstruction. Its
+unchanged frame wire crosses the cuts on both sides of an independent event,
+so the same zero-event frame has two compatible identity-slice placements.
+The independent step moves inside this two-element fibre without touching the
+frame boundary. Syntax frontier order changes the scope path but selects no
+causal placement. Current data therefore support a scope/cut incidence
+relation, not a uniquely determined surgery-stable function.
+
 The read-only Python exposure of the stable Rust artifacts is now complete.
-The next mathematical obligation is to identify the minimum extra
-decorated-boundary data needed for a contravariant synthesis map `P*`, or to
-prove by a finite counterexample that the proposed map must be weakened
-further. This obligation does not depend on floating point, analytic
-truncation, complex completion, or spectral factorization.
+The next mathematical obligation is to test relational `P S P*` composition
+on the finite E0 cut graph. A single-valued alternative must first introduce
+and certify explicit scope-boundary markers. This obligation does not depend
+on floating point, analytic truncation, complex completion, or spectral
+factorization.
 
 ## Required companion reading
 
