@@ -1,7 +1,7 @@
 # Program Process Core
 
-Status: architectural doctrine for the finite Adva core. The causal-cut API
-described below is exact in its declared scope. Process exponentials,
+Status: architectural doctrine for the finite Adva core. The causal-cut and
+program-slice APIs described below are exact in their declared scope. Process exponentials,
 resolvents, characteristic factorization, objectification, and a foundational
 complex scalar field remain research targets.
 
@@ -81,9 +81,11 @@ For a Rust-validated `SharedProgramDiagram`, Adva now exposes:
   program input or completed event and whose consumer is still in the future;
 - `advance_causal_cut(diagram, completed, event)`, which checks that `event` is
   enabled and returns the consumed and produced cut wires;
-- `CausalCutCertificate` and `CausalStepCertificate`, which record diagram
-  integrity, past closure, exact frontier crossing, lineage preservation,
-  event enabling, and frontier replacement.
+- `analyze_program_slice(diagram, lower, upper)`, which checks nested causal
+  pasts and retains exact interval events, changed boundary wires, unchanged
+  through wires, internal events, occurrences, and node-associated history;
+- causal-cut, causal-step, and program-slice certificates, which record only
+  their checked finite obligations.
 
 The cut reuses the diagram's `WireRef` values unchanged. It does not rebuild
 source or occurrence identities, evaluate expressions, simplify equal values,
@@ -91,8 +93,10 @@ or assert a higher cell. Python receives this result only as an adapter over
 the Rust judgment.
 
 This promotes the common carrier of causality and cuts into the semantic
-kernel without claiming a topology API, a general cut-transport functor, or a
-stable observer pullback.
+kernel without claiming a topology API, adjacent-slice composition, a general
+cut-transport functor, or a stable observer pullback.  Equal cut frontiers may
+still bound a nonempty interval, and zero-event graft frames have no canonical
+nonempty event intersection.
 
 ## Values and compiled presentations
 
@@ -206,10 +210,10 @@ Therefore:
 
 The next semantic promotions must occur in dependency order.
 
-1. Preserve nested substitution scopes and their boundary maps in a future IR
-   version; flat call history is not the final representation of K.
-2. Derive identity-preserving transport between two certified causal cuts in
-   Rust.
+1. Compose adjacent same-diagram program slices exactly while retaining
+   original identities and hidden events.
+2. Decide separately whether compiler graft traces belong in a future stored
+   IR version; imported diagrams currently have no graft provenance.
 3. Introduce probes only with an explicit pairing and pullback certificate.
 4. Close a declared endoprocess and distinguish a pointwise `exp` builtin from
    its process exponential.

@@ -1,6 +1,7 @@
 # Technical Report: The Program-Process Core of Adva
 
-Status: self-contained handoff report after the merge of PR #23. This report
+Status: self-contained handoff report updated through exact graft-trace and
+program-slice analysis. This report
 describes the theory currently accepted by the project, the exact executable
 core, the bounded research evidence, the unresolved mathematical questions,
 and the separation between exact process structure and approximate numerical
@@ -32,16 +33,16 @@ coefficient extraction, matrix-like tables, projective actions, complex fixed
 points, and spectra are observations compiled from that process under
 additional policies.
 
-The stable Rust kernel now derives certified causal cuts and certified
-single-event cut advances from a validated program DAG. This is the first
-exact shared carrier for C and F. The constructive K reading is only partially
-retained: calls are correctly lowered as finite typed substitution, but their
-nested grafting frames are flattened into call history.
+The stable Rust kernel now derives certified causal cuts, certified
+single-event cut advances, compiler-emitted nested graft traces, and exact
+same-diagram program slices.  For downward-closed event sets `U` contained in
+`V`, `ProgramSlice(P,U,V)` retains the original events in `V` minus `U`, both
+cuts, changed boundary wires, unchanged through wires, internal events,
+occurrences, history, and optional graft intersections.
 
-The next missing object is therefore not a matrix or a spectrum. It is the
-finite open program between two cuts. This report calls it
-`ProgramSlice(P, U, V)`, where `U` and `V` are downward-closed event sets of the
-same checked program and `U` is contained in `V`.
+The next missing exact law is adjacent-slice composition.  It must construct
+the outer interval from two adjacent slices and agree with the direct outer
+slice without recompilation or new semantic identities.
 
 Crucially, this next phase is exact and finite. It requires no floating-point
 comparison and no infinite-series truncation. Floating point and truncation
@@ -94,8 +95,10 @@ A function input frontier is interpreted as an ordered family of holes.
 5. the call remains visible in checked history.
 
 This is program substitution, not application of an already evaluated value.
-The current compiler preserves the fact that a call occurred, but not the
-complete nested substitution frame and its boundary maps.
+The current compiler emits a certified companion graft trace with deterministic
+nested frames, separate argument and callee-body regions, ordered hole maps,
+and exact boundary wires.  It does not add this provenance to stored version-one
+diagrams.
 
 ### 1.3 Program and value
 
@@ -200,12 +203,18 @@ The stable core currently includes:
 - diagram validation artifacts;
 - compilation, evaluation, and differentiation certificates;
 - `CausalCut` and `CausalCutCertificate`;
-- `CausalStep` and `CausalStepCertificate`.
+- `CausalStep` and `CausalStepCertificate`;
+- compiler companion `GraftTrace` and `GraftTraceCertificate`;
+- `ProgramSlice` and `ProgramSliceCertificate`.
 
 For a validated diagram and a completed node set `U`,
 `analyze_causal_cut(P, U)` checks that `U` is downward closed and returns the
 exact crossing wires. `advance_causal_cut(P, U, e)` checks that `e` is enabled
 and records the before cut, after cut, consumed wires, and produced wires.
+`analyze_program_slice(P,U,V)` checks nested pasts and records the exact event
+interval, boundary changes, through wires, internal events, occurrences, and
+history.  With compiler provenance it also links nonempty graft-frame region
+intersections.
 
 These judgments do not evaluate any scalar.
 

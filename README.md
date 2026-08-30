@@ -29,6 +29,8 @@ tool does not turn research targets into stable API promises.
   history, and boundary certificates;
 - Rust-certified completed causal cuts and single-event frontier replacement,
   derived without evaluating or rebuilding checked wire lineage;
+- exact certified `ProgramSlice` intervals retaining changed boundaries,
+  unchanged through wires, internal events, occurrences, and history;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 

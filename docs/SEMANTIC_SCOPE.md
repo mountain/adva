@@ -26,7 +26,9 @@ claim that the surrounding calculus has been completely presented.
   differential, and lineage rule;
 - value and source/history observations as different interfaces;
 - Rust-certified downward-closed causal cuts and one-enabled-event frontier
-  replacement over validated finite diagrams.
+  replacement over validated finite diagrams;
+- exact same-diagram `ProgramSlice` analysis between nested causal pasts,
+  including through wires, internal events, and optional graft intersections.
 
 ## Explicitly excluded
 
@@ -43,7 +45,7 @@ claim that the surrounding calculus has been completely presented.
   alternatives;
 - full HPC, sheaf/stack semantics, universality, faithfulness, fullness, and
   full abstraction;
-- enumeration as a stable topology API, general cut transport, probe
+- enumeration as a stable topology API, adjacent-slice composition, probe
   pullback, process exponentials, resolvents, characteristic factorization,
   and program spectra;
 - physical interpretations of curvature, mass, or spacetime.
@@ -67,7 +69,10 @@ Compilation and module linking return a `CompilationCertificate`.
 Compiler-produced artifacts additionally carry a `GraftTraceArtifact` whose
 certificate checks deterministic frame identity, nesting, regions, hole
 bindings, boundary maps, and call-history links. It does not certify an
-observer pullback or the factorization `T = P S P*`. Evaluation and forward
+observer pullback or the factorization `T = P S P*`. `ProgramSliceArtifact`
+separately certifies nested causal pasts, exact event difference, boundary and
+through-wire partitions, internal-event retention, original identities,
+lineage, and optional graft consistency. Evaluation and forward
 differentiation return their own certificates. Semantic JSON
 import returns a distinct `DiagramValidationCertificate`; decoding alone does
 not. A certificate says only what its fields and scope record. It does not

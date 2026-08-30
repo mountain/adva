@@ -1,6 +1,6 @@
 use crate::{
     CausalCut, CausalStep, CertificateId, FunctionSignature, GraftFrameId, GraftTrace, NodeId,
-    SharedProgramDiagram,
+    ProgramSlice, SharedProgramDiagram,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -193,6 +193,56 @@ impl CausalStepCertificate {
 pub struct CausalStepArtifact {
     pub result: CausalStep,
     pub certificate: CausalStepCertificate,
+}
+
+/// Certificate for an exact finite interval between two causal cuts.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProgramSliceCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub lower_past: CheckStatus,
+    pub upper_past: CheckStatus,
+    pub past_inclusion: CheckStatus,
+    pub event_difference: CheckStatus,
+    pub boundary_partition: CheckStatus,
+    pub internal_events: CheckStatus,
+    pub original_id_preservation: CheckStatus,
+    pub lineage_preservation: CheckStatus,
+    /// `None` means that no compiler graft trace was supplied.
+    pub graft_frame_consistency: Option<CheckStatus>,
+    pub lower_completed: Vec<NodeId>,
+    pub upper_completed: Vec<NodeId>,
+    pub event_ids: Vec<NodeId>,
+}
+
+impl ProgramSliceCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.lower_past,
+            self.upper_past,
+            self.past_inclusion,
+            self.event_difference,
+            self.boundary_partition,
+            self.internal_events,
+            self.original_id_preservation,
+            self.lineage_preservation,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+            && self
+                .graft_frame_consistency
+                .is_none_or(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProgramSliceArtifact {
+    pub result: ProgramSlice,
+    pub certificate: ProgramSliceCertificate,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
