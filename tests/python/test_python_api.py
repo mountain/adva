@@ -72,6 +72,35 @@ def test_k1_partition_and_ids_survive_python_json_boundary(workspace):
     assert all(item.startswith("occ:") for item in occurrences)
 
 
+def test_causal_cut_is_a_certified_non_value_reading(workspace):
+    function = workspace.function("arithmetic", "shared-double")
+    initial = function.causal_cut([])
+    assert initial.completed == ()
+    assert len(initial.frontier) == 1
+    assert initial.certificate["completed_past"] == "checked"
+    assert initial.certificate["lineage_preservation"] == "checked"
+
+    step = function.advance_causal_cut([], 0)
+    assert step.event == 0
+    assert len(step.consumed) == 1
+    assert len(step.produced) == 2
+    assert step.certificate["frontier_replacement"] == "checked"
+
+    branched = function.causal_cut([0])
+    assert branched.completed == (0,)
+    assert len(branched.frontier) == 2
+    assert (
+        branched.frontier[0]["wire"]["lineage"][0]
+        != branched.frontier[1]["wire"]["lineage"][0]
+    )
+
+
+def test_non_past_closed_cut_is_rejected_by_rust(workspace):
+    function = workspace.function("arithmetic", "shared-double")
+    with pytest.raises(ValueError, match="without predecessors"):
+        function.causal_cut([1])
+
+
 def test_k2_sympy_value_does_not_replace_native_history(workspace):
     shared = workspace.function("arithmetic", "shared-double")
     scaled = workspace.function("arithmetic", "scale-double")

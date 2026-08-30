@@ -1,6 +1,9 @@
-use adva_ir::{CompilationCertificate, DiagramValidationCertificate, SharedProgramDiagram};
+use adva_ir::{
+    CompilationCertificate, DiagramValidationCertificate, NodeId, SharedProgramDiagram,
+};
 use adva_lisp::{
-    LinkedModules, compile_function, evaluate, evaluate_with_differential, import_diagram_json,
+    LinkedModules, advance_causal_cut as advance_cut, analyze_causal_cut as analyze_cut,
+    compile_function, evaluate, evaluate_with_differential, import_diagram_json,
     link_modules as link_rust_modules, parse_module, validate_diagram,
 };
 use pyo3::exceptions::PyValueError;
@@ -8,6 +11,7 @@ use pyo3::prelude::*;
 use std::collections::BTreeMap;
 
 type PyDifferential = (Vec<f64>, Vec<BTreeMap<String, f64>>, String);
+type PyCertifiedProcess = (String, String);
 
 #[pyclass(
     name = "Workspace",
@@ -77,6 +81,28 @@ impl PyProgram {
 
     fn source_partition_json(&self) -> PyResult<String> {
         serde_json::to_string_pretty(&self.diagram.source_partition()).map_err(py_error)
+    }
+
+    fn causal_cut(&self, completed: Vec<u32>) -> PyResult<PyCertifiedProcess> {
+        let completed = completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let artifact = analyze_cut(&self.diagram, &completed).map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
+    }
+
+    fn advance_causal_cut(
+        &self,
+        completed: Vec<u32>,
+        event: u32,
+    ) -> PyResult<PyCertifiedProcess> {
+        let completed = completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let artifact = advance_cut(&self.diagram, &completed, NodeId(event)).map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
     }
 
     fn evaluate(&self, inputs: BTreeMap<String, f64>) -> PyResult<(Vec<f64>, String)> {

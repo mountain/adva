@@ -246,6 +246,7 @@ impl OperationRef {
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum ProgramTerm {
+    /// One named open occurrence supplied by the surrounding function boundary.
     Use {
         port: String,
     },
@@ -256,6 +257,11 @@ pub enum ProgramTerm {
         operation: OperationRef,
         arguments: Vec<ProgramTerm>,
     },
+    /// Finite simultaneous substitution into another named open program.
+    ///
+    /// The arguments are programs, not already evaluated values. Rust checks
+    /// their produced frontier against the callee's ordered open boundary
+    /// before grafting the finite callee body into the shared diagram.
     Call {
         function: QualifiedName,
         arguments: Vec<ProgramTerm>,
@@ -269,6 +275,7 @@ pub enum ProgramTerm {
 #[serde(deny_unknown_fields)]
 pub struct FunctionDefinition {
     pub name: FunctionName,
+    /// The input ports are the ordered holes of this open program.
     pub signature: FunctionSignature,
     pub body: ProgramTerm,
 }

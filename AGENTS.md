@@ -5,8 +5,9 @@ Before modifying semantic code, read:
 1. `README.md`
 2. `docs/ARCHITECTURE.md`
 3. `docs/SEMANTIC_SCOPE.md`
-4. `docs/claims.toml`
-5. relevant ADRs under `docs/adr/`
+4. `docs/PROGRAM_PROCESS_CORE.md`
+5. `docs/claims.toml`
+6. relevant ADRs under `docs/adr/`
 
 ## Authority and dependency direction
 
@@ -24,7 +25,8 @@ Before modifying semantic code, read:
 ## Ontology discipline
 
 Keep `TypedFrontier`, `DomainFrontier`, `CodomainFrontier`, `ProgramTerm`,
-`SharedProgramDiagram`, `History`, `Value`, `Occurrence`, `Source`,
+`SharedProgramDiagram`, `CausalCut`, `CausalStep`, `History`, `Value`,
+`Occurrence`, `Source`,
 `ProjectiveDevelopment`, `Probe`, `ObservationPolicy`,
 `PredicateRegion`, `ProofObject`, `DirectedRewrite`, `EquationCell`,
 `CoherenceCell`, and `ObjectificationWitness` distinct.
@@ -35,6 +37,11 @@ equality, structural hashing, or accidental AST sharing.
 
 Sharing is a program operation whose result has two ordered output ports on a
 `TypedFrontier`; it is never a type modifier or host-language alias.
+Treat a function boundary as an ordered family of holes and
+`ProgramTerm::Call` as the current finite simultaneous-substitution mechanism.
+Do not describe finite lowering as value application: argument programs are
+grafted before evaluation. The flat call history is not yet a complete
+nested-substitution carrier.
 `DomainFrontier` and `CodomainFrontier` orient a 1-cell boundary; they do not
 stand for the temporal and spatial sides of the semantic duality. No frontier
 type may be presented as an implemented tensor product. Value equality and
@@ -50,6 +57,11 @@ certificate.
 Directed normalization steps, invertible equation cells, and coherence cells
 use different Rust types. Search exhaustion produces `Unknown`, never a proof
 of nonexistence.
+
+`CausalCut` and `CausalStep` are derived readings of a checked
+`SharedProgramDiagram`. They must reuse exact `WireRef`, source, occurrence,
+and lineage data. Python may request these Rust judgments but must not
+reconstruct or authorize them.
 
 ## Scope
 
