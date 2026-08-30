@@ -664,12 +664,21 @@ characteristic surgery belongs to the slice; frames are overlapping readings
 of it.
 
 The read-only Python exposure of the stable Rust artifacts is now complete.
-The next mathematical obligation is to transfer this glued frame-stack
-decoration to the finite E0 dual graph: each dual-face surgery must occur once
-while carrying every intersecting frame role, and adjacent decorated surgeries
-must compose exactly. A single-valued alternative must first introduce and
-certify explicit scope-boundary markers. This obligation does not depend on
-floating point, analytic truncation, complex completion, or spectral
+The next finite E0 transfer has also been checked. On one nested ordered
+two-hole copy--branch--recombine fixture, every body event is one mod-two
+dual-face toggle labeled by the exact `J(G)` edge chart and decorated by all
+of its intersecting frame roles. Both legal branch schedules induce the same
+characteristic relation, an adjacent decorated split agrees with exact Rust
+slice composition, and polarized relational composition gives the forward
+and reverse nested `P S P*` factorizations without duplicate surgery.
+
+This resolves finite compatibility, not canonicity. The highest-priority
+mathematical obligation is now to construct and certify the grid-to-cellular-
+dual bridge instead of declaring its six-edge chart. A general formulation
+must also retain zero-event incidence fibres and decide whether oriented
+integer chains, rather than mod-two supports, are required to distinguish
+contraction from expansion intrinsically. None of these obligations depends
+on floating point, analytic truncation, complex completion, or spectral
 factorization.
 
 ## Required companion reading
