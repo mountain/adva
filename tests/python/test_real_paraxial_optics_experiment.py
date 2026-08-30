@@ -1,7 +1,8 @@
 from __future__ import annotations
 
 import cmath
-from typing import Any
+from dataclasses import dataclass
+from typing import Any, Mapping, Sequence
 
 import pytest
 from adva import link_modules
@@ -240,8 +241,59 @@ RealizedAction = tuple[tuple[float, float], tuple[float, float]]
 SixState = tuple[float, float, float, float, float, float]
 SourceIncidence = tuple[tuple[int, int], tuple[int, int]]
 ProgramAwareObservation = tuple[RealizedAction, SourceIncidence, tuple[str, ...]]
+MappingView = Mapping[str, Any]
 
 ASPECT_OPPOSITE_PAIRS = ((0, 3), (1, 4), (2, 5))
+BOUNDED_BACKWARD_OPERATIONS = frozenset(
+    {"constant", "copy", "add", "mul", "scale", "neg"}
+)
+
+
+@dataclass(frozen=True, order=True, slots=True)
+class WireEndpoint:
+    """Canonical endpoint coordinates read from a Rust-checked wire."""
+
+    producer_kind: str
+    producer_id: int
+    output_index: int
+
+
+@dataclass(frozen=True, slots=True)
+class ProbeDemand:
+    """One numerical demand attached to an existing checked lineage."""
+
+    endpoint: WireEndpoint
+    coefficient: float
+    lineage: tuple[str, ...]
+    sources: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class NodeDemand:
+    node_id: int
+    operation: str
+    output_demands: tuple[float, ...]
+    input_demands: tuple[float, ...]
+    input_lineages: tuple[tuple[str, ...], ...]
+
+
+@dataclass(frozen=True, slots=True)
+class BackwardProbeWitness:
+    """Research-local numerical witness; not a stable pullback certificate."""
+
+    outputs: tuple[float, ...]
+    input_demands: tuple[tuple[str, float], ...]
+    demands: tuple[ProbeDemand, ...]
+    node_demands: tuple[NodeDemand, ...]
+    operation_rules: tuple[str, ...]
+
+    @property
+    def input_demand_map(self) -> dict[str, float]:
+        return dict(self.input_demands)
+
+    @property
+    def demand_by_endpoint(self) -> dict[WireEndpoint, ProbeDemand]:
+        return {record.endpoint: record for record in self.demands}
 
 
 def _functions() -> dict[str, Any]:
@@ -417,6 +469,190 @@ def _projectivize(action: RealizedAction) -> RealizedAction:
     return tuple(
         tuple(sign * coordinate for coordinate in row) for row in action
     )  # type: ignore[return-value]
+
+
+def _wire_endpoint(wire: MappingView) -> WireEndpoint:
+    producer = wire["producer"]
+    producer_id = producer.get("node", producer.get("index"))
+    if not isinstance(producer_id, int):
+        raise TypeError("a checked wire producer must have an integer identifier")
+    return WireEndpoint(
+        producer_kind=producer["kind"],
+        producer_id=producer_id,
+        output_index=wire["output_index"],
+    )
+
+
+def _bounded_forward_node(
+    operation: str,
+    arguments: tuple[float, ...],
+    parameters: MappingView,
+) -> tuple[float, ...]:
+    if operation == "constant":
+        value = parameters["value"]
+        return (value["numerator"] / value["denominator"],)
+    if operation == "copy":
+        return (arguments[0], arguments[0])
+    if operation == "add":
+        return (arguments[0] + arguments[1],)
+    if operation in {"mul", "scale"}:
+        return (arguments[0] * arguments[1],)
+    if operation == "neg":
+        return (-arguments[0],)
+    raise TypeError(f"operation outside the bounded backward witness: {operation!r}")
+
+
+def _bounded_reverse_node(
+    operation: str,
+    arguments: tuple[float, ...],
+    output_demands: tuple[float, ...],
+) -> tuple[float, ...]:
+    if operation == "constant":
+        return ()
+    if operation == "copy":
+        return (output_demands[0] + output_demands[1],)
+    if operation == "add":
+        return (output_demands[0], output_demands[0])
+    if operation in {"mul", "scale"}:
+        return (
+            output_demands[0] * arguments[1],
+            output_demands[0] * arguments[0],
+        )
+    if operation == "neg":
+        return (-output_demands[0],)
+    raise TypeError(f"operation outside the bounded backward witness: {operation!r}")
+
+
+def _research_backward_probe(
+    function: Any,
+    inputs: Mapping[str, float],
+    output_probe: Sequence[float],
+) -> BackwardProbeWitness:
+    """Propagate a numerical probe over existing checked endpoints and lineage."""
+
+    if function.validation_certificate["graph"] != "checked":
+        raise ValueError("the research witness requires a Rust-checked diagram")
+
+    diagram = function.ir
+    input_ports = tuple(diagram["signature"]["inputs"])
+    if set(inputs) != {port["name"] for port in input_ports}:
+        raise TypeError("backward witness inputs differ from the checked domain")
+    if len(output_probe) != len(diagram["outputs"]):
+        raise TypeError("output probe arity differs from the checked codomain")
+
+    occurrence_sources = {
+        occurrence["id"]: occurrence["source"]
+        for occurrence in diagram["occurrences"]
+    }
+    consumer_wires = (
+        *(wire for node in diagram["nodes"] for wire in node["inputs"]),
+        *diagram["outputs"],
+    )
+    wire_metadata: dict[WireEndpoint, tuple[tuple[str, ...], tuple[str, ...]]] = {}
+    for wire in consumer_wires:
+        endpoint = _wire_endpoint(wire)
+        lineage = tuple(wire["lineage"])
+        metadata = (
+            lineage,
+            tuple(occurrence_sources[occurrence] for occurrence in lineage),
+        )
+        if endpoint in wire_metadata:
+            raise AssertionError("Rust-checked linear use exposed an aliased endpoint")
+        wire_metadata[endpoint] = metadata
+
+    endpoint_values = {
+        WireEndpoint("input", index, 0): float(inputs[port["name"]])
+        for index, port in enumerate(input_ports)
+    }
+    operation_rules = set()
+    for node in diagram["nodes"]:
+        operation_ref = node["operation"]
+        operation = operation_ref["name"]
+        if (
+            operation_ref["namespace"] != "adva.builtin"
+            or operation_ref["version"] != 1
+            or operation not in BOUNDED_BACKWARD_OPERATIONS
+        ):
+            raise TypeError("the diagram leaves the bounded builtin research fragment")
+        arguments = tuple(
+            endpoint_values[_wire_endpoint(wire)] for wire in node["inputs"]
+        )
+        outputs = _bounded_forward_node(
+            operation,
+            arguments,
+            operation_ref.get("parameters", {}),
+        )
+        if len(outputs) != len(node["output_types"]):
+            raise AssertionError("bounded oracle output arity differs from checked IR")
+        for output_index, value in enumerate(outputs):
+            endpoint_values[
+                WireEndpoint("node", node["id"], output_index)
+            ] = value
+        operation_rules.add(
+            f'{operation_ref["namespace"]}:{operation}@{operation_ref["version"]}'
+        )
+
+    outputs = tuple(
+        endpoint_values[_wire_endpoint(wire)] for wire in diagram["outputs"]
+    )
+    native_outputs = function.evaluate(inputs)
+    native_tuple = native_outputs if isinstance(native_outputs, tuple) else (native_outputs,)
+    if outputs != native_tuple:
+        raise AssertionError("bounded forward oracle differs from Rust execution")
+
+    demands: dict[WireEndpoint, float] = {}
+    for wire, coefficient in zip(diagram["outputs"], output_probe, strict=True):
+        endpoint = _wire_endpoint(wire)
+        demands[endpoint] = demands.get(endpoint, 0.0) + float(coefficient)
+
+    reversed_node_demands = []
+    for node in reversed(diagram["nodes"]):
+        operation = node["operation"]["name"]
+        output_endpoints = tuple(
+            WireEndpoint("node", node["id"], output_index)
+            for output_index in range(len(node["output_types"]))
+        )
+        output_demands = tuple(demands.get(endpoint, 0.0) for endpoint in output_endpoints)
+        arguments = tuple(
+            endpoint_values[_wire_endpoint(wire)] for wire in node["inputs"]
+        )
+        input_demands = _bounded_reverse_node(operation, arguments, output_demands)
+        for wire, coefficient in zip(node["inputs"], input_demands, strict=True):
+            endpoint = _wire_endpoint(wire)
+            demands[endpoint] = demands.get(endpoint, 0.0) + coefficient
+        reversed_node_demands.append(
+            NodeDemand(
+                node_id=node["id"],
+                operation=operation,
+                output_demands=output_demands,
+                input_demands=input_demands,
+                input_lineages=tuple(tuple(wire["lineage"]) for wire in node["inputs"]),
+            )
+        )
+
+    demand_records = tuple(
+        ProbeDemand(
+            endpoint=endpoint,
+            coefficient=demands.get(endpoint, 0.0),
+            lineage=wire_metadata[endpoint][0],
+            sources=wire_metadata[endpoint][1],
+        )
+        for endpoint in sorted(wire_metadata)
+    )
+    input_demands = tuple(
+        (
+            port["name"],
+            demands.get(WireEndpoint("input", index, 0), 0.0),
+        )
+        for index, port in enumerate(input_ports)
+    )
+    return BackwardProbeWitness(
+        outputs=outputs,
+        input_demands=input_demands,
+        demands=demand_records,
+        node_demands=tuple(reversed(reversed_node_demands)),
+        operation_rules=tuple(sorted(operation_rules)),
+    )
 
 
 def test_real_optical_programs_cross_the_checked_two_port_boundary() -> None:
@@ -715,3 +951,154 @@ def test_oriented_objective_does_not_descend_to_the_projective_level() -> None:
     opposite_value = _oriented_readout(readout, opposite_lift)
     assert value == 5.0
     assert opposite_value == -value
+
+
+def test_backward_probe_satisfies_the_forward_pairing_law() -> None:
+    functions = _functions()
+    parameter_cell = functions["parameter-cell"]
+    inputs = {"x": 2.0, "s": 3.0, "kappa": 1.0}
+    output_probe = (1.0, 2.0)
+    witness = _research_backward_probe(parameter_cell, inputs, output_probe)
+
+    values, jacobian, certificate = parameter_cell.value_and_gradient(inputs)
+    assert isinstance(values, tuple)
+    assert isinstance(jacobian, tuple)
+    assert witness.outputs == values == (3.0, 1.0)
+    assert witness.input_demand_map == pytest.approx(
+        {"x": -2.0, "s": 3.0, "kappa": -6.0}
+    )
+    assert witness.operation_rules == (
+        "adva.builtin:add@1",
+        "adva.builtin:copy@1",
+        "adva.builtin:mul@1",
+        "adva.builtin:neg@1",
+    )
+    assert certificate["diagram_integrity"] == "checked"
+
+    tangent_directions = (
+        {"x": 1.0, "s": 0.0, "kappa": 0.0},
+        {"x": 0.0, "s": 1.0, "kappa": 0.0},
+        {"x": 0.0, "s": 0.0, "kappa": 1.0},
+        {"x": 2.0, "s": -1.0, "kappa": 0.5},
+    )
+    for tangent in tangent_directions:
+        forward_tangent = tuple(
+            sum(output_gradient[name] * tangent[name] for name in tangent)
+            for output_gradient in jacobian
+        )
+        codomain_pairing = sum(
+            coefficient * component
+            for coefficient, component in zip(
+                output_probe,
+                forward_tangent,
+                strict=True,
+            )
+        )
+        domain_pairing = sum(
+            witness.input_demand_map[name] * tangent[name] for name in tangent
+        )
+        assert codomain_pairing == pytest.approx(domain_pairing)
+
+    _, objective_gradient, _ = functions["parameter-objective"].value_and_gradient(
+        inputs
+    )
+    assert witness.input_demand_map == pytest.approx(objective_gradient)
+
+    input_records = tuple(
+        record
+        for record in witness.demands
+        if record.endpoint.producer_kind == "input"
+    )
+    assert len(input_records) == 3
+    assert all(len(record.lineage) == len(record.sources) == 1 for record in input_records)
+    assert len({record.sources[0] for record in input_records}) == 3
+
+
+def test_copy_demands_follow_checked_occurrence_branches_before_recombining() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    inputs = {"x": 2.0, "s": 3.0, "kappa": 1.0}
+    witness = _research_backward_probe(parameter_cell, inputs, (1.0, 2.0))
+    diagram = parameter_cell.ir
+    records = witness.demand_by_endpoint
+    occurrence_sources = {
+        occurrence["id"]: occurrence["source"]
+        for occurrence in diagram["occurrences"]
+    }
+    copy_nodes = tuple(
+        node for node in diagram["nodes"] if node["operation"]["name"] == "copy"
+    )
+    assert len(copy_nodes) == 2
+
+    branches_by_parent_count = {}
+    for node in copy_nodes:
+        parent_endpoint = _wire_endpoint(node["inputs"][0])
+        parent_lineage = tuple(node["inputs"][0]["lineage"])
+        branches = tuple(
+            records[WireEndpoint("node", node["id"], branch)] for branch in range(2)
+        )
+        children_by_parent = {
+            event["parent"]: tuple(event["children"])
+            for event in diagram["history"]["prefix"]
+            if event["kind"] == "copy" and event["node"] == node["id"]
+        }
+        for branch, record in enumerate(branches):
+            expected_lineage = tuple(
+                children_by_parent[parent][branch] for parent in parent_lineage
+            )
+            assert record.lineage == expected_lineage
+            assert record.sources == tuple(
+                occurrence_sources[occurrence] for occurrence in expected_lineage
+            )
+        assert records[parent_endpoint].coefficient == pytest.approx(
+            sum(record.coefficient for record in branches)
+        )
+        branches_by_parent_count[len(parent_lineage)] = branches
+
+    single_source_branches = branches_by_parent_count[1]
+    merged_lineage_branches = branches_by_parent_count[3]
+    assert tuple(record.coefficient for record in single_source_branches) == (1.0, -3.0)
+    assert tuple(record.coefficient for record in merged_lineage_branches) == (1.0, 2.0)
+    assert single_source_branches[0].lineage != single_source_branches[1].lineage
+    assert set(merged_lineage_branches[0].lineage).isdisjoint(
+        merged_lineage_branches[1].lineage
+    )
+    assert merged_lineage_branches[0].sources == merged_lineage_branches[1].sources
+    assert len(set(merged_lineage_branches[0].sources)) == 3
+
+
+def test_equal_root_gradients_retain_distinct_internal_demand_fields() -> None:
+    functions = _functions()
+    inputs = {"x": 2.0, "s": 3.0, "kappa": 1.0}
+    device = _research_backward_probe(functions["parameter-objective"], inputs, (1.0,))
+    direct = _research_backward_probe(
+        functions["direct-parameter-objective"],
+        inputs,
+        (1.0,),
+    )
+
+    assert device.outputs == direct.outputs == (5.0,)
+    assert device.input_demand_map == direct.input_demand_map == {
+        "x": -2.0,
+        "s": 3.0,
+        "kappa": -6.0,
+    }
+    assert len(device.node_demands) > len(direct.node_demands)
+    assert tuple(record.operation for record in device.node_demands) != tuple(
+        record.operation for record in direct.node_demands
+    )
+
+    def copy_lineage_sizes(function: Any, witness: BackwardProbeWitness) -> list[int]:
+        copy_node_ids = {
+            node["id"]
+            for node in function.ir["nodes"]
+            if node["operation"]["name"] == "copy"
+        }
+        return sorted(
+            len(record.lineage)
+            for record in witness.demands
+            if record.endpoint.producer_kind == "node"
+            and record.endpoint.producer_id in copy_node_ids
+        )
+
+    assert copy_lineage_sizes(functions["parameter-objective"], device) == [1, 1, 3, 3]
+    assert copy_lineage_sizes(functions["direct-parameter-objective"], direct) == [1, 1]
