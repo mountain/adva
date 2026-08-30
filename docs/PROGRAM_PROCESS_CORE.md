@@ -244,3 +244,10 @@ both endpoint cuts, and the independent step leaves the frame wire unchanged.
 Current data therefore determine a scope/cut incidence fibre rather than a
 unique placement. A single-valued `P*` must declare a selection policy or add
 scope-boundary markers; otherwise `P*` should first be tested as a relation.
+
+That relational test now passes on the smallest ordered two-hole fixture. The
+full two-cut incidence relation and its converse factor both contraction and
+expansion back to the identity transformation of the exact ordered scope. A
+singleton earliest/latest selector with its converse does not. This is bounded
+evidence for relational `P*`, not yet a stable pullback or a theorem for
+nonzero frames.
