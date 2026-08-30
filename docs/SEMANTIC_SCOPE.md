@@ -14,6 +14,8 @@ claim that the surrounding calculus has been completely presented.
   `copy`, and `discard`;
 - finite named simultaneous substitution: call arguments are open programs
   grafted into a callee's checked ordered input holes;
+- deterministic compiler-emitted nested graft frames with separate argument
+  regions, ordered hole bindings, callee-body regions, and boundary wires;
 - selected real arithmetic operations;
 - deterministic source and occurrence paths;
 - lossless history and JSON round-trip;
@@ -28,6 +30,7 @@ claim that the surrounding calculus has been completely presented.
 
 ## Explicitly excluded
 
+- reconstruction of graft provenance for stored or imported diagrams;
 - local term binders, alpha equivalence, arbitrary graph-context
   substitution, and substitution across unlinked program stores;
 - recursion and cyclic modules;
@@ -60,8 +63,12 @@ cell.
 
 ## Certificates
 
-Compilation and module linking return a `CompilationCertificate`. Evaluation
-and forward differentiation return their own certificates. Semantic JSON
+Compilation and module linking return a `CompilationCertificate`.
+Compiler-produced artifacts additionally carry a `GraftTraceArtifact` whose
+certificate checks deterministic frame identity, nesting, regions, hole
+bindings, boundary maps, and call-history links. It does not certify an
+observer pullback or the factorization `T = P S P*`. Evaluation and forward
+differentiation return their own certificates. Semantic JSON
 import returns a distinct `DiagramValidationCertificate`; decoding alone does
 not. A certificate says only what its fields and scope record. It does not
 certify a general theorem.
