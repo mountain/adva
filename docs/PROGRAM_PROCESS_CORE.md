@@ -237,3 +237,10 @@ The architectural invariant is simple:
 > Every future value-level normal form must be compiled from a checked program
 > process and must state exactly which construction and cut information it
 > preserves or forgets.
+
+The first post-phase `P*` calibration adds a sharper gate. A zero-event call
+parallel to an independent event is compatible with the identity slice at
+both endpoint cuts, and the independent step leaves the frame wire unchanged.
+Current data therefore determine a scope/cut incidence fibre rather than a
+unique placement. A single-valued `P*` must declare a selection policy or add
+scope-boundary markers; otherwise `P*` should first be tested as a relation.
