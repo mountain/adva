@@ -6,8 +6,8 @@ use adva_ir::{
     CausalStepCertificate, CertificateId, CheckStatus, CutConsumer, CutWire,
     GraftArgumentIntersection, GraftFrameIntersection, GraftTrace, HistoryEvent, NodeId,
     Occurrence, OccurrenceId, OperationNode, ProgramSlice, ProgramSliceArtifact,
-    ProgramSliceCertificate, ProgramSliceCompositionArtifact,
-    ProgramSliceCompositionCertificate, SharedProgramDiagram, WireProducer, WireRef,
+    ProgramSliceCertificate, ProgramSliceCompositionArtifact, ProgramSliceCompositionCertificate,
+    SharedProgramDiagram, WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -322,11 +322,7 @@ fn compose_program_slices_impl(
 
     let left_event_ids = left.events.iter().map(|node| node.id).collect::<Vec<_>>();
     let right_event_ids = right.events.iter().map(|node| node.id).collect::<Vec<_>>();
-    let result_event_ids = result
-        .events
-        .iter()
-        .map(|node| node.id)
-        .collect::<Vec<_>>();
+    let result_event_ids = result.events.iter().map(|node| node.id).collect::<Vec<_>>();
     let lower_suffix = past_suffix(&result.lower.completed);
     let upper_suffix = past_suffix(&result.upper.completed);
     Ok(ProgramSliceCompositionArtifact {
