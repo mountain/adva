@@ -380,10 +380,12 @@ fn independent_diamond_exhausts_nested_slice_composition_laws() {
     let pasts = independent_pasts();
 
     for past in &pasts {
-        assert!(analyze_causal_cut(&artifact.result, past)
-            .unwrap()
-            .certificate
-            .certified());
+        assert!(
+            analyze_causal_cut(&artifact.result, past)
+                .unwrap()
+                .certificate
+                .certified()
+        );
     }
 
     let mut pair_count = 0;
@@ -395,10 +397,12 @@ fn independent_diamond_exhausts_nested_slice_composition_laws() {
                 continue;
             }
             pair_count += 1;
-            assert!(analyze_program_slice(&artifact.result, lower, middle)
-                .unwrap()
-                .certificate
-                .certified());
+            assert!(
+                analyze_program_slice(&artifact.result, lower, middle)
+                    .unwrap()
+                    .certificate
+                    .certified()
+            );
 
             for upper in &pasts {
                 if !is_subset(middle, upper) {
@@ -430,10 +434,9 @@ fn independent_diamond_exhausts_nested_slice_composition_laws() {
                         compose_program_slices(&artifact.result, &composed.result, &third)
                             .unwrap()
                             .result;
-                    let right_pair =
-                        compose_program_slices(&artifact.result, &right, &third)
-                            .unwrap()
-                            .result;
+                    let right_pair = compose_program_slices(&artifact.result, &right, &third)
+                        .unwrap()
+                        .result;
                     let right_associated =
                         compose_program_slices(&artifact.result, &left, &right_pair)
                             .unwrap()
@@ -464,21 +467,13 @@ fn independent_schedules_keep_distinct_paths_but_share_the_exact_outer_slice() {
     let a0 = advance_causal_cut(&artifact.result, &[], schedule_a[0]).unwrap();
     let a1 =
         advance_causal_cut(&artifact.result, &a0.result.after.completed, schedule_a[1]).unwrap();
-    let a2 = advance_causal_cut(
-        &artifact.result,
-        &a1.result.after.completed,
-        schedule_a[2],
-    )
-    .unwrap();
+    let a2 =
+        advance_causal_cut(&artifact.result, &a1.result.after.completed, schedule_a[2]).unwrap();
     let b0 = advance_causal_cut(&artifact.result, &[], schedule_b[0]).unwrap();
     let b1 =
         advance_causal_cut(&artifact.result, &b0.result.after.completed, schedule_b[1]).unwrap();
-    let b2 = advance_causal_cut(
-        &artifact.result,
-        &b1.result.after.completed,
-        schedule_b[2],
-    )
-    .unwrap();
+    let b2 =
+        advance_causal_cut(&artifact.result, &b1.result.after.completed, schedule_b[2]).unwrap();
 
     assert_ne!(a0.result.after.completed, b0.result.after.completed);
     assert_eq!(a2.result.after, b2.result.after);
@@ -548,13 +543,9 @@ fn independent_schedules_keep_distinct_paths_but_share_the_exact_outer_slice() {
         .unwrap()
         .result;
 
-    let direct = analyze_program_slice(
-        &artifact.result,
-        &[],
-        &[NodeId(0), NodeId(1), NodeId(2)],
-    )
-    .unwrap()
-    .result;
+    let direct = analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1), NodeId(2)])
+        .unwrap()
+        .result;
     assert_eq!(a_whole, direct);
     assert_eq!(b_whole, direct);
 }
