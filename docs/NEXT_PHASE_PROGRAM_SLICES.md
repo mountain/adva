@@ -195,6 +195,21 @@ section 7. Determine:
 Record counterexamples. Do not repair a failed conjecture by silently
 weakening a test.
 
+The bounded E0 dual-cut calibration in
+`docs/research/0020-e0-dual-cut-surgery.md` is a WP0 companion result.  On one
+declared planar fork-recombine embedding it identifies every Rust-certified
+cut with a decorated mod-two dual cycle and every enabled event with one
+dual-face boundary surgery.  It also gives two constraints for WP1--WP3:
+
+- a bare terminal cycle cannot replace the event content of a slice, as an
+  internal constant followed by discard can leave the same frontier; and
+- the desired expression-level `P S P*` factorization cannot be tested until
+  ordered argument regions and callee-body boundaries are present in the
+  graft trace.
+
+This research witness does not satisfy the phase exit condition, define a
+canonical E0 grid, or authorize a stable dual-cycle or `P*` API.
+
 ### WP1: compiler-emitted graft trace
 
 Add IR-level companion result and certificate types, then make Rust lowering
