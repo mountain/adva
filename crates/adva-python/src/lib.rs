@@ -1,6 +1,4 @@
-use adva_ir::{
-    CompilationCertificate, DiagramValidationCertificate, NodeId, SharedProgramDiagram,
-};
+use adva_ir::{CompilationCertificate, DiagramValidationCertificate, NodeId, SharedProgramDiagram};
 use adva_lisp::{
     LinkedModules, advance_causal_cut as advance_cut, analyze_causal_cut as analyze_cut,
     compile_function, evaluate, evaluate_with_differential, import_diagram_json,
@@ -92,11 +90,7 @@ impl PyProgram {
         ))
     }
 
-    fn advance_causal_cut(
-        &self,
-        completed: Vec<u32>,
-        event: u32,
-    ) -> PyResult<PyCertifiedProcess> {
+    fn advance_causal_cut(&self, completed: Vec<u32>, event: u32) -> PyResult<PyCertifiedProcess> {
         let completed = completed.into_iter().map(NodeId).collect::<Vec<_>>();
         let artifact = advance_cut(&self.diagram, &completed, NodeId(event)).map_err(py_error)?;
         Ok((

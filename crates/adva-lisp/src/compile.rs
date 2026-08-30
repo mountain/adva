@@ -151,12 +151,7 @@ impl<'a> Compiler<'a> {
             ProgramTerm::Call {
                 function,
                 arguments,
-            } => self.lower_boundary_substitution(
-                function,
-                arguments,
-                scope,
-                current_module,
-            ),
+            } => self.lower_boundary_substitution(function, arguments, scope, current_module),
         }
     }
 
