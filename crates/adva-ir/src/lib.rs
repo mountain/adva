@@ -2,12 +2,14 @@
 
 mod certificate;
 mod diagram;
+mod graft;
 mod ids;
 mod process;
 mod term;
 
 pub use certificate::*;
 pub use diagram::*;
+pub use graft::*;
 pub use ids::*;
 pub use process::*;
 pub use term::*;

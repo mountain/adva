@@ -1,5 +1,6 @@
 use crate::{
-    CausalCut, CausalStep, CertificateId, FunctionSignature, NodeId, SharedProgramDiagram,
+    CausalCut, CausalStep, CertificateId, FunctionSignature, GraftFrameId, GraftTrace, NodeId,
+    SharedProgramDiagram,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -43,6 +44,46 @@ impl CompilationCertificate {
 pub struct CompilationArtifact {
     pub result: SharedProgramDiagram,
     pub certificate: CompilationCertificate,
+    pub graft_trace: GraftTraceArtifact,
+}
+
+/// Certificate for a compiler-emitted finite nested substitution trace.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct GraftTraceCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub deterministic_frame_ids: CheckStatus,
+    pub parent_child_nesting: CheckStatus,
+    pub ordered_hole_bindings: CheckStatus,
+    pub argument_body_regions: CheckStatus,
+    pub boundary_maps: CheckStatus,
+    pub call_history_links: CheckStatus,
+    pub frame_ids: Vec<GraftFrameId>,
+}
+
+impl GraftTraceCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.deterministic_frame_ids,
+            self.parent_child_nesting,
+            self.ordered_hole_bindings,
+            self.argument_body_regions,
+            self.boundary_maps,
+            self.call_history_links,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct GraftTraceArtifact {
+    pub result: GraftTrace,
+    pub certificate: GraftTraceCertificate,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]

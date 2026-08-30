@@ -26,6 +26,7 @@ judgments.
 - language-independent module and term IR;
 - typed frontiers and qualified names;
 - `SharedProgramDiagram`;
+- compiler-emitted nested graft-trace companion types;
 - causal-cut and single-event frontier-replacement result types;
 - explicit source, occurrence, path, and history data;
 - distinct directed rewrite, equation, and coherence types;
@@ -38,6 +39,7 @@ judgments.
 - module graph validation and cycle rejection;
 - linear use checking and explicit structural operations;
 - typed lowering from `ProgramTerm` to `SharedProgramDiagram`;
+- deterministic nested graft traces retained beside compiler-produced diagrams;
 - finite boundary substitution through checked module calls;
 - certified causal-cut and enabled-event analysis over checked diagrams;
 - builtin operation registry shared by evaluation and differentiation;
@@ -72,8 +74,16 @@ The inputs of a function are its ordered open holes. A call lowers each
 argument as a program under the caller's linear resource scope, checks the
 resulting frontier against those holes, and only then grafts the finite callee
 body. This is PSC0's bounded substitution mechanism. It is not host-language
-value application, a local binder calculus, or the final representation of
-nested substitution scopes.
+value application or a local binder calculus.
+
+A compiler-produced `CompilationArtifact` also carries a checked `GraftTrace`
+companion. Its deterministic frames retain parent/child nesting, exact
+argument and callee-body node regions, ordered hole bindings, boundary wires,
+and links to flat call-history events. Syntax argument regions remain distinct
+from flattened hole bindings because an argument can produce zero or multiple
+wires. Stored or externally imported diagrams do not acquire this compiler
+provenance retroactively. A frame boundary is a sub-boundary of the whole DAG,
+not automatically a whole causal cut.
 
 ## Native process and cut analysis
 
@@ -147,9 +157,10 @@ future binary codec must preserve the same ontology and schema versioning.
 
 ## Stable versus research code
 
-The stable slice contains finite modules, terms, diagrams, evaluation,
-differentiation, explicit source partitions, certified finite causal cuts,
-single-event frontier replacement, and lossless serialization.
+The stable slice contains finite modules, terms, diagrams, compiler-emitted
+certified nested graft frames, evaluation, differentiation, explicit source
+partitions, certified finite causal cuts, single-event frontier replacement,
+and lossless serialization.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that

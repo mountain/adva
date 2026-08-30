@@ -19,6 +19,8 @@ tool does not turn research targets into stable API promises.
 - stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and
   `History`;
 - Rust module parsing, imports, exports, linking, and typed lowering;
+- compiler-emitted certified `GraftTrace` companions retaining nested call
+  frames, argument regions, ordered hole bindings, and callee-body regions;
 - a single versioned Rust operation registry shared by parsing, typed lowering,
   lineage transport, evaluation, and forward differentiation;
 - scalar evaluation and forward differential, each with a certificate;

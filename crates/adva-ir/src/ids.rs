@@ -36,6 +36,7 @@ string_id!(SourceId);
 string_id!(OccurrenceId);
 string_id!(CellId);
 string_id!(CertificateId);
+string_id!(GraftFrameId);
 
 #[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(transparent)]

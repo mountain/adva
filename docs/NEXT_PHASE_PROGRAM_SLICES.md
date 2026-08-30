@@ -237,6 +237,20 @@ Requirements:
 At the end of WP1, decide whether the trace is sufficient. Do not yet change
 the serialized diagram schema.
 
+Implementation result: the compiler now emits a certified companion
+`GraftTraceArtifact` without changing `adva.ir` version 1.  The nested
+two-hole fixture establishes deterministic parent/child frames, separate
+argument and callee-body regions, ordered hole-to-argument-output maps, exact
+entry/exit wires, and call-history links.  A zero-output constant--discard
+argument proves that argument regions cannot be reconstructed from hole
+bindings alone.  See ADR 0007 and
+`docs/research/0022-certified-graft-trace-wp1.md`.
+
+WP1 therefore supplies the required input to WP2 in the finite compiler
+scope.  It does not establish a frame/cut bijection: a frame boundary can be a
+proper sub-boundary of a global causal cut, and arbitrary cuts need not select
+syntax frames.
+
 ### WP2: exact program-slice analysis
 
 Add an API tentatively named
