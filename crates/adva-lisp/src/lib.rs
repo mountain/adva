@@ -5,6 +5,7 @@ mod eval;
 mod module;
 mod operation;
 mod parser;
+mod process;
 mod validate;
 
 pub use compile::compile_function;
@@ -15,6 +16,7 @@ pub use operation::{
     resolve_operation,
 };
 pub use parser::parse_module;
+pub use process::{advance_causal_cut, analyze_causal_cut};
 pub use validate::{import_diagram_json, validate_diagram};
 
 use thiserror::Error;

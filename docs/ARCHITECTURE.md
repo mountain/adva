@@ -26,6 +26,7 @@ judgments.
 - language-independent module and term IR;
 - typed frontiers and qualified names;
 - `SharedProgramDiagram`;
+- causal-cut and single-event frontier-replacement result types;
 - explicit source, occurrence, path, and history data;
 - distinct directed rewrite, equation, and coherence types;
 - versioned JSON envelopes and certificate types.
@@ -37,6 +38,8 @@ judgments.
 - module graph validation and cycle rejection;
 - linear use checking and explicit structural operations;
 - typed lowering from `ProgramTerm` to `SharedProgramDiagram`;
+- finite boundary substitution through checked module calls;
+- certified causal-cut and enabled-event analysis over checked diagrams;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
 
@@ -64,6 +67,30 @@ Lowering inlines the called body only as a finite representation technique. A
 `HistoryEvent::Call` remains in the diagram, so inlining does not make module
 history definitionally invisible. Recursive calls and cyclic module imports
 are rejected until guarded recursion obtains its own semantics.
+
+The inputs of a function are its ordered open holes. A call lowers each
+argument as a program under the caller's linear resource scope, checks the
+resulting frontier against those holes, and only then grafts the finite callee
+body. This is PSC0's bounded substitution mechanism. It is not host-language
+value application, a local binder calculus, or the final representation of
+nested substitution scopes.
+
+## Native process and cut analysis
+
+The operation dependency DAG has a causal reading and a cut reading.
+`analyze_causal_cut` accepts a set of completed operation nodes, verifies that
+it is downward closed, and returns the exact `WireRef` values crossing from
+that past to its future. `advance_causal_cut` verifies one enabled event and
+returns the frontier wires it consumes and produces.
+
+Both analyses first revalidate the diagram and return Rust certificates. They
+preserve source and occurrence lineage without evaluation. They do not assert
+a topology object, an observer pullback, equality of alternative schedules,
+or a coherence cell.
+
+The theoretical dependency and promotion gates are specified in
+[`PROGRAM_PROCESS_CORE.md`](PROGRAM_PROCESS_CORE.md) and
+[ADR 0006](adr/0006-program-process-before-projections.md).
 
 ## Operation library
 
@@ -121,7 +148,8 @@ future binary codec must preserve the same ontology and schema versioning.
 ## Stable versus research code
 
 The stable slice contains finite modules, terms, diagrams, evaluation,
-differentiation, explicit source partitions, and lossless serialization.
+differentiation, explicit source partitions, certified finite causal cuts,
+single-event frontier replacement, and lossless serialization.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that

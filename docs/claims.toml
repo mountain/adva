@@ -92,6 +92,19 @@ counterexample_boundary = "No claim for plugins, reverse mode, higher derivative
 forbidden_conflations = ["Value rule with lineage rule", "Operation name with a versioned operation", "Registry entry with optimization authority"]
 
 [[claim]]
+claim_id = "adva.definition.finite-boundary-substitution.v1"
+canonical_name = "Finite named boundary substitution"
+code_symbol = "adva_ir::ProgramTerm::Call; adva_lisp::compile_function"
+dimension = "open-program/construction"
+status = "definition"
+scope = "PSC0 finite acyclic linked modules"
+assumptions = ["Callee input frontier is ordered and typed", "Arguments obey explicit linear use", "Callee body is finite and binder-free"]
+dependencies = ["adva.definition.module-ir.v1", "adva.definition.ordered-frontier.v1"]
+proof_or_certificate = "Rust linking, boundary checking, finite lowering, and retained call-history tests"
+counterexample_boundary = "No local binders, alpha equivalence, recursion, cyclic calls, arbitrary graph contexts, or complete nested-substitution frame is represented"
+forbidden_conflations = ["Program substitution with evaluated value application", "Finite inlining with history erasure", "Call history with a complete scope tree", "Argument reuse with implicit sharing"]
+
+[[claim]]
 claim_id = "adva.exact.diagram-validation.v1"
 canonical_name = "Checked finite diagram import"
 code_symbol = "adva_lisp::{validate_diagram, import_diagram_json}"
@@ -103,6 +116,19 @@ dependencies = ["adva.definition.ordered-frontier.v1", "adva.exact.explicit-sour
 proof_or_certificate = "DiagramValidationCertificate plus positive round-trip, forged-source, forged-path, non-topological-wire, implicit-alias, and rewrite-trace rejection tests"
 counterexample_boundary = "No claim for non-empty rewrite traces, external operations, binders, recursion, higher cells, objectification, or callee provenance replay"
 forbidden_conflations = ["JSON decoding with semantic validation", "Validation certificate with compilation certificate", "Observation equivalence with graph contraction", "Test coverage with an unrestricted theorem"]
+
+[[claim]]
+claim_id = "adva.exact.causal-cut-analysis.v1"
+canonical_name = "Certified causal cut and enabled frontier replacement"
+code_symbol = "adva_lisp::{analyze_causal_cut, advance_causal_cut}"
+dimension = "1/process/cut"
+status = "exact"
+scope = "Finite validated adva.ir v1 operation DAGs"
+assumptions = ["Diagram validation succeeds", "Completed nodes are supplied explicitly", "Every semantic endpoint has exactly one checked consumer"]
+dependencies = ["adva.exact.explicit-source-identity.v1", "adva.exact.diagram-validation.v1"]
+proof_or_certificate = "CausalCutCertificate and CausalStepCertificate plus Rust and Python tests for initial, branched, final, enabled, and non-past-closed cuts"
+counterexample_boundary = "No enumeration theorem, stable Alexandrov topology, multi-step transport, schedule coherence, probe pullback, expression-valued cut section, process exponential, resolvent, spectrum, or ObjectificationWitness is asserted"
+forbidden_conflations = ["Completed past with scalar value order", "Cut frontier with tuple or vector ontology", "Reverse cut reading with reversed physical time", "Equal cut endpoints with equal schedule histories", "Frontier replacement with equation or coherence cell"]
 
 [[claim]]
 claim_id = "adva.bounded-verified.k1.v1"

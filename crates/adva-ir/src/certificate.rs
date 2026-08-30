@@ -1,4 +1,6 @@
-use crate::{CertificateId, FunctionSignature, SharedProgramDiagram};
+use crate::{
+    CausalCut, CausalStep, CertificateId, FunctionSignature, NodeId, SharedProgramDiagram,
+};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
 
@@ -86,6 +88,70 @@ impl DiagramValidationCertificate {
 pub struct DiagramValidationArtifact {
     pub result: SharedProgramDiagram,
     pub certificate: DiagramValidationCertificate,
+}
+
+/// Certificate for deriving one open frontier from a checked program DAG.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CausalCutCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub completed_past: CheckStatus,
+    pub crossing_frontier: CheckStatus,
+    pub lineage_preservation: CheckStatus,
+    pub completed_nodes: Vec<NodeId>,
+}
+
+impl CausalCutCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.completed_past,
+            self.crossing_frontier,
+            self.lineage_preservation,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CausalCutArtifact {
+    pub result: CausalCut,
+    pub certificate: CausalCutCertificate,
+}
+
+/// Certificate for one enabled event replacing wires across a causal cut.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CausalStepCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub event_enabled: CheckStatus,
+    pub frontier_replacement: CheckStatus,
+    pub event: NodeId,
+}
+
+impl CausalStepCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.event_enabled,
+            self.frontier_replacement,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CausalStepArtifact {
+    pub result: CausalStep,
+    pub certificate: CausalStepCertificate,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
