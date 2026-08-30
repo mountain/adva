@@ -1,12 +1,13 @@
 use adva_ir::{CutConsumer, GraftFrameKind, NodeId};
 use adva_lisp::{
     advance_causal_cut, analyze_causal_cut, analyze_program_slice,
-    analyze_program_slice_with_graft, compile_function, link_modules, parse_module,
+    analyze_program_slice_with_graft, compile_function, compose_program_slices,
+    compose_program_slices_with_graft, link_modules, parse_module,
 };
 
 const PROCESS_MODULE: &str = r#"
 (module process
-  (export shared-sum identity hidden-history wrapper identity-call)
+  (export shared-sum identity hidden-history wrapper identity-call chain-three)
 
   (def shared-sum
     (fn ((x Real)) Real
@@ -37,6 +38,10 @@ const PROCESS_MODULE: &str = r#"
   (def identity-call
     (fn ((x Real)) Real
       (call id-callee (use x))))
+
+  (def chain-three
+    (fn ((x Real)) Real
+      (neg (neg (neg (use x))))))
 )
 "#;
 
@@ -224,4 +229,147 @@ fn zero_event_call_frame_has_no_canonical_slice_intersection() {
 
     assert!(slice.result.events.is_empty());
     assert_eq!(slice.result.graft_intersections, Some(Vec::new()));
+}
+
+#[test]
+fn adjacent_composition_retains_hidden_constant_and_discard_history() {
+    let artifact = compile("hidden-history");
+    let left = analyze_program_slice(&artifact.result, &[], &[NodeId(0)])
+        .unwrap()
+        .result;
+    let right = analyze_program_slice(
+        &artifact.result,
+        &[NodeId(0)],
+        &[NodeId(0), NodeId(1)],
+    )
+    .unwrap()
+    .result;
+    let composed = compose_program_slices(&artifact.result, &left, &right).unwrap();
+    let direct = analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1)])
+        .unwrap()
+        .result;
+
+    assert!(composed.certificate.certified());
+    assert_eq!(composed.result, direct);
+    assert_eq!(composed.result.lower.frontier, composed.result.upper.frontier);
+    assert_eq!(composed.result.internal_events, vec![NodeId(0), NodeId(1)]);
+    assert_eq!(
+        composed.certificate.left_event_ids,
+        vec![NodeId(0)]
+    );
+    assert_eq!(
+        composed.certificate.right_event_ids,
+        vec![NodeId(1)]
+    );
+}
+
+#[test]
+fn three_nonempty_slice_composition_is_exact_and_associative() {
+    let artifact = compile("chain-three");
+    let a = analyze_program_slice(&artifact.result, &[], &[NodeId(0)])
+        .unwrap()
+        .result;
+    let b = analyze_program_slice(
+        &artifact.result,
+        &[NodeId(0)],
+        &[NodeId(0), NodeId(1)],
+    )
+    .unwrap()
+    .result;
+    let c = analyze_program_slice(
+        &artifact.result,
+        &[NodeId(0), NodeId(1)],
+        &[NodeId(0), NodeId(1), NodeId(2)],
+    )
+    .unwrap()
+    .result;
+
+    let ab = compose_program_slices(&artifact.result, &a, &b)
+        .unwrap()
+        .result;
+    let left_associated = compose_program_slices(&artifact.result, &ab, &c)
+        .unwrap()
+        .result;
+    let bc = compose_program_slices(&artifact.result, &b, &c)
+        .unwrap()
+        .result;
+    let right_associated = compose_program_slices(&artifact.result, &a, &bc)
+        .unwrap()
+        .result;
+    let direct = analyze_program_slice(
+        &artifact.result,
+        &[],
+        &[NodeId(0), NodeId(1), NodeId(2)],
+    )
+    .unwrap()
+    .result;
+
+    assert_eq!(left_associated, right_associated);
+    assert_eq!(left_associated, direct);
+}
+
+#[test]
+fn identity_slices_are_left_and_right_units() {
+    let artifact = compile("chain-three");
+    let identity_before = analyze_program_slice(&artifact.result, &[], &[])
+        .unwrap()
+        .result;
+    let whole = analyze_program_slice(
+        &artifact.result,
+        &[],
+        &[NodeId(0), NodeId(1), NodeId(2)],
+    )
+    .unwrap()
+    .result;
+    let identity_after = analyze_program_slice(
+        &artifact.result,
+        &[NodeId(0), NodeId(1), NodeId(2)],
+        &[NodeId(0), NodeId(1), NodeId(2)],
+    )
+    .unwrap()
+    .result;
+
+    assert_eq!(
+        compose_program_slices(&artifact.result, &identity_before, &whole)
+            .unwrap()
+            .result,
+        whole
+    );
+    assert_eq!(
+        compose_program_slices(&artifact.result, &whole, &identity_after)
+            .unwrap()
+            .result,
+        whole
+    );
+}
+
+#[test]
+fn graft_linked_slice_composition_rederives_outer_intersections() {
+    let artifact = compile("wrapper");
+    let identity = analyze_program_slice_with_graft(
+        &artifact.result,
+        &artifact.graft_trace.result,
+        &[],
+        &[],
+    )
+    .unwrap()
+    .result;
+    let event = analyze_program_slice_with_graft(
+        &artifact.result,
+        &artifact.graft_trace.result,
+        &[],
+        &[NodeId(0)],
+    )
+    .unwrap()
+    .result;
+    let composed = compose_program_slices_with_graft(
+        &artifact.result,
+        &artifact.graft_trace.result,
+        &identity,
+        &event,
+    )
+    .unwrap();
+
+    assert!(composed.certificate.certified());
+    assert_eq!(composed.result, event);
 }
