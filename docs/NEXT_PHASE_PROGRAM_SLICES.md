@@ -515,3 +515,11 @@ it into entry analysis `P*` and exit synthesis `P`, the two concurrency paths
 of the frame-body surgery satisfy the forward `add` transformation exactly;
 reversing all relations gives the expansion direction. See
 `docs/research/0029-nonzero-ordered-frame-relational-psp.md`.
+
+The nested calibration exposes the next constraint. A parent `wrapper` frame
+and its child `add-two` frame both contain the same original `add` body event.
+Sequentially composing one surgery per frame would execute that event twice
+and yields the empty relation. Retaining the exact frame stack, paths, and
+`callee_body` role while gluing the shared event once restores the forward and
+reverse factorizations. See
+`docs/research/0030-nested-frame-shared-surgery-gluing.md`.

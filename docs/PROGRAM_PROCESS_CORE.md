@@ -258,3 +258,10 @@ unpolarized frame/cut incidence has empty support. Entry-compatible `P*`,
 exit-compatible `P`, and the two parallel checked body advances do factor the
 ordered `add` transformation exactly. Reversing the relations exchanges the
 two boundary polarities. Nested overlapping frames remain the next test.
+
+That nested test now shows that parent and child frames may carry the same
+original body event. Assigning one fresh surgery to each frame double-counts
+the event and cannot compose. A joint frame stack retaining IDs, paths,
+ordered holes, and `callee_body` role factors correctly when the shared surgery
+is glued once by original event identity. Frames are overlapping scope-readings
+of a slice, not disjoint owners of its events.
