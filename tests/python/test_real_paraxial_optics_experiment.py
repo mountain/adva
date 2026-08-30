@@ -4,6 +4,7 @@ import cmath
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from fractions import Fraction
+from itertools import combinations
 from typing import Any
 
 import pytest
@@ -416,6 +417,26 @@ class SymbolicBackwardProbeWitness:
     @property
     def demand_by_endpoint(self) -> dict[WireEndpoint, SymbolicProbeDemand]:
         return {record.endpoint: record for record in self.demands}
+
+
+@dataclass(frozen=True, slots=True)
+class SymbolicCutCompositionWitness:
+    """One exact factorization through two nested cuts of the same checked IR."""
+
+    lower_completed: frozenset[int]
+    upper_completed: frozenset[int]
+    lower_cut_demands: tuple[tuple[WireEndpoint, DemandExpression], ...]
+    upper_cut_demands: tuple[tuple[WireEndpoint, DemandExpression], ...]
+    direct_demands: tuple[tuple[WireEndpoint, DemandExpression], ...]
+    staged_demands: tuple[tuple[WireEndpoint, DemandExpression], ...]
+
+    @property
+    def direct_demand_map(self) -> dict[WireEndpoint, DemandExpression]:
+        return dict(self.direct_demands)
+
+    @property
+    def staged_demand_map(self) -> dict[WireEndpoint, DemandExpression]:
+        return dict(self.staged_demands)
 
 
 def _functions() -> dict[str, Any]:
@@ -981,6 +1002,223 @@ def _compile_symbolic_input_demands(
 """
     workspace = link_modules([module_source])
     return workspace.function("symbolic-optical-backward", "probe")
+
+
+def _symbolic_causal_opens(function: Any) -> tuple[frozenset[int], ...]:
+    """Enumerate every completed event past of one finite checked diagram."""
+
+    nodes = tuple(function.ir["nodes"])
+    ordered = tuple(node["id"] for node in nodes)
+    predecessors = {
+        node["id"]: frozenset(
+            wire["producer"]["node"]
+            for wire in node["inputs"]
+            if wire["producer"]["kind"] == "node"
+        )
+        for node in nodes
+    }
+    return tuple(
+        completed
+        for size in range(len(ordered) + 1)
+        for selected in combinations(ordered, size)
+        for completed in (frozenset(selected),)
+        if all(predecessors[node_id] <= completed for node_id in completed)
+    )
+
+
+def _symbolic_cut_endpoints(
+    diagram: MappingView,
+    completed: frozenset[int],
+) -> tuple[WireEndpoint, ...]:
+    """Read the raw endpoints crossing one completed-past boundary."""
+
+    consumers = (
+        *(
+            wire
+            for node in diagram["nodes"]
+            if node["id"] not in completed
+            for wire in node["inputs"]
+        ),
+        *diagram["outputs"],
+    )
+    crossing = []
+    for wire in consumers:
+        producer = wire["producer"]
+        if producer["kind"] == "input" or producer["node"] in completed:
+            crossing.append(_wire_endpoint(wire))
+    if len(crossing) != len(set(crossing)):
+        raise AssertionError("Rust-checked linear use exposed an aliased cut endpoint")
+    return tuple(sorted(crossing))
+
+
+def _symbolic_forward_endpoint_values(
+    function: Any,
+    metadata: Mapping[WireEndpoint, SymbolicProbeDemand],
+) -> dict[WireEndpoint, DemandExpression]:
+    """Replay forward expressions while retaining original root input audit data."""
+
+    diagram = function.ir
+    values: dict[WireEndpoint, DemandExpression] = {}
+    for index, port in enumerate(diagram["signature"]["inputs"]):
+        endpoint = WireEndpoint("input", index, 0)
+        record = metadata[endpoint]
+        if len(record.lineage) != 1 or len(record.sources) != 1:
+            raise AssertionError("a checked input endpoint must have one root occurrence")
+        values[endpoint] = DemandExpression.input(
+            port["name"],
+            record.lineage[0],
+            record.sources[0],
+        )
+
+    for node in diagram["nodes"]:
+        operation_ref = node["operation"]
+        operation = operation_ref["name"]
+        if (
+            operation_ref["namespace"] != "adva.builtin"
+            or operation_ref["version"] != 1
+            or operation not in BOUNDED_BACKWARD_OPERATIONS
+        ):
+            raise TypeError("the diagram leaves the symbolic cut fragment")
+        arguments = tuple(values[_wire_endpoint(wire)] for wire in node["inputs"])
+        outputs = _symbolic_forward_node(
+            operation,
+            arguments,
+            operation_ref.get("parameters", {}),
+        )
+        for output_index, expression in enumerate(outputs):
+            values[WireEndpoint("node", node["id"], output_index)] = expression
+    return values
+
+
+def _symbolic_reverse_segment(
+    diagram: MappingView,
+    endpoint_values: Mapping[WireEndpoint, DemandExpression],
+    active_nodes: frozenset[int],
+    seeds: Sequence[tuple[WireEndpoint, DemandExpression]],
+) -> dict[WireEndpoint, DemandExpression]:
+    """Transport demands through one causally contiguous node segment."""
+
+    node_ids = frozenset(node["id"] for node in diagram["nodes"])
+    if not active_nodes <= node_ids:
+        raise ValueError("a symbolic reverse segment contains an unknown node")
+
+    demands: dict[WireEndpoint, DemandExpression] = {}
+
+    def add_demand(endpoint: WireEndpoint, coefficient: DemandExpression) -> None:
+        existing = demands.get(endpoint)
+        demands[endpoint] = (
+            coefficient
+            if existing is None
+            else DemandExpression.add(existing, coefficient)
+        )
+
+    for endpoint, coefficient in seeds:
+        add_demand(endpoint, coefficient)
+
+    zero = DemandExpression.constant(0)
+    for node in reversed(diagram["nodes"]):
+        if node["id"] not in active_nodes:
+            continue
+        output_demands = tuple(
+            demands.get(WireEndpoint("node", node["id"], output_index), zero)
+            for output_index in range(len(node["output_types"]))
+        )
+        arguments = tuple(
+            endpoint_values[_wire_endpoint(wire)] for wire in node["inputs"]
+        )
+        input_demands = _symbolic_reverse_node(
+            node["operation"]["name"],
+            arguments,
+            output_demands,
+        )
+        for wire, coefficient in zip(node["inputs"], input_demands, strict=True):
+            add_demand(_wire_endpoint(wire), coefficient)
+    return demands
+
+
+def _research_symbolic_cut_composition(
+    function: Any,
+    lower_completed: frozenset[int],
+    upper_completed: frozenset[int],
+    output_probe: Sequence[DemandExpression],
+) -> SymbolicCutCompositionWitness:
+    """Factor one backward field through two nested cuts of the same diagram."""
+
+    opens = frozenset(_symbolic_causal_opens(function))
+    if (
+        lower_completed not in opens
+        or upper_completed not in opens
+        or not lower_completed <= upper_completed
+    ):
+        raise ValueError("symbolic cut composition requires nested causal opens")
+
+    direct = _research_symbolic_backward_probe(function, output_probe)
+    diagram = function.ir
+    metadata = direct.demand_by_endpoint
+    endpoint_values = _symbolic_forward_endpoint_values(function, metadata)
+    all_nodes = frozenset(node["id"] for node in diagram["nodes"])
+    zero = DemandExpression.constant(0)
+
+    output_seeds = tuple(
+        (_wire_endpoint(wire), coefficient)
+        for wire, coefficient in zip(diagram["outputs"], output_probe, strict=True)
+    )
+    outer = _symbolic_reverse_segment(
+        diagram,
+        endpoint_values,
+        all_nodes - upper_completed,
+        output_seeds,
+    )
+    upper_frontier = _symbolic_cut_endpoints(diagram, upper_completed)
+    upper_seeds = tuple(
+        (endpoint, outer.get(endpoint, zero)) for endpoint in upper_frontier
+    )
+
+    middle = _symbolic_reverse_segment(
+        diagram,
+        endpoint_values,
+        upper_completed - lower_completed,
+        upper_seeds,
+    )
+    lower_frontier = _symbolic_cut_endpoints(diagram, lower_completed)
+    lower_seeds = tuple(
+        (endpoint, middle.get(endpoint, zero)) for endpoint in lower_frontier
+    )
+
+    inner = _symbolic_reverse_segment(
+        diagram,
+        endpoint_values,
+        lower_completed,
+        lower_seeds,
+    )
+    for endpoint, coefficient in upper_seeds:
+        if middle.get(endpoint, zero) != coefficient:
+            raise AssertionError("upper cut changed while seeding its middle segment")
+    for endpoint, coefficient in lower_seeds:
+        if inner.get(endpoint, zero) != coefficient:
+            raise AssertionError("lower cut changed while seeding its inner segment")
+
+    direct_demands = tuple(
+        (record.endpoint, record.coefficient) for record in direct.demands
+    )
+    staged_demands = []
+    for endpoint, _ in direct_demands:
+        if endpoint.producer_kind == "input" or endpoint.producer_id in lower_completed:
+            coefficient = inner.get(endpoint, zero)
+        elif endpoint.producer_id in upper_completed:
+            coefficient = middle.get(endpoint, zero)
+        else:
+            coefficient = outer.get(endpoint, zero)
+        staged_demands.append((endpoint, coefficient))
+
+    return SymbolicCutCompositionWitness(
+        lower_completed=lower_completed,
+        upper_completed=upper_completed,
+        lower_cut_demands=lower_seeds,
+        upper_cut_demands=upper_seeds,
+        direct_demands=direct_demands,
+        staged_demands=tuple(staged_demands),
+    )
 
 
 def test_real_optical_programs_cross_the_checked_two_port_boundary() -> None:
@@ -1566,3 +1804,119 @@ def test_symbolic_replay_satisfies_pairing_across_inputs_and_tangents() -> None:
                 root_demands[name] * tangent[name] for name in tangent
             )
             assert codomain_pairing == pytest.approx(domain_pairing)
+
+
+def test_symbolic_backward_transport_composes_through_every_nested_cut() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    output_probe = (DemandExpression.constant(1), DemandExpression.constant(2))
+    opens = _symbolic_causal_opens(parameter_cell)
+    all_nodes = frozenset(node["id"] for node in parameter_cell.ir["nodes"])
+    direct = _research_symbolic_backward_probe(parameter_cell, output_probe)
+    nested_pairs = 0
+    strict_three_segment_pairs = 0
+
+    assert frozenset() in opens
+    assert all_nodes in opens
+    for lower_completed in opens:
+        for upper_completed in opens:
+            if not lower_completed <= upper_completed:
+                continue
+            witness = _research_symbolic_cut_composition(
+                parameter_cell,
+                lower_completed,
+                upper_completed,
+                output_probe,
+            )
+            nested_pairs += 1
+            if lower_completed and lower_completed < upper_completed < all_nodes:
+                strict_three_segment_pairs += 1
+
+            assert witness.direct_demands == witness.staged_demands
+            assert witness.direct_demands == tuple(
+                (record.endpoint, record.coefficient) for record in direct.demands
+            )
+            assert tuple(endpoint for endpoint, _ in witness.lower_cut_demands) == (
+                _symbolic_cut_endpoints(parameter_cell.ir, lower_completed)
+            )
+            assert tuple(endpoint for endpoint, _ in witness.upper_cut_demands) == (
+                _symbolic_cut_endpoints(parameter_cell.ir, upper_completed)
+            )
+            for endpoint, _ in (
+                *witness.lower_cut_demands,
+                *witness.upper_cut_demands,
+            ):
+                record = direct.demand_by_endpoint[endpoint]
+                assert len(record.lineage) == len(record.sources)
+
+    assert nested_pairs > len(opens)
+    assert strict_three_segment_pairs > 0
+
+
+def test_focus_drift_cut_exposes_and_recomposes_expression_demands() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    output_probe = (DemandExpression.constant(1), DemandExpression.constant(2))
+    nodes = tuple(parameter_cell.ir["nodes"])
+    opens = _symbolic_causal_opens(parameter_cell)
+    upper_candidates = tuple(
+        completed
+        for completed in opens
+        if tuple(
+            node["operation"]["name"]
+            for node in nodes
+            if node["id"] not in completed
+        )
+        == ("copy", "add")
+    )
+    root_copies = tuple(
+        node
+        for node in nodes
+        if node["operation"]["name"] == "copy"
+        and not any(
+            wire["producer"]["kind"] == "node" for wire in node["inputs"]
+        )
+    )
+
+    assert len(upper_candidates) == 1
+    assert len(root_copies) == 1
+    lower_completed = frozenset({root_copies[0]["id"]})
+    upper_completed = upper_candidates[0]
+    assert lower_completed < upper_completed
+
+    witness = _research_symbolic_cut_composition(
+        parameter_cell,
+        lower_completed,
+        upper_completed,
+        output_probe,
+    )
+    direct = _research_symbolic_backward_probe(parameter_cell, output_probe)
+    upper_terms = tuple(
+        expression.to_lisp() for _, expression in witness.upper_cut_demands
+    )
+    assert set(upper_terms) == {"1", "(add (frontier 1 2))"}
+
+    upper_records = tuple(
+        direct.demand_by_endpoint[endpoint]
+        for endpoint, _ in witness.upper_cut_demands
+    )
+    assert sorted(len(record.lineage) for record in upper_records) == [1, 3]
+    assert sorted(len(set(record.sources)) for record in upper_records) == [1, 3]
+
+    staged_roots = {
+        name: witness.staged_demand_map[WireEndpoint("input", index, 0)]
+        for index, name in enumerate(("x", "s", "kappa"))
+    }
+    assert staged_roots["x"].input_uses() == ("kappa",)
+    assert staged_roots["s"].input_uses() == ()
+    assert staged_roots["kappa"].input_uses() == ("x",)
+
+    fixtures = (
+        {"x": 2.0, "s": 3.0, "kappa": 1.0},
+        {"x": -1.0, "s": 2.0, "kappa": 0.5},
+        {"x": 4.0, "s": -2.0, "kappa": 3.0},
+    )
+    for inputs in fixtures:
+        numerical = _research_backward_probe(parameter_cell, inputs, (1.0, 2.0))
+        for endpoint, expression in witness.staged_demands:
+            assert expression.evaluate(inputs) == pytest.approx(
+                numerical.demand_by_endpoint[endpoint].coefficient
+            )
