@@ -123,14 +123,8 @@ impl PyProgram {
         lower_completed: Vec<u32>,
         upper_completed: Vec<u32>,
     ) -> PyResult<PyCertifiedProcess> {
-        let lower_completed = lower_completed
-            .into_iter()
-            .map(NodeId)
-            .collect::<Vec<_>>();
-        let upper_completed = upper_completed
-            .into_iter()
-            .map(NodeId)
-            .collect::<Vec<_>>();
+        let lower_completed = lower_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let upper_completed = upper_completed.into_iter().map(NodeId).collect::<Vec<_>>();
         let artifact = match &self.graft_trace {
             Some(graft_trace) => analyze_slice_with_graft(
                 &self.diagram,
@@ -153,18 +147,9 @@ impl PyProgram {
         middle_completed: Vec<u32>,
         upper_completed: Vec<u32>,
     ) -> PyResult<PyCertifiedProcess> {
-        let lower_completed = lower_completed
-            .into_iter()
-            .map(NodeId)
-            .collect::<Vec<_>>();
-        let middle_completed = middle_completed
-            .into_iter()
-            .map(NodeId)
-            .collect::<Vec<_>>();
-        let upper_completed = upper_completed
-            .into_iter()
-            .map(NodeId)
-            .collect::<Vec<_>>();
+        let lower_completed = lower_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let middle_completed = middle_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let upper_completed = upper_completed.into_iter().map(NodeId).collect::<Vec<_>>();
 
         let artifact = match &self.graft_trace {
             Some(graft_trace) => {
