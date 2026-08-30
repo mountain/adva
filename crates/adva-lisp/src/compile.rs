@@ -315,21 +315,15 @@ impl<'a> Compiler<'a> {
             let start = self.nodes.len();
             let argument_context = LoweringContext::inside_frame(
                 frame_id.clone(),
-                context
-                    .path
-                    .child(GraftPathStep::CallArgument {
-                        index: argument_index,
-                    }),
+                context.path.child(GraftPathStep::CallArgument {
+                    index: argument_index,
+                }),
                 GraftRegionRole::Argument {
                     index: argument_index,
                 },
             );
-            let outputs = self.lower_term(
-                argument,
-                caller_scope,
-                current_module,
-                &argument_context,
-            )?;
+            let outputs =
+                self.lower_term(argument, caller_scope, current_module, &argument_context)?;
             let nodes = self.node_region(start);
             for (output_index, wire) in outputs.iter().enumerate() {
                 argument_outputs.push((
@@ -651,12 +645,7 @@ pub fn compile_function(
         GraftScopePath::new(vec![GraftPathStep::RootBody]),
         GraftRegionRole::RootBody,
     );
-    let outputs = compiler.lower_term(
-        &definition.body,
-        &mut scope,
-        &module_name,
-        &root_context,
-    )?;
+    let outputs = compiler.lower_term(&definition.body, &mut scope, &module_name, &root_context)?;
     scope.ensure_consumed(&qualified)?;
     check_output_types(&qualified, &definition, &outputs)?;
     let root_holes = definition
@@ -777,10 +766,7 @@ fn expected_root_frame_id(function: &QualifiedName) -> GraftFrameId {
     GraftFrameId::explicit(format!("graft:{function}:root"))
 }
 
-fn expected_call_frame_id(
-    function: &QualifiedName,
-    path: &GraftScopePath,
-) -> GraftFrameId {
+fn expected_call_frame_id(function: &QualifiedName, path: &GraftScopePath) -> GraftFrameId {
     GraftFrameId::explicit(format!("graft:{function}:{}", scope_path_key(path)))
 }
 
@@ -877,9 +863,7 @@ fn validate_graft_trace(
         .prefix
         .iter()
         .enumerate()
-        .filter_map(|(index, event)| {
-            matches!(event, HistoryEvent::Call { .. }).then_some(index)
-        })
+        .filter_map(|(index, event)| matches!(event, HistoryEvent::Call { .. }).then_some(index))
         .collect::<BTreeSet<_>>();
     if linked_call_events != call_events {
         return graft_error("graft frames do not link every call history event exactly once");
@@ -913,11 +897,7 @@ fn validate_frame_shape(
     linked_call_events: &mut BTreeSet<usize>,
 ) -> Result<(), LispError> {
     validate_region(&frame.body_region, known_nodes, "graft body region")?;
-    for wire in frame
-        .entry_wires
-        .iter()
-        .chain(frame.exit_wires.iter())
-    {
+    for wire in frame.entry_wires.iter().chain(frame.exit_wires.iter()) {
         if !diagram_wires.contains(&wire) {
             return graft_error(format!(
                 "graft frame {} boundary contains a non-diagram wire",
@@ -1003,10 +983,7 @@ fn validate_arguments_and_holes(
         }
         let nodes = validate_region(&argument.nodes, known_nodes, "graft argument region")?;
         if !argument_nodes.is_disjoint(&nodes) {
-            return graft_error(format!(
-                "graft frame {} argument regions overlap",
-                frame.id
-            ));
+            return graft_error(format!("graft frame {} argument regions overlap", frame.id));
         }
         argument_nodes.extend(nodes);
         for wire in &argument.outputs {
@@ -1065,9 +1042,10 @@ fn validate_arguments_and_holes(
                 let argument_index = usize::try_from(argument_index).map_err(|_| {
                     LispError::Validation("graft argument index exceeds usize".to_owned())
                 })?;
-                let output_index = usize::try_from(binding.argument_output_index).map_err(|_| {
-                    LispError::Validation("graft argument output exceeds usize".to_owned())
-                })?;
+                let output_index =
+                    usize::try_from(binding.argument_output_index).map_err(|_| {
+                        LispError::Validation("graft argument output exceeds usize".to_owned())
+                    })?;
                 let output = frame
                     .arguments
                     .get(argument_index)
@@ -1101,9 +1079,7 @@ fn validate_scope_nesting(parent: &GraftFrame, child: &GraftFrame) -> Result<(),
     }
     let first_descent = &child_path[parent_path.len()];
     let expected_role = match first_descent {
-        GraftPathStep::RootBody if parent.kind == GraftFrameKind::Root => {
-            GraftRegionRole::RootBody
-        }
+        GraftPathStep::RootBody if parent.kind == GraftFrameKind::Root => GraftRegionRole::RootBody,
         GraftPathStep::CallArgument { index } if parent.kind == GraftFrameKind::Call => {
             GraftRegionRole::Argument { index: *index }
         }
