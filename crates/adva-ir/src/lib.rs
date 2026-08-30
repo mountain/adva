@@ -3,11 +3,13 @@
 mod certificate;
 mod diagram;
 mod ids;
+mod process;
 mod term;
 
 pub use certificate::*;
 pub use diagram::*;
 pub use ids::*;
+pub use process::*;
 pub use term::*;
 
 use serde::{Deserialize, Serialize};

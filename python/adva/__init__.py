@@ -1,6 +1,8 @@
 """Typed Python facade for the Rust-owned Adva semantic kernel."""
 
 from .core import (
+    CausalCutAnalysis,
+    CausalStepAnalysis,
     CodomainFrontier,
     DomainFrontier,
     Evaluation,
@@ -15,6 +17,8 @@ from .core import (
 )
 
 __all__ = [
+    "CausalCutAnalysis",
+    "CausalStepAnalysis",
     "CodomainFrontier",
     "DomainFrontier",
     "Evaluation",

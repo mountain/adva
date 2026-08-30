@@ -85,6 +85,27 @@ class Evaluation:
         return self.values[0]
 
 
+@dataclass(frozen=True, slots=True)
+class CausalCutAnalysis:
+    """A Rust-certified completed past and its occurrence-decorated frontier."""
+
+    completed: tuple[int, ...]
+    frontier: tuple[Mapping[str, Any], ...]
+    certificate: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class CausalStepAnalysis:
+    """One certified operation crossing between two causal cuts."""
+
+    event: int
+    before: Mapping[str, Any]
+    after: Mapping[str, Any]
+    consumed: tuple[Mapping[str, Any], ...]
+    produced: tuple[Mapping[str, Any], ...]
+    certificate: Mapping[str, Any]
+
+
 class Workspace:
     """A finite, acyclic set of modules linked and checked in Rust."""
 
@@ -146,6 +167,39 @@ class KernelFunction:
         raw = json.loads(self._native.source_partition_json())
         return {source: tuple(occurrences) for source, occurrences in raw.items()}
 
+    def causal_cut(self, completed: Sequence[int]) -> CausalCutAnalysis:
+        """Read a spatial cut from a completed causal past without evaluation."""
+
+        checked = self._check_node_ids(completed)
+        result_json, certificate_json = self._native.causal_cut(checked)
+        result = json.loads(result_json)
+        return CausalCutAnalysis(
+            completed=tuple(result["completed"]),
+            frontier=tuple(result["frontier"]),
+            certificate=json.loads(certificate_json),
+        )
+
+    def advance_causal_cut(
+        self, completed: Sequence[int], event: int
+    ) -> CausalStepAnalysis:
+        """Move one enabled event across a causal cut."""
+
+        checked = self._check_node_ids(completed)
+        if isinstance(event, bool) or not isinstance(event, int) or event < 0:
+            raise TypeError("event must be a non-negative node id")
+        result_json, certificate_json = self._native.advance_causal_cut(
+            checked, event
+        )
+        result = json.loads(result_json)
+        return CausalStepAnalysis(
+            event=result["event"],
+            before=result["before"],
+            after=result["after"],
+            consumed=tuple(result["consumed"]),
+            produced=tuple(result["produced"]),
+            certificate=json.loads(certificate_json),
+        )
+
     def evaluate_checked(self, inputs: Mapping[str, Real]) -> Evaluation:
         checked = self._check_inputs(inputs)
         values, certificate = self._native.evaluate(checked)
@@ -157,7 +211,11 @@ class KernelFunction:
 
     def value_and_gradient(
         self, inputs: Mapping[str, Real]
-    ) -> tuple[float | tuple[float, ...], Mapping[str, float] | tuple[Mapping[str, float], ...], Mapping[str, Any]]:
+    ) -> tuple[
+        float | tuple[float, ...],
+        Mapping[str, float] | tuple[Mapping[str, float], ...],
+        Mapping[str, Any],
+    ]:
         checked = self._check_inputs(inputs)
         values, jacobian, certificate = self._native.value_and_gradient(checked)
         value_view: float | tuple[float, ...]
@@ -253,6 +311,15 @@ class KernelFunction:
             if isinstance(value, bool) or not isinstance(value, Real):
                 raise TypeError(f"input {name!r} must be a real scalar, got {type(value).__name__}")
             checked[name] = float(value)
+        return checked
+
+    @staticmethod
+    def _check_node_ids(nodes: Sequence[int]) -> list[int]:
+        checked: list[int] = []
+        for node in nodes:
+            if isinstance(node, bool) or not isinstance(node, int) or node < 0:
+                raise TypeError("completed nodes must be non-negative node ids")
+            checked.append(node)
         return checked
 
 
