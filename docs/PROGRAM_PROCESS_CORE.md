@@ -251,3 +251,10 @@ expansion back to the identity transformation of the exact ordered scope. A
 singleton earliest/latest selector with its converse does not. This is bounded
 evidence for relational `P*`, not yet a stable pullback or a theorem for
 nonzero frames.
+
+The first nonzero two-hole frame forces a further refinement. No causal cut
+contains both the frame's consumed entry wires and produced exit wire, so an
+unpolarized frame/cut incidence has empty support. Entry-compatible `P*`,
+exit-compatible `P`, and the two parallel checked body advances do factor the
+ordered `add` transformation exactly. Reversing the relations exchanges the
+two boundary polarities. Nested overlapping frames remain the next test.
