@@ -13,7 +13,7 @@ general than classical partial evaluation.
 
 ## Executive summary
 
-Four future tracks must remain visible:
+Five future tracks must remain visible:
 
 1. observer-conditioned specialization, calibrated against the Futamura
    projections;
@@ -22,7 +22,9 @@ Four future tracks must remain visible:
 3. learning intrinsic world structure from the histories visible to finite
    observers;
 4. practical Adva programs: arithmetic-expression evaluation, exact
-   finite-field big-integer multiplication, and a Metamath verifier.
+   finite-field big-integer multiplication, and a Metamath verifier;
+5. intrinsic compilation of open SSA regions through explicit feedback,
+   observer-relative state reduction, and certified cost accounting.
 
 These tracks are related but must not be collapsed.
 
@@ -32,6 +34,10 @@ flowchart TD
     P --> G["Complex Prog geometry"]
     S --> L["Intrinsic-structure learning"]
     S --> A["Practical Adva programs"]
+    P --> C["Intrinsic compilation"]
+    S --> C
+    A --> C
+    C --> L
     A --> L
     G -. "geometric hypotheses" .-> L
 ```
@@ -41,7 +47,10 @@ first major successor because it explains how a finite observer obtains a
 task-specific mechanism that need not be a literal subprogram of the world.
 The complex-geometric track can proceed theoretically in parallel. Learning
 depends on a precise observer/specialization semantics. Practical programs
-both calibrate and pressure-test the language.
+both calibrate and pressure-test the language. Intrinsic compilation becomes
+eligible only after exact slices, observer-relative transformation results,
+the required exact data semantics, and a separately approved feedback model
+are available.
 
 ## 1. Track A: observer-conditioned specialization
 
@@ -429,7 +438,151 @@ Missing features must become explicit language-design or IR decisions. Do not
 smuggle them through host callbacks, hidden mutation, or untracked Python
 objects.
 
-## 5. Dependency-based schedule
+## 5. Track E: intrinsic compilation from open SSA feedback
+
+### 5.1 Working hypothesis
+
+The motivating hypothesis is that some repeatedly executed programs can be
+compiled more efficiently after their task-relative intrinsic structure has
+been identified. This is conditional, not a universal speedup claim. The
+analysis cost may exceed the saved execution cost, and many programs may admit
+no smaller exact representation.
+
+A complete SSA control-flow graph is not generally a DAG: loop backedges and
+loop-carried `phi` dependencies are cyclic. The proposed calibration instead
+cuts each loop at its state boundary and treats its body as an open acyclic
+region
+
+\[
+B:S_{\mathrm{in}}\otimes X
+  \longrightarrow
+  S_{\mathrm{out}}\otimes Y,
+\]
+
+followed by an explicit feedback closure that identifies the outgoing and
+incoming state boundaries. The notation
+
+\[
+\operatorname{Tr}_S(B):X\longrightarrow Y
+\]
+
+is a research target only. Adva does not currently implement recursion,
+cyclic programs, or a stable traced structure, and this agenda does not
+authorize adding them.
+
+### 5.2 Observer-relative compiled structure
+
+For an observation policy `Q`, seek a checked encoder, reduced transition,
+and decoder
+
+\[
+E_Q:X\to Z_Q,
+\qquad
+K_Q:Z_Q\to Z_Q,
+\qquad
+D_Q:Z_Q\to X.
+\]
+
+An exact reduction may satisfy an appropriate commuting relation such as
+
+\[
+E_QP=K_QE_Q
+\]
+
+on a declared reachable domain. A decoded formulation must expose its
+residual explicitly, for example
+
+\[
+\mathcal R_Q=PD_Q-D_QK_Q.
+\]
+
+The notation is a calibration aid and must not force general programs into a
+linear or matrix ontology. Depending on the fragment, the useful intrinsic
+structure may instead be an SCC decomposition, minimal automaton, recurrence,
+minimal polynomial, reachable/observable quotient, block normal form, or
+finite boundary response.
+
+Compilation is beneficial only when the complete cost is lower. If intrinsic
+analysis costs `A`, original execution costs `C` per run, reduced
+encoding/execution/decoding costs `R` per run, and the result is reused `N`
+times, the basic acceptance inequality is
+
+\[
+A+NR<NC.
+\]
+
+No speedup claim may omit analysis, encoding, decoding, certification, code
+size, or reuse count.
+
+### 5.3 First exact calibration
+
+Use an exact finite-field affine SSA loop rather than floating-point spectral
+code:
+
+\[
+x_{t+1}=Ax_t+b,
+\qquad
+y_t=Cx_t.
+\]
+
+The first experiment should:
+
+1. construct a bounded external or experimental SSA fixture with explicit
+   basic blocks, `phi` origins, uses, and a single loop backedge;
+2. cut the backedge and represent the body as an open DAG with typed state
+   input and output boundaries;
+3. preserve unique definitions while representing multiple uses as explicit
+   occurrences and, where the program semantics requires it, explicit copy;
+4. execute the loop over one small exact finite field;
+5. compute a task-relative reachable/observable quotient, Krylov recurrence,
+   or minimal-polynomial summary using established algorithms;
+6. generate a residual transition `K_Q` and source-to-residual
+   correspondence;
+7. compare direct `n`-step execution with the compiled summary, requiring
+   exact output agreement and zero declared residual in the accepted fixture;
+8. report analysis time, generated-code size, per-run cost, reuse count, and
+   the measured crossover point;
+9. return a certificate, a bounded counterexample, or `Unknown`.
+
+This experiment calibrates against established SSA loop optimization, exact
+model reduction, recurrence acceleration, and automata minimization. Success
+does not by itself establish theoretical novelty.
+
+### 5.4 Mandatory distinctions and failure cases
+
+- SSA single definition is not linear use. Fan-out must not become
+  unrecorded aliasing.
+- A `phi` node is predecessor-sensitive source selection, not arithmetic
+  addition or unconditional value identification.
+- Cutting a backedge produces an open body; closing feedback is a separate
+  semantic operation and is not an exact `ProgramSlice`.
+- Task-relative equivalence does not imply full program equivalence.
+- Exact compilation and approximate numerical reduction require different
+  result and certificate types.
+- No floating-point tolerance may authorize the first exact calibration.
+- A result with no dimension, state, operation-count, or reuse advantage is a
+  valid negative result.
+- A compiler that cannot recover its analysis cost on the declared workload
+  must not be reported as an optimization.
+
+### 5.5 Promotion gates
+
+Do not create stable SSA, feedback, intrinsic-compiler, eigenvalue, or spectrum
+APIs until:
+
+- the exact `ProgramSlice` phase has met its exit condition;
+- observer-relative residual transformations have a certificate-bearing
+  semantics;
+- cyclic/feedback representation has a separate approved design decision;
+- exact finite-field and bounded-control semantics are available;
+- source, occurrence, copy, `phi`, and backedge provenance survive the
+  transformation;
+- the accepted equivalence and observation policy are explicit;
+- exact and approximate results cannot be confused;
+- at least one end-to-end fixture reports total analysis and execution cost;
+- known compiler and model-reduction baselines are compared honestly.
+
+## 6. Dependency-based schedule
 
 The schedule is organized by research cycles rather than calendar promises.
 
@@ -469,7 +622,21 @@ source-to-residual correspondence and forgotten structure remain explicit.
 Exit condition: at least two nontrivial programs run without `f64` as an
 oracle and expose auditable resource histories.
 
-### Phase 3: finite intrinsic-learning calibration
+### Phase 3: exact intrinsic-compilation calibration
+
+- approve an experimental feedback representation separately from exact
+  `ProgramSlice`;
+- construct the finite-field affine SSA loop fixture;
+- derive an exact task-relative state summary;
+- compile direct iteration to the reduced recurrence or transition;
+- certify source-to-residual correspondence and exact observed behavior;
+- measure complete analysis, execution, and reuse cost against the baseline.
+
+Exit condition: one exact bounded transformation has a checked correctness
+result and a measured cost crossover, or a counterexample states why the
+proposed reduction or amortization fails.
+
+### Phase 4: finite intrinsic-learning calibration
 
 - define exact finite observer families and interventions;
 - enumerate observed fibres or specialized mechanisms;
@@ -490,7 +657,7 @@ structure is identifiable from which observer family.
 This track may run in parallel because its first deliverable is theoretical.
 Engineering promotion remains downstream of exact process slices.
 
-## 6. Priority and resumption rules
+## 7. Priority and resumption rules
 
 | Priority | Track | Resume when |
 |---|---|---|
@@ -498,14 +665,15 @@ Engineering promotion remains downstream of exact process slices.
 | P1 | observer specialization on existing finite programs | Phase 0 exit condition |
 | P1-parallel | complex `Prog` geometry | theoretical work may begin now |
 | P2 | bounded evaluator, finite-field, and Metamath programs | required exact data/control semantics are scoped |
-| P2 | intrinsic-structure learning | observer specialization has an exact finite calibration |
+| P2 | exact intrinsic-compilation calibration | exact finite-field/control semantics, observer specialization, and a separate feedback decision exist |
+| P3 | intrinsic-structure learning | observer specialization has an exact finite calibration |
 | P3 | full strings, scalable big integers, full Metamath verifier | required recursive/data semantics are separately approved |
-| deferred | process exponential, resolvent, spectral learning | exact slice transport and observation/error policies exist |
+| deferred | process exponential, resolvent, and approximate spectral compilation/learning | exact slice transport and observation/error policies exist |
 
 If a later experiment appears to require skipping a dependency, record the
 missing assumption and stop. Do not silently widen PSC0.
 
-## 7. Cross-track research questions
+## 8. Cross-track research questions
 
 1. Is observer specialization a quotient, a residualization, a synthesis
    problem, or a composition of all three?
@@ -522,8 +690,13 @@ missing assumption and stop. Do not silently widen PSC0.
    finite binder-free core?
 8. Can specialization turn a general verifier/interpreter into a small
    task-specific certified mechanism without erasing its residual history?
+9. When can an open SSA feedback body be replaced by a smaller
+   observer-relative transition without losing source, occurrence, or
+   `phi` provenance?
+10. Which intrinsic-analysis costs can be amortized, and what workload
+    declaration makes a compiler speedup claim auditable?
 
-## 8. Governance and no-go boundaries
+## 9. Governance and no-go boundaries
 
 - This agenda records hypotheses and tasks, not stable claims.
 - New exact claims belong in `claims.toml` with finite scope and
@@ -540,10 +713,14 @@ missing assumption and stop. Do not silently widen PSC0.
   world program.
 - Practical programs must expose language gaps rather than hide them in host
   code.
+- An accelerated loop fixture does not establish a universal intrinsic
+  compiler, and performance claims must include analysis and amortization.
+- Open-DAG feedback notation does not authorize cyclic stable semantics; that
+  requires a separate design decision.
 - The active task remains `NEXT_PHASE_PROGRAM_SLICES.md` until its exit
   condition is met or a checked counterexample changes the plan.
 
-## 9. Deliverables to preserve across future conversations
+## 10. Deliverables to preserve across future conversations
 
 When each track is activated, create a dedicated design note or ADR and a
 bounded issue with:
@@ -559,7 +736,7 @@ bounded issue with:
 This document remains the umbrella agenda. Update it when a track is promoted,
 refuted, split, completed, or deliberately deferred.
 
-## 10. Reference calibration
+## 11. Reference calibration
 
 - Yoshihiko Futamura,
   [Partial Evaluation of Computation Process--An Approach to a Compiler-Compiler](https://doi.org/10.1023/A:1010095604496),
