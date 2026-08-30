@@ -499,3 +499,11 @@ An earliest/latest selector would add policy. The least-committal next model is
 a finite scope/cut relation on which independent surgery acts inside fibres;
 making `P*` single-valued instead requires explicit scope-boundary markers.
 See `docs/research/0027-zero-event-scope-cut-incidence-no-go.md`.
+
+The first relational repair is now checked on a zero-event ordered two-hole
+frame. Its full two-cut incidence relation `P*`, the converse relation `P`, and
+both directions of the certified independent surgery `S` satisfy
+`T = P S P*` for the identity transformation of that intensional scope. An
+earliest or latest singleton selector together with its converse fails to
+close under either surgery direction. See
+`docs/research/0028-relational-psp-factorization.md`.
