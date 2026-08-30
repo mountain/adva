@@ -485,3 +485,17 @@ The implementing agent's final report must include:
 - why no numerical tolerance was needed;
 - CI run and result;
 - the single highest-priority remaining obligation.
+
+## 14. First return to `P*`
+
+After WP5, the minimal zero-event identity-call fixture exposes a genuine
+scope/cut ambiguity. When the call is parallel to one independent event, its
+unchanged entry/exit wire crosses both cuts before and after that event. Both
+identity slices have empty graft intersections, and changing frontier term
+order changes the syntax path without selecting either causal placement.
+
+Thus current data determine a two-element incidence fibre, not a unique cut.
+An earliest/latest selector would add policy. The least-committal next model is
+a finite scope/cut relation on which independent surgery acts inside fibres;
+making `P*` single-valued instead requires explicit scope-boundary markers.
+See `docs/research/0027-zero-event-scope-cut-incidence-no-go.md`.
