@@ -115,6 +115,10 @@ semantic code. The self-contained current-state report is
 [`docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`](docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md),
 and the approved next-phase implementation brief is
 [`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md).
+Longer-term work on observer-conditioned specialization, complex `Prog`
+geometry, intrinsic-structure learning, and practical language calibrations is
+tracked in
+[`docs/RESEARCH_ENGINEERING_AGENDA.md`](docs/RESEARCH_ENGINEERING_AGENDA.md).
 
 ## Status and license
 
