@@ -1,10 +1,12 @@
 from __future__ import annotations
 
+import json
+from collections.abc import Hashable, Mapping
 from dataclasses import dataclass
 from fractions import Fraction
 from itertools import combinations
 from math import gcd
-from typing import Any
+from typing import Any, TypeAlias
 
 from adva import link_modules
 
@@ -32,6 +34,40 @@ E0_DUAL_CUT_KERNEL = r"""
         (discard 1))))
 )
 """
+
+
+E0_NESTED_GRAFT_KERNEL = r"""
+(module e0-nested-graft
+  (export root)
+
+  (def add-two
+    (fn ((left Real) (right Real)) Real
+      (add
+        (frontier
+          (use left)
+          (use right)))))
+
+  (def diamond
+    (fn ((left Real) (right Real)) Real
+      (call add-two
+        (neg (use left))
+        (id (use right)))))
+
+  (def wrapper
+    (fn ((left Real) (right Real)) Real
+      (call diamond
+        (use left)
+        (use right))))
+
+  (def root
+    (fn ((x Real)) Real
+      (call wrapper
+        (copy (use x)))))
+)
+"""
+
+
+Relation: TypeAlias = frozenset[tuple[Hashable, Hashable]]
 
 
 @dataclass(frozen=True, slots=True)
@@ -109,6 +145,49 @@ class DecodedCutView:
 
     completed: tuple[int, ...]
     frontier: tuple[dict[str, Any], ...]
+
+
+@dataclass(frozen=True, slots=True)
+class E0EdgeCoordinate:
+    """One declared finite chart from a checked wire to G and J(G)."""
+
+    edge_id: str
+    primal: ProjectivePoint
+    dual: ProjectivePoint
+
+
+@dataclass(frozen=True, slots=True)
+class FrameEventRole:
+    """One exact graft-frame incidence carried by one event surgery."""
+
+    frame_id: str
+    scope_path: str
+    region_in_parent: str
+    event_region: str
+
+
+@dataclass(frozen=True, slots=True)
+class FrameDecoratedFaceSurgery:
+    """One event boundary on the dual graph, decorated without duplication."""
+
+    event: int
+    boundary: frozenset[str]
+    dual_coordinates: frozenset[tuple[int, int]]
+    frame_roles: tuple[FrameEventRole, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class NestedGridInputExpression:
+    frame_stack: tuple[tuple[str, str, str], ...]
+    ordered_holes: tuple[tuple[str, tuple[tuple[int, str], ...]], ...]
+    entry_wires: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class NestedGridOutputExpression:
+    frame_stack: tuple[tuple[str, str, str], ...]
+    body_events: tuple[int, ...]
+    exit_wires: tuple[str, ...]
 
 
 class DiamondDualPresentation:
@@ -310,6 +389,166 @@ def _diamond() -> Any:
     return _workspace().function("e0-dual-cut", "fork-recombine")
 
 
+def _nested_diamond() -> Any:
+    return link_modules([E0_NESTED_GRAFT_KERNEL]).function(
+        "e0-nested-graft", "root"
+    )
+
+
+def _json_key(value: Any) -> str:
+    return json.dumps(value, sort_keys=True, separators=(",", ":"))
+
+
+def _then(left: Relation, right: Relation) -> Relation:
+    return frozenset(
+        (source, target)
+        for source, middle in left
+        for candidate, target in right
+        if middle == candidate
+    )
+
+
+def _converse(relation: Relation) -> Relation:
+    return frozenset((target, source) for source, target in relation)
+
+
+def _call_frame(function: Any, callee: str) -> Mapping[str, Any]:
+    trace = function.graft_trace
+    assert trace is not None
+    return next(
+        frame
+        for frame in trace.result.frames
+        if frame["kind"] == "call" and frame["callee"]["function"] == callee
+    )
+
+
+def _ordered_holes(frame: Mapping[str, Any]) -> tuple[tuple[int, str], ...]:
+    return tuple(
+        (hole["hole_index"], hole["hole"]["name"])
+        for hole in frame["holes"]
+    )
+
+
+def _nested_expressions(function: Any):
+    frames = tuple(
+        _call_frame(function, name)
+        for name in ("wrapper", "diamond", "add-two")
+    )
+    frame_stack = tuple(
+        (
+            frame["id"],
+            _json_key(frame["scope_path"]),
+            _json_key(frame["region_in_parent"]),
+        )
+        for frame in frames
+    )
+    input_expression = NestedGridInputExpression(
+        frame_stack=frame_stack,
+        ordered_holes=tuple(
+            (frame["id"], _ordered_holes(frame)) for frame in frames
+        ),
+        entry_wires=tuple(_json_key(wire) for wire in frames[0]["entry_wires"]),
+    )
+    output_expression = NestedGridOutputExpression(
+        frame_stack=frame_stack,
+        body_events=tuple(frames[0]["body_region"]),
+        exit_wires=tuple(_json_key(wire) for wire in frames[0]["exit_wires"]),
+    )
+    return frames, input_expression, output_expression
+
+
+def _e0_edge_chart(model: DiamondDualPresentation) -> dict[str, E0EdgeCoordinate]:
+    point_grid = tuple(
+        ProjectivePoint(-value, 1) for value in range(-2, 3)
+    ) + (ProjectivePoint(1, 0),)
+    assert len(point_grid) == len(model.edge_order)
+    return {
+        edge_id: E0EdgeCoordinate(edge_id, point, point.j_lift())
+        for edge_id, point in zip(model.edge_order, point_grid, strict=True)
+    }
+
+
+def _event_roles(function: Any, event: int) -> tuple[FrameEventRole, ...]:
+    trace = function.graft_trace
+    assert trace is not None
+    roles = []
+    for frame in trace.result.frames:
+        if event in frame["body_region"]:
+            event_region = "body"
+        else:
+            argument = next(
+                (
+                    item
+                    for item in frame["arguments"]
+                    if event in item["nodes"]
+                ),
+                None,
+            )
+            if argument is None:
+                continue
+            event_region = f"argument:{argument['argument_index']}"
+        roles.append(
+            FrameEventRole(
+                frame_id=frame["id"],
+                scope_path=_json_key(frame["scope_path"]),
+                region_in_parent=_json_key(frame["region_in_parent"]),
+                event_region=event_region,
+            )
+        )
+    return tuple(roles)
+
+
+def _decorated_surgery(
+    function: Any,
+    model: DiamondDualPresentation,
+    chart: Mapping[str, E0EdgeCoordinate],
+    event: int,
+) -> FrameDecoratedFaceSurgery:
+    boundary = model.event_boundaries[event]
+    return FrameDecoratedFaceSurgery(
+        event=event,
+        boundary=boundary,
+        dual_coordinates=frozenset(
+            chart[edge].dual.projective_key() for edge in boundary
+        ),
+        frame_roles=_event_roles(function, event),
+    )
+
+
+def _apply_decorated_word(
+    model: DiamondDualPresentation,
+    state: DecoratedDualCut,
+    word: tuple[FrameDecoratedFaceSurgery, ...],
+) -> DecoratedDualCut:
+    for surgery in word:
+        state = model.surgery(state, surgery.event)
+    return state
+
+
+def _coordinate_support(
+    state: DecoratedDualCut,
+    chart: Mapping[str, E0EdgeCoordinate],
+) -> frozenset[tuple[int, int]]:
+    return frozenset(chart[edge].dual.projective_key() for edge in state.cycle)
+
+
+def _intersection_roles(slice_result: Any, event: int) -> set[tuple[str, str]]:
+    assert slice_result.graft_intersections is not None
+    result = set()
+    for intersection in slice_result.graft_intersections:
+        if event in intersection["body_events"]:
+            result.add((intersection["frame"], "body"))
+        for argument in intersection["argument_events"]:
+            if event in argument["events"]:
+                result.add(
+                    (
+                        intersection["frame"],
+                        f"argument:{argument['argument_index']}",
+                    )
+                )
+    return result
+
+
 def test_minimal_projective_grid_and_covaluation_are_j_dual() -> None:
     point_grid = tuple(
         ProjectivePoint(-value, 1) for value in range(-2, 3)
@@ -439,3 +678,136 @@ def test_current_call_history_is_not_a_scope_faithful_p_star() -> None:
         "id",
         "add",
     ]
+
+
+def test_nested_two_hole_stack_is_carried_by_the_same_checked_diamond() -> None:
+    function = _nested_diamond()
+    wrapper, diamond, add_two = _nested_expressions(function)[0]
+
+    assert [node["operation"]["name"] for node in function.ir["nodes"]] == [
+        "copy",
+        "neg",
+        "id",
+        "add",
+    ]
+    assert diamond["parent"] == wrapper["id"]
+    assert add_two["parent"] == diamond["id"]
+    assert diamond["region_in_parent"] == {"kind": "callee_body"}
+    assert add_two["region_in_parent"] == {"kind": "callee_body"}
+    assert wrapper["body_region"] == [1, 2, 3]
+    assert diamond["body_region"] == [1, 2, 3]
+    assert add_two["arguments"][0]["nodes"] == [1]
+    assert add_two["arguments"][1]["nodes"] == [2]
+    assert add_two["body_region"] == [3]
+    assert _ordered_holes(wrapper) == ((0, "left"), (1, "right"))
+    assert _ordered_holes(diamond) == ((0, "left"), (1, "right"))
+    assert _ordered_holes(add_two) == ((0, "left"), (1, "right"))
+
+
+def test_each_dual_face_surgery_carries_every_exact_frame_role_once() -> None:
+    function = _nested_diamond()
+    model = DiamondDualPresentation(function)
+    chart = _e0_edge_chart(model)
+    lower_by_event = {1: (0,), 2: (0,), 3: (0, 1, 2)}
+
+    assert len(chart) == 6
+    assert len(
+        {item.primal.projective_key() for item in chart.values()}
+    ) == len(chart)
+    assert len(
+        {item.dual.projective_key() for item in chart.values()}
+    ) == len(chart)
+
+    for event, lower in lower_by_event.items():
+        surgery = _decorated_surgery(function, model, chart, event)
+        upper = (*lower, event)
+        program_slice = function.program_slice(lower, upper)
+        expected_roles = _intersection_roles(program_slice.result, event)
+        decorated_roles = {
+            (role.frame_id, role.event_region) for role in surgery.frame_roles
+        }
+        before = model.encode_cut(function.causal_cut(lower))
+        after = model.surgery(before, event)
+
+        assert decorated_roles == expected_roles
+        assert len(surgery.frame_roles) == len(decorated_roles)
+        assert model.is_mod_two_cycle(surgery.boundary)
+        assert _coordinate_support(after, chart) == (
+            _coordinate_support(before, chart) ^ surgery.dual_coordinates
+        )
+        assert all(
+            chart[edge].dual == chart[edge].primal.j_lift()
+            for edge in surgery.boundary
+        )
+
+
+def test_decorated_surgeries_compose_over_adjacent_slices_without_duplication():
+    function = _nested_diamond()
+    model = DiamondDualPresentation(function)
+    chart = _e0_edge_chart(model)
+    start = model.encode_cut(function.causal_cut((0,)))
+    schedules = tuple(schedule[1:] for schedule in model.schedules())
+    words = tuple(
+        tuple(
+            _decorated_surgery(function, model, chart, event)
+            for event in schedule
+        )
+        for schedule in schedules
+    )
+    final_states = tuple(
+        _apply_decorated_word(model, start, word) for word in words
+    )
+
+    assert schedules == ((1, 2, 3), (2, 1, 3))
+    assert final_states[0] == final_states[1]
+    for word in words:
+        assert [surgery.event for surgery in word] in ([1, 2, 3], [2, 1, 3])
+        assert len({surgery.event for surgery in word}) == len(word)
+
+    composed = function.compose_program_slices(
+        (0,),
+        (0, 1),
+        (0, 1, 2, 3),
+    )
+    direct = function.program_slice((0,), (0, 1, 2, 3))
+    first_word = words[0]
+    left_state = _apply_decorated_word(model, start, first_word[:1])
+    glued_state = _apply_decorated_word(model, left_state, first_word[1:])
+
+    assert composed.result == direct.result
+    assert composed.certificate["exact_composition"] == "checked"
+    assert composed.certificate["left_event_ids"] == [1]
+    assert composed.certificate["right_event_ids"] == [2, 3]
+    assert glued_state == final_states[0]
+
+
+def test_nested_e0_characteristic_relation_factors_forward_and_reverse():
+    function = _nested_diamond()
+    model = DiamondDualPresentation(function)
+    chart = _e0_edge_chart(model)
+    _, input_expression, output_expression = _nested_expressions(function)
+    start = model.encode_cut(function.causal_cut((0,)))
+    schedules = tuple(schedule[1:] for schedule in model.schedules())
+    words = tuple(
+        tuple(
+            _decorated_surgery(function, model, chart, event)
+            for event in schedule
+        )
+        for schedule in schedules
+    )
+    characteristic: Relation = frozenset(
+        (start, _apply_decorated_word(model, start, word)) for word in words
+    )
+    final = next(iter(characteristic))[1]
+    p_star_input: Relation = frozenset({(input_expression, start)})
+    p_output: Relation = frozenset({(final, output_expression)})
+    transformation: Relation = frozenset(
+        {(input_expression, output_expression)}
+    )
+
+    assert len(characteristic) == 1
+    assert _then(_then(p_star_input, characteristic), p_output) == transformation
+    assert _then(
+        _then(_converse(p_output), _converse(characteristic)),
+        _converse(p_star_input),
+    ) == _converse(transformation)
