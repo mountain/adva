@@ -1,8 +1,10 @@
 from __future__ import annotations
 
 import cmath
+from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
-from typing import Any, Mapping, Sequence
+from fractions import Fraction
+from typing import Any
 
 import pytest
 from adva import link_modules
@@ -293,6 +295,126 @@ class BackwardProbeWitness:
 
     @property
     def demand_by_endpoint(self) -> dict[WireEndpoint, ProbeDemand]:
+        return {record.endpoint: record for record in self.demands}
+
+
+@dataclass(frozen=True, slots=True)
+class DemandExpression:
+    """Unsimplified arithmetic expression used only by the research witness."""
+
+    kind: str
+    data: tuple[Any, ...] = ()
+    arguments: tuple[DemandExpression, ...] = ()
+
+    @classmethod
+    def constant(cls, numerator: int, denominator: int = 1) -> DemandExpression:
+        value = Fraction(numerator, denominator)
+        return cls("constant", (value.numerator, value.denominator))
+
+    @classmethod
+    def input(
+        cls,
+        name: str,
+        occurrence: str,
+        source: str,
+    ) -> DemandExpression:
+        return cls("input", (name, occurrence, source))
+
+    @classmethod
+    def add(
+        cls,
+        left: DemandExpression,
+        right: DemandExpression,
+    ) -> DemandExpression:
+        return cls("add", arguments=(left, right))
+
+    @classmethod
+    def multiply(
+        cls,
+        left: DemandExpression,
+        right: DemandExpression,
+    ) -> DemandExpression:
+        return cls("mul", arguments=(left, right))
+
+    @classmethod
+    def negate(cls, argument: DemandExpression) -> DemandExpression:
+        return cls("neg", arguments=(argument,))
+
+    def evaluate(self, inputs: Mapping[str, float]) -> float:
+        if self.kind == "constant":
+            return self.data[0] / self.data[1]
+        if self.kind == "input":
+            return float(inputs[self.data[0]])
+        if self.kind == "add":
+            return self.arguments[0].evaluate(inputs) + self.arguments[1].evaluate(inputs)
+        if self.kind == "mul":
+            return self.arguments[0].evaluate(inputs) * self.arguments[1].evaluate(inputs)
+        if self.kind == "neg":
+            return -self.arguments[0].evaluate(inputs)
+        raise TypeError(f"unknown demand expression kind: {self.kind!r}")
+
+    def to_lisp(self) -> str:
+        if self.kind == "constant":
+            numerator, denominator = self.data
+            return str(numerator) if denominator == 1 else f"{numerator}/{denominator}"
+        if self.kind == "input":
+            return f"(use {self.data[0]})"
+        if self.kind == "add":
+            left, right = self.arguments
+            return f"(add (frontier {left.to_lisp()} {right.to_lisp()}))"
+        if self.kind == "mul":
+            left, right = self.arguments
+            return f"(mul (frontier {left.to_lisp()} {right.to_lisp()}))"
+        if self.kind == "neg":
+            return f"(neg {self.arguments[0].to_lisp()})"
+        raise TypeError(f"unknown demand expression kind: {self.kind!r}")
+
+    def input_uses(self) -> tuple[str, ...]:
+        if self.kind == "input":
+            return (self.data[0],)
+        return tuple(
+            name for argument in self.arguments for name in argument.input_uses()
+        )
+
+    def input_audit(self) -> tuple[tuple[str, str, str], ...]:
+        if self.kind == "input":
+            return (self.data,)  # type: ignore[return-value]
+        return tuple(
+            item for argument in self.arguments for item in argument.input_audit()
+        )
+
+    def operation_kinds(self) -> frozenset[str]:
+        return frozenset(
+            {self.kind}
+            | {
+                kind
+                for argument in self.arguments
+                for kind in argument.operation_kinds()
+            }
+        )
+
+
+@dataclass(frozen=True, slots=True)
+class SymbolicProbeDemand:
+    endpoint: WireEndpoint
+    coefficient: DemandExpression
+    lineage: tuple[str, ...]
+    sources: tuple[str, ...]
+
+
+@dataclass(frozen=True, slots=True)
+class SymbolicBackwardProbeWitness:
+    outputs: tuple[DemandExpression, ...]
+    input_demands: tuple[tuple[str, DemandExpression], ...]
+    demands: tuple[SymbolicProbeDemand, ...]
+    operation_rules: tuple[str, ...]
+
+    @property
+    def input_demand_map(self) -> dict[str, DemandExpression]:
+        return dict(self.input_demands)
+
+    @property
+    def demand_by_endpoint(self) -> dict[WireEndpoint, SymbolicProbeDemand]:
         return {record.endpoint: record for record in self.demands}
 
 
@@ -653,6 +775,212 @@ def _research_backward_probe(
         node_demands=tuple(reversed(reversed_node_demands)),
         operation_rules=tuple(sorted(operation_rules)),
     )
+
+
+def _symbolic_forward_node(
+    operation: str,
+    arguments: tuple[DemandExpression, ...],
+    parameters: MappingView,
+) -> tuple[DemandExpression, ...]:
+    if operation == "constant":
+        value = parameters["value"]
+        return (DemandExpression.constant(value["numerator"], value["denominator"]),)
+    if operation == "copy":
+        return (arguments[0], arguments[0])
+    if operation == "add":
+        return (DemandExpression.add(arguments[0], arguments[1]),)
+    if operation in {"mul", "scale"}:
+        return (DemandExpression.multiply(arguments[0], arguments[1]),)
+    if operation == "neg":
+        return (DemandExpression.negate(arguments[0]),)
+    raise TypeError(f"operation outside the symbolic backward witness: {operation!r}")
+
+
+def _symbolic_reverse_node(
+    operation: str,
+    arguments: tuple[DemandExpression, ...],
+    output_demands: tuple[DemandExpression, ...],
+) -> tuple[DemandExpression, ...]:
+    if operation == "constant":
+        return ()
+    if operation == "copy":
+        return (DemandExpression.add(output_demands[0], output_demands[1]),)
+    if operation == "add":
+        return (output_demands[0], output_demands[0])
+    if operation in {"mul", "scale"}:
+        return (
+            DemandExpression.multiply(output_demands[0], arguments[1]),
+            DemandExpression.multiply(output_demands[0], arguments[0]),
+        )
+    if operation == "neg":
+        return (DemandExpression.negate(output_demands[0]),)
+    raise TypeError(f"operation outside the symbolic backward witness: {operation!r}")
+
+
+def _research_symbolic_backward_probe(
+    function: Any,
+    output_probe: Sequence[DemandExpression],
+) -> SymbolicBackwardProbeWitness:
+    """Lift the bounded numerical demand coefficients to unsimplified terms."""
+
+    if function.validation_certificate["graph"] != "checked":
+        raise ValueError("the symbolic witness requires a Rust-checked diagram")
+
+    diagram = function.ir
+    input_ports = tuple(diagram["signature"]["inputs"])
+    if len(output_probe) != len(diagram["outputs"]):
+        raise TypeError("symbolic output probe arity differs from the checked codomain")
+
+    occurrence_sources = {
+        occurrence["id"]: occurrence["source"]
+        for occurrence in diagram["occurrences"]
+    }
+    consumer_wires = (
+        *(wire for node in diagram["nodes"] for wire in node["inputs"]),
+        *diagram["outputs"],
+    )
+    wire_metadata: dict[WireEndpoint, tuple[tuple[str, ...], tuple[str, ...]]] = {}
+    for wire in consumer_wires:
+        endpoint = _wire_endpoint(wire)
+        lineage = tuple(wire["lineage"])
+        metadata = (
+            lineage,
+            tuple(occurrence_sources[occurrence] for occurrence in lineage),
+        )
+        if endpoint in wire_metadata:
+            raise AssertionError("Rust-checked linear use exposed an aliased endpoint")
+        wire_metadata[endpoint] = metadata
+
+    endpoint_values: dict[WireEndpoint, DemandExpression] = {}
+    for index, port in enumerate(input_ports):
+        endpoint = WireEndpoint("input", index, 0)
+        lineage, sources = wire_metadata[endpoint]
+        if len(lineage) != 1 or len(sources) != 1:
+            raise AssertionError("a checked input endpoint must have one root occurrence")
+        endpoint_values[endpoint] = DemandExpression.input(
+            port["name"],
+            lineage[0],
+            sources[0],
+        )
+
+    operation_rules = set()
+    for node in diagram["nodes"]:
+        operation_ref = node["operation"]
+        operation = operation_ref["name"]
+        if (
+            operation_ref["namespace"] != "adva.builtin"
+            or operation_ref["version"] != 1
+            or operation not in BOUNDED_BACKWARD_OPERATIONS
+        ):
+            raise TypeError("the diagram leaves the symbolic builtin research fragment")
+        arguments = tuple(
+            endpoint_values[_wire_endpoint(wire)] for wire in node["inputs"]
+        )
+        outputs = _symbolic_forward_node(
+            operation,
+            arguments,
+            operation_ref.get("parameters", {}),
+        )
+        if len(outputs) != len(node["output_types"]):
+            raise AssertionError("symbolic output arity differs from checked IR")
+        for output_index, expression in enumerate(outputs):
+            endpoint_values[
+                WireEndpoint("node", node["id"], output_index)
+            ] = expression
+        operation_rules.add(
+            f'{operation_ref["namespace"]}:{operation}@{operation_ref["version"]}'
+        )
+
+    outputs = tuple(
+        endpoint_values[_wire_endpoint(wire)] for wire in diagram["outputs"]
+    )
+    demands: dict[WireEndpoint, DemandExpression] = {}
+
+    def add_demand(endpoint: WireEndpoint, coefficient: DemandExpression) -> None:
+        existing = demands.get(endpoint)
+        demands[endpoint] = (
+            coefficient
+            if existing is None
+            else DemandExpression.add(existing, coefficient)
+        )
+
+    for wire, coefficient in zip(diagram["outputs"], output_probe, strict=True):
+        add_demand(_wire_endpoint(wire), coefficient)
+
+    zero = DemandExpression.constant(0)
+    for node in reversed(diagram["nodes"]):
+        operation = node["operation"]["name"]
+        output_demands = tuple(
+            demands.get(WireEndpoint("node", node["id"], output_index), zero)
+            for output_index in range(len(node["output_types"]))
+        )
+        arguments = tuple(
+            endpoint_values[_wire_endpoint(wire)] for wire in node["inputs"]
+        )
+        input_demands = _symbolic_reverse_node(operation, arguments, output_demands)
+        for wire, coefficient in zip(node["inputs"], input_demands, strict=True):
+            add_demand(_wire_endpoint(wire), coefficient)
+
+    demand_records = tuple(
+        SymbolicProbeDemand(
+            endpoint=endpoint,
+            coefficient=demands.get(endpoint, zero),
+            lineage=wire_metadata[endpoint][0],
+            sources=wire_metadata[endpoint][1],
+        )
+        for endpoint in sorted(wire_metadata)
+    )
+    input_demands = tuple(
+        (
+            port["name"],
+            demands.get(WireEndpoint("input", index, 0), zero),
+        )
+        for index, port in enumerate(input_ports)
+    )
+    return SymbolicBackwardProbeWitness(
+        outputs=outputs,
+        input_demands=input_demands,
+        demands=demand_records,
+        operation_rules=tuple(sorted(operation_rules)),
+    )
+
+
+def _compile_symbolic_input_demands(
+    original_function: Any,
+    witness: SymbolicBackwardProbeWitness,
+) -> Any:
+    """Ask Rust to compile the root demand terms as a fresh checked program."""
+
+    input_ports = tuple(original_function.ir["signature"]["inputs"])
+    expressions = tuple(expression for _, expression in witness.input_demands)
+    input_uses = tuple(
+        name for expression in expressions for name in expression.input_uses()
+    )
+    if len(input_uses) != len(set(input_uses)):
+        raise TypeError("the bounded replay fixture would require an undeclared copy")
+    input_names = tuple(port["name"] for port in input_ports)
+    if not set(input_uses) <= set(input_names):
+        raise TypeError("a demand expression references an unknown input")
+
+    inputs_source = " ".join(
+        f'({port["name"]} Real)' for port in input_ports
+    )
+    outputs_source = " ".join("Real" for _ in expressions)
+    frontier_terms = [expression.to_lisp() for expression in expressions]
+    frontier_terms.extend(
+        f'(discard (use {name}))' for name in input_names if name not in input_uses
+    )
+    body_source = "\n          ".join(frontier_terms)
+    module_source = f"""
+(module symbolic-optical-backward
+  (export probe)
+  (def probe
+    (fn ({inputs_source}) (outputs {outputs_source})
+      (frontier
+          {body_source}))))
+"""
+    workspace = link_modules([module_source])
+    return workspace.function("symbolic-optical-backward", "probe")
 
 
 def test_real_optical_programs_cross_the_checked_two_port_boundary() -> None:
@@ -1102,3 +1430,139 @@ def test_equal_root_gradients_retain_distinct_internal_demand_fields() -> None:
 
     assert copy_lineage_sizes(functions["parameter-objective"], device) == [1, 1, 3, 3]
     assert copy_lineage_sizes(functions["direct-parameter-objective"], direct) == [1, 1]
+
+
+def test_symbolic_backward_field_recovers_every_numerical_endpoint_demand() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    output_probe = (DemandExpression.constant(1), DemandExpression.constant(2))
+    symbolic = _research_symbolic_backward_probe(parameter_cell, output_probe)
+    fixtures = (
+        {"x": 2.0, "s": 3.0, "kappa": 1.0},
+        {"x": -1.0, "s": 2.0, "kappa": 0.5},
+        {"x": 4.0, "s": -2.0, "kappa": 3.0},
+    )
+
+    for inputs in fixtures:
+        numerical = _research_backward_probe(parameter_cell, inputs, (1.0, 2.0))
+        assert tuple(
+            expression.evaluate(inputs) for expression in symbolic.outputs
+        ) == pytest.approx(
+            numerical.outputs
+        )
+        assert symbolic.demand_by_endpoint.keys() == numerical.demand_by_endpoint.keys()
+        for endpoint, symbolic_record in symbolic.demand_by_endpoint.items():
+            numerical_record = numerical.demand_by_endpoint[endpoint]
+            assert symbolic_record.coefficient.evaluate(inputs) == pytest.approx(
+                numerical_record.coefficient
+            )
+            assert symbolic_record.lineage == numerical_record.lineage
+            assert symbolic_record.sources == numerical_record.sources
+
+    root_demands = symbolic.input_demand_map
+    assert root_demands["x"].input_uses() == ("kappa",)
+    assert root_demands["s"].input_uses() == ()
+    assert root_demands["kappa"].input_uses() == ("x",)
+    assert root_demands["s"].to_lisp() == "(add (frontier 1 2))"
+    assert root_demands["x"].operation_kinds() == frozenset(
+        {"constant", "input", "add", "mul", "neg"}
+    )
+    assert root_demands["s"].operation_kinds() == frozenset({"constant", "add"})
+    assert root_demands["kappa"].operation_kinds() == frozenset(
+        {"constant", "input", "add", "mul", "neg"}
+    )
+
+    input_metadata = {
+        record.endpoint.producer_id: (record.lineage[0], record.sources[0])
+        for record in symbolic.demands
+        if record.endpoint.producer_kind == "input"
+    }
+    assert root_demands["x"].input_audit() == (
+        ("kappa", *input_metadata[2]),
+    )
+    assert root_demands["s"].input_audit() == ()
+    assert root_demands["kappa"].input_audit() == (
+        ("x", *input_metadata[0]),
+    )
+
+
+def test_symbolic_root_demands_recompile_as_a_fresh_checked_program() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    symbolic = _research_symbolic_backward_probe(
+        parameter_cell,
+        (DemandExpression.constant(1), DemandExpression.constant(2)),
+    )
+    replay = _compile_symbolic_input_demands(parameter_cell, symbolic)
+    fixtures = (
+        {"x": 2.0, "s": 3.0, "kappa": 1.0},
+        {"x": -1.0, "s": 2.0, "kappa": 0.5},
+        {"x": 4.0, "s": -2.0, "kappa": 3.0},
+    )
+
+    assert replay.validation_certificate["graph"] == "checked"
+    assert replay.signature.inputs == (
+        ("x", "real"),
+        ("s", "real"),
+        ("kappa", "real"),
+    )
+    assert replay.signature.outputs == ("real", "real", "real")
+    assert replay.ir != parameter_cell.ir
+    assert tuple(map(len, _output_source_support(replay))) == (1, 0, 1)
+    assert _output_source_support(replay)[0].isdisjoint(
+        _output_source_support(replay)[2]
+    )
+
+    for inputs in fixtures:
+        replayed = replay.evaluate(inputs)
+        expected = tuple(
+            symbolic.input_demand_map[name].evaluate(inputs)
+            for name in ("x", "s", "kappa")
+        )
+        assert replayed == pytest.approx(expected)
+        assert replayed == pytest.approx(
+            (1.0 - 3.0 * inputs["kappa"], 3.0, -3.0 * inputs["x"])
+        )
+
+
+def test_symbolic_replay_satisfies_pairing_across_inputs_and_tangents() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+    output_probe = (1.0, 2.0)
+    symbolic = _research_symbolic_backward_probe(
+        parameter_cell,
+        tuple(DemandExpression.constant(int(value)) for value in output_probe),
+    )
+    replay = _compile_symbolic_input_demands(parameter_cell, symbolic)
+    fixtures = (
+        {"x": 2.0, "s": 3.0, "kappa": 1.0},
+        {"x": -1.0, "s": 2.0, "kappa": 0.5},
+        {"x": 4.0, "s": -2.0, "kappa": 3.0},
+    )
+    tangent_directions = (
+        {"x": 1.0, "s": 0.0, "kappa": 0.0},
+        {"x": 0.0, "s": 1.0, "kappa": 0.0},
+        {"x": 0.0, "s": 0.0, "kappa": 1.0},
+        {"x": 2.0, "s": -1.0, "kappa": 0.5},
+    )
+
+    for inputs in fixtures:
+        _, jacobian, certificate = parameter_cell.value_and_gradient(inputs)
+        root_demands = dict(
+            zip(("x", "s", "kappa"), replay.evaluate(inputs), strict=True)
+        )
+        assert certificate["diagram_integrity"] == "checked"
+        for tangent in tangent_directions:
+            forward_tangent = tuple(
+                sum(output_gradient[name] * tangent[name] for name in tangent)
+                for output_gradient in jacobian
+            )
+            codomain_pairing = sum(
+                coefficient * component
+                for coefficient, component in zip(
+                    output_probe,
+                    forward_tangent,
+                    strict=True,
+                )
+            )
+            domain_pairing = sum(
+                root_demands[name] * tangent[name] for name in tangent
+            )
+            assert codomain_pairing == pytest.approx(domain_pairing)
