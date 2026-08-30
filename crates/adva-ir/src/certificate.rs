@@ -245,6 +245,47 @@ pub struct ProgramSliceArtifact {
     pub certificate: ProgramSliceCertificate,
 }
 
+/// Certificate for exact composition of two adjacent same-diagram slices.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProgramSliceCompositionCertificate {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub inputs_revalidated: CheckStatus,
+    pub boundary_agreement: CheckStatus,
+    pub event_partition: CheckStatus,
+    pub original_id_preservation: CheckStatus,
+    pub lineage_preservation: CheckStatus,
+    pub exact_composition: CheckStatus,
+    pub left_event_ids: Vec<NodeId>,
+    pub right_event_ids: Vec<NodeId>,
+    pub result_event_ids: Vec<NodeId>,
+}
+
+impl ProgramSliceCompositionCertificate {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.inputs_revalidated,
+            self.boundary_agreement,
+            self.event_partition,
+            self.original_id_preservation,
+            self.lineage_preservation,
+            self.exact_composition,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct ProgramSliceCompositionArtifact {
+    pub result: ProgramSlice,
+    pub certificate: ProgramSliceCompositionCertificate,
+}
+
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EvaluationCertificate {

@@ -289,6 +289,19 @@ Prefer a canonical view/union construction over materialization as a new
 diagram. If a materialized diagram is also useful, keep it a later compiled
 presentation with an explicit identity map.
 
+Implementation result: Rust now composes adjacent canonical slices after
+revalidating both inputs, checking exact middle-cut equality, and checking a
+disjoint event union equal to the outer past difference.  The result is built
+in original diagram order from unchanged IDs and must equal the directly
+analyzed outer slice field for field.  Exact fixtures establish left and right
+units, three-nonempty-segment associativity, graft-link preservation, and
+retention of hidden constant--discard history.  See ADR 0009 and
+`docs/research/0024-exact-program-slice-composition-wp3.md`.
+
+The first mathematical checkpoint therefore passes in the finite
+same-diagram scope.  This does not restore a frame/cut bijection or define
+cross-program gluing, a dual presentation, or `P*`.
+
 ### WP4: exhaustive finite tests
 
 Build hand-written fixtures and, where practical, exhaust all downward-closed

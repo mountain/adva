@@ -43,6 +43,7 @@ judgments.
 - finite boundary substitution through checked module calls;
 - certified causal-cut and enabled-event analysis over checked diagrams;
 - exact same-diagram program-slice analysis between nested causal pasts;
+- certificate-bearing exact composition of adjacent program-slice views;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
 
@@ -99,7 +100,10 @@ All analyses first revalidate the diagram and return Rust certificates.
 retains the exact events in `V` minus `U`, changed lower and upper boundaries,
 unchanged through wires, and internal events invisible at the upper frontier.
 Optional graft links are revalidated compiler provenance and may overlap; they
-are not an event partition or a frame/cut bijection.
+are not an event partition or a frame/cut bijection.  Adjacent composition
+revalidates both input views, checks the literal middle cut and event union,
+rebuilds the outer view in original diagram order, and requires equality with
+the direct outer slice.
 
 These analyses preserve source and occurrence lineage without evaluation.
 They do not assert a topology object, an observer pullback, equality of
@@ -167,7 +171,7 @@ future binary codec must preserve the same ontology and schema versioning.
 The stable slice contains finite modules, terms, diagrams, compiler-emitted
 certified nested graft frames, evaluation, differentiation, explicit source
 partitions, certified finite causal cuts, single-event frontier replacement,
-exact program slices, and lossless serialization.
+exact program slices and adjacent composition, and lossless serialization.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
