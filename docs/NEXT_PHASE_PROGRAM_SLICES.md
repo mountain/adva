@@ -265,6 +265,21 @@ and derive the complete slice data without evaluation.
 Reuse the existing causal-cut implementation rather than duplicating frontier
 logic.
 
+Implementation result: Rust now derives a certified `ProgramSlice(P,U,V)` for
+nested causal pasts in one validated diagram.  It retains exact interval
+events, changed lower and upper boundaries, unchanged through wires, internal
+events, relevant occurrences and node-associated history, plus optional
+nonempty links to a revalidated compiler graft trace.  The
+constant--discard fixture proves that equal cut frontiers do not determine an
+empty interval.  A zero-event identity call proves that a graft frame need not
+have a nonempty event-region intersection with any causal slice.  See ADR 0008
+and `docs/research/0023-exact-program-slice-wp2.md`.
+
+WP2 therefore weakens the original scope/cut intuition a second time: graft
+intersection is an overlapping partial relation, not a bijection or event
+partition.  WP3 must compose adjacent same-diagram slices exactly; it must not
+assume that every frame chooses a unique cut interval.
+
 ### WP3: exact slice composition
 
 Add a composition operation or verifier for adjacent same-diagram slices. The
