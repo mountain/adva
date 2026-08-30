@@ -157,6 +157,11 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
 
 Ray = tuple[float, float]
 RealizedAction = tuple[tuple[float, float], tuple[float, float]]
+SixState = tuple[float, float, float, float, float, float]
+SourceIncidence = tuple[tuple[int, int], tuple[int, int]]
+ProgramAwareObservation = tuple[RealizedAction, SourceIncidence, tuple[str, ...]]
+
+ASPECT_OPPOSITE_PAIRS = ((0, 3), (1, 4), (2, 5))
 
 
 def _functions() -> dict[str, Any]:
@@ -247,6 +252,55 @@ def _output_source_support(function: Any) -> tuple[frozenset[str], ...]:
         frozenset(occurrence_sources[occurrence] for occurrence in output["lineage"])
         for output in diagram["outputs"]
     )
+
+
+def _six_state_orientation(value: SixState) -> SixState:
+    """The already derived Omega action, used here as a prior bounded witness."""
+
+    t, s, r, sr, rt, ts = value
+    return (-sr, -rt, -ts, t, s, r)
+
+
+def _six_state_basis(index: int) -> SixState:
+    return tuple(float(position == index) for position in range(6))  # type: ignore[return-value]
+
+
+def _optical_closure(value: SixState, pair: tuple[int, int]) -> Ray:
+    """Observe one aspect--opposite-face plane in the optical orientation."""
+
+    aspect, opposite_face = pair
+    return value[aspect], -value[opposite_face]
+
+
+def _source_incidence(function: Any) -> SourceIncidence:
+    supports = _output_source_support(function)
+    return (
+        (len(supports[0]), len(supports[0] & supports[1])),
+        (len(supports[1] & supports[0]), len(supports[1])),
+    )
+
+
+def _program_aware_observation(function: Any) -> ProgramAwareObservation:
+    return (
+        _realized_action(function),
+        _source_incidence(function),
+        tuple(event["kind"] for event in function.history["prefix"]),
+    )
+
+
+def _forget_program_geometry(observation: ProgramAwareObservation) -> RealizedAction:
+    return observation[0]
+
+
+def _projectivize(action: RealizedAction) -> RealizedAction:
+    """Quotient the two determinant-one oriented lifts by their central sign."""
+
+    flattened = tuple(coordinate for row in action for coordinate in row)
+    leading = next(coordinate for coordinate in flattened if coordinate != 0.0)
+    sign = 1.0 if leading > 0.0 else -1.0
+    return tuple(
+        tuple(sign * coordinate for coordinate in row) for row in action
+    )  # type: ignore[return-value]
 
 
 def test_real_optical_programs_cross_the_checked_two_port_boundary() -> None:
@@ -360,3 +414,59 @@ def test_same_numerical_shadow_retains_a_program_geometry_residual() -> None:
     assert direct_support[0].isdisjoint(direct_support[1])
     assert tuple(map(len, factorized_support)) == (2, 2)
     assert factorized_support[0] == factorized_support[1]
+
+
+def test_each_aspect_plane_has_an_explicit_commuting_optical_closure() -> None:
+    optical_action = _functions()["factorized-quarter"]
+
+    for pair in ASPECT_OPPOSITE_PAIRS:
+        images = {_optical_closure(_six_state_basis(index), pair) for index in range(6)}
+        assert (1.0, 0.0) in images
+        assert (0.0, -1.0) in images
+
+        forgotten = tuple(index for index in range(6) if index not in pair)
+        assert len(forgotten) == 4
+        assert all(
+            _optical_closure(_six_state_basis(index), pair) == (0.0, 0.0)
+            for index in forgotten
+        )
+
+        for index in range(6):
+            value = _six_state_basis(index)
+            observed_after_orientation = _optical_closure(
+                _six_state_orientation(value),
+                pair,
+            )
+            propagated_after_observation = _evaluate(
+                optical_action,
+                _optical_closure(value, pair),
+            )
+            assert observed_after_orientation == propagated_after_observation
+
+
+def test_observer_tower_separates_program_orientation_and_projective_levels() -> None:
+    functions = _functions()
+    direct = _program_aware_observation(functions["direct-quarter"])
+    factorized = _program_aware_observation(functions["factorized-quarter"])
+    inverse = _program_aware_observation(functions["inverse-quarter"])
+
+    # Program-aware observation retains construction and source incidence.
+    assert direct != factorized
+    assert direct[1] == ((1, 0), (0, 1))
+    assert factorized[1] == ((2, 2), (2, 2))
+
+    # Forgetting program geometry identifies the direct and factorized value
+    # actions but still distinguishes the two oriented lifts.
+    direct_oriented = _forget_program_geometry(direct)
+    factorized_oriented = _forget_program_geometry(factorized)
+    inverse_oriented = _forget_program_geometry(inverse)
+    assert direct_oriented == factorized_oriented
+    assert factorized_oriented != inverse_oriented
+    assert inverse_oriented == tuple(
+        tuple(-coordinate for coordinate in row) for row in factorized_oriented
+    )
+
+    # The projective quotient then forgets the central sign as a second,
+    # strictly coarser observation.
+    assert _projectivize(direct_oriented) == _projectivize(factorized_oriented)
+    assert _projectivize(factorized_oriented) == _projectivize(inverse_oriented)
