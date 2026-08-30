@@ -1,7 +1,7 @@
 # Technical Report: The Program-Process Core of Adva
 
-Status: self-contained handoff report updated through exact graft-trace and
-program-slice analysis. This report
+Status: self-contained handoff report updated through exhaustive exact slice
+laws and the read-only Python facade. This report
 describes the theory currently accepted by the project, the exact executable
 core, the bounded research evidence, the unresolved mathematical questions,
 and the separation between exact process structure and approximate numerical
@@ -44,8 +44,14 @@ Adjacent slices now compose exactly after input revalidation, literal
 middle-cut agreement, and event conservation.  The constructed outer view is
 required to equal the directly analyzed outer slice, and exact fixtures cover
 identity units, three-segment associativity, graft links, and hidden discard
-history.  The next evidence obligation is exhaustive nested-cut testing on a
-nontrivial independent diagram.
+history. The independent diamond is now exhausted over all 5 causal pasts, 14
+nested pairs, 30 nested triples, and 55 nested quadruples. Two distinct linear
+schedules yield one canonical outer slice, proving that schedule path is extra
+data rather than slice event order.
+
+Python now exposes graft traces, slices, and exact composites as typed
+read-only snapshots of Rust results and certificates. Python cannot construct
+or submit a slice, frame, or certificate to the semantic kernel.
 
 Crucially, this next phase is exact and finite. It requires no floating-point
 comparison and no infinite-series truncation. Floating point and truncation
@@ -390,13 +396,11 @@ Any future complex implementation must state whether it is:
 
 These types must not be interchangeable.
 
-## 5. The unresolved structural gap
+## 5. The remaining structural gap
 
-### 5.1 Flattened substitution history
+### 5.1 Retained substitution history and its limit
 
-The compiler currently records that a call happened and retains the callee
-name, but finite inlining loses the complete grafting frame. The final diagram
-does not expose:
+The compiler companion now retains:
 
 - the parent frame of a nested call;
 - the ordered region that produced each argument boundary;
@@ -404,18 +408,22 @@ does not expose:
 - the entry and exit boundary of the frame;
 - the relationship between a scope path and causal cuts.
 
-Without this data, K cannot yet be compared precisely with C and F.
+That data makes K comparable with C and F, but it also exposes a no-go result:
+frame intersections can overlap, while a zero-event call frame has no nonempty
+node-region intersection. A total scope-to-slice map therefore needs more than
+event membership.
 
-### 5.2 Cut snapshots without intervals
+### 5.2 Exact intervals without chosen schedules
 
-A `CausalCut` records one past and one frontier. It does not make the program
-between two cuts an object. Consequently the stable core cannot yet state an
-exact cut-composition law.
+`ProgramSlice` now makes the program between nested cuts an exact object, and
+adjacent slices compose with certificates, identity units, and associativity.
 
 Frontier equality alone is insufficient. A region may execute internal
 constant and discard events, or alternative independent schedules, without
 changing the observed frontier. The process interval must retain those
-events.
+events. Conversely, the outer interval does not retain which independent
+linear schedule was selected; a path-sensitive construction must add that
+data explicitly.
 
 ### 5.3 No stable bidirectional transport
 
@@ -623,11 +631,11 @@ substitution-scope nesting and reverse cut nesting are the same structure.
 Graft links remain overlapping and partial, and zero-event frames prevent a
 total frame-to-nonempty-slice map.
 
-The next engineering obligation is a read-only Python exposure of the now
-stable Rust artifacts. The next mathematical obligation is to identify the
-minimum extra decorated-boundary data needed for a contravariant synthesis
-map `P*`, or to prove by a finite counterexample that the proposed map must be
-weakened further. Neither obligation depends on floating point, analytic
+The read-only Python exposure of the stable Rust artifacts is now complete.
+The next mathematical obligation is to identify the minimum extra
+decorated-boundary data needed for a contravariant synthesis map `P*`, or to
+prove by a finite counterexample that the proposed map must be weakened
+further. This obligation does not depend on floating point, analytic
 truncation, complex completion, or spectral factorization.
 
 ## Required companion reading

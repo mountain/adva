@@ -95,6 +95,60 @@ def test_causal_cut_is_a_certified_non_value_reading(workspace):
     )
 
 
+def test_compiler_graft_trace_is_a_read_only_certified_view(workspace):
+    quadruple = workspace.function("client", "quadruple")
+    trace = quadruple.graft_trace
+
+    assert trace is not None
+    assert trace.certificate["parent_child_nesting"] == "checked"
+    assert trace.certificate["ordered_hole_bindings"] == "checked"
+    assert len(trace.result.frames) == 3
+    assert trace.result.frames[0]["id"] == trace.result.root
+    assert [frame["kind"] for frame in trace.result.frames] == [
+        "root",
+        "call",
+        "call",
+    ]
+
+
+def test_program_slice_and_composition_remain_rust_owned(workspace):
+    function = workspace.function("arithmetic", "shared-double")
+    copy_slice = function.program_slice([], [0])
+    add_slice = function.program_slice([0], [0, 1])
+    direct = function.program_slice([], [0, 1])
+    composed = function.compose_program_slices([], [0], [0, 1])
+
+    assert copy_slice.certificate["event_difference"] == "checked"
+    assert copy_slice.certificate["graft_frame_consistency"] == "checked"
+    assert [event["id"] for event in copy_slice.result.events] == [0]
+    assert [event["id"] for event in add_slice.result.events] == [1]
+    assert copy_slice.result.graft_intersections is not None
+    assert composed.certificate["inputs_revalidated"] == "checked"
+    assert composed.certificate["boundary_agreement"] == "checked"
+    assert composed.certificate["exact_composition"] == "checked"
+    assert composed.certificate["left_event_ids"] == [0]
+    assert composed.certificate["right_event_ids"] == [1]
+    assert composed.result == direct.result
+
+
+def test_imported_program_has_slices_but_no_invented_graft_provenance(workspace):
+    compiled = workspace.function("arithmetic", "shared-double")
+    imported = load_program(compiled.ir)
+
+    assert imported.graft_trace is None
+    interval = imported.program_slice([], [0])
+    assert interval.certificate["graft_frame_consistency"] is None
+    assert interval.result.graft_intersections is None
+
+
+def test_program_slice_inputs_are_rejected_before_python_can_forge_a_view(workspace):
+    function = workspace.function("arithmetic", "shared-double")
+    with pytest.raises(TypeError, match="non-negative node ids"):
+        function.program_slice([], [True])
+    with pytest.raises(ValueError, match="without predecessors"):
+        function.compose_program_slices([], [1], [0, 1])
+
+
 def test_non_past_closed_cut_is_rejected_by_rust(workspace):
     function = workspace.function("arithmetic", "shared-double")
     with pytest.raises(ValueError, match="without predecessors"):

@@ -1,8 +1,15 @@
-use adva_ir::{CompilationCertificate, DiagramValidationCertificate, NodeId, SharedProgramDiagram};
+use adva_ir::{
+    CompilationCertificate, DiagramValidationCertificate, GraftTraceArtifact, NodeId,
+    SharedProgramDiagram,
+};
 use adva_lisp::{
     LinkedModules, advance_causal_cut as advance_cut, analyze_causal_cut as analyze_cut,
-    compile_function, evaluate, evaluate_with_differential, import_diagram_json,
-    link_modules as link_rust_modules, parse_module, validate_diagram,
+    analyze_program_slice as analyze_slice,
+    analyze_program_slice_with_graft as analyze_slice_with_graft, compile_function,
+    compose_program_slices as compose_slices,
+    compose_program_slices_with_graft as compose_slices_with_graft, evaluate,
+    evaluate_with_differential, import_diagram_json, link_modules as link_rust_modules,
+    parse_module, validate_diagram,
 };
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
@@ -34,6 +41,7 @@ impl PyWorkspace {
         Ok(PyProgram {
             diagram: validated.result,
             compilation_certificate: Some(artifact.certificate),
+            graft_trace: Some(artifact.graft_trace),
             validation_certificate: validated.certificate,
         })
     }
@@ -44,6 +52,7 @@ impl PyWorkspace {
 struct PyProgram {
     diagram: SharedProgramDiagram,
     compilation_certificate: Option<CompilationCertificate>,
+    graft_trace: Option<GraftTraceArtifact>,
     validation_certificate: DiagramValidationCertificate,
 }
 
@@ -81,6 +90,16 @@ impl PyProgram {
         serde_json::to_string_pretty(&self.diagram.source_partition()).map_err(py_error)
     }
 
+    fn graft_trace(&self) -> PyResult<Option<PyCertifiedProcess>> {
+        let Some(artifact) = &self.graft_trace else {
+            return Ok(None);
+        };
+        Ok(Some((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        )))
+    }
+
     fn causal_cut(&self, completed: Vec<u32>) -> PyResult<PyCertifiedProcess> {
         let completed = completed.into_iter().map(NodeId).collect::<Vec<_>>();
         let artifact = analyze_cut(&self.diagram, &completed).map_err(py_error)?;
@@ -93,6 +112,92 @@ impl PyProgram {
     fn advance_causal_cut(&self, completed: Vec<u32>, event: u32) -> PyResult<PyCertifiedProcess> {
         let completed = completed.into_iter().map(NodeId).collect::<Vec<_>>();
         let artifact = advance_cut(&self.diagram, &completed, NodeId(event)).map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
+    }
+
+    fn program_slice(
+        &self,
+        lower_completed: Vec<u32>,
+        upper_completed: Vec<u32>,
+    ) -> PyResult<PyCertifiedProcess> {
+        let lower_completed = lower_completed
+            .into_iter()
+            .map(NodeId)
+            .collect::<Vec<_>>();
+        let upper_completed = upper_completed
+            .into_iter()
+            .map(NodeId)
+            .collect::<Vec<_>>();
+        let artifact = match &self.graft_trace {
+            Some(graft_trace) => analyze_slice_with_graft(
+                &self.diagram,
+                &graft_trace.result,
+                &lower_completed,
+                &upper_completed,
+            ),
+            None => analyze_slice(&self.diagram, &lower_completed, &upper_completed),
+        }
+        .map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
+    }
+
+    fn compose_program_slices(
+        &self,
+        lower_completed: Vec<u32>,
+        middle_completed: Vec<u32>,
+        upper_completed: Vec<u32>,
+    ) -> PyResult<PyCertifiedProcess> {
+        let lower_completed = lower_completed
+            .into_iter()
+            .map(NodeId)
+            .collect::<Vec<_>>();
+        let middle_completed = middle_completed
+            .into_iter()
+            .map(NodeId)
+            .collect::<Vec<_>>();
+        let upper_completed = upper_completed
+            .into_iter()
+            .map(NodeId)
+            .collect::<Vec<_>>();
+
+        let artifact = match &self.graft_trace {
+            Some(graft_trace) => {
+                let left = analyze_slice_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &lower_completed,
+                    &middle_completed,
+                )
+                .map_err(py_error)?;
+                let right = analyze_slice_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &middle_completed,
+                    &upper_completed,
+                )
+                .map_err(py_error)?;
+                compose_slices_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &left.result,
+                    &right.result,
+                )
+            }
+            None => {
+                let left = analyze_slice(&self.diagram, &lower_completed, &middle_completed)
+                    .map_err(py_error)?;
+                let right = analyze_slice(&self.diagram, &middle_completed, &upper_completed)
+                    .map_err(py_error)?;
+                compose_slices(&self.diagram, &left.result, &right.result)
+            }
+        }
+        .map_err(py_error)?;
         Ok((
             serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
             serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
@@ -134,6 +239,7 @@ fn load_program_json(source: &str) -> PyResult<PyProgram> {
     Ok(PyProgram {
         diagram: validated.result,
         compilation_certificate: None,
+        graft_trace: None,
         validation_certificate: validated.certificate,
     })
 }

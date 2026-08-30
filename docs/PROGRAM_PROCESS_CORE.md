@@ -92,8 +92,10 @@ For a Rust-validated `SharedProgramDiagram`, Adva now exposes:
 
 The cut reuses the diagram's `WireRef` values unchanged. It does not rebuild
 source or occurrence identities, evaluate expressions, simplify equal values,
-or assert a higher cell. Python receives this result only as an adapter over
-the Rust judgment.
+or assert a higher cell. Python receives these results through frozen adapter
+views over serialized Rust judgments. Composition inputs are derived again
+from three causal pasts inside Rust; Python cannot submit a reconstructed slice
+or certificate.
 
 This promotes the common carrier of causality and cuts into the semantic
 kernel without claiming a topology API, cross-diagram composition, a general
@@ -215,10 +217,12 @@ Therefore:
 
 ## Promotion gates
 
-The next semantic promotions must occur in dependency order.
+The first promotion below is now complete; later promotions remain in
+dependency order.
 
-1. Exhaust the slice laws over nontrivial independent finite diagrams and add
-   a read-only Python inspection facade after the Rust API stabilizes.
+1. Exhaust the slice laws over a nontrivial independent finite diagram and add
+   a read-only Python inspection facade after the Rust API stabilizes:
+   completed without changing `adva.ir` version 1.
 2. Decide separately whether compiler graft traces belong in a future stored
    IR version; imported diagrams currently have no graft provenance.
 3. Introduce probes only with an explicit pairing and pullback certificate.
