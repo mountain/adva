@@ -310,6 +310,16 @@ sets and nested triples in small checked diagrams.
 Tests must compare exact Rust data. They must not call scalar evaluation as an
 oracle for structural composition.
 
+Implementation result: the independent `neg`/`id` diamond has now been
+exhausted in Rust over all 5 downward-closed pasts, 14 nested pairs, 30 nested
+triples, and 55 nested quadruples. Every adjacent composition equals its direct
+outer slice, and both parenthesizations agree exactly. The two legal linear
+schedules retain different step paths but compose to the same canonical outer
+slice. In particular, the second schedule exposes why event-vector
+concatenation is invalid: `[1]` followed by `[0]` composes to the original
+diagram order `[0,1]`. See
+`docs/research/0025-exhaustive-independent-slice-laws-wp4.md`.
+
 ### WP5: read-only Python facade
 
 Only after the Rust API and tests are stable, expose typed read-only adapters
