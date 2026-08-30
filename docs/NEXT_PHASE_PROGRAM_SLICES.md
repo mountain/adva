@@ -210,6 +210,17 @@ dual-face boundary surgery.  It also gives two constraints for WP1--WP3:
 This research witness does not satisfy the phase exit condition, define a
 canonical E0 grid, or authorize a stable dual-cycle or `P*` API.
 
+The finite surreal-cut no-go in
+`docs/research/0021-surreal-cut-objectification-no-go.md` sharpens the same
+constraint.  Distinct cut forms `(0|2)` and `(0|3)` objectify to the same
+surreal number, while objectification already fails to commute with positive
+scaling on `(0|1)`.  Therefore a scope-faithful frame analysis cannot factor
+only through an objectified surreal number and still admit exact synthesis.
+WP1 must retain the decorated cut presentation, ordered holes, and graft
+history before any objectification or other value-level quotient.  This is a
+checked boundary on the representation design, not evidence against using
+decorated surreal forms as a research presentation.
+
 ### WP1: compiler-emitted graft trace
 
 Add IR-level companion result and certificate types, then make Rust lowering
