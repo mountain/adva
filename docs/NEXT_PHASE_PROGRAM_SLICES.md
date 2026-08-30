@@ -530,7 +530,22 @@ on the declared `J(G)` edge chart while carrying every exact intersecting
 frame role. Both legal surgery words reach the same decorated cut, and an
 adjacent-slice split composes to the direct outer slice without duplicating
 overlapping frames. Polarized relational composition gives the exact forward
-and reverse `P S P*` factorizations. The remaining obligation is a canonical
-grid-to-cellular-dual construction and a general certificate, not another
-fixture-level compatibility question. See
+and reverse `P S P*` factorizations. See
 `docs/research/0031-e0-nested-decorated-surgery-psp.md`.
+
+The arbitrary six-point edge labels have now been replaced, on the same
+fixture, by an exact rational routing embedding in the current Paper 0 E0
+grid. Every wire is a finite `X_1`/`Y_2` path, the inner cell is exactly the `BS(2,1)`
+relation, and pointwise `J(z)=-1/z` produces the second curved grid with exact
+circle equations and the polarity-compensated `BS(1,2)` relation. A common
+wire index then sends every certified Möbius-decorated cut and every enabled
+event star to its cellular-dual cycle and face boundary. This is an edge-level
+span, not a full cellular-duality theorem: the finite E0 window has seven
+vertices while its cellular dual has two. The next obligation is an oriented
+degree-reversing chain map or a finite obstruction to one, together with a
+canonical routing certificate beyond this fixture. Independently, this
+routing is not an arithmetic interpretation: positive affine E0 moves do not
+represent generic negation or binary addition. Respecting multi-hole
+valuation and substitution therefore requires a product/fibered carrier or a
+different elementary model. See
+`docs/research/0032-exact-e0-mobius-cellular-bridge.md`.
