@@ -7,7 +7,9 @@ use adva_lisp::{
 
 const PROCESS_MODULE: &str = r#"
 (module process
-  (export shared-sum identity hidden-history wrapper identity-call chain-three)
+  (export
+    shared-sum identity hidden-history wrapper identity-call chain-three
+    independent-diamond)
 
   (def shared-sum
     (fn ((x Real)) Real
@@ -42,6 +44,13 @@ const PROCESS_MODULE: &str = r#"
   (def chain-three
     (fn ((x Real)) Real
       (neg (neg (neg (use x))))))
+
+  (def independent-diamond
+    (fn ((left Real) (right Real)) Real
+      (add
+        (frontier
+          (neg (use left))
+          (id (use right))))))
 )
 "#;
 
@@ -53,6 +62,20 @@ fn compile(name: &str) -> adva_ir::CompilationArtifact {
 
 fn shared_sum() -> adva_ir::SharedProgramDiagram {
     compile("shared-sum").result
+}
+
+fn independent_pasts() -> Vec<Vec<NodeId>> {
+    vec![
+        vec![],
+        vec![NodeId(0)],
+        vec![NodeId(1)],
+        vec![NodeId(0), NodeId(1)],
+        vec![NodeId(0), NodeId(1), NodeId(2)],
+    ]
+}
+
+fn is_subset(left: &[NodeId], right: &[NodeId]) -> bool {
+    left.iter().all(|node| right.contains(node))
 }
 
 #[test]
@@ -349,4 +372,180 @@ fn graft_linked_slice_composition_rederives_outer_intersections() {
 
     assert!(composed.certificate.certified());
     assert_eq!(composed.result, event);
+}
+
+#[test]
+fn independent_diamond_exhausts_nested_slice_composition_laws() {
+    let artifact = compile("independent-diamond");
+    let pasts = independent_pasts();
+
+    for past in &pasts {
+        assert!(
+            analyze_causal_cut(&artifact.result, past)
+                .unwrap()
+                .certificate
+                .certified()
+        );
+    }
+
+    let mut pair_count = 0;
+    let mut triple_count = 0;
+    let mut quadruple_count = 0;
+    for lower in &pasts {
+        for middle in &pasts {
+            if !is_subset(lower, middle) {
+                continue;
+            }
+            pair_count += 1;
+            assert!(
+                analyze_program_slice(&artifact.result, lower, middle)
+                    .unwrap()
+                    .certificate
+                    .certified()
+            );
+
+            for upper in &pasts {
+                if !is_subset(middle, upper) {
+                    continue;
+                }
+                triple_count += 1;
+                let left = analyze_program_slice(&artifact.result, lower, middle)
+                    .unwrap()
+                    .result;
+                let right = analyze_program_slice(&artifact.result, middle, upper)
+                    .unwrap()
+                    .result;
+                let composed = compose_program_slices(&artifact.result, &left, &right).unwrap();
+                let direct = analyze_program_slice(&artifact.result, lower, upper)
+                    .unwrap()
+                    .result;
+                assert!(composed.certificate.certified());
+                assert_eq!(composed.result, direct);
+
+                for final_past in &pasts {
+                    if !is_subset(upper, final_past) {
+                        continue;
+                    }
+                    quadruple_count += 1;
+                    let third = analyze_program_slice(&artifact.result, upper, final_past)
+                        .unwrap()
+                        .result;
+                    let left_associated =
+                        compose_program_slices(&artifact.result, &composed.result, &third)
+                            .unwrap()
+                            .result;
+                    let right_pair = compose_program_slices(&artifact.result, &right, &third)
+                        .unwrap()
+                        .result;
+                    let right_associated =
+                        compose_program_slices(&artifact.result, &left, &right_pair)
+                            .unwrap()
+                            .result;
+                    let direct = analyze_program_slice(&artifact.result, lower, final_past)
+                        .unwrap()
+                        .result;
+                    assert_eq!(left_associated, right_associated);
+                    assert_eq!(left_associated, direct);
+                }
+            }
+        }
+    }
+
+    assert_eq!(pair_count, 14);
+    assert_eq!(triple_count, 30);
+    assert_eq!(quadruple_count, 55);
+}
+
+#[test]
+fn independent_schedules_keep_distinct_paths_but_share_the_exact_outer_slice() {
+    let artifact = compile("independent-diamond");
+
+    let schedule_a = [NodeId(0), NodeId(1), NodeId(2)];
+    let schedule_b = [NodeId(1), NodeId(0), NodeId(2)];
+    assert_ne!(schedule_a, schedule_b);
+
+    let a0 = advance_causal_cut(&artifact.result, &[], schedule_a[0]).unwrap();
+    let a1 =
+        advance_causal_cut(&artifact.result, &a0.result.after.completed, schedule_a[1]).unwrap();
+    let a2 =
+        advance_causal_cut(&artifact.result, &a1.result.after.completed, schedule_a[2]).unwrap();
+    let b0 = advance_causal_cut(&artifact.result, &[], schedule_b[0]).unwrap();
+    let b1 =
+        advance_causal_cut(&artifact.result, &b0.result.after.completed, schedule_b[1]).unwrap();
+    let b2 =
+        advance_causal_cut(&artifact.result, &b1.result.after.completed, schedule_b[2]).unwrap();
+
+    assert_ne!(a0.result.after.completed, b0.result.after.completed);
+    assert_eq!(a2.result.after, b2.result.after);
+
+    let a_first = analyze_program_slice(&artifact.result, &[], &a0.result.after.completed)
+        .unwrap()
+        .result;
+    let a_second = analyze_program_slice(
+        &artifact.result,
+        &a0.result.after.completed,
+        &a1.result.after.completed,
+    )
+    .unwrap()
+    .result;
+    let a_third = analyze_program_slice(
+        &artifact.result,
+        &a1.result.after.completed,
+        &a2.result.after.completed,
+    )
+    .unwrap()
+    .result;
+    let a_prefix = compose_program_slices(&artifact.result, &a_first, &a_second)
+        .unwrap()
+        .result;
+    let a_whole = compose_program_slices(&artifact.result, &a_prefix, &a_third)
+        .unwrap()
+        .result;
+
+    let b_first = analyze_program_slice(&artifact.result, &[], &b0.result.after.completed)
+        .unwrap()
+        .result;
+    let b_second = analyze_program_slice(
+        &artifact.result,
+        &b0.result.after.completed,
+        &b1.result.after.completed,
+    )
+    .unwrap()
+    .result;
+    let b_third = analyze_program_slice(
+        &artifact.result,
+        &b1.result.after.completed,
+        &b2.result.after.completed,
+    )
+    .unwrap()
+    .result;
+    assert_eq!(
+        b_first
+            .events
+            .iter()
+            .chain(&b_second.events)
+            .map(|node| node.id)
+            .collect::<Vec<_>>(),
+        vec![NodeId(1), NodeId(0)]
+    );
+    let b_prefix = compose_program_slices(&artifact.result, &b_first, &b_second)
+        .unwrap()
+        .result;
+    assert_eq!(
+        b_prefix
+            .events
+            .iter()
+            .map(|node| node.id)
+            .collect::<Vec<_>>(),
+        vec![NodeId(0), NodeId(1)]
+    );
+    let b_whole = compose_program_slices(&artifact.result, &b_prefix, &b_third)
+        .unwrap()
+        .result;
+
+    let direct = analyze_program_slice(&artifact.result, &[], &[NodeId(0), NodeId(1), NodeId(2)])
+        .unwrap()
+        .result;
+    assert_eq!(a_whole, direct);
+    assert_eq!(b_whole, direct);
 }

@@ -99,7 +99,11 @@ This promotes the common carrier of causality and cuts into the semantic
 kernel without claiming a topology API, cross-diagram composition, a general
 cut-transport functor, or a stable observer pullback.  Equal cut frontiers may
 still bound a nonempty interval, and zero-event graft frames have no canonical
-nonempty event intersection.
+nonempty event intersection. On the complete five-cut lattice of one
+independent three-event diamond, exact tests cover all nested pairs, triples,
+and quadruples. The two legal schedules have different step paths but the same
+outer slice, showing that a chosen linear extension is extra data rather than
+part of the canonical interval.
 
 ## Values and compiled presentations
 

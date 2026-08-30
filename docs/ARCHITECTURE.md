@@ -103,7 +103,11 @@ Optional graft links are revalidated compiler provenance and may overlap; they
 are not an event partition or a frame/cut bijection.  Adjacent composition
 revalidates both input views, checks the literal middle cut and event union,
 rebuilds the outer view in original diagram order, and requires equality with
-the direct outer slice.
+the direct outer slice. Exact tests exhaust the full five-cut lattice of one
+independent three-event diamond, including all nested triples and quadruples.
+The two legal schedules retain distinct step paths while yielding the same
+canonical outer slice; schedule order is therefore not stored as slice event
+order.
 
 These analyses preserve source and occurrence lineage without evaluation.
 They do not assert a topology object, an observer pullback, equality of

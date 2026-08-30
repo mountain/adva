@@ -171,11 +171,13 @@ Such a bijection may fail:
 - sharing may make a syntactic region nontrivial at its boundary;
 - `discard` may hide an event from a frontier snapshot;
 - independent events create cuts not selected by syntax nesting;
-- current compilation erases the scope information needed to test the claim.
+- parent and child graft-frame regions may overlap on the same events; and
+- a zero-event call frame has no nonempty event-region intersection.
 
-The next phase must discover whether the relation is an isomorphism on a
-restricted fragment, a faithful embedding, a contravariant map that is not
-full, or a weaker certified correspondence.
+The compiler now retains enough graft information to test these failures.
+Current evidence rules out a total frame-to-nonempty-slice bijection on PSC0;
+a future correspondence must use extra boundary or syntax data or remain a
+partial certified relation.
 
 ## 3. Current executable architecture
 
@@ -208,7 +210,9 @@ The stable core currently includes:
 - `CausalCut` and `CausalCutCertificate`;
 - `CausalStep` and `CausalStepCertificate`;
 - compiler companion `GraftTrace` and `GraftTraceCertificate`;
-- `ProgramSlice` and `ProgramSliceCertificate`.
+- `ProgramSlice` and `ProgramSliceCertificate`;
+- `ProgramSliceCompositionArtifact` and
+  `ProgramSliceCompositionCertificate`.
 
 For a validated diagram and a completed node set `U`,
 `analyze_causal_cut(P, U)` checks that `U` is downward closed and returns the
@@ -221,6 +225,13 @@ intersections. `compose_program_slices(P,A,B)` revalidates adjacent inputs and
 returns the exact canonical outer view with a composition certificate.
 
 These judgments do not evaluate any scalar.
+
+Rust tests additionally exhaust the independent three-event diamond over all
+5 causal pasts, 14 nested pairs, 30 nested triples, and 55 nested quadruples.
+They verify exact direct/composed equality and associativity throughout. The
+two legal linear schedules remain different step paths but yield one canonical
+outer slice; one path explicitly demonstrates that adjacent event vectors
+cannot be composed by concatenation.
 
 ### 3.3 Current numerical realization
 
@@ -599,20 +610,25 @@ exact slice transport exists.
 
 ## 11. Current conclusion
 
-The current evidence supports the central intuition only to the following
-extent:
+The first exact finite checkpoint now passes:
 
-> Construction, causal development, and cut organization can be grounded in
-> one finite occurrence-aware program DAG, and causal cuts need no value or
-> matrix semantics.
+> Program intervals between nested causal cuts compose exactly in one
+> unchanged occurrence-aware DAG, preserving every original identity and
+> hidden internal event, with exact units and associativity.
 
-It does not yet establish that substitution-scope nesting and reverse cut
-nesting are the same structure. The missing bridge is the exact finite program
-slice together with retained grafting frames and certified composition.
+The independent-diamond exhaustion strengthens this result but also isolates
+an essential distinction: a slice is an interval of a partial order, whereas
+a chosen linear schedule is extra path data. It does not establish that
+substitution-scope nesting and reverse cut nesting are the same structure.
+Graft links remain overlapping and partial, and zero-event frames prevent a
+total frame-to-nonempty-slice map.
 
-That bridge is deliberately prior to floating point, finite analytic
-truncation, complex completion, and spectral factorization. Establishing it is
-the next engineering and mathematical milestone.
+The next engineering obligation is a read-only Python exposure of the now
+stable Rust artifacts. The next mathematical obligation is to identify the
+minimum extra decorated-boundary data needed for a contravariant synthesis
+map `P*`, or to prove by a finite counterexample that the proposed map must be
+weakened further. Neither obligation depends on floating point, analytic
+truncation, complex completion, or spectral factorization.
 
 ## Required companion reading
 
