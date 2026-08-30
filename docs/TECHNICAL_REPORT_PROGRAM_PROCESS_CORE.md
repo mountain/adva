@@ -654,13 +654,23 @@ and the two parallel body-surgery edges nevertheless give the exact forward
 exchanges boundary polarity. This is stronger evidence for the formula, but
 not yet a nested-frame theorem or a canonical dual-loop construction.
 
+The first nested test resolves one more ambiguity. A parent `wrapper` call and
+its child `add-two` call both contain the same original `add` event in their
+body regions. Composing a separate surgery for each frame would attempt to
+execute that node twice and gives the empty relation. Retaining the exact
+frame stack, paths, ordered holes, and `callee_body` role while gluing the
+shared event once preserves both forward and reverse factorizations. The
+characteristic surgery belongs to the slice; frames are overlapping readings
+of it.
+
 The read-only Python exposure of the stable Rust artifacts is now complete.
-The next mathematical obligation is nested relational composition on the
-finite E0 cut graph. Parent and child frame regions overlap, so the test must
-retain frame paths and argument-versus-body roles and detect double-counted
-surgery. A single-valued alternative must first introduce and certify explicit
-scope-boundary markers. This obligation does not depend on floating point,
-analytic truncation, complex completion, or spectral factorization.
+The next mathematical obligation is to transfer this glued frame-stack
+decoration to the finite E0 dual graph: each dual-face surgery must occur once
+while carrying every intersecting frame role, and adjacent decorated surgeries
+must compose exactly. A single-valued alternative must first introduce and
+certify explicit scope-boundary markers. This obligation does not depend on
+floating point, analytic truncation, complex completion, or spectral
+factorization.
 
 ## Required companion reading
 
