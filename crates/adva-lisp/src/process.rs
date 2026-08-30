@@ -48,7 +48,11 @@ pub fn analyze_causal_cut(
         },
         certificate: CausalCutCertificate {
             id: CertificateId::explicit(format!("cut:{}:{suffix}:v1", diagram.function)),
-            scope: "finite checked operation DAG; past-closed node set; exact crossing wires with unchanged lineage".to_owned(),
+            scope: concat!(
+                "finite checked operation DAG; past-closed node set; ",
+                "exact crossing wires with unchanged lineage"
+            )
+            .to_owned(),
             diagram_integrity: CheckStatus::Checked,
             completed_past: CheckStatus::Checked,
             crossing_frontier: CheckStatus::Checked,
