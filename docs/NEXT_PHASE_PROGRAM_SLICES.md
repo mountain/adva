@@ -507,3 +507,11 @@ both directions of the certified independent surgery `S` satisfy
 earliest or latest singleton selector together with its converse fails to
 close under either surgery direction. See
 `docs/research/0028-relational-psp-factorization.md`.
+
+The next nonzero calibration also passes after one necessary refinement. For
+an ordered two-hole `add` frame, no cut contains both its consumed entry wires
+and produced exit wire, so unpolarized scope/cut incidence is empty. Splitting
+it into entry analysis `P*` and exit synthesis `P`, the two concurrency paths
+of the frame-body surgery satisfy the forward `add` transformation exactly;
+reversing all relations gives the expansion direction. See
+`docs/research/0029-nonzero-ordered-frame-relational-psp.md`.
