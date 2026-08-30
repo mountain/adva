@@ -1,6 +1,4 @@
-use crate::{
-    FunctionSignature, GraftFrameId, NodeId, QualifiedName, TypedPort, WireRef,
-};
+use crate::{FunctionSignature, GraftFrameId, NodeId, QualifiedName, TypedPort, WireRef};
 use serde::{Deserialize, Serialize};
 
 /// One deterministic descent step locating a call frame in grafted syntax.
@@ -15,9 +13,7 @@ pub enum GraftPathStep {
 }
 
 /// A stable compilation path, independent of host addresses or AST sharing.
-#[derive(
-    Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize,
-)]
+#[derive(Clone, Debug, Default, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(transparent)]
 pub struct GraftScopePath(Vec<GraftPathStep>);
 
