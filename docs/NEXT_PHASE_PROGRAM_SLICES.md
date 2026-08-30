@@ -6,6 +6,8 @@ theoretical discussion from conversation history.
 
 The task is structural. Do not add numerical experiments, matrix APIs,
 complex scalars, process exponentials, resolvents, or spectra in this phase.
+Longer-term directions are preserved in `RESEARCH_ENGINEERING_AGENDA.md`; they
+do not widen this task.
 
 ## 1. Mission
 

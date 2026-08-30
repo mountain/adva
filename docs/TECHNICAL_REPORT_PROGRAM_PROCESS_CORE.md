@@ -612,3 +612,4 @@ the next engineering and mathematical milestone.
 - `adr/0006-program-process-before-projections.md`
 - `claims.toml`
 - `NEXT_PHASE_PROGRAM_SLICES.md`
+- `RESEARCH_ENGINEERING_AGENDA.md`
