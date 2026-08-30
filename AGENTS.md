@@ -6,8 +6,10 @@ Before modifying semantic code, read:
 2. `docs/ARCHITECTURE.md`
 3. `docs/SEMANTIC_SCOPE.md`
 4. `docs/PROGRAM_PROCESS_CORE.md`
-5. `docs/claims.toml`
-6. relevant ADRs under `docs/adr/`
+5. `docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`
+6. `docs/NEXT_PHASE_PROGRAM_SLICES.md`
+7. `docs/claims.toml`
+8. relevant ADRs under `docs/adr/`
 
 ## Authority and dependency direction
 
