@@ -24,6 +24,8 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
     hyperbolic-cell
     parameter-cell
     oriented-readout
+    exp-two-port-readout
+    exp-parameter-cell
     exp-readout
     parameter-objective
     exp-parameter-objective
@@ -206,6 +208,23 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
           (use x-output)
           (scale 2 (use s-output))))))
 
+  ; Keep two output ports so independent symbolic probes can expose the
+  ; expression-valued matrix-like shadow without making it the ontology.
+  (def exp-two-port-readout
+    (fn ((x-output Real) (s-output Real)) (outputs Real Real)
+      (frontier
+        (exp (use x-output))
+        (use s-output))))
+
+  (def exp-parameter-cell
+    (fn ((x Real) (s Real) (kappa Real)) (outputs Real Real)
+      (call exp-two-port-readout
+        (call parameter-cell
+          (frontier
+            (use x)
+            (use s)
+            (use kappa))))))
+
   ; Nonlinear readout whose backward cut demand contains an exponential
   ; intermediate expression rather than a fitted numerical coefficient.
   (def exp-readout
@@ -344,6 +363,10 @@ class DemandExpression:
         return cls("input", (name, occurrence, source))
 
     @classmethod
+    def probe(cls, name: str) -> DemandExpression:
+        return cls("probe", (name,))
+
+    @classmethod
     def add(
         cls,
         left: DemandExpression,
@@ -367,19 +390,31 @@ class DemandExpression:
     def exponential(cls, argument: DemandExpression) -> DemandExpression:
         return cls("exp", arguments=(argument,))
 
-    def evaluate(self, inputs: Mapping[str, float]) -> float:
+    def evaluate(
+        self,
+        inputs: Mapping[str, float],
+        probes: Mapping[str, float] | None = None,
+    ) -> float:
         if self.kind == "constant":
             return self.data[0] / self.data[1]
         if self.kind == "input":
             return float(inputs[self.data[0]])
+        if self.kind == "probe":
+            if probes is None:
+                raise TypeError("a symbolic probe expression needs probe values")
+            return float(probes[self.data[0]])
         if self.kind == "add":
-            return self.arguments[0].evaluate(inputs) + self.arguments[1].evaluate(inputs)
+            return self.arguments[0].evaluate(
+                inputs, probes
+            ) + self.arguments[1].evaluate(inputs, probes)
         if self.kind == "mul":
-            return self.arguments[0].evaluate(inputs) * self.arguments[1].evaluate(inputs)
+            return self.arguments[0].evaluate(
+                inputs, probes
+            ) * self.arguments[1].evaluate(inputs, probes)
         if self.kind == "neg":
-            return -self.arguments[0].evaluate(inputs)
+            return -self.arguments[0].evaluate(inputs, probes)
         if self.kind == "exp":
-            return math.exp(self.arguments[0].evaluate(inputs))
+            return math.exp(self.arguments[0].evaluate(inputs, probes))
         raise TypeError(f"unknown demand expression kind: {self.kind!r}")
 
     def to_lisp(self) -> str:
@@ -388,6 +423,8 @@ class DemandExpression:
             return str(numerator) if denominator == 1 else f"{numerator}/{denominator}"
         if self.kind == "input":
             return f"(use {self.data[0]})"
+        if self.kind == "probe":
+            return f"(probe {self.data[0]})"
         if self.kind == "add":
             left, right = self.arguments
             return f"(add (frontier {left.to_lisp()} {right.to_lisp()}))"
@@ -405,6 +442,13 @@ class DemandExpression:
             return (self.data[0],)
         return tuple(
             name for argument in self.arguments for name in argument.input_uses()
+        )
+
+    def probe_uses(self) -> tuple[str, ...]:
+        if self.kind == "probe":
+            return (self.data[0],)
+        return tuple(
+            name for argument in self.arguments for name in argument.probe_uses()
         )
 
     def input_audit(self) -> tuple[tuple[str, str, str], ...]:
@@ -450,6 +494,18 @@ class SymbolicBackwardProbeWitness:
 
 
 @dataclass(frozen=True, slots=True)
+class ProbeLinearForm:
+    """Sparse probe coefficients with a probe-free expression constant."""
+
+    constant: DemandExpression | None
+    coefficients: tuple[tuple[str, DemandExpression], ...]
+
+    @property
+    def coefficient_map(self) -> dict[str, DemandExpression]:
+        return dict(self.coefficients)
+
+
+@dataclass(frozen=True, slots=True)
 class SymbolicCutCompositionWitness:
     """One exact factorization through two nested cuts of the same checked IR."""
 
@@ -482,6 +538,8 @@ def _functions() -> dict[str, Any]:
         "hyperbolic-cell",
         "parameter-cell",
         "oriented-readout",
+        "exp-two-port-readout",
+        "exp-parameter-cell",
         "exp-readout",
         "parameter-objective",
         "exp-parameter-objective",
@@ -1019,6 +1077,8 @@ def _compile_symbolic_input_demands(
 
     input_ports = tuple(original_function.ir["signature"]["inputs"])
     expressions = tuple(expression for _, expression in witness.input_demands)
+    if any(expression.probe_uses() for expression in expressions):
+        raise TypeError("the fresh replay compiler does not declare probe generators")
     input_uses = tuple(
         name for expression in expressions for name in expression.input_uses()
     )
@@ -1047,6 +1107,106 @@ def _compile_symbolic_input_demands(
 """
     workspace = link_modules([module_source])
     return workspace.function("symbolic-optical-backward", "probe")
+
+
+def _probe_linear_form(expression: DemandExpression) -> ProbeLinearForm:
+    """Extract a sparse probe-linear shadow without normalizing coefficients."""
+
+    if not expression.probe_uses():
+        return ProbeLinearForm(expression, ())
+    if expression.kind == "probe":
+        return ProbeLinearForm(
+            None,
+            ((expression.data[0], DemandExpression.constant(1)),),
+        )
+    if expression.kind == "exp":
+        raise TypeError("the bounded probe-linear fragment forbids probes inside exp")
+
+    arguments = tuple(_probe_linear_form(argument) for argument in expression.arguments)
+    if expression.kind == "add":
+        left, right = arguments
+        if left.constant is None:
+            constant = right.constant
+        elif right.constant is None:
+            constant = left.constant
+        else:
+            constant = DemandExpression.add(left.constant, right.constant)
+        left_coefficients = left.coefficient_map
+        right_coefficients = right.coefficient_map
+        coefficients = []
+        for name in sorted(left_coefficients.keys() | right_coefficients.keys()):
+            left_coefficient = left_coefficients.get(name)
+            right_coefficient = right_coefficients.get(name)
+            if left_coefficient is None:
+                coefficient = right_coefficient
+            elif right_coefficient is None:
+                coefficient = left_coefficient
+            else:
+                coefficient = DemandExpression.add(
+                    left_coefficient,
+                    right_coefficient,
+                )
+            if coefficient is None:
+                raise AssertionError("probe coefficient union lost both operands")
+            coefficients.append((name, coefficient))
+        return ProbeLinearForm(constant, tuple(coefficients))
+
+    if expression.kind == "neg":
+        argument = arguments[0]
+        return ProbeLinearForm(
+            None
+            if argument.constant is None
+            else DemandExpression.negate(argument.constant),
+            tuple(
+                (name, DemandExpression.negate(coefficient))
+                for name, coefficient in argument.coefficients
+            ),
+        )
+
+    if expression.kind == "mul":
+        left, right = arguments
+        if left.coefficients and right.coefficients:
+            raise TypeError("the demand expression is nonlinear in probe generators")
+        if left.coefficients:
+            if right.constant is None:
+                return ProbeLinearForm(None, ())
+            return ProbeLinearForm(
+                None
+                if left.constant is None
+                else DemandExpression.multiply(left.constant, right.constant),
+                tuple(
+                    (
+                        name,
+                        DemandExpression.multiply(coefficient, right.constant),
+                    )
+                    for name, coefficient in left.coefficients
+                ),
+            )
+        if right.coefficients:
+            if left.constant is None:
+                return ProbeLinearForm(None, ())
+            return ProbeLinearForm(
+                None
+                if right.constant is None
+                else DemandExpression.multiply(left.constant, right.constant),
+                tuple(
+                    (
+                        name,
+                        DemandExpression.multiply(left.constant, coefficient),
+                    )
+                    for name, coefficient in right.coefficients
+                ),
+            )
+        if left.constant is None or right.constant is None:
+            return ProbeLinearForm(None, ())
+        return ProbeLinearForm(
+            DemandExpression.multiply(left.constant, right.constant),
+            (),
+        )
+
+    raise TypeError(
+        f"operation {expression.kind!r} is outside the probe-linear extractor"
+    )
 
 
 def _symbolic_causal_opens(function: Any) -> tuple[frozenset[int], ...]:
@@ -2120,3 +2280,171 @@ def test_exponential_readout_cut_has_an_expression_dependent_probe() -> None:
             assert expression.evaluate(inputs) == pytest.approx(
                 numerical.demand_by_endpoint[endpoint].coefficient
             )
+
+
+def test_symbolic_probe_coefficients_recover_the_native_matrix_like_shadow() -> None:
+    cell = _functions()["exp-parameter-cell"]
+    probe_names = ("lambda-position", "lambda-slope")
+    output_probe = tuple(DemandExpression.probe(name) for name in probe_names)
+    symbolic = _research_symbolic_backward_probe(cell, output_probe)
+    root_forms = {
+        name: _probe_linear_form(expression)
+        for name, expression in symbolic.input_demands
+    }
+    fixtures = (
+        {"x": 0.5, "s": -0.25, "kappa": 1.0},
+        {"x": -1.0, "s": 0.5, "kappa": 0.5},
+        {"x": 1.5, "s": -1.0, "kappa": 2.0},
+    )
+
+    for form in root_forms.values():
+        assert form.constant is None
+        assert set(form.coefficient_map) == set(probe_names)
+        assert all(
+            not coefficient.probe_uses()
+            for coefficient in form.coefficient_map.values()
+        )
+        assert "exp" in form.coefficient_map[probe_names[0]].operation_kinds()
+        assert "exp" not in form.coefficient_map[probe_names[1]].operation_kinds()
+
+    probe_values = {"lambda-position": 2.0, "lambda-slope": -0.5}
+    for inputs in fixtures:
+        values, jacobian, certificate = cell.value_and_gradient(inputs)
+        position = (1.0 - inputs["kappa"]) * inputs["x"] + inputs["s"]
+        slope = -inputs["kappa"] * inputs["x"] + inputs["s"]
+        assert values == pytest.approx((math.exp(position), slope))
+        assert certificate["diagram_integrity"] == "checked"
+
+        for input_name, form in root_forms.items():
+            for output_index, probe_name in enumerate(probe_names):
+                coefficient = form.coefficient_map[probe_name]
+                assert coefficient.evaluate(inputs) == pytest.approx(
+                    jacobian[output_index][input_name]
+                )
+            expected_demand = sum(
+                jacobian[output_index][input_name] * probe_values[probe_name]
+                for output_index, probe_name in enumerate(probe_names)
+            )
+            assert symbolic.input_demand_map[input_name].evaluate(
+                inputs,
+                probe_values,
+            ) == pytest.approx(expected_demand)
+
+
+def test_symbolic_probe_transport_is_linear_at_every_checked_endpoint() -> None:
+    cell = _functions()["exp-parameter-cell"]
+    probe_names = ("lambda-position", "lambda-slope")
+    symbolic = _research_symbolic_backward_probe(
+        cell,
+        tuple(DemandExpression.probe(name) for name in probe_names),
+    )
+    inputs = {"x": -1.0, "s": 0.5, "kappa": 0.5}
+    left = {"lambda-position": 1.25, "lambda-slope": -0.75}
+    right = {"lambda-position": -0.5, "lambda-slope": 2.0}
+    added = {name: left[name] + right[name] for name in probe_names}
+    scale = -1.5
+    scaled = {name: scale * left[name] for name in probe_names}
+    zero = {name: 0.0 for name in probe_names}
+
+    for record in symbolic.demands:
+        expression = record.coefficient
+        form = _probe_linear_form(expression)
+        assert form.constant is None
+        assert set(form.coefficient_map) <= set(probe_names)
+        assert expression.evaluate(inputs, zero) == pytest.approx(0.0)
+        assert expression.evaluate(inputs, added) == pytest.approx(
+            expression.evaluate(inputs, left)
+            + expression.evaluate(inputs, right)
+        )
+        assert expression.evaluate(inputs, scaled) == pytest.approx(
+            scale * expression.evaluate(inputs, left)
+        )
+        assert expression.evaluate(inputs, left) == pytest.approx(
+            sum(
+                coefficient.evaluate(inputs) * left[name]
+                for name, coefficient in form.coefficients
+            )
+        )
+
+
+def test_symbolic_probe_cut_transport_composes_over_all_nested_causal_opens() -> None:
+    cell = _functions()["exp-parameter-cell"]
+    output_probe = (
+        DemandExpression.probe("lambda-position"),
+        DemandExpression.probe("lambda-slope"),
+    )
+    opens = _symbolic_causal_opens(cell)
+    nested_pairs = 0
+
+    for lower_completed in opens:
+        for upper_completed in opens:
+            if not lower_completed <= upper_completed:
+                continue
+            witness = _research_symbolic_cut_composition(
+                cell,
+                lower_completed,
+                upper_completed,
+                output_probe,
+            )
+            nested_pairs += 1
+            assert witness.direct_demands == witness.staged_demands
+            for _, expression in (
+                *witness.lower_cut_demands,
+                *witness.upper_cut_demands,
+            ):
+                assert _probe_linear_form(expression).constant is None
+
+    assert nested_pairs > len(opens)
+
+
+def test_optical_cut_lifts_probe_basis_to_exp_polynomial_coefficients() -> None:
+    cell = _functions()["exp-parameter-cell"]
+    probe_names = ("lambda-position", "lambda-slope")
+    output_probe = tuple(DemandExpression.probe(name) for name in probe_names)
+    nodes = tuple(cell.ir["nodes"])
+    upper_candidates = tuple(
+        completed
+        for completed in _symbolic_causal_opens(cell)
+        if tuple(
+            node["operation"]["name"]
+            for node in nodes
+            if node["id"] not in completed
+        )
+        == ("exp",)
+    )
+
+    assert len(upper_candidates) == 1
+    witness = _research_symbolic_cut_composition(
+        cell,
+        frozenset(),
+        upper_candidates[0],
+        output_probe,
+    )
+    cut_forms = tuple(
+        _probe_linear_form(expression)
+        for _, expression in witness.upper_cut_demands
+    )
+    position_forms = tuple(
+        form for form in cut_forms if "lambda-position" in form.coefficient_map
+    )
+    slope_forms = tuple(
+        form for form in cut_forms if "lambda-slope" in form.coefficient_map
+    )
+
+    assert len(position_forms) == 1
+    assert len(slope_forms) == 1
+    assert set(position_forms[0].coefficient_map) == {"lambda-position"}
+    assert set(slope_forms[0].coefficient_map) == {"lambda-slope"}
+    position_coefficient = position_forms[0].coefficient_map["lambda-position"]
+    slope_coefficient = slope_forms[0].coefficient_map["lambda-slope"]
+    assert "exp" in position_coefficient.operation_kinds()
+    assert not position_coefficient.probe_uses()
+    assert slope_coefficient.to_lisp() == "1"
+
+    direct = _research_symbolic_backward_probe(cell, output_probe)
+    cut_records = tuple(
+        direct.demand_by_endpoint[endpoint]
+        for endpoint, _ in witness.upper_cut_demands
+    )
+    assert sorted(len(record.lineage) for record in cut_records) == [3, 4]
+    assert sorted(len(set(record.sources)) for record in cut_records) == [3, 3]
