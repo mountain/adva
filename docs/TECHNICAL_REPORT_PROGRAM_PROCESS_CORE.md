@@ -639,12 +639,19 @@ frame boundary. Syntax frontier order changes the scope path but selects no
 causal placement. Current data therefore support a scope/cut incidence
 relation, not a uniquely determined surgery-stable function.
 
+On the corresponding ordered two-hole zero-event frame, the least relational
+repair succeeds literally. Let `P*` relate the exact frame to both compatible
+cuts, let `P` be its converse, and let `S` be either the certified independent
+cut step or its reverse. Finite relation composition gives
+`T = P S P*`, where `T` is the identity transformation of the intensional
+ordered scope. Replacing the fibre by either endpoint selector breaks closure.
+
 The read-only Python exposure of the stable Rust artifacts is now complete.
-The next mathematical obligation is to test relational `P S P*` composition
-on the finite E0 cut graph. A single-valued alternative must first introduce
-and certify explicit scope-boundary markers. This obligation does not depend
-on floating point, analytic truncation, complex completion, or spectral
-factorization.
+The next mathematical obligation is a nonzero multi-hole frame whose surgery
+crosses its own body, followed by nested relational composition on the finite
+E0 cut graph. A single-valued alternative must first introduce and certify
+explicit scope-boundary markers. This obligation does not depend on floating
+point, analytic truncation, complex completion, or spectral factorization.
 
 ## Required companion reading
 
