@@ -325,6 +325,14 @@ diagram order `[0,1]`. See
 Only after the Rust API and tests are stable, expose typed read-only adapters
 for inspection. Python must not reconstruct slices, frames, or certificates.
 
+Implementation result: compiled native Python programs now retain the Rust
+`GraftTraceArtifact` and expose certified graft, slice, and adjacent-composite
+snapshots through typed frozen facade objects. Imported version-one diagrams
+continue to have no graft provenance. Composition accepts three causal pasts
+and derives both input slices inside Rust, so Python-provided slice or
+certificate data can never become semantic input. See
+`docs/research/0026-read-only-python-program-slices-wp5.md`.
+
 ### WP6: claims, ADR, and promotion decision
 
 Update `claims.toml` with exact finite claims and precise counterexample

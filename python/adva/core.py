@@ -106,6 +106,54 @@ class CausalStepAnalysis:
     certificate: Mapping[str, Any]
 
 
+@dataclass(frozen=True, slots=True)
+class GraftTraceView:
+    """Rust-owned nested substitution frames from one successful compilation."""
+
+    root: str
+    frames: tuple[Mapping[str, Any], ...]
+
+
+@dataclass(frozen=True, slots=True)
+class GraftTraceAnalysis:
+    """A read-only graft-trace view paired with its Rust certificate."""
+
+    result: GraftTraceView
+    certificate: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class ProgramSliceView:
+    """Exact Rust-owned interval data between two causal cuts."""
+
+    lower: Mapping[str, Any]
+    upper: Mapping[str, Any]
+    events: tuple[Mapping[str, Any], ...]
+    lower_boundary: tuple[Mapping[str, Any], ...]
+    upper_boundary: tuple[Mapping[str, Any], ...]
+    through_wires: tuple[Mapping[str, Any], ...]
+    internal_events: tuple[int, ...]
+    occurrences: tuple[Mapping[str, Any], ...]
+    event_history: tuple[Mapping[str, Any], ...]
+    graft_intersections: tuple[Mapping[str, Any], ...] | None
+
+
+@dataclass(frozen=True, slots=True)
+class ProgramSliceAnalysis:
+    """A canonical program slice paired with its Rust analysis certificate."""
+
+    result: ProgramSliceView
+    certificate: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class ProgramSliceCompositionAnalysis:
+    """An exact adjacent-slice composite and its Rust composition certificate."""
+
+    result: ProgramSliceView
+    certificate: Mapping[str, Any]
+
+
 class Workspace:
     """A finite, acyclic set of modules linked and checked in Rust."""
 
@@ -167,6 +215,23 @@ class KernelFunction:
         raw = json.loads(self._native.source_partition_json())
         return {source: tuple(occurrences) for source, occurrences in raw.items()}
 
+    @property
+    def graft_trace(self) -> GraftTraceAnalysis | None:
+        """Inspect compiler graft provenance when this program was compiled here."""
+
+        encoded = self._native.graft_trace()
+        if encoded is None:
+            return None
+        result_json, certificate_json = encoded
+        result = json.loads(result_json)
+        return GraftTraceAnalysis(
+            result=GraftTraceView(
+                root=result["root"],
+                frames=tuple(result["frames"]),
+            ),
+            certificate=json.loads(certificate_json),
+        )
+
     def causal_cut(self, completed: Sequence[int]) -> CausalCutAnalysis:
         """Read a spatial cut from a completed causal past without evaluation."""
 
@@ -197,6 +262,38 @@ class KernelFunction:
             after=result["after"],
             consumed=tuple(result["consumed"]),
             produced=tuple(result["produced"]),
+            certificate=json.loads(certificate_json),
+        )
+
+    def program_slice(
+        self, lower_completed: Sequence[int], upper_completed: Sequence[int]
+    ) -> ProgramSliceAnalysis:
+        """Read one Rust-certified exact interval without evaluation or relabeling."""
+
+        lower = self._check_node_ids(lower_completed)
+        upper = self._check_node_ids(upper_completed)
+        result_json, certificate_json = self._native.program_slice(lower, upper)
+        return ProgramSliceAnalysis(
+            result=_decode_program_slice(result_json),
+            certificate=json.loads(certificate_json),
+        )
+
+    def compose_program_slices(
+        self,
+        lower_completed: Sequence[int],
+        middle_completed: Sequence[int],
+        upper_completed: Sequence[int],
+    ) -> ProgramSliceCompositionAnalysis:
+        """Compose two adjacent Rust-derived slices and return the certified outer view."""
+
+        lower = self._check_node_ids(lower_completed)
+        middle = self._check_node_ids(middle_completed)
+        upper = self._check_node_ids(upper_completed)
+        result_json, certificate_json = self._native.compose_program_slices(
+            lower, middle, upper
+        )
+        return ProgramSliceCompositionAnalysis(
+            result=_decode_program_slice(result_json),
             certificate=json.loads(certificate_json),
         )
 
@@ -321,6 +418,25 @@ class KernelFunction:
                 raise TypeError("completed nodes must be non-negative node ids")
             checked.append(node)
         return checked
+
+
+def _decode_program_slice(encoded: str) -> ProgramSliceView:
+    result = json.loads(encoded)
+    graft_intersections = result["graft_intersections"]
+    return ProgramSliceView(
+        lower=result["lower"],
+        upper=result["upper"],
+        events=tuple(result["events"]),
+        lower_boundary=tuple(result["lower_boundary"]),
+        upper_boundary=tuple(result["upper_boundary"]),
+        through_wires=tuple(result["through_wires"]),
+        internal_events=tuple(result["internal_events"]),
+        occurrences=tuple(result["occurrences"]),
+        event_history=tuple(result["event_history"]),
+        graft_intersections=(
+            None if graft_intersections is None else tuple(graft_intersections)
+        ),
+    )
 
 
 class ScipyObjective:

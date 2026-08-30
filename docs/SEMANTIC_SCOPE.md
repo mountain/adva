@@ -33,7 +33,9 @@ claim that the surrounding calculus has been completely presented.
   event conservation, direct equality, and finite associativity;
 - exhaustive exact slice-law tests on all cuts and nested intervals of one
   independent three-event causal diamond, with distinct schedule paths kept
-  separate from the common canonical interval.
+  separate from the common canonical interval;
+- read-only Python inspection of Rust-owned graft traces, slices, and exact
+  composites, without accepting reconstructed semantic artifacts from Python.
 
 ## Explicitly excluded
 
