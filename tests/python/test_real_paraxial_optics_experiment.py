@@ -16,7 +16,11 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
     full-turn
     stable-cell
     parabolic-cell
-    hyperbolic-cell)
+    hyperbolic-cell
+    parameter-cell
+    oriented-readout
+    parameter-objective
+    direct-parameter-objective)
 
   ; Unit free propagation: (x, s) |-> (x + s, s).
   (def drift-plus-core
@@ -68,6 +72,29 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
         (frontier
           (copy (use x))
           (use s)))))
+
+  ; Tunable focusing: kappa is an explicit source-bearing program input.
+  (def focus-parameter-core
+    (fn ((x-output Real) (x-product Real) (s Real) (kappa Real))
+        (outputs Real Real)
+      (frontier
+        (use x-output)
+        (add
+          (frontier
+            (use s)
+            (neg
+              (mul
+                (frontier
+                  (use kappa)
+                  (use x-product)))))))))
+
+  (def focus-parameter
+    (fn ((x Real) (s Real) (kappa Real)) (outputs Real Real)
+      (call focus-parameter-core
+        (frontier
+          (copy (use x))
+          (use s)
+          (use kappa)))))
 
   ; Inverse focusing power: (x, s) |-> (x, s + x).
   (def defocus-core
@@ -152,6 +179,59 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
           (frontier
             (use x)
             (use s))))))
+
+  ; One program template crosses all three determinant-one regimes:
+  ; p_kappa = P(1) L(kappa).
+  (def parameter-cell
+    (fn ((x Real) (s Real) (kappa Real)) (outputs Real Real)
+      (call drift-plus
+        (call focus-parameter
+          (frontier
+            (use x)
+            (use s)
+            (use kappa))))))
+
+  ; Declared oriented output probe ell(x', s') = x' + 2 s'.
+  (def oriented-readout
+    (fn ((x-output Real) (s-output Real)) Real
+      (add
+        (frontier
+          (use x-output)
+          (scale 2 (use s-output))))))
+
+  ; Device-history realization of L_kappa = ell(p_kappa(x, s)).
+  (def parameter-objective
+    (fn ((x Real) (s Real) (kappa Real)) Real
+      (call oriented-readout
+        (call parameter-cell
+          (frontier
+            (use x)
+            (use s)
+            (use kappa))))))
+
+  ; A different checked history with the same oriented scalar shadow
+  ; x + 3 s - 3 kappa x.
+  (def direct-parameter-objective-core
+    (fn ((x-readout Real) (x-product Real) (s Real) (kappa Real)) Real
+      (add
+        (frontier
+          (add
+            (frontier
+              (use x-readout)
+              (scale 3 (use s))))
+          (scale -3
+            (mul
+              (frontier
+                (use kappa)
+                (use x-product))))))))
+
+  (def direct-parameter-objective
+    (fn ((x Real) (s Real) (kappa Real)) Real
+      (call direct-parameter-objective-core
+        (frontier
+          (copy (use x))
+          (use s)
+          (use kappa)))))
 )
 """
 
@@ -175,6 +255,10 @@ def _functions() -> dict[str, Any]:
         "stable-cell",
         "parabolic-cell",
         "hyperbolic-cell",
+        "parameter-cell",
+        "oriented-readout",
+        "parameter-objective",
+        "direct-parameter-objective",
     )
     return {
         name: workspace.function("real-paraxial-optics", name)
@@ -186,6 +270,38 @@ def _evaluate(function: Any, ray: Ray) -> Ray:
     result = function.evaluate({"x": ray[0], "s": ray[1]})
     if not isinstance(result, tuple) or len(result) != 2:
         raise TypeError("a paraxial optical program must have two ordered Real outputs")
+    return result
+
+
+def _evaluate_parameter_cell(function: Any, ray: Ray, kappa: float) -> Ray:
+    result = function.evaluate({"x": ray[0], "s": ray[1], "kappa": kappa})
+    if not isinstance(result, tuple) or len(result) != 2:
+        raise TypeError("a parameterized optical program must have two Real outputs")
+    return result
+
+
+def _parameterized_action(function: Any, kappa: float) -> RealizedAction:
+    x_column = _evaluate_parameter_cell(function, (1.0, 0.0), kappa)
+    s_column = _evaluate_parameter_cell(function, (0.0, 1.0), kappa)
+    return (
+        (x_column[0], s_column[0]),
+        (x_column[1], s_column[1]),
+    )
+
+
+def _oriented_readout(function: Any, ray: Ray) -> float:
+    result = function.evaluate({"x-output": ray[0], "s-output": ray[1]})
+    if isinstance(result, tuple):
+        raise TypeError("the oriented optical readout must be scalar")
+    return result
+
+
+def _evaluate_parameter_objective(
+    function: Any, ray: Ray, kappa: float
+) -> float:
+    result = function.evaluate({"x": ray[0], "s": ray[1], "kappa": kappa})
+    if isinstance(result, tuple):
+        raise TypeError("the parameterized optical objective must be scalar")
     return result
 
 
@@ -306,7 +422,18 @@ def _projectivize(action: RealizedAction) -> RealizedAction:
 def test_real_optical_programs_cross_the_checked_two_port_boundary() -> None:
     functions = _functions()
 
-    for function in functions.values():
+    fixed_two_port_names = (
+        "direct-quarter",
+        "factorized-quarter",
+        "inverse-quarter",
+        "half-turn",
+        "full-turn",
+        "stable-cell",
+        "parabolic-cell",
+        "hyperbolic-cell",
+    )
+    for name in fixed_two_port_names:
+        function = functions[name]
         assert function.validation_certificate["graph"] == "checked"
         assert function.signature.inputs == (("x", "real"), ("s", "real"))
         assert function.signature.outputs == ("real", "real")
@@ -470,3 +597,121 @@ def test_observer_tower_separates_program_orientation_and_projective_levels() ->
     # strictly coarser observation.
     assert _projectivize(direct_oriented) == _projectivize(factorized_oriented)
     assert _projectivize(factorized_oriented) == _projectivize(inverse_oriented)
+
+
+def test_one_parameter_program_crosses_the_three_optical_regimes() -> None:
+    parameter_cell = _functions()["parameter-cell"]
+
+    assert parameter_cell.validation_certificate["graph"] == "checked"
+    assert parameter_cell.signature.inputs == (
+        ("x", "real"),
+        ("s", "real"),
+        ("kappa", "real"),
+    )
+    assert parameter_cell.signature.outputs == ("real", "real")
+    assert len(parameter_cell.source_partition) == 3
+    assert tuple(map(len, _output_source_support(parameter_cell))) == (3, 3)
+
+    kappas = (-1.0, 0.0, 1.0, 2.0, 3.0, 4.0, 5.0)
+    actions = tuple(_parameterized_action(parameter_cell, kappa) for kappa in kappas)
+    assert actions == tuple(
+        ((1.0 - kappa, 1.0), (-kappa, 1.0)) for kappa in kappas
+    )
+    assert tuple(_determinant(action) for action in actions) == (1.0,) * len(kappas)
+    assert tuple(_trace(action) for action in actions) == tuple(
+        2.0 - kappa for kappa in kappas
+    )
+    assert tuple(
+        _trace(action) ** 2 - 4.0 * _determinant(action) for action in actions
+    ) == tuple(kappa * (kappa - 4.0) for kappa in kappas)
+    assert tuple(_classification(action) for action in actions) == (
+        "hyperbolic",
+        "parabolic",
+        "elliptic",
+        "elliptic",
+        "elliptic",
+        "parabolic",
+        "hyperbolic",
+    )
+
+
+def test_rust_parameter_differential_matches_formula_and_finite_difference() -> None:
+    functions = _functions()
+    device_objective = functions["parameter-objective"]
+    direct_objective = functions["direct-parameter-objective"]
+    fixtures = (
+        {"x": 2.0, "s": 3.0, "kappa": 1.0},
+        {"x": -1.0, "s": 2.0, "kappa": 0.5},
+        {"x": 0.0, "s": 4.0, "kappa": 3.0},
+    )
+
+    assert device_objective.ir != direct_objective.ir
+    assert device_objective.history != direct_objective.history
+    assert len(_output_source_support(device_objective)[0]) == 3
+
+    for inputs in fixtures:
+        value, gradient, certificate = device_objective.value_and_gradient(inputs)
+        direct_value, direct_gradient, direct_certificate = (
+            direct_objective.value_and_gradient(inputs)
+        )
+        expected_value = (
+            inputs["x"]
+            + 3.0 * inputs["s"]
+            - 3.0 * inputs["kappa"] * inputs["x"]
+        )
+        expected_gradient = {
+            "x": 1.0 - 3.0 * inputs["kappa"],
+            "s": 3.0,
+            "kappa": -3.0 * inputs["x"],
+        }
+
+        assert value == pytest.approx(expected_value)
+        assert gradient == pytest.approx(expected_gradient)
+        assert direct_value == pytest.approx(value)
+        assert direct_gradient == pytest.approx(gradient)
+
+        step = 1.0e-6
+        forward = _evaluate_parameter_objective(
+            device_objective,
+            (inputs["x"], inputs["s"]),
+            inputs["kappa"] + step,
+        )
+        backward = _evaluate_parameter_objective(
+            device_objective,
+            (inputs["x"], inputs["s"]),
+            inputs["kappa"] - step,
+        )
+        assert gradient["kappa"] == pytest.approx(
+            (forward - backward) / (2.0 * step),
+            abs=1.0e-8,
+        )
+
+        assert certificate["method"] == "forward-mode structural differential"
+        assert certificate["diagram_integrity"] == "checked"
+        assert set(certificate["operation_rules"]) == {
+            "adva.builtin:add@1",
+            "adva.builtin:constant@1",
+            "adva.builtin:copy@1",
+            "adva.builtin:mul@1",
+            "adva.builtin:neg@1",
+            "adva.builtin:scale@1",
+        }
+        assert direct_certificate["diagram_integrity"] == "checked"
+
+
+def test_oriented_objective_does_not_descend_to_the_projective_level() -> None:
+    functions = _functions()
+    parameter_cell = functions["parameter-cell"]
+    readout = functions["oriented-readout"]
+    ray = _evaluate_parameter_cell(parameter_cell, (2.0, 3.0), 1.0)
+    opposite_lift = (-ray[0], -ray[1])
+
+    # The two nonzero lifts determine the same projective ray.
+    assert ray != opposite_lift
+    assert ray[0] * opposite_lift[1] == ray[1] * opposite_lift[0]
+
+    # The declared scalar readout retains the lift orientation.
+    value = _oriented_readout(readout, ray)
+    opposite_value = _oriented_readout(readout, opposite_lift)
+    assert value == 5.0
+    assert opposite_value == -value
