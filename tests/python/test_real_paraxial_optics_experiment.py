@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import cmath
+import math
 from collections.abc import Mapping, Sequence
 from dataclasses import dataclass
 from fractions import Fraction
@@ -23,7 +24,9 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
     hyperbolic-cell
     parameter-cell
     oriented-readout
+    exp-readout
     parameter-objective
+    exp-parameter-objective
     direct-parameter-objective)
 
   ; Unit free propagation: (x, s) |-> (x + s, s).
@@ -203,10 +206,29 @@ REAL_PARAXIAL_OPTICS_KERNEL = r"""
           (use x-output)
           (scale 2 (use s-output))))))
 
+  ; Nonlinear readout whose backward cut demand contains an exponential
+  ; intermediate expression rather than a fitted numerical coefficient.
+  (def exp-readout
+    (fn ((x-output Real) (s-output Real)) Real
+      (add
+        (frontier
+          (exp (use x-output))
+          (use s-output)))))
+
   ; Device-history realization of L_kappa = ell(p_kappa(x, s)).
   (def parameter-objective
     (fn ((x Real) (s Real) (kappa Real)) Real
       (call oriented-readout
+        (call parameter-cell
+          (frontier
+            (use x)
+            (use s)
+            (use kappa))))))
+
+  ; exp((1-kappa)x+s) + (-kappa x+s), factorized through the device.
+  (def exp-parameter-objective
+    (fn ((x Real) (s Real) (kappa Real)) Real
+      (call exp-readout
         (call parameter-cell
           (frontier
             (use x)
@@ -248,7 +270,7 @@ MappingView = Mapping[str, Any]
 
 ASPECT_OPPOSITE_PAIRS = ((0, 3), (1, 4), (2, 5))
 BOUNDED_BACKWARD_OPERATIONS = frozenset(
-    {"constant", "copy", "add", "mul", "scale", "neg"}
+    {"constant", "copy", "add", "mul", "scale", "neg", "exp"}
 )
 
 
@@ -341,6 +363,10 @@ class DemandExpression:
     def negate(cls, argument: DemandExpression) -> DemandExpression:
         return cls("neg", arguments=(argument,))
 
+    @classmethod
+    def exponential(cls, argument: DemandExpression) -> DemandExpression:
+        return cls("exp", arguments=(argument,))
+
     def evaluate(self, inputs: Mapping[str, float]) -> float:
         if self.kind == "constant":
             return self.data[0] / self.data[1]
@@ -352,6 +378,8 @@ class DemandExpression:
             return self.arguments[0].evaluate(inputs) * self.arguments[1].evaluate(inputs)
         if self.kind == "neg":
             return -self.arguments[0].evaluate(inputs)
+        if self.kind == "exp":
+            return math.exp(self.arguments[0].evaluate(inputs))
         raise TypeError(f"unknown demand expression kind: {self.kind!r}")
 
     def to_lisp(self) -> str:
@@ -368,6 +396,8 @@ class DemandExpression:
             return f"(mul (frontier {left.to_lisp()} {right.to_lisp()}))"
         if self.kind == "neg":
             return f"(neg {self.arguments[0].to_lisp()})"
+        if self.kind == "exp":
+            return f"(exp {self.arguments[0].to_lisp()})"
         raise TypeError(f"unknown demand expression kind: {self.kind!r}")
 
     def input_uses(self) -> tuple[str, ...]:
@@ -452,7 +482,9 @@ def _functions() -> dict[str, Any]:
         "hyperbolic-cell",
         "parameter-cell",
         "oriented-readout",
+        "exp-readout",
         "parameter-objective",
+        "exp-parameter-objective",
         "direct-parameter-objective",
     )
     return {
@@ -642,6 +674,8 @@ def _bounded_forward_node(
         return (arguments[0] * arguments[1],)
     if operation == "neg":
         return (-arguments[0],)
+    if operation == "exp":
+        return (math.exp(arguments[0]),)
     raise TypeError(f"operation outside the bounded backward witness: {operation!r}")
 
 
@@ -663,6 +697,8 @@ def _bounded_reverse_node(
         )
     if operation == "neg":
         return (-output_demands[0],)
+    if operation == "exp":
+        return (output_demands[0] * math.exp(arguments[0]),)
     raise TypeError(f"operation outside the bounded backward witness: {operation!r}")
 
 
@@ -814,6 +850,8 @@ def _symbolic_forward_node(
         return (DemandExpression.multiply(arguments[0], arguments[1]),)
     if operation == "neg":
         return (DemandExpression.negate(arguments[0]),)
+    if operation == "exp":
+        return (DemandExpression.exponential(arguments[0]),)
     raise TypeError(f"operation outside the symbolic backward witness: {operation!r}")
 
 
@@ -835,6 +873,13 @@ def _symbolic_reverse_node(
         )
     if operation == "neg":
         return (DemandExpression.negate(output_demands[0]),)
+    if operation == "exp":
+        return (
+            DemandExpression.multiply(
+                output_demands[0],
+                DemandExpression.exponential(arguments[0]),
+            ),
+        )
     raise TypeError(f"operation outside the symbolic backward witness: {operation!r}")
 
 
@@ -1916,6 +1961,161 @@ def test_focus_drift_cut_exposes_and_recomposes_expression_demands() -> None:
     )
     for inputs in fixtures:
         numerical = _research_backward_probe(parameter_cell, inputs, (1.0, 2.0))
+        for endpoint, expression in witness.staged_demands:
+            assert expression.evaluate(inputs) == pytest.approx(
+                numerical.demand_by_endpoint[endpoint].coefficient
+            )
+
+
+def test_exponential_demand_field_matches_native_differential_and_numerical_probe() -> None:
+    objective = _functions()["exp-parameter-objective"]
+    output_probe = (DemandExpression.constant(1),)
+    symbolic = _research_symbolic_backward_probe(objective, output_probe)
+    fixtures = (
+        {"x": 0.5, "s": -0.25, "kappa": 1.0},
+        {"x": -1.0, "s": 0.5, "kappa": 0.5},
+        {"x": 1.5, "s": -1.0, "kappa": 2.0},
+    )
+
+    assert "adva.builtin:exp@1" in symbolic.operation_rules
+    assert all(
+        "exp" in expression.operation_kinds()
+        for expression in symbolic.input_demand_map.values()
+    )
+    for inputs in fixtures:
+        position = (1.0 - inputs["kappa"]) * inputs["x"] + inputs["s"]
+        slope = -inputs["kappa"] * inputs["x"] + inputs["s"]
+        exponential = math.exp(position)
+        expected_gradient = {
+            "x": (1.0 - inputs["kappa"]) * exponential - inputs["kappa"],
+            "s": exponential + 1.0,
+            "kappa": -inputs["x"] * (exponential + 1.0),
+        }
+        value, gradient, certificate = objective.value_and_gradient(inputs)
+        numerical = _research_backward_probe(objective, inputs, (1.0,))
+
+        assert value == pytest.approx(exponential + slope)
+        assert gradient == pytest.approx(expected_gradient)
+        assert certificate["diagram_integrity"] == "checked"
+        assert "adva.builtin:exp@1" in certificate["operation_rules"]
+        assert numerical.input_demand_map == pytest.approx(expected_gradient)
+        assert {
+            name: expression.evaluate(inputs)
+            for name, expression in symbolic.input_demands
+        } == pytest.approx(expected_gradient)
+        for endpoint, symbolic_record in symbolic.demand_by_endpoint.items():
+            numerical_record = numerical.demand_by_endpoint[endpoint]
+            assert symbolic_record.coefficient.evaluate(inputs) == pytest.approx(
+                numerical_record.coefficient
+            )
+            assert symbolic_record.lineage == numerical_record.lineage
+            assert symbolic_record.sources == numerical_record.sources
+
+
+def test_exponential_backward_transport_composes_through_every_nested_cut() -> None:
+    objective = _functions()["exp-parameter-objective"]
+    output_probe = (DemandExpression.constant(1),)
+    opens = _symbolic_causal_opens(objective)
+    all_nodes = frozenset(node["id"] for node in objective.ir["nodes"])
+    nested_pairs = 0
+    strict_three_segment_pairs = 0
+
+    for lower_completed in opens:
+        for upper_completed in opens:
+            if not lower_completed <= upper_completed:
+                continue
+            witness = _research_symbolic_cut_composition(
+                objective,
+                lower_completed,
+                upper_completed,
+                output_probe,
+            )
+            nested_pairs += 1
+            if lower_completed and lower_completed < upper_completed < all_nodes:
+                strict_three_segment_pairs += 1
+            assert witness.direct_demands == witness.staged_demands
+
+    assert nested_pairs > len(opens)
+    assert strict_three_segment_pairs > 0
+
+
+def test_exponential_readout_cut_has_an_expression_dependent_probe() -> None:
+    objective = _functions()["exp-parameter-objective"]
+    output_probe = (DemandExpression.constant(1),)
+    nodes = tuple(objective.ir["nodes"])
+    opens = _symbolic_causal_opens(objective)
+    upper_candidates = tuple(
+        completed
+        for completed in opens
+        if tuple(
+            node["operation"]["name"]
+            for node in nodes
+            if node["id"] not in completed
+        )
+        == ("exp", "add")
+    )
+    root_copies = tuple(
+        node
+        for node in nodes
+        if node["operation"]["name"] == "copy"
+        and not any(
+            wire["producer"]["kind"] == "node" for wire in node["inputs"]
+        )
+    )
+
+    assert len(upper_candidates) == 1
+    assert len(root_copies) == 1
+    lower_completed = frozenset({root_copies[0]["id"]})
+    upper_completed = upper_candidates[0]
+    witness = _research_symbolic_cut_composition(
+        objective,
+        lower_completed,
+        upper_completed,
+        output_probe,
+    )
+    direct = _research_symbolic_backward_probe(objective, output_probe)
+    upper_expressions = tuple(
+        expression for _, expression in witness.upper_cut_demands
+    )
+    exponential_demands = tuple(
+        expression
+        for expression in upper_expressions
+        if "exp" in expression.operation_kinds()
+    )
+    constant_demands = tuple(
+        expression
+        for expression in upper_expressions
+        if expression.operation_kinds() == frozenset({"constant"})
+    )
+
+    assert len(exponential_demands) == 1
+    assert len(constant_demands) == 1
+    assert exponential_demands[0].kind == "mul"
+    assert exponential_demands[0].arguments[0].to_lisp() == "1"
+    assert exponential_demands[0].arguments[1].kind == "exp"
+    assert set(exponential_demands[0].input_uses()) == {"x", "s", "kappa"}
+    assert constant_demands[0].to_lisp() == "1"
+
+    upper_records = tuple(
+        direct.demand_by_endpoint[endpoint]
+        for endpoint, _ in witness.upper_cut_demands
+    )
+    assert sorted(len(record.lineage) for record in upper_records) == [3, 4]
+    assert sorted(len(set(record.sources)) for record in upper_records) == [3, 3]
+
+    fixtures = (
+        {"x": 0.5, "s": -0.25, "kappa": 1.0},
+        {"x": -1.0, "s": 0.5, "kappa": 0.5},
+        {"x": 1.5, "s": -1.0, "kappa": 2.0},
+    )
+    for inputs in fixtures:
+        position = (1.0 - inputs["kappa"]) * inputs["x"] + inputs["s"]
+        cut_values = tuple(
+            expression.evaluate(inputs) for expression in upper_expressions
+        )
+        assert sorted(cut_values) == pytest.approx(sorted((math.exp(position), 1.0)))
+
+        numerical = _research_backward_probe(objective, inputs, (1.0,))
         for endpoint, expression in witness.staged_demands:
             assert expression.evaluate(inputs) == pytest.approx(
                 numerical.demand_by_endpoint[endpoint].coefficient
