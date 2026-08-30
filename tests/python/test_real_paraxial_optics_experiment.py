@@ -367,6 +367,26 @@ class DemandExpression:
         return cls("probe", (name,))
 
     @classmethod
+    def cut(
+        cls,
+        endpoint: WireEndpoint,
+        lineage: tuple[str, ...],
+        sources: tuple[str, ...],
+    ) -> DemandExpression:
+        """Name one existing cut endpoint without allocating a program input."""
+
+        return cls(
+            "cut",
+            (
+                endpoint.producer_kind,
+                endpoint.producer_id,
+                endpoint.output_index,
+                lineage,
+                sources,
+            ),
+        )
+
+    @classmethod
     def add(
         cls,
         left: DemandExpression,
@@ -403,6 +423,8 @@ class DemandExpression:
             if probes is None:
                 raise TypeError("a symbolic probe expression needs probe values")
             return float(probes[self.data[0]])
+        if self.kind == "cut":
+            raise TypeError("a cut placeholder must be substituted before evaluation")
         if self.kind == "add":
             return self.arguments[0].evaluate(
                 inputs, probes
@@ -425,6 +447,9 @@ class DemandExpression:
             return f"(use {self.data[0]})"
         if self.kind == "probe":
             return f"(probe {self.data[0]})"
+        if self.kind == "cut":
+            kind, identifier, output_index, _, _ = self.data
+            return f"(cut {kind}:{identifier}:{output_index})"
         if self.kind == "add":
             left, right = self.arguments
             return f"(add (frontier {left.to_lisp()} {right.to_lisp()}))"
@@ -449,6 +474,15 @@ class DemandExpression:
             return (self.data[0],)
         return tuple(
             name for argument in self.arguments for name in argument.probe_uses()
+        )
+
+    def cut_uses(self) -> tuple[WireEndpoint, ...]:
+        if self.kind == "cut":
+            return (WireEndpoint(self.data[0], self.data[1], self.data[2]),)
+        return tuple(
+            endpoint
+            for argument in self.arguments
+            for endpoint in argument.cut_uses()
         )
 
     def input_audit(self) -> tuple[tuple[str, str, str], ...]:
@@ -503,6 +537,21 @@ class ProbeLinearForm:
     @property
     def coefficient_map(self) -> dict[str, DemandExpression]:
         return dict(self.coefficients)
+
+
+@dataclass(frozen=True, slots=True)
+class ExpressionCoefficientTable:
+    """Finite chart reading used only to test endogenous cut contraction."""
+
+    rows: tuple[WireEndpoint, ...]
+    columns: tuple[str, ...]
+    entries: tuple[tuple[DemandExpression, ...], ...]
+
+    def __post_init__(self) -> None:
+        if len(self.entries) != len(self.rows):
+            raise ValueError("coefficient table row count does not match its labels")
+        if any(len(row) != len(self.columns) for row in self.entries):
+            raise ValueError("coefficient table column count does not match its labels")
 
 
 @dataclass(frozen=True, slots=True)
@@ -1206,6 +1255,119 @@ def _probe_linear_form(expression: DemandExpression) -> ProbeLinearForm:
 
     raise TypeError(
         f"operation {expression.kind!r} is outside the probe-linear extractor"
+    )
+
+
+def _is_zero_expression(expression: DemandExpression) -> bool:
+    return expression.kind == "constant" and expression.data == (0, 1)
+
+
+def _probe_coefficient_table(
+    rows: Sequence[tuple[WireEndpoint, DemandExpression]],
+    probe_names: Sequence[str],
+) -> ExpressionCoefficientTable:
+    """Extract a rectangular expression table from homogeneous probe demands."""
+
+    names = tuple(probe_names)
+    zero = DemandExpression.constant(0)
+    entries = []
+    for _, expression in rows:
+        form = _probe_linear_form(expression)
+        if form.constant is not None and not _is_zero_expression(form.constant):
+            raise ValueError("a transported demand has a nonzero probe-free term")
+        if not set(form.coefficient_map) <= set(names):
+            raise ValueError("a transported demand uses an undeclared probe")
+        entries.append(
+            tuple(form.coefficient_map.get(name, zero) for name in names)
+        )
+    return ExpressionCoefficientTable(
+        rows=tuple(endpoint for endpoint, _ in rows),
+        columns=names,
+        entries=tuple(entries),
+    )
+
+
+def _substitute_cut_placeholders(
+    expression: DemandExpression,
+    replacements: Mapping[WireEndpoint, DemandExpression],
+) -> DemandExpression:
+    """Substitute checked forward expressions for exact cut endpoint names."""
+
+    if expression.kind == "cut":
+        endpoint = WireEndpoint(
+            expression.data[0],
+            expression.data[1],
+            expression.data[2],
+        )
+        try:
+            return replacements[endpoint]
+        except KeyError as error:
+            raise ValueError("coefficient references an unmapped cut endpoint") from error
+    if not expression.arguments:
+        return expression
+    return DemandExpression(
+        expression.kind,
+        expression.data,
+        tuple(
+            _substitute_cut_placeholders(argument, replacements)
+            for argument in expression.arguments
+        ),
+    )
+
+
+def _sum_expression_terms(
+    terms: Sequence[DemandExpression],
+) -> DemandExpression:
+    if not terms:
+        return DemandExpression.constant(0)
+    total = terms[0]
+    for term in terms[1:]:
+        total = DemandExpression.add(total, term)
+    return total
+
+
+def _contract_expression_coefficient_tables(
+    inner: ExpressionCoefficientTable,
+    outer: ExpressionCoefficientTable,
+    shared: Sequence[tuple[str, WireEndpoint]],
+    substitutions: Mapping[WireEndpoint, DemandExpression],
+) -> ExpressionCoefficientTable:
+    """Substitute forward cut values and sum over the shared probe interface."""
+
+    shared_pairs = tuple(shared)
+    if inner.columns != tuple(name for name, _ in shared_pairs):
+        raise ValueError("inner columns do not match the declared cut probes")
+    if outer.rows != tuple(endpoint for _, endpoint in shared_pairs):
+        raise ValueError("outer rows do not match the declared cut endpoints")
+    if set(substitutions) != set(outer.rows):
+        raise ValueError("cut substitution is not total on the shared interface")
+
+    entries = []
+    for inner_row in inner.entries:
+        contracted_row = []
+        for outer_column in range(len(outer.columns)):
+            terms = []
+            for shared_index, inner_coefficient in enumerate(inner_row):
+                outer_coefficient = _substitute_cut_placeholders(
+                    outer.entries[shared_index][outer_column],
+                    substitutions,
+                )
+                if _is_zero_expression(inner_coefficient):
+                    continue
+                if _is_zero_expression(outer_coefficient):
+                    continue
+                terms.append(
+                    DemandExpression.multiply(
+                        inner_coefficient,
+                        outer_coefficient,
+                    )
+                )
+            contracted_row.append(_sum_expression_terms(terms))
+        entries.append(tuple(contracted_row))
+    return ExpressionCoefficientTable(
+        rows=inner.rows,
+        columns=outer.columns,
+        entries=tuple(entries),
     )
 
 
@@ -2448,3 +2610,137 @@ def test_optical_cut_lifts_probe_basis_to_exp_polynomial_coefficients() -> None:
     )
     assert sorted(len(record.lineage) for record in cut_records) == [3, 4]
     assert sorted(len(set(record.sources)) for record in cut_records) == [3, 3]
+
+
+
+def test_expression_coefficient_tables_contract_across_the_optical_cut() -> None:
+    cell = _functions()["exp-parameter-cell"]
+    diagram = cell.ir
+    output_probe_names = ("lambda-position", "lambda-slope")
+    output_probe = tuple(
+        DemandExpression.probe(name) for name in output_probe_names
+    )
+    direct = _research_symbolic_backward_probe(cell, output_probe)
+    metadata = direct.demand_by_endpoint
+    endpoint_values = _symbolic_forward_endpoint_values(cell, metadata)
+    all_nodes = frozenset(node["id"] for node in diagram["nodes"])
+    upper_candidates = tuple(
+        completed
+        for completed in _symbolic_causal_opens(cell)
+        if tuple(
+            node["operation"]["name"]
+            for node in diagram["nodes"]
+            if node["id"] not in completed
+        )
+        == ("exp",)
+    )
+
+    assert len(upper_candidates) == 1
+    upper_completed = upper_candidates[0]
+    cut_endpoints = _symbolic_cut_endpoints(diagram, upper_completed)
+    root_endpoints = _symbolic_cut_endpoints(diagram, frozenset())
+    cut_probe_names = tuple(
+        f"mu-{endpoint.producer_kind}-{endpoint.producer_id}-{endpoint.output_index}"
+        for endpoint in cut_endpoints
+    )
+    shared = tuple(zip(cut_probe_names, cut_endpoints, strict=True))
+    zero = DemandExpression.constant(0)
+
+    inner_demands = _symbolic_reverse_segment(
+        diagram,
+        endpoint_values,
+        upper_completed,
+        tuple(
+            (endpoint, DemandExpression.probe(probe_name))
+            for probe_name, endpoint in shared
+        ),
+    )
+    inner_table = _probe_coefficient_table(
+        tuple(
+            (endpoint, inner_demands.get(endpoint, zero))
+            for endpoint in root_endpoints
+        ),
+        cut_probe_names,
+    )
+
+    cut_placeholders = {
+        endpoint: DemandExpression.cut(
+            endpoint,
+            metadata[endpoint].lineage,
+            metadata[endpoint].sources,
+        )
+        for endpoint in cut_endpoints
+    }
+    outer_endpoint_values = dict(endpoint_values)
+    outer_endpoint_values.update(cut_placeholders)
+    outer_demands = _symbolic_reverse_segment(
+        diagram,
+        outer_endpoint_values,
+        all_nodes - upper_completed,
+        tuple(
+            (_wire_endpoint(wire), coefficient)
+            for wire, coefficient in zip(
+                diagram["outputs"],
+                output_probe,
+                strict=True,
+            )
+        ),
+    )
+    outer_table = _probe_coefficient_table(
+        tuple(
+            (endpoint, outer_demands.get(endpoint, zero))
+            for endpoint in cut_endpoints
+        ),
+        output_probe_names,
+    )
+
+    substitutions = {
+        endpoint: endpoint_values[endpoint] for endpoint in cut_endpoints
+    }
+    contracted = _contract_expression_coefficient_tables(
+        inner_table,
+        outer_table,
+        shared,
+        substitutions,
+    )
+    direct_table = _probe_coefficient_table(
+        tuple(
+            (endpoint, direct.demand_by_endpoint[endpoint].coefficient)
+            for endpoint in root_endpoints
+        ),
+        output_probe_names,
+    )
+
+    assert inner_table.rows == root_endpoints
+    assert outer_table.rows == cut_endpoints
+    assert contracted.rows == direct_table.rows
+    assert contracted.columns == direct_table.columns
+    assert len(cut_endpoints) == 2
+    assert all(not entry.cut_uses() for row in inner_table.entries for entry in row)
+    assert any(entry.cut_uses() for row in outer_table.entries for entry in row)
+    assert all(not entry.cut_uses() for row in contracted.entries for entry in row)
+    for endpoint, placeholder in cut_placeholders.items():
+        assert placeholder.data[3] == metadata[endpoint].lineage
+        assert placeholder.data[4] == metadata[endpoint].sources
+
+    fixtures = (
+        {"x": 0.5, "s": -0.25, "kappa": 1.0},
+        {"x": -1.0, "s": 0.5, "kappa": 0.5},
+        {"x": 1.5, "s": -1.0, "kappa": 2.0},
+    )
+    for inputs in fixtures:
+        _, jacobian, certificate = cell.value_and_gradient(inputs)
+        assert certificate["diagram_integrity"] == "checked"
+        for row_index, endpoint in enumerate(root_endpoints):
+            input_name = diagram["signature"]["inputs"][endpoint.producer_id]["name"]
+            for column_index, _ in enumerate(output_probe_names):
+                contracted_value = contracted.entries[row_index][
+                    column_index
+                ].evaluate(inputs)
+                direct_value = direct_table.entries[row_index][
+                    column_index
+                ].evaluate(inputs)
+                assert contracted_value == pytest.approx(direct_value)
+                assert contracted_value == pytest.approx(
+                    jacobian[column_index][input_name]
+                )
