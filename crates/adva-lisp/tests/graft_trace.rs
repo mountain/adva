@@ -49,16 +49,12 @@ fn compile(name: &str) -> adva_ir::CompilationArtifact {
     compile_function(&linked, "graft-trace", name).unwrap()
 }
 
-fn call_frame<'a>(
-    trace: &'a adva_ir::GraftTrace,
-    callee: &str,
-) -> &'a GraftFrame {
+fn call_frame<'a>(trace: &'a adva_ir::GraftTrace, callee: &str) -> &'a GraftFrame {
     trace
         .frames
         .iter()
         .find(|frame| {
-            frame.kind == GraftFrameKind::Call
-                && frame.callee.function.as_str() == callee
+            frame.kind == GraftFrameKind::Call && frame.callee.function.as_str() == callee
         })
         .unwrap()
 }
@@ -83,7 +79,10 @@ fn compiler_emits_deterministic_nested_two_hole_graft_frames() {
     let add = call_frame(trace, "add-two");
 
     assert_eq!(pair.parent.as_ref(), Some(&root.id));
-    assert_eq!(pair.children, vec![neg.id.clone(), identity.id.clone(), add.id.clone()]);
+    assert_eq!(
+        pair.children,
+        vec![neg.id.clone(), identity.id.clone(), add.id.clone()]
+    );
     assert_eq!(pair.arguments.len(), 1);
     assert_eq!(pair.arguments[0].nodes, vec![NodeId(0), NodeId(1)]);
     assert_eq!(pair.arguments[0].outputs.len(), 2);
@@ -99,10 +98,7 @@ fn compiler_emits_deterministic_nested_two_hole_graft_frames() {
     assert_eq!(neg.parent.as_ref(), Some(&pair.id));
     assert_eq!(identity.parent.as_ref(), Some(&pair.id));
     assert_eq!(add.parent.as_ref(), Some(&pair.id));
-    assert_eq!(
-        neg.region_in_parent,
-        GraftRegionRole::Argument { index: 0 }
-    );
+    assert_eq!(neg.region_in_parent, GraftRegionRole::Argument { index: 0 });
     assert_eq!(
         identity.region_in_parent,
         GraftRegionRole::Argument { index: 0 }
@@ -129,7 +125,10 @@ fn compiler_emits_deterministic_nested_two_hole_graft_frames() {
         .collect::<Vec<_>>();
     assert_eq!(linked_history.len(), call_history.len());
     assert_eq!(
-        linked_history.iter().copied().collect::<std::collections::BTreeSet<_>>(),
+        linked_history
+            .iter()
+            .copied()
+            .collect::<std::collections::BTreeSet<_>>(),
         call_history.iter().copied().collect()
     );
 }
