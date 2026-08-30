@@ -672,14 +672,34 @@ characteristic relation, an adjacent decorated split agrees with exact Rust
 slice composition, and polarized relational composition gives the forward
 and reverse nested `P S P*` factorizations without duplicate surgery.
 
-This resolves finite compatibility, not canonicity. The highest-priority
-mathematical obligation is now to construct and certify the grid-to-cellular-
-dual bridge instead of declaring its six-edge chart. A general formulation
-must also retain zero-event incidence fibres and decide whether oriented
-integer chains, rather than mod-two supports, are required to distinguish
-contraction from expansion intrinsically. None of these obligations depends
-on floating point, analytic truncation, complex completion, or spectral
-factorization.
+The next finite step constructs the previously missing bridge at exactly the
+level supported by the data. The arbitrary six-point chart is replaced by a
+rational Paper 0 E0 routing: every checked wire is a finite `X_1`/`Y_2`
+path, its inner cell is the `BS(2,1)` relation, and pointwise
+`J(z)=-1/z` gives exact curved paths satisfying the corresponding circle
+equations and polarity-compensated `BS(1,2)` relation. A common wire index
+then intertwines all certified cuts and enabled surgeries with cellular-dual
+cycles and face boundaries.
+
+This resolves finite edge-level canonicity, not full cellular duality. The E0
+window has seven geometric vertices while the cellular dual has two
+face-vertices, so the wire correspondence cannot extend to a vertex bijection
+on these complexes. The highest-priority mathematical obligation is now to
+construct an oriented degree-reversing chain map on an explicitly refined
+carrier, or expose a finite obstruction showing that E0 arithmetic incidence
+and program-cellular incidence cannot both be preserved. A general
+formulation must also provide canonical E0 routing for arbitrary checked
+programs and retain zero-event incidence fibres.
+
+The construction also exposes an independent semantic obstruction: the
+standard E0 point model carries a single value under positive affine moves,
+whereas the checked multi-hole program uses generic negation and binary
+addition. The exact routing assignments therefore do not equal the program's
+node values. Completing the requested expression-level factorization requires
+a multi-hole configuration/fiber carrier with certified substitution, or a
+different elementary model containing the missing operations. Neither this
+gap nor the chain-level gap depends on floating point, analytic truncation,
+complex completion, or spectral factorization.
 
 ## Required companion reading
 
