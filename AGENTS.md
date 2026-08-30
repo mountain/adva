@@ -11,6 +11,12 @@ Before modifying semantic code, read:
 7. `docs/claims.toml`
 8. relevant ADRs under `docs/adr/`
 
+Before starting or proposing a new research or engineering phase, also read
+`docs/RESEARCH_ENGINEERING_AGENDA.md`. Its dependency order is part of the
+project plan. The currently active implementation task remains
+`docs/NEXT_PHASE_PROGRAM_SLICES.md` unless a checked counterexample or an
+explicit project decision changes it.
+
 ## Authority and dependency direction
 
 - Rust is the sole authority for types, terms, diagrams, sources, occurrences,
