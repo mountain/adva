@@ -12,6 +12,8 @@ claim that the surrounding calculus has been completely presented.
   `CodomainFrontier` function boundaries;
 - explicit `id`, composition by typed `call`, ordered `frontier`, `swap`,
   `copy`, and `discard`;
+- finite named simultaneous substitution: call arguments are open programs
+  grafted into a callee's checked ordered input holes;
 - selected real arithmetic operations;
 - deterministic source and occurrence paths;
 - lossless history and JSON round-trip;
@@ -20,11 +22,14 @@ claim that the surrounding calculus has been completely presented.
 - scalar realization and forward differentials;
 - one versioned Rust declaration for each builtin's boundary, realization,
   differential, and lineage rule;
-- value and source/history observations as different interfaces.
+- value and source/history observations as different interfaces;
+- Rust-certified downward-closed causal cuts and one-enabled-event frontier
+  replacement over validated finite diagrams.
 
 ## Explicitly excluded
 
-- local term binders, substitution, and alpha equivalence;
+- local term binders, alpha equivalence, arbitrary graph-context
+  substitution, and substitution across unlinked program stores;
 - recursion and cyclic modules;
 - implicit contraction, aliases, memoization, and CSE;
 - merge or source identification;
@@ -35,6 +40,9 @@ claim that the surrounding calculus has been completely presented.
   alternatives;
 - full HPC, sheaf/stack semantics, universality, faithfulness, fullness, and
   full abstraction;
+- enumeration as a stable topology API, general cut transport, probe
+  pullback, process exponentials, resolvents, characteristic factorization,
+  and program spectra;
 - physical interpretations of curvature, mass, or spacetime.
 
 ## Equality interfaces

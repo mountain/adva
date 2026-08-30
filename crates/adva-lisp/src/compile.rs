@@ -151,11 +151,16 @@ impl<'a> Compiler<'a> {
             ProgramTerm::Call {
                 function,
                 arguments,
-            } => self.lower_call(function, arguments, scope, current_module),
+            } => self.lower_boundary_substitution(function, arguments, scope, current_module),
         }
     }
 
-    fn lower_call(
+    /// Graft actual argument programs into the callee's ordered open boundary.
+    ///
+    /// This is PSC0's bounded substitution mechanism. It introduces no local
+    /// binder or implicit sharing; each argument is lowered under the caller's
+    /// linear resource scope before the finite callee body is instantiated.
+    fn lower_boundary_substitution(
         &mut self,
         function: &QualifiedName,
         arguments: &[ProgramTerm],

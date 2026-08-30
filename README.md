@@ -25,6 +25,8 @@ tool does not turn research targets into stable API promises.
 - JSON IR round-trips with an explicit schema version;
 - semantic diagram import in Rust with graph, linear-use, occurrence, source,
   history, and boundary certificates;
+- Rust-certified completed causal cuts and single-event frontier replacement,
+  derived without evaluating or rebuilding checked wire lineage;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -107,8 +109,9 @@ pytest
 ```
 
 Read [`AGENTS.md`](AGENTS.md), [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
-and [`docs/SEMANTIC_SCOPE.md`](docs/SEMANTIC_SCOPE.md) before changing semantic
-code.
+[`docs/SEMANTIC_SCOPE.md`](docs/SEMANTIC_SCOPE.md), and
+[`docs/PROGRAM_PROCESS_CORE.md`](docs/PROGRAM_PROCESS_CORE.md) before changing
+semantic code.
 
 ## Status and license
 
