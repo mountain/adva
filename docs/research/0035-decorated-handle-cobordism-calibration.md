@@ -519,6 +519,55 @@ and boundary arity but makes the total genus equal to two. Therefore
 The genus-one result is exact conditional evidence for the explicit
 minimal-saddle law, not a theorem derived from current Adva operation arities.
 
+### 2.10 Explicit finite cellulation
+
+The second companion test
+[`test_decorated_handle_cellulation.py`](../../tests/python/test_decorated_handle_cellulation.py)
+upgrades the classification record to one actual finite oriented 2-complex.
+It uses only elementary quadrilateral cells:
+
+- `copy` is a `5 x 3` rectangular grid with two open interior unit squares,
+  hence a planar copants with thirteen faces;
+- `neg` and `id` are separate four-band cylinders, with four faces each;
+- `add` is a second thirteen-face grid pants; and
+- the four declared branch port circles are glued by orientation-reversing
+  vertex identifications.
+
+After quotienting the declared ports, the complex has
+
+\[
+V=48,
+\qquad
+E=84,
+\qquad
+F=34,
+\]
+
+so
+
+\[
+\chi=V-E+F=-2.
+\]
+
+The test does not infer surfacehood from this global count. It checks that
+every edge is incident to one or two faces, every interior edge receives the
+two opposite face orientations, every interior vertex link is a circle, and
+every boundary vertex link is an interval. It then finds exactly the two
+unglued outer boundary circles and obtains
+
+\[
+g=\frac{2-b-\chi}{2}=1.
+\]
+
+The four cross-patch seams are also exact: `copy-neg`, `neg-add`, `copy-id`,
+and `id-add`, each with four edges. Face decorations retain the four Rust
+event identities and the causal layers `(0, 1, 1, 2)`.
+
+This proves existence of one finite manifold cellulation for the declared
+minimal patches. It still does not prove that current program semantics
+canonically selects those patches, or that arbitrary slices admit compatible
+cellulations.
+
 ## 3. Conservative and safe conclusion
 
 ### 3.1 What advanced exactly
@@ -531,23 +580,27 @@ The following bounded conclusions are currently justified.
    \(\partial F_{U,V}=\gamma_U+\gamma_V\) on the declared cellular dual.
 3. The face chains add under nested intervals exactly as program event sets
    compose.
-4. The new research test exhaustively checks the interval face-chain law and
-   computes genus one for the declared minimal-saddle trace.
-5. The same test proves by a hidden-handle witness that event arity does not
-   select the minimal-saddle trace.
-6. The repository already retains the causal and graft decorations that a
-   faithful cellular thickening would need.
-7. In established 2D TQFT, copants followed by pants gives the handle
+4. The classification test exhaustively checks the interval face-chain law
+   and computes genus one for the declared minimal-saddle trace.
+5. A finite quadrilateral cellulation now realizes that full trace with
+   exact program seams, two boundary circles, local manifold links, and genus
+   one.
+6. The hidden-handle witness proves that event arity does not select this
+   minimal cellulation.
+7. The repository retains further causal and graft decorations needed to
+   extend the cellulation from the full fixture to arbitrary slices.
+8. In established 2D TQFT, copants followed by pants gives the handle
    operator `mu o Delta`, and the spectrum of that operator has genuine genus
    meaning.
-8. Therefore a decorated handle operator is a disciplined candidate for the
+9. Therefore a decorated handle operator is a disciplined candidate for the
    construction spectrum of this fixture.
-9. No embedded cellular trace, Adva Frobenius algebra, TQFT functor, handle
-   operator, or elliptic-curve presentation has yet been constructed.
+10. No canonical program-to-cellulation functor, Adva Frobenius algebra, TQFT
+    functor, handle operator, or elliptic-curve presentation has yet been
+    constructed.
 
 ### 3.2 The minimal research object
 
-The next bounded carrier should be research-local and typed approximately as
+The bounded carrier should remain research-local and typed approximately as
 
 \[
 \mathbb W_{U,V}
@@ -574,37 +627,33 @@ The existing `ProgramSlice` remains semantic authority. `W_(U,V)` is a
 research presentation derived from one validated slice and must never create
 program identity.
 
-### 3.3 First exact calibration
+### 3.3 Two exact calibration levels and the remaining obligation
 
-The classification-level calibration now passes under one explicit extra
-law: each split or merge event contributes the connected genus-zero surface
-of minimal topology. It establishes exact gluing arithmetic, genus, event
-nonduplication, schedule distinction, and associativity of the research
-presentation.
+The classification-level calibration passes under the explicit law that each
+split or merge contributes the connected genus-zero surface of minimal
+topology. The cellulation-level calibration now also passes for one standard
+presentation of the complete four-event diamond. It establishes an actual
+finite oriented surface rather than only compatible classification data.
 
-The stronger cellular calibration remains open. It should use only the
-existing causal diamond and should not add a stable API.
+The remaining obligation is no longer bare existence. It is canonicity and
+composition:
 
-1. Give every incoming and outgoing dual-cut edge a separate time-level copy.
-2. Thicken every through-wire into an identity strip.
-3. Give `copy` one declared split patch and `add` one declared merge patch.
-4. Give `neg` and `id` decorated branch strips without identifying their
-   program meanings with topology.
-5. Glue the patches according to exact Rust producer/consumer and causal data.
-6. Verify that the resulting finite cell complex has the expected incoming
-   and outgoing boundaries.
-7. Compute its Euler characteristic and boundary-component count.
-8. Determine whether its underlying oriented surface is a genus-one
-   `1 -> 1` cobordism or exhibit the precise obstruction.
-9. Verify that the two legal branch schedules give isomorphic decorated trace
-   complexes through one explicit interchange cell.
-10. Verify that adjacent-slice gluing gives the direct outer trace without
-    duplicating shared events or overlapping graft frames.
-11. Map the trace back to the static face chain `F_(U,V)` and prove the
-    mod-two boundary equation as its shadow.
+1. derive the elementary patches from a free or universal program-trace
+   construction rather than selecting them by hand;
+2. generate separate boundary copies for every checked interval `(U,V)`;
+3. thicken all interval through-wires into exact identity strips;
+4. prove that adjacent interval gluing agrees with direct outer construction
+   without duplicating events or overlapping graft frames;
+5. realize the two legal branch schedules through one explicit interchange
+   cell while retaining them as distinct histories;
+6. map the oriented cellulation back to the static face chain `F_(U,V)` and
+   prove that the mod-two equation is its shadow; and
+7. isolate a no-hidden-genus principle or exhibit the program datum that
+   measures otherwise invisible handles.
 
-This is a sharper and more falsifiable next step than introducing a general
-derived or Fukaya ontology.
+This is sharper than introducing a general derived or Fukaya ontology: it
+asks whether program semantics determines the topology already observed in
+the bounded witness.
 
 ### 3.4 Only then ask for the handle operator
 
@@ -699,7 +748,11 @@ that cancels algebraically, and may have no oriented smoothing. The equation
 
 is a chain identity, not a proof of a cobordism.
 
-The time-thickened trace must be built and its links checked locally.
+One declared full-diamond cellulation has now been built and all of its vertex
+links are checked locally. This removes the bare existence objection on that
+presentation. It does not identify the cellulation with the earlier mod-two
+dual face chain, prove compatibility for every interval, or establish that
+the chosen smoothing is canonical.
 
 ### 4.2 Program copy and addition are not yet Frobenius operations
 
@@ -796,8 +849,8 @@ weighted completion could be tested.
 The decorated-handle proposal should be weakened or rejected if any of the
 following occurs on the minimal fixture:
 
-1. no local thickening of the certified cut surgeries produces a surface-like
-   trace with the declared boundaries;
+1. the finite cellulation cannot be extended from the full diamond to all
+   certified intervals with compatible boundaries;
 2. copy and add patches cannot be glued without identifying distinct
    occurrences or adding untracked data;
 3. the two legal branch schedules yield non-equivalent decorated traces after
@@ -843,15 +896,16 @@ H_{\mathrm{neg},\mathrm{id}}
 \]
 
 The left side is checked finite program structure. The right side is a
-research target motivated by pair-of-pants gluing. Between them lies the next
-exact obligation: construct or obstruct an oriented, decorated,
-time-thickened trace that preserves every checked cut, event, through-wire,
-source, occurrence, lineage, and graft role.
+research target motivated by pair-of-pants gluing. One explicit finite
+cellulation now witnesses the topological handle for the complete diamond.
+Between that witness and an intrinsic program handle lies the next exact
+obligation: construct the trace functorially for every checked interval,
+preserve every event, through-wire, source, occurrence, lineage, and graft
+role, and prove a no-hidden-genus principle.
 
-If that obligation passes, the program diamond has an intrinsic handle
-candidate and the construction-spectrum question becomes sharply posed. If
-it fails, the obstruction will locate the exact point at which topological
-field-theory language ceases to respect program semantics.
+If that obligation passes, the construction-spectrum question becomes
+sharply posed. If it fails, the obstruction will locate the exact point at
+which topological field-theory language ceases to respect program semantics.
 
 ## Selected references
 
