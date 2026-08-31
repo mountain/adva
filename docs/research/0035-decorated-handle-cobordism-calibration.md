@@ -563,6 +563,21 @@ The four cross-patch seams are also exact: `copy-neg`, `neg-add`, `copy-id`,
 and `id-add`, each with four edges. Face decorations retain the four Rust
 event identities and the causal layers `(0, 1, 1, 2)`.
 
+The elementary pieces are now wrapped as composable cellulations with ordered
+input and output circles. A research-local tensor places the two branch
+cylinders side by side, while `then` performs only the declared
+orientation-reversing circle identifications. The two parenthesizations
+
+\[
+(\mathrm{copy}\mathbin{;}\mathrm{branches})\mathbin{;}\mathrm{add}
+\qquad\text{and}\qquad
+\mathrm{copy}\mathbin{;}(\mathrm{branches}\mathbin{;}\mathrm{add})
+\]
+
+produce the same canonical oriented cells, event patches, and external ports.
+Thus associativity now holds at the finite cellulation level, not only in the
+surface-classification shadow.
+
 This proves existence of one finite manifold cellulation for the declared
 minimal patches. It still does not prove that current program semantics
 canonically selects those patches, or that arbitrary slices admit compatible
@@ -633,7 +648,8 @@ The classification-level calibration passes under the explicit law that each
 split or merge contributes the connected genus-zero surface of minimal
 topology. The cellulation-level calibration now also passes for one standard
 presentation of the complete four-event diamond. It establishes an actual
-finite oriented surface rather than only compatible classification data.
+finite oriented surface rather than only compatible classification data. Its
+three declared causal layers also compose associatively as exact cellulations.
 
 The remaining obligation is no longer bare existence. It is canonicity and
 composition:
@@ -642,8 +658,8 @@ composition:
    construction rather than selecting them by hand;
 2. generate separate boundary copies for every checked interval `(U,V)`;
 3. thicken all interval through-wires into exact identity strips;
-4. prove that adjacent interval gluing agrees with direct outer construction
-   without duplicating events or overlapping graft frames;
+4. extend the established three-layer associativity to every adjacent causal
+   interval without duplicating events or overlapping graft frames;
 5. realize the two legal branch schedules through one explicit interchange
    cell while retaining them as distinct histories;
 6. map the oriented cellulation back to the static face chain `F_(U,V)` and
