@@ -454,6 +454,71 @@ instance of this principle. It should be introduced only after the actual
 incoming boundary, trace complex, and inclusion map have been constructed.
 Merely drawing three semantic vertices does not create an exact triangle.
 
+### 2.9 Executable classification-level calibration
+
+The companion research test
+[`test_decorated_handle_cobordism.py`](../../tests/python/test_decorated_handle_cobordism.py)
+now performs two exact finite checks.
+
+First, it obtains the existing four-event diamond from Rust and exhausts its
+six downward-closed causal pasts, all twenty nested pairs, and all fifty
+nested triples. For every pair it checks
+
+\[
+\partial F_{U,V}=\gamma_U+\gamma_V,
+\]
+
+and for every triple it checks the boundary shadow of
+
+\[
+F_{U,W}=F_{U,V}+F_{V,W}.
+\]
+
+Second, it declares one explicit minimal-saddle presentation:
+
+- `copy` is a connected genus-zero `1 -> 2` copants;
+- `neg` and `id` are separately decorated genus-zero cylinders;
+- `add` is a connected genus-zero `2 -> 1` pants; and
+- ordered middle circles are glued exactly, with every checked event ID used
+  once.
+
+Euler characteristic is additive under circle gluing, so the composite has
+
+\[
+\chi=-1+0+0-1=-2,
+\qquad
+b=2,
+\]
+
+and the orientable-surface classification equation
+
+\[
+\chi=2-2g-b
+\]
+
+gives
+
+\[
+\boxed{g=1}.
+\]
+
+The test checks this result by exact integer arithmetic, verifies both
+parenthesizations of the gluing, and retains the two distinct legal event
+schedules while assigning them one canonical decorated surface signature.
+
+It also installs its own red-team witness. Replacing the declared genus-zero
+copy patch by a genus-one `1 -> 2` patch preserves exactly the same event ID
+and boundary arity but makes the total genus equal to two. Therefore
+
+\[
+\boxed{
+\text{fork--recombine arity alone does not force a handle}.
+}
+\]
+
+The genus-one result is exact conditional evidence for the explicit
+minimal-saddle law, not a theorem derived from current Adva operation arities.
+
 ## 3. Conservative and safe conclusion
 
 ### 3.1 What advanced exactly
@@ -466,14 +531,18 @@ The following bounded conclusions are currently justified.
    \(\partial F_{U,V}=\gamma_U+\gamma_V\) on the declared cellular dual.
 3. The face chains add under nested intervals exactly as program event sets
    compose.
-4. The repository already retains the causal and graft decorations that a
-   faithful trace thickening would need.
-5. In established 2D TQFT, copants followed by pants gives the handle
+4. The new research test exhaustively checks the interval face-chain law and
+   computes genus one for the declared minimal-saddle trace.
+5. The same test proves by a hidden-handle witness that event arity does not
+   select the minimal-saddle trace.
+6. The repository already retains the causal and graft decorations that a
+   faithful cellular thickening would need.
+7. In established 2D TQFT, copants followed by pants gives the handle
    operator `mu o Delta`, and the spectrum of that operator has genuine genus
    meaning.
-6. Therefore a decorated handle operator is a disciplined candidate for the
+8. Therefore a decorated handle operator is a disciplined candidate for the
    construction spectrum of this fixture.
-7. No Adva Frobenius algebra, TQFT functor, oriented trace surface, handle
+9. No embedded cellular trace, Adva Frobenius algebra, TQFT functor, handle
    operator, or elliptic-curve presentation has yet been constructed.
 
 ### 3.2 The minimal research object
@@ -507,8 +576,14 @@ program identity.
 
 ### 3.3 First exact calibration
 
-The first calibration should use only the existing causal diamond and should
-not add a stable API.
+The classification-level calibration now passes under one explicit extra
+law: each split or merge event contributes the connected genus-zero surface
+of minimal topology. It establishes exact gluing arithmetic, genus, event
+nonduplication, schedule distinction, and associativity of the research
+presentation.
+
+The stronger cellular calibration remains open. It should use only the
+existing causal diamond and should not add a stable API.
 
 1. Give every incoming and outgoing dual-cut edge a separate time-level copy.
 2. Thicken every through-wire into an identity strip.
