@@ -35,6 +35,86 @@ noncomputable, random for a universal prefix-free machine, and obtainable only
 as a directed completion--rather than the machine-dependent real number
 `Omega_U` itself.
 
+## 0. Originating intuition and search map
+
+### 0.1 The intuition before reduction
+
+The following chain is the originating research intuition. It is recorded
+before being separated into theorem, analogy, and open construction:
+
+1. The failure of the order condition when a cut is crossed is evidence of a
+   missing theory, not merely a bad local convention for `L` and `R`.
+2. A useful completion should involve the hyperbolic plane `H^2`. In the E0
+   chart, addition and positive scaling are both arithmetized by exact
+   geometric actions, suggesting that the geometric leaves of add-multiply
+   expressions belong to one larger picture.
+3. A surreal birthday may be related to the number or depth of covering
+   layers. To form the displayed cut `L | R`, both sides are flattened, so the
+   information at a cut point should retain at least a pair `(p,q)` rather
+   than a single scalar rank.
+4. The pair may have a double-periodic interpretation and therefore may be
+   governed by an elliptic or theta-like function after a suitable quotient
+   and compactification.
+5. The cut point resembles the crossing of a figure-eight. Its two local
+   branches are not independent: they may be the temporal and spatial leaves
+   of one intrinsic program event.
+6. The added singular point is the point an add-multiply computer can name or
+   approach but never internally complete. Its computability model is
+   Chaitin's halting probability `Omega`.
+7. If program forms admit an intrinsic prefix-code scheme, their leaves carry
+   Kraft weights. Probability, objectification fibres, and the singular
+   completion may then arise from one construction rather than from separate
+   axioms.
+
+This chain is deliberately allowed to be wrong in identifiable places. In
+particular, `(p,q)` may be a bidegree without being periodic; the relevant
+completion may be domain-theoretic rather than algebraic; the two branches of
+the node may not coincide with halted and nonhalting information; and a useful
+prefix grammar may fail every modular transformation test. Preserving the
+unreduced intuition matters because even a failed identification can reveal
+which intermediate structure is real.
+
+### 0.2 What the external search established
+
+The literature search did not find the proposed synthesis as an existing
+theory. It did find several exact results that make individual steps
+mathematically natural.
+
+| External result | Status and source | Relevance here | What it does not establish |
+|---|---|---|---|
+| The halting domain of a prefix-free machine is an instantaneous code and its cylinder weights satisfy the Kraft bound. | Standard algorithmic information theory; Chaitin (1975), Barmpalias (2017). | Makes `Omega_U` a genuine probability and supplies exact dyadic finite approximations. | Does not make the chosen code intrinsic to Adva or AEG. |
+| An optimal prefix-free machine may have several distinct codewords for the same output. | Tadaki, *Properties of Optimal Prefix-Free Machines as Instantaneous Codes* (2010). | Directly supports studying the weighted fibre `U^{-1}(x)` rather than only the output value. | Does not retain Adva source, occurrence, hole, or surgery identities. |
+| For a universal prefix-free machine, `Omega_U` is left-c.e., noncomputable, and algorithmically random; the value depends on the machine. | Chaitin and subsequent algorithmic-randomness theory; surveyed by Barmpalias. | Supplies the one-sided effective-cut obstruction and explains why a chart or machine must remain explicit. | Does not select a canonical numerical singularity. |
+| A statistical ensemble of universal-machine histories can have a critical point at which its partition function equals `Omega`. | Schmidhuber, *Chaitin's Omega and an Algorithmic Phase Transition* (2019/2021). | Supports treating the halting generating series as a partition function and looking for a critical boundary. | Does not imply modularity, ellipticity, or an AEG phase transition. |
+| In the low-dimensional torus cases, Teichmuller space is the hyperbolic plane; a point `tau in H^2` presents a marked complex torus `C/(Z + tau Z)`. | Standard Teichmuller theory; explicitly reviewed by Su and Tan (2023). | Gives an exact external reason that `H^2`, a two-period lattice, and genus-one geometry can meet. | Does not identify the AEG E0 half-plane with Teichmuller space. |
+| A one-holed torus has free fundamental group on two generators, a boundary commutator, and modular-group actions. | Goldman, *The Modular Group Action on Real SL(2)-Characters of a One-Holed Torus* (2003). | Supports the figure-eight, two-generator, commutator, and period-flattening picture. | Does not identify program `L/R` branches with those generators. |
+| Theta and Weierstrass functions are organized by period lattices; theta and sigma functions retain quasi-periodic multipliers. | NIST DLMF, Chapters 20 and 23. | Explains why theta or sigma is a better first carrier than a scalar `wp` shadow when a cocycle must survive. | Does not produce the required lattice or transformation law from prefix programs. |
+
+The main negative search result is equally important:
+
+> No established result was found that identifies a Chaitin halting
+> probability with the compactifying singularity of a genus-one program
+> geometry, or that turns the length/runtime bifiltration of a universal
+> prefix machine into an elliptic period lattice.
+
+That missing bridge is not a citation gap. It is the proposed research
+problem.
+
+### 0.3 Current separation of confidence
+
+The material below uses three levels:
+
+- **Established:** prefix-free cylinder measure, Kraft inequality, the
+  effective asymmetry of `L_Omega | R_Omega`, finite exact approximations, and
+  pushforward semimeasures.
+- **Constructible in Adva now:** bounded prefix-code fixtures, exact dyadic
+  mass, witnessed halting under a step budget, and weighted objectification
+  fibres over existing checked program forms.
+- **Open and intentionally speculative:** intrinsic prefix grammar, birthday
+  as covering depth, `(p,q)` as a period lattice, the figure-eight as the
+  temporal/spatial node, the `H^2` compactification, and the elliptic or
+  theta-function realization of the Omega-type boundary.
+
 ## 1. Exact computability core
 
 ### 1.1 Prefix cylinders and halting mass
@@ -434,7 +514,15 @@ intertwining experiments, not assumed in advance.
   <https://doi.org/10.1145/321892.321894>.
 - G. Barmpalias, "Aspects of Chaitin's Omega," 2017,
   <https://arxiv.org/abs/1707.08109>.
+- K. Tadaki, "Properties of Optimal Prefix-Free Machines as Instantaneous
+  Codes," 2010, <https://arxiv.org/abs/1007.4294>.
 - C. S. Calude, "Chaitin Numbers, Solovay Machines, and Gödel
   Incompleteness," <https://www.cs.auckland.ac.nz/~cristian/omega_incom.pdf>.
 - C. Schmidhuber, "Chaitin's Omega and an Algorithmic Phase
   Transition," <https://arxiv.org/abs/1909.09231>.
+- W. M. Goldman, "The Modular Group Action on Real SL(2)-Characters of a
+  One-Holed Torus," 2003, <https://arxiv.org/abs/math/0305096>.
+- W. Su and D. Tan, "Horospheres in Teichmuller Space and Mapping Class
+  Group," 2023, <https://doi.org/10.5802/aif.3556>.
+- NIST Digital Library of Mathematical Functions, Chapters 20 and 23,
+  <https://dlmf.nist.gov/20> and <https://dlmf.nist.gov/23>.
