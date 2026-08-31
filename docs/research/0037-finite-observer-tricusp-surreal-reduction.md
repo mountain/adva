@@ -570,6 +570,40 @@ charts three times returns the original pair. These are small results, but
 they are sufficient to make the first calibration exact rather than
 metaphorical.
 
+### 2.9 First executable Adva calibration
+
+The research fixture
+[`test_finite_observer_tricusp_reduction.py`](../../tests/python/test_finite_observer_tricusp_reduction.py)
+implements the first bounded computational layer of this note. A checked Adva
+Lisp module, rather than a Python semantic reconstruction, performs:
+
+1. explicit source-preserving fan-out for every repeated coordinate;
+2. derivation of the `C`, `T`, and `S` chart coordinates from one global
+   charge;
+3. the cyclic rotation `R(p,q)=(-q,p-q)`; and
+4. the equianharmonic `A_2` energy `p^2-pq+q^2`.
+
+The surrounding Python code is deliberately a research oracle. It enumerates
+one finite construction box, partitions it into visible and residual modes
+under an energy budget, checks the exact integer formulas, and retains a
+separately certified rational Conway cut. The test verifies:
+
+- three cyclic rotations return the original global charge;
+- the three local chart readings agree with exact integer formulas;
+- the unit energy shell has exactly seven lattice modes;
+- energy selection and cut order remain different certificate fields;
+- observer refinement adds visible modes without reversing an existing cut;
+  and
+- two distinct decorated cut presentations remain distinct even when they
+  objectify to the same finite surreal.
+
+This fixture does not derive `L/R` from the period energy, introduce theta
+data, promote a spectral or surreal API, or make Python an authority for
+semantic identity. Its role is narrower and important: the simultaneous
+period carrier, exact three-chart calibration, finite mode selection,
+residual partition, and form-before-objectification discipline now execute in
+the Adva test environment.
+
 ## 3. Conservative formal proposal
 
 ### 3.1 Three layers of surreal representation
