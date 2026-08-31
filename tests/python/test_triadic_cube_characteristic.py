@@ -133,7 +133,7 @@ class CubicCharacteristic:
 
 @dataclass(frozen=True, slots=True)
 class ExactOpenInterval:
-    """An exact real spatial probe."""
+    """An exact real interval used by the bounded spatial observer."""
 
     lower: Fraction
     upper: Fraction
@@ -148,14 +148,14 @@ class ExactOpenInterval:
 
 @dataclass(frozen=True, slots=True)
 class CubePullback:
-    """The single real inverse-image component of x |-> x^3."""
+    """The real inverse-image components of x mapsto x^3."""
 
     target: ExactOpenInterval
-    component: ExactOpenInterval
+    components: tuple[ExactOpenInterval, ...]
     contains_critical_value: bool
 
     def contains(self, value: Fraction) -> bool:
-        return self.component.contains(value)
+        return any(component.contains(value) for component in self.components)
 
 
 def _exact_integer_cube_root(value: int) -> int:
@@ -182,20 +182,22 @@ def _exact_cube_root(value: Fraction) -> Fraction:
 
 
 def cube_pullback(target: ExactOpenInterval) -> CubePullback:
-    """Pull back rational-cube endpoints through the real cube map."""
+    """Pull back intervals whose endpoints are exact rational cubes."""
 
     return CubePullback(
         target=target,
-        component=ExactOpenInterval(
-            _exact_cube_root(target.lower),
-            _exact_cube_root(target.upper),
+        components=(
+            ExactOpenInterval(
+                _exact_cube_root(target.lower),
+                _exact_cube_root(target.upper),
+            ),
         ),
         contains_critical_value=target.lower < 0 < target.upper,
     )
 
 
 def reverse_cube_fibre(value: Fraction) -> tuple[Fraction, ...]:
-    """The exact real reverse fibre, always a singleton."""
+    """The real reverse fibre of x mapsto x^3 on exact rational cubes."""
 
     return (_exact_cube_root(value),)
 
@@ -208,7 +210,7 @@ def _as_fraction(value: float) -> Fraction:
     return Fraction(str(value))
 
 
-def _copy_tree_leaves(function: Any) -> tuple[set[str], tuple[dict[str, Any], ...]]:
+def _copy_tree(function: Any) -> tuple[set[str], tuple[dict[str, Any], ...]]:
     copy_events = tuple(
         event for event in function.history["prefix"] if event["kind"] == "copy"
     )
@@ -232,7 +234,7 @@ def _copy_tree_leaves(function: Any) -> tuple[set[str], tuple[dict[str, Any], ..
     return leaves, copy_events
 
 
-def test_temporal_probes_recover_cube_and_distinguish_invariance_from_equivariance() -> None:
+def test_temporal_probes_recover_cube_and_separate_invariance_from_equivariance() -> None:
     workspace = _workspace()
     cube = workspace.function("triadic-cube", "cube")
     square = workspace.function("triadic-cube", "square")
@@ -253,15 +255,18 @@ def test_temporal_probes_recover_cube_and_distinguish_invariance_from_equivarian
     characteristic = CubicCharacteristic.from_probes(*observations)
 
     assert characteristic == CubicCharacteristic(
-        Fraction(1), Fraction(0), Fraction(0), Fraction(0)
+        Fraction(1),
+        Fraction(0),
+        Fraction(0),
+        Fraction(0),
     )
     assert characteristic.evaluate(Fraction(3, 2)) == Fraction(27, 8)
 
     x = sympy.Symbol("x", real=True)
     assert sympy.simplify(cube.to_sympy() - x**3) == 0
 
-    # The square is invariant under sign, while the cube is equivariant:
-    # Q(-x)=Q(x), but C(-x)=-C(x).
+    # The square is invariant under reflection; the cube is equivariant:
+    # Q(-x)=Q(x), whereas C(-x)=-C(x).
     assert sympy.simplify(
         square_after_negate.to_sympy() - square.to_sympy()
     ) == 0
@@ -274,7 +279,7 @@ def test_temporal_probes_recover_cube_and_distinguish_invariance_from_equivarian
     assert cube_after_negate.history != negate_after_cube.history
 
 
-def test_real_cube_pullback_has_one_component_despite_a_differential_critical_point() -> None:
+def test_real_cube_pullback_stays_connected_across_a_differential_critical_value() -> None:
     targets = (
         ExactOpenInterval(Fraction(-8), Fraction(-1)),
         ExactOpenInterval(Fraction(-8), Fraction(27)),
@@ -288,7 +293,7 @@ def test_real_cube_pullback_has_one_component_despite_a_differential_critical_po
 
     for target, component in zip(targets, expected):
         pulled = cube_pullback(target)
-        assert pulled.component == component
+        assert pulled.components == (component,)
         samples = tuple(Fraction(value, 2) for value in range(-8, 9))
         for value in samples:
             assert pulled.contains(value) == target.contains(value**3)
@@ -318,9 +323,9 @@ def test_complexification_changes_the_generic_fibre_from_one_to_three() -> None:
     assert sum(sympy.roots(z**3 - 1).values()) == 3
 
 
-def test_constructive_cube_has_three_leaf_occurrences_but_one_real_reverse_branch() -> None:
+def test_constructive_cube_has_three_occurrence_leaves_but_one_real_reverse_branch() -> None:
     cube = _workspace().function("triadic-cube", "cube")
-    leaves, copy_events = _copy_tree_leaves(cube)
+    leaves, copy_events = _copy_tree(cube)
 
     assert len(leaves) == 3
     assert len(cube.source_partition) == 1
@@ -339,10 +344,7 @@ def test_constructive_cube_has_three_leaf_occurrences_but_one_real_reverse_branc
     inner = next(event for event in copy_events if event is not outer)
 
     first_split = cube.program_slice([], [outer["node"]])
-    second_split = cube.program_slice(
-        [],
-        sorted([outer["node"], inner["node"]]),
-    )
+    second_split = cube.program_slice([], [outer["node"], inner["node"]])
     assert first_split.certificate["event_difference"] == "checked"
     assert second_split.certificate["event_difference"] == "checked"
     assert len(first_split.result.lower_boundary) == 1
@@ -357,18 +359,18 @@ def test_constructive_cube_has_three_leaf_occurrences_but_one_real_reverse_branc
         "adva.builtin:mul@1",
     }
 
-    real_reverse_degree = len(reverse_cube_fibre(Fraction(8)))
-    real_component_degree = 1
-    constructive_degree = len(leaves)
-    complex_algebraic_degree = sum(
-        sympy.roots(sympy.Symbol("z") ** 3 - 1).values()
+    z = sympy.Symbol("z")
+    degree_profile = (
+        len(reverse_cube_fibre(Fraction(8))),
+        len(
+            cube_pullback(
+                ExactOpenInterval(Fraction(1), Fraction(8))
+            ).components
+        ),
+        len(leaves),
+        sum(sympy.roots(z**3 - 1).values()),
     )
-    assert (
-        real_reverse_degree,
-        real_component_degree,
-        constructive_degree,
-        complex_algebraic_degree,
-    ) == (1, 1, 3, 3)
+    assert degree_profile == (1, 1, 3, 3)
 
 
 def test_scaling_and_sign_cross_cube_but_translation_uses_binomial_coaction() -> None:
@@ -397,8 +399,8 @@ def test_scaling_and_sign_cross_cube_but_translation_uses_binomial_coaction() ->
     binomial_coaction = x**3 + 3 * b * x**2 + 3 * b**2 * x + b**3
     assert sympy.expand((x + b) ** 3 - binomial_coaction) == 0
 
-    # Any old post-affine cube normal form a*x^3+c has zero x^2 and x
-    # coefficients, so translation crossing cannot remain in that language.
+    # Any former post-affine cube normal form a*x^3+c has zero x^2 and x
+    # coefficients. Translation crossing therefore leaves that carrier.
     for scale in range(1, 6):
         for constant in range(5):
             candidate = sympy.Poly(scale * x**3 + constant, x)
@@ -412,22 +414,18 @@ def test_nested_cube_calls_compress_a_dense_expanded_polynomial() -> None:
     )
     x = sympy.Symbol("x", real=True)
     expanded = sympy.Poly(sympy.expand(function.to_sympy()), x)
-    calls = [
-        event
+    high_level_calls = [
+        (
+            event["function"]["module"],
+            event["function"]["function"],
+        )
         for event in function.history["prefix"]
         if event["kind"] == "call"
+        and event["function"]["function"] in {"increment", "cube"}
     ]
 
     assert expanded.degree() == 27
     assert len(expanded.terms()) == 28
+    assert high_level_calls.count(("triadic-cube", "increment")) == 1
+    assert high_level_calls.count(("triadic-cube", "cube")) == 3
     assert sympy.simplify(expanded.as_expr() - (x + 1) ** 27) == 0
-
-    # One increment and three cube calls are the visible nested circuit;
-    # helper calls internal to cube retain construction provenance but are not
-    # counted as top-level semantic stages here.
-    visible = [
-        event
-        for event in calls
-        if event["function"]["function"] in {"increment", "cube"}
-    ]
-    assert len(visible) == 4
