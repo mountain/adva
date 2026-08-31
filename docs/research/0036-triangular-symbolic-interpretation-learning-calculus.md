@@ -17,11 +17,15 @@ The central revision is:
 > Time, space, and construction are not only three interpretations attached
 > to a triangle. They are three modes of computation, three forms of
 > locality, and three grammars for unfolding complexity. Each computer
-> extracts a characteristic fiber from the opposite process and unfolds it
-> in the next domain. The triangular scheme closes in type, but its lifted
-> history need not close. A learner of the whole three-cycle is therefore an
-> open-ended theory-generating process whose complete characteristic may lie
-> at an Omega-type noncomputable boundary.
+> extracts a characteristic fiber from the opposite process through a finite
+> observer's controlled forgetting, and unfolds it in the next domain. A
+> feature is therefore not merely a flat section: it is a finite vocabulary
+> on an observational quotient, dynamics descends to that quotient, and its
+> form survives transport between local observer charts. The triangular
+> scheme closes in type, but its lifted history and holonomy need not close.
+> A learner of the whole three-cycle must learn the quotient, descended
+> dynamics, holonomy, and accountable residual. Its complete characteristic
+> may lie at an Omega-type noncomputable boundary.
 
 The note follows the project research format: intuition, evidence and
 structural formalization, conservative conclusion, and red-team opinion.
@@ -218,7 +222,166 @@ The scale changes while the projective or intrinsic form remains. This is the
 precise core of the intuition that a characteristic retains its eigenform
 under scale action.
 
-### 1.5 A construction word has function semantics
+### 1.5 Finite observation creates the quotient on which a feature can exist
+
+The previous account begins too late. It explains how a declared feature is
+transported, but not how a feature becomes available. A feature requires a
+finite observer that cannot retain every distinction in the source process.
+For an observer `Q`, write
+
+\[
+O_Q:\mathcal P\longrightarrow Z_Q,
+\qquad
+p\sim_Q p'
+\Longleftrightarrow
+O_Q(p)=O_Q(p').
+\]
+
+The observed state space is an observational quotient
+
+\[
+Z_Q\simeq\mathcal P/{\sim_Q}.
+\]
+
+A characteristic vocabulary is useful only if it is constant on the fibers
+of this observation:
+
+\[
+p\sim_Qp'
+\Longrightarrow
+c_Q(p)=c_Q(p').
+\]
+
+Nontrivial fibers are the source of compression. If every observer fiber is
+a singleton, the characteristic merely renames the full process. Controlled
+forgetting therefore precedes characteristic extraction:
+
+\[
+\boxed{
+\text{finite observation}
+\to
+\text{controlled forgetting}
+\to
+\text{observational quotient}
+\to
+\text{stable feature}
+\to
+\text{cross-domain unfolding}.
+}
+\]
+
+Forgetting must not mean silent destruction. The source process should map to
+two coupled channels,
+
+\[
+p\longmapsto\bigl(c_Q(p),R_Q(p)\bigr),
+\]
+
+where `c_Q` is the finite operational channel and `R_Q` is the audit,
+reconstruction, or obstruction residual. Full identity, observational
+equivalence, and predictive equivalence are three different relations.
+
+### 1.6 A feature has observational and transport invariance
+
+Covariant constancy alone does not produce a feature. A candidate must first
+survive the observer quotient and then retain its eigenform under the chosen
+scale or chart transport. Schematically,
+
+\[
+C_{Q,A}
+=
+\operatorname{Inv}(\sim_Q)
+\cap
+\operatorname{Eig}(E_A).
+\]
+
+It must also support descended dynamics. For a process evolution `Phi`, the
+strict form is
+
+\[
+O_Q\circ\Phi
+=
+\bar\Phi_Q\circ O_Q.
+\]
+
+If strict descent fails, the missing distinction must be exposed through a
+residual rather than hidden in the notation. Thus a characteristic is not
+just an element of `ker(d-A)`. It is a finite word on a nontrivial quotient
+for which the relevant dynamics is well-defined and whose intrinsic form is
+stable under transport.
+
+### 1.7 Holonomy is structured memory across local observations
+
+A finite observer generally has local charts rather than one globally exact
+description. Let `Q_i` be local observer charts with transition maps
+
+\[
+g_{ij}:Z_{Q_i}|_{U_{ij}}\longrightarrow Z_{Q_j}|_{U_{ij}}.
+\]
+
+Transport around the oriented triangle can return with nontrivial holonomy:
+
+\[
+\operatorname{Hol}_{\gamma,Q}
+=
+g_{31}g_{23}g_{12}.
+\]
+
+The holonomy records history that is invisible in any single local quotient
+but survives a circuit of interpretations. A feature may be strictly fixed,
+an eigenform, or only projectively fixed:
+
+\[
+\operatorname{Hol}_{\gamma,Q}c=\lambda c,
+\qquad
+[\operatorname{Hol}_{\gamma,Q}c]=[c].
+\]
+
+When a connection is available, the candidate expression is
+
+\[
+\operatorname{Hol}_{\gamma,Q}
+=
+\mathcal P\exp\!\left(\oint_\gamma A_Q\right).
+\]
+
+Information loss alone does not imply holonomy: lossless systems can also
+have nontrivial holonomy. The relevant claim is narrower. Local observation
+quotients together with nontrivial transition transport can make history
+reappear globally as effective holonomy.
+
+### 1.8 The observer indexes the triangle; it is not a fourth vertex
+
+The finite observer should not be added as a fourth computational mode. It
+indexes all three modes:
+
+\[
+\Delta_Q=(t_Q,X_Q,K_Q).
+\]
+
+Observers form a refinement preorder or category. If `Q preceq Q'`, then
+`Q'` distinguishes at least as much as `Q`, with a forgetting map
+
+\[
+\pi_{Q'Q}:Z_{Q'}\longrightarrow Z_Q.
+\]
+
+The full theory is therefore a family `Q mapsto Delta_Q`, not a view from an
+unbounded external observer. Spatial opens, constructive scopes, and
+temporal application horizons become observer-indexed:
+
+\[
+\tau_Q,
+\qquad
+\Gamma_Q,
+\qquad
+T_Q.
+\]
+
+There need not be a single global section that simultaneously realizes every
+finite observer's distinctions.
+
+### 1.9 A construction word has function semantics
 
 A finite characteristic word must be interpretable as a function, otherwise
 it cannot support functional programming. The interpretation is
@@ -262,7 +425,7 @@ f.
 The residual protects source, occurrence, history, scope, and other
 intensional information that the characteristic quotient may forget.
 
-### 1.6 The three computers
+### 1.10 The three computers
 
 The three vertices now carry three different computers.
 
@@ -302,7 +465,7 @@ The cycle converts the form in which complexity exists:
 }
 \]
 
-### 1.7 Three forms of locality
+### 1.11 Three forms of locality
 
 The three generated domains do not use the same composition rule.
 
@@ -330,7 +493,7 @@ Open sets and scopes should not be called fixed points of arbitrary dynamics.
 They are invariant units of meaning under their respective localization and
 restriction operations.
 
-### 1.8 The triangle closes in type but not in history
+### 1.12 The triangle closes in type but not in history
 
 Let one complete three-computer cycle be
 
@@ -366,7 +529,7 @@ S_{n+1}=\tau S_n.
 One circuit can therefore increase birthday, covering layer, construction
 depth, or an exact residual without changing the type of the state.
 
-### 1.9 Learning the complete cycle
+### 1.13 Learning the complete cycle
 
 Once the three arrows compose, the whole cycle becomes a higher process. It
 may have its own characteristic map
@@ -413,6 +576,8 @@ A first research signature is
 (
 t,X,K,\rho;
 d_v^\pm,A_v,E_{v,A},C_v,c_v;
+Q,\preceq,O_Q,\sim_Q,R_Q,\pi_{Q'Q};
+g_{ij},\nabla_Q,\operatorname{Hol}_{\gamma,Q};
 U,\Gamma,@;
 \operatorname{res},\operatorname{glue},
 \operatorname{sub},\otimes_\Gamma,;
@@ -427,6 +592,12 @@ Its roles are:
   an opposite edge;
 - `A_v` and `E_(v,A)`: a generator and its exponentiated transport;
 - `C_v` and `c_v`: a characteristic fiber and one finite word;
+- `Q`, `preceq`, and `O_Q`: finite observers, their refinement order, and
+  observation maps;
+- `sim_Q`, `R_Q`, and `pi_(Q'Q)`: observational equivalence, accountable
+  residual, and forgetting along observer refinement;
+- `g_(ij)`, `nabla_Q`, and `Hol_(gamma,Q)`: local chart transport, a candidate
+  connection, and circuit memory;
 - `U`: an open-set boundary of spatial localization;
 - `Gamma`: a scope boundary of construction localization;
 - `@`: typed application;
@@ -762,44 +933,75 @@ retained.
 
 ### 2.12 The open-ended learner
 
-At finite stage `n`, a learner may output
+At finite stage `n` and observer resolution `Q`, a learner may output
 
 \[
-\mathcal L_n
+\mathcal L_{n,Q}
 =
 (
-C_t^{(n)},C_X^{(n)},C_K^{(n)};
+C_{t,Q}^{(n)},C_{X,Q}^{(n)},C_{K,Q}^{(n)};
+O_Q,\sim_Q,\bar\Phi_Q;
 A_t^{(n)},A_X^{(n)},A_K^{(n)};
 \mathfrak T_n,\mathfrak X_n,\mathfrak K_n;
 C_\triangle^{(n)},A_\triangle^{(n)};
-R_n
+\operatorname{Hol}_{\gamma,Q}^{(n)},R_{n,Q}
 ).
 \]
 
 The output contains:
 
 - current characteristic vocabularies;
+- the current observation quotient and dynamics descended to it;
 - current algebra--function matches;
 - current unfolding interpreters;
+- a current hypothesis for cross-chart holonomy;
 - a current hypothesis for the whole-cycle eigencharacteristic; and
 - an explicit unexplained residual.
 
-Learning updates form a chain
+Learning updates form a two-dimensional net
 
 \[
-\mathcal L_0
-\preceq
-\mathcal L_1
-\preceq
-\mathcal L_2
-\preceq
-\cdots.
+\{\mathcal L_{n,Q}\}_{(n,Q)},
 \]
 
-The order should mean refinement and residual accountability, not necessarily
-literal inclusion of parameter vectors. A chart change may replace one
-presentation by another while preserving predictions and certified
-structure.
+with one direction advancing the observed cycles and another refining the
+observer. The order should mean predictive refinement and residual
+accountability, not literal inclusion of parameter vectors. A chart change
+may replace one presentation by another while preserving predictions and
+certified structure.
+
+The learner's task is consequently fourfold:
+
+\[
+\boxed{
+\text{learn cycle feature}
+=
+\text{learn observation quotient}
++
+\text{learn descended dynamics}
++
+\text{learn holonomy}
++
+\text{manage residual}.
+}
+\]
+
+It must also learn when its present observer is too coarse and should be
+refined. If `N_Q` is the number of distinguishable finite signatures, then a
+basic monotonicity check is
+
+\[
+Q\preceq Q'
+\Longrightarrow
+N_Q\le N_{Q'}
+\Longrightarrow
+\lceil\log_2N_Q\rceil
+\le
+\lceil\log_2N_{Q'}\rceil.
+\]
+
+This does not supply an optimal code, but it ties observer refinement to the
+minimum number of bits required to name its distinctions.
 
 Gold's identification-in-the-limit model supplies a narrow external analogy:
 a learner may eventually stabilize on a correct representation without being
@@ -808,7 +1010,57 @@ present learner is richer and no theorem transfers automatically, but the
 distinction between eventual adequacy and finite certification is directly
 relevant.
 
-### 2.13 Omega as a conditional completion boundary
+### 2.13 The observation quotient is the missing generation layer
+
+For each vertex `v`, the revised quote--unfold channel is
+
+\[
+\boxed{
+P
+\xrightarrow{O_Q}
+P/{\sim_Q}
+\xrightarrow{\operatorname{char}_{v,Q}}
+C_{v,Q}
+\xrightarrow{\operatorname{unfold}_{v,Q}}
+\operatorname{Term}_{\rho v,Q}.
+}
+\]
+
+The characteristic map must factor through `O_Q`. The dynamics must descend
+strictly or through an explicit residual. These are separately testable
+conditions; neither follows from the eigenform equation.
+
+For a finite calibration, the kernel pairs of `O_Q` can be enumerated
+exactly. One can then check:
+
+1. which source distinctions are identified;
+2. whether `c_(v,Q)` is constant on every identified pair;
+3. whether `Phi` maps equivalent states to equivalent states;
+4. which failures are captured by `R_Q`; and
+5. whether refinement `Q preceq Q'` commutes with the forgetting maps.
+
+### 2.14 Observer charts and effective holonomy
+
+Given finite charts `Q_1`, `Q_2`, and `Q_3`, a bounded model can store exact
+transition tables `g_(12)`, `g_(23)`, and `g_(31)`. Their composite defines a
+finite circuit operator
+
+\[
+H_Q=g_{31}g_{23}g_{12}.
+\]
+
+This permits three distinct finite questions:
+
+1. is `H_Q` the identity on observed states;
+2. is a selected characteristic fixed or an eigenform of `H_Q`; and
+3. does the residual reconstruct the difference between local closure and
+   the lifted source history?
+
+The finite transition-table formulation should precede differential
+connection language. The latter becomes justified only when a coherent
+family of refinements supports a limiting connection-like object.
+
+### 2.15 Omega as a conditional completion boundary
 
 Assume, as an additional hypothesis, that the complete triangular machine
 contains a universal prefix-free interpreter `U`. Its halting probability is
@@ -856,7 +1108,7 @@ It does not prove that every local computation is nonterminating, that the
 physical world is a prefix-free universal machine, or that every failure of
 learning is an Omega phenomenon.
 
-### 2.14 Relationship to the current Adva calibration
+### 2.16 Relationship to the current Adva calibration
 
 The finite handle cellulation in `0035` already contains shadows of the three
 grammars:
@@ -874,12 +1126,13 @@ implementation of the present theory.
 The next finite calibration should choose one very small program and record,
 for the same checked execution:
 
-1. its temporal application chain;
-2. its spatial open cover and compatible gluing;
-3. its construction scopes and explicit substitutions;
-4. the three characteristic words extracted from opposite processes;
-5. one complete typed cycle; and
-6. the exact residual after returning to the original state type.
+1. a finite observer and the exact distinctions it forgets;
+2. its temporal application chain;
+3. its spatial open cover and compatible gluing;
+4. its construction scopes and explicit substitutions;
+5. the three characteristic words extracted from observation quotients;
+6. one complete typed cycle and its chart-transition holonomy; and
+7. the exact residual after returning to the original state type.
 
 ## 3. Conservative and safe conclusion
 
@@ -896,9 +1149,14 @@ features:
 6. three cyclic complexity-unfolding computers;
 7. typed closure of one full cycle without semantic fixed-point closure;
 8. a higher characteristic problem for the complete cycle;
-9. an open-ended learner that emits finite theories and explicit residuals;
-   and
-10. a conditional route from universal prefix-free computation to an
+9. finite observers whose controlled forgetting creates observational
+   quotients;
+10. a two-part invariance law: constancy on observer fibers and eigenform
+    stability under transport;
+11. local observer charts whose circuit transport can carry holonomy;
+12. an observer-indexed, open-ended learner that emits finite theories and
+    explicit residuals; and
+13. a conditional route from universal prefix-free computation to an
     Omega-type inaccessible completion boundary.
 
 These items form a disciplined proposal. They are not yet theorems about all
@@ -913,24 +1171,28 @@ A bounded finite state should be research-local and approximately typed as
 =
 (
 \Delta,
+Q,\preceq,O_Q,\sim_Q,
 \rho,
 P_t,P_X,P_K,
-C_t,C_X,C_K,
+C_{t,Q},C_{X,Q},C_{K,Q},
 A_t,A_X,A_K,
 U,\Gamma,\mathsf{App},
-\Phi,
+\Phi,\bar\Phi_Q,
+g_{12},g_{23},g_{31},\operatorname{Hol}_{\gamma,Q},
 \tau_n,
-R_n
+R_{n,Q}
 ).
 \]
 
 It must retain:
 
 - the exact finite source process;
+- the observer, its quotient fibers, and its refinement relation;
 - all three interpretations without identifying them;
 - characteristic maps and their domains;
 - open-cover, scope, and application interfaces;
-- the complete-cycle transition;
+- source and descended complete-cycle transitions;
+- local chart transitions and their circuit holonomy;
 - the lifted layer or monodromy residual; and
 - the observation task under which the characteristics were selected.
 
@@ -940,16 +1202,19 @@ No interpretation may create program identity.
 
 The safest high-pressure sequence is:
 
-1. write a formal grammar and typing judgments for the three domains;
-2. choose one finite Adva fixture with nontrivial application, scope, and open
+1. choose two finite observers of one source process, with one strictly
+   refining the other;
+2. enumerate their quotient fibers and exact residuals;
+3. write a formal grammar and typing judgments for the three domains;
+4. choose one finite Adva fixture with nontrivial application, scope, and open
    gluing;
-3. implement research-local quote and unfold maps for that fixture;
-4. test cyclic typing and residual reconstruction;
-5. define one finite full-cycle operator `Phi`;
-6. learn a bounded characteristic of repeated `Phi` from generated traces;
-7. red-team identifiability under chart and scope changes;
-8. only then introduce weighted prefix codes and completion; and
-9. compare the effective boundary with a machine-specific `Omega_U`.
+5. implement research-local quote and unfold maps for that fixture;
+6. test quotient constancy, dynamics descent, and residual reconstruction;
+7. compose three finite chart transitions and calculate exact holonomy;
+8. learn a bounded characteristic of repeated `Phi` across both observers;
+9. red-team identifiability under observer, chart, and scope changes;
+10. only then introduce weighted prefix codes and completion; and
+11. compare the effective boundary with a machine-specific `Omega_U`.
 
 The work should remain in research notes and bounded tests until the carriers
 and no-go results stabilize.
@@ -961,7 +1226,8 @@ at least one of:
 
 - a finite model satisfying all three grammars and their compatibility laws;
 - a proof that one characteristic extractor is invariant under a declared
-  scale action;
+  observation quotient and scale action;
+- a finite nontrivial holonomy calculation with an exact audit residual;
 - a counterexample showing that one triangular rotation cannot preserve the
   required residual;
 - an identifiable finite family of full-cycle operators;
@@ -973,6 +1239,9 @@ at least one of:
 The present note does not claim:
 
 - that all features are eigenvectors;
+- that information loss alone creates holonomy;
+- that an observer-independent characteristic vocabulary exists;
+- that every observation quotient supports descended dynamics;
 - that every algebraic operator exponentiates;
 - that every open set is dynamically invariant;
 - that scopes are literally topological opens;
@@ -1078,7 +1347,40 @@ chirality-sensitive cyclic relation. Forcing exact `rho` symmetry could erase
 the same directional information that the positive and negative derivatives
 were introduced to preserve.
 
-### 4.13 Falsification criteria
+### 4.13 Compression is not automatically useful information loss
+
+A quotient can discard precisely the distinction needed for prediction or
+composition. Smaller representation is not evidence of a better feature.
+The quotient must be justified by a task, support descended dynamics, and
+retain failures in `R_Q`. If the residual simply stores the complete source,
+the operational channel may compress while the total representation does
+not; that is still auditable but not a compression theorem.
+
+### 4.14 Information loss does not entail holonomy
+
+Holonomy occurs in lossless geometric settings, while many lossy quotients
+have trivial circuit transport. The theory must not infer one from the
+other. Its testable object is the composite of declared chart transitions.
+The phrase effective holonomy is warranted only when local quotients and
+their transport explain an observed global circuit memory.
+
+### 4.15 Every characteristic is observer-relative
+
+A coarse observer may report a stable feature that disappears under
+refinement; a fine observer may distinguish states irrelevant to the task.
+Neither observer is automatically true in an absolute sense. Claims must
+name `Q`, the task, the refinement maps, and the equivalence relation under
+which predictions are preserved.
+
+### 4.16 A global observer or global section may not exist
+
+Compatible pairwise observer charts need not glue to one bounded global
+observer. Treating their union as a God's-eye state can silently reintroduce
+unbounded memory and destroy the finite-observer thesis. Nonexistence or
+noncomputability of a global section is a legitimate outcome, not a defect
+to hide.
+
+### 4.17 Falsification criteria
 
 The proposal should be weakened or rejected if any of the following occurs:
 
@@ -1089,14 +1391,18 @@ The proposal should be weakened or rejected if any of the following occurs:
 3. no matched algebra--function pair supports the required quote--unfold law;
 4. cyclic rotation necessarily destroys source or occurrence information;
 5. full-cycle composition cannot retain an exact residual;
-6. the alleged meta-characteristic changes arbitrarily under harmless chart
+6. no nontrivial observation quotient preserves the declared prediction
+   task;
+7. the alleged meta-characteristic changes arbitrarily under harmless chart
    refinements;
-7. learning success depends on an oracle equivalent to the target
+8. chart holonomy depends only on an arbitrary presentation and survives no
+   declared equivalence;
+9. learning success depends on an oracle equivalent to the target
    characteristic;
-8. the prefix code is not effective or not prefix-free;
-9. the proposed Omega comparison is invariant under no declared machine
+10. the prefix code is not effective or not prefix-free;
+11. the proposed Omega comparison is invariant under no declared machine
    equivalence; or
-10. the three complexity conversions cannot be distinguished empirically or
+12. the three complexity conversions cannot be distinguished empirically or
     formally.
 
 ## Working summary
@@ -1105,11 +1411,13 @@ The proposed minimal motion is
 
 \[
 \boxed{
-\operatorname{Proc}(\rho v,\rho^2v)
-\xrightarrow{\operatorname{char}_v}
-C_v
-\xrightarrow{\operatorname{unfold}_v}
-\operatorname{Term}_{\rho v}.
+P
+\xrightarrow{O_Q}
+P/{\sim_Q}
+\xrightarrow{\operatorname{char}_{v,Q}}
+C_{v,Q}
+\xrightarrow{\operatorname{unfold}_{v,Q}}
+\operatorname{Term}_{\rho v,Q}.
 }
 \]
 
@@ -1123,14 +1431,28 @@ C_X\xrightarrow{\mathfrak X}\mathsf{ScopeTerm}(K),
 C_K\xrightarrow{\mathfrak K}\mathsf{AppTrace}(t).
 \]
 
-Characteristics are covariantly constant or eigenform fibers generated by a
-matched algebra and function theory:
+Characteristics are finite vocabularies on nontrivial observational
+quotients. They are covariantly constant or eigenform fibers generated by a
+matched algebra and function theory, and the dynamics must descend to their
+observer quotient:
 
 \[
 D_{v,A}f=0,
 \qquad
-f(s)=e^{sA}c.
+f(s)=e^{sA}c,
+\qquad
+O_Q\Phi=\bar\Phi_QO_Q.
 \]
+
+The finite observer indexes the whole triangle, `Delta_Q`, rather than
+becoming a fourth vertex. Local observer charts may carry circuit memory
+
+\[
+\operatorname{Hol}_{\gamma,Q}=g_{31}g_{23}g_{12},
+\]
+
+while the two-channel representation `(c_Q,R_Q)` keeps operational
+compression separate from audit and reconstruction.
 
 The complete cycle
 
@@ -1141,10 +1463,10 @@ The complete cycle
 \]
 
 closes in type while its lifted history can remain open. The learner searches
-for characteristics of this entire cycle and emits an unbounded sequence of
-finite, testable theories with explicit residuals. If that search contains a
-universal prefix-free halting problem, its complete halting characteristic
-has an Omega-type noncomputable boundary.
+over a two-dimensional net of cycle stages and observer refinements. It must
+learn the quotient, descended dynamics, holonomy, and residual. If that
+search contains a universal prefix-free halting problem, its complete halting
+characteristic has an Omega-type noncomputable boundary.
 
 The finite syntax is therefore not the final ontology. It is the common
 constructive carrier on which interpretation, cyclic computation, learning,
