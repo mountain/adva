@@ -58,6 +58,127 @@ class CellPiece:
 
 
 @dataclass(frozen=True, slots=True)
+class ComposableCellulation:
+    """A finite cellulation with ordered causal input and output circles."""
+
+    faces: tuple[CellFace, ...]
+    patches: tuple[TracePatch, ...]
+    inputs: tuple[tuple[Vertex, ...], ...]
+    outputs: tuple[tuple[Vertex, ...], ...]
+    gluing_sizes: tuple[int, ...] = ()
+
+    def __post_init__(self) -> None:
+        events = tuple(patch.event for patch in self.patches)
+        if len(events) != len(set(events)):
+            raise ValueError("one program event cannot occur in two cell patches")
+        actual = Counter(frozenset(cycle) for cycle in _boundary_cycles(self.faces))
+        declared = Counter(
+            frozenset(cycle) for cycle in (*self.inputs, *self.outputs)
+        )
+        if actual != declared:
+            raise ValueError("the declared ports must be exactly the cellular boundary")
+
+    @property
+    def vertices(self) -> frozenset[Vertex]:
+        return frozenset(vertex for face in self.faces for vertex in face.vertices)
+
+    @property
+    def event_ids(self) -> frozenset[int]:
+        return frozenset(patch.event for patch in self.patches)
+
+    @property
+    def canonical_signature(self) -> tuple[Any, ...]:
+        """Retain the oriented cells and ports while forgetting parentheses."""
+
+        return (
+            tuple(
+                (face.event, face.operation, face.vertices)
+                for face in self.faces
+            ),
+            self.patches,
+            self.inputs,
+            self.outputs,
+        )
+
+    def then(self, following: ComposableCellulation) -> ComposableCellulation:
+        """Glue every ordered output to the matching input circle."""
+
+        if len(self.outputs) != len(following.inputs):
+            raise ValueError("cellular composition requires equal middle arity")
+        if self.event_ids & following.event_ids:
+            raise ValueError("cellular composition cannot repeat a program event")
+        if self.vertices & following.vertices:
+            raise ValueError("composed presentations require disjoint raw vertices")
+
+        raw_faces = (*self.faces, *following.faces)
+        raw_vertices = {vertex for face in raw_faces for vertex in face.vertices}
+        quotient = _UnionFind(raw_vertices)
+        for left, right in zip(self.outputs, following.inputs, strict=True):
+            _glue_reversing(quotient, left, right)
+
+        def remap_cycle(cycle: tuple[Vertex, ...]) -> tuple[Vertex, ...]:
+            return tuple(quotient.find(vertex) for vertex in cycle)
+
+        faces = tuple(
+            CellFace(
+                event=face.event,
+                operation=face.operation,
+                vertices=tuple(quotient.find(vertex) for vertex in face.vertices),
+            )
+            for face in raw_faces
+        )
+        return ComposableCellulation(
+            faces=faces,
+            patches=(*self.patches, *following.patches),
+            inputs=tuple(remap_cycle(cycle) for cycle in self.inputs),
+            outputs=tuple(remap_cycle(cycle) for cycle in following.outputs),
+            gluing_sizes=(
+                *self.gluing_sizes,
+                *following.gluing_sizes,
+                *(len(cycle) for cycle in self.outputs),
+            ),
+        )
+
+    def as_trace(self) -> CellulatedTrace:
+        if len(self.inputs) != 1 or len(self.outputs) != 1:
+            raise ValueError("a complete handle trace must have arity 1 -> 1")
+        return CellulatedTrace(
+            faces=self.faces,
+            patches=self.patches,
+            input_vertices=frozenset(self.inputs[0]),
+            output_vertices=frozenset(self.outputs[0]),
+            gluing_sizes=self.gluing_sizes,
+        )
+
+
+def _tensor(*cellulations: ComposableCellulation) -> ComposableCellulation:
+    """Place independent cellular traces side by side without identifying them."""
+
+    vertices: set[Vertex] = set()
+    events: set[int] = set()
+    for cellulation in cellulations:
+        if vertices & cellulation.vertices:
+            raise ValueError("tensor factors require disjoint raw vertices")
+        if events & cellulation.event_ids:
+            raise ValueError("tensor factors cannot repeat a program event")
+        vertices.update(cellulation.vertices)
+        events.update(cellulation.event_ids)
+    return ComposableCellulation(
+        faces=tuple(face for cellulation in cellulations for face in cellulation.faces),
+        patches=tuple(
+            patch for cellulation in cellulations for patch in cellulation.patches
+        ),
+        inputs=tuple(cycle for cellulation in cellulations for cycle in cellulation.inputs),
+        outputs=tuple(
+            cycle for cellulation in cellulations for cycle in cellulation.outputs
+        ),
+        gluing_sizes=tuple(
+            size for cellulation in cellulations for size in cellulation.gluing_sizes
+        ),
+    )
+
+
+@dataclass(frozen=True, slots=True)
 class CellulatedTrace:
     """A finite oriented 2-complex derived from one checked program diamond.
 
@@ -344,51 +465,57 @@ def _glue_reversing(
         quotient.union(left_vertex, right[-index % len(right)])
 
 
+def _as_composable(
+    piece: CellPiece,
+    patch: TracePatch,
+    input_names: tuple[str, ...],
+    output_names: tuple[str, ...],
+) -> ComposableCellulation:
+    return ComposableCellulation(
+        faces=piece.faces,
+        patches=(patch,),
+        inputs=tuple(piece.boundaries[name] for name in input_names),
+        outputs=tuple(piece.boundaries[name] for name in output_names),
+    )
+
+
+def _handle_layers(
+    operations: dict[str, int],
+) -> tuple[ComposableCellulation, ComposableCellulation, ComposableCellulation]:
+    copy_piece = _grid_pants("copy", operations["copy"], "copy-copants")
+    neg_piece = _branch_cylinder("neg", operations["neg"], "neg-cylinder")
+    identity_piece = _branch_cylinder("id", operations["id"], "id-cylinder")
+    add_piece = _grid_pants("add", operations["add"], "add-pants")
+    copy = _as_composable(
+        copy_piece,
+        TracePatch(operations["copy"], "copy", "copants", 0),
+        ("outer",),
+        ("left", "right"),
+    )
+    neg = _as_composable(
+        neg_piece,
+        TracePatch(operations["neg"], "neg", "decorated-cylinder", 1),
+        ("input",),
+        ("output",),
+    )
+    identity = _as_composable(
+        identity_piece,
+        TracePatch(operations["id"], "id", "decorated-cylinder", 1),
+        ("input",),
+        ("output",),
+    )
+    add = _as_composable(
+        add_piece,
+        TracePatch(operations["add"], "add", "pants", 2),
+        ("left", "right"),
+        ("outer",),
+    )
+    return copy, _tensor(neg, identity), add
+
+
 def _cellulated_handle(operations: dict[str, int]) -> CellulatedTrace:
-    copy = _grid_pants("copy", operations["copy"], "copy-copants")
-    neg = _branch_cylinder("neg", operations["neg"], "neg-cylinder")
-    identity = _branch_cylinder("id", operations["id"], "id-cylinder")
-    add = _grid_pants("add", operations["add"], "add-pants")
-    pieces = (copy, neg, identity, add)
-
-    raw_faces = tuple(face for piece in pieces for face in piece.faces)
-    raw_vertices = {vertex for face in raw_faces for vertex in face.vertices}
-    quotient = _UnionFind(raw_vertices)
-    gluings = (
-        (copy.boundaries["left"], neg.boundaries["input"]),
-        (neg.boundaries["output"], add.boundaries["left"]),
-        (copy.boundaries["right"], identity.boundaries["input"]),
-        (identity.boundaries["output"], add.boundaries["right"]),
-    )
-    for left, right in gluings:
-        _glue_reversing(quotient, left, right)
-
-    faces = tuple(
-        CellFace(
-            event=face.event,
-            operation=face.operation,
-            vertices=tuple(quotient.find(vertex) for vertex in face.vertices),
-        )
-        for face in raw_faces
-    )
-    input_vertices = frozenset(
-        quotient.find(vertex) for vertex in copy.boundaries["outer"]
-    )
-    output_vertices = frozenset(
-        quotient.find(vertex) for vertex in add.boundaries["outer"]
-    )
-    return CellulatedTrace(
-        faces=faces,
-        patches=(
-            TracePatch(operations["copy"], "copy", "copants", 0),
-            TracePatch(operations["neg"], "neg", "decorated-cylinder", 1),
-            TracePatch(operations["id"], "id", "decorated-cylinder", 1),
-            TracePatch(operations["add"], "add", "pants", 2),
-        ),
-        input_vertices=input_vertices,
-        output_vertices=output_vertices,
-        gluing_sizes=tuple(len(left) for left, _ in gluings),
-    )
+    copy, branches, add = _handle_layers(operations)
+    return copy.then(branches).then(add).as_trace()
 
 
 def _diamond() -> Any:
@@ -449,3 +576,20 @@ def test_cellulation_uses_only_declared_event_patches_and_program_seams() -> Non
             ("add-pants", "id-cylinder"): 4,
         }
     )
+
+
+def test_cellular_gluing_is_associative_without_rebuilding_the_outer_surface() -> None:
+    function = _diamond()
+    operations = {
+        node["operation"]["name"]: node["id"] for node in function.ir["nodes"]
+    }
+    copy, branches, add = _handle_layers(operations)
+
+    left_associated = copy.then(branches).then(add)
+    right_associated = copy.then(branches.then(add))
+
+    assert left_associated.canonical_signature == right_associated.canonical_signature
+    assert left_associated.event_ids == frozenset(operations.values())
+    assert len(left_associated.inputs) == len(left_associated.outputs) == 1
+    assert left_associated.as_trace().genus == 1
+    assert right_associated.as_trace().genus == 1
