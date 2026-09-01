@@ -36,6 +36,9 @@ tool does not turn research targets into stable API promises.
 - bounded `TriadicObserverTransitionV0` companions that classify three input
   source fibres, derive three opposite-pair cut readings, retain source-free
   residuals, and compose occurrence ancestry exactly across adjacent slices;
+- a bounded Python research machine that packages exact triadic interfaces,
+  complete `ProgramSlice` carriers, and Rust-checked schedule traces without
+  claiming stable feedback or allocating semantic identities;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -87,6 +90,21 @@ numpy_function = quadruple.numpy_callable()
 objective = quadruple.scipy_objective()
 ```
 
+A finite three-layer experiment is serialized and replayed separately from the
+stable semantic kernel:
+
+```python
+from adva.research import ResearchCodeV0, ResearchMachineV0
+
+code = ResearchCodeV0.from_json(encoded_experiment)
+artifact = ResearchMachineV0().run(code)
+print(artifact.verdict, artifact.replay_digest)
+```
+
+`adva.research` always rederives cuts, steps, slices, and triadic observations
+through Rust. Its finite replay epochs are audit records, not a feedback,
+recursion, normalization, or universal-computation semantics.
+
 Stored diagrams cross a separate checked boundary:
 
 ```python
@@ -126,6 +144,9 @@ The completed exact-slice phase is recorded in
 [`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md); the
 active bounded transition task is
 [`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`](docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md).
+The first executable three-layer research instrument and its strict promotion
+boundary are recorded in
+[`docs/research/0074-three-layer-research-machine-v0.md`](docs/research/0074-three-layer-research-machine-v0.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
