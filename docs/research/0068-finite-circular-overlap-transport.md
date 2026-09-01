@@ -469,6 +469,11 @@ A minimal candidate is:
 Only after such grounding should Cech or descent terminology be promoted
 beyond analogy.
 
+This gate is continued in
+[`0069-program-slice-grounded-bracket-reversal.md`](0069-program-slice-grounded-bracket-reversal.md),
+which derives a simple bracket-reversal observer from complete Rust-owned
+`ProgramSlice` boundaries while retaining the entire slice as residual.
+
 ---
 
 ## Conservative conclusion
