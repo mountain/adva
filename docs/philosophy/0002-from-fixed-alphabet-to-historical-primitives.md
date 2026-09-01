@@ -211,6 +211,25 @@ This answers finite learning only in a qualified sense. The learner never
 escapes finitude absolutely. It can exceed any one fixed finite observer by
 changing the observer and preserving the transitions between finite states.
 
+### 6.1 Current bounded aperture calibration
+
+[Open PR 91](https://github.com/mountain/adva/pull/91) independently implements
+a first research-only aperture layer over unchanged Rust-grounded through
+artifacts. Its passed test matrix supports a deliberately weaker result:
+
+- an existing finite through relation can be read as a filling fibre;
+- a unique filling can be selected without deleting the residual;
+- a multivalued fibre refuses implicit close and retains unselected fillings;
+- a grounded empty filling fibre remains distinct from no aperture; and
+- reopening re-exposes the same aperture while retaining close/reopen trace.
+
+This is genuine evidence for the claims that close is not erasure and reopen is
+not historical inversion. It does not yet support the historical-alphabet
+construction above. The companion creates no new hole type or vocabulary,
+does not objectify a sealed span as a reusable primitive, and does not reopen a
+closure because a refined observer \(Q'\) exposed a formerly hidden residual.
+Those remain the next stronger hypotheses.
+
 ## 7. Relationship to the three-domain programme
 
 It would be premature to assign characteristic, calculus, and discovery
