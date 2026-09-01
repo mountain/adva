@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import argparse
+import sys
 from collections.abc import Sequence
 from dataclasses import replace
 from pathlib import Path
@@ -8,6 +9,7 @@ from typing import cast
 
 from .model import (
     PROGRAM_ORDER,
+    DepthReport,
     ProgramName,
     SearchCheckpoint,
     SearchConfig,
@@ -61,6 +63,14 @@ def config_from_args(args: argparse.Namespace) -> SearchConfig:
     )
 
 
+def print_depth_report(report: DepthReport) -> None:
+    print(
+        canonical_json({"event": "depth-complete", **report.to_data()}),
+        file=sys.stderr,
+        flush=True,
+    )
+
+
 def print_result_summary(result: SearchResult) -> None:
     verification = result.verification
     print(
@@ -91,11 +101,17 @@ def main(argv: Sequence[str] | None = None) -> int:
 
     verify_parser = subparsers.add_parser("verify", help="verify a result or network JSON")
     verify_parser.add_argument("path", type=Path)
+    verify_parser.add_argument("--max-oracle-mib", type=int, default=512)
+    verify_parser.add_argument("--allow-large-oracle", action="store_true")
 
     args = parser.parse_args(argv)
     if args.command == "search":
         config = config_from_args(args)
-        result = run_search(config, checkpoint_path=args.checkpoint)
+        result = run_search(
+            config,
+            checkpoint_path=args.checkpoint,
+            progress=print_depth_report,
+        )
         result.write(args.output)
         print_result_summary(result)
         return 0 if result.status == "Found" else 2
@@ -103,11 +119,20 @@ def main(argv: Sequence[str] | None = None) -> int:
     if args.command == "resume":
         checkpoint = SearchCheckpoint.read(args.checkpoint)
         config = replace(checkpoint.config, max_depth=args.max_depth)
-        result = run_search(config, checkpoint=checkpoint, checkpoint_path=args.checkpoint)
+        result = run_search(
+            config,
+            checkpoint=checkpoint,
+            checkpoint_path=args.checkpoint,
+            progress=print_depth_report,
+        )
         result.write(args.output)
         print_result_summary(result)
         return 0 if result.status == "Found" else 2
 
-    report = verify_result_file(args.path)
+    report = verify_result_file(
+        args.path,
+        max_oracle_bytes=args.max_oracle_mib * 1024 * 1024,
+        allow_large_oracle=args.allow_large_oracle,
+    )
     print(canonical_json(report.to_data()))
     return 0 if report.sorted else 1
