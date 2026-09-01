@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import json
-from collections.abc import Iterable, Mapping
+from collections.abc import Callable, Iterable, Mapping
 from pathlib import Path
 from typing import cast
 
@@ -109,6 +109,7 @@ def run_search(
     *,
     checkpoint: SearchCheckpoint | None = None,
     checkpoint_path: Path | None = None,
+    progress: Callable[[DepthReport], None] | None = None,
 ) -> SearchResult:
     """Run deterministic level-synchronous triadic beam search."""
 
@@ -205,6 +206,8 @@ def run_search(
             )[: config.beam_width]
             report = make_depth_report(depth, generated, len(combined), selected, oracle)
             reports += (report,)
+            if progress is not None:
+                progress(report)
             verification = oracle.verify(
                 found.network,
                 counterexample_limit=config.counterexample_limit,
@@ -227,6 +230,8 @@ def run_search(
         beam = combined[: config.beam_width]
         report = make_depth_report(depth, generated, len(combined), beam, oracle)
         reports += (report,)
+        if progress is not None:
+            progress(report)
         if checkpoint_path is not None:
             SearchCheckpoint(config, depth, beam, reports).write(checkpoint_path)
 
@@ -248,7 +253,12 @@ def run_search(
     )
 
 
-def verify_result_file(path: Path) -> VerificationReport:
+def verify_result_file(
+    path: Path,
+    *,
+    max_oracle_bytes: int = 512 * 1024 * 1024,
+    allow_large_oracle: bool = False,
+) -> VerificationReport:
     data = cast(Mapping[str, object], json.loads(path.read_text()))
     if data.get("schema") == RESULT_SCHEMA:
         network_data = cast(Mapping[str, object], data["network"])
@@ -257,4 +267,11 @@ def verify_result_file(path: Path) -> VerificationReport:
     else:
         raise ValueError("file is neither a result artifact nor a network object")
     network = SortingNetwork.from_data(network_data)
+    estimate = BitParallelZeroOneOracle.estimated_base_storage_bytes(network.channels)
+    if estimate > max_oracle_bytes and not allow_large_oracle:
+        raise ResourceLimitError(
+            "exact verification oracle estimate "
+            f"{estimate} bytes exceeds declared limit {max_oracle_bytes}; "
+            "raise the limit or pass allow_large_oracle=True explicitly"
+        )
     return BitParallelZeroOneOracle(network.channels).verify(network)
