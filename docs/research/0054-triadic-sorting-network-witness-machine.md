@@ -271,7 +271,9 @@ The scheduler is explicit and deterministic:
 6. otherwise retain the best declared beam and advance one depth.
 
 The deterministic final tie breaker is the candidate hash. Repeating a run
-with the same configuration therefore produces the same artifact.
+with the same configuration therefore produces the same artifact. The CLI
+emits one flushed JSON progress record after every completed depth so long
+runs remain observable without weakening checkpoint determinism.
 
 ---
 
@@ -339,7 +341,7 @@ additional integer, object, candidate, and lineage overhead.
 
 The machine therefore:
 
-- checks a declared oracle memory limit before allocation;
+- checks a declared oracle memory limit before search or standalone verification;
 - bounds the evaluation cache with least-recently-used eviction;
 - requires an explicit override when the base estimate exceeds the limit;
 - writes atomic checkpoints at completed depth boundaries.
