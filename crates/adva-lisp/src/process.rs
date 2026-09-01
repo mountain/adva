@@ -320,13 +320,7 @@ pub fn compose_triadic_observer_transitions_with_graft_v0(
     left: &TriadicObserverTransitionV0,
     right: &TriadicObserverTransitionV0,
 ) -> Result<TriadicObserverTransitionCompositionArtifactV0, LispError> {
-    compose_triadic_observer_transitions_impl(
-        diagram,
-        Some(graft_trace),
-        policy,
-        left,
-        right,
-    )
+    compose_triadic_observer_transitions_impl(diagram, Some(graft_trace), policy, left, right)
 }
 
 fn analyze_triadic_observer_transition_impl(
@@ -342,12 +336,9 @@ fn analyze_triadic_observer_transition_impl(
     }
     let source_domains = checked_triadic_source_domains(diagram, policy)?;
     let slice_artifact = match graft_trace {
-        Some(trace) => analyze_program_slice_with_graft(
-            diagram,
-            trace,
-            lower_completed,
-            upper_completed,
-        )?,
+        Some(trace) => {
+            analyze_program_slice_with_graft(diagram, trace, lower_completed, upper_completed)?
+        }
         None => analyze_program_slice(diagram, lower_completed, upper_completed)?,
     };
     let result = build_triadic_observer_transition(
@@ -433,12 +424,9 @@ fn compose_triadic_observer_transitions_impl(
     }
 
     let composed_slice = match graft_trace {
-        Some(trace) => compose_program_slices_with_graft(
-            diagram,
-            trace,
-            &left.slice,
-            &right.slice,
-        )?,
+        Some(trace) => {
+            compose_program_slices_with_graft(diagram, trace, &left.slice, &right.slice)?
+        }
         None => compose_program_slices(diagram, &left.slice, &right.slice)?,
     };
     let direct = analyze_triadic_observer_transition_impl(
@@ -1077,7 +1065,10 @@ fn validate_opposite_pair_partition(
     views: &[TriadicOppositePairCutV0],
 ) -> Result<(), LispError> {
     if views.len() != 3
-        || views.iter().map(|view| view.observer).collect::<BTreeSet<_>>()
+        || views
+            .iter()
+            .map(|view| view.observer)
+            .collect::<BTreeSet<_>>()
             != triadic_domains().into_iter().collect::<BTreeSet<_>>()
     {
         return Err(invalid_error(
@@ -1150,10 +1141,8 @@ fn build_triadic_observer_transition(
                 ));
             };
             if lower_incidence.domain != observer {
-                visible_lineage_link_indices.push(checked_u32_index(
-                    link_index,
-                    "triadic lineage link",
-                )?);
+                visible_lineage_link_indices
+                    .push(checked_u32_index(link_index, "triadic lineage link")?);
             }
         }
         opposite_pair_transitions.push(TriadicOppositePairTransitionV0 {

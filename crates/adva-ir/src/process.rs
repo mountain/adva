@@ -77,9 +77,7 @@ pub struct ProgramSlice {
 ///
 /// These labels belong to an explicit observation policy. They do not change
 /// the type or identity of any program wire, source, or occurrence.
-#[derive(
-    Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize,
-)]
+#[derive(Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(rename_all = "snake_case")]
 pub enum TriadicDomainV0 {
     Construction,
