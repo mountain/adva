@@ -14,7 +14,7 @@ from dataclasses import dataclass
 from enum import StrEnum
 from typing import Any, ClassVar
 
-from .core import KernelFunction, TriadicDomainV0, link_modules
+from .core import TriadicDomainV0, link_modules
 from .research import (
     CandidateThroughPresentationV0,
     ExperimentVerdictV0,
@@ -23,7 +23,6 @@ from .research import (
     MultiHoleThroughMachineV0,
     ResearchCodeV0,
     ResearchMachineV0,
-    ThroughPairV0,
 )
 
 
