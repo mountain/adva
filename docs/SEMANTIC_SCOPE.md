@@ -94,6 +94,14 @@ occurrences, so no connector is inferred and the raw circular composite stays
 unrepresentable.  The adapter authorizes neither sibling identification nor a
 stable triangle, connector, closure, or confluence law.
 
+`adva.connector_research.ConnectorCalibrationMachineV0` may compare diagonal
+occurrence identity, a test-local symmetric relation between exact direct copy
+siblings, and the many-to-one projection to checked source identity.  A finite
+comparison relation may close while retaining both occurrences; source
+projection may also close after forgetting their distinction.  Neither result
+is a semantic connector, copy inverse, contraction, `ProvenanceHide`,
+right-to-forget judgment, circular execution, or Rust certificate.
+
 ## Equality interfaces
 
 The initial core distinguishes:
