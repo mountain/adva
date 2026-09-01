@@ -457,3 +457,14 @@ This note does not claim:
 
 No Rust API, IR schema, runtime behavior, `claims.toml` entry, or stable
 research interface is changed.
+
+## 15. Mixed-nesting normalization follow-up
+
+The proposed partial-normalization language is developed in
+[`0059-tri-bracket-eigen-normalization-logic.md`](0059-tri-bracket-eigen-normalization-logic.md).
+It exhausts the smallest grammar in which mixed bracket containment is raw
+syntax and flat `{}[]()` is an eigenform.  The result sharpens this note's
+boundary: checked `spatial-update` changes values and lineage, while the
+test-local containment split changes abstract nesting topology.  They require
+an explicit interpretation or a counterexample before they can be treated as
+one active operation.
