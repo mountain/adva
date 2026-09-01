@@ -13,10 +13,11 @@ Before modifying semantic code, read:
 
 Before starting or proposing a new research or engineering phase, also read
 `docs/RESEARCH_ENGINEERING_AGENDA.md`. Its dependency order is part of the
-project plan. The exact `GraftTrace` and `ProgramSlice` phase is complete. The
-currently active implementation task is the bounded transition companion in
-`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md` unless a checked
-counterexample or an explicit project decision changes it.
+project plan. The exact `GraftTrace`, `ProgramSlice`, and bounded triadic
+transition phases are complete. The currently approved research-only bridge is
+the typed aperture calibration in
+`docs/research/0079-typed-hole-open-close-calibration-v0.md`. It does not
+authorize a stable Rust hole calculus, observer specialization, or logic.
 
 ## Authority and dependency direction
 
@@ -56,6 +57,13 @@ stand for the temporal and spatial sides of the semantic duality. No frontier
 type may be presented as an implemented tensor product. Value equality and
 observational equivalence never authorize contraction, memoization, CSE, or a
 cell.
+
+The research-only typed aperture presentation is derived from existing
+through relations and exact residuals. Do not conflate a function input hole,
+cut port, syntax metavariable, logical obligation, observer aperture, or
+singular point. `Open` and `Close` are not stable operations or historical
+inverses, and an empty or multivalued filling fibre does not by itself define
+`Omega`.
 
 For `D: DomainFrontier -> CodomainFrontier`, reserve `D*` for a future
 contravariant observer pullback. Do not implement it as a `ProgramTerm`,
