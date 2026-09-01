@@ -360,7 +360,9 @@ def test_constructive_cube_has_three_occurrence_leaves_but_one_real_reverse_bran
     }
 
     z = sympy.Symbol("z")
-    degree_profile = (
+    # These readings deliberately cross the real, constructive, and complex
+    # observers. They are not the single-observer degree profile d_Q.
+    cross_observer_cardinality_readings = (
         len(reverse_cube_fibre(Fraction(8))),
         len(
             cube_pullback(
@@ -370,7 +372,7 @@ def test_constructive_cube_has_three_occurrence_leaves_but_one_real_reverse_bran
         len(leaves),
         sum(sympy.roots(z**3 - 1).values()),
     )
-    assert degree_profile == (1, 1, 3, 3)
+    assert cross_observer_cardinality_readings == (1, 1, 3, 3)
 
 
 def test_scaling_and_sign_cross_cube_but_translation_uses_binomial_coaction() -> None:
