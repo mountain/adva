@@ -75,6 +75,9 @@ judgments.
 - a bounded distributivity characteristic atlas that reads one Rust core as a
   triadic boundary, three opposite-pair relations, one grafted multi-hole
   carrier, one exact rational polynomial feature, and one retained residual;
+- a typed-aperture research companion that reads existing finite through
+  relations as filling fibres, selects close witnesses without erasing
+  alternatives, and reopens the same presentation with trace retained;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
