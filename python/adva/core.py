@@ -6,9 +6,10 @@ allocates semantic source or occurrence identities.
 
 from __future__ import annotations
 
+import json
 from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
-import json
+from enum import StrEnum
 from numbers import Real
 from typing import TYPE_CHECKING, Any
 
@@ -154,6 +155,75 @@ class ProgramSliceCompositionAnalysis:
     certificate: Mapping[str, Any]
 
 
+class TriadicDomainV0(StrEnum):
+    """One explicit observer role; never a wire or scalar type."""
+
+    CONSTRUCTION = "construction"
+    SPACE = "space"
+    TIME = "time"
+
+
+@dataclass(frozen=True, slots=True)
+class TriadicObserverPolicyV0:
+    """Read-only Python spelling of a Rust-validated three-source policy."""
+
+    input_domains: tuple[TriadicDomainV0, ...]
+
+    def __post_init__(self) -> None:
+        expected = set(TriadicDomainV0)
+        if (
+            not isinstance(self.input_domains, tuple)
+            or any(not isinstance(domain, TriadicDomainV0) for domain in self.input_domains)
+            or len(self.input_domains) != 3
+            or set(self.input_domains) != expected
+        ):
+            raise ValueError(
+                "triadic observer policy v0 requires construction, space, and time once each"
+            )
+
+    @property
+    def native_names(self) -> list[str]:
+        return [domain.value for domain in self.input_domains]
+
+
+@dataclass(frozen=True, slots=True)
+class TriadicCutObservationViewV0:
+    """One Rust-owned occurrence reading of an exact causal cut."""
+
+    cut: Mapping[str, Any]
+    incidences: tuple[Mapping[str, Any], ...]
+    source_free_wire_indices: tuple[int, ...]
+    opposite_pair_views: tuple[Mapping[str, Any], ...]
+
+
+@dataclass(frozen=True, slots=True)
+class TriadicObserverTransitionViewV0:
+    """A complete Rust-owned triadic view with its exact slice residual."""
+
+    policy: TriadicObserverPolicyV0
+    slice: ProgramSliceView
+    lower: TriadicCutObservationViewV0
+    upper: TriadicCutObservationViewV0
+    lineage_links: tuple[Mapping[str, Any], ...]
+    opposite_pair_transitions: tuple[Mapping[str, Any], ...]
+
+
+@dataclass(frozen=True, slots=True)
+class TriadicObserverTransitionAnalysisV0:
+    """One triadic transition paired with its Rust certificate."""
+
+    result: TriadicObserverTransitionViewV0
+    certificate: Mapping[str, Any]
+
+
+@dataclass(frozen=True, slots=True)
+class TriadicObserverTransitionCompositionAnalysisV0:
+    """An exact adjacent triadic composite paired with its Rust certificate."""
+
+    result: TriadicObserverTransitionViewV0
+    certificate: Mapping[str, Any]
+
+
 class Workspace:
     """A finite, acyclic set of modules linked and checked in Rust."""
 
@@ -244,17 +314,13 @@ class KernelFunction:
             certificate=json.loads(certificate_json),
         )
 
-    def advance_causal_cut(
-        self, completed: Sequence[int], event: int
-    ) -> CausalStepAnalysis:
+    def advance_causal_cut(self, completed: Sequence[int], event: int) -> CausalStepAnalysis:
         """Move one enabled event across a causal cut."""
 
         checked = self._check_node_ids(completed)
         if isinstance(event, bool) or not isinstance(event, int) or event < 0:
             raise TypeError("event must be a non-negative node id")
-        result_json, certificate_json = self._native.advance_causal_cut(
-            checked, event
-        )
+        result_json, certificate_json = self._native.advance_causal_cut(checked, event)
         result = json.loads(result_json)
         return CausalStepAnalysis(
             event=result["event"],
@@ -289,11 +355,47 @@ class KernelFunction:
         lower = self._check_node_ids(lower_completed)
         middle = self._check_node_ids(middle_completed)
         upper = self._check_node_ids(upper_completed)
-        result_json, certificate_json = self._native.compose_program_slices(
-            lower, middle, upper
-        )
+        result_json, certificate_json = self._native.compose_program_slices(lower, middle, upper)
         return ProgramSliceCompositionAnalysis(
             result=_decode_program_slice(result_json),
+            certificate=json.loads(certificate_json),
+        )
+
+    def triadic_observer_transition_v0(
+        self,
+        policy: TriadicObserverPolicyV0,
+        lower_completed: Sequence[int],
+        upper_completed: Sequence[int],
+    ) -> TriadicObserverTransitionAnalysisV0:
+        """Request one exact Rust-owned three-source observer transition."""
+
+        lower = self._check_node_ids(lower_completed)
+        upper = self._check_node_ids(upper_completed)
+        result_json, certificate_json = self._native.triadic_observer_transition_v0(
+            policy.native_names, lower, upper
+        )
+        return TriadicObserverTransitionAnalysisV0(
+            result=_decode_triadic_observer_transition(result_json),
+            certificate=json.loads(certificate_json),
+        )
+
+    def compose_triadic_observer_transitions_v0(
+        self,
+        policy: TriadicObserverPolicyV0,
+        lower_completed: Sequence[int],
+        middle_completed: Sequence[int],
+        upper_completed: Sequence[int],
+    ) -> TriadicObserverTransitionCompositionAnalysisV0:
+        """Compose adjacent observer views entirely inside Rust."""
+
+        lower = self._check_node_ids(lower_completed)
+        middle = self._check_node_ids(middle_completed)
+        upper = self._check_node_ids(upper_completed)
+        result_json, certificate_json = self._native.compose_triadic_observer_transitions_v0(
+            policy.native_names, lower, middle, upper
+        )
+        return TriadicObserverTransitionCompositionAnalysisV0(
+            result=_decode_triadic_observer_transition(result_json),
             certificate=json.loads(certificate_json),
         )
 
@@ -421,7 +523,10 @@ class KernelFunction:
 
 
 def _decode_program_slice(encoded: str) -> ProgramSliceView:
-    result = json.loads(encoded)
+    return _program_slice_view(json.loads(encoded))
+
+
+def _program_slice_view(result: Mapping[str, Any]) -> ProgramSliceView:
     graft_intersections = result["graft_intersections"]
     return ProgramSliceView(
         lower=result["lower"],
@@ -433,9 +538,35 @@ def _decode_program_slice(encoded: str) -> ProgramSliceView:
         internal_events=tuple(result["internal_events"]),
         occurrences=tuple(result["occurrences"]),
         event_history=tuple(result["event_history"]),
-        graft_intersections=(
-            None if graft_intersections is None else tuple(graft_intersections)
-        ),
+        graft_intersections=(None if graft_intersections is None else tuple(graft_intersections)),
+    )
+
+
+def _triadic_cut_observation_view(
+    result: Mapping[str, Any],
+) -> TriadicCutObservationViewV0:
+    return TriadicCutObservationViewV0(
+        cut=result["cut"],
+        incidences=tuple(result["incidences"]),
+        source_free_wire_indices=tuple(result["source_free_wire_indices"]),
+        opposite_pair_views=tuple(result["opposite_pair_views"]),
+    )
+
+
+def _decode_triadic_observer_transition(
+    encoded: str,
+) -> TriadicObserverTransitionViewV0:
+    result = json.loads(encoded)
+    policy = TriadicObserverPolicyV0(
+        tuple(TriadicDomainV0(domain) for domain in result["policy"]["input_domains"])
+    )
+    return TriadicObserverTransitionViewV0(
+        policy=policy,
+        slice=_program_slice_view(result["slice"]),
+        lower=_triadic_cut_observation_view(result["lower"]),
+        upper=_triadic_cut_observation_view(result["upper"]),
+        lineage_links=tuple(result["lineage_links"]),
+        opposite_pair_transitions=tuple(result["opposite_pair_transitions"]),
     )
 
 
