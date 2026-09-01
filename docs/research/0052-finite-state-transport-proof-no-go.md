@@ -716,3 +716,8 @@ states, proposition-indexed evidence fibres, and an explicit restricted grammar
 of evidence transformations.  Only there can semantic inclusion and
 constructive entailment be compared without collapsing one into the other.
 
+The first such calibration is carried out in
+[`0053-finite-causal-presented-evidence.md`](0053-finite-causal-presented-evidence.md).
+It uses presentation-indexed run evidence and permits only causal suffix
+continuations, producing the first exact support inclusions that do not lift to
+the admitted evidence grammar.
