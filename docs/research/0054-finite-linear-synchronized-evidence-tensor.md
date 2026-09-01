@@ -533,3 +533,6 @@ This is a small but genuine composite evidence fragment.  It says more than
 ordinary proposition intersection and less than a finished logic on a
 3-form—which is exactly the boundary the next experiment needs.
 
+The first bridge from research-local resource names to Rust-checked source,
+occurrence, and lineage data is carried out in
+[`0055-rust-checked-structural-evidence-bridge.md`](0055-rust-checked-structural-evidence-bridge.md).
