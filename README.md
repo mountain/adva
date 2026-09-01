@@ -51,6 +51,9 @@ tool does not turn research targets into stable API promises.
 - a bounded distributivity characteristic machine that gives learning and
   proof readouts over one exact rational polynomial feature while retaining
   two distinct checked process residuals;
+- a research-only typed-aperture calibration that reads existing through
+  relations as finite filling fibres, refuses implicit multivalued closure,
+  and retains close/reopen history and the complete process residual;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -154,7 +157,7 @@ semantic code. The self-contained current-state report is
 [`docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`](docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md).
 The completed exact-slice phase is recorded in
 [`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md); the
-active bounded transition task is
+completed bounded transition task is
 [`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`](docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md).
 The first executable three-layer research instrument and its strict promotion
 boundary are recorded in
@@ -166,6 +169,11 @@ global-closure obstruction, is
 [`docs/research/0076-three-angle-single-diagram-calibration.md`](docs/research/0076-three-angle-single-diagram-calibration.md).
 The follow-up connector experiment separates comparison from forgetting in
 [`docs/research/0077-typed-connector-trichotomy-v0.md`](docs/research/0077-typed-connector-trichotomy-v0.md).
+The bounded distributivity learning--proof calibration is
+[`docs/research/0078-distributivity-characteristic-dual-read-v0.md`](docs/research/0078-distributivity-characteristic-dual-read-v0.md).
+The hole-first reorganization and its bounded open--close calibration are
+recorded in
+[`docs/research/0079-typed-hole-open-close-calibration-v0.md`](docs/research/0079-typed-hole-open-close-calibration-v0.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
