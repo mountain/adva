@@ -69,6 +69,9 @@ judgments.
 - a layered multi-hole through adapter that proposes finite fibre-product
   relations from exact call-frame holes and same-diagram ancestry while
   retaining the complete `ProgramSlice` residual;
+- single-diagram triangular and typed-connector calibrations that compare
+  finite relations over unchanged Rust incidence coordinates while refusing
+  semantic closure, sibling identification, and forgetting authority;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
@@ -233,6 +236,12 @@ upper cut-wire index.  Passing its Python validation layers does not promote a
 specialization, forgetting permission, active normalization, through-relation
 composition law, or universal machine.  A stable successor would require a
 Rust-owned result and certificate type.
+
+The triangular and connector calibrations remain one layer further out.  Their
+incidence relations and SourceId projections are candidate readings of one
+unchanged checked carrier.  Symmetric sibling comparison is not inverse
+execution, and a nonempty source-level cycle is not permission to identify
+occurrences.  Neither artifact is accepted back by Rust.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
