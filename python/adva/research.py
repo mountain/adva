@@ -90,6 +90,8 @@ class ResearchCodeV0:
             raise ValueError("initial_completed and schedule must be tuples")
         self._check_node_ids(self.initial_completed, "initial_completed")
         self._check_node_ids(self.schedule, "schedule")
+        if len(set(self.initial_completed)) != len(self.initial_completed):
+            raise ValueError("initial_completed repeats a node id")
         if len(set(self.schedule)) != len(self.schedule):
             raise ValueError("one replay epoch cannot cross the same event twice")
         if self.fuel is not None and (
@@ -105,8 +107,6 @@ class ResearchCodeV0:
     def _check_node_ids(nodes: tuple[int, ...], field: str) -> None:
         if any(isinstance(node, bool) or not isinstance(node, int) or node < 0 for node in nodes):
             raise ValueError(f"{field} must contain non-negative node ids")
-        if len(set(nodes)) != len(nodes):
-            raise ValueError(f"{field} repeats a node id")
 
     @property
     def policy(self) -> TriadicObserverPolicyV0:
