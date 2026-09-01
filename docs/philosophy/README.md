@@ -48,9 +48,14 @@ The closest existing executable evidence is:
   lossy source quotient; and
 - [research note 0078](../research/0078-distributivity-characteristic-dual-read-v0.md),
   which retains unequal checked processes after extracting one common
-  polynomial characteristic.
+  polynomial characteristic; and
+- [open PR 91](https://github.com/mountain/adva/pull/91), a parallel bounded
+  calibration that reads existing through relations as finite aperture
+  fillings, requires explicit selection for multivalued close, distinguishes an
+  empty filling fibre from absence of an aperture, and retains close/reopen
+  trace plus the complete residual.
 
-Those experiments provide negative controls and finite evidence only. They do
+These results provide negative controls and finite evidence only. They do
 not implement `Open`, `Close`, `Reopen`, a changing logic language, an
 objectification witness, or a universal characteristic.
 
