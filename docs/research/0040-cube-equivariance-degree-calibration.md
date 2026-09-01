@@ -1016,11 +1016,18 @@ It checks:
 7. two checked copy events forming three constructive leaves;
 8. exact `1 -> 2` and `1 -> 3` program-slice boundaries;
 9. value and derivative certificates;
-10. the degree profile `(1,1,3,3)` for real reverse, real spatial,
-    constructive, and complex algebraic readings;
+10. the cross-observer cardinality readings `(1,1,3,3)` for real
+    reverse fibres, real spatial components, constructive occurrences, and
+    complex algebraic multiplicity;
 11. scaling crossing by `a mapsto a^3`;
 12. the cubic binomial translation law; and
 13. compact nested representation of `(x+1)^27`.
+
+The four readings in item 10 deliberately cross observer contracts. They are
+not the observer-relative degree profile \(\mathbf d_Q(P)\): the formal real
+profile remains \(\mathbf d_{Q_{\mathbb R}}(C)=(3,1,1,3)\). The executable
+variable is therefore named `cross_observer_cardinality_readings`, rather
+than `degree_profile`.
 
 The interval and complex helpers are research-local mathematical fixtures.
 They do not authorize stable spatial or complex semantics.
