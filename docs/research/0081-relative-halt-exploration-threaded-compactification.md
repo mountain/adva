@@ -1,6 +1,8 @@
 # Relative Halt Logic, Exploration, and Thread-Respecting Compactification
 
 Status: working synthesis and finite calibration specification following
+[0033](0033-omega-type-computational-boundary.md),
+[0036](0036-triangular-symbolic-interpretation-learning-calculus.md),
 [0044](0044-finite-triadic-satisfaction-logic.md),
 [0045](0045-logic-as-learned-characteristic.md),
 [0046](0046-proposal-for-logic-on-a-3-form.md),
