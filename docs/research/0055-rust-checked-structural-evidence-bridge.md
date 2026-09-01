@@ -395,3 +395,6 @@ This supports the resource intuition behind the synchronized tensor while
 exposing the next nontrivial task: connect the finite context machine itself to
 the Rust program-process carrier.
 
+The first full-state checked \(T/X/K\) calibration and its presentation no-go
+are carried out in
+[`0056-rust-checked-triadic-generator-presentations.md`](0056-rust-checked-triadic-generator-presentations.md).
