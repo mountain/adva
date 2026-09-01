@@ -278,11 +278,8 @@ def test_same_source_cousins_do_not_receive_a_direct_sibling_witness() -> None:
     result = ConnectorCalibrationMachineV0().run(code, request)
 
     assert result.triangle.verdict is ExperimentVerdictV0.SUPPORTED
-    assert result.verdict is ExperimentVerdictV0.NOT_REPRESENTABLE
-    assert (
-        _outcome(result, ConnectorCalibrationLayerV0.TYPED_BOUNDARIES)
-        is LayerOutcomeV0.FAILED
-    )
+    assert result.verdict is ExperimentVerdictV0.SUPPORTED
+    assert all(record.outcome is LayerOutcomeV0.SATISFIED for record in result.validation)
     construction = next(
         boundary
         for boundary in result.boundaries
@@ -295,7 +292,18 @@ def test_same_source_cousins_do_not_receive_a_direct_sibling_witness() -> None:
         (1, 0),
     }
     assert not construction.direct_copy_siblings
+
+    sibling = _trial(result, ConnectorReadingV0.DIRECT_SIBLING_COMPARISON)
+    assert sibling.connectors == ()
+    assert sibling.occurrence_cycle_relation == ()
     assert (
-        _outcome(result, ConnectorCalibrationLayerV0.SIBLING_COMPARISON)
-        is LayerOutcomeV0.BLOCKED
+        sibling.finite_composition_verdict
+        is ExperimentVerdictV0.NOT_REPRESENTABLE
     )
+
+    quotient = _trial(result, ConnectorReadingV0.SOURCE_QUOTIENT)
+    assert quotient.finite_composition_verdict is ExperimentVerdictV0.SUPPORTED
+    assert len(quotient.source_cycle_relation) == 1
+    assert quotient.source_cycle_relation[0][0] == quotient.source_cycle_relation[0][1]
+    assert quotient.requires_forgetting
+    assert not quotient.forgetting_authorized
