@@ -177,8 +177,9 @@ recorded in
 The finite-surface universal-lift and threaded-imagination synthesis is
 recorded in
 [`docs/research/0080-finite-surface-universal-lift-imagination.md`](docs/research/0080-finite-surface-universal-lift-imagination.md).
-The relative-halt propositional calibration, exploration modalities, and
-thread-respecting compactification constraints are recorded in
+The relative-halt propositional and semantic-entailment calibration,
+line--hole bivalence, and thread-respecting compactification constraints are
+recorded in
 [`docs/research/0081-relative-halt-exploration-threaded-compactification.md`](docs/research/0081-relative-halt-exploration-threaded-compactification.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
