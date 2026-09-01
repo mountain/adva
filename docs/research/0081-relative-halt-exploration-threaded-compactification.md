@@ -31,6 +31,12 @@ operators remain downstream.  No stable logical symbol, quantifier,
 compactification type, Rust API, or semantic right to forget is introduced
 here.
 
+The finite many-sorted syntax, capture-avoiding substitution, quantifier
+fibres, and structural-induction adequacy theorem requested by this staging
+are supplied in
+[0082](0082-threaded-finite-logic-adequacy.md).  They remain research-local
+and do not yet provide natural deduction or stable kernel types.
+
 ---
 
 ## 0. Executive correction and result
@@ -512,8 +518,10 @@ predicate language additionally needs at least:
 - a distinction between an empty fibre and an incompletely explored fibre.
 
 None of these is supplied by the 128-proposition calculation.  Quantifiers
-therefore remain semantic candidates until one finite predicate fixture has
-checked substitution and binding.
+therefore remained semantic candidates until a finite predicate fixture
+checked substitution and binding.  Note 0082 now supplies that first finite
+fixture and proves its semantic adequacy under explicit Cartesian and
+exhaustiveness hypotheses.  Stable observer-indexed quantifiers remain open.
 
 Let a fine observer refine a coarse observer through
 
@@ -554,9 +562,10 @@ and dependent product:
 \prod_{x\in D_Q}\operatorname{Fill}(A(x)).
 \]
 
-These formulas state semantic design targets only.  They become logical
-quantifiers only after terms, substitution, binding, and the relevant
-introduction and elimination rules are fixed.
+Note 0082 implements these formulas for finite explicitly enumerated domains
+and proves that fibre inhabitation matches Tarskian satisfaction.  They become
+proof-theoretic quantifiers only after introduction, elimination,
+eigenvariable, and witness-discharge rules are fixed.
 
 The same pattern applies to coordinate projections of the typed 3-form
 
@@ -586,9 +595,11 @@ Their first readings are:
 
 An unenumerated or pending fibre is not an empty fibre.  Vacuous truth is
 licensed only after exact exhaustiveness, not after fuel exhaustion.
-Beck--Chevalley, Frobenius, and substitution laws remain open.  Quantifier
-introduction, elimination, eigenvariable, and witness-discharge rules belong
-to the still-later natural-deduction layer.
+Finite capture-avoiding substitution and its fibre naturality are established
+in note 0082.  Observer-refinement substitution, Beck--Chevalley, Frobenius,
+and stable reindexing laws remain open.  Quantifier introduction,
+elimination, eigenvariable, and witness-discharge rules belong to the
+still-later natural-deduction layer.
 
 ---
 
@@ -1025,11 +1036,13 @@ The accompanying test now implements this finite semantic stage as well.
 
 ### 9.4 Predicate-language prerequisites and fibre diagnostic
 
-Before calling any operation a quantifier, specify one finite typed predicate
-language with terms, variables, substitution, free-variable support, binders,
-and observer-indexed domains.
+Note 0082 now specifies one finite typed predicate language with terms,
+variables, equality, capture-avoiding substitution, free-variable support,
+binders, and explicitly enumerated domains.  It checks dependent-sum and
+dependent-product quantifier fibres against finite Tarskian semantics.
 
-Only then use one coarse aperture with two fine filling histories.  One
+The remaining observer-indexed diagnostic uses one coarse aperture with two
+fine filling histories.  One
 filling receives a scoped closure certificate and the other retains an
 obstruction.  The semantic fibre diagnostic should verify:
 
@@ -1121,6 +1134,8 @@ Even a successful finite calibration establishes at most:
   enumerated carrier, with undecided search kept outside the truth values;
 - one finite connective-fibre diagnostic that preserves disjunction tags and
   exposes compatibility and transformer-completeness obligations;
+- one research-local finite many-sorted predicate fixture with
+  capture-avoiding substitution and semantic adequacy, recorded in note 0082;
 - one decidable finite semantic-entailment relation with exact
   countermodels;
 - semantic and proof-relevant obligations for future connective constructors;
@@ -1129,7 +1144,7 @@ Even a successful finite calibration establishes at most:
 It does not establish:
 
 - a seven-valued logic;
-- a predicate language with checked substitution;
+- a stable kernel predicate language or observer-refinement substitution law;
 - a complete natural-deduction calculus;
 - stable quantifiers or a hyperdoctrine;
 - a general modal \(\mu\)-calculus for Adva;
@@ -1151,10 +1166,10 @@ It does not establish:
    transformers while recording every strictness counterexample;
 4. add finite semantic entailment and exact countermodel extraction over the
    seven halt worlds;
-5. define one finite typed predicate language with variables, terms, binders,
-   and capture-avoiding substitution;
-6. test candidate existential/universal fibre semantics and the required
-   substitution laws;
+5. retain the completed research-local finite typed predicate language with
+   variables, terms, equality, binders, and capture-avoiding substitution;
+6. retain its finite existential/universal fibre adequacy checks, then extend
+   them to observer-refinement substitution laws;
 7. only then select natural deduction, sequent calculus, tableau, or another
    proof presentation and state soundness and relative-completeness targets;
 8. define exploration as certificate search for that fixed entailment task;
@@ -1180,11 +1195,14 @@ fibres: compatible product for conjunction, tagged sum for disjunction, and
 admissible total transformation for implication.  Their Boolean truth tables
 are support-level shadows and require explicit compatibility, transformer,
 and empty-fibre completeness.  Semantic entailment is finite support
-inclusion.  Predicate terms, substitution, and fibre semantics must be built
-before quantifiers are admitted.  Natural deduction comes later.  Exploration
-first searches for a derivation, countermodel, or honest frontier in one fixed
-entailment problem; dynamic and coinductive readings remain possible future
-semantics for a mature search calculus.
+inclusion.  Note 0082 supplies the first finite predicate terms,
+capture-avoiding substitution, dependent-sum and dependent-product
+quantifiers, and a structural-induction proof that filling inhabitation
+matches finite Tarskian satisfaction.  Stable observer-indexed quantifiers and
+natural deduction come later.  Exploration first searches for a derivation,
+countermodel, or honest frontier in one fixed entailment problem; dynamic and
+coinductive readings remain possible future semantics for a mature search
+calculus.
 
 A finite vocabulary gives compactness first at the level of coherent infinite
 words or ends.  Hyperbolic compactification is a further representation
