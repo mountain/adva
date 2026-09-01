@@ -1,9 +1,11 @@
 # Bounded Experiment Agenda for Opening and Closing Holes
 
 Status: falsifiable research agenda following
-[0002](0002-from-fixed-alphabet-to-historical-primitives.md). This note
-reinterprets existing bounded evidence and specifies future tests. It does not
-authorize new stable semantic types or claim that the tests have been run.
+[0002](0002-from-fixed-alphabet-to-historical-primitives.md). Parallel
+[PR 91](https://github.com/mountain/adva/pull/91) has implemented and validated
+a first aperture-selection baseline. The stronger historical-primitive and
+observer-refinement experiments below have not been run. This note authorizes
+no new stable semantic types.
 
 ---
 
@@ -70,8 +72,27 @@ events, histories, and graft frames. The result already exhibits the shape
 It does not yet objectify the characteristic span as an equation cell or
 reopen a sealed character under observer refinement.
 
-These two experiments should be reused rather than replaced. They provide the
-first positive and negative controls for an open/close calculus.
+### 1.3 Typed aperture open--close calibration
+
+[PR 91](https://github.com/mountain/adva/pull/91) adds the research-only
+HoleOpenCloseMachineV0 over existing through artifacts. Its Rust and Python CI
+matrix passed. The bounded result distinguishes:
+
+- exactly one aperture in each displayed domain over one shared complete
+  ProgramSlice residual;
+- unique close from explicit selection on a multivalued filling fibre;
+- a grounded aperture with an empty observed filling fibre from absence of an
+  aperture;
+- close from deletion or quotient; and
+- reopened aperture state from erased close history.
+
+All hole coordinates, selections, and trace ordinals remain nonsemantic Python
+research data. The experiment creates no new vocabulary, objectified primitive,
+observer-refinement witness, stable HoleId, or open logic.
+
+The three existing experiments should be reused rather than replaced. They
+provide the first positive and negative controls for the stronger historical
+primitive proposal.
 
 ## 2. Research-local evidence schema
 
@@ -229,6 +250,12 @@ Construct a research-only finite task with:
 The absence is not represented as an untyped null value. It is a typed boundary
 plus an obligation and provenance.
 
+PR 91 already distinguishes an existing grounded aperture with an empty
+observed filling fibre from absence of an aperture. Experiment C is stronger:
+the typed obligation must exist before a provider or filling relation has been
+selected, and the later character must be reusable and reopenable under a
+refined observer.
+
 ### 5.2 Proposed run
 
 1. Record the initial open boundary before selecting a provider.
@@ -346,12 +373,16 @@ semantics.
 
 ## 10. Research judgment and next action
 
-The existing experiments support the motivating intuition only partially:
-local feature closure can coexist with retained process difference, and a
-coarse quotient can be exposed as an unauthorized closure. They have not yet
-shown historical primitive formation or reopening.
+The existing evidence now supports three parts of the motivating intuition:
+local feature closure can coexist with retained process difference; a coarse
+quotient can be exposed as an unauthorized closure; and an already-grounded
+aperture can be explicitly closed and reopened without erasing alternatives,
+residual, or trace.
 
-The decisive next test is Experiment A because it reuses checked evidence and
-requires no claim that the start is already a stable hole object. If it
-succeeds, Experiment B guards its authority boundary and Experiment C tests the
-stronger philosophical intuition.
+It has not yet shown historical primitive formation, reusable objectification,
+vocabulary birth, or reopening caused by observer refinement. The decisive
+next test is therefore still Experiment A, revised to build on PR 91 rather
+than reimplement its finite selection layer. Experiment B guards the authority
+boundary and Experiment C tests the stronger claim that the beginning itself
+can be represented as a typed obligation before any filling relation is
+chosen.
