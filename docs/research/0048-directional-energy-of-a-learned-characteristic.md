@@ -680,4 +680,3 @@ The clean energy statement is:
 
 This adds dynamics and tension to characteristic inference without pretending
 that every computational variation is already physical energy.
-
