@@ -66,6 +66,9 @@ judgments.
 - frozen inspection views over Rust-owned graft and slice artifacts;
 - a strict, bounded research runner that packages exact triadic interfaces,
   complete slices, and chosen checked schedules without semantic allocation;
+- a layered multi-hole through adapter that proposes finite fibre-product
+  relations from exact call-frame holes and same-diagram ancestry while
+  retaining the complete `ProgramSlice` residual;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
@@ -223,6 +226,13 @@ The Python research runner is deliberately outside the stable semantic slice.
 It is a bounded experiment orchestrator over stable artifacts; its verdicts
 and replay digest are not Rust certificates and are never accepted by the
 kernel as semantic input.
+
+The grounded multi-hole through adapter is subject to the same boundary.  Its
+middle object is an explicitly declared quotient of upper incidences by exact
+upper cut-wire index.  Passing its Python validation layers does not promote a
+specialization, forgetting permission, active normalization, through-relation
+composition law, or universal machine.  A stable successor would require a
+Rust-owned result and certificate type.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that

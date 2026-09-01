@@ -173,3 +173,8 @@ Until those tests pass, `FeedbackWitnessV0` should be read literally: a finite
 witness that one externally declared experiment was replayed, not the missing
 feedback operator itself.
 
+The first grounded successor is now recorded in
+[0075](0075-grounded-multi-hole-through-adapter-v0.md).  It consumes one
+interpretation cell plus its certified graft trace and derives a
+relation-valued multi-hole angle candidate.  This does not change the replay
+or feedback boundary established here.

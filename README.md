@@ -39,6 +39,9 @@ tool does not turn research targets into stable API promises.
 - a bounded Python research machine that packages exact triadic interfaces,
   complete `ProgramSlice` carriers, and Rust-checked schedule traces without
   claiming stable feedback or allocating semantic identities;
+- a research-only multi-hole through adapter that derives one typed
+  relation-valued angle form from exact graft bindings and occurrence ancestry,
+  with layered failure gates and the complete slice retained as residual;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -147,6 +150,8 @@ active bounded transition task is
 The first executable three-layer research instrument and its strict promotion
 boundary are recorded in
 [`docs/research/0074-three-layer-research-machine-v0.md`](docs/research/0074-three-layer-research-machine-v0.md).
+Its first grounded relation-valued through experiment is
+[`docs/research/0075-grounded-multi-hole-through-adapter-v0.md`](docs/research/0075-grounded-multi-hole-through-adapter-v0.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
