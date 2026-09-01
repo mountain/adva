@@ -169,6 +169,8 @@ global-closure obstruction, is
 [`docs/research/0076-three-angle-single-diagram-calibration.md`](docs/research/0076-three-angle-single-diagram-calibration.md).
 The follow-up connector experiment separates comparison from forgetting in
 [`docs/research/0077-typed-connector-trichotomy-v0.md`](docs/research/0077-typed-connector-trichotomy-v0.md).
+The bounded distributivity learning--proof calibration is
+[`docs/research/0078-distributivity-characteristic-dual-read-v0.md`](docs/research/0078-distributivity-characteristic-dual-read-v0.md).
 The hole-first reorganization and its bounded open--close calibration are
 recorded in
 [`docs/research/0079-typed-hole-open-close-calibration-v0.md`](docs/research/0079-typed-hole-open-close-calibration-v0.md).
