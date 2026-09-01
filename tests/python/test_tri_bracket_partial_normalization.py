@@ -1,6 +1,6 @@
 from __future__ import annotations
 
-from collections import Counter, deque
+from collections import Counter
 from collections.abc import Iterable, Iterator
 from dataclasses import dataclass
 from functools import lru_cache
@@ -50,7 +50,7 @@ class Residual:
 
 @dataclass(frozen=True)
 class Judgment:
-    status: Literal["halted", "unknown"]
+    status: Literal["satisfied", "open", "unknown"]
     term: Forest
     residual: Residual
 
@@ -210,21 +210,23 @@ def _split_steps(forest: Forest) -> tuple[tuple[Forest, Step], ...]:
 
 
 def _exchange_steps(forest: Forest) -> tuple[tuple[Forest, Step], ...]:
-    """Use the oriented top-level crossing that decreases boundary inversions."""
+    """Use the unsigned S3 endpoint projection only on the flat sort."""
 
+    if _nesting_edges(forest):
+        return ()
     results: list[tuple[Forest, Step]] = []
     for index, (left, right) in enumerate(zip(forest, forest[1:], strict=False)):
         if DOMAIN_ORDER[left.domain] <= DOMAIN_ORDER[right.domain]:
             continue
         candidate = forest[:index] + (right, left) + forest[index + 2 :]
-        step = Step("exchange", f"sigma_{index + 1}:{left.domain}/{right.domain}")
+        step = Step("exchange", f"s_{index + 1}:{left.domain}/{right.domain}")
         assert _measure(candidate) < _measure(forest)
         results.append((candidate, step))
     return tuple(results)
 
 
 def _normalizing_steps(forest: Forest) -> tuple[tuple[Forest, Step], ...]:
-    return _split_steps(forest) + _exchange_steps(forest)
+    return _split_steps(forest) if _nesting_edges(forest) else _exchange_steps(forest)
 
 
 def _normal_endpoints(start: Forest) -> frozenset[Forest]:
@@ -271,7 +273,7 @@ def _judge(
 ) -> Judgment:
     requested = frozenset(target)
     if not requested or not requested <= set(DOMAINS):
-        raise ValueError("a halting face is a nonempty subset of {K, X, t}")
+        raise ValueError("a requested face is a nonempty subset of {K, X, t}")
     stable = _stable_domains(forest)
     residual = Residual(
         target=requested,
@@ -282,7 +284,8 @@ def _judge(
         enabled=_enabled(forest),
         trace=trace,
     )
-    return Judgment("halted" if requested <= stable else "unknown", forest, residual)
+    status = "satisfied" if requested <= stable else "open"
+    return Judgment(status, forest, residual)
 
 
 def _inject_first_pair(forest: Forest) -> tuple[Forest, Step]:
@@ -346,7 +349,7 @@ def test_the_first_mixed_grammar_has_exactly_thirty_colored_catalan_forms() -> N
             raise AssertionError(f"the tri-cell grammar accepted {invalid!r}")
 
 
-def test_the_seven_nonempty_halting_faces_are_exactly_the_leaf_color_sets() -> None:
+def test_the_seven_nonempty_stable_faces_are_exactly_the_leaf_color_sets() -> None:
     counts = Counter(_stable_domains(term) for term in _all_tricells())
     expected_faces = {
         frozenset(face)
@@ -370,10 +373,10 @@ def test_the_seven_nonempty_halting_faces_are_exactly_the_leaf_color_sets() -> N
     )
 
     # Target predicates overlap; the exact stable set supplies the disjoint
-    # seven-face stratification.  A fully stable term halts for every target.
+    # seven-face stratification.  A fully stable term satisfies every target.
     canonical = _parse_tricell("{}[]()")
     assert all(
-        _judge(canonical, face).status == "halted"
+        _judge(canonical, face).status == "satisfied"
         for face in expected_faces
     )
 
@@ -392,21 +395,13 @@ def test_split_plus_oriented_exchange_normalizes_all_thirty_forms() -> None:
     assert sum(_is_calibrated(term) for term in eigenforms) == 1
 
 
-def test_braid_exchange_alone_cannot_remove_a_containment_edge() -> None:
+def test_coxeter_exchange_is_unavailable_on_nested_terms() -> None:
     nested = [term for term in _all_tricells() if _nesting_edges(term)]
     assert len(nested) == 24
 
     for term in nested:
-        queue = deque([term])
-        visited = {term}
-        while queue:
-            current = queue.popleft()
-            assert _nesting_edges(current) == _nesting_edges(term)
-            for candidate, _ in _exchange_steps(current):
-                if candidate not in visited:
-                    visited.add(candidate)
-                    queue.append(candidate)
-        assert not any(_is_eigenform(candidate) for candidate in visited)
+        assert _exchange_steps(term) == ()
+        assert not _is_eigenform(term)
 
 
 def test_split_schedules_converge_but_retain_distinct_raw_traces() -> None:
@@ -427,7 +422,7 @@ def test_three_root_exchange_has_a_yang_baxter_critical_pair() -> None:
 
     def take(term: Forest, index: int) -> tuple[Forest, Step]:
         candidates = {
-            int(step.detail.split(":", 1)[0].removeprefix("sigma_")) - 1: (next_term, step)
+            int(step.detail.split(":", 1)[0].removeprefix("s_")) - 1: (next_term, step)
             for next_term, step in _exchange_steps(term)
         }
         return candidates[index]
@@ -447,14 +442,14 @@ def test_three_root_exchange_has_a_yang_baxter_critical_pair() -> None:
     assert left == right == _parse_tricell("{}[]()")
     assert tuple(left_trace) != tuple(right_trace)
     assert [step.detail.split(":", 1)[0] for step in left_trace] == [
-        "sigma_1",
-        "sigma_2",
-        "sigma_1",
+        "s_1",
+        "s_2",
+        "s_1",
     ]
     assert [step.detail.split(":", 1)[0] for step in right_trace] == [
-        "sigma_2",
-        "sigma_1",
-        "sigma_2",
+        "s_2",
+        "s_1",
+        "s_2",
     ]
 
 
@@ -464,11 +459,11 @@ def test_partial_judgment_returns_the_open_complement_as_residual() -> None:
     temporal = _judge(term, {"t"})
     spatial_temporal = _judge(term, {"X", "t"})
 
-    assert temporal.status == "halted"
+    assert temporal.status == "satisfied"
     assert temporal.residual.stable == frozenset({"t"})
     assert temporal.residual.missing == frozenset()
     assert temporal.residual.nesting_edges == 2
-    assert spatial_temporal.status == "unknown"
+    assert spatial_temporal.status == "open"
     assert spatial_temporal.residual.missing == frozenset({"X"})
     assert spatial_temporal.residual.enabled
 
@@ -479,7 +474,7 @@ def test_an_active_inject_gate_reopens_a_normalized_domain_and_prevents_quiescen
 
     assert _render(injected) == "{[]}()"
     assert _stable_domains(injected) == frozenset({"X", "t"})
-    assert _judge(injected, {"K", "X", "t"}, (inject,)).status == "unknown"
+    assert _judge(injected, {"K", "X", "t"}, (inject,)).status == "open"
 
     split_back, split = _split_steps(injected)[0]
     assert split_back == canonical

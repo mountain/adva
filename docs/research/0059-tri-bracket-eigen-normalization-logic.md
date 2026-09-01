@@ -5,6 +5,9 @@ Status: bounded research proposal and finite executable calibration following
 and
 [`0058-checked-gate-braid-composition.md`](0058-checked-gate-braid-composition.md).
 
+The checked interpretation experiment and terminology correction are in
+[`0060-checked-bracket-observer-bridge.md`](0060-checked-bracket-observer-bridge.md).
+
 The executable fixture is
 [`test_tri_bracket_partial_normalization.py`][fixture].
 
@@ -15,11 +18,12 @@ normalization of mixed three-bracket forms toward typed eigenforms.  Its first
 bounded result is:
 
 > In the cell containing exactly one construction bracket, one spatial
-> bracket, and one temporal bracket, the seven proposed nonempty halting
-> modes arise exactly as the seven possible sets of leaf colors.  All thirty
+> bracket, and one temporal bracket, the seven nonempty stable faces arise
+> exactly as the seven possible sets of leaf colors.  All thirty
 > mixed colored-Catalan presentations reduce to the calibrated eigenform
 > `{}[]()` using a containment-splitting rewrite followed by oriented boundary
-> exchange.  Exchange or braid transport alone cannot remove mixed nesting.
+> exchange.  Flat exchange cannot act until mixed nesting is removed, and the
+> exact braid transport layer supplies no containment-cutting operation.
 
 This gives a small proposed logical language for partial normalization.  It
 does not establish a universal machine, a stable normalizer, a stable bracket
@@ -42,7 +46,7 @@ and rejected every nesting.  The normalization proposal reverses the role of
 that restriction:
 
 > absence of mixed nesting is a property of the target eigenform, not a
-> restriction on raw program syntax.
+> restriction on raw presentations.
 
 The raw carrier must therefore contain terms such as
 
@@ -100,10 +104,16 @@ assign the three colors.  Hence the fixture exhausts
 raw forms.  This is the complete finite carrier for the declared first cell,
 not a sample.
 
+Three sorts must remain distinct.  `Raw111` is this thirty-object mixed
+forest carrier.  `Flat111` is its six-object, zero-containment subset.  The
+typed `PublicBoundary` is the single calibrated interface
+\(K\otimes X\otimes t\), presented by `{}[]()`.  A nested raw forest is not a
+checked boundary, and its root count is not checked program arity.
+
 The restriction to one occurrence per color matters.  It is what makes the
-seven nonempty faces exact in this experiment.  With repeated brackets, an
-empty stable-domain set can occur across several components, so the later
-grammar will require a separate statement.
+seven nonempty faces exact in this experiment.  No repeated-color
+`Stable` predicate is defined here: whether domain stability quantifies over
+all occurrences or some occurrence is deliberately deferred.
 
 ## 2. Domain eigenpredicates
 
@@ -157,7 +167,7 @@ This separates two notions:
 Startup calibration is therefore not identical to normalization.  It is the
 remaining order choice after all three domains have reached eigenform.
 
-## 3. The proposed logical judgments
+## 3. Surface satisfaction and open judgments
 
 For every nonempty
 
@@ -165,10 +175,10 @@ For every nonempty
 S\subseteq\{K,X,t\},
 \]
 
-introduce the partial halting judgment
+introduce the face-satisfaction predicate
 
 \[
-p\Downarrow_S
+\operatorname{Sat}_S(p)
 \quad\Longleftrightarrow\quad
 S\subseteq\operatorname{Stable}(p).
 \]
@@ -178,13 +188,13 @@ predicates overlap: a completely normalized term satisfies all seven.  The
 disjoint stratum is instead
 
 \[
-p\Downarrow^{=}_S
+\operatorname{Face}^{=}_S(p)
 \quad\Longleftrightarrow\quad
 S=\operatorname{Stable}(p).
 \]
 
 This distinction removes an ambiguity in the original list of seven stopping
-modes.  The list can name either seven observer requests or seven exact faces;
+modes.  The list can name either seven surface requests or seven exact faces;
 the two uses must not share a judgment symbol.
 
 The proof-relevant open judgment proposed for the next language is
@@ -193,7 +203,7 @@ The proof-relevant open judgment proposed for the next language is
 \boxed{
 Q;\,p
 \;\vdash\;
-p\Downarrow_S n
+\operatorname{Sat}_S(p)\ @\ n
 \;\dashv\;
 \rho_{\bar S}
 }
@@ -208,21 +218,22 @@ where:
 - \(\rho_{\bar S}\) records the unnormalized complement, enabled rewrites,
   boundary disorder, and the retained trace.
 
-The executable bounded form returns either `halted` or `unknown`.  Exhausted
-fuel does not prove that a normal form or halt does not exist.
+The executable surface predicate returns `satisfied` or `open`.  The active
+fuel-bounded runner returns `unknown` on exhaustion; exhausted fuel does not
+prove that a normal form or halt does not exist.
 
 The basic logical rules are provisionally:
 
 \[
-\frac{S\subseteq\operatorname{Stable}(p)}{p\Downarrow_S}
-\quad(\textsc{Halt})
+\frac{S\subseteq\operatorname{Stable}(p)}{\operatorname{Sat}_S(p)}
+\quad(\textsc{Face-Sat})
 \]
 
 and
 
 \[
-\frac{p\Downarrow_S\qquad\varnothing\ne S'\subseteq S}
-     {p\Downarrow_{S'}}
+\frac{\operatorname{Sat}_S(p)\qquad\varnothing\ne S'\subseteq S}
+     {\operatorname{Sat}_{S'}(p)}
 \quad(\textsc{Face-Weakening}).
 \]
 
@@ -252,7 +263,7 @@ retained, so the event `split:D>E` remains in the trace.  A future checked
 version must state how source, occurrence, and payload data cross this cut;
 the present abstract bracket oracle does not authorize that semantics.
 
-### 4.2 Oriented boundary exchange
+### 4.2 Coxeter boundary calibration
 
 After the roots are flat, adjacent roots are exchanged toward the declared
 order
@@ -261,19 +272,21 @@ order
 K<X<t.
 \]
 
-This is the directed sorting use of the braid transport layer.  It retains a
-crossing trace and has the three-root critical pair
+The executable oracle uses only the unsigned Coxeter endpoint projection
+\(\pi:B_3\to S_3\), and only after the term is flat.  Its steps are named
+\(s_1,s_2\); they do not distinguish \(\sigma_i\) from
+\(\sigma_i^{-1}\).  It has the three-root critical pair
 
 \[
-\sigma_1\sigma_2\sigma_1
+s_1s_2s_1
 \quad\text{and}\quad
-\sigma_2\sigma_1\sigma_2.
+s_2s_1s_2.
 \]
 
 Both routes take `()[]{}` to `{}[]()`.  Their raw traces remain different;
-the braid relation is the candidate coherence cell relating them.  It is not
-an instruction to delete both traces or to identify arbitrary program
-histories.
+the Coxeter braid relation compares their endpoint schedules.  A lift to an
+exact signed braid coherence cell must retain the Artin history from notes
+0057 and 0058; the present `s_i` trace does not supply it.
 
 Thus the syntax already requires the repository's three-way separation:
 
@@ -283,7 +296,7 @@ Thus the syntax already requires the repository's three-way separation:
 - the Yang--Baxter comparison between two rewrite decompositions is a
   `CoherenceCell` candidate.
 
-## 5. Termination and the braid-only no-go
+## 5. Termination and the exchange-only no-go
 
 For a term \(p\), let
 
@@ -312,9 +325,12 @@ endpoint
 
 although branching inputs can retain several distinct reduction traces.
 
-This proof also gives an exact no-go.  Exchange and braid transport preserve
-\(e\).  Twenty-four of the thirty raw forms have \(e>0\).  None of those
-twenty-four can reach any flat eigenform by exchange alone.  Therefore
+This proof also gives an exact no-go.  Twenty-four of the thirty raw forms
+have \(e>0\).  The test-local Coxeter exchange is undefined on all of them,
+while the exact braid transport of note 0057 is typed only on the flat public
+boundary.  Therefore neither supplies a path from a nested raw form to a flat
+eigenform.  An additional block-exchange extension could preserve \(e\), but
+it would be a new research operation, not the existing exact braid.  Thus
 
 \[
 \boxed{
@@ -384,12 +400,13 @@ This corrects a state-only notion of halting:
 
 \[
 \boxed{
-\operatorname{Halt}_S(p,Q)
+\operatorname{Halt}_{S,Q}(M)
 =
-\bigl(S\subseteq\operatorname{Stable}(p)\bigr)
+\operatorname{Sat}_S(\operatorname{surface}(M))
 \land
-\operatorname{Quiescent}_Q(p).
+\operatorname{Quiescent}_Q(M).
 }
+\]
 
 Partial normalization is a property of a surface.  Halting is a property of
 the surface together with its remaining program and observation policy.
@@ -410,12 +427,12 @@ obstruction: braid cannot turn a nested raw syntax into a flat eigenform.
 The two active operations must not yet be identified.  `spatial-update`
 changes checked values, copy/discard history, and lineage while preserving the
 public three-color boundary.  Test-local `split` changes abstract containment
-topology while preserving the three bracket occurrences.  A later
-interpretation must either connect those changes with a certificate and
-residual or establish that bracket normalization is only an observer-level
-presentation of the checked program.
+topology while preserving the three bracket occurrences.  Note 0060 connects
+them only through a checked-grounded observer with an explicit residual; it
+refutes a Rust-owned rewrite identity and classifies plain normalization as an
+observer-level presentation.
 
-The seven faces can be read exactly as the proposed stopping interfaces:
+The seven faces can be read exactly as the proposed observation interfaces:
 
 | requested face | reading |
 |---|---|
@@ -427,15 +444,18 @@ The seven faces can be read exactly as the proposed stopping interfaces:
 | \(\{K,t\}\) | construction-temporal normalization |
 | \(\{K,X,t\}\) | full eigen-normalization |
 
-The three computers need not all stop together.  Each can observe a face and
-return the complement as an open residual.  But the first tri-cell does not
-yet contain three independently injected checked programs.  It supplies only
-the proposed control language in which such a machine could later be stated.
+Their requested faces need not be surface-satisfied together.  Each can
+observe a face and return the complement as an open residual, while machine
+stopping still requires quiescence.  The first tri-cell does not yet contain
+three independently injected checked programs.  It supplies only the proposed
+control language in which such a machine could later be stated.
 
-The startup calibration problem now separates into:
+Full startup calibration now separates into:
 
-1. remove mixed containment until the requested domains are stable;
-2. calibrate the remaining flat roots to the shared order `{}[]()`; and
+1. remove all mixed containment to reach a full eigenform, or return an
+   earlier requested face together with its open complement;
+2. for the full path, calibrate the flat roots to the shared order `{}[]()`;
+   and
 3. check that no enabled active program can immediately reopen the face.
 
 The old \(L/R\) order problem consequently becomes only the second layer.
@@ -450,14 +470,14 @@ Within the one-occurrence-per-color tri-cell, the fixture establishes:
 2. exactly five ordered-forest shapes and thirty distinct colorings;
 3. exactly seven nonempty stable-domain sets;
 4. the exact distribution \(2,2,2,6,6,6,6\) over those sets;
-5. overlapping target-halt predicates and disjoint exact-face strata;
+5. overlapping target-satisfaction predicates and disjoint exact-face strata;
 6. twenty-four nested forms and six flat eigenforms;
 7. one calibrated eigenform among the six flat permutations;
 8. strict termination of split plus oriented exchange by a lexicographic
    measure;
 9. a unique calibrated endpoint for every one of the thirty inputs;
-10. invariance of containment edges under exchange-only transport;
-11. failure of exchange-only transport on all twenty-four nested inputs;
+10. unavailability of Coxeter calibration outside the six flat forms;
+11. absence of a transport-only path from all twenty-four nested inputs;
 12. distinct normalization schedules with one endpoint;
 13. the three-root Yang--Baxter critical pair;
 14. explicit open residuals for a partially satisfied face; and
@@ -470,7 +490,7 @@ The fixture does not establish:
 - that brackets are the final Adva code carrier;
 - semantics for arbitrary bracket payloads;
 - repeated same-color or mixed-color bracket occurrences;
-- a checked relationship between `split` and existing \(T/X/K\) programs;
+- a Rust-owned rewrite identity between `split` and existing \(T/X/K\) programs;
 - source, occurrence, copy, discard, or graft transport through `split`;
 - a stable rewrite, equation, coherence, normal-form, or logic type;
 - confluence for an unbounded grammar with arbitrary active gates;
@@ -486,37 +506,34 @@ bare system universal.  Computational openness enters only when independently
 specified active gates can create new mixed forms and when the retained
 residual carries data not collapsed by the boundary.
 
-## 11. Next falsifiable gate
+## 11. Result of the next falsifiable gate
 
-The next experiment should not immediately enlarge the bracket grammar.  It
-should first connect one active bracket rewrite to the exact checked spatial
-gate already composed with braids in note 0058:
+Note 0060 performs the advertised experiment against the exact checked
+spatial gate.  Its bounded verdict is:
 
-1. reuse the checked `spatial-update` presentation and its typed interface;
-2. declare which bracket containment change, if any, it presents;
-3. compile a nontrivial sequence into one `SharedProgramDiagram`;
-4. map its exact program slices to bracket rewrite steps without changing
-   original IDs;
-5. record what containment split forgets about source and occurrence lineage;
-6. compare two schedules with the braid/coherence trace retained;
-7. return `unknown` with a structured residual when bounded search exhausts;
-   and
-8. only then test whether a fuel-bounded known machine admits a faithful
-   encoding.
+1. one elementary `split` is not checked `spatial-update`;
+2. a Rust-derived source observer projects the checked gate to dependency
+   activation, not split;
+3. a decorated Boolean equation-defect observer makes the checked gate
+   commute with a conditional split macro;
+4. the complete `ProgramSlice`, source/occurrence lineage, resource ledger,
+   and schedule remain in a residual; and
+5. compiler graft containment is a separate immutable construction tree.
 
-Success would give the first checked active gate in the bracket language.
-Failure would show that the three-bracket normalizer is an observer-level
-presentation rather than the native program carrier.
+Thus the plain normalizer is an observer presentation rather than the native
+program carrier.  The next authority upgrade is a lineage-aware bracket event
+with an exact discharge witness, not a larger untyped grammar.
 
 ## Conservative conclusion
 
 The normalization intuition survives its first finite test in a precise but
 limited form:
 
-> The seven stopping modes are not an arbitrary enumeration.  They are the
+> The seven stable faces are not an arbitrary enumeration.  They are the
 > seven nonempty leaf-color faces of the smallest mixed three-bracket cell.
-> A containment split performs the missing topological change, and braid
-> exchange then calibrates the resulting flat boundary.
+> A containment split performs the missing topological change, and Coxeter
+> endpoint exchange then calibrates the resulting flat boundary.  Exact braid
+> history remains a separate signed transport layer.
 
 The test also exposes the remaining gap:
 
