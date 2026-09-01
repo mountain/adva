@@ -46,7 +46,7 @@ occurrence identities. No rule currently authorizes identifying them.
 
 ## 1. One six-hole configuration
 
-The fixture has root sources (K,X,t). Each source is copied once, producing
+The fixture has root sources $K,X,t$. Each source is copied once, producing
 
 \[
 K_0,K_1,\qquad X_0,X_1,\qquad t_0,t_1.
@@ -141,7 +141,7 @@ If future work adds a connector
 C_D\subseteq D_0\times D_1
 \]
 
-for each domain (D), its meaning must be explicit. At least three
+for each domain $D$, its meaning must be explicit. At least three
 possibilities must remain distinguished:
 
 1. exact identity of one occurrence;
