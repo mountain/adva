@@ -48,6 +48,9 @@ tool does not turn research targets into stable API promises.
 - a typed connector trichotomy that separates exact occurrence identity,
   provenance-preserving direct-sibling comparison, and an unauthorized
   many-to-one source quotient;
+- a bounded distributivity characteristic machine that gives learning and
+  proof readouts over one exact rational polynomial feature while retaining
+  two distinct checked process residuals;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
