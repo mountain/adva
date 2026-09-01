@@ -1,44 +1,59 @@
-# A Self-Dual Characteristic Completion Calculus
+# A Reverse-Dual Characteristic Completion Calculus
 
-Status: proposal and validation plan following
+Status: corrected proposal with a bounded executable V0 calibration following
 [`0045-logic-as-learned-characteristic.md`](0045-logic-as-learned-characteristic.md),
 [`0046-proposal-for-logic-on-a-3-form.md`](0046-proposal-for-logic-on-a-3-form.md),
 [`0059-tri-bracket-eigen-normalization-logic.md`](0059-tri-bracket-eigen-normalization-logic.md),
+[`0060-checked-bracket-observer-bridge.md`](0060-checked-bracket-observer-bridge.md),
 and
-[`0060-checked-bracket-observer-bridge.md`](0060-checked-bracket-observer-bridge.md).
+[`0061-lineage-aware-bracket-events.md`](0061-lineage-aware-bracket-events.md).
+
+The executable V0 fixture is
+[`test_reverse_dual_characteristic_completion.py`][fixture].
+
+[fixture]: ../../tests/python/test_reverse_dual_characteristic_completion.py
+
+Revision note: the first merged version already required the arrow to reverse
+under \((-)^\star\), but later stated an incompatible forward-normal-form
+equation.  This revision makes the intended reading explicit: proving is a
+normalizing direction, while learning is its reverse generative direction.
+Operational learning starts from observations and infers a generator by
+searching *against* that generative arrow.  V0 makes the old `NF/NF` equation
+fail on purpose so that this distinction cannot silently regress.
 
 This note records one conjecture:
 
-> Learning and proving may be two dual readings of one characteristic
-> completion algorithm.  Learning names a stable residual after finite
-> observational forgetting; proving normalizes the discrepancy between an
-> observation and an existing name.  A closed discrepancy gives a proof,
-> while a saturated nonclosed discrepancy gives a countermodel in the proof
-> reading and a candidate new characteristic in the learning reading.
+> Learning and proving may be reverse-dual processes over one typed rule
+> complex.  Proving normalizes a discrepancy toward a certified sink.
+> Learning gives the reverse path a generative reading and, from an
+> observation, tries to infer a certified source that can serve as a
+> characteristic.  Proof closure, countermodel extraction, and feature
+> naming remain differently typed readouts.
 
 The conjecture has a precise classical precursor.  A tableau or model-set
-construction saturates a fixed-language branch.  Finite closure yields a
-proof certificate; an open saturated Hintikka set yields a model or
-countermodel.  Henkin completion similarly extends a consistent fixed
-language with witnesses and constructs a term model.  The proposed Adva
-extension is stronger and currently unproved: the saturated residual may
-also generate part of the observer's future vocabulary.
+construction saturates a fixed logical grammar.  Finite closure of every
+branch yields a proof certificate; one open saturated Hintikka branch may
+yield a model or countermodel.  Henkin completion does extend the language
+with witness constants, so it must not be described as literally
+fixed-language.  The proposed additional step is different and currently
+unproved: observed residual structure may generate a data-dependent,
+contentful characteristic in the observer's future vocabulary.
 
-This note does **not** establish a self-dual calculus, a completeness theorem,
-a learned logic, a stable normalizer, a bracket API, or a new Rust semantic
-identity.  It introduces no code and changes no stable claim.  In particular:
+This note does **not** establish a full reverse-dual calculus, a completeness
+theorem, a learned logic, a stable normalizer, a bracket API, or a new Rust
+semantic identity.  Its V0 fixture is a pure-Python finite oracle and creates
+no Rust authority.  In particular:
 
 - plain three-bracket forms remain quotient observer surfaces, not checked
   program, source, occurrence, or lineage carriers;
 - surface satisfaction remains distinct from machine quiescence and halting;
-- search exhaustion returns `Unknown`, never a proof of nonexistence;
-- outcome labels are not promoted to truth values before contextual
-  congruence is established; and
+- search exhaustion may derive `Unknown`, never a proof of nonexistence;
+- `Pending`, `Defect`, `Unknown`, and `NotRepresentable` are kept distinct;
+- operational statuses are never inserted into the object language; and
 - the active implementation priority remains exact program-process work.
 
-The number 0066 avoids occupying the authority upgrades already staged as
-0061--0065 in note 0060.  It does not assert that those stages have been
-completed.
+Note 0061 has now completed one bounded lineage-aware observer stage.  The
+later signed-history and program-process authority upgrades remain open.
 
 ---
 
@@ -49,29 +64,31 @@ reported as one result.
 
 | level | claim | present status |
 |---|---|---|
-| C0: shared kernel | learning and proof use the same local saturation transition relation | proposed; classical fixed-language calibration available |
-| C1: dual readout | a saturated residual is read as a countermodel in proof and as a candidate characteristic in learning | proposed |
-| C2: full self-duality | vocabulary creation, proof discharge, state update, residuals, and certificates are exchanged by an involution | open; strongest conjecture |
+| C0: shared rule complex | proof and learning rules are the two opposite orientations of one typed rule complex | V0 finite calibration |
+| C1: certified maps | branch, model, and characteristic are separate types connected by checked maps | proposed |
+| C2: full reverse duality | vocabulary creation, proof discharge, branching, state update, residuals, and certificates are exchanged by a contravariant involution | open; strongest conjecture |
 
-C0 can hold while C1 or C2 fails.  For example, a common search engine may
-return proofs and models without making model naming dual to proof discharge.
+C0 can hold while C1 or C2 fails.  It means neither "the same forward
+transition function" nor "the same branch object".  For example, a common
+typed dispatcher may expose opposite rule orientations without making model
+naming dual to proof discharge.
 Likewise, learning may revise its vocabulary nonmonotonically while proof
 remains monotone.  Such an asymmetry would refute C2 but could leave a useful
-shared completion kernel.
+paired rule complex.
 
 The intended architecture is
 
 \[
 \boxed{
-\text{finite observation and current norm}
-\xrightarrow{\operatorname{Complete}_Q}
-\text{stable face, surface, witness, and residual}
-\xrightarrow{\text{typed readout}}
+\text{exact evidence, finite observation, and current norm}
+\xrightarrow{\operatorname{Search}_{Q,N}}
+\text{search forest, typed axes, witnesses, and residuals}
+\xrightarrow{\text{certified maps}}
 \text{proof, countermodel, or learned characteristic}.
 }
 \]
 
-The completion kernel comes before the logical vocabulary.  Logical symbols
+The typed rule complex comes before the logical vocabulary.  Logical symbols
 are proposed names for compositional equivalence classes of its outcomes,
 not arbitrary names attached to transient machine states.
 
@@ -96,17 +113,19 @@ fixed-language saturation process.  Henkin's method supplies a related
 completion: add witnesses, extend a consistent theory, and construct a model
 whose carrier is made from terms of the extended language.
 
-The new conjecture begins exactly where the classical constructions stop.
-They assume in advance:
+The new conjecture begins after the classical calibration.  Tableau assumes
+a fixed logical vocabulary for the run.  Henkin completion may add fresh
+witness symbols, but their role and extension scheme are fixed in advance.
+Both assume:
 
-- a fixed grammar;
+- a fixed logical grammar and symbol-formation policy;
 - fixed logical connectives;
 - a fixed consistency relation;
 - fixed saturation rules; and
 - a fixed notion of model.
 
-The proposed learning step asks whether a stable residual can be named as a
-new finite characteristic, with its forgotten detail and construction
+The proposed learning step asks whether a stable residual can justify a new
+data-dependent characteristic, with its hidden detail and construction
 witness retained.  It therefore seeks
 
 \[
@@ -122,42 +141,89 @@ separately.
 
 ## 2. Primitive observer data
 
-Fix a finite observer
+Fix a versioned finite observer package
 
 \[
-Q=(Q_t,Q_X,Q_K)
+Q=(Q_0,\pi,\rho,\mathsf{Tests},\mathsf{Contexts},\nu_Q),
 \]
 
-with a declared observation equivalence \(\sim_Q\), finite search policy,
-and admissible contexts.  Use the observer surface grammar and stable-domain
-predicate of note 0059.  Write
+where \(Q_0=(Q_t,Q_X,Q_K)\), \(\pi\) is a named projection policy,
+\(\rho\) is any named promotion policy, and \(\nu_Q\) is the observer-policy
+version.  The separate run header is
+\((N,B,\Sigma,\nu)\), where \(N\) is the versioned norm, \(B\) the finite
+budget, \(\Sigma\) the scheduler, and \(\nu\) the rule and vocabulary
+versions.  These fields occur once; later expanded subscripts refer to this
+same header.  The fixed public shells remain
+
+```text
+{}[]()
+```
+
+They are a fixed observer/display interface.  They do not become nested
+checked terms.  Following note 0061, checked evidence first determines an
+exact lineage-support object \(\mathcal H_Q\).  Projection is a separate
+partial observation:
+
+\[
+\operatorname{project}_{\pi}(\mathcal H_Q)
+\in
+\mathsf{ObservedWithResidual}(V_\pi,R_{\rm prov})
+\;\uplus\;
+\mathsf{NotRepresentable}(e,\mathcal H_Q).
+\]
+
+`Raw111` is therefore a potentially failing observer view, never the exact
+carrier.  Strict direct-incidence and weak strict-ancestry projections are
+different policies; a theorem proved for one may not silently use the other.
+
+The descendant-based stable-domain predicate of note 0059 aligns specifically
+with note 0061's weak strict-ancestry projection.  It must not be transported
+to strict direct-incidence views without a separate theorem.  For
+\(\pi=\pi_{\rm ancestry}\), write
 
 \[
 D=\{K,X,t\}
 \]
 
-and let
+and define the exact stable and unresolved faces only for a represented view:
 
 \[
-\operatorname{Sat}_S(p)
-\quad\Longleftrightarrow\quad
-S\subseteq\operatorname{Stable}(p)
+\operatorname{ExactStable}_{Q,\pi_{\rm ancestry}}
+(V;S,U_{\rm face})
+\Longleftrightarrow
+S=\operatorname{Stable}_{Q,\pi_{\rm ancestry}}(V)\cap D
+\land U_{\rm face}=D\setminus S.
 \]
 
-for each nonempty \(S\subseteq D\).
+For `NotRepresentable`, \(V,S,U_{\rm face}\) are undefined under that
+projection; the failure must not be encoded as
+\(S=\varnothing,U_{\rm face}=D\).
+
+The weakening judgment remains
+
+\[
+\operatorname{Sat}_T(p)
+\quad\Longleftrightarrow\quad
+T\subseteq\operatorname{Stable}(p)
+\]
+
+for each nonempty \(T\subseteq D\).  `Sat_T` is not the exact-face record.
+The unresolved face \(U_{\rm face}\) says only where no stability claim is
+currently justified.  It is not a negative face, nontermination, semantic
+falsehood, or the resolution state of a logical goal.
 
 Following note 0060, this is only a surface judgment.  Machine halting would
 also require quiescence under the declared observer policy:
 
 \[
-\operatorname{Halt}_{S,Q}(M)
+\operatorname{Halt}_{T,Q}(M)
 =
-\operatorname{Sat}_S(\operatorname{surface}_Q(M))
+\operatorname{Sat}_T(\operatorname{surface}_Q(M))
 \land
 \operatorname{Quiescent}_Q(M).
 \]
 
-The seven nonempty faces
+The seven nonempty exact stable faces
 
 \[
 K,\ X,\ t,\ KX,\ Xt,\ tK,\ KXt
@@ -168,95 +234,118 @@ are therefore types of partial stability.  They are not seven truth values.
 ### 2.1 Feature records
 
 A learned word is not an ungrounded atom.  A provisional feature dictionary
-\(\Theta_Q\) maps a word \(c\) to a record
+\(\Theta_{Q,N}\) maps a word \(c\) to a record
 
 \[
-\Theta_Q(c)
+\Theta_{Q,N}(c)
 =
-\bigl([H]_Q,S,w,R\bigr),
+\bigl([F]_{Q,N,S},S,w,R\bigr),
 \]
 
 where:
 
-- \([H]_Q\) is the observation-equivalence class being named;
+- \([F]_{Q,N,S}\) is the feature/intension class being named;
 - \(S\) is the exact stable face on which the name is justified;
 - \(w\) is the finite construction or saturation witness; and
-- \(R\) retains forgotten, unresolved, or finer evidence.
+- \(R\) retains provenance, obligations, defects, and search evidence.
 
-Two equal visible surfaces need not define the same word when their checked
-fibres, schedules, or residuals differ under the declared policy.
+The exact support \(\mathcal H_Q\), visible view \(V_\pi\), logical branch
+\(\Gamma\), model \(M\), and feature \(F\) are five different types.  Equal
+visible surfaces need not define the same word when their checked fibres,
+schedules, or residuals differ under the declared policy.
 
 ## 3. Characteristic configurations
 
-The research configuration is
+Proof and learning configurations are differently typed.  A schematic
+configuration on side \(a\in\{\mathrm P,\mathrm L\}\) is
 
 \[
-\mathcal C
+\mathcal C_a
 =
-Q\left\langle
-O\;\Vert\;N;
-\Theta,\Pi,\tau,R
-\right\rangle.
+a;Q,N,\Theta
+\left\langle
+\mathcal H_Q,P_\pi,\mathcal F,\Pi,\tau,R
+\right\rangle,
 \]
 
-Its components are:
+where:
 
-- \(O\): the finite observed surface together with its evidence fibre;
-- \(N\): the current norm, expected feature, or open normative boundary;
-- \(\Theta\): the current feature dictionary;
-- \(\Pi\): pending programs and in-flight observer events;
-- \(\tau\): retained schedule, braid, and rewrite history; and
-- \(R\): the explicit residual.
+- \(\mathcal H_Q\) is exact lineage-support evidence;
+- \(P_\pi\) is the projection-result sum
+  `ObservedWithResidual(V, R_prov) | NotRepresentable(e, H_Q)`; only its left
+  branch contains \(V_\pi,S,U_{\rm face}\);
+- \(\mathcal F\) is a proof search forest, not one overloaded branch;
+- \(N\) is the versioned norm;
+- \(\Theta\) is the current feature dictionary;
+- \(\Pi\) contains pending obligations, programs, and observer events;
+- \(\tau\) retains schedule, braid, and rewrite history; and
+- \(R=(R_{\rm prov},R_{\rm obl},R_{\rm search})\) is a typed residual, with
+  \(R_{\rm obl}=R_{\rm defect}\times R_{\rm pending}\).
 
-The proposed completion relation is
+Reversible transport, checked active gates, observer projection, and
+research-local logical rules retain distinct authorities.  An abstract
+surface split is not a checked `spatial-update`; a braid does not remove an
+equation defect; and hiding an observer incidence does not discharge a
+logical obligation.
+
+### 3.1 Reverse-dual rule complex
+
+The strongest conjecture first requires an involution on the disjoint union
+of two declared finite typed carriers,
 
 \[
-\mathcal C
-\rightsquigarrow_Q
-\mathcal C'.
+(-)^\star:\mathcal C_{\mathrm P}\uplus\mathcal C_{\mathrm L}
+\longrightarrow
+\mathcal C_{\mathrm P}\uplus\mathcal C_{\mathrm L},
+\qquad
+\star(\mathcal C_{\mathrm P})=\mathcal C_{\mathrm L},
+\qquad
+(c^\star)^\star\cong c.
 \]
 
-It may use reversible transport, checked active gates, observer projection,
-and research-local saturation rules, but these layers must retain their
-distinct authorities.  In particular, an abstract surface split is not
-identified with a checked `spatial-update`, and a braid does not remove a
-containment or equation-defect edge.
+Only after rule paths have been defined as categories may this be summarized
+as
+\(\operatorname{Path}(\mathcal C_{\mathrm P})^{op}
+\simeq\operatorname{Path}(\mathcal C_{\mathrm L})\).
+The candidate data must also declare \(Q\mapsto Q^\star\), including policy
+and version transport, with \((Q^\star)^\star=Q\); no such construction is
+assumed here.
 
-### 3.1 Candidate duality
-
-The strongest conjecture requires an involution \((-)^\star\) on one declared
-finite carrier such that
-
-\[
-(\mathcal C^\star)^\star\cong\mathcal C
-\]
-
-and, provisionally,
-
-\[
-Q\langle O\Vert N;\Theta,\Pi,\tau,R\rangle^\star
-=
-Q^\star
-\langle
-N^\star\Vert O^\star;
-\Theta^\star,\Pi^\star,\tau^\star,R^\star
-\rangle.
-\]
-
-The rule set is self-dual only if
+It acts on proof-relevant rule instances, not merely on the fact that an
+unlabelled edge exists:
 
 \[
 \boxed{
-\mathcal C\rightsquigarrow_Q\mathcal C'
-\quad\Longrightarrow\quad
-(\mathcal C')^\star
-\rightsquigarrow_{Q^\star}
-\mathcal C^\star.
+\mathsf{Rule}_{\mathrm P,Q}(c,c')
+\cong
+\mathsf{Rule}_{\mathrm L,Q^\star}(c'^\star,c^\star).
 }
 \]
 
-The reversed arrow matters.  Merely giving learning and proof similar names
-does not establish duality.
+Equivalently,
+
+\[
+\rho:c\to_{\mathrm P}c'
+\quad\Longleftrightarrow\quad
+\rho^\star:c'^\star\to_{\mathrm L}c^\star,
+\qquad
+(\rho^\star)^\star=\rho.
+\]
+
+Paths reverse rule and schedule order:
+
+\[
+(c_0\xrightarrow{\rho_1}c_1\xrightarrow{\rho_2}c_2)^\star
+=
+(c_2^\star\xrightarrow{\rho_2^\star}c_1^\star
+\xrightarrow{\rho_1^\star}c_0^\star).
+\]
+
+Thus "one algorithm" means one typed rule complex and dispatcher with two
+opposite orientations.  Proof runs along \(\to_{\mathrm P}\).  The learning
+relation runs generatively from a characteristic source toward possible
+observations; actual inference from an observation searches backward along
+\(\to_{\mathrm L}\) for such a source.
 
 The motivating emptiness--universality slogan has the same obligation.  It
 would require declared objects and a contravariant construction under which
@@ -264,282 +353,428 @@ an initial or available vacancy on one side corresponds to a terminal or
 universally accepting boundary on the other.  The three typed vacua of note
 0057 must not be collapsed into one monoidal unit to obtain this result.
 
-No such involution is currently implemented or proved.
+Rule-level reversal still does not define how \((-)^\star\) exchanges proof
+branching with a learning-side merge or co-branching operation.  No full
+involution is currently implemented or proved.
 
-## 4. One completion kernel
+## 4. Orthogonal outcome record
 
-Write
+Finite search under \((Q,N,B,\Sigma,\nu)\) returns a `SearchForest` plus
+orthogonal evidence.  It does not return one mutually exclusive
+`Closed | Saturated | Open | Unknown` tag.
 
-\[
-\operatorname{Complete}_Q(\mathcal C;B)
-\]
-
-for fair saturation under finite budget \(B\).  The kernel returns an outcome
-record
-
-\[
-o=(S,\kappa,H,w,R,\tau),
-\]
-
-where:
-
-- \(S\subseteq D\) is the exact stable face;
-- \(\kappa\) is an operational outcome kind;
-- \(H\) is the visible saturated surface;
-- \(w\) is a proof, model, or construction witness where available;
-- \(R\) is the accountable residual; and
-- \(\tau\) is the retained trace.
-
-The first outcome kinds are
-
-\[
-\kappa\in
-\{\mathsf{Closed},\mathsf{Saturated},
-  \mathsf{Open},\mathsf{Unknown}\}.
-\]
-
-Their meanings are operational:
-
-| kind | meaning |
+| dimension | alternatives |
 |---|---|
-| `Closed` | the declared discrepancy has been discharged with a finite certificate |
-| `Saturated` | no admitted local completion step remains on face \(S\), but a nonempty residual remains |
-| `Open` | admitted work or an in-flight event remains |
-| `Unknown` | the finite search policy was exhausted without a justified endpoint |
+| projection | \(\mathsf{ObservedWithResidual}(V,R_{\rm prov})\) or \(\mathsf{NotRepresentable}(e,\mathcal H_Q)\) |
+| observer face | \(\mathsf{Face}(S,U_{\rm face})\), on the represented weak-ancestry branch only |
+| goal resolution | `Proven(cert)`, `Refuted(model_cert)`, or `Undecided(goal, frontier)` |
+| local rules | `Reducible(steps)` or `LocallySaturated` |
+| value evidence | `DefectFree(cert)`, `Defects(items)`, or `Unchecked` |
+| causal work | `Quiescent(cert)`, `Pending(items)`, or `Unchecked` |
+| search execution | `Running`, `FixedPoint(cert)`, or `BudgetExhausted(B, frontier, scheduler, version, continuation)` |
 
-`Unknown` is not false, nontermination, or an open Hintikka model.  Likewise,
-`Saturated` is not a model until a model-existence lemma interprets it.
-
-### 4.1 Learning readout
-
-The learning readout is provisionally
+`Undecided` records the goal, norm, observer, snapshot, and frontier.  It has
+only resume, observer-refinement, proof, or countermodel transitions.  There
+is no elimination rule from it to negation, divergence, or a model.  It is
+orthogonal to \(U_{\rm face}\): a fully stable view can contain an undecided
+goal, and a proof may be scoped to \(S\) while \(U_{\rm face}\ne\varnothing\).
+`LocallySaturated` can coexist with either.  `Unknown` is a derived
+metalanguage readout, not a run disposition:
 
 \[
-\operatorname{Read}_{\mathrm L}(o)=
-\begin{cases}
-\text{reuse an existing word},&\kappa=\mathsf{Closed},\\
-\text{propose }c_H\mapsto([H]_Q,S,w,R),
-  &\kappa=\mathsf{Saturated},\\
-\text{defer},&\kappa\in\{\mathsf{Open},\mathsf{Unknown}\}.
-\end{cases}
+\mathsf{Unknown}(r)
+\Longleftrightarrow
+r.\mathsf{execution}=\mathsf{BudgetExhausted}
+\land\neg\operatorname{AllClosed}(r.\mathsf{forest})
+\land\neg\operatorname{ExistsOpen}(r.\mathsf{forest}).
 \]
 
-Naming is allowed only after a nontrivial learning criterion is declared.
-Naming every finite observation separately is a lookup table, not learned
-characteristic compression.
+Its evidence retains the budget, complete frontier, scheduler and rule
+version, and continuation.  Here `ExistsOpen` is a certified search endpoint;
+turning that leaf into a semantic countermodel still requires the independent
+map of Section 4.2.  `Unknown` can coexist with pending work and defects.
 
-### 4.2 Proof readout
+`Defect` is an unmet value or semantic equation.  `Pending` is known causal
+or in-flight work.  `NotRepresentable` is a deterministic counterexample to
+one projection policy while the exact support object remains valid.  None of
+these is another spelling of `Unknown`.
 
-The proof readout is provisionally
-
-\[
-\operatorname{Read}_{\mathrm P}(o)=
-\begin{cases}
-\text{proof certificate }w,&\kappa=\mathsf{Closed},\\
-\text{candidate countermodel }H,&\kappa=\mathsf{Saturated},\\
-\text{open obligation},&\kappa=\mathsf{Open},\\
-\texttt{Unknown},&\kappa=\mathsf{Unknown}.
-\end{cases}
-\]
-
-The `Saturated` branch becomes a countermodel only after satisfaction is
-defined and the triadic Hintikka lemma below is proved.
-
-### 4.3 The proposed dual reading
-
-The central observation is
+The residual is proof-relevant and typed:
 
 \[
-\boxed{
-\text{one stable nonclosed }H
-\quad\rightsquigarrow\quad
-\begin{cases}
-\text{countermodel},&\text{proof reading},\\
-\text{candidate new word},&\text{learning reading}.
-\end{cases}
-}
-\]
-
-This establishes neither C1 nor C2 by itself.  C1 requires a typed duality
-between the two readouts.  C2 additionally requires the vocabulary update on
-the learning side to have a dual proof-side state transition.
-
-One candidate formulation uses a feature-introduction unit and a
-feature-testing counit,
-
-\[
-\eta_H:0_S\longrightarrow c_H^\star\otimes H,
+R=(R_{\rm prov},R_{\rm obl},R_{\rm search}),
 \qquad
-\varepsilon_H:H\otimes c_H^\star\longrightarrow 1_S,
+R_{\rm obl}=R_{\rm defect}\times R_{\rm pending}.
 \]
 
-with
+Logical closure may leave \(R_{\rm prov}\) nonempty.  Provenance is not an
+undischarged formula, and erasing it is not how a proof reaches normal form.
+
+### 4.1 Forest aggregation
+
+Let \(\operatorname{Leaf}(\mathcal F)\) contain every current leaf of a
+nonempty search forest, including closed, open-saturated, and pending leaves.
+Define
 
 \[
-\eta_H^\star=\varepsilon_H.
+\operatorname{AllClosed}(\mathcal F)
+:=\operatorname{Leaf}(\mathcal F)\ne\varnothing
+\land\forall\Gamma\in\operatorname{Leaf}(\mathcal F),
+\ \exists w_\Gamma.\operatorname{ClosedCert}(\Gamma,w_\Gamma),
 \]
 
-This notation is a target for construction, not an assertion that Adva
-currently has the objects \(0_S,1_S\), a tensor, or the required triangle
-identities.
+\[
+\operatorname{OpenSat}(\Gamma;w_o,w_s)
+:=\operatorname{OpenCert}(\Gamma,w_o)
+\land\operatorname{SaturationCert}(\Gamma,w_s)
+\land R_{\rm pending}(\Gamma)=\varnothing,
+\]
+
+and
+
+\[
+\operatorname{ExistsOpen}(\mathcal F)
+:=\exists\Gamma\in\operatorname{Leaf}(\mathcal F),w_o,w_s.
+\operatorname{OpenSat}(\Gamma;w_o,w_s).
+\]
+
+`OpenCert` is positive finite evidence that the declared branch contains no
+clash; it is not inferred merely from failure to find a `ClosedCert`.
+
+A proof needs the universal aggregation `AllClosed`.  A countermodel path
+needs one `OpenSat` leaf plus an independent Hintikka/model certificate.
+When fuel is exhausted with a pending leaf, both predicates can be false.
+Thus `AllClosed(F) iff not ExistsOpen(F)` is licensed only after a separately
+proved exhaustiveness condition.
+
+### 4.2 Proof and countermodel readout
+
+The proof-side maps are
+
+\[
+\mathcal F\xrightarrow{\operatorname{allClosed}}
+W_{\rm proof},
+\qquad
+\Gamma\xrightarrow{\operatorname{model}}
+(M_\Gamma,w_M).
+\]
+
+The first map aggregates every branch certificate.  The second uses one
+open saturated branch and a model evaluator independent of saturation.
+A countermodel first establishes semantic non-entailment.  Syntactic
+non-provability follows only after soundness of the proof system is known.
+Projection failure does not by itself block a graph-native branch or model;
+it blocks only the failed observer serialization.
+
+### 4.3 Learning readout
+
+The learning-side map has a different codomain:
+
+\[
+\Gamma^\star
+\xrightarrow{\operatorname{name}}
+(c_\Gamma,F_\Gamma,w_F,R).
+\]
+
+It may propose a content word only after nontrivial compression, contextual
+congruence, and a scoped `MayAbstract@S` certificate.  Naming every finite
+observation separately is a lookup table.  `Unknown`, `Pending`,
+`NotRepresentable`, and a nonempty \(U_{\rm face}\) are status evidence; none
+automatically generates an object-language word.
+
+There may be several open leaves and several learning generators.  The rule
+for merging or choosing among them is not yet defined.  In particular,
+rule-level reversal alone does not establish
+\(\operatorname{AllClosed}(\mathcal F)^\star
+=\operatorname{ExistsOpen}(\mathcal F^\star)\).
 
 ## 5. Outcome-generated logical vocabulary
 
-Let \(\mathcal O_Q\) be the finite outcomes admitted by one bounded observer
-experiment.  The conjectured logical alphabet begins from
+Let \(\mathcal O_{Q,N,S}\) be the finite represented content outcomes
+admitted by one bounded observer experiment.  The conjectured logical
+alphabet may begin from
 
 \[
-\mathbb V_Q
+\mathbb V_{Q,N,S}
 =
-\mathcal O_Q/{\equiv_Q},
+\mathcal O_{Q,N,S}/{\equiv_{Q,N,S}},
 \]
 
-where \(\equiv_Q\) must retain every distinction relevant under admissible
-contexts.  For each justified class introduce a typed symbol
+where equivalence must retain every distinction relevant under admissible
+tests and contexts.  For each justified content class one may introduce a
+typed symbol
 
 \[
-[o]_Q\longmapsto\ulcorner o\urcorner_Q.
+[o]_{Q,N,S}\longmapsto\ulcorner o\urcorner_{Q,N,S}.
 \]
 
-There are two sorts of symbols:
-
-1. **status symbols**, recording `Closed`, `Saturated`, `Open`, `Unknown`, and
-   the stable face; and
-2. **content symbols**, naming stable residual classes such as \([H]_Q\).
-
-The two sorts must not be collapsed.  In particular, `Saturated on X` is an
-epistemic and operational status, not the truth value of a proposition.
+Only content records are eligible for the object language.  Resolution,
+local phase, projection result, search disposition, \(S\), and \(U\) stay in
+the metalanguage.  In particular, `Unknown` and `LocallySaturated@X` are not
+propositions or truth values.
 
 Negation or duality may be induced only if outcome dualization is well
 defined:
 
 \[
-\neg\ulcorner o\urcorner_Q
+\neg\ulcorner o\urcorner_{Q,N,S}
 :=
-\ulcorner o^\star\urcorner_{Q^\star}.
+\ulcorner o^\star\urcorner_{Q^\star,N^\star,S^\star}.
 \]
 
 Composition may be induced only by composing representatives and completing
 again:
 
 \[
-\ulcorner o_1\urcorner_Q\bullet
-\ulcorner o_2\urcorner_Q
+\ulcorner o_1\urcorner_{Q,N,S}\bullet
+\ulcorner o_2\urcorner_{Q,N,S}
 :=
 \left\ulcorner
-\operatorname{Complete}_Q(o_1\bullet o_2)
-\right\urcorner_Q.
+\operatorname{Search}_{Q,N}(o_1\bullet o_2)
+\right\urcorner_{Q,N,S}.
 \]
 
-This is well defined only if \(\equiv_Q\) is a contextual congruence:
+This is well defined only if equivalence is a contextual congruence while
+the observer, norm, face, admissible tests and contexts, budget, scheduler,
+rule version, and vocabulary version are frozen:
 
 \[
-A\equiv_Q B
+A\equiv_{Q,N,S,B,\Sigma,\nu} B
 \quad\Longrightarrow\quad
-C[A]\equiv_Q C[B]
+C[A]\equiv_{Q,N,S,B,\Sigma,\nu} C[B]
 \]
 
 for every admissible context \(C[-]\).  Failure of this test blocks promotion
 from outcome labels to logical vocabulary.
 
-## 6. Candidate judgments
+### 5.1 Scoped forgetting authority
 
-The proof-relevant completion judgment is
+Four proof-relevant capabilities must not be conflated.  They are scoped to
+an artifact, policy, norm, face, and version; they are not booleans and do
+not form a permission chain.
+
+| capability | permitted effect | required evidence |
+|---|---|---|
+| `MayHide` | move one complete visible fibre into \(R_{\rm prov}\), leaving \(\mathcal H_Q\) exact | before/after snapshot, complete ordered fibre, lossless partition witness |
+| `MayAbstract@S` | introduce a name or quotient on face \(S\), retaining every member | common norm, at least two histories, exhaustive admitted tests and contexts, congruence certificate |
+| `MayForget@Q` | remove a proved \(Q\)-invisible distinction from active state but append it to the audit residual | `MayAbstract` evidence, no live dependency, versioned indistinguishability certificate, replayable residual |
+| `MayErase` | physically delete residual evidence | sealed policy and norm, no certificate dependency, external retention authority, independent deletion certificate |
+
+`MayHide` and `MayAbstract@S` are incomparable lossless-view effects.
+`MayForget@Q` is observer-lossy but remains system-lossless because recall is
+possible from the residual.  `MayErase` is system-lossy.  No capability
+automatically constructs any other capability:
 
 \[
-Q;\Theta;
-O\Vert N
-\Downarrow_B
-(S,\kappa,H,w,R,\tau).
+\mathsf{MayX}\not\Rightarrow\mathsf{MayY}
+\qquad(X\ne Y).
+\]
+
+Note 0061's `ProvenanceHideWitness` inhabits only `MayHide`.  It may change
+the view and hence its computed \(S/U_{\rm face}\), but never the exact support,
+discharges no defect or pending work, and supplies no authority to abstract,
+forget, or erase.
+
+The relative indistinguishability gate is
+
+\[
+x\approx_{N,Q,S}y
+\Longleftrightarrow
+\operatorname{CommonNorm}_{N,S}(x,y)
+\land
+\forall C\in\mathsf{Contexts}_{N,S},
+\forall T\in\mathsf{Tests}_{N,Q,S},
+\operatorname{Obs}_Q(T(C[x]))
+=\operatorname{Obs}_Q(T(C[y])).
+\]
+
+`CommonNorm` binds at least type and carrier, `NormId`, face, observer and
+projection policy, and vocabulary version.  On a declared finite carrier,
+exhaustive enumeration may construct a certificate.  Sampling and held-out
+success construct only a candidate abstraction, never `MayForget@Q`.
+
+A forget step of the form
+
+\[
+(A,\Delta,R)\longmapsto(A/{\sim_Q},R\uplus\Delta)
+\]
+
+can still have a `Recall/Refine` reverse supported by \(R\).  True erasure is
+non-injective and normally has no reverse arrow.  This calculus therefore
+provides no `MayErase` constructor; granting one would directly threaten C2.
+An audit entry must retain IDs, order, multiplicity, snapshots, versions,
+test/context manifest, capability witness, and dependency set.  A digest
+alone is not replayable provenance.
+
+## 6. Candidate judgments
+
+The proof-relevant search judgment is
+
+\[
+Q;N;\Theta\vdash
+\operatorname{Search}(O;B,\Sigma,\nu)
+\Downarrow
+(\mathcal F,\mathsf{Axes},w,R,\tau).
 \]
 
 Derived judgments are allowed only after their side conditions are proved.
 
-Proof discharge:
+Proof discharge aggregates the whole forest:
 
 \[
 \frac{
-Q;\Theta;O\Vert N
-\Downarrow_B
-(S,\mathsf{Closed},H,w,R,\tau)
-\qquad R\equiv_Q0
+\operatorname{AllClosed}(\mathcal F)
+\qquad
+\operatorname{VerifyAll}(\mathcal F,w)
+\qquad
+R_{\rm defect}^{N,S}=R_{\rm pending}^{N,S}=\varnothing
 }{
 Q;\Theta\vdash O:N@S\ [w]
 }
 \quad(\textsc{Cert}).
 \]
 
-Characteristic proposal:
+The target-scoped obligation ledgers must be discharged; the provenance
+residual may be nonempty and remains auditable.  Machine-wide quiescence is
+still a separate claim.
+
+Characteristic proposal uses a learning generator and a scoped abstraction
+capability:
 
 \[
 \frac{
-Q;\Theta;O\Vert N
-\Downarrow_B
-(S,\mathsf{Saturated},H,w,R,\tau)
+\operatorname{OpenSat}(\Gamma;w_o,w_s)
 \qquad
-\operatorname{Compresses}_Q(H)
+\operatorname{Gen}_{\mathrm L}(g;\Gamma^\star)
 \qquad
-\operatorname{Congruent}_Q([H])
+\operatorname{Compresses}_Q(F_g)
+\qquad
+\operatorname{Congruent}_{Q,N,S}([F_g])
+\qquad
+a:\mathsf{MayAbstract}@S
 }{
 Q;\Theta
 \leadsto
-\Theta[c_H\mapsto([H]_Q,S,w,R)]
+\Theta[c_g\mapsto([F_g]_{Q,N,S},S,w,R)]
 }
 \quad(\textsc{Char}).
 \]
 
-Countermodel extraction:
+Removing the represented differences from active state would additionally
+require `MayForget@Q`; name introduction alone does not.
+
+Countermodel extraction uses one leaf and an independent evaluator:
 
 \[
 \frac{
-Q;\Theta;O\Vert N
-\Downarrow_B
-(S,\mathsf{Saturated},H,w,R,\tau)
+\Gamma\in\operatorname{Leaf}(\mathcal F)
 \qquad
-M_H\models_{Q,S}O
+\operatorname{OpenSat}(\Gamma;w_o,w_s)
 \qquad
-M_H\not\models_{Q,S}N
+\operatorname{ModelCert}(\Gamma,M_\Gamma,w_M)
+\qquad
+M_\Gamma\models_{Q,S}O
+\qquad
+M_\Gamma\not\models_{Q,S}N
 }{
-Q;\Theta\nvdash O:N@S
-\ \text{with countermodel }M_H
+O\not\models_{Q,S}N
+\ \text{with countermodel }M_\Gamma
 }
 \quad(\textsc{Counter}).
 \]
 
-The last conclusion is semantic non-entailment in the declared finite model
-class.  It is not licensed merely because proof search failed.
+Only after proof-system soundness is established may this semantic conclusion
+be used to infer \(Q;\Theta\nvdash O:N@S\).  Search failure alone licenses
+neither conclusion.
+
+A projection failure has only the typed propagation rule
+
+\[
+\operatorname{project}_\pi(\mathcal H_Q)
+=\mathsf{NotRepresentable}(e,\mathcal H_Q)
+\Longrightarrow
+\mathsf{ProjectionStatus}=\mathsf{NotRepresentable}(e,\mathcal H_Q).
+\]
+
+It yields no `Unknown`, falsehood, program failure, or empty stable face.
+Likewise, `ProvenanceHide` may change \(V_\pi\) but cannot by itself create a
+`ClosedCert`, discharge a defect, or empty a pending ledger.
 
 ## 7. Candidate metatheorems
 
-The conjecture decomposes into six obligations.
+The conjecture decomposes into independent obligations.
 
 ### 7.1 Rule-level dual closure
 
-Every primitive completion rule has a typed dual rule, and residuals and
-certificates are preserved by the pairing.
+Every primitive proof rule instance has exactly its typed learning-side
+reverse, including labels, residual deltas, resource effects, and certificate
+transport:
+
+\[
+\mathsf{Rule}_{\mathrm P,Q}(c,c')
+\cong
+\mathsf{Rule}_{\mathrm L,Q^\star}(c'^\star,c^\star).
+\]
 
 ### 7.2 Normal-form duality
 
-For every configuration in the declared terminating fragment,
+Use relations until confluence or a canonical strategy has been proved:
 
 \[
-\operatorname{NF}_{Q^\star}(\mathcal C^\star)
-\cong
-\operatorname{NF}_Q(\mathcal C)^\star.
+\operatorname{NF}_{\mathrm P}(c,n)
+:=c\to_{\mathrm P}^{*}n
+\land\nexists n'.\ n\to_{\mathrm P}n',
 \]
 
-### 7.3 Triadic Hintikka lemma
+\[
+\operatorname{Gen}_{\mathrm L}(g;x)
+:=g\to_{\mathrm L}^{*}x
+\land\nexists h.\ h\to_{\mathrm L}g.
+\]
 
-Every open saturated configuration on face \(S\) determines an
-\(S\)-partial model satisfying its positive obligations and refuting its
-declared negative obligation.
+The correct reverse-dual target is
 
-### 7.4 Soundness
+\[
+\boxed{
+\operatorname{NF}_{\mathrm P}(c,n)
+\Longleftrightarrow
+\operatorname{Gen}_{\mathrm L}(n^\star;c^\star).
+}
+\]
 
-Every finite `Closed` certificate accepted by the checked verifier is valid
-under the declared observer semantics.
+Equivalently, with
+\(\operatorname{CoNF}_{\mathrm L}\) defined as normalization along the
+inverse learning relation,
 
-### 7.5 Relative completeness
+\[
+\operatorname{CoNF}_{\mathrm L}(c^\star)
+=
+\{n^\star\mid\operatorname{NF}_{\mathrm P}(c,n)\}.
+\]
+
+Only after uniqueness is established may this be written as a function
+equation.  The old forward `NF_L(c*) = NF_P(c)*` equation is false for every
+nontrivial two-state reverse pair and is an explicit V0 negative test.
+
+### 7.3 Forest duality
+
+A rule-instance involution does not yet exchange proof branching and
+universal `AllClosed` aggregation with a learning-side merge, co-branching,
+or existential generator choice.  Defining that structure is an additional
+C2 theorem, not a corollary of Section 7.1.
+
+### 7.4 Triadic Hintikka lemma
+
+Every certified `OpenSat` leaf on face \(S\) determines an \(S\)-partial
+model satisfying its positive obligations and refuting its declared negative
+obligation, as checked by an independent evaluator.
+
+### 7.5 Soundness
+
+Every aggregated `AllClosed` certificate accepted by the checked verifier is
+valid under the declared observer semantics.
+
+### 7.6 Relative completeness
 
 For a fixed finite language, observer, model class, and fair saturation
 policy,
@@ -553,13 +788,21 @@ T\vdash_Q\varphi.
 This does not imply decidability or termination for the open, vocabulary-
 growing system.
 
-### 7.6 Characteristic conservativity
+### 7.7 Conservativity or versioned revision
 
 If \(c_H\) is introduced, extending \(\Theta\) with \(c_H\) must not alter
-old judgments except through the explicitly declared observer refinement or
-revision policy.  If old proofs may be invalidated, the system is
-nonmonotonic and must version norms and certificates rather than call the
-extension conservative.
+old judgments under the frozen old version.  Separately, a declared revision
+may refine \(Q\), the norm, or vocabulary and invalidate old certificates.
+The first is a conservativity theorem; the second is a versioned transition.
+Neither substitutes for the other.
+
+### 7.8 Authority and residual preservation
+
+No rule may escalate one capability into another without a new certificate.
+Every reverse-dual pair must preserve enough typed residual to reconstruct
+its opposite transition.  If a rule truly erases non-reconstructible
+evidence, C2 fails for any carrier containing that rule unless a separate
+quotient universal property is supplied.
 
 ## 8. Validation dependency graph
 
@@ -567,7 +810,8 @@ The shortest honest validation path is:
 
 ```mermaid
 flowchart TD
-    A["V1: fixed-language tableau"] --> B["V2: shared completion kernel"]
+    Z["V0: two-state reverse pair"] --> A["V1: fixed-language forest"]
+    A --> B["V2: opposite typed orientations"]
     B --> C["V3: nontrivial feature naming"]
     C --> D["V4: triadic stable faces"]
     D --> E["V5: rule-level duality"]
@@ -578,23 +822,60 @@ flowchart TD
 
 Each stage has an independent falsifier.
 
+### V0. Reverse-dual direction calibration
+
+Use the complete two-stage carrier
+
+\[
+P_1\to_{\mathrm P}P_0,
+\qquad
+L_0\to_{\mathrm L}L_1,
+\qquad
+P_i^\star=L_i.
+\]
+
+Mechanically check involution and the reverse edge bijection.  This carrier
+is deterministic and finite, so V0 alone writes `nf` for the unique forward
+normal form and `generator` for the unique backward learning source.  Require
+
+\[
+\operatorname{nf}_{\mathrm P}(P_1)^\star
+=L_0
+=\operatorname{generator}_{\mathrm L}(L_1),
+\]
+
+and, as a mandatory counterexample to the rejected forward `NF/NF`
+statement,
+
+\[
+\operatorname{nf}_{\mathrm L}(L_1)=L_1\ne L_0.
+\]
+
+This validates direction and typing only.  It does not validate a logical
+rule, learning, or full C2.
+
 ### V1. Fixed-language tableau calibration
 
 Use a finite signed propositional grammar with atoms, negation, conjunction,
 and disjunction.  Implement ordinary fair branch saturation and check
 exhaustively against truth tables:
 
-- every closed tableau yields a valid proof/refutation certificate;
-- every open saturated branch yields a satisfying valuation; and
-- fuel exhaustion yields `Unknown`.
+- every `AllClosed` forest yields an aggregated certificate;
+- every certified `ExistsOpen` leaf yields a satisfying valuation under an
+  independent evaluator; and
+- a zero-budget or exhausted run preserves its pending frontier as
+  `BudgetExhausted` and derives `Unknown` only when neither certified endpoint
+  is available.
 
 This validates only the classical skeleton.
 
-### V2. One kernel, two readouts
+### V2. One typed dispatcher, opposite orientations
 
-Represent proof and model construction with the same transition function and
-the same branch state.  Permit only the final readout to differ.  A separate
-model builder or separately coded learner would fail C0.
+Represent proof reduction and learning generation with one dispatcher over
+paired typed rule cells.  The directions and state types differ.  A
+separately coded learner whose steps cannot be paired with proof rules would
+fail C0; requiring one common forward transition function would also fail the
+reverse-dual specification.
 
 ### V3. Nontrivial feature naming
 
@@ -602,7 +883,8 @@ Provide repeated raw observations whose distinct histories lie in one
 declared \(Q\)-class.  A learned feature passes only if:
 
 1. at least two distinct raw observations are compressed;
-2. the forgotten distinction is retained in a residual fibre;
+2. every distinction abstracted or forgotten from the active view is retained
+   in a residual fibre;
 3. the name predicts or verifies a held-out observation under \(Q\); and
 4. naming every observation separately is rejected by the declared
    compression criterion.
@@ -611,14 +893,16 @@ This is the first stage that tests learning rather than model extraction.
 
 ### V4. Triadic stable-face product
 
-Attach the bounded logical branch state to the `Raw111` observer carrier from
-note 0059.  Exhaustively verify:
+Attach the bounded logical forest to note 0061's exact lineage-support object
+and then apply a named observer projection.  Exhaustively verify:
 
 - the seven nonempty exact stable faces;
 - face weakening as observation only;
+- strict-lineage and weak-ancestry projections are not exchanged;
+- `NotRepresentable` retains exact support and never becomes `Unknown`;
 - separation of `Sat_S` from quiescence;
 - reopening by an admitted external event; and
-- no conversion of a stable face into a truth value.
+- no conversion of a stable or unresolved face into a truth value.
 
 This first product calibration need not claim an intrinsic coupling.  A later
 experiment must show a rule whose logical obligation and triadic surface
@@ -629,32 +913,33 @@ change are mutually informative rather than merely paired.
 Enumerate the finite transition table.  For every rule instance
 
 \[
-c\to c',
+c\to_{\mathrm P}c',
 \]
 
 mechanically require the dual instance
 
 \[
-(c')^\star\to c^\star.
+(c')^\star\to_{\mathrm L}c^\star.
 \]
 
 Then test
 
 \[
-\operatorname{NF}(c^\star)
-=
-\operatorname{NF}(c)^\star
+\operatorname{NF}_{\mathrm P}(c,n)
+\Longleftrightarrow
+\operatorname{Gen}_{\mathrm L}(n^\star;c^\star)
 \]
 
-on the complete finite carrier.  A single missing residual, reversed resource
-event, or unmatched vocabulary update refutes C2 for that rule set.
+on the complete finite carrier, and separately test the learning `CoNF` set.
+A single missing residual, wrong orientation, resource event, permission
+escalation, or unmatched vocabulary update refutes C2 for that rule set.
 
 ### V6. Triadic Hintikka model extraction
 
 Define the finite model class independently of the completion algorithm.
-Construct \(M_H\) from every saturated branch and verify satisfaction by a
-separate evaluator.  Using the same code path for saturation and model
-checking would make the test circular.
+Construct \(M_\Gamma\) from every open saturated branch and verify
+satisfaction by a separate evaluator.  Using the same code path for
+saturation and model checking would make the test circular.
 
 ### V7. Metatheory
 
@@ -670,39 +955,39 @@ Prove, in order:
 
 ### V8. Checked Adva bridge
 
-Only after the relevant 0061--0065 authority upgrades should the experiment
-consume Rust-owned source, occurrence, lineage, active-gate, and signed-history
-evidence.  The Python oracle may enumerate and falsify finite conjectures but
-must not create semantic identities or certificates.
+The bounded 0061 observer bridge may now supply Rust-owned source,
+occurrence, lineage, and copy evidence.  Signed-history and later
+program-process upgrades 0062--0065 remain open.  Python may enumerate and
+falsify finite conjectures but must not create Rust identities, erase
+provenance, or issue stable semantic permissions.
 
 ## 9. First executable fixture
 
-The first proposed fixture is
+The V0 fixture is
 
 ```text
-tests/python/test_self_dual_characteristic_completion.py
+tests/python/test_reverse_dual_characteristic_completion.py
 ```
 
-It should remain a research oracle and contain four independently checked
-layers:
+It is a pure-Python research oracle with four independently checked layers:
 
-1. a small signed propositional tableau;
-2. one shared saturation transition function;
-3. proof and learning readouts over the same saturated branch object; and
-4. a separate truth-table/model oracle.
+1. one complete two-stage typed rule complex;
+2. proof forward normalization and learning backward generator inference;
+3. branch and forest aggregation records; and
+4. an object-language evaluator independent of run disposition.
 
-The initial tests should include:
+Its tests cover the exact two edges, involution, reverse edge closure,
+proof-normal-form/learning-generator correspondence, an explicit failure of
+the old forward `NF/NF` equation, `AllClosed` versus `ExistsOpen`, zero-budget
+exhaustion with pending work retained, and rejection of derived
+`UnknownEvidence` by the object-language evaluator.  One closed branch
+deliberately retains a provenance residual, demonstrating that logical
+closure does not erase it.
 
-- a finite closed example such as \(p\land(p\to q)\land\neg q\);
-- an open saturated example such as \(p\land\neg q\);
-- an `Unknown` example under insufficient fuel;
-- two distinct raw histories that learn one nontrivial \(Q\)-feature;
-- held-out testing of that feature;
-- a deliberately noncongruent quotient that must be rejected; and
-- an asymmetric vocabulary-update rule that must fail the C2 duality audit.
-
-The last two are mandatory red-team tests.  A fixture containing only positive
-examples would not test the conjecture.
+V0 does not implement full propositional tableau expansion, feature
+formation, observer projection, or forgetting capabilities.  Those remain
+V1, V3, and V4 work; documenting their gates is not evidence that the
+capabilities exist.
 
 ## 10. Decisive falsifiers
 
@@ -720,15 +1005,24 @@ persists after the definitions are fixed:
 7. a feature name drops evidence needed to replay or challenge its formation;
 8. the finite observer still generates an uncontrolled, non-presentable
    vocabulary;
-9. partial stability is used as semantic truth; or
+9. partial stability is used as semantic truth;
 10. surface normalization is mistaken for checked program identity or
-    machine halting.
+    machine halting;
+11. proof and learning are forced through one forward transition function or
+    the rejected forward `NF/NF` equation;
+12. one closed branch is used as a certificate for a branching root;
+13. `Defect`, `Pending`, `Unknown`, or `NotRepresentable` is converted into
+    another without a typed witness;
+14. `ProvenanceHide` creates logical closure or forgetting authority;
+15. a partial exact face is promoted to a global conclusion; or
+16. non-reconstructible erasure is admitted while C2 is retained.
 
 Possible outcomes of the research are therefore:
 
 - **strong success:** C0, C1, and C2 hold on a nontrivial triadic fragment;
-- **useful weakening:** one completion kernel produces proofs, models, and
-  features, but full state update is not self-dual;
+- **useful weakening:** one paired rule dispatcher supports proofs, models,
+  and features, but forest aggregation or full state update is not
+  reverse-dual;
 - **classical collapse:** the system reduces to ordinary fixed-language
   tableau plus an unrelated clustering step; or
 - **counterexample:** outcome naming is not compositional and cannot generate
@@ -740,53 +1034,76 @@ All four outcomes are informative.
 
 Do not describe the proposal as a logic until:
 
-- status and content symbols are typed separately;
+- operational status is excluded from the object-language alphabet;
 - outcome equivalence is a contextual congruence;
 - at least one connective is induced compositionally rather than inserted
   from an ambient powerset;
 - proof certificates are sound under an independent semantics; and
 - saturated open branches have a model-existence result.
 
-Do not describe it as self-dual until:
+Do not describe it as fully reverse-dual until:
 
-- the carrier and involution are explicit;
+- both typed carriers and the contravariant involution are explicit;
 - every primitive rule passes the dual transition audit;
+- proof branching has a declared learning-side dual aggregation;
 - feature introduction and proof discharge form an actual typed pair;
 - residual and resource effects are preserved; and
+- no admitted erase step destroys the reverse path; and
 - old proofs have either conservativity or explicit versioned invalidation.
 
 Do not describe it as a learned logic until:
 
 - a word compresses several observations;
 - held-out observations test the word;
-- forgotten details remain auditable; and
+- exhaustive admitted contexts justify the actual abstraction or forgetting
+  capability being claimed;
+- hidden or forgotten details remain replayably auditable; and
 - vocabulary growth is finite or finitely presented at every observer stage.
+
+Do not describe an observer action as forgetting merely because it hides a
+surface incidence.  This note grants no authority to delete Rust provenance,
+equates no finite sample with semantic equivalence, and gives no elimination
+rule from \(U_{\rm face}\) or an undecided goal to falsehood, divergence, or
+a countermodel.
 
 ## 12. Immediate next question
 
-The smallest unresolved choice is not the three-bracket syntax.  It is the
-type of the stable residual \(H\):
-
-> Is \(H\) simultaneously a partial model, a feature intension, and a
-> proof-side counterexample, or are these three different objects connected
-> only by certified maps?
-
-Assuming identity would make the conjecture look elegant but risks repeating
-the direct `split = spatial-update` mistake rejected in note 0060.  The safer
-first calibration keeps three types:
+The former overloaded residual question is now resolved by typing rather than
+identity:
 
 \[
-H_{\mathrm{branch}}
-\xrightarrow{\operatorname{model}}
-M_H,
+\mathcal H_Q
+\dashrightarrow
+V_\pi
+\dashrightarrow
+\Gamma,
 \qquad
-H_{\mathrm{branch}}
-\xrightarrow{\operatorname{name}}
-c_H,
+\Gamma\xrightarrow{\operatorname{model}}M_\Gamma,
+\qquad
+\Gamma^\star\xrightarrow{\operatorname{name}}c_\Gamma.
 \]
 
-with independently checked maps.  Full self-duality may later identify a
-universal property shared by these images.  It must not be assumed at V0.
+The dashed arrows are partial observer/branch construction maps; the last
+two are independently certified interpretations.  None of
+\(\mathcal H_Q,V_\pi,\Gamma,M_\Gamma,c_\Gamma\) is definitionally another.
+
+The next smallest nontrivial gate is one paired rule beyond the two-state V0:
+
+\[
+r:\Gamma\to_{\mathrm P}\Gamma'
+\quad\text{(`DefectDischarge')},
+\qquad
+r^\star:(\Gamma')^\star\to_{\mathrm L}\Gamma^\star
+\quad\text{(`FeatureGeneration')}.
+\]
+
+The experiment must preserve exact lineage support and \(R_{\rm prov}\),
+transport the rule certificate backward, and prove that no `MayHide` witness
+is promoted into abstraction or forgetting authority.  Only after that local
+pair works should the project choose a learning-side dual for proof
+branching and `AllClosed` aggregation.  The permanent juxtaposed boundary
+`{}[]()` can remain unchanged throughout; cross-domain dependence belongs to
+the separate support and rule complexes.
 
 ## References
 
@@ -796,4 +1113,3 @@ universal property shared by these images.  It must not be assumed at V0.
 - Jaakko Hintikka, *Two Papers on Symbolic Logic: Form and Content in
   Quantification Theory and Reductions in the Theory of Types*, 1955.  The
   first paper develops models and model sets as a completeness method.
-
