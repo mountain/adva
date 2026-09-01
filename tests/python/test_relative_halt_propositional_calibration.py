@@ -8,6 +8,7 @@ from typing import Literal, TypeAlias
 Domain: TypeAlias = Literal["K", "X", "t"]
 Face: TypeAlias = frozenset[Domain]
 Proposition: TypeAlias = frozenset[Face]
+Branch: TypeAlias = Literal["left", "right"]
 
 DOMAINS: tuple[Domain, ...] = ("K", "X", "t")
 
@@ -41,8 +42,14 @@ class SemanticEntailment:
 
 
 @dataclass(frozen=True)
+class FiniteThread:
+    label: str
+    exclusive_sources: frozenset[str] = frozenset()
+
+
+@dataclass(frozen=True)
 class FillingObservation:
-    threads: tuple[str, ...] = ()
+    threads: tuple[FiniteThread, ...] = ()
     exhaustive: bool = False
 
     @property
@@ -52,6 +59,17 @@ class FillingObservation:
         if self.exhaustive:
             return False
         return None
+
+
+@dataclass(frozen=True)
+class TaggedThread:
+    branch: Branch
+    thread: FiniteThread
+
+
+@dataclass(frozen=True)
+class FiniteTransformer:
+    graph: tuple[tuple[str, str], ...] = ()
 
 
 def _exact_halt(machine: RelativeMachineView) -> Face | None:
@@ -102,11 +120,51 @@ def _finite_filling_observation(
     world: Face,
 ) -> FillingObservation:
     threads = (
-        (f"membership:{','.join(sorted(world))}",)
+        (FiniteThread(f"membership:{','.join(sorted(world))}"),)
         if world in proposition
         else ()
     )
     return FillingObservation(threads=threads, exhaustive=True)
+
+
+def _conjunction_fibre(
+    left: FillingObservation,
+    right: FillingObservation,
+) -> tuple[tuple[FiniteThread, FiniteThread], ...]:
+    return tuple(
+        (left_thread, right_thread)
+        for left_thread in left.threads
+        for right_thread in right.threads
+        if left_thread.exclusive_sources.isdisjoint(
+            right_thread.exclusive_sources
+        )
+    )
+
+
+def _disjunction_fibre(
+    left: FillingObservation,
+    right: FillingObservation,
+) -> tuple[TaggedThread, ...]:
+    return tuple(TaggedThread("left", thread) for thread in left.threads) + tuple(
+        TaggedThread("right", thread) for thread in right.threads
+    )
+
+
+def _checks_exhaustive_transformer(
+    source: FillingObservation,
+    target: FillingObservation,
+    candidate: FiniteTransformer,
+) -> bool:
+    if not source.exhaustive or not target.exhaustive:
+        return False
+
+    graph = dict(candidate.graph)
+    if len(graph) != len(candidate.graph):
+        return False
+
+    source_labels = {thread.label for thread in source.threads}
+    target_labels = {thread.label for thread in target.threads}
+    return set(graph) == source_labels and set(graph.values()) <= target_labels
 
 
 def test_exact_relative_halt_has_seven_quiescent_worlds() -> None:
@@ -201,7 +259,7 @@ def test_semantic_entailment_returns_exact_finite_countermodels() -> None:
 
 
 def test_line_hole_reading_separates_false_from_unresolved() -> None:
-    witnessed_line = FillingObservation(threads=("thread:K",))
+    witnessed_line = FillingObservation(threads=(FiniteThread("thread:K"),))
     certified_empty_hole = FillingObservation(exhaustive=True)
     unresolved_hole = FillingObservation()
 
@@ -220,3 +278,65 @@ def test_finite_carrier_makes_line_hole_reading_pointwise_bivalent() -> None:
             observation = _finite_filling_observation(proposition, world)
             assert observation.exhaustive
             assert observation.truth_value is (world in proposition)
+
+
+def test_conjunction_requires_a_compatible_thread_pair() -> None:
+    left = FillingObservation(
+        threads=(FiniteThread("left", frozenset({"source:shared"})),),
+        exhaustive=True,
+    )
+    conflicting = FillingObservation(
+        threads=(FiniteThread("right", frozenset({"source:shared"})),),
+        exhaustive=True,
+    )
+    independent = FillingObservation(
+        threads=(FiniteThread("right", frozenset({"source:independent"})),),
+        exhaustive=True,
+    )
+
+    assert left.truth_value is True
+    assert conflicting.truth_value is True
+    assert _conjunction_fibre(left, conflicting) == ()
+    assert _conjunction_fibre(left, independent) == (
+        (left.threads[0], independent.threads[0]),
+    )
+
+
+def test_disjunction_retains_branch_provenance() -> None:
+    left = FillingObservation(threads=(FiniteThread("left-thread"),))
+    right = FillingObservation(threads=(FiniteThread("right-thread"),))
+
+    disjunction = _disjunction_fibre(left, right)
+
+    assert {thread.branch for thread in disjunction} == {"left", "right"}
+    assert {thread.thread.label for thread in disjunction} == {
+        "left-thread",
+        "right-thread",
+    }
+
+
+def test_implication_requires_an_exhaustive_total_transformer() -> None:
+    source = FillingObservation(
+        threads=(FiniteThread("a:0"), FiniteThread("a:1")),
+        exhaustive=True,
+    )
+    target = FillingObservation(
+        threads=(FiniteThread("b:0"),),
+        exhaustive=True,
+    )
+    empty = FillingObservation(exhaustive=True)
+    unresolved = FillingObservation()
+
+    total = FiniteTransformer((("a:0", "b:0"), ("a:1", "b:0")))
+    partial = FiniteTransformer((("a:0", "b:0"),))
+    ill_typed = FiniteTransformer((("a:0", "missing"), ("a:1", "b:0")))
+
+    assert _checks_exhaustive_transformer(source, target, total)
+    assert not _checks_exhaustive_transformer(source, target, partial)
+    assert not _checks_exhaustive_transformer(source, target, ill_typed)
+    assert _checks_exhaustive_transformer(empty, empty, FiniteTransformer())
+    assert not _checks_exhaustive_transformer(
+        unresolved,
+        empty,
+        FiniteTransformer(),
+    )
