@@ -72,3 +72,94 @@ pub struct ProgramSlice {
     /// Present only when analysis was given a validated compiler graft trace.
     pub graft_intersections: Option<Vec<GraftFrameIntersection>>,
 }
+
+/// One observer role in the bounded three-domain transition calibration.
+///
+/// These labels belong to an explicit observation policy. They do not change
+/// the type or identity of any program wire, source, or occurrence.
+#[derive(
+    Clone, Copy, Debug, Eq, Hash, Ord, PartialEq, PartialOrd, Serialize, Deserialize,
+)]
+#[serde(rename_all = "snake_case")]
+pub enum TriadicDomainV0 {
+    Construction,
+    Space,
+    Time,
+}
+
+/// Assign the three input-source fibres to observer roles by input position.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverPolicyV0 {
+    pub input_domains: Vec<TriadicDomainV0>,
+}
+
+/// One occurrence-level incidence at a checked causal cut.
+///
+/// The two indices point back into the unchanged `CausalCut`: first to its
+/// frontier wire and then to one exact occurrence in that wire's lineage.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicCutIncidenceV0 {
+    pub cut_wire_index: u32,
+    pub lineage_index: u32,
+    pub occurrence: Occurrence,
+    pub domain: TriadicDomainV0,
+}
+
+/// The opposite-pair reading available to one of the three observer roles.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicOppositePairCutV0 {
+    pub observer: TriadicDomainV0,
+    pub visible_incidence_indices: Vec<u32>,
+    pub hidden_own_incidence_indices: Vec<u32>,
+}
+
+/// A triadic occurrence reading of one exact causal cut.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicCutObservationV0 {
+    pub cut: CausalCut,
+    pub incidences: Vec<TriadicCutIncidenceV0>,
+    /// Cut wires with empty source lineage are retained here, visible to none
+    /// of the three source-relative opposite-pair charts.
+    pub source_free_wire_indices: Vec<u32>,
+    pub opposite_pair_views: Vec<TriadicOppositePairCutV0>,
+}
+
+/// One exact ancestry link between lower and upper cut incidences.
+///
+/// A link exists when source identity is unchanged and the lower occurrence
+/// path is a prefix of the upper path. Copy extends paths; ordinary operations
+/// preserve them; discard leaves no upper descendant.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicLineageLinkV0 {
+    pub lower_incidence_index: u32,
+    pub upper_incidence_index: u32,
+}
+
+/// The lineage links visible from one opposite-pair chart.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicOppositePairTransitionV0 {
+    pub observer: TriadicDomainV0,
+    pub visible_lineage_link_indices: Vec<u32>,
+}
+
+/// A certificate-ready triadic observer view of one exact `ProgramSlice`.
+///
+/// The embedded slice is the complete checked residual. The three views are
+/// overlapping projections of its source incidences, not three duplicated
+/// programs and not an active program transformation.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverTransitionV0 {
+    pub policy: TriadicObserverPolicyV0,
+    pub slice: ProgramSlice,
+    pub lower: TriadicCutObservationV0,
+    pub upper: TriadicCutObservationV0,
+    pub lineage_links: Vec<TriadicLineageLinkV0>,
+    pub opposite_pair_transitions: Vec<TriadicOppositePairTransitionV0>,
+}

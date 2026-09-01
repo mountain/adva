@@ -53,6 +53,16 @@ Python now exposes graft traces, slices, and exact composites as typed
 read-only snapshots of Rust results and certificates. Python cannot construct
 or submit a slice, frame, or certificate to the semantic kernel.
 
+The first post-slice Rust companion is now
+`TriadicObserverTransitionV0`. On exactly three checked input sources, an
+explicit policy assigns construction, space, and time roles. Rust derives
+occurrence-level cut incidences, gives each role the other two source fibres,
+retains own-role and source-free residuals, and relates lower to upper
+occurrences by same-source copy-path ancestry. Adjacent transitions must
+compose both as exact slices and as finite ancestry relations. This is a
+bounded observer view, not an active rewrite, specialization, pullback, proof,
+or universal machine.
+
 Crucially, this next phase is exact and finite. It requires no floating-point
 comparison and no infinite-series truncation. Floating point and truncation
 enter only in later observation layers such as numerical process exponentials
@@ -218,7 +228,9 @@ The stable core currently includes:
 - compiler companion `GraftTrace` and `GraftTraceCertificate`;
 - `ProgramSlice` and `ProgramSliceCertificate`;
 - `ProgramSliceCompositionArtifact` and
-  `ProgramSliceCompositionCertificate`.
+  `ProgramSliceCompositionCertificate`;
+- `TriadicObserverTransitionV0` and its analysis certificate; and
+- exact adjacent triadic-transition composition and its certificate.
 
 For a validated diagram and a completed node set `U`,
 `analyze_causal_cut(P, U)` checks that `U` is downward closed and returns the

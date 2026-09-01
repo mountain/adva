@@ -7,15 +7,16 @@ Before modifying semantic code, read:
 3. `docs/SEMANTIC_SCOPE.md`
 4. `docs/PROGRAM_PROCESS_CORE.md`
 5. `docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`
-6. `docs/NEXT_PHASE_PROGRAM_SLICES.md`
+6. `docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`
 7. `docs/claims.toml`
 8. relevant ADRs under `docs/adr/`
 
 Before starting or proposing a new research or engineering phase, also read
 `docs/RESEARCH_ENGINEERING_AGENDA.md`. Its dependency order is part of the
-project plan. The currently active implementation task remains
-`docs/NEXT_PHASE_PROGRAM_SLICES.md` unless a checked counterexample or an
-explicit project decision changes it.
+project plan. The exact `GraftTrace` and `ProgramSlice` phase is complete. The
+currently active implementation task is the bounded transition companion in
+`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md` unless a checked
+counterexample or an explicit project decision changes it.
 
 ## Authority and dependency direction
 
@@ -70,6 +71,13 @@ of nonexistence.
 `SharedProgramDiagram`. They must reuse exact `WireRef`, source, occurrence,
 and lineage data. Python may request these Rust judgments but must not
 reconstruct or authorize them.
+
+Triadic domain labels are observer-policy metadata over exact input-source
+fibres. They must not be installed as wire types or inferred from scalar
+values. Opposite-pair views may overlap, while source-free and hidden
+incidences remain in an explicit residual. A triadic observer transition is a
+view of a `ProgramSlice`; it is not an active program transformation,
+reversible transport, specialization result, or proof object.
 
 ## Scope
 
