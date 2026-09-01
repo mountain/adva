@@ -42,6 +42,9 @@ tool does not turn research targets into stable API promises.
 - a research-only multi-hole through adapter that derives one typed
   relation-valued angle form from exact graft bindings and occurrence ancestry,
   with layered failure gates and the complete slice retained as residual;
+- a one-compilation triangular research calibration that derives all three
+  local opposite-domain angle relations while refusing undeclared
+  same-source sibling connectors and global circular closure;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -152,6 +155,9 @@ boundary are recorded in
 [`docs/research/0074-three-layer-research-machine-v0.md`](docs/research/0074-three-layer-research-machine-v0.md).
 Its first grounded relation-valued through experiment is
 [`docs/research/0075-grounded-multi-hole-through-adapter-v0.md`](docs/research/0075-grounded-multi-hole-through-adapter-v0.md).
+The first single-diagram calibration of all three local angles, including its
+global-closure obstruction, is
+[`docs/research/0076-three-angle-single-diagram-calibration.md`](docs/research/0076-three-angle-single-diagram-calibration.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
