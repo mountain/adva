@@ -8,13 +8,12 @@ use adva_lisp::{
     analyze_program_slice_with_graft as analyze_slice_with_graft,
     analyze_triadic_observer_transition_v0 as analyze_triadic_transition,
     analyze_triadic_observer_transition_with_graft_v0 as analyze_triadic_transition_with_graft,
-    compile_function,
-    compose_program_slices as compose_slices,
+    compile_function, compose_program_slices as compose_slices,
     compose_program_slices_with_graft as compose_slices_with_graft,
     compose_triadic_observer_transitions_v0 as compose_triadic_transitions,
     compose_triadic_observer_transitions_with_graft_v0 as compose_triadic_transitions_with_graft,
-    evaluate, evaluate_with_differential, import_diagram_json,
-    link_modules as link_rust_modules, parse_module, validate_diagram,
+    evaluate, evaluate_with_differential, import_diagram_json, link_modules as link_rust_modules,
+    parse_module, validate_diagram,
 };
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
@@ -277,12 +276,7 @@ impl PyProgram {
                     &upper_completed,
                 )
                 .map_err(py_error)?;
-                compose_triadic_transitions(
-                    &self.diagram,
-                    &policy,
-                    &left.result,
-                    &right.result,
-                )
+                compose_triadic_transitions(&self.diagram, &policy, &left.result, &right.result)
             }
         }
         .map_err(py_error)?;
