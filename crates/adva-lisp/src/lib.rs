@@ -18,7 +18,10 @@ pub use operation::{
 pub use parser::parse_module;
 pub use process::{
     advance_causal_cut, analyze_causal_cut, analyze_program_slice,
-    analyze_program_slice_with_graft, compose_program_slices, compose_program_slices_with_graft,
+    analyze_program_slice_with_graft, analyze_triadic_observer_transition_v0,
+    analyze_triadic_observer_transition_with_graft_v0, compose_program_slices,
+    compose_program_slices_with_graft, compose_triadic_observer_transitions_v0,
+    compose_triadic_observer_transitions_with_graft_v0,
 };
 pub use validate::{import_diagram_json, validate_diagram};
 
