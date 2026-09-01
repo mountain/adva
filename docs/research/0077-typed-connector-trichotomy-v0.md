@@ -60,12 +60,12 @@ K_1\dashrightarrow K_0.
 
 Each endpoint retains its exact lower-cut incidence index, `OccurrenceId`,
 `SourceId`, observer domain, and `OccurrencePath`. In the positive fixture,
-each pair has paths (p0) and (p1) for one common checked parent path (p).
+each pair has paths $p0$ and $p1$ for one common checked parent path $p$.
 The adapter does not allocate a connector identity.
 
 ## 2. Reading I: strict occurrence identity
 
-For each domain (D), strict identity is
+For each domain $D$, strict identity is
 
 \[
 I_D=\{(i,i):\operatorname{domain}(i)=D\}.
@@ -92,14 +92,14 @@ siblings. This is the correct negative control against implicit contraction.
 
 ## 3. Reading II: direct-sibling comparison
 
-For two exact occurrences (d_0,d_1), the bounded fixture admits a sibling
+For two exact occurrences $d_0,d_1$, the bounded fixture admits a sibling
 comparison only when:
 
 - their `SourceId` values are equal;
 - their `OccurrenceId` values are different;
 - their paths have equal positive length;
 - deleting the final branch index gives the same parent path; and
-- the two final indices are exactly (0) and (1).
+- the two final indices are exactly $0$ and $1$.
 
 The test-local relation is symmetric:
 
@@ -107,7 +107,7 @@ The test-local relation is symmetric:
 S_D=\{(d_0,d_1),(d_1,d_0)\}.
 \]
 
-With all three (S_D), finite relation composition gives
+With all three $S_D$, finite relation composition gives
 
 \[
 S_K\circ A_{tK}\circ S_t\circ A_{Xt}\circ S_X\circ A_{KX}
@@ -115,7 +115,7 @@ S_K\circ A_{tK}\circ S_t\circ A_{Xt}\circ S_X\circ A_{KX}
 \]
 
 This is a genuine occurrence-indexed candidate relation. It does not identify
-(d_0) with (d_1): both IDs and both paths remain present.
+$d_0$ with $d_1$: both IDs and both paths remain present.
 
 The symmetry belongs to the comparison relation, not to program execution.
 It does not make `copy` invertible, reconstruct a consumed parent, or prove a
@@ -131,7 +131,7 @@ q_D(i)=\operatorname{SourceId}(i).
 \]
 
 In the fixture, every domain fibre contains two distinct occurrences and one
-source. Applying (q) to the three angle relations gives
+source. Applying $q$ to the three angle relations gives
 
 \[
 K\to X,
@@ -166,7 +166,7 @@ construction paths are
 
 They have the same source and distinct occurrence identities, but they are not
 direct siblings: neither is obtained from the same parent by taking the two
-branches (0) and (1).
+branches $0$ and $1$.
 
 The experiment therefore reports:
 
