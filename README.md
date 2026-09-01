@@ -179,6 +179,13 @@ geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
 [`docs/RESEARCH_ENGINEERING_AGENDA.md`](docs/RESEARCH_ENGINEERING_AGENDA.md).
 
+Historical and philosophical source notes are kept separately in
+[`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
+Leibniz's universal characteristic to the finite-observer open/close-hole
+hypothesis and its falsifiable experiment agenda. These notes provide
+interpretive research context only; they add no stable semantics or
+registered executable claims.
+
 ## Status and license
 
 Adva is a private pre-alpha research tool. No open-source license has yet been
