@@ -45,6 +45,9 @@ tool does not turn research targets into stable API promises.
 - a one-compilation triangular research calibration that derives all three
   local opposite-domain angle relations while refusing undeclared
   same-source sibling connectors and global circular closure;
+- a typed connector trichotomy that separates exact occurrence identity,
+  provenance-preserving direct-sibling comparison, and an unauthorized
+  many-to-one source quotient;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -158,6 +161,8 @@ Its first grounded relation-valued through experiment is
 The first single-diagram calibration of all three local angles, including its
 global-closure obstruction, is
 [`docs/research/0076-three-angle-single-diagram-calibration.md`](docs/research/0076-three-angle-single-diagram-calibration.md).
+The follow-up connector experiment separates comparison from forgetting in
+[`docs/research/0077-typed-connector-trichotomy-v0.md`](docs/research/0077-typed-connector-trichotomy-v0.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
