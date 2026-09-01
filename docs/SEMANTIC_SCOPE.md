@@ -102,6 +102,17 @@ projection may also close after forgetting their distinction.  Neither result
 is a semantic connector, copy inverse, contraction, `ProvenanceHide`,
 right-to-forget judgment, circular execution, or Rust certificate.
 
+`adva.characteristic_research.DistributivityCharacteristicMachineV0` may
+compare two separately compiled three-input scalar programs through a bounded
+exact rational-polynomial feature.  Each program retains its unchanged Rust
+IR, triadic observer transition, three opposite-pair relations, compiler graft
+presentation, complete `ProgramSlice`, identities, occurrences, and history.
+The learning readout may report task-relative observational equality; the
+proof readout may attach one bounded normalization-span witness.  Neither
+readout identifies programs, creates an `EquationCell`, authorizes
+provenance erasure or a stable right to forget, proves full learning/proof
+self-duality, or extends Rust semantics.
+
 ## Equality interfaces
 
 The initial core distinguishes:
