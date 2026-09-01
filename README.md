@@ -174,6 +174,12 @@ The bounded distributivity learning--proof calibration is
 The hole-first reorganization and its bounded open--close calibration are
 recorded in
 [`docs/research/0079-typed-hole-open-close-calibration-v0.md`](docs/research/0079-typed-hole-open-close-calibration-v0.md).
+The finite-surface universal-lift and threaded-imagination synthesis is
+recorded in
+[`docs/research/0080-finite-surface-universal-lift-imagination.md`](docs/research/0080-finite-surface-universal-lift-imagination.md).
+The relative-halt propositional calibration, exploration modalities, and
+thread-respecting compactification constraints are recorded in
+[`docs/research/0081-relative-halt-exploration-threaded-compactification.md`](docs/research/0081-relative-halt-exploration-threaded-compactification.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
