@@ -40,6 +40,20 @@ class SemanticEntailment:
         return not self.countermodels
 
 
+@dataclass(frozen=True)
+class FillingObservation:
+    threads: tuple[str, ...] = ()
+    exhaustive: bool = False
+
+    @property
+    def truth_value(self) -> bool | None:
+        if self.threads:
+            return True
+        if self.exhaustive:
+            return False
+        return None
+
+
 def _exact_halt(machine: RelativeMachineView) -> Face | None:
     if not machine.stable or not machine.quiescent:
         return None
@@ -81,6 +95,18 @@ def _semantic_entailment(
         model_support=model_support,
         countermodels=model_support - conclusion,
     )
+
+
+def _finite_filling_observation(
+    proposition: Proposition,
+    world: Face,
+) -> FillingObservation:
+    threads = (
+        (f"membership:{','.join(sorted(world))}",)
+        if world in proposition
+        else ()
+    )
+    return FillingObservation(threads=threads, exhaustive=True)
 
 
 def test_exact_relative_halt_has_seven_quiescent_worlds() -> None:
@@ -172,3 +198,25 @@ def test_semantic_entailment_returns_exact_finite_countermodels() -> None:
     assert no_premises.countermodels == HALT_WORLDS - construction
     assert inconsistent.model_support == frozenset()
     assert inconsistent.entails
+
+
+def test_line_hole_reading_separates_false_from_unresolved() -> None:
+    witnessed_line = FillingObservation(threads=("thread:K",))
+    certified_empty_hole = FillingObservation(exhaustive=True)
+    unresolved_hole = FillingObservation()
+
+    assert witnessed_line.truth_value is True
+    assert certified_empty_hole.truth_value is False
+    assert unresolved_hole.truth_value is None
+
+
+def test_finite_carrier_makes_line_hole_reading_pointwise_bivalent() -> None:
+    atoms = {_atomic_support(domain) for domain in DOMAINS}
+    propositions = _boolean_closure(atoms)
+
+    assert len(propositions) * len(HALT_WORLDS) == 128 * 7
+    for proposition in propositions:
+        for world in HALT_WORLDS:
+            observation = _finite_filling_observation(proposition, world)
+            assert observation.exhaustive
+            assert observation.truth_value is (world in proposition)
