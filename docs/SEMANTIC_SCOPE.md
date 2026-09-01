@@ -36,6 +36,10 @@ claim that the surrounding calculus has been completely presented.
   separate from the common canonical interval;
 - read-only Python inspection of Rust-owned graft traces, slices, and exact
   composites, without accepting reconstructed semantic artifacts from Python.
+- Rust-owned `TriadicObserverTransitionV0` companions for exactly three input
+  sources assigned once each to construction, space, and time, with
+  occurrence-level opposite-pair cut views, source-free residual wires,
+  copy-path ancestry, and exact adjacent relation composition.
 
 ## Explicitly excluded
 
@@ -56,6 +60,10 @@ claim that the surrounding calculus has been completely presented.
   pullback, process exponentials, resolvents, characteristic factorization,
   and program spectra;
 - physical interpretations of curvature, mass, or spacetime.
+- intrinsic construction/space/time wire types, arbitrary-domain observer
+  policies, Raw111 bracket trees as stable ontology, right-to-forget rules,
+  active triadic normalization, reverse-dual proof search, specialization,
+  interpreter semantics, and universal computation.
 
 ## Equality interfaces
 
@@ -86,6 +94,15 @@ slice. Evaluation and forward differentiation return their own certificates. Sem
 import returns a distinct `DiagramValidationCertificate`; decoding alone does
 not. A certificate says only what its fields and scope record. It does not
 certify a general theorem.
+
+`TriadicObserverTransitionCertificateV0` checks one total three-source policy,
+exact cut-incidence partitions, occurrence ancestry, preservation of the
+complete embedded slice residual, and optional graft consistency.
+`TriadicObserverTransitionCompositionCertificateV0` separately checks input
+revalidation, policy and middle-observation agreement, exact slice
+composition, finite ancestry-relation composition, and equality with the
+direct outer transition. Neither certificate authorizes forgetting, bracket
+normalization, a proof judgment, or a residual executable program.
 
 Search-style APIs, when introduced, must return `Yes`, `No` with a checked
 countercertificate, or `Unknown`. Timeout and exhaustion are `Unknown`.

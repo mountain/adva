@@ -1,15 +1,16 @@
-use adva_ir::{CutConsumer, GraftFrameKind, NodeId};
+use adva_ir::{CutConsumer, GraftFrameKind, NodeId, TriadicDomainV0, TriadicObserverPolicyV0};
 use adva_lisp::{
     advance_causal_cut, analyze_causal_cut, analyze_program_slice,
-    analyze_program_slice_with_graft, compile_function, compose_program_slices,
-    compose_program_slices_with_graft, link_modules, parse_module,
+    analyze_program_slice_with_graft, analyze_triadic_observer_transition_v0, compile_function,
+    compose_program_slices, compose_program_slices_with_graft,
+    compose_triadic_observer_transitions_v0, link_modules, parse_module,
 };
 
 const PROCESS_MODULE: &str = r#"
 (module process
   (export
     shared-sum identity hidden-history wrapper identity-call chain-three
-    independent-diamond)
+    independent-diamond triadic-flow)
 
   (def shared-sum
     (fn ((x Real)) Real
@@ -51,6 +52,15 @@ const PROCESS_MODULE: &str = r#"
         (frontier
           (neg (use left))
           (id (use right))))))
+
+  (def triadic-flow
+    (fn ((temporal Real) (spatial Real) (construction Real))
+        (outputs Real Real Real)
+      (frontier
+        (discard 1)
+        (add (copy (use temporal)))
+        (id (use spatial))
+        (id (use construction)))))
 )
 "#;
 
@@ -76,6 +86,16 @@ fn independent_pasts() -> Vec<Vec<NodeId>> {
 
 fn is_subset(left: &[NodeId], right: &[NodeId]) -> bool {
     left.iter().all(|node| right.contains(node))
+}
+
+fn triadic_policy() -> TriadicObserverPolicyV0 {
+    TriadicObserverPolicyV0 {
+        input_domains: vec![
+            TriadicDomainV0::Time,
+            TriadicDomainV0::Space,
+            TriadicDomainV0::Construction,
+        ],
+    }
 }
 
 #[test]
@@ -548,4 +568,154 @@ fn independent_schedules_keep_distinct_paths_but_share_the_exact_outer_slice() {
         .result;
     assert_eq!(a_whole, direct);
     assert_eq!(b_whole, direct);
+}
+
+#[test]
+fn triadic_transition_reads_opposite_pairs_without_relabeling_occurrences() {
+    let artifact = compile("triadic-flow");
+    let all = artifact
+        .result
+        .nodes
+        .iter()
+        .map(|node| node.id)
+        .collect::<Vec<_>>();
+    let transition =
+        analyze_triadic_observer_transition_v0(&artifact.result, &triadic_policy(), &[], &all)
+            .unwrap();
+
+    assert!(transition.certificate.certified());
+    assert_eq!(
+        transition.result.slice,
+        analyze_program_slice(&artifact.result, &[], &all)
+            .unwrap()
+            .result
+    );
+    assert_eq!(transition.result.lower.incidences.len(), 3);
+    assert_eq!(transition.result.upper.incidences.len(), 4);
+    assert_eq!(transition.result.lineage_links.len(), 4);
+    assert!(transition.result.lower.source_free_wire_indices.is_empty());
+    assert!(transition.result.upper.source_free_wire_indices.is_empty());
+
+    for view in &transition.result.lower.opposite_pair_views {
+        assert_eq!(view.visible_incidence_indices.len(), 2);
+        assert_eq!(view.hidden_own_incidence_indices.len(), 1);
+    }
+    let visible_link_counts = transition
+        .result
+        .opposite_pair_transitions
+        .iter()
+        .map(|view| (view.observer, view.visible_lineage_link_indices.len()))
+        .collect::<std::collections::BTreeMap<_, _>>();
+    assert_eq!(visible_link_counts[&TriadicDomainV0::Construction], 3);
+    assert_eq!(visible_link_counts[&TriadicDomainV0::Space], 3);
+    assert_eq!(visible_link_counts[&TriadicDomainV0::Time], 2);
+
+    let checked_occurrences = artifact
+        .result
+        .occurrences
+        .iter()
+        .map(|occurrence| occurrence.id.clone())
+        .collect::<std::collections::BTreeSet<_>>();
+    assert!(
+        transition
+            .result
+            .lower
+            .incidences
+            .iter()
+            .chain(&transition.result.upper.incidences)
+            .all(|incidence| checked_occurrences.contains(&incidence.occurrence.id))
+    );
+    assert!(
+        transition
+            .result
+            .slice
+            .events
+            .iter()
+            .any(|node| node.operation.name == "constant")
+    );
+    assert!(
+        transition
+            .result
+            .slice
+            .events
+            .iter()
+            .any(|node| node.operation.name == "discard")
+    );
+}
+
+#[test]
+fn triadic_transition_retains_source_free_wires_outside_all_three_views() {
+    let artifact = compile("triadic-flow");
+    assert_eq!(artifact.result.nodes[0].operation.name, "constant");
+    let transition = analyze_triadic_observer_transition_v0(
+        &artifact.result,
+        &triadic_policy(),
+        &[],
+        &[NodeId(0)],
+    )
+    .unwrap();
+
+    assert!(transition.certificate.certified());
+    assert_eq!(transition.result.upper.source_free_wire_indices.len(), 1);
+    assert_eq!(transition.result.upper.incidences.len(), 3);
+    assert_eq!(transition.result.lineage_links.len(), 3);
+    assert_eq!(transition.result.slice.events.len(), 1);
+    assert_eq!(transition.result.slice.events[0].operation.name, "constant");
+    assert!(
+        transition
+            .result
+            .upper
+            .opposite_pair_views
+            .iter()
+            .all(|view| {
+                view.visible_incidence_indices.len() == 2
+                    && view.hidden_own_incidence_indices.len() == 1
+            })
+    );
+}
+
+#[test]
+fn adjacent_triadic_transitions_compose_slice_and_lineage_relations_exactly() {
+    let artifact = compile("triadic-flow");
+    let all = artifact
+        .result
+        .nodes
+        .iter()
+        .map(|node| node.id)
+        .collect::<Vec<_>>();
+    let policy = triadic_policy();
+    let left = analyze_triadic_observer_transition_v0(&artifact.result, &policy, &[], &[NodeId(0)])
+        .unwrap()
+        .result;
+    let right =
+        analyze_triadic_observer_transition_v0(&artifact.result, &policy, &[NodeId(0)], &all)
+            .unwrap()
+            .result;
+    let composed =
+        compose_triadic_observer_transitions_v0(&artifact.result, &policy, &left, &right).unwrap();
+    let direct = analyze_triadic_observer_transition_v0(&artifact.result, &policy, &[], &all)
+        .unwrap()
+        .result;
+
+    assert!(composed.certificate.certified());
+    assert_eq!(composed.result, direct);
+    assert_eq!(composed.certificate.middle_completed, vec![NodeId(0)]);
+    assert_eq!(left.upper.source_free_wire_indices.len(), 1);
+    assert!(composed.result.slice.internal_events.contains(&NodeId(0)));
+    assert!(composed.result.slice.internal_events.contains(&NodeId(1)));
+}
+
+#[test]
+fn triadic_policy_rejects_missing_or_repeated_roles() {
+    let artifact = compile("triadic-flow");
+    let repeated = TriadicObserverPolicyV0 {
+        input_domains: vec![
+            TriadicDomainV0::Time,
+            TriadicDomainV0::Time,
+            TriadicDomainV0::Construction,
+        ],
+    };
+    let error =
+        analyze_triadic_observer_transition_v0(&artifact.result, &repeated, &[], &[]).unwrap_err();
+    assert!(error.to_string().contains("exactly once"));
 }
