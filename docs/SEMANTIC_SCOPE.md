@@ -64,9 +64,10 @@ claim that the surrounding calculus has been completely presented.
   and program spectra;
 - physical interpretations of curvature, mass, or spacetime.
 - intrinsic construction/space/time wire types, arbitrary-domain observer
-  policies, Raw111 bracket trees as stable ontology, right-to-forget rules,
-  active triadic normalization, reverse-dual proof search, specialization,
-  interpreter semantics, and universal computation.
+  policies, Raw111 bracket trees or typed apertures as stable ontology,
+  stable open/close operations, right-to-forget rules, active triadic
+  normalization, reverse-dual proof search, specialization, interpreter
+  semantics, and universal computation.
 
 ## Bounded research companion
 
@@ -112,6 +113,15 @@ proof readout may attach one bounded normalization-span witness.  Neither
 readout identifies programs, creates an `EquationCell`, authorizes
 provenance erasure or a stable right to forget, proves full learning/proof
 self-duality, or extends Rust semantics.
+
+`adva.hole_research.HoleOpenCloseMachineV0` may read an existing through
+candidate as one typed aperture with a finite observed filling fibre, or read
+the three local triangular interfaces as the presentation `{}[]()`.  Closing
+selects only an existing relation element, refuses implicit choice on a
+multivalued fibre, and retains every alternative and the complete
+`ProgramSlice`.  Reopening retains the selected filling and close/open trace.
+The adapter creates no semantic hole identity, vocabulary, singularity,
+forgetting permission, active normalization, open logic, or Rust certificate.
 
 ## Equality interfaces
 
