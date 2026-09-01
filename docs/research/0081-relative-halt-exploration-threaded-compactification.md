@@ -246,6 +246,56 @@ exhausted on a represented nonempty face.
 The recommended first semantics therefore treats the seven exact halts as
 worlds and propositions as supports over them.
 
+### 2.4 Working bivalent reading: true is a line, false is an empty hole
+
+The proposed geometric reading of a Boolean value is local to a proposition
+at a world.  Let \(H_A\) be the typed aperture posed by proposition \(A\), and
+let
+
+\[
+\operatorname{Fill}_Q(H_A;h)
+\]
+
+be the fibre of admitted compatible threads at halt world \(h\).  Then the
+first proof-relevant interpretation is
+
+\[
+\boxed{
+\begin{aligned}
+h\Vdash A
+&\Longleftrightarrow
+\operatorname{Fill}_Q(H_A;h)\text{ is inhabited},\\
+h\Vdash \neg A
+&\Longleftarrow
+\operatorname{Fill}_Q(H_A;h)\text{ is certified empty}.
+\end{aligned}
+}
+\]
+
+An inhabitant is a line or thread that fills the typed hole.  Falsehood is
+not the visual presence of a hole, but an exhaustiveness certificate that no
+admitted thread can fill it.  A hole for which no line has yet been found and
+whose fibre has not been exhausted is **Undecided**, not false.  The absence
+of an aperture is a fourth structural situation and must not be confused with
+an aperture having an empty fibre.
+
+On the finite carrier \(H_7\), exhaustive enumeration makes this reading
+bivalent pointwise:
+
+\[
+\operatorname{Fill}(H_A;h)
+=
+\begin{cases}
+\{\text{a typed membership line}\},&h\in\llbracket A\rrbracket,\\
+\varnothing,&h\notin\llbracket A\rrbracket.
+\end{cases}
+\]
+
+Thus every pair \((A,h)\) has value true or false in the completed finite
+model.  During a non-exhaustive search the observation may still be true,
+false, or undecided.  This is not a third truth value: it is a statement
+about the authority of the current search certificate.
+
 ---
 
 ## 3. Which process words may become connectives
@@ -283,12 +333,32 @@ proposition supports:
 That extensional semantics comes before a proof calculus.  A later
 proof-relevant presentation would additionally require:
 
-- \(A\land B\) requires compatible witness pairing and trace synchronization;
-- \(A\lor B\) requires a retained branch tag and branch provenance;
-- \(A\Rightarrow B\) requires a checked hypothetical transformer and a
-  discharge rule;
+- \(A\land B\) requires compatible witness pairing and trace synchronization,
+  so its filling is a compatibility-restricted product;
+- \(A\lor B\) requires a retained branch tag and branch provenance, so its
+  filling is a tagged sum;
+- \(A\Rightarrow B\) requires a checked transformer from every admitted
+  \(A\)-thread to a \(B\)-thread and later a discharge rule; and
 - \(A^\star\) or \(\neg A\) requires outcome dualization to be well defined
-  under admissible contexts.
+  under admissible contexts, rather than mere failure to find an
+  \(A\)-thread.
+
+Schematically, before any term calculus is claimed,
+
+\[
+\begin{aligned}
+\operatorname{Fill}(A\land B)
+&\simeq
+\operatorname{Fill}(A)\times_{\mathrm{compat}}
+\operatorname{Fill}(B),\\
+\operatorname{Fill}(A\lor B)
+&\simeq
+\operatorname{Fill}(A)+\operatorname{Fill}(B),\\
+\operatorname{Fill}(A\Rightarrow B)
+&\subseteq
+\bigl(\operatorname{Fill}(A)\to\operatorname{Fill}(B)\bigr).
+\end{aligned}
+\]
 
 `Failure(A)` does not by itself construct \(\neg A\).  Failure to find a
 certificate constructs neither falsehood nor divergence.
@@ -350,6 +420,23 @@ The left adjoint reports that at least one fine lift satisfies the predicate.
 The right adjoint reports that every compatible fine lift satisfies it.  The
 residual fibre is therefore the semantic carrier of the quantifier, not
 discarded implementation detail.
+
+In the line--hole reading, their proof-relevant candidates are dependent sum
+and dependent product:
+
+\[
+\operatorname{Fill}(\exists x\,A(x))
+\simeq
+\sum_{x\in D_Q}\operatorname{Fill}(A(x)),
+\qquad
+\operatorname{Fill}(\forall x\,A(x))
+\simeq
+\prod_{x\in D_Q}\operatorname{Fill}(A(x)).
+\]
+
+These formulas state semantic design targets only.  They become logical
+quantifiers only after terms, substitution, binding, and the relevant
+introduction and elimination rules are fixed.
 
 The same pattern applies to coordinate projections of the typed 3-form
 
@@ -656,6 +743,11 @@ entire ideal boundary.
 to its typed port unless an explicit gate, pairing, cap, or seal discharges
 it.
 
+**C1a. Filling-status separation.**  The compactification must distinguish an
+absent aperture, an aperture with a witnessed line, an exhaustively empty
+filling fibre, and an unresolved fibre.  No limit operation may turn the last
+case into falsehood merely by hiding its frontier.
+
 **C2. Cyclic-order and occurrence preservation.**  Distinct port orders,
 source occurrences, or pairing choices are not identified without an
 authorized quotient and residual.
@@ -768,8 +860,12 @@ model.  Later stages must preserve the semantic/proof-theoretic separation.
 5. verify that their extensional Boolean closure has 128 propositions;
 6. verify the positive conjunction law for all seven `Sat` requests;
 7. provide an exact counterexample showing that a disjunction of requests is
-   not one request; and
-8. verify that face intersection leaves the seven-element scalar carrier.
+   not one request;
+8. verify that face intersection leaves the seven-element scalar carrier;
+9. represent an inhabited fibre as true, an exhaustively empty fibre as
+   false, and a non-exhausted empty observation as undecided; and
+10. verify pointwise bivalence for all \(128\times7\) proposition--world
+    pairs in the exhaustively enumerated finite carrier.
 
 The accompanying test implements this stage.
 
@@ -847,25 +943,27 @@ The proposal must be weakened or rejected if any of the following persists:
 2. the three atomic supports fail to distinguish the seven terminal worlds;
 3. a proposed connective depends on representative history after the
    declared residual quotient;
-4. conjunction, disjunction, implication, or duality requires silent copy,
+4. a bare unfilled aperture is called false without an empty-fibre
+   certificate, or absence of an aperture is confused with an empty fibre;
+5. conjunction, disjunction, implication, or duality requires silent copy,
    discard, branch erasure, or source identification;
-5. semantic entailment is identified with derivability before a proof system
+6. semantic entailment is identified with derivability before a proof system
    and soundness theorem exist;
-6. exploration changes the observer, vocabulary, or rules while reporting a
+7. exploration changes the observer, vocabulary, or rules while reporting a
    derivation in the old logic;
-7. quantifier rules, natural deduction, dynamic modalities, or fixed points
+8. quantifier rules, natural deduction, dynamic modalities, or fixed points
    are promoted before predicate syntax and semantic substitution laws;
-8. finite vocabulary is taken to imply hyperbolicity without a geometric
+9. finite vocabulary is taken to imply hyperbolicity without a geometric
    coding result;
-9. compactification identifies permanent cusps with Failure apertures;
-10. a cusp filled as a point erases thread direction, port order, pairing, or
+10. compactification identifies permanent cusps with Failure apertures;
+11. a cusp filled as a point erases thread direction, port order, pairing, or
     holonomy;
-11. an unresolved finite frontier is promoted to the completed ideal
+12. an unresolved finite frontier is promoted to the completed ideal
     boundary;
-12. a successful sealed loop loses its nontrivial lifted continuation;
-13. vocabulary refinement has no compatible map or correspondence between
+13. a successful sealed loop loses its nontrivial lifted continuation;
+14. vocabulary refinement has no compatible map or correspondence between
     finite compacta; or
-14. the compactified object cannot reopen from retained residual evidence.
+15. the compactified object cannot reopen from retained residual evidence.
 
 ---
 
@@ -875,6 +973,8 @@ Even a successful finite calibration establishes at most:
 
 - seven observer-relative exact halt worlds in one declared carrier;
 - one finite generated extensional proposition algebra;
+- one line--hole realization of pointwise bivalence on an exhaustively
+  enumerated carrier, with undecided search kept outside the truth values;
 - one decidable finite semantic-entailment relation with exact
   countermodels;
 - semantic and proof-relevant obligations for future connective constructors;
@@ -900,18 +1000,19 @@ It does not establish:
 
 1. retain the completed exact-halt and 128-proposition finite oracle without
    adding stable semantic types;
-2. add finite semantic entailment and exact countermodel extraction over the
+2. calibrate inhabited, exhaustively empty, and unresolved filling fibres;
+3. add finite semantic entailment and exact countermodel extraction over the
    seven halt worlds;
-3. define one finite typed predicate language with variables, terms, binders,
+4. define one finite typed predicate language with variables, terms, binders,
    and capture-avoiding substitution;
-4. test candidate existential/universal fibre semantics and the required
+5. test candidate existential/universal fibre semantics and the required
    substitution laws;
-5. only then select natural deduction, sequent calculus, tableau, or another
+6. only then select natural deduction, sequent calculus, tableau, or another
    proof presentation and state soundness and relative-completeness targets;
-6. define exploration as certificate search for that fixed entailment task;
-7. separately define a research-local threaded-bordification record and test
+7. define exploration as certificate search for that fixed entailment task;
+8. separately define a research-local threaded-bordification record and test
    boundary-sort, port, pairing, holonomy, seal, lift, and reopen laws; and
-8. only then choose a symbolic-to-hyperbolic coding and test whether it
+9. only then choose a symbolic-to-hyperbolic coding and test whether it
    extends continuously to boundaries.
 
 The first geometric target should not be a numerical compactification of an
@@ -923,12 +1024,15 @@ without losing any thread or aperture evidence.
 
 The seven nonempty triadic faces supply a finite terminal-world carrier after
 quiescence is added.  They do not by themselves supply seven truth values.
-Propositions live over those worlds, and semantic entailment is finite support
-inclusion.  Predicate terms, substitution, and fibre semantics must be built
-before quantifiers are admitted.  Natural deduction comes later.  Exploration
-first searches for a derivation, countermodel, or honest frontier in one fixed
-entailment problem; dynamic and coinductive readings remain possible future
-semantics for a mature search calculus.
+Propositions pose typed holes over those worlds.  A compatible thread
+witnesses truth; a certified empty filling fibre witnesses falsehood; a
+non-exhausted hole is undecided rather than false.  On the exhaustively finite
+carrier this recovers pointwise bivalence.  Semantic entailment is finite
+support inclusion.  Predicate terms, substitution, and fibre semantics must
+be built before quantifiers are admitted.  Natural deduction comes later.
+Exploration first searches for a derivation, countermodel, or honest frontier
+in one fixed entailment problem; dynamic and coinductive readings remain
+possible future semantics for a mature search calculus.
 
 A finite vocabulary gives compactness first at the level of coherent infinite
 words or ends.  Hyperbolic compactification is a further representation
@@ -949,6 +1053,10 @@ The resulting working principle is
 \text{certified thread grammar}
 \to
 \text{admissible compactification},
+\qquad
+\text{line / certified empty hole}
+\to
+\text{true / false},
 \qquad
 \text{exploration}
 \to
