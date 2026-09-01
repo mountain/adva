@@ -564,6 +564,7 @@ edges and therefore cannot normalize the twenty-four nested presentations.  A
 separate containment-splitting rewrite is required before braid transport can
 calibrate the flat boundary.  That split remains a syntax-level oracle and is
 not identified with a checked Adva gate.
+
 ## References
 
 - André Joyal and Joachim Kock,
