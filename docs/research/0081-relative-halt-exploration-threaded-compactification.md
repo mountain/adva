@@ -317,8 +317,8 @@ The current vocabulary must remain sorted.
 | `Thread` | semantic transport now; proof term only after a calculus is chosen |
 | `Lift` | reconstruction or instantiation in a finer or universal carrier |
 
-The first candidate connectives are induced semantically from operations on
-proposition supports:
+At the present finite extensional level, the first candidate connectives are
+operations on proposition supports:
 
 \[
 \llbracket A\land B\rrbracket
@@ -330,8 +330,28 @@ proposition supports:
 \llbracket A\rrbracket\cup\llbracket B\rrbracket.
 \]
 
-That extensional semantics comes before a proof calculus.  A later
-proof-relevant presentation would additionally require:
+This is the Boolean shadow that must be explained by, rather than silently
+identified with, a later proof-relevant semantics.
+
+### 3.1 Filling fibres and their Boolean shadow
+
+For a proposition \(A\), define its support by forgetting every distinction
+except whether its filling fibre is inhabited:
+
+\[
+\operatorname{Supp}_Q(A)
+=
+\left\{
+h\in H_7:
+\operatorname{Fill}_Q(A;h)\ne\varnothing
+\right\}.
+\]
+
+This support map is a deliberate abstraction.  It forgets the number of
+threads, their occurrences, histories, resources, port order, residuals, and
+the difference between alternative witnesses.
+
+The proposed fibre constructors are:
 
 - \(A\land B\) requires compatible witness pairing and trace synchronization,
   so its filling is a compatibility-restricted product;
@@ -359,6 +379,106 @@ Schematically, before any term calculus is claimed,
 \bigl(\operatorname{Fill}(A)\to\operatorname{Fill}(B)\bigr).
 \end{aligned}
 \]
+
+The tagged sum gives the expected support law directly:
+
+\[
+\operatorname{Supp}_Q(A\lor B)
+=
+\operatorname{Supp}_Q(A)\cup\operatorname{Supp}_Q(B).
+\]
+
+Conjunction is more delicate:
+
+\[
+\operatorname{Supp}_Q(A\land B)
+\subseteq
+\operatorname{Supp}_Q(A)\cap\operatorname{Supp}_Q(B).
+\]
+
+Equality holds only when simultaneous inhabitation guarantees at least one
+compatible pair:
+
+\[
+\forall h,\quad
+\operatorname{Fill}_Q(A;h)\ne\varnothing
+\land
+\operatorname{Fill}_Q(B;h)\ne\varnothing
+\Longrightarrow
+\operatorname{Fill}_Q(A;h)
+\times_{\mathrm{compat}}
+\operatorname{Fill}_Q(B;h)
+\ne\varnothing.
+\]
+
+This **compatible-pair completeness** can fail when two individually valid
+threads consume the same linear source, disagree on an occurrence, or have
+incompatible residual obligations.  In that case support intersection
+over-approximates proof-relevant conjunction.
+
+### 3.2 Truth, falsehood, implication, and negation
+
+The unit and empty fibres are the candidates for truth and falsehood:
+
+\[
+\operatorname{Fill}_Q(\top;h)\simeq\mathbf 1,
+\qquad
+\operatorname{Fill}_Q(\bot;h)\simeq\mathbf 0.
+\]
+
+The unit contains a canonical identity thread.  The empty fibre belongs to a
+declared aperture and carries an exhaustiveness certificate; it is not the
+absence of an aperture.
+
+An implication witness is an admissible total transformer:
+
+\[
+\operatorname{Fill}_Q(A\Rightarrow B;h)
+=
+\operatorname{Adm}_Q
+\left(
+\operatorname{Fill}_Q(A;h),
+\operatorname{Fill}_Q(B;h)
+\right).
+\]
+
+It must map every admitted \(A\)-thread to a \(B\)-thread while preserving the
+declared type, source, occurrence, resource, and residual laws.  Consequently,
+
+\[
+\operatorname{Supp}_Q(A\Rightarrow B)
+\subseteq
+\bigl(H_7\setminus\operatorname{Supp}_Q(A)\bigr)
+\cup
+\operatorname{Supp}_Q(B).
+\]
+
+Equality requires **transformer completeness**: whenever the source is
+certifiably empty or the target is inhabited, the grammar must provide an
+admissible transformer.  Restricted resource or provenance laws may make the
+inclusion strict even when the classical truth table says the implication is
+true.
+
+Negation is then defined rather than guessed:
+
+\[
+\neg A:=A\Rightarrow\bot.
+\]
+
+Its support is the Boolean complement only when certified empty fibres admit
+the required refuter and the search is exhaustive:
+
+\[
+\operatorname{Supp}_Q(\neg A)
+=
+H_7\setminus\operatorname{Supp}_Q(A).
+\]
+
+The current \(H_7\) oracle assigns one canonical membership line to every
+true proposition--world pair, makes those lines mutually compatible, and
+enumerates every false pair exhaustively.  It therefore realizes the Boolean
+equalities by construction.  This is a calibration fixture, not yet a theorem
+about general Adva threads.
 
 `Failure(A)` does not by itself construct \(\neg A\).  Failure to find a
 certificate constructs neither falsehood nor divergence.
@@ -869,7 +989,27 @@ model.  Later stages must preserve the semantic/proof-theoretic separation.
 
 The accompanying test implements this stage.
 
-### 9.2 Finite semantic-entailment fixture
+### 9.2 Finite connective-fibre fixture
+
+Use finite thread records with explicit exclusive-source sets:
+
+1. verify that a conjunction contains only compatible thread pairs;
+2. exhibit two inhabited fibres whose conjunction is empty because their
+   only threads consume the same exclusive source;
+3. verify that disjunction retains a left or right provenance tag;
+4. accept an implication graph only when it maps every thread in an
+   exhaustively enumerated source fibre to an admitted target thread;
+5. reject partial and ill-typed implication graphs; and
+6. accept vacuous implication from a certified empty source while rejecting
+   the same claim for a merely unresolved source.
+
+This fixture deliberately exhibits where the proof-relevant support laws can
+be stricter than the Boolean truth tables.  It does not define stable Adva
+connectives or natural-deduction rules.
+
+The accompanying test now implements this finite diagnostic.
+
+### 9.3 Finite semantic-entailment fixture
 
 For finite premise supports \(\Gamma\) and conclusion support \(P\):
 
@@ -883,7 +1023,7 @@ This remains a model-theoretic calibration.
 
 The accompanying test now implements this finite semantic stage as well.
 
-### 9.3 Predicate-language prerequisites and fibre diagnostic
+### 9.4 Predicate-language prerequisites and fibre diagnostic
 
 Before calling any operation a quantifier, specify one finite typed predicate
 language with terms, variables, substitution, free-variable support, binders,
@@ -902,7 +1042,7 @@ obstruction.  The semantic fibre diagnostic should verify:
 This checks only the candidate adjunction semantics.  Introduction,
 elimination, eigenvariable, and witness-discharge rules remain undefined.
 
-### 9.4 Deferred proof-search fixture
+### 9.5 Deferred proof-search fixture
 
 Only after a proof calculus and independent model evaluator exist, use a
 finite entailment task containing:
@@ -915,7 +1055,7 @@ Verify that the search returns typed orthogonal outcomes and never turns the
 budget-exhausted branch into falsehood.  Dynamic modalities and least/greatest
 fixed-point approximants may be studied only after this result is stable.
 
-### 9.5 Threaded compactification fixture
+### 9.6 Threaded compactification fixture
 
 Use a finite typed prefix tree with three permanent end labels, one
 operational aperture, two alternative port pairings, and two histories with
@@ -945,25 +1085,29 @@ The proposal must be weakened or rejected if any of the following persists:
    declared residual quotient;
 4. a bare unfilled aperture is called false without an empty-fibre
    certificate, or absence of an aperture is confused with an empty fibre;
-5. conjunction, disjunction, implication, or duality requires silent copy,
+5. support intersection is promoted to proof-relevant conjunction even when
+   its only witness pairs are incompatible;
+6. classical implication is asserted without a total admissible transformer,
+   or vacuity is inferred from a non-exhausted source fibre;
+7. conjunction, disjunction, implication, or duality requires silent copy,
    discard, branch erasure, or source identification;
-6. semantic entailment is identified with derivability before a proof system
+8. semantic entailment is identified with derivability before a proof system
    and soundness theorem exist;
-7. exploration changes the observer, vocabulary, or rules while reporting a
+9. exploration changes the observer, vocabulary, or rules while reporting a
    derivation in the old logic;
-8. quantifier rules, natural deduction, dynamic modalities, or fixed points
+10. quantifier rules, natural deduction, dynamic modalities, or fixed points
    are promoted before predicate syntax and semantic substitution laws;
-9. finite vocabulary is taken to imply hyperbolicity without a geometric
+11. finite vocabulary is taken to imply hyperbolicity without a geometric
    coding result;
-10. compactification identifies permanent cusps with Failure apertures;
-11. a cusp filled as a point erases thread direction, port order, pairing, or
+12. compactification identifies permanent cusps with Failure apertures;
+13. a cusp filled as a point erases thread direction, port order, pairing, or
     holonomy;
-12. an unresolved finite frontier is promoted to the completed ideal
+14. an unresolved finite frontier is promoted to the completed ideal
     boundary;
-13. a successful sealed loop loses its nontrivial lifted continuation;
-14. vocabulary refinement has no compatible map or correspondence between
+15. a successful sealed loop loses its nontrivial lifted continuation;
+16. vocabulary refinement has no compatible map or correspondence between
     finite compacta; or
-15. the compactified object cannot reopen from retained residual evidence.
+17. the compactified object cannot reopen from retained residual evidence.
 
 ---
 
@@ -975,6 +1119,8 @@ Even a successful finite calibration establishes at most:
 - one finite generated extensional proposition algebra;
 - one line--hole realization of pointwise bivalence on an exhaustively
   enumerated carrier, with undecided search kept outside the truth values;
+- one finite connective-fibre diagnostic that preserves disjunction tags and
+  exposes compatibility and transformer-completeness obligations;
 - one decidable finite semantic-entailment relation with exact
   countermodels;
 - semantic and proof-relevant obligations for future connective constructors;
@@ -1001,18 +1147,20 @@ It does not establish:
 1. retain the completed exact-halt and 128-proposition finite oracle without
    adding stable semantic types;
 2. calibrate inhabited, exhaustively empty, and unresolved filling fibres;
-3. add finite semantic entailment and exact countermodel extraction over the
+3. calibrate compatible products, tagged sums, and exhaustive total
+   transformers while recording every strictness counterexample;
+4. add finite semantic entailment and exact countermodel extraction over the
    seven halt worlds;
-4. define one finite typed predicate language with variables, terms, binders,
+5. define one finite typed predicate language with variables, terms, binders,
    and capture-avoiding substitution;
-5. test candidate existential/universal fibre semantics and the required
+6. test candidate existential/universal fibre semantics and the required
    substitution laws;
-6. only then select natural deduction, sequent calculus, tableau, or another
+7. only then select natural deduction, sequent calculus, tableau, or another
    proof presentation and state soundness and relative-completeness targets;
-7. define exploration as certificate search for that fixed entailment task;
-8. separately define a research-local threaded-bordification record and test
+8. define exploration as certificate search for that fixed entailment task;
+9. separately define a research-local threaded-bordification record and test
    boundary-sort, port, pairing, holonomy, seal, lift, and reopen laws; and
-9. only then choose a symbolic-to-hyperbolic coding and test whether it
+10. only then choose a symbolic-to-hyperbolic coding and test whether it
    extends continuously to boundaries.
 
 The first geometric target should not be a numerical compactification of an
@@ -1027,12 +1175,16 @@ quiescence is added.  They do not by themselves supply seven truth values.
 Propositions pose typed holes over those worlds.  A compatible thread
 witnesses truth; a certified empty filling fibre witnesses falsehood; a
 non-exhausted hole is undecided rather than false.  On the exhaustively finite
-carrier this recovers pointwise bivalence.  Semantic entailment is finite
-support inclusion.  Predicate terms, substitution, and fibre semantics must
-be built before quantifiers are admitted.  Natural deduction comes later.
-Exploration first searches for a derivation, countermodel, or honest frontier
-in one fixed entailment problem; dynamic and coinductive readings remain
-possible future semantics for a mature search calculus.
+carrier this recovers pointwise bivalence.  Connectives first act on filling
+fibres: compatible product for conjunction, tagged sum for disjunction, and
+admissible total transformation for implication.  Their Boolean truth tables
+are support-level shadows and require explicit compatibility, transformer,
+and empty-fibre completeness.  Semantic entailment is finite support
+inclusion.  Predicate terms, substitution, and fibre semantics must be built
+before quantifiers are admitted.  Natural deduction comes later.  Exploration
+first searches for a derivation, countermodel, or honest frontier in one fixed
+entailment problem; dynamic and coinductive readings remain possible future
+semantics for a mature search calculus.
 
 A finite vocabulary gives compactness first at the level of coherent infinite
 words or ends.  Hyperbolic compactification is a further representation
