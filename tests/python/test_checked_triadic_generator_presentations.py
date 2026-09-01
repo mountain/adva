@@ -59,7 +59,7 @@ CHECKED_TRIADIC_GENERATORS = r"""
       (frontier
         (use temporal)
         (use spatial)
-        (add 1 (neg (use construction)))))
+        (add 1 (neg (use construction))))))
 )
 """
 
