@@ -1,4 +1,4 @@
-# Relative Halt Logic, Exploration, and Thread-Respecting Compactification
+# Relative Halt Semantics, Entailment Search, and Thread-Respecting Compactification
 
 Status: working synthesis and finite calibration specification following
 [0033](0033-omega-type-computational-boundary.md),
@@ -22,10 +22,14 @@ This note records a proposal initiated by Mingli Yuan:
 > of threads and apertures.
 
 The proposal is sharpened below by separating exact stable faces, relative
-machine halts, propositions, quantifiers, dynamic exploration, finite-word
-boundaries, permanent cusps, and operational apertures.  No stable logical
-symbol, quantifier, compactification type, Rust API, or semantic right to
-forget is introduced here.
+machine halts, propositions, semantic entailment, future predicate logic,
+proof search, finite-word boundaries, permanent cusps, and operational
+apertures.  Exploration is not promoted here to an object-language modality.
+Its first formal role is certificate search for an entailment question inside
+one fixed logic.  Natural deduction, dynamic modalities, and fixed-point
+operators remain downstream.  No stable logical symbol, quantifier,
+compactification type, Rust API, or semantic right to forget is introduced
+here.
 
 ---
 
@@ -72,13 +76,15 @@ The proposed logical architecture is
 \boxed{
 \text{seven exact halt worlds}
 \to
-\text{generated propositions and proof-relevant connectives}
+\text{generated propositions and semantic connectives}
 \to
-\text{indexed quantifiers}
+\text{semantic entailment}
 \to
-\text{dynamic exploration and fixed points}
+\text{predicate syntax, substitution, and candidate quantifiers}
 \to
-\text{thread-respecting boundary geometry}.
+\text{later proof calculus and entailment search}
+\to
+\text{thread-respecting search-boundary geometry}.
 }
 \]
 
@@ -256,13 +262,26 @@ The current vocabulary must remain sorted.
 | `Reopen` | dynamic transition under refined observation or activated residual |
 | `Abstract` | quotient or name formation under contextual congruence |
 | `Forget` | observer map with replayable residual |
-| `Generate` | candidate or witness constructor |
-| `Explore` | frame- and vocabulary-transforming program |
-| `Thread` | proof, construction, or transport term |
+| `Generate` | candidate constructor; witness formation requires predicate syntax |
+| `Explore` | entailment-certificate search; logic revision stays in the metalanguage |
+| `Thread` | semantic transport now; proof term only after a calculus is chosen |
 | `Lift` | reconstruction or instantiation in a finer or universal carrier |
 
-The first candidate connectives are induced only after operations on evidence
-classes are compositional:
+The first candidate connectives are induced semantically from operations on
+proposition supports:
+
+\[
+\llbracket A\land B\rrbracket
+=
+\llbracket A\rrbracket\cap\llbracket B\rrbracket,
+\qquad
+\llbracket A\lor B\rrbracket
+=
+\llbracket A\rrbracket\cup\llbracket B\rrbracket.
+\]
+
+That extensional semantics comes before a proof calculus.  A later
+proof-relevant presentation would additionally require:
 
 - \(A\land B\) requires compatible witness pairing and trace synchronization;
 - \(A\lor B\) requires a retained branch tag and branch provenance;
@@ -274,17 +293,37 @@ classes are compositional:
 `Failure(A)` does not by itself construct \(\neg A\).  Failure to find a
 certificate constructs neither falsehood nor divergence.
 
-A proposed connective must pass five gates:
+A proposed semantic connective must first pass:
 
 1. extensional well-definedness on the admitted proposition supports;
-2. a proof- or construction-relevant term former;
-3. contextual congruence under the frozen observer and norm;
-4. residual and resource preservation; and
-5. naturality, or an explicit reopening witness, under observer refinement.
+2. contextual congruence under the frozen observer and norm; and
+3. naturality, or an explicit reopening witness, under observer refinement.
+
+Only later may a natural-deduction or other proof-theoretic presentation add:
+
+4. proof- or construction-relevant term formers;
+5. introduction, elimination, and discharge rules;
+6. residual and resource preservation; and
+7. soundness, relative completeness, and normalization obligations.
 
 ---
 
-## 4. Quantifiers arise from fibres after the connective layer
+## 4. Predicate logic must precede proof-theoretic quantifiers
+
+The finite halt-world carrier calibrates propositional semantics only.  A
+predicate language additionally needs at least:
+
+- typed variables and terms;
+- arities and interpretations of predicates;
+- capture-avoiding substitution;
+- binders, free-variable support, and alpha equivalence;
+- equality or an explicit decision not to include it;
+- observer-indexed domains and their refinement maps; and
+- a distinction between an empty fibre and an incompletely explored fibre.
+
+None of these is supplied by the 128-proposition calculation.  Quantifiers
+therefore remain semantic candidates until one finite predicate fixture has
+checked substitution and binding.
 
 Let a fine observer refine a coarse observer through
 
@@ -298,8 +337,8 @@ Inverse image gives reindexing
 q^*:\mathcal L_Q\longrightarrow\mathcal L_{Q'}.
 \]
 
-Where the generated proposition families are closed under the required
-operations, candidate quantifiers are adjoints:
+Where a later predicate family is closed under the required operations,
+candidate semantic quantifiers are adjoints:
 
 \[
 \boxed{
@@ -340,74 +379,107 @@ Their first readings are:
 
 An unenumerated or pending fibre is not an empty fibre.  Vacuous truth is
 licensed only after exact exhaustiveness, not after fuel exhaustion.
-Beck--Chevalley, Frobenius, substitution, and proof-term laws remain open.
+Beck--Chevalley, Frobenius, and substitution laws remain open.  Quantifier
+introduction, elimination, eigenvariable, and witness-discharge rules belong
+to the still-later natural-deduction layer.
 
 ---
 
-## 5. Exploration is a dynamic modality and an unfolding
+## 5. Exploration first searches an entailment question
 
-Exploration is not a truth function \(V^n\to V\).  It changes the frame on
-which truth and quantification are interpreted.  A finite exploration state
-must include at least
+For one fixed observer, language, interpretation, and norm, semantic
+entailment and proof-theoretic derivability must be written separately:
 
 \[
-\mathfrak E_n
+\Gamma\models_Q\varphi,
+\qquad
+\Gamma\vdash_Q\varphi.
+\]
+
+The first quantifies over admitted models or halt worlds.  The second requires
+a selected proof calculus.  Exploration is initially the process that seeks
+finite evidence connecting the two; it is not itself a connective,
+quantifier, or truth value.
+
+Once a proof system and an independent model semantics both exist, the
+intended result type is
+
+\[
+\boxed{
+\operatorname{Explore}_{Q,N,\Sigma,B}
+(\Gamma\Rightarrow\varphi)
+\Downarrow
+\begin{cases}
+\operatorname{Derivation}(\pi),\\
+\operatorname{Countermodel}(M,w_M),\\
+\operatorname{Frontier}(F,R,\operatorname{continue}).
+\end{cases}
+}
+\]
+
+The cases have different authority:
+
+- `Derivation` is checked evidence for \(\Gamma\vdash_Q\varphi\);
+- `Countermodel` is checked evidence for
+  \(\Gamma\not\models_Q\varphi\);
+- `Frontier` records that the bounded search has established neither result.
+
+Budget and scheduler affect which certificate is found, not the definition of
+\(\models_Q\) or \(\vdash_Q\).  If exploration changes the observer,
+vocabulary, interpretation, or rule set, it performs a metalanguage update
+
+\[
+(\mathcal L_Q,\models_Q)
+\longrightarrow
+(\mathcal L_{Q'},\models_{Q'}),
+\]
+
+not a derivation inside one unchanged logic.  The update must transport old
+claims or reopen them from residual evidence.
+
+### 5.1 The present finite entailment calibration
+
+Before a proof calculus exists, the seven halt worlds already support a
+complete finite semantic decision procedure.  For a finite premise family
+\(\Gamma\subseteq\mathcal P(H_7)\), let
+
+\[
+\operatorname{Mod}(\Gamma)
 =
-(\Theta_n,H_n,\mathcal F_n,\Sigma_n,B_n,R_n),
+\bigcap_{A\in\Gamma}\llbracket A\rrbracket,
 \]
 
-where \(\Theta_n\) is the current vocabulary, \(H_n\) the typed apertures,
-\(\mathcal F_n\) the search forest and frontier, \(\Sigma_n\) the scheduler,
-\(B_n\) the budget, and \(R_n\) the provenance and search residual.
-
-Thus
+with \(\operatorname{Mod}(\varnothing)=H_7\).  Then
 
 \[
-\operatorname{Explore}:\mathfrak E_n\longrightarrow\mathfrak E_{n+1}
+\Gamma\models_{H_7}\varphi
+\Longleftrightarrow
+\operatorname{Mod}(\Gamma)
+\subseteq
+\llbracket\varphi\rrbracket.
 \]
 
-may create candidates, worlds, obligations, and vocabulary.  Internalized in
-a logic, it is closer to a dynamic modality:
+A failed inclusion returns the exact finite countermodel support
 
 \[
-\langle E\rangle\varphi
-\quad\text{and}\quad
-[E]\varphi.
+\operatorname{Mod}(\Gamma)
+\setminus
+\llbracket\varphi\rrbracket.
 \]
 
-The first says that some admitted finite exploration reaches \(\varphi\).
-The second quantifies over the admitted executions of \(E\) and therefore
-requires a declared scheduler and fairness policy.
+This is semantic entailment only.  It supplies no proof term and proves no
+soundness or completeness theorem for natural deduction.
 
-Finite reachability of success is a least fixed-point pattern:
+### 5.2 Deferred process interpretations
 
-\[
-\mu Z.
-\left(
-\operatorname{Success}
-\lor
-\langle\operatorname{step}\rangle Z
-\right).
-\]
+Dynamic modalities and fixed points may later describe a chosen proof-search
+transition system.  In particular, finite proof reachability may admit a
+least-fixed-point reading, while indefinitely fair open branches may admit a
+greatest-fixed-point reading.  Those are downstream hypotheses, not part of
+the present propositional or predicate grammar.
 
-Indefinitely extendable open exploration is a greatest fixed-point pattern:
-
-\[
-\nu Z.
-\left(
-\operatorname{Open}
-\land
-\langle\operatorname{fair\ step}\rangle Z
-\right).
-\]
-
-These formulas separate two uses of universality:
-
-- universal quantification is a right adjoint over a fixed declared fibre;
-- universal unfolding is a coinductive or covering process that produces
-  arbitrarily long finite continuations.
-
-The three imagination operators of note 0080 occupy this dynamic layer:
+Likewise, the imagination operations from note 0080 remain metalanguage
+search constructors:
 
 \[
 J_K=\operatorname{FreshWitness},
@@ -417,8 +489,10 @@ J_X=\operatorname{Split},
 J_t=\operatorname{FairExtend}.
 \]
 
-They respectively enlarge vocabulary, possible-world fibres, and finite
-continuations.  None alone proves a quantifier law or a completeness theorem.
+They may later schedule witness search, model branching, and fair rule
+application.  Until predicate syntax and a proof calculus exist, they do not
+implement existential introduction, possible-world semantics, or proof
+completeness.
 
 ---
 
@@ -632,10 +706,12 @@ It can be sealed only by explicit compatible pairing, gate, or patch data.
 
 ### 8.2 Infinite exploration ray
 
-An infinite fair branch has every finite prefix admitted but no finite closure
-certificate.  It belongs to the end boundary of the exploration tree.  It may
+After a fixed search calculus and fairness policy exist, an infinite fair
+branch may have every finite prefix admitted but no finite closure
+certificate.  It belongs to the end boundary of that search tree.  It may
 encode genuine nontermination, perpetual revision, or simply an unresolved
-run; those readings require additional evidence.
+run; those readings require additional evidence.  The present propositional
+calibration has no such branch semantics.
 
 ### 8.3 Lift of a successful sealed thread
 
@@ -678,10 +754,10 @@ corresponding parabolic orbits or cusp directions in a concrete
 
 ---
 
-## 9. First finite calibration
+## 9. Finite calibration sequence
 
-The next executable research oracle should be finite and should not require a
-hyperbolic numerical model.
+The first executable oracle is finite and requires no hyperbolic numerical
+model.  Later stages must preserve the semantic/proof-theoretic separation.
 
 ### 9.1 Exact-halt and propositional fixture
 
@@ -695,31 +771,55 @@ hyperbolic numerical model.
    not one request; and
 8. verify that face intersection leaves the seven-element scalar carrier.
 
-### 9.2 Quantifier fixture
+The accompanying test implements this stage.
 
-Use one coarse aperture with two fine filling histories.  One filling receives
-a scoped closure certificate and the other retains an obstruction.  Verify:
+### 9.2 Finite semantic-entailment fixture
 
-- existential projection reports a compatible fine lift;
-- universal projection refuses closure;
+For finite premise supports \(\Gamma\) and conclusion support \(P\):
+
+1. compute the common model support \(\operatorname{Mod}(\Gamma)\);
+2. decide entailment by support inclusion;
+3. return every counterexample world when inclusion fails;
+4. keep inconsistency and empty-model support explicit; and
+5. introduce no derivation or proof-search trace.
+
+This remains a model-theoretic calibration.
+
+The accompanying test now implements this finite semantic stage as well.
+
+### 9.3 Predicate-language prerequisites and fibre diagnostic
+
+Before calling any operation a quantifier, specify one finite typed predicate
+language with terms, variables, substitution, free-variable support, binders,
+and observer-indexed domains.
+
+Only then use one coarse aperture with two fine filling histories.  One
+filling receives a scoped closure certificate and the other retains an
+obstruction.  The semantic fibre diagnostic should verify:
+
+- existential projection has at least one compatible fine lift;
+- universal projection does not contain the coarse point;
 - dropping the obstructed residual changes the universal result and is
   rejected; and
 - fuel exhaustion is distinct from an empty fibre.
 
-### 9.3 Exploration fixed-point fixture
+This checks only the candidate adjunction semantics.  Introduction,
+elimination, eigenvariable, and witness-discharge rules remain undefined.
 
-Use a finite transition graph containing:
+### 9.4 Deferred proof-search fixture
 
-- one finite success branch;
-- one finite refutation branch;
-- one indefinitely extendable fair cycle; and
+Only after a proof calculus and independent model evaluator exist, use a
+finite entailment task containing:
+
+- one checked derivation branch;
+- one independently checked countermodel branch;
 - one budget-exhausted frontier.
 
-Compute finite approximants to success reachability and indefinite
-continuation.  Verify that the least and greatest fixed-point readouts differ
-and that neither turns the budget-exhausted branch into falsehood.
+Verify that the search returns typed orthogonal outcomes and never turns the
+budget-exhausted branch into falsehood.  Dynamic modalities and least/greatest
+fixed-point approximants may be studied only after this result is stable.
 
-### 9.4 Threaded compactification fixture
+### 9.5 Threaded compactification fixture
 
 Use a finite typed prefix tree with three permanent end labels, one
 operational aperture, two alternative port pairings, and two histories with
@@ -749,12 +849,12 @@ The proposal must be weakened or rejected if any of the following persists:
    declared residual quotient;
 4. conjunction, disjunction, implication, or duality requires silent copy,
    discard, branch erasure, or source identification;
-5. existential or universal projection treats pending enumeration as an
-   empty fibre;
-6. exploration is reduced to a truth value and loses scheduler, budget, or
-   continuation evidence;
-7. the least and greatest fixed-point readings collapse without an explicit
-   theorem;
+5. semantic entailment is identified with derivability before a proof system
+   and soundness theorem exist;
+6. exploration changes the observer, vocabulary, or rules while reporting a
+   derivation in the old logic;
+7. quantifier rules, natural deduction, dynamic modalities, or fixed points
+   are promoted before predicate syntax and semantic substitution laws;
 8. finite vocabulary is taken to imply hyperbolicity without a geometric
    coding result;
 9. compactification identifies permanent cusps with Failure apertures;
@@ -775,15 +875,15 @@ Even a successful finite calibration establishes at most:
 
 - seven observer-relative exact halt worlds in one declared carrier;
 - one finite generated extensional proposition algebra;
-- proof-relevant obligations for future connective constructors;
-- one finite existential/universal fibre distinction;
-- one dynamic exploration fixture separating reachability from indefinite
-  continuation; and
+- one decidable finite semantic-entailment relation with exact
+  countermodels;
+- semantic and proof-relevant obligations for future connective constructors;
 - one syntax for a thread-respecting finite bordification record.
 
 It does not establish:
 
 - a seven-valued logic;
+- a predicate language with checked substitution;
 - a complete natural-deduction calculus;
 - stable quantifiers or a hyperdoctrine;
 - a general modal \(\mu\)-calculus for Adva;
@@ -798,14 +898,21 @@ It does not establish:
 
 ## 12. Immediate implementation order
 
-1. implement the exact-halt and 128-proposition finite oracle without adding
-   stable semantic types;
-2. add the two-filling quantifier fixture with retained residual;
-3. add the finite least/greatest fixed-point exploration fixture;
-4. define a research-local serialized threaded-bordification record;
-5. test boundary-sort, port, pairing, holonomy, seal, lift, and reopen laws;
-6. only then choose a concrete symbolic-to-hyperbolic coding and test whether
-   it extends continuously to boundaries.
+1. retain the completed exact-halt and 128-proposition finite oracle without
+   adding stable semantic types;
+2. add finite semantic entailment and exact countermodel extraction over the
+   seven halt worlds;
+3. define one finite typed predicate language with variables, terms, binders,
+   and capture-avoiding substitution;
+4. test candidate existential/universal fibre semantics and the required
+   substitution laws;
+5. only then select natural deduction, sequent calculus, tableau, or another
+   proof presentation and state soundness and relative-completeness targets;
+6. define exploration as certificate search for that fixed entailment task;
+7. separately define a research-local threaded-bordification record and test
+   boundary-sort, port, pairing, holonomy, seal, lift, and reopen laws; and
+8. only then choose a symbolic-to-hyperbolic coding and test whether it
+   extends continuously to boundaries.
 
 The first geometric target should not be a numerical compactification of an
 arbitrary program space.  It should be one finite typed word system whose
@@ -816,10 +923,12 @@ without losing any thread or aperture evidence.
 
 The seven nonempty triadic faces supply a finite terminal-world carrier after
 quiescence is added.  They do not by themselves supply seven truth values.
-Propositions live over those worlds; connectives require compositional
-evidence; quantifiers arise as adjoints over retained fibres; and exploration
-is a dynamic, potentially coinductive transformation of the frame and
-vocabulary.
+Propositions live over those worlds, and semantic entailment is finite support
+inclusion.  Predicate terms, substitution, and fibre semantics must be built
+before quantifiers are admitted.  Natural deduction comes later.  Exploration
+first searches for a derivation, countermodel, or honest frontier in one fixed
+entailment problem; dynamic and coinductive readings remain possible future
+semantics for a mature search calculus.
 
 A finite vocabulary gives compactness first at the level of coherent infinite
 words or ends.  Hyperbolic compactification is a further representation
@@ -843,6 +952,6 @@ The resulting working principle is
 \qquad
 \text{exploration}
 \to
-\text{universal unfolding}.
+\text{derivation, countermodel, or retained frontier}.
 }
 \]
