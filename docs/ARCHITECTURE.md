@@ -72,6 +72,9 @@ judgments.
 - single-diagram triangular and typed-connector calibrations that compare
   finite relations over unchanged Rust incidence coordinates while refusing
   semantic closure, sibling identification, and forgetting authority;
+- a bounded distributivity characteristic atlas that reads one Rust core as a
+  triadic boundary, three opposite-pair relations, one grafted multi-hole
+  carrier, one exact rational polynomial feature, and one retained residual;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
