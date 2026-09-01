@@ -181,6 +181,14 @@ def test_large_exact_oracle_requires_an_explicit_resource_override() -> None:
         run_search(config)
 
 
+def test_result_verification_applies_the_same_resource_guard(tmp_path: Path) -> None:
+    artifact = tmp_path / "large-network.json"
+    artifact.write_text(json.dumps({"channels": 24, "layers": []}))
+
+    with pytest.raises(ResourceLimitError, match="verification oracle estimate"):
+        verify_result_file(artifact, max_oracle_bytes=1)
+
+
 def test_committed_five_channel_witness_artifact_is_exact() -> None:
     repository_root = Path(__file__).resolve().parents[2]
     artifact = repository_root / "examples/verified_witness/sorting-network-5ch-depth5.json"
