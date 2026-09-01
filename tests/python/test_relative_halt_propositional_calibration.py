@@ -30,6 +30,16 @@ class RelativeMachineView:
     residual: tuple[str, ...] = ()
 
 
+@dataclass(frozen=True)
+class SemanticEntailment:
+    model_support: Proposition
+    countermodels: Proposition
+
+    @property
+    def entails(self) -> bool:
+        return not self.countermodels
+
+
 def _exact_halt(machine: RelativeMachineView) -> Face | None:
     if not machine.stable or not machine.quiescent:
         return None
@@ -58,6 +68,19 @@ def _boolean_closure(generators: set[Proposition]) -> set[Proposition]:
         closure.update(left | right for left in current for right in current)
         changed = len(closure) != before
     return closure
+
+
+def _semantic_entailment(
+    premises: tuple[Proposition, ...],
+    conclusion: Proposition,
+) -> SemanticEntailment:
+    model_support = HALT_WORLDS
+    for premise in premises:
+        model_support &= premise
+    return SemanticEntailment(
+        model_support=model_support,
+        countermodels=model_support - conclusion,
+    )
 
 
 def test_exact_relative_halt_has_seven_quiescent_worlds() -> None:
@@ -124,3 +147,28 @@ def test_seven_faces_are_not_a_closed_scalar_truth_algebra() -> None:
 
     # Empty visible stability is not silently promoted to an execution result.
     assert _exact_halt(RelativeMachineView(frozenset(), quiescent=True)) is None
+
+
+def test_semantic_entailment_returns_exact_finite_countermodels() -> None:
+    construction = _atomic_support("K")
+    space = _atomic_support("X")
+
+    weakening = _semantic_entailment((construction, space), construction)
+    non_entailment = _semantic_entailment((construction,), space)
+    no_premises = _semantic_entailment((), construction)
+    inconsistent = _semantic_entailment(
+        (construction, HALT_WORLDS - construction),
+        space,
+    )
+
+    assert weakening.entails
+    assert weakening.model_support == frozenset(
+        {frozenset({"K", "X"}), frozenset({"K", "X", "t"})}
+    )
+    assert non_entailment.countermodels == frozenset(
+        {frozenset({"K"}), frozenset({"K", "t"})}
+    )
+    assert no_premises.model_support == HALT_WORLDS
+    assert no_premises.countermodels == HALT_WORLDS - construction
+    assert inconsistent.model_support == frozenset()
+    assert inconsistent.entails
