@@ -554,6 +554,16 @@ universal.”  It is “compose one checked irreversible gate with this exact
 three-color transport without erasing type, schedule, source, occurrence, or
 residual history.”
 
+## Mixed-nesting normalization follow-up
+
+The partial-normalization logic follow-up is
+[`0059-tri-bracket-eigen-normalization-logic.md`](0059-tri-bracket-eigen-normalization-logic.md).
+It moves mixed nesting into raw syntax and makes flatness an eigenform property.
+Its exhaustive first tri-cell shows that braid exchange preserves containment
+edges and therefore cannot normalize the twenty-four nested presentations.  A
+separate containment-splitting rewrite is required before braid transport can
+calibrate the flat boundary.  That split remains a syntax-level oracle and is
+not identified with a checked Adva gate.
 ## References
 
 - André Joyal and Joachim Kock,
