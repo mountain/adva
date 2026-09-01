@@ -215,7 +215,6 @@ class ConnectorCalibrationMachineV0:
             )
         if (
             tuple(boundary.domain for boundary in boundaries) != self._DOMAIN_ORDER
-            or not all(boundary.direct_copy_siblings for boundary in boundaries)
             or len({boundary.source_id for boundary in boundaries}) != 3
         ):
             return self._finish(
@@ -223,7 +222,7 @@ class ConnectorCalibrationMachineV0:
                 request,
                 triangle,
                 ExperimentVerdictV0.NOT_REPRESENTABLE,
-                "all three adjacent endpoints must be exact direct copy siblings",
+                "the three adjacent boundaries must retain three distinct source fibres",
                 validation,
                 ConnectorCalibrationLayerV0.TYPED_BOUNDARIES,
                 boundaries=boundaries,
@@ -231,7 +230,7 @@ class ConnectorCalibrationMachineV0:
         validation.append(
             self._satisfied(
                 ConnectorCalibrationLayerV0.TYPED_BOUNDARIES,
-                "three domains expose distinct occurrence pairs with exact common copy parents",
+                "three domains expose distinct same-source occurrence pairs",
             )
         )
 
@@ -287,64 +286,89 @@ class ConnectorCalibrationMachineV0:
             )
         )
 
-        sibling_connectors = tuple(
-            TypedConnectorCandidateV0(
-                reading=ConnectorReadingV0.DIRECT_SIBLING_COMPARISON,
-                boundary=boundary,
-                relation=tuple(
-                    sorted(
-                        {
-                            (
-                                boundary.exit_incidence_index,
-                                boundary.entry_incidence_index,
-                            ),
-                            (
-                                boundary.entry_incidence_index,
-                                boundary.exit_incidence_index,
-                            ),
-                        }
-                    )
+        direct_sibling_case = all(
+            boundary.direct_copy_siblings for boundary in boundaries
+        )
+        if direct_sibling_case:
+            sibling_connectors = tuple(
+                TypedConnectorCandidateV0(
+                    reading=ConnectorReadingV0.DIRECT_SIBLING_COMPARISON,
+                    boundary=boundary,
+                    relation=tuple(
+                        sorted(
+                            {
+                                (
+                                    boundary.exit_incidence_index,
+                                    boundary.entry_incidence_index,
+                                ),
+                                (
+                                    boundary.entry_incidence_index,
+                                    boundary.exit_incidence_index,
+                                ),
+                            }
+                        )
+                    ),
+                    symmetric=True,
+                    preserves_occurrence_identity=True,
+                )
+                for boundary in boundaries
+            )
+            sibling_cycle = self._cycle(
+                angle_edges,
+                {
+                    connector.boundary.domain: connector.relation
+                    for connector in sibling_connectors
+                },
+            )
+            expected_occurrence_cycle = (
+                (
+                    kx.left_incidence_indices[0],
+                    kx.left_incidence_indices[0],
                 ),
-                symmetric=True,
-                preserves_occurrence_identity=True,
             )
-            for boundary in boundaries
-        )
-        sibling_cycle = self._cycle(
-            angle_edges,
-            {connector.boundary.domain: connector.relation for connector in sibling_connectors},
-        )
-        expected_occurrence_cycle = (
-            (
-                kx.left_incidence_indices[0],
-                kx.left_incidence_indices[0],
-            ),
-        )
-        if (
-            sibling_cycle != expected_occurrence_cycle
-            or any(
-                connector.relation
-                != tuple(sorted((target, source) for source, target in connector.relation))
-                for connector in sibling_connectors
+            if (
+                sibling_cycle != expected_occurrence_cycle
+                or any(
+                    connector.relation
+                    != tuple(
+                        sorted(
+                            (target, source)
+                            for source, target in connector.relation
+                        )
+                    )
+                    for connector in sibling_connectors
+                )
+            ):
+                return self._finish(
+                    code,
+                    request,
+                    triangle,
+                    ExperimentVerdictV0.COUNTEREXAMPLE,
+                    "direct sibling comparison failed its exact finite circular composition",
+                    validation,
+                    ConnectorCalibrationLayerV0.SIBLING_COMPARISON,
+                    boundaries=boundaries,
+                    trials=(identity_trial,),
+                )
+            sibling_verdict = ExperimentVerdictV0.SUPPORTED
+            sibling_reason = (
+                "explicit symmetric sibling witnesses close one "
+                "occurrence-indexed candidate relation"
             )
-        ):
-            return self._finish(
-                code,
-                request,
-                triangle,
-                ExperimentVerdictV0.COUNTEREXAMPLE,
-                "direct sibling comparison failed its exact finite circular composition",
-                validation,
-                ConnectorCalibrationLayerV0.SIBLING_COMPARISON,
-                boundaries=boundaries,
-                trials=(identity_trial,),
+        else:
+            sibling_connectors = ()
+            sibling_cycle = ()
+            sibling_verdict = ExperimentVerdictV0.NOT_REPRESENTABLE
+            sibling_reason = (
+                "same-source cousins are retained but receive no direct "
+                "sibling comparison witness"
             )
         sibling_trial = ConnectorTrialV0(
             reading=ConnectorReadingV0.DIRECT_SIBLING_COMPARISON,
             connectors=sibling_connectors,
             occurrence_cycle_relation=sibling_cycle,
             source_cycle_relation=(),
-            finite_composition_verdict=ExperimentVerdictV0.SUPPORTED,
+            finite_composition_verdict=sibling_verdict,
             promotion_verdict=ExperimentVerdictV0.NOT_REPRESENTABLE,
             preserves_occurrence_identity=True,
             requires_forgetting=False,
@@ -353,7 +377,7 @@ class ConnectorCalibrationMachineV0:
         validation.append(
             self._satisfied(
                 ConnectorCalibrationLayerV0.SIBLING_COMPARISON,
-                "explicit symmetric sibling witnesses close one occurrence-indexed candidate relation",
+                sibling_reason,
             )
         )
 
@@ -515,6 +539,10 @@ class ConnectorCalibrationMachineV0:
         entry_path = cls._path(entry_occurrence)
         same_source = exit_occurrence["source"] == entry_occurrence["source"]
         distinct_ids = exit_occurrence["id"] != entry_occurrence["id"]
+        if not same_source or not distinct_ids:
+            raise ValueError(
+                "connector endpoints must be distinct occurrences of one source"
+            )
         direct_siblings = (
             same_source
             and distinct_ids
