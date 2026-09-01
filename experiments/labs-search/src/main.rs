@@ -1,6 +1,6 @@
 use adva_labs_search::{
-    exhaustive_optimum, read_run_report, run_parallel, write_json, LabsError, LabsResult,
-    ProgramKind, RunReport, SearchConfig, SearchEngine,
+    LabsError, LabsResult, ProgramKind, RunReport, SearchConfig, SearchEngine, exhaustive_optimum,
+    read_run_report, run_parallel, write_json,
 };
 use std::collections::{BTreeMap, HashSet};
 use std::env;
@@ -68,9 +68,7 @@ impl ParsedArgs {
     {
         match self.string(key) {
             Some(value) => value.parse().map_err(|error| {
-                LabsError::InvalidConfig(format!(
-                    "could not parse --{key}={value:?}: {error}"
-                ))
+                LabsError::InvalidConfig(format!("could not parse --{key}={value:?}: {error}"))
             }),
             None => Ok(default),
         }
@@ -85,9 +83,7 @@ impl ParsedArgs {
             LabsError::InvalidConfig(format!("required option --{key} is missing"))
         })?;
         value.parse().map_err(|error| {
-            LabsError::InvalidConfig(format!(
-                "could not parse --{key}={value:?}: {error}"
-            ))
+            LabsError::InvalidConfig(format!("could not parse --{key}={value:?}: {error}"))
         })
     }
 }
@@ -122,10 +118,8 @@ fn configure_search(arguments: &ParsedArgs) -> LabsResult<SearchConfig> {
     config.spatial_lags = arguments.parse_value("spatial-lags", config.spatial_lags)?;
     config.construction_trials =
         arguments.parse_value("construction-trials", config.construction_trials)?;
-    config.construction_mutations = arguments.parse_value(
-        "construction-mutations",
-        config.construction_mutations,
-    )?;
+    config.construction_mutations =
+        arguments.parse_value("construction-mutations", config.construction_mutations)?;
     config.construction_interval =
         arguments.parse_value("construction-interval", config.construction_interval)?;
     config.archive_size = arguments.parse_value("archive-size", config.archive_size)?;
@@ -135,8 +129,7 @@ fn configure_search(arguments: &ParsedArgs) -> LabsResult<SearchConfig> {
     config.scheduler_exploration =
         arguments.parse_value("scheduler-exploration", config.scheduler_exploration)?;
     config.trace_stride = arguments.parse_value("trace-stride", config.trace_stride)?;
-    config.max_trace_events =
-        arguments.parse_value("max-trace-events", config.max_trace_events)?;
+    config.max_trace_events = arguments.parse_value("max-trace-events", config.max_trace_events)?;
     config.validate()?;
     Ok(config)
 }
@@ -222,8 +215,7 @@ fn search_command(arguments: ParsedArgs) -> LabsResult<()> {
         } else {
             if checkpoint.is_some() {
                 return Err(LabsError::InvalidConfig(
-                    "periodic checkpoints are currently supported only with --workers 1"
-                        .to_owned(),
+                    "periodic checkpoints are currently supported only with --workers 1".to_owned(),
                 ));
             }
             run_parallel(config, iterations, workers)?
@@ -234,10 +226,7 @@ fn search_command(arguments: ParsedArgs) -> LabsResult<()> {
     if !quiet {
         eprintln!(
             "verified length={} energy={} merit_factor={:.12} worker={}",
-            report.best.length,
-            report.best.energy,
-            report.best.merit_factor,
-            report.best_worker
+            report.best.length, report.best.energy, report.best.merit_factor, report.best_worker
         );
     }
     write_or_print_report(&report, output)
@@ -256,10 +245,7 @@ fn verify_command(arguments: ParsedArgs) -> LabsResult<()> {
     let evaluation = report.verify()?;
     println!(
         "verified length={} energy={} correlations={:?} merit_factor={:.12}",
-        report.best.length,
-        evaluation.energy,
-        evaluation.correlations,
-        report.best.merit_factor
+        report.best.length, evaluation.energy, evaluation.correlations, report.best.merit_factor
     );
     Ok(())
 }

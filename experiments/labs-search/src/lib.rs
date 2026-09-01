@@ -106,12 +106,12 @@ pub fn evaluate_sequence(sequence: &[Spin]) -> LabsResult<Evaluation> {
                 LabsError::ArithmeticOverflow("autocorrelation accumulation".to_owned())
             })?;
         }
-        let contribution = correlation.checked_mul(correlation).ok_or_else(|| {
-            LabsError::ArithmeticOverflow("squared autocorrelation".to_owned())
-        })?;
-        energy = energy.checked_add(contribution).ok_or_else(|| {
-            LabsError::ArithmeticOverflow("LABS energy accumulation".to_owned())
-        })?;
+        let contribution = correlation
+            .checked_mul(correlation)
+            .ok_or_else(|| LabsError::ArithmeticOverflow("squared autocorrelation".to_owned()))?;
+        energy = energy
+            .checked_add(contribution)
+            .ok_or_else(|| LabsError::ArithmeticOverflow("LABS energy accumulation".to_owned()))?;
         correlations.push(correlation);
     }
 
@@ -315,9 +315,10 @@ impl CandidateState {
                 LabsError::ArithmeticOverflow("autocorrelation flip update".to_owned())
             })?;
         }
-        self.energy = self.energy.checked_add(energy_delta).ok_or_else(|| {
-            LabsError::ArithmeticOverflow("energy flip update".to_owned())
-        })?;
+        self.energy = self
+            .energy
+            .checked_add(energy_delta)
+            .ok_or_else(|| LabsError::ArithmeticOverflow("energy flip update".to_owned()))?;
         self.sequence[index] = -self.sequence[index];
         Ok(energy_delta)
     }
@@ -609,8 +610,8 @@ impl AdaptiveScheduler {
                 let score = |kind: ProgramKind| {
                     let stats = &self.stats[kind.index()];
                     let mean = stats.reward_sum / stats.uses as f64;
-                    let explore = exploration
-                        * ((total_uses as f64 + 1.0).ln() / stats.uses as f64).sqrt();
+                    let explore =
+                        exploration * ((total_uses as f64 + 1.0).ln() / stats.uses as f64).sqrt();
                     mean + explore
                 };
                 score(*left)
@@ -781,8 +782,8 @@ impl SearchEngine {
     fn step(&mut self) -> LabsResult<()> {
         let constructive_only = self.config.enabled_programs.len() == 1
             && self.config.enabled_programs[0] == ProgramKind::Constructive;
-        let construction_allowed = constructive_only
-            || self.iteration % self.config.construction_interval == 0;
+        let construction_allowed =
+            constructive_only || self.iteration % self.config.construction_interval == 0;
         let kind = self.scheduler.choose(
             &self.config.enabled_programs,
             construction_allowed,
@@ -830,8 +831,7 @@ impl SearchEngine {
         self.iteration += 1;
 
         let should_trace = best_gain > 0
-            || self.config.trace_stride > 0
-                && self.iteration % self.config.trace_stride == 0;
+            || self.config.trace_stride > 0 && self.iteration % self.config.trace_stride == 0;
         if should_trace && self.trace.len() < self.config.max_trace_events {
             self.trace.push(TraceEvent {
                 iteration: self.iteration,
@@ -1249,8 +1249,8 @@ mod tests {
 
     #[test]
     fn incremental_flip_matches_full_recomputation() {
-        let state = CandidateState::from_sequence(vec![1, -1, 1, 1, -1, -1, 1, -1])
-            .expect("valid state");
+        let state =
+            CandidateState::from_sequence(vec![1, -1, 1, 1, -1, -1, 1, -1]).expect("valid state");
         for index in 0..state.sequence.len() {
             let before = state.clone();
             let predicted = before.flip_delta(index).expect("finite delta");
@@ -1319,8 +1319,7 @@ mod tests {
         let mut engine = SearchEngine::new(config).expect("valid engine");
         engine.run_steps(8_000).expect("bounded search");
         assert_eq!(engine.best_energy(), 5);
-        verify_witness(&engine.best_witness().expect("best witness"))
-            .expect("exact best witness");
+        verify_witness(&engine.best_witness().expect("best witness")).expect("exact best witness");
     }
 
     #[test]
