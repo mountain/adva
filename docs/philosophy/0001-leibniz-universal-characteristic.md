@@ -147,14 +147,14 @@ A finite human reasoner does not occupy that standpoint. For contingent facts,
 there is always another reason to ask for. Thus *Calculemus* has a local and
 conditional force:
 
-[
-	ext{declared language}
-+	ext{valid characters}
-+	ext{admissible rules}
-+	ext{sufficient evidence}
-Longrightarrow
-	ext{auditable finite judgment}.
-]
+\[
+\text{declared language}
++\text{valid characters}
++\text{admissible rules}
++\text{sufficient evidence}
+\Longrightarrow
+\text{auditable finite judgment}.
+\]
 
 It does not entail that reality has been globally closed by a finite calculus.
 
