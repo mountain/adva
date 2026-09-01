@@ -33,6 +33,9 @@ tool does not turn research targets into stable API promises.
   unchanged through wires, internal events, occurrences, and history;
 - exact adjacent-slice composition with identity, event-conservation, and
   associativity certificates over one unchanged diagram;
+- bounded `TriadicObserverTransitionV0` companions that classify three input
+  source fibres, derive three opposite-pair cut readings, retain source-free
+  residuals, and compose occurrence ancestry exactly across adjacent slices;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -118,9 +121,11 @@ Read [`AGENTS.md`](AGENTS.md), [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md),
 [`docs/SEMANTIC_SCOPE.md`](docs/SEMANTIC_SCOPE.md), and
 [`docs/PROGRAM_PROCESS_CORE.md`](docs/PROGRAM_PROCESS_CORE.md) before changing
 semantic code. The self-contained current-state report is
-[`docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`](docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md),
-and the approved next-phase implementation brief is
-[`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md).
+[`docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`](docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md).
+The completed exact-slice phase is recorded in
+[`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md); the
+active bounded transition task is
+[`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`](docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in

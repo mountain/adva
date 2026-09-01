@@ -7,7 +7,12 @@ use adva_ir::{
     GraftArgumentIntersection, GraftFrameIntersection, GraftTrace, HistoryEvent, NodeId,
     Occurrence, OccurrenceId, OperationNode, ProgramSlice, ProgramSliceArtifact,
     ProgramSliceCertificate, ProgramSliceCompositionArtifact, ProgramSliceCompositionCertificate,
-    SharedProgramDiagram, WireProducer, WireRef,
+    SharedProgramDiagram, SourceId, TriadicCutIncidenceV0, TriadicCutObservationV0,
+    TriadicDomainV0, TriadicLineageLinkV0, TriadicObserverPolicyV0,
+    TriadicObserverTransitionArtifactV0, TriadicObserverTransitionCertificateV0,
+    TriadicObserverTransitionCompositionArtifactV0,
+    TriadicObserverTransitionCompositionCertificateV0, TriadicObserverTransitionV0,
+    TriadicOppositePairCutV0, TriadicOppositePairTransitionV0, WireProducer, WireRef,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -227,6 +232,269 @@ pub fn compose_program_slices_with_graft(
     right: &ProgramSlice,
 ) -> Result<ProgramSliceCompositionArtifact, LispError> {
     compose_program_slices_impl(diagram, Some(graft_trace), left, right)
+}
+
+/// Derive three opposite-pair observer readings of one exact program slice.
+///
+/// The policy assigns the diagram's three input source fibres to construction,
+/// space, and time. Domain labels remain observation metadata: exact Rust
+/// source, occurrence, path, wire, and event identities are reused unchanged.
+///
+/// # Errors
+///
+/// Returns a validation error if the diagram or slice is invalid, the input
+/// boundary is not an exact three-source permutation, or any cut incidence
+/// cannot be resolved to the checked source partition.
+pub fn analyze_triadic_observer_transition_v0(
+    diagram: &SharedProgramDiagram,
+    policy: &TriadicObserverPolicyV0,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<TriadicObserverTransitionArtifactV0, LispError> {
+    analyze_triadic_observer_transition_impl(
+        diagram,
+        None,
+        policy,
+        lower_completed,
+        upper_completed,
+    )
+}
+
+/// Derive a triadic observer transition while retaining graft-linked residuals.
+///
+/// # Errors
+///
+/// Returns the errors of [`analyze_triadic_observer_transition_v0`] and also
+/// rejects a graft trace inconsistent with the unchanged diagram.
+pub fn analyze_triadic_observer_transition_with_graft_v0(
+    diagram: &SharedProgramDiagram,
+    graft_trace: &GraftTrace,
+    policy: &TriadicObserverPolicyV0,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<TriadicObserverTransitionArtifactV0, LispError> {
+    analyze_triadic_observer_transition_impl(
+        diagram,
+        Some(graft_trace),
+        policy,
+        lower_completed,
+        upper_completed,
+    )
+}
+
+/// Compose adjacent triadic observer transitions in one unchanged diagram.
+///
+/// Composition revalidates both inputs, composes their embedded exact slices,
+/// and checks that occurrence ancestry is literal finite-relation composition
+/// through the shared middle cut.
+///
+/// # Errors
+///
+/// Returns a validation error if either input is noncanonical, policies or
+/// middle observations differ, or direct and relational composition disagree.
+pub fn compose_triadic_observer_transitions_v0(
+    diagram: &SharedProgramDiagram,
+    policy: &TriadicObserverPolicyV0,
+    left: &TriadicObserverTransitionV0,
+    right: &TriadicObserverTransitionV0,
+) -> Result<TriadicObserverTransitionCompositionArtifactV0, LispError> {
+    if left.slice.graft_intersections.is_some() || right.slice.graft_intersections.is_some() {
+        return Err(invalid_error(concat!(
+            "graft-linked triadic transitions require ",
+            "compose_triadic_observer_transitions_with_graft_v0"
+        )));
+    }
+    compose_triadic_observer_transitions_impl(diagram, None, policy, left, right)
+}
+
+/// Compose adjacent graft-linked triadic observer transitions.
+///
+/// # Errors
+///
+/// Returns the errors of [`compose_triadic_observer_transitions_v0`] and also
+/// rejects a graft trace inconsistent with the diagram or either input.
+pub fn compose_triadic_observer_transitions_with_graft_v0(
+    diagram: &SharedProgramDiagram,
+    graft_trace: &GraftTrace,
+    policy: &TriadicObserverPolicyV0,
+    left: &TriadicObserverTransitionV0,
+    right: &TriadicObserverTransitionV0,
+) -> Result<TriadicObserverTransitionCompositionArtifactV0, LispError> {
+    compose_triadic_observer_transitions_impl(diagram, Some(graft_trace), policy, left, right)
+}
+
+fn analyze_triadic_observer_transition_impl(
+    diagram: &SharedProgramDiagram,
+    graft_trace: Option<&GraftTrace>,
+    policy: &TriadicObserverPolicyV0,
+    lower_completed: &[NodeId],
+    upper_completed: &[NodeId],
+) -> Result<TriadicObserverTransitionArtifactV0, LispError> {
+    validate_diagram_ref(diagram)?;
+    if let Some(trace) = graft_trace {
+        validate_graft_trace(diagram, trace)?;
+    }
+    let source_domains = checked_triadic_source_domains(diagram, policy)?;
+    let slice_artifact = match graft_trace {
+        Some(trace) => {
+            analyze_program_slice_with_graft(diagram, trace, lower_completed, upper_completed)?
+        }
+        None => analyze_program_slice(diagram, lower_completed, upper_completed)?,
+    };
+    let result = build_triadic_observer_transition(
+        diagram,
+        policy.clone(),
+        &source_domains,
+        slice_artifact.result,
+    )?;
+    let lower_suffix = past_suffix(&result.lower.cut.completed);
+    let upper_suffix = past_suffix(&result.upper.cut.completed);
+    Ok(TriadicObserverTransitionArtifactV0 {
+        certificate: TriadicObserverTransitionCertificateV0 {
+            id: CertificateId::explicit(format!(
+                "triadic-observer-transition:{}:{lower_suffix}:{upper_suffix}:v0",
+                diagram.function
+            )),
+            scope: concat!(
+                "one exact finite ProgramSlice; three input-source roles; ",
+                "occurrence-level opposite-pair views and complete slice residual"
+            )
+            .to_owned(),
+            diagram_integrity: CheckStatus::Checked,
+            slice_revalidated: CheckStatus::Checked,
+            total_triadic_policy: CheckStatus::Checked,
+            exact_incidence_partition: CheckStatus::Checked,
+            lineage_ancestry: CheckStatus::Checked,
+            complete_slice_residual: CheckStatus::Checked,
+            original_id_preservation: CheckStatus::Checked,
+            graft_frame_consistency: graft_trace.map(|_| CheckStatus::Checked),
+            lower_completed: result.lower.cut.completed.clone(),
+            upper_completed: result.upper.cut.completed.clone(),
+        },
+        result,
+    })
+}
+
+fn compose_triadic_observer_transitions_impl(
+    diagram: &SharedProgramDiagram,
+    graft_trace: Option<&GraftTrace>,
+    policy: &TriadicObserverPolicyV0,
+    left: &TriadicObserverTransitionV0,
+    right: &TriadicObserverTransitionV0,
+) -> Result<TriadicObserverTransitionCompositionArtifactV0, LispError> {
+    validate_diagram_ref(diagram)?;
+    if let Some(trace) = graft_trace {
+        validate_graft_trace(diagram, trace)?;
+    }
+    if &left.policy != policy || &right.policy != policy {
+        return Err(invalid_error(
+            "triadic transition inputs use a different observer policy",
+        ));
+    }
+    let canonical_left = analyze_triadic_observer_transition_impl(
+        diagram,
+        graft_trace,
+        policy,
+        &left.lower.cut.completed,
+        &left.upper.cut.completed,
+    )?
+    .result;
+    if &canonical_left != left {
+        return Err(invalid_error(
+            "left input is not the canonical triadic observer transition",
+        ));
+    }
+    let canonical_right = analyze_triadic_observer_transition_impl(
+        diagram,
+        graft_trace,
+        policy,
+        &right.lower.cut.completed,
+        &right.upper.cut.completed,
+    )?
+    .result;
+    if &canonical_right != right {
+        return Err(invalid_error(
+            "right input is not the canonical triadic observer transition",
+        ));
+    }
+    if left.upper != right.lower {
+        return Err(invalid_error(
+            "adjacent triadic transitions do not share one exact middle observation",
+        ));
+    }
+
+    let composed_slice = match graft_trace {
+        Some(trace) => {
+            compose_program_slices_with_graft(diagram, trace, &left.slice, &right.slice)?
+        }
+        None => compose_program_slices(diagram, &left.slice, &right.slice)?,
+    };
+    let direct = analyze_triadic_observer_transition_impl(
+        diagram,
+        graft_trace,
+        policy,
+        &left.lower.cut.completed,
+        &right.upper.cut.completed,
+    )?
+    .result;
+    if composed_slice.result != direct.slice {
+        return Err(invalid_error(
+            "triadic transition slice residual differs from exact slice composition",
+        ));
+    }
+
+    let mut relation_composite = BTreeSet::new();
+    for left_link in &left.lineage_links {
+        for right_link in &right.lineage_links {
+            if left_link.upper_incidence_index == right_link.lower_incidence_index {
+                relation_composite.insert((
+                    left_link.lower_incidence_index,
+                    right_link.upper_incidence_index,
+                ));
+            }
+        }
+    }
+    let direct_relation = direct
+        .lineage_links
+        .iter()
+        .map(|link| (link.lower_incidence_index, link.upper_incidence_index))
+        .collect::<BTreeSet<_>>();
+    if relation_composite != direct_relation {
+        return Err(invalid_error(concat!(
+            "triadic occurrence ancestry is not exact relational composition ",
+            "through the middle cut"
+        )));
+    }
+
+    let lower_completed = direct.lower.cut.completed.clone();
+    let middle_completed = left.upper.cut.completed.clone();
+    let upper_completed = direct.upper.cut.completed.clone();
+    let lower_suffix = past_suffix(&lower_completed);
+    let upper_suffix = past_suffix(&upper_completed);
+    Ok(TriadicObserverTransitionCompositionArtifactV0 {
+        result: direct,
+        certificate: TriadicObserverTransitionCompositionCertificateV0 {
+            id: CertificateId::explicit(format!(
+                "triadic-observer-transition-compose:{}:{lower_suffix}:{upper_suffix}:v0",
+                diagram.function
+            )),
+            scope: concat!(
+                "two adjacent triadic observer views of exact finite slices; ",
+                "same policy and unchanged checked diagram"
+            )
+            .to_owned(),
+            diagram_integrity: CheckStatus::Checked,
+            inputs_revalidated: CheckStatus::Checked,
+            policy_agreement: CheckStatus::Checked,
+            middle_observation_agreement: CheckStatus::Checked,
+            slice_composition: CheckStatus::Checked,
+            lineage_relation_composition: CheckStatus::Checked,
+            exact_composition: CheckStatus::Checked,
+            lower_completed,
+            middle_completed,
+            upper_completed,
+        },
+    })
 }
 
 fn compose_program_slices_impl(
@@ -613,6 +881,288 @@ fn intersect_graft_frames(
             })
         })
         .collect()
+}
+
+fn triadic_domains() -> [TriadicDomainV0; 3] {
+    [
+        TriadicDomainV0::Construction,
+        TriadicDomainV0::Space,
+        TriadicDomainV0::Time,
+    ]
+}
+
+fn checked_triadic_source_domains(
+    diagram: &SharedProgramDiagram,
+    policy: &TriadicObserverPolicyV0,
+) -> Result<BTreeMap<SourceId, TriadicDomainV0>, LispError> {
+    let input_count = diagram.signature.domain().ports().len();
+    if input_count != 3 || policy.input_domains.len() != input_count {
+        return Err(invalid_error(concat!(
+            "triadic observer policy v0 requires exactly three input ports ",
+            "and three input-domain assignments"
+        )));
+    }
+    let assigned = policy
+        .input_domains
+        .iter()
+        .copied()
+        .collect::<BTreeSet<_>>();
+    let required = triadic_domains().into_iter().collect::<BTreeSet<_>>();
+    if assigned != required {
+        return Err(invalid_error(concat!(
+            "triadic observer policy v0 must assign construction, space, ",
+            "and time exactly once"
+        )));
+    }
+
+    let initial = analyze_causal_cut(diagram, &[])?.result;
+    let mut source_domains = BTreeMap::new();
+    let mut input_indices = BTreeSet::new();
+    for cut_wire in &initial.frontier {
+        let WireProducer::Input { index } = &cut_wire.wire.producer else {
+            return Err(invalid_error(
+                "the initial causal cut contains a non-input producer",
+            ));
+        };
+        let input_index = usize::try_from(*index)
+            .map_err(|_| invalid_error("input index cannot be represented by usize"))?;
+        let Some(domain) = policy.input_domains.get(input_index).copied() else {
+            return Err(invalid_error(
+                "initial cut input lies outside the triadic policy boundary",
+            ));
+        };
+        if !input_indices.insert(*index) {
+            return Err(invalid_error(
+                "one triadic input crosses the initial cut more than once",
+            ));
+        }
+        if cut_wire.wire.lineage.len() != 1 || cut_wire.sources.len() != 1 {
+            return Err(invalid_error(concat!(
+                "triadic observer policy v0 requires one checked root ",
+                "occurrence and source per input"
+            )));
+        }
+        let source = cut_wire.sources[0].clone();
+        if source_domains.insert(source, domain).is_some() {
+            return Err(invalid_error(
+                "one checked source was assigned to two triadic input roles",
+            ));
+        }
+    }
+    if input_indices.len() != input_count || source_domains.len() != input_count {
+        return Err(invalid_error(
+            "the initial cut does not expose the complete triadic input boundary",
+        ));
+    }
+    let checked_sources = diagram
+        .source_partition()
+        .into_keys()
+        .collect::<BTreeSet<_>>();
+    if source_domains.keys().cloned().collect::<BTreeSet<_>>() != checked_sources {
+        return Err(invalid_error(concat!(
+            "triadic input assignments do not cover the exact checked ",
+            "source partition"
+        )));
+    }
+    Ok(source_domains)
+}
+
+fn build_triadic_cut_observation(
+    diagram: &SharedProgramDiagram,
+    source_domains: &BTreeMap<SourceId, TriadicDomainV0>,
+    cut: CausalCut,
+) -> Result<TriadicCutObservationV0, LispError> {
+    let occurrences = diagram
+        .occurrences
+        .iter()
+        .map(|occurrence| (occurrence.id.clone(), occurrence))
+        .collect::<BTreeMap<_, _>>();
+    if occurrences.len() != diagram.occurrences.len() {
+        return Err(invalid_error(
+            "triadic cut observation found repeated checked occurrence IDs",
+        ));
+    }
+
+    let mut incidences = Vec::new();
+    let mut source_free_wire_indices = Vec::new();
+    for (cut_wire_index, cut_wire) in cut.frontier.iter().enumerate() {
+        let cut_wire_index = checked_u32_index(cut_wire_index, "causal cut frontier")?;
+        if cut_wire.wire.lineage.len() != cut_wire.sources.len() {
+            return Err(invalid_error(
+                "cut lineage and source incidence lengths disagree",
+            ));
+        }
+        if cut_wire.wire.lineage.is_empty() {
+            if !cut_wire.sources.is_empty() {
+                return Err(invalid_error(
+                    "source-free cut wire carries a nonempty source sequence",
+                ));
+            }
+            source_free_wire_indices.push(cut_wire_index);
+            continue;
+        }
+        for (lineage_index, (occurrence_id, source)) in cut_wire
+            .wire
+            .lineage
+            .iter()
+            .zip(&cut_wire.sources)
+            .enumerate()
+        {
+            let occurrence = occurrences.get(occurrence_id).ok_or_else(|| {
+                invalid_error(format!(
+                    "triadic cut references missing occurrence {occurrence_id}"
+                ))
+            })?;
+            if &occurrence.source != source {
+                return Err(invalid_error(
+                    "triadic cut source disagrees with its checked occurrence",
+                ));
+            }
+            let domain = source_domains.get(source).copied().ok_or_else(|| {
+                invalid_error(format!(
+                    "triadic policy does not classify checked source {source}"
+                ))
+            })?;
+            incidences.push(TriadicCutIncidenceV0 {
+                cut_wire_index,
+                lineage_index: checked_u32_index(lineage_index, "wire lineage")?,
+                occurrence: (*occurrence).clone(),
+                domain,
+            });
+        }
+    }
+
+    let mut opposite_pair_views = Vec::new();
+    for observer in triadic_domains() {
+        let mut visible_incidence_indices = Vec::new();
+        let mut hidden_own_incidence_indices = Vec::new();
+        for (index, incidence) in incidences.iter().enumerate() {
+            let index = checked_u32_index(index, "triadic cut incidence")?;
+            if incidence.domain == observer {
+                hidden_own_incidence_indices.push(index);
+            } else {
+                visible_incidence_indices.push(index);
+            }
+        }
+        opposite_pair_views.push(TriadicOppositePairCutV0 {
+            observer,
+            visible_incidence_indices,
+            hidden_own_incidence_indices,
+        });
+    }
+    validate_opposite_pair_partition(&incidences, &opposite_pair_views)?;
+
+    Ok(TriadicCutObservationV0 {
+        cut,
+        incidences,
+        source_free_wire_indices,
+        opposite_pair_views,
+    })
+}
+
+fn validate_opposite_pair_partition(
+    incidences: &[TriadicCutIncidenceV0],
+    views: &[TriadicOppositePairCutV0],
+) -> Result<(), LispError> {
+    if views.len() != 3
+        || views
+            .iter()
+            .map(|view| view.observer)
+            .collect::<BTreeSet<_>>()
+            != triadic_domains().into_iter().collect::<BTreeSet<_>>()
+    {
+        return Err(invalid_error(
+            "triadic cut does not contain exactly three opposite-pair views",
+        ));
+    }
+    for (index, incidence) in incidences.iter().enumerate() {
+        let index = checked_u32_index(index, "triadic cut incidence")?;
+        let visible_count = views
+            .iter()
+            .filter(|view| view.visible_incidence_indices.contains(&index))
+            .count();
+        let hidden = views
+            .iter()
+            .filter(|view| view.hidden_own_incidence_indices.contains(&index))
+            .map(|view| view.observer)
+            .collect::<Vec<_>>();
+        if visible_count != 2 || hidden.as_slice() != [incidence.domain] {
+            return Err(invalid_error(concat!(
+                "each triadic incidence must be visible from its two opposite ",
+                "roles and hidden from its own role exactly once"
+            )));
+        }
+    }
+    Ok(())
+}
+
+fn build_triadic_observer_transition(
+    diagram: &SharedProgramDiagram,
+    policy: TriadicObserverPolicyV0,
+    source_domains: &BTreeMap<SourceId, TriadicDomainV0>,
+    slice: ProgramSlice,
+) -> Result<TriadicObserverTransitionV0, LispError> {
+    let lower = build_triadic_cut_observation(diagram, source_domains, slice.lower.clone())?;
+    let upper = build_triadic_cut_observation(diagram, source_domains, slice.upper.clone())?;
+    let mut lineage_links = Vec::new();
+    for (lower_index, lower_incidence) in lower.incidences.iter().enumerate() {
+        for (upper_index, upper_incidence) in upper.incidences.iter().enumerate() {
+            if lower_incidence.domain == upper_incidence.domain
+                && lower_incidence.occurrence.source == upper_incidence.occurrence.source
+                && upper_incidence
+                    .occurrence
+                    .path
+                    .0
+                    .starts_with(&lower_incidence.occurrence.path.0)
+            {
+                lineage_links.push(TriadicLineageLinkV0 {
+                    lower_incidence_index: checked_u32_index(
+                        lower_index,
+                        "lower triadic incidence",
+                    )?,
+                    upper_incidence_index: checked_u32_index(
+                        upper_index,
+                        "upper triadic incidence",
+                    )?,
+                });
+            }
+        }
+    }
+
+    let mut opposite_pair_transitions = Vec::new();
+    for observer in triadic_domains() {
+        let mut visible_lineage_link_indices = Vec::new();
+        for (link_index, link) in lineage_links.iter().enumerate() {
+            let lower_index = usize::try_from(link.lower_incidence_index)
+                .map_err(|_| invalid_error("lower incidence index exceeds usize"))?;
+            let Some(lower_incidence) = lower.incidences.get(lower_index) else {
+                return Err(invalid_error(
+                    "lineage link references a missing lower incidence",
+                ));
+            };
+            if lower_incidence.domain != observer {
+                visible_lineage_link_indices
+                    .push(checked_u32_index(link_index, "triadic lineage link")?);
+            }
+        }
+        opposite_pair_transitions.push(TriadicOppositePairTransitionV0 {
+            observer,
+            visible_lineage_link_indices,
+        });
+    }
+
+    Ok(TriadicObserverTransitionV0 {
+        policy,
+        slice,
+        lower,
+        upper,
+        lineage_links,
+        opposite_pair_transitions,
+    })
+}
+
+fn checked_u32_index(index: usize, name: &str) -> Result<u32, LispError> {
+    u32::try_from(index).map_err(|_| invalid_error(format!("{name} exceeds u32")))
 }
 
 fn past_suffix(completed: &[NodeId]) -> String {

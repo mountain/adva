@@ -28,6 +28,7 @@ judgments.
 - `SharedProgramDiagram`;
 - compiler-emitted nested graft-trace companion types;
 - causal-cut, single-event, and exact program-slice result types;
+- bounded triadic cut-observation and observer-transition companion types;
 - explicit source, occurrence, path, and history data;
 - distinct directed rewrite, equation, and coherence types;
 - versioned JSON envelopes and certificate types.
@@ -44,6 +45,8 @@ judgments.
 - certified causal-cut and enabled-event analysis over checked diagrams;
 - exact same-diagram program-slice analysis between nested causal pasts;
 - certificate-bearing exact composition of adjacent program-slice views;
+- certificate-bearing three-domain opposite-pair readings and exact adjacent
+  observer-transition composition;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
 
@@ -116,6 +119,20 @@ These analyses preserve source and occurrence lineage without evaluation.
 They do not assert a topology object, an observer pullback, equality of
 alternative schedules, or a coherence cell.
 
+The first bounded observer companion is
+`TriadicObserverTransitionV0`. An explicit policy assigns exactly three input
+positions to construction, space, and time; Rust derives the corresponding
+source map from the checked initial cut. Each endpoint cut is expanded into
+occurrence-level incidences. The view for one role exposes the other two source
+fibres, while own-role incidences and source-free wires remain explicit. Lower
+and upper incidences are related by unchanged source identity and checked
+occurrence-path ancestry. Adjacent views compose only after both embedded
+`ProgramSlice` values and the finite ancestry relation compose exactly.
+
+This companion does not type internal wires as construction, space, or time.
+It is an observer projection of one exact process interval, not an active
+program rewrite, reversible transport, specialization result, or proof.
+
 The Python boundary exposes these artifacts only by invoking Rust and decoding
 the returned result/certificate JSON. Adjacent composition accepts three pasts
 and derives both input slices inside Rust; no Python-constructed slice, frame,
@@ -185,6 +202,8 @@ The stable slice contains finite modules, terms, diagrams, compiler-emitted
 certified nested graft frames, evaluation, differentiation, explicit source
 partitions, certified finite causal cuts, single-event frontier replacement,
 exact program slices and adjacent composition, and lossless serialization.
+It also contains the bounded version-zero triadic observer-transition
+companion over exact three-source input policies.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
