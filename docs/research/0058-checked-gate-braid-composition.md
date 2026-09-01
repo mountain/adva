@@ -62,7 +62,7 @@ the color-indexed finite state quotient is only
 Every schedule without the gate acts as the identity on color-indexed values.
 Every schedule containing the gate acts as $X$, because $X^2=X$.  The fixture
 computes the complete 12-element finite closure: six boundary permutations,
-each paired with exactly one of these two transformations.
+each paired with both transformations.
 
 ---
 
