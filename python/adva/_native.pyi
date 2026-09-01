@@ -24,6 +24,19 @@ class Program:
         middle_completed: list[int],
         upper_completed: list[int],
     ) -> tuple[str, str]: ...
+    def triadic_observer_transition_v0(
+        self,
+        input_domains: list[str],
+        lower_completed: list[int],
+        upper_completed: list[int],
+    ) -> tuple[str, str]: ...
+    def compose_triadic_observer_transitions_v0(
+        self,
+        input_domains: list[str],
+        lower_completed: list[int],
+        middle_completed: list[int],
+        upper_completed: list[int],
+    ) -> tuple[str, str]: ...
     def evaluate(self, inputs: Mapping[str, float]) -> tuple[list[float], str]: ...
     def value_and_gradient(
         self, inputs: Mapping[str, float]

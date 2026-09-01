@@ -1,15 +1,20 @@
 use adva_ir::{
     CompilationCertificate, DiagramValidationCertificate, GraftTraceArtifact, NodeId,
-    SharedProgramDiagram,
+    SharedProgramDiagram, TriadicDomainV0, TriadicObserverPolicyV0,
 };
 use adva_lisp::{
     LinkedModules, advance_causal_cut as advance_cut, analyze_causal_cut as analyze_cut,
     analyze_program_slice as analyze_slice,
-    analyze_program_slice_with_graft as analyze_slice_with_graft, compile_function,
+    analyze_program_slice_with_graft as analyze_slice_with_graft,
+    analyze_triadic_observer_transition_v0 as analyze_triadic_transition,
+    analyze_triadic_observer_transition_with_graft_v0 as analyze_triadic_transition_with_graft,
+    compile_function,
     compose_program_slices as compose_slices,
-    compose_program_slices_with_graft as compose_slices_with_graft, evaluate,
-    evaluate_with_differential, import_diagram_json, link_modules as link_rust_modules,
-    parse_module, validate_diagram,
+    compose_program_slices_with_graft as compose_slices_with_graft,
+    compose_triadic_observer_transitions_v0 as compose_triadic_transitions,
+    compose_triadic_observer_transitions_with_graft_v0 as compose_triadic_transitions_with_graft,
+    evaluate, evaluate_with_differential, import_diagram_json,
+    link_modules as link_rust_modules, parse_module, validate_diagram,
 };
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
@@ -189,6 +194,104 @@ impl PyProgram {
         ))
     }
 
+    fn triadic_observer_transition_v0(
+        &self,
+        input_domains: Vec<String>,
+        lower_completed: Vec<u32>,
+        upper_completed: Vec<u32>,
+    ) -> PyResult<PyCertifiedProcess> {
+        let policy = triadic_policy(input_domains)?;
+        let lower_completed = lower_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let upper_completed = upper_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let artifact = match &self.graft_trace {
+            Some(graft_trace) => analyze_triadic_transition_with_graft(
+                &self.diagram,
+                &graft_trace.result,
+                &policy,
+                &lower_completed,
+                &upper_completed,
+            ),
+            None => analyze_triadic_transition(
+                &self.diagram,
+                &policy,
+                &lower_completed,
+                &upper_completed,
+            ),
+        }
+        .map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
+    }
+
+    fn compose_triadic_observer_transitions_v0(
+        &self,
+        input_domains: Vec<String>,
+        lower_completed: Vec<u32>,
+        middle_completed: Vec<u32>,
+        upper_completed: Vec<u32>,
+    ) -> PyResult<PyCertifiedProcess> {
+        let policy = triadic_policy(input_domains)?;
+        let lower_completed = lower_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let middle_completed = middle_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let upper_completed = upper_completed.into_iter().map(NodeId).collect::<Vec<_>>();
+        let artifact = match &self.graft_trace {
+            Some(graft_trace) => {
+                let left = analyze_triadic_transition_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &policy,
+                    &lower_completed,
+                    &middle_completed,
+                )
+                .map_err(py_error)?;
+                let right = analyze_triadic_transition_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &policy,
+                    &middle_completed,
+                    &upper_completed,
+                )
+                .map_err(py_error)?;
+                compose_triadic_transitions_with_graft(
+                    &self.diagram,
+                    &graft_trace.result,
+                    &policy,
+                    &left.result,
+                    &right.result,
+                )
+            }
+            None => {
+                let left = analyze_triadic_transition(
+                    &self.diagram,
+                    &policy,
+                    &lower_completed,
+                    &middle_completed,
+                )
+                .map_err(py_error)?;
+                let right = analyze_triadic_transition(
+                    &self.diagram,
+                    &policy,
+                    &middle_completed,
+                    &upper_completed,
+                )
+                .map_err(py_error)?;
+                compose_triadic_transitions(
+                    &self.diagram,
+                    &policy,
+                    &left.result,
+                    &right.result,
+                )
+            }
+        }
+        .map_err(py_error)?;
+        Ok((
+            serde_json::to_string_pretty(&artifact.result).map_err(py_error)?,
+            serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
+        ))
+    }
+
     fn evaluate(&self, inputs: BTreeMap<String, f64>) -> PyResult<(Vec<f64>, String)> {
         let result = evaluate(&self.diagram, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
@@ -227,6 +330,21 @@ fn load_program_json(source: &str) -> PyResult<PyProgram> {
         graft_trace: None,
         validation_certificate: validated.certificate,
     })
+}
+
+fn triadic_policy(input_domains: Vec<String>) -> PyResult<TriadicObserverPolicyV0> {
+    let input_domains = input_domains
+        .into_iter()
+        .map(|domain| match domain.as_str() {
+            "construction" => Ok(TriadicDomainV0::Construction),
+            "space" => Ok(TriadicDomainV0::Space),
+            "time" => Ok(TriadicDomainV0::Time),
+            _ => Err(PyValueError::new_err(format!(
+                "unknown triadic observer domain {domain:?}"
+            ))),
+        })
+        .collect::<PyResult<Vec<_>>>()?;
+    Ok(TriadicObserverPolicyV0 { input_domains })
 }
 
 fn py_error(error: impl std::fmt::Display) -> PyErr {

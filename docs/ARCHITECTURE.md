@@ -56,12 +56,16 @@ judgments.
 - JSON and certificate access;
 - read-only Rust-derived graft-trace, program-slice, and exact-composite
   snapshots;
+- read-only derivation and exact composition of Rust-owned version-zero
+  triadic observer transitions;
 - typed scalar evaluation and gradients.
 
 ### `python/adva`
 
 - ergonomic typed facade;
 - frozen inspection views over Rust-owned graft and slice artifacts;
+- a strict, bounded research runner that packages exact triadic interfaces,
+  complete slices, and chosen checked schedules without semantic allocation;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
@@ -139,6 +143,16 @@ and derives both input slices inside Rust; no Python-constructed slice, frame,
 or certificate is admitted as semantic input. Imported version-one diagrams
 still have no graft trace.
 
+`adva.research.ResearchMachineV0` sits above this read-only boundary. One
+`InterpretationCellV0` retains the lower and upper triadic observations, the
+complete canonical `ProgramSlice`, and one stepwise checked schedule. Optional
+finite replay repeats the same static experiment under a literal endpoint
+comparison and gives each dynamic record a nonsemantic epoch coordinate. It
+does not feed an upper cut back into the program, re-enable events, or allocate
+fresh `NodeId`, occurrence, wire, cut, or source identities. The decision and
+promotion boundary are recorded in
+[ADR 0011](adr/0011-bounded-three-layer-research-machine.md).
+
 The theoretical dependency and promotion gates are specified in
 [`PROGRAM_PROCESS_CORE.md`](PROGRAM_PROCESS_CORE.md) and
 [ADR 0006](adr/0006-program-process-before-projections.md).
@@ -204,6 +218,11 @@ partitions, certified finite causal cuts, single-event frontier replacement,
 exact program slices and adjacent composition, and lossless serialization.
 It also contains the bounded version-zero triadic observer-transition
 companion over exact three-source input policies.
+
+The Python research runner is deliberately outside the stable semantic slice.
+It is a bounded experiment orchestrator over stable artifacts; its verdicts
+and replay digest are not Rust certificates and are never accepted by the
+kernel as semantic input.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
