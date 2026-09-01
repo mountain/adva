@@ -40,6 +40,8 @@ claim that the surrounding calculus has been completely presented.
   sources assigned once each to construction, space, and time, with
   occurrence-level opposite-pair cut views, source-free residual wires,
   copy-path ancestry, and exact adjacent relation composition.
+- read-only Python invocation and inspection of those exact Rust triadic
+  transition and composition artifacts.
 
 ## Explicitly excluded
 
@@ -47,6 +49,7 @@ claim that the surrounding calculus has been completely presented.
 - local term binders, alpha equivalence, arbitrary graph-context
   substitution, and substitution across unlinked program stores;
 - recursion and cyclic modules;
+- stable feedback, event re-enabling, and semantic epoch allocation;
 - implicit contraction, aliases, memoization, and CSE;
 - merge or source identification;
 - normalization as an in-place mutation;
@@ -64,6 +67,16 @@ claim that the surrounding calculus has been completely presented.
   policies, Raw111 bracket trees as stable ontology, right-to-forget rules,
   active triadic normalization, reverse-dual proof search, specialization,
   interpreter semantics, and universal computation.
+
+## Bounded research companion
+
+`adva.research.ResearchMachineV0` may orchestrate finite runs over the included
+Rust artifacts. Its interpretation cells retain exact interfaces, slices,
+step certificates, and schedule order. Its optional frontier-matched replay
+repeats one static checked experiment and records only nonsemantic epoch
+coordinates. This is executable research evidence, not an extension of PSC0
+semantics. Exact-cut return for a nonempty interval remains unrepresentable;
+fuel exhaustion returns partial evidence and never proves nonexistence.
 
 ## Equality interfaces
 
