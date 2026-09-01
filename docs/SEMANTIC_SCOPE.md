@@ -86,6 +86,14 @@ not a certificate, and its complete `ProgramSlice` remains attached.  It does
 not authorize a stable through object, forgetting, active normalization,
 specialization, relation composition, logic, or universality.
 
+`adva.triangular_research.TriangularThroughMachineV0` may derive three such
+local angle relations from one checked six-hole configuration and compare
+declared legal schedules on the same compiled function.  Its global-closure
+record is an obstruction: same-source copy siblings remain distinct
+occurrences, so no connector is inferred and the raw circular composite stays
+unrepresentable.  The adapter authorizes neither sibling identification nor a
+stable triangle, connector, closure, or confluence law.
+
 ## Equality interfaces
 
 The initial core distinguishes:
