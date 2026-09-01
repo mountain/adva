@@ -78,6 +78,14 @@ coordinates. This is executable research evidence, not an extension of PSC0
 semantics. Exact-cut return for a nonempty interval remains unrepresentable;
 fuel exhaustion returns partial evidence and never proves nonexistence.
 
+`adva.research.MultiHoleThroughMachineV0` may additionally select one certified
+call frame, classify its ordered holes by two opposite source domains, and
+propose a finite relation over a declared upper-cut-wire quotient.  Its
+incidence numbers only index unchanged Rust artifacts, its layered report is
+not a certificate, and its complete `ProgramSlice` remains attached.  It does
+not authorize a stable through object, forgetting, active normalization,
+specialization, relation composition, logic, or universality.
+
 ## Equality interfaces
 
 The initial core distinguishes:
