@@ -847,3 +847,5 @@ retains finite computability, admits identity and sequential cut, and exposes
 an evidence-sensitive arrow of time without claiming that a full natural
 deduction has already been constructed.
 
+The first resource-preserving composite calibration is continued in
+[`0054-finite-linear-synchronized-evidence-tensor.md`](0054-finite-linear-synchronized-evidence-tensor.md).
