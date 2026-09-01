@@ -182,6 +182,8 @@ calibrations, line--hole bivalence, and thread-respecting compactification
 constraints are
 recorded in
 [`docs/research/0081-relative-halt-exploration-threaded-compactification.md`](docs/research/0081-relative-halt-exploration-threaded-compactification.md).
+The finite threaded propositional and predicate adequacy theorem is recorded in
+[`docs/research/0082-threaded-finite-logic-adequacy.md`](docs/research/0082-threaded-finite-logic-adequacy.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
