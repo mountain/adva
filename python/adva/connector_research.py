@@ -491,7 +491,8 @@ class ConnectorCalibrationMachineV0:
         validation.append(
             self._satisfied(
                 ConnectorCalibrationLayerV0.PROMOTION_BOUNDARY,
-                "finite relational closure remains separate from semantic closure and forgetting rights",
+                "finite relational closure remains separate from semantic "
+                "closure and forgetting rights",
             )
         )
         return self._finish(
