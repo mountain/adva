@@ -134,8 +134,14 @@ def _triangle():
     return TriangularThroughMachineV0().run(code, request)
 
 
-def _through(source: str, module: str, function: str, schedule: tuple[int, ...], *,
-             initial_completed: tuple[int, ...] = ()):
+def _through(
+    source: str,
+    module: str,
+    function: str,
+    schedule: tuple[int, ...],
+    *,
+    initial_completed: tuple[int, ...] = (),
+):
     code = ResearchCodeV0(
         sources=(source,),
         module=module,
