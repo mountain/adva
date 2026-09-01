@@ -183,6 +183,14 @@ so the nerve is the boundary of the two-simplex:
 \boxed{N(\{U_K,U_X,U_t\})\cong \partial\Delta^2\simeq S^1.}
 \]
 
+This statement concerns the **incidence nerve of the chart family**.  It does
+not invoke the nerve theorem or claim that the three-element domain set is
+homotopy equivalent to a circle.  In the discrete finite model each \(U_D\)
+has two disconnected points, so this is not a good cover whose nerve may be
+identified with the base.  The circle is the coordination complex on which
+overlap transport can be tested.  Note 0068 makes that distinction
+executable.
+
 This is the first precise answer to the finite-representation problem in this
 line of work.  A finite observer need not contain one completed totality.
 It can retain:
