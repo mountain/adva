@@ -7,6 +7,12 @@ boundary following
 [0082](0082-threaded-finite-logic-adequacy.md), and
 [0083](0083-triadic-conflict-aperture-completion.md).
 
+The later object-level continuation
+[0094](0094-focused-normal-forms-subformula-decidable-derivability.md)
+defines a separate syntax-directed focused search and proves it complete for
+the finite `TND0` right-residual skeleton.  It does not retroactively turn the
+arbitrary candidate schedule in this note into a complete proof enumerator.
+
 No stable Adva formula, context, proof term, entailment-cell type, search
 operation, certificate, logical symbol, or Rust API is introduced here.
 The executable companion is a self-contained Python research test. Its local
@@ -659,6 +665,12 @@ remains. `SearchExhausted` means that both finite declared lists ended without
 a certificate. The latter does not prove non-derivability because the
 candidate list is not a complete proof enumerator. Neither result has truth,
 refutation, proof, or `Omega` authority.
+
+Note 0094 introduces the distinct result `FocusedSearchExhausted`.  That
+result can prove `TND0` skeleton nonderivability only because its replayed
+search covers the normal/neutral focused grammar and every contiguous ordered
+weak partition.  The name, search space, and negative authority must remain
+separate from this note's bounded `SearchExhausted`.
 
 ---
 
