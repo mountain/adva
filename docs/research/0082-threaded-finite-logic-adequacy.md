@@ -761,9 +761,12 @@ Exploration can then search for a derivation, countermodel, or retained
 frontier without defining truth by the behavior of the search.
 
 Note 0084 takes the second route for `Ax`, ordered right implication
-introduction, and source-disjoint elimination.  Its next dependency is a
-certificate-preserving proof-substitution theorem.  The Cartesian route and
-proof-relevant classical control remain separate open constructions.
+introduction, and source-disjoint elimination. Note 0085 proves the stronger
+ordered one-hole proof-substitution theorem and derives the corresponding
+conditional V0 fresh-cut admissibility and local boundary-sequent preservation
+results. Its next dependency is an explicit beta-ledger transport. The
+Cartesian route and proof-relevant classical control remain separate open
+constructions.
 
 ## Conservative conclusion
 
