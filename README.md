@@ -193,6 +193,10 @@ support-mask coherence calibration is recorded in
 The strengthened ordered one-hole substitution theorem, conditional V0
 fresh-cut admissibility, and beta-ledger transport boundary are recorded in
 [`docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md`](docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md).
+Its proof-theoretic continuation supplies contextual beta-ledger transport,
+heterogeneous ledger-indexed preservation, and beta-only strong normalization
+for finite `TND0` derivations in
+[`docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md`](docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
