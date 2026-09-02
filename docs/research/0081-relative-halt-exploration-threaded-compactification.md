@@ -37,6 +37,11 @@ are supplied in
 [0082](0082-threaded-finite-logic-adequacy.md).  They remain research-local
 and do not yet provide natural deduction or stable kernel types.
 
+The distinct-domain exclusive-source conflict is refined further in
+[0083](0083-triadic-conflict-aperture-completion.md): it opens an oriented
+aperture in the unique remaining domain, and only a certified linear common
+lift closes the resulting triangular cell.
+
 ---
 
 ## 0. Executive correction and result
@@ -421,6 +426,14 @@ This **compatible-pair completeness** can fail when two individually valid
 threads consume the same linear source, disagree on an occurrence, or have
 incompatible residual obligations.  In that case support intersection
 over-approximates proof-relevant conjunction.
+
+Note 0083 refines one such failure.  When the two competing lines have
+distinct domain identities, their conflict may open an oriented aperture in
+the unique remaining domain rather than becoming immediately empty.  A
+remaining-domain line plus a closure certificate inhabits the compatibility
+fibre only if it projects back to both boundary lines and uses the shared
+source exactly once.  Same-domain contraction and three-way conflict remain
+separate obligations.
 
 ### 3.2 Truth, falsehood, implication, and negation
 
@@ -1020,6 +1033,13 @@ connectives or natural-deduction rules.
 
 The accompanying test now implements this finite diagnostic.
 
+The companion note 0083 and
+**tests/python/test_triadic_conflict_aperture_calibration.py** refine the
+distinct-domain conflict case.  They check all six ordered domain pairs,
+orientation duality, exact third-domain filling, boundary projection, and
+single source use.  An open aperture remains distinct from a closed
+conjunction witness.
+
 ### 9.3 Finite semantic-entailment fixture
 
 For finite premise supports \(\Gamma\) and conclusion support \(P\):
@@ -1134,6 +1154,8 @@ Even a successful finite calibration establishes at most:
   enumerated carrier, with undecided search kept outside the truth values;
 - one finite connective-fibre diagnostic that preserves disjunction tags and
   exposes compatibility and transformer-completeness obligations;
+- one research-local third-domain aperture rule for distinct-domain
+  exclusive-source conflicts, with higher coherence still open;
 - one research-local finite many-sorted predicate fixture with
   capture-avoiding substitution and semantic adequacy, recorded in note 0082;
 - one decidable finite semantic-entailment relation with exact
@@ -1194,8 +1216,11 @@ carrier this recovers pointwise bivalence.  Connectives first act on filling
 fibres: compatible product for conjunction, tagged sum for disjunction, and
 admissible total transformation for implication.  Their Boolean truth tables
 are support-level shadows and require explicit compatibility, transformer,
-and empty-fibre completeness.  Semantic entailment is finite support
-inclusion.  Note 0082 supplies the first finite predicate terms,
+and empty-fibre completeness.  Note 0083 shows how one distinct-domain source
+conflict can expose that missing compatibility as an aperture in the
+remaining domain; a certified linear common lift closes a triangular cell,
+while associativity and three-way closure remain open.  Semantic entailment
+is finite support inclusion.  Note 0082 supplies the first finite predicate terms,
 capture-avoiding substitution, dependent-sum and dependent-product
 quantifiers, and a structural-induction proof that filling inhabitation
 matches finite Tarskian satisfaction.  Stable observer-indexed quantifiers and
