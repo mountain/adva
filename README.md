@@ -228,6 +228,11 @@ one type language, finite line and circle forms, typed thread words, and five
 syntax-only interpreter declarations, is proposed in
 [`docs/research/0095-bootstrap-zero-geometric-threading-syntax.md`](docs/research/0095-bootstrap-zero-geometric-threading-syntax.md).
 It introduces no evaluation, denotation, or stable API.
+The external finite placement of all 128 seven-world Boolean supports into
+twenty triangle archetypes, together with the exact directed-edge and chiral
+counts and their syntax-only Bootstrap Zero alignment, is recorded in
+[`docs/research/0096-boolean-triangle-placement-language-alignment.md`](docs/research/0096-boolean-triangle-placement-language-alignment.md).
+It defines no interpreter clause or Boolean computation semantics.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
