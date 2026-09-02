@@ -1026,3 +1026,9 @@ It is to promote the local replay vocabulary, define actual transport and
 cell composition, and prove higher coherence without erasing the distinction
 between current proof state, composite boundary action, ordered history, and
 the cell that relates histories.
+
+The object-level branch continues independently in
+[0094](0094-focused-normal-forms-subformula-decidable-derivability.md).
+That note uses normalization to derive normal/neutral forms, subformula
+control, and focused decidable derivability.  Those results neither discharge
+this audit-composition obligation nor require it as a premise.
