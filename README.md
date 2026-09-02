@@ -197,10 +197,27 @@ Its proof-theoretic continuation supplies contextual beta-ledger transport,
 heterogeneous ledger-indexed preservation, and beta-only strong normalization
 for finite `TND0` derivations in
 [`docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md`](docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md).
-The next continuation separates proof-tree equality from audit-history
-coherence, proves beta-only local and global confluence, and gives each fixed
-finite `TND0` starting derivation a unique beta normal form in
-[`docs/research/0087-beta-history-local-confluence-audit-2-cells.md`](docs/research/0087-beta-history-local-confluence-audit-2-cells.md).
+The pure computation syntax joining ordered multi-hole configurations,
+three-role annotations, typed through apertures, explicit connectors, and
+legal recursive Omega circles is proposed in
+[`docs/research/0087-typed-three-domain-threaded-multihole-calculus.md`](docs/research/0087-typed-three-domain-threaded-multihole-calculus.md).
+It adds no evaluation relation, denotation, or stable API.
+A reusable, occurrence-reopenable historical distributivity character is
+calibrated in
+[`docs/research/0088-historical-distributivity-character-v0.md`](docs/research/0088-historical-distributivity-character-v0.md).
+Its finite-observer failure frontier and closure boundary are developed in
+[`docs/research/0089-failure-frontiers-observer-relative-closure.md`](docs/research/0089-failure-frontiers-observer-relative-closure.md),
+with a prefix-frontier calibration plan in
+[`docs/research/0090-prefix-frontier-closure-calibration-plan.md`](docs/research/0090-prefix-frontier-closure-calibration-plan.md).
+The endogenous scope-breakthrough ledger and its first generative
+distributivity calibration plan are recorded in
+[`docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md`](docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md)
+and
+[`docs/research/0092-generative-distributivity-venture-calibration-plan.md`](docs/research/0092-generative-distributivity-venture-calibration-plan.md).
+The proof-theoretic continuation separates proof-tree equality from
+audit-history coherence, proves beta-only local and global confluence, and
+gives each fixed finite `TND0` starting derivation a unique beta normal form in
+[`docs/research/0093-beta-history-local-confluence-audit-2-cells.md`](docs/research/0093-beta-history-local-confluence-audit-2-cells.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in

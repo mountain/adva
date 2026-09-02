@@ -1,0 +1,1221 @@
+# A Typed Three-Domain Threaded Multi-Hole Syntax
+
+Status: pure computation-syntax proposal following
+[0033](0033-omega-type-computational-boundary.md),
+[0057](0057-typed-vacua-constant-boundary-braids.md),
+[0070](0070-typed-surreal-through-forms.md),
+[0074](0074-three-layer-research-machine-v0.md),
+[0075](0075-grounded-multi-hole-through-adapter-v0.md),
+[0076](0076-three-angle-single-diagram-calibration.md),
+[0077](0077-typed-connector-trichotomy-v0.md), and
+[0079](0079-typed-hole-open-close-calibration-v0.md).
+
+This note gives a grammar, types, formation judgements, and syntax-preserving
+maps for one computation language containing:
+
+- typed multi-hole program configurations;
+- the three observer roles K, X, and t;
+- typed through apertures and explicit connectors; and
+- recursive, finitely written program graphs, including an Omega loop.
+
+It gives no evaluation relation, denotation, truth definition, proposition
+language, entailment, normalization procedure, or termination rule. Logic
+may later prove that terms of this language are well formed and may use those
+derivations in a Hintikka/Henkin completeness construction. That metatheory
+is deliberately outside the present object language.
+
+The proposal changes no stable Rust type, adva.ir schema, or operation
+registry. In particular, the current finite acyclic PSC0 core remains the
+implemented authority; recursion below is a proposed syntax extension, not a
+claim about the current evaluator.
+
+---
+
+## 0. Result and boundary
+
+The three existing lines do not need three independently mutable programs.
+They need one typed syntax object with dependent fields:
+
+\[
+\boxed{
+\Xi_Q
+=
+\operatorname{pack}
+(C,\sigma,G;\ U,S,V,w;\ O_Q;\ \mathcal A_Q,\rho,\mathcal K;\ R).
+}
+\tag{Xi}
+\]
+
+The fields are syntactic data:
+
+| field | syntactic role |
+|---|---|
+| \(C\) | a typed program context with ordered syntax holes |
+| \(\sigma\) | an ordered configuration of argument programs and hole bindings |
+| \(G\) | a graft derivation retaining frames, scopes, and renamings |
+| \(U,S,V\) | two named boundaries and one same-graph slice expression \(S=P[U,V]\) |
+| \(w\) | a typed finite word over the event occurrences named by \(S\) |
+| \(O_Q\) | a three-role annotation of exact source and incidence names |
+| \(\mathcal A_Q\) | through apertures grounded by explicit syntactic references |
+| \(\rho\) | zero or more chosen filling witnesses |
+| \(\mathcal K\) | explicit endpoint connectors |
+| \(R\) | every unprojected term, identity, alternative, and derivation residual |
+
+Every later presentation is formed from the same term:
+
+\[
+(C,\sigma)
+\xrightarrow{\mathsf{graft}}
+(P,G)
+\xrightarrow{\mathsf{frame}}
+(U,S,V,w)
+\xrightarrow{\mathsf{annotate}_Q}
+O_Q
+\xrightarrow{\mathsf{ground}}
+\mathcal A_Q
+\xrightarrow{\mathsf{fill}_{\rho,\mathcal K}}
+\Xi_Q.
+\tag{Pipeline}
+\]
+
+These arrows are constructors or checked syntax transformations. They do
+not state what a program returns.
+
+---
+
+## 1. Signatures, frontiers, and program types
+
+### 1.1 Computation signature
+
+A computation signature is
+
+\[
+\Sigma=(\mathsf{Base},\mathsf{Op},\mathsf{type}),
+\]
+
+where every primitive operation name has one declared block type
+
+\[
+\kappa:\mathbf A\Rightarrow\mathbf B.
+\]
+
+The present proposal treats the repository's existing ValueType and
+operation registry as parameters. It does not add K, X, t, holes, or Omega
+as value types.
+
+### 1.2 Ordered frontiers
+
+Let \(A,B,\ldots\) range over value types. An ordered frontier is
+
+\[
+\mathbf A
+=
+\langle p_1:A_1,\ldots,p_n:A_n\rangle,
+\qquad
+\epsilon=\langle\rangle.
+\]
+
+Concatenation is written \(\mathbf A\mathbf B\). It preserves order and does
+not silently provide a product, copy, permutation, or discard.
+
+A program type is a block type
+
+\[
+\Pi ::= \mathbf A\Rightarrow\mathbf B.
+\]
+
+### 1.3 Three different type layers
+
+The unified syntax keeps the following layers distinct:
+
+| layer | form | status |
+|---|---|---|
+| value type | \(A\) | intrinsic type of a program port |
+| observer role | \(d\in\{K,X,t\}\) | annotation assigned under a policy \(Q\) |
+| interface type | \(N_d@d\) | declared middle type of a through aperture |
+
+Thus
+
+\[
+A@_Qd
+\]
+
+is an \(A\)-typed incidence name viewed in role \(d\). It is not a new
+ValueType.
+
+### 1.4 Program variables and two hole sorts
+
+A recursion context and a syntax-hole context have the forms
+
+\[
+\Theta
+=
+\langle r_1:\Pi_1,\ldots,r_k:\Pi_k\rangle,
+\]
+
+\[
+H
+=
+\langle
+h_1^{\mathsf{syn}}:A_1,\ldots,h_n^{\mathsf{syn}}:A_n
+\rangle.
+\]
+
+A program variable \(r:\Pi\) and a syntax hole
+\(h^{\mathsf{syn}}:A\) are different bindable names.
+
+A through aperture has the form
+
+\[
+a^{\mathsf{thr}}:
+\mathsf{Through}^{f}_{de}(F_d,N_f,F_e).
+\]
+
+It is neither a program variable nor a syntax hole. The grammar therefore
+has three different namespaces:
+
+\[
+\mathsf{RecVar}
+\;\amalg\;
+\mathsf{SyntaxHole}
+\;\amalg\;
+\mathsf{ThroughAperture}.
+\tag{Namespaces}
+\]
+
+---
+
+## 2. Program grammar
+
+### 2.1 Core constructors
+
+Program terms are generated by the following typed constructors:
+
+~~~text
+P, Q ::=
+    prim[kappa]
+  | id[A]
+  | swap[A,B]
+  | copy[A]
+  | discard[A]
+  | P ; Q
+  | P tensor Q
+  | hole[h_syn:A]
+  | recvar[r:Pi]
+  | mu r:Pi . P
+  | P[[sigma]]
+  | weave[W]
+~~~
+
+The last form is simultaneous ordered grafting. Tensor denotes parallel
+syntax; it does not make the ambient language Cartesian. All duplication
+and deletion remain visible as copy and discard.
+
+Here \(W\) ranges over the threading expressions defined in section 6.
+Program and threading syntax are therefore mutually generated, but a
+threading expression enters the program grammar only through the explicit
+weave constructor. Concrete surface spellings may change. The constructors
+and their typed separations are the proposal.
+
+### 2.2 Formation judgement
+
+The primary object-level judgement introduced here is
+
+\[
+\Sigma;\Theta;H
+\vdash_{\mathsf{syn}}
+P:\mathbf A\Rightarrow\mathbf B.
+\tag{WF}
+\]
+
+It reads: \(P\) is a well-formed computation term with the displayed block
+type, free recursion variables in \(\Theta\), and free syntax holes in \(H\).
+It does not assert termination, a value, or a truth.
+
+Representative formation rules are:
+
+\[
+\frac{\kappa:\mathbf A\Rightarrow\mathbf B\in\Sigma}
+{\Sigma;\Theta;\epsilon
+\vdash_{\mathsf{syn}}
+\mathsf{prim}[\kappa]:\mathbf A\Rightarrow\mathbf B},
+\tag{Prim}
+\]
+
+\[
+\frac{
+\Sigma;\Theta;H_1\vdash_{\mathsf{syn}}P:\mathbf A\Rightarrow\mathbf B
+\qquad
+\Sigma;\Theta;H_2\vdash_{\mathsf{syn}}Q:\mathbf B\Rightarrow\mathbf C
+}{
+\Sigma;\Theta;H_1H_2
+\vdash_{\mathsf{syn}}
+P;Q:\mathbf A\Rightarrow\mathbf C
+},
+\tag{Seq}
+\]
+
+\[
+\frac{
+\Sigma;\Theta;H_1\vdash_{\mathsf{syn}}P:\mathbf A\Rightarrow\mathbf B
+\qquad
+\Sigma;\Theta;H_2\vdash_{\mathsf{syn}}Q:\mathbf C\Rightarrow\mathbf D
+}{
+\Sigma;\Theta;H_1H_2
+\vdash_{\mathsf{syn}}
+P\otimes Q:\mathbf A\mathbf C\Rightarrow\mathbf B\mathbf D
+},
+\tag{Par}
+\]
+
+\[
+\frac{}
+{\Sigma;\Theta;\langle h^{\mathsf{syn}}:A\rangle
+\vdash_{\mathsf{syn}}
+\mathsf{hole}[h]:\epsilon\Rightarrow\langle A\rangle},
+\tag{Hole}
+\]
+
+\[
+\frac{r:\Pi\in\Theta}
+{\Sigma;\Theta;\epsilon
+\vdash_{\mathsf{syn}}
+\mathsf{recvar}[r]:\Pi},
+\tag{RecVar}
+\]
+
+\[
+\frac{
+\Sigma;\Theta,r:\Pi;H
+\vdash_{\mathsf{syn}}
+P:\Pi
+}{
+\Sigma;\Theta;H
+\vdash_{\mathsf{syn}}
+\mu r:\Pi.P:\Pi
+}.
+\tag{Mu}
+\]
+
+Rule Mu intentionally has no guardedness or decreasing argument premise.
+Guarded, productive, total, and terminating fragments may later be defined
+as proper sublanguages. They are not conditions of syntactic
+well-formedness.
+
+### 2.3 Structural constructors stay explicit
+
+The signature contains typed structural terms
+
+\[
+\mathsf{id}_A:A\Rightarrow A,
+\qquad
+\mathsf{swap}_{A,B}:AB\Rightarrow BA,
+\]
+
+\[
+\mathsf{copy}_A:A\Rightarrow AA,
+\qquad
+\mathsf{discard}_A:A\Rightarrow\epsilon.
+\]
+
+No formation rule duplicates, deletes, or reorders a port implicitly.
+Alpha-renaming of bound recursion variables is allowed; identifying distinct
+source or occurrence names is not.
+
+---
+
+## 3. Ordered multi-hole configurations
+
+### 3.1 Context type
+
+A program context with \(n\) ordered holes is written
+
+\[
+C[H]:\mathbf D\Rightarrow\mathbf B,
+\qquad
+H=
+\langle h_1^{\mathsf{syn}}:A_1,\ldots,
+h_n^{\mathsf{syn}}:A_n\rangle.
+\tag{Context}
+\]
+
+Equivalently, the hole interface may be displayed as a multi-arrow
+
+\[
+C:(A_1,\ldots,A_n)\Rrightarrow
+(\mathbf D\Rightarrow\mathbf B).
+\]
+
+The double arrow names simultaneous grafting, not ordinary program
+composition.
+
+### 3.2 Arguments are not holes
+
+Let the source-ordered arguments be
+
+\[
+E_i:\mathbf D_i\Rightarrow\mathbf E_i
+\qquad
+(1\leq i\leq m).
+\]
+
+Flatten only their output-port occurrences:
+
+\[
+\mathsf{out}(E_1,\ldots,E_m)
+=
+\mathbf E_1\cdots\mathbf E_m.
+\]
+
+A total binding is an order-preserving typed bijection
+
+\[
+b_\sigma:
+\mathsf{out}(E_1,\ldots,E_m)
+\overset{\cong}{\longrightarrow}
+H.
+\tag{Bind}
+\]
+
+An argument with no outputs has no image under \(b_\sigma\), but remains a
+named argument of \(\sigma\). A multi-output argument may bind several
+consecutive holes. Therefore argument positions and hole positions are not
+the same syntax.
+
+A partial binding is a typed order-preserving bijection onto a subfrontier
+\(H'\subseteq H\). The ordered complement \(H\setminus H'\) remains open.
+
+### 3.3 Configuration grammar and judgement
+
+Configuration expressions are:
+
+~~~text
+sigma ::=
+    empty
+  | sigma , arg E
+  | bind out(E,i) -> h_syn
+~~~
+
+Their formation judgement is
+
+\[
+\Sigma;\Theta
+\vdash_{\mathsf{cfg}}
+\sigma:\mathsf{Config}(C;H').
+\tag{Cfg}
+\]
+
+It requires:
+
+1. every bound output and hole has the same value type;
+2. the binding preserves declared order;
+3. each bound output occurrence and hole occurs once;
+4. every copy, discard, and permutation is an explicit program term; and
+5. zero-output arguments remain recorded.
+
+### 3.4 Grafting rule
+
+If
+
+\[
+\Sigma;\Theta;H\vdash_{\mathsf{syn}}
+C:\mathbf D\Rightarrow\mathbf B
+\]
+
+and
+
+\[
+\Sigma;\Theta\vdash_{\mathsf{cfg}}
+\sigma:\mathsf{Config}(C;H'),
+\]
+
+then
+
+\[
+\Sigma;\Theta;H\setminus H'
+\vdash_{\mathsf{syn}}
+C\llbracket\sigma\rrbracket:
+\mathbf D\mathbf D_1\cdots\mathbf D_m
+\Rightarrow\mathbf B.
+\tag{Graft}
+\]
+
+The derived object includes a graft certificate
+
+\[
+G:
+(C,\sigma)
+\Longrightarrow_{\mathsf{graft}}
+C\llbracket\sigma\rrbracket
+\]
+
+recording argument order, output-to-hole bindings, fresh names, frame paths,
+and the nesting of earlier grafts.
+
+For compatible nested configurations:
+
+\[
+(C\llbracket\sigma\rrbracket)
+\llbracket\tau\rrbracket
+\cong_G
+C\llbracket\sigma\star\tau\rrbracket.
+\tag{GraftAssoc}
+\]
+
+This is a certificate-bearing syntax isomorphism, not literal flattening of
+frame identities.
+
+---
+
+## 4. Named slices and three-domain annotations
+
+### 4.1 Slice expressions
+
+A checked program graph \(P\) may expose named boundary expressions \(U,V\).
+A slice is a syntax record
+
+\[
+S=P[U,V]
+\]
+
+formed by
+
+\[
+\frac{
+\Sigma;\Theta;H\vdash_{\mathsf{syn}}P:\Pi
+\qquad
+\Sigma;P\vdash_{\mathsf{bdry}}U,V
+}{
+\Sigma;P\vdash_{\mathsf{slice}}P[U,V]:
+\mathsf{Slice}(P;U,V)
+}.
+\tag{Slice}
+\]
+
+For an acyclic term, \(U\) and \(V\) may be ordinary causal cuts. For a
+recursive term, they are finite names in the cyclic presentation or in an
+explicit finite unfolding. The formation rule does not assert that \(V\)
+is ever reached.
+
+A word annotation
+
+\[
+w:\mathsf{Word}(S)
+\]
+
+is a finite, type-correct ordering of named event occurrences in \(S\). It
+is syntax attached to the slice, not a claim that the word is executed.
+
+### 4.2 Observer policy
+
+Let
+
+\[
+\mathbb D=\{K,X,t\}.
+\]
+
+An observer policy is a total annotation on admitted root source names:
+
+\[
+Q:
+\mathsf{Source}(P)\longrightarrow\mathbb D.
+\tag{Role}
+\]
+
+Each source name receives one role. The policy does not alter the source's
+value type or identity.
+
+An incidence name has the form
+
+\[
+\iota
+=
+(c,w,j,o,s,\pi):A@_Qd,
+\qquad
+d=Q(s),
+\tag{Inc}
+\]
+
+where the tuple retains its boundary, wire, lineage index, occurrence,
+source, and occurrence path.
+
+### 4.3 Strand formation
+
+An exact syntactic strand is
+
+\[
+\alpha:
+\iota\leadsto\iota'
+\]
+
+with formation premises
+
+\[
+\mathsf{source}(\iota)=\mathsf{source}(\iota'),
+\qquad
+\mathsf{path}(\iota)\preceq\mathsf{path}(\iota').
+\tag{Strand}
+\]
+
+Copy extends a path, merge may retain several strands at one output name,
+and discard may leave no upper endpoint. The grammar does not force strands
+to form a function or bijection.
+
+### 4.4 Complement role
+
+For distinct \(d,e\in\mathbb D\), let
+
+\[
+\mu(d,e)=\mathbb D\setminus\{d,e\}.
+\tag{Complement}
+\]
+
+It is undefined for \(d=e\). The positive printed order is
+
+\[
+K\longrightarrow X\longrightarrow t\longrightarrow K.
+\]
+
+---
+
+## 5. Through-form grammar
+
+### 5.1 Interface declarations
+
+For distinct endpoint roles \(d,e\) and complement \(f=\mu(d,e)\), a through
+signature declares
+
+\[
+q_d:F_d\rightsquigarrow N_f,
+\qquad
+q_e:F_e\rightsquigarrow N_f.
+\tag{Legs}
+\]
+
+The hooked arrow is part of the syntax signature. It permits a name to have
+zero, one, or several declared incidences. No set-theoretic interpretation
+is imposed here.
+
+The through type is
+
+\[
+\mathsf{Through}^{f}_{de}(F_d,N_f,F_e)
+=
+\left\langle
+F_d\middle|_{N_f}F_e
+\right\rangle.
+\tag{ThroughType}
+\]
+
+### 5.2 Through terms
+
+A filling witness has the introduction form
+
+\[
+\frac{
+u:F_d
+\quad
+n:N_f
+\quad
+v:F_e
+\quad
+\eta_d:u\xrightarrow{q_d}n
+\quad
+\eta_e:v\xrightarrow{q_e}n
+}{
+\left\langle
+u\xrightarrow{\eta_d}n\xleftarrow{\eta_e}v
+\right\rangle
+:
+\mathsf{Through}^{f}_{de}(F_d,N_f,F_e)
+}.
+\tag{ThroughIntro}
+\]
+
+The terms \(\eta_d,\eta_e\) are incidence references supplied by the syntax
+record. They are not logical proofs in the object language.
+
+The abstract aperture
+
+\[
+a^{\mathsf{thr}}:
+\mathsf{Through}^{f}_{de}(F_d,N_f,F_e)
+\]
+
+may be open or filled by substitution of such a witness:
+
+\[
+a^{\mathsf{thr}}
+\bigl[
+\langle u\to n\leftarrow v\rangle
+\bigr].
+\tag{Fill}
+\]
+
+Other admissible witnesses are retained in \(R\); filling does not identify
+their endpoint names.
+
+### 5.3 Circular surface notation
+
+Use the role glyphs
+
+\[
+K=\{\},\qquad X=[],\qquad t=().
+\]
+
+The three positive forms are:
+
+\[
+\left\langle
+[u_X]\middle|_{\{\}:N_K}(v_t)
+\right\rangle,
+\]
+
+\[
+\left\langle
+(u_t)\middle|_{[]:N_X}\{v_K\}
+\right\rangle,
+\]
+
+\[
+\left\langle
+\{u_K\}\middle|_{():N_t}[v_X]
+\right\rangle.
+\tag{ThreeAngles}
+\]
+
+The brackets annotate roles. They do not nest, and the permanent external
+boundary is still printed as {}[]().
+
+### 5.4 Grounding rule
+
+A syntax hole never becomes a through aperture by renaming. Grounding is a
+partial syntax map
+
+\[
+\mathsf{ground}_{Q,a}:
+(G,S,O_Q;
+\mathsf{frame},\mathsf{entries},\mathsf{exits})
+\dashrightarrow
+a^{\mathsf{thr}}:
+\mathsf{Through}^{f}_{de}(F_d,N_f,F_e).
+\tag{Ground}
+\]
+
+It is formed only when all referenced names belong to the same grafted term,
+slice, frame, and observer annotation; both endpoint roles are distinct; the
+middle has the complement role; and the exact incidence paths are retained.
+
+One frame may ground zero, one, or many apertures. One aperture may refer to
+several syntax holes. No position-wise bijection exists between the two hole
+sorts.
+
+### 5.5 Converse
+
+Through converse is a syntax involution:
+
+\[
+\left\langle
+F_d\middle|_{N_f}F_e
+\right\rangle^\star
+=
+\left\langle
+F_e\middle|_{N_f}F_d
+\right\rangle,
+\qquad
+(T^\star)^\star\equiv T.
+\tag{Converse}
+\]
+
+It changes presentation orientation only. No reverse evaluator is defined.
+
+---
+
+## 6. Threading and connectors
+
+### 6.1 Connector types
+
+If adjacent through terms expose \(F_e^+\) and \(F_e^-\), composition requires
+an explicit connector
+
+\[
+k_e:F_e^+\rightsquigarrow F_e^-.
+\]
+
+The connector constructors are:
+
+| constructor | required data | identity effect |
+|---|---|---|
+| \(\mathsf{idOcc}\) | the same exact occurrence name | preserves identity |
+| \(\mathsf{compare}\) | two retained occurrence names and a comparison tag | keeps them distinct |
+| \(\mathsf{quot}\) | a declared quotient name and its full fibre | deliberately forgets a distinction in the projection |
+
+Common source spelling constructs none of these automatically.
+
+### 6.2 Horizontal composition
+
+Threading expressions have the grammar
+
+~~~text
+W ::=
+    thread(T_left, connector, T_right)
+  | circle_Omega(T_KX, k_X, T_Xt, k_t, T_tK, k_K)
+~~~
+
+The syntax constructor
+
+\[
+\mathsf{thread}(T_1,k_e,T_2)
+\]
+
+is well formed when the right endpoint type of \(T_1\), the domain of \(k_e\),
+and the left endpoint type of \(T_2\) agree exactly.
+
+A circular threading expression is
+
+\[
+\circlearrowleft_\Omega
+\bigl(
+T^t_{KX},
+k_X,
+T^K_{Xt},
+k_t,
+T^X_{tK},
+k_K
+\bigr).
+\tag{Circle}
+\]
+
+The subscript \(\Omega\) names the circular boundary form. It does not turn
+an empty aperture into Omega, identify a nodal middle with a Chaitin
+constant, or state that the circuit terminates.
+
+A closed printed circle is well formed only when all three local through
+terms and all three connectors type-check. Local fillability alone does not
+construct missing connectors.
+
+If the exposed external frontiers give a block type
+\(\mathbf A\Rightarrow\mathbf B\), write
+
+\[
+\Sigma;Q
+\vdash_{\mathsf{thr}}
+W:\mathsf{Thread}_\Omega
+(\mathbf A\Rightarrow\mathbf B).
+\tag{ThreadWF}
+\]
+
+The sole injection back into program terms is explicit:
+
+\[
+\frac{
+\Sigma;Q\vdash_{\mathsf{thr}}
+W:\mathsf{Thread}_\Omega
+(\mathbf A\Rightarrow\mathbf B)
+}{
+\Sigma;\Theta;H
+\vdash_{\mathsf{syn}}
+\mathsf{weave}[W]:
+\mathbf A\Rightarrow\mathbf B
+}.
+\tag{Weave}
+\]
+
+Weave is a syntax constructor. This rule supplies no evaluation clause for
+the threaded form.
+
+---
+
+## 7. The unified computation-form type
+
+For a context \(C\) and policy \(Q\), define the dependent syntax family
+
+\[
+\boxed{
+\begin{aligned}
+\mathsf{TComp}_Q(C)
+:={}&
+\sum_{\sigma:\mathsf{Config}(C)}
+\sum_{G:\mathsf{Graft}(C,\sigma)}
+\sum_{S:\mathsf{Slice}(P_\sigma;U,V)}
+\sum_{w:\mathsf{Word}(S)}
+\\
+&\sum_{O_Q:\mathsf{Observation}(Q,S)}
+\sum_{\mathcal A_Q:\mathsf{Apertures}(G,S,O_Q)}
+\sum_{\rho:\mathsf{PartialFill}(\mathcal A_Q)}
+\sum_{\mathcal K:\mathsf{Connectors}(\rho)}
+\mathsf{Residual}(R).
+\end{aligned}
+}
+\tag{TComp}
+\]
+
+The sigma notation is a type former: each later field may mention earlier
+names. It is not a sum over runtime states.
+
+A compact surface term is:
+
+~~~text
+form_Q C[[arguments => syntax-holes]]
+  frame U -[word]-> V
+  through <apertures | filling-witnesses | connectors>
+  retain R
+~~~
+
+Its judgement is
+
+\[
+\Sigma;\Theta;H_{\mathsf{open}}
+\vdash_{\mathsf{syn}}
+\mathsf{form}_Q
+(C;\sigma,G;U,S,V,w;O_Q;
+\mathcal A_Q,\rho,\mathcal K;R)
+:
+\mathsf{TComp}_Q(C).
+\tag{Form}
+\]
+
+There is intentionally no run, reduction arrow, or \(\Downarrow\) in this
+syntax.
+
+---
+
+## 8. Typed syntax maps
+
+The framework uses several maps; no single arrow is overloaded:
+
+| map | type |
+|---|---|
+| bind | \(\mathsf{out}(\vec E)\to H'\) |
+| graft | \((C,\sigma)\to(P_\sigma,G_\sigma)\) |
+| open | \(C\llbracket\sigma\rrbracket\to(C\llbracket\sigma'\rrbracket,H_{\mathsf{open}})\) |
+| frame | \((P,U,V,w)\to S:P[U,V]\) |
+| annotate | \(S\to O_Q(S)\) |
+| strand | exact source/path references \(\to(\iota\leadsto\iota')\) |
+| ground | \((G,S,O_Q,\text{references})\dashrightarrow a^{\mathsf{thr}}:T\) |
+| fill | \((a^{\mathsf{thr}}:T,\rho:T)\to a^{\mathsf{thr}}[\rho]\) |
+| reopen | \(a^{\mathsf{thr}}[\rho]\to(a^{\mathsf{thr}},\rho,\mathsf{trace})\) |
+| connect | \((T_1,k,T_2)\to\mathsf{thread}(T_1,k,T_2)\) |
+| feedback | \(P:\Pi\text{ under }r:\Pi\to\mu r:\Pi.P:\Pi\) |
+| unfold-one | \(\mu r:\Pi.P\to P[\mu r:\Pi.P/r]\) |
+
+Unfold-one is a finite syntax expansion. It is not a promise that repeated
+unfolding reaches a normal form.
+
+The required congruences are:
+
+\[
+(P;Q);R\cong P;(Q;R),
+\qquad
+(P\otimes Q)\otimes R\cong P\otimes(Q\otimes R),
+\]
+
+\[
+(C\llbracket\sigma\rrbracket)\llbracket\tau\rrbracket
+\cong_G
+C\llbracket\sigma\star\tau\rrbracket,
+\]
+
+\[
+\mathsf{unfold}_1(\mu r.P)
+\equiv
+P[\mu r.P/r],
+\qquad
+(T^\star)^\star\equiv T.
+\tag{Congruence}
+\]
+
+No automatic congruence equates:
+
+- two separately grafted occurrences with the same source name;
+- a syntax hole with a through aperture;
+- a quotient connector with exact occurrence identity;
+- two configurations merely because their printed values agree; or
+- a finite unfolding with a terminating computation.
+
+---
+
+## 9. Recursive syntax and the Omega circle
+
+### 9.1 A legal recursive program
+
+For every program type \(\Pi\), define the immediate recursive term
+
+\[
+\boxed{
+\Omega_\Pi
+:=
+\mu r:\Pi.\mathsf{recvar}[r].
+}
+\tag{Omega}
+\]
+
+By RecVar and Mu,
+
+\[
+\frac{
+r:\Pi\vdash_{\mathsf{syn}}r:\Pi
+}{
+\vdash_{\mathsf{syn}}\mu r:\Pi.r:\Pi
+}.
+\]
+
+Hence \(\Omega_\Pi\) is syntactically legal. Its first unfolding is itself:
+
+\[
+\mathsf{unfold}_1(\Omega_\Pi)\equiv\Omega_\Pi.
+\]
+
+More generally, let
+
+\[
+B_\Omega
+=
+\mathsf{weave}
+\left[
+\circlearrowleft_\Omega
+\bigl(
+T^t_{KX},k_X,T^K_{Xt},k_t,T^X_{tK},k_K
+\bigr)
+\right]
+:
+A\Rightarrow A
+\]
+
+be a well-formed circular threading term. A recursive program written around
+that Omega boundary is
+
+\[
+\Omega(B_\Omega)
+:=
+\mu r:(A\Rightarrow A).(B_\Omega;r).
+\tag{OmegaCircle}
+\]
+
+This is a finite recursive expression even though its unfolding family is
+unbounded.
+
+### 9.2 What cannot be concluded
+
+The grammar contains no judgement
+
+\[
+\mathsf{Halts}(P)
+\]
+
+and no rule deriving one. Consequently
+
+\[
+\vdash_{\mathsf{syn}}\Omega_\Pi:\Pi
+\]
+
+does not entail a termination statement. In the present object language,
+“\(\Omega_\Pi\) halts” is not merely unproved; it is not a well-formed
+calculus judgement.
+
+A later conservative logic may add a proposition
+\(\mathsf{Halts}(P)\). Soundness would then require that the typing
+derivation above alone cannot yield \(\mathsf{Halts}(\Omega_\Pi)\). This note
+does not define or prove that later result.
+
+### 9.3 Distinct uses of Omega
+
+The syntax reserves distinct decorations for:
+
+| notation | use |
+|---|---|
+| \(\Omega_\Pi\) | an immediate recursive program term |
+| \(\circlearrowleft_\Omega(\cdots)\) | the typed circular three-form presentation |
+| \(\Omega_{\partial}=K\otimes X\otimes t\) | the external three-role boundary notation of note 0057 |
+| \(\Omega_U\) | a machine-relative halting mass from note 0033 |
+| \(N_d\) | a declared through middle/interface |
+
+No typography supplies an equality among them.
+
+---
+
+## 10. Syntactic completeness
+
+“Complete” in this note means **constructor-complete**, not semantically
+complete and not terminating:
+
+1. every primitive in \(\Sigma\) has a term;
+2. finite serial and parallel composition are terms;
+3. identity, permutation, copy, and discard are explicit terms;
+4. any finite ordered family of typed syntax holes is expressible;
+5. zero-, one-, and multi-output arguments can occur in one configuration;
+6. partial and total simultaneous grafting are expressible;
+7. all three complement-typed through forms and explicit connectors are
+   expressible;
+8. open apertures, chosen fillings, and unused alternatives are retained;
+9. recursion variables, feedback, and finitely written cyclic programs are
+   expressible; and
+10. every projection retains its complete syntactic residual.
+
+Let \(\mathsf{Gen}_\Sigma(\Pi)\) be the terms generated by the grammar and
+\(\mathsf{Der}_\Sigma(P:\Pi)\) the finite formation derivations. The first
+metatheorem to target is purely syntactic:
+
+\[
+\boxed{
+P\in\mathsf{Gen}_\Sigma(\Pi)
+\quad\Longleftrightarrow\quad
+\mathsf{Der}_\Sigma(P:\Pi)\ne\varnothing.
+}
+\tag{SyntaxCompleteness}
+\]
+
+The forward direction is induction over constructors; the reverse direction
+is erasure of a formation derivation. Mu makes cyclic terms part of this
+theorem without asserting termination.
+
+### 10.1 Hintikka/Henkin hook, outside the calculus
+
+The formation rules are deliberately syntax-directed so that a later logic
+can:
+
+1. treat well-formed computation terms as the closed term stock of a Henkin
+   construction;
+2. treat partial multi-hole and through configurations as finite Hintikka
+   extensions;
+3. retain the derivation of WF as the certificate attached to the
+   constructed object; and
+4. prove a separate completeness theorem relating derivability to the model
+   extracted from those certified terms.
+
+That later passage can make a meaning construction emerge from proofs of
+well-formed syntax. It is not a reason to put logical connectives, truth, or
+model clauses into this computation grammar.
+
+This note therefore establishes only the input shape required by such a
+programme:
+
+\[
+\mathsf{grammar}
+\longleftrightarrow
+\mathsf{formation\ derivation}.
+\]
+
+It does not assert the later bridge
+
+\[
+\mathsf{derivability}
+\longleftrightarrow
+\mathsf{validity}.
+\]
+
+---
+
+## 11. Grounded example
+
+The fixture of note 0075 has ordered holes
+
+\[
+H=(x,t_0,t_1).
+\]
+
+One argument has output frontier \((x)\); another explicitly copies \(t\)
+and has output frontier \((t_0,t_1)\). Its configuration contains
+
+\[
+b_\sigma:
+(x;t_0,t_1)
+\overset{\cong}{\longrightarrow}
+(h_0,h_1,h_2).
+\]
+
+A declared upper interface name \(n_K\) grounds the aperture type
+
+\[
+\mathsf{Through}^{K}_{Xt}
+(\{x\},\{n_K\},\{t_0,t_1\}).
+\]
+
+The two distinct filling terms are
+
+\[
+\langle x\to n_K\leftarrow t_0\rangle,
+\qquad
+\langle x\to n_K\leftarrow t_1\rangle.
+\]
+
+Selecting either term leaves the other in \(R\). No value interpretation is
+needed to state their types or their distinct occurrence paths.
+
+The fixture of note 0076 supplies three locally formed apertures. Adjacent
+endpoints are distinct copy siblings, so the circular term cannot use
+\(\mathsf{idOcc}\). It becomes well formed only after an explicit
+\(\mathsf{compare}\) or \(\mathsf{quot}\) connector is written. The latter
+must retain its forgotten fibre in \(R\).
+
+---
+
+## 12. Correspondence and next work
+
+| proposed syntax | nearest current carrier | status |
+|---|---|---|
+| primitive, serial, structural, and call terms | ProgramTerm and FunctionDefinition | stable finite subset |
+| ordered total graft | call arguments plus GraftHoleBinding | checked after compilation |
+| \(G\) | GraftTrace | exact companion |
+| \(S=P[U,V]\) | ProgramSlice | exact for current acyclic core |
+| \(O_Q\) | TriadicObserverTransitionV0 | bounded exact observer companion |
+| local through declarations | CandidateThroughPresentationV0 | bounded research adapter |
+| open and filled aperture records | TypedOpenHoleV0 and ClosedHoleV0 | bounded research calibration |
+| common Config carrier | none | missing |
+| common grounded aperture family | none | missing |
+| global connector/thread syntax | none | missing |
+| recvar and mu | none in stable PSC0 | proposed syntax extension |
+
+The next bounded work should be syntax-first:
+
+1. specify a versioned ProgramSyntaxV1 AST with recvar and mu, without
+   adding an evaluator;
+2. implement a decidable formation checker that accepts
+   \(\Omega_\Pi:\Pi\) while making no halting claim;
+3. add a MultiHoleConfigurationV0 record preserving zero-output arguments,
+   multi-output bindings, order, and graft derivations;
+4. add one common grounded aperture-family record derived from the same
+   graft/slice/observer names; and
+5. add explicit connector and circular-thread formation checks.
+
+Promotion to stable syntax requires positive fixtures for finite acyclic
+terms, partial and total grafts, all three through forms, and legal recursive
+cycles, plus negative fixtures for wrong block types, wrong complement roles,
+implicit copy/discard, missing connectors, and cross-graph identity reuse.
+
+---
+
+## Conservative conclusion
+
+The unified computation form is
+
+\[
+\boxed{
+\Sigma;\Theta;H_{\mathsf{open}}
+\vdash_{\mathsf{syn}}
+\mathsf{form}_Q
+(C;\sigma,G;U,S,V,w;O_Q;
+\mathcal A_Q,\rho,\mathcal K;R)
+:
+\mathsf{TComp}_Q(C).
+}
+\]
+
+Its four main constructors are coordinated but not identified:
+
+\[
+\boxed{
+\mathsf{syntax\ graft}
+\ne
+\mathsf{three\text{-}role\ annotation}
+\ne
+\mathsf{through\ grounding}
+\ne
+\mathsf{recursive\ feedback}.
+}
+\]
+
+The language is syntactically complete when every constructor above has a
+formation derivation. In particular, an Omega circle can be a legal
+recursive program. Nothing in that derivation proves that the program
+halts.

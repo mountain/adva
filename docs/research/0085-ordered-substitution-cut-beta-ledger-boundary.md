@@ -14,7 +14,7 @@ supplies the research-local beta-ledger transport anticipated here, lifts it
 to arbitrary proof positions, proves transport-indexed preservation, and
 establishes beta-only strong normalization for finite `TND0` derivations.
 This note remains the substitution theorem and dependency boundary. Note
-[0087](0087-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
 local and global confluence of the beta-only proof-tree relation and a unique
 beta normal form for each fixed finite starting derivation. It keeps competing
 audit histories distinct and does not install a proof-coherence quotient.
@@ -565,7 +565,7 @@ discharged records.  This is strong normalization for that declared
 derivation reduction, not a theorem about a runtime term language.  It still
 does not by itself imply confluence, coherence of different audit paths, or
 uniqueness of beta normal forms. Note
-[0087](0087-beta-history-local-confluence-audit-2-cells.md) adds local
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) adds local
 confluence and uses this strong-normalization result to prove global
 confluence and a unique beta normal form for each fixed finite starting proof.
 It does not identify arbitrary proofs of the same sequent or make their audit
@@ -573,7 +573,7 @@ histories equal.
 
 A normal form may forget administrative detours only through a declared
 observer quotient whose invariants have been proved to descend.  That
-quotient is not installed by notes 0085--0087.
+quotient is not installed by notes 0085, 0086, and 0093.
 
 This also constrains exploration and compactification. A finite vocabulary
 does not by itself imply termination or compactness.  Conversely, beta-only
@@ -653,7 +653,7 @@ checker and its finite Boolean rule-soundness cell.
 - exact survivor identity and ledger-order accounting; and
 - beta-only strong normalization of every finite `TND0` derivation.
 
-### Established by the research-local continuation in note 0087
+### Established by the research-local continuation in note 0093
 
 - explicit separation of endpoint proof equality, transport summaries,
   histories, and history 2-cells;
@@ -677,7 +677,7 @@ checker and its finite Boolean rule-soundness cell.
 - a justified proof-coherence quotient; and
 - any compactification or \(\Omega\) claim for reduction histories.
 
-Note 0087 discharges the beta-only proof-tree confluence target without
+Note 0093 discharges the beta-only proof-tree confluence target without
 collapsing distinct normalization histories. A promoted history API, an
 observer-relative coherence quotient, and higher coherence remain separate.
 Quantifier rules still wait for the separate term-substitution and scope
