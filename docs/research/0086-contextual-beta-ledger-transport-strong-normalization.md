@@ -118,10 +118,13 @@ Consequently the beta-like reduction relation of finite \(\mathrm{TND}_0\)
 proof trees is strongly normalizing. A reduction sequence has length at most
 the initial number of discharged ledger records.
 
-This result does not establish confluence, a unique normal form, eta or
-permutative conversions, runtime subject reduction, or normalization for a
-future calculus with recursion, contraction, source transfer, quantifiers,
-or explicit cuts.
+This note alone does not establish confluence, eta or permutative conversions,
+runtime subject reduction, or normalization for a future calculus with
+recursion, contraction, source transfer, quantifiers, or explicit cuts. Note
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+local and global confluence for this beta-only proof-tree relation and a unique
+beta normal form for each fixed finite starting derivation. It does not make
+distinct audit histories equal or install a proof-coherence quotient.
 
 ---
 
@@ -727,8 +730,11 @@ selecting any available principal detour reaches a beta normal form. This
 establishes both strong and weak normalization for the declared beta-only
 relation.
 
-It does not establish that two different reduction choices reach the same
-normal form.
+This theorem alone does not establish that two different reduction choices
+reach the same normal form. Note
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+that fact for reductions from one fixed starting proof; it does not identify
+arbitrary proofs of the same sequent.
 
 ---
 
@@ -823,10 +829,9 @@ must not be read as a stable proof-DAG implementation.
 ### Deferred
 
 - stable nominal `ProofNodeId`, `BetaEventId`, and proof-version identity;
-- composition and coherence laws for successive transport certificates;
-- confluence, Church--Rosser, and uniqueness of normal forms;
-- interchange of disjoint redex contractions;
-- nested-redex substitution-composition coherence;
+- a stable promoted composition API for successive transport certificates;
+- equality or a quotient of distinct audit histories;
+- uniqueness of history 2-cells and higher coherence laws;
 - eta and commuting or permutative conversions;
 - a term AST, capture-avoiding term substitution, and runtime beta semantics;
 - a sequent calculus with explicit cuts and a cut-elimination theorem;
@@ -839,20 +844,23 @@ must not be read as a stable proof-DAG implementation.
 
 ---
 
-## 12. Next proof-theoretic obligation
+## 12. Subsequent proof-theoretic discharge
 
-Strong normalization answers whether every beta-like exploration stops. It
-does not answer whether different stopping routes agree. The next traditional
-question is therefore confluence.
+Strong normalization answers whether every beta-like exploration stops. Note
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently
+answers the proof-tree confluence question. It separates strict endpoint-tree
+equality, extensional transport composition, literal history equality, and
+explicit history 2-cells; treats independent and nested local peaks; proves
+local confluence; and combines it with this note's strong normalization to
+obtain global confluence.
 
-For the current calculus, that question splits into two auditable lemmas:
+Consequently every fixed finite starting `TND0` derivation has one beta normal
+form under strict proof-tree equality. This is not a claim that arbitrary
+proofs of the same sequent have the same normal form. Nor does confluence make
+different contraction histories literally equal. A global history equality,
+an observer-relative proof-coherence quotient, and uniqueness of higher cells
+remain separate obligations.
 
-1. **disjoint-redex interchange**: contractions at independent proof paths
-   commute up to explicit transport composition; and
-2. **nested-redex coherence**: contracting an outer detour before or after an
-   inner detour agrees through an ordered substitution-composition cell.
-
-Only after these cells are constructed should one ask whether beta-normal
-proofs are unique under a declared coherence quotient. Recursion, open
-exploration, and compactification should remain a separate extension rather
-than being inferred from the already terminating linear core.
+Recursion, open exploration, and compactification likewise remain separate
+extensions rather than consequences of the terminating, confluent linear
+beta core.
