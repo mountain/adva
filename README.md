@@ -238,6 +238,11 @@ blocks in
 [`docs/research/0097-threading-syntax-typed-braid-alignment.md`](docs/research/0097-threading-syntax-typed-braid-alignment.md).
 It keeps crossing sign separate from incidence polarity, domain direction,
 L/R side, and function swap, without adding braid-word equations.
+The finite surreal-arithmetic continuation derives conditional construction
+rules from recursive addition and multiplication option schemas in
+[`docs/research/0098-surreal-arithmetic-type-formation-constraints.md`](docs/research/0098-surreal-arithmetic-type-formation-constraints.md).
+It isolates the missing multi-hole option-family bridge and leaves
+objectification and the Omega boundary explicit.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
