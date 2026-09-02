@@ -112,7 +112,8 @@ Formation must separate them before any equation is written.
 | \(s\) | source-name metavariable | not used for history |
 | \(h\) | hole-name metavariable | not used for history |
 
-Introduce pairwise disjoint namespaces
+Use the core `HistoryName` namespace from note 0095 and introduce the
+remaining pairwise disjoint namespaces
 
 \[
 \zeta\in\mathsf{HistoryName},
@@ -133,9 +134,10 @@ The display \(\zeta\) is the parameter formerly written \(t\) in a
 differential equation.  It denotes the ordered history carried by the thread,
 not physical time and not the domain role `t`.
 
-The derivative is written \(D_\zeta\).  The capital \(D\) is a constructor
-tag indexed by a `HistoryName`; it is not the domain metavariable \(d\) and it
-does not compute differentiation.
+The derivative is written \(D_\zeta\) on paper and represented by the core
+constructor `derivative[history[ζ],p;...]`.  The capital \(D\) is only a
+display abbreviation; it is not the domain metavariable \(d\), does not
+create a second derivative constructor, and does not compute differentiation.
 
 ---
 
@@ -175,28 +177,57 @@ mentioning the energy source explicitly.
 
 ### 3.1 Exact A/M spelling
 
-Use the ordered hole context
+Separate the ordered hole context from the source-use occurrence frontier:
 
 \[
 H_{\mathrm{pend}}
 =\langle
-y_1:A,y_2:A,
-e_1:A,
-u_1:A,u_2:A,u_3:A
+h_1:A,h_2:A,h_3:A,h_4:A,h_5:A,h_6:A
 \rangle.
 \tag{PendHoles}
 \]
 
+\[
+F_{\mathrm{use}}
+=\langle
+o_{Y1},o_{Y2},o_{E1},o_{U1},o_{U2},o_{U3}
+\rangle,
+\tag{PendOccurrences}
+\]
+
+with source labelling \(Y,Y,E,U,U,U\), respectively.  The exact binding is
+
+\[
+\sigma=\{
+o_{Y1}\mapsto h_1,
+o_{Y2}\mapsto h_2,
+o_{E1}\mapsto h_3,
+o_{U1}\mapsto h_4,
+o_{U2}\mapsto h_5,
+o_{U3}\mapsto h_6
+\}.
+\tag{PendBinding}
+\]
+
+An occurrence is a use of a source; a hole is a demanded tree position; an
+incidence is a typed geometric attachment.  These remain different
+namespaces even when a compact display reuses an integer subscript.  The
+binding \(\sigma\), not spelling coincidence, joins occurrences to holes.
+
 The two sides of the characteristic cell are
 
 ```text
-lhs := mul(use[Y,y1], use[Y,y2])
+lhs := mul(use[Y,oY1], use[Y,oY2])
 
 rhs := mul(
   atom[2:A],
   mul(
-    add(use[E,e1], neg(use[U,u1])),
-    add(atom[1:A], neg(mul(use[U,u2], use[U,u3])))
+    add(
+      use[E,oE1],
+      mul(atom[negUnit_A:A], use[U,oU1])),
+    add(
+      atom[1:A],
+      mul(atom[negUnit_A:A], mul(use[U,oU2], use[U,oU3])))
   )
 )
 ```
@@ -208,9 +239,13 @@ Y:2,\qquad U:3,\qquad E:1.
 \tag{PendOccurrenceCensus}
 \]
 
-All six occurrence names are distinct.  Consequently the constraint forces
-copy or sharing evidence for \(Y\) and \(U\).  A braid can reorder those
-occurrences but cannot create them.
+This census counts variable source uses only.  Constants and the two uses of
+the named negative-unit atom are A/M atoms, not source occurrences and not
+holes.  All six source-use occurrence names and all six hole names are
+distinct within their own namespaces.  Consequently the constraint forces
+copy or sharing evidence producing two \(Y\) occurrences and three \(U\)
+occurrences.  A braid can reorder the resulting frontier but cannot create
+those occurrences.
 
 ### 3.2 Energy is a tag attached to an occurrence
 
@@ -218,18 +253,19 @@ The raw form is
 
 \[
 \mathsf{energy}[\varepsilon;
-\mathsf{use}[E,e_1:A];\mathsf{provenance};R_\varepsilon].
+\mathsf{use}[E,o_{E1}:A];\mathsf{provenance};R_\varepsilon].
 \tag{EnergyTag}
 \]
 
-It says only that the same occurrence \(e_1\) appears in the characteristic
-cell and in the perturbation record.  It does not say that \(E\) is real,
-positive, conserved, dimensional, random, or capable of producing motion.
+It says only that the same occurrence \(o_{E1}\) appears in the characteristic
+cell and the energy record, while the perturbation record cites the energy
+record by name.  It does not say that \(E\) is real, positive, conserved,
+dimensional, random, or capable of producing motion.
 
 The requested connection between energy disturbance and path is therefore
 syntactic and exact: the energy occurrence is literally one input of the
-same constraint cell whose other inputs are the history derivative
-occurrences.
+characteristic cell, whose \(U,Y\) source names are also cited by the history
+derivative.  The derivative occurrences themselves remain distinct uses.
 
 The additional record
 
@@ -248,14 +284,14 @@ unrelated records.
 
 ## 4. The history derivative
 
-Add the candidate transport atom
+Use the core transport-atom family with its history-index variant:
 
 \[
-\mathsf{historyDerivative}
-[\delta;\zeta;p;
-\mathsf{use}[U,u_0:A]
+\mathsf{derivative}
+[\mathsf{history}[\zeta],p;\delta:
+\mathsf{use}[U,o_{U0}:A]
 \rightsquigarrow
-\mathsf{use}[Y,y_0:A]].
+\mathsf{use}[Y,o_{Y0}:A]].
 \tag{HistoryDerivative}
 \]
 
@@ -263,7 +299,7 @@ Its formation checks:
 
 1. \(\zeta\) belongs to `HistoryName`;
 2. the input and output have declared value type \(A\);
-3. \(u_0\) and \(y_0\) are fresh occurrences with sources \(U\) and \(Y\);
+3. \(o_{U0}\) and \(o_{Y0}\) are fresh occurrences with sources \(U\) and \(Y\);
 4. the atom occupies a named position in one finite thread word; and
 5. the characteristic cell cites the same source names \(U,Y\).
 
@@ -363,7 +399,11 @@ absence and does not turn the circle into a point.
 
 ## 7. Candidate formation rule
 
-The complete raw judgement is
+This is an optional named syntax profile.  It constrains only a form explicitly
+declared as `PendForm_Q(A)`; it is not a formation rule for every `Form_Q` and
+does not reduce the general type language to pendulum-shaped records.
+
+The complete candidate raw judgement is
 
 \[
 \frac{
@@ -375,14 +415,17 @@ a:\mathsf{AxisLine}
 \gamma:\mathsf{Circle}
 \qquad
 z:\mathsf{Pierce}(a,\gamma)\\
-\delta:\mathsf{HistoryDerivative}(\zeta;U,Y)
+\delta:\mathsf{Derivative}(\mathsf{history}[\zeta];U,Y)
 \qquad
-\varepsilon:\mathsf{EnergyTag}(E,e_1)\\
+\varepsilon:\mathsf{EnergyTag}(E,o_{E1})\\
 \nu:\mathsf{Perturbation}(\varepsilon,a,\zeta)
+\qquad
+\mathsf{negUnit}_A:A
 \qquad
 \Sigma_{\mathrm{AM}};H_{\mathrm{pend}}
 \vdash_{\mathsf{AM}}(E_L,E_R):A\\
-\mathsf{occurs}(G;Y^2,E,U,1,2)
+\mathsf{occurs}(G;F_{\mathrm{use}},H_{\mathrm{pend}},\sigma;
+Y{:}2,U{:}3,E{:}1)
 \qquad
 W_\Omega:\mathsf{Cycle}(\gamma)\\
 F:\mathsf{ForgetRecord}(Q,\gamma)
@@ -409,7 +452,8 @@ The rule enforces only the following literal agreements:
 - one history name in the derivative, perturbation, and history word;
 - one \(E\) source between the energy tag and characteristic tree;
 - one \(U,Y\) source pair between the derivative and characteristic tree;
-- exact A/M occurrence counts and distinct occurrence names;
+- six exact A/M source-use occurrences, six ordered holes, and one total
+  typed binding \(\sigma:F_{\mathrm{use}}\to H_{\mathrm{pend}}\);
 - the ordered domain cycle \(KX\), \(Xt\), \(tK\); and
 - non-erasure of fibres, unused syntax, and residuals.
 
@@ -420,7 +464,8 @@ subsystems commute, preserve one another, or admit a common interpretation.
 
 ## 8. The syntax restriction obtained
 
-The pendulum factors add one finite restriction to Bootstrap Zero:
+For forms that elect this profile, the pendulum factors add one finite
+restriction to Bootstrap Zero:
 
 \[
 \boxed{
@@ -476,9 +521,10 @@ Once syntax-factor placement is accepted, the next stage may ask for separate
 proofs of:
 
 1. **namespace coherence:** substitutions cannot turn `HistoryName` into the
-   domain role `t`;
-2. **derivative typing:** history derivative atoms preserve declared source
-   and value types;
+   domain role `t`, `OccurrenceName` into `HoleName`, or either into
+   `IncidenceName`;
+2. **derivative typing:** the history-index variant of the core derivative
+   atom preserves declared source and value types;
 3. **perturbation coherence:** energy, axis, and history references remain
    literal under renaming;
 4. **occurrence coherence:** A/M copies match the thread production ledger;
@@ -502,8 +548,8 @@ The companion test checks:
 1. history names and domain roles remain different typed identities even if
    their display strings coincide;
 2. \(D_\zeta\) cites the same \(U,Y\) sources as the characteristic cell;
-3. the A/M spelling has exact source census \(Y:2,U:3,E:1\) and six fresh
-   occurrences;
+3. the A/M spelling has exact source census \(Y:2,U:3,E:1\), six fresh
+   occurrences, six ordered holes, and an explicit total binding \(\sigma\);
 4. adjacent routing preserves that occurrence multiset and cannot create the
    required copies;
 5. the axis carries an explicit empty/universal dual atom, and the piercing

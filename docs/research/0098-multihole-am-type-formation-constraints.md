@@ -28,7 +28,7 @@ AddKernel[x,y] ::= add(use[x], use[y])
 ProductKernel[a,x,b,y] ::=
   add(
     add(mul(use[a], use[y]), mul(use[x], use[b])),
-    neg(mul(use[a], use[b])))
+    mul(atom[negUnit_A:A], mul(use[a], use[b])))
 ```
 
 These are expression-tree templates.  They are not equations and they carry
@@ -39,7 +39,7 @@ no distinguished result value.  In particular this note introduces no:
 - predecessor or birthday order;
 - numerical equality or inequality;
 - objectification map; or
-- semantic interpretation of `add`, `mul`, or `neg`.
+- semantic interpretation of `add`, `mul`, or `negUnit_A`.
 
 The only conclusion is a formation package:
 
@@ -61,8 +61,8 @@ unprojected syntax.
 
 ## 1. Raw A/M terms
 
-Let the expression grammar be the one declared in note 0095, extended only by
-an explicitly declared negative operation when needed:
+Let the expression grammar be exactly the pure add--multiply grammar declared
+in note 0095:
 
 \[
 \begin{aligned}
@@ -70,14 +70,22 @@ E ::= {}&\mathsf{atom}[m:A]
 \mid \mathsf{hole}[h:A]
 \mid \mathsf{use}[s,o:A]\\
 &\mid \mathsf{add}[E,E]
-\mid \mathsf{mul}[E,E]
-\mid \mathsf{neg}[E].
+\mid \mathsf{mul}[E,E].
 \end{aligned}
 \tag{AMTerms}
 \]
 
-`neg` is admitted only when its block type is declared.  It is not supplied
-by right side, negative incidence polarity, `under`, duality, or conjugation.
+The product kernel uses a named atom
+
+\[
+\mathsf{atom}[\mathsf{negUnit}_A:A]
+\]
+
+at its negative-unit position.  This is an `AMAtomName`, not a unary
+operation and not a new orientation alphabet.  Formation only checks that
+the atom is declared at type \(A\); it does not assert that the atom denotes
+the number \(-1\).  In particular it is not supplied by right side, negative
+incidence polarity, `under`, duality, or conjugation.
 
 The formation judgement is unchanged in kind:
 
@@ -112,10 +120,10 @@ Every use is indexed by both a source and an occurrence:
 \mathsf{use}[s,o:A].
 \]
 
-The product template has the occurrence pattern
+The product template has the variable source-use order
 
 \[
-a_1y_1+x_1b_1-a_2b_2.
+\langle a_1,y_1,x_1,b_1,a_2,b_2\rangle.
 \tag{ProductOccurrences}
 \]
 
@@ -142,10 +150,11 @@ The product template additionally requires
 \[
 \mathsf{mul}_A:A,A\Rightarrow A,
 \qquad
-\mathsf{neg}_A:A\Rightarrow A.
+\mathsf{negUnit}_A:A.
 \]
 
-Naming a value type \(A\) supplies none of these operations automatically.
+The last declaration supplies an atom rather than a gate.  Naming a value
+type \(A\) supplies neither the gates nor that atom automatically.
 
 ---
 
@@ -237,7 +246,7 @@ Its authority is deliberately small:
 Consequently a product spelling has the mixed shape
 
 ```text
-copy/share :: braid-block :: mul/add/neg gates :: braid-block
+copy/share :: braid-block :: mul/add gates and negUnit atom :: braid-block
 ```
 
 but note 0095 still has no compiler that derives this word from an A/M tree.
@@ -339,10 +348,10 @@ The companion test checks:
 2. the product template contains six fresh occurrences with source census
    \(a:2,x:1,b:2,y:1\);
 3. routing preserves the occurrence multiset and cannot manufacture copies;
-4. arithmetic negation, incidence polarity, crossing sign, and L/R side are
-   distinct alphabets;
-5. the product template is unavailable without declared `add`, `mul`, and
-   `neg` operations;
+4. the named negative-unit atom, incidence polarity, crossing sign, and L/R
+   side remain distinct typed syntax;
+5. the product template is unavailable without declared `add` and `mul`
+   operations plus a declared `negUnit_A` atom;
 6. swapped hole orders remain different raw terms;
 7. option-family concatenation is not the `add` constructor; and
 8. a constraint record retains both trees without equating them.

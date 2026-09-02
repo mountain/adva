@@ -249,6 +249,12 @@ as pure formation syntax in
 It keeps the history parameter distinct from domain `t`, shares one explicit
 cycle name across the line--circle, three-domain Omega word, forgetting, and
 closure records, and proves no interpreter coherence.
+The complete Bootstrap Zero syntax-factor inventory, its hard/calibration/
+candidate status split, and the local repairs for pure A/M syntax, derivative
+indices, and occurrence-to-hole binding are recorded in
+[`docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md`](docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md).
+It leaves the shared `Circle(gamma)`/Omega/closure seam as an explicit
+coordination proof obligation.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
