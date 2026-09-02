@@ -159,7 +159,7 @@ unknown.  Choosing its value is an additional extension decision.
 The placement is shown in
 [the labeled triangle](0096-h7-boolean-triangle-placement.svg).
 
-![The seven nonempty faces and both orientations of the Boolean triangle](0096-h7-boolean-triangle-placement.svg)
+![Boolean triangle faces and orientations](0096-h7-boolean-triangle-placement.svg)
 
 ---
 
@@ -493,6 +493,12 @@ and proof obligation B0.6.  A future reversal constructor, equation, or
 coherence cell must be introduced explicitly.  The finite Boolean oracle
 motivates this syntactic distinction but does not define its semantics.
 
+The threading-side continuation in
+[note 0097](0097-threading-syntax-typed-braid-alignment.md) keeps ordered
+domain direction separate from signed crossing history.  In particular, a
+directed or chiral Boolean placement label does not determine an over/under
+word.
+
 ---
 
 ## Conservative conclusion
@@ -516,10 +522,10 @@ By symmetry and complement they admit twenty geometric archetypes, each with
 an exact seven-bit identity-bearing mask.
 
 Bootstrap Zero already has direct syntax for domain roles, ordered through
-types, L/R frontiers, polarity tags, exact lines, cyclic words, circles, and
-finite incidence diagrams.  It deliberately lacks Boolean support values,
-logical connectives, complement laws, symmetric-edge equations, reversal
-semantics, and interpreter bodies.
+types, L/R frontiers, polarity tags, signed crossings, exact lines, cyclic
+words, circles, and finite incidence diagrams.  It deliberately lacks Boolean
+support values, logical connectives, complement laws, symmetric-edge
+equations, braid equations, reversal semantics, and interpreter bodies.
 
 The resulting alignment is therefore informative without being circular:
 
