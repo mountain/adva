@@ -233,6 +233,11 @@ twenty triangle archetypes, together with the exact directed-edge and chiral
 counts and their syntax-only Bootstrap Zero alignment, is recorded in
 [`docs/research/0096-boolean-triangle-placement-language-alignment.md`](docs/research/0096-boolean-triangle-placement-language-alignment.md).
 It defines no interpreter clause or Boolean computation semantics.
+The threading-side continuation adds typed signed crossings and raw braid
+blocks in
+[`docs/research/0097-threading-syntax-typed-braid-alignment.md`](docs/research/0097-threading-syntax-typed-braid-alignment.md).
+It keeps crossing sign separate from incidence polarity, domain direction,
+L/R side, and function swap, without adding braid-word equations.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
