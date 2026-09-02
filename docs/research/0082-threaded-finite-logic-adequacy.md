@@ -635,7 +635,12 @@ Therefore:
 \]
 
 The present theorem makes that later question well posed; it does not answer
-it.
+it.  The separate continuation
+[0084](0084-threaded-natural-deduction-entailment-cell.md) chooses the ordered
+linear route for a first implicational fragment.  It proves one-way Boolean
+soundness with `H_7` as a restriction corollary, calibrates replayable positive
+entailment and negative countermodel cells, and deliberately does not claim
+completeness, normalization, or quantifier proof rules.
 
 ---
 
@@ -744,7 +749,7 @@ It does not establish:
 - classical adequacy for unrestricted existing Adva thread graphs; or
 - a relation between proof normalization and hyperbolic compactification.
 
-The next proof-theoretic step should choose one of two routes:
+The next proof-theoretic step had to choose one of two routes:
 
 1. a Cartesian finite natural deduction whose structural rules are justified
    by explicit copy, discard, and compatibility certificates; or
@@ -754,6 +759,11 @@ The next proof-theoretic step should choose one of two routes:
 The finite semantics in this note can evaluate either calculus independently.
 Exploration can then search for a derivation, countermodel, or retained
 frontier without defining truth by the behavior of the search.
+
+Note 0084 takes the second route for `Ax`, ordered right implication
+introduction, and source-disjoint elimination.  Its next dependency is a
+certificate-preserving proof-substitution theorem.  The Cartesian route and
+proof-relevant classical control remain separate open constructions.
 
 ## Conservative conclusion
 
