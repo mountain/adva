@@ -31,8 +31,10 @@ operators were downstream targets of this note. Note 0084 now supplies the
 first research-local ordered implicational fragment and replayable
 support-mask coherence calibration. Note 0085 adds ordered one-hole
 substitution, conditional V0 fresh-cut admissibility, and the exact beta-ledger
-boundary; normalization, dynamic modalities, and fixed-point operators
-remain downstream. No stable logical
+boundary. Note 0086 supplies its research-local beta-ledger transport,
+arbitrary-position transport-indexed preservation, and beta-only strong
+normalization. Local confluence, audit coherence, dynamic modalities, and
+fixed-point operators remain downstream. No stable logical
 symbol, quantifier, compactification type, Rust API, or semantic right to
 forget is introduced here.
 
@@ -60,6 +62,13 @@ right-boundary substitution to an ordered context-hole theorem, derives cut
 admissibility under strict V0 freshness, and shows why beta contraction needs a
 separate ledger
 transport rather than raw current-ledger equality.
+
+The beta-only continuation in note
+[0086](0086-contextual-beta-ledger-transport-strong-normalization.md)
+implements that directed transport, lifts certified detour contraction to
+arbitrary proof positions, and proves strong normalization for each finite
+`TND0` derivation.  It does not prove local or global confluence, coherence of
+distinct audit histories, or a unique normal form.
 
 ---
 
@@ -789,6 +798,15 @@ compactification:
 }
 \]
 
+The premise requires genuine coherent infinite continuations.  It is not
+supplied by beta reduction of one fixed finite `TND0` proof: note 0086 proves
+that every beta-only step strictly decreases its current ledger length, so
+every such reduction sequence is finite.  A single finite proof therefore has
+no infinite beta ray and no beta-generated \(\Omega\)-boundary.  The proposed
+end compactification remains a construction for recursive or open-ended
+search, or for a compatible size-unbounded family of finite proofs, not for
+the strongly normalizing beta history of one proof.
+
 A finite prefix-free frontier \(F_{n,B}\) determines a finite union of
 cylinder neighborhoods on that boundary.  Under a declared binary
 self-delimiting code its current open mass is
@@ -971,7 +989,9 @@ branch may have every finite prefix admitted but no finite closure
 certificate.  It belongs to the end boundary of that search tree.  It may
 encode genuine nontermination, perpetual revision, or simply an unresolved
 run; those readings require additional evidence.  The present propositional
-calibration has no such branch semantics.
+calibration has no such branch semantics.  In particular, the beta-only
+reduction relation of note 0086 cannot furnish this ray for a fixed finite
+`TND0` proof, because that relation is strongly normalizing.
 
 ### 8.3 Lift of a successful sealed thread
 
@@ -1218,7 +1238,10 @@ It does not establish:
    them to observer-refinement substitution laws;
 7. retain the ordered implicational natural-deduction calibration from note
    0084 and its certificate-preserving one-hole substitution theorem from note
-   0085, then implement beta-ledger transport before normalization;
+   0085 together with note 0086's beta-ledger transport,
+   arbitrary-position preservation, and beta-only strong normalization; next
+   test independent-redex interchange and nested-redex
+   substitution-composition coherence without presupposing confluence;
 8. extend bounded alternation toward a declared fair certificate search only
    after its coverage invariant is proved;
 9. separately define a research-local threaded-bordification record and test
@@ -1253,8 +1276,11 @@ matches finite Tarskian satisfaction. Note 0084 adds the first ordered
 implicational rules, recursive proof checking, one-way Boolean soundness with
 an `H_7` corollary, and replayable positive/negative entailment cells. Note
 0085 adds ordered one-hole proof substitution and conditional V0 fresh-cut
-admissibility while exposing the nontrivial beta-ledger transport. Stable
-quantifiers, normalization, and full natural deduction come later.
+admissibility while exposing the nontrivial beta-ledger transport. Note 0086
+implements that transport and establishes arbitrary-position preservation and
+beta-only strong normalization for finite `TND0` derivations. Stable
+quantifiers, confluence, proof-coherence quotients, and full natural deduction
+come later.
 Exploration first searches for a derivation,
 countermodel, or honest frontier in one fixed entailment problem; dynamic and
 coinductive readings remain possible future semantics for a mature search
@@ -1262,8 +1288,12 @@ calculus.
 
 A finite vocabulary gives compactness first at the level of coherent infinite
 words or ends.  Hyperbolic compactification is a further representation
-theorem.  The appropriate geometric object is not a bare surface with cusp
-points filled in, but a marked thread-respecting bordification that retains
+theorem.  The strongly normalizing beta reduction of one finite `TND0` proof
+has no infinite ray and contributes no \(\Omega\)-point; the relevant infinite
+words must instead come from a recursive or open-search extension, or from an
+unbounded compatible proof family.  The appropriate geometric object is not
+a bare surface with cusp points filled in, but a marked thread-respecting
+bordification that retains
 typed cusp directions, operational apertures, port orders, pairing choices,
 holonomy, residuals, and the distinction between unresolved rays and
 unbounded lifts of successful characters.

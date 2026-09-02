@@ -8,6 +8,15 @@ No stable Adva proof term, cut node, substitution event, beta event, ledger
 transport, logical symbol, or Rust API is introduced here. The executable
 companion imports and reuses the research-local proof fixture of 0084.
 
+Follow-up status: note
+[0086](0086-contextual-beta-ledger-transport-strong-normalization.md) now
+supplies the research-local beta-ledger transport anticipated here, lifts it
+to arbitrary proof positions, proves transport-indexed preservation, and
+establishes beta-only strong normalization for finite `TND0` derivations.
+This note remains the substitution theorem and dependency boundary; the
+follow-up does not yet establish local confluence, coherence of competing
+reduction histories, or a unique normal form.
+
 This note follows a Gentzen/Prawitz-style dependency discipline:
 
 1. strengthen substitution to an ordered one-hole lemma;
@@ -101,8 +110,9 @@ L\circ\Lambda_\sigma\circ R.
 The suffix \(R\) contains no open occurrence but may contain discharged audit
 records. Thus beta contraction deletes the retired target from the current
 proof and transports the replacement ledger leftward across \(R\). This must
-be recorded by a future beta transport cell; it cannot be silently declared
-to be ledger equality.
+be recorded by a beta transport cell; it cannot be silently declared to be
+ledger equality.  Note 0086 subsequently realizes this requirement at the
+research-local level.
 
 ---
 
@@ -501,7 +511,8 @@ Deleting \(x^b\) from the left gives \([h^c,r]\), not \([r,h^c]\).
 The resource multiset of surviving uses agrees, but multiset agreement forgets
 the very order that the threaded grammar asks us to retain.
 
-A future `BetaLedgerTransport` must therefore record at least:
+This note therefore required a future `BetaLedgerTransport` to record at
+least:
 
 - the redex and contractum roots;
 - the consumed target/binder pair;
@@ -511,8 +522,17 @@ A future `BetaLedgerTransport` must therefore record at least:
 - any certified alpha-renaming or scope rebasing; and
 - the open-context and conclusion preservation checks.
 
-If this movement later has geometric content, it is a braid or transport cell,
-not an invisible permutation.
+If this movement later has geometric content, it may have a braid-like
+survivor component or form part of a transport cell; it is not an invisible
+permutation.  The entire beta event is directed and retires one record, so it
+is not itself a braid.
+
+Note 0086 now implements the corresponding checked transport as a directed
+survivor span: it retires exactly the target record, preserves
+the identities and complete records of every survivor, retains the internal
+orders of \(L\), \(R_0\), and \(\Lambda_\sigma\), and records the prescribed
+cross-block movement.  It remains a directed audit cell, not a proved braid
+or an authorized proof-coherence quotient.
 
 ---
 
@@ -520,28 +540,41 @@ not an invisible permutation.
 
 The proof-theoretic words now have distinct meanings.
 
-- A future project-local operational **beta success** would be one certified
-  local detour contraction.
+- The project-local **beta success** supplied by note 0086 is one certified
+  detour contraction at a declared proof position.
 - A **beta normal form** has no beta detour at any proof position.
 - **Weak normalization** says that some reduction sequence reaches a normal
   form.
 - **Strong normalization** says that every reduction sequence terminates.
 - **Confluence** says that divergent reductions can be joined.
 
-The substitution theorem proves none of the last three by itself. Boundary-
-sequent preservation also does not prove termination.
+The substitution theorem in this note proves none of the last three by
+itself. Boundary-sequent preservation also does not prove termination.
 
-For the implicational fragment, the traditional next proof would first add
-proof terms and a typed reduction relation, then use a decreasing proof
-measure or a reducibility argument to establish strong normalization. The
-threaded version must lift that argument to beta transport certificates. A
-normal form may forget administrative detours only through a declared
-observer quotient whose invariants have been proved to descend.
+Note 0086 subsequently defines a typed reduction relation on derivation trees,
+lifts checked beta transport through implication introduction and both
+elimination premises, and proves transport-indexed preservation at arbitrary
+proof positions.  In this linear one-hole fragment no argument proof is
+duplicated: every beta-only step decreases the complete current ledger length
+and discharged-record count by exactly one and the derivation-tree node count
+by exactly three.  Hence every beta-only reduction sequence from a finite
+`TND0` derivation terminates; its length is bounded by the initial number of
+discharged records.  This is strong normalization for that declared
+derivation reduction, not a theorem about a runtime term language.  It still
+does not imply confluence, coherence of different audit paths, or uniqueness
+of beta normal forms.
+
+A normal form may forget administrative detours only through a declared
+observer quotient whose invariants have been proved to descend.  That
+quotient is not installed by either note.
 
 This also constrains exploration and compactification. A finite vocabulary
-does not by itself imply termination or compactness. Iterated reductions form
-finite histories; only an actually infinite, scheduler-stable family of
-unclosed histories could supply rays for a future boundary. Any such
+does not by itself imply termination or compactness.  Conversely, beta-only
+strong normalization means that the reduction tree of one fixed finite
+`TND0` proof has no infinite beta ray and supplies no \(\Omega\)-boundary.
+Only an actually infinite, scheduler-stable family of unclosed histories in a
+future recursive or open-search extension, or a compatible size-unbounded
+family of finite proofs, could supply rays for a future boundary. Any such
 compactification must preserve typed open ports, thread identity, and the
 declared transport cells until a controlled quotient names exactly which
 variation history is forgotten.
@@ -605,22 +638,32 @@ checker and its finite Boolean rule-soundness cell.
 - preservation of the checked conclusion and ordered open context; and
 - failure of raw full-ledger equality under general beta contraction.
 
+### Established by the research-local continuation in note 0086
+
+- a standalone beta-ledger transport record and replay checker;
+- a path-indexed beta-only reduction relation at arbitrary proof positions;
+- transport-indexed preservation of conclusion and ordered open context;
+- exact survivor identity and ledger-order accounting; and
+- beta-only strong normalization of every finite `TND0` derivation.
+
 ### Deferred
 
 - a stable nominal substitution or cut-event identity;
 - source-transfer and 0083 aperture-filling rules for substitution;
 - term syntax and capture-avoiding term substitution;
-- a standalone beta transport record and checker;
-- full ledger-indexed subject reduction;
-- a reduction relation over arbitrary proof positions;
-- strong or weak normalization and confluence;
+- a stable promoted beta event, transport identity, or Rust API;
+- local confluence, global confluence, and uniqueness of beta normal forms;
+- independent-redex interchange and nested substitution-composition
+  coherence;
+- eta conversion and any beta-eta or eta-long normalization claim;
 - a sequent calculus with explicit cuts and cut elimination;
 - proof-relevant quantifier rules and eigenvariable transport;
 - a justified proof-coherence quotient; and
 - any compactification or \(\Omega\) claim for reduction histories.
 
-The next proof-theoretic target is now sharply determined: implement the beta
-transport cell of equation (B), then state and prove full ledger-indexed
-subject reduction for arbitrary certified detour positions. Only after that
-should the project attempt a normalization theorem. Quantifier rules still
-wait for the separate term-substitution and scope theorem.
+The next proof-theoretic target is now local confluence and audit coherence:
+first independent-redex interchange, then the nested-redex
+substitution-composition law.  Only after those checks should the project ask
+whether beta normalization selects a coherent or unique proof presentation.
+Quantifier rules still wait for the separate term-substitution and scope
+theorem.
