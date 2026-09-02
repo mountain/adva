@@ -21,14 +21,15 @@ class CrossingSign(Enum):
     UNDER = "under"
 
 
-class ArithmeticSign(Enum):
-    NEGATE = "neg"
-
-
 @dataclass(frozen=True)
 class Use:
     source: str
     occurrence: str
+
+
+@dataclass(frozen=True)
+class Atom:
+    name: str
 
 
 @dataclass(frozen=True)
@@ -43,12 +44,7 @@ class Mul:
     right: Term
 
 
-@dataclass(frozen=True)
-class Neg:
-    value: Term
-
-
-Term: TypeAlias = Use | Add | Mul | Neg
+Term: TypeAlias = Atom | Use | Add | Mul
 
 
 @dataclass(frozen=True)
@@ -62,6 +58,7 @@ class Port:
 @dataclass(frozen=True)
 class OperationSignature:
     operations: frozenset[str]
+    atoms: frozenset[str]
 
 
 @dataclass(frozen=True)
@@ -92,15 +89,18 @@ def _product_kernel() -> tuple[tuple[str, ...], Term]:
     b1 = _fresh_use("b", 1)
     b2 = _fresh_use("b", 2)
     y1 = _fresh_use("y", 1)
-    term = Add(Add(Mul(a1, y1), Mul(x1, b1)), Neg(Mul(a2, b2)))
+    term = Add(
+        Add(Mul(a1, y1), Mul(x1, b1)),
+        Mul(Atom("neg-unit-A"), Mul(a2, b2)),
+    )
     return holes, term
 
 
 def _uses(term: Term) -> tuple[Use, ...]:
     if isinstance(term, Use):
         return (term,)
-    if isinstance(term, Neg):
-        return _uses(term.value)
+    if isinstance(term, Atom):
+        return ()
     return _uses(term.left) + _uses(term.right)
 
 
@@ -115,7 +115,10 @@ def _route_adjacent(frontier: tuple[Port, ...], gap: int) -> tuple[Port, ...]:
 
 
 def _can_form_product(signature: OperationSignature) -> bool:
-    return {"add", "mul", "neg"} <= signature.operations
+    return (
+        {"add", "mul"} <= signature.operations
+        and "neg-unit-A" in signature.atoms
+    )
 
 
 def test_kernels_have_fixed_ordered_hole_boundaries() -> None:
@@ -166,12 +169,12 @@ def test_routing_preserves_occurrences_and_cannot_supply_copies() -> None:
     )
 
 
-def test_orientation_alphabets_remain_disjoint() -> None:
+def test_negative_unit_atom_is_not_an_orientation_token() -> None:
     alphabets = (
         {item.value for item in OptionSide},
         {item.value for item in IncidencePolarity},
         {item.value for item in CrossingSign},
-        {item.value for item in ArithmeticSign},
+        {"neg-unit-A"},
     )
 
     for index, alphabet in enumerate(alphabets):
@@ -180,13 +183,15 @@ def test_orientation_alphabets_remain_disjoint() -> None:
 
 
 def test_product_formation_requires_declared_gate_capabilities() -> None:
-    additive = OperationSignature(frozenset({"add"}))
-    positive = OperationSignature(frozenset({"add", "mul"}))
-    signed = OperationSignature(frozenset({"add", "mul", "neg"}))
+    additive = OperationSignature(frozenset({"add"}), frozenset())
+    gates_only = OperationSignature(frozenset({"add", "mul"}), frozenset())
+    complete = OperationSignature(
+        frozenset({"add", "mul"}), frozenset({"neg-unit-A"})
+    )
 
     assert not _can_form_product(additive)
-    assert not _can_form_product(positive)
-    assert _can_form_product(signed)
+    assert not _can_form_product(gates_only)
+    assert _can_form_product(complete)
 
 
 def test_swapped_arguments_are_distinct_raw_terms() -> None:
@@ -199,7 +204,7 @@ def test_swapped_arguments_are_distinct_raw_terms() -> None:
 
 def test_alternative_family_is_not_an_add_tree() -> None:
     _, add_term = _add_kernel()
-    family = AlternativeFamily((add_term, Neg(add_term)))
+    family = AlternativeFamily((add_term, Mul(Atom("neg-unit-A"), add_term)))
 
     assert isinstance(family, AlternativeFamily)
     assert not isinstance(family, Add)

@@ -20,6 +20,19 @@ class HistoryName:
 
 
 @dataclass(frozen=True)
+class DomainDerivativeIndex:
+    role: DomainRole
+
+
+@dataclass(frozen=True)
+class HistoryDerivativeIndex:
+    history: HistoryName
+
+
+DerivativeIndex: TypeAlias = DomainDerivativeIndex | HistoryDerivativeIndex
+
+
+@dataclass(frozen=True)
 class Use:
     source: str
     occurrence: str
@@ -42,12 +55,7 @@ class Mul:
     right: AMTerm
 
 
-@dataclass(frozen=True)
-class Neg:
-    value: AMTerm
-
-
-AMTerm: TypeAlias = Atom | Use | Add | Mul | Neg
+AMTerm: TypeAlias = Atom | Use | Add | Mul
 
 
 @dataclass(frozen=True)
@@ -58,12 +66,31 @@ class ConstraintCell:
 
 
 @dataclass(frozen=True)
-class HistoryDerivative:
+class DerivativeAtom:
     name: str
-    history: HistoryName
+    index: DerivativeIndex
+    polarity: str
     input_source: str
     output_source: str
     value_type: str
+
+
+@dataclass(frozen=True)
+class Hole:
+    name: str
+    value_type: str
+
+
+@dataclass(frozen=True)
+class Binding:
+    occurrence: str
+    hole: str
+
+
+@dataclass(frozen=True)
+class OccurrenceProduction:
+    source: str
+    occurrences: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -143,10 +170,13 @@ class PendulumSyntax:
     circle: Circle
     pierce: Pierce
     history: HistoryName
-    derivative: HistoryDerivative
+    derivative: DerivativeAtom
     energy: EnergyTag
     perturbation: Perturbation
     characteristic: ConstraintCell
+    holes: tuple[Hole, ...]
+    bindings: tuple[Binding, ...]
+    productions: tuple[OccurrenceProduction, ...]
     omega_word: OmegaWord
     forgetting: ForgetRecord
     closure: ClosureWitness
@@ -158,20 +188,24 @@ def _uses(term: AMTerm) -> tuple[Use, ...]:
         return (term,)
     if isinstance(term, Atom):
         return ()
-    if isinstance(term, Neg):
-        return _uses(term.value)
     return _uses(term.left) + _uses(term.right)
 
 
 def _pendulum_constraint() -> ConstraintCell:
-    left = Mul(Use("Y", "y-1"), Use("Y", "y-2"))
+    left = Mul(Use("Y", "o-Y1"), Use("Y", "o-Y2"))
     right = Mul(
         Atom("2"),
         Mul(
-            Add(Use("E", "e-1"), Neg(Use("U", "u-1"))),
+            Add(
+                Use("E", "o-E1"),
+                Mul(Atom("neg-unit-A"), Use("U", "o-U1")),
+            ),
             Add(
                 Atom("1"),
-                Neg(Mul(Use("U", "u-2"), Use("U", "u-3"))),
+                Mul(
+                    Atom("neg-unit-A"),
+                    Mul(Use("U", "o-U2"), Use("U", "o-U3")),
+                ),
             ),
         ),
     )
@@ -207,6 +241,12 @@ def _fixture() -> PendulumSyntax:
     cycle_name = "gamma"
     history = HistoryName("zeta")
     characteristic = _pendulum_constraint()
+    holes = tuple(Hole(f"h-{index}", "A") for index in range(1, 7))
+    occurrence_order = ("o-Y1", "o-Y2", "o-E1", "o-U1", "o-U2", "o-U3")
+    bindings = tuple(
+        Binding(occurrence, hole.name)
+        for occurrence, hole in zip(occurrence_order, holes, strict=True)
+    )
     return PendulumSyntax(
         axis=AxisLine(
             "axis",
@@ -217,8 +257,15 @@ def _fixture() -> PendulumSyntax:
         circle=Circle(cycle_name, ("i-KX", "i-Xt", "i-tK")),
         pierce=Pierce("z", "axis", cycle_name),
         history=history,
-        derivative=HistoryDerivative("delta", history, "U", "Y", "A"),
-        energy=EnergyTag("epsilon", "E", "e-1", ("energy-provenance",)),
+        derivative=DerivativeAtom(
+            "delta",
+            HistoryDerivativeIndex(history),
+            "+",
+            "U",
+            "Y",
+            "A",
+        ),
+        energy=EnergyTag("epsilon", "E", "o-E1", ("energy-provenance",)),
         perturbation=Perturbation(
             "kick",
             "epsilon",
@@ -227,6 +274,13 @@ def _fixture() -> PendulumSyntax:
             ("uninterpreted-perturbation",),
         ),
         characteristic=characteristic,
+        holes=holes,
+        bindings=bindings,
+        productions=(
+            OccurrenceProduction("Y", ("o-Y1", "o-Y2")),
+            OccurrenceProduction("E", ("o-E1",)),
+            OccurrenceProduction("U", ("o-U1", "o-U2", "o-U3")),
+        ),
         omega_word=_omega_word(cycle_name),
         forgetting=ForgetRecord(
             "forget-observer",
@@ -265,7 +319,9 @@ def _validate_package(form: PendulumSyntax) -> None:
         raise ValueError("the piercing record cites a different axis")
     if form.axis.aspects != ("empty", "universal") or not form.axis.dual_atom:
         raise ValueError("the axis needs an explicit empty/universal dual atom")
-    if form.derivative.history != form.history:
+    if not isinstance(form.derivative.index, HistoryDerivativeIndex):
+        raise ValueError("the derivative must use a history index")
+    if form.derivative.index.history != form.history:
         raise ValueError("the derivative cites a different history")
     if (
         form.perturbation.energy_name != form.energy.name
@@ -281,6 +337,26 @@ def _validate_package(form: PendulumSyntax) -> None:
     census = Counter(use.source for use in uses)
     if census != Counter({"Y": 2, "U": 3, "E": 1}):
         raise ValueError("the pendulum occurrence census is malformed")
+    occurrence_names = tuple(use.occurrence for use in uses)
+    hole_names = tuple(hole.name for hole in form.holes)
+    if len(form.holes) != 6 or len(set(hole_names)) != 6:
+        raise ValueError("the pendulum profile requires six distinct holes")
+    if any(hole.value_type != "A" for hole in form.holes):
+        raise ValueError("all pendulum holes must have the declared value type")
+    if tuple(binding.occurrence for binding in form.bindings) != occurrence_names:
+        raise ValueError("the binding must cover the ordered occurrence frontier")
+    if tuple(binding.hole for binding in form.bindings) != hole_names:
+        raise ValueError("the binding must cover the ordered hole context")
+    production_map = {
+        production.source: production.occurrences
+        for production in form.productions
+    }
+    if production_map != {
+        "Y": ("o-Y1", "o-Y2"),
+        "E": ("o-E1",),
+        "U": ("o-U1", "o-U2", "o-U3"),
+    }:
+        raise ValueError("the production ledger must create every source use")
     if {form.derivative.input_source, form.derivative.output_source} != {"U", "Y"}:
         raise ValueError("the derivative must cite the U/Y source pair")
     if form.energy.source != "E" or form.energy.occurrence not in {
@@ -323,6 +399,14 @@ def test_history_name_is_not_the_domain_time_role() -> None:
     assert history != DomainRole.TIME
 
 
+def test_derivative_index_variants_remain_disjoint_at_same_display() -> None:
+    role_index = DomainDerivativeIndex(DomainRole.TIME)
+    history_index = HistoryDerivativeIndex(HistoryName("t"))
+
+    assert role_index.role.value == history_index.history.display
+    assert role_index != history_index
+
+
 def test_derivative_and_characteristic_share_u_y_sources_only() -> None:
     form = _fixture()
     sources = {use.source for use in _uses(form.characteristic.left)} | {
@@ -331,6 +415,21 @@ def test_derivative_and_characteristic_share_u_y_sources_only() -> None:
 
     assert {form.derivative.input_source, form.derivative.output_source} == {"U", "Y"}
     assert {form.derivative.input_source, form.derivative.output_source} < sources
+
+
+def test_six_occurrences_bind_to_six_separate_holes() -> None:
+    form = _fixture()
+    uses = _uses(form.characteristic.left) + _uses(form.characteristic.right)
+
+    assert tuple(binding.occurrence for binding in form.bindings) == tuple(
+        use.occurrence for use in uses
+    )
+    assert tuple(binding.hole for binding in form.bindings) == tuple(
+        hole.name for hole in form.holes
+    )
+    assert {binding.occurrence for binding in form.bindings}.isdisjoint(
+        {binding.hole for binding in form.bindings}
+    )
 
 
 def test_pendulum_am_tree_has_exact_source_and_occurrence_census() -> None:
@@ -342,8 +441,22 @@ def test_pendulum_am_tree_has_exact_source_and_occurrence_census() -> None:
     assert len({use.occurrence for use in uses}) == 6
 
 
+def test_negative_positions_use_named_atoms_in_pure_add_mul_tree() -> None:
+    characteristic = _pendulum_constraint()
+
+    def atoms(term: AMTerm) -> tuple[Atom, ...]:
+        if isinstance(term, Atom):
+            return (term,)
+        if isinstance(term, Use):
+            return ()
+        return atoms(term.left) + atoms(term.right)
+
+    names = Counter(atom.name for atom in atoms(characteristic.right))
+    assert names == Counter({"neg-unit-A": 2, "2": 1, "1": 1})
+
+
 def test_routing_preserves_occurrences_and_cannot_manufacture_copies() -> None:
-    supplied = (Use("Y", "y-1"), Use("U", "u-1"), Use("E", "e-1"))
+    supplied = (Use("Y", "o-Y1"), Use("U", "o-U1"), Use("E", "o-E1"))
     routed = _route_adjacent(_route_adjacent(supplied, 1), 2)
 
     assert Counter(routed) == Counter(supplied)

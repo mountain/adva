@@ -86,7 +86,8 @@ Fix pairwise disjoint countable namespaces:
 &&m\in\mathsf{AMAtomName},\\
 &\chi\in\mathsf{CharacteristicName},
 &&\delta\in\mathsf{DerivativeName},
-&&\xi\in\mathsf{CrossingName}.
+&&\xi\in\mathsf{CrossingName},\\
+&\zeta\in\mathsf{HistoryName}.
 \end{aligned}
 \tag{Names}
 \]
@@ -102,6 +103,21 @@ The reserved domain-role alphabet is
 d ::= K\mid X\mid t.
 \tag{Domain}
 \]
+
+Derivative indices form a separate tagged sum:
+
+\[
+\iota_D ::=
+\mathsf{role}[d]
+\mid
+\mathsf{history}[\zeta].
+\tag{DerivativeIndex}
+\]
+
+The two variants are disjoint typed syntax.  In particular, even when a
+history name is printed as `t`,
+`history[t]` is not `role[t]`.  This declaration adds no conversion between a
+history parameter and a domain role.
 
 The reserved side, incidence-polarity, and crossing-sign alphabets are
 
@@ -380,12 +396,13 @@ its value type, source, occurrence, role, or incidence polarity.
 u_{\mathrm{tr}} ::= 
 \mathsf{function}[\kappa:\Pi]
 \mid
-\mathsf{derivative}[d,p;\delta:\Pi\rightsquigarrow\Pi'].
+\mathsf{derivative}[\iota_D,p;\delta:\Pi\rightsquigarrow\Pi'].
 \tag{TransportAtoms}
 \]
 
-`derivative` is a domain- and polarity-indexed constructor.  It neither
-computes a derivative nor satisfies linearity, Leibniz, chain, nilpotence, or
+`derivative` is one polarity-indexed constructor with two disjoint raw index
+variants: a domain-role index and a history-name index.  It neither computes
+a derivative nor satisfies linearity, Leibniz, chain, nilpotence, or
 commutation laws here.
 
 ### 4.3 Characteristic atoms
@@ -658,7 +675,8 @@ Its checker must enforce at least:
 10. exact closure of a syntactic circle;
 11. valid adjacent-gap indices for every crossing;
 12. whole-incidence preservation across every crossing; and
-13. distinct raw spellings for `over` and `under` crossings.
+13. distinct raw spellings for `over` and `under` crossings; and
+14. a well-formed tagged index for every derivative atom.
 
 It must not inspect a scalar value, run an operation, solve an equation,
 differentiate a function, close a hole, choose a filling, or decide a logical
@@ -883,6 +901,12 @@ braid-word derivation.  This theorem creates no word equation.
 
 The maximal braid-block decomposition of a finite thread word is decidable
 and retains every non-routing separator in its original position.
+
+### B0.10 Derivative-index separation
+
+Every derivative atom has exactly one tagged index.  The constructors
+`role[d]` and `history[ζ]` remain distinct even when their payloads share a
+display string; no raw-syntax judgement converts one into the other.
 
 No completeness, soundness, adequacy, normalization, evaluation, learning,
 proof, differentiation, or halting theorem is included in these obligations.
