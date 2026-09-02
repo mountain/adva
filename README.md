@@ -197,6 +197,11 @@ Its proof-theoretic continuation supplies contextual beta-ledger transport,
 heterogeneous ledger-indexed preservation, and beta-only strong normalization
 for finite `TND0` derivations in
 [`docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md`](docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md).
+The pure computation syntax joining ordered multi-hole configurations,
+three-role annotations, typed through apertures, explicit connectors, and
+legal recursive Omega circles is proposed in
+[`docs/research/0087-typed-three-domain-threaded-multihole-calculus.md`](docs/research/0087-typed-three-domain-threaded-multihole-calculus.md).
+It adds no evaluation relation, denotation, or stable API.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
