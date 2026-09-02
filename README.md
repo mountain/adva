@@ -238,11 +238,17 @@ blocks in
 [`docs/research/0097-threading-syntax-typed-braid-alignment.md`](docs/research/0097-threading-syntax-typed-braid-alignment.md).
 It keeps crossing sign separate from incidence polarity, domain direction,
 L/R side, and function swap, without adding braid-word equations.
-The finite surreal-arithmetic continuation derives conditional construction
-rules from recursive addition and multiplication option schemas in
-[`docs/research/0098-surreal-arithmetic-type-formation-constraints.md`](docs/research/0098-surreal-arithmetic-type-formation-constraints.md).
-It isolates the missing multi-hole option-family bridge and leaves
-objectification and the Omega boundary explicit.
+The multi-hole A/M continuation records ordered kernels, graft bindings,
+source/occurrence lineage, and explicit copy/discard obligations in
+[`docs/research/0098-multihole-am-type-formation-constraints.md`](docs/research/0098-multihole-am-type-formation-constraints.md).
+It introduces no surreal number, option recursion, objectification, or
+arithmetic equality.
+The axis--circle continuation extracts a history-indexed pendulum constraint
+as pure formation syntax in
+[`docs/research/0099-axis-circle-pendulum-history-syntax.md`](docs/research/0099-axis-circle-pendulum-history-syntax.md).
+It keeps the history parameter distinct from domain `t`, shares one explicit
+cycle name across the line--circle, three-domain Omega word, forgetting, and
+closure records, and proves no interpreter coherence.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
