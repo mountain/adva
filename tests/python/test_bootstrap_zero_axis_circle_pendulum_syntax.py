@@ -75,10 +75,20 @@ class EnergyTag:
 
 
 @dataclass(frozen=True)
+class Perturbation:
+    name: str
+    energy_name: str
+    axis_name: str
+    history: HistoryName
+    residual: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class AxisLine:
     name: str
     incidence: str
     aspects: tuple[str, str]
+    dual_atom: str
 
 
 @dataclass(frozen=True)
@@ -135,6 +145,7 @@ class PendulumSyntax:
     history: HistoryName
     derivative: HistoryDerivative
     energy: EnergyTag
+    perturbation: Perturbation
     characteristic: ConstraintCell
     omega_word: OmegaWord
     forgetting: ForgetRecord
@@ -197,12 +208,24 @@ def _fixture() -> PendulumSyntax:
     history = HistoryName("zeta")
     characteristic = _pendulum_constraint()
     return PendulumSyntax(
-        axis=AxisLine("axis", "identity-i", ("empty", "universal")),
+        axis=AxisLine(
+            "axis",
+            "identity-i",
+            ("empty", "universal"),
+            "dual-empty-universal",
+        ),
         circle=Circle(cycle_name, ("i-KX", "i-Xt", "i-tK")),
         pierce=Pierce("z", "axis", cycle_name),
         history=history,
         derivative=HistoryDerivative("delta", history, "U", "Y", "A"),
         energy=EnergyTag("epsilon", "E", "e-1", ("energy-provenance",)),
+        perturbation=Perturbation(
+            "kick",
+            "epsilon",
+            "axis",
+            history,
+            ("uninterpreted-perturbation",),
+        ),
         characteristic=characteristic,
         omega_word=_omega_word(cycle_name),
         forgetting=ForgetRecord(
@@ -240,8 +263,17 @@ def _validate_package(form: PendulumSyntax) -> None:
         raise ValueError("all cycle records must cite one name")
     if form.axis.name != form.pierce.axis_name:
         raise ValueError("the piercing record cites a different axis")
+    if form.axis.aspects != ("empty", "universal") or not form.axis.dual_atom:
+        raise ValueError("the axis needs an explicit empty/universal dual atom")
     if form.derivative.history != form.history:
         raise ValueError("the derivative cites a different history")
+    if (
+        form.perturbation.energy_name != form.energy.name
+        or form.perturbation.axis_name != form.axis.name
+        or form.perturbation.history != form.history
+        or not form.perturbation.residual
+    ):
+        raise ValueError("the perturbation must join energy, axis, and history")
 
     uses = _uses(form.characteristic.left) + _uses(form.characteristic.right)
     if len({use.occurrence for use in uses}) != len(uses):
@@ -319,11 +351,21 @@ def test_routing_preserves_occurrences_and_cannot_manufacture_copies() -> None:
     assert Counter(use.source for use in routed) != Counter({"Y": 2, "U": 3, "E": 1})
 
 
-def test_axis_circle_and_all_cycle_records_share_literal_names() -> None:
+def test_axis_duality_piercing_and_perturbation_share_literal_names() -> None:
     form = _fixture()
 
     _validate_package(form)
+    assert form.axis.aspects == ("empty", "universal")
+    assert form.axis.dual_atom == "dual-empty-universal"
     assert form.axis.name == form.pierce.axis_name
+    assert form.perturbation.axis_name == form.axis.name
+    assert form.perturbation.energy_name == form.energy.name
+    assert form.perturbation.history == form.history
+
+
+def test_all_cycle_records_share_one_literal_name() -> None:
+    form = _fixture()
+
     assert {
         form.circle.name,
         form.pierce.cycle_name,
