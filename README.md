@@ -202,6 +202,18 @@ three-role annotations, typed through apertures, explicit connectors, and
 legal recursive Omega circles is proposed in
 [`docs/research/0087-typed-three-domain-threaded-multihole-calculus.md`](docs/research/0087-typed-three-domain-threaded-multihole-calculus.md).
 It adds no evaluation relation, denotation, or stable API.
+A reusable, occurrence-reopenable historical distributivity character is
+calibrated in
+[`docs/research/0088-historical-distributivity-character-v0.md`](docs/research/0088-historical-distributivity-character-v0.md).
+Its finite-observer failure frontier and closure boundary are developed in
+[`docs/research/0089-failure-frontiers-observer-relative-closure.md`](docs/research/0089-failure-frontiers-observer-relative-closure.md),
+with a prefix-frontier calibration plan in
+[`docs/research/0090-prefix-frontier-closure-calibration-plan.md`](docs/research/0090-prefix-frontier-closure-calibration-plan.md).
+The endogenous scope-breakthrough ledger and its first generative
+distributivity calibration plan are recorded in
+[`docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md`](docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md)
+and
+[`docs/research/0092-generative-distributivity-venture-calibration-plan.md`](docs/research/0092-generative-distributivity-venture-calibration-plan.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
