@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="760"
+     viewBox="0 0 1120 760" role="img"
+     aria-labelledby="title description">
+  <title id="title">H7 Boolean supports placed on the triadic face lattice</title>
+  <desc id="description">
+    A triangle with K, X, and t at its vertices; KX, Xt, and tK on its edges;
+    KXt at its centre; the omitted empty face below; and both orientations on
+    every boundary edge. A legend records the exact 128-support partition.
+  </desc>
+  <defs>
+    <marker id="arrow-blue" markerWidth="9" markerHeight="9" refX="7"
+            refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="9" markerHeight="9" refX="7"
+            refY="4.5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L9,4.5 L0,9 z" fill="#c2410c"/>
+    </marker>
+    <style>
+      .title { font: 600 24px system-ui, sans-serif; fill: #172033; }
+      .subtitle { font: 15px system-ui, sans-serif; fill: #4b5563; }
+      .node-label { font: 600 17px system-ui, sans-serif; fill: #172033;
+                    text-anchor: middle; dominant-baseline: middle; }
+      .small { font: 14px system-ui, sans-serif; fill: #374151; }
+      .edge-label { font: 600 13px system-ui, sans-serif; fill: #374151;
+                    text-anchor: middle; }
+      .legend-head { font: 600 18px system-ui, sans-serif; fill: #172033; }
+      .legend { font: 15px system-ui, sans-serif; fill: #374151; }
+      .code { font: 14px ui-monospace, SFMono-Regular, Consolas, monospace;
+              fill: #172033; }
+    </style>
+  </defs>
+
+  <rect width="1120" height="760" rx="18" fill="#fbfcfe"/>
+  <text x="52" y="48" class="title">H₇ Boolean triangle placement</text>
+  <text x="52" y="76" class="subtitle">
+    Seven nonempty faces, 128 support masks, and orientation retained outside
+    the Boolean shadow
+  </text>
+
+  <path d="M150 570 L730 570 L440 105 Z" fill="#f8fafc"
+        stroke="#64748b" stroke-width="2.5"/>
+
+  <path d="M195 605 L685 605" fill="none" stroke="#2563eb"
+        stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <path d="M690 538 L470 150" fill="none" stroke="#2563eb"
+        stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <path d="M408 150 L185 538" fill="none" stroke="#2563eb"
+        stroke-width="3" marker-end="url(#arrow-blue)"/>
+
+  <path d="M685 535 L195 535" fill="none" stroke="#c2410c"
+        stroke-width="2.5" stroke-dasharray="8 7"
+        marker-end="url(#arrow-orange)"/>
+  <path d="M472 166 L692 548" fill="none" stroke="#c2410c"
+        stroke-width="2.5" stroke-dasharray="8 7"
+        marker-end="url(#arrow-orange)"/>
+  <path d="M188 548 L408 166" fill="none" stroke="#c2410c"
+        stroke-width="2.5" stroke-dasharray="8 7"
+        marker-end="url(#arrow-orange)"/>
+
+  <text x="440" y="631" class="edge-label">K→X</text>
+  <text x="440" y="520" class="edge-label">X→K</text>
+  <text x="630" y="306" class="edge-label" transform="rotate(-58 630 306)">
+    X→t
+  </text>
+  <text x="575" y="330" class="edge-label" transform="rotate(58 575 330)">
+    t→X
+  </text>
+  <text x="250" y="306" class="edge-label" transform="rotate(58 250 306)">
+    t→K
+  </text>
+  <text x="305" y="330" class="edge-label" transform="rotate(-58 305 330)">
+    K→t
+  </text>
+
+  <circle cx="150" cy="570" r="31" fill="#eaf2ff" stroke="#2563eb"
+          stroke-width="2"/>
+  <circle cx="730" cy="570" r="31" fill="#eaf2ff" stroke="#2563eb"
+          stroke-width="2"/>
+  <circle cx="440" cy="105" r="31" fill="#eaf2ff" stroke="#2563eb"
+          stroke-width="2"/>
+  <text x="150" y="570" class="node-label">K</text>
+  <text x="730" y="570" class="node-label">X</text>
+  <text x="440" y="105" class="node-label">t</text>
+
+  <rect x="409" y="548" width="62" height="44" rx="12" fill="#ecfdf3"
+        stroke="#16825d" stroke-width="2"/>
+  <rect x="555" y="315" width="62" height="44" rx="12" fill="#ecfdf3"
+        stroke="#16825d" stroke-width="2"/>
+  <rect x="263" y="315" width="62" height="44" rx="12" fill="#ecfdf3"
+        stroke="#16825d" stroke-width="2"/>
+  <text x="440" y="570" class="node-label">KX</text>
+  <text x="586" y="337" class="node-label">Xt</text>
+  <text x="294" y="337" class="node-label">tK</text>
+
+  <circle cx="440" cy="415" r="38" fill="#fff5e6" stroke="#d97706"
+          stroke-width="2.5"/>
+  <text x="440" y="415" class="node-label">KXt</text>
+
+  <circle cx="440" cy="690" r="27" fill="#ffffff" stroke="#7c3aed"
+          stroke-width="2" stroke-dasharray="5 5"/>
+  <text x="440" y="690" class="node-label">∅</text>
+  <text x="482" y="694" class="small">omitted face / free extension bit</text>
+
+  <rect x="805" y="112" width="270" height="442" rx="16" fill="#ffffff"
+        stroke="#d1d5db"/>
+  <text x="832" y="148" class="legend-head">Exact dependency partition</text>
+  <text x="832" y="184" class="legend">C   constants</text>
+  <text x="1038" y="184" class="legend" text-anchor="end">2</text>
+  <text x="832" y="218" class="legend">V   one-domain</text>
+  <text x="1038" y="218" class="legend" text-anchor="end">6</text>
+  <text x="832" y="252" class="legend">Eₛ  symmetric edge</text>
+  <text x="1038" y="252" class="legend" text-anchor="end">18</text>
+  <text x="832" y="286" class="legend">E→  directed edge</text>
+  <text x="1038" y="286" class="legend" text-anchor="end">12</text>
+  <text x="832" y="320" class="legend">Fₛ  achiral triadic</text>
+  <text x="1038" y="320" class="legend" text-anchor="end">54</text>
+  <text x="832" y="354" class="legend">F↻  chiral triadic</text>
+  <text x="1038" y="354" class="legend" text-anchor="end">36</text>
+  <line x1="832" y1="375" x2="1038" y2="375" stroke="#d1d5db"/>
+  <text x="832" y="405" class="legend-head">Total</text>
+  <text x="1038" y="405" class="legend-head" text-anchor="end">128</text>
+
+  <text x="832" y="452" class="legend-head">Symmetry compression</text>
+  <text x="832" y="486" class="legend">D₃ orbits</text>
+  <text x="1038" y="486" class="legend" text-anchor="end">40</text>
+  <text x="832" y="520" class="legend">D₃ + complement</text>
+  <text x="1038" y="520" class="legend" text-anchor="end">20</text>
+
+  <text x="52" y="730" class="code">
+    mask(U) = [K, X, t | KX, Xt, tK | KXt]
+  </text>
+  <line x1="805" y1="594" x2="843" y2="594" stroke="#2563eb"
+        stroke-width="3" marker-end="url(#arrow-blue)"/>
+  <text x="856" y="599" class="small">chosen cyclic orientation</text>
+  <line x1="805" y1="628" x2="843" y2="628" stroke="#c2410c"
+        stroke-width="2.5" stroke-dasharray="8 7"
+        marker-end="url(#arrow-orange)"/>
+  <text x="856" y="633" class="small">reverse orientation</text>
+</svg>
