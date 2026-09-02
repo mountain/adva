@@ -197,6 +197,10 @@ Its proof-theoretic continuation supplies contextual beta-ledger transport,
 heterogeneous ledger-indexed preservation, and beta-only strong normalization
 for finite `TND0` derivations in
 [`docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md`](docs/research/0086-contextual-beta-ledger-transport-strong-normalization.md).
+The next continuation separates proof-tree equality from audit-history
+coherence, proves beta-only local and global confluence, and gives each fixed
+finite `TND0` starting derivation a unique beta normal form in
+[`docs/research/0087-beta-history-local-confluence-audit-2-cells.md`](docs/research/0087-beta-history-local-confluence-audit-2-cells.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
