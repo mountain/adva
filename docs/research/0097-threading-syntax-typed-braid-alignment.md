@@ -331,6 +331,13 @@ without describing any crossing.  The safe alignment is therefore:
 The triangle classification supplies placement labels; the braid fragment
 preserves history that those labels can forget.
 
+The arithmetic continuation in
+[note 0098](0098-surreal-arithmetic-type-formation-constraints.md) uses the
+surreal addition and multiplication option schemas to test which type
+constructors can be formed once multi-hole occurrence demands are included.
+It does not identify Boolean parity, option side, or arithmetic negation with
+crossing sign.
+
 ---
 
 ## 8. Alignment with the five interpreter declarations
