@@ -13,9 +13,11 @@ Follow-up status: note
 supplies the research-local beta-ledger transport anticipated here, lifts it
 to arbitrary proof positions, proves transport-indexed preservation, and
 establishes beta-only strong normalization for finite `TND0` derivations.
-This note remains the substitution theorem and dependency boundary; the
-follow-up does not yet establish local confluence, coherence of competing
-reduction histories, or a unique normal form.
+This note remains the substitution theorem and dependency boundary. Note
+[0087](0087-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+local and global confluence of the beta-only proof-tree relation and a unique
+beta normal form for each fixed finite starting derivation. It keeps competing
+audit histories distinct and does not install a proof-coherence quotient.
 
 This note follows a Gentzen/Prawitz-style dependency discipline:
 
@@ -561,12 +563,17 @@ by exactly three.  Hence every beta-only reduction sequence from a finite
 `TND0` derivation terminates; its length is bounded by the initial number of
 discharged records.  This is strong normalization for that declared
 derivation reduction, not a theorem about a runtime term language.  It still
-does not imply confluence, coherence of different audit paths, or uniqueness
-of beta normal forms.
+does not by itself imply confluence, coherence of different audit paths, or
+uniqueness of beta normal forms. Note
+[0087](0087-beta-history-local-confluence-audit-2-cells.md) adds local
+confluence and uses this strong-normalization result to prove global
+confluence and a unique beta normal form for each fixed finite starting proof.
+It does not identify arbitrary proofs of the same sequent or make their audit
+histories equal.
 
 A normal form may forget administrative detours only through a declared
 observer quotient whose invariants have been proved to descend.  That
-quotient is not installed by either note.
+quotient is not installed by notes 0085--0087.
 
 This also constrains exploration and compactification. A finite vocabulary
 does not by itself imply termination or compactness.  Conversely, beta-only
@@ -646,24 +653,32 @@ checker and its finite Boolean rule-soundness cell.
 - exact survivor identity and ledger-order accounting; and
 - beta-only strong normalization of every finite `TND0` derivation.
 
+### Established by the research-local continuation in note 0087
+
+- explicit separation of endpoint proof equality, transport summaries,
+  histories, and history 2-cells;
+- local confluence for independent and nested beta peaks;
+- global confluence of the beta-only proof-tree relation; and
+- one beta normal form, under strict proof-tree equality, for every fixed
+  finite starting derivation.
+
 ### Deferred
 
 - a stable nominal substitution or cut-event identity;
 - source-transfer and 0083 aperture-filling rules for substitution;
 - term syntax and capture-avoiding term substitution;
 - a stable promoted beta event, transport identity, or Rust API;
-- local confluence, global confluence, and uniqueness of beta normal forms;
-- independent-redex interchange and nested substitution-composition
-  coherence;
+- stable promoted history, residual, and 2-cell identities or APIs;
+- equality or a quotient of distinct audit histories;
+- uniqueness of history 2-cells and higher coherence laws;
 - eta conversion and any beta-eta or eta-long normalization claim;
 - a sequent calculus with explicit cuts and cut elimination;
 - proof-relevant quantifier rules and eigenvariable transport;
 - a justified proof-coherence quotient; and
 - any compactification or \(\Omega\) claim for reduction histories.
 
-The next proof-theoretic target is now local confluence and audit coherence:
-first independent-redex interchange, then the nested-redex
-substitution-composition law.  Only after those checks should the project ask
-whether beta normalization selects a coherent or unique proof presentation.
+Note 0087 discharges the beta-only proof-tree confluence target without
+collapsing distinct normalization histories. A promoted history API, an
+observer-relative coherence quotient, and higher coherence remain separate.
 Quantifier rules still wait for the separate term-substitution and scope
 theorem.
