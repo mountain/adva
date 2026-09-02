@@ -190,6 +190,9 @@ are recorded in
 The first research-local ordered natural-deduction, replayable search, and
 support-mask coherence calibration is recorded in
 [`docs/research/0084-threaded-natural-deduction-entailment-cell.md`](docs/research/0084-threaded-natural-deduction-entailment-cell.md).
+The strengthened ordered one-hole substitution theorem, conditional V0
+fresh-cut admissibility, and beta-ledger transport boundary are recorded in
+[`docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md`](docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
