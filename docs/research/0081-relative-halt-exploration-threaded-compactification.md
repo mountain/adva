@@ -27,9 +27,13 @@ proof search, finite-word boundaries, permanent cusps, and operational
 apertures.  Exploration is not promoted here to an object-language modality.
 Its first formal role is certificate search for an entailment question inside
 one fixed logic.  Natural deduction, dynamic modalities, and fixed-point
-operators remain downstream.  No stable logical symbol, quantifier,
-compactification type, Rust API, or semantic right to forget is introduced
-here.
+operators were downstream targets of this note.  Note 0084 now supplies the
+first research-local ordered implicational fragment and replayable
+support-mask coherence calibration; full natural deduction, substitution,
+normalization, dynamic
+modalities, and fixed-point operators remain downstream.  No stable logical
+symbol, quantifier, compactification type, Rust API, or semantic right to
+forget is introduced here.
 
 The finite many-sorted syntax, capture-avoiding substitution, quantifier
 fibres, and structural-induction adequacy theorem requested by this staging
@@ -41,6 +45,13 @@ The distinct-domain exclusive-source conflict is refined further in
 [0083](0083-triadic-conflict-aperture-completion.md): it opens an oriented
 aperture in the unique remaining domain, and only a certified linear common
 lift closes the resulting triangular cell.
+
+The first proof-theoretic continuation is
+[0084](0084-threaded-natural-deduction-entailment-cell.md).  It separates
+classical `H_7` support semantics from an ordered linear proof fragment,
+distinguishes task provenance from resource-source identity, and calibrates
+replayable positive entailment and negative countermodel cells without
+identifying them with note 0083's shared-source completion cell.
 
 ---
 
@@ -670,7 +681,7 @@ claims or reopen them from residual evidence.
 
 ### 5.1 The present finite entailment calibration
 
-Before a proof calculus exists, the seven halt worlds already support a
+Before selecting a proof calculus, the seven halt worlds already supported a
 complete finite semantic decision procedure.  For a finite premise family
 \(\Gamma\subseteq\mathcal P(H_7)\), let
 
@@ -699,7 +710,11 @@ A failed inclusion returns the exact finite countermodel support
 \]
 
 This is semantic entailment only.  It supplies no proof term and proves no
-soundness or completeness theorem for natural deduction.
+soundness or completeness theorem for natural deduction.  Note 0084 now adds
+one separately checked ordered implicational proof fragment, proves its
+one-way Boolean soundness with `H_7` as a restriction corollary, and exhibits
+its exact failure of Boolean completeness.  It does not retroactively turn
+this semantic decision procedure into proof synthesis.
 
 ### 5.2 Deferred process interpretations
 
@@ -720,9 +735,10 @@ J_X=\operatorname{Split},
 J_t=\operatorname{FairExtend}.
 \]
 
-They may later schedule witness search, model branching, and fair rule
-application.  Until predicate syntax and a proof calculus exist, they do not
-implement existential introduction, possible-world semantics, or proof
+They may schedule witness search, model branching, and fair rule application.
+The bounded alternation in note 0084 is only a finite scheduling calibration;
+the three operators still do not by themselves implement existential
+introduction, possible-world semantics, a fair unbounded enumerator, or proof
 completeness.
 
 ---
@@ -1192,9 +1208,10 @@ It does not establish:
    variables, terms, equality, binders, and capture-avoiding substitution;
 6. retain its finite existential/universal fibre adequacy checks, then extend
    them to observer-refinement substitution laws;
-7. only then select natural deduction, sequent calculus, tableau, or another
-   proof presentation and state soundness and relative-completeness targets;
-8. define exploration as certificate search for that fixed entailment task;
+7. retain the first ordered implicational natural-deduction calibration from
+   note 0084 and next prove certificate-preserving proof substitution;
+8. extend bounded alternation toward a declared fair certificate search only
+   after its coverage invariant is proved;
 9. separately define a research-local threaded-bordification record and test
    boundary-sort, port, pairing, holonomy, seal, lift, and reopen laws; and
 10. only then choose a symbolic-to-hyperbolic coding and test whether it
@@ -1223,8 +1240,12 @@ while associativity and three-way closure remain open.  Semantic entailment
 is finite support inclusion.  Note 0082 supplies the first finite predicate terms,
 capture-avoiding substitution, dependent-sum and dependent-product
 quantifiers, and a structural-induction proof that filling inhabitation
-matches finite Tarskian satisfaction.  Stable observer-indexed quantifiers and
-natural deduction come later.  Exploration first searches for a derivation,
+matches finite Tarskian satisfaction.  Note 0084 adds the first ordered
+implicational rules, recursive proof checking, one-way Boolean soundness with
+an `H_7` corollary, and replayable positive/negative entailment cells.  Stable
+observer-indexed quantifiers, proof substitution, normalization, and full
+natural deduction come later.
+Exploration first searches for a derivation,
 countermodel, or honest frontier in one fixed entailment problem; dynamic and
 coinductive readings remain possible future semantics for a mature search
 calculus.
