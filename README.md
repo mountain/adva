@@ -223,6 +223,11 @@ its empty-antecedent ordered Lambek skeleton, proves normal/neutral and
 subformula theorems, and gives a terminating sound-and-complete focused
 derivability decision in
 [`docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md`](docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md).
+Bootstrap Zero's smaller geometric language, comprising one object language,
+one type language, finite line and circle forms, typed thread words, and five
+syntax-only interpreter declarations, is proposed in
+[`docs/research/0095-bootstrap-zero-geometric-threading-syntax.md`](docs/research/0095-bootstrap-zero-geometric-threading-syntax.md).
+It introduces no evaluation, denotation, or stable API.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
