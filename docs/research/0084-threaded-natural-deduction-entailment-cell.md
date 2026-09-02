@@ -309,11 +309,13 @@ The judgment form is
 \]
 
 where \(\Gamma\) is an ordered open context and \(\Lambda\) is an audit
-ledger containing every resource use, including its full hypothesis,
-open/discharged status, binder, order, and residual data. Discharge changes
-status; it never deletes resource identity. The executable V0 keeps these
-data in the proof tree and frozen records; it does not allocate stable Adva
-semantic identities.
+ledger containing every resource use in the current proof tree, including its
+full hypothesis, open/discharged status, binder, and order. Discharge changes
+status; it never deletes an occurrence from that proof tree. Aperture residual
+data live separately in `ApertureBoundaryDiagnostic`. Note 0085 further
+separates the current-proof ledger from the certificate history of a proof
+transformation. The executable V0 keeps these data in frozen records; it does
+not allocate stable Adva semantic identities.
 
 ---
 
@@ -351,8 +353,8 @@ with an unused \(\Gamma\). Such a rule would install weakening silently.
 \]
 
 The discharged occurrence must be the right boundary occurrence and must be
-open exactly once. Discharge does not erase its history; it changes a free
-resource obligation into a bound audit record.
+open exactly once. Discharge does not erase that occurrence from the current
+proof-tree ledger; it changes a free resource obligation into a bound record.
 
 Discharging an interior occurrence would require an exchange or braid
 certificate. No such structural rule is assumed here.
@@ -692,9 +694,10 @@ orientation, and residual ledger. It is sufficient to verify that the correct
 third-domain boundary and its domain-specific role were selected.
 
 This diagnostic is not yet an accepted 0083 filler or a context-merge proof
-rule. Such a promotion still requires substitution transport, proof-tree
-bracketing coherence, filled-cell associativity, and preservation of every
-residual ledger. Therefore:
+rule. Such a promotion still requires an explicit source-transfer or filler
+rule, proof-tree bracketing coherence, filled-cell associativity, and
+preservation of every residual ledger. The source-disjoint substitution
+theorem in 0085 does not itself authorize aperture filling. Therefore:
 
 A source-formula mismatch may later trigger an explicit vocabulary-extension
 or typed-transport operator. In \(\mathrm{TND}_0\) it is only an obstruction:
@@ -776,10 +779,11 @@ different completeness questions.
 ## 10. Quantifiers are not promoted yet
 
 Note 0082 has finite predicate terms, capture-avoiding substitution, and
-dependent-sum/product semantics. Natural-deduction quantifier rules still
-need:
+dependent-sum/product semantics. Note 0085 supplies proof-tree substitution
+and conditional V0 fresh-cut admissibility for the ordered propositional
+fragment. Natural-deduction quantifier rules still need:
 
-- a proof-level substitution or cut theorem;
+- a separate term-substitution and scope theorem;
 - eigenvariable and freshness conditions;
 - source- and occurrence-preserving term substitution;
 - witness retention for \(\exists I\);
@@ -897,8 +901,9 @@ IR.
 
 ### Deferred
 
-- proof substitution and cut admissibility;
-- \(\beta\)-subject reduction and normalization;
+- a stable proof-transformation API for substitution and cut;
+- a standalone beta-ledger transport, arbitrary-position detour reduction,
+  and normalization;
 - left implication and its coherence with the right implication;
 - tensor introduction and one-use elimination;
 - certified context merge through 0083 fillers;
@@ -910,32 +915,29 @@ IR.
 - an actually fair unbounded proof enumerator; and
 - any `Omega` identification.
 
-The next proof-theoretic target is not another connective. It is the
-certificate-preserving substitution theorem
+Note 0085 proves the stronger ordered one-hole substitution theorem
 
 \[
 \frac{
-\Gamma\circ x:A\vdash_K M:B
+\pi:\Gamma_L\circ x:A\circ\Gamma_R
+\vdash_K B\blacktriangleright\Lambda_\pi
 \qquad
-\Delta\vdash_K N:A
+\sigma:\Delta\vdash_K A\blacktriangleright\Lambda_\sigma
 \qquad
-\operatorname{Src}(\Lambda_M)
-\cap
-\operatorname{Src}(\Lambda_N)=\varnothing
-\qquad
-\operatorname{ScopedOcc}(\Lambda_M)
-\cap
-\operatorname{ScopedOcc}(\Lambda_N)=\varnothing
+\operatorname{Fresh}_{V0}(\pi,\sigma,x)
 }{
-\Gamma\circ\Delta
-\vdash_K M[N/x]:B
+\operatorname{Sub}_x(\pi,\sigma):
+\Gamma_L\circ\Delta\circ\Gamma_R\vdash_K B
+\blacktriangleright
+\operatorname{splice}_x(\Lambda_\pi,\Lambda_\sigma)
 },
 \]
 
-where \(\operatorname{ScopedOcc}\) consists of
-\((\operatorname{ScopeId},\operatorname{OccurrenceId})\) pairs. The theorem
-must specify how the audit record for \(x\) is transformed, require disjoint
-binders or certified alpha-freshening, and preserve source, occurrence, order,
-discharge, and residual data. Only after that theorem should
-\(\beta\)-reduction, normalization, quantifier rules, and cut elimination be
-promoted.
+where \(\operatorname{Fresh}_{V0}\) requires the exact target formula and
+disjoint resource sources, scoped occurrence pairs, and binder identities over
+the complete ledgers. It records the exact context and ledger splice, derives
+conditional admissibility of the corresponding fresh-cut rule, and calibrates
+boundary-sequent preservation for one implication detour.
+The raw beta ledgers are generally unequal, so the next dependency is an
+explicit beta transport cell rather than another connective. See
+[0085](0085-ordered-substitution-cut-beta-ledger-boundary.md).
