@@ -187,6 +187,9 @@ The finite threaded propositional and predicate adequacy theorem is recorded in
 The distinct-domain linear-source conflict and third-domain aperture calibration
 are recorded in
 [`docs/research/0083-triadic-conflict-aperture-completion.md`](docs/research/0083-triadic-conflict-aperture-completion.md).
+The first research-local ordered natural-deduction, replayable search, and
+support-mask coherence calibration is recorded in
+[`docs/research/0084-threaded-natural-deduction-entailment-cell.md`](docs/research/0084-threaded-natural-deduction-entailment-cell.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
