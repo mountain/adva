@@ -27,11 +27,12 @@ proof search, finite-word boundaries, permanent cusps, and operational
 apertures.  Exploration is not promoted here to an object-language modality.
 Its first formal role is certificate search for an entailment question inside
 one fixed logic.  Natural deduction, dynamic modalities, and fixed-point
-operators were downstream targets of this note.  Note 0084 now supplies the
+operators were downstream targets of this note. Note 0084 now supplies the
 first research-local ordered implicational fragment and replayable
-support-mask coherence calibration; full natural deduction, substitution,
-normalization, dynamic
-modalities, and fixed-point operators remain downstream.  No stable logical
+support-mask coherence calibration. Note 0085 adds ordered one-hole
+substitution, conditional V0 fresh-cut admissibility, and the exact beta-ledger
+boundary; normalization, dynamic modalities, and fixed-point operators
+remain downstream. No stable logical
 symbol, quantifier, compactification type, Rust API, or semantic right to
 forget is introduced here.
 
@@ -52,6 +53,13 @@ classical `H_7` support semantics from an ordered linear proof fragment,
 distinguishes task provenance from resource-source identity, and calibrates
 replayable positive entailment and negative countermodel cells without
 identifying them with note 0083's shared-source completion cell.
+
+The first proof transformation is
+[0085](0085-ordered-substitution-cut-beta-ledger-boundary.md). It strengthens
+right-boundary substitution to an ordered context-hole theorem, derives cut
+admissibility under strict V0 freshness, and shows why beta contraction needs a
+separate ledger
+transport rather than raw current-ledger equality.
 
 ---
 
@@ -1208,8 +1216,9 @@ It does not establish:
    variables, terms, equality, binders, and capture-avoiding substitution;
 6. retain its finite existential/universal fibre adequacy checks, then extend
    them to observer-refinement substitution laws;
-7. retain the first ordered implicational natural-deduction calibration from
-   note 0084 and next prove certificate-preserving proof substitution;
+7. retain the ordered implicational natural-deduction calibration from note
+   0084 and its certificate-preserving one-hole substitution theorem from note
+   0085, then implement beta-ledger transport before normalization;
 8. extend bounded alternation toward a declared fair certificate search only
    after its coverage invariant is proved;
 9. separately define a research-local threaded-bordification record and test
@@ -1240,11 +1249,12 @@ while associativity and three-way closure remain open.  Semantic entailment
 is finite support inclusion.  Note 0082 supplies the first finite predicate terms,
 capture-avoiding substitution, dependent-sum and dependent-product
 quantifiers, and a structural-induction proof that filling inhabitation
-matches finite Tarskian satisfaction.  Note 0084 adds the first ordered
+matches finite Tarskian satisfaction. Note 0084 adds the first ordered
 implicational rules, recursive proof checking, one-way Boolean soundness with
-an `H_7` corollary, and replayable positive/negative entailment cells.  Stable
-observer-indexed quantifiers, proof substitution, normalization, and full
-natural deduction come later.
+an `H_7` corollary, and replayable positive/negative entailment cells. Note
+0085 adds ordered one-hole proof substitution and conditional V0 fresh-cut
+admissibility while exposing the nontrivial beta-ledger transport. Stable
+quantifiers, normalization, and full natural deduction come later.
 Exploration first searches for a derivation,
 countermodel, or honest frontier in one fixed entailment problem; dynamic and
 coinductive readings remain possible future semantics for a mature search
