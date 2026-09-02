@@ -33,8 +33,12 @@ support-mask coherence calibration. Note 0085 adds ordered one-hole
 substitution, conditional V0 fresh-cut admissibility, and the exact beta-ledger
 boundary. Note 0086 supplies its research-local beta-ledger transport,
 arbitrary-position transport-indexed preservation, and beta-only strong
-normalization. Local confluence, audit coherence, dynamic modalities, and
-fixed-point operators remain downstream. No stable logical
+normalization. Note
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) adds beta-only
+proof-tree local and global confluence and a unique beta normal form for each
+fixed finite starting derivation, while keeping audit-history equality and a
+coherence quotient separate. Dynamic modalities and fixed-point operators
+remain downstream. No stable logical
 symbol, quantifier, compactification type, Rust API, or semantic right to
 forget is introduced here.
 
@@ -67,8 +71,11 @@ The beta-only continuation in note
 [0086](0086-contextual-beta-ledger-transport-strong-normalization.md)
 implements that directed transport, lifts certified detour contraction to
 arbitrary proof positions, and proves strong normalization for each finite
-`TND0` derivation.  It does not prove local or global confluence, coherence of
-distinct audit histories, or a unique normal form.
+`TND0` derivation. Note
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+local and global confluence of that beta-only proof-tree relation and one beta
+normal form for each fixed starting derivation. It does not identify distinct
+audit histories or arbitrary proofs of the same sequent.
 
 ---
 
@@ -1239,9 +1246,10 @@ It does not establish:
 7. retain the ordered implicational natural-deduction calibration from note
    0084 and its certificate-preserving one-hole substitution theorem from note
    0085 together with note 0086's beta-ledger transport,
-   arbitrary-position preservation, and beta-only strong normalization; next
-   test independent-redex interchange and nested-redex
-   substitution-composition coherence without presupposing confluence;
+   arbitrary-position preservation, and beta-only strong normalization; retain
+   note 0093's independent and nested peak cells, beta-only proof-tree
+   confluence, and fixed-start unique beta normal form without quotienting
+   audit histories;
 8. extend bounded alternation toward a declared fair certificate search only
    after its coverage invariant is proved;
 9. separately define a research-local threaded-bordification record and test
@@ -1278,9 +1286,11 @@ an `H_7` corollary, and replayable positive/negative entailment cells. Note
 0085 adds ordered one-hole proof substitution and conditional V0 fresh-cut
 admissibility while exposing the nontrivial beta-ledger transport. Note 0086
 implements that transport and establishes arbitrary-position preservation and
-beta-only strong normalization for finite `TND0` derivations. Stable
-quantifiers, confluence, proof-coherence quotients, and full natural deduction
-come later.
+beta-only strong normalization for finite `TND0` derivations. Note 0093 adds
+local and global confluence for that proof-tree relation and a unique beta
+normal form for each fixed starting derivation; it neither identifies arbitrary
+proofs of one sequent nor installs a history/coherence quotient. Stable
+quantifiers, proof-coherence quotients, and full natural deduction come later.
 Exploration first searches for a derivation,
 countermodel, or honest frontier in one fixed entailment problem; dynamic and
 coinductive readings remain possible future semantics for a mature search

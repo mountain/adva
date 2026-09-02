@@ -214,6 +214,10 @@ distributivity calibration plan are recorded in
 [`docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md`](docs/research/0091-endogenous-scope-breakthrough-and-venture-ledger.md)
 and
 [`docs/research/0092-generative-distributivity-venture-calibration-plan.md`](docs/research/0092-generative-distributivity-venture-calibration-plan.md).
+The proof-theoretic continuation separates proof-tree equality from
+audit-history coherence, proves beta-only local and global confluence, and
+gives each fixed finite `TND0` starting derivation a unique beta normal form in
+[`docs/research/0093-beta-history-local-confluence-audit-2-cells.md`](docs/research/0093-beta-history-local-confluence-audit-2-cells.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
