@@ -184,6 +184,9 @@ recorded in
 [`docs/research/0081-relative-halt-exploration-threaded-compactification.md`](docs/research/0081-relative-halt-exploration-threaded-compactification.md).
 The finite threaded propositional and predicate adequacy theorem is recorded in
 [`docs/research/0082-threaded-finite-logic-adequacy.md`](docs/research/0082-threaded-finite-logic-adequacy.md).
+The distinct-domain linear-source conflict and third-domain aperture calibration
+are recorded in
+[`docs/research/0083-triadic-conflict-aperture-completion.md`](docs/research/0083-triadic-conflict-aperture-completion.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
