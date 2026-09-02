@@ -33,7 +33,7 @@ A finite axis--circle pendulum presentation must retain one package:
 \boxed{
 \mathsf{PendForm}_Q(A)
 =
-(a,\gamma,z;\zeta,\delta;\varepsilon,\chi;
+(a,\star_a,\gamma,z;\zeta,\delta;\varepsilon,\nu,\chi;
 H,E,\sigma,G;W_\Omega;F,C,R).
 }
 \tag{PendPackage}
@@ -43,12 +43,13 @@ Its fields are:
 
 | field | raw syntax role |
 |---|---|
-| \(a\) | one exact line with ordered empty/universal aspect tags |
+| \(a,\star_a\) | one exact line with empty/universal tags and an explicit dual atom |
 | \(\gamma\) | one finite circle name and cyclic incidence word |
 | \(z\) | a named `pierce` relation between \(a\) and \(\gamma\) |
 | \(\zeta\) | a history-parameter name, not the domain role \(t\) |
 | \(\delta\) | a history-indexed derivative atom |
 | \(\varepsilon\) | a named energy/contingency tag with provenance |
+| \(\nu\) | a perturbation relation joining energy, axis, and history |
 | \(\chi\) | a constraint-cell name retaining two A/M trees |
 | \(H,E,\sigma,G\) | ordered holes, trees, bindings, and occurrences |
 | \(W_\Omega\) | the explicit three-through-cell circular word |
@@ -83,7 +84,7 @@ Only three parts survive into raw syntax.
 | vertical line | \(\mathsf{Axis}(a;\mathsf{Line}(i))\) | metric verticality |
 | circle | \(\mathsf{Circle}(\gamma)\) | topological or dynamical periodicity |
 | line through circle | \(\mathsf{pierce}[z;a,\gamma]\) | intersection number or linking theorem |
-| empty/universal ends | ordered tags \(\langle\mathsf{empty},\mathsf{universal}\rangle\) | metaphysical interpretation |
+| empty/universal ends | ordered tags plus \(\mathsf{dual}[\star_a]\) | metaphysical interpretation |
 
 `pierce` is a relation name in a finite record.  It does not say whether a
 Euclidean line meets the circumference at two points, passes through a disk,
@@ -91,8 +92,10 @@ or links a ring in three-space.  Choosing among those geometries belongs to a
 later interpreter.
 
 The axis line remains an exact identity line in the sense of note 0095.  The
-two aspect tags decorate its oppositely exposed ends; they do not turn the
-ends into different source or occurrence identities.
+two aspect tags decorate its oppositely exposed ends, and the existing `dual`
+atom records that the tags are paired.  Neither the tags nor the atom turn
+the ends into different source or occurrence identities, and no involution
+law is assumed.
 
 ---
 
@@ -115,6 +118,8 @@ Introduce pairwise disjoint namespaces
 \zeta\in\mathsf{HistoryName},
 \qquad
 \varepsilon\in\mathsf{EnergyTagName},
+\qquad
+\nu\in\mathsf{PerturbationName},
 \qquad
 z\in\mathsf{PiercingName},
 \qquad
@@ -225,6 +230,19 @@ The requested connection between energy disturbance and path is therefore
 syntactic and exact: the energy occurrence is literally one input of the
 same constraint cell whose other inputs are the history derivative
 occurrences.
+
+The additional record
+
+\[
+\mathsf{perturb}
+[\nu;\varepsilon;a;\zeta;R_\nu]
+\tag{PerturbationRecord}
+\]
+
+places that constraint between the named axis and named history.  It asserts
+no nonzero value, force, direction, motion, or breaking of equilibrium; it
+only prevents the energy tag, axis, and history from living in three
+unrelated records.
 
 ---
 
@@ -352,12 +370,16 @@ The complete raw judgement is
 \begin{array}{c}
 a:\mathsf{AxisLine}
 \qquad
+\star_a:\mathsf{DualAspect}(\mathsf{empty},\mathsf{universal})
+\qquad
 \gamma:\mathsf{Circle}
 \qquad
 z:\mathsf{Pierce}(a,\gamma)\\
 \delta:\mathsf{HistoryDerivative}(\zeta;U,Y)
 \qquad
 \varepsilon:\mathsf{EnergyTag}(E,e_1)\\
+\nu:\mathsf{Perturbation}(\varepsilon,a,\zeta)
+\qquad
 \Sigma_{\mathrm{AM}};H_{\mathrm{pend}}
 \vdash_{\mathsf{AM}}(E_L,E_R):A\\
 \mathsf{occurs}(G;Y^2,E,U,1,2)
@@ -370,7 +392,7 @@ C:\mathsf{ClosureWitness}(\gamma)
 }{
 \Sigma;Q\vdash_{\mathsf{form}}
 \mathsf{pend}
-[a,\gamma,z;\zeta,\delta;\varepsilon,\chi;
+[a,\star_a,\gamma,z;\zeta,\delta;\varepsilon,\nu,\chi;
 H,E,\sigma,G;W_\Omega;F,C,R]
 :
 \mathsf{PendForm}_Q(A)
@@ -380,10 +402,11 @@ H,E,\sigma,G;W_\Omega;F,C,R]
 
 The rule enforces only the following literal agreements:
 
-- one line name in the axis and piercing records;
+- one line name in the axis, piercing, and perturbation records;
+- one explicit dual atom joining the ordered empty/universal aspect tags;
 - one cycle name in `Circle`, `pierce`, history, Omega word, forgetting, and
   closure records;
-- one history name in the derivative and history word;
+- one history name in the derivative, perturbation, and history word;
 - one \(E\) source between the energy tag and characteristic tree;
 - one \(U,Y\) source pair between the derivative and characteristic tree;
 - exact A/M occurrence counts and distinct occurrence names;
@@ -402,10 +425,10 @@ The pendulum factors add one finite restriction to Bootstrap Zero:
 \[
 \boxed{
 \begin{gathered}
-\text{Every claimed closed axis--circle history must carry}\
-\text{a distinct history parameter, an explicit derivative edge,}\
-\text{a perturbation occurrence, a finite A/M characteristic tree,}\
-\text{a three-domain cyclic word, a forgetting fibre,}\
+\text{Every claimed closed axis--circle history must carry}\\
+\text{a distinct history parameter, an explicit derivative edge,}\\
+\text{a perturbation relation, a finite A/M characteristic tree,}\\
+\text{a three-domain cyclic word, a forgetting fibre,}\\
 \text{a closure witness, and a retained residual.}
 \end{gathered}
 }
@@ -417,7 +440,7 @@ them:
 
 | layer | supplied factor |
 |---|---|
-| geometric values | exact line, finite circle, named piercing |
+| geometric values | exact line, dual aspect, finite circle, named piercing |
 | domain placement | ordered \(KX\to Xt\to tK\) decomposition |
 | threading | history name, derivative atom, connectors, retained word |
 | multi-hole A/M | energy occurrence and characteristic tree |
@@ -456,14 +479,16 @@ proofs of:
    domain role `t`;
 2. **derivative typing:** history derivative atoms preserve declared source
    and value types;
-3. **occurrence coherence:** A/M copies match the thread production ledger;
-4. **cycle coherence:** the three through pieces glue to exactly the cyclic
+3. **perturbation coherence:** energy, axis, and history references remain
+   literal under renaming;
+4. **occurrence coherence:** A/M copies match the thread production ledger;
+5. **cycle coherence:** the three through pieces glue to exactly the cyclic
    word named by `Circle(γ)`;
-5. **forgetting coherence:** projection retains the declared fibre and
+6. **forgetting coherence:** projection retains the declared fibre and
    residual;
-6. **closure coherence:** closure is stable under allowed alpha-renaming but
+7. **closure coherence:** closure is stable under allowed alpha-renaming but
    not inferred from endpoint return; and
-7. **interpreter coherence:** the three domain views, threading view, and A/M
+8. **interpreter coherence:** the three domain views, threading view, and A/M
    view preserve the shared identifiers required by this package.
 
 None is proved by the current formation checker.
@@ -481,14 +506,16 @@ The companion test checks:
    occurrences;
 4. adjacent routing preserves that occurrence multiset and cannot create the
    required copies;
-5. the axis, circle, piercing, history, forgetting, and closure records use
-   the same names;
-6. the Omega word has exactly the ordered cycle \(KX,Xt,tK\) with three
+5. the axis carries an explicit empty/universal dual atom, and the piercing
+   and perturbation records cite that axis;
+6. the circle, history, Omega word, forgetting, and closure records use one
+   cycle name;
+7. the Omega word has exactly the ordered cycle \(KX,Xt,tK\) with three
    explicit connectors;
-7. neither a characteristic cell nor endpoint return constructs a closure
+8. neither a characteristic cell nor endpoint return constructs a closure
    witness;
-8. forgetting without fibre or residual is rejected; and
-9. the whole finite package forms without evaluating an equation.
+9. forgetting without fibre or residual is rejected; and
+10. the whole finite package forms without evaluating an equation.
 
 ---
 
