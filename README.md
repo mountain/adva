@@ -174,6 +174,25 @@ The bounded distributivity learning--proof calibration is
 The hole-first reorganization and its bounded open--close calibration are
 recorded in
 [`docs/research/0079-typed-hole-open-close-calibration-v0.md`](docs/research/0079-typed-hole-open-close-calibration-v0.md).
+The finite-surface universal-lift and threaded-imagination synthesis is
+recorded in
+[`docs/research/0080-finite-surface-universal-lift-imagination.md`](docs/research/0080-finite-surface-universal-lift-imagination.md).
+The relative-halt propositional, connective-fibre, and semantic-entailment
+calibrations, line--hole bivalence, and thread-respecting compactification
+constraints are
+recorded in
+[`docs/research/0081-relative-halt-exploration-threaded-compactification.md`](docs/research/0081-relative-halt-exploration-threaded-compactification.md).
+The finite threaded propositional and predicate adequacy theorem is recorded in
+[`docs/research/0082-threaded-finite-logic-adequacy.md`](docs/research/0082-threaded-finite-logic-adequacy.md).
+The distinct-domain linear-source conflict and third-domain aperture calibration
+are recorded in
+[`docs/research/0083-triadic-conflict-aperture-completion.md`](docs/research/0083-triadic-conflict-aperture-completion.md).
+The first research-local ordered natural-deduction, replayable search, and
+support-mask coherence calibration is recorded in
+[`docs/research/0084-threaded-natural-deduction-entailment-cell.md`](docs/research/0084-threaded-natural-deduction-entailment-cell.md).
+The strengthened ordered one-hole substitution theorem, conditional V0
+fresh-cut admissibility, and beta-ledger transport boundary are recorded in
+[`docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md`](docs/research/0085-ordered-substitution-cut-beta-ledger-boundary.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
