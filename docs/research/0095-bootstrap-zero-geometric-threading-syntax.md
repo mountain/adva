@@ -234,6 +234,19 @@ where \(d\ne e\), \(f=\operatorname{opp}(d,e)\), \(N_f\) is a named
 middle-interface declaration, \(\gamma\) is a finite cyclic incidence word,
 and \(H\) is an ordered hole context.
 
+The word \(de\) in \(\mathsf{Through}_{de}^{f}\) is ordered.  Although
+\(\operatorname{opp}(d,e)=\operatorname{opp}(e,d)\) selects the same remaining
+role, the raw type forms
+
+\[
+\mathsf{Through}_{de}^{f}(F_L,N_f,F_R)
+\quad\text{and}\quad
+\mathsf{Through}_{ed}^{f}(F_R,N_f,F_L)
+\]
+
+are distinct.  `opp` chooses a middle role; it is not an orientation quotient
+and does not define reversal.
+
 These are syntactic type constructors.  `Cut`, `Through`, `Line`, and
 `Circle` have no set-theoretic, topological, operational, or logical
 interpretation in this note.
@@ -743,6 +756,13 @@ nonempty, cyclically type-compatible, and has no exposed endpoint.
 
 Adding a well-formed interpreter declaration does not create a new object,
 thread, AM-expression, line, or circle derivation.
+
+### B0.6 Oriented-through separation
+
+Formation preserves the ordered endpoint-domain word: no raw-syntax judgment
+identifies \(\mathsf{Through}_{de}^{f}\) with
+\(\mathsf{Through}_{ed}^{f}\).  Any future reversal operation or comparison
+must be declared separately.
 
 No completeness, soundness, adequacy, normalization, evaluation, learning,
 proof, differentiation, or halting theorem is included in these obligations.
