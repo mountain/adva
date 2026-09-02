@@ -121,7 +121,7 @@ the initial number of discharged ledger records.
 This note alone does not establish confluence, eta or permutative conversions,
 runtime subject reduction, or normalization for a future calculus with
 recursion, contraction, source transfer, quantifiers, or explicit cuts. Note
-[0087](0087-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
 local and global confluence for this beta-only proof-tree relation and a unique
 beta normal form for each fixed finite starting derivation. It does not make
 distinct audit histories equal or install a proof-coherence quotient.
@@ -732,7 +732,7 @@ relation.
 
 This theorem alone does not establish that two different reduction choices
 reach the same normal form. Note
-[0087](0087-beta-history-local-confluence-audit-2-cells.md) subsequently proves
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently proves
 that fact for reductions from one fixed starting proof; it does not identify
 arbitrary proofs of the same sequent.
 
@@ -847,7 +847,7 @@ must not be read as a stable proof-DAG implementation.
 ## 12. Subsequent proof-theoretic discharge
 
 Strong normalization answers whether every beta-like exploration stops. Note
-[0087](0087-beta-history-local-confluence-audit-2-cells.md) subsequently
+[0093](0093-beta-history-local-confluence-audit-2-cells.md) subsequently
 answers the proof-tree confluence question. It separates strict endpoint-tree
 equality, extensional transport composition, literal history equality, and
 explicit history 2-cells; treats independent and nested local peaks; proves

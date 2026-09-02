@@ -123,6 +123,21 @@ multivalued fibre, and retains every alternative and the complete
 The adapter creates no semantic hole identity, vocabulary, singularity,
 forgetting permission, active normalization, open logic, or Rust certificate.
 
+
+`adva.historical_character_research.HistoricalDistributivityMachineV0` may
+package the proved bounded distributivity artifact as one research-local
+historical character with a polynomial scope, both original residuals, and an
+occurrence-observer reopen handle. It may propose fresh finite typed
+variable-permutation and multiplicative-context instances; every generated
+program pair is sent through the existing Rust-backed checks and retains fresh
+checked names, source text, substitution provenance, and both instance
+residuals. Occurrence refinement may re-expose the explicit copy distinction
+without refuting the common polynomial law. This adapter is not a Rust
+certificate or native specializer and authorizes no semantic identity,
+equation cell, source quotient, provenance erasure, fixed infinite family,
+deck transformation, hyperbolic lift, logic, or universality.
+
+
 ## Equality interfaces
 
 The initial core distinguishes:
