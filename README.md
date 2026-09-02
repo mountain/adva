@@ -218,6 +218,11 @@ The proof-theoretic continuation separates proof-tree equality from
 audit-history coherence, proves beta-only local and global confluence, and
 gives each fixed finite `TND0` starting derivation a unique beta normal form in
 [`docs/research/0093-beta-history-local-confluence-audit-2-cells.md`](docs/research/0093-beta-history-local-confluence-audit-2-cells.md).
+The object-level completion of the present right-residual fragment identifies
+its empty-antecedent ordered Lambek skeleton, proves normal/neutral and
+subformula theorems, and gives a terminating sound-and-complete focused
+derivability decision in
+[`docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md`](docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
