@@ -248,6 +248,50 @@ source, the restricted product may be empty even when both factors are
 inhabited.  In that regime classical conjunction is not adequate; a
 substructural logic is the more faithful candidate.
 
+#### 3.1.1 Triadic mediation of an exclusive-source conflict
+
+Note [0083](0083-triadic-conflict-aperture-completion.md) refines the
+distinct-domain case.  If two lines with identities \(d\ne e\) consume one
+source, their compatibility obligation opens an oriented aperture in the
+unique remaining domain \(\mu(d,e)\).  Define
+
+\[
+\mathcal C(\ell,m)
+=
+\operatorname{Fill}_{\mu(d,e)}
+\left(H_{\mu(d,e)}(\ell,m)\right).
+\]
+
+Then a resource-sensitive conjunction has fibre
+
+\[
+\mathsf L_{\varphi\land_\triangle\psi}
+=
+\sum_{\ell\in\mathsf L_\varphi}
+\sum_{m\in\mathsf L_\psi}
+\mathcal C(\ell,m).
+\]
+
+A filler is a remaining-domain line together with a closure certificate.  It
+must project back to both boundary lines and use the shared linear source
+exactly once.  The open aperture alone is not a conjunction witness.
+
+This derives Cartesian support intersection only under the triadic completion
+condition
+
+\[
+\mathsf L_\varphi\ne\varnothing
+\land
+\mathsf L_\psi\ne\varnothing
+\Longrightarrow
+\exists\ell,m,\quad
+\mathcal C(\ell,m)\ne\varnothing.
+\]
+
+The rule does not handle same-domain contraction, three-way source conflict,
+or associativity by itself.  It is therefore a possible derivation of A2, not
+a replacement for the remaining structural laws.
+
 ### 3.2 Disjunction
 
 \[
@@ -387,8 +431,11 @@ binder is sort-correct.
 exactly when the corresponding atomic judgment is true, and otherwise return
 an exhaustive empty certificate.
 
-**A2. Cartesian pair completeness.**  Any two canonical lines can be paired
-for conjunction, or an explicit copy/share certificate authorizes the pair.
+**A2. Resolved pair completeness.**  Any two inhabited operand fibres contain
+a pair that is directly compatible, explicitly copy/share authorized, or
+closed by a certified compatibility filler.  Note 0083 supplies a candidate
+third-domain filler rule for distinct-domain conflicts; same-domain
+contraction and higher coherence remain separate obligations.
 
 **A3. Tagged sums.**  Disjunction preserves left/right provenance.
 
@@ -419,9 +466,11 @@ A0--A6, and every well-sorted environment:
 **Units.**  \(\mathbf 1\) is inhabited and \(\mathbf 0\) is empty, matching
 \(\top\) and \(\bot\).
 
-**Conjunction.**  By the induction hypotheses and A2,
-\(\mathsf L_\varphi\times\mathsf L_\psi\) is inhabited exactly when both
-factors are inhabited.  This is the Tarskian clause for conjunction.
+**Conjunction.**  By the induction hypotheses and A2, the resolved
+compatibility sum over the two operand fibres is inhabited exactly when both
+operand fibres are inhabited.  In the canonical fixture this sum reduces to
+\(\mathsf L_\varphi\times\mathsf L_\psi\).  This is the Tarskian clause for
+conjunction.
 
 **Disjunction.**  A tagged sum is inhabited exactly when at least one summand
 is inhabited.  This is the Tarskian clause for disjunction.
@@ -620,7 +669,9 @@ The executable oracles are:
 The earlier connective-fibre fixture additionally retains a decisive
 counterexample: two individually inhabited fibres can have an empty
 compatibility-restricted conjunction when both lines consume one exclusive
-source.
+source.  The note 0083 fixture refines its distinct-domain case into a typed
+remaining-domain aperture and verifies that only an oriented linear common
+lift with a closure certificate can fill it.
 
 These are exhaustive finite checks for the declared fixtures, not empirical
 evidence sampled from a larger state space.
@@ -634,19 +685,21 @@ Classical adequacy must be weakened or rejected if:
 1. a true atomic judgment has no certified line;
 2. a false atomic judgment cannot be distinguished from incomplete search;
 3. a conjunction loses all pairs because required lines are incompatible;
-4. disjunction erases its branch tag;
-5. a classically true implication has no admissible total transformer;
-6. an unresolved source is treated as empty to obtain vacuous implication;
-7. an existential line forgets its witness;
-8. a universal line omits a declared domain member;
-9. substitution captures a free variable or changes its sort;
-10. alpha renaming changes satisfaction or filling;
-11. observer refinement changes a previously used domain without reopening
+4. a third-domain color is accepted without a common-lift and resource
+   certificate;
+5. disjunction erases its branch tag;
+6. a classically true implication has no admissible total transformer;
+7. an unresolved source is treated as empty to obtain vacuous implication;
+8. an existential line forgets its witness;
+9. a universal line omits a declared domain member;
+10. substitution captures a free variable or changes its sort;
+11. alpha renaming changes satisfaction or filling;
+12. observer refinement changes a previously used domain without reopening
     the quantified claim; or
-12. a compactification identifies an unresolved fibre with a certified empty
+13. a compactification identifies an unresolved fibre with a certified empty
     one.
 
-If items 3 or 5 are intrinsic rather than implementation defects, the correct
+If items 3 or 6 are intrinsic rather than implementation defects, the correct
 response is not to force classical logic.  The grammar may instead select a
 linear, affine, relevant, ordered, or otherwise substructural logic whose
 connectives reflect the actual resource laws.
