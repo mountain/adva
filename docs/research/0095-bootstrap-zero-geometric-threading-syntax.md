@@ -85,7 +85,8 @@ Fix pairwise disjoint countable namespaces:
 &&\pi\in\mathsf{ProofTagName},
 &&m\in\mathsf{AMAtomName},\\
 &\chi\in\mathsf{CharacteristicName},
-&&\delta\in\mathsf{DerivativeName}.
+&&\delta\in\mathsf{DerivativeName},
+&&\xi\in\mathsf{CrossingName}.
 \end{aligned}
 \tag{Names}
 \]
@@ -102,14 +103,22 @@ d ::= K\mid X\mid t.
 \tag{Domain}
 \]
 
-The reserved side and polarity alphabets are
+The reserved side, incidence-polarity, and crossing-sign alphabets are
 
 \[
 \ell ::= L\mid R,
 \qquad
-p ::= +\mid -.
+p ::= +\mid -,
+\qquad
+\eta ::= \mathsf{over}\mid\mathsf{under}.
 \tag{Orientation}
 \]
+
+The crossing sign \(\eta\) is not an incidence polarity \(p\).  It records
+which of two adjacent complete strands passes over the other in raw routing
+syntax.  Relative to the written input frontier, `over` says that the strand
+initially at gap position \(r\) passes over the strand at \(r+1\); `under`
+says that it passes under.  No coercion between the two alphabets is admitted.
 
 `K`, `X`, and `t` are role annotations under a declared policy.  They are not
 value types and are not inferred from values.
@@ -323,7 +332,49 @@ operation.
 The threading vocabulary is separated into typed lexical classes rather than
 placed in one untyped token set.
 
-### 4.1 Transport atoms
+### 4.1 Routing atoms
+
+For a positive adjacent-gap index \(r\), a signed crossing atom is
+
+\[
+u_{\mathrm{route}} ::=
+\mathsf{crossing}[\xi;r;\eta].
+\tag{RoutingAtom}
+\]
+
+Let a frontier have the local form
+
+\[
+F=F_0
+\langle i:(A,s,o)@_Qd^p\rangle
+\langle j:(B,s',o')@_Qe^{p'}\rangle
+F_1,
+\]
+
+where the displayed incidences occupy positions \(r,r+1\).  Define the
+metasyntactic adjacent routing result
+
+\[
+s_rF=F_0
+\langle j:(B,s',o')@_Qe^{p'}\rangle
+\langle i:(A,s,o)@_Qd^p\rangle
+F_1.
+\tag{AdjacentRouting}
+\]
+
+The raw crossing judgment is
+
+\[
+\Sigma;Q\vdash_{\mathsf{cross}}
+\mathsf{crossing}[\xi;r;\eta]:F\rightsquigarrow s_rF.
+\tag{CrossingJudgement}
+\]
+
+Both signs have the same routed frontier but are distinct raw atoms.  A
+crossing moves each complete incidence record; it does not detach or rewrite
+its value type, source, occurrence, role, or incidence polarity.
+
+### 4.2 Transport atoms
 
 \[
 u_{\mathrm{tr}} ::= 
@@ -337,7 +388,7 @@ u_{\mathrm{tr}} ::=
 computes a derivative nor satisfies linearity, Leibniz, chain, nilpotence, or
 commutation laws here.
 
-### 4.2 Characteristic atoms
+### 4.3 Characteristic atoms
 
 \[
 u_{\mathrm{char}} ::= 
@@ -348,7 +399,7 @@ u_{\mathrm{char}} ::=
 This constructor names a characteristic position in a thread.  It does not
 assert invariance, eigenform, quotient stability, or successful learning.
 
-### 4.3 Orientation atoms
+### 4.4 Orientation atoms
 
 \[
 u_{\mathrm{ori}} ::= 
@@ -370,7 +421,7 @@ No equation identifies duality, conjugation, polarity reversal, side
 reversal, or cut reversal.  In particular, involution and contravariant
 composition laws are not part of raw syntax.
 
-### 4.4 Learning and proof atoms
+### 4.5 Learning and proof atoms
 
 \[
 u_{\mathrm{read}} ::= 
@@ -384,12 +435,13 @@ These are distinct readout tags.  `proof` does not contain a derivation and
 `learning` does not create a vocabulary item in this note.  Their eventual
 codomains and any duality between them are deliberately unspecified.
 
-### 4.5 Thread words
+### 4.6 Thread and braid words
 
 Let
 
 \[
-u ::= u_{\mathrm{tr}}
+u ::= u_{\mathrm{route}}
+\mid u_{\mathrm{tr}}
 \mid u_{\mathrm{char}}
 \mid u_{\mathrm{ori}}
 \mid u_{\mathrm{read}}.
@@ -406,6 +458,48 @@ A thread word is a finite ordered word
 The order and every repeated occurrence are retained.  A thread word is not
 an execution trace.  A future threading-machine interpreter may interpret
 it, but this note declares no transition relation.
+
+A raw braid block is the routing-only subgrammar
+
+\[
+\beta ::= \epsilon_\beta
+\mid \mathsf{crossing}[\xi;r;\eta]::\beta.
+\tag{BraidWord}
+\]
+
+Its formation judgment
+
+\[
+\Sigma;Q\vdash_{\mathsf{braid}}
+\beta:F\rightsquigarrow F'
+\tag{BraidJudgement}
+\]
+
+is obtained by composing adjacent crossing judgments in written order.  A
+block with \(F'=F\) is endpoint-pure syntax.  Endpoint return does not make
+the block empty or an identity word.
+
+For
+\(\beta=a_1::\cdots::a_n\), define only the formal inverse spelling
+
+\[
+\operatorname{inv}_{\mathsf{syn}}(\beta)
+=
+\overline a_n::\cdots::\overline a_1.
+\tag{FormalBraidInverse}
+\]
+
+The empty word is fixed.  The bar exchanges `over` and `under` without
+changing the crossing name or adjacent gap.  This is a raw-word constructor.
+Bootstrap Zero does
+not identify
+\(\beta::\operatorname{inv}_{\mathsf{syn}}(\beta)\) with
+\(\epsilon_\beta\), impose the Artin braid relation, or quotient a crossing
+to an unsigned swap.
+
+A maximal contiguous routing-only subword of \(\tau\) is a braid block.
+Function or other non-routing atoms remain explicit separators between such
+blocks.  No commuting conversion moves a block across a separator.
 
 A threading-machine form packages a left frontier, a thread word, and a right
 frontier:
@@ -517,6 +611,12 @@ The primary judgements are
 \]
 
 \[
+\Sigma;Q\vdash_{\mathsf{braid}}
+\beta:F_L\rightsquigarrow F_R,
+\tag{BraidFormation}
+\]
+
+\[
 \Sigma;Q\vdash_{\mathsf{thread}}
 \tau:F_L\rightsquigarrow F_R,
 \tag{ThreadJudgement}
@@ -545,7 +645,7 @@ hole context.
 
 Its checker must enforce at least:
 
-1. finite names, cells, strands, thread words, and incidence tables;
+1. finite names, cells, strands, braid and thread words, and incidence tables;
 2. pairwise namespace and local-name discipline;
 3. ordered left, right, input, output, and hole frontiers;
 4. literal value-type agreement at every glued incidence;
@@ -555,7 +655,10 @@ Its checker must enforce at least:
 7. explicit function names for every structural arity change;
 8. exact occurrence identity for every identity line;
 9. explicit retention of open and unused incidences; and
-10. exact closure of a syntactic circle.
+10. exact closure of a syntactic circle;
+11. valid adjacent-gap indices for every crossing;
+12. whole-incidence preservation across every crossing; and
+13. distinct raw spellings for `over` and `under` crossings.
 
 It must not inspect a scalar value, run an operation, solve an equation,
 differentiate a function, close a hole, choose a filling, or decide a logical
@@ -764,6 +867,23 @@ identifies \(\mathsf{Through}_{de}^{f}\) with
 \(\mathsf{Through}_{ed}^{f}\).  Any future reversal operation or comparison
 must be declared separately.
 
+### B0.7 Signed-crossing separation
+
+For every well-formed adjacent gap, `over` and `under` crossing derivations
+have the same routed target frontier and distinct raw crossing atoms.  Neither
+is an incidence-polarity derivation or a function-level `swap`.
+
+### B0.8 Formal braid inverse formation
+
+If \(\beta:F\rightsquigarrow F'\) is a braid-word derivation, then
+\(\operatorname{inv}_{\mathsf{syn}}(\beta):F'\rightsquigarrow F\) is a
+braid-word derivation.  This theorem creates no word equation.
+
+### B0.9 Mixed-word block preservation
+
+The maximal braid-block decomposition of a finite thread word is decidable
+and retains every non-routing separator in its original position.
+
 No completeness, soundness, adequacy, normalization, evaluation, learning,
 proof, differentiation, or halting theorem is included in these obligations.
 
@@ -789,11 +909,11 @@ cells:
 \boxed{\langle L\mid R\rangle}.
 \]
 
-Lines and circles are distinguished finite graph shapes.  Function,
-characteristic, duality, conjugation, polarity, derivative, left/right, cut,
-learning, and proof are typed thread syntax.  The three domain interpreters,
-the threading-machine interpreter, and the multi-hole add--multiply
-interpreter are declarations only.
+Lines and circles are distinguished finite graph shapes.  Signed crossings,
+function, characteristic, duality, conjugation, polarity, derivative,
+left/right, cut, learning, and proof are typed thread syntax.  The three
+domain interpreters, the threading-machine interpreter, and the multi-hole
+add--multiply interpreter are declarations only.
 
 The absence of semantics is deliberate.  The first task is to prove that the
 language can say exactly which finite forms are syntactically legal before it
