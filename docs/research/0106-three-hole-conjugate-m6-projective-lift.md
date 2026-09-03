@@ -577,7 +577,10 @@ P_0+P_1=I,
 H=E_0P_0+E_1P_1
 \]
 
-is the minimal two-level Hamiltonian. Its candidate evolution is
+is the minimal two-level Hamiltonian. For a complex-linear realization, require
+that (H) commute with the real complex structure (J); a unitary reading
+would additionally require the appropriate self-adjointness and inner-product
+data. Its candidate evolution is
 
 \[
 U(\zeta)
