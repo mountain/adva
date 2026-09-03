@@ -262,6 +262,11 @@ traversal, collision strata, and noncollapsing zero fibres in
 [`docs/research/0101-six-port-whole-cut-theory.md`](docs/research/0101-six-port-whole-cut-theory.md).
 Its syntax-only redesign and visible extension envelope are specified in
 [`docs/research/0102-bootstrap-zero-whole-cut-grammar.md`](docs/research/0102-bootstrap-zero-whole-cut-grammar.md).
+The next syntax refinement keeps the `cell -> carrier -> views` spine while
+adding dimension-indexed relation cells, open view contracts, proof-relevant
+logic views for the `Q4` interchange and `M6` braid machines, and a finite
+`TO24` coherence-envelope calibration in
+[`docs/research/0103-cell-carrier-view-relation-machines.md`](docs/research/0103-cell-carrier-view-relation-machines.md).
 These notes supersede the earlier inventory as the proposed Bootstrap Zero
 completion baseline while preserving notes 0095--0100 as the derivation record.
 Longer-term work on observer-conditioned specialization, complex `Prog`
