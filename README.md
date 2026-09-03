@@ -273,6 +273,11 @@ no manufactured braid filler, is recorded in
 [`docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md`](docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md).
 These notes supersede the earlier inventory as the proposed Bootstrap Zero
 completion baseline while preserving notes 0095--0100 as the derivation record.
+A separate application note investigates whether proof-relevant `Q4`
+interchange and candidate `M6` braid cells can quotient redundant Go histories
+for exact or hybrid low-resource search, while keeping the full-state,
+history, certification-cost, and falsification boundaries explicit in
+[`docs/research/0105-q4-m6-go-search-research-program.md`](docs/research/0105-q4-m6-go-search-research-program.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
