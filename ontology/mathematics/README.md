@@ -19,6 +19,17 @@ where \(\Sigma\) is the available certified vocabulary, \(A\) is a declared
 mathematical type, and \(\pi\) is the formation or proof certificate required
 by the judgement.
 
+## Proof targets
+
+1. [MT1: Q4 with HolePolarityM6 Realizes a Teichmüller Space](proof-targets/MT1-q4-hole-polarity-m6-teichmuller.md)
+
+   The literal finite \(Q_4/M_6\) carrier is not itself asserted to be a
+   Teichmüller space. MT1 asks whether the positive marked completion space of
+   a typed juxtaposition, after its specified gauge quotient, is naturally
+   isomorphic to a Teichmüller space. The first surface candidate is
+   \(\Sigma_{0,4}\); ordinary, decorated, and augmented Teichmüller targets
+   remain deliberately distinct until the surviving boundary data are known.
+
 ## Initial questions
 
 1. Which semantic words may enter mathematical formation rules?
