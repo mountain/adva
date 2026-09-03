@@ -278,6 +278,12 @@ interchange and candidate `M6` braid cells can quotient redundant Go histories
 for exact or hybrid low-resource search, while keeping the full-state,
 history, certification-cost, and falsification boundaries explicit in
 [`docs/research/0105-q4-m6-go-search-research-program.md`](docs/research/0105-q4-m6-go-search-research-program.md).
+A separate theoretical bridge proves the finite three-hole two-matching six-cycle,
+identifies the order-four linear lift hidden by the AEG reciprocal projective
+involution, and isolates the typed `J`-transport, central-sign, `U(1)`, Omega,
+and energy/time obligations in
+[`docs/research/0106-three-hole-conjugate-m6-projective-lift.md`](docs/research/0106-three-hole-conjugate-m6-projective-lift.md).
+It adds no M6 filler, complex program semantics, or physical time claim.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
