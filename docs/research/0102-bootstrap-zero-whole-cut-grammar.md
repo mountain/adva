@@ -5,6 +5,13 @@ Status: syntax-only redesign grounded in
 grammar, formation judgments, checked projections, and extension envelope for
 the revised Bootstrap Zero kernel.
 
+[Note 0103](0103-cell-carrier-view-relation-machines.md) subsequently refines
+the closed `Carrier ::= line | circle` coordinate below into an open,
+auditable `ViewContract`. It adds `thread` and proof-relevant `logic` as core
+views and treats `Q4`/`M6` as open-or-filled relation boundaries. The present
+note remains the whole-cut ledger baseline; note 0103 is authoritative for the
+extended cell--carrier--view interface.
+
 The proposal changes no stable Rust type, Lisp surface, parser, operation
 registry, JSON IR, Python facade, or registered claim. The notation below is a
 research language for a finite checker.
