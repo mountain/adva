@@ -62,7 +62,7 @@ class Port:
 
 
 @dataclass(frozen=True)
-class Cut:
+class WholeCutCell:
     name: str
     left_role: Role
     right_role: Role
@@ -89,7 +89,7 @@ class OpenPort:
 @dataclass(frozen=True)
 class WholeCut6:
     name: str
-    cuts: tuple[Cut, ...]
+    cells: tuple[WholeCutCell, ...]
     ports: tuple[Port, ...]
     channels: tuple[ThroughChannel, ...]
     open_ports: tuple[OpenPort, ...]
@@ -230,10 +230,10 @@ def minimum_positive_degrees(cut_count: int, ports_per_cut: int = 2) -> int:
 
 
 def _fixture(open_last: bool = False) -> WholeCut6:
-    cuts = (
-        Cut("c-KX", *EXPECTED_ROLE_TRIPLES[0], "p-KX-L", "p-KX-R"),
-        Cut("c-Xt", *EXPECTED_ROLE_TRIPLES[1], "p-Xt-L", "p-Xt-R"),
-        Cut("c-tK", *EXPECTED_ROLE_TRIPLES[2], "p-tK-L", "p-tK-R"),
+    cells = (
+        WholeCutCell("c-KX", *EXPECTED_ROLE_TRIPLES[0], "p-KX-L", "p-KX-R"),
+        WholeCutCell("c-Xt", *EXPECTED_ROLE_TRIPLES[1], "p-Xt-L", "p-Xt-R"),
+        WholeCutCell("c-tK", *EXPECTED_ROLE_TRIPLES[2], "p-tK-L", "p-tK-R"),
     )
     ports = tuple(
         Port(
@@ -266,7 +266,7 @@ def _fixture(open_last: bool = False) -> WholeCut6:
         residuals = ("r-tK-L", "r-KX-R")
     return WholeCut6(
         "whole-6",
-        cuts,
+        cells,
         ports,
         channels,
         open_ports,
@@ -277,7 +277,7 @@ def _fixture(open_last: bool = False) -> WholeCut6:
 
 def _validate_whole(form: WholeCut6) -> None:
     triples = tuple(
-        (cut.left_role, cut.right_role, cut.middle_role) for cut in form.cuts
+        (cell.left_role, cell.right_role, cell.middle_role) for cell in form.cells
     )
     if triples != EXPECTED_ROLE_TRIPLES:
         raise ValueError("WholeCut6 needs the ordered three-role cut cycle")
@@ -292,12 +292,12 @@ def _validate_whole(form: WholeCut6) -> None:
         raise ValueError("initial ports must have unit multiplicity")
 
     ports_by_name = {port.name: port for port in form.ports}
-    for cut in form.cuts:
-        expected_ports = {cut.left_port, cut.right_port}
-        actual_ports = {port.name for port in form.ports if port.cut == cut.name}
+    for cell in form.cells:
+        expected_ports = {cell.left_port, cell.right_port}
+        actual_ports = {port.name for port in form.ports if port.cut == cell.name}
         if actual_ports != expected_ports:
             raise ValueError("each cut must own its two declared ports")
-        pair = tuple(ports_by_name[name] for name in (cut.left_port, cut.right_port))
+        pair = tuple(ports_by_name[name] for name in (cell.left_port, cell.right_port))
         if {port.side for port in pair} != {Side.LEFT, Side.RIGHT}:
             raise ValueError("a cut must have one left and one right side")
         if {port.polarity for port in pair} != {
@@ -430,7 +430,7 @@ def test_whole_cut_six_forms_one_closed_sustained_carrier() -> None:
     form = _fixture()
 
     _validate_whole(form)
-    assert len(form.cuts) == 3
+    assert len(form.cells) == 3
     assert len(form.ports) == 6
     assert len(form.channels) == 3
     assert sum(port.multiplicity for port in form.ports) == 6
