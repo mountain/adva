@@ -26,7 +26,7 @@ The redesigned package is
 
 where:
 
-- \(\mathcal W_6\) is the whole-cut carrier language;
+- \(\mathcal W_6\) contains atomic whole-cut cells and their triadic carrier;
 - \(\mathcal V_0\) is its checked view language;
 - \(\mathcal M_0\) is its typed morphism and witness language;
 - the five \(\mathcal I\)'s are declarations without interpreter bodies; and
@@ -39,8 +39,9 @@ The compact public glyphs remain
 <L|R>
 ```
 
-but neither compact spelling is a complete raw object. Typed records retain
-all names, ports, occurrences, holes, histories, collisions, and residuals.
+The second spelling is one atomic cut cell, not the full six-port carrier.
+Typed records retain all names, ports, occurrences, holes, histories,
+collisions, and residuals.
 
 ---
 
@@ -92,17 +93,19 @@ with the reversed endpoint pairs admitted. `opp(d,d)` is undefined.
 ## 2. Signatures and extension envelope
 
 A kernel signature contains only declared value types, function boundaries,
-and the three role-edge cuts:
+and the three role-edge whole-cut cell declarations:
 
 ```text
 KernelSignature ::= signature {
   types      TypeDecl*
   functions  FunctionDecl*
-  cuts       CutDecl[K,X;t] CutDecl[X,t;K] CutDecl[t,K;X]
+  cells      WholeCutCellDecl[K,X;t]
+             WholeCutCellDecl[X,t;K]
+             WholeCutCellDecl[t,K;X]
 }
 ```
 
-The order inside `cuts` is public and fixed for the canonical triadic cycle.
+The order inside `cells` is public and fixed for the canonical triadic cycle.
 Reversal or rotation is a separately named presentation, not raw identity.
 
 An extension is never an untyped miscellaneous field:
@@ -149,10 +152,11 @@ The initial open stratum requires multiplicity one. A collided presentation
 may carry a larger multiplicity, but it also retains the complete member
 ledger described in section 8.
 
-A cut has two named ports and a local coorientation witness:
+A whole-cut cell has one cut, two named ports, and a local coorientation
+witness:
 
 ```text
-Cut ::= cut CutName [Role, Role; Role] {
+WholeCutCell ::= cell CellName <L | CutName R> [Role, Role; Role] {
   left-port   PortName
   right-port  PortName
   coorientation WitnessName
@@ -166,7 +170,7 @@ CoorientationWitness ::= coorient WitnessName {
 ```
 
 The endpoint roles must be distinct and the middle role must equal `opp` of
-the endpoints. Each cut has exactly one `L` port, one `R` port, one `+` port,
+the endpoints. Each cell has exactly one `L` port, one `R` port, one `+` port,
 and one `-` port. There is no global rule identifying `L` with `+`.
 
 The canonical six-port ledger is
@@ -191,7 +195,7 @@ The authoritative object form is
 ```text
 WholeCut6 ::= whole6 CellName {
   shell          {}_K []_X ()_t
-  cuts           (Cut_KX Cut_Xt Cut_tK)
+  cells          (Cell_KX Cell_Xt Cell_tK)
   ports          PortLedger6
   productions    ProductionLedger
   through        ThroughAccount
@@ -203,8 +207,9 @@ WholeCut6 ::= whole6 CellName {
 }
 ```
 
-Its compact rendering may be `<L|R>`, but compact rendering never determines
-raw identity.
+`WholeCut6` is the cyclic assembly of three `WholeCutCell` records. It has no
+single compact `<L|R>` rendering; each component cell has that surface.
+Compact rendering never determines raw identity.
 
 ### 4.1 Production ledger
 
@@ -277,7 +282,7 @@ W:\mathsf{WholeCut6}.
 It requires:
 
 1. exactly the roles \(K,X,t\) and the three role edges \(KX,Xt,tK\);
-2. exactly one binary cut on each role edge;
+2. exactly one atomic whole-cut cell on each role edge;
 3. two distinct sides and opposite polarities at every cut;
 4. six distinct open-stratum ports and occurrences;
 5. one complete production entry for every occurrence;
@@ -631,7 +636,7 @@ Their visibility prevents openness from becoming silent ontology drift.
 A research-local checker for this proposal must return `Accepted` or one or
 more explicit formation failures. It must reject at least:
 
-1. fewer or more than three canonical cuts in `WholeCut6`;
+1. fewer or more than three canonical whole-cut cells in `WholeCut6`;
 2. fewer or more than two initial ports per cut;
 3. repeated initial port or occurrence names;
 4. equal side or polarity marks within one cut;
