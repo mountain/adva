@@ -218,6 +218,141 @@ It does not provide:
 
 The theorem proves only the finite incidence statement.
 
+### Exact hole-polarity conjugacy
+
+The displayed fixture has a further exact symmetry. Define the simultaneous
+hole-polarity reversal
+
+\[
+\rho_h
+:=
+(h_1^+\,h_1^-)
+(h_2^+\,h_2^-)
+(h_3^+\,h_3^-)
+=
+\kappa_h.
+\tag{HolePolarityReversal}
+\]
+
+Relabeling every endpoint of the positive threading by \(\rho_h\) gives
+
+\[
+\begin{aligned}
+(h_1^+,h_2^-)&\longmapsto(h_1^-,h_2^+)
+                         =(h_2^+,h_1^-),\\
+(h_2^+,h_3^-)&\longmapsto(h_2^-,h_3^+)
+                         =(h_3^+,h_2^-),\\
+(h_3^+,h_1^-)&\longmapsto(h_3^-,h_1^+)
+                         =(h_1^+,h_3^-).
+\end{aligned}
+\]
+
+These are exactly the three edges of \(\tau_-\). Hence
+
+\[
+\boxed{
+\rho_h\kappa_h\rho_h^{-1}=\kappa_h,
+\qquad
+\rho_h\tau_+\rho_h^{-1}=\tau_-,
+\qquad
+\rho_h^2=1.
+}
+\tag{HolePolarityConjugacy}
+\]
+
+If hole identities are fixed, no reversal of only one or two holes has this
+property. Indeed, write \(f_i\in\{0,1\}\) for whether hole \(h_i\) is reversed.
+For every edge of \(\tau_+\) to remain a plus--minus edge after transport,
+adjacent holes must satisfy \(f_i=f_{i+1}\). Connectedness of the three-hole
+cycle forces \(f_1=f_2=f_3\). Reversing none leaves \(\tau_+\) unchanged, so
+reversing all three is the unique label-preserving solution.
+
+If hole labels may be transported, exchanging any two complete labeled holes
+also reverses the cyclic threading. With a distinguished root \(h_1\), the
+label-only reflection is \(h_2\leftrightarrow h_3\). Such relabelings are not
+occurrence-preserving identities; a typed adapter must account for them.
+
+An independent exhaustive audit over all \(6!=720\) port permutations finds:
+
+| exact filter | number of permutations |
+|---|---:|
+| preserves \(\kappa_h\) | 48 |
+| also sends \(\tau_+\) to \(\tau_-\) | 6 |
+| also squares to the identity on the port ledger | 4 |
+
+The four involutive solutions are the global reversal \(\rho_h\) and the three
+transpositions of complete hole labels. The executable audit is
+tests/python/test_three_hole_polarity_m6.py.
+
+The verification methods are deliberately separated:
+
+| check | verification kind | proof status |
+|---|---|---|
+| displayed edge transport and \(\rho_h^2=1\) | exact symbolic finite calculation | proof |
+| classification of all port transports | exact exhaustive discrete calculation | machine-checked proof for the six-port fixture |
+| \(J^2=-I\) | exact integer-matrix calculation | proof |
+| six nonzero rational round trips under \(z\mapsto-1/z\) | exact-arithmetic sample check | supplementary, not a proof |
+| floating-point experiment | not used | none |
+
+### M6-family name
+
+Use \(M_6^\partial\) for the abstract alternating six-state boundary type and
+\(\mathfrak M_6\) for the family of relation machines presenting that type.
+The braid machine remains the principal representative:
+
+\[
+\mathcal M_6^{\mathrm{br}}\in\mathfrak M_6.
+\]
+
+Name the present nonprincipal member the **Three-Hole Polarity M6 Machine**:
+
+\[
+\boxed{
+\mathcal M_6^{\mathrm{hp}}\in\mathfrak M_6,
+}
+\qquad
+\mathrm{hp}=\mathrm{hole\mbox{-}polarity}.
+\tag{HolePolarityM6}
+\]
+
+Its two oriented open presentations are
+
+\[
+\left(\mathcal M_6^{\mathrm{hp}}\right)_\pm^\partial
+=
+(P_h,\kappa_h,\tau_\pm),
+\]
+
+and their exact port transport is
+
+\[
+\rho_h:
+\left(\mathcal M_6^{\mathrm{hp}}\right)_+^\partial
+\longrightarrow
+\left(\mathcal M_6^{\mathrm{hp}}\right)_-^\partial.
+\]
+
+In code and prose use HolePolarityM6 for the member and reserve unqualified M6
+for the established boundary/family context. Do not call this member JM6,
+ConjugateM6, or ReciprocalM6: those names would promote the unproved typed
+projective bridge or conflate distinct conjugations. If the typed lift is later
+constructed, attach it as extra structure
+
+\[
+\left(\mathcal M_6^{\mathrm{hp}},\mathcal J_h,\epsilon\right),
+\qquad
+V_{\mathrm{port}}(\mathcal J_h)=\rho_h,
+\qquad
+\mathcal J_h^2=\epsilon,
+\]
+
+without changing the family-member name.
+
+The equality \(V_{\mathrm{port}}(\mathcal J_h)=\rho_h\) remains a typing and
+naturality obligation. The exact permutation calculation does not by itself
+identify local coorientation with left/right syntax or with the linear complex
+structure \(J\).
+
 ---
 
 ## 3. Relation to the existing WholeCut6 bridge
@@ -742,6 +877,8 @@ or the exact projective matrix calculation.
 |---|---|
 | two disjoint connected perfect matchings on six vertices form an alternating \(C_6\) | exact finite theorem |
 | \((\kappa_h,\tau_\pm)\) each form an M6 boundary | exact for the displayed six-germ fixture |
+| \(\rho_h=\kappa_h\) is the unique label-preserving polarity reversal with \(\rho_h\tau_+\rho_h^{-1}=\tau_-\) | exact symbolic proof and exhaustive six-port audit |
+| \(\mathcal M_6^{\mathrm{hp}}\) is the Three-Hole Polarity M6 Machine | nonprincipal M6-family member name |
 | \(J:z\mapsto-1/z\) has \(J^2=-I\) in the linear lift and projective square \(1\) | exact linear/projective calculation |
 | the AEG reciprocal lift is multiplication by \(i\) on \(\mathbb R^2\cong\mathbb C\) | exact after the displayed identification |
 | the two three-hole M6 carriers admit one typed \(\mathcal J\) with a retained central sign | construction target |
@@ -769,8 +906,9 @@ The next theoretical work should remain finite.
 7. Only then compare the resulting cocycle with finite
    \(\Omega_{\ell,b}\) phases and the two-level halt-world split.
 
-No evaluator, numerical experiment, stable API, or physical postulate is
-needed for the first five steps.
+No evaluator, floating-point numerical experiment, stable API, or physical
+postulate is needed for the first five steps. The finite fixture now has an
+exact executable permutation audit; its rational samples are supplementary.
 
 ---
 
