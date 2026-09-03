@@ -278,6 +278,13 @@ interchange and candidate `M6` braid cells can quotient redundant Go histories
 for exact or hybrid low-resource search, while keeping the full-state,
 history, certification-cost, and falsification boundaries explicit in
 [`docs/research/0105-q4-m6-go-search-research-program.md`](docs/research/0105-q4-m6-go-search-research-program.md).
+The first ontology/physics interpretation round is frozen as an explicit type-
+barrier and vulnerability ledger in
+[`docs/research/0106-ontological-programming-type-barriers.md`](docs/research/0106-ontological-programming-type-barriers.md).
+It keeps triadic faces, energy-shell counts, six-port partitions, machine time,
+physical proper time, expression space, causal boundaries, and the distinct
+uses of Omega separate until typed realization maps and counter-calibrations
+exist.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
