@@ -223,6 +223,38 @@ its empty-antecedent ordered Lambek skeleton, proves normal/neutral and
 subformula theorems, and gives a terminating sound-and-complete focused
 derivability decision in
 [`docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md`](docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md).
+Bootstrap Zero's smaller geometric language, comprising one object language,
+one type language, finite line and circle forms, typed thread words, and five
+syntax-only interpreter declarations, is proposed in
+[`docs/research/0095-bootstrap-zero-geometric-threading-syntax.md`](docs/research/0095-bootstrap-zero-geometric-threading-syntax.md).
+It introduces no evaluation, denotation, or stable API.
+The external finite placement of all 128 seven-world Boolean supports into
+twenty triangle archetypes, together with the exact directed-edge and chiral
+counts and their syntax-only Bootstrap Zero alignment, is recorded in
+[`docs/research/0096-boolean-triangle-placement-language-alignment.md`](docs/research/0096-boolean-triangle-placement-language-alignment.md).
+It defines no interpreter clause or Boolean computation semantics.
+The threading-side continuation adds typed signed crossings and raw braid
+blocks in
+[`docs/research/0097-threading-syntax-typed-braid-alignment.md`](docs/research/0097-threading-syntax-typed-braid-alignment.md).
+It keeps crossing sign separate from incidence polarity, domain direction,
+L/R side, and function swap, without adding braid-word equations.
+The multi-hole A/M continuation records ordered kernels, graft bindings,
+source/occurrence lineage, and explicit copy/discard obligations in
+[`docs/research/0098-multihole-am-type-formation-constraints.md`](docs/research/0098-multihole-am-type-formation-constraints.md).
+It introduces no surreal number, option recursion, objectification, or
+arithmetic equality.
+The axis--circle continuation extracts a history-indexed pendulum constraint
+as pure formation syntax in
+[`docs/research/0099-axis-circle-pendulum-history-syntax.md`](docs/research/0099-axis-circle-pendulum-history-syntax.md).
+It keeps the history parameter distinct from domain `t`, shares one explicit
+cycle name across the line--circle, three-domain Omega word, forgetting, and
+closure records, and proves no interpreter coherence.
+The complete Bootstrap Zero syntax-factor inventory, its hard/calibration/
+candidate status split, and the local repairs for pure A/M syntax, derivative
+indices, and occurrence-to-hole binding are recorded in
+[`docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md`](docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md).
+It leaves the shared `Circle(gamma)`/Omega/closure seam as an explicit
+coordination proof obligation.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
