@@ -27,6 +27,19 @@ boundaries, scope, residuals, and composition obligations have been closed by
 a declared certificate. Reuse must retain a route back to the generating
 machine and its proof history.
 
+The first proposed machine-to-semantics bridge is:
+
+\[
+\operatorname{CloseCircle}(\mathrm{Null})
+\longrightarrow
+\mathrm{Universal}.
+\]
+
+Here CloseCircle is a future certified machine operation and Universal is its
+semantic-side reading. A future natural-deduction system may introduce
+Universal only from a checked Closed result; Open and Unknown authorize no such
+judgement.
+
 This path is intended to state requirements for a future natural-deduction
 system. It does not yet define that calculus.
 
