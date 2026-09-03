@@ -4,31 +4,31 @@ Status: experimental research path for ontology programming and requirements on
 a future natural-deduction system.
 
 This directory records proposed ontological axioms before they are promoted to
-stable Adva syntax, semantics, or implementation.  An entry here is a
-research demand, not an executable builtin, a registered exact claim, or an
+stable Adva syntax, semantics, or implementation. An entry here is a research
+demand, not an executable builtin, a registered exact claim, or an
 authorization to change the Rust semantic kernel.
 
 ## Programme
 
 The working construction path is
 
-[
-	ext{open machine}
-longrightarrow
-	ext{closure proof}
-longrightarrow
-	ext{sealed characteristic word}
-longrightarrow
-	ext{certified semantic-symbol program}.
-]
+\[
+\text{open machine}
+\longrightarrow
+\text{closure proof}
+\longrightarrow
+\text{sealed characteristic word}
+\longrightarrow
+\text{certified semantic-symbol program}.
+\]
 
 A candidate symbol may be used as a reusable semantic word only after its open
 boundaries, scope, residuals, and composition obligations have been closed by
-a declared certificate.  Reuse must retain a route back to the generating
+a declared certificate. Reuse must retain a route back to the generating
 machine and its proof history.
 
 This path is intended to state requirements for a future natural-deduction
-system.  It does not yet define that calculus.
+system. It does not yet define that calculus.
 
 ## Axiom index
 
