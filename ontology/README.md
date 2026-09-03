@@ -43,6 +43,38 @@ judgement.
 This path is intended to state requirements for a future natural-deduction
 system. It does not yet define that calculus.
 
+## Research paths
+
+| path | role | present priority |
+|---|---|---|
+| [semantics](semantics/README.md) | read certified machine events as semantic words | active |
+| [mathematics](mathematics/README.md) | form constructions and proofs over certified words | active |
+| [physics](physics/README.md) | form physical quantities only from justified dimension words | active |
+| [metaphysics](metaphysics/README.md) | provide the minimal category-type vocabulary | foundational only |
+
+The metaphysical foundation currently introduces
+
+\[
+\mathrm{Quality},
+\qquad
+\mathrm{Quantity},
+\qquad
+\mathrm{Number}
+:
+\mathsf{OntologicalType},
+\]
+
+with
+
+\[
+0:\mathrm{Number},
+\qquad
+1:\mathrm{Number}.
+\]
+
+No arithmetic, truth-value, or physical interpretation is attached to those
+two terms at this stage.
+
 ## Axiom index
 
 1. [O1: Null = Universal](axioms/0001-null-equals-universal.md)
