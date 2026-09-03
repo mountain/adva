@@ -48,6 +48,20 @@ def hole_flip(*holes: int) -> dict[str, str]:
     }
 
 
+def hole_swap(left: int, right: int) -> dict[str, str]:
+    hole_image = {1: 1, 2: 2, 3: 3}
+    hole_image[left], hole_image[right] = right, left
+    return {
+        f"h{hole}{sign}": f"h{hole_image[hole]}{sign}"
+        for hole in (1, 2, 3)
+        for sign in ("+", "-")
+    }
+
+
+def permutation_key(transform: dict[str, str]) -> tuple[str, ...]:
+    return tuple(transform[port] for port in PORTS)
+
+
 def test_symbolic_global_hole_polarity_flip_conjugates_threadings() -> None:
     global_flip = hole_flip(1, 2, 3)
 
@@ -80,6 +94,12 @@ def test_exhaustive_symbolic_port_permutation_classification() -> None:
     assert len(kappa_preserving) == 48
     assert len(conjugating) == 6
     assert len(involutive_conjugating) == 4
+    assert {permutation_key(transform) for transform in involutive_conjugating} == {
+        permutation_key(hole_flip(1, 2, 3)),
+        permutation_key(hole_swap(1, 2)),
+        permutation_key(hole_swap(1, 3)),
+        permutation_key(hole_swap(2, 3)),
+    }
 
 
 def test_symbolic_linear_j_square_is_minus_identity() -> None:
