@@ -712,9 +712,22 @@ status = "exact"
 scope = "The abstract six-element matching lemma and the two explicitly labeled three-hole matchings in research note 0106"
 assumptions = ["Each of three holes exposes two distinct boundary germs", "Hole and threading pairings are total fixed-point-free involutions on one six-germ ledger", "The two pairing edge sets are disjoint", "Their union is connected"]
 dependencies = []
-proof_or_certificate = "Finite degree-two graph proof in docs/research/0106-three-hole-conjugate-m6-projective-lift.md; no executable companion"
+proof_or_certificate = "Finite degree-two graph proof in docs/research/0106-three-hole-conjugate-m6-projective-lift.md plus the exact fixture audit in tests/python/test_three_hole_polarity_m6.py"
 counterexample_boundary = "Cardinality six alone is insufficient; repeated pairing edges, missing germs, collisions, or disconnected unions may produce no M6 or smaller even-cycle components"
 forbidden_conflations = ["Hole germ with stable cut port", "Graph cycle with braid filler", "Opposite cyclic matching with complex conjugation", "Isomorphic six-cycle with occurrence identity", "Finite M6 boundary with Teichmuller space"]
+
+[[claim]]
+claim_id = "adva.exact.three-hole-polarity-m6-port-conjugacy.v0"
+canonical_name = "Three-hole polarity M6 port conjugacy"
+code_symbol = "tests/python/test_three_hole_polarity_m6.py"
+dimension = "six-germ/matching-conjugacy/nonprincipal-M6-member"
+status = "exact"
+scope = "The explicitly labeled three-hole fixture in research note 0106, named HolePolarityM6 as a nonprincipal member of the M6 relation-machine family"
+assumptions = ["The six germs and the matchings kappa_h, tau_plus, and tau_minus are exactly the displayed finite fixture", "Hole identities are fixed for the uniqueness statement", "Port transport is equality of finite matching incidence, not typed occurrence identity"]
+dependencies = ["adva.exact.three-hole-two-matching-six-cycle.v0"]
+proof_or_certificate = "Exact symbolic edge transport proves kappa_h tau_plus kappa_h = tau_minus; tests/python/test_three_hole_polarity_m6.py exhausts all 720 port permutations, finding 48 kappa-preserving transports, six that exchange the threadings, and four involutive transports. The J-square check uses exact integer matrices; the rational round-trip test is explicitly supplementary sample evidence; no floating-point experiment is used"
+counterexample_boundary = "The exact port conjugacy does not construct a typed J-lift, identify hole coorientation with left/right syntax, preserve source or occurrence ledgers automatically, produce an M6 filler, or prove Q4/M6/TO24 coherence"
+forbidden_conflations = ["Abstract M6 boundary type with its principal braid representative", "HolePolarityM6 with BraidM6", "Port permutation with typed carrier identity", "Global three-hole polarity reversal with a single-hole flip", "Exact symbolic proof with sample validation", "Hole-polarity reversal with complex conjugation or complex structure J"]
 
 [[claim]]
 claim_id = "adva.construction-target.three-hole-conjugate-m6-j-lift.v0"
@@ -724,8 +737,8 @@ dimension = "M6-pair/projective-double-cover/complex-line/phase"
 status = "construction-target"
 scope = "Future typed carriers that adapt the two three-hole alternating cycles to exact port, state, step, source, occurrence, orientation, and residual ledgers"
 assumptions = ["A common AEG Mobius carrier for the reciprocal switch", "A ledger-preserving adapter between the two M6 boundary presentations", "A retained central residual whose linear view is minus identity and whose projective view is identity"]
-dependencies = ["adva.exact.three-hole-two-matching-six-cycle.v0"]
-proof_or_certificate = "The matrix J = [[0,-1],[1,0]] satisfies J squared = -I and projectivizes to an involution; existence and coherence of the typed M6 transport remain unproved"
+dependencies = ["adva.exact.three-hole-two-matching-six-cycle.v0", "adva.exact.three-hole-polarity-m6-port-conjugacy.v0"]
+proof_or_certificate = "The matrix J = [[0,-1],[1,0]] satisfies J squared = -I and projectivizes to an involution, while the exact port projection candidate is rho_h = kappa_h; existence and coherence of the typed M6 transport remain unproved"
 counterexample_boundary = "The target fails if the two carriers can be related only by erasing occurrences, if the central sign is trivial in every admitted view, or if Q4, M6, or TO24 coherence rejects the transport"
 forbidden_conflations = ["Complex structure J with complex conjugation", "Cycle reversal with path inverse", "Mobius conjugation with anti-linear conjugation", "Central sign with full U(1) phase", "Omega phase with M6 filler", "History parameter with physical time"]
 
