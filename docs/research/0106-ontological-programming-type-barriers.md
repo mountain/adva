@@ -622,16 +622,10 @@ spaces.
 
 The resulting AEG research problem can therefore be stated precisely:
 
-\[
-\boxed{
-\begin{minipage}{0.82\linewidth}
-Given a dimension-graded expression space, a scale action, and a typed family
-of physical constraints, construct the invariant moduli of satisfying
-presentations and a residual-preserving lift back to dimensioned,
-observer-indexed physical data.
-\end{minipage}
-}
-\]
+> Given a dimension-graded expression space, a scale action, and a typed family
+> of physical constraints, construct the invariant moduli of satisfying
+> presentations and a residual-preserving lift back to dimensioned,
+> observer-indexed physical data.
 
 Equivalently, the characteristic problem is to find a scale- and
 presentation-stable feature
