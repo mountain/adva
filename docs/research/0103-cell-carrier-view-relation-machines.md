@@ -431,9 +431,10 @@ The hard conclusion is structural: cells are typed local generators, the
 carrier is the authoritative stratified occurrence ledger, and a view is a
 declared partial observation with an auditable kernel.
 
-The next proof obligation is to connect the three original whole-cut pairings
+The next proof obligation was to connect the three original whole-cut pairings
 of \(\mathbb W_6\) to the six-step boundary of one \(M_6\) relation cell
-without conflating ports, states, and step occurrences. Only after that bridge
-is explicit may the braid filler be proposed as part of the Bootstrap Zero
-completion theorem.
-
+without conflating ports, states, and step occurrences. The finite bridge and
+its failure cases are now given in
+[note 0104](0104-whole-cut-six-to-m6-boundary-bridge.md). That bridge produces
+an open relation boundary only; an admissible braid filler remains a separate
+Bootstrap Zero proof obligation.

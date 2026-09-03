@@ -262,6 +262,14 @@ The word is cyclically interpreted only by a checked circle projection. Two
 rotated spellings remain distinct raw records unless an explicit rotation
 witness is supplied.
 
+For a closed carrier, recounting the six port names is necessary but not
+sufficient. Consecutive cyclic pairs must be exactly the three whole-cut
+pairings and three through-channel pairings, each used once and alternating by
+kind. This strengthened formation rule and its `M6` projection are specified
+in [note 0104](0104-whole-cut-six-to-m6-boundary-bridge.md). An open carrier may
+retain a prospective cycle ledger, but it does not yet form a checked closed
+circle view.
+
 ### 4.4 Hole, alternative, and residual ledgers
 
 ```text
@@ -340,7 +348,9 @@ W\Downarrow_{\mathsf{circle}}C
 
 require literal equality of typed port and occurrence ledgers. A view is
 rejected if it creates a new occurrence, forgets an unused port, or replaces
-a member ledger by a count.
+a member ledger by a count. `CircleView6` additionally requires the closed
+alternating incidence cycle of section 4.3; named open ports cannot be treated
+as an implicit closure.
 
 Carrier duality is a named view-transport form:
 

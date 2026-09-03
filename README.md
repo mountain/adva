@@ -267,6 +267,10 @@ adding dimension-indexed relation cells, open view contracts, proof-relevant
 logic views for the `Q4` interchange and `M6` braid machines, and a finite
 `TO24` coherence-envelope calibration in
 [`docs/research/0103-cell-carrier-view-relation-machines.md`](docs/research/0103-cell-carrier-view-relation-machines.md).
+The exact adapter from the three whole-cut pairings and three through pairings
+to an open alternating `M6` boundary, with disjoint port/state/step ledgers and
+no manufactured braid filler, is recorded in
+[`docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md`](docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md).
 These notes supersede the earlier inventory as the proposed Bootstrap Zero
 completion baseline while preserving notes 0095--0100 as the derivation record.
 Longer-term work on observer-conditioned specialization, complex `Prog`

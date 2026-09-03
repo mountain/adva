@@ -270,9 +270,47 @@ def _fixture(open_last: bool = False) -> WholeCut6:
         ports,
         channels,
         open_ports,
-        tuple(port.name for port in ports),
+        (
+            "p-KX-L",
+            "p-KX-R",
+            "p-tK-L",
+            "p-tK-R",
+            "p-Xt-L",
+            "p-Xt-R",
+        ),
         residuals,
     )
+
+
+def _validate_closed_alternating_cycle(form: WholeCut6) -> None:
+    edge_kind: dict[frozenset[str], str] = {}
+    for cell in form.cells:
+        edge = frozenset((cell.left_port, cell.right_port))
+        if edge in edge_kind:
+            raise ValueError("cut pairings must be distinct")
+        edge_kind[edge] = "cut"
+    for channel in form.channels:
+        edge = frozenset((channel.source_port, channel.target_port))
+        if edge in edge_kind:
+            if edge_kind[edge] == "cut":
+                raise ValueError("cut and through pairings must be disjoint")
+            raise ValueError("through pairings must be distinct")
+        edge_kind[edge] = "thread"
+
+    ordered_edges = tuple(
+        frozenset(
+            (
+                form.circle_order[index],
+                form.circle_order[(index + 1) % len(form.circle_order)],
+            )
+        )
+        for index in range(len(form.circle_order))
+    )
+    if len(set(ordered_edges)) != 6 or set(ordered_edges) != set(edge_kind):
+        raise ValueError("circle order must be induced by the cut and through pairings")
+    kinds = tuple(edge_kind[edge] for edge in ordered_edges)
+    if any(kinds[index] == kinds[(index + 1) % len(kinds)] for index in range(6)):
+        raise ValueError("cut and through steps must alternate around the circle")
 
 
 def _validate_whole(form: WholeCut6) -> None:
@@ -315,6 +353,8 @@ def _validate_whole(form: WholeCut6) -> None:
         raise ValueError("every port must be accounted for exactly once")
     if Counter(form.circle_order) != Counter(port_names):
         raise ValueError("the circle view must use the authoritative port ledger")
+    if not form.open_ports:
+        _validate_closed_alternating_cycle(form)
 
     for channel in form.channels:
         source = ports_by_name[channel.source_port]
@@ -335,6 +375,8 @@ def _line_view(form: WholeCut6) -> LineView:
 
 def _circle_view(form: WholeCut6) -> CircleView:
     _validate_whole(form)
+    if form.open_ports:
+        raise ValueError("a circle view needs a closed alternating pairing cycle")
     return CircleView(Carrier.CIRCLE, form.name, form.ports, form.circle_order)
 
 
@@ -456,6 +498,19 @@ def test_line_and_circle_views_share_one_literal_occurrence_ledger() -> None:
     assert tuple(port.occurrence for port in line.ports) == tuple(
         port.occurrence for port in circle.ports
     )
+
+
+def test_circle_order_must_follow_the_two_alternating_pairings() -> None:
+    form = _fixture()
+    merely_recounted = replace(
+        form,
+        circle_order=tuple(port.name for port in form.ports),
+    )
+
+    with pytest.raises(ValueError, match="induced by"):
+        _validate_whole(merely_recounted)
+    with pytest.raises(ValueError, match="closed alternating"):
+        _circle_view(_fixture(open_last=True))
 
 
 def test_duality_polarity_and_conjugation_change_different_fields() -> None:
