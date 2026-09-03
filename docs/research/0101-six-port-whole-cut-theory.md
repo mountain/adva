@@ -140,6 +140,12 @@ cyclic assembly of three typed whole-cut cells:
 \tag{ThreeCutCells}
 \]
 
+At the atomic level, one cut co-generates a continuation germ and a boundary
+germ. These are the local line and circle possibilities of the same event.
+A globally closed `Circle` value still requires the explicit cyclic assembly
+and last-to-first incidence ledger. Thus "cut produces the circle" does not
+permit a closure witness to be manufactured from a lone separator.
+
 The minimal carrier is a finite record
 
 \[
@@ -399,7 +405,26 @@ degree carriers remain legitimate extension families.
 
 ---
 
-## 8. What is hard, what is conditional, and what is deferred
+## 8. Migration from the factor-placement grammar
+
+| notes 0095--0100 | revised placement |
+|---|---|
+| `Line` and `Circle` as neighboring value constructors | local germs of one atomic cut and checked global views of one three-cell carrier |
+| one decorated `Through` cell | one atomic whole-cut cell; three typed cells assemble the six-port carrier |
+| free thread atom | traversal must expose `retract` followed by `generate` |
+| raw braid routing only | raw three-channel routing plus occurrence-preserving collision strata |
+| `dual`, `polarity`, and `conjugate` as unrelated tags | three disjoint transformations with explicit carrier-transport squares |
+| `add` and `mul` in an isolated A/M tree | ordered `plus`, structural `tensor`, and historical composition coordinated through one ledger |
+| zero implicit only through later arithmetic | empty, balanced, and observed zero positions remain visibly distinct and noncollapsing |
+| `PendForm` carries the six-use example | pendulum, scalar energy, and Omega interpretation move to explicit extension slots |
+| five declarations consume generic `Form_Q` | five declarations consume projections of the same `WholeCut6` carrier |
+
+This migration is additive and versioned. It does not reinterpret stable Adva
+objects or rewrite the historical notes.
+
+---
+
+## 9. What is hard, what is conditional, and what is deferred
 
 | status | factors |
 |---|---|
@@ -422,7 +447,7 @@ judgments.
 
 ---
 
-## 9. Visible extension discipline
+## 10. Visible extension discipline
 
 Bootstrap Zero is intentionally open, but an extension must be visible. Each
 extension declaration must state:
@@ -449,7 +474,7 @@ of the hard kernel. Conservative extension is a proof obligation, not a label.
 
 ---
 
-## 10. Revised Bootstrap Zero target
+## 11. Revised Bootstrap Zero target
 
 The target theorem is now:
 
