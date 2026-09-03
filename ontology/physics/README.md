@@ -36,6 +36,15 @@ and the declared initial basis
 This is a conventional physical basis, not a claim that these seven dimensions
 are metaphysically final.
 
+## Working hypotheses
+
+1. [PH1: HolePolarityM6 Carries the Dimension L](working-hypotheses/PH1-hole-polarity-m6-carries-L.md)
+
+PH1 provisionally assigns the length dimension \(L\) to the open
+Three-Hole Polarity M6 Machine so that a typed circle-closing experiment can
+begin. Only a successful checked closure may promote the annotation to a
+certified physical judgement.
+
 ## Quantity formation
 
 The intended formation pattern is
