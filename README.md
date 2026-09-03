@@ -255,6 +255,15 @@ indices, and occurrence-to-hole binding are recorded in
 [`docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md`](docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md).
 It leaves the shared `Circle(gamma)`/Omega/closure seam as an explicit
 coordination proof obligation.
+The subsequent theoretical correction rebases Bootstrap Zero on the conditional
+six-port minimum for triadic sustained threading, one whole-cut carrier, dual
+line/circle views, distinct duality/polarity/conjugation operations, factored
+traversal, collision strata, and noncollapsing zero fibres in
+[`docs/research/0101-six-port-whole-cut-theory.md`](docs/research/0101-six-port-whole-cut-theory.md).
+Its syntax-only redesign and visible extension envelope are specified in
+[`docs/research/0102-bootstrap-zero-whole-cut-grammar.md`](docs/research/0102-bootstrap-zero-whole-cut-grammar.md).
+These notes supersede the earlier inventory as the proposed Bootstrap Zero
+completion baseline while preserving notes 0095--0100 as the derivation record.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
