@@ -63,24 +63,45 @@ where:
 Only the Closed branch authorizes the semantic reading
 \(\mathrm{Universal}\). Neither Open nor Unknown may be promoted to it.
 
+## Triadic closure criterion
+
+For one shared typed run \(r\), the seven nonempty relative halt words are
+indexed by the nonempty subsets of \(\{K,X,t\}\). Only the full halt word
+closes the three-domain circle:
+
+\[
+\mathsf{CircleClosed}(r)
+\quad\Longleftrightarrow\quad
+\mathsf{HaltSet}(r)
+=
+\{K,X,t\}.
+\]
+
+The six one-domain and two-domain halt words leave one or two domain holes
+open. They cannot introduce Universal. The complete rule and negative fixtures
+are recorded in
+[Triadic Halt Words and Circle Closure](../semantics/triadic-halt-circle-closure.md).
+
 ## Natural-deduction demand
 
 The first requested introduction rule is computational:
 
 \[
 \frac{
-\operatorname{CloseCircle}(\mathrm{Null})
+\mathsf{HaltSet}(r)=\{K,X,t\}
+\qquad
+\operatorname{CloseCircle}(\mathrm{Null};r)
 \Downarrow
 \operatorname{Closed}(c,R)
 }{
 \Gamma
 \vdash_{\mathsf{ND}}
-\mathrm{Universal}[c,R]
+\mathrm{Universal}[r,c,R]
 :
 \mathsf{OntologicalForm}
 }
 \quad
-(\mathrm{Universal}\text{-I}).
+(\mathrm{Universal}\text{-I}_{3H}).
 \]
 
 Natural deduction therefore obtains Universal by invoking the certified
@@ -91,11 +112,12 @@ An elimination or reopen rule must recover the generating closure record:
 \[
 \operatorname{reopen}
 \bigl(
-\mathrm{Universal}[c,R]
+\mathrm{Universal}[r,c,R]
 \bigr)
 =
 \bigl(
 \mathrm{Null},
+r,
 c,
 R
 \bigr).
@@ -109,16 +131,17 @@ proposition.
 Any calculus realizing O1 must specify:
 
 1. the machine type in which \(\mathrm{Null}\) is a legal circle-closing input;
-2. the exact formation and execution rule for
+2. one shared-run identity and three typed domain halt predicates;
+3. the exact formation and execution rule for
    \(\operatorname{CloseCircle}\);
-3. the authority and replay conditions of the closure certificate \(c\);
-4. the semantic-view map \(\operatorname{Sem}\);
-5. preservation of source, occurrence, polarity, and residual history;
-6. the contexts in which the sealed word \(\mathrm{Universal}[c,R]\) may be
+4. the authority and replay conditions of the closure certificate \(c\);
+5. the semantic-view map \(\operatorname{Sem}\);
+6. preservation of source, occurrence, polarity, and residual history;
+7. the contexts in which the sealed word \(\mathrm{Universal}[c,R]\) may be
    substituted or composed;
-7. a nontriviality argument or model showing that O1 does not collapse all
+8. a nontriviality argument or model showing that O1 does not collapse all
    judgements; and
-8. the precise reopen behavior when a stronger observer or later computation
+9. the precise reopen behavior when a stronger observer or later computation
    needs the retained residual.
 
 ## Nonclaims
@@ -131,6 +154,7 @@ O1 does not presently assert any of the following:
 - every initial object is a terminal object;
 - every empty filling fibre is universally filled;
 - every well-formed circle is closed;
+- one-domain or two-domain halt closes the circle;
 - syntactic circularity proves termination;
 - a program hole, cut port, metavariable, logical obligation, observer
   aperture, singularity, and \(\Omega\) are identical;
