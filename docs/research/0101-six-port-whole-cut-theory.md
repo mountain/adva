@@ -115,7 +115,7 @@ minimum; collided forms are boundary strata of the same presented carrier.
 
 ---
 
-## 2. One whole-cut cell, not independent line and circle atoms
+## 2. Whole-cut cells before the six-port carrier
 
 The public glyph
 
@@ -123,10 +123,22 @@ The public glyph
 <L|R>
 ```
 
-must be read as one whole-cut cell. The separator is not an operation applied
-to two already independent sides. A cut simultaneously presents two local
-sides, a continuation skeleton, and the boundary data from which closure may
-be formed.
+must be read as one atomic whole-cut cell. The separator is not an operation
+applied to two already independent sides. A cut simultaneously presents two
+local sides, a continuation skeleton, and the boundary data from which closure
+may be formed.
+
+The six-port object is not one glyph containing three hidden cuts. It is the
+cyclic assembly of three typed whole-cut cells:
+
+\[
+\mathsf{Cell}_{KX}^{t},
+\qquad
+\mathsf{Cell}_{Xt}^{K},
+\qquad
+\mathsf{Cell}_{tK}^{X}.
+\tag{ThreeCutCells}
+\]
 
 The minimal carrier is a finite record
 
@@ -138,7 +150,7 @@ The minimal carrier is a finite record
 
 where:
 
-- \(C\) is the three-cut ledger over the role edges;
+- \(C\) is the ordered family of three whole-cut cells over the role edges;
 - \(P\) is the six-port ledger, with two named sides per cut;
 - \(O\) is the six distinct initial occurrences and their source lineage;
 - \(M\) is a complete through matching or an explicit open-port account;
@@ -160,9 +172,11 @@ through channels. The circle view reads those same occurrences in cyclic
 boundary order. Neither projection may rename, copy, discard, or recreate an
 occurrence.
 
-This corrects the weaker formulation in which `Line` and `Circle` were merely
-two neighboring value constructors. They remain distinguished value shapes,
-but their six-port instances are now required to descend from one ledger.
+This corrects both a weaker and an overcompressed formulation. `Line` and
+`Circle` are not merely neighboring value constructors, but neither does one
+atomic `<L|R>` contain the full triadic carrier. Their six-port instances are
+checked projections of the three-cell assembly and its one authoritative
+ledger.
 
 ---
 
@@ -389,7 +403,7 @@ degree carriers remain legitimate extension families.
 
 | status | factors |
 |---|---|
-| hard kernel | typed names; three roles; whole cut; six-port open ledger; explicit holes and residuals; line/circle projections; distinct dual/polarity/conjugation alphabets; raw braid and collision records; `generate`, `retract`, and factored traversal; distinct `oplus`, `otimes`, and historical composition |
+| hard kernel | typed names; three roles; atomic whole-cut cell; three-cell six-port open ledger; explicit holes and residuals; line/circle projections; distinct dual/polarity/conjugation alphabets; raw braid and collision records; `generate`, `retract`, and factored traversal; distinct `plus`, `tensor`, and historical composition |
 | coordination obligations | carrier-view occurrence preservation; split witness typing; dual transport witnesses; braid and collision ledger preservation; distributivity ledger; five interpreter-declaration projections |
 | finite calibrations | seven unordered distributions of six among three roles when zero allocations are admitted; the 128 Boolean supports if they are predicates on those seven types; candidate ground and excited classes |
 | deferred extensions | other arities and topologies; a chosen collision/braid quotient; characteristic grading and physical energy; multi-observer communication; proof and learning rules; Omega nonclosure; arithmetic and surreal semantics |
@@ -449,7 +463,7 @@ The target theorem is now:
 
 The completion order is:
 
-1. define and validate the six-port whole-cut carrier;
+1. define one atomic whole-cut cell and validate its three-cell six-port carrier;
 2. derive line and circle views from it;
 3. type duality, polarity, conjugation, split pairs, and traversal;
 4. add braid-preserving and collision-preserving ledgers;
