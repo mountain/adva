@@ -255,6 +255,29 @@ indices, and occurrence-to-hole binding are recorded in
 [`docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md`](docs/research/0100-bootstrap-zero-syntax-factor-inventory-and-seam-repairs.md).
 It leaves the shared `Circle(gamma)`/Omega/closure seam as an explicit
 coordination proof obligation.
+The subsequent theoretical correction rebases Bootstrap Zero on the conditional
+six-port minimum for triadic sustained threading, one whole-cut carrier, dual
+line/circle views, distinct duality/polarity/conjugation operations, factored
+traversal, collision strata, and noncollapsing zero fibres in
+[`docs/research/0101-six-port-whole-cut-theory.md`](docs/research/0101-six-port-whole-cut-theory.md).
+Its syntax-only redesign and visible extension envelope are specified in
+[`docs/research/0102-bootstrap-zero-whole-cut-grammar.md`](docs/research/0102-bootstrap-zero-whole-cut-grammar.md).
+The next syntax refinement keeps the `cell -> carrier -> views` spine while
+adding dimension-indexed relation cells, open view contracts, proof-relevant
+logic views for the `Q4` interchange and `M6` braid machines, and a finite
+`TO24` coherence-envelope calibration in
+[`docs/research/0103-cell-carrier-view-relation-machines.md`](docs/research/0103-cell-carrier-view-relation-machines.md).
+The exact adapter from the three whole-cut pairings and three through pairings
+to an open alternating `M6` boundary, with disjoint port/state/step ledgers and
+no manufactured braid filler, is recorded in
+[`docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md`](docs/research/0104-whole-cut-six-to-m6-boundary-bridge.md).
+These notes supersede the earlier inventory as the proposed Bootstrap Zero
+completion baseline while preserving notes 0095--0100 as the derivation record.
+A separate application note investigates whether proof-relevant `Q4`
+interchange and candidate `M6` braid cells can quotient redundant Go histories
+for exact or hybrid low-resource search, while keeping the full-state,
+history, certification-cost, and falsification boundaries explicit in
+[`docs/research/0105-q4-m6-go-search-research-program.md`](docs/research/0105-q4-m6-go-search-research-program.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
