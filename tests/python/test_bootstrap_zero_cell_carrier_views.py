@@ -28,6 +28,7 @@ class StateOccurrence:
     occurrence: str
     value_type: str = "A"
     multiplicity: int = 1
+    origin_port: str | None = None
 
 
 @dataclass(frozen=True)
@@ -36,6 +37,8 @@ class StepOccurrence:
     operator: str
     source: str
     target: str
+    origin: str | None = None
+    presentation: str = "presented"
 
 
 @dataclass(frozen=True)
@@ -242,6 +245,8 @@ def _validate_carrier(carrier: StratifiedCarrier) -> None:
     steps = {step.name: step for step in carrier.steps}
     if any(step.source not in states or step.target not in states for step in carrier.steps):
         raise ValueError("step boundaries must occur in the carrier")
+    if any(step.presentation not in {"presented", "native", "converse"} for step in carrier.steps):
+        raise ValueError("step presentation must be explicit")
     for relation in carrier.relations:
         _validate_relation(relation, states, steps)
 
@@ -606,4 +611,3 @@ def test_nonempty_relation_words_return_to_identity_without_becoming_empty() -> 
     assert square_word != ()
     assert left_hexagon_word != ()
     assert right_hexagon_word != ()
-
