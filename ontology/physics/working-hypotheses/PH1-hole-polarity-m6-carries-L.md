@@ -110,6 +110,17 @@ xL
 \end{cases}
 \]
 
+The Closed branch is admissible only for one shared typed run \(r\) satisfying
+
+\[
+\mathsf{HaltSet}(r)
+=
+\{K,X,t\}.
+\]
+
+The six one-domain and two-domain halt words leave at least one domain hole
+open and cannot promote PH1.
+
 Here:
 
 - \(c_L\) certifies that the dimension assignment survives the checked
@@ -138,14 +149,15 @@ promoted judgement.
 The first experiment must check symbolically that:
 
 1. all three holes receive compatible typed roles under the \(L\) annotation;
-2. the positive and negative threadings transport the same dimension word;
-3. the designated positive output residual becomes a negative input variable
+2. only the full halt word \(H_{KXt}\) is accepted as a closed circle;
+3. the positive and negative threadings transport the same dimension word;
+4. the designated positive output residual becomes a negative input variable
    without changing its physical type;
-4. the reverse proof run returns a residual with a declared dimension;
-5. no single-hole or double-hole polarity flip is used to repair a mismatch;
-6. legal alternative fillings do not silently change the dimension;
-7. source, occurrence, polarity, and residual ledgers survive closure; and
-8. a closed result is independently replayable.
+5. the reverse proof run returns a residual with a declared dimension;
+6. no single-hole or double-hole polarity flip is used to repair a mismatch;
+7. legal alternative fillings do not silently change the dimension;
+8. source, occurrence, polarity, and residual ledgers survive closure; and
+9. a closed result is independently replayable.
 
 No numerical sample can discharge these obligations.
 
@@ -154,6 +166,7 @@ No numerical sample can discharge these obligations.
 PH1 must remain open or be revised if:
 
 - one of the three holes cannot be typed consistently with the other two;
+- a one-domain or two-domain halt word is accepted as a closed circle;
 - global polarity reversal transports \(L\) to a different dimension without a
   declared physical rule;
 - different legal fillings produce incompatible dimension words;
