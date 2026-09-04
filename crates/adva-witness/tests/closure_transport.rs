@@ -46,10 +46,8 @@ fn committed_first_transport_outputs_replay_exactly() {
     let transition = first_transition();
     let recorded_transition =
         load_closure_transport_transition_v0(fixture("closure-transport-1.adva")).unwrap();
-    let recorded_frontier = load_closure_transport_frontier_v0(fixture(
-        "closure-transport-frontier-1.adva",
-    ))
-    .unwrap();
+    let recorded_frontier =
+        load_closure_transport_frontier_v0(fixture("closure-transport-frontier-1.adva")).unwrap();
 
     assert_eq!(recorded_transition, transition);
     assert_eq!(
