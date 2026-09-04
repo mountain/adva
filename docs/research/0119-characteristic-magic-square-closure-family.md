@@ -85,11 +85,12 @@ This distinguishes three things that a flat solution list would collapse:
 
 ## First-run observations
 
-The executable run is expected to expose, and CI will freeze, at least:
+The executable first run produced and CI freezes:
 
 | observation | expected value |
 | --- | ---: |
 | expanded search nodes | 12,517 |
+| infeasible branches cut | 59,571 |
 | earlier valid closures retained | 2 |
 | generated global members | 16 |
 | directed generator edges | 48 |
@@ -117,8 +118,21 @@ cargo run -p adva-witness --bin adva -- \
   --print
 ```
 
-The output coordinates will be recorded after the executable first run. CI must
-then regenerate both output files byte for byte.
+The retained coordinates are:
+
+| artifact | BLAKE3 coordinate |
+| --- | --- |
+| selected closure certificate | `9eb00959f3ad3d0074114f5c3466e82595c4aa66473002ca7a1f53c107b57434` |
+| shared closure content | `53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3` |
+| complete transition | `1fe21780fec9d7efaa4c69f98705ca5bc1f64bc400ac4dfb40ddcb3de7beebad` |
+| locally closed frontier | `7140af03d6ccbc6aaf4037618f7719ce479dd1de45a4cdb8eece72784128dbfd` |
+
+CI regenerates both output files and requires byte equality. The first naive
+serialization copied a complete polynomial certificate into every family
+member and produced a roughly 1.1 MB transition. Replacing those copies with
+checked closure references reduced the retained transition to about 108 KB.
+This refactoring is part of the result: structure reuse must be represented as
+shared content plus fresh occurrences and maps, not repeated payloads.
 
 ## Interpretation and boundary
 
