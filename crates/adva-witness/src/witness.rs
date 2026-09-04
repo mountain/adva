@@ -531,8 +531,7 @@ impl FormedCellV0 {
         frame_id: &GraftFrameId,
         children: [ArtifactKeyV0; 3],
     ) -> Result<CellInstanceV0, WitnessErrorV0> {
-        if !compilation.certificate.certified()
-            || !compilation.graft_trace.certificate.certified()
+        if !compilation.certificate.certified() || !compilation.graft_trace.certificate.certified()
         {
             return Err(WitnessErrorV0::UncertifiedGraftContext);
         }
