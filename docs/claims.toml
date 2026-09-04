@@ -742,3 +742,16 @@ proof_or_certificate = "The matrix J = [[0,-1],[1,0]] satisfies J squared = -I a
 counterexample_boundary = "The target fails if the two carriers can be related only by erasing occurrences, if the central sign is trivial in every admitted view, or if Q4, M6, or TO24 coherence rejects the transport"
 forbidden_conflations = ["Complex structure J with complex conjugation", "Cycle reversal with path inverse", "Mobius conjugation with anti-linear conjugation", "Central sign with full U(1) phase", "Omega phase with M6 filler", "History parameter with physical time"]
 
+[[claim]]
+claim_id = "adva.bounded-verified.reusable-six-word-witness.v0"
+canonical_name = "Reusable six-word additive/multiplicative witness companion"
+code_symbol = "adva_witness::{SeedRegistryV0,WitnessStoreV0,CellTemplateV0,FormedCellV0,CellInstanceV0,ExecutedCellV0}; crates/adva-witness/tests/reusable_witness.rs"
+dimension = "six-seed/three-hole/additive-formation/multiplicative-execution/reuse"
+status = "bounded-verified"
+scope = "The corrected six seed declarations; finite acyclic witness DAGs; pure commutative add/multiply expressions over arbitrary-precision integer coefficients; linear ordered three-hole templates; and explicit bindings to existing Rust-owned source and occurrence data"
+assumptions = ["adva.ir version 1 remains unchanged", "Template roles are exactly construction, space, and time", "Every result hole variable occurs syntactically once", "Polynomial equality is only a witness observation", "BLAKE3 artifact keys are cache coordinates rather than semantic identities", "Concrete zero at any retained expression node is a runtime fault"]
+dependencies = ["adva.exact.explicit-source-identity.v1", "adva.definition.finite-boundary-substitution.v1", "adva.bounded-verified.historical-distributivity-character.v0"]
+proof_or_certificate = "Rust tests verify all corrected seed ledgers; reject the old first-row typo and collapsed unit support; normalize one distributivity instance exactly; reuse one content artifact across fresh instance ordinals and occurrence bindings; reject implicit occurrence aliasing, nonzero relative formation, non-unit transport, intermediate zero, dependency cycles, and nonlinear template variables"
+counterexample_boundary = "The companion is research schema version zero and is not integrated with ProgramTerm, GraftTrace compilation, the stable operation registry, or adva.ir certificates. It provides no parser, exact Adva scalar type, general arithmetic interpreter, durable remote artifact store, equation cell, specializer, recursion, or universality theorem"
+forbidden_conflations = ["Artifact hash with SourceId or OccurrenceId", "Same cached proof with same program instance", "Polynomial equality with expression or program identity", "Additive formation zero with runtime arithmetic zero", "Multiplicative residual one with program result one", "Repeated source with repeated occurrence", "BigInt witness checker with stable Adva scalar semantics", "Research type state with adva.ir certificate"]
+
