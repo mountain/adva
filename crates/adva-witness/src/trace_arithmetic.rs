@@ -350,7 +350,8 @@ impl TraceArithmeticCalibrationV0 {
     /// Rejects an unsupported schema, malformed source coordinate, invalid
     /// relation trace, or a stale/tampered derived field.
     pub fn check(&self) -> Result<(), TraceArithmeticErrorV0> {
-        if self.schema != TRACE_ARITHMETIC_SCHEMA_V0 || self.version != TRACE_ARITHMETIC_VERSION_V0 {
+        if self.schema != TRACE_ARITHMETIC_SCHEMA_V0 || self.version != TRACE_ARITHMETIC_VERSION_V0
+        {
             return Err(TraceArithmeticErrorV0::InvalidCalibration(
                 "unsupported trace-arithmetic schema or version",
             ));
