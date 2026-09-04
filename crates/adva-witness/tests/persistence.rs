@@ -1,8 +1,10 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0, AdvaPersistenceErrorV0,
-    ArtifactKeyV0, CarrierRouteV0, FrontierSiteV0, InputLabelV0, MechanismInputV0,
-    MechanismOutputV0, NeutralCarrierV0, OpenFrontierV0, OutputLabelV0, ReloadPlanV0, RoleV0,
+    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0,
+    AdvaPersistenceErrorV0, ArtifactKeyV0, CarrierIdV0, EntryPointV0, FrameIdV0,
+    FrameInputV0, FrameMechanismV0, FrameOutputV0, FrontierSiteV0, LoadedFrameStateV0,
+    MechanismAdmissionV0, MechanismFormV0, NeutralCarrierV0, OpenFrontierV0, RoleV0,
+    StoredCarrierV0, StoredFillAssignmentV0, StoredFillPlanV0, TransitionFrameV0,
     load_adva_document_v0, save_adva_document_v0,
 };
 use std::path::PathBuf;
@@ -21,42 +23,72 @@ fn carrier(name: &str, sites: impl IntoIterator<Item = FrontierSiteV0>) -> Neutr
     }
 }
 
-fn output(prefix: &str) -> MechanismOutputV0 {
-    MechanismOutputV0 {
-        history: carrier(
-            &format!("{prefix}-history"),
-            [FrontierSiteV0::new(RoleV0::Time, 2, 0)],
-        ),
-        result: carrier(&format!("{prefix}-result"), []),
-        evidence: carrier(
-            &format!("{prefix}-evidence"),
-            [FrontierSiteV0::new(RoleV0::Construction, 0, 1)],
-        ),
-    }
+fn stored(id: u32, name: &str, sites: impl IntoIterator<Item = FrontierSiteV0>) -> StoredCarrierV0 {
+    StoredCarrierV0::new(CarrierIdV0::new(id), carrier(name, sites))
 }
 
-fn route_plan() -> ReloadPlanV0 {
-    ReloadPlanV0::from_routes([
-        CarrierRouteV0::new(OutputLabelV0::Evidence, InputLabelV0::Method),
-        CarrierRouteV0::new(OutputLabelV0::History, InputLabelV0::Object),
-        CarrierRouteV0::new(OutputLabelV0::Result, InputLabelV0::Subject),
-    ])
+fn reusable_document(prefix: &str) -> AdvaDocumentV0 {
+    AdvaDocumentV0::new(
+        vec![
+            stored(0, &format!("{prefix}-subject"), []),
+            stored(
+                1,
+                &format!("{prefix}-method"),
+                [FrontierSiteV0::new(RoleV0::Time, 2, 0)],
+            ),
+            stored(2, &format!("{prefix}-object"), []),
+            stored(3, &format!("{prefix}-history"), []),
+            stored(4, &format!("{prefix}-result"), []),
+            stored(
+                5,
+                &format!("{prefix}-evidence"),
+                [FrontierSiteV0::new(RoleV0::Construction, 0, 1)],
+            ),
+        ],
+        vec![
+            TransitionFrameV0 {
+                id: FrameIdV0::new(0),
+                input: FrameInputV0::new(
+                    CarrierIdV0::new(0),
+                    CarrierIdV0::new(1),
+                    CarrierIdV0::new(2),
+                ),
+                mechanism: FrameMechanismV0::Compute,
+                output: FrameOutputV0::recorded(
+                    CarrierIdV0::new(3),
+                    CarrierIdV0::new(4),
+                    CarrierIdV0::new(5),
+                ),
+            },
+            TransitionFrameV0 {
+                id: FrameIdV0::new(1),
+                input: FrameInputV0::new(
+                    CarrierIdV0::new(4),
+                    CarrierIdV0::new(5),
+                    CarrierIdV0::new(3),
+                ),
+                mechanism: FrameMechanismV0::Compute,
+                output: FrameOutputV0::ready(),
+            },
+        ],
+        vec![
+            EntryPointV0 {
+                name: "replay".to_owned(),
+                frame: FrameIdV0::new(1),
+            },
+            EntryPointV0 {
+                name: "start".to_owned(),
+                frame: FrameIdV0::new(0),
+            },
+        ],
+    )
     .unwrap()
-}
-
-fn expected_input(prefix: &str) -> MechanismInputV0 {
-    let output = output(prefix);
-    MechanismInputV0 {
-        subject: output.result,
-        method: output.evidence,
-        object: output.history,
-    }
 }
 
 fn temporary_path(name: &str) -> PathBuf {
     let ordinal = TEST_DIRECTORY_ORDINAL.fetch_add(1, Ordering::Relaxed);
     let directory = std::env::temp_dir().join(format!(
-        "adva-neutral-persistence-{}-{ordinal}",
+        "adva-neutral-graph-persistence-{}-{ordinal}",
         std::process::id()
     ));
     std::fs::create_dir_all(&directory).unwrap();
@@ -64,74 +96,122 @@ fn temporary_path(name: &str) -> PathBuf {
 }
 
 #[test]
-fn document_round_trip_requires_an_explicit_exact_slot_bijection() {
-    let document = AdvaDocumentV0::from_output(output("first")).unwrap();
+fn document_round_trip_keeps_carriers_neutral_and_mechanisms_on_frames() {
+    let document = reusable_document("round-trip");
     let encoded = document.to_json().unwrap();
     let decoded = AdvaDocumentV0::from_json(&encoded).unwrap();
-    let loaded = decoded.reload(&route_plan()).unwrap();
+    let loaded = decoded.load_entrypoint("start").unwrap();
 
     assert_eq!(decoded, document);
-    assert_eq!(loaded.input, expected_input("first"));
+    assert_eq!(loaded.transition.frame, FrameIdV0::new(0));
+    assert_eq!(loaded.transition.state, LoadedFrameStateV0::Recorded);
+    assert!(matches!(
+        loaded.transition.admission,
+        MechanismAdmissionV0::Compute { .. }
+    ));
+    assert!(loaded.transition.recorded_output.is_some());
     assert_eq!(loaded.certificate.schema, ADVA_DOCUMENT_SCHEMA_V0);
     assert_eq!(loaded.certificate.version, ADVA_DOCUMENT_VERSION_V0);
     assert_eq!(loaded.certificate.schema_and_version, CheckStatus::Checked);
-    assert_eq!(loaded.certificate.canonical_frontiers, CheckStatus::Checked);
-    assert_eq!(
-        loaded.certificate.exact_slot_bijection,
-        CheckStatus::Checked
-    );
+    assert_eq!(loaded.certificate.canonical_tables, CheckStatus::Checked);
+    assert_eq!(loaded.certificate.resolved_references, CheckStatus::Checked);
+    assert_eq!(loaded.certificate.mechanism_forms, CheckStatus::Checked);
     assert!(loaded.certificate.document_digest.starts_with("blake3:"));
+
+    let value = serde_json::to_value(document).unwrap();
+    assert!(value["carriers"][0]["carrier"].get("mechanism").is_none());
+    assert_eq!(value["frames"][0]["mechanism"]["kind"], "compute");
+}
+
+#[test]
+fn a_recorded_output_triple_can_be_reused_by_a_later_ready_frame() {
+    let loaded = reusable_document("reuse").load_entrypoint("replay").unwrap();
+    assert_eq!(loaded.transition.state, LoadedFrameStateV0::Ready);
+    assert!(loaded.transition.recorded_output.is_none());
+    let MechanismFormV0::Compute { input } = loaded.transition.form else {
+        panic!("expected compute form");
+    };
+    assert_eq!(input.subject.structure.as_str(), "test:reuse-result");
+    assert_eq!(input.method.structure.as_str(), "test:reuse-evidence");
+    assert_eq!(input.object.structure.as_str(), "test:reuse-history");
+}
+
+#[test]
+fn learning_replacement_is_resolved_from_the_same_neutral_carrier_table() {
+    let open = FrontierSiteV0::new(RoleV0::Space, 1, 0);
+    let document = AdvaDocumentV0::new(
+        vec![
+            stored(0, "learn-subject", [open.clone()]),
+            stored(1, "learn-method", []),
+            stored(2, "learn-object", []),
+            stored(3, "learn-replacement", []),
+        ],
+        vec![TransitionFrameV0 {
+            id: FrameIdV0::new(0),
+            input: FrameInputV0::new(
+                CarrierIdV0::new(0),
+                CarrierIdV0::new(1),
+                CarrierIdV0::new(2),
+            ),
+            mechanism: FrameMechanismV0::Learn {
+                plan: StoredFillPlanV0 {
+                    assignments: vec![StoredFillAssignmentV0 {
+                        target: open,
+                        replacement: CarrierIdV0::new(3),
+                        evidence: None,
+                    }],
+                },
+            },
+            output: FrameOutputV0::ready(),
+        }],
+        vec![EntryPointV0 {
+            name: "learn".to_owned(),
+            frame: FrameIdV0::new(0),
+        }],
+    )
+    .unwrap();
+
+    let loaded = document.load_entrypoint("learn").unwrap();
+    assert!(matches!(
+        loaded.transition.admission,
+        MechanismAdmissionV0::Learn { .. }
+    ));
+    let MechanismFormV0::Learn { plan, .. } = loaded.transition.form else {
+        panic!("expected learn form");
+    };
     assert_eq!(
-        loaded
-            .certificate
-            .routes
-            .map(|route| (route.from, route.to)),
-        [
-            (OutputLabelV0::Result, InputLabelV0::Subject),
-            (OutputLabelV0::Evidence, InputLabelV0::Method),
-            (OutputLabelV0::History, InputLabelV0::Object),
-        ]
+        plan.assignments[0].replacement.structure.as_str(),
+        "test:learn-replacement"
     );
 }
 
 #[test]
-fn reload_rejects_copy_and_contraction_at_the_slot_boundary() {
-    let repeated_output = ReloadPlanV0 {
-        routes: [
-            CarrierRouteV0::new(OutputLabelV0::Result, InputLabelV0::Subject),
-            CarrierRouteV0::new(OutputLabelV0::Result, InputLabelV0::Method),
-            CarrierRouteV0::new(OutputLabelV0::History, InputLabelV0::Object),
-        ],
-    };
+fn graph_validation_rejects_unknown_repeated_and_partial_boundary_references() {
+    let mut unknown = reusable_document("unknown");
+    unknown.frames[0].input.subject = CarrierIdV0::new(99);
     assert!(matches!(
-        AdvaDocumentV0::from_output(output("copy"))
-            .unwrap()
-            .reload(&repeated_output),
-        Err(AdvaPersistenceErrorV0::RepeatedOutputRoute(
-            OutputLabelV0::Result
-        ))
+        AdvaDocumentV0::from_json(&serde_json::to_string(&unknown).unwrap()),
+        Err(AdvaPersistenceErrorV0::UnknownCarrierReference { .. })
     ));
 
-    let repeated_input = ReloadPlanV0 {
-        routes: [
-            CarrierRouteV0::new(OutputLabelV0::Result, InputLabelV0::Subject),
-            CarrierRouteV0::new(OutputLabelV0::Evidence, InputLabelV0::Subject),
-            CarrierRouteV0::new(OutputLabelV0::History, InputLabelV0::Object),
-        ],
-    };
+    let mut repeated = reusable_document("repeated");
+    repeated.frames[0].input.method = repeated.frames[0].input.subject;
     assert!(matches!(
-        AdvaDocumentV0::from_output(output("contraction"))
-            .unwrap()
-            .reload(&repeated_input),
-        Err(AdvaPersistenceErrorV0::RepeatedInputRoute(
-            InputLabelV0::Subject
-        ))
+        AdvaDocumentV0::from_json(&serde_json::to_string(&repeated).unwrap()),
+        Err(AdvaPersistenceErrorV0::RepeatedBoundaryCarrier { .. })
+    ));
+
+    let mut partial = reusable_document("partial");
+    partial.frames[0].output.evidence = None;
+    assert!(matches!(
+        AdvaDocumentV0::from_json(&serde_json::to_string(&partial).unwrap()),
+        Err(AdvaPersistenceErrorV0::PartialFrameOutput(FrameIdV0(0)))
     ));
 }
 
 #[test]
-fn decoding_rejects_wrong_versions_empty_keys_and_noncanonical_frontiers() {
-    let document = AdvaDocumentV0::from_output(output("tamper")).unwrap();
+fn decoding_rejects_wrong_versions_empty_keys_and_noncanonical_tables() {
+    let document = reusable_document("tamper");
     let mut wrong_version = serde_json::to_value(&document).unwrap();
     wrong_version["version"] = serde_json::json!(1);
     assert!(matches!(
@@ -140,43 +220,36 @@ fn decoding_rejects_wrong_versions_empty_keys_and_noncanonical_frontiers() {
     ));
 
     let mut empty_key = serde_json::to_value(&document).unwrap();
-    empty_key["output"]["result"]["structure"] = serde_json::json!("");
+    empty_key["carriers"][0]["carrier"]["structure"] = serde_json::json!("");
     assert!(matches!(
         AdvaDocumentV0::from_json(&serde_json::to_string(&empty_key).unwrap()),
-        Err(AdvaPersistenceErrorV0::EmptyArtifactKey(
-            OutputLabelV0::Result
-        ))
+        Err(AdvaPersistenceErrorV0::EmptyArtifactKey(CarrierIdV0(0)))
     ));
 
-    let mut noncanonical = serde_json::to_value(&document).unwrap();
-    noncanonical["output"]["history"]["frontier"]["sites"] = serde_json::json!([
-        {"role": "time", "hole": 2, "occurrence": 1},
-        {"role": "construction", "hole": 0, "occurrence": 0}
-    ]);
+    let mut noncanonical = document;
+    noncanonical.carriers.swap(0, 1);
     assert!(matches!(
         AdvaDocumentV0::from_json(&serde_json::to_string(&noncanonical).unwrap()),
-        Err(AdvaPersistenceErrorV0::NonCanonicalFrontier(
-            OutputLabelV0::History
-        ))
+        Err(AdvaPersistenceErrorV0::NonCanonicalCarrierTable { .. })
     ));
 }
 
 #[test]
-fn file_save_is_atomic_replace_and_load_revalidates_before_relabelling() {
+fn file_save_is_atomic_replace_and_load_selects_a_checked_entrypoint() {
     let path = temporary_path("round-trip.adva");
-    let first = save_adva_document_v0(&path, output("first")).unwrap();
+    let first = save_adva_document_v0(&path, reusable_document("first")).unwrap();
     assert_eq!(first.path, path);
     assert!(first.bytes_written > 0);
-    let first_loaded = load_adva_document_v0(&path, &route_plan()).unwrap();
-    assert_eq!(first_loaded.input, expected_input("first"));
+    let first_loaded = load_adva_document_v0(&path, "replay").unwrap();
+    assert_eq!(first_loaded.transition.frame, FrameIdV0::new(1));
     assert_eq!(
         first_loaded.certificate.document_digest,
         first.document_digest
     );
 
-    let second = save_adva_document_v0(&path, output("second")).unwrap();
-    let second_loaded = load_adva_document_v0(&path, &route_plan()).unwrap();
-    assert_eq!(second_loaded.input, expected_input("second"));
+    let second = save_adva_document_v0(&path, reusable_document("second")).unwrap();
+    let second_loaded = load_adva_document_v0(&path, "start").unwrap();
+    assert_eq!(second_loaded.transition.frame, FrameIdV0::new(0));
     assert_eq!(
         second_loaded.certificate.document_digest,
         second.document_digest
@@ -192,7 +265,7 @@ fn file_save_is_atomic_replace_and_load_revalidates_before_relabelling() {
 fn file_boundary_refuses_non_adva_paths_without_creating_them() {
     let path = temporary_path("not-a-program.json");
     assert!(matches!(
-        save_adva_document_v0(&path, output("wrong-suffix")),
+        save_adva_document_v0(&path, reusable_document("wrong-suffix")),
         Err(AdvaPersistenceErrorV0::InvalidExtension(_))
     ));
     assert!(!path.exists());

@@ -1,13 +1,14 @@
-"""File adapters for the Rust-checked neutral-carrier research document.
+"""File adapters for Rust-checked neutral-carrier document graphs.
 
-Python supplies paths and JSON-shaped values only. Rust owns schema checks,
-frontier validation, exact slot routing, digests, and atomic persistence.
+Python supplies paths, entry-point names, and JSON-shaped values only. Rust
+owns graph references, frontier and mechanism checks, digests, and atomic
+persistence.
 """
 
 from __future__ import annotations
 
 import json
-from collections.abc import Mapping, Sequence
+from collections.abc import Mapping
 from dataclasses import dataclass
 from enum import StrEnum
 from os import PathLike
@@ -24,21 +25,16 @@ class InputLabelV0(StrEnum):
     OBJECT = "object"
 
 
+class MechanismV0(StrEnum):
+    COMPUTE = "compute"
+    VERIFY = "verify"
+    LEARN = "learn"
+
+
 class OutputLabelV0(StrEnum):
     HISTORY = "history"
     RESULT = "result"
     EVIDENCE = "evidence"
-
-
-@dataclass(frozen=True, slots=True)
-class CarrierRouteV0:
-    """One requested output-to-input relabelling; Rust checks the full bijection."""
-
-    source: OutputLabelV0
-    target: InputLabelV0
-
-    def to_dict(self) -> dict[str, str]:
-        return {"from": self.source.value, "to": self.target.value}
 
 
 @dataclass(frozen=True, slots=True)
@@ -49,19 +45,19 @@ class AdvaSaveReceiptV0:
 
 
 @dataclass(frozen=True, slots=True)
-class AdvaReloadArtifactV0:
-    input: Mapping[str, Any]
+class AdvaLoadArtifactV0:
+    transition: Mapping[str, Any]
     certificate: Mapping[str, Any]
 
 
 def save_adva_document(
-    path: str | PathLike[str], output: Mapping[str, Any]
+    path: str | PathLike[str], document: Mapping[str, Any]
 ) -> AdvaSaveReceiptV0:
-    """Persist three output-labelled neutral carriers through the Rust boundary."""
+    """Persist one complete carrier-table/frame/entry-point document graph."""
 
     destination = Path(path)
     digest, bytes_written = _save_adva_document_json(
-        str(destination), json.dumps(output, sort_keys=True)
+        str(destination), json.dumps(document, sort_keys=True)
     )
     return AdvaSaveReceiptV0(
         path=destination,
@@ -71,31 +67,27 @@ def save_adva_document(
 
 
 def load_adva_document(
-    path: str | PathLike[str], routes: Sequence[CarrierRouteV0]
-) -> AdvaReloadArtifactV0:
-    """Load, revalidate, and explicitly relabel one neutral `.adva` document."""
+    path: str | PathLike[str], entrypoint: str
+) -> AdvaLoadArtifactV0:
+    """Load, revalidate, and resolve one named transition frame in Rust."""
 
-    route_tuple = tuple(routes)
-    if len(route_tuple) != 3 or any(
-        not isinstance(route, CarrierRouteV0) for route in route_tuple
-    ):
-        raise TypeError("routes must contain exactly three CarrierRouteV0 values")
-    input_json, certificate_json = _load_adva_document_json(
-        str(Path(path)),
-        json.dumps([route.to_dict() for route in route_tuple], sort_keys=True),
+    if not isinstance(entrypoint, str) or not entrypoint:
+        raise TypeError("entrypoint must be a nonempty string")
+    transition_json, certificate_json = _load_adva_document_json(
+        str(Path(path)), entrypoint
     )
-    input_document = json.loads(input_json)
+    transition = json.loads(transition_json)
     certificate = json.loads(certificate_json)
-    if not isinstance(input_document, dict) or not isinstance(certificate, dict):
+    if not isinstance(transition, dict) or not isinstance(certificate, dict):
         raise ValueError("Rust returned an invalid persistence artifact")
-    return AdvaReloadArtifactV0(input=input_document, certificate=certificate)
+    return AdvaLoadArtifactV0(transition=transition, certificate=certificate)
 
 
 __all__ = [
-    "AdvaReloadArtifactV0",
+    "AdvaLoadArtifactV0",
     "AdvaSaveReceiptV0",
-    "CarrierRouteV0",
     "InputLabelV0",
+    "MechanismV0",
     "OutputLabelV0",
     "load_adva_document",
     "save_adva_document",

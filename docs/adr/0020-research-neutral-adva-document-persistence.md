@@ -1,61 +1,81 @@
-# ADR 0020: Add checked research persistence for neutral Adva carriers
+# ADR 0020: Store neutral carriers as vertices and mechanisms as transition frames
 
 - Status: accepted for bounded research V0
 - Date: 2026-09-04
 
 ## Context
 
-ADR 0019 established two three-label views over neutral carriers but stopped
-before implementing a persistent container. Serialization of a Rust value was
-not enough: a reusable cycle needs a save boundary that retains the three
-output positions and a load boundary that cannot silently copy, discard, or
-misroute them.
+ADR 0019 established neutral carriers and the nine interface labels. The first
+persistence implementation stored only one `history/result/evidence` triple
+and required an external reload permutation. That representation was a valid
+manifest, but it removed the mechanism from the document and could not state a
+self-contained ready transition. It over-applied carrier neutrality to the
+whole document.
 
-The `.adva` suffix is already used for Lisp source. The new boundary therefore
-must be self-describing and explicitly research-only rather than an implicit
-reinterpretation of every `.adva` file.
+Neutrality constrains vertices, not edges. A carrier must not become a
+program/proof/model kind, while a document may retain mechanism-labelled
+transitions among neutral carriers. Repeated use also needs explicit,
+persistent references rather than loader-local relabelling.
+
+The `.adva` suffix is already used for Lisp source. This boundary must remain
+self-describing and research-only rather than reinterpret every `.adva` file.
 
 ## Decision
 
-Add `AdvaDocumentV0` and its persistence operations to `adva-witness`.
+Replace the output-only V0 manifest with a canonical document graph.
 
-- A document has schema `adva.neutral-carrier.research`, version zero, and one
-  `MechanismOutputV0` payload containing `history`, `result`, and `evidence`.
-- Saving rechecks nonempty artifact cache coordinates and canonical open
-  frontiers before encoding. It writes a same-directory temporary file,
-  flushes it, renames it over the requested `.adva` path, and synchronizes the
-  directory on Unix.
-- Loading checks the suffix, JSON shape, unknown fields, schema, version,
-  artifact coordinates, and frontier canonicality.
-- `ReloadPlanV0` contains exactly three explicit `CarrierRouteV0` values. Each
-  output label and each input label must occur once. This is an exact
-  relabelling, not copy, discard, contraction, or synthesis.
-- A successful load returns `MechanismInputV0` together with a
-  `ReloadCertificateV0` containing the canonical routes, document digest, and
-  checked boundary fields.
-- Python exposes thin path and JSON adapters in `adva.persistence`; all
-  semantic checks and file writes remain Rust-owned.
+- Schema `adva.neutral-carrier-graph.research`, version zero, contains
+  `carriers`, `frames`, and `entrypoints` tables.
+- `CarrierIdV0` and `FrameIdV0` are document-local storage coordinates. They
+  are not sources, occurrences, values, or semantic identities.
+- A stored carrier contains only `NeutralCarrierV0`: an artifact cache
+  coordinate and canonical open frontier. It has no mechanism or persistent
+  program/proof/model kind.
+- `TransitionFrameV0` contains exactly one `subject/method/object` reference
+  triple, one `compute/verify/learn` mechanism form, and the fixed
+  `history/result/evidence` output boundary.
+- A frame output is either fully ready (three absent references) or fully
+  recorded (three present references). Partial output recording is rejected.
+  "Recorded" does not assert that execution produced the carriers.
+- Stored learning replacements refer to the same carrier table, preventing
+  carrier duplication inside the frame representation.
+- A later frame reuses an earlier output by naming the same carrier coordinate
+  in its own labelled input position. This persisted reference structure is
+  the output-to-input substitution record; no external reload permutation is
+  required.
+- Entry-point names are document-local selectors for starting frames.
+- All three tables must be strictly ordered. Carrier keys and frontiers,
+  references, boundary slot distinctness, mechanism-specific artifacts, and
+  every `MechanismFormV0` admission are rechecked in Rust.
+- Saving writes a same-directory temporary file, flushes it, renames it over
+  the requested `.adva` path, and synchronizes the directory on Unix.
+- Loading selects one named entry point only after validating the entire graph
+  and returns the resolved transition plus a load certificate.
+- Python remains a thin path, mapping, and entry-point adapter.
 
-No `.adva` program or example fixture is committed by this decision. The first
-program is intentionally left for the user to author.
+No `.adva` program, example, or fixture is committed. The first program is
+intentionally left for the user to author.
 
 ## Consequences
 
-The local persistence seam is executable and auditable. A saved output triple
-can be reused at a later input boundary without erasing its slot provenance.
-Malformed, noncanonical, wrongly versioned, or non-bijectively routed content
-is rejected.
+The document can now distinguish a ready invocation from recorded history
+without making either state intrinsic to a carrier. Mechanisms remain in the
+document as edge labels. A recorded result, evidence carrier, or history can
+be fed into any later input role by an explicit shared carrier reference, so
+the reusable structure survives save and load.
 
-The document is still a manifest of neutral carrier references. Its artifact
-keys are cache coordinates, not embedded content or semantic identities.
-Loading does not resolve those keys, validate their remote availability,
-execute a mechanism, replay a proof, verify the origin of an output triple, or
-schedule a subsequent step.
+The document is self-describing as an invocation graph but still contains
+artifact cache references rather than embedded durable content. Loading does
+not resolve those artifacts, authenticate them, execute a frame, prove the
+origin of recorded outputs, allocate stable semantic identities, or schedule
+feedback. A checked ready frame is a formation judgment, not a successful
+computation, verification, or learning result.
 
 ## Promotion gate
 
-A stable format still requires a decision on coexistence or dispatch with Lisp
-source, durable artifact resolution, cryptographic authenticity rather than a
-local integrity digest, certified mechanism-output provenance, recovery and
-locking policy for concurrent writers, migration rules, and integration with
-stable `adva.ir` identities and certificates.
+A stable format still requires source/container dispatch with Lisp, durable
+artifact resolution, cryptographic authenticity, certified mechanism-output
+provenance, an executor transition that atomically records outputs, recovery
+and locking for concurrent writers, migration rules, and integration with
+stable `adva.ir` identities and certificates. Feedback or unbounded cycling
+requires a separate approved semantics.
