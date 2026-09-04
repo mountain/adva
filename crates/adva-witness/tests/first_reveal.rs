@@ -1,7 +1,7 @@
 use adva_witness::{
-    AdvaDocumentV0, FrameIdV0, M6NamingPlanV0, ObserverDomainV0, RelationFillingV0,
-    RevealErrorV0, RevealQuestionKindV0, RevealRunStateV0, RevealWitnessV0,
-    load_reveal_witness_v0, run_m6_reveal_v0, save_reveal_witness_v0,
+    AdvaDocumentV0, FrameIdV0, M6NamingPlanV0, ObserverDomainV0, RelationFillingV0, RevealErrorV0,
+    RevealQuestionKindV0, RevealRunStateV0, RevealWitnessV0, load_reveal_witness_v0,
+    run_m6_reveal_v0, save_reveal_witness_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -9,8 +9,8 @@ use std::sync::atomic::{AtomicU64, Ordering};
 static TEST_ORDINAL: AtomicU64 = AtomicU64::new(0);
 
 fn first_program() -> AdvaDocumentV0 {
-    let path = PathBuf::from(env!("CARGO_MANIFEST_DIR"))
-        .join("../../programs/bootstrap-0/reveal.adva");
+    let path =
+        PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("../../programs/bootstrap-0/reveal.adva");
     AdvaDocumentV0::from_json(&std::fs::read_to_string(path).unwrap()).unwrap()
 }
 
@@ -26,12 +26,8 @@ fn temporary_witness_path() -> PathBuf {
 
 #[test]
 fn first_program_forms_the_named_m6_boundary_and_retains_its_question() {
-    let witness = run_m6_reveal_v0(
-        &first_program(),
-        M6NamingPlanV0::first_calibration(),
-        6,
-    )
-    .unwrap();
+    let witness =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
 
     assert_eq!(witness.state, RevealRunStateV0::Completed);
     assert_eq!(witness.fuel_used, 6);
@@ -58,12 +54,8 @@ fn first_program_forms_the_named_m6_boundary_and_retains_its_question() {
 
 #[test]
 fn injected_names_cover_two_oppositely_oriented_domain_cycles() {
-    let witness = run_m6_reveal_v0(
-        &first_program(),
-        M6NamingPlanV0::first_calibration(),
-        6,
-    )
-    .unwrap();
+    let witness =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
 
     assert_eq!(witness.forward[0].name, "run");
     assert_eq!(witness.forward[0].from, ObserverDomainV0::Construction);
@@ -78,12 +70,8 @@ fn injected_names_cover_two_oppositely_oriented_domain_cycles() {
 
 #[test]
 fn finite_fuel_publishes_a_suspended_witness_instead_of_claiming_failure() {
-    let witness = run_m6_reveal_v0(
-        &first_program(),
-        M6NamingPlanV0::first_calibration(),
-        4,
-    )
-    .unwrap();
+    let witness =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 4).unwrap();
 
     assert_eq!(witness.state, RevealRunStateV0::Suspended);
     assert_eq!(witness.observed, ["run", "reveal", "name", "instantiate"]);
@@ -99,12 +87,8 @@ fn finite_fuel_publishes_a_suspended_witness_instead_of_claiming_failure() {
 
 #[test]
 fn a_reveal_witness_round_trips_as_a_checked_adva_file() {
-    let witness = run_m6_reveal_v0(
-        &first_program(),
-        M6NamingPlanV0::first_calibration(),
-        6,
-    )
-    .unwrap();
+    let witness =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
     let path = temporary_witness_path();
     let receipt = save_reveal_witness_v0(&path, &witness).unwrap();
     let loaded = load_reveal_witness_v0(&path).unwrap();
