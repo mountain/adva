@@ -296,6 +296,17 @@ explicit orientation. These are research formation records rather than
 `adva.ir` equation cells, executable rewrites, group operations, or generic
 conjugacy certificates. They are not stored in `AdvaDocumentV0`.
 
+`FrameRelationCellV0` can derive such a relation from two explicit paths in
+one already validated neutral document. Mechanism labels, not method carriers,
+become the relation generators. Every step retains its `FrameIdV0`; every
+adjacent pair must reuse all three recorded output carriers exactly once as
+the next input triple, and the resulting permutation is retained. Both paths
+must share exact labelled input and recorded-output boundaries. The artifact
+is bound to the validated document digest. This is a document-local formation
+adapter: `FrameIdV0` does not become `OccurrenceId`, recorded output does not
+gain execution provenance, and the adapter neither searches for nor constructs
+a `join`.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a
