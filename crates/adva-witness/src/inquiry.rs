@@ -475,11 +475,8 @@ impl HypothesisTransitionV0 {
             HYPOTHESIS_TRANSITION_SCHEMA_V0,
             &self.interface,
         )?;
-        let expected = learn_hypothesis_v0(
-            &self.input.subject,
-            &self.input.method,
-            &self.input.object,
-        )?;
+        let expected =
+            learn_hypothesis_v0(&self.input.subject, &self.input.method, &self.input.object)?;
         if self != &expected {
             return Err(InquiryErrorV0::InvalidArtifact(
                 "the hypothesis transition is stale or has been edited after derivation",
@@ -581,8 +578,9 @@ pub fn learn_hypothesis_v0(
             local_name: "hypothesis".to_owned(),
             role: VocabularyRoleV0::Hypothesis,
             introduced_at: frontier.lineage.sequence + 1,
-            definition: "an externally proposed, explicitly falsifiable result that closes no obligation"
-                .to_owned(),
+            definition:
+                "an externally proposed, explicitly falsifiable result that closes no obligation"
+                    .to_owned(),
         },
     )?;
     insert_vocabulary(
@@ -749,10 +747,7 @@ fn initial_vocabulary() -> Vec<VocabularyEntryV0> {
     }]
 }
 
-fn check_vocabulary(
-    vocabulary: &[VocabularyEntryV0],
-    sequence: u64,
-) -> Result<(), InquiryErrorV0> {
+fn check_vocabulary(vocabulary: &[VocabularyEntryV0], sequence: u64) -> Result<(), InquiryErrorV0> {
     if vocabulary.is_empty() {
         return Err(InquiryErrorV0::InvalidArtifact(
             "a frontier must retain its vocabulary",
@@ -843,8 +838,8 @@ fn candidate_identity_digest(candidate: &HypothesisCandidateV0) -> Result<String
         required_observations: &candidate.required_observations,
         falsifiers: &candidate.falsifiers,
     };
-    let canonical = serde_json::to_vec(&identity)
-        .map_err(|error| InquiryErrorV0::Json(error.to_string()))?;
+    let canonical =
+        serde_json::to_vec(&identity).map_err(|error| InquiryErrorV0::Json(error.to_string()))?;
     Ok(format!("blake3:{}", blake3::hash(&canonical).to_hex()))
 }
 
