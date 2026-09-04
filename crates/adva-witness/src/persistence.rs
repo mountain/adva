@@ -73,11 +73,7 @@ pub struct FrameInputV0 {
 
 impl FrameInputV0 {
     #[must_use]
-    pub const fn new(
-        subject: CarrierIdV0,
-        method: CarrierIdV0,
-        object: CarrierIdV0,
-    ) -> Self {
+    pub const fn new(subject: CarrierIdV0, method: CarrierIdV0, object: CarrierIdV0) -> Self {
         Self {
             subject,
             method,
@@ -133,9 +129,7 @@ impl FrameOutputV0 {
     ) -> Result<Option<[CarrierIdV0; 3]>, AdvaPersistenceErrorV0> {
         match (self.history, self.result, self.evidence) {
             (None, None, None) => Ok(None),
-            (Some(history), Some(result), Some(evidence)) => {
-                Ok(Some([history, result, evidence]))
-            }
+            (Some(history), Some(result), Some(evidence)) => Ok(Some([history, result, evidence])),
             _ => Err(AdvaPersistenceErrorV0::PartialFrameOutput(frame)),
         }
     }
@@ -269,14 +263,12 @@ impl AdvaDocumentV0 {
             .iter()
             .find(|entry| entry.name == entrypoint)
             .ok_or_else(|| AdvaPersistenceErrorV0::UnknownEntryPoint(entrypoint.to_owned()))?;
-        let frame = indexes
-            .frames
-            .get(&entry.frame)
-            .copied()
-            .ok_or(AdvaPersistenceErrorV0::UnknownEntryFrame {
+        let frame = indexes.frames.get(&entry.frame).copied().ok_or(
+            AdvaPersistenceErrorV0::UnknownEntryFrame {
                 entrypoint: entry.name.clone(),
                 frame: entry.frame,
-            })?;
+            },
+        )?;
         let transition = resolve_transition(frame, &indexes.carriers)?;
         Ok(LoadedAdvaArtifactV0 {
             transition,
@@ -511,8 +503,7 @@ fn resolve_transition(
             declared_subject,
             discharges,
         } => {
-            let canonical =
-                OpenFrontierV0::from_sites(declared_subject.sites().iter().cloned())?;
+            let canonical = OpenFrontierV0::from_sites(declared_subject.sites().iter().cloned())?;
             if canonical != *declared_subject {
                 return Err(AdvaPersistenceErrorV0::NonCanonicalDeclaredSubject(
                     frame.id,
