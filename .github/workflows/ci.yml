@@ -20,6 +20,16 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
+      - name: Run first bounded M6 reveal
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            reveal programs/bootstrap-0/reveal.adva \
+            --fuel 6 \
+            --output target/first-reveal-witness.adva \
+            --print
+          cmp \
+            target/first-reveal-witness.adva \
+            programs/bootstrap-0/first-reveal-witness.adva
 
   python:
     runs-on: ubuntu-latest
@@ -38,4 +48,3 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install '.[test]'
       - run: pytest
-
