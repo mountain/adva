@@ -1,9 +1,9 @@
 use adva_witness::{
     ExplorationContractV0, HypothesisStateV0, InquiryErrorV0, InquiryInterfaceV0,
-    InquiryObligationStateV0, MechanismV0, ResourceSnapshotV0, TypedUnitV0, VocabularyRoleV0,
-    derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_exploration_contract_v0,
-    load_hypothesis_transition_v0, load_inquiry_frontier_v0, load_resource_snapshot_v0,
-    save_hypothesis_transition_v0, save_inquiry_frontier_v0,
+    InquiryObligationStateV0, MechanismV0, ProtectedPropertyV0, ResourceSnapshotV0, ThreatClassV0,
+    TypedUnitV0, VocabularyRoleV0, derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0,
+    load_exploration_contract_v0, load_hypothesis_transition_v0, load_inquiry_frontier_v0,
+    load_resource_snapshot_v0, save_hypothesis_transition_v0, save_inquiry_frontier_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -24,6 +24,10 @@ fn first_contract() -> ExplorationContractV0 {
 
 fn first_resource() -> ResourceSnapshotV0 {
     load_resource_snapshot_v0(fixture("resource.adva")).unwrap()
+}
+
+fn second_resource() -> ResourceSnapshotV0 {
+    load_resource_snapshot_v0(fixture("resource-2.adva")).unwrap()
 }
 
 fn temporary_path(name: &str) -> PathBuf {
@@ -128,6 +132,91 @@ fn committed_first_inquiry_outputs_replay_exactly() {
     assert_eq!(
         first_resource().digest().unwrap(),
         "blake3:41b2260753e4df9ee94918604bfead06b353390f41c6adf981c7bcbd12686858"
+    );
+}
+
+#[test]
+fn second_learning_edge_introduces_only_custody_and_closes_nothing() {
+    let frontier = load_inquiry_frontier_v0(fixture("frontier-1.adva")).unwrap();
+    let transition = learn_hypothesis_v0(&frontier, &first_contract(), &second_resource()).unwrap();
+    let next = &transition.output.evidence.next_frontier;
+
+    assert_eq!(transition.output.result.local_name, "custody");
+    assert!(transition.output.result.reality_boundary.is_some());
+    assert_eq!(transition.output.history.introduced_words, ["custody"]);
+    assert_eq!(next.lineage.sequence, 2);
+    assert_eq!(next.lineage.consumed_resource_digests.len(), 2);
+    assert_eq!(next.lineage.retained_hypothesis_digests.len(), 2);
+    assert_eq!(next.obligations, frontier.obligations);
+    assert!(
+        next.obligations
+            .iter()
+            .all(|obligation| obligation.state == InquiryObligationStateV0::Open)
+    );
+    assert!(next.vocabulary.iter().any(|entry| {
+        entry.local_name == "custody" && entry.role == VocabularyRoleV0::Candidate
+    }));
+    transition.check().unwrap();
+}
+
+#[test]
+fn custody_separates_reality_grounding_from_damage_resistance() {
+    let resource = second_resource();
+    let boundary = resource.candidates[0].reality_boundary.as_ref().unwrap();
+
+    assert_eq!(boundary.threats.len(), 5);
+    assert!(boundary.threats.contains(&ThreatClassV0::Deletion));
+    assert!(boundary.threats.contains(&ThreatClassV0::Mutation));
+    assert!(boundary.threats.contains(&ThreatClassV0::Equivocation));
+    assert!(boundary.threats.contains(&ThreatClassV0::KeyCompromise));
+    assert!(boundary.threats.contains(&ThreatClassV0::CorrelatedCapture));
+    assert_eq!(boundary.protected_properties.len(), 5);
+    assert!(
+        boundary
+            .protected_properties
+            .contains(&ProtectedPropertyV0::SemanticReproducibility)
+    );
+    assert_eq!(boundary.custody.independent_failure_domains, 5);
+    assert_eq!(boundary.custody.observation_receipt_threshold, 3);
+    assert_eq!(boundary.custody.recovery_fragment_threshold, 3);
+
+    let mut invalid = resource;
+    invalid.candidates[0]
+        .reality_boundary
+        .as_mut()
+        .unwrap()
+        .custody
+        .recovery_fragment_threshold = 6;
+    assert!(matches!(
+        invalid.check(),
+        Err(InquiryErrorV0::InvalidArtifact(_))
+    ));
+}
+
+#[test]
+fn committed_second_inquiry_outputs_replay_exactly() {
+    let frontier = load_inquiry_frontier_v0(fixture("frontier-1.adva")).unwrap();
+    let transition = learn_hypothesis_v0(&frontier, &first_contract(), &second_resource()).unwrap();
+    let recorded_transition = load_hypothesis_transition_v0(fixture("hypothesis-2.adva")).unwrap();
+    assert_eq!(recorded_transition, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:0f501b7c26e95b4f90ce3fb832027e0b73a5ad5af82a0681b59cd170aee0a52e"
+    );
+
+    let recorded_next = load_inquiry_frontier_v0(fixture("frontier-2.adva")).unwrap();
+    assert_eq!(recorded_next, transition.output.evidence.next_frontier);
+    assert_eq!(
+        recorded_next.digest().unwrap(),
+        "blake3:ae23c007227cf0665fd2928dfb5adb41c2d23923649f867b128bdd6533deb39c"
+    );
+    assert_eq!(
+        second_resource().digest().unwrap(),
+        "blake3:e68591b84f81dc9b1584619853943846685c50ef8922cd73234e93505ff907e6"
+    );
+    assert_eq!(
+        transition.output.result.identity_digest,
+        "blake3:65c139bcf849bae3a250a2a1f2f6fdec2d5edcd95f3bb1d4b5e853179926160a"
     );
 }
 
