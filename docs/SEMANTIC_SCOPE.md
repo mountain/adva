@@ -83,7 +83,15 @@ three bindings from one compiler-owned `CompilationArtifact` and one certified
 ordered graft frame. The adapter requires singleton lineage at each entry wire
 and retains the compilation certificate, graft certificate, frame identifier,
 scope path, caller, and callee; it does not guess a source when an entry wire
-has empty or merged lineage.
+has empty or merged lineage. The same research crate may check a neutral
+carrier grammar with the input labels `subject/method/object`, edge labels
+`compute/verify/learn`, and output labels `history/result/evidence`.
+Computation rejects open subject or object frontiers; verification permits
+only an exactly declared or explicitly discharged frontier; learning returns a
+finite partial fill proposal and retains replacement subholes. These
+research-local frontier coordinates are not stable semantic holes, logical
+obligations, or apertures. The checker performs no execution, proof replay,
+learning synthesis, feedback, or `.adva` format promotion.
 
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,

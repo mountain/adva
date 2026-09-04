@@ -64,7 +64,10 @@ judgments.
 - linear three-hole templates whose instances bind existing `SourceId` and
   `OccurrenceId` values without allocating or identifying them;
 - explicit formed and executed type states, with non-unit transport and every
-  concrete intermediate zero rejected.
+  concrete intermediate zero rejected;
+- a bounded neutral-carrier mechanism grammar whose input, process, and output
+  labels remain distinct, with separate open-frontier rules for computation,
+  verification, and learning proposals.
 
 This crate depends only on `adva-ir` among Adva crates. Its schema is
 `adva.witness.research` version zero, not an extension of `adva.ir` version 1.
@@ -263,7 +266,12 @@ integer-polynomial normalization is a witness observation, not a new stable
 Adva scalar domain or an equation-cell constructor. Its graft adapter consumes
 an existing compiler `CompilationArtifact` as a whole, derives bindings only
 from an ordered three-hole frame with singleton lineage, and records rather
-than replaces the compiler and graft certificate identities.
+than replaces the compiler and graft certificate identities. Its subsequent
+neutral-carrier grammar uses research-local frontier coordinates to distinguish
+closed computation, explicitly open verification, and candidate learning fill
+plans. Those coordinates are not stable holes, cut ports, or logical
+obligations, and the grammar implements neither feedback nor a new `.adva`
+decoder.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact

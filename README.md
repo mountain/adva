@@ -58,6 +58,11 @@ tool does not turn research targets into stable API promises.
   ledgers, exact integer-polynomial transport, finite proof DAGs, and reusable
   linear three-hole templates whose fresh instances bind existing semantic
   occurrences explicitly;
+- a bounded neutral-carrier mechanism grammar that keeps
+  `subject/method/object`, `compute/verify/learn`, and
+  `history/result/evidence` distinct, rejects open compute subjects and
+  objects, accounts for conditional verification, and retains partial learning
+  fill proposals without changing the stable IR;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -302,6 +307,9 @@ bindings directly, while the instance retains both certificate identifiers and
 the exact frame path for audit; the bounded adapter and its refusal of
 zero/multi-lineage holes are recorded in
 [`docs/research/0108-graft-derived-witness-instantiation.md`](docs/research/0108-graft-derived-witness-instantiation.md).
+The following bounded grammar tests one neutral carrier, two three-label
+load/persistence views, and mechanism-relative open-frontier disciplines in
+[`docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md`](docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
