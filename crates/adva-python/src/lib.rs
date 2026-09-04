@@ -16,8 +16,7 @@ use adva_lisp::{
     parse_module, validate_diagram,
 };
 use adva_witness::{
-    CarrierRouteV0, MechanismOutputV0, ReloadPlanV0, load_adva_document_v0,
-    save_adva_document_v0,
+    CarrierRouteV0, MechanismOutputV0, ReloadPlanV0, load_adva_document_v0, save_adva_document_v0,
 };
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
