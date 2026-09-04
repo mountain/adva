@@ -111,10 +111,8 @@ fn committed_first_inquiry_outputs_replay_exactly() {
         "blake3:fc9ab7afe284ac122e67bf6fa659318a8c264f5dbaed654fd2540fad6f3e1e1f"
     );
 
-    let transition =
-        learn_hypothesis_v0(&frontier, &first_contract(), &first_resource()).unwrap();
-    let recorded_transition =
-        load_hypothesis_transition_v0(fixture("hypothesis.adva")).unwrap();
+    let transition = learn_hypothesis_v0(&frontier, &first_contract(), &first_resource()).unwrap();
+    let recorded_transition = load_hypothesis_transition_v0(fixture("hypothesis.adva")).unwrap();
     assert_eq!(recorded_transition, transition);
     assert_eq!(
         transition.digest().unwrap(),
