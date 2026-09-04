@@ -54,8 +54,7 @@ fn committed_inputs_match_the_frozen_experiment() {
 fn committed_first_outputs_replay_byte_for_byte() {
     let transition = first_transition();
     let recorded = load_magic_square_transition_v0(fixture("magic-square-1.adva")).unwrap();
-    let frontier =
-        load_magic_square_frontier_v0(fixture("magic-square-frontier-1.adva")).unwrap();
+    let frontier = load_magic_square_frontier_v0(fixture("magic-square-frontier-1.adva")).unwrap();
 
     assert_eq!(recorded, transition);
     assert_eq!(
