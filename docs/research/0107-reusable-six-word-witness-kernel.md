@@ -140,6 +140,9 @@ normalization is an exact witness observation; it does not erase ordered
 syntax, sources, occurrences, graft paths, or history, and it does not create
 an equation cell.
 
-The next engineering decision is whether instances are compiled from existing
-`ProgramTerm::Call`/`GraftTrace` data or remain a separate research carrier
-until explicit copy, discard, and exact arithmetic value semantics are added.
+The first part of the next engineering decision is implemented by the bounded
+adapter in
+[`0108-graft-derived-witness-instantiation.md`](0108-graft-derived-witness-instantiation.md):
+instances may derive their occurrence bindings from an existing certified
+three-hole `GraftTrace` frame. `ProgramTerm`, exact runtime arithmetic, and
+merged-lineage selection remain deliberately unresolved.

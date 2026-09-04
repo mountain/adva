@@ -2,7 +2,10 @@ use crate::{
     ArithmeticErrorV0, BoundaryChargeV0, BoundaryErrorV0, ExactExprV0, MultiplicativeResidualV0,
     RoleV0, SeedErrorV0, SeedRegistryV0, TermGlyphV0, WITNESS_SCHEMA_V0, WITNESS_VERSION_V0,
 };
-use adva_ir::{DiagramValidationArtifact, OccurrenceId, OccurrencePath, QualifiedName, SourceId};
+use adva_ir::{
+    CertificateId, CompilationArtifact, DiagramValidationArtifact, GraftFrameId, GraftFrameKind,
+    GraftScopePath, OccurrenceId, OccurrencePath, QualifiedName, SourceId,
+};
 use num_bigint::BigInt;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
@@ -481,21 +484,8 @@ impl FormedCellV0 {
             .result
             .validate_version()
             .map_err(|error| WitnessErrorV0::InvalidBindingContext(error.to_string()))?;
-        let mut occurrences = BTreeSet::new();
-        for (position, (hole, binding)) in
-            self.template.holes.iter().zip(bindings.iter()).enumerate()
-        {
-            if usize::from(binding.hole_index) != position
-                || binding.hole_index != hole.index
-                || binding.role != hole.role
-            {
-                return Err(WitnessErrorV0::BindingMismatch { hole: hole.index });
-            }
-            if !occurrences.insert(binding.occurrence.clone()) {
-                return Err(WitnessErrorV0::ImplicitOccurrenceAlias(
-                    binding.occurrence.clone(),
-                ));
-            }
+        self.validate_binding_interface(&bindings)?;
+        for binding in &bindings {
             let existing = checked_diagram
                 .result
                 .occurrences
@@ -511,6 +501,207 @@ impl FormedCellV0 {
                 });
             }
         }
+        self.finish_instantiation(
+            store,
+            checked_diagram.result.function.clone(),
+            bindings,
+            children,
+            BindingOriginV0::CheckedDiagram {
+                certificate: checked_diagram.certificate.id.clone(),
+            },
+        )
+    }
+
+    /// Derive all three source/occurrence/path bindings from one certified
+    /// compiler graft frame.
+    ///
+    /// This is intentionally stricter than accepting three caller-built
+    /// [`HoleBindingV0`] records. Every frame entry wire must carry exactly one
+    /// occurrence in V0; empty or merged lineage is reported as ambiguous.
+    ///
+    /// # Errors
+    ///
+    /// Rejects uncertified or internally unlinked compilation artifacts,
+    /// missing/non-triadic frames, non-singleton entry lineage, implicit
+    /// occurrence aliasing, unformed children, or instance-counter overflow.
+    pub fn instantiate_from_graft(
+        &self,
+        store: &mut WitnessStoreV0,
+        compilation: &CompilationArtifact,
+        frame_id: &GraftFrameId,
+        children: [ArtifactKeyV0; 3],
+    ) -> Result<CellInstanceV0, WitnessErrorV0> {
+        if !compilation.certificate.certified() || !compilation.graft_trace.certificate.certified()
+        {
+            return Err(WitnessErrorV0::UncertifiedGraftContext);
+        }
+        compilation
+            .result
+            .validate_version()
+            .map_err(|error| WitnessErrorV0::InvalidGraftContext(error.to_string()))?;
+        if compilation.certificate.boundary != compilation.result.signature {
+            return Err(WitnessErrorV0::InvalidGraftContext(
+                "compilation certificate boundary differs from the diagram".to_owned(),
+            ));
+        }
+
+        let trace = &compilation.graft_trace.result;
+        let frame_ids = trace
+            .frames
+            .iter()
+            .map(|frame| frame.id.clone())
+            .collect::<Vec<_>>();
+        if frame_ids != compilation.graft_trace.certificate.frame_ids
+            || frame_ids.iter().collect::<BTreeSet<_>>().len() != frame_ids.len()
+        {
+            return Err(WitnessErrorV0::InvalidGraftContext(
+                "graft certificate frame ledger differs from the trace".to_owned(),
+            ));
+        }
+        let root = trace
+            .frames
+            .iter()
+            .find(|frame| frame.id == trace.root)
+            .ok_or_else(|| {
+                WitnessErrorV0::InvalidGraftContext("graft root frame is missing".to_owned())
+            })?;
+        let expected_nodes = compilation
+            .result
+            .nodes
+            .iter()
+            .map(|node| node.id)
+            .collect::<Vec<_>>();
+        if root.kind != GraftFrameKind::Root
+            || root.parent.is_some()
+            || root.caller != compilation.result.function
+            || root.callee != compilation.result.function
+            || root.boundary != compilation.result.signature
+            || root.body_region != expected_nodes
+            || root.exit_wires != compilation.result.outputs
+        {
+            return Err(WitnessErrorV0::InvalidGraftContext(
+                "graft root does not link to the compiled diagram".to_owned(),
+            ));
+        }
+
+        let frame = trace
+            .frames
+            .iter()
+            .find(|frame| &frame.id == frame_id)
+            .ok_or_else(|| WitnessErrorV0::UnknownGraftFrame(frame_id.clone()))?;
+        if frame.holes.len() != 3
+            || frame.entry_wires.len() != 3
+            || frame.boundary.domain().ports().len() != 3
+        {
+            return Err(WitnessErrorV0::NonTriadicGraftFrame {
+                frame: frame.id.clone(),
+                holes: frame.holes.len(),
+            });
+        }
+
+        let diagram_wires = compilation
+            .result
+            .nodes
+            .iter()
+            .flat_map(|node| node.inputs.iter())
+            .chain(compilation.result.outputs.iter())
+            .collect::<Vec<_>>();
+        let mut derived = Vec::with_capacity(3);
+        for (position, ((hole, entry_wire), boundary_hole)) in frame
+            .holes
+            .iter()
+            .zip(frame.entry_wires.iter())
+            .zip(frame.boundary.domain().ports())
+            .enumerate()
+        {
+            if usize::try_from(hole.hole_index).ok() != Some(position)
+                || &hole.hole != boundary_hole
+                || &hole.entry_wire != entry_wire
+                || !diagram_wires.contains(&entry_wire)
+            {
+                return Err(WitnessErrorV0::InvalidGraftContext(format!(
+                    "graft frame {} has an invalid hole at position {position}",
+                    frame.id
+                )));
+            }
+            if entry_wire.lineage.len() != 1 {
+                return Err(WitnessErrorV0::NonSingletonGraftLineage {
+                    frame: frame.id.clone(),
+                    hole: u8::try_from(position).expect("three-hole position fits in u8"),
+                    occurrences: entry_wire.lineage.len(),
+                });
+            }
+            let occurrence_id = &entry_wire.lineage[0];
+            let occurrence = compilation
+                .result
+                .occurrences
+                .iter()
+                .find(|occurrence| &occurrence.id == occurrence_id)
+                .ok_or_else(|| WitnessErrorV0::BindingNotInCheckedDiagram {
+                    occurrence: occurrence_id.clone(),
+                })?;
+            let template_hole = &self.template.holes[position];
+            derived.push(HoleBindingV0 {
+                hole_index: template_hole.index,
+                role: template_hole.role,
+                source: occurrence.source.clone(),
+                occurrence: occurrence.id.clone(),
+                path: occurrence.path.clone(),
+            });
+        }
+        let bindings: [HoleBindingV0; 3] = derived.try_into().map_err(|_| {
+            WitnessErrorV0::InvalidGraftContext(
+                "three derived graft bindings could not form an array".to_owned(),
+            )
+        })?;
+        self.validate_binding_interface(&bindings)?;
+        self.finish_instantiation(
+            store,
+            compilation.result.function.clone(),
+            bindings,
+            children,
+            BindingOriginV0::GraftFrame {
+                compilation_certificate: compilation.certificate.id.clone(),
+                graft_certificate: compilation.graft_trace.certificate.id.clone(),
+                frame: frame.id.clone(),
+                scope_path: frame.scope_path.clone(),
+                caller: frame.caller.clone(),
+                callee: frame.callee.clone(),
+            },
+        )
+    }
+
+    fn validate_binding_interface(
+        &self,
+        bindings: &[HoleBindingV0; 3],
+    ) -> Result<(), WitnessErrorV0> {
+        let mut occurrences = BTreeSet::new();
+        for (position, (hole, binding)) in
+            self.template.holes.iter().zip(bindings.iter()).enumerate()
+        {
+            if usize::from(binding.hole_index) != position
+                || binding.hole_index != hole.index
+                || binding.role != hole.role
+            {
+                return Err(WitnessErrorV0::BindingMismatch { hole: hole.index });
+            }
+            if !occurrences.insert(binding.occurrence.clone()) {
+                return Err(WitnessErrorV0::ImplicitOccurrenceAlias(
+                    binding.occurrence.clone(),
+                ));
+            }
+        }
+        Ok(())
+    }
+
+    fn finish_instantiation(
+        &self,
+        store: &mut WitnessStoreV0,
+        program: QualifiedName,
+        bindings: [HoleBindingV0; 3],
+        children: [ArtifactKeyV0; 3],
+        binding_origin: BindingOriginV0,
+    ) -> Result<CellInstanceV0, WitnessErrorV0> {
         let artifact = store.insert(WitnessProofV0::Instantiate {
             template: self.template.body.clone(),
             children,
@@ -519,9 +710,10 @@ impl FormedCellV0 {
         Ok(CellInstanceV0 {
             id,
             template_id: self.template.id.clone(),
-            program: checked_diagram.result.function.clone(),
+            program,
             holes: self.template.holes.clone(),
             bindings,
+            binding_origin,
             result: self.template.result.clone(),
             artifact,
         })
@@ -540,6 +732,25 @@ pub struct HoleBindingV0 {
     pub path: OccurrencePath,
 }
 
+/// Auditable origin of an instance's already-existing occurrence bindings.
+/// Certificate identifiers are retained as provenance, never as program or
+/// occurrence identities.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(tag = "kind", rename_all = "snake_case")]
+pub enum BindingOriginV0 {
+    CheckedDiagram {
+        certificate: CertificateId,
+    },
+    GraftFrame {
+        compilation_certificate: CertificateId,
+        graft_certificate: CertificateId,
+        frame: GraftFrameId,
+        scope_path: GraftScopePath,
+        caller: QualifiedName,
+        callee: QualifiedName,
+    },
+}
+
 #[derive(Clone, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct InstanceIdV0 {
@@ -555,6 +766,7 @@ pub struct CellInstanceV0 {
     pub program: QualifiedName,
     pub holes: [HoleSpecV0; 3],
     pub bindings: [HoleBindingV0; 3],
+    pub binding_origin: BindingOriginV0,
     pub result: ExactExprV0,
     pub artifact: ArtifactKeyV0,
 }
@@ -655,6 +867,22 @@ pub enum WitnessErrorV0 {
     UncertifiedBindingContext,
     #[error("invalid occurrence-binding context: {0}")]
     InvalidBindingContext(String),
+    #[error("the graft-binding context is not a certified compilation")]
+    UncertifiedGraftContext,
+    #[error("invalid graft-binding context: {0}")]
+    InvalidGraftContext(String),
+    #[error("graft frame {0} is not present in the certified trace")]
+    UnknownGraftFrame(GraftFrameId),
+    #[error("graft frame {frame} has {holes} holes; exactly three are required")]
+    NonTriadicGraftFrame { frame: GraftFrameId, holes: usize },
+    #[error(
+        "graft frame {frame} hole {hole} has {occurrences} lineage occurrences; exactly one is required"
+    )]
+    NonSingletonGraftLineage {
+        frame: GraftFrameId,
+        hole: u8,
+        occurrences: usize,
+    },
     #[error(
         "occurrence {occurrence} is not present with the declared source and path in the checked diagram"
     )]
