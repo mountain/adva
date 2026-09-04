@@ -14,6 +14,11 @@ fn first_program() -> AdvaDocumentV0 {
     AdvaDocumentV0::from_json(&std::fs::read_to_string(path).unwrap()).unwrap()
 }
 
+fn first_witness_path() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../programs/bootstrap-0/first-reveal-witness.adva")
+}
+
 fn temporary_witness_path() -> PathBuf {
     let ordinal = TEST_ORDINAL.fetch_add(1, Ordering::Relaxed);
     let directory = std::env::temp_dir().join(format!(
@@ -50,6 +55,22 @@ fn first_program_forms_the_named_m6_boundary_and_retains_its_question() {
     ));
     assert!(relation.relation.transport().is_err());
     witness.check().unwrap();
+}
+
+#[test]
+fn committed_first_witness_replays_the_first_run_exactly() {
+    let recorded = load_reveal_witness_v0(&first_witness_path()).unwrap();
+    let derived =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
+
+    assert_eq!(recorded, derived);
+    assert_eq!(
+        format!(
+            "blake3:{}",
+            blake3::hash(recorded.to_json().unwrap().as_bytes()).to_hex()
+        ),
+        "blake3:b03cee7f38c01f0a84fa3c71227955ce8c85ac01a844f8c47e74a06c45a0d007"
+    );
 }
 
 #[test]
