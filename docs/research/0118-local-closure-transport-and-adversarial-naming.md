@@ -125,7 +125,7 @@ The recorded coordinates are:
 | local certificate | `bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0` |
 | common C certificate | `aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba` |
 | challenge notice | `2da40775816aa2062dfca5df6451bdb989d8be77ca3dfa246ba303f991d6d3e2` |
-| transition | `a18fdae20eb3b8d8d1bf3e8a035396ee6923f7932db6e6bd6867316865858043` |
+| transition | `d77aa91b02a780051b9e2db97b1684a1ce46af674c3539d94032cd54c0fc735e` |
 | reopened frontier | `7dfdb039d09a035ca11b74f1ec73ff33db5c04ecc2ec1a2d159521cf8a6702d8` |
 
 CI regenerates both output files and requires byte equality.

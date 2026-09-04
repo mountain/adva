@@ -41,6 +41,34 @@ fn committed_input_carriers_match_the_frozen_first_experiment() {
     );
 }
 
+#[test]
+fn committed_first_transport_outputs_replay_exactly() {
+    let transition = first_transition();
+    let recorded_transition =
+        load_closure_transport_transition_v0(fixture("closure-transport-1.adva")).unwrap();
+    let recorded_frontier =
+        load_closure_transport_frontier_v0(fixture("closure-transport-frontier-1.adva")).unwrap();
+
+    assert_eq!(recorded_transition, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:d77aa91b02a780051b9e2db97b1684a1ce46af674c3539d94032cd54c0fc735e"
+    );
+    assert_eq!(
+        recorded_frontier,
+        transition.output.evidence.residual_frontier
+    );
+    assert_eq!(
+        recorded_frontier.digest().unwrap(),
+        "blake3:7dfdb039d09a035ca11b74f1ec73ff33db5c04ecc2ec1a2d159521cf8a6702d8"
+    );
+    assert_eq!(
+        transition.output.history.local_certificate_digest,
+        "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0"
+    );
+}
+
+
 fn temporary_path(name: &str) -> PathBuf {
     let ordinal = TEST_ORDINAL.fetch_add(1, Ordering::Relaxed);
     let directory = std::env::temp_dir().join(format!(

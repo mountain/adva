@@ -1,0 +1,58 @@
+{
+  "schema": "adva.closure-transport-frontier.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "state": "reopened",
+  "challenge": {
+    "coordinate": "experiment:0118:counterevidence-notice-1",
+    "challenged_scope": "experiment:0118:scope-a",
+    "detail": "admit a challenge without treating it as proof of falsity"
+  },
+  "challenge_digest": "blake3:2da40775816aa2062dfca5df6451bdb989d8be77ca3dfa246ba303f991d6d3e2",
+  "closed_before_challenge": [
+    "experiment:0118:scope-a",
+    "experiment:0118:scope-b",
+    "experiment:0118:scope-c"
+  ],
+  "reopened_after_challenge": [
+    "experiment:0118:scope-a",
+    "experiment:0118:scope-b",
+    "experiment:0118:scope-c"
+  ],
+  "dependency_edges": [
+    {
+      "source": "experiment:0118:scope-a",
+      "target": "experiment:0118:scope-b",
+      "receipt_digest": "blake3:c48f3d293395334cecc87827d03df5f94ddecff064384535e4474352cbf8c842"
+    },
+    {
+      "source": "experiment:0118:scope-b",
+      "target": "experiment:0118:scope-c",
+      "receipt_digest": "blake3:2de07b22c651297a98bcfa2f60a65927dd6c55b8a7085e554413d0cbe3edda92"
+    },
+    {
+      "source": "experiment:0118:scope-a",
+      "target": "experiment:0118:scope-c",
+      "receipt_digest": "blake3:24c6d502b913086f12e799614377b1ec9fc6b3564e57de885bc785ed2c5d36ef"
+    }
+  ],
+  "retained_certificate_digests": [
+    "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0",
+    "blake3:096b3810cef1e4a9de88126d180542035632381d45582f7da8daab4c1c8d467f",
+    "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba",
+    "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba"
+  ]
+}

@@ -421,6 +421,15 @@ certificate can exist only after all semantic leaves have typed discharge
 witnesses and no unresolved fork remains. See
 [`docs/research/0117-obligation-refinement-verification-boundary.md`](docs/research/0117-obligation-refinement-verification-boundary.md).
 
+The first typed local closure experiment gives the exact distributivity
+identity a replayable arithmetic-transition-plus-seal witness, transports it
+through `A -> B -> C` and directly through `A -> C`, and requires the same
+target certificate without collapsing the two histories. It records a concrete
+arithmetic `separation`, rejects two M6 imports as `incommensurate` while
+preserving their target holes, and propagates a `challenge` through the bounded
+dependency cone without deleting prior certificates. See
+[`docs/research/0118-local-closure-transport-and-adversarial-naming.md`](docs/research/0118-local-closure-transport-and-adversarial-naming.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
