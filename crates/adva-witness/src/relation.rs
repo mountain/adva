@@ -1,6 +1,5 @@
 use crate::{
-    AdvaDocumentV0, ArtifactKeyV0, CarrierIdV0, FrameIdV0, FrameInputV0, InputLabelV0,
-    MechanismV0,
+    AdvaDocumentV0, ArtifactKeyV0, CarrierIdV0, FrameIdV0, FrameInputV0, InputLabelV0, MechanismV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
