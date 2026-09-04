@@ -1,9 +1,9 @@
-# Neutral `.adva` document load/save boundary
+# Neutral `.adva` document graph load/save boundary
 
 Status: bounded executable research V0  
 Date: 2026-09-04
 
-## 1. Purpose
+## 1. Correction
 
 The neutral-carrier grammar distinguishes the input view
 
@@ -11,90 +11,142 @@ The neutral-carrier grammar distinguishes the input view
 (\mathsf{subject},\mathsf{method},\mathsf{object})
 \]
 
-from the persisted output view
+from the output view
 
 \[
 (\mathsf{history},\mathsf{result},\mathsf{evidence}).
 \]
 
-This note implements the missing boundary between them. It does not choose a
-default cyclic wiring. Every reload states how each stored output slot becomes
-one input slot.
+Carrier neutrality does not require mechanism absence from the document. It
+requires only that mechanism is not an intrinsic carrier property. The
+correct persistent shape is therefore a graph whose vertices are neutral
+carriers and whose edges are mechanism-labelled transition frames.
 
-## 2. Document
+## 2. Abstract document grammar
 
-`AdvaDocumentV0` is a self-describing JSON container with exactly three
-fields: a schema identifier, a version, and one output triple. The schema is
-`adva.neutral-carrier.research` and the version is zero. Unknown fields are
-rejected.
+The research envelope is structurally:
 
-Every carrier retains its `ArtifactKeyV0` cache coordinate and canonical
-`OpenFrontierV0`. The key is not an embedded program, source identity,
-occurrence identity, proof, or model. Consequently the document is a checked
-manifest, not yet a self-contained durable artifact store.
+```text
+AdvaDocumentV0 := {
+  schema, version,
+  carriers: StoredCarrierV0*,
+  frames: TransitionFrameV0*,
+  entrypoints: EntryPointV0+
+}
 
-## 3. Save boundary
+StoredCarrierV0 := { id, carrier: NeutralCarrierV0 }
 
-`save_adva_document_v0` performs the following finite operation:
+TransitionFrameV0 := {
+  id,
+  input:  { subject: CarrierIdV0,
+            method: CarrierIdV0,
+            object: CarrierIdV0 },
+  mechanism: Compute | Verify | Learn,
+  output: { history: CarrierIdV0?,
+            result: CarrierIdV0?,
+            evidence: CarrierIdV0? }
+}
 
-1. require the exact `.adva` suffix;
-2. check the schema-independent output carrier invariants;
-3. encode the versioned document deterministically;
-4. compute a BLAKE3 integrity digest over canonical compact JSON;
-5. write and synchronize a temporary file in the destination directory;
-6. rename it into place and synchronize the parent directory on Unix.
+EntryPointV0 := { name, frame: FrameIdV0 }
+```
 
-The returned receipt records the destination, digest, and byte count. A digest
-is an integrity and cache coordinate only; it is not a signature or semantic
-identity.
+All three output references are absent for a ready frame or present for a
+recorded frame. Mixed presence is invalid. The labels remain present as the
+three output ports in both cases.
 
-## 4. Load and relabelling boundary
+`CarrierIdV0` and `FrameIdV0` are canonical document-local coordinates. They
+allocate no `SourceId`, `OccurrenceId`, value identity, proof identity, or
+program identity.
 
-A route is a pair
+## 3. Persistent substitution and reuse
+
+There is no loader-local default wiring. A later frame expresses substitution
+by referring to stored carrier coordinates in its labelled input positions.
+For example, the structural relationship
 
 \[
-\mathsf{OutputLabelV0}\longrightarrow\mathsf{InputLabelV0}.
+\mathsf{result}_{i}\mapsto\mathsf{subject}_{j},\qquad
+\mathsf{evidence}_{i}\mapsto\mathsf{method}_{j},\qquad
+\mathsf{history}_{i}\mapsto\mathsf{object}_{j}
 \]
 
-`ReloadPlanV0` contains exactly three routes. Validity requires both projections
-to be bijective: each output appears once and each input appears once. Thus
-the loader cannot introduce implicit copy, discard, weakening, or contraction.
+is represented by equal carrier coordinates at those six labelled positions.
+Other permutations are equally explicit. The document does not infer one.
 
-`load_adva_document_v0` reads and revalidates the document before applying the
-plan. Success returns the re-labelled `MechanismInputV0` and a certificate
-containing the canonical route order, document digest, schema/version check,
-frontier check, and exact-bijection check.
+References within each three-slot input or recorded-output boundary must be
+distinct. Reusing content in more than one same-frame slot requires separate
+stored carrier positions rather than an implicit copy at the loader boundary.
 
-Route order in caller data has no semantics. The certificate canonicalizes it
-by input order: subject, method, object.
+Learning replacement carriers also use table references. The resolved
+`FillPlanV0` is constructed only while loading and then checked by the existing
+mechanism grammar.
 
-## 5. Python boundary
+## 4. Validation and load
 
-`adva.persistence` provides `save_adva_document` and `load_adva_document`.
-Python handles ergonomic mappings and paths. The native extension passes the
-content to `adva-witness`; Python neither validates frontiers nor creates
-semantic identities.
+`AdvaDocumentV0::from_json` rejects unknown fields and validates the whole
+graph before any entry point can be selected:
 
-## 6. Tested refusal surface
+1. exact schema and version;
+2. strictly increasing carrier and frame coordinates;
+3. strictly increasing, nonempty entry-point names;
+4. nonempty artifact cache coordinates;
+5. canonical open and declared-verification frontiers;
+6. resolvable carrier and entry-frame references;
+7. three distinct references at each input and recorded-output boundary;
+8. all-ready or all-recorded output presence;
+9. nonempty mechanism-specific witness/evidence coordinates; and
+10. successful `MechanismFormV0::check` for every stored frame.
 
-Rust and Python tests cover:
+`load_adva_document_v0(path, entrypoint)` then resolves one selected frame to
+the existing `MechanismFormV0`, its formation admission, and any complete
+recorded `MechanismOutputV0`. Its certificate records the selected frame,
+document digest, and the checked schema, table, reference, and mechanism-form
+boundaries.
 
-- deterministic in-memory document round trip;
-- explicit output-to-input permutation with exact carrier preservation;
-- rejection of repeated output or input slots;
-- rejection of wrong versions, empty artifact coordinates, noncanonical
-  frontiers, and non-`.adva` paths;
-- atomic replacement followed by full reload validation; and
-- equality of save and load digests.
+Loading a recorded frame does not establish output provenance. "Recorded" is
+a persistence state, not an execution certificate.
 
-Tests use temporary directories only. No `.adva` program is added to the
-repository, so the first authored program remains outside this implementation
-change.
+## 5. Save
 
-## 7. Remaining boundary
+`save_adva_document_v0` accepts a complete validated `AdvaDocumentV0` rather
+than constructing an output-only manifest. It:
 
-This work does not resolve a carrier key against a durable artifact store, prove
-that stored outputs came from a successful mechanism, choose a default route,
-execute the reloaded input, implement feedback, or unify this JSON container
-with existing Lisp-source `.adva` files. Those require separate certificates
-and format-dispatch decisions.
+1. requires the exact `.adva` suffix;
+2. revalidates the complete graph;
+3. encodes canonical pretty JSON;
+4. computes a BLAKE3 integrity digest over canonical compact JSON;
+5. writes and synchronizes a same-directory temporary file;
+6. renames it into place and synchronizes the parent directory on Unix.
+
+The digest is an integrity/cache coordinate, not a signature or semantic
+identity.
+
+## 6. Python boundary
+
+`adva.persistence.save_adva_document(path, document)` accepts the complete
+JSON-shaped graph. `load_adva_document(path, entrypoint)` returns the resolved
+transition and Rust load certificate. Python does not validate references,
+frontiers, mechanism forms, or allocate semantic identities.
+
+## 7. Tested refusal surface
+
+Rust and Python tests use temporary files only and cover:
+
+- deterministic graph round trip and named entry-point selection;
+- mechanism labels present on frames and absent from carriers;
+- recorded output reuse by a later ready frame;
+- learning replacement resolution through the carrier table;
+- wrong versions, empty keys, noncanonical tables, unknown references,
+  repeated boundary references, partial outputs, and wrong suffixes;
+- atomic replacement and save/load digest agreement.
+
+No `.adva` program is added to the repository. The first authored program
+remains outside this implementation change.
+
+## 8. Remaining boundary
+
+The envelope does not embed or resolve artifact content, authenticate it,
+execute a mechanism, prove that recorded outputs came from an execution,
+mutate ready frames into recorded frames, schedule a cycle, implement
+feedback, or unify its parser with Lisp-source `.adva` files. These require
+separate result and certificate types.

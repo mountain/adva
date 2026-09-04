@@ -63,9 +63,10 @@ tool does not turn research targets into stable API promises.
   `history/result/evidence` distinct, rejects open compute subjects and
   objects, accounts for conditional verification, and retains partial learning
   fill proposals without changing the stable IR;
-- a research-only neutral `.adva` document boundary that atomically persists
-  `history/result/evidence` carriers and reloads them as
-  `subject/method/object` only through an explicit Rust-checked slot bijection;
+- a research-only neutral `.adva` document graph with canonical carrier and
+  frame tables: mechanisms live on three-input/three-output transition edges,
+  named entry points select checked frames, and later frames reuse earlier
+  recorded carriers through explicit document-local references;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -147,11 +148,14 @@ only a diagram accepted by the Rust validator.
 
 Neutral-carrier persistence is exposed separately through
 `adva.persistence.save_adva_document` and
-`adva.persistence.load_adva_document`. Saving validates all three output
-carriers before an atomic same-directory replacement. Loading revalidates the
-schema, version, cache coordinates, and canonical frontiers, then requires an
-explicit three-route output-to-input bijection. The repository intentionally
-contains no `.adva` program fixture; the first program remains caller-authored.
+`adva.persistence.load_adva_document`. Saving validates canonical carrier,
+transition-frame, and entry-point tables before an atomic same-directory
+replacement. Loading selects a named entry point, resolves its
+`subject/method/object` references in Rust, and rechecks the mechanism form.
+Frames always retain the `history/result/evidence` output ports; all three are
+either ready or refer to recorded carriers. A recorded triple is not treated
+as proof that execution produced it. The repository intentionally contains no
+`.adva` program fixture; the first program remains caller-authored.
 
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or

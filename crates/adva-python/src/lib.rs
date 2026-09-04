@@ -15,9 +15,7 @@ use adva_lisp::{
     evaluate, evaluate_with_differential, import_diagram_json, link_modules as link_rust_modules,
     parse_module, validate_diagram,
 };
-use adva_witness::{
-    CarrierRouteV0, MechanismOutputV0, ReloadPlanV0, load_adva_document_v0, save_adva_document_v0,
-};
+use adva_witness::{AdvaDocumentV0, load_adva_document_v0, save_adva_document_v0};
 use pyo3::exceptions::PyValueError;
 use pyo3::prelude::*;
 use std::collections::BTreeMap;
@@ -330,19 +328,17 @@ fn load_program_json(source: &str) -> PyResult<PyProgram> {
 }
 
 #[pyfunction]
-fn save_adva_document_json(path: &str, output_json: &str) -> PyResult<(String, u64)> {
-    let output: MechanismOutputV0 = serde_json::from_str(output_json).map_err(py_error)?;
-    let receipt = save_adva_document_v0(path, output).map_err(py_error)?;
+fn save_adva_document_json(path: &str, document_json: &str) -> PyResult<(String, u64)> {
+    let document = AdvaDocumentV0::from_json(document_json).map_err(py_error)?;
+    let receipt = save_adva_document_v0(path, document).map_err(py_error)?;
     Ok((receipt.document_digest, receipt.bytes_written))
 }
 
 #[pyfunction]
-fn load_adva_document_json(path: &str, routes_json: &str) -> PyResult<(String, String)> {
-    let routes: [CarrierRouteV0; 3] = serde_json::from_str(routes_json).map_err(py_error)?;
-    let plan = ReloadPlanV0::from_routes(routes).map_err(py_error)?;
-    let artifact = load_adva_document_v0(path, &plan).map_err(py_error)?;
+fn load_adva_document_json(path: &str, entrypoint: &str) -> PyResult<(String, String)> {
+    let artifact = load_adva_document_v0(path, entrypoint).map_err(py_error)?;
     Ok((
-        serde_json::to_string_pretty(&artifact.input).map_err(py_error)?,
+        serde_json::to_string_pretty(&artifact.transition).map_err(py_error)?,
         serde_json::to_string_pretty(&artifact.certificate).map_err(py_error)?,
     ))
 }

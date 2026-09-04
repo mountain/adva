@@ -68,9 +68,10 @@ judgments.
 - a bounded neutral-carrier mechanism grammar whose input, process, and output
   labels remain distinct, with separate open-frontier rules for computation,
   verification, and learning proposals;
-- a research-only neutral `.adva` document codec and filesystem boundary that
-  persists the three output-labelled carriers, revalidates them on read, and
-  permits input relabelling only through an exact three-slot bijection.
+- a research-only neutral `.adva` document graph and filesystem boundary with
+  canonical carrier, transition-frame, and entry-point tables; mechanisms
+  label frames rather than carriers, while shared carrier references express
+  explicit output-to-input reuse across frames.
 
 This crate depends only on `adva-ir` among Adva crates. Its schema is
 `adva.witness.research` version zero, not an extension of `adva.ir` version 1.
@@ -273,12 +274,16 @@ than replaces the compiler and graft certificate identities. Its subsequent
 neutral-carrier grammar uses research-local frontier coordinates to distinguish
 closed computation, explicitly open verification, and candidate learning fill
 plans. Those coordinates are not stable holes, cut ports, or logical
-obligations. Its separate `.adva` research document stores only neutral
-carrier cache references and canonical frontiers. Rust validates the document
-and an explicit output-to-input slot bijection before returning a reload
-artifact; Python supplies paths and JSON-shaped values only. This does not
-change the Lisp parser, `adva.ir` version 1, or feedback semantics, and loading
-does not resolve the referenced witness artifacts.
+obligations. Its separate `.adva` research document stores a canonical table
+of neutral carrier cache references, a canonical table of mechanism-labelled
+three-input/three-output transition frames, and named entry points. Rust
+resolves every document-local carrier and frame reference and rechecks every
+mechanism form before it returns the selected transition; Python supplies
+paths, entry-point names, and JSON-shaped values only. A complete stored
+output triple records a graph state but does not certify mechanism-output
+provenance. This does not change the Lisp parser, `adva.ir` version 1, or
+feedback semantics, and loading does not resolve the referenced witness
+artifacts.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact

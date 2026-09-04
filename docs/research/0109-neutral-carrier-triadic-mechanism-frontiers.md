@@ -68,8 +68,9 @@ The possible cross-step identities are
 \{S,M,O\},
 \]
 
-giving 27 typed routes from nine primitive words. V0 does not yet implement
-the route, reload, or feedback operation.
+giving 27 typed routes from nine primitive words. The local grammar does not
+implement routing or feedback. The separate persistence boundary now records
+cross-frame routes through shared document-local carrier references.
 
 ## 2. Outer arity versus inner holes
 
@@ -219,10 +220,9 @@ It does not yet establish that subject/method/object and
 history/result/evidence are the characteristic nouns forced by the opposite
 processes. The vocabulary remains a human-readable working chart. The next
 theoretical task is to define the opposite-edge characteristic operator that
-could confirm or replace these names. The next engineering task is a separate
-decision for a self-describing `.adva` envelope and a certified output-to-input
-substitution record; neither should be inferred from this local checker.
-
-That separate engineering decision is now implemented, without changing this
-grammar claim, in
+could confirm or replace these names. The next engineering task was a separate
+decision for a self-describing `.adva` envelope and an explicit output-to-input
+substitution record; neither is inferred from this local checker. That
+decision is now implemented as a neutral carrier table plus mechanism-labelled
+transition frames, without changing this grammar claim, in
 [`0110-neutral-adva-document-load-save.md`](0110-neutral-adva-document-load-save.md).

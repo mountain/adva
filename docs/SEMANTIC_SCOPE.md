@@ -92,13 +92,18 @@ finite partial fill proposal and retains replacement subholes. These
 research-local frontier coordinates are not stable semantic holes, logical
 obligations, or apertures. The checker performs no execution, proof replay,
 learning synthesis, or feedback. A separate research-only `.adva` document
-codec may persist the three output-labelled neutral carrier references and
-reload them into the three input-labelled positions under an explicit
-bijection. The Rust boundary checks schema, version, cache-coordinate
-nonemptiness, canonical frontiers, and exact slot use, and returns a digest and
-reload certificate. It is not a stable format promotion, does not reinterpret
-Lisp source, does not resolve cached artifacts, and does not certify that the
-stored outputs arose from a mechanism execution.
+codec may persist neutral carriers as graph vertices and
+`compute/verify/learn` as transition-frame labels. Each frame names exactly
+three input carrier references and retains exactly three output positions;
+the output positions are either all ready or all recorded. Named entry points
+select frames, and a later frame may reuse earlier recorded outputs through
+the same document-local carrier references. The Rust boundary checks schema,
+version, canonical table order, reference resolution, cache-coordinate
+nonemptiness, canonical frontiers, exact boundary slot use, and every mechanism
+formation judgment, then returns a digest and load certificate. It is not a
+stable format promotion, does not reinterpret Lisp source, does not resolve
+cached artifacts, and does not certify that recorded outputs arose from a
+mechanism execution.
 
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
