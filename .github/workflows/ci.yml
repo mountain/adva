@@ -36,6 +36,9 @@ jobs:
             trace-arithmetic programs/bootstrap-0/first-reveal-witness.adva \
             --output target/first-trace-arithmetic.adva \
             --print
+          cmp \
+            target/first-trace-arithmetic.adva \
+            programs/bootstrap-0/first-trace-arithmetic.adva
 
   python:
     runs-on: ubuntu-latest

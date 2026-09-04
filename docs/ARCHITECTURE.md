@@ -328,6 +328,9 @@ mechanism-weight quotient is diagnostic only and retains its nonidentity as an
 open holonomy question. The three opposite-side characteristic maps and the
 shared truth fiber remain explicitly unwitnessed. Projection equality, BLAKE3
 coordinates, and M6 formation are not promoted to semantic equality or truth.
+The first derived artifact is retained at
+`programs/bootstrap-0/first-trace-arithmetic.adva` and reproduced byte-for-byte
+by CI.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact

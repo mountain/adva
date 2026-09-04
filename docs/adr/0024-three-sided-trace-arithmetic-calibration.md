@@ -46,6 +46,11 @@ The experiment exposes five independently named open obligations: three
 cross-side characteristic maps, multiplicative holonomy, and a shared truth
 coordinate. It does not close the original semantic filler.
 
+The first output is retained at
+`programs/bootstrap-0/first-trace-arithmetic.adva`. Its artifact digest is
+`blake3:09be4633b0cbef2e9d8a29f2e6b7b2ea1a1bf7e3f715655d411b42f18af3d407`.
+CI must reproduce the exact bytes.
+
 ## Consequences
 
 Persisted witnesses can now be reused without reloading their source program.

@@ -88,6 +88,16 @@ The command loads only the persisted reveal witness. Its output retains source
 digests, both paths, three projections, typed additive residual, commutative
 holonomy, five questions, and the open truth fiber.
 
+The actual first output is retained at
+`programs/bootstrap-0/first-trace-arithmetic.adva` with these coordinates:
+
+```text
+source witness  blake3:b03cee7f38c01f0a84fa3c71227955ce8c85ac01a844f8c47e74a06c45a0d007
+left trace      blake3:bc1520a69e69b3d4d73235595160eef424ab7e02a36253d5690bb8db172b9a39
+right trace     blake3:c398e1cda49cfc7093b18cc17a82d95d23b6ae435d8b704d339df225dac3a57f
+calibration     blake3:09be4633b0cbef2e9d8a29f2e6b7b2ea1a1bf7e3f715655d411b42f18af3d407
+```
+
 ## 7. Nonclaims
 
 This experiment does not define the three `chi` maps, prove semantic
