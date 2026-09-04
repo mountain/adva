@@ -78,7 +78,12 @@ nonsemantic content key while every instance retains a fresh instance ordinal
 and explicit bindings to existing Rust-owned sources and occurrences. It does
 not extend `adva.ir` version 1, allocate semantic identity, add a stable scalar
 type, infer copy from repeated variables, create equation cells, or define the
-general program constructor or interpreter.
+general program constructor or interpreter. A formed template may derive its
+three bindings from one compiler-owned `CompilationArtifact` and one certified
+ordered graft frame. The adapter requires singleton lineage at each entry wire
+and retains the compilation certificate, graft certificate, frame identifier,
+scope path, caller, and callee; it does not guess a source when an entry wire
+has empty or merged lineage.
 
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,

@@ -755,3 +755,15 @@ proof_or_certificate = "Rust tests verify all corrected seed ledgers; reject the
 counterexample_boundary = "The companion is research schema version zero and is not integrated with ProgramTerm, GraftTrace compilation, the stable operation registry, or adva.ir certificates. It provides no parser, exact Adva scalar type, general arithmetic interpreter, durable remote artifact store, equation cell, specializer, recursion, or universality theorem"
 forbidden_conflations = ["Artifact hash with SourceId or OccurrenceId", "Same cached proof with same program instance", "Polynomial equality with expression or program identity", "Additive formation zero with runtime arithmetic zero", "Multiplicative residual one with program result one", "Repeated source with repeated occurrence", "BigInt witness checker with stable Adva scalar semantics", "Research type state with adva.ir certificate"]
 
+[[claim]]
+claim_id = "adva.bounded-verified.graft-derived-six-word-instantiation.v0"
+canonical_name = "Certified graft-derived triadic witness instantiation"
+code_symbol = "adva_witness::{FormedCellV0::instantiate_from_graft,BindingOriginV0}; crates/adva-witness/tests/reusable_witness.rs"
+dimension = "certified-graft/ordered-three-hole/singleton-lineage/reusable-witness"
+status = "bounded-verified"
+scope = "Compiler-produced CompilationArtifact values whose selected GraftFrame has exactly three ordered entry wires, each carrying exactly one occurrence in the same compiled diagram"
+assumptions = ["The Rust compilation and GraftTrace certificates report fully checked", "The certificate frame ledger and root frame remain linked to the compiled diagram", "Each selected entry wire has singleton lineage", "The reusable witness template is already formed and linear", "adva.ir version 1 and ProgramTerm remain unchanged"]
+dependencies = ["adva.bounded-verified.reusable-six-word-witness.v0", "adva.exact.compiler-graft-trace.v1", "adva.exact.explicit-source-identity.v1"]
+proof_or_certificate = "Rust tests derive all three source/occurrence/path bindings from one certified call frame, retain compilation/graft/frame provenance, execute the derived instance, and reject unknown frames, a certified two-hole frame, merged two-occurrence lineage, and a root detached from compiled outputs"
+counterexample_boundary = "The adapter rejects empty or merged lineage and provides no implicit or explicit projection policy. It does not add witness syntax to ProgramTerm, compile arithmetic witnesses into Lisp, cryptographically authenticate serialized certificates, change adva.ir, or promote exact polynomial observations to stable value semantics"
+forbidden_conflations = ["Graft frame with witness proof identity", "Certificate identifier with program identity", "Entry-wire lineage with permission to select one origin", "Same proof artifact with same instance", "Caller/callee provenance with equation-cell equality", "Research adapter with stable ProgramTerm integration"]

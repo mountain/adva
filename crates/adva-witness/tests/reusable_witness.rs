@@ -1,10 +1,11 @@
-use adva_ir::DiagramValidationArtifact;
+use adva_ir::{CompilationArtifact, DiagramValidationArtifact, GraftFrameId, GraftFrameKind};
 use adva_lisp::{compile_function, link_modules, parse_module, validate_diagram};
 use adva_witness::{
-    ArtifactKeyV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0, CellTemplateV0,
-    ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0, SeedErrorV0, SeedRegistryV0,
-    SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0, ValueWordV0, WitnessErrorV0, WitnessProofV0,
-    WitnessStoreV0, validate_dependency_graph_v0,
+    ArtifactKeyV0, BindingOriginV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0,
+    CellTemplateV0, ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0,
+    SeedErrorV0, SeedRegistryV0, SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0,
+    ValueWordV0, WitnessErrorV0, WitnessProofV0, WitnessStoreV0,
+    validate_dependency_graph_v0,
 };
 use num_bigint::BigInt;
 use std::collections::BTreeMap;
@@ -62,6 +63,48 @@ fn checked_shared_diagram(module_name: &str) -> DiagramValidationArtifact {
     let linked = link_modules(vec![module]).unwrap();
     let compiled = compile_function(&linked, module_name, "pass").unwrap();
     validate_diagram(compiled.result).unwrap()
+}
+
+fn compiled_graft(module_name: &str, function: &str) -> CompilationArtifact {
+    let source = format!(
+        "(module {module_name}
+           (export root merged root-pair)
+           (def tri
+             (fn ((a Real) (b Real) (c Real)) (outputs Real Real Real)
+               (frontier (use a) (use b) (use c))))
+           (def pair
+             (fn ((a Real) (b Real)) (outputs Real Real)
+               (frontier (use a) (use b))))
+           (def root
+             (fn ((x Real) (y Real) (z Real)) (outputs Real Real Real)
+               (call tri (use x) (use y) (use z))))
+           (def merged
+             (fn ((x Real) (y Real) (z Real) (w Real)) (outputs Real Real Real)
+               (call tri
+                 (add (frontier (use x) (use y)))
+                 (use z)
+                 (use w))))
+           (def root-pair
+             (fn ((x Real) (y Real)) (outputs Real Real)
+               (call pair (use x) (use y)))))"
+    );
+    let module = parse_module(&source).unwrap();
+    let linked = link_modules(vec![module]).unwrap();
+    compile_function(&linked, module_name, function).unwrap()
+}
+
+fn call_frame_id(compilation: &CompilationArtifact, callee: &str) -> GraftFrameId {
+    compilation
+        .graft_trace
+        .result
+        .frames
+        .iter()
+        .find(|frame| {
+            frame.kind == GraftFrameKind::Call && frame.callee.function.as_str() == callee
+        })
+        .unwrap()
+        .id
+        .clone()
 }
 
 fn bindings(diagram: &DiagramValidationArtifact) -> [HoleBindingV0; 3] {
@@ -296,6 +339,143 @@ fn explicit_copy_may_bind_distinct_occurrences_of_one_source() {
     template
         .instantiate(&mut store, &diagram, bindings, children)
         .unwrap();
+}
+
+#[test]
+fn certified_graft_frame_derives_bindings_and_retains_provenance() {
+    let mut store = WitnessStoreV0::new();
+    let children = insert_seed_children(&mut store);
+    let body = insert_closed_body(&mut store, expression());
+    let template = CellTemplateV0::new(
+        TemplateIdV0::new("graft-derived@0").unwrap(),
+        holes(),
+        expression(),
+        body,
+    )
+    .unwrap()
+    .form(&store)
+    .unwrap();
+    let compilation = compiled_graft("graft_witness_use", "root");
+    let frame_id = call_frame_id(&compilation, "tri");
+    let frame = compilation
+        .graft_trace
+        .result
+        .frames
+        .iter()
+        .find(|frame| frame.id == frame_id)
+        .unwrap();
+
+    let instance = template
+        .instantiate_from_graft(&mut store, &compilation, &frame_id, children)
+        .unwrap();
+
+    for (binding, entry_wire) in instance.bindings.iter().zip(&frame.entry_wires) {
+        assert_eq!(entry_wire.lineage, vec![binding.occurrence.clone()]);
+        let occurrence = compilation
+            .result
+            .occurrences
+            .iter()
+            .find(|occurrence| occurrence.id == binding.occurrence)
+            .unwrap();
+        assert_eq!(binding.source, occurrence.source);
+        assert_eq!(binding.path, occurrence.path);
+    }
+    assert!(matches!(
+        &instance.binding_origin,
+        BindingOriginV0::GraftFrame {
+            compilation_certificate,
+            graft_certificate,
+            frame,
+            callee,
+            ..
+        } if compilation_certificate == &compilation.certificate.id
+            && graft_certificate == &compilation.graft_trace.certificate.id
+            && frame == &frame_id
+            && callee.function.as_str() == "tri"
+    ));
+    assert_eq!(
+        instance
+            .execute(&store, [BigInt::from(2), BigInt::from(3), BigInt::from(4)])
+            .unwrap()
+            .value,
+        BigInt::from(14)
+    );
+}
+
+#[test]
+fn graft_instantiation_rejects_nontriadic_and_unknown_frames() {
+    let mut store = WitnessStoreV0::new();
+    let children = insert_seed_children(&mut store);
+    let body = insert_closed_body(&mut store, expression());
+    let template = CellTemplateV0::new(
+        TemplateIdV0::new("graft-arity@0").unwrap(),
+        holes(),
+        expression(),
+        body,
+    )
+    .unwrap()
+    .form(&store)
+    .unwrap();
+    let compilation = compiled_graft("graft_arity_use", "root-pair");
+    let pair = call_frame_id(&compilation, "pair");
+    assert!(matches!(
+        template.instantiate_from_graft(&mut store, &compilation, &pair, children.clone()),
+        Err(WitnessErrorV0::NonTriadicGraftFrame { holes: 2, .. })
+    ));
+    let missing = GraftFrameId::explicit("graft:missing/frame");
+    assert!(matches!(
+        template.instantiate_from_graft(&mut store, &compilation, &missing, children),
+        Err(WitnessErrorV0::UnknownGraftFrame(frame)) if frame == missing
+    ));
+}
+
+#[test]
+fn merged_graft_lineage_requires_an_explicit_future_policy() {
+    let mut store = WitnessStoreV0::new();
+    let children = insert_seed_children(&mut store);
+    let body = insert_closed_body(&mut store, expression());
+    let template = CellTemplateV0::new(
+        TemplateIdV0::new("graft-lineage@0").unwrap(),
+        holes(),
+        expression(),
+        body,
+    )
+    .unwrap()
+    .form(&store)
+    .unwrap();
+    let compilation = compiled_graft("graft_lineage_use", "merged");
+    let tri = call_frame_id(&compilation, "tri");
+    assert!(matches!(
+        template.instantiate_from_graft(&mut store, &compilation, &tri, children),
+        Err(WitnessErrorV0::NonSingletonGraftLineage {
+            hole: 0,
+            occurrences: 2,
+            ..
+        })
+    ));
+}
+
+#[test]
+fn graft_root_must_remain_linked_to_its_compiled_diagram() {
+    let mut store = WitnessStoreV0::new();
+    let children = insert_seed_children(&mut store);
+    let body = insert_closed_body(&mut store, expression());
+    let template = CellTemplateV0::new(
+        TemplateIdV0::new("graft-link@0").unwrap(),
+        holes(),
+        expression(),
+        body,
+    )
+    .unwrap()
+    .form(&store)
+    .unwrap();
+    let mut compilation = compiled_graft("graft_link_use", "root");
+    let tri = call_frame_id(&compilation, "tri");
+    compilation.result.outputs.swap(0, 1);
+    assert!(matches!(
+        template.instantiate_from_graft(&mut store, &compilation, &tri, children),
+        Err(WitnessErrorV0::InvalidGraftContext(_))
+    ));
 }
 
 #[test]

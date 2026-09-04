@@ -57,6 +57,9 @@ judgments.
 - a Rust-owned research V0 registry for the corrected six initial words;
 - exact signed formation ledgers and arbitrary-precision integer-polynomial
   normalization for bounded add/multiply witnesses;
+- a triadic adapter from one certified `CompilationArtifact` graft frame to
+  three derived source/occurrence/path bindings, with retained certificate and
+  frame-path provenance;
 - finite acyclic proof artifacts with content-addressed cache keys;
 - linear three-hole templates whose instances bind existing `SourceId` and
   `OccurrenceId` values without allocating or identifying them;
@@ -257,7 +260,10 @@ The Rust `adva-witness` companion is also outside the stable semantic slice.
 It makes one bounded six-word witness and reuse proposal executable without
 changing PSC0 terms, builtin operations, diagrams, or certificates. Its exact
 integer-polynomial normalization is a witness observation, not a new stable
-Adva scalar domain or an equation-cell constructor.
+Adva scalar domain or an equation-cell constructor. Its graft adapter consumes
+an existing compiler `CompilationArtifact` as a whole, derives bindings only
+from an ordered three-hole frame with singleton lineage, and records rather
+than replaces the compiler and graft certificate identities.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
