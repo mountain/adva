@@ -406,6 +406,13 @@ records one unauthenticated external resource snapshot, and emits a proposed
 three-output interface. The first selected content word is `representation`;
 it remains a falsifiable candidate and closes no question.
 
+The second continuation experiment asks how a formal coordinate obtains
+reality-facing meaning and how its record might survive destruction. It
+introduces the candidate word `custody`, separates independent remeasurement
+from integrity, authenticity, availability, and fork accountability, and
+records a typed threat and recovery envelope. See
+[`docs/research/0116-reality-custody-continuation-experiment.md`](docs/research/0116-reality-custody-continuation-experiment.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole

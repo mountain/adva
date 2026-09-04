@@ -282,6 +282,70 @@ pub struct EntropyReceiptV0 {
     pub replay: EntropyReplayV0,
 }
 
+/// Failure modes named by a reality-facing preservation proposal. Listing a
+/// threat does not prove that a deployed store withstands it.
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ThreatClassV0 {
+    Deletion,
+    Mutation,
+    Equivocation,
+    KeyCompromise,
+    CorrelatedCapture,
+}
+
+/// Properties that require different mechanisms and therefore must not be
+/// collapsed into a single digest check.
+#[derive(Clone, Copy, Debug, Eq, Ord, PartialEq, PartialOrd, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ProtectedPropertyV0 {
+    Integrity,
+    Authenticity,
+    Availability,
+    ForkAccountability,
+    SemanticReproducibility,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum GroundingPolicyV0 {
+    ProtocolBoundIndependentRemeasurement,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum ReceiptAuthorityV0 {
+    ReceiptsDoNotEstablishTruth,
+}
+
+/// A declared preservation plan. Its numeric thresholds are checked for local
+/// consistency, not promoted to a Byzantine agreement theorem.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct CustodyPlanV0 {
+    pub independent_failure_domains: u32,
+    pub observation_receipt_threshold: u32,
+    pub recovery_fragment_threshold: u32,
+    pub declared_fault_budget: String,
+    pub strategies: Vec<String>,
+    pub recovery_drills: Vec<String>,
+}
+
+/// Optional structured bridge carried by a hypothesis that makes claims about
+/// the external world or preservation under attack.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct RealityBoundaryV0 {
+    pub external_coordinate_schema: String,
+    pub observation_protocol: String,
+    pub meaning_criterion: String,
+    pub grounding_policy: GroundingPolicyV0,
+    pub receipt_authority: ReceiptAuthorityV0,
+    pub threats: Vec<ThreatClassV0>,
+    pub protected_properties: Vec<ProtectedPropertyV0>,
+    pub custody: CustodyPlanV0,
+}
+
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct HypothesisCandidateV0 {
@@ -291,6 +355,8 @@ pub struct HypothesisCandidateV0 {
     pub assumptions: Vec<String>,
     pub required_observations: Vec<String>,
     pub falsifiers: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reality_boundary: Option<RealityBoundaryV0>,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -387,6 +453,8 @@ pub struct HypothesisV0 {
     pub assumptions: Vec<String>,
     pub required_observations: Vec<String>,
     pub falsifiers: Vec<String>,
+    #[serde(default, skip_serializing_if = "Option::is_none")]
+    pub reality_boundary: Option<RealityBoundaryV0>,
     pub parent_frontier_digest: String,
     pub resource_digest: String,
 }
@@ -568,11 +636,13 @@ pub fn learn_hypothesis_v0(
         assumptions: candidate.assumptions.clone(),
         required_observations: candidate.required_observations.clone(),
         falsifiers: candidate.falsifiers.clone(),
+        reality_boundary: candidate.reality_boundary.clone(),
         parent_frontier_digest: subject_digest.clone(),
         resource_digest: object_digest.clone(),
     };
     let mut vocabulary = frontier.vocabulary.clone();
-    insert_vocabulary(
+    let mut introduced_words = Vec::new();
+    if insert_vocabulary(
         &mut vocabulary,
         VocabularyEntryV0 {
             local_name: "hypothesis".to_owned(),
@@ -582,8 +652,10 @@ pub fn learn_hypothesis_v0(
                 "an externally proposed, explicitly falsifiable result that closes no obligation"
                     .to_owned(),
         },
-    )?;
-    insert_vocabulary(
+    )? {
+        introduced_words.push("hypothesis".to_owned());
+    }
+    if insert_vocabulary(
         &mut vocabulary,
         VocabularyEntryV0 {
             local_name: candidate.local_name.clone(),
@@ -591,7 +663,9 @@ pub fn learn_hypothesis_v0(
             introduced_at: frontier.lineage.sequence + 1,
             definition: candidate.claim.clone(),
         },
-    )?;
+    )? {
+        introduced_words.push(candidate.local_name.clone());
+    }
     let mut consumed = frontier.lineage.consumed_resource_digests.clone();
     consumed.push(object_digest.clone());
     let mut retained = frontier.lineage.retained_hypothesis_digests.clone();
@@ -623,7 +697,7 @@ pub fn learn_hypothesis_v0(
         object_resource_digest: object_digest,
         selected_candidate_ordinal: 0,
         entropy: resource.entropy.clone(),
-        introduced_words: vec!["hypothesis".to_owned(), candidate.local_name.clone()],
+        introduced_words,
         retained_obligations: obligation_ids,
     };
     Ok(HypothesisTransitionV0 {
@@ -776,7 +850,7 @@ fn check_vocabulary(vocabulary: &[VocabularyEntryV0], sequence: u64) -> Result<(
 fn insert_vocabulary(
     vocabulary: &mut Vec<VocabularyEntryV0>,
     entry: VocabularyEntryV0,
-) -> Result<(), InquiryErrorV0> {
+) -> Result<bool, InquiryErrorV0> {
     if let Some(existing) = vocabulary
         .iter()
         .find(|existing| existing.local_name == entry.local_name)
@@ -784,10 +858,11 @@ fn insert_vocabulary(
         if existing.role != entry.role || existing.definition != entry.definition {
             return Err(InquiryErrorV0::VocabularyDrift(entry.local_name));
         }
+        Ok(false)
     } else {
         vocabulary.push(entry);
+        Ok(true)
     }
-    Ok(())
 }
 
 fn check_candidate(candidate: &HypothesisCandidateV0) -> Result<(), InquiryErrorV0> {
@@ -818,6 +893,61 @@ fn check_candidate(candidate: &HypothesisCandidateV0) -> Result<(), InquiryError
             "candidate obligation coordinates must be nonempty and unique",
         ));
     }
+    if let Some(boundary) = &candidate.reality_boundary {
+        check_reality_boundary(boundary)?;
+    }
+    Ok(())
+}
+
+fn check_reality_boundary(boundary: &RealityBoundaryV0) -> Result<(), InquiryErrorV0> {
+    if boundary.external_coordinate_schema.trim().is_empty()
+        || boundary.observation_protocol.trim().is_empty()
+        || boundary.meaning_criterion.trim().is_empty()
+        || boundary.threats.is_empty()
+        || boundary.protected_properties.is_empty()
+    {
+        return Err(InquiryErrorV0::InvalidArtifact(
+            "a reality boundary needs coordinates, an observation protocol, a meaning criterion, threats, and protected properties",
+        ));
+    }
+    if boundary
+        .threats
+        .iter()
+        .copied()
+        .collect::<BTreeSet<_>>()
+        .len()
+        != boundary.threats.len()
+        || boundary
+            .protected_properties
+            .iter()
+            .copied()
+            .collect::<BTreeSet<_>>()
+            .len()
+            != boundary.protected_properties.len()
+    {
+        return Err(InquiryErrorV0::InvalidArtifact(
+            "reality-boundary threats and protected properties must be unique",
+        ));
+    }
+    let custody = &boundary.custody;
+    if custody.independent_failure_domains == 0
+        || custody.observation_receipt_threshold == 0
+        || custody.recovery_fragment_threshold == 0
+        || custody.observation_receipt_threshold > custody.independent_failure_domains
+        || custody.recovery_fragment_threshold > custody.independent_failure_domains
+        || custody.declared_fault_budget.trim().is_empty()
+        || custody.strategies.is_empty()
+        || custody.recovery_drills.is_empty()
+        || custody
+            .strategies
+            .iter()
+            .chain(&custody.recovery_drills)
+            .any(|value| value.trim().is_empty())
+    {
+        return Err(InquiryErrorV0::InvalidArtifact(
+            "custody counts, fault budget, strategies, and recovery drills must form a nonempty locally consistent plan",
+        ));
+    }
     Ok(())
 }
 
@@ -828,6 +958,8 @@ struct CandidateIdentity<'a> {
     assumptions: &'a [String],
     required_observations: &'a [String],
     falsifiers: &'a [String],
+    #[serde(skip_serializing_if = "Option::is_none")]
+    reality_boundary: Option<&'a RealityBoundaryV0>,
 }
 
 fn candidate_identity_digest(candidate: &HypothesisCandidateV0) -> Result<String, InquiryErrorV0> {
@@ -837,6 +969,7 @@ fn candidate_identity_digest(candidate: &HypothesisCandidateV0) -> Result<String
         assumptions: &candidate.assumptions,
         required_observations: &candidate.required_observations,
         falsifiers: &candidate.falsifiers,
+        reality_boundary: candidate.reality_boundary.as_ref(),
     };
     let canonical =
         serde_json::to_vec(&identity).map_err(|error| InquiryErrorV0::Json(error.to_string()))?;

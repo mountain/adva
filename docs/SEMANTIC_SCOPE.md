@@ -265,3 +265,13 @@ question still open. Resource entropy is a recorded output, not a reproducible
 external generator. Candidate names are presentation data, BLAKE3 coordinates
 are integrity addresses rather than signatures, and continuation safety does
 not imply an eventual answer, consensus, convergence, or infinite execution.
+
+An inquiry candidate may additionally carry a research-only reality boundary
+and custody plan. Its grounding policy requires a versioned external
+coordinate, a published observation protocol, and independent remeasurement;
+its receipt policy explicitly denies that receipts establish truth. The local
+checker distinguishes integrity, authenticity, availability, fork
+accountability, and semantic reproducibility, and validates only the internal
+shape of declared custody thresholds and recovery plans. It performs no
+measurement, signature verification, replication, erasure reconstruction,
+fault injection, consensus, trust decision, or social-governance operation.
