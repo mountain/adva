@@ -143,6 +143,39 @@ fn post_hoc_closure_edit_is_rejected() {
 }
 
 #[test]
+fn committed_first_verification_outputs_replay_exactly() {
+    let contract = load_verification_contract_v0(fixture("verification.adva")).unwrap();
+    let packet = load_verification_packet_v0(fixture("refinement-1.adva")).unwrap();
+    let transition = verify_obligations_v0(&initial_subject(), &contract, &packet).unwrap();
+    let recorded_transition =
+        load_verification_transition_v0(fixture("verification-1.adva")).unwrap();
+    let recorded_frontier =
+        load_verification_frontier_v0(fixture("verification-frontier-1.adva")).unwrap();
+
+    assert_eq!(
+        contract.digest().unwrap(),
+        "blake3:fd0e40317c10bc3d95183b3a84efa9405ef7f1199bdbf38f6d4efb1de6b48861"
+    );
+    assert_eq!(
+        packet.digest().unwrap(),
+        "blake3:6d0386047a38dab275a677d653f316a046a1c504e74d680aa015483ca19b30fb"
+    );
+    assert_eq!(recorded_transition, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:ca98f26cfcd80375d26e2372bfd37417d70e563ad7747adc00a093647e5e79dc"
+    );
+    assert_eq!(
+        recorded_frontier,
+        transition.output.evidence.residual_frontier
+    );
+    assert_eq!(
+        recorded_frontier.digest().unwrap(),
+        "blake3:bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91"
+    );
+}
+
+#[test]
 fn verification_transition_and_frontier_round_trip_as_adva_files() {
     let transition = verify_obligations_v0(
         &initial_subject(),
