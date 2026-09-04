@@ -15,9 +15,9 @@ fn fixture(name: &str) -> PathBuf {
 }
 
 fn initial_subject() -> VerificationSubjectV0 {
-    VerificationSubjectV0::InquiryFrontier(
+    VerificationSubjectV0::InquiryFrontier(Box::new(
         load_inquiry_frontier_v0(fixture("frontier-2.adva")).unwrap(),
-    )
+    ))
 }
 
 fn temporary_path(name: &str) -> PathBuf {
@@ -71,7 +71,7 @@ fn verification_layer_does_not_rewrite_the_inquiry_frontier() {
     let original = load_inquiry_frontier_v0(fixture("frontier-2.adva")).unwrap();
     let original_digest = original.digest().unwrap();
     let transition = verify_obligations_v0(
-        &VerificationSubjectV0::InquiryFrontier(original.clone()),
+        &VerificationSubjectV0::InquiryFrontier(Box::new(original.clone())),
         &load_verification_contract_v0(fixture("verification.adva")).unwrap(),
         &load_verification_packet_v0(fixture("refinement-1.adva")).unwrap(),
     )
