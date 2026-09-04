@@ -297,6 +297,11 @@ kernel are specified in
 It separates additive formation zero, multiplicative transport one, concrete
 zero faults, cached proof content, fresh instances, and program results without
 changing `adva.ir` version 1 or creating equation cells.
+Certified compiler graft frames can now supply the three ordered occurrence
+bindings directly, while the instance retains both certificate identifiers and
+the exact frame path for audit; the bounded adapter and its refusal of
+zero/multi-lineage holes are recorded in
+[`docs/research/0108-graft-derived-witness-instantiation.md`](docs/research/0108-graft-derived-witness-instantiation.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
