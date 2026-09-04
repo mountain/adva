@@ -1,0 +1,79 @@
+# Research 0116: Reality meaning and custody continuation
+
+## Question
+
+Run the common inquiry interface a second time, asking:
+
+1. What can “meaning on the reality side” mean for a finite observer?
+2. How can the observation and its trace resist accidental or adversarial
+   destruction?
+
+The experiment must not answer either question by equating a digest, name,
+signature, replica count, or majority vote with truth.
+
+## Candidate
+
+The second external resource contributes the word `custody`. Its working
+hypothesis is:
+
+> A formal claim has reality-facing meaning only relative to a versioned
+> external coordinate and a protocol that independent observers can apply
+> again. Its continued availability requires a separately auditable custody
+> chain across independent failure domains.
+
+Operationally, the meaning criterion is invariance under independent,
+protocol-conforming remeasurement within a declared tolerance, with every
+disagreement retained. This is stronger than naming and weaker than absolute
+truth.
+
+## Damage decomposition
+
+| Destructive action | Required response | Remaining limit |
+| --- | --- | --- |
+| mutate bytes | content address and parent-chain mismatch | detects but does not restore |
+| delete records | diverse replicas, erasure-coded cold export, repair | availability depends on the declared fault budget |
+| equivocate | retain both signed branches and emit fork evidence | does not decide which branch is true |
+| compromise keys | rotation, revocation, and successor receipts | cannot repair claims signed before a known compromise by itself |
+| capture custodians | institutional, geographic, administrative, and media diversity | independence must be demonstrated, not asserted |
+| drift semantics | versioned protocol plus independent remeasurement | observations may still genuinely disagree |
+
+The recorded proposal uses five declared failure domains, a three-receipt
+observation threshold, and a three-fragment recovery threshold. These numbers
+make the plan locally checkable; they are not presented as a Byzantine
+consensus theorem.
+
+## Input and output
+
+```console
+cargo run -p adva-witness --bin adva -- \
+  learn \
+  programs/bootstrap-0/frontier-1.adva \
+  programs/bootstrap-0/exploration.adva \
+  programs/bootstrap-0/resource-2.adva \
+  --output programs/bootstrap-0/hypothesis-2.adva \
+  --frontier-output programs/bootstrap-0/frontier-2.adva
+```
+
+The input slots remain:
+
+- `subject`: the sequence-one frontier;
+- `method`: the unchanged exploration contract;
+- `object`: the second recorded resource snapshot.
+
+The output slots remain `history`, `result`, and `evidence`. The result must be
+a proposed `custody` hypothesis. The evidence must contain a sequence-two
+frontier with two consumed resources, two retained candidate identities, and
+the original five open obligations.
+
+## Falsification boundary
+
+The proposal fails if independent remeasurement is unavailable, if supposedly
+independent receipts share one origin or control domain, if deletion within the
+declared budget prevents recovery, if mutation or equivocation can be hidden,
+or if protocol-conforming observations disagree beyond the declared tolerance.
+
+A successful software run checks only the structure of this proposal and the
+continuation chain. Actual reality grounding requires observation records;
+actual resistance requires deployed custodians, cryptographic verification,
+failure injection, recovery measurements, and governance outside this
+repository.

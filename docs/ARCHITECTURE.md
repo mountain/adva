@@ -346,6 +346,16 @@ rejected. The adapter closes no arithmetic obligation and authenticates no
 external claim; it supplies continuation integrity rather than liveness or
 truth.
 
+Reality-facing inquiry candidates may optionally retain a
+`RealityBoundaryV0`. It keeps protocol-bound independent remeasurement
+separate from the `CustodyPlanV0` used to declare damage assumptions. Integrity,
+authenticity, availability, fork accountability, and semantic reproducibility
+are distinct protected properties; deletion, mutation, equivocation, key
+compromise, and correlated capture are distinct threats. Rust checks nonempty
+coordinates and protocols, unique ledgers, and locally consistent positive
+thresholds. It does not contact an instrument, verify a signature, operate a
+replica set, execute a recovery drill, or infer truth from receipts.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a
