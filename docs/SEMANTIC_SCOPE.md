@@ -248,3 +248,10 @@ normalization, a proof judgment, or a residual executable program.
 
 Search-style APIs, when introduced, must return `Yes`, `No` with a checked
 countercertificate, or `Unknown`. Timeout and exhaustion are `Unknown`.
+
+The research trace-arithmetic calibration is outside stable semantics. It
+derives time, space, and construction projections from one completed reveal
+witness while retaining both ordered paths. Zero typed residuals are candidate
+alignment evidence only. The three cross-side characteristic functions,
+multiplicative holonomy filler, shared truth coordinate, observation anchor,
+and trust policy remain open; no digest or arithmetic collision supplies them.

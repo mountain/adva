@@ -1,18 +1,29 @@
-use adva_witness::{AdvaDocumentV0, M6NamingPlanV0, run_m6_reveal_v0, save_reveal_witness_v0};
+use adva_witness::{
+    AdvaDocumentV0, M6NamingPlanV0, calibrate_trace_arithmetic_v0, load_reveal_witness_v0,
+    run_m6_reveal_v0, save_reveal_witness_v0, save_trace_arithmetic_v0,
+};
 use std::env;
 use std::error::Error;
 use std::fs;
 use std::io::{self, ErrorKind};
 use std::path::PathBuf;
 
-const USAGE: &str =
-    "usage: adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]";
+const USAGE: &str = "usage:
+  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
+  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]";
 
 #[derive(Debug)]
 struct RevealArgs {
     program: PathBuf,
     output: PathBuf,
     fuel: u64,
+    print: bool,
+}
+
+#[derive(Debug)]
+struct TraceArithmeticArgs {
+    witness: PathBuf,
+    output: PathBuf,
     print: bool,
 }
 
@@ -29,10 +40,14 @@ fn run() -> Result<(), Box<dyn Error>> {
     let command = arguments
         .next()
         .ok_or_else(|| invalid_input("missing command"))?;
-    if command != "reveal" {
-        return Err(invalid_input(format!("unknown command {command:?}")).into());
+    match command.as_str() {
+        "reveal" => run_reveal(parse_reveal_args(arguments)?),
+        "trace-arithmetic" => run_trace_arithmetic(parse_trace_arithmetic_args(arguments)?),
+        _ => Err(invalid_input(format!("unknown command {command:?}")).into()),
     }
-    let parsed = parse_reveal_args(arguments)?;
+}
+
+fn run_reveal(parsed: RevealArgs) -> Result<(), Box<dyn Error>> {
     let source = fs::read_to_string(&parsed.program)?;
     let document = AdvaDocumentV0::from_json(&source)?;
     let witness = run_m6_reveal_v0(&document, M6NamingPlanV0::first_calibration(), parsed.fuel)?;
@@ -48,6 +63,31 @@ fn run() -> Result<(), Box<dyn Error>> {
         println!("FIRST_REVEAL_WITNESS_BEGIN");
         println!("{}", witness.to_json()?);
         println!("FIRST_REVEAL_WITNESS_END");
+    }
+    Ok(())
+}
+
+fn run_trace_arithmetic(parsed: TraceArithmeticArgs) -> Result<(), Box<dyn Error>> {
+    let witness = load_reveal_witness_v0(&parsed.witness)?;
+    let calibration = calibrate_trace_arithmetic_v0(&witness)?;
+    let receipt = save_trace_arithmetic_v0(&parsed.output, &calibration)?;
+
+    println!("time={:?}", calibration.alignment.time);
+    println!("space={:?}", calibration.alignment.space);
+    println!("construction={:?}", calibration.alignment.construction);
+    println!(
+        "holonomy_one={}",
+        calibration.commutative_holonomy.right_over_left.is_one()
+    );
+    println!("truth_fiber={:?}", calibration.truth_fiber.state);
+    println!("questions={}", calibration.questions.len());
+    println!("source={}", calibration.source_witness_digest);
+    println!("calibration={}", receipt.calibration_digest);
+    println!("output={}", receipt.path.display());
+    if parsed.print {
+        println!("TRACE_ARITHMETIC_CALIBRATION_BEGIN");
+        println!("{}", calibration.to_json()?);
+        println!("TRACE_ARITHMETIC_CALIBRATION_END");
     }
     Ok(())
 }
@@ -86,6 +126,36 @@ fn parse_reveal_args(arguments: impl IntoIterator<Item = String>) -> io::Result<
         program,
         output,
         fuel,
+        print,
+    })
+}
+
+fn parse_trace_arithmetic_args(
+    arguments: impl IntoIterator<Item = String>,
+) -> io::Result<TraceArithmeticArgs> {
+    let mut arguments = arguments.into_iter();
+    let witness = arguments
+        .next()
+        .map(PathBuf::from)
+        .ok_or_else(|| invalid_input("missing reveal witness"))?;
+    let mut output = None;
+    let mut print = false;
+    while let Some(argument) = arguments.next() {
+        match argument.as_str() {
+            "--output" => {
+                let value = arguments
+                    .next()
+                    .ok_or_else(|| invalid_input("--output requires a path"))?;
+                output = Some(PathBuf::from(value));
+            }
+            "--print" => print = true,
+            _ => return Err(invalid_input(format!("unknown argument {argument:?}"))),
+        }
+    }
+    let output = output.ok_or_else(|| invalid_input("--output is required"))?;
+    Ok(TraceArithmeticArgs {
+        witness,
+        output,
         print,
     })
 }

@@ -30,6 +30,12 @@ jobs:
           cmp \
             target/first-reveal-witness.adva \
             programs/bootstrap-0/first-reveal-witness.adva
+      - name: Run first three-sided trace arithmetic calibration
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            trace-arithmetic programs/bootstrap-0/first-reveal-witness.adva \
+            --output target/first-trace-arithmetic.adva \
+            --print
 
   python:
     runs-on: ubuntu-latest
