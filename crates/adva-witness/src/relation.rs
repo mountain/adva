@@ -349,12 +349,7 @@ fn check_braid(
     let [right_b, right_a, right_b_again] = right.steps() else {
         return Err(RelationFormationErrorV0::InvalidBraidWord);
     };
-    if a != a_again
-        || a == b
-        || right_b != b
-        || right_a != a
-        || right_b_again != b
-    {
+    if a != a_again || a == b || right_b != b || right_a != a || right_b_again != b {
         return Err(RelationFormationErrorV0::InvalidBraidWord);
     }
     Ok(())
