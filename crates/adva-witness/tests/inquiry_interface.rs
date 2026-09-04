@@ -138,8 +138,7 @@ fn committed_first_inquiry_outputs_replay_exactly() {
 #[test]
 fn second_learning_edge_introduces_only_custody_and_closes_nothing() {
     let frontier = load_inquiry_frontier_v0(fixture("frontier-1.adva")).unwrap();
-    let transition =
-        learn_hypothesis_v0(&frontier, &first_contract(), &second_resource()).unwrap();
+    let transition = learn_hypothesis_v0(&frontier, &first_contract(), &second_resource()).unwrap();
     let next = &transition.output.evidence.next_frontier;
 
     assert_eq!(transition.output.result.local_name, "custody");
