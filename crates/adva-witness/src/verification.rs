@@ -1,6 +1,6 @@
 use crate::{
-    ArtifactKeyV0, InquiryErrorV0, InquiryFrontierV0, InquiryInterfaceV0,
-    InquirySaveReceiptV0, InputLabelV0, MechanismV0, ObserverDomainV0, OutputLabelV0, TypedUnitV0,
+    ArtifactKeyV0, InputLabelV0, InquiryErrorV0, InquiryFrontierV0, InquiryInterfaceV0,
+    InquirySaveReceiptV0, MechanismV0, ObserverDomainV0, OutputLabelV0, TypedUnitV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
@@ -553,11 +553,8 @@ impl VerificationTransitionV0 {
             VERIFICATION_TRANSITION_SCHEMA_V0,
             &self.interface,
         )?;
-        let expected = verify_obligations_v0(
-            &self.input.subject,
-            &self.input.method,
-            &self.input.object,
-        )?;
+        let expected =
+            verify_obligations_v0(&self.input.subject, &self.input.method, &self.input.object)?;
         if self != &expected {
             return Err(VerificationErrorV0::InvalidArtifact(
                 "the verification transition is stale or was edited after derivation",
@@ -651,8 +648,9 @@ pub fn verify_obligations_v0(
                         action_ordinal,
                         decision: VerificationDecisionV0::Rejected,
                         obligations: vec![obligation_id.clone()],
-                        detail: "the reopening request does not name the recorded discharge witness"
-                            .to_owned(),
+                        detail:
+                            "the reopening request does not name the recorded discharge witness"
+                                .to_owned(),
                     });
                     continue;
                 }
@@ -682,19 +680,21 @@ pub fn verify_obligations_v0(
                     action_ordinal,
                     decision: VerificationDecisionV0::ForkRecorded,
                     obligations: Vec::new(),
-                    detail: "both conflicting branches remain visible; no branch was selected as truth"
-                        .to_owned(),
+                    detail:
+                        "both conflicting branches remain visible; no branch was selected as truth"
+                            .to_owned(),
                 });
             }
         }
     }
-    let unsupported_discharge_refused = packet.actions.iter().enumerate().all(|(ordinal, action)| {
-        !matches!(action, VerificationActionV0::Discharge { .. })
-            || outcomes.get(ordinal).is_some_and(|outcome| {
-                outcome.decision == VerificationDecisionV0::Rejected
-                    && outcome.detail.contains("no typed discharge predicate")
-            })
-    });
+    let unsupported_discharge_refused =
+        packet.actions.iter().enumerate().all(|(ordinal, action)| {
+            !matches!(action, VerificationActionV0::Discharge { .. })
+                || outcomes.get(ordinal).is_some_and(|outcome| {
+                    outcome.decision == VerificationDecisionV0::Rejected
+                        && outcome.detail.contains("no typed discharge predicate")
+                })
+        });
     frontier.lineage.sequence = sequence;
     frontier.lineage.parent_subject_digest = subject_digest.clone();
     frontier
@@ -853,8 +853,9 @@ fn apply_refinement(
             basis_digest: basis_digest.to_owned(),
         };
     }
-    frontier.obligations.extend(children.iter().map(|child| {
-        VerificationObligationV0 {
+    frontier
+        .obligations
+        .extend(children.iter().map(|child| VerificationObligationV0 {
             id: child.id.clone(),
             role: child.role,
             unit: child.unit,
@@ -862,8 +863,7 @@ fn apply_refinement(
             parents: child.parents.clone(),
             introduced_at: sequence,
             state: VerificationObligationStateV0::Open,
-        }
-    }));
+        }));
     let parent_ids = parent_children.into_keys().collect::<Vec<_>>();
     let child_count = children.len();
     Ok(VerificationActionOutcomeV0 {
@@ -981,8 +981,7 @@ fn check_refinement_child(child: &RefinementObligationV0) -> Result<(), Verifica
     }
     let parents = child.parents.iter().collect::<BTreeSet<_>>();
     if parents.len() != child.parents.len()
-        || (child.role == VerificationObligationRoleV0::SemanticClosure
-            && child.parents.is_empty())
+        || (child.role == VerificationObligationRoleV0::SemanticClosure && child.parents.is_empty())
         || (child.role == VerificationObligationRoleV0::Custody && !child.parents.is_empty())
     {
         return Err(VerificationErrorV0::InvalidArtifact(
@@ -995,9 +994,7 @@ fn check_refinement_child(child: &RefinementObligationV0) -> Result<(), Verifica
 fn check_state_digests(state: &VerificationObligationStateV0) -> Result<(), VerificationErrorV0> {
     match state {
         VerificationObligationStateV0::Open => Ok(()),
-        VerificationObligationStateV0::Refined { basis_digest, .. } => {
-            check_digest(basis_digest)
-        }
+        VerificationObligationStateV0::Refined { basis_digest, .. } => check_digest(basis_digest),
         VerificationObligationStateV0::Discharged {
             witness_digest,
             verifier_digest,
@@ -1126,11 +1123,9 @@ pub fn load_verification_subject_v0(
         Some(crate::INQUIRY_FRONTIER_SCHEMA_V0) => Ok(VerificationSubjectV0::InquiryFrontier(
             InquiryFrontierV0::from_json(&source)?,
         )),
-        Some(VERIFICATION_FRONTIER_SCHEMA_V0) => Ok(
-            VerificationSubjectV0::VerificationFrontier(VerificationFrontierV0::from_json(
-                &source,
-            )?),
-        ),
+        Some(VERIFICATION_FRONTIER_SCHEMA_V0) => Ok(VerificationSubjectV0::VerificationFrontier(
+            VerificationFrontierV0::from_json(&source)?,
+        )),
         _ => Err(VerificationErrorV0::InvalidArtifact(
             "verify subject must be an inquiry or verification frontier",
         )),
