@@ -1,10 +1,9 @@
 use adva_witness::{
     AdvaDocumentV0, CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0, M6NamingPlanV0,
-    MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0,
-    calibrate_trace_arithmetic_v0, derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0,
-    load_closure_transport_contract_v0, load_closure_transport_plan_v0,
-    load_exploration_contract_v0, load_inquiry_frontier_v0, load_local_closure_candidate_v0,
-    load_magic_square_frontier_v0, load_magic_square_resource_v0,
+    MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0, calibrate_trace_arithmetic_v0,
+    derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_closure_transport_contract_v0,
+    load_closure_transport_plan_v0, load_exploration_contract_v0, load_inquiry_frontier_v0,
+    load_local_closure_candidate_v0, load_magic_square_frontier_v0, load_magic_square_resource_v0,
     load_magic_square_search_contract_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
     load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
     run_closure_transport_v0, run_m6_reveal_v0, run_magic_square_search_v0,
@@ -164,7 +163,10 @@ fn run_magic_square_search(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
 
     println!("mechanism={:?}", transition.output.history.mechanism);
     println!("state={:?}", transition.output.result.state);
-    println!("nodes_expanded={}", transition.output.history.nodes_expanded);
+    println!(
+        "nodes_expanded={}",
+        transition.output.history.nodes_expanded
+    );
     println!("branches_cut={}", transition.output.history.branches_cut);
     println!(
         "unselected_closures={}",

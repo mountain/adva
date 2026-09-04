@@ -60,7 +60,9 @@ impl MagicSquareSearchNodeV0 {
 
     fn check(&self) -> Result<(), MagicSquareErrorV0> {
         if !partial_admissible(&self.cells) {
-            return Err(invalid("a pending search node is not arithmetically admissible"));
+            return Err(invalid(
+                "a pending search node is not arithmetically admissible",
+            ));
         }
         Ok(())
     }
@@ -111,13 +113,17 @@ impl MagicSquareFrontierV0 {
         for node in &self.pending {
             node.check()?;
             if !nodes.insert(node) {
-                return Err(invalid("the search frontier contains a repeated pending node"));
+                return Err(invalid(
+                    "the search frontier contains a repeated pending node",
+                ));
             }
         }
         match self.state {
             MagicSquareSearchStateV0::Frontier => {
                 if self.pending.is_empty() || self.closure.is_some() {
-                    return Err(invalid("an open search frontier needs pending work and no closure"));
+                    return Err(invalid(
+                        "an open search frontier needs pending work and no closure",
+                    ));
                 }
             }
             MagicSquareSearchStateV0::Identity => {
@@ -128,7 +134,9 @@ impl MagicSquareFrontierV0 {
             }
             MagicSquareSearchStateV0::Exhausted => {
                 if !self.pending.is_empty() || self.closure.is_some() {
-                    return Err(invalid("an exhausted frontier cannot retain work or a closure"));
+                    return Err(invalid(
+                        "an exhausted frontier cannot retain work or a closure",
+                    ));
                 }
             }
         }
@@ -181,8 +189,9 @@ impl MagicSquareSearchContractV0 {
             cell_selection: "first_open_cell_row_major".to_owned(),
             value_order: "unused_values_ascending".to_owned(),
             pruning: "exact_completed_lines_and_remaining_sum_bounds".to_owned(),
-            stop_condition: "first_exact_closure_with_sixteen_member_symmetry_orbit_or_fuel_exhaustion"
-                .to_owned(),
+            stop_condition:
+                "first_exact_closure_with_sixteen_member_symmetry_orbit_or_fuel_exhaustion"
+                    .to_owned(),
         }
     }
 
@@ -246,7 +255,9 @@ impl MagicSquareResourceV0 {
             &self.interface,
         )?;
         if self.fuel == 0 || self.fuel > MAX_FUEL {
-            return Err(invalid("magic-square fuel must be between one and one million"));
+            return Err(invalid(
+                "magic-square fuel must be between one and one million",
+            ));
         }
         if self.name != format!("recorded:exact-node-fuel:{}", self.fuel) {
             return Err(invalid("the resource name must exactly record its fuel"));
@@ -316,10 +327,14 @@ impl MagicSquareClosureContentV0 {
 
     pub fn check(&self) -> Result<(), MagicSquareErrorV0> {
         if self.finding != ClosureFindingClassV0::Identity || !complete_magic(&self.cells) {
-            return Err(invalid("a magic-square identity must be a complete exact closure"));
+            return Err(invalid(
+                "a magic-square identity must be a complete exact closure",
+            ));
         }
         if self.line_witnesses != line_witnesses(&self.cells) {
-            return Err(invalid("magic-square line witnesses do not match the cells"));
+            return Err(invalid(
+                "magic-square line witnesses do not match the cells",
+            ));
         }
         let before = characteristic_expression(self.cells);
         let after = characteristic_expression(1..=16);
@@ -443,7 +458,9 @@ impl MagicSquareFillTraceV0 {
         for (ordinal, cell) in order.into_iter().enumerate() {
             let index = usize::from(cell);
             if index >= CELL_COUNT || partial[index] != 0 {
-                return Err(invalid("a fill schedule repeats or exceeds a cell coordinate"));
+                return Err(invalid(
+                    "a fill schedule repeats or exceeds a cell coordinate",
+                ));
             }
             partial[index] = content.cells[index];
             if !partial_admissible(&partial) {
@@ -457,7 +474,9 @@ impl MagicSquareFillTraceV0 {
             remaining_factor_digests.push(remaining_factor_digest(&partial)?);
         }
         if partial != content.cells {
-            return Err(invalid("a fill schedule does not reach the claimed endpoint"));
+            return Err(invalid(
+                "a fill schedule does not reach the claimed endpoint",
+            ));
         }
         Ok(Self {
             name: name.to_owned(),
@@ -738,7 +757,9 @@ impl MagicSquareClosureFamilyV0 {
                 .iter()
                 .any(|coherence| coherence.status != CheckStatus::Checked)
         {
-            return Err(invalid("the selected closure did not generate the frozen finite family"));
+            return Err(invalid(
+                "the selected closure did not generate the frozen finite family",
+            ));
         }
         if self.seed_content_digest != seed.content.digest()?
             || self.members.first().map(|member| &member.closure)
@@ -751,8 +772,7 @@ impl MagicSquareClosureFamilyV0 {
                 return Err(invalid("closure family member ordinals are not canonical"));
             }
             member.closure.check()?;
-            if apply_transport_word(seed.content.cells, &member.first_word)
-                != member.closure.cells
+            if apply_transport_word(seed.content.cells, &member.first_word) != member.closure.cells
             {
                 return Err(invalid("a closure family word does not reach its member"));
             }
@@ -801,7 +821,9 @@ impl MagicSquareTransportReceiptV0 {
     fn check_against(&self, source: &MagicSquareCertificateV0) -> Result<(), MagicSquareErrorV0> {
         let expected = Self::derive(source, self.map)?;
         if self != &expected || self.source_occurrence == self.target.occurrence {
-            return Err(invalid("a symmetry transport receipt does not replay exactly"));
+            return Err(invalid(
+                "a symmetry transport receipt does not replay exactly",
+            ));
         }
         Ok(())
     }
@@ -828,7 +850,9 @@ impl MagicSquareSeparationV0 {
             .filter(|line| line.additive_residual != 0)
             .collect::<Vec<_>>();
         if !characteristic_residual.is_one() || failed_lines.is_empty() {
-            return Err(invalid("the frozen negative control is not a strict separation"));
+            return Err(invalid(
+                "the frozen negative control is not a strict separation",
+            ));
         }
         Ok(Self {
             class: ClosureFindingClassV0::Separation,
@@ -1030,7 +1054,10 @@ fn derive_output(input: &MagicSquareInputV0) -> Result<MagicSquareOutputV0, Magi
         .map(|cells| {
             MagicSquareCertificateV0::from_cells(
                 cells,
-                format!("experiment:0119:search-occurrence:{}", input.subject.sequence + 1),
+                format!(
+                    "experiment:0119:search-occurrence:{}",
+                    input.subject.sequence + 1
+                ),
             )
         })
         .transpose()?;
@@ -1044,14 +1071,11 @@ fn derive_output(input: &MagicSquareInputV0) -> Result<MagicSquareOutputV0, Magi
     let row_major_trace = solution
         .as_ref()
         .map(|certificate| {
-            MagicSquareFillTraceV0::from_order(
-                "row-major",
-                0_u8..16,
-                &certificate.content,
-            )
+            MagicSquareFillTraceV0::from_order("row-major", 0_u8..16, &certificate.content)
         })
         .transpose()?;
-    let column_major_order = (0_u8..4).flat_map(|column| (0_u8..4).map(move |row| row * 4 + column));
+    let column_major_order =
+        (0_u8..4).flat_map(|column| (0_u8..4).map(move |row| row * 4 + column));
     let column_major_trace = solution
         .as_ref()
         .map(|certificate| {
@@ -1068,7 +1092,9 @@ fn derive_output(input: &MagicSquareInputV0) -> Result<MagicSquareOutputV0, Magi
         row.check_against(&certificate.content)?;
         column.check_against(&certificate.content)?;
         if row == column || row.endpoint_content_digest != column.endpoint_content_digest {
-            return Err(invalid("the two schedules do not retain distinct common-endpoint histories"));
+            return Err(invalid(
+                "the two schedules do not retain distinct common-endpoint histories",
+            ));
         }
     }
     let adversarial_separation = solution
@@ -1235,10 +1261,7 @@ fn remaining_factor_digest(cells: &[u8; CELL_COUNT]) -> Result<String, MagicSqua
     digest_serialized(&expression)
 }
 
-fn transport_cells(
-    source: [u8; CELL_COUNT],
-    map: MagicSquareTransportMapV0,
-) -> [u8; CELL_COUNT] {
+fn transport_cells(source: [u8; CELL_COUNT], map: MagicSquareTransportMapV0) -> [u8; CELL_COUNT] {
     let mut target = [0_u8; CELL_COUNT];
     match map {
         MagicSquareTransportMapV0::RotateClockwise => {

@@ -1,8 +1,8 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    ClosureFindingClassV0, MagicSquareCertificateV0, MagicSquareFrontierV0,
-    MagicSquareResourceV0, MagicSquareSearchContractV0, MagicSquareSearchNodeV0,
-    MagicSquareSearchStateV0, load_magic_square_frontier_v0, load_magic_square_resource_v0,
+    ClosureFindingClassV0, MagicSquareCertificateV0, MagicSquareFrontierV0, MagicSquareResourceV0,
+    MagicSquareSearchContractV0, MagicSquareSearchNodeV0, MagicSquareSearchStateV0,
+    load_magic_square_frontier_v0, load_magic_square_resource_v0,
     load_magic_square_search_contract_v0, load_magic_square_transition_v0,
     run_magic_square_search_v0, save_magic_square_frontier_v0, save_magic_square_transition_v0,
 };
@@ -51,13 +51,47 @@ fn committed_inputs_match_the_frozen_experiment() {
 }
 
 #[test]
+fn committed_first_outputs_replay_byte_for_byte() {
+    let transition = first_transition();
+    let recorded = load_magic_square_transition_v0(fixture("magic-square-1.adva")).unwrap();
+    let frontier =
+        load_magic_square_frontier_v0(fixture("magic-square-frontier-1.adva")).unwrap();
+
+    assert_eq!(recorded, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:1fe21780fec9d7efaa4c69f98705ca5bc1f64bc400ac4dfb40ddcb3de7beebad"
+    );
+    assert_eq!(frontier, transition.output.evidence.next_frontier);
+    assert_eq!(
+        frontier.digest().unwrap(),
+        "blake3:7140af03d6ccbc6aaf4037618f7719ce479dd1de45a4cdb8eece72784128dbfd"
+    );
+    let solution = transition.output.result.solution.as_ref().unwrap();
+    assert_eq!(
+        solution.digest().unwrap(),
+        "blake3:9eb00959f3ad3d0074114f5c3466e82595c4aa66473002ca7a1f53c107b57434"
+    );
+    assert_eq!(
+        solution.content.digest().unwrap(),
+        "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3"
+    );
+}
+
+#[test]
 fn search_finds_a_maximally_unfolding_exact_closure() {
     let transition = first_transition();
     let solution = transition.output.result.solution.as_ref().unwrap();
 
-    assert_eq!(transition.output.result.state, MagicSquareSearchStateV0::Identity);
+    assert_eq!(
+        transition.output.result.state,
+        MagicSquareSearchStateV0::Identity
+    );
     assert_eq!(transition.output.history.nodes_expanded, 12_517);
-    assert_eq!(transition.output.history.unselected_closure_digests.len(), 2);
+    assert_eq!(
+        transition.output.history.unselected_closure_digests.len(),
+        2
+    );
     assert_eq!(
         solution.content.cells,
         [1, 2, 16, 15, 13, 14, 4, 3, 12, 7, 9, 6, 8, 11, 5, 10]
@@ -84,13 +118,9 @@ fn one_closure_unfolds_into_a_checked_interacting_family() {
     assert_eq!(family.unique_line_contents.len(), 12);
     assert_eq!(family.influences.len(), 32);
     assert_eq!(family.coherences.len(), 6);
-    assert!(
-        family
-            .coherences
-            .iter()
-            .all(|coherence| coherence.status == CheckStatus::Checked
-                && coherence.checked_members == 16)
-    );
+    assert!(family.coherences.iter().all(
+        |coherence| coherence.status == CheckStatus::Checked && coherence.checked_members == 16
+    ));
     let occurrences = family
         .members
         .iter()
@@ -103,13 +133,24 @@ fn one_closure_unfolds_into_a_checked_interacting_family() {
 fn two_fill_orders_share_an_endpoint_without_sharing_history() {
     let transition = first_transition();
     let row = transition.output.history.row_major_trace.as_ref().unwrap();
-    let column = transition.output.history.column_major_trace.as_ref().unwrap();
+    let column = transition
+        .output
+        .history
+        .column_major_trace
+        .as_ref()
+        .unwrap();
 
     assert_ne!(row, column);
     assert_ne!(row.assignments, column.assignments);
     assert_eq!(row.endpoint_content_digest, column.endpoint_content_digest);
-    assert_eq!(row.remaining_factor_digests.last(), column.remaining_factor_digests.last());
-    assert_eq!(transition.output.evidence.common_endpoint_retained, CheckStatus::Checked);
+    assert_eq!(
+        row.remaining_factor_digests.last(),
+        column.remaining_factor_digests.last()
+    );
+    assert_eq!(
+        transition.output.evidence.common_endpoint_retained,
+        CheckStatus::Checked
+    );
     assert_eq!(
         transition.output.evidence.distinct_histories_retained,
         CheckStatus::Checked
@@ -130,7 +171,10 @@ fn arithmetic_separation_preserves_the_value_multiset_but_breaks_incidence() {
     assert!(separation.characteristic_residual.is_one());
     assert!(!separation.failed_lines.is_empty());
     assert_eq!(
-        transition.output.evidence.separation_preserves_multiset_only,
+        transition
+            .output
+            .evidence
+            .separation_preserves_multiset_only,
         CheckStatus::Checked
     );
 }
@@ -139,9 +183,12 @@ fn arithmetic_separation_preserves_the_value_multiset_but_breaks_incidence() {
 fn fuel_exhaustion_can_be_resumed_to_the_same_content() {
     let initial = MagicSquareFrontierV0::initial();
     let method = MagicSquareSearchContractV0::first();
-    let first = run_magic_square_search_v0(&initial, &method, &MagicSquareResourceV0::new(5_000))
-        .unwrap();
-    assert_eq!(first.output.result.state, MagicSquareSearchStateV0::Frontier);
+    let first =
+        run_magic_square_search_v0(&initial, &method, &MagicSquareResourceV0::new(5_000)).unwrap();
+    assert_eq!(
+        first.output.result.state,
+        MagicSquareSearchStateV0::Frontier
+    );
     assert!(first.output.result.solution.is_none());
 
     let resumed = run_magic_square_search_v0(
@@ -151,7 +198,10 @@ fn fuel_exhaustion_can_be_resumed_to_the_same_content() {
     )
     .unwrap();
     let direct = first_transition();
-    assert_eq!(resumed.output.result.state, MagicSquareSearchStateV0::Identity);
+    assert_eq!(
+        resumed.output.result.state,
+        MagicSquareSearchStateV0::Identity
+    );
     assert_eq!(
         resumed.output.result.solution.as_ref().unwrap().content,
         direct.output.result.solution.as_ref().unwrap().content
