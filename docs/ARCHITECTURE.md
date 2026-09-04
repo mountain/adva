@@ -368,6 +368,17 @@ rejected. Refinement can therefore increase the number of open leaves without
 pretending that knowledge regressed. Semantic closure excludes the orthogonal
 custody ledger and additionally requires an empty unresolved-fork ledger.
 
+`MagicSquareFrontierV0` is the first bounded search state admitted through the
+same `learn` interface. Its method performs deterministic row-major search with
+recorded node fuel. A completed order-four square is checked in two independent
+ways: ten incidence-sensitive additive line equations and one order-insensitive
+characteristic-polynomial equation for the value multiset. The selected closure
+is then unfolded under three method-supplied automorphisms into a finite
+`MagicSquareClosureFamilyV0`. Members, generator edges, coherence relations,
+local line-content reuse, and shared-cell influences remain distinct records.
+This is a research-local closure ecology, not a stable solver or a generic
+closure operator.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a

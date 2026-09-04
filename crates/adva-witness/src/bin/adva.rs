@@ -1,14 +1,16 @@
 use adva_witness::{
     AdvaDocumentV0, CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0, M6NamingPlanV0,
-    calibrate_trace_arithmetic_v0, derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0,
-    load_closure_transport_contract_v0, load_closure_transport_plan_v0,
-    load_exploration_contract_v0, load_inquiry_frontier_v0, load_local_closure_candidate_v0,
-    load_resource_snapshot_v0, load_reveal_witness_v0, load_verification_contract_v0,
-    load_verification_packet_v0, load_verification_subject_v0, run_closure_transport_v0,
-    run_m6_reveal_v0, save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
-    save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_reveal_witness_v0,
-    save_trace_arithmetic_v0, save_verification_frontier_v0, save_verification_transition_v0,
-    verify_obligations_v0,
+    MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0, calibrate_trace_arithmetic_v0,
+    derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_closure_transport_contract_v0,
+    load_closure_transport_plan_v0, load_exploration_contract_v0, load_inquiry_frontier_v0,
+    load_local_closure_candidate_v0, load_magic_square_frontier_v0, load_magic_square_resource_v0,
+    load_magic_square_search_contract_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
+    load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
+    run_closure_transport_v0, run_m6_reveal_v0, run_magic_square_search_v0,
+    save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
+    save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_magic_square_frontier_v0,
+    save_magic_square_transition_v0, save_reveal_witness_v0, save_trace_arithmetic_v0,
+    save_verification_frontier_v0, save_verification_transition_v0, verify_obligations_v0,
 };
 use std::env;
 use std::error::Error;
@@ -20,8 +22,8 @@ const USAGE: &str = "usage:
   adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
   adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]
   adva frontier <calibration.adva> --output <frontier.adva> [--print]
-  adva learn <frontier.adva> <contract.adva> <resource.adva> --output <hypothesis.adva> --frontier-output <next-frontier.adva> [--print]
-  adva verify <frontier.adva> <verifier.adva> <packet.adva> --output <verification.adva> --frontier-output <verification-frontier.adva> [--print]";
+  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]
+  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]";
 
 #[derive(Debug)]
 struct RevealArgs {
@@ -107,6 +109,16 @@ fn run_frontier(parsed: FrontierArgs) -> Result<(), Box<dyn Error>> {
 }
 
 fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
+    let method_source = fs::read_to_string(&parsed.contract)?;
+    let method_value: serde_json::Value = serde_json::from_str(&method_source)?;
+    if method_value
+        .get("schema")
+        .and_then(serde_json::Value::as_str)
+        == Some(MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0)
+    {
+        return run_magic_square_search(parsed);
+    }
+
     let frontier = load_inquiry_frontier_v0(&parsed.frontier)?;
     let contract = load_exploration_contract_v0(&parsed.contract)?;
     let resource = load_resource_snapshot_v0(&parsed.resource)?;
@@ -136,6 +148,52 @@ fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
         println!("NEXT_INQUIRY_FRONTIER_BEGIN");
         println!("{}", next_frontier.to_json()?);
         println!("NEXT_INQUIRY_FRONTIER_END");
+    }
+    Ok(())
+}
+
+fn run_magic_square_search(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
+    let subject = load_magic_square_frontier_v0(&parsed.frontier)?;
+    let method = load_magic_square_search_contract_v0(&parsed.contract)?;
+    let object = load_magic_square_resource_v0(&parsed.resource)?;
+    let transition = run_magic_square_search_v0(&subject, &method, &object)?;
+    let transition_receipt = save_magic_square_transition_v0(&parsed.output, &transition)?;
+    let next_frontier = &transition.output.evidence.next_frontier;
+    let frontier_receipt = save_magic_square_frontier_v0(&parsed.frontier_output, next_frontier)?;
+
+    println!("mechanism={:?}", transition.output.history.mechanism);
+    println!("state={:?}", transition.output.result.state);
+    println!(
+        "nodes_expanded={}",
+        transition.output.history.nodes_expanded
+    );
+    println!("branches_cut={}", transition.output.history.branches_cut);
+    println!(
+        "unselected_closures={}",
+        transition.output.history.unselected_closure_digests.len()
+    );
+    if let Some(solution) = &transition.output.result.solution {
+        println!("closure={}", solution.digest()?);
+        println!("content={}", solution.content.digest()?);
+    }
+    if let Some(family) = &transition.output.evidence.closure_family {
+        println!("family_members={}", family.members.len());
+        println!("family_edges={}", family.edges.len());
+        println!("line_occurrences={}", family.line_occurrences);
+        println!("unique_line_contents={}", family.unique_line_contents.len());
+        println!("influences={}", family.influences.len());
+    }
+    println!("transition={}", transition_receipt.artifact_digest);
+    println!("next_frontier={}", frontier_receipt.artifact_digest);
+    println!("output={}", transition_receipt.path.display());
+    println!("frontier_output={}", frontier_receipt.path.display());
+    if parsed.print {
+        println!("MAGIC_SQUARE_TRANSITION_BEGIN");
+        println!("{}", transition.to_json()?);
+        println!("MAGIC_SQUARE_TRANSITION_END");
+        println!("MAGIC_SQUARE_FRONTIER_BEGIN");
+        println!("{}", next_frontier.to_json()?);
+        println!("MAGIC_SQUARE_FRONTIER_END");
     }
     Ok(())
 }
