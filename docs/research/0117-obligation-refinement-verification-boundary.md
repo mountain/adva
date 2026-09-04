@@ -98,6 +98,25 @@ The emitted transition must report semantic leaves `5 -> 7`, custody leaves
 `0 -> 1`, no certificate, and an open residual frontier. CI repeats the run and
 requires byte equality with the committed artifacts.
 
+## First recorded result
+
+The first bounded verification run completed with the origin inquiry frontier
+unchanged:
+
+| Artifact | BLAKE3 coordinate |
+| --- | --- |
+| origin `frontier-2.adva` | `ae23c007227cf0665fd2928dfb5adb41c2d23923649f867b128bdd6533deb39c` |
+| verification method | `fd0e40317c10bc3d95183b3a84efa9405ef7f1199bdbf38f6d4efb1de6b48861` |
+| refinement packet | `6d0386047a38dab275a677d653f316a046a1c504e74d680aa015483ca19b30fb` |
+| verification transition | `ca98f26cfcd80375d26e2372bfd37417d70e563ad7747adc00a093647e5e79dc` |
+| residual verification frontier | `bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91` |
+
+The transition contains one applied refinement outcome, thirteen total nodes
+(five refined roots plus eight open leaves), no unresolved fork, and no scoped
+certificate. The parent list is deliberately sorted by stable artifact
+coordinate in the decision trace; each child retains its specific parent and
+the packet digest that caused the refinement.
+
 ## Falsification boundary
 
 This experiment does not supply \(\chi_T\), \(\chi_S\), \(\chi_C\), ordered

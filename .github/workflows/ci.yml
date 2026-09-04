@@ -77,13 +77,10 @@ jobs:
             programs/bootstrap-0/refinement-1.adva \
             --output target/verification-1.adva \
             --frontier-output target/verification-frontier-1.adva
-      - name: Retain first verification outputs
-        uses: actions/upload-artifact@v4
-        with:
-          name: first-verification-outputs
-          path: |
-            target/verification-1.adva
-            target/verification-frontier-1.adva
+          cmp target/verification-1.adva programs/bootstrap-0/verification-1.adva
+          cmp \
+            target/verification-frontier-1.adva \
+            programs/bootstrap-0/verification-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
