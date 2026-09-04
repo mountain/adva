@@ -320,6 +320,18 @@ extend `AdvaDocumentV0` or `adva.ir`. The first six-fuel output is retained at
 `programs/bootstrap-0/first-reveal-witness.adva`; CI derives it again and
 requires byte equality.
 
+The trace-arithmetic adapter consumes that persisted witness rather than the
+source document. It retains both exact frame paths and derives independent
+time-count, spatial-boundary, and construction-mechanism projections. Typed
+`left - right` residuals cannot cancel across domains. A commutative
+mechanism-weight quotient is diagnostic only and retains its nonidentity as an
+open holonomy question. The three opposite-side characteristic maps and the
+shared truth fiber remain explicitly unwitnessed. Projection equality, BLAKE3
+coordinates, and M6 formation are not promoted to semantic equality or truth.
+The first derived artifact is retained at
+`programs/bootstrap-0/first-trace-arithmetic.adva` and reproduced byte-for-byte
+by CI.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a
