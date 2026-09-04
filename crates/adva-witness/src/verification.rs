@@ -292,8 +292,8 @@ impl VerificationPacketV0 {
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(tag = "kind", content = "artifact", rename_all = "snake_case")]
 pub enum VerificationSubjectV0 {
-    InquiryFrontier(InquiryFrontierV0),
-    VerificationFrontier(VerificationFrontierV0),
+    InquiryFrontier(Box<InquiryFrontierV0>),
+    VerificationFrontier(Box<VerificationFrontierV0>),
 }
 
 impl VerificationSubjectV0 {
@@ -770,7 +770,7 @@ fn seed_or_continue_frontier(
             version: VERIFICATION_VERSION_V0,
             interface: InquiryInterfaceV0::canonical(),
             origin_inquiry_frontier_digest: origin.digest()?,
-            origin_inquiry_frontier: origin.clone(),
+            origin_inquiry_frontier: origin.as_ref().clone(),
             obligations: root_obligations(origin),
             unresolved_forks: Vec::new(),
             lineage: VerificationLineageV0 {
@@ -788,7 +788,7 @@ fn seed_or_continue_frontier(
                     actual: method_digest.to_owned(),
                 });
             }
-            Ok(frontier.clone())
+            Ok(frontier.as_ref().clone())
         }
     }
 }
@@ -922,17 +922,16 @@ fn check_obligation_graph(frontier: &VerificationFrontierV0) -> Result<(), Verif
                 "verification obligations need unique coordinates, details, and valid sequence positions",
             ));
         }
-        if index >= roots.len() {
-            if obligation.introduced_at == 0
+        if index >= roots.len()
+            && (obligation.introduced_at == 0
                 || (obligation.role == VerificationObligationRoleV0::SemanticClosure
                     && obligation.parents.is_empty())
                 || (obligation.role == VerificationObligationRoleV0::Custody
-                    && !obligation.parents.is_empty())
-            {
-                return Err(VerificationErrorV0::InvalidArtifact(
-                    "new semantic leaves need parents while custody leaves remain orthogonal",
-                ));
-            }
+                    && !obligation.parents.is_empty()))
+        {
+            return Err(VerificationErrorV0::InvalidArtifact(
+                "new semantic leaves need parents while custody leaves remain orthogonal",
+            ));
         }
         let parents = obligation.parents.iter().collect::<BTreeSet<_>>();
         if parents.len() != obligation.parents.len()
@@ -1121,10 +1120,10 @@ pub fn load_verification_subject_v0(
         .map_err(|error| VerificationErrorV0::Json(error.to_string()))?;
     match value.get("schema").and_then(serde_json::Value::as_str) {
         Some(crate::INQUIRY_FRONTIER_SCHEMA_V0) => Ok(VerificationSubjectV0::InquiryFrontier(
-            InquiryFrontierV0::from_json(&source)?,
+            Box::new(InquiryFrontierV0::from_json(&source)?),
         )),
         Some(VERIFICATION_FRONTIER_SCHEMA_V0) => Ok(VerificationSubjectV0::VerificationFrontier(
-            VerificationFrontierV0::from_json(&source)?,
+            Box::new(VerificationFrontierV0::from_json(&source)?),
         )),
         _ => Err(VerificationErrorV0::InvalidArtifact(
             "verify subject must be an inquiry or verification frontier",
