@@ -115,7 +115,10 @@ fn candidate_identity_does_not_depend_on_its_local_name() {
         first.output.result.identity_digest,
         renamed.output.result.identity_digest
     );
-    assert_ne!(first.output.result.local_name, renamed.output.result.local_name);
+    assert_ne!(
+        first.output.result.local_name,
+        renamed.output.result.local_name
+    );
     assert_ne!(
         first.output.result.resource_digest,
         renamed.output.result.resource_digest
@@ -137,8 +140,7 @@ fn a_transition_rejects_post_hoc_randomness_edits() {
 #[test]
 fn a_continuation_rejects_resource_replay_and_algorithm_drift() {
     let resource = first_resource();
-    let transition =
-        learn_hypothesis_v0(&first_frontier(), &first_contract(), &resource).unwrap();
+    let transition = learn_hypothesis_v0(&first_frontier(), &first_contract(), &resource).unwrap();
     let next = transition.output.evidence.next_frontier;
 
     assert!(matches!(
@@ -147,8 +149,7 @@ fn a_continuation_rejects_resource_replay_and_algorithm_drift() {
     ));
 
     let mut drifted = next;
-    drifted.lineage.algorithm_contract_digest =
-        Some(format!("blake3:{}", "0".repeat(64)));
+    drifted.lineage.algorithm_contract_digest = Some(format!("blake3:{}", "0".repeat(64)));
     drifted.check().unwrap();
     assert!(matches!(
         learn_hypothesis_v0(&drifted, &first_contract(), &first_resource()),
@@ -171,14 +172,12 @@ fn question_coordinates_cannot_be_renamed_at_the_interface() {
 #[test]
 fn frontier_and_transition_round_trip_as_checked_adva_files() {
     let frontier = first_frontier();
-    let transition =
-        learn_hypothesis_v0(&frontier, &first_contract(), &first_resource()).unwrap();
+    let transition = learn_hypothesis_v0(&frontier, &first_contract(), &first_resource()).unwrap();
     let frontier_path = temporary_path("frontier.adva");
     let transition_path = temporary_path("hypothesis.adva");
 
     let frontier_receipt = save_inquiry_frontier_v0(&frontier_path, &frontier).unwrap();
-    let transition_receipt =
-        save_hypothesis_transition_v0(&transition_path, &transition).unwrap();
+    let transition_receipt = save_hypothesis_transition_v0(&transition_path, &transition).unwrap();
     assert_eq!(load_inquiry_frontier_v0(&frontier_path).unwrap(), frontier);
     assert_eq!(
         load_hypothesis_transition_v0(&transition_path).unwrap(),

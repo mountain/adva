@@ -1,9 +1,9 @@
 use adva_witness::{
     AdvaDocumentV0, M6NamingPlanV0, calibrate_trace_arithmetic_v0,
     derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_exploration_contract_v0,
-    load_inquiry_frontier_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
-    run_m6_reveal_v0, save_hypothesis_transition_v0, save_inquiry_frontier_v0,
-    save_reveal_witness_v0, save_trace_arithmetic_v0,
+    load_inquiry_frontier_v0, load_resource_snapshot_v0, load_reveal_witness_v0, run_m6_reveal_v0,
+    save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_reveal_witness_v0,
+    save_trace_arithmetic_v0,
 };
 use std::env;
 use std::error::Error;
