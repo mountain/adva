@@ -398,6 +398,14 @@ geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in
 [`docs/RESEARCH_ENGINEERING_AGENDA.md`](docs/RESEARCH_ENGINEERING_AGENDA.md).
 
+The first persistent finite-observer handoff is specified in
+[`docs/research/0115-frontier-hypothesis-interface-experiment.md`](docs/research/0115-frontier-hypothesis-interface-experiment.md).
+It derives a five-question `frontier.adva`, freezes the exploration algorithm,
+records one unauthenticated external resource snapshot, and emits a proposed
+`hypothesis` plus the complete next frontier through the common three-input and
+three-output interface. The first selected content word is `representation`;
+it remains a falsifiable candidate and closes no question.
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole

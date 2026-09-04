@@ -7,6 +7,7 @@
 
 mod arithmetic;
 mod boundary;
+mod inquiry;
 mod mechanism;
 mod persistence;
 mod relation;
@@ -17,6 +18,7 @@ mod witness;
 
 pub use arithmetic::*;
 pub use boundary::*;
+pub use inquiry::*;
 pub use mechanism::*;
 pub use persistence::*;
 pub use relation::*;

@@ -332,6 +332,20 @@ The first derived artifact is retained at
 `programs/bootstrap-0/first-trace-arithmetic.adva` and reproduced byte-for-byte
 by CI.
 
+The bounded inquiry adapter turns that calibration into a resumable
+`InquiryFrontierV0`. The frontier embeds the original calibration and carries
+its five exact open obligation coordinates. A `learn` edge then reads three
+independent `.adva` files through the fixed `subject/method/object` slots: the
+frontier, a frozen `ExplorationContractV0`, and a recorded external
+`ResourceSnapshotV0`. It writes `history/result/evidence`, where the result is
+only a proposed `HypothesisV0` and the evidence contains the complete next
+frontier. Candidate content identity excludes its local name, while the
+resource receipt preserves both the name and recorded entropy. Algorithm
+drift, resource replay, question renaming, and post-hoc resource edits are
+rejected. The adapter closes no arithmetic obligation and authenticates no
+external claim; it supplies continuation integrity rather than liveness or
+truth.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a

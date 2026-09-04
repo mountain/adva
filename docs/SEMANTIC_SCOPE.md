@@ -255,3 +255,13 @@ witness while retaining both ordered paths. Zero typed residuals are candidate
 alignment evidence only. The three cross-side characteristic functions,
 multiplicative holonomy filler, shared truth coordinate, observation anchor,
 and trust policy remain open; no digest or arithmetic collision supplies them.
+
+The research inquiry interface may persist those five questions as one
+`InquiryFrontierV0` and run one bounded `learn` transition over separate
+frontier, frozen-contract, and recorded-resource files. Its fixed positional
+boundary is `subject/method/object` to `history/result/evidence`. The result is
+a proposed, falsifiable hypothesis; evidence embeds a next frontier with every
+question still open. Resource entropy is a recorded output, not a reproducible
+external generator. Candidate names are presentation data, BLAKE3 coordinates
+are integrity addresses rather than signatures, and continuation safety does
+not imply an eventual answer, consensus, convergence, or infinite execution.
