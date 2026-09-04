@@ -285,3 +285,11 @@ evidence. `ScopedClosed` means only that every semantic leaf in the embedded
 finite scope has a typed discharge record and no unresolved fork remains. It
 does not mean observer-independent truth, permanent closure, global
 termination, or custody durability; counterevidence may append a reopening.
+
+The characteristic magic-square experiment is likewise outside stable
+semantics. Exact polynomial normalization certifies only the finite value
+multiset, while the ten line equations retain spatial incidence. Its search
+policy and rotation/reflection/complement generators are frozen experimental
+inputs. The resulting sixteen-member family, relation checks, and influence
+graph do not establish learned symmetry, unbounded self-generation, semantic
+identity between occurrences, or a geometric moduli-space interpretation.

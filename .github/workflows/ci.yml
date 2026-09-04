@@ -97,6 +97,22 @@ jobs:
           cmp \
             target/closure-transport-frontier-1.adva \
             programs/bootstrap-0/closure-transport-frontier-1.adva
+      - name: Run first characteristic magic-square closure-family experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            programs/bootstrap-0/magic-square-frontier.adva \
+            programs/bootstrap-0/magic-square-search.adva \
+            programs/bootstrap-0/magic-square-resource.adva \
+            --output target/magic-square-1.adva \
+            --frontier-output target/magic-square-frontier-1.adva
+      - name: Retain first magic-square outputs
+        uses: actions/upload-artifact@v4
+        with:
+          name: first-magic-square-outputs
+          path: |
+            target/magic-square-1.adva
+            target/magic-square-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
