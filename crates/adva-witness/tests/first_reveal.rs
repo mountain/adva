@@ -64,11 +64,9 @@ fn committed_first_witness_replays_the_first_run_exactly() {
         run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
 
     assert_eq!(recorded, derived);
+    let persisted = format!("{}\n", recorded.to_json().unwrap());
     assert_eq!(
-        format!(
-            "blake3:{}",
-            blake3::hash(recorded.to_json().unwrap().as_bytes()).to_hex()
-        ),
+        format!("blake3:{}", blake3::hash(persisted.as_bytes()).to_hex()),
         "blake3:b03cee7f38c01f0a84fa3c71227955ce8c85ac01a844f8c47e74a06c45a0d007"
     );
 }
