@@ -1,9 +1,9 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0,
-    AdvaPersistenceErrorV0, ArtifactKeyV0, CarrierRouteV0, FrontierSiteV0, InputLabelV0,
-    MechanismInputV0, MechanismOutputV0, NeutralCarrierV0, OpenFrontierV0, OutputLabelV0,
-    ReloadPlanV0, RoleV0, load_adva_document_v0, save_adva_document_v0,
+    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0, AdvaPersistenceErrorV0,
+    ArtifactKeyV0, CarrierRouteV0, FrontierSiteV0, InputLabelV0, MechanismInputV0,
+    MechanismOutputV0, NeutralCarrierV0, OpenFrontierV0, OutputLabelV0, ReloadPlanV0, RoleV0,
+    load_adva_document_v0, save_adva_document_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -74,14 +74,8 @@ fn document_round_trip_requires_an_explicit_exact_slot_bijection() {
     assert_eq!(loaded.input, expected_input("first"));
     assert_eq!(loaded.certificate.schema, ADVA_DOCUMENT_SCHEMA_V0);
     assert_eq!(loaded.certificate.version, ADVA_DOCUMENT_VERSION_V0);
-    assert_eq!(
-        loaded.certificate.schema_and_version,
-        CheckStatus::Checked
-    );
-    assert_eq!(
-        loaded.certificate.canonical_frontiers,
-        CheckStatus::Checked
-    );
+    assert_eq!(loaded.certificate.schema_and_version, CheckStatus::Checked);
+    assert_eq!(loaded.certificate.canonical_frontiers, CheckStatus::Checked);
     assert_eq!(
         loaded.certificate.exact_slot_bijection,
         CheckStatus::Checked

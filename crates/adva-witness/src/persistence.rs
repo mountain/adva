@@ -1,6 +1,6 @@
 use crate::{
-    ADVA_FILE_SUFFIX_V0, InputLabelV0, MechanismInputV0, MechanismOutputV0,
-    MechanismSyntaxErrorV0, NeutralCarrierV0, OpenFrontierV0, OutputLabelV0,
+    ADVA_FILE_SUFFIX_V0, InputLabelV0, MechanismInputV0, MechanismOutputV0, MechanismSyntaxErrorV0,
+    NeutralCarrierV0, OpenFrontierV0, OutputLabelV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
@@ -79,10 +79,7 @@ impl AdvaDocumentV0 {
     ///
     /// Rejects an invalid document or a route plan that copies, drops, or
     /// reuses a slot.
-    pub fn reload(
-        &self,
-        plan: &ReloadPlanV0,
-    ) -> Result<ReloadArtifactV0, AdvaPersistenceErrorV0> {
+    pub fn reload(&self, plan: &ReloadPlanV0) -> Result<ReloadArtifactV0, AdvaPersistenceErrorV0> {
         self.validate()?;
         let routes = plan.canonical_routes()?;
         let subject = source_for_input(&self.output, &routes, InputLabelV0::Subject)?;
@@ -156,17 +153,13 @@ impl ReloadPlanV0 {
     /// # Errors
     ///
     /// Rejects repeated output slots or repeated input slots.
-    pub fn from_routes(
-        routes: [CarrierRouteV0; 3],
-    ) -> Result<Self, AdvaPersistenceErrorV0> {
+    pub fn from_routes(routes: [CarrierRouteV0; 3]) -> Result<Self, AdvaPersistenceErrorV0> {
         let plan = Self { routes };
         plan.canonical_routes()?;
         Ok(plan)
     }
 
-    fn canonical_routes(
-        &self,
-    ) -> Result<[CarrierRouteV0; 3], AdvaPersistenceErrorV0> {
+    fn canonical_routes(&self) -> Result<[CarrierRouteV0; 3], AdvaPersistenceErrorV0> {
         let mut outputs = BTreeSet::new();
         let mut inputs = BTreeSet::new();
         for route in self.routes {
@@ -272,8 +265,7 @@ fn validate_carrier(
     if carrier.structure.as_str().is_empty() {
         return Err(AdvaPersistenceErrorV0::EmptyArtifactKey(label));
     }
-    let canonical =
-        OpenFrontierV0::from_sites(carrier.frontier.sites().iter().cloned())?;
+    let canonical = OpenFrontierV0::from_sites(carrier.frontier.sites().iter().cloned())?;
     if canonical != carrier.frontier {
         return Err(AdvaPersistenceErrorV0::NonCanonicalFrontier(label));
     }
@@ -298,9 +290,7 @@ fn source_for_input(
 
 fn require_adva_extension(path: &Path) -> Result<(), AdvaPersistenceErrorV0> {
     if path.extension().and_then(|extension| extension.to_str()) != Some(ADVA_FILE_SUFFIX_V0) {
-        return Err(AdvaPersistenceErrorV0::InvalidExtension(
-            path.to_path_buf(),
-        ));
+        return Err(AdvaPersistenceErrorV0::InvalidExtension(path.to_path_buf()));
     }
     Ok(())
 }
@@ -312,10 +302,7 @@ fn write_atomically(path: &Path, bytes: &[u8]) -> Result<(), AdvaPersistenceErro
         .and_then(|name| name.to_str())
         .ok_or_else(|| AdvaPersistenceErrorV0::InvalidFileName(path.to_path_buf()))?;
     let ordinal = TEMPORARY_FILE_ORDINAL.fetch_add(1, Ordering::Relaxed);
-    let temporary = parent.join(format!(
-        ".{file_name}.tmp-{}-{ordinal}",
-        std::process::id()
-    ));
+    let temporary = parent.join(format!(".{file_name}.tmp-{}-{ordinal}", std::process::id()));
     let mut file = OpenOptions::new()
         .write(true)
         .create_new(true)
