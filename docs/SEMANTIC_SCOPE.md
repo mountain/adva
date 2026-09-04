@@ -275,3 +275,13 @@ accountability, and semantic reproducibility, and validates only the internal
 shape of declared custody thresholds and recovery plans. It performs no
 measurement, signature verification, replication, erasure reconstruction,
 fault injection, consensus, trust decision, or social-governance operation.
+
+The research verification boundary is also outside stable semantics. It
+embeds the unchanged inquiry frontier, freezes a method-file digest, and
+records refinements, rejected discharge requests, reopenings, and conflicting
+branches through the same positional interface. Its first method can refine
+questions but cannot discharge them: BLAKE3 references are insufficient
+evidence. `ScopedClosed` means only that every semantic leaf in the embedded
+finite scope has a typed discharge record and no unresolved fork remains. It
+does not mean observer-independent truth, permanent closure, global
+termination, or custody durability; counterevidence may append a reopening.

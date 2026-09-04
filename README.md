@@ -413,6 +413,14 @@ from integrity, authenticity, availability, and fork accountability, and
 records a typed threat and recovery envelope. See
 [`docs/research/0116-reality-custody-continuation-experiment.md`](docs/research/0116-reality-custody-continuation-experiment.md).
 
+The next experiment adds a content-addressed `verify` method without changing
+either inquiry frontier. It refines the five arithmetic questions into seven
+semantic leaves and one orthogonal custody leaf, records every decision in a
+three-output transition, and refuses digest-only discharge. A scoped
+certificate can exist only after all semantic leaves have typed discharge
+witnesses and no unresolved fork remains. See
+[`docs/research/0117-obligation-refinement-verification-boundary.md`](docs/research/0117-obligation-refinement-verification-boundary.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
