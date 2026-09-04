@@ -210,6 +210,10 @@ cargo run -p adva-witness --bin adva -- \
   --output target/first-trace-arithmetic.adva
 ```
 
+The first generated output is retained byte-for-byte as
+[`programs/bootstrap-0/first-trace-arithmetic.adva`](programs/bootstrap-0/first-trace-arithmetic.adva),
+and CI regenerates and compares it.
+
 For the first `M6` pair, time counts and exact spatial endpoints match while
 the construction residual is `compute = +1, verify = -1`. Its naive
 commutative product shadow does not normalize to one, all three cross-side

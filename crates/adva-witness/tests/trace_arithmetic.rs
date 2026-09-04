@@ -21,6 +21,11 @@ fn first_witness() -> adva_witness::RevealWitnessV0 {
     load_reveal_witness_v0(path).unwrap()
 }
 
+fn first_calibration_path() -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR"))
+        .join("../../programs/bootstrap-0/first-trace-arithmetic.adva")
+}
+
 fn temporary_calibration_path() -> PathBuf {
     let ordinal = TEST_ORDINAL.fetch_add(1, Ordering::Relaxed);
     let directory = std::env::temp_dir().join(format!(
@@ -79,6 +84,19 @@ fn naive_commutative_m6_holonomy_does_not_normalize_to_one() {
             .iter()
             .all(|constraint| constraint.state == CharacteristicStateV0::Open
                 && constraint.witness.is_none())
+    );
+}
+
+#[test]
+fn committed_first_calibration_replays_the_arithmetic_run_exactly() {
+    let recorded = load_trace_arithmetic_v0(first_calibration_path()).unwrap();
+    let derived = calibrate_trace_arithmetic_v0(&first_witness()).unwrap();
+
+    assert_eq!(recorded, derived);
+    let persisted = format!("{}\n", recorded.to_json().unwrap());
+    assert_eq!(
+        format!("blake3:{}", blake3::hash(persisted.as_bytes()).to_hex()),
+        "blake3:09be4633b0cbef2e9d8a29f2e6b7b2ea1a1bf7e3f715655d411b42f18af3d407"
     );
 }
 
