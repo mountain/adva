@@ -405,8 +405,8 @@ pub fn run_m6_reveal_v0(
     } else {
         let residual = ArtifactKeyV0::cache_label(OPEN_FILLER_KEY)
             .expect("the static reveal residual is nonempty");
-        let forward_frames = forward.map(|transport| transport.frame);
-        let conjugate_frames = conjugate.map(|transport| transport.frame);
+        let forward_frames = forward.each_ref().map(|transport| transport.frame);
+        let conjugate_frames = conjugate.each_ref().map(|transport| transport.frame);
         let relation = FrameRelationCellV0::derive(
             document,
             RelationProfileV0::braid_m6(),
