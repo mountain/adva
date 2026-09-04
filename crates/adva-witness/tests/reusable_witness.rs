@@ -2,9 +2,9 @@ use adva_ir::DiagramValidationArtifact;
 use adva_lisp::{compile_function, link_modules, parse_module, validate_diagram};
 use adva_witness::{
     ArtifactKeyV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0, CellTemplateV0,
-    ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0, SeedErrorV0,
-    SeedRegistryV0, SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0, ValueWordV0,
-    WitnessErrorV0, WitnessProofV0, WitnessStoreV0, validate_dependency_graph_v0,
+    ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0, SeedErrorV0, SeedRegistryV0,
+    SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0, ValueWordV0, WitnessErrorV0, WitnessProofV0,
+    WitnessStoreV0, validate_dependency_graph_v0,
 };
 use num_bigint::BigInt;
 use std::collections::BTreeMap;
@@ -241,16 +241,10 @@ fn template_artifact_is_reused_but_instances_and_occurrences_are_fresh() {
     assert_eq!(store.len(), 6);
 
     let first_result = first
-        .execute(
-            &store,
-            [BigInt::from(2), BigInt::from(3), BigInt::from(4)],
-        )
+        .execute(&store, [BigInt::from(2), BigInt::from(3), BigInt::from(4)])
         .unwrap();
     let second_result = second
-        .execute(
-            &store,
-            [BigInt::from(5), BigInt::from(2), BigInt::from(3)],
-        )
+        .execute(&store, [BigInt::from(5), BigInt::from(2), BigInt::from(3)])
         .unwrap();
     assert_eq!(first_result.value, BigInt::from(14));
     assert_eq!(second_result.value, BigInt::from(11));
@@ -323,19 +317,11 @@ fn intermediate_zero_faults_even_when_the_outer_result_would_be_nonzero() {
     .unwrap()
     .form(&store)
     .unwrap()
-    .instantiate(
-        &mut store,
-        &diagram,
-        bindings(&diagram),
-        children,
-    )
+    .instantiate(&mut store, &diagram, bindings(&diagram), children)
     .unwrap();
 
     let error = instance
-        .execute(
-            &store,
-            [BigInt::from(1), BigInt::from(-1), BigInt::from(2)],
-        )
+        .execute(&store, [BigInt::from(1), BigInt::from(-1), BigInt::from(2)])
         .unwrap_err();
     assert!(matches!(
         error,
@@ -372,18 +358,10 @@ fn nonunit_transport_cannot_execute_or_be_sealed() {
     .unwrap()
     .form(&store)
     .unwrap()
-    .instantiate(
-        &mut store,
-        &diagram,
-        bindings(&diagram),
-        children,
-    )
+    .instantiate(&mut store, &diagram, bindings(&diagram), children)
     .unwrap();
     assert!(matches!(
-        instance.execute(
-            &store,
-            [BigInt::from(1), BigInt::from(2), BigInt::from(3)]
-        ),
+        instance.execute(&store, [BigInt::from(1), BigInt::from(2), BigInt::from(3)]),
         Err(WitnessErrorV0::UnclosedMultiplicativeResidual { .. })
     ));
 }
