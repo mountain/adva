@@ -1,12 +1,11 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    AdvaDocumentV0, ArtifactKeyV0, CarrierIdV0, CoxeterShadowV0, EntryPointV0,
-    FrameHandoffRouteV0, FrameIdV0, FrameInputV0, FrameMechanismV0, FrameOutputV0,
-    FrameRelationCellV0, FrameRelationErrorV0, FrameRelationPathV0, InputLabelV0, MechanismV0,
-    NeutralCarrierV0, OpenFrontierV0, ProcessLiftV0, RelationBoundaryShapeV0, RelationCellV0,
-    RelationFillingV0, RelationFormationErrorV0, RelationGeneratorV0, RelationKindV0,
-    RelationOrientationV0, RelationPathV0, RelationProfileV0, StoredCarrierV0,
-    TransitionFrameV0,
+    AdvaDocumentV0, ArtifactKeyV0, CarrierIdV0, CoxeterShadowV0, EntryPointV0, FrameHandoffRouteV0,
+    FrameIdV0, FrameInputV0, FrameMechanismV0, FrameOutputV0, FrameRelationCellV0,
+    FrameRelationErrorV0, FrameRelationPathV0, InputLabelV0, MechanismV0, NeutralCarrierV0,
+    OpenFrontierV0, ProcessLiftV0, RelationBoundaryShapeV0, RelationCellV0, RelationFillingV0,
+    RelationFormationErrorV0, RelationGeneratorV0, RelationKindV0, RelationOrientationV0,
+    RelationPathV0, RelationProfileV0, StoredCarrierV0, TransitionFrameV0,
 };
 
 fn key(name: &str) -> ArtifactKeyV0 {
@@ -353,16 +352,8 @@ fn m6_is_derived_from_six_distinct_frame_occurrences() {
     let cell = FrameRelationCellV0::derive(
         &document,
         RelationProfileV0::braid_m6(),
-        &[
-            FrameIdV0::new(0),
-            FrameIdV0::new(1),
-            FrameIdV0::new(2),
-        ],
-        &[
-            FrameIdV0::new(3),
-            FrameIdV0::new(4),
-            FrameIdV0::new(5),
-        ],
+        &[FrameIdV0::new(0), FrameIdV0::new(1), FrameIdV0::new(2)],
+        &[FrameIdV0::new(3), FrameIdV0::new(4), FrameIdV0::new(5)],
         RelationFillingV0::Filled {
             orientation: RelationOrientationV0::LeftToRight,
             witness: key("frame-m6-witness"),
@@ -386,10 +377,7 @@ fn m6_is_derived_from_six_distinct_frame_occurrences() {
 fn frame_paths_reject_reuse_ready_outputs_and_broken_handoffs() {
     let document = q4_document();
     assert!(matches!(
-        FrameRelationPathV0::derive(
-            &document,
-            &[FrameIdV0::new(0), FrameIdV0::new(0)]
-        ),
+        FrameRelationPathV0::derive(&document, &[FrameIdV0::new(0), FrameIdV0::new(0)]),
         Err(FrameRelationErrorV0::RepeatedFrame(FrameIdV0(0)))
     ));
 
