@@ -94,7 +94,7 @@ fn one_closure_unfolds_into_a_checked_interacting_family() {
     let occurrences = family
         .members
         .iter()
-        .map(|member| member.certificate.occurrence.clone())
+        .map(|member| member.closure.occurrence.clone())
         .collect::<std::collections::BTreeSet<_>>();
     assert_eq!(occurrences.len(), 16);
 }

@@ -75,7 +75,7 @@ pub struct MagicSquareFrontierV0 {
     pub sequence: u64,
     pub state: MagicSquareSearchStateV0,
     pub pending: Vec<MagicSquareSearchNodeV0>,
-    pub closure: Option<MagicSquareCertificateV0>,
+    pub closure: Option<MagicSquareClosureReferenceV0>,
     pub parent_digest: Option<String>,
 }
 
@@ -351,6 +351,38 @@ pub struct MagicSquareCertificateV0 {
     pub content: MagicSquareClosureContentV0,
 }
 
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct MagicSquareClosureReferenceV0 {
+    pub occurrence: ArtifactKeyV0,
+    pub cells: [u8; CELL_COUNT],
+    pub content_digest: String,
+}
+
+impl MagicSquareClosureReferenceV0 {
+    fn from_certificate(
+        certificate: &MagicSquareCertificateV0,
+    ) -> Result<Self, MagicSquareErrorV0> {
+        certificate.check()?;
+        Ok(Self {
+            occurrence: certificate.occurrence.clone(),
+            cells: certificate.content.cells,
+            content_digest: certificate.content.digest()?,
+        })
+    }
+
+    fn check(&self) -> Result<(), MagicSquareErrorV0> {
+        if self.occurrence.as_str().is_empty() {
+            return Err(invalid("a closure reference must retain its occurrence"));
+        }
+        let content = MagicSquareClosureContentV0::from_cells(self.cells)?;
+        if self.content_digest != content.digest()? {
+            return Err(invalid("a closure reference does not match its content"));
+        }
+        Ok(())
+    }
+}
+
 impl MagicSquareCertificateV0 {
     pub fn from_cells(
         cells: [u8; CELL_COUNT],
@@ -481,7 +513,7 @@ pub struct MagicSquareTransportReceiptV0 {
     pub map: MagicSquareTransportMapV0,
     pub source_certificate_digest: String,
     pub source_occurrence: ArtifactKeyV0,
-    pub target: MagicSquareCertificateV0,
+    pub target: MagicSquareClosureReferenceV0,
     pub additive_closure_preserved: CheckStatus,
     pub characteristic_identity_preserved: CheckStatus,
 }
@@ -491,7 +523,7 @@ pub struct MagicSquareTransportReceiptV0 {
 pub struct MagicSquareFamilyMemberV0 {
     pub ordinal: u8,
     pub first_word: Vec<MagicSquareTransportMapV0>,
-    pub certificate: MagicSquareCertificateV0,
+    pub closure: MagicSquareClosureReferenceV0,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -545,14 +577,14 @@ impl MagicSquareClosureFamilyV0 {
         let mut members = vec![MagicSquareFamilyMemberV0 {
             ordinal: 0,
             first_word: Vec::new(),
-            certificate: seed.clone(),
+            closure: MagicSquareClosureReferenceV0::from_certificate(seed)?,
         }];
         let mut member_by_cells = BTreeMap::from([(seed.content.cells, 0_u8)]);
         let mut edges = Vec::new();
         let mut cursor = 0_usize;
         while cursor < members.len() {
             let source_ordinal = members[cursor].ordinal;
-            let source_cells = members[cursor].certificate.content.cells;
+            let source_cells = members[cursor].closure.cells;
             let source_word = members[cursor].first_word.clone();
             for generator in TRANSPORT_GENERATORS {
                 let target_cells = transport_cells(source_cells, generator);
@@ -570,7 +602,7 @@ impl MagicSquareClosureFamilyV0 {
                     members.push(MagicSquareFamilyMemberV0 {
                         ordinal,
                         first_word,
-                        certificate,
+                        closure: MagicSquareClosureReferenceV0::from_certificate(&certificate)?,
                     });
                     member_by_cells.insert(target_cells, ordinal);
                     ordinal
@@ -653,8 +685,8 @@ impl MagicSquareClosureFamilyV0 {
             .into_iter()
             .map(|(name, left, right)| {
                 let status = if members.iter().all(|member| {
-                    apply_transport_word(member.certificate.content.cells, &left)
-                        == apply_transport_word(member.certificate.content.cells, &right)
+                    apply_transport_word(member.closure.cells, &left)
+                        == apply_transport_word(member.closure.cells, &right)
                 }) {
                     CheckStatus::Checked
                 } else {
@@ -672,7 +704,7 @@ impl MagicSquareClosureFamilyV0 {
 
         let mut unique_line_contents = BTreeSet::new();
         for member in &members {
-            for line in &member.certificate.content.line_witnesses {
+            for line in line_witnesses(&member.closure.cells) {
                 let mut values = line.values;
                 values.sort_unstable();
                 unique_line_contents.insert(MagicLineContentV0 {
@@ -709,7 +741,8 @@ impl MagicSquareClosureFamilyV0 {
             return Err(invalid("the selected closure did not generate the frozen finite family"));
         }
         if self.seed_content_digest != seed.content.digest()?
-            || self.members.first().map(|member| &member.certificate) != Some(seed)
+            || self.members.first().map(|member| &member.closure)
+                != Some(&MagicSquareClosureReferenceV0::from_certificate(seed)?)
         {
             return Err(invalid("the closure family has lost its seed"));
         }
@@ -717,9 +750,9 @@ impl MagicSquareClosureFamilyV0 {
             if usize::from(member.ordinal) != ordinal {
                 return Err(invalid("closure family member ordinals are not canonical"));
             }
-            member.certificate.check()?;
+            member.closure.check()?;
             if apply_transport_word(seed.content.cells, &member.first_word)
-                != member.certificate.content.cells
+                != member.closure.cells
             {
                 return Err(invalid("a closure family word does not reach its member"));
             }
@@ -733,9 +766,7 @@ impl MagicSquareClosureFamilyV0 {
                 .members
                 .get(usize::from(edge.target))
                 .ok_or_else(|| invalid("a closure family edge has an unknown target"))?;
-            if transport_cells(source.certificate.content.cells, edge.generator)
-                != target.certificate.content.cells
-            {
+            if transport_cells(source.closure.cells, edge.generator) != target.closure.cells {
                 return Err(invalid("a closure family edge does not replay"));
             }
         }
@@ -752,10 +783,11 @@ impl MagicSquareTransportReceiptV0 {
         map: MagicSquareTransportMapV0,
     ) -> Result<Self, MagicSquareErrorV0> {
         let cells = transport_cells(source.content.cells, map);
-        let target = MagicSquareCertificateV0::from_cells(
+        let target_certificate = MagicSquareCertificateV0::from_cells(
             cells,
             format!("experiment:0119:occurrence:{}", map.as_str()),
         )?;
+        let target = MagicSquareClosureReferenceV0::from_certificate(&target_certificate)?;
         Ok(Self {
             map,
             source_certificate_digest: source.digest()?,
@@ -1074,7 +1106,10 @@ fn derive_output(input: &MagicSquareInputV0) -> Result<MagicSquareOutputV0, Magi
         sequence: input.subject.sequence + 1,
         state,
         pending,
-        closure: solution.clone(),
+        closure: solution
+            .as_ref()
+            .map(MagicSquareClosureReferenceV0::from_certificate)
+            .transpose()?,
         parent_digest: Some(subject_digest.clone()),
     };
     next_frontier.check()?;
