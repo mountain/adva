@@ -66,6 +66,8 @@ jobs:
             --output target/hypothesis-2.adva \
             --frontier-output target/frontier-2.adva \
             --print
+          cmp target/hypothesis-2.adva programs/bootstrap-0/hypothesis-2.adva
+          cmp target/frontier-2.adva programs/bootstrap-0/frontier-2.adva
 
   python:
     runs-on: ubuntu-latest
