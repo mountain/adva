@@ -157,6 +157,16 @@ either ready or refer to recorded carriers. A recorded triple is not treated
 as proof that execution produced it. The repository intentionally contains no
 `.adva` program fixture; the first program remains caller-authored.
 
+The next research-only relation layer keeps candidate carrier operations
+group-neutral. `join/cut/close` concern carrier boundaries,
+`step/run` concern finite traversal, and `interchange/braid/transport` concern
+proof-relevant relations between still-distinct paths. The bounded Rust
+checker records `Q4 / trace monoid / Klein four` separately from
+`M6 / positive braid monoid / S3`; it does not treat every transport as braid
+conjugacy or change the `.adva` document schema. See
+[`docs/research/0111-group-neutral-operations-and-q4-m6-relation-profiles.md`](docs/research/0111-group-neutral-operations-and-q4-m6-relation-profiles.md)
+and [ADR 0021](docs/adr/0021-group-neutral-carrier-operations-and-typed-relations.md).
+
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
 certificates.
