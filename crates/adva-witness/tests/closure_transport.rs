@@ -68,7 +68,6 @@ fn committed_first_transport_outputs_replay_exactly() {
     );
 }
 
-
 fn temporary_path(name: &str) -> PathBuf {
     let ordinal = TEST_ORDINAL.fetch_add(1, Ordering::Relaxed);
     let directory = std::env::temp_dir().join(format!(
