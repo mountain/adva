@@ -2,14 +2,19 @@ use adva_ir::CheckStatus;
 use adva_witness::{
     ClosureFindingClassV0, ClosureFrontierStateV0, ClosureTransportContractV0,
     ClosureTransportPlanV0, LocalClosureCandidateV0, WitnessProofV0,
-    load_closure_transport_frontier_v0, load_closure_transport_transition_v0,
-    run_closure_transport_v0, save_closure_transport_frontier_v0,
-    save_closure_transport_transition_v0,
+    load_closure_transport_contract_v0, load_closure_transport_frontier_v0,
+    load_closure_transport_plan_v0, load_closure_transport_transition_v0,
+    load_local_closure_candidate_v0, run_closure_transport_v0,
+    save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
 
 static TEST_ORDINAL: AtomicU64 = AtomicU64::new(0);
+
+fn fixture(name: &str) -> PathBuf {
+    PathBuf::from(env!("CARGO_MANIFEST_DIR")).join(format!("../../programs/bootstrap-0/{name}"))
+}
 
 fn first_transition() -> adva_witness::ClosureTransportTransitionV0 {
     run_closure_transport_v0(
@@ -18,6 +23,22 @@ fn first_transition() -> adva_witness::ClosureTransportTransitionV0 {
         &ClosureTransportPlanV0::first_experiment(),
     )
     .unwrap()
+}
+
+#[test]
+fn committed_input_carriers_match_the_frozen_first_experiment() {
+    assert_eq!(
+        load_local_closure_candidate_v0(fixture("local-closure.adva")).unwrap(),
+        LocalClosureCandidateV0::first_distributivity()
+    );
+    assert_eq!(
+        load_closure_transport_contract_v0(fixture("closure-verifier.adva")).unwrap(),
+        ClosureTransportContractV0::first_exact_polynomial()
+    );
+    assert_eq!(
+        load_closure_transport_plan_v0(fixture("closure-transport-plan.adva")).unwrap(),
+        ClosureTransportPlanV0::first_experiment()
+    );
 }
 
 fn temporary_path(name: &str) -> PathBuf {
