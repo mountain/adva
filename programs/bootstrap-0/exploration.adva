@@ -1,0 +1,28 @@
+{
+  "schema": "adva.exploration-contract.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "name": "first:algorithm:recorded-resource-candidate",
+  "mechanism": "learn",
+  "input_schemas": [
+    "adva.inquiry-frontier.research",
+    "adva.exploration-contract.research",
+    "adva.resource-snapshot.research"
+  ],
+  "output_schema": "adva.hypothesis-transition.research",
+  "selection": "first_recorded_candidate",
+  "external_claim_policy": "proposed_only"
+}
