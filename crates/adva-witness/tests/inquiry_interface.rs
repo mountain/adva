@@ -102,6 +102,38 @@ fn one_learning_edge_preserves_the_interface_and_all_open_questions() {
 }
 
 #[test]
+fn committed_first_inquiry_outputs_replay_exactly() {
+    let frontier = first_frontier();
+    let recorded_frontier = load_inquiry_frontier_v0(fixture("frontier.adva")).unwrap();
+    assert_eq!(recorded_frontier, frontier);
+    assert_eq!(
+        frontier.digest().unwrap(),
+        "blake3:fc9ab7afe284ac122e67bf6fa659318a8c264f5dbaed654fd2540fad6f3e1e1f"
+    );
+
+    let transition =
+        learn_hypothesis_v0(&frontier, &first_contract(), &first_resource()).unwrap();
+    let recorded_transition =
+        load_hypothesis_transition_v0(fixture("hypothesis.adva")).unwrap();
+    assert_eq!(recorded_transition, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:cd93301f498db9b118a820ef2f90522b85caadd676e25a8d387ca32222cc2cd0"
+    );
+
+    let recorded_next = load_inquiry_frontier_v0(fixture("frontier-1.adva")).unwrap();
+    assert_eq!(recorded_next, transition.output.evidence.next_frontier);
+    assert_eq!(
+        recorded_next.digest().unwrap(),
+        "blake3:2b0c3440a8dafda28880cea92d9d87d0158d49a08d2cd9a20d4406990d0786de"
+    );
+    assert_eq!(
+        first_resource().digest().unwrap(),
+        "blake3:41b2260753e4df9ee94918604bfead06b353390f41c6adf981c7bcbd12686858"
+    );
+}
+
+#[test]
 fn candidate_identity_does_not_depend_on_its_local_name() {
     let frontier = first_frontier();
     let contract = first_contract();

@@ -63,6 +63,25 @@ The first command introduces `frontier`. The second introduces the structural
 word `hypothesis`; the selected resource contributes the content word
 `representation`.
 
+## First recorded result
+
+The CI-run experiment completed one bounded edge and retained these integrity
+coordinates:
+
+| Artifact | BLAKE3 coordinate |
+| --- | --- |
+| initial frontier | `fc9ab7afe284ac122e67bf6fa659318a8c264f5dbaed654fd2540fad6f3e1e1f` |
+| exploration contract | `564d0f561d9c5e8974e7ef86ccc7cef781891a1e1f831607a7f0bdb2b78aeb7f` |
+| resource snapshot | `41b2260753e4df9ee94918604bfead06b353390f41c6adf981c7bcbd12686858` |
+| candidate content | `fe916162d4fa9b978dad63d97433b3ee8ea4369838c1f81bb2d406288e649f19` |
+| hypothesis transition | `cd93301f498db9b118a820ef2f90522b85caadd676e25a8d387ca32222cc2cd0` |
+| continued frontier | `2b0c3440a8dafda28880cea92d9d87d0158d49a08d2cd9a20d4406990d0786de` |
+
+The continued frontier has sequence `1`, introduces `hypothesis` and
+`representation`, records one consumed resource and one retained candidate,
+and still has exactly five open obligations. CI regenerates all three derived
+files and requires byte equality with the committed copies.
+
 ## Required observations
 
 The generated transition must demonstrate all of the following:
