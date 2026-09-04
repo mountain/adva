@@ -910,7 +910,12 @@ fn check_reality_boundary(boundary: &RealityBoundaryV0) -> Result<(), InquiryErr
             "a reality boundary needs coordinates, an observation protocol, a meaning criterion, threats, and protected properties",
         ));
     }
-    if boundary.threats.iter().copied().collect::<BTreeSet<_>>().len()
+    if boundary
+        .threats
+        .iter()
+        .copied()
+        .collect::<BTreeSet<_>>()
+        .len()
         != boundary.threats.len()
         || boundary
             .protected_properties
