@@ -1,0 +1,4251 @@
+{
+  "schema": "adva.magic-square-transition.research",
+  "version": 0,
+  "input": {
+    "subject": {
+      "schema": "adva.magic-square-frontier.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "sequence": 0,
+      "state": "frontier",
+      "pending": [
+        {
+          "cells": [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ]
+        }
+      ],
+      "closure": null,
+      "parent_digest": null
+    },
+    "method": {
+      "schema": "adva.magic-square-search-contract.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "name": "first:normal-order-four-characteristic-search",
+      "mechanism": "learn",
+      "order": 4,
+      "cell_selection": "first_open_cell_row_major",
+      "value_order": "unused_values_ascending",
+      "pruning": "exact_completed_lines_and_remaining_sum_bounds",
+      "stop_condition": "first_exact_closure_with_sixteen_member_symmetry_orbit_or_fuel_exhaustion"
+    },
+    "object": {
+      "schema": "adva.magic-square-resource.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "name": "recorded:exact-node-fuel:15000",
+      "fuel": 15000
+    }
+  },
+  "output": {
+    "history": {
+      "mechanism": "learn",
+      "subject_digest": "blake3:5fcbcae4c1ae767c7ee5cbb3ae39b4c2b8cec8a355f6812ea9655d67dc0fc413",
+      "method_digest": "blake3:b8e5309b60f8110bebe5ec32b527ce40195960de39b5887d08d62aede77c9a6b",
+      "object_digest": "blake3:ead868270ec92a89733d874ba0c0037ecf721dc0aa121804b79457400b3f1d84",
+      "nodes_expanded": 12517,
+      "branches_cut": 59571,
+      "unselected_closure_digests": [
+        "blake3:23a7634eb3e2f3d328eb6a5559d682ef100776992c930b47b625f293a2e4ac3f",
+        "blake3:5259d8fc39eccb0feb546f05266cb287a224d38c4b636306f7e90e89a92ea583"
+      ],
+      "row_major_trace": {
+        "name": "row-major",
+        "assignments": [
+          {
+            "ordinal": 0,
+            "cell": 0,
+            "value": 1
+          },
+          {
+            "ordinal": 1,
+            "cell": 1,
+            "value": 2
+          },
+          {
+            "ordinal": 2,
+            "cell": 2,
+            "value": 16
+          },
+          {
+            "ordinal": 3,
+            "cell": 3,
+            "value": 15
+          },
+          {
+            "ordinal": 4,
+            "cell": 4,
+            "value": 13
+          },
+          {
+            "ordinal": 5,
+            "cell": 5,
+            "value": 14
+          },
+          {
+            "ordinal": 6,
+            "cell": 6,
+            "value": 4
+          },
+          {
+            "ordinal": 7,
+            "cell": 7,
+            "value": 3
+          },
+          {
+            "ordinal": 8,
+            "cell": 8,
+            "value": 12
+          },
+          {
+            "ordinal": 9,
+            "cell": 9,
+            "value": 7
+          },
+          {
+            "ordinal": 10,
+            "cell": 10,
+            "value": 9
+          },
+          {
+            "ordinal": 11,
+            "cell": 11,
+            "value": 6
+          },
+          {
+            "ordinal": 12,
+            "cell": 12,
+            "value": 8
+          },
+          {
+            "ordinal": 13,
+            "cell": 13,
+            "value": 11
+          },
+          {
+            "ordinal": 14,
+            "cell": 14,
+            "value": 5
+          },
+          {
+            "ordinal": 15,
+            "cell": 15,
+            "value": 10
+          }
+        ],
+        "remaining_factor_digests": [
+          "blake3:b534322a728fe91bdd2197925d80b5aa72336b25706b15b19a6495f8fecdcf00",
+          "blake3:da47593ff26e52dc948641a8303e2b321e03d996e6dd9e0f83f077e3b678bcc7",
+          "blake3:c851e1a565bbfb81e0aacbba632d5df35427df292cc77e714fb6a0e511dd4bed",
+          "blake3:7f5b87cec8b2a72b67d5fc53c82d9d2f06aa8b49f94c9e30082e12d3600ab0d5",
+          "blake3:b3e9ca8cab76c5f499644352b8cbe0fd5ecfd030a203b27aca258536ebeb2b0d",
+          "blake3:9aea6d34ba055a706767ce30a95cde4388268c22586e9bc3a373aedd37f0477e",
+          "blake3:93705e3bc299a5a58ded4185beabbceddf08b01542d355fc11dc683ab0dfe713",
+          "blake3:079e5c340f6e919156b2f3bd9d2f2d791bdc6643128fe57c5d10201d87006a7f",
+          "blake3:cd2830844865797f6412d9eb9cd8a85bd6d5b8c4e21fb8e69cefdc526d3600d5",
+          "blake3:c9209fe8fed92a3086d6af86810b272785036bac2834c74007485a3248030c43",
+          "blake3:ebaa4b13991daf60f0cef92ead53d42c842b2a65282612c8c5bd4dc696d65cd8",
+          "blake3:e89e75e358c71a327e99531c51cec0f4cbfdeeb40aa744d545f27c1bcf0720c4",
+          "blake3:a0da5531cd379e3ebe4eb9c702fea5ab7ac0d44c2c8f1ca09e74373fe2805c88",
+          "blake3:52e3e36a402a43798e56a680bd9c9b6f819a2ecff255e987bc5fdb8951b3df15",
+          "blake3:59616cf7cd33fd6ecd00d7e25d9a8b94a7969fcf6ab75fdb841dc7fd08e54ffd",
+          "blake3:3068d7cc0194567ba947c4e48690a7deeb1c61dad596082706ddaa254e4e1707",
+          "blake3:06c53bd66431bd659cf9f01a68f17dd327bfdab9a0d8bf7f078a2d839c23c186"
+        ],
+        "endpoint_content_digest": "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3"
+      },
+      "column_major_trace": {
+        "name": "column-major",
+        "assignments": [
+          {
+            "ordinal": 0,
+            "cell": 0,
+            "value": 1
+          },
+          {
+            "ordinal": 1,
+            "cell": 4,
+            "value": 13
+          },
+          {
+            "ordinal": 2,
+            "cell": 8,
+            "value": 12
+          },
+          {
+            "ordinal": 3,
+            "cell": 12,
+            "value": 8
+          },
+          {
+            "ordinal": 4,
+            "cell": 1,
+            "value": 2
+          },
+          {
+            "ordinal": 5,
+            "cell": 5,
+            "value": 14
+          },
+          {
+            "ordinal": 6,
+            "cell": 9,
+            "value": 7
+          },
+          {
+            "ordinal": 7,
+            "cell": 13,
+            "value": 11
+          },
+          {
+            "ordinal": 8,
+            "cell": 2,
+            "value": 16
+          },
+          {
+            "ordinal": 9,
+            "cell": 6,
+            "value": 4
+          },
+          {
+            "ordinal": 10,
+            "cell": 10,
+            "value": 9
+          },
+          {
+            "ordinal": 11,
+            "cell": 14,
+            "value": 5
+          },
+          {
+            "ordinal": 12,
+            "cell": 3,
+            "value": 15
+          },
+          {
+            "ordinal": 13,
+            "cell": 7,
+            "value": 3
+          },
+          {
+            "ordinal": 14,
+            "cell": 11,
+            "value": 6
+          },
+          {
+            "ordinal": 15,
+            "cell": 15,
+            "value": 10
+          }
+        ],
+        "remaining_factor_digests": [
+          "blake3:b534322a728fe91bdd2197925d80b5aa72336b25706b15b19a6495f8fecdcf00",
+          "blake3:da47593ff26e52dc948641a8303e2b321e03d996e6dd9e0f83f077e3b678bcc7",
+          "blake3:1f80193c9f3b6eaef0c052f7c04f6de0e3d0565f02e3a41a8f2e80b2f55bd320",
+          "blake3:6fc891aae36e1b01d826cbd9c57eb7f00387dc31dc017e8a2cc3f145a280ad0d",
+          "blake3:3e4cad7def12c33c7e7df2d011b2fc830209ef8d7aad8e0bc481849b37df62ed",
+          "blake3:f0a094ef22f12bb73b27c70cc32851c3d001de0198dc1d11d4036a626d97fe7b",
+          "blake3:6ec188af281d9e8ffce9fa86c5f56fcf2e8fa2aa55a03701236417a84a1f9f19",
+          "blake3:a10163c4699d5e818ef0246d7ac9fd6add7c4c444f405a6f60c0a1b875e3c43d",
+          "blake3:0b36244c0d5cbac1e05dff7d4841fee7486a87ba07657aa97e17e115ff5176e2",
+          "blake3:c1475857332b69a97c63db6e839fcd4d2c8e09dabd5de0a0125917f806ce8b75",
+          "blake3:9cd70cd33d1c42b2f809c1c13c5660b4eaafe35e9c6e403112d03cecc1639f7f",
+          "blake3:ba886ee2bbad2b5a14b17f966529981997b3562a25d8838fa72b4ce899b919f8",
+          "blake3:34e8192a1fff11d0995d174830472dbba1229bbfef24a9570a47eb3e6ac631c8",
+          "blake3:c6aec5e89abd946b935cd6c71bbd055c39cbc6e32b7193addd3bf14d95b2c417",
+          "blake3:2a2c4337fd46d0c004a61dbfb0a19af49f3906d33c5728ed51e68d8aab67b0d2",
+          "blake3:3068d7cc0194567ba947c4e48690a7deeb1c61dad596082706ddaa254e4e1707",
+          "blake3:06c53bd66431bd659cf9f01a68f17dd327bfdab9a0d8bf7f078a2d839c23c186"
+        ],
+        "endpoint_content_digest": "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3"
+      }
+    },
+    "result": {
+      "state": "identity",
+      "solution": {
+        "schema": "adva.magic-square-certificate.research",
+        "version": 0,
+        "occurrence": "experiment:0119:search-occurrence:1",
+        "content": {
+          "finding": "identity",
+          "cells": [
+            1,
+            2,
+            16,
+            15,
+            13,
+            14,
+            4,
+            3,
+            12,
+            7,
+            9,
+            6,
+            8,
+            11,
+            5,
+            10
+          ],
+          "line_witnesses": [
+            {
+              "name": "row_0",
+              "cells": [
+                0,
+                1,
+                2,
+                3
+              ],
+              "values": [
+                1,
+                2,
+                16,
+                15
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "row_1",
+              "cells": [
+                4,
+                5,
+                6,
+                7
+              ],
+              "values": [
+                13,
+                14,
+                4,
+                3
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "row_2",
+              "cells": [
+                8,
+                9,
+                10,
+                11
+              ],
+              "values": [
+                12,
+                7,
+                9,
+                6
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "row_3",
+              "cells": [
+                12,
+                13,
+                14,
+                15
+              ],
+              "values": [
+                8,
+                11,
+                5,
+                10
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "column_0",
+              "cells": [
+                0,
+                4,
+                8,
+                12
+              ],
+              "values": [
+                1,
+                13,
+                12,
+                8
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "column_1",
+              "cells": [
+                1,
+                5,
+                9,
+                13
+              ],
+              "values": [
+                2,
+                14,
+                7,
+                11
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "column_2",
+              "cells": [
+                2,
+                6,
+                10,
+                14
+              ],
+              "values": [
+                16,
+                4,
+                9,
+                5
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "column_3",
+              "cells": [
+                3,
+                7,
+                11,
+                15
+              ],
+              "values": [
+                15,
+                3,
+                6,
+                10
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "diagonal_main",
+              "cells": [
+                0,
+                5,
+                10,
+                15
+              ],
+              "values": [
+                1,
+                14,
+                9,
+                10
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            },
+            {
+              "name": "diagonal_anti",
+              "cells": [
+                3,
+                6,
+                9,
+                12
+              ],
+              "values": [
+                15,
+                4,
+                7,
+                8
+              ],
+              "sum": 34,
+              "additive_residual": 0
+            }
+          ],
+          "characteristic_before": {
+            "kind": "multiply",
+            "left": {
+              "kind": "multiply",
+              "left": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "multiply",
+                          "left": {
+                            "kind": "multiply",
+                            "left": {
+                              "kind": "multiply",
+                              "left": {
+                                "kind": "multiply",
+                                "left": {
+                                  "kind": "multiply",
+                                  "left": {
+                                    "kind": "multiply",
+                                    "left": {
+                                      "kind": "multiply",
+                                      "left": {
+                                        "kind": "multiply",
+                                        "left": {
+                                          "kind": "add",
+                                          "left": {
+                                            "kind": "variable",
+                                            "name": "t"
+                                          },
+                                          "right": {
+                                            "kind": "constant",
+                                            "value": [
+                                              -1,
+                                              [
+                                                1
+                                              ]
+                                            ]
+                                          }
+                                        },
+                                        "right": {
+                                          "kind": "add",
+                                          "left": {
+                                            "kind": "variable",
+                                            "name": "t"
+                                          },
+                                          "right": {
+                                            "kind": "constant",
+                                            "value": [
+                                              -1,
+                                              [
+                                                2
+                                              ]
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "right": {
+                                        "kind": "add",
+                                        "left": {
+                                          "kind": "variable",
+                                          "name": "t"
+                                        },
+                                        "right": {
+                                          "kind": "constant",
+                                          "value": [
+                                            -1,
+                                            [
+                                              16
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "right": {
+                                      "kind": "add",
+                                      "left": {
+                                        "kind": "variable",
+                                        "name": "t"
+                                      },
+                                      "right": {
+                                        "kind": "constant",
+                                        "value": [
+                                          -1,
+                                          [
+                                            15
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "add",
+                                    "left": {
+                                      "kind": "variable",
+                                      "name": "t"
+                                    },
+                                    "right": {
+                                      "kind": "constant",
+                                      "value": [
+                                        -1,
+                                        [
+                                          13
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "kind": "add",
+                                  "left": {
+                                    "kind": "variable",
+                                    "name": "t"
+                                  },
+                                  "right": {
+                                    "kind": "constant",
+                                    "value": [
+                                      -1,
+                                      [
+                                        14
+                                      ]
+                                    ]
+                                  }
+                                }
+                              },
+                              "right": {
+                                "kind": "add",
+                                "left": {
+                                  "kind": "variable",
+                                  "name": "t"
+                                },
+                                "right": {
+                                  "kind": "constant",
+                                  "value": [
+                                    -1,
+                                    [
+                                      4
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "add",
+                              "left": {
+                                "kind": "variable",
+                                "name": "t"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": [
+                                  -1,
+                                  [
+                                    3
+                                  ]
+                                ]
+                              }
+                            }
+                          },
+                          "right": {
+                            "kind": "add",
+                            "left": {
+                              "kind": "variable",
+                              "name": "t"
+                            },
+                            "right": {
+                              "kind": "constant",
+                              "value": [
+                                -1,
+                                [
+                                  12
+                                ]
+                              ]
+                            }
+                          }
+                        },
+                        "right": {
+                          "kind": "add",
+                          "left": {
+                            "kind": "variable",
+                            "name": "t"
+                          },
+                          "right": {
+                            "kind": "constant",
+                            "value": [
+                              -1,
+                              [
+                                7
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "t"
+                        },
+                        "right": {
+                          "kind": "constant",
+                          "value": [
+                            -1,
+                            [
+                              9
+                            ]
+                          ]
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "t"
+                      },
+                      "right": {
+                        "kind": "constant",
+                        "value": [
+                          -1,
+                          [
+                            6
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "t"
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        -1,
+                        [
+                          8
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "t"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      -1,
+                      [
+                        11
+                      ]
+                    ]
+                  }
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "t"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    -1,
+                    [
+                      5
+                    ]
+                  ]
+                }
+              }
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "t"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  -1,
+                  [
+                    10
+                  ]
+                ]
+              }
+            }
+          },
+          "characteristic_after": {
+            "kind": "multiply",
+            "left": {
+              "kind": "multiply",
+              "left": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "multiply",
+                          "left": {
+                            "kind": "multiply",
+                            "left": {
+                              "kind": "multiply",
+                              "left": {
+                                "kind": "multiply",
+                                "left": {
+                                  "kind": "multiply",
+                                  "left": {
+                                    "kind": "multiply",
+                                    "left": {
+                                      "kind": "multiply",
+                                      "left": {
+                                        "kind": "multiply",
+                                        "left": {
+                                          "kind": "add",
+                                          "left": {
+                                            "kind": "variable",
+                                            "name": "t"
+                                          },
+                                          "right": {
+                                            "kind": "constant",
+                                            "value": [
+                                              -1,
+                                              [
+                                                1
+                                              ]
+                                            ]
+                                          }
+                                        },
+                                        "right": {
+                                          "kind": "add",
+                                          "left": {
+                                            "kind": "variable",
+                                            "name": "t"
+                                          },
+                                          "right": {
+                                            "kind": "constant",
+                                            "value": [
+                                              -1,
+                                              [
+                                                2
+                                              ]
+                                            ]
+                                          }
+                                        }
+                                      },
+                                      "right": {
+                                        "kind": "add",
+                                        "left": {
+                                          "kind": "variable",
+                                          "name": "t"
+                                        },
+                                        "right": {
+                                          "kind": "constant",
+                                          "value": [
+                                            -1,
+                                            [
+                                              3
+                                            ]
+                                          ]
+                                        }
+                                      }
+                                    },
+                                    "right": {
+                                      "kind": "add",
+                                      "left": {
+                                        "kind": "variable",
+                                        "name": "t"
+                                      },
+                                      "right": {
+                                        "kind": "constant",
+                                        "value": [
+                                          -1,
+                                          [
+                                            4
+                                          ]
+                                        ]
+                                      }
+                                    }
+                                  },
+                                  "right": {
+                                    "kind": "add",
+                                    "left": {
+                                      "kind": "variable",
+                                      "name": "t"
+                                    },
+                                    "right": {
+                                      "kind": "constant",
+                                      "value": [
+                                        -1,
+                                        [
+                                          5
+                                        ]
+                                      ]
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "kind": "add",
+                                  "left": {
+                                    "kind": "variable",
+                                    "name": "t"
+                                  },
+                                  "right": {
+                                    "kind": "constant",
+                                    "value": [
+                                      -1,
+                                      [
+                                        6
+                                      ]
+                                    ]
+                                  }
+                                }
+                              },
+                              "right": {
+                                "kind": "add",
+                                "left": {
+                                  "kind": "variable",
+                                  "name": "t"
+                                },
+                                "right": {
+                                  "kind": "constant",
+                                  "value": [
+                                    -1,
+                                    [
+                                      7
+                                    ]
+                                  ]
+                                }
+                              }
+                            },
+                            "right": {
+                              "kind": "add",
+                              "left": {
+                                "kind": "variable",
+                                "name": "t"
+                              },
+                              "right": {
+                                "kind": "constant",
+                                "value": [
+                                  -1,
+                                  [
+                                    8
+                                  ]
+                                ]
+                              }
+                            }
+                          },
+                          "right": {
+                            "kind": "add",
+                            "left": {
+                              "kind": "variable",
+                              "name": "t"
+                            },
+                            "right": {
+                              "kind": "constant",
+                              "value": [
+                                -1,
+                                [
+                                  9
+                                ]
+                              ]
+                            }
+                          }
+                        },
+                        "right": {
+                          "kind": "add",
+                          "left": {
+                            "kind": "variable",
+                            "name": "t"
+                          },
+                          "right": {
+                            "kind": "constant",
+                            "value": [
+                              -1,
+                              [
+                                10
+                              ]
+                            ]
+                          }
+                        }
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "t"
+                        },
+                        "right": {
+                          "kind": "constant",
+                          "value": [
+                            -1,
+                            [
+                              11
+                            ]
+                          ]
+                        }
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "t"
+                      },
+                      "right": {
+                        "kind": "constant",
+                        "value": [
+                          -1,
+                          [
+                            12
+                          ]
+                        ]
+                      }
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "t"
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        -1,
+                        [
+                          13
+                        ]
+                      ]
+                    }
+                  }
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "t"
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      -1,
+                      [
+                        14
+                      ]
+                    ]
+                  }
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "t"
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    -1,
+                    [
+                      15
+                    ]
+                  ]
+                }
+              }
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "t"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  -1,
+                  [
+                    16
+                  ]
+                ]
+              }
+            }
+          },
+          "characteristic_residual": {
+            "numerator": {
+              "terms": [
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      2004189184,
+                      4871
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": []
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      465995776,
+                      16469
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 1
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      3224046336,
+                      23979
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 2
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      1581916800,
+                      20274
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 3
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      382513168,
+                      11261
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 4
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      2365662144,
+                      4391
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 5
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1519390664,
+                      1251
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 6
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      145015496,
+                      267
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 7
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1269583825,
+                      43
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 8
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      1582323360,
+                      5
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 9
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      2185031420
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 10
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      156952432
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 11
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      8394022
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 12
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      323680
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 13
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      8500
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 14
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      136
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 15
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 16
+                      }
+                    ]
+                  }
+                }
+              ]
+            },
+            "denominator": {
+              "terms": [
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      2004189184,
+                      4871
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": []
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      465995776,
+                      16469
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 1
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      3224046336,
+                      23979
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 2
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      1581916800,
+                      20274
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 3
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      382513168,
+                      11261
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 4
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      2365662144,
+                      4391
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 5
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1519390664,
+                      1251
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 6
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      145015496,
+                      267
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 7
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1269583825,
+                      43
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 8
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      1582323360,
+                      5
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 9
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      2185031420
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 10
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      156952432
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 11
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      8394022
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 12
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      323680
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 13
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      8500
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 14
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    -1,
+                    [
+                      136
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 15
+                      }
+                    ]
+                  }
+                },
+                {
+                  "coefficient": [
+                    1,
+                    [
+                      1
+                    ]
+                  ],
+                  "monomial": {
+                    "powers": [
+                      {
+                        "variable": "t",
+                        "exponent": 16
+                      }
+                    ]
+                  }
+                }
+              ]
+            }
+          }
+        }
+      },
+      "adversarial_separation": {
+        "class": "separation",
+        "cells": [
+          13,
+          2,
+          16,
+          15,
+          1,
+          14,
+          4,
+          3,
+          12,
+          7,
+          9,
+          6,
+          8,
+          11,
+          5,
+          10
+        ],
+        "characteristic_residual": {
+          "numerator": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    2004189184,
+                    4871
+                  ]
+                ],
+                "monomial": {
+                  "powers": []
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    465995776,
+                    16469
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    3224046336,
+                    23979
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    1581916800,
+                    20274
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 3
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    382513168,
+                    11261
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 4
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    2365662144,
+                    4391
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1519390664,
+                    1251
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 6
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    145015496,
+                    267
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 7
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1269583825,
+                    43
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 8
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    1582323360,
+                    5
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 9
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    2185031420
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 10
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    156952432
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 11
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    8394022
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 12
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    323680
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 13
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    8500
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 14
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    136
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 15
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 16
+                    }
+                  ]
+                }
+              }
+            ]
+          },
+          "denominator": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    2004189184,
+                    4871
+                  ]
+                ],
+                "monomial": {
+                  "powers": []
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    465995776,
+                    16469
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    3224046336,
+                    23979
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 2
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    1581916800,
+                    20274
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 3
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    382513168,
+                    11261
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 4
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    2365662144,
+                    4391
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 5
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1519390664,
+                    1251
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 6
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    145015496,
+                    267
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 7
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1269583825,
+                    43
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 8
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    1582323360,
+                    5
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 9
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    2185031420
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 10
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    156952432
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 11
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    8394022
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 12
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    323680
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 13
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    8500
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 14
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  -1,
+                  [
+                    136
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 15
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "t",
+                      "exponent": 16
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "failed_lines": [
+          {
+            "name": "row_0",
+            "cells": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "values": [
+              13,
+              2,
+              16,
+              15
+            ],
+            "sum": 46,
+            "additive_residual": 12
+          },
+          {
+            "name": "row_1",
+            "cells": [
+              4,
+              5,
+              6,
+              7
+            ],
+            "values": [
+              1,
+              14,
+              4,
+              3
+            ],
+            "sum": 22,
+            "additive_residual": -12
+          },
+          {
+            "name": "diagonal_main",
+            "cells": [
+              0,
+              5,
+              10,
+              15
+            ],
+            "values": [
+              13,
+              14,
+              9,
+              10
+            ],
+            "sum": 46,
+            "additive_residual": 12
+          }
+        ]
+      }
+    },
+    "evidence": {
+      "additive_lines_closed": "checked",
+      "multiplicative_characteristic_is_one": "checked",
+      "common_endpoint_retained": "checked",
+      "distinct_histories_retained": "checked",
+      "separation_preserves_multiset_only": "checked",
+      "transports": [
+        {
+          "map": "rotate_clockwise",
+          "source_certificate_digest": "blake3:9eb00959f3ad3d0074114f5c3466e82595c4aa66473002ca7a1f53c107b57434",
+          "source_occurrence": "experiment:0119:search-occurrence:1",
+          "target": {
+            "occurrence": "experiment:0119:occurrence:rotate-clockwise",
+            "cells": [
+              8,
+              12,
+              13,
+              1,
+              11,
+              7,
+              14,
+              2,
+              5,
+              9,
+              4,
+              16,
+              10,
+              6,
+              3,
+              15
+            ],
+            "content_digest": "blake3:0ca0acf8c5d91ba223e933502ac195b647d11aabebbc160e656001119b87480d"
+          },
+          "additive_closure_preserved": "checked",
+          "characteristic_identity_preserved": "checked"
+        },
+        {
+          "map": "reflect_vertical",
+          "source_certificate_digest": "blake3:9eb00959f3ad3d0074114f5c3466e82595c4aa66473002ca7a1f53c107b57434",
+          "source_occurrence": "experiment:0119:search-occurrence:1",
+          "target": {
+            "occurrence": "experiment:0119:occurrence:reflect-vertical",
+            "cells": [
+              15,
+              16,
+              2,
+              1,
+              3,
+              4,
+              14,
+              13,
+              6,
+              9,
+              7,
+              12,
+              10,
+              5,
+              11,
+              8
+            ],
+            "content_digest": "blake3:68566d69753f5a0b6be82995fb6e8c3827781093d9cb7bb9e2b46c8ce1305bb6"
+          },
+          "additive_closure_preserved": "checked",
+          "characteristic_identity_preserved": "checked"
+        },
+        {
+          "map": "complement_seventeen",
+          "source_certificate_digest": "blake3:9eb00959f3ad3d0074114f5c3466e82595c4aa66473002ca7a1f53c107b57434",
+          "source_occurrence": "experiment:0119:search-occurrence:1",
+          "target": {
+            "occurrence": "experiment:0119:occurrence:complement-seventeen",
+            "cells": [
+              16,
+              15,
+              1,
+              2,
+              4,
+              3,
+              13,
+              14,
+              5,
+              10,
+              8,
+              11,
+              9,
+              6,
+              12,
+              7
+            ],
+            "content_digest": "blake3:399e1c3df115cf4234d9ab6e758fea9f2f6286b16bb936cc66916f83232ac037"
+          },
+          "additive_closure_preserved": "checked",
+          "characteristic_identity_preserved": "checked"
+        }
+      ],
+      "closure_family": {
+        "seed_content_digest": "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3",
+        "members": [
+          {
+            "ordinal": 0,
+            "first_word": [],
+            "closure": {
+              "occurrence": "experiment:0119:search-occurrence:1",
+              "cells": [
+                1,
+                2,
+                16,
+                15,
+                13,
+                14,
+                4,
+                3,
+                12,
+                7,
+                9,
+                6,
+                8,
+                11,
+                5,
+                10
+              ],
+              "content_digest": "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3"
+            }
+          },
+          {
+            "ordinal": 1,
+            "first_word": [
+              "rotate_clockwise"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:1",
+              "cells": [
+                8,
+                12,
+                13,
+                1,
+                11,
+                7,
+                14,
+                2,
+                5,
+                9,
+                4,
+                16,
+                10,
+                6,
+                3,
+                15
+              ],
+              "content_digest": "blake3:0ca0acf8c5d91ba223e933502ac195b647d11aabebbc160e656001119b87480d"
+            }
+          },
+          {
+            "ordinal": 2,
+            "first_word": [
+              "reflect_vertical"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:2",
+              "cells": [
+                15,
+                16,
+                2,
+                1,
+                3,
+                4,
+                14,
+                13,
+                6,
+                9,
+                7,
+                12,
+                10,
+                5,
+                11,
+                8
+              ],
+              "content_digest": "blake3:68566d69753f5a0b6be82995fb6e8c3827781093d9cb7bb9e2b46c8ce1305bb6"
+            }
+          },
+          {
+            "ordinal": 3,
+            "first_word": [
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:3",
+              "cells": [
+                16,
+                15,
+                1,
+                2,
+                4,
+                3,
+                13,
+                14,
+                5,
+                10,
+                8,
+                11,
+                9,
+                6,
+                12,
+                7
+              ],
+              "content_digest": "blake3:399e1c3df115cf4234d9ab6e758fea9f2f6286b16bb936cc66916f83232ac037"
+            }
+          },
+          {
+            "ordinal": 4,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:4",
+              "cells": [
+                10,
+                5,
+                11,
+                8,
+                6,
+                9,
+                7,
+                12,
+                3,
+                4,
+                14,
+                13,
+                15,
+                16,
+                2,
+                1
+              ],
+              "content_digest": "blake3:c8da59e9ed932a90379b1c926e4050c540a40ea90c2c6bbea949456782f2788e"
+            }
+          },
+          {
+            "ordinal": 5,
+            "first_word": [
+              "rotate_clockwise",
+              "reflect_vertical"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:5",
+              "cells": [
+                1,
+                13,
+                12,
+                8,
+                2,
+                14,
+                7,
+                11,
+                16,
+                4,
+                9,
+                5,
+                15,
+                3,
+                6,
+                10
+              ],
+              "content_digest": "blake3:52180437f30a3b5a2c2651b5f4515d1a58649ef97af8393bfee6050cfc0b74fb"
+            }
+          },
+          {
+            "ordinal": 6,
+            "first_word": [
+              "rotate_clockwise",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:6",
+              "cells": [
+                9,
+                5,
+                4,
+                16,
+                6,
+                10,
+                3,
+                15,
+                12,
+                8,
+                13,
+                1,
+                7,
+                11,
+                14,
+                2
+              ],
+              "content_digest": "blake3:e7c76ea0ec7380d9bf096e4cfe96930c64aac84c277753cf9faa5ae7b9f51861"
+            }
+          },
+          {
+            "ordinal": 7,
+            "first_word": [
+              "reflect_vertical",
+              "rotate_clockwise"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:7",
+              "cells": [
+                10,
+                6,
+                3,
+                15,
+                5,
+                9,
+                4,
+                16,
+                11,
+                7,
+                14,
+                2,
+                8,
+                12,
+                13,
+                1
+              ],
+              "content_digest": "blake3:fb36dc1056a2f818599405739d1d88d20f7e8f8a2c08559acde0f519a7157be8"
+            }
+          },
+          {
+            "ordinal": 8,
+            "first_word": [
+              "reflect_vertical",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:8",
+              "cells": [
+                2,
+                1,
+                15,
+                16,
+                14,
+                13,
+                3,
+                4,
+                11,
+                8,
+                10,
+                5,
+                7,
+                12,
+                6,
+                9
+              ],
+              "content_digest": "blake3:04b21eed642dd31aef78ab679ae9d0a253366a63dcb1b1ce70b2dbc2982e6ba8"
+            }
+          },
+          {
+            "ordinal": 9,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "rotate_clockwise"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:9",
+              "cells": [
+                15,
+                3,
+                6,
+                10,
+                16,
+                4,
+                9,
+                5,
+                2,
+                14,
+                7,
+                11,
+                1,
+                13,
+                12,
+                8
+              ],
+              "content_digest": "blake3:6bd2b1e7ee5eb65b9100f4836b89fe794d8437758c28827270b4541dbd004e5b"
+            }
+          },
+          {
+            "ordinal": 10,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "reflect_vertical"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:10",
+              "cells": [
+                8,
+                11,
+                5,
+                10,
+                12,
+                7,
+                9,
+                6,
+                13,
+                14,
+                4,
+                3,
+                1,
+                2,
+                16,
+                15
+              ],
+              "content_digest": "blake3:2847b0e59aae85cfaba6c5018f7e7bbbf85e7fb87163e7f31c108cd94172ab23"
+            }
+          },
+          {
+            "ordinal": 11,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:11",
+              "cells": [
+                7,
+                12,
+                6,
+                9,
+                11,
+                8,
+                10,
+                5,
+                14,
+                13,
+                3,
+                4,
+                2,
+                1,
+                15,
+                16
+              ],
+              "content_digest": "blake3:a069f3d4200da46c3258a9b19bc49856e585894ce926f7b029cff95ab8f3c6e3"
+            }
+          },
+          {
+            "ordinal": 12,
+            "first_word": [
+              "rotate_clockwise",
+              "reflect_vertical",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:12",
+              "cells": [
+                16,
+                4,
+                5,
+                9,
+                15,
+                3,
+                10,
+                6,
+                1,
+                13,
+                8,
+                12,
+                2,
+                14,
+                11,
+                7
+              ],
+              "content_digest": "blake3:00de94788b685a405e20258a8303f7dacbe69065afadf009e201627ad6a803be"
+            }
+          },
+          {
+            "ordinal": 13,
+            "first_word": [
+              "reflect_vertical",
+              "rotate_clockwise",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:13",
+              "cells": [
+                7,
+                11,
+                14,
+                2,
+                12,
+                8,
+                13,
+                1,
+                6,
+                10,
+                3,
+                15,
+                9,
+                5,
+                4,
+                16
+              ],
+              "content_digest": "blake3:02bd367557235f92ee40addbebbcabdbdc74a77d419a43a37164efe023f517bb"
+            }
+          },
+          {
+            "ordinal": 14,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:14",
+              "cells": [
+                2,
+                14,
+                11,
+                7,
+                1,
+                13,
+                8,
+                12,
+                15,
+                3,
+                10,
+                6,
+                16,
+                4,
+                5,
+                9
+              ],
+              "content_digest": "blake3:7300ea7c4c2b77f5c80787000d331b8db44089637bd62956d36355cc39756074"
+            }
+          },
+          {
+            "ordinal": 15,
+            "first_word": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "reflect_vertical",
+              "complement_seventeen"
+            ],
+            "closure": {
+              "occurrence": "experiment:0119:family-occurrence:15",
+              "cells": [
+                9,
+                6,
+                12,
+                7,
+                5,
+                10,
+                8,
+                11,
+                4,
+                3,
+                13,
+                14,
+                16,
+                15,
+                1,
+                2
+              ],
+              "content_digest": "blake3:2cec2bb7f7d2fb42b79cddb680a386a1f0f3a1649b398076080aedad1b3d4b20"
+            }
+          }
+        ],
+        "edges": [
+          {
+            "source": 0,
+            "generator": "rotate_clockwise",
+            "target": 1
+          },
+          {
+            "source": 0,
+            "generator": "reflect_vertical",
+            "target": 2
+          },
+          {
+            "source": 0,
+            "generator": "complement_seventeen",
+            "target": 3
+          },
+          {
+            "source": 1,
+            "generator": "rotate_clockwise",
+            "target": 4
+          },
+          {
+            "source": 1,
+            "generator": "reflect_vertical",
+            "target": 5
+          },
+          {
+            "source": 1,
+            "generator": "complement_seventeen",
+            "target": 6
+          },
+          {
+            "source": 2,
+            "generator": "rotate_clockwise",
+            "target": 7
+          },
+          {
+            "source": 2,
+            "generator": "reflect_vertical",
+            "target": 0
+          },
+          {
+            "source": 2,
+            "generator": "complement_seventeen",
+            "target": 8
+          },
+          {
+            "source": 3,
+            "generator": "rotate_clockwise",
+            "target": 6
+          },
+          {
+            "source": 3,
+            "generator": "reflect_vertical",
+            "target": 8
+          },
+          {
+            "source": 3,
+            "generator": "complement_seventeen",
+            "target": 0
+          },
+          {
+            "source": 4,
+            "generator": "rotate_clockwise",
+            "target": 9
+          },
+          {
+            "source": 4,
+            "generator": "reflect_vertical",
+            "target": 10
+          },
+          {
+            "source": 4,
+            "generator": "complement_seventeen",
+            "target": 11
+          },
+          {
+            "source": 5,
+            "generator": "rotate_clockwise",
+            "target": 2
+          },
+          {
+            "source": 5,
+            "generator": "reflect_vertical",
+            "target": 1
+          },
+          {
+            "source": 5,
+            "generator": "complement_seventeen",
+            "target": 12
+          },
+          {
+            "source": 6,
+            "generator": "rotate_clockwise",
+            "target": 11
+          },
+          {
+            "source": 6,
+            "generator": "reflect_vertical",
+            "target": 12
+          },
+          {
+            "source": 6,
+            "generator": "complement_seventeen",
+            "target": 1
+          },
+          {
+            "source": 7,
+            "generator": "rotate_clockwise",
+            "target": 10
+          },
+          {
+            "source": 7,
+            "generator": "reflect_vertical",
+            "target": 9
+          },
+          {
+            "source": 7,
+            "generator": "complement_seventeen",
+            "target": 13
+          },
+          {
+            "source": 8,
+            "generator": "rotate_clockwise",
+            "target": 13
+          },
+          {
+            "source": 8,
+            "generator": "reflect_vertical",
+            "target": 3
+          },
+          {
+            "source": 8,
+            "generator": "complement_seventeen",
+            "target": 2
+          },
+          {
+            "source": 9,
+            "generator": "rotate_clockwise",
+            "target": 0
+          },
+          {
+            "source": 9,
+            "generator": "reflect_vertical",
+            "target": 7
+          },
+          {
+            "source": 9,
+            "generator": "complement_seventeen",
+            "target": 14
+          },
+          {
+            "source": 10,
+            "generator": "rotate_clockwise",
+            "target": 5
+          },
+          {
+            "source": 10,
+            "generator": "reflect_vertical",
+            "target": 4
+          },
+          {
+            "source": 10,
+            "generator": "complement_seventeen",
+            "target": 15
+          },
+          {
+            "source": 11,
+            "generator": "rotate_clockwise",
+            "target": 14
+          },
+          {
+            "source": 11,
+            "generator": "reflect_vertical",
+            "target": 15
+          },
+          {
+            "source": 11,
+            "generator": "complement_seventeen",
+            "target": 4
+          },
+          {
+            "source": 12,
+            "generator": "rotate_clockwise",
+            "target": 8
+          },
+          {
+            "source": 12,
+            "generator": "reflect_vertical",
+            "target": 6
+          },
+          {
+            "source": 12,
+            "generator": "complement_seventeen",
+            "target": 5
+          },
+          {
+            "source": 13,
+            "generator": "rotate_clockwise",
+            "target": 15
+          },
+          {
+            "source": 13,
+            "generator": "reflect_vertical",
+            "target": 14
+          },
+          {
+            "source": 13,
+            "generator": "complement_seventeen",
+            "target": 7
+          },
+          {
+            "source": 14,
+            "generator": "rotate_clockwise",
+            "target": 3
+          },
+          {
+            "source": 14,
+            "generator": "reflect_vertical",
+            "target": 13
+          },
+          {
+            "source": 14,
+            "generator": "complement_seventeen",
+            "target": 9
+          },
+          {
+            "source": 15,
+            "generator": "rotate_clockwise",
+            "target": 12
+          },
+          {
+            "source": 15,
+            "generator": "reflect_vertical",
+            "target": 11
+          },
+          {
+            "source": 15,
+            "generator": "complement_seventeen",
+            "target": 10
+          }
+        ],
+        "coherences": [
+          {
+            "name": "rotation_order_four",
+            "left": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "rotate_clockwise"
+            ],
+            "right": [],
+            "checked_members": 16,
+            "status": "checked"
+          },
+          {
+            "name": "reflection_order_two",
+            "left": [
+              "reflect_vertical",
+              "reflect_vertical"
+            ],
+            "right": [],
+            "checked_members": 16,
+            "status": "checked"
+          },
+          {
+            "name": "complement_order_two",
+            "left": [
+              "complement_seventeen",
+              "complement_seventeen"
+            ],
+            "right": [],
+            "checked_members": 16,
+            "status": "checked"
+          },
+          {
+            "name": "complement_rotation_interchange",
+            "left": [
+              "complement_seventeen",
+              "rotate_clockwise"
+            ],
+            "right": [
+              "rotate_clockwise",
+              "complement_seventeen"
+            ],
+            "checked_members": 16,
+            "status": "checked"
+          },
+          {
+            "name": "complement_reflection_interchange",
+            "left": [
+              "complement_seventeen",
+              "reflect_vertical"
+            ],
+            "right": [
+              "reflect_vertical",
+              "complement_seventeen"
+            ],
+            "checked_members": 16,
+            "status": "checked"
+          },
+          {
+            "name": "reflection_rotation_conjugacy",
+            "left": [
+              "reflect_vertical",
+              "rotate_clockwise",
+              "reflect_vertical"
+            ],
+            "right": [
+              "rotate_clockwise",
+              "rotate_clockwise",
+              "rotate_clockwise"
+            ],
+            "checked_members": 16,
+            "status": "checked"
+          }
+        ],
+        "line_occurrences": 160,
+        "unique_line_contents": [
+          {
+            "values": [
+              1,
+              2,
+              15,
+              16
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              1,
+              8,
+              12,
+              13
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              1,
+              9,
+              10,
+              14
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              2,
+              7,
+              11,
+              14
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              2,
+              9,
+              10,
+              13
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              3,
+              4,
+              13,
+              14
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              3,
+              6,
+              10,
+              15
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              3,
+              7,
+              8,
+              16
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              4,
+              5,
+              9,
+              16
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              4,
+              7,
+              8,
+              15
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              5,
+              8,
+              10,
+              11
+            ],
+            "additive_residual": 0
+          },
+          {
+            "values": [
+              6,
+              7,
+              9,
+              12
+            ],
+            "additive_residual": 0
+          }
+        ],
+        "influences": [
+          {
+            "left": "row_0",
+            "right": "column_0",
+            "shared_cells": [
+              0
+            ]
+          },
+          {
+            "left": "row_0",
+            "right": "column_1",
+            "shared_cells": [
+              1
+            ]
+          },
+          {
+            "left": "row_0",
+            "right": "column_2",
+            "shared_cells": [
+              2
+            ]
+          },
+          {
+            "left": "row_0",
+            "right": "column_3",
+            "shared_cells": [
+              3
+            ]
+          },
+          {
+            "left": "row_0",
+            "right": "diagonal_main",
+            "shared_cells": [
+              0
+            ]
+          },
+          {
+            "left": "row_0",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              3
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "column_0",
+            "shared_cells": [
+              4
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "column_1",
+            "shared_cells": [
+              5
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "column_2",
+            "shared_cells": [
+              6
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "column_3",
+            "shared_cells": [
+              7
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "diagonal_main",
+            "shared_cells": [
+              5
+            ]
+          },
+          {
+            "left": "row_1",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              6
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "column_0",
+            "shared_cells": [
+              8
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "column_1",
+            "shared_cells": [
+              9
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "column_2",
+            "shared_cells": [
+              10
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "column_3",
+            "shared_cells": [
+              11
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "diagonal_main",
+            "shared_cells": [
+              10
+            ]
+          },
+          {
+            "left": "row_2",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              9
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "column_0",
+            "shared_cells": [
+              12
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "column_1",
+            "shared_cells": [
+              13
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "column_2",
+            "shared_cells": [
+              14
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "column_3",
+            "shared_cells": [
+              15
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "diagonal_main",
+            "shared_cells": [
+              15
+            ]
+          },
+          {
+            "left": "row_3",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              12
+            ]
+          },
+          {
+            "left": "column_0",
+            "right": "diagonal_main",
+            "shared_cells": [
+              0
+            ]
+          },
+          {
+            "left": "column_0",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              12
+            ]
+          },
+          {
+            "left": "column_1",
+            "right": "diagonal_main",
+            "shared_cells": [
+              5
+            ]
+          },
+          {
+            "left": "column_1",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              9
+            ]
+          },
+          {
+            "left": "column_2",
+            "right": "diagonal_main",
+            "shared_cells": [
+              10
+            ]
+          },
+          {
+            "left": "column_2",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              6
+            ]
+          },
+          {
+            "left": "column_3",
+            "right": "diagonal_main",
+            "shared_cells": [
+              15
+            ]
+          },
+          {
+            "left": "column_3",
+            "right": "diagonal_anti",
+            "shared_cells": [
+              3
+            ]
+          }
+        ]
+      },
+      "next_frontier": {
+        "schema": "adva.magic-square-frontier.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "sequence": 1,
+        "state": "identity",
+        "pending": [
+          {
+            "cells": [
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              15,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              13,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              12,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              11,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              9,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              2,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              16,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              15,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              13,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              12,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              11,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              7,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              6,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              5,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              4,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              3,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              2,
+              16,
+              15,
+              14,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              2,
+              16,
+              15,
+              13,
+              14,
+              4,
+              3,
+              12,
+              10,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              2,
+              16,
+              15,
+              13,
+              14,
+              4,
+              3,
+              12,
+              9,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          },
+          {
+            "cells": [
+              1,
+              2,
+              16,
+              15,
+              13,
+              14,
+              4,
+              3,
+              12,
+              8,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          }
+        ],
+        "closure": {
+          "occurrence": "experiment:0119:search-occurrence:1",
+          "cells": [
+            1,
+            2,
+            16,
+            15,
+            13,
+            14,
+            4,
+            3,
+            12,
+            7,
+            9,
+            6,
+            8,
+            11,
+            5,
+            10
+          ],
+          "content_digest": "blake3:53d2ca93ed78c56c3d63110c348ca3ede62c478e7dd0990f209604b6ec61a5f3"
+        },
+        "parent_digest": "blake3:5fcbcae4c1ae767c7ee5cbb3ae39b4c2b8cec8a355f6812ea9655d67dc0fc413"
+      }
+    }
+  }
+}

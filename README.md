@@ -430,6 +430,16 @@ preserving their target holes, and propagates a `challenge` through the bounded
 dependency cone without deleting prior certificates. See
 [`docs/research/0118-local-closure-transport-and-adversarial-naming.md`](docs/research/0118-local-closure-transport-and-adversarial-naming.md).
 
+The first closure-growth experiment performs a finite search over normal
+order-four magic squares. It keeps additive line closure distinct from the
+characteristic-polynomial certificate for the complete value multiset, retains
+fuel-suspended frontiers, and selects a closure with a sixteen-member orbit
+under three frozen symmetries. That closure is then unfolded into fresh
+occurrences, directed transport edges, checked equal-endpoint relations,
+reusable local line contents, and an incidence influence graph. The generators
+are supplied by the experimental method rather than learned. See
+[`docs/research/0119-characteristic-magic-square-closure-family.md`](docs/research/0119-characteristic-magic-square-closure-family.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
