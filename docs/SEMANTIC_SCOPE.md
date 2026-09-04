@@ -128,6 +128,18 @@ is bound to the document digest. This does not promote `FrameIdV0` to semantic
 occurrence identity, authenticate recorded outputs, infer a missing handoff,
 execute a frame, or implement `join`.
 
+One research CLI command may now run the fixed first `M6` reveal calibration.
+It validates one self-contained neutral document, resolves six provisional
+time/space/construction transport names to frame IDs, consumes a finite fuel
+budget, and saves a structurally checked reveal witness. A completed run
+certifies only that all six stored occurrences were inspected and the two
+mechanism words form the bounded `M6` relation. It retains an explicit semantic
+filler question and cannot transport the open relation. A suspended run records
+the observed prefix and remaining names. This does not execute frame
+mechanisms, prove recorded-output provenance, compose three independent files,
+search a knowledge base, schedule around cuts, or establish the injected names
+as canonical semantics.
+
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
 step certificates, and schedule order. Its optional frontier-matched replay

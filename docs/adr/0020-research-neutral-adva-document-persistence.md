@@ -53,8 +53,10 @@ Replace the output-only V0 manifest with a canonical document graph.
   and returns the resolved transition plus a load certificate.
 - Python remains a thin path, mapping, and entry-point adapter.
 
-No `.adva` program, example, or fixture is committed. The first program is
-intentionally left for the user to author.
+At this stage no `.adva` program, example, or fixture was committed. ADR 0023
+later supersedes only this temporary constraint by admitting one explicit
+bounded `M6` reveal calibration; the persistence implementation still never
+silently generates a program.
 
 ## Consequences
 

@@ -10,6 +10,7 @@ mod boundary;
 mod mechanism;
 mod persistence;
 mod relation;
+mod reveal;
 mod seed;
 mod witness;
 
@@ -18,6 +19,7 @@ pub use boundary::*;
 pub use mechanism::*;
 pub use persistence::*;
 pub use relation::*;
+pub use reveal::*;
 pub use seed::*;
 pub use witness::*;
 

@@ -634,14 +634,17 @@ fn ensure_artifact_key(
     Ok(())
 }
 
-fn require_adva_extension(path: &Path) -> Result<(), AdvaPersistenceErrorV0> {
+pub(crate) fn require_adva_extension(path: &Path) -> Result<(), AdvaPersistenceErrorV0> {
     if path.extension().and_then(|extension| extension.to_str()) != Some(ADVA_FILE_SUFFIX_V0) {
         return Err(AdvaPersistenceErrorV0::InvalidExtension(path.to_path_buf()));
     }
     Ok(())
 }
 
-fn write_atomically(path: &Path, bytes: &[u8]) -> Result<(), AdvaPersistenceErrorV0> {
+pub(crate) fn write_atomically(
+    path: &Path,
+    bytes: &[u8],
+) -> Result<(), AdvaPersistenceErrorV0> {
     let parent = path.parent().unwrap_or_else(|| Path::new("."));
     let file_name = path
         .file_name()
