@@ -81,6 +81,22 @@ jobs:
           cmp \
             target/verification-frontier-1.adva \
             programs/bootstrap-0/verification-frontier-1.adva
+      - name: Run first local closure transport experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            verify \
+            programs/bootstrap-0/local-closure.adva \
+            programs/bootstrap-0/closure-verifier.adva \
+            programs/bootstrap-0/closure-transport-plan.adva \
+            --output target/closure-transport-1.adva \
+            --frontier-output target/closure-transport-frontier-1.adva \
+            --print
+          cmp \
+            target/closure-transport-1.adva \
+            programs/bootstrap-0/closure-transport-1.adva
+          cmp \
+            target/closure-transport-frontier-1.adva \
+            programs/bootstrap-0/closure-transport-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
