@@ -1,11 +1,10 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0,
-    AdvaPersistenceErrorV0, ArtifactKeyV0, CarrierIdV0, EntryPointV0, FrameIdV0,
-    FrameInputV0, FrameMechanismV0, FrameOutputV0, FrontierSiteV0, LoadedFrameStateV0,
-    MechanismAdmissionV0, MechanismFormV0, NeutralCarrierV0, OpenFrontierV0, RoleV0,
-    StoredCarrierV0, StoredFillAssignmentV0, StoredFillPlanV0, TransitionFrameV0,
-    load_adva_document_v0, save_adva_document_v0,
+    ADVA_DOCUMENT_SCHEMA_V0, ADVA_DOCUMENT_VERSION_V0, AdvaDocumentV0, AdvaPersistenceErrorV0,
+    ArtifactKeyV0, CarrierIdV0, EntryPointV0, FrameIdV0, FrameInputV0, FrameMechanismV0,
+    FrameOutputV0, FrontierSiteV0, LoadedFrameStateV0, MechanismAdmissionV0, MechanismFormV0,
+    NeutralCarrierV0, OpenFrontierV0, RoleV0, StoredCarrierV0, StoredFillAssignmentV0,
+    StoredFillPlanV0, TransitionFrameV0, load_adva_document_v0, save_adva_document_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -125,7 +124,9 @@ fn document_round_trip_keeps_carriers_neutral_and_mechanisms_on_frames() {
 
 #[test]
 fn a_recorded_output_triple_can_be_reused_by_a_later_ready_frame() {
-    let loaded = reusable_document("reuse").load_entrypoint("replay").unwrap();
+    let loaded = reusable_document("reuse")
+        .load_entrypoint("replay")
+        .unwrap();
     assert_eq!(loaded.transition.state, LoadedFrameStateV0::Ready);
     assert!(loaded.transition.recorded_output.is_none());
     let MechanismFormV0::Compute { input } = loaded.transition.form else {
