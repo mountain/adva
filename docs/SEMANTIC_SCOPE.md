@@ -91,7 +91,14 @@ only an exactly declared or explicitly discharged frontier; learning returns a
 finite partial fill proposal and retains replacement subholes. These
 research-local frontier coordinates are not stable semantic holes, logical
 obligations, or apertures. The checker performs no execution, proof replay,
-learning synthesis, feedback, or `.adva` format promotion.
+learning synthesis, or feedback. A separate research-only `.adva` document
+codec may persist the three output-labelled neutral carrier references and
+reload them into the three input-labelled positions under an explicit
+bijection. The Rust boundary checks schema, version, cache-coordinate
+nonemptiness, canonical frontiers, and exact slot use, and returns a digest and
+reload certificate. It is not a stable format promotion, does not reinterpret
+Lisp source, does not resolve cached artifacts, and does not certify that the
+stored outputs arose from a mechanism execution.
 
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
