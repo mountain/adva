@@ -21,6 +21,15 @@ pub enum MechanismV0 {
 
 impl MechanismV0 {
     pub const ALL: [Self; 3] = [Self::Compute, Self::Verify, Self::Learn];
+
+    #[must_use]
+    pub const fn as_str(self) -> &'static str {
+        match self {
+            Self::Compute => "compute",
+            Self::Verify => "verify",
+            Self::Learn => "learn",
+        }
+    }
 }
 
 /// The three labels used when a neutral carrier is unpacked for one step.
