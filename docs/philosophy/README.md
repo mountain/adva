@@ -38,6 +38,7 @@ computer, program geometry, or the proposed open logic.
 1. [Leibniz's Universal Characteristic: A Historical Reconstruction](0001-leibniz-universal-characteristic.md)
 2. [From a Fixed Alphabet to Historical Primitives](0002-from-fixed-alphabet-to-historical-primitives.md)
 3. [Bounded Experiment Agenda for Opening and Closing Holes](0003-open-close-hole-experiment-agenda.md)
+4. [The Long Run: Observer Refutation and the Freedom Horizon](0004-long-run-freedom-witness.md)
 
 ## Relationship to the repository
 
@@ -49,11 +50,9 @@ The closest existing executable evidence is:
 - [research note 0078](../research/0078-distributivity-characteristic-dual-read-v0.md),
   which retains unequal checked processes after extracting one common
   polynomial characteristic; and
-- [open PR 91](https://github.com/mountain/adva/pull/91), a parallel bounded
-  calibration that reads existing through relations as finite aperture
-  fillings, requires explicit selection for multivalued close, distinguishes an
-  empty filling fibre from absence of an aperture, and retains close/reopen
-  trace plus the complete residual.
+- [research note 0119](../research/0119-characteristic-magic-square-closure-family.md),
+  which lets one bounded arithmetic closure become reusable content for a
+  finite relation family without claiming self-sustaining growth.
 
 These results provide negative controls and finite evidence only. They do
 not implement `Open`, `Close`, `Reopen`, a changing logic language, an
