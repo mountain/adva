@@ -91,15 +91,12 @@ jobs:
             --output target/closure-transport-1.adva \
             --frontier-output target/closure-transport-frontier-1.adva \
             --print
-          for output in \
+          cmp \
             target/closure-transport-1.adva \
-            target/closure-transport-frontier-1.adva
-          do
-            echo "BEGIN_CLOSURE_OUTPUT:${output}"
-            base64 -w 12000 "${output}"
-            echo
-            echo "END_CLOSURE_OUTPUT:${output}"
-          done
+            programs/bootstrap-0/closure-transport-1.adva
+          cmp \
+            target/closure-transport-frontier-1.adva \
+            programs/bootstrap-0/closure-transport-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
