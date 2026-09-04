@@ -201,6 +201,28 @@ and [ADR 0023](docs/adr/0023-first-bounded-m6-reveal-run.md). This is a
 formation run over recorded boundaries, not mechanism-output provenance or a
 general three-file executor.
 
+The persisted reveal witness can be reused without its source program and
+split into time, space, and construction arithmetic projections:
+
+```bash
+cargo run -p adva-witness --bin adva -- \
+  trace-arithmetic programs/bootstrap-0/first-reveal-witness.adva \
+  --output target/first-trace-arithmetic.adva
+```
+
+The first generated output is retained byte-for-byte as
+[`programs/bootstrap-0/first-trace-arithmetic.adva`](programs/bootstrap-0/first-trace-arithmetic.adva),
+and CI regenerates and compares it.
+
+For the first `M6` pair, time counts and exact spatial endpoints match while
+the construction residual is `compute = +1, verify = -1`. Its naive
+commutative product shadow does not normalize to one, all three cross-side
+characteristic maps remain unwitnessed, and no shared truth coordinate is
+invented. Exact raw paths remain authoritative even when arithmetic
+projections collide. See
+[`docs/research/0114-three-sided-trace-arithmetic-calibration.md`](docs/research/0114-three-sided-trace-arithmetic-calibration.md)
+and [ADR 0024](docs/adr/0024-three-sided-trace-arithmetic-calibration.md).
+
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
 certificates.
