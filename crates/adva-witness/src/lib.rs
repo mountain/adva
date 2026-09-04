@@ -7,6 +7,7 @@
 
 mod arithmetic;
 mod boundary;
+mod closure_transport;
 mod inquiry;
 mod mechanism;
 mod persistence;
@@ -19,6 +20,7 @@ mod witness;
 
 pub use arithmetic::*;
 pub use boundary::*;
+pub use closure_transport::*;
 pub use inquiry::*;
 pub use mechanism::*;
 pub use persistence::*;
