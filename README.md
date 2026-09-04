@@ -440,6 +440,16 @@ reusable local line contents, and an incidence influence graph. The generators
 are supplied by the experimental method rather than learned. See
 [`docs/research/0119-characteristic-magic-square-closure-family.md`](docs/research/0119-characteristic-magic-square-closure-family.md).
 
+An attributed long-run commitment now records why these bounded rounds are not
+being treated as isolated experiments. Each round seals its declared external
+interface for replay, retains evidence that may refute its initiating observer,
+and then reopens a recorded interface for continuation by another person or
+agent. The proposed endpoint and its freedom interpretation remain open rather
+than executable claims. See
+[`programs/bootstrap-0/long-run-freedom-witness.adva`](programs/bootstrap-0/long-run-freedom-witness.adva)
+and
+[`docs/philosophy/0004-long-run-freedom-witness.md`](docs/philosophy/0004-long-run-freedom-witness.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
