@@ -1,7 +1,7 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
     ClosureFindingClassV0, ClosureFrontierStateV0, ClosureTransportContractV0,
-    ClosureTransportPlanV0, LocalClosureCandidateV0, WitnessProofV0,
+    ClosureTransportPlanV0, LocalClosureCandidateV0, RejectionResidualV0, WitnessProofV0,
     load_closure_transport_contract_v0, load_closure_transport_frontier_v0,
     load_closure_transport_plan_v0, load_closure_transport_transition_v0,
     load_local_closure_candidate_v0, run_closure_transport_v0, save_closure_transport_frontier_v0,
@@ -38,6 +38,35 @@ fn committed_input_carriers_match_the_frozen_first_experiment() {
     assert_eq!(
         load_closure_transport_plan_v0(fixture("closure-transport-plan.adva")).unwrap(),
         ClosureTransportPlanV0::first_experiment()
+    );
+}
+
+#[test]
+fn committed_first_transport_outputs_replay_exactly() {
+    let transition = first_transition();
+    let recorded_transition =
+        load_closure_transport_transition_v0(fixture("closure-transport-1.adva")).unwrap();
+    let recorded_frontier = load_closure_transport_frontier_v0(fixture(
+        "closure-transport-frontier-1.adva",
+    ))
+    .unwrap();
+
+    assert_eq!(recorded_transition, transition);
+    assert_eq!(
+        transition.digest().unwrap(),
+        "blake3:a18fdae20eb3b8d8d1bf3e8a035396ee6923f7932db6e6bd6867316865858043"
+    );
+    assert_eq!(
+        recorded_frontier,
+        transition.output.evidence.residual_frontier
+    );
+    assert_eq!(
+        recorded_frontier.digest().unwrap(),
+        "blake3:7dfdb039d09a035ca11b74f1ec73ff33db5c04ecc2ec1a2d159521cf8a6702d8"
+    );
+    assert_eq!(
+        transition.output.history.local_certificate_digest,
+        "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0"
     );
 }
 
@@ -101,7 +130,9 @@ fn typed_negative_controls_reject_polynomial_import_into_m6_obligations() {
     let outcomes = &transition.output.result.negative_controls;
 
     assert!(outcomes.iter().all(|outcome| {
-        !outcome.accepted && outcome.class == ClosureFindingClassV0::Incommensurate
+        !outcome.accepted
+            && outcome.class == ClosureFindingClassV0::Incommensurate
+            && outcome.residual == RejectionResidualV0::TargetHolePreserved
     }));
     assert!(
         outcomes
