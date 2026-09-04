@@ -17,6 +17,20 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      - name: Format and emit experiment sources
+        run: |
+          cargo fmt
+          for source in \
+            crates/adva-witness/src/lib.rs \
+            crates/adva-witness/src/closure_transport.rs \
+            crates/adva-witness/src/bin/adva.rs \
+            crates/adva-witness/tests/closure_transport.rs
+          do
+            echo "BEGIN_FORMATTED:${source}"
+            base64 -w 12000 "${source}"
+            echo
+            echo "END_FORMATTED:${source}"
+          done
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
