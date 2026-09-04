@@ -65,6 +65,23 @@ a proposed `custody` hypothesis. The evidence must contain a sequence-two
 frontier with two consumed resources, two retained candidate identities, and
 the original five open obligations.
 
+## First recorded result
+
+The CI run completed the second bounded transition:
+
+| Artifact | BLAKE3 coordinate |
+| --- | --- |
+| second resource snapshot | `e68591b84f81dc9b1584619853943846685c50ef8922cd73234e93505ff907e6` |
+| name-independent custody candidate | `65c139bcf849bae3a250a2a1f2f6fdec2d5edcd95f3bb1d4b5e853179926160a` |
+| second hypothesis transition | `0f501b7c26e95b4f90ce3fb832027e0b73a5ad5af82a0681b59cd170aee0a52e` |
+| sequence-two frontier | `ae23c007227cf0665fd2928dfb5adb41c2d23923649f867b128bdd6533deb39c` |
+
+The history introduced exactly one word, `custody`; it did not introduce
+`hypothesis` again. The output retained two distinct resource receipts and two
+candidate identities. All five original obligations remained `open`. CI now
+repeats both inquiry transitions and requires byte equality for every derived
+artifact.
+
 ## Falsification boundary
 
 The proposal fails if independent remeasurement is unavailable, if supposedly
