@@ -1,9 +1,8 @@
 use adva_witness::{
-    AdvaDocumentV0, CharacteristicStateV0, ConstructiveTraceCodeV0, M6NamingPlanV0,
-    MechanismV0, ProjectionAlignmentV0, TraceArithmeticErrorV0,
-    TraceArithmeticQuestionKindV0, TruthFiberStateV0, calibrate_trace_arithmetic_v0,
-    load_reveal_witness_v0, load_trace_arithmetic_v0, run_m6_reveal_v0,
-    save_trace_arithmetic_v0,
+    AdvaDocumentV0, CharacteristicStateV0, ConstructiveTraceCodeV0, M6NamingPlanV0, MechanismV0,
+    ProjectionAlignmentV0, TraceArithmeticErrorV0, TraceArithmeticQuestionKindV0,
+    TruthFiberStateV0, calibrate_trace_arithmetic_v0, load_reveal_witness_v0,
+    load_trace_arithmetic_v0, run_m6_reveal_v0, save_trace_arithmetic_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -50,7 +49,10 @@ fn first_reveal_has_matched_time_and_space_but_divergent_construction() {
     assert_eq!(calibration.additive_residual.construction.step_count, 0);
     assert_eq!(calibration.additive_residual.construction.alternations, 0);
     assert!(!calibration.additive_residual.construction.is_zero());
-    assert_ne!(calibration.left.trace_digest, calibration.right.trace_digest);
+    assert_ne!(
+        calibration.left.trace_digest,
+        calibration.right.trace_digest
+    );
     calibration.check().unwrap();
 }
 
@@ -71,11 +73,13 @@ fn naive_commutative_m6_holonomy_does_not_normalize_to_one() {
         calibration.questions[4].kind,
         TraceArithmeticQuestionKindV0::CommonTruthCoordinate
     );
-    assert!(calibration
-        .characteristic_constraints
-        .iter()
-        .all(|constraint| constraint.state == CharacteristicStateV0::Open
-            && constraint.witness.is_none()));
+    assert!(
+        calibration
+            .characteristic_constraints
+            .iter()
+            .all(|constraint| constraint.state == CharacteristicStateV0::Open
+                && constraint.witness.is_none())
+    );
 }
 
 #[test]
@@ -104,12 +108,8 @@ fn an_arithmetic_projection_collision_does_not_identify_ordered_traces() {
 
 #[test]
 fn calibration_rejects_suspension_and_tampered_derived_fields() {
-    let suspended = run_m6_reveal_v0(
-        &first_program(),
-        M6NamingPlanV0::first_calibration(),
-        4,
-    )
-    .unwrap();
+    let suspended =
+        run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 4).unwrap();
     assert!(matches!(
         calibrate_trace_arithmetic_v0(&suspended),
         Err(TraceArithmeticErrorV0::InvalidSourceWitness(_))
