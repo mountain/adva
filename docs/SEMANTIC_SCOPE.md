@@ -105,6 +105,29 @@ stable format promotion, does not reinterpret Lisp source, does not resolve
 cached artifacts, and does not certify that recorded outputs arose from a
 mechanism execution.
 
+The research crate may also check the formation of two explicitly profiled
+relation cells. `Q4` admits only the `ab => ba` interchange word with a trace
+monoid process lift and Klein-four Coxeter shadow. `M6` admits only the
+`aba => bab` braid word with a positive braid-monoid lift and `S3` shadow.
+Both raw paths remain present. Open boundaries require an explicit residual
+cache reference; filled boundaries cite one directional witness and may retain
+a residual. The returned certificate covers formation and reference presence
+only: it does not replay the witness, authorize reverse transport, prove path
+or program equality, implement conjugacy, or extend `AdvaDocumentV0`. Candidate
+carrier commands (`join/cut/close`) and traversal commands (`step/run`) remain
+outside this relation checker and have not been promoted to CLI syntax.
+
+`FrameRelationCellV0` may additionally derive the two relation paths from one
+validated neutral document. Each path is a nonempty sequence of distinct
+`FrameIdV0` values with complete recorded outputs. Adjacent frames must expose
+a bijection from `history/result/evidence` carrier references to the next
+`subject/method/object` references, and the exact permutation is retained.
+The two paths must have identical labelled starting and ending boundaries;
+their relation word is derived exclusively from frame mechanisms. The result
+is bound to the document digest. This does not promote `FrameIdV0` to semantic
+occurrence identity, authenticate recorded outputs, infer a missing handoff,
+execute a frame, or implement `join`.
+
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
 step certificates, and schedule order. Its optional frontier-matched replay

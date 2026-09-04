@@ -167,6 +167,17 @@ pub enum FrameMechanismV0 {
     },
 }
 
+impl FrameMechanismV0 {
+    #[must_use]
+    pub const fn mechanism(&self) -> crate::MechanismV0 {
+        match self {
+            Self::Compute => crate::MechanismV0::Compute,
+            Self::Verify { .. } => crate::MechanismV0::Verify,
+            Self::Learn { .. } => crate::MechanismV0::Learn,
+        }
+    }
+}
+
 /// One three-input/three-output transition frame in a neutral document.
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
@@ -245,6 +256,17 @@ impl AdvaDocumentV0 {
     pub fn to_json(&self) -> Result<String, AdvaPersistenceErrorV0> {
         self.validate()?;
         Ok(serde_json::to_string_pretty(self)?)
+    }
+
+    /// Revalidate the complete graph and return its canonical integrity
+    /// digest without selecting an entry point.
+    ///
+    /// # Errors
+    ///
+    /// Rejects every invalid document invariant or serialization failure.
+    pub fn validated_digest(&self) -> Result<String, AdvaPersistenceErrorV0> {
+        self.validate()?;
+        self.digest()
     }
 
     /// Resolve and check one named starting frame.

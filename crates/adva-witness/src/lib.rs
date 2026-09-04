@@ -9,6 +9,7 @@ mod arithmetic;
 mod boundary;
 mod mechanism;
 mod persistence;
+mod relation;
 mod seed;
 mod witness;
 
@@ -16,6 +17,7 @@ pub use arithmetic::*;
 pub use boundary::*;
 pub use mechanism::*;
 pub use persistence::*;
+pub use relation::*;
 pub use seed::*;
 pub use witness::*;
 

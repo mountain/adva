@@ -285,6 +285,28 @@ provenance. This does not change the Lisp parser, `adva.ir` version 1, or
 feedback semantics, and loading does not resolve the referenced witness
 artifacts.
 
+The same research crate contains a separate bounded relation-cell formation
+checker. It keeps carrier operations (`join/cut/close`), traversal
+(`step/run`), and relation witnesses (`interchange/braid/transport`) in
+different layers. `RelationProfileV0` fixes the `Q4` interchange profile to a
+trace-monoid lift with Klein-four Coxeter shadow and the `M6` braid profile to
+a positive-braid-monoid lift with `S3` shadow. Raw paths are never identified;
+open cells retain a residual reference, and filled cells authorize only their
+explicit orientation. These are research formation records rather than
+`adva.ir` equation cells, executable rewrites, group operations, or generic
+conjugacy certificates. They are not stored in `AdvaDocumentV0`.
+
+`FrameRelationCellV0` can derive such a relation from two explicit paths in
+one already validated neutral document. Mechanism labels, not method carriers,
+become the relation generators. Every step retains its `FrameIdV0`; every
+adjacent pair must reuse all three recorded output carriers exactly once as
+the next input triple, and the resulting permutation is retained. Both paths
+must share exact labelled input and recorded-output boundaries. The artifact
+is bound to the validated document digest. This is a document-local formation
+adapter: `FrameIdV0` does not become `OccurrenceId`, recorded output does not
+gain execution provenance, and the adapter neither searches for nor constructs
+a `join`.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a
