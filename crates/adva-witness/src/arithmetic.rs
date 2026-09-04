@@ -49,7 +49,10 @@ impl MonomialV0 {
         })
     }
 
-    fn evaluate(&self, environment: &BTreeMap<String, BigInt>) -> Result<BigInt, ArithmeticErrorV0> {
+    fn evaluate(
+        &self,
+        environment: &BTreeMap<String, BigInt>,
+    ) -> Result<BigInt, ArithmeticErrorV0> {
         let mut value = BigInt::one();
         for power in &self.powers {
             let variable = environment
@@ -188,14 +191,8 @@ impl PolynomialV0 {
 pub enum ExactExprV0 {
     Constant { value: BigInt },
     Variable { name: String },
-    Add {
-        left: Box<Self>,
-        right: Box<Self>,
-    },
-    Multiply {
-        left: Box<Self>,
-        right: Box<Self>,
-    },
+    Add { left: Box<Self>, right: Box<Self> },
+    Multiply { left: Box<Self>, right: Box<Self> },
 }
 
 impl ExactExprV0 {
@@ -238,9 +235,9 @@ impl ExactExprV0 {
             Self::Constant { value } => Ok(PolynomialV0::constant(value.clone())),
             Self::Variable { name } => PolynomialV0::variable(name),
             Self::Add { left, right } => Ok(left.normalize()?.sum(&right.normalize()?)),
-            Self::Multiply { left, right } => left
-                .normalize()?
-                .checked_product(&right.normalize()?),
+            Self::Multiply { left, right } => {
+                left.normalize()?.checked_product(&right.normalize()?)
+            }
         }
     }
 

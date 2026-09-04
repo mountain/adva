@@ -1,6 +1,4 @@
-use crate::{
-    BoundaryChargeV0, BoundaryCoordinateV0, BoundaryErrorV0, BoundaryTermV0, RoleV0,
-};
+use crate::{BoundaryChargeV0, BoundaryCoordinateV0, BoundaryErrorV0, BoundaryTermV0, RoleV0};
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeSet;
 use thiserror::Error;
@@ -159,12 +157,12 @@ impl ValueWordV0 {
     }
 }
 
-fn unit_slots(
-    slots: impl IntoIterator<Item = u8>,
-) -> Result<BoundaryChargeV0, BoundaryErrorV0> {
-    BoundaryChargeV0::from_terms(slots.into_iter().map(|slot| {
-        BoundaryTermV0::new(BoundaryCoordinateV0::UnitSlot { slot }, 1)
-    }))
+fn unit_slots(slots: impl IntoIterator<Item = u8>) -> Result<BoundaryChargeV0, BoundaryErrorV0> {
+    BoundaryChargeV0::from_terms(
+        slots
+            .into_iter()
+            .map(|slot| BoundaryTermV0::new(BoundaryCoordinateV0::UnitSlot { slot }, 1)),
+    )
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -183,7 +181,10 @@ impl SeedRuleV0 {
     /// Returns [`SeedErrorV0::UnbalancedRule`] when the type and value ledgers
     /// differ.
     pub fn verify(&self) -> Result<SeedVerificationV0, SeedErrorV0> {
-        let residual = self.type_word.charge()?.checked_sub(&self.value_word.charge()?)?;
+        let residual = self
+            .type_word
+            .charge()?
+            .checked_sub(&self.value_word.charge()?)?;
         if !residual.is_zero() {
             return Err(SeedErrorV0::UnbalancedRule {
                 term: self.term,
@@ -281,7 +282,11 @@ impl SeedRegistryV0 {
     ///
     /// Returns a seed error for a duplicate, missing, or unbalanced rule.
     pub fn verify_all(&self) -> Result<Vec<SeedVerificationV0>, SeedErrorV0> {
-        let terms = self.rules.iter().map(|rule| rule.term).collect::<BTreeSet<_>>();
+        let terms = self
+            .rules
+            .iter()
+            .map(|rule| rule.term)
+            .collect::<BTreeSet<_>>();
         if terms.len() != self.rules.len() {
             return Err(SeedErrorV0::DuplicateTerm);
         }

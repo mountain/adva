@@ -1,11 +1,8 @@
 use crate::{
-    ArithmeticErrorV0, BoundaryChargeV0, BoundaryErrorV0, ExactExprV0,
-    MultiplicativeResidualV0, RoleV0, SeedErrorV0, SeedRegistryV0, TermGlyphV0,
-    WITNESS_SCHEMA_V0, WITNESS_VERSION_V0,
+    ArithmeticErrorV0, BoundaryChargeV0, BoundaryErrorV0, ExactExprV0, MultiplicativeResidualV0,
+    RoleV0, SeedErrorV0, SeedRegistryV0, TermGlyphV0, WITNESS_SCHEMA_V0, WITNESS_VERSION_V0,
 };
-use adva_ir::{
-    DiagramValidationArtifact, OccurrenceId, OccurrencePath, QualifiedName, SourceId,
-};
+use adva_ir::{DiagramValidationArtifact, OccurrenceId, OccurrencePath, QualifiedName, SourceId};
 use num_bigint::BigInt;
 use serde::{Deserialize, Serialize};
 use std::collections::{BTreeMap, BTreeSet};
@@ -40,7 +37,10 @@ impl ArtifactKeyV0 {
 
     fn digest(proof: &WitnessProofV0) -> Result<Self, WitnessErrorV0> {
         let canonical = serde_json::to_vec(proof)?;
-        Ok(Self(format!("blake3:{}", blake3::hash(&canonical).to_hex())))
+        Ok(Self(format!(
+            "blake3:{}",
+            blake3::hash(&canonical).to_hex()
+        )))
     }
 }
 
@@ -155,7 +155,11 @@ impl WitnessStoreV0 {
         }
 
         let key = ArtifactKeyV0::digest(&proof)?;
-        if proof.dependencies().into_iter().any(|dependency| dependency == &key) {
+        if proof
+            .dependencies()
+            .into_iter()
+            .any(|dependency| dependency == &key)
+        {
             return Err(WitnessErrorV0::CyclicDependency(key));
         }
         if let Some(existing) = self.artifacts.get(&key) {
@@ -263,7 +267,10 @@ impl WitnessStoreV0 {
         }
     }
 
-    fn allocate_instance_id(&mut self, template: &TemplateIdV0) -> Result<InstanceIdV0, WitnessErrorV0> {
+    fn allocate_instance_id(
+        &mut self,
+        template: &TemplateIdV0,
+    ) -> Result<InstanceIdV0, WitnessErrorV0> {
         let ordinal = self.next_instance_ordinal;
         self.next_instance_ordinal = self
             .next_instance_ordinal
@@ -284,8 +291,8 @@ fn combine_summaries(
     let mut nonzero_obligations = Vec::new();
     for summary in summaries {
         additive_residual = additive_residual.checked_add(&summary.additive_residual)?;
-        multiplicative_residual = multiplicative_residual
-            .checked_multiply(&summary.multiplicative_residual)?;
+        multiplicative_residual =
+            multiplicative_residual.checked_multiply(&summary.multiplicative_residual)?;
         nonzero_obligations.extend(summary.nonzero_obligations);
     }
     Ok(WitnessSummaryV0 {
@@ -414,7 +421,10 @@ impl CellTemplateV0 {
                 return Err(WitnessErrorV0::NonlinearTemplateVariable(variable.clone()));
             }
         }
-        if occurrences.keys().any(|variable| !variables.contains(variable)) {
+        if occurrences
+            .keys()
+            .any(|variable| !variables.contains(variable))
+        {
             return Err(WitnessErrorV0::UndeclaredTemplateVariable);
         }
         Ok(Self {
@@ -472,12 +482,8 @@ impl FormedCellV0 {
             .validate_version()
             .map_err(|error| WitnessErrorV0::InvalidBindingContext(error.to_string()))?;
         let mut occurrences = BTreeSet::new();
-        for (position, (hole, binding)) in self
-            .template
-            .holes
-            .iter()
-            .zip(bindings.iter())
-            .enumerate()
+        for (position, (hole, binding)) in
+            self.template.holes.iter().zip(bindings.iter()).enumerate()
         {
             if usize::from(binding.hole_index) != position
                 || binding.hole_index != hole.index
@@ -649,7 +655,9 @@ pub enum WitnessErrorV0 {
     UncertifiedBindingContext,
     #[error("invalid occurrence-binding context: {0}")]
     InvalidBindingContext(String),
-    #[error("occurrence {occurrence} is not present with the declared source and path in the checked diagram")]
+    #[error(
+        "occurrence {occurrence} is not present with the declared source and path in the checked diagram"
+    )]
     BindingNotInCheckedDiagram { occurrence: OccurrenceId },
     #[error("occurrence {0} was implicitly bound to more than one hole")]
     ImplicitOccurrenceAlias(OccurrenceId),
