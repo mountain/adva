@@ -2,9 +2,8 @@ use adva_witness::{
     InquiryObligationStateV0, VerificationActionV0, VerificationDecisionV0,
     VerificationFrontierStateV0, VerificationObligationRoleV0, VerificationObligationStateV0,
     VerificationSubjectV0, load_inquiry_frontier_v0, load_verification_contract_v0,
-    load_verification_frontier_v0, load_verification_packet_v0,
-    load_verification_transition_v0, save_verification_frontier_v0,
-    save_verification_transition_v0, verify_obligations_v0,
+    load_verification_frontier_v0, load_verification_packet_v0, load_verification_transition_v0,
+    save_verification_frontier_v0, save_verification_transition_v0, verify_obligations_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
@@ -85,9 +84,12 @@ fn verification_layer_does_not_rewrite_the_inquiry_frontier() {
 
     assert_eq!(retained, &original);
     assert_eq!(retained.digest().unwrap(), original_digest);
-    assert!(retained.obligations.iter().all(|obligation| {
-        obligation.state == InquiryObligationStateV0::Open
-    }));
+    assert!(
+        retained
+            .obligations
+            .iter()
+            .all(|obligation| { obligation.state == InquiryObligationStateV0::Open })
+    );
 }
 
 #[test]
@@ -115,13 +117,15 @@ fn digest_only_discharge_is_recorded_and_refused() {
     );
     assert_eq!(transition.output.result.open_semantic_leaves, 5);
     assert!(transition.output.result.certificate.is_none());
-    assert!(transition
-        .output
-        .evidence
-        .residual_frontier
-        .obligations
-        .iter()
-        .all(|obligation| obligation.state == VerificationObligationStateV0::Open));
+    assert!(
+        transition
+            .output
+            .evidence
+            .residual_frontier
+            .obligations
+            .iter()
+            .all(|obligation| obligation.state == VerificationObligationStateV0::Open)
+    );
     transition.check().unwrap();
 }
 

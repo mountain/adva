@@ -1,11 +1,11 @@
 use adva_witness::{
     AdvaDocumentV0, M6NamingPlanV0, calibrate_trace_arithmetic_v0,
     derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_exploration_contract_v0,
-    load_inquiry_frontier_v0, load_resource_snapshot_v0, load_reveal_witness_v0, run_m6_reveal_v0,
+    load_inquiry_frontier_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
     load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
-    save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_reveal_witness_v0,
-    save_trace_arithmetic_v0, save_verification_frontier_v0, save_verification_transition_v0,
-    verify_obligations_v0,
+    run_m6_reveal_v0, save_hypothesis_transition_v0, save_inquiry_frontier_v0,
+    save_reveal_witness_v0, save_trace_arithmetic_v0, save_verification_frontier_v0,
+    save_verification_transition_v0, verify_obligations_v0,
 };
 use std::env;
 use std::error::Error;
@@ -144,8 +144,7 @@ fn run_verify(parsed: VerifyArgs) -> Result<(), Box<dyn Error>> {
     let transition = verify_obligations_v0(&subject, &contract, &packet)?;
     let transition_receipt = save_verification_transition_v0(&parsed.output, &transition)?;
     let next_frontier = &transition.output.evidence.residual_frontier;
-    let frontier_receipt =
-        save_verification_frontier_v0(&parsed.frontier_output, next_frontier)?;
+    let frontier_receipt = save_verification_frontier_v0(&parsed.frontier_output, next_frontier)?;
 
     println!("mechanism={:?}", transition.output.history.mechanism);
     println!("state={:?}", transition.output.result.state);
@@ -160,7 +159,10 @@ fn run_verify(parsed: VerifyArgs) -> Result<(), Box<dyn Error>> {
         transition.output.history.leaf_delta.custody_after
     );
     println!("forks={}", transition.output.result.unresolved_forks);
-    println!("certificate={}", transition.output.result.certificate.is_some());
+    println!(
+        "certificate={}",
+        transition.output.result.certificate.is_some()
+    );
     println!("transition={}", transition_receipt.artifact_digest);
     println!("next_frontier={}", frontier_receipt.artifact_digest);
     println!("output={}", transition_receipt.path.display());
