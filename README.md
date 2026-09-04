@@ -63,6 +63,9 @@ tool does not turn research targets into stable API promises.
   `history/result/evidence` distinct, rejects open compute subjects and
   objects, accounts for conditional verification, and retains partial learning
   fill proposals without changing the stable IR;
+- a research-only neutral `.adva` document boundary that atomically persists
+  `history/result/evidence` carriers and reloads them as
+  `subject/method/object` only through an explicit Rust-checked slot bijection;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -141,6 +144,14 @@ assert restored.compilation_certificate is None
 
 Successful JSON decoding is not semantic authorization. `load_program` returns
 only a diagram accepted by the Rust validator.
+
+Neutral-carrier persistence is exposed separately through
+`adva.persistence.save_adva_document` and
+`adva.persistence.load_adva_document`. Saving validates all three output
+carriers before an atomic same-directory replacement. Loading revalidates the
+schema, version, cache coordinates, and canonical frontiers, then requires an
+explicit three-route output-to-input bijection. The repository intentionally
+contains no `.adva` program fixture; the first program remains caller-authored.
 
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
@@ -310,6 +321,8 @@ zero/multi-lineage holes are recorded in
 The following bounded grammar tests one neutral carrier, two three-label
 load/persistence views, and mechanism-relative open-frontier disciplines in
 [`docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md`](docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md).
+Its separate checked persistence boundary is recorded in
+[`docs/research/0110-neutral-adva-document-load-save.md`](docs/research/0110-neutral-adva-document-load-save.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in

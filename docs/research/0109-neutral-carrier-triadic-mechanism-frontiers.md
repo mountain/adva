@@ -222,3 +222,7 @@ theoretical task is to define the opposite-edge characteristic operator that
 could confirm or replace these names. The next engineering task is a separate
 decision for a self-describing `.adva` envelope and a certified output-to-input
 substitution record; neither should be inferred from this local checker.
+
+That separate engineering decision is now implemented, without changing this
+grammar claim, in
+[`0110-neutral-adva-document-load-save.md`](0110-neutral-adva-document-load-save.md).

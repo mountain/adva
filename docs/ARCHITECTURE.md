@@ -67,7 +67,10 @@ judgments.
   concrete intermediate zero rejected;
 - a bounded neutral-carrier mechanism grammar whose input, process, and output
   labels remain distinct, with separate open-frontier rules for computation,
-  verification, and learning proposals.
+  verification, and learning proposals;
+- a research-only neutral `.adva` document codec and filesystem boundary that
+  persists the three output-labelled carriers, revalidates them on read, and
+  permits input relabelling only through an exact three-slot bijection.
 
 This crate depends only on `adva-ir` among Adva crates. Its schema is
 `adva.witness.research` version zero, not an extension of `adva.ir` version 1.
@@ -270,8 +273,12 @@ than replaces the compiler and graft certificate identities. Its subsequent
 neutral-carrier grammar uses research-local frontier coordinates to distinguish
 closed computation, explicitly open verification, and candidate learning fill
 plans. Those coordinates are not stable holes, cut ports, or logical
-obligations, and the grammar implements neither feedback nor a new `.adva`
-decoder.
+obligations. Its separate `.adva` research document stores only neutral
+carrier cache references and canonical frontiers. Rust validates the document
+and an explicit output-to-input slot bijection before returning a reload
+artifact; Python supplies paths and JSON-shaped values only. This does not
+change the Lisp parser, `adva.ir` version 1, or feedback semantics, and loading
+does not resolve the referenced witness artifacts.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
