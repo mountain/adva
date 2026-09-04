@@ -59,7 +59,7 @@ fn first_program_forms_the_named_m6_boundary_and_retains_its_question() {
 
 #[test]
 fn committed_first_witness_replays_the_first_run_exactly() {
-    let recorded = load_reveal_witness_v0(&first_witness_path()).unwrap();
+    let recorded = load_reveal_witness_v0(first_witness_path()).unwrap();
     let derived =
         run_m6_reveal_v0(&first_program(), M6NamingPlanV0::first_calibration(), 6).unwrap();
 
