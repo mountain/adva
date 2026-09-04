@@ -4,8 +4,8 @@ use adva_witness::{
     ClosureTransportPlanV0, LocalClosureCandidateV0, WitnessProofV0,
     load_closure_transport_contract_v0, load_closure_transport_frontier_v0,
     load_closure_transport_plan_v0, load_closure_transport_transition_v0,
-    load_local_closure_candidate_v0, run_closure_transport_v0,
-    save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
+    load_local_closure_candidate_v0, run_closure_transport_v0, save_closure_transport_frontier_v0,
+    save_closure_transport_transition_v0,
 };
 use std::path::PathBuf;
 use std::sync::atomic::{AtomicU64, Ordering};
