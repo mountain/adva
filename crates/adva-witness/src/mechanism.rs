@@ -272,9 +272,7 @@ pub enum VerificationStatusV0 {
     Conditional,
 }
 
-fn check_compute(
-    input: &MechanismInputV0,
-) -> Result<MechanismAdmissionV0, MechanismSyntaxErrorV0> {
+fn check_compute(input: &MechanismInputV0) -> Result<MechanismAdmissionV0, MechanismSyntaxErrorV0> {
     if !input.subject.frontier.is_empty() {
         return Err(MechanismSyntaxErrorV0::OpenComputeSubject(
             input.subject.frontier.clone(),
@@ -299,9 +297,7 @@ fn check_verify(
     let declared = declared_subject.as_set();
     let extra = actual.difference(&declared).cloned().collect::<Vec<_>>();
     if !extra.is_empty() {
-        return Err(MechanismSyntaxErrorV0::UndeclaredVerificationSites(
-            extra,
-        ));
+        return Err(MechanismSyntaxErrorV0::UndeclaredVerificationSites(extra));
     }
 
     let mut discharged = BTreeSet::new();
@@ -324,14 +320,9 @@ fn check_verify(
     }
 
     let accounted = actual.union(&discharged).cloned().collect::<BTreeSet<_>>();
-    let missing = declared
-        .difference(&accounted)
-        .cloned()
-        .collect::<Vec<_>>();
+    let missing = declared.difference(&accounted).cloned().collect::<Vec<_>>();
     if !missing.is_empty() {
-        return Err(MechanismSyntaxErrorV0::UnaccountedDeclaredSites(
-            missing,
-        ));
+        return Err(MechanismSyntaxErrorV0::UnaccountedDeclaredSites(missing));
     }
 
     Ok(MechanismAdmissionV0::Verify {

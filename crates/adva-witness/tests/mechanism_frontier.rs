@@ -1,8 +1,8 @@
 use adva_witness::{
-    ADVA_FILE_SUFFIX_V0, ArtifactKeyV0, DischargeV0, FillAssignmentV0, FillPlanV0,
-    FrontierSiteV0, InputLabelV0, MechanismAdmissionV0, MechanismFormV0, MechanismInputV0,
-    MechanismOutputV0, MechanismSyntaxErrorV0, MechanismV0, NeutralCarrierV0, OpenFrontierV0,
-    OutputLabelV0, RoleV0, VerificationStatusV0,
+    ADVA_FILE_SUFFIX_V0, ArtifactKeyV0, DischargeV0, FillAssignmentV0, FillPlanV0, FrontierSiteV0,
+    InputLabelV0, MechanismAdmissionV0, MechanismFormV0, MechanismInputV0, MechanismOutputV0,
+    MechanismSyntaxErrorV0, MechanismV0, NeutralCarrierV0, OpenFrontierV0, OutputLabelV0, RoleV0,
+    VerificationStatusV0,
 };
 
 fn key(name: &str) -> ArtifactKeyV0 {
@@ -78,10 +78,8 @@ fn frontier_coordinates_are_canonical_and_cannot_change_role_by_aliasing() {
     let reversed = frontier([second, first]);
     assert_eq!(canonical, reversed);
 
-    let duplicate = OpenFrontierV0::from_sites([
-        site(RoleV0::Construction, 2, 7),
-        site(RoleV0::Space, 2, 7),
-    ]);
+    let duplicate =
+        OpenFrontierV0::from_sites([site(RoleV0::Construction, 2, 7), site(RoleV0::Space, 2, 7)]);
     assert_eq!(
         duplicate,
         Err(MechanismSyntaxErrorV0::DuplicateFrontierCoordinate {
@@ -245,11 +243,7 @@ fn learning_returns_a_partial_fill_plan_and_retains_new_subholes() {
     let subhole = site(RoleV0::Time, 2, 8);
     let subject = frontier([target.clone(), untouched.clone()]);
     let form = MechanismFormV0::Learn {
-        input: input(
-            subject,
-            OpenFrontierV0::closed(),
-            OpenFrontierV0::closed(),
-        ),
+        input: input(subject, OpenFrontierV0::closed(), OpenFrontierV0::closed()),
         plan: FillPlanV0 {
             assignments: vec![FillAssignmentV0 {
                 target: target.clone(),
