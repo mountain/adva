@@ -1,7 +1,7 @@
 use crate::{
-    ArtifactKeyV0, BoundaryChargeV0, ExactExprV0, InquiryInterfaceV0, InquirySaveReceiptV0,
-    InputLabelV0, MechanismV0, OutputLabelV0, PolynomialV0, WitnessArtifactV0, WitnessErrorV0,
-    WitnessProofV0, WitnessStoreV0,
+    ArtifactKeyV0, BoundaryChargeV0, ExactExprV0, InputLabelV0, InquiryInterfaceV0,
+    InquirySaveReceiptV0, MechanismV0, OutputLabelV0, PolynomialV0, WitnessArtifactV0,
+    WitnessErrorV0, WitnessProofV0, WitnessStoreV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
@@ -10,17 +10,14 @@ use std::fs;
 use std::path::{Path, PathBuf};
 use thiserror::Error;
 
-pub const LOCAL_CLOSURE_CANDIDATE_SCHEMA_V0: &str =
-    "adva.local-closure-candidate.research";
-pub const CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0: &str =
-    "adva.closure-transport-contract.research";
+pub const LOCAL_CLOSURE_CANDIDATE_SCHEMA_V0: &str = "adva.local-closure-candidate.research";
+pub const CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0: &str = "adva.closure-transport-contract.research";
 pub const CLOSURE_TRANSPORT_PLAN_SCHEMA_V0: &str = "adva.closure-transport-plan.research";
 pub const POLYNOMIAL_CLOSURE_CERTIFICATE_SCHEMA_V0: &str =
     "adva.polynomial-closure-certificate.research";
 pub const POLYNOMIAL_SEPARATION_CERTIFICATE_SCHEMA_V0: &str =
     "adva.polynomial-separation-certificate.research";
-pub const CLOSURE_TRANSPORT_FRONTIER_SCHEMA_V0: &str =
-    "adva.closure-transport-frontier.research";
+pub const CLOSURE_TRANSPORT_FRONTIER_SCHEMA_V0: &str = "adva.closure-transport-frontier.research";
 pub const CLOSURE_TRANSPORT_TRANSITION_SCHEMA_V0: &str =
     "adva.closure-transport-transition.research";
 pub const CLOSURE_TRANSPORT_VERSION_V0: u32 = 0;
@@ -420,7 +417,9 @@ impl PolynomialClosureCertificateV0 {
         for recorded in &self.witness_graph {
             let key = store.insert(recorded.proof.clone())?;
             if key != recorded.key || store.artifact(&key) != Some(recorded) {
-                return Err(invalid("the embedded witness graph does not replay exactly"));
+                return Err(invalid(
+                    "the embedded witness graph does not replay exactly",
+                ));
             }
         }
         let sealed = store
@@ -430,7 +429,9 @@ impl PolynomialClosureCertificateV0 {
             || !sealed.summary.is_formed()
             || !sealed.summary.is_multiplicatively_closed()
         {
-            return Err(invalid("the retained witness is not additively and multiplicatively closed"));
+            return Err(invalid(
+                "the retained witness is not additively and multiplicatively closed",
+            ));
         }
         Ok(())
     }
@@ -489,7 +490,6 @@ pub struct NegativeImportOutcomeV0 {
     pub reason: String,
 }
 
-
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct ExactVariableValueV0 {
@@ -527,13 +527,17 @@ impl PolynomialSeparationCertificateV0 {
             || self.class != ClosureFindingClassV0::Separation
             || self.unit != ClosureUnitV0::ExactPolynomialIdentity
         {
-            return Err(invalid("the arithmetic negative has an invalid epistemic name"));
+            return Err(invalid(
+                "the arithmetic negative has an invalid epistemic name",
+            ));
         }
         if self.before.normalize()? != self.before_normal_form
             || self.after.normalize()? != self.after_normal_form
             || self.before_normal_form == self.after_normal_form
         {
-            return Err(invalid("a separation certificate must retain distinct exact normal forms"));
+            return Err(invalid(
+                "a separation certificate must retain distinct exact normal forms",
+            ));
         }
         let environment = self
             .counterexample
@@ -552,7 +556,9 @@ impl PolynomialSeparationCertificateV0 {
             || self.after.evaluate_guarded(&environment)? != self.after_value
             || self.before_value == self.after_value
         {
-            return Err(invalid("the retained valuation does not separate both expressions"));
+            return Err(invalid(
+                "the retained valuation does not separate both expressions",
+            ));
         }
         Ok(())
     }
@@ -709,11 +715,8 @@ impl ClosureTransportTransitionV0 {
             CLOSURE_TRANSPORT_TRANSITION_SCHEMA_V0,
             &self.interface,
         )?;
-        let expected = run_closure_transport_v0(
-            &self.input.subject,
-            &self.input.method,
-            &self.input.object,
-        )?;
+        let expected =
+            run_closure_transport_v0(&self.input.subject, &self.input.method, &self.input.object)?;
         if self.output != expected.output {
             return Err(invalid(
                 "closure transport output does not replay from its three inputs",
@@ -732,7 +735,9 @@ pub fn run_closure_transport_v0(
     method.check()?;
     object.check()?;
     if subject.unit != method.supported_unit || object.local_scope.unit != method.supported_unit {
-        return Err(invalid("the three input slots do not agree on a typed unit"));
+        return Err(invalid(
+            "the three input slots do not agree on a typed unit",
+        ));
     }
 
     let local = certify(
@@ -746,7 +751,9 @@ pub fn run_closure_transport_v0(
 
     let composed = substitute(&object.stage_two.context, &object.stage_one.context);
     if composed != object.direct.context {
-        return Err(invalid("the direct scope map is not the exact map composition"));
+        return Err(invalid(
+            "the direct scope map is not the exact map composition",
+        ));
     }
     if staged != direct {
         return Err(invalid(
@@ -754,16 +761,21 @@ pub fn run_closure_transport_v0(
         ));
     }
     if stage_two_receipt == direct_receipt {
-        return Err(invalid("direct and staged transport histories were collapsed"));
+        return Err(invalid(
+            "direct and staged transport histories were collapsed",
+        ));
     }
 
     let common_result_content_digest = direct.content_digest()?;
     let adversarial_separation = first_adversarial_separation()?;
-    let negative_controls = object.negative_targets.clone().map(|target| {
-        reject_wrong_unit(&local, target)
-    });
+    let negative_controls = object
+        .negative_targets
+        .clone()
+        .map(|target| reject_wrong_unit(&local, target));
     if negative_controls.iter().any(|outcome| outcome.accepted) {
-        return Err(invalid("a negative import control was unexpectedly admitted"));
+        return Err(invalid(
+            "a negative import control was unexpectedly admitted",
+        ));
     }
 
     let dependency_edges = vec![
@@ -776,10 +788,8 @@ pub fn run_closure_transport_v0(
         object.stage_one.target.coordinate.clone(),
         object.stage_two.target.coordinate.clone(),
     ]);
-    let reopened_after_challenge = propagate_reopen(
-        &object.counterevidence.challenged_scope,
-        &dependency_edges,
-    );
+    let reopened_after_challenge =
+        propagate_reopen(&object.counterevidence.challenged_scope, &dependency_edges);
     if reopened_after_challenge != closed_before_challenge {
         return Err(invalid(
             "counterevidence did not reopen the complete bounded dependency cone",
@@ -861,7 +871,9 @@ fn certify(
     let before_normal = before.normalize()?;
     let after_normal = after.normalize()?;
     if before_normal != after_normal {
-        return Err(invalid("the local candidate does not normalize to equality"));
+        return Err(invalid(
+            "the local candidate does not normalize to equality",
+        ));
     }
     let mut store = WitnessStoreV0::new();
     let transition = store.insert(WitnessProofV0::ArithmeticTransition {
@@ -909,7 +921,9 @@ fn transport(
     source.check()?;
     map.check()?;
     if source.content.scope != map.source {
-        return Err(invalid("scope map source does not match the supplied certificate"));
+        return Err(invalid(
+            "scope map source does not match the supplied certificate",
+        ));
     }
     let result = certify(
         map.target.clone(),
@@ -962,17 +976,14 @@ fn reject_wrong_unit(
     }
 }
 
-fn first_adversarial_separation(
-) -> Result<PolynomialSeparationCertificateV0, ClosureTransportErrorV0> {
+fn first_adversarial_separation()
+-> Result<PolynomialSeparationCertificateV0, ClosureTransportErrorV0> {
     let a = ExactExprV0::variable("a");
     let x = ExactExprV0::variable("x");
     let y = ExactExprV0::variable("y");
-    let before = ExactExprV0::product(
-        a.clone(),
-        ExactExprV0::sum(x.clone(), y.clone()),
-    );
+    let before = ExactExprV0::product(a.clone(), ExactExprV0::sum(x.clone(), y.clone()));
     let after = ExactExprV0::sum(ExactExprV0::product(a, x), y);
-    let environment = BTreeMap::from([
+    let environment: BTreeMap<String, num_bigint::BigInt> = BTreeMap::from([
         ("a".to_owned(), 2.into()),
         ("x".to_owned(), 3.into()),
         ("y".to_owned(), 5.into()),
@@ -1012,10 +1023,7 @@ fn dependency_edge(
     })
 }
 
-fn propagate_reopen(
-    root: &ArtifactKeyV0,
-    edges: &[ClosureDependencyEdgeV0],
-) -> Vec<ArtifactKeyV0> {
+fn propagate_reopen(root: &ArtifactKeyV0, edges: &[ClosureDependencyEdgeV0]) -> Vec<ArtifactKeyV0> {
     let mut reopened = BTreeSet::from([root.clone()]);
     loop {
         let next = edges
@@ -1033,7 +1041,11 @@ fn propagate_reopen(
 }
 
 fn sorted_scopes<const N: usize>(scopes: [ArtifactKeyV0; N]) -> Vec<ArtifactKeyV0> {
-    scopes.into_iter().collect::<BTreeSet<_>>().into_iter().collect()
+    scopes
+        .into_iter()
+        .collect::<BTreeSet<_>>()
+        .into_iter()
+        .collect()
 }
 
 fn check_sorted_unique(values: &[ArtifactKeyV0]) -> Result<(), ClosureTransportErrorV0> {
@@ -1120,7 +1132,9 @@ fn check_digests(digests: &[String]) -> Result<(), ClosureTransportErrorV0> {
 
 fn check_digest(digest: &str) -> Result<(), ClosureTransportErrorV0> {
     let Some(hex) = digest.strip_prefix("blake3:") else {
-        return Err(invalid("a closure transport digest must be a BLAKE3 coordinate"));
+        return Err(invalid(
+            "a closure transport digest must be a BLAKE3 coordinate",
+        ));
     };
     if hex.len() != 64
         || !hex

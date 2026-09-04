@@ -45,11 +45,7 @@ fn distributivity_produces_a_replayable_two_node_closure_certificate() {
         WitnessProofV0::Seal { .. }
     ));
     assert!(local.witness_graph[1].summary.is_formed());
-    assert!(
-        local.witness_graph[1]
-            .summary
-            .is_multiplicatively_closed()
-    );
+    assert!(local.witness_graph[1].summary.is_multiplicatively_closed());
     local.check().unwrap();
 }
 
@@ -60,14 +56,8 @@ fn direct_and_staged_transport_share_a_result_but_not_a_history() {
     let history = &transition.output.history;
 
     assert_eq!(result.staged, result.direct);
-    assert_eq!(
-        result.coherence.direct_equals_staged,
-        CheckStatus::Checked
-    );
-    assert_eq!(
-        result.coherence.composed_scope_map,
-        CheckStatus::Checked
-    );
+    assert_eq!(result.coherence.direct_equals_staged, CheckStatus::Checked);
+    assert_eq!(result.coherence.composed_scope_map, CheckStatus::Checked);
     assert_eq!(
         result.coherence.distinct_histories_retained,
         CheckStatus::Checked
