@@ -166,6 +166,12 @@ checker records `Q4 / trace monoid / Klein four` separately from
 conjugacy or change the `.adva` document schema. See
 [`docs/research/0111-group-neutral-operations-and-q4-m6-relation-profiles.md`](docs/research/0111-group-neutral-operations-and-q4-m6-relation-profiles.md)
 and [ADR 0021](docs/adr/0021-group-neutral-carrier-operations-and-typed-relations.md).
+The follow-up frame adapter derives those relation words from mechanism labels
+on recorded transition frames, retains every document-local frame occurrence,
+checks complete three-carrier handoffs and common labelled endpoints, and binds
+the result to the validated document digest. It is specified in
+[`docs/research/0112-transition-frame-relation-path-adapter.md`](docs/research/0112-transition-frame-relation-path-adapter.md)
+and [ADR 0022](docs/adr/0022-derive-relation-paths-from-transition-frames.md).
 
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or

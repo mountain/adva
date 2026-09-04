@@ -117,6 +117,17 @@ or program equality, implement conjugacy, or extend `AdvaDocumentV0`. Candidate
 carrier commands (`join/cut/close`) and traversal commands (`step/run`) remain
 outside this relation checker and have not been promoted to CLI syntax.
 
+`FrameRelationCellV0` may additionally derive the two relation paths from one
+validated neutral document. Each path is a nonempty sequence of distinct
+`FrameIdV0` values with complete recorded outputs. Adjacent frames must expose
+a bijection from `history/result/evidence` carrier references to the next
+`subject/method/object` references, and the exact permutation is retained.
+The two paths must have identical labelled starting and ending boundaries;
+their relation word is derived exclusively from frame mechanisms. The result
+is bound to the document digest. This does not promote `FrameIdV0` to semantic
+occurrence identity, authenticate recorded outputs, infer a missing handoff,
+execute a frame, or implement `join`.
+
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
 step certificates, and schedule order. Its optional frontier-matched replay

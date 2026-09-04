@@ -1,6 +1,10 @@
-use crate::ArtifactKeyV0;
+use crate::{
+    AdvaDocumentV0, ArtifactKeyV0, CarrierIdV0, FrameIdV0, FrameInputV0, InputLabelV0,
+    MechanismV0,
+};
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
+use std::collections::BTreeSet;
 use thiserror::Error;
 
 /// The two bounded rank-two relation cells currently admitted by the
@@ -323,6 +327,267 @@ pub struct RelationTransportV0 {
     pub retained_residual: Option<ArtifactKeyV0>,
 }
 
+/// One complete recorded three-port output boundary.
+///
+/// The labels retain their output reading. A later frame may read the same
+/// three carrier coordinates under a separately derived input permutation.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct RecordedFrameOutputV0 {
+    pub history: CarrierIdV0,
+    pub result: CarrierIdV0,
+    pub evidence: CarrierIdV0,
+}
+
+impl RecordedFrameOutputV0 {
+    const fn references(self) -> [CarrierIdV0; 3] {
+        [self.history, self.result, self.evidence]
+    }
+}
+
+/// The explicit permutation by which one recorded output is read as the next
+/// frame's input.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameHandoffRouteV0 {
+    pub history_to: InputLabelV0,
+    pub result_to: InputLabelV0,
+    pub evidence_to: InputLabelV0,
+}
+
+/// One full three-carrier handoff between adjacent document-local frame
+/// occurrences.
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameHandoffV0 {
+    pub from: FrameIdV0,
+    pub to: FrameIdV0,
+    pub route: FrameHandoffRouteV0,
+}
+
+/// One document-local transition occurrence retained in a relation path.
+///
+/// `FrameIdV0` is a storage coordinate, not an `adva_ir::OccurrenceId`. The
+/// relation generator is derived from the frame mechanism rather than from a
+/// caller-supplied label.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameRelationStepV0 {
+    pub frame: FrameIdV0,
+    pub mechanism: MechanismV0,
+    pub input: FrameInputV0,
+    pub output: RecordedFrameOutputV0,
+}
+
+/// One finite path through recorded transition frames in one validated
+/// neutral `.adva` document.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameRelationPathV0 {
+    pub steps: Vec<FrameRelationStepV0>,
+    pub handoffs: Vec<FrameHandoffV0>,
+    pub start: FrameInputV0,
+    pub end: RecordedFrameOutputV0,
+    pub mechanism_path: RelationPathV0,
+}
+
+impl FrameRelationPathV0 {
+    /// Derive one path from explicit document-local frame occurrences.
+    ///
+    /// Every frame must have a complete recorded output, every adjacent pair
+    /// must reuse exactly the preceding three output carriers, and no frame
+    /// occurrence may be repeated. The input permutation is derived and
+    /// retained rather than guessed by a CLI default.
+    ///
+    /// # Errors
+    ///
+    /// Rejects an invalid document, an empty or repeated frame path, an
+    /// unknown or ready frame, or a non-bijective adjacent handoff.
+    pub fn derive(
+        document: &AdvaDocumentV0,
+        frames: &[FrameIdV0],
+    ) -> Result<Self, FrameRelationErrorV0> {
+        document
+            .validated_digest()
+            .map_err(|error| FrameRelationErrorV0::InvalidDocument(error.to_string()))?;
+        derive_frame_path(document, frames)
+    }
+}
+
+/// A `Q4` or `M6` relation whose path words and endpoints are derived from one
+/// validated neutral document.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameRelationCellV0 {
+    pub document_digest: String,
+    pub left: FrameRelationPathV0,
+    pub right: FrameRelationPathV0,
+    pub relation: RelationCellV0,
+    pub certificate: FrameRelationCertificateV0,
+}
+
+impl FrameRelationCellV0 {
+    /// Derive a bounded relation cell from two explicit frame paths.
+    ///
+    /// Both paths must start at the same labelled input boundary and finish at
+    /// the same labelled recorded-output boundary. Relation words come only
+    /// from `compute/verify/learn` mechanism labels. Method carriers remain
+    /// ordinary inputs and are never reinterpreted as edge generators.
+    ///
+    /// # Errors
+    ///
+    /// Rejects every path error, unequal endpoints, or a mechanism word that
+    /// does not form the requested `Q4` or `M6` profile.
+    pub fn derive(
+        document: &AdvaDocumentV0,
+        profile: RelationProfileV0,
+        left_frames: &[FrameIdV0],
+        right_frames: &[FrameIdV0],
+        filling: RelationFillingV0,
+    ) -> Result<Self, FrameRelationErrorV0> {
+        let document_digest = document
+            .validated_digest()
+            .map_err(|error| FrameRelationErrorV0::InvalidDocument(error.to_string()))?;
+        let left = derive_frame_path(document, left_frames)?;
+        let right = derive_frame_path(document, right_frames)?;
+        if left.start != right.start {
+            return Err(FrameRelationErrorV0::DifferentStartBoundary);
+        }
+        if left.end != right.end {
+            return Err(FrameRelationErrorV0::DifferentEndBoundary);
+        }
+        let relation = RelationCellV0::new(
+            profile,
+            left.mechanism_path.clone(),
+            right.mechanism_path.clone(),
+            filling,
+        )?;
+        let formation = relation.check()?;
+        Ok(Self {
+            document_digest: document_digest.clone(),
+            left,
+            right,
+            relation,
+            certificate: FrameRelationCertificateV0 {
+                document_digest,
+                document_graph: CheckStatus::Checked,
+                frame_occurrences: CheckStatus::Checked,
+                complete_handoffs: CheckStatus::Checked,
+                common_endpoints: CheckStatus::Checked,
+                relation_formation: formation,
+            },
+        })
+    }
+}
+
+/// Narrow audit record for a relation derived from stored transition frames.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct FrameRelationCertificateV0 {
+    pub document_digest: String,
+    pub document_graph: CheckStatus,
+    pub frame_occurrences: CheckStatus,
+    pub complete_handoffs: CheckStatus,
+    pub common_endpoints: CheckStatus,
+    pub relation_formation: RelationFormationCertificateV0,
+}
+
+fn derive_frame_path(
+    document: &AdvaDocumentV0,
+    frames: &[FrameIdV0],
+) -> Result<FrameRelationPathV0, FrameRelationErrorV0> {
+    if frames.is_empty() {
+        return Err(FrameRelationErrorV0::EmptyFramePath);
+    }
+    let mut seen = BTreeSet::new();
+    let mut steps = Vec::with_capacity(frames.len());
+    for frame_id in frames {
+        if !seen.insert(*frame_id) {
+            return Err(FrameRelationErrorV0::RepeatedFrame(*frame_id));
+        }
+        let frame = document
+            .frames
+            .iter()
+            .find(|frame| frame.id == *frame_id)
+            .ok_or(FrameRelationErrorV0::UnknownFrame(*frame_id))?;
+        let (Some(history), Some(result), Some(evidence)) = (
+            frame.output.history,
+            frame.output.result,
+            frame.output.evidence,
+        ) else {
+            return Err(FrameRelationErrorV0::UnrecordedFrame(*frame_id));
+        };
+        steps.push(FrameRelationStepV0 {
+            frame: *frame_id,
+            mechanism: frame.mechanism.mechanism(),
+            input: frame.input,
+            output: RecordedFrameOutputV0 {
+                history,
+                result,
+                evidence,
+            },
+        });
+    }
+
+    let handoffs = steps
+        .windows(2)
+        .map(|pair| derive_handoff(&pair[0], &pair[1]))
+        .collect::<Result<Vec<_>, _>>()?;
+    let mechanism_path = RelationPathV0::new(steps.iter().map(|step| {
+        RelationGeneratorV0::new(step.mechanism.as_str())
+            .expect("mechanism surface labels are nonempty")
+    }))?;
+    let start = steps.first().expect("nonempty path checked above").input;
+    let end = steps.last().expect("nonempty path checked above").output;
+    Ok(FrameRelationPathV0 {
+        steps,
+        handoffs,
+        start,
+        end,
+        mechanism_path,
+    })
+}
+
+fn derive_handoff(
+    from: &FrameRelationStepV0,
+    to: &FrameRelationStepV0,
+) -> Result<FrameHandoffV0, FrameRelationErrorV0> {
+    let input = [
+        (to.input.subject, InputLabelV0::Subject),
+        (to.input.method, InputLabelV0::Method),
+        (to.input.object, InputLabelV0::Object),
+    ];
+    let outputs = from.output.references();
+    let mut route = Vec::with_capacity(3);
+    for output in outputs {
+        let Some((_, label)) = input.iter().find(|(carrier, _)| *carrier == output) else {
+            return Err(FrameRelationErrorV0::IncompleteHandoff {
+                from: from.frame,
+                to: to.frame,
+            });
+        };
+        route.push(*label);
+    }
+    let [history_to, result_to, evidence_to] = route.as_slice() else {
+        unreachable!("three output carriers always produce three routes")
+    };
+    if route.iter().copied().collect::<BTreeSet<_>>().len() != 3 {
+        return Err(FrameRelationErrorV0::IncompleteHandoff {
+            from: from.frame,
+            to: to.frame,
+        });
+    }
+    Ok(FrameHandoffV0 {
+        from: from.frame,
+        to: to.frame,
+        route: FrameHandoffRouteV0 {
+            history_to: *history_to,
+            result_to: *result_to,
+            evidence_to: *evidence_to,
+        },
+    })
+}
+
 fn check_interchange(
     left: &RelationPathV0,
     right: &RelationPathV0,
@@ -408,4 +673,26 @@ pub enum RelationFormationErrorV0 {
     EmptyWitnessReference,
     #[error("an open relation boundary cannot be read as transport")]
     OpenBoundaryCannotTransport,
+}
+
+#[derive(Clone, Debug, Eq, Error, PartialEq)]
+pub enum FrameRelationErrorV0 {
+    #[error("invalid neutral Adva document: {0}")]
+    InvalidDocument(String),
+    #[error("a frame relation path cannot be empty")]
+    EmptyFramePath,
+    #[error("frame {0:?} is not present in the validated document")]
+    UnknownFrame(FrameIdV0),
+    #[error("frame {0:?} occurs more than once in one finite path")]
+    RepeatedFrame(FrameIdV0),
+    #[error("frame {0:?} has no complete recorded output boundary")]
+    UnrecordedFrame(FrameIdV0),
+    #[error("frame {from:?} does not hand off all three outputs to frame {to:?}")]
+    IncompleteHandoff { from: FrameIdV0, to: FrameIdV0 },
+    #[error("relation paths do not have the same labelled input boundary")]
+    DifferentStartBoundary,
+    #[error("relation paths do not have the same labelled recorded-output boundary")]
+    DifferentEndBoundary,
+    #[error(transparent)]
+    Relation(#[from] RelationFormationErrorV0),
 }
