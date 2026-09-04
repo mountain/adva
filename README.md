@@ -54,6 +54,10 @@ tool does not turn research targets into stable API promises.
 - a research-only typed-aperture calibration that reads existing through
   relations as finite filling fibres, refuses implicit multivalued closure,
   and retains close/reopen history and the complete process residual;
+- a Rust research V0 six-word witness companion with signed formation
+  ledgers, exact integer-polynomial transport, finite proof DAGs, and reusable
+  linear three-hole templates whose fresh instances bind existing semantic
+  occurrences explicitly;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -287,6 +291,12 @@ the typed `J`-transport, central-sign, `U(1)`, Omega, and energy/time
 obligations in
 [`docs/research/0106-three-hole-conjugate-m6-projective-lift.md`](docs/research/0106-three-hole-conjugate-m6-projective-lift.md).
 It adds no M6 filler, complex program semantics, or physical time claim.
+The corrected six-word seed registry and the first reusable Rust witness
+kernel are specified in
+[`docs/research/0107-reusable-six-word-witness-kernel.md`](docs/research/0107-reusable-six-word-witness-kernel.md).
+It separates additive formation zero, multiplicative transport one, concrete
+zero faults, cached proof content, fresh instances, and program results without
+changing `adva.ir` version 1 or creating equation cells.
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in

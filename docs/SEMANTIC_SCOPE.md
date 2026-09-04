@@ -71,6 +71,15 @@ claim that the surrounding calculus has been completely presented.
 
 ## Bounded research companion
 
+The Rust `adva-witness` crate may check the corrected six initial declarations,
+finite signed formation ledgers, pure add/multiply expression witnesses, and
+linear three-hole template instances. It reuses verified proof artifacts by a
+nonsemantic content key while every instance retains a fresh instance ordinal
+and explicit bindings to existing Rust-owned sources and occurrences. It does
+not extend `adva.ir` version 1, allocate semantic identity, add a stable scalar
+type, infer copy from repeated variables, create equation cells, or define the
+general program constructor or interpreter.
+
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
 step certificates, and schedule order. Its optional frontier-matched replay

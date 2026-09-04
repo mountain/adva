@@ -6,7 +6,9 @@
 adva-ir  <-  adva-lisp  <-  adva-python  <-  Python adapters
    ^              ^
    |              |
-schema       semantic kernel
+   |         semantic kernel
+   |
+adva-witness (research V0)
 ```
 
 `adva-ir` contains immutable, serializable ontology. `adva-lisp` owns parsing,
@@ -49,6 +51,21 @@ judgments.
   observer-transition composition;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
+
+### `adva-witness`
+
+- a Rust-owned research V0 registry for the corrected six initial words;
+- exact signed formation ledgers and arbitrary-precision integer-polynomial
+  normalization for bounded add/multiply witnesses;
+- finite acyclic proof artifacts with content-addressed cache keys;
+- linear three-hole templates whose instances bind existing `SourceId` and
+  `OccurrenceId` values without allocating or identifying them;
+- explicit formed and executed type states, with non-unit transport and every
+  concrete intermediate zero rejected.
+
+This crate depends only on `adva-ir` among Adva crates. Its schema is
+`adva.witness.research` version zero, not an extension of `adva.ir` version 1.
+Artifact hashes are cache coordinates and never semantic identities.
 
 ### `adva-python`
 
@@ -235,6 +252,12 @@ The Python research runner is deliberately outside the stable semantic slice.
 It is a bounded experiment orchestrator over stable artifacts; its verdicts
 and replay digest are not Rust certificates and are never accepted by the
 kernel as semantic input.
+
+The Rust `adva-witness` companion is also outside the stable semantic slice.
+It makes one bounded six-word witness and reuse proposal executable without
+changing PSC0 terms, builtin operations, diagrams, or certificates. Its exact
+integer-polynomial normalization is a witness observation, not a new stable
+Adva scalar domain or an equation-cell constructor.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
