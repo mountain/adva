@@ -1,8 +1,8 @@
 use crate::{
-    ArithmeticErrorV0, ArtifactKeyV0, CarrierIdV0, ExactExprV0, FrameHandoffRouteV0,
-    FrameInputV0, FrameRelationCellV0, FrameRelationPathV0, InputLabelV0, MechanismV0,
-    MultiplicativeResidualV0, ObserverDomainV0, PolynomialV0, RecordedFrameOutputV0,
-    RelationFillingV0, RelationProfileV0, RevealErrorV0, RevealRunStateV0, RevealWitnessV0,
+    ArithmeticErrorV0, ArtifactKeyV0, CarrierIdV0, ExactExprV0, FrameHandoffRouteV0, FrameInputV0,
+    FrameRelationCellV0, FrameRelationPathV0, InputLabelV0, MechanismV0, MultiplicativeResidualV0,
+    ObserverDomainV0, PolynomialV0, RecordedFrameOutputV0, RelationFillingV0, RelationProfileV0,
+    RevealErrorV0, RevealRunStateV0, RevealWitnessV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
@@ -104,11 +104,12 @@ impl ConstructiveTraceCodeV0 {
                 MechanismV0::Verify => &mut incidence.verify,
                 MechanismV0::Learn => &mut incidence.learn,
             };
-            *coordinate = coordinate.checked_add(1).ok_or(
-                TraceArithmeticErrorV0::InvalidCalibration(
-                    "a mechanism incidence exceeds the bounded u32 representation",
-                ),
-            )?;
+            *coordinate =
+                coordinate
+                    .checked_add(1)
+                    .ok_or(TraceArithmeticErrorV0::InvalidCalibration(
+                        "a mechanism incidence exceeds the bounded u32 representation",
+                    ))?;
         }
         Ok(Self {
             incidence,
@@ -157,7 +158,10 @@ pub struct SpatialResidualV0 {
 impl SpatialResidualV0 {
     #[must_use]
     pub fn is_zero(self) -> bool {
-        self.start.into_iter().chain(self.end).all(|value| value == 0)
+        self.start
+            .into_iter()
+            .chain(self.end)
+            .all(|value| value == 0)
     }
 }
 
@@ -346,9 +350,7 @@ impl TraceArithmeticCalibrationV0 {
     /// Rejects an unsupported schema, malformed source coordinate, invalid
     /// relation trace, or a stale/tampered derived field.
     pub fn check(&self) -> Result<(), TraceArithmeticErrorV0> {
-        if self.schema != TRACE_ARITHMETIC_SCHEMA_V0
-            || self.version != TRACE_ARITHMETIC_VERSION_V0
-        {
+        if self.schema != TRACE_ARITHMETIC_SCHEMA_V0 || self.version != TRACE_ARITHMETIC_VERSION_V0 {
             return Err(TraceArithmeticErrorV0::InvalidCalibration(
                 "unsupported trace-arithmetic schema or version",
             ));
@@ -496,7 +498,9 @@ pub fn load_trace_arithmetic_v0(
     TraceArithmeticCalibrationV0::from_json(&source)
 }
 
-fn encode_path(path: &FrameRelationPathV0) -> Result<TraceArithmeticCodeV0, TraceArithmeticErrorV0> {
+fn encode_path(
+    path: &FrameRelationPathV0,
+) -> Result<TraceArithmeticCodeV0, TraceArithmeticErrorV0> {
     check_path(path)?;
     let frame_occurrences = u32::try_from(path.steps.len()).map_err(|_| {
         TraceArithmeticErrorV0::InvalidCalibration(
@@ -508,14 +512,14 @@ fn encode_path(path: &FrameRelationPathV0) -> Result<TraceArithmeticCodeV0, Trac
             "the handoff count exceeds the bounded u32 representation",
         )
     })?;
-    let transferred_ports = causal_handoffs.checked_mul(3).ok_or(
-        TraceArithmeticErrorV0::InvalidCalibration(
-            "the transferred-port count exceeds the bounded u32 representation",
-        ),
-    )?;
-    let construction = ConstructiveTraceCodeV0::from_mechanisms(
-        path.steps.iter().map(|step| step.mechanism),
-    )?;
+    let transferred_ports =
+        causal_handoffs
+            .checked_mul(3)
+            .ok_or(TraceArithmeticErrorV0::InvalidCalibration(
+                "the transferred-port count exceeds the bounded u32 representation",
+            ))?;
+    let construction =
+        ConstructiveTraceCodeV0::from_mechanisms(path.steps.iter().map(|step| step.mechanism))?;
     let expression = mechanism_expression(&construction.ordered_word);
     let canonical = serde_json::to_vec(path)
         .map_err(|error| TraceArithmeticErrorV0::Json(error.to_string()))?;
@@ -602,7 +606,12 @@ fn check_path(path: &FrameRelationPathV0) -> Result<(), TraceArithmeticErrorV0> 
             .iter()
             .zip(&path.steps)
             .any(|(generator, step)| generator.as_str() != step.mechanism.as_str())
-        || path.steps.iter().map(|step| step.frame).collect::<BTreeSet<_>>().len()
+        || path
+            .steps
+            .iter()
+            .map(|step| step.frame)
+            .collect::<BTreeSet<_>>()
+            .len()
             != path.steps.len()
     {
         return Err(TraceArithmeticErrorV0::InvalidCalibration(
@@ -685,10 +694,7 @@ fn additive_residual(
                 left.construction.incidence.learn,
                 right.construction.incidence.learn,
             ),
-            step_count: delta(
-                left.construction.step_count,
-                right.construction.step_count,
-            ),
+            step_count: delta(left.construction.step_count, right.construction.step_count),
             alternations: delta(
                 left.construction.alternations,
                 right.construction.alternations,
@@ -713,10 +719,7 @@ const fn projection_alignment(is_zero: bool) -> ProjectionAlignmentV0 {
     }
 }
 
-fn holonomy(
-    left: &TraceArithmeticCodeV0,
-    right: &TraceArithmeticCodeV0,
-) -> CommutativeHolonomyV0 {
+fn holonomy(left: &TraceArithmeticCodeV0, right: &TraceArithmeticCodeV0) -> CommutativeHolonomyV0 {
     let right_over_left = MultiplicativeResidualV0 {
         numerator: right.commutative_weight.clone(),
         denominator: left.commutative_weight.clone(),
@@ -733,12 +736,13 @@ fn holonomy(
 }
 
 fn mechanism_expression(word: &[MechanismV0]) -> ExactExprV0 {
-    word.iter().fold(ExactExprV0::constant(1), |expression, mechanism| {
-        ExactExprV0::product(
-            expression,
-            ExactExprV0::variable(format!("mechanism.{}", mechanism.as_str())),
-        )
-    })
+    word.iter()
+        .fold(ExactExprV0::constant(1), |expression, mechanism| {
+            ExactExprV0::product(
+                expression,
+                ExactExprV0::variable(format!("mechanism.{}", mechanism.as_str())),
+            )
+        })
 }
 
 fn open_characteristic_constraints() -> [OppositeSideCharacteristicV0; 3] {
