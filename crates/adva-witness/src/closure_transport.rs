@@ -487,7 +487,14 @@ pub struct NegativeImportOutcomeV0 {
     pub target: NegativeImportTargetV0,
     pub supplied_unit: ClosureUnitV0,
     pub accepted: bool,
+    pub residual: RejectionResidualV0,
     pub reason: String,
+}
+
+#[derive(Clone, Copy, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(rename_all = "snake_case")]
+pub enum RejectionResidualV0 {
+    TargetHolePreserved,
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -968,6 +975,7 @@ fn reject_wrong_unit(
         class: ClosureFindingClassV0::Incommensurate,
         supplied_unit: source.content.unit,
         accepted: source.content.unit == target.required_unit,
+        residual: RejectionResidualV0::TargetHolePreserved,
         reason: format!(
             "typed import requires {:?}; certificate supplies {:?}",
             target.required_unit, source.content.unit
