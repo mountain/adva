@@ -307,6 +307,19 @@ adapter: `FrameIdV0` does not become `OccurrenceId`, recorded output does not
 gain execution provenance, and the adapter neither searches for nor constructs
 a `join`.
 
+The first bounded CLI calibration consumes
+`programs/bootstrap-0/reveal.adva`. `M6NamingPlanV0` covers all six directed
+off-diagonal pairs between time, space, and construction with two opposite
+three-edge cycles. Names remain entry-point selectors and are resolved to
+authoritative frame coordinates. `RevealWitnessV0` records the source digest,
+fuel ledger, observed and remaining names, both derived frame paths, and typed
+questions. Observing all six frames completes the finite run but leaves the
+relation semantically open; insufficient fuel emits a suspended witness. The
+separate reveal-witness schema uses the common `.adva` suffix but does not
+extend `AdvaDocumentV0` or `adva.ir`. The first six-fuel output is retained at
+`programs/bootstrap-0/first-reveal-witness.adva`; CI derives it again and
+requires byte equality.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a

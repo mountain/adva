@@ -1,0 +1,190 @@
+{
+  "schema": "adva.neutral-carrier-graph.research",
+  "version": 0,
+  "carriers": [
+    {
+      "id": 0,
+      "carrier": {
+        "structure": "first:observer:local-knowledge-snapshot",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 1,
+      "carrier": {
+        "structure": "first:program:reveal",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 2,
+      "carrier": {
+        "structure": "first:witness:bootstrap-zero-seed",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 3,
+      "carrier": {
+        "structure": "first:history:run",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 4,
+      "carrier": {
+        "structure": "first:result:run",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 5,
+      "carrier": {
+        "structure": "first:evidence:run",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 6,
+      "carrier": {
+        "structure": "first:history:reveal",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 7,
+      "carrier": {
+        "structure": "first:result:reveal",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 8,
+      "carrier": {
+        "structure": "first:evidence:reveal",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 9,
+      "carrier": {
+        "structure": "first:history:instantiate",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 10,
+      "carrier": {
+        "structure": "first:result:instantiate",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 11,
+      "carrier": {
+        "structure": "first:evidence:instantiate",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 12,
+      "carrier": {
+        "structure": "first:history:resume",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 13,
+      "carrier": {
+        "structure": "first:result:resume",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 14,
+      "carrier": {
+        "structure": "first:evidence:resume",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 15,
+      "carrier": {
+        "structure": "first:history:m6-six-named-transports",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 16,
+      "carrier": {
+        "structure": "first:result:m6-formed-boundary",
+        "frontier": { "sites": [] }
+      }
+    },
+    {
+      "id": 17,
+      "carrier": {
+        "structure": "first:evidence:m6-semantic-filler-open",
+        "frontier": { "sites": [] }
+      }
+    }
+  ],
+  "frames": [
+    {
+      "id": 0,
+      "input": { "subject": 0, "method": 1, "object": 2 },
+      "mechanism": { "kind": "compute" },
+      "output": { "history": 3, "result": 4, "evidence": 5 }
+    },
+    {
+      "id": 1,
+      "input": { "subject": 3, "method": 4, "object": 5 },
+      "mechanism": {
+        "kind": "verify",
+        "declared_subject": { "sites": [] },
+        "discharges": []
+      },
+      "output": { "history": 6, "result": 7, "evidence": 8 }
+    },
+    {
+      "id": 2,
+      "input": { "subject": 6, "method": 7, "object": 8 },
+      "mechanism": { "kind": "compute" },
+      "output": { "history": 15, "result": 16, "evidence": 17 }
+    },
+    {
+      "id": 3,
+      "input": { "subject": 0, "method": 1, "object": 2 },
+      "mechanism": {
+        "kind": "verify",
+        "declared_subject": { "sites": [] },
+        "discharges": []
+      },
+      "output": { "history": 9, "result": 10, "evidence": 11 }
+    },
+    {
+      "id": 4,
+      "input": { "subject": 9, "method": 10, "object": 11 },
+      "mechanism": { "kind": "compute" },
+      "output": { "history": 12, "result": 13, "evidence": 14 }
+    },
+    {
+      "id": 5,
+      "input": { "subject": 12, "method": 13, "object": 14 },
+      "mechanism": {
+        "kind": "verify",
+        "declared_subject": { "sites": [] },
+        "discharges": []
+      },
+      "output": { "history": 15, "result": 16, "evidence": 17 }
+    }
+  ],
+  "entrypoints": [
+    { "name": "compile", "frame": 5 },
+    { "name": "instantiate", "frame": 3 },
+    { "name": "name", "frame": 2 },
+    { "name": "resume", "frame": 4 },
+    { "name": "reveal", "frame": 1 },
+    { "name": "run", "frame": 0 }
+  ]
+}

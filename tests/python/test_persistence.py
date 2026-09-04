@@ -1,4 +1,4 @@
-"""The tests use temporary files only; no first `.adva` program is committed."""
+"""Persistence tests use temporary files; the first program has separate Rust coverage."""
 
 from __future__ import annotations
 
