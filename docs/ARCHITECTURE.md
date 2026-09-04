@@ -316,7 +316,9 @@ fuel ledger, observed and remaining names, both derived frame paths, and typed
 questions. Observing all six frames completes the finite run but leaves the
 relation semantically open; insufficient fuel emits a suspended witness. The
 separate reveal-witness schema uses the common `.adva` suffix but does not
-extend `AdvaDocumentV0` or `adva.ir`.
+extend `AdvaDocumentV0` or `adva.ir`. The first six-fuel output is retained at
+`programs/bootstrap-0/first-reveal-witness.adva`; CI derives it again and
+requires byte equality.
 
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact

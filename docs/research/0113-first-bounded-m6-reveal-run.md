@@ -79,9 +79,20 @@ With fuel less than six, the command emits a `suspended` witness containing
 the observed prefix, remaining names, and one fuel-boundary question. It does
 not call finite exhaustion an error or nontermination proof.
 
-## 4. Expected first result
+## 4. Observed first result
 
-At fuel six, the finite run completes its observation and retains this order:
+CI performed the granted first run at fuel six. The exact output is retained
+at `programs/bootstrap-0/first-reveal-witness.adva` and every later CI run
+compares its generated output byte-for-byte. Its coordinates are:
+
+```text
+source  blake3:ac29810342f62beae0ff84da6c3a7a431bd65807d0a13b4e5b35da4027bcb227
+witness blake3:b03cee7f38c01f0a84fa3c71227955ce8c85ac01a844f8c47e74a06c45a0d007
+state   completed
+fuel    6/6
+```
+
+The finite run retained this order:
 
 ```text
 run, reveal, name, instantiate, resume, compile

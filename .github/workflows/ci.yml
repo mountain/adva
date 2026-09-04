@@ -27,6 +27,9 @@ jobs:
             --fuel 6 \
             --output target/first-reveal-witness.adva \
             --print
+          cmp \
+            target/first-reveal-witness.adva \
+            programs/bootstrap-0/first-reveal-witness.adva
 
   python:
     runs-on: ubuntu-latest

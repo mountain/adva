@@ -54,13 +54,21 @@ proving the semantic filler of the resulting relation.
 7. The first complete formation remains an open relation. Its question list
    records `experiment:first:m6-semantic-filler-required`; no filler, reverse
    transport, or semantic equality is manufactured.
+8. The actual first output is retained at
+   `programs/bootstrap-0/first-reveal-witness.adva`. Its source digest is
+   `blake3:ac29810342f62beae0ff84da6c3a7a431bd65807d0a13b4e5b35da4027bcb227`
+   and its witness digest is
+   `blake3:b03cee7f38c01f0a84fa3c71227955ce8c85ac01a844f8c47e74a06c45a0d007`.
+   CI must reproduce the exact witness bytes.
 
 ## Consequences
 
 The repository now has a reproducible first `.adva` program and a finite
 command that saves its result as another `.adva` witness. Experimental names
 can be changed without becoming frame or semantic identities. Fuel exhaustion
-and an open semantic relation are represented by different fields.
+and an open semantic relation are represented by different fields. The first
+observation is now an auditable repository object rather than an expected
+result described only in prose.
 
 This is a formation run over already recorded graph boundaries. It does not
 prove that any stored output was produced by executing its mechanism. It also
