@@ -1,0 +1,58 @@
+{
+  "schema": "adva.resource-snapshot.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "resource_label": "first external hypothesis session",
+  "snapshot_coordinate": "session:2026-09-04:first-inquiry-resource",
+  "provenance": "unauthenticated_external_session",
+  "entropy": {
+    "source": "openssl-rand-32-recorded-before-snapshot",
+    "value": "ea31137310aad6f892a2a16465bdcdc22d5dc204a48515a715f417d4602b2d4c",
+    "replay": "recorded_output"
+  },
+  "candidates": [
+    {
+      "local_name": "representation",
+      "claim": "there may exist an anchor-relative typed representation from compute/verify/learn trace words to endomorphisms whose three characteristic readings, multiplicative identity, and truth coordinate can be tested without identifying the raw traces",
+      "addressed_obligations": [
+        "experiment:first:m6-time-characteristic-required",
+        "experiment:first:m6-space-characteristic-required",
+        "experiment:first:m6-construction-characteristic-required",
+        "experiment:first:m6-multiplicative-holonomy-required",
+        "experiment:first:m6-common-truth-coordinate-required"
+      ],
+      "assumptions": [
+        "an explicit external observation anchor can be named without treating its name as identity",
+        "the representation preserves the typed time, space, and construction ledgers",
+        "the retained ordered traces remain available beside any arithmetic image"
+      ],
+      "required_observations": [
+        "a concrete anchor and carrier E_a",
+        "images of compute, verify, and learn in End(E_a)",
+        "three witnessed characteristic maps derived from the opposite-side images",
+        "an identity witness for the represented M6 holonomy",
+        "an externally checkable coordinate shared by both represented paths"
+      ],
+      "falsifiers": [
+        "no proposed anchor admits well-typed images for all three mechanisms",
+        "the images erase an ordered-trace distinction required by a retained obligation",
+        "the represented holonomy remains nonidentity",
+        "the two paths require incompatible external truth coordinates",
+        "renaming the local candidate changes any claimed mathematical identity"
+      ]
+    }
+  ]
+}
