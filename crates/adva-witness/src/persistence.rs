@@ -641,10 +641,7 @@ pub(crate) fn require_adva_extension(path: &Path) -> Result<(), AdvaPersistenceE
     Ok(())
 }
 
-pub(crate) fn write_atomically(
-    path: &Path,
-    bytes: &[u8],
-) -> Result<(), AdvaPersistenceErrorV0> {
+pub(crate) fn write_atomically(path: &Path, bytes: &[u8]) -> Result<(), AdvaPersistenceErrorV0> {
     let parent = path.parent().unwrap_or_else(|| Path::new("."));
     let file_name = path
         .file_name()

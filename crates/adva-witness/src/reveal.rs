@@ -57,9 +57,17 @@ impl M6NamingPlanV0 {
     pub fn first_calibration() -> Self {
         Self {
             forward: [
-                transport_name("run", ObserverDomainV0::Construction, ObserverDomainV0::Time),
+                transport_name(
+                    "run",
+                    ObserverDomainV0::Construction,
+                    ObserverDomainV0::Time,
+                ),
                 transport_name("reveal", ObserverDomainV0::Time, ObserverDomainV0::Space),
-                transport_name("name", ObserverDomainV0::Space, ObserverDomainV0::Construction),
+                transport_name(
+                    "name",
+                    ObserverDomainV0::Space,
+                    ObserverDomainV0::Construction,
+                ),
             ],
             conjugate: [
                 transport_name(
@@ -103,9 +111,7 @@ impl M6NamingPlanV0 {
             .iter()
             .map(|transport| (transport.from, transport.to))
             .collect::<BTreeSet<_>>();
-        if pairs.len() != REQUIRED_M6_OCCURRENCES
-            || pairs.iter().any(|(from, to)| from == to)
-        {
+        if pairs.len() != REQUIRED_M6_OCCURRENCES || pairs.iter().any(|(from, to)| from == to) {
             return Err(RevealErrorV0::InvalidNamingPlan(
                 "the plan must cover all six off-diagonal directed domain pairs",
             ));
@@ -189,8 +195,8 @@ impl RevealWitnessV0 {
     ///
     /// Rejects malformed JSON or inconsistent finite-run bookkeeping.
     pub fn from_json(source: &str) -> Result<Self, RevealErrorV0> {
-        let witness: Self = serde_json::from_str(source)
-            .map_err(|error| RevealErrorV0::Json(error.to_string()))?;
+        let witness: Self =
+            serde_json::from_str(source).map_err(|error| RevealErrorV0::Json(error.to_string()))?;
         witness.check()?;
         Ok(witness)
     }
@@ -313,8 +319,9 @@ impl RevealWitnessV0 {
         if self.questions
             != vec![RevealQuestionV0 {
                 kind: RevealQuestionKindV0::RelationFiller,
-                detail: "the M6 boundary is formed, but its semantic filler has not been established"
-                    .to_owned(),
+                detail:
+                    "the M6 boundary is formed, but its semantic filler has not been established"
+                        .to_owned(),
                 residual: Some(expected_residual),
             }]
         {
@@ -360,10 +367,7 @@ pub fn run_m6_reveal_v0(
         .map_err(|error| RevealErrorV0::InvalidDocument(error.to_string()))?;
     let forward = resolve_cycle(document, &plan.forward)?;
     let conjugate = resolve_cycle(document, &plan.conjugate)?;
-    let schedule = forward
-        .iter()
-        .chain(conjugate.iter())
-        .collect::<Vec<_>>();
+    let schedule = forward.iter().chain(conjugate.iter()).collect::<Vec<_>>();
     if schedule
         .iter()
         .map(|transport| transport.frame)
@@ -416,8 +420,9 @@ pub fn run_m6_reveal_v0(
             RevealRunStateV0::Completed,
             vec![RevealQuestionV0 {
                 kind: RevealQuestionKindV0::RelationFiller,
-                detail: "the M6 boundary is formed, but its semantic filler has not been established"
-                    .to_owned(),
+                detail:
+                    "the M6 boundary is formed, but its semantic filler has not been established"
+                        .to_owned(),
                 residual: Some(residual),
             }],
             Some(relation),
@@ -470,9 +475,7 @@ pub fn save_reveal_witness_v0(
 ///
 /// Rejects a non-`.adva` path, unreadable content, malformed JSON, or
 /// inconsistent witness bookkeeping.
-pub fn load_reveal_witness_v0(
-    path: impl AsRef<Path>,
-) -> Result<RevealWitnessV0, RevealErrorV0> {
+pub fn load_reveal_witness_v0(path: impl AsRef<Path>) -> Result<RevealWitnessV0, RevealErrorV0> {
     let path = path.as_ref();
     crate::persistence::require_adva_extension(path)
         .map_err(|error| RevealErrorV0::Persistence(error.to_string()))?;
@@ -496,9 +499,7 @@ fn transport_name(
 }
 
 fn check_cycle(cycle: &[DomainTransportNameV0; 3]) -> Result<(), RevealErrorV0> {
-    if cycle[0].to != cycle[1].from
-        || cycle[1].to != cycle[2].from
-        || cycle[2].to != cycle[0].from
+    if cycle[0].to != cycle[1].from || cycle[1].to != cycle[2].from || cycle[2].to != cycle[0].from
     {
         return Err(RevealErrorV0::InvalidNamingPlan(
             "each three-name side must form a directed cycle",

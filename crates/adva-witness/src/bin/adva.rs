@@ -1,13 +1,12 @@
-use adva_witness::{
-    AdvaDocumentV0, M6NamingPlanV0, run_m6_reveal_v0, save_reveal_witness_v0,
-};
+use adva_witness::{AdvaDocumentV0, M6NamingPlanV0, run_m6_reveal_v0, save_reveal_witness_v0};
 use std::env;
 use std::error::Error;
 use std::fs;
 use std::io::{self, ErrorKind};
 use std::path::PathBuf;
 
-const USAGE: &str = "usage: adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]";
+const USAGE: &str =
+    "usage: adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]";
 
 #[derive(Debug)]
 struct RevealArgs {
@@ -36,11 +35,7 @@ fn run() -> Result<(), Box<dyn Error>> {
     let parsed = parse_reveal_args(arguments)?;
     let source = fs::read_to_string(&parsed.program)?;
     let document = AdvaDocumentV0::from_json(&source)?;
-    let witness = run_m6_reveal_v0(
-        &document,
-        M6NamingPlanV0::first_calibration(),
-        parsed.fuel,
-    )?;
+    let witness = run_m6_reveal_v0(&document, M6NamingPlanV0::first_calibration(), parsed.fuel)?;
     let receipt = save_reveal_witness_v0(&parsed.output, &witness)?;
 
     println!("state={:?}", witness.state);
