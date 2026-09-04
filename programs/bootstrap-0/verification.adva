@@ -1,0 +1,27 @@
+{
+  "schema": "adva.verification-contract.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "name": "first:verifier:refinement-without-discharge",
+  "mechanism": "verify",
+  "accepted_subject_schemas": [
+    "adva.inquiry-frontier.research",
+    "adva.verification-frontier.research"
+  ],
+  "object_schema": "adva.verification-packet.research",
+  "output_schema": "adva.verification-transition.research",
+  "discharge_policy": "typed_predicate_required_but_unavailable"
+}

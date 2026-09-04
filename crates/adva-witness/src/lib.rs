@@ -14,6 +14,7 @@ mod relation;
 mod reveal;
 mod seed;
 mod trace_arithmetic;
+mod verification;
 mod witness;
 
 pub use arithmetic::*;
@@ -25,6 +26,7 @@ pub use relation::*;
 pub use reveal::*;
 pub use seed::*;
 pub use trace_arithmetic::*;
+pub use verification::*;
 pub use witness::*;
 
 /// Schema identifier for serialized research artifacts.

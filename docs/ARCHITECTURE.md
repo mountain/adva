@@ -356,6 +356,18 @@ coordinates and protocols, unique ledgers, and locally consistent positive
 thresholds. It does not contact an instrument, verify a signature, operate a
 replica set, execute a recovery drill, or infer truth from receipts.
 
+`VerificationFrontierV0` is an additive state layer over an embedded,
+byte-unchanged `InquiryFrontierV0`. A `verify` edge again reads
+`subject/method/object`: an inquiry or verification frontier, a frozen
+`VerificationContractV0`, and a `VerificationPacketV0`. It writes a decision
+history, a scoped result, and residual-frontier evidence. Obligations may be
+open, refined into typed children, discharged by a future typed predicate, or
+reopened by counterevidence. Version zero deliberately has no discharge
+predicate: a request containing only witness and scope digests is recorded as
+rejected. Refinement can therefore increase the number of open leaves without
+pretending that knowledge regressed. Semantic closure excludes the orthogonal
+custody ledger and additionally requires an empty unresolved-fork ledger.
+
 The grounded multi-hole through adapter is subject to the same boundary.  Its
 middle object is an explicitly declared quotient of upper incidences by exact
 upper cut-wire index.  Passing its Python validation layers does not promote a

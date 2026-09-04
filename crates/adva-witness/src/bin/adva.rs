@@ -2,8 +2,10 @@ use adva_witness::{
     AdvaDocumentV0, M6NamingPlanV0, calibrate_trace_arithmetic_v0,
     derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_exploration_contract_v0,
     load_inquiry_frontier_v0, load_resource_snapshot_v0, load_reveal_witness_v0, run_m6_reveal_v0,
+    load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
     save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_reveal_witness_v0,
-    save_trace_arithmetic_v0,
+    save_trace_arithmetic_v0, save_verification_frontier_v0, save_verification_transition_v0,
+    verify_obligations_v0,
 };
 use std::env;
 use std::error::Error;
@@ -15,7 +17,8 @@ const USAGE: &str = "usage:
   adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
   adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]
   adva frontier <calibration.adva> --output <frontier.adva> [--print]
-  adva learn <frontier.adva> <contract.adva> <resource.adva> --output <hypothesis.adva> --frontier-output <next-frontier.adva> [--print]";
+  adva learn <frontier.adva> <contract.adva> <resource.adva> --output <hypothesis.adva> --frontier-output <next-frontier.adva> [--print]
+  adva verify <frontier.adva> <verifier.adva> <packet.adva> --output <verification.adva> --frontier-output <verification-frontier.adva> [--print]";
 
 #[derive(Debug)]
 struct RevealArgs {
@@ -49,6 +52,16 @@ struct LearnArgs {
     print: bool,
 }
 
+#[derive(Debug)]
+struct VerifyArgs {
+    frontier: PathBuf,
+    contract: PathBuf,
+    packet: PathBuf,
+    output: PathBuf,
+    frontier_output: PathBuf,
+    print: bool,
+}
+
 fn main() {
     if let Err(error) = run() {
         eprintln!("adva: {error}");
@@ -67,6 +80,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         "trace-arithmetic" => run_trace_arithmetic(parse_trace_arithmetic_args(arguments)?),
         "frontier" => run_frontier(parse_frontier_args(arguments)?),
         "learn" => run_learn(parse_learn_args(arguments)?),
+        "verify" => run_verify(parse_verify_args(arguments)?),
         _ => Err(invalid_input(format!("unknown command {command:?}")).into()),
     }
 }
@@ -119,6 +133,45 @@ fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
         println!("NEXT_INQUIRY_FRONTIER_BEGIN");
         println!("{}", next_frontier.to_json()?);
         println!("NEXT_INQUIRY_FRONTIER_END");
+    }
+    Ok(())
+}
+
+fn run_verify(parsed: VerifyArgs) -> Result<(), Box<dyn Error>> {
+    let subject = load_verification_subject_v0(&parsed.frontier)?;
+    let contract = load_verification_contract_v0(&parsed.contract)?;
+    let packet = load_verification_packet_v0(&parsed.packet)?;
+    let transition = verify_obligations_v0(&subject, &contract, &packet)?;
+    let transition_receipt = save_verification_transition_v0(&parsed.output, &transition)?;
+    let next_frontier = &transition.output.evidence.residual_frontier;
+    let frontier_receipt =
+        save_verification_frontier_v0(&parsed.frontier_output, next_frontier)?;
+
+    println!("mechanism={:?}", transition.output.history.mechanism);
+    println!("state={:?}", transition.output.result.state);
+    println!(
+        "semantic_leaves={}->{}",
+        transition.output.history.leaf_delta.semantic_before,
+        transition.output.history.leaf_delta.semantic_after
+    );
+    println!(
+        "custody_leaves={}->{}",
+        transition.output.history.leaf_delta.custody_before,
+        transition.output.history.leaf_delta.custody_after
+    );
+    println!("forks={}", transition.output.result.unresolved_forks);
+    println!("certificate={}", transition.output.result.certificate.is_some());
+    println!("transition={}", transition_receipt.artifact_digest);
+    println!("next_frontier={}", frontier_receipt.artifact_digest);
+    println!("output={}", transition_receipt.path.display());
+    println!("frontier_output={}", frontier_receipt.path.display());
+    if parsed.print {
+        println!("VERIFICATION_TRANSITION_BEGIN");
+        println!("{}", transition.to_json()?);
+        println!("VERIFICATION_TRANSITION_END");
+        println!("VERIFICATION_FRONTIER_BEGIN");
+        println!("{}", next_frontier.to_json()?);
+        println!("VERIFICATION_FRONTIER_END");
     }
     Ok(())
 }
@@ -302,6 +355,52 @@ fn parse_learn_args(arguments: impl IntoIterator<Item = String>) -> io::Result<L
         frontier,
         contract,
         resource,
+        output: output.ok_or_else(|| invalid_input("--output is required"))?,
+        frontier_output: frontier_output
+            .ok_or_else(|| invalid_input("--frontier-output is required"))?,
+        print,
+    })
+}
+
+fn parse_verify_args(arguments: impl IntoIterator<Item = String>) -> io::Result<VerifyArgs> {
+    let mut arguments = arguments.into_iter();
+    let frontier = arguments
+        .next()
+        .map(PathBuf::from)
+        .ok_or_else(|| invalid_input("missing verification frontier"))?;
+    let contract = arguments
+        .next()
+        .map(PathBuf::from)
+        .ok_or_else(|| invalid_input("missing verification contract"))?;
+    let packet = arguments
+        .next()
+        .map(PathBuf::from)
+        .ok_or_else(|| invalid_input("missing verification packet"))?;
+    let mut output = None;
+    let mut frontier_output = None;
+    let mut print = false;
+    while let Some(argument) = arguments.next() {
+        match argument.as_str() {
+            "--output" => {
+                let value = arguments
+                    .next()
+                    .ok_or_else(|| invalid_input("--output requires a path"))?;
+                output = Some(PathBuf::from(value));
+            }
+            "--frontier-output" => {
+                let value = arguments
+                    .next()
+                    .ok_or_else(|| invalid_input("--frontier-output requires a path"))?;
+                frontier_output = Some(PathBuf::from(value));
+            }
+            "--print" => print = true,
+            _ => return Err(invalid_input(format!("unknown argument {argument:?}"))),
+        }
+    }
+    Ok(VerifyArgs {
+        frontier,
+        contract,
+        packet,
         output: output.ok_or_else(|| invalid_input("--output is required"))?,
         frontier_output: frontier_output
             .ok_or_else(|| invalid_input("--frontier-output is required"))?,
