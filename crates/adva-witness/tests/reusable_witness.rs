@@ -2,10 +2,9 @@ use adva_ir::{CompilationArtifact, DiagramValidationArtifact, GraftFrameId, Graf
 use adva_lisp::{compile_function, link_modules, parse_module, validate_diagram};
 use adva_witness::{
     ArtifactKeyV0, BindingOriginV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0,
-    CellTemplateV0, ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0,
-    SeedErrorV0, SeedRegistryV0, SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0,
-    ValueWordV0, WitnessErrorV0, WitnessProofV0, WitnessStoreV0,
-    validate_dependency_graph_v0,
+    CellTemplateV0, ExactExprV0, HoleBindingV0, HoleSpecV0, RelationWordV0, RoleV0, SeedErrorV0,
+    SeedRegistryV0, SeedRuleV0, TemplateIdV0, TermGlyphV0, TypeWordV0, ValueWordV0, WitnessErrorV0,
+    WitnessProofV0, WitnessStoreV0, validate_dependency_graph_v0,
 };
 use num_bigint::BigInt;
 use std::collections::BTreeMap;
