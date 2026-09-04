@@ -58,6 +58,15 @@ tool does not turn research targets into stable API promises.
   ledgers, exact integer-polynomial transport, finite proof DAGs, and reusable
   linear three-hole templates whose fresh instances bind existing semantic
   occurrences explicitly;
+- a bounded neutral-carrier mechanism grammar that keeps
+  `subject/method/object`, `compute/verify/learn`, and
+  `history/result/evidence` distinct, rejects open compute subjects and
+  objects, accounts for conditional verification, and retains partial learning
+  fill proposals without changing the stable IR;
+- a research-only neutral `.adva` document graph with canonical carrier and
+  frame tables: mechanisms live on three-input/three-output transition edges,
+  named entry points select checked frames, and later frames reuse earlier
+  recorded carriers through explicit document-local references;
 - a PyO3 extension and typed Python facade;
 - optional SymPy, NumPy, and SciPy adapters.
 
@@ -136,6 +145,17 @@ assert restored.compilation_certificate is None
 
 Successful JSON decoding is not semantic authorization. `load_program` returns
 only a diagram accepted by the Rust validator.
+
+Neutral-carrier persistence is exposed separately through
+`adva.persistence.save_adva_document` and
+`adva.persistence.load_adva_document`. Saving validates canonical carrier,
+transition-frame, and entry-point tables before an atomic same-directory
+replacement. Loading selects a named entry point, resolves its
+`subject/method/object` references in Rust, and rechecks the mechanism form.
+Frames always retain the `history/result/evidence` output ports; all three are
+either ready or refer to recorded carriers. A recorded triple is not treated
+as proof that execution produced it. The repository intentionally contains no
+`.adva` program fixture; the first program remains caller-authored.
 
 The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
@@ -302,6 +322,11 @@ bindings directly, while the instance retains both certificate identifiers and
 the exact frame path for audit; the bounded adapter and its refusal of
 zero/multi-lineage holes are recorded in
 [`docs/research/0108-graft-derived-witness-instantiation.md`](docs/research/0108-graft-derived-witness-instantiation.md).
+The following bounded grammar tests one neutral carrier, two three-label
+load/persistence views, and mechanism-relative open-frontier disciplines in
+[`docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md`](docs/research/0109-neutral-carrier-triadic-mechanism-frontiers.md).
+Its separate checked persistence boundary is recorded in
+[`docs/research/0110-neutral-adva-document-load-save.md`](docs/research/0110-neutral-adva-document-load-save.md).
 Longer-term work on observer-conditioned specialization, complex `Prog`
 geometry, intrinsic-structure learning, and practical language calibrations is
 tracked in

@@ -83,7 +83,27 @@ three bindings from one compiler-owned `CompilationArtifact` and one certified
 ordered graft frame. The adapter requires singleton lineage at each entry wire
 and retains the compilation certificate, graft certificate, frame identifier,
 scope path, caller, and callee; it does not guess a source when an entry wire
-has empty or merged lineage.
+has empty or merged lineage. The same research crate may check a neutral
+carrier grammar with the input labels `subject/method/object`, edge labels
+`compute/verify/learn`, and output labels `history/result/evidence`.
+Computation rejects open subject or object frontiers; verification permits
+only an exactly declared or explicitly discharged frontier; learning returns a
+finite partial fill proposal and retains replacement subholes. These
+research-local frontier coordinates are not stable semantic holes, logical
+obligations, or apertures. The checker performs no execution, proof replay,
+learning synthesis, or feedback. A separate research-only `.adva` document
+codec may persist neutral carriers as graph vertices and
+`compute/verify/learn` as transition-frame labels. Each frame names exactly
+three input carrier references and retains exactly three output positions;
+the output positions are either all ready or all recorded. Named entry points
+select frames, and a later frame may reuse earlier recorded outputs through
+the same document-local carrier references. The Rust boundary checks schema,
+version, canonical table order, reference resolution, cache-coordinate
+nonemptiness, canonical frontiers, exact boundary slot use, and every mechanism
+formation judgment, then returns a digest and load certificate. It is not a
+stable format promotion, does not reinterpret Lisp source, does not resolve
+cached artifacts, and does not certify that recorded outputs arose from a
+mechanism execution.
 
 `adva.research.ResearchMachineV0` may orchestrate finite runs over the included
 Rust artifacts. Its interpretation cells retain exact interfaces, slices,
