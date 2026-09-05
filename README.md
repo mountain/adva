@@ -227,6 +227,13 @@ The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
 certificates.
 
+## Bounded breakthrough research
+
+Before resuming a breakthrough search, use the trusted-boundary and finite-run
+contract in [Research 0129](docs/research/0129-bounded-breakthrough-trusted-boundaries.md).
+It records the unresolved language-formation question, vocabulary status,
+and the requirement to stop without silently renewing the budget.
+
 ## Development
 
 ```bash
