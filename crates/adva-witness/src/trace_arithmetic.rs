@@ -499,7 +499,7 @@ pub fn load_trace_arithmetic_v0(
     TraceArithmeticCalibrationV0::from_json(&source)
 }
 
-fn encode_path(
+pub(crate) fn encode_path(
     path: &FrameRelationPathV0,
 ) -> Result<TraceArithmeticCodeV0, TraceArithmeticErrorV0> {
     check_path(path)?;

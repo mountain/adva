@@ -305,3 +305,13 @@ policy and rotation/reflection/complement generators are frozen experimental
 inputs. The resulting sixteen-member family, relation checks, and influence
 graph do not establish learned symmetry, unbounded self-generation, semantic
 identity between occurrences, or a geometric moduli-space interpretation.
+
+
+The research trace-projection companion may certify the count identity
+`T(p)=(n,n-1,3(n-1))` for nonempty complete three-port paths within the checked
+u32 arithmetic range. It may also certify an explicit pair with equal time
+and space projections but unequal full construction codes, excluding
+single-valued recovery from those inputs on any domain containing that pair.
+It preserves the source calibration and its five open questions. These
+projection results do not supply execution provenance, semantic time,
+ordered holonomy, shared external truth, or an M6 discharge predicate.

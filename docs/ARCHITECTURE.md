@@ -396,3 +396,12 @@ Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
 consume objectification certificates remain research targets. They must not be
 simulated with booleans or Python callbacks.
+
+
+The additive `TraceProjectionWitnessPairV0` consumes a checked trace-arithmetic
+calibration. It reuses the existing research path validator to certify the
+temporal count rule and checks a finite obstruction to full construction
+recovery from equal time and space inputs. The complete source calibration,
+raw paths, method coordinate, and open questions remain present. A Cargo
+example emits the independent research schema; it does not extend the CLI or
+install a discharge predicate. See Research 0124 and ADR 0033.
