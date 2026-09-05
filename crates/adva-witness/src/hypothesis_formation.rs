@@ -243,7 +243,9 @@ impl SearchWordReferenceV0 {
             .iter()
             .any(|crossing| crossing == &self.crossing)
         {
-            return Err(invalid("a search-word reference names no declared crossing"));
+            return Err(invalid(
+                "a search-word reference names no declared crossing",
+            ));
         }
         check_digest(&self.witness_digest)?;
         check_digest(&self.word_digest)
@@ -964,7 +966,9 @@ fn pretty_json<T: Serialize>(value: &T) -> Result<String, HypothesisFormationErr
 
 fn check_digest(digest: &str) -> Result<(), HypothesisFormationErrorV0> {
     let Some(hex) = digest.strip_prefix("blake3:") else {
-        return Err(invalid("a search-word reference must use a BLAKE3 coordinate"));
+        return Err(invalid(
+            "a search-word reference must use a BLAKE3 coordinate",
+        ));
     };
     if hex.len() != 64
         || !hex
