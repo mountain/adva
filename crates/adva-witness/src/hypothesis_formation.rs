@@ -1,6 +1,6 @@
 use crate::{
-    ArtifactKeyV0, DomainTransportNameV0, InquiryInterfaceV0, InputLabelV0,
-    M6NamingPlanV0, MagicSquareCertificateV0, MechanismV0, OutputLabelV0,
+    ArtifactKeyV0, DomainTransportNameV0, InputLabelV0, InquiryInterfaceV0, M6NamingPlanV0,
+    MagicSquareCertificateV0, MechanismV0, OutputLabelV0,
 };
 use adva_ir::CheckStatus;
 use serde::{Deserialize, Serialize};
@@ -105,7 +105,9 @@ impl LinearMagicSquareWitnessV0 {
         }
         if self.crossing_candidate_ordinal != self.global_candidate_ordinal / CROSSING_COUNT as u64
         {
-            return Err(invalid("global and crossing-local candidate ordinals diverge"));
+            return Err(invalid(
+                "global and crossing-local candidate ordinals diverge",
+            ));
         }
         let mut available = INPUT_FORMS.into_iter().collect::<BTreeSet<_>>();
         for gate in &self.xor_gates {
@@ -180,16 +182,16 @@ impl SearchWordV0 {
             || self.introduced_vocabulary != vec!["search".to_owned()]
             || self.witness_digest != self.witness.digest()?
         {
-            return Err(invalid("the derived search word does not retain its formation"));
+            return Err(invalid(
+                "the derived search word does not retain its formation",
+            ));
         }
         let crossing_index = method
             .crossing_order
             .iter()
             .position(|crossing| crossing == &self.crossing)
             .ok_or_else(|| invalid("the search word names no declared crossing"))?;
-        if self.witness.global_candidate_ordinal % CROSSING_COUNT as u64
-            != crossing_index as u64
-        {
+        if self.witness.global_candidate_ordinal % CROSSING_COUNT as u64 != crossing_index as u64 {
             return Err(invalid("the search witness escaped its declared shard"));
         }
         Ok(())
@@ -236,7 +238,9 @@ impl HypothesisFormationFrontierV0 {
         if self.next_crossing as usize > CROSSING_COUNT
             || self.crossing_cursor > CANDIDATES_PER_CROSSING
         {
-            return Err(invalid("frontier crossing coordinate is outside the finite space"));
+            return Err(invalid(
+                "frontier crossing coordinate is outside the finite space",
+            ));
         }
         match self.state {
             HypothesisFormationFrontierStateV0::Open
@@ -247,7 +251,9 @@ impl HypothesisFormationFrontierV0 {
             HypothesisFormationFrontierStateV0::Completed
                 if self.next_crossing as usize != CROSSING_COUNT || self.crossing_cursor != 0 =>
             {
-                return Err(invalid("a completed frontier must be past all six crossings"));
+                return Err(invalid(
+                    "a completed frontier must be past all six crossings",
+                ));
             }
             _ => {}
         }
@@ -488,7 +494,9 @@ impl HypothesisFormationTransitionV0 {
         if self.schema != HYPOTHESIS_FORMATION_TRANSITION_SCHEMA_V0
             || self.version != HYPOTHESIS_FORMATION_VERSION_V0
         {
-            return Err(invalid("unsupported hypothesis-formation transition header"));
+            return Err(invalid(
+                "unsupported hypothesis-formation transition header",
+            ));
         }
         self.input.subject.check()?;
         self.input.method.check()?;
@@ -497,7 +505,9 @@ impl HypothesisFormationTransitionV0 {
             return Err(invalid("hypothesis formation requires an open frontier"));
         }
         if self.output != derive_output(&self.input)? {
-            return Err(invalid("the stored hypothesis-formation output does not replay"));
+            return Err(invalid(
+                "the stored hypothesis-formation output does not replay",
+            ));
         }
         Ok(())
     }
@@ -575,8 +585,7 @@ fn derive_output(
                                 break 'rows;
                             }
                             examined += 1;
-                            let target_mask = form_set_mask(INPUT_FORMS)
-                                | form_set_mask(rows);
+                            let target_mask = form_set_mask(INPUT_FORMS) | form_set_mask(rows);
                             if let Some(gates) = circuits.get(&target_mask) {
                                 four_xor_candidates += 1;
                                 let cells = cells_from_linear_forms(rows);
@@ -633,7 +642,7 @@ fn derive_output(
     let search_word = found
         .map(|witness| {
             let witness_digest = witness.digest()?;
-            Ok(SearchWordV0 {
+            Ok::<SearchWordV0, HypothesisFormationErrorV0>(SearchWordV0 {
                 local_name: "search".to_owned(),
                 display_name_zh: "搜索".to_owned(),
                 lexical_class: SearchLexicalClassV0::Verb,
@@ -773,12 +782,9 @@ fn linearly_independent(rows: [u8; 4]) -> bool {
 fn cells_from_linear_forms(forms: [u8; 4]) -> [u8; 16] {
     std::array::from_fn(|input| {
         let input = u8::try_from(input).expect("four-bit input");
-        let output = forms
-            .iter()
-            .enumerate()
-            .fold(0_u8, |value, (bit, form)| {
-                value | (((form & input).count_ones() as u8 & 1) << bit)
-            });
+        let output = forms.iter().enumerate().fold(0_u8, |value, (bit, form)| {
+            value | (((form & input).count_ones() as u8 & 1) << bit)
+        });
         output + 1
     })
 }
@@ -794,10 +800,7 @@ fn is_magic(cells: &[u8; 16]) -> bool {
             .map(|row| u16::from(cells[row * 4 + column]))
             .sum::<u16>()
             == MAGIC_SUM
-    }) && (0..4)
-        .map(|index| u16::from(cells[index * 5]))
-        .sum::<u16>()
-        == MAGIC_SUM
+    }) && (0..4).map(|index| u16::from(cells[index * 5])).sum::<u16>() == MAGIC_SUM
         && (0..4)
             .map(|index| u16::from(cells[3 + index * 3]))
             .sum::<u16>()
