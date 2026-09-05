@@ -1,0 +1,102 @@
+{
+  "schema": "adva.resource-snapshot.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "resource_label": "second external reality and destruction session",
+  "snapshot_coordinate": "session:2026-09-04:second-inquiry-resource",
+  "provenance": "unauthenticated_external_session",
+  "entropy": {
+    "source": "openssl-rand-32-recorded-before-snapshot",
+    "value": "7b3a014cf542f0dea5400f4ab37285c725f1b9c5812f41c8a9566b659adb6116",
+    "replay": "recorded_output"
+  },
+  "candidates": [
+    {
+      "local_name": "custody",
+      "claim": "reality-facing meaning may be carried by a protocol-bound custody chain: a formal claim is grounded only when independent observers can remeasure an explicit external coordinate, while resistance to destruction requires separately auditable integrity, authenticity, availability, fork-accountability, and recovery mechanisms across independent failure domains",
+      "addressed_obligations": [
+        "experiment:first:m6-time-characteristic-required",
+        "experiment:first:m6-space-characteristic-required",
+        "experiment:first:m6-construction-characteristic-required",
+        "experiment:first:m6-multiplicative-holonomy-required",
+        "experiment:first:m6-common-truth-coordinate-required"
+      ],
+      "assumptions": [
+        "an external event can be located by a versioned coordinate schema without treating its human name as identity",
+        "independent observers can apply a published observation protocol and retain disagreement rather than silently average it away",
+        "custodians occupy genuinely distinct institutional, geographic, administrative, and storage failure domains",
+        "the declared thresholds are operational policy only and are not a proof that a majority reports truth"
+      ],
+      "required_observations": [
+        "one concrete external coordinate containing time interval, location, instrument, protocol version, and sample digest",
+        "raw measurements, instrument calibration, declared tolerance, and independently produced observation receipts",
+        "typed adapters from the retained observations to each of the three characteristic obligations",
+        "an independently replayable holonomy computation that returns the multiplicative identity",
+        "a shared external coordinate that both traces reach without erasing their distinct histories",
+        "successful reconstruction, key-rotation, and fork-detection drills under the declared fault budget"
+      ],
+      "falsifiers": [
+        "the claimed meaning is supported only by a name, digest, signature, or vote and cannot be independently remeasured",
+        "the nominally independent receipts are copies from one observation or one administrative failure domain",
+        "deleting any two declared-independent domains makes the record unrecoverable",
+        "a mutation, conflicting branch, or compromised signing key can be hidden without an attributable receipt",
+        "independent protocol-conforming measurements disagree beyond the declared tolerance",
+        "the custody projection erases an ordered-trace distinction needed by any retained obligation"
+      ],
+      "reality_boundary": {
+        "external_coordinate_schema": "event:{utc_interval,location,instrument_id,protocol_version,sample_digest}",
+        "observation_protocol": "publish raw measurement, calibration record, tolerance, observer key, parent receipt, and protocol version; preserve every conflicting receipt",
+        "meaning_criterion": "independent applications of the same protocol to the same external coordinate produce compatible typed observations within the declared tolerance while every disagreement remains traceable",
+        "grounding_policy": "protocol_bound_independent_remeasurement",
+        "receipt_authority": "receipts_do_not_establish_truth",
+        "threats": [
+          "deletion",
+          "mutation",
+          "equivocation",
+          "key_compromise",
+          "correlated_capture"
+        ],
+        "protected_properties": [
+          "integrity",
+          "authenticity",
+          "availability",
+          "fork_accountability",
+          "semantic_reproducibility"
+        ],
+        "custody": {
+          "independent_failure_domains": 5,
+          "observation_receipt_threshold": 3,
+          "recovery_fragment_threshold": 3,
+          "declared_fault_budget": "retain detectable integrity and reconstructability with any two domains unavailable; no threshold is treated as a truth theorem",
+          "strategies": [
+            "content-addressed append-only parent chains detect mutation but do not prevent deletion",
+            "independent signatures with rotation and revocation attribute claims but do not establish truth",
+            "institutionally and geographically diverse replicas reduce correlated loss",
+            "three-of-five erasure-coded cold exports on heterogeneous media preserve recoverability",
+            "a replicated transparency log retains conflicting branches as fork evidence",
+            "periodic challenge, repair, and export prevent silent replica decay and platform capture"
+          ],
+          "recovery_drills": [
+            "reconstruct from every admitted three-fragment subset and compare the resulting BLAKE3 coordinate",
+            "audit that three accepted observation receipts have independent raw origins rather than copied payloads",
+            "rotate a compromised signing key while retaining its revocation and successor receipts",
+            "inject two conflicting branches and require both to remain visible as attributable fork evidence"
+          ]
+        }
+      }
+    }
+  ]
+}

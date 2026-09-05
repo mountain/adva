@@ -1,0 +1,63 @@
+{
+  "schema": "adva.local-closure-candidate.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "name": "first:distributivity-local-closure",
+  "unit": "exact_polynomial_identity",
+  "before": {
+    "kind": "multiply",
+    "left": {
+      "kind": "variable",
+      "name": "a"
+    },
+    "right": {
+      "kind": "add",
+      "left": {
+        "kind": "variable",
+        "name": "x"
+      },
+      "right": {
+        "kind": "variable",
+        "name": "y"
+      }
+    }
+  },
+  "after": {
+    "kind": "add",
+    "left": {
+      "kind": "multiply",
+      "left": {
+        "kind": "variable",
+        "name": "a"
+      },
+      "right": {
+        "kind": "variable",
+        "name": "x"
+      }
+    },
+    "right": {
+      "kind": "multiply",
+      "left": {
+        "kind": "variable",
+        "name": "a"
+      },
+      "right": {
+        "kind": "variable",
+        "name": "y"
+      }
+    }
+  }
+}

@@ -1,0 +1,331 @@
+{
+  "schema": "adva.problem-formation-transition.research",
+  "version": 0,
+  "input": {
+    "subject": {
+      "schema": "adva.problem-awareness.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "scope": "five-domain custody quorum-overlap model; one unavailable or adversarial domain",
+      "independent_domains": [
+        "custody-domain-0",
+        "custody-domain-1",
+        "custody-domain-2",
+        "custody-domain-3",
+        "custody-domain-4"
+      ],
+      "current_receipt_threshold": 3,
+      "adversarial_fault_budget": 1,
+      "observed_gap": "the existing three-of-five receipt threshold has no recorded proof that two accepted successor sets retain an honest common custodian under one adversarial fault",
+      "protected_invariants": [
+        "provenance",
+        "replay",
+        "challenge",
+        "succession"
+      ],
+      "retained_context": [
+        "finite-boundary",
+        "reality",
+        "custody",
+        "provenance",
+        "replay",
+        "challenge",
+        "succession",
+        "hypothesis-formation",
+        "search",
+        "trust-continuity"
+      ],
+      "parent_artifacts": [
+        "programs/bootstrap-0/trust-continuity-session-witness.adva",
+        "programs/bootstrap-0/hypothesis-formation-frontier-6.adva"
+      ]
+    },
+    "method": {
+      "schema": "adva.problem-formation-contract.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "program_name": "problem-formation",
+      "display_name_zh": "问题形成",
+      "mechanism": "learn",
+      "counterexample_search": "lexicographic pairs of current-threshold quorums, then lexicographic one-domain fault sets",
+      "formation_rule": "admit a problem only with an exact retained counterexample, externally supplied candidate directions, an external need, a help-first contribution, falsifiers, and a finite cost boundary",
+      "imagination_boundary": "imagination proposes charts and directions at the interface; this program may select and test them but does not derive imagination from the sealed formal system",
+      "output_schema": "adva.problem-value-frontier.research"
+    },
+    "object": {
+      "schema": "adva.imagination-resource.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "origin": "external:conversation-rereading:2026-09-05",
+      "status": "externally-proposed-candidate-directions",
+      "candidate_thresholds": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "directions": [
+        {
+          "feature": "signed_parent",
+          "capability": "content-addressed signed parent handoff",
+          "supports": "provenance",
+          "cost_units": 1
+        },
+        {
+          "feature": "replay_bundle",
+          "capability": "versioned method, checker, inputs, and residual replay bundle",
+          "supports": "replay",
+          "cost_units": 1
+        },
+        {
+          "feature": "fork_ledger",
+          "capability": "append-only challenge and fork ledger",
+          "supports": "challenge",
+          "cost_units": 1
+        },
+        {
+          "feature": "recovery_handoff",
+          "capability": "recoverable successor boundary across failure domains",
+          "supports": "succession",
+          "cost_units": 1
+        },
+        {
+          "feature": "independent_remeasurement",
+          "capability": "independent protocol-conforming reality remeasurement",
+          "supports": "replay",
+          "cost_units": 1
+        }
+      ],
+      "external_need": "independently controlled custodians must later instantiate the declared domains and perform protocol-conforming remeasurement and recovery drills",
+      "help_first_contribution": "publish the exact counterexample, candidate enumeration, checker, replay fixture, and residual deployment obligations without asking a later observer to endorse the claim",
+      "falsifiers": [
+        "no policy in the declared finite candidate space satisfies honest overlap and one-fault availability",
+        "the retained counterexample does not replay under the frozen quorum model",
+        "a selected feature bundle drops provenance, replay, challenge, succession, or the compatible reserve",
+        "the declared cost exceeds the finite value-seeking budget"
+      ],
+      "finite_cost_boundary": "five thresholds times thirty-two feature subsets; every selected threshold approval and feature costs one unit",
+      "vocabulary": [
+        "imagination",
+        "candidate-direction"
+      ]
+    }
+  },
+  "output": {
+    "history": {
+      "mechanism": "learn",
+      "awareness_digest": "blake3:01e2243b3088209b67ee7b4bc9882c31856b2ae1acc188fceeb520892d76de7d",
+      "method_digest": "blake3:700711c93393746fd0fb8b527ea7edf68122239df4b2949287b609a5ab0eada4",
+      "imagination_digest": "blake3:4983b3d29ce37933dfb49753c99279ac25235cd94e1d6eb22d6283805a0a1023",
+      "quorum_fault_cases_examined": 21,
+      "generation_trace": [
+        "retain the reality-facing custody gap",
+        "search an exact current-policy counterexample",
+        "attach externally proposed directions without promoting them to facts",
+        "publish the external need, help-first contribution, falsifiers, and finite cost"
+      ]
+    },
+    "result": {
+      "state": "formed",
+      "problem_occurrence": "experiment:0122:problem:honest-quorum-continuation",
+      "problem_digest": "blake3:d60daeb4ab29e78ce7d6b7d704f3d151b1107737f3ab2d2f49893c34e031ec66",
+      "introduced_vocabulary": [
+        "problem-formation",
+        "problem"
+      ]
+    },
+    "evidence": {
+      "current_policy_counterexample": "checked",
+      "history_retained": "checked",
+      "imagination_source_explicit": "checked",
+      "external_need_explicit": "checked",
+      "help_first_explicit": "checked",
+      "falsifiers_explicit": "checked",
+      "finite_cost_explicit": "checked",
+      "next_frontier": {
+        "schema": "adva.problem-value-frontier.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "sequence": 0,
+        "state": "open",
+        "problem": {
+          "schema": "adva.formed-problem.research",
+          "version": 0,
+          "interface": {
+            "schema": "adva.inquiry-interface.research",
+            "version": 0,
+            "inputs": [
+              "subject",
+              "method",
+              "object"
+            ],
+            "outputs": [
+              "history",
+              "result",
+              "evidence"
+            ]
+          },
+          "occurrence": "experiment:0122:problem:honest-quorum-continuation",
+          "statement": "within five declared independent custody domains and one adversarial fault, find the least receipt threshold and finite feature bundle that remain available after one domain loss, force honest overlap between any two accepted successors, retain provenance, replay, challenge, and succession, and leave one compatible reserve",
+          "awareness_digest": "blake3:01e2243b3088209b67ee7b4bc9882c31856b2ae1acc188fceeb520892d76de7d",
+          "method_digest": "blake3:700711c93393746fd0fb8b527ea7edf68122239df4b2949287b609a5ab0eada4",
+          "imagination_digest": "blake3:4983b3d29ce37933dfb49753c99279ac25235cd94e1d6eb22d6283805a0a1023",
+          "current_domain_count": 5,
+          "current_threshold": 3,
+          "fault_budget": 1,
+          "counterexample": {
+            "left_receipts": [
+              0,
+              1,
+              2
+            ],
+            "right_receipts": [
+              0,
+              3,
+              4
+            ],
+            "shared_domains": [
+              0
+            ],
+            "adversarial_domains": [
+              0
+            ],
+            "honest_shared_domains": []
+          },
+          "candidate_thresholds": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "candidate_directions": [
+            {
+              "feature": "signed_parent",
+              "capability": "content-addressed signed parent handoff",
+              "supports": "provenance",
+              "cost_units": 1
+            },
+            {
+              "feature": "replay_bundle",
+              "capability": "versioned method, checker, inputs, and residual replay bundle",
+              "supports": "replay",
+              "cost_units": 1
+            },
+            {
+              "feature": "fork_ledger",
+              "capability": "append-only challenge and fork ledger",
+              "supports": "challenge",
+              "cost_units": 1
+            },
+            {
+              "feature": "recovery_handoff",
+              "capability": "recoverable successor boundary across failure domains",
+              "supports": "succession",
+              "cost_units": 1
+            },
+            {
+              "feature": "independent_remeasurement",
+              "capability": "independent protocol-conforming reality remeasurement",
+              "supports": "replay",
+              "cost_units": 1
+            }
+          ],
+          "protected_invariants": [
+            "provenance",
+            "replay",
+            "challenge",
+            "succession"
+          ],
+          "external_need": "independently controlled custodians must later instantiate the declared domains and perform protocol-conforming remeasurement and recovery drills",
+          "help_first_contribution": "publish the exact counterexample, candidate enumeration, checker, replay fixture, and residual deployment obligations without asking a later observer to endorse the claim",
+          "falsifiers": [
+            "no policy in the declared finite candidate space satisfies honest overlap and one-fault availability",
+            "the retained counterexample does not replay under the frozen quorum model",
+            "a selected feature bundle drops provenance, replay, challenge, succession, or the compatible reserve",
+            "the declared cost exceeds the finite value-seeking budget"
+          ],
+          "finite_cost_boundary": "five thresholds times thirty-two feature subsets; every selected threshold approval and feature costs one unit",
+          "value_target": "stable trust continuation: admissibility is noncompensating; cost orders only candidates that already preserve every invariant",
+          "retained_vocabulary": [
+            "finite-boundary",
+            "reality",
+            "custody",
+            "provenance",
+            "replay",
+            "challenge",
+            "succession",
+            "hypothesis-formation",
+            "search",
+            "trust-continuity",
+            "imagination",
+            "candidate-direction",
+            "problem-formation",
+            "problem"
+          ],
+          "introduced_vocabulary": [
+            "problem-formation",
+            "problem"
+          ]
+        },
+        "source_problem_digest": "blake3:d60daeb4ab29e78ce7d6b7d704f3d151b1107737f3ab2d2f49893c34e031ec66",
+        "candidate_cursor": 0,
+        "witness_digest": null,
+        "parent_frontier_digest": null
+      }
+    }
+  }
+}

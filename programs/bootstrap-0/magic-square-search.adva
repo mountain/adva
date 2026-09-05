@@ -1,0 +1,25 @@
+{
+  "schema": "adva.magic-square-search-contract.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "name": "first:normal-order-four-characteristic-search",
+  "mechanism": "learn",
+  "order": 4,
+  "cell_selection": "first_open_cell_row_major",
+  "value_order": "unused_values_ascending",
+  "pruning": "exact_completed_lines_and_remaining_sum_bounds",
+  "stop_condition": "first_exact_closure_with_sixteen_member_symmetry_orbit_or_fuel_exhaustion"
+}
