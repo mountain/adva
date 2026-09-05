@@ -1,11 +1,11 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
-    ContinuityComparisonV0, ImaginationResourceV0, ProblemAwarenessV0,
-    ProblemFormationContractV0, ProblemFormationStateV0, ProblemValueFrontierStateV0,
-    TrustInvariantV0, ValueFeatureV0, ValueSeekingContractV0, ValueSeekingResourceV0,
-    ValueSeekingRunStateV0, load_imagination_resource_v0, load_problem_awareness_v0,
-    load_problem_formation_contract_v0, load_value_seeking_contract_v0,
-    load_value_seeking_resource_v0, run_problem_formation_v0, run_value_seeking_v0,
+    ContinuityComparisonV0, ImaginationResourceV0, ProblemAwarenessV0, ProblemFormationContractV0,
+    ProblemFormationStateV0, ProblemValueFrontierStateV0, TrustInvariantV0, ValueFeatureV0,
+    ValueSeekingContractV0, ValueSeekingResourceV0, ValueSeekingRunStateV0,
+    load_imagination_resource_v0, load_problem_awareness_v0, load_problem_formation_contract_v0,
+    load_value_seeking_contract_v0, load_value_seeking_resource_v0, run_problem_formation_v0,
+    run_value_seeking_v0,
 };
 use std::path::PathBuf;
 
@@ -60,7 +60,10 @@ fn problem_formation_turns_a_real_gap_and_external_directions_into_a_problem() {
     let frontier = &transition.output.evidence.next_frontier;
     let counterexample = &frontier.problem.counterexample;
 
-    assert_eq!(transition.output.result.state, ProblemFormationStateV0::Formed);
+    assert_eq!(
+        transition.output.result.state,
+        ProblemFormationStateV0::Formed
+    );
     assert_eq!(transition.output.history.quorum_fault_cases_examined, 21);
     assert_eq!(counterexample.left_receipts, [0, 1, 2]);
     assert_eq!(counterexample.right_receipts, [0, 3, 4]);
@@ -94,13 +97,13 @@ fn value_seeking_finds_and_fixes_the_minimum_admitted_policy() {
     let transition = run_value_seeking_v0(&frontier, &contract, &resource).unwrap();
     let witness = transition.output.result.witness.as_ref().unwrap();
 
-    assert_eq!(transition.output.result.state, ValueSeekingRunStateV0::Witness);
+    assert_eq!(
+        transition.output.result.state,
+        ValueSeekingRunStateV0::Witness
+    );
     assert_eq!(transition.output.history.candidates_examined, 128);
     assert_eq!(transition.output.history.rejected_by_overlap, 96);
-    assert_eq!(
-        transition.output.history.rejected_by_invariant_coverage,
-        29
-    );
+    assert_eq!(transition.output.history.rejected_by_invariant_coverage, 29);
     assert_eq!(transition.output.history.rejected_by_reserve, 2);
     assert_eq!(witness.candidate_ordinal, 127);
     assert_eq!(witness.selected_threshold, 4);
@@ -118,10 +121,7 @@ fn value_seeking_finds_and_fixes_the_minimum_admitted_policy() {
     assert_eq!(witness.rupture_load, 4);
     assert_eq!(witness.comparison, ContinuityComparisonV0::Greater);
     assert_eq!(witness.total_cost, 9);
-    assert_eq!(
-        witness.introduced_vocabulary,
-        ["value-seeking", "value"]
-    );
+    assert_eq!(witness.introduced_vocabulary, ["value-seeking", "value"]);
     assert_eq!(
         transition.output.evidence.next_frontier.state,
         ProblemValueFrontierStateV0::Completed
@@ -178,7 +178,10 @@ fn insufficient_cost_budget_exhausts_the_declared_space_without_a_witness() {
     )
     .unwrap();
 
-    assert_eq!(transition.output.result.state, ValueSeekingRunStateV0::NoWitness);
+    assert_eq!(
+        transition.output.result.state,
+        ValueSeekingRunStateV0::NoWitness
+    );
     assert!(transition.output.result.witness.is_none());
     assert_eq!(transition.output.history.candidates_examined, 160);
     assert_eq!(transition.output.history.rejected_by_budget, 1);
