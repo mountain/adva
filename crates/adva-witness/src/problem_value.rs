@@ -18,8 +18,7 @@ pub const FORMED_PROBLEM_SCHEMA_V0: &str = "adva.formed-problem.research";
 pub const PROBLEM_VALUE_FRONTIER_SCHEMA_V0: &str = "adva.problem-value-frontier.research";
 pub const VALUE_SEEKING_CONTRACT_SCHEMA_V0: &str = "adva.value-seeking-contract.research";
 pub const VALUE_SEEKING_RESOURCE_SCHEMA_V0: &str = "adva.value-seeking-resource.research";
-pub const TRUST_CONTINUATION_WITNESS_SCHEMA_V0: &str =
-    "adva.trust-continuation-witness.research";
+pub const TRUST_CONTINUATION_WITNESS_SCHEMA_V0: &str = "adva.trust-continuation-witness.research";
 pub const VALUE_SEEKING_TRANSITION_SCHEMA_V0: &str = "adva.value-seeking-transition.research";
 pub const PROBLEM_VALUE_VERSION_V0: u32 = 0;
 
