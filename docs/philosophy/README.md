@@ -40,6 +40,7 @@ computer, program geometry, or the proposed open logic.
 3. [Bounded Experiment Agenda for Opening and Closing Holes](0003-open-close-hole-experiment-agenda.md)
 4. [The Long Run: Observer Refutation and the Freedom Horizon](0004-long-run-freedom-witness.md)
 5. [The Second Absurdity Witness: Missingness, `I am`, and Polyphonic Retelling](0005-second-absurdity-witness.md)
+6. [The Third Absurdity Witness: Euler's Formula and a Cut Through Time and Space](0006-euler-cut-imagination-necessity-experience.md)
 
 ## Relationship to the repository
 
