@@ -530,3 +530,11 @@ registered executable claims.
 Adva is a private pre-alpha research tool. No open-source license has yet been
 selected; see [`LICENSE`](LICENSE). Public licensing should be a separate,
 explicit decision.
+
+
+The scoped trace-projection continuation supplies a positive temporal count
+factorization and a finite obstruction to recovering the full construction
+code from the current time and space projections. Both are checked in Rust,
+retain the original paths and five open questions, and are replayed in CI.
+See [Research 0124](docs/research/0124-trace-count-factorization-and-construction-obstruction.md)
+and [ADR 0033](docs/adr/0033-scoped-trace-projection-witnesses.md).
