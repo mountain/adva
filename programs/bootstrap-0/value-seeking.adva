@@ -1,0 +1,26 @@
+{
+  "schema": "adva.value-seeking-contract.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "program_name": "value-seeking",
+  "display_name_zh": "价值寻求",
+  "mechanism": "learn",
+  "candidate_count": 160,
+  "enumeration": "receipt threshold ascending, then five-bit feature mask ascending",
+  "admission_rule": "first require one-fault availability, honest successor overlap, all four noncompensating trust invariants, a distinct typed matching, one compatible reserve, and payable finite cost; only then prefer the first lower-burden candidate",
+  "value_boundary": "the program optimizes an externally declared value policy; it does not derive value, truth, consent, social trust, or custodian independence from arithmetic",
+  "output_schema": "adva.value-seeking-transition.research"
+}
