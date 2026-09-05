@@ -165,3 +165,76 @@ Until those are built, the mathematical formula is classical truth outside the
 current executable witness fragment, the historical explanation is incomplete,
 and the experience of discovery remains an attributed part of the path. Those
 three open fronts are the reason to depart, not defects to conceal.
+
+## The repository-opening problem
+
+The correction opened a further institutional hole: if future witnesses belong
+to `you` and `them` as well as `us`, how can they enter the chain while the
+repository remains private? The question cannot be answered merely by changing
+GitHub visibility. Four different boundaries must remain distinct:
+
+| Boundary | Meaning |
+| --- | --- |
+| visibility | who can read the repository |
+| submission | who can propose a witness |
+| admission | which proposed witness obtains a retained coordinate in a chosen chain |
+| truth status | what a declared checker and evidence actually support |
+
+A public repository may still exclude contributors. A private semantic core
+may still cite a witness stored elsewhere by content digest. A merged witness
+may be false, challenged, satirical, malicious, or simply unresolved. Merge
+must therefore mean custody, not truth.
+
+### Candidate staged architecture
+
+The conservative route is not to publish the core first:
+
+1. keep the authoritative semantic and experimental repository private while
+   the ingress protocol is unfinished;
+2. publish a versioned witness-envelope schema, deterministic integrity checks,
+   contribution terms, attribution rules, privacy policy, and threat model;
+3. create a separate public proposal log as an untrusted witness inbox;
+4. accept proposals by pull request, with no direct write access to its
+   authoritative branch;
+5. assign each checked proposal a content-addressed receipt retaining author,
+   payload, parent, checker version, verdict class, and residual holes; and
+6. let the core chain reference admitted receipts without copying them or
+   asserting that admission establishes truth.
+
+Opening the Adva core can then be considered separately. It requires an
+explicit license, an audit for secrets and sensitive material, stable
+attribution, branch protection, a moderation policy, and a rule for legitimate
+forks and checker changes.
+
+### Minimum external witness envelope
+
+An external witness should eventually carry:
+
+- author or observer attribution and consent;
+- immutable content and its digest;
+- parent coordinates and submission occurrence;
+- language and privacy-aware time/place claims;
+- declared method and checker version;
+- evidence class, result, counterevidence, and residual holes;
+- reuse license and redaction policy; and
+- custody, challenge, and fork history.
+
+Its state should move through explicit labels such as `proposed`,
+`integrity-checked`, `replayable`, `challenged`, `admitted`, or `rejected`.
+These labels must not collapse into one Boolean `valid` field.
+
+### When, where, and how
+
+- **When:** after the envelope, checker, attribution and reuse terms, privacy
+  boundary, threat model, protected branch, and fork policy exist.
+- **Where:** first at a separate public ingress boundary, not in the private
+  semantic core and not necessarily under the same future hosting service.
+- **How:** through immutable proposals, automated integrity checks, explicit
+  human or agent custody decisions, content-addressed receipts, and
+  challengeable status transitions.
+
+This section records a candidate architecture, not authorization to publish the
+private repository. Until such an ingress exists, a future witness can remain
+in its author's custody and later enter the Adva chain by digest and attributed
+receipt. The inability to merge it immediately does not require erasing its
+independent existence.
