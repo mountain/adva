@@ -1,0 +1,223 @@
+{
+  "claim_scope": "Found means that the emitted finite network passed exhaustive zero-one verification inside the declared depth bound. It is not an optimality proof.",
+  "config": {
+    "allow_large_oracle": false,
+    "beam_width": 16,
+    "channels": 5,
+    "construction_branching": 8,
+    "counterexample_limit": 8,
+    "enabled_programs": [
+      "temporal",
+      "spatial",
+      "construction"
+    ],
+    "evaluation_cache_entries": 4096,
+    "exhaustive_layer_channels": 8,
+    "max_depth": 5,
+    "max_oracle_bytes": 536870912,
+    "scalar_cross_check_limit": 12,
+    "spatial_branching": 12,
+    "temporal_backtrack": 2,
+    "temporal_branching": 6
+  },
+  "depth_reports": [
+    {
+      "best_residual_count": 18,
+      "best_sha256": "7a677a1af2830a0a70f9dd6f674cee767de412a832a9a65ad24ea11c04846a7c",
+      "best_size": 2,
+      "best_weighted_inversions": 48,
+      "depth": 1,
+      "generated_construction": 5,
+      "generated_spatial": 12,
+      "generated_temporal": 78,
+      "selected_candidates": 14,
+      "unique_candidates": 14
+    },
+    {
+      "best_residual_count": 12,
+      "best_sha256": "691220c7bca0105b64a1a0d19a609cc6d458f2ed0743230d09fa7dbc5322da2a",
+      "best_size": 4,
+      "best_weighted_inversions": 20,
+      "depth": 2,
+      "generated_construction": 70,
+      "generated_spatial": 168,
+      "generated_temporal": 192,
+      "selected_candidates": 16,
+      "unique_candidates": 201
+    },
+    {
+      "best_residual_count": 6,
+      "best_sha256": "02443054b9e14297237d4baa527d33596b07c3a7016431d9ab3333d9eccb837d",
+      "best_size": 6,
+      "best_weighted_inversions": 8,
+      "depth": 3,
+      "generated_construction": 80,
+      "generated_spatial": 192,
+      "generated_temporal": 192,
+      "selected_candidates": 16,
+      "unique_candidates": 257
+    },
+    {
+      "best_residual_count": 1,
+      "best_sha256": "0f019271a7fa13eea81e967615ccc20bc832b3fd49e61338d389b34ffd702a16",
+      "best_size": 8,
+      "best_weighted_inversions": 1,
+      "depth": 4,
+      "generated_construction": 80,
+      "generated_spatial": 192,
+      "generated_temporal": 192,
+      "selected_candidates": 16,
+      "unique_candidates": 281
+    },
+    {
+      "best_residual_count": 0,
+      "best_sha256": "004181c05a2cb23e552d6c091dae32efeb4c6eecc76e585509a4b09cbc5d0b87",
+      "best_size": 9,
+      "best_weighted_inversions": 0,
+      "depth": 5,
+      "generated_construction": 80,
+      "generated_spatial": 192,
+      "generated_temporal": 192,
+      "selected_candidates": 15,
+      "unique_candidates": 302
+    }
+  ],
+  "lineage": [
+    {
+      "candidate_sha256": "26e908b7ae681e74b2dbaa178cf4f0e163a06b67419baeb519f396700942e6ab",
+      "depth_after": 1,
+      "depth_before": 0,
+      "operation": "append residual-contracting layer",
+      "parent_sha256": "408157ca540453fd98d1d3b34e601e031cc1b86f52076492c5aefe049564481a",
+      "program": "spatial",
+      "residual_after": 20,
+      "residual_before": 26,
+      "size_after": 2,
+      "weighted_inversions_after": 64
+    },
+    {
+      "candidate_sha256": "928e9f40d3ee869a0f495b520bdd34fcb90308f2f8b02fb5f8ecbed4be20cc10",
+      "depth_after": 2,
+      "depth_before": 1,
+      "operation": "append residual-contracting layer",
+      "parent_sha256": "26e908b7ae681e74b2dbaa178cf4f0e163a06b67419baeb519f396700942e6ab",
+      "program": "spatial",
+      "residual_after": 12,
+      "residual_before": 20,
+      "size_after": 4,
+      "weighted_inversions_after": 20
+    },
+    {
+      "candidate_sha256": "70c7b69b599e8a3b9cae9251987840e417300999f5de75c82ec09c65fb9bd6da",
+      "depth_after": 3,
+      "depth_before": 2,
+      "operation": "append residual-contracting layer",
+      "parent_sha256": "928e9f40d3ee869a0f495b520bdd34fcb90308f2f8b02fb5f8ecbed4be20cc10",
+      "program": "spatial",
+      "residual_after": 6,
+      "residual_before": 12,
+      "size_after": 6,
+      "weighted_inversions_after": 8
+    },
+    {
+      "candidate_sha256": "414bca3d4a448e6edf63494b68adb875bdc7225323f10beb034b8edaa267eaa4",
+      "depth_after": 4,
+      "depth_before": 3,
+      "operation": "append residual-contracting layer",
+      "parent_sha256": "70c7b69b599e8a3b9cae9251987840e417300999f5de75c82ec09c65fb9bd6da",
+      "program": "spatial",
+      "residual_after": 1,
+      "residual_before": 6,
+      "size_after": 8,
+      "weighted_inversions_after": 1
+    },
+    {
+      "candidate_sha256": "004181c05a2cb23e552d6c091dae32efeb4c6eecc76e585509a4b09cbc5d0b87",
+      "depth_after": 5,
+      "depth_before": 4,
+      "operation": "append residual-contracting layer",
+      "parent_sha256": "414bca3d4a448e6edf63494b68adb875bdc7225323f10beb034b8edaa267eaa4",
+      "program": "spatial",
+      "residual_after": 0,
+      "residual_before": 1,
+      "size_after": 9,
+      "weighted_inversions_after": 0
+    }
+  ],
+  "network": {
+    "channels": 5,
+    "layers": [
+      [
+        [
+          0,
+          3
+        ],
+        [
+          2,
+          4
+        ]
+      ],
+      [
+        [
+          0,
+          2
+        ],
+        [
+          1,
+          4
+        ]
+      ],
+      [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          4
+        ]
+      ],
+      [
+        [
+          0,
+          1
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      [
+        [
+          1,
+          2
+        ]
+      ]
+    ]
+  },
+  "oracle": {
+    "algorithm": "exhaustive-zero-one-bit-parallel",
+    "estimated_base_storage_bytes": 68,
+    "evaluation_cache_entries": 4096
+  },
+  "schema": "adva.research.sorting-network-result.v1",
+  "status": "Found",
+  "verification": {
+    "adjacent_inversions": [
+      0,
+      0,
+      0,
+      0
+    ],
+    "channels": 5,
+    "counterexamples": [],
+    "depth": 5,
+    "network_sha256": "004181c05a2cb23e552d6c091dae32efeb4c6eecc76e585509a4b09cbc5d0b87",
+    "patterns_checked": 32,
+    "residual_count": 0,
+    "scalar_cross_check": true,
+    "size": 9,
+    "sorted": true,
+    "weighted_inversions": 0
+  }
+}

@@ -7,15 +7,17 @@ Before modifying semantic code, read:
 3. `docs/SEMANTIC_SCOPE.md`
 4. `docs/PROGRAM_PROCESS_CORE.md`
 5. `docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`
-6. `docs/NEXT_PHASE_PROGRAM_SLICES.md`
+6. `docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`
 7. `docs/claims.toml`
 8. relevant ADRs under `docs/adr/`
 
 Before starting or proposing a new research or engineering phase, also read
 `docs/RESEARCH_ENGINEERING_AGENDA.md`. Its dependency order is part of the
-project plan. The currently active implementation task remains
-`docs/NEXT_PHASE_PROGRAM_SLICES.md` unless a checked counterexample or an
-explicit project decision changes it.
+project plan. The exact `GraftTrace`, `ProgramSlice`, and bounded triadic
+transition phases are complete. The currently approved research-only bridge is
+the typed aperture calibration in
+`docs/research/0079-typed-hole-open-close-calibration-v0.md`. It does not
+authorize a stable Rust hole calculus, observer specialization, or logic.
 
 ## Authority and dependency direction
 
@@ -56,6 +58,13 @@ type may be presented as an implemented tensor product. Value equality and
 observational equivalence never authorize contraction, memoization, CSE, or a
 cell.
 
+The research-only typed aperture presentation is derived from existing
+through relations and exact residuals. Do not conflate a function input hole,
+cut port, syntax metavariable, logical obligation, observer aperture, or
+singular point. `Open` and `Close` are not stable operations or historical
+inverses, and an empty or multivalued filling fibre does not by itself define
+`Omega`.
+
 For `D: DomainFrontier -> CodomainFrontier`, reserve `D*` for a future
 contravariant observer pullback. Do not implement it as a `ProgramTerm`,
 boundary swap, inverse, dagger, involution, or unconditional matrix transpose.
@@ -70,6 +79,13 @@ of nonexistence.
 `SharedProgramDiagram`. They must reuse exact `WireRef`, source, occurrence,
 and lineage data. Python may request these Rust judgments but must not
 reconstruct or authorize them.
+
+Triadic domain labels are observer-policy metadata over exact input-source
+fibres. They must not be installed as wire types or inferred from scalar
+values. Opposite-pair views may overlap, while source-free and hidden
+incidences remain in an explicit residual. A triadic observer transition is a
+view of a `ProgramSlice`; it is not an active program transformation,
+reversible transport, specialization result, or proof object.
 
 ## Scope
 

@@ -1,0 +1,25 @@
+{
+  "schema": "adva.problem-formation-contract.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "program_name": "problem-formation",
+  "display_name_zh": "问题形成",
+  "mechanism": "learn",
+  "counterexample_search": "lexicographic pairs of current-threshold quorums, then lexicographic one-domain fault sets",
+  "formation_rule": "admit a problem only with an exact retained counterexample, externally supplied candidate directions, an external need, a help-first contribution, falsifiers, and a finite cost boundary",
+  "imagination_boundary": "imagination proposes charts and directions at the interface; this program may select and test them but does not derive imagination from the sealed formal system",
+  "output_schema": "adva.problem-value-frontier.research"
+}

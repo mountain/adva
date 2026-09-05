@@ -1,0 +1,43 @@
+name: Arithmetic vocabulary
+on:
+  pull_request:
+    paths:
+      - 'programs/bootstrap-0/arithmetic-vocabulary/**'
+      - 'programs/bootstrap-0/frontier-2.adva'
+      - 'programs/bootstrap-0/exploration.adva'
+      - 'crates/adva-witness/**'
+      - 'crates/adva-ir/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'scripts/replay_arithmetic_vocabulary.py'
+      - '.github/workflows/arithmetic-vocabulary.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'programs/bootstrap-0/arithmetic-vocabulary/**'
+      - 'programs/bootstrap-0/frontier-2.adva'
+      - 'programs/bootstrap-0/exploration.adva'
+      - 'crates/adva-witness/**'
+      - 'crates/adva-ir/**'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'scripts/replay_arithmetic_vocabulary.py'
+      - '.github/workflows/arithmetic-vocabulary.yml'
+permissions:
+  contents: read
+jobs:
+  two-words:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - run: cargo build -p adva-witness --bin adva
+      - run: python3 scripts/replay_arithmetic_vocabulary.py
+      - uses: actions/upload-artifact@v4
+        with:
+          name: arithmetic-vocabulary-witness
+          path: target/arithmetic-vocabulary/*.adva
+          if-no-files-found: error
+          retention-days: 7

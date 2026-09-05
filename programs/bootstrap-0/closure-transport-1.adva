@@ -1,0 +1,3045 @@
+{
+  "schema": "adva.closure-transport-transition.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "input": {
+    "subject": {
+      "schema": "adva.local-closure-candidate.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "name": "first:distributivity-local-closure",
+      "unit": "exact_polynomial_identity",
+      "before": {
+        "kind": "multiply",
+        "left": {
+          "kind": "variable",
+          "name": "a"
+        },
+        "right": {
+          "kind": "add",
+          "left": {
+            "kind": "variable",
+            "name": "x"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "y"
+          }
+        }
+      },
+      "after": {
+        "kind": "add",
+        "left": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "a"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        },
+        "right": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "a"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "y"
+          }
+        }
+      }
+    },
+    "method": {
+      "schema": "adva.closure-transport-contract.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "name": "first:exact-polynomial-local-closure-transport",
+      "mechanism": "verify",
+      "subject_schema": "adva.local-closure-candidate.research",
+      "object_schema": "adva.closure-transport-plan.research",
+      "output_schema": "adva.closure-transport-transition.research",
+      "supported_unit": "exact_polynomial_identity"
+    },
+    "object": {
+      "schema": "adva.closure-transport-plan.research",
+      "version": 0,
+      "interface": {
+        "schema": "adva.inquiry-interface.research",
+        "version": 0,
+        "inputs": [
+          "subject",
+          "method",
+          "object"
+        ],
+        "outputs": [
+          "history",
+          "result",
+          "evidence"
+        ]
+      },
+      "local_scope": {
+        "coordinate": "experiment:0118:scope-a",
+        "occurrence": "experiment:0118:occurrence-a",
+        "unit": "exact_polynomial_identity"
+      },
+      "stage_one": {
+        "coordinate": "experiment:0118:map-a-b",
+        "source": {
+          "coordinate": "experiment:0118:scope-a",
+          "occurrence": "experiment:0118:occurrence-a",
+          "unit": "exact_polynomial_identity"
+        },
+        "target": {
+          "coordinate": "experiment:0118:scope-b",
+          "occurrence": "experiment:0118:occurrence-b",
+          "unit": "exact_polynomial_identity"
+        },
+        "context": {
+          "kind": "add",
+          "left": {
+            "kind": "variable",
+            "name": "z"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "__adva_scope_slot__"
+          }
+        }
+      },
+      "stage_two": {
+        "coordinate": "experiment:0118:map-b-c",
+        "source": {
+          "coordinate": "experiment:0118:scope-b",
+          "occurrence": "experiment:0118:occurrence-b",
+          "unit": "exact_polynomial_identity"
+        },
+        "target": {
+          "coordinate": "experiment:0118:scope-c",
+          "occurrence": "experiment:0118:occurrence-c",
+          "unit": "exact_polynomial_identity"
+        },
+        "context": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "b"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "__adva_scope_slot__"
+          }
+        }
+      },
+      "direct": {
+        "coordinate": "experiment:0118:map-a-c",
+        "source": {
+          "coordinate": "experiment:0118:scope-a",
+          "occurrence": "experiment:0118:occurrence-a",
+          "unit": "exact_polynomial_identity"
+        },
+        "target": {
+          "coordinate": "experiment:0118:scope-c",
+          "occurrence": "experiment:0118:occurrence-c",
+          "unit": "exact_polynomial_identity"
+        },
+        "context": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "b"
+          },
+          "right": {
+            "kind": "add",
+            "left": {
+              "kind": "variable",
+              "name": "z"
+            },
+            "right": {
+              "kind": "variable",
+              "name": "__adva_scope_slot__"
+            }
+          }
+        }
+      },
+      "negative_targets": [
+        {
+          "coordinate": "experiment:0118:negative:m6-ordered-holonomy",
+          "target_digest": "blake3:bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91",
+          "required_unit": "ordered_holonomy_replay"
+        },
+        {
+          "coordinate": "experiment:0118:negative:shared-truth-coordinate",
+          "target_digest": "blake3:bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91",
+          "required_unit": "shared_truth_coordinate"
+        }
+      ],
+      "counterevidence": {
+        "coordinate": "experiment:0118:counterevidence-notice-1",
+        "challenged_scope": "experiment:0118:scope-a",
+        "detail": "admit a challenge without treating it as proof of falsity"
+      }
+    }
+  },
+  "output": {
+    "history": {
+      "mechanism": "verify",
+      "subject_digest": "blake3:e1659ff6feb01703c70d8eb6035b3460604ba408d003c0b4b41760d084d4f7b3",
+      "method_digest": "blake3:ee6c99bb0be1e0d5f9cbe6c4a44920a0103c1ae64534a5f18212cef4389e2d7b",
+      "object_digest": "blake3:c2a35b17930c3ecb04c9d549313667ece9a7e72bd7d7401af1f83559fc38e83c",
+      "local_certificate_digest": "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0",
+      "stage_one": {
+        "map_coordinate": "experiment:0118:map-a-b",
+        "map_digest": "blake3:2207733285b17d157b6af6439ad0b13c8a5e5e0920deea4d7260ea0f7cb9cd55",
+        "source_scope": "experiment:0118:scope-a",
+        "target_scope": "experiment:0118:scope-b",
+        "source_occurrence": "experiment:0118:occurrence-a",
+        "target_occurrence": "experiment:0118:occurrence-b",
+        "source_certificate_digest": "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0",
+        "result_certificate_digest": "blake3:096b3810cef1e4a9de88126d180542035632381d45582f7da8daab4c1c8d467f",
+        "result_content_digest": "blake3:19b42c313cca65617dcab58a77c43586c58e51f2f91ac464e3a7b855656d284f"
+      },
+      "stage_two": {
+        "map_coordinate": "experiment:0118:map-b-c",
+        "map_digest": "blake3:cc508d35ff8a8a354f456a999b5c2fa3d4f4a68665ee53305bc71a64df6d3eec",
+        "source_scope": "experiment:0118:scope-b",
+        "target_scope": "experiment:0118:scope-c",
+        "source_occurrence": "experiment:0118:occurrence-b",
+        "target_occurrence": "experiment:0118:occurrence-c",
+        "source_certificate_digest": "blake3:096b3810cef1e4a9de88126d180542035632381d45582f7da8daab4c1c8d467f",
+        "result_certificate_digest": "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba",
+        "result_content_digest": "blake3:b5b292778c267c709dbaaad71177978447a5c6684b9a275a3d0c11ad8fb030d1"
+      },
+      "direct": {
+        "map_coordinate": "experiment:0118:map-a-c",
+        "map_digest": "blake3:c22e5e521bfffa1b8540a7ffde1dd14df8edd0c8dddeb70c72dacec3155b727d",
+        "source_scope": "experiment:0118:scope-a",
+        "target_scope": "experiment:0118:scope-c",
+        "source_occurrence": "experiment:0118:occurrence-a",
+        "target_occurrence": "experiment:0118:occurrence-c",
+        "source_certificate_digest": "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0",
+        "result_certificate_digest": "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba",
+        "result_content_digest": "blake3:b5b292778c267c709dbaaad71177978447a5c6684b9a275a3d0c11ad8fb030d1"
+      }
+    },
+    "result": {
+      "local": {
+        "schema": "adva.polynomial-closure-certificate.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "content": {
+          "name": "identity:experiment:0118:scope-a",
+          "class": "identity",
+          "scope": {
+            "coordinate": "experiment:0118:scope-a",
+            "occurrence": "experiment:0118:occurrence-a",
+            "unit": "exact_polynomial_identity"
+          },
+          "unit": "exact_polynomial_identity",
+          "before": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "a"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "y"
+              }
+            }
+          },
+          "after": {
+            "kind": "add",
+            "left": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "a"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "right": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "a"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "y"
+              }
+            }
+          },
+          "normal_form": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "x",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "y",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "witness_graph": [
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:76ec5afad318efd41ef4d336bdc87408397986431630bd7b318896bae549f832",
+            "proof": {
+              "kind": "arithmetic_transition",
+              "actual_boundary": {
+                "terms": []
+              },
+              "declared_boundary": {
+                "terms": []
+              },
+              "before": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "x"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              },
+              "after": {
+                "kind": "add",
+                "left": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "x"
+                  }
+                },
+                "right": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              }
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                },
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:90c2764f5457af481f16bc0777342300bc0f642184a9ca1a9be8fa1b86c6233d",
+            "proof": {
+              "kind": "seal",
+              "body": "blake3:76ec5afad318efd41ef4d336bdc87408397986431630bd7b318896bae549f832"
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                },
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sealed_witness": "blake3:90c2764f5457af481f16bc0777342300bc0f642184a9ca1a9be8fa1b86c6233d"
+      },
+      "stage_one": {
+        "schema": "adva.polynomial-closure-certificate.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "content": {
+          "name": "identity:experiment:0118:scope-b",
+          "class": "identity",
+          "scope": {
+            "coordinate": "experiment:0118:scope-b",
+            "occurrence": "experiment:0118:occurrence-b",
+            "unit": "exact_polynomial_identity"
+          },
+          "unit": "exact_polynomial_identity",
+          "before": {
+            "kind": "add",
+            "left": {
+              "kind": "variable",
+              "name": "z"
+            },
+            "right": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "a"
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "y"
+                }
+              }
+            }
+          },
+          "after": {
+            "kind": "add",
+            "left": {
+              "kind": "variable",
+              "name": "z"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "y"
+                }
+              }
+            }
+          },
+          "normal_form": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "x",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "y",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "z",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "witness_graph": [
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:09885a697446f24dd5047a8ea0676f2d98457db2dec3202b40ddd7d92562dae9",
+            "proof": {
+              "kind": "arithmetic_transition",
+              "actual_boundary": {
+                "terms": []
+              },
+              "declared_boundary": {
+                "terms": []
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "z"
+                },
+                "right": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                }
+              },
+              "after": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "z"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "y"
+                    }
+                  }
+                }
+              }
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:e71eabe18f90ef4fe80625b2e05a02f6f26dbfa89c14dd20ca2f20ec116fa729",
+            "proof": {
+              "kind": "seal",
+              "body": "blake3:09885a697446f24dd5047a8ea0676f2d98457db2dec3202b40ddd7d92562dae9"
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sealed_witness": "blake3:e71eabe18f90ef4fe80625b2e05a02f6f26dbfa89c14dd20ca2f20ec116fa729"
+      },
+      "staged": {
+        "schema": "adva.polynomial-closure-certificate.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "content": {
+          "name": "identity:experiment:0118:scope-c",
+          "class": "identity",
+          "scope": {
+            "coordinate": "experiment:0118:scope-c",
+            "occurrence": "experiment:0118:occurrence-c",
+            "unit": "exact_polynomial_identity"
+          },
+          "unit": "exact_polynomial_identity",
+          "before": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "b"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "z"
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "x"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              }
+            }
+          },
+          "after": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "b"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "z"
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "x"
+                  }
+                },
+                "right": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              }
+            }
+          },
+          "normal_form": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "x",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "y",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "z",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "witness_graph": [
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:2b4edf0bb90a570188bfb623d18951209670d0e8736da5a54b6cf3fcfa210c1d",
+            "proof": {
+              "kind": "arithmetic_transition",
+              "actual_boundary": {
+                "terms": []
+              },
+              "declared_boundary": {
+                "terms": []
+              },
+              "before": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "b"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              },
+              "after": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "b"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "x"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x"
+                        }
+                      },
+                      "right": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:548adf1fbed3977fc39bdcf28036f38d3a9b4ea81ce4c99f8b15c1857e487623",
+            "proof": {
+              "kind": "seal",
+              "body": "blake3:2b4edf0bb90a570188bfb623d18951209670d0e8736da5a54b6cf3fcfa210c1d"
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "x"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x"
+                        }
+                      },
+                      "right": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sealed_witness": "blake3:548adf1fbed3977fc39bdcf28036f38d3a9b4ea81ce4c99f8b15c1857e487623"
+      },
+      "direct": {
+        "schema": "adva.polynomial-closure-certificate.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "content": {
+          "name": "identity:experiment:0118:scope-c",
+          "class": "identity",
+          "scope": {
+            "coordinate": "experiment:0118:scope-c",
+            "occurrence": "experiment:0118:occurrence-c",
+            "unit": "exact_polynomial_identity"
+          },
+          "unit": "exact_polynomial_identity",
+          "before": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "b"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "z"
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "a"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "x"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              }
+            }
+          },
+          "after": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "b"
+            },
+            "right": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "z"
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "x"
+                  }
+                },
+                "right": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "a"
+                  },
+                  "right": {
+                    "kind": "variable",
+                    "name": "y"
+                  }
+                }
+              }
+            }
+          },
+          "normal_form": {
+            "terms": [
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "x",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "a",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "y",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              },
+              {
+                "coefficient": [
+                  1,
+                  [
+                    1
+                  ]
+                ],
+                "monomial": {
+                  "powers": [
+                    {
+                      "variable": "b",
+                      "exponent": 1
+                    },
+                    {
+                      "variable": "z",
+                      "exponent": 1
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        },
+        "witness_graph": [
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:2b4edf0bb90a570188bfb623d18951209670d0e8736da5a54b6cf3fcfa210c1d",
+            "proof": {
+              "kind": "arithmetic_transition",
+              "actual_boundary": {
+                "terms": []
+              },
+              "declared_boundary": {
+                "terms": []
+              },
+              "before": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "b"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "variable",
+                      "name": "a"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              },
+              "after": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "variable",
+                  "name": "b"
+                },
+                "right": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "variable",
+                    "name": "z"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "y"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "x"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x"
+                        }
+                      },
+                      "right": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          },
+          {
+            "schema": "adva.witness.research",
+            "version": 0,
+            "key": "blake3:548adf1fbed3977fc39bdcf28036f38d3a9b4ea81ce4c99f8b15c1857e487623",
+            "proof": {
+              "kind": "seal",
+              "body": "blake3:2b4edf0bb90a570188bfb623d18951209670d0e8736da5a54b6cf3fcfa210c1d"
+            },
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "x",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "a",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "y",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    },
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          1
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": [
+                          {
+                            "variable": "b",
+                            "exponent": 1
+                          },
+                          {
+                            "variable": "z",
+                            "exponent": 1
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "variable",
+                        "name": "a"
+                      },
+                      "right": {
+                        "kind": "add",
+                        "left": {
+                          "kind": "variable",
+                          "name": "x"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                },
+                {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "variable",
+                    "name": "b"
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "z"
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "x"
+                        }
+                      },
+                      "right": {
+                        "kind": "multiply",
+                        "left": {
+                          "kind": "variable",
+                          "name": "a"
+                        },
+                        "right": {
+                          "kind": "variable",
+                          "name": "y"
+                        }
+                      }
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "sealed_witness": "blake3:548adf1fbed3977fc39bdcf28036f38d3a9b4ea81ce4c99f8b15c1857e487623"
+      },
+      "coherence": {
+        "local_closure": "checked",
+        "composed_scope_map": "checked",
+        "direct_equals_staged": "checked",
+        "distinct_histories_retained": "checked",
+        "common_result_content_digest": "blake3:b5b292778c267c709dbaaad71177978447a5c6684b9a275a3d0c11ad8fb030d1"
+      },
+      "adversarial_separation": {
+        "schema": "adva.polynomial-separation-certificate.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "name": "separation:omitted-y-factor",
+        "class": "separation",
+        "unit": "exact_polynomial_identity",
+        "before": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "a"
+          },
+          "right": {
+            "kind": "add",
+            "left": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "right": {
+              "kind": "variable",
+              "name": "y"
+            }
+          }
+        },
+        "after": {
+          "kind": "add",
+          "left": {
+            "kind": "multiply",
+            "left": {
+              "kind": "variable",
+              "name": "a"
+            },
+            "right": {
+              "kind": "variable",
+              "name": "x"
+            }
+          },
+          "right": {
+            "kind": "variable",
+            "name": "y"
+          }
+        },
+        "before_normal_form": {
+          "terms": [
+            {
+              "coefficient": [
+                1,
+                [
+                  1
+                ]
+              ],
+              "monomial": {
+                "powers": [
+                  {
+                    "variable": "a",
+                    "exponent": 1
+                  },
+                  {
+                    "variable": "x",
+                    "exponent": 1
+                  }
+                ]
+              }
+            },
+            {
+              "coefficient": [
+                1,
+                [
+                  1
+                ]
+              ],
+              "monomial": {
+                "powers": [
+                  {
+                    "variable": "a",
+                    "exponent": 1
+                  },
+                  {
+                    "variable": "y",
+                    "exponent": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "after_normal_form": {
+          "terms": [
+            {
+              "coefficient": [
+                1,
+                [
+                  1
+                ]
+              ],
+              "monomial": {
+                "powers": [
+                  {
+                    "variable": "a",
+                    "exponent": 1
+                  },
+                  {
+                    "variable": "x",
+                    "exponent": 1
+                  }
+                ]
+              }
+            },
+            {
+              "coefficient": [
+                1,
+                [
+                  1
+                ]
+              ],
+              "monomial": {
+                "powers": [
+                  {
+                    "variable": "y",
+                    "exponent": 1
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "counterexample": [
+          {
+            "variable": "a",
+            "value": [
+              1,
+              [
+                2
+              ]
+            ]
+          },
+          {
+            "variable": "x",
+            "value": [
+              1,
+              [
+                3
+              ]
+            ]
+          },
+          {
+            "variable": "y",
+            "value": [
+              1,
+              [
+                5
+              ]
+            ]
+          }
+        ],
+        "before_value": [
+          1,
+          [
+            16
+          ]
+        ],
+        "after_value": [
+          1,
+          [
+            11
+          ]
+        ]
+      },
+      "negative_controls": [
+        {
+          "class": "incommensurate",
+          "target": {
+            "coordinate": "experiment:0118:negative:m6-ordered-holonomy",
+            "target_digest": "blake3:bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91",
+            "required_unit": "ordered_holonomy_replay"
+          },
+          "supplied_unit": "exact_polynomial_identity",
+          "accepted": false,
+          "residual": "target_hole_preserved",
+          "reason": "typed import requires OrderedHolonomyReplay; certificate supplies ExactPolynomialIdentity"
+        },
+        {
+          "class": "incommensurate",
+          "target": {
+            "coordinate": "experiment:0118:negative:shared-truth-coordinate",
+            "target_digest": "blake3:bf0bfc721c7beea6e20d240846f390404ca9b4dc26158027cd95aa9d3484db91",
+            "required_unit": "shared_truth_coordinate"
+          },
+          "supplied_unit": "exact_polynomial_identity",
+          "accepted": false,
+          "residual": "target_hole_preserved",
+          "reason": "typed import requires SharedTruthCoordinate; certificate supplies ExactPolynomialIdentity"
+        }
+      ]
+    },
+    "evidence": {
+      "residual_frontier": {
+        "schema": "adva.closure-transport-frontier.research",
+        "version": 0,
+        "interface": {
+          "schema": "adva.inquiry-interface.research",
+          "version": 0,
+          "inputs": [
+            "subject",
+            "method",
+            "object"
+          ],
+          "outputs": [
+            "history",
+            "result",
+            "evidence"
+          ]
+        },
+        "state": "reopened",
+        "challenge": {
+          "coordinate": "experiment:0118:counterevidence-notice-1",
+          "challenged_scope": "experiment:0118:scope-a",
+          "detail": "admit a challenge without treating it as proof of falsity"
+        },
+        "challenge_digest": "blake3:2da40775816aa2062dfca5df6451bdb989d8be77ca3dfa246ba303f991d6d3e2",
+        "closed_before_challenge": [
+          "experiment:0118:scope-a",
+          "experiment:0118:scope-b",
+          "experiment:0118:scope-c"
+        ],
+        "reopened_after_challenge": [
+          "experiment:0118:scope-a",
+          "experiment:0118:scope-b",
+          "experiment:0118:scope-c"
+        ],
+        "dependency_edges": [
+          {
+            "source": "experiment:0118:scope-a",
+            "target": "experiment:0118:scope-b",
+            "receipt_digest": "blake3:c48f3d293395334cecc87827d03df5f94ddecff064384535e4474352cbf8c842"
+          },
+          {
+            "source": "experiment:0118:scope-b",
+            "target": "experiment:0118:scope-c",
+            "receipt_digest": "blake3:2de07b22c651297a98bcfa2f60a65927dd6c55b8a7085e554413d0cbe3edda92"
+          },
+          {
+            "source": "experiment:0118:scope-a",
+            "target": "experiment:0118:scope-c",
+            "receipt_digest": "blake3:24c6d502b913086f12e799614377b1ec9fc6b3564e57de885bc785ed2c5d36ef"
+          }
+        ],
+        "retained_certificate_digests": [
+          "blake3:bd79a1c2052b8e50c0bfd02820f5ade0031f13d69cdc2ad555bfc593f86d77b0",
+          "blake3:096b3810cef1e4a9de88126d180542035632381d45582f7da8daab4c1c8d467f",
+          "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba",
+          "blake3:aede178dae5ea22234910192fb1ea23bce4839c59904bfc98ada1ff17aab44ba"
+        ]
+      },
+      "counterevidence_admitted": "checked",
+      "counterevidence_class": "challenge",
+      "counterevidence_proves_falsity": "unchecked",
+      "certificates_remain_append_only": "checked"
+    }
+  }
+}

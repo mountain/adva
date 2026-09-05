@@ -1,0 +1,279 @@
+{
+  "schema": "adva.m6-reveal-witness.research",
+  "version": 0,
+  "source_document_digest": "blake3:ac29810342f62beae0ff84da6c3a7a431bd65807d0a13b4e5b35da4027bcb227",
+  "fuel_requested": 6,
+  "fuel_used": 6,
+  "state": "completed",
+  "forward": [
+    {
+      "name": "run",
+      "frame": 0,
+      "from": "construction",
+      "to": "time"
+    },
+    {
+      "name": "reveal",
+      "frame": 1,
+      "from": "time",
+      "to": "space"
+    },
+    {
+      "name": "name",
+      "frame": 2,
+      "from": "space",
+      "to": "construction"
+    }
+  ],
+  "conjugate": [
+    {
+      "name": "instantiate",
+      "frame": 3,
+      "from": "construction",
+      "to": "space"
+    },
+    {
+      "name": "resume",
+      "frame": 4,
+      "from": "space",
+      "to": "time"
+    },
+    {
+      "name": "compile",
+      "frame": 5,
+      "from": "time",
+      "to": "construction"
+    }
+  ],
+  "observed": [
+    "run",
+    "reveal",
+    "name",
+    "instantiate",
+    "resume",
+    "compile"
+  ],
+  "remaining": [],
+  "questions": [
+    {
+      "kind": "relation_filler",
+      "detail": "the M6 boundary is formed, but its semantic filler has not been established",
+      "residual": "experiment:first:m6-semantic-filler-required"
+    }
+  ],
+  "relation": {
+    "document_digest": "blake3:ac29810342f62beae0ff84da6c3a7a431bd65807d0a13b4e5b35da4027bcb227",
+    "left": {
+      "steps": [
+        {
+          "frame": 0,
+          "mechanism": "compute",
+          "input": {
+            "subject": 0,
+            "method": 1,
+            "object": 2
+          },
+          "output": {
+            "history": 3,
+            "result": 4,
+            "evidence": 5
+          }
+        },
+        {
+          "frame": 1,
+          "mechanism": "verify",
+          "input": {
+            "subject": 3,
+            "method": 4,
+            "object": 5
+          },
+          "output": {
+            "history": 6,
+            "result": 7,
+            "evidence": 8
+          }
+        },
+        {
+          "frame": 2,
+          "mechanism": "compute",
+          "input": {
+            "subject": 6,
+            "method": 7,
+            "object": 8
+          },
+          "output": {
+            "history": 15,
+            "result": 16,
+            "evidence": 17
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "from": 0,
+          "to": 1,
+          "route": {
+            "history_to": "subject",
+            "result_to": "method",
+            "evidence_to": "object"
+          }
+        },
+        {
+          "from": 1,
+          "to": 2,
+          "route": {
+            "history_to": "subject",
+            "result_to": "method",
+            "evidence_to": "object"
+          }
+        }
+      ],
+      "start": {
+        "subject": 0,
+        "method": 1,
+        "object": 2
+      },
+      "end": {
+        "history": 15,
+        "result": 16,
+        "evidence": 17
+      },
+      "mechanism_path": {
+        "steps": [
+          "compute",
+          "verify",
+          "compute"
+        ]
+      }
+    },
+    "right": {
+      "steps": [
+        {
+          "frame": 3,
+          "mechanism": "verify",
+          "input": {
+            "subject": 0,
+            "method": 1,
+            "object": 2
+          },
+          "output": {
+            "history": 9,
+            "result": 10,
+            "evidence": 11
+          }
+        },
+        {
+          "frame": 4,
+          "mechanism": "compute",
+          "input": {
+            "subject": 9,
+            "method": 10,
+            "object": 11
+          },
+          "output": {
+            "history": 12,
+            "result": 13,
+            "evidence": 14
+          }
+        },
+        {
+          "frame": 5,
+          "mechanism": "verify",
+          "input": {
+            "subject": 12,
+            "method": 13,
+            "object": 14
+          },
+          "output": {
+            "history": 15,
+            "result": 16,
+            "evidence": 17
+          }
+        }
+      ],
+      "handoffs": [
+        {
+          "from": 3,
+          "to": 4,
+          "route": {
+            "history_to": "subject",
+            "result_to": "method",
+            "evidence_to": "object"
+          }
+        },
+        {
+          "from": 4,
+          "to": 5,
+          "route": {
+            "history_to": "subject",
+            "result_to": "method",
+            "evidence_to": "object"
+          }
+        }
+      ],
+      "start": {
+        "subject": 0,
+        "method": 1,
+        "object": 2
+      },
+      "end": {
+        "history": 15,
+        "result": 16,
+        "evidence": 17
+      },
+      "mechanism_path": {
+        "steps": [
+          "verify",
+          "compute",
+          "verify"
+        ]
+      }
+    },
+    "relation": {
+      "profile": {
+        "kind": "braid",
+        "boundary": "m6",
+        "process_lift": "positive_braid_monoid",
+        "coxeter_shadow": "symmetric_three"
+      },
+      "left": {
+        "steps": [
+          "compute",
+          "verify",
+          "compute"
+        ]
+      },
+      "right": {
+        "steps": [
+          "verify",
+          "compute",
+          "verify"
+        ]
+      },
+      "filling": {
+        "state": "open",
+        "residual": "experiment:first:m6-semantic-filler-required"
+      }
+    },
+    "certificate": {
+      "document_digest": "blake3:ac29810342f62beae0ff84da6c3a7a431bd65807d0a13b4e5b35da4027bcb227",
+      "document_graph": "checked",
+      "frame_occurrences": "checked",
+      "complete_handoffs": "checked",
+      "common_endpoints": "checked",
+      "relation_formation": {
+        "profile": {
+          "kind": "braid",
+          "boundary": "m6",
+          "process_lift": "positive_braid_monoid",
+          "coxeter_shadow": "symmetric_three"
+        },
+        "boundary_occurrences": 6,
+        "coherent_profile": "checked",
+        "canonical_relation_word": "checked",
+        "distinct_raw_paths": "checked",
+        "explicit_filling_state": "checked"
+      }
+    }
+  }
+}
