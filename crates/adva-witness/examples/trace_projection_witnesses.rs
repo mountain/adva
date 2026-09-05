@@ -5,7 +5,9 @@ use std::time::Instant;
 
 fn main() -> Result<(), Box<dyn Error>> {
     let mut args = std::env::args_os().skip(1);
-    let path = args.next().ok_or("expected a trace-arithmetic .adva path")?;
+    let path = args
+        .next()
+        .ok_or("expected a trace-arithmetic .adva path")?;
     if args.next().is_some() {
         return Err("expected exactly one trace-arithmetic .adva path".into());
     }
