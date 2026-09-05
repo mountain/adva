@@ -128,7 +128,32 @@ forged counts, forged negative evidence, changed method/source coordinates,
 and checked JSON round-tripping. CI generates the actual pair and retains it
 for exact replay alongside the existing unchanged calibration.
 
-## 7. Remaining obligations
+## 7. First recorded execution
+
+The first successful Rust execution is retained in
+[CI run 33946738577](https://github.com/mountain/adva/actions/runs/33946738577)
+at source commit `31d64a5107fb1d88ea2a299e6feb67ca15d2cbb4`. Its seven new
+integration tests passed in 0.02 seconds. The actual emitted bytes are saved
+as [the paired witness](../../programs/bootstrap-0/trace-projection-witness-pair.adva).
+The retrieved bytes were checked against the SHA-256 printed by that runner:
+
+```text
+bytes: 17261
+SHA-256: ea3299e47ed9af47d6a85f2f339e07dcee5790da36cbcb39af192a854072da07
+source BLAKE3: 09be4633b0cbef2e9d8a29f2e6b7b2ea1a1bf7e3f715655d411b42f18af3d407
+```
+
+That single debug-build sample reported 689 microseconds for loading/checking,
+854 for derivation/checking, and 1456 for rechecking/encoding, totaling 2999
+microseconds. These are observed pipeline timings with the exclusions listed
+above, not an amortized speedup or a performance guarantee. No search was
+needed, and peak memory was not measured.
+
+CI regenerates the witness and requires byte equality with this retained file.
+The source calibration, all five open questions, and the frozen verification
+method retain their previous contents.
+
+## 8. Remaining obligations
 
 The frozen inquiry roots remain Open and the verification method remains
 refinement-only. The positive count result is deliberately narrower than the
