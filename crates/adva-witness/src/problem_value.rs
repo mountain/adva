@@ -10,16 +10,17 @@ use std::path::{Path, PathBuf};
 use thiserror::Error;
 
 pub const PROBLEM_AWARENESS_SCHEMA_V0: &str = "adva.problem-awareness.research";
-pub const PROBLEM_FORMATION_CONTRACT_SCHEMA_V0: &str =
-    "adva.problem-formation-contract.research";
+pub const PROBLEM_FORMATION_CONTRACT_SCHEMA_V0: &str = "adva.problem-formation-contract.research";
 pub const IMAGINATION_RESOURCE_SCHEMA_V0: &str = "adva.imagination-resource.research";
 pub const PROBLEM_FORMATION_TRANSITION_SCHEMA_V0: &str =
     "adva.problem-formation-transition.research";
+pub const FORMED_PROBLEM_SCHEMA_V0: &str = "adva.formed-problem.research";
 pub const PROBLEM_VALUE_FRONTIER_SCHEMA_V0: &str = "adva.problem-value-frontier.research";
 pub const VALUE_SEEKING_CONTRACT_SCHEMA_V0: &str = "adva.value-seeking-contract.research";
 pub const VALUE_SEEKING_RESOURCE_SCHEMA_V0: &str = "adva.value-seeking-resource.research";
-pub const VALUE_SEEKING_TRANSITION_SCHEMA_V0: &str =
-    "adva.value-seeking-transition.research";
+pub const TRUST_CONTINUATION_WITNESS_SCHEMA_V0: &str =
+    "adva.trust-continuation-witness.research";
+pub const VALUE_SEEKING_TRANSITION_SCHEMA_V0: &str = "adva.value-seeking-transition.research";
 pub const PROBLEM_VALUE_VERSION_V0: u32 = 0;
 
 const DOMAIN_COUNT: u8 = 5;
@@ -389,7 +390,7 @@ impl FormedProblemV0 {
         check_header(
             &self.schema,
             self.version,
-            PROBLEM_VALUE_FRONTIER_SCHEMA_V0,
+            FORMED_PROBLEM_SCHEMA_V0,
             &self.interface,
         )?;
         if self.occurrence.as_str().is_empty()
@@ -495,9 +496,12 @@ impl ProblemValueFrontierV0 {
             &self.interface,
         )?;
         self.problem.check()?;
-        if self.source_problem_digest != self.problem.digest()? || self.candidate_cursor > CANDIDATE_COUNT
+        if self.source_problem_digest != self.problem.digest()?
+            || self.candidate_cursor > CANDIDATE_COUNT
         {
-            return Err(invalid("the value frontier lost its source problem or cursor"));
+            return Err(invalid(
+                "the value frontier lost its source problem or cursor",
+            ));
         }
         match self.state {
             ProblemValueFrontierStateV0::Open => {
@@ -666,12 +670,9 @@ pub fn run_problem_formation_v0(
 fn derive_problem_output(
     input: &ProblemFormationInputV0,
 ) -> Result<ProblemFormationOutputV0, ProblemValueErrorV0> {
-    let (counterexample, examined) = first_quorum_counterexample(
-        DOMAIN_COUNT,
-        CURRENT_THRESHOLD,
-        FAULT_BUDGET,
-    )
-    .ok_or_else(|| invalid("the declared awareness gap has no exact counterexample"))?;
+    let (counterexample, examined) =
+        first_quorum_counterexample(DOMAIN_COUNT, CURRENT_THRESHOLD, FAULT_BUDGET)
+            .ok_or_else(|| invalid("the declared awareness gap has no exact counterexample"))?;
     counterexample.check_against(&input.subject)?;
 
     let awareness_digest = input.subject.digest()?;
@@ -681,7 +682,7 @@ fn derive_problem_output(
     retained_vocabulary.extend(input.object.vocabulary.clone());
     retained_vocabulary.extend(["problem-formation".to_owned(), "problem".to_owned()]);
     let problem = FormedProblemV0 {
-        schema: PROBLEM_VALUE_FRONTIER_SCHEMA_V0.to_owned(),
+        schema: FORMED_PROBLEM_SCHEMA_V0.to_owned(),
         version: PROBLEM_VALUE_VERSION_V0,
         interface: InquiryInterfaceV0::canonical(),
         occurrence: key("experiment:0122:problem:honest-quorum-continuation")?,
@@ -849,7 +850,9 @@ impl ValueSeekingResourceV0 {
             || self.threshold_approval_cost != 1
             || self.feature_cost != 1
         {
-            return Err(invalid("the value-seeking resource is outside its finite boundary"));
+            return Err(invalid(
+                "the value-seeking resource is outside its finite boundary",
+            ));
         }
         Ok(())
     }
@@ -888,6 +891,8 @@ pub struct ValueAssignmentV0 {
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct TrustContinuationWitnessV0 {
+    pub schema: String,
+    pub version: u32,
     pub occurrence: ArtifactKeyV0,
     pub problem_digest: String,
     pub contract_digest: String,
@@ -917,12 +922,18 @@ impl TrustContinuationWitnessV0 {
         contract: &ValueSeekingContractV0,
         resource: &ValueSeekingResourceV0,
     ) -> Result<(), ProblemValueErrorV0> {
+        if self.schema != TRUST_CONTINUATION_WITNESS_SCHEMA_V0
+            || self.version != PROBLEM_VALUE_VERSION_V0
+        {
+            return Err(invalid("the retained value witness header drifted"));
+        }
         let candidate = candidate_from_ordinal(&frontier.problem, self.candidate_ordinal)?;
         let admission = admit_candidate(&frontier.problem, &candidate, resource);
         if !admission.admitted {
             return Err(invalid("the retained value witness is not admissible"));
         }
-        let expected = witness_from_admission(frontier, contract, resource, &candidate, &admission)?;
+        let expected =
+            witness_from_admission(frontier, contract, resource, &candidate, &admission)?;
         if self != &expected {
             return Err(invalid("the retained value witness does not replay"));
         }
@@ -1190,7 +1201,10 @@ fn derive_value_output(
             rejected_by_reserve,
             rejected_by_budget,
         },
-        result: ValueSeekingResultV0 { state, witness: found },
+        result: ValueSeekingResultV0 {
+            state,
+            witness: found,
+        },
         evidence: ValueSeekingEvidenceV0 {
             finite_candidate_enumeration: CheckStatus::Checked,
             one_fault_availability: checked,
@@ -1213,8 +1227,8 @@ fn candidate_from_ordinal(
         return Err(invalid("value candidate ordinal exceeds the frozen space"));
     }
     let masks = 1_u64 << FEATURE_COUNT;
-    let threshold_index = usize::try_from(ordinal / masks)
-        .map_err(|_| invalid("threshold index overflow"))?;
+    let threshold_index =
+        usize::try_from(ordinal / masks).map_err(|_| invalid("threshold index overflow"))?;
     let mask = ordinal % masks;
     let threshold = *problem
         .candidate_thresholds
@@ -1249,9 +1263,7 @@ fn admit_candidate(
         .collect::<BTreeSet<_>>();
     let reserve = candidate.features.iter().copied().find(|feature| {
         !matched_resources.contains(feature)
-            && problem
-                .protected_invariants
-                .contains(&feature.supports())
+            && problem.protected_invariants.contains(&feature.supports())
     });
     let total_cost = candidate
         .threshold
@@ -1299,6 +1311,8 @@ fn witness_from_admission(
     let mut retained_vocabulary = frontier.problem.retained_vocabulary.clone();
     retained_vocabulary.extend(["value-seeking".to_owned(), "value".to_owned()]);
     Ok(TrustContinuationWitnessV0 {
+        schema: TRUST_CONTINUATION_WITNESS_SCHEMA_V0.to_owned(),
+        version: PROBLEM_VALUE_VERSION_V0,
         occurrence: key("experiment:0122:value:trust-continuation")?,
         problem_digest: frontier.problem.digest()?,
         contract_digest: contract.digest()?,
@@ -1361,14 +1375,7 @@ fn first_typed_matching(
 
     let mut used = BTreeSet::new();
     let mut assignments = Vec::new();
-    extend(
-        features,
-        obligations,
-        0,
-        &mut used,
-        &mut assignments,
-    )
-    .then_some(assignments)
+    extend(features, obligations, 0, &mut used, &mut assignments).then_some(assignments)
 }
 
 fn first_quorum_counterexample(
@@ -1470,8 +1477,7 @@ fn difference(left: &[u8], right: &[u8]) -> Vec<u8> {
 }
 
 fn ordered_unique_within(values: &[u8], upper: u8) -> bool {
-    values.iter().all(|value| *value < upper)
-        && values.windows(2).all(|pair| pair[0] < pair[1])
+    values.iter().all(|value| *value < upper) && values.windows(2).all(|pair| pair[0] < pair[1])
 }
 
 pub fn load_problem_awareness_v0(
