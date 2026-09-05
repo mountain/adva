@@ -461,6 +461,17 @@ event. See
 and
 [`docs/philosophy/0005-second-absurdity-witness.md`](docs/philosophy/0005-second-absurdity-witness.md).
 
+The third documentary witness appends the correction `i -> e` for the intended
+English Eve association rather than rewriting its predecessor. The resulting
+cut unfolds temporally as an ordered before/correction/after trace and spatially
+through only the affected dependency cone. The corrected `e` and preserved
+arithmetic `i` then meet in Euler's formula, opening a grounded inquiry into
+imagination, mathematical necessity, historical contingency, and the
+experience of exploration. See
+[`programs/bootstrap-0/third-absurdity-euler-cut-witness.adva`](programs/bootstrap-0/third-absurdity-euler-cut-witness.adva)
+and
+[`docs/philosophy/0006-euler-cut-imagination-necessity-experience.md`](docs/philosophy/0006-euler-cut-imagination-necessity-experience.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
