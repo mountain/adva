@@ -20,6 +20,155 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
+      - name: Run first bounded M6 reveal
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            reveal programs/bootstrap-0/reveal.adva \
+            --fuel 6 \
+            --output target/first-reveal-witness.adva \
+            --print
+          cmp \
+            target/first-reveal-witness.adva \
+            programs/bootstrap-0/first-reveal-witness.adva
+      - name: Run first three-sided trace arithmetic calibration
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            trace-arithmetic programs/bootstrap-0/first-reveal-witness.adva \
+            --output target/first-trace-arithmetic.adva \
+            --print
+          cmp \
+            target/first-trace-arithmetic.adva \
+            programs/bootstrap-0/first-trace-arithmetic.adva
+      - name: Run scoped trace projection witnesses
+        run: |
+          cargo run -p adva-witness --example trace_projection_witnesses -- \
+            programs/bootstrap-0/first-trace-arithmetic.adva \
+            > target/trace-projection-witness-pair.adva
+          sha256sum target/trace-projection-witness-pair.adva
+          cmp \
+            target/trace-projection-witness-pair.adva \
+            programs/bootstrap-0/trace-projection-witness-pair.adva
+      - name: Run first persistent inquiry interface experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            frontier programs/bootstrap-0/first-trace-arithmetic.adva \
+            --output target/frontier.adva \
+            --print
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            target/frontier.adva \
+            programs/bootstrap-0/exploration.adva \
+            programs/bootstrap-0/resource.adva \
+            --output target/hypothesis.adva \
+            --frontier-output target/frontier-1.adva \
+            --print
+          cmp target/frontier.adva programs/bootstrap-0/frontier.adva
+          cmp target/hypothesis.adva programs/bootstrap-0/hypothesis.adva
+          cmp target/frontier-1.adva programs/bootstrap-0/frontier-1.adva
+      - name: Run second reality-custody inquiry experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            programs/bootstrap-0/frontier-1.adva \
+            programs/bootstrap-0/exploration.adva \
+            programs/bootstrap-0/resource-2.adva \
+            --output target/hypothesis-2.adva \
+            --frontier-output target/frontier-2.adva \
+            --print
+          cmp target/hypothesis-2.adva programs/bootstrap-0/hypothesis-2.adva
+          cmp target/frontier-2.adva programs/bootstrap-0/frontier-2.adva
+      - name: Run first obligation-refinement verification experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            verify \
+            programs/bootstrap-0/frontier-2.adva \
+            programs/bootstrap-0/verification.adva \
+            programs/bootstrap-0/refinement-1.adva \
+            --output target/verification-1.adva \
+            --frontier-output target/verification-frontier-1.adva
+          cmp target/verification-1.adva programs/bootstrap-0/verification-1.adva
+          cmp \
+            target/verification-frontier-1.adva \
+            programs/bootstrap-0/verification-frontier-1.adva
+      - name: Run first local closure transport experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            verify \
+            programs/bootstrap-0/local-closure.adva \
+            programs/bootstrap-0/closure-verifier.adva \
+            programs/bootstrap-0/closure-transport-plan.adva \
+            --output target/closure-transport-1.adva \
+            --frontier-output target/closure-transport-frontier-1.adva \
+            --print
+          cmp \
+            target/closure-transport-1.adva \
+            programs/bootstrap-0/closure-transport-1.adva
+          cmp \
+            target/closure-transport-frontier-1.adva \
+            programs/bootstrap-0/closure-transport-frontier-1.adva
+      - name: Run first characteristic magic-square closure-family experiment
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            programs/bootstrap-0/magic-square-frontier.adva \
+            programs/bootstrap-0/magic-square-search.adva \
+            programs/bootstrap-0/magic-square-resource.adva \
+            --output target/magic-square-1.adva \
+            --frontier-output target/magic-square-frontier-1.adva
+          cmp target/magic-square-1.adva programs/bootstrap-0/magic-square-1.adva
+          cmp \
+            target/magic-square-frontier-1.adva \
+            programs/bootstrap-0/magic-square-frontier-1.adva
+      - name: Run six hypothesis-formation crossings
+        run: |
+          current=programs/bootstrap-0/hypothesis-formation-frontier.adva
+          for round in 1 2 3 4 5 6; do
+            next=target/hypothesis-formation-frontier-${round}.adva
+            cargo run -p adva-witness --bin adva -- \
+              learn \
+              "$current" \
+              programs/bootstrap-0/hypothesis-formation.adva \
+              programs/bootstrap-0/hypothesis-formation-resource.adva \
+              --output target/hypothesis-formation-${round}.adva \
+              --frontier-output "$next"
+            cmp \
+              target/hypothesis-formation-${round}.adva \
+              programs/bootstrap-0/hypothesis-formation-${round}.adva
+            cmp \
+              "$next" \
+              programs/bootstrap-0/hypothesis-formation-frontier-${round}.adva
+            current=$next
+          done
+      - name: Run problem formation and value seeking
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            programs/bootstrap-0/problem-awareness.adva \
+            programs/bootstrap-0/problem-formation.adva \
+            programs/bootstrap-0/imagination-resource.adva \
+            --output target/problem-formation-1.adva \
+            --frontier-output target/problem-value-frontier-1.adva \
+            --print
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            target/problem-value-frontier-1.adva \
+            programs/bootstrap-0/value-seeking.adva \
+            programs/bootstrap-0/value-seeking-resource.adva \
+            --output target/value-seeking-1.adva \
+            --frontier-output target/value-seeking-frontier-1.adva \
+            --print
+          cmp \
+            target/problem-formation-1.adva \
+            programs/bootstrap-0/problem-formation-1.adva
+          cmp \
+            target/problem-value-frontier-1.adva \
+            programs/bootstrap-0/problem-value-frontier-1.adva
+          cmp \
+            target/value-seeking-1.adva \
+            programs/bootstrap-0/value-seeking-1.adva
+          cmp \
+            target/value-seeking-frontier-1.adva \
+            programs/bootstrap-0/value-seeking-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
@@ -38,4 +187,3 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install '.[test]'
       - run: pytest
-

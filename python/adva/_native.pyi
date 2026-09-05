@@ -1,5 +1,4 @@
 from collections.abc import Mapping
-from typing import Any
 
 class Program:
     @property
@@ -24,6 +23,19 @@ class Program:
         middle_completed: list[int],
         upper_completed: list[int],
     ) -> tuple[str, str]: ...
+    def triadic_observer_transition_v0(
+        self,
+        input_domains: list[str],
+        lower_completed: list[int],
+        upper_completed: list[int],
+    ) -> tuple[str, str]: ...
+    def compose_triadic_observer_transitions_v0(
+        self,
+        input_domains: list[str],
+        lower_completed: list[int],
+        middle_completed: list[int],
+        upper_completed: list[int],
+    ) -> tuple[str, str]: ...
     def evaluate(self, inputs: Mapping[str, float]) -> tuple[list[float], str]: ...
     def value_and_gradient(
         self, inputs: Mapping[str, float]
@@ -36,3 +48,5 @@ class Workspace:
 def compile_module(source: str) -> Workspace: ...
 def link_modules(sources: list[str]) -> Workspace: ...
 def load_program_json(source: str) -> Program: ...
+def save_adva_document_json(path: str, document_json: str) -> tuple[str, int]: ...
+def load_adva_document_json(path: str, entrypoint: str) -> tuple[str, str]: ...

@@ -6,7 +6,9 @@
 adva-ir  <-  adva-lisp  <-  adva-python  <-  Python adapters
    ^              ^
    |              |
-schema       semantic kernel
+   |         semantic kernel
+   |
+adva-witness (research V0)
 ```
 
 `adva-ir` contains immutable, serializable ontology. `adva-lisp` owns parsing,
@@ -28,6 +30,7 @@ judgments.
 - `SharedProgramDiagram`;
 - compiler-emitted nested graft-trace companion types;
 - causal-cut, single-event, and exact program-slice result types;
+- bounded triadic cut-observation and observer-transition companion types;
 - explicit source, occurrence, path, and history data;
 - distinct directed rewrite, equation, and coherence types;
 - versioned JSON envelopes and certificate types.
@@ -44,8 +47,35 @@ judgments.
 - certified causal-cut and enabled-event analysis over checked diagrams;
 - exact same-diagram program-slice analysis between nested causal pasts;
 - certificate-bearing exact composition of adjacent program-slice views;
+- certificate-bearing three-domain opposite-pair readings and exact adjacent
+  observer-transition composition;
 - builtin operation registry shared by evaluation and differentiation;
 - deterministic source and occurrence allocation.
+
+### `adva-witness`
+
+- a Rust-owned research V0 registry for the corrected six initial words;
+- exact signed formation ledgers and arbitrary-precision integer-polynomial
+  normalization for bounded add/multiply witnesses;
+- a triadic adapter from one certified `CompilationArtifact` graft frame to
+  three derived source/occurrence/path bindings, with retained certificate and
+  frame-path provenance;
+- finite acyclic proof artifacts with content-addressed cache keys;
+- linear three-hole templates whose instances bind existing `SourceId` and
+  `OccurrenceId` values without allocating or identifying them;
+- explicit formed and executed type states, with non-unit transport and every
+  concrete intermediate zero rejected;
+- a bounded neutral-carrier mechanism grammar whose input, process, and output
+  labels remain distinct, with separate open-frontier rules for computation,
+  verification, and learning proposals;
+- a research-only neutral `.adva` document graph and filesystem boundary with
+  canonical carrier, transition-frame, and entry-point tables; mechanisms
+  label frames rather than carriers, while shared carrier references express
+  explicit output-to-input reuse across frames.
+
+This crate depends only on `adva-ir` among Adva crates. Its schema is
+`adva.witness.research` version zero, not an extension of `adva.ir` version 1.
+Artifact hashes are cache coordinates and never semantic identities.
 
 ### `adva-python`
 
@@ -53,12 +83,28 @@ judgments.
 - JSON and certificate access;
 - read-only Rust-derived graft-trace, program-slice, and exact-composite
   snapshots;
+- read-only derivation and exact composition of Rust-owned version-zero
+  triadic observer transitions;
 - typed scalar evaluation and gradients.
 
 ### `python/adva`
 
 - ergonomic typed facade;
 - frozen inspection views over Rust-owned graft and slice artifacts;
+- a strict, bounded research runner that packages exact triadic interfaces,
+  complete slices, and chosen checked schedules without semantic allocation;
+- a layered multi-hole through adapter that proposes finite fibre-product
+  relations from exact call-frame holes and same-diagram ancestry while
+  retaining the complete `ProgramSlice` residual;
+- single-diagram triangular and typed-connector calibrations that compare
+  finite relations over unchanged Rust incidence coordinates while refusing
+  semantic closure, sibling identification, and forgetting authority;
+- a bounded distributivity characteristic atlas that reads one Rust core as a
+  triadic boundary, three opposite-pair relations, one grafted multi-hole
+  carrier, one exact rational polynomial feature, and one retained residual;
+- a typed-aperture research companion that reads existing finite through
+  relations as filling fibres, selects close witnesses without erasing
+  alternatives, and reopens the same presentation with trace retained;
 - SymPy conversion;
 - NumPy ufunc-style callables;
 - SciPy objective/Jacobian adapters.
@@ -116,11 +162,35 @@ These analyses preserve source and occurrence lineage without evaluation.
 They do not assert a topology object, an observer pullback, equality of
 alternative schedules, or a coherence cell.
 
+The first bounded observer companion is
+`TriadicObserverTransitionV0`. An explicit policy assigns exactly three input
+positions to construction, space, and time; Rust derives the corresponding
+source map from the checked initial cut. Each endpoint cut is expanded into
+occurrence-level incidences. The view for one role exposes the other two source
+fibres, while own-role incidences and source-free wires remain explicit. Lower
+and upper incidences are related by unchanged source identity and checked
+occurrence-path ancestry. Adjacent views compose only after both embedded
+`ProgramSlice` values and the finite ancestry relation compose exactly.
+
+This companion does not type internal wires as construction, space, or time.
+It is an observer projection of one exact process interval, not an active
+program rewrite, reversible transport, specialization result, or proof.
+
 The Python boundary exposes these artifacts only by invoking Rust and decoding
 the returned result/certificate JSON. Adjacent composition accepts three pasts
 and derives both input slices inside Rust; no Python-constructed slice, frame,
 or certificate is admitted as semantic input. Imported version-one diagrams
 still have no graft trace.
+
+`adva.research.ResearchMachineV0` sits above this read-only boundary. One
+`InterpretationCellV0` retains the lower and upper triadic observations, the
+complete canonical `ProgramSlice`, and one stepwise checked schedule. Optional
+finite replay repeats the same static experiment under a literal endpoint
+comparison and gives each dynamic record a nonsemantic epoch coordinate. It
+does not feed an upper cut back into the program, re-enable events, or allocate
+fresh `NodeId`, occurrence, wire, cut, or source identities. The decision and
+promotion boundary are recorded in
+[ADR 0011](adr/0011-bounded-three-layer-research-machine.md).
 
 The theoretical dependency and promotion gates are specified in
 [`PROGRAM_PROCESS_CORE.md`](PROGRAM_PROCESS_CORE.md) and
@@ -185,8 +255,153 @@ The stable slice contains finite modules, terms, diagrams, compiler-emitted
 certified nested graft frames, evaluation, differentiation, explicit source
 partitions, certified finite causal cuts, single-event frontier replacement,
 exact program slices and adjacent composition, and lossless serialization.
+It also contains the bounded version-zero triadic observer-transition
+companion over exact three-source input policies.
+
+The Python research runner is deliberately outside the stable semantic slice.
+It is a bounded experiment orchestrator over stable artifacts; its verdicts
+and replay digest are not Rust certificates and are never accepted by the
+kernel as semantic input.
+
+The Rust `adva-witness` companion is also outside the stable semantic slice.
+It makes one bounded six-word witness and reuse proposal executable without
+changing PSC0 terms, builtin operations, diagrams, or certificates. Its exact
+integer-polynomial normalization is a witness observation, not a new stable
+Adva scalar domain or an equation-cell constructor. Its graft adapter consumes
+an existing compiler `CompilationArtifact` as a whole, derives bindings only
+from an ordered three-hole frame with singleton lineage, and records rather
+than replaces the compiler and graft certificate identities. Its subsequent
+neutral-carrier grammar uses research-local frontier coordinates to distinguish
+closed computation, explicitly open verification, and candidate learning fill
+plans. Those coordinates are not stable holes, cut ports, or logical
+obligations. Its separate `.adva` research document stores a canonical table
+of neutral carrier cache references, a canonical table of mechanism-labelled
+three-input/three-output transition frames, and named entry points. Rust
+resolves every document-local carrier and frame reference and rechecks every
+mechanism form before it returns the selected transition; Python supplies
+paths, entry-point names, and JSON-shaped values only. A complete stored
+output triple records a graph state but does not certify mechanism-output
+provenance. This does not change the Lisp parser, `adva.ir` version 1, or
+feedback semantics, and loading does not resolve the referenced witness
+artifacts.
+
+The same research crate contains a separate bounded relation-cell formation
+checker. It keeps carrier operations (`join/cut/close`), traversal
+(`step/run`), and relation witnesses (`interchange/braid/transport`) in
+different layers. `RelationProfileV0` fixes the `Q4` interchange profile to a
+trace-monoid lift with Klein-four Coxeter shadow and the `M6` braid profile to
+a positive-braid-monoid lift with `S3` shadow. Raw paths are never identified;
+open cells retain a residual reference, and filled cells authorize only their
+explicit orientation. These are research formation records rather than
+`adva.ir` equation cells, executable rewrites, group operations, or generic
+conjugacy certificates. They are not stored in `AdvaDocumentV0`.
+
+`FrameRelationCellV0` can derive such a relation from two explicit paths in
+one already validated neutral document. Mechanism labels, not method carriers,
+become the relation generators. Every step retains its `FrameIdV0`; every
+adjacent pair must reuse all three recorded output carriers exactly once as
+the next input triple, and the resulting permutation is retained. Both paths
+must share exact labelled input and recorded-output boundaries. The artifact
+is bound to the validated document digest. This is a document-local formation
+adapter: `FrameIdV0` does not become `OccurrenceId`, recorded output does not
+gain execution provenance, and the adapter neither searches for nor constructs
+a `join`.
+
+The first bounded CLI calibration consumes
+`programs/bootstrap-0/reveal.adva`. `M6NamingPlanV0` covers all six directed
+off-diagonal pairs between time, space, and construction with two opposite
+three-edge cycles. Names remain entry-point selectors and are resolved to
+authoritative frame coordinates. `RevealWitnessV0` records the source digest,
+fuel ledger, observed and remaining names, both derived frame paths, and typed
+questions. Observing all six frames completes the finite run but leaves the
+relation semantically open; insufficient fuel emits a suspended witness. The
+separate reveal-witness schema uses the common `.adva` suffix but does not
+extend `AdvaDocumentV0` or `adva.ir`. The first six-fuel output is retained at
+`programs/bootstrap-0/first-reveal-witness.adva`; CI derives it again and
+requires byte equality.
+
+The trace-arithmetic adapter consumes that persisted witness rather than the
+source document. It retains both exact frame paths and derives independent
+time-count, spatial-boundary, and construction-mechanism projections. Typed
+`left - right` residuals cannot cancel across domains. A commutative
+mechanism-weight quotient is diagnostic only and retains its nonidentity as an
+open holonomy question. The three opposite-side characteristic maps and the
+shared truth fiber remain explicitly unwitnessed. Projection equality, BLAKE3
+coordinates, and M6 formation are not promoted to semantic equality or truth.
+The first derived artifact is retained at
+`programs/bootstrap-0/first-trace-arithmetic.adva` and reproduced byte-for-byte
+by CI.
+
+The bounded inquiry adapter turns that calibration into a resumable
+`InquiryFrontierV0`. The frontier embeds the original calibration and carries
+its five exact open obligation coordinates. A `learn` edge then reads three
+independent `.adva` files through the fixed `subject/method/object` slots: the
+frontier, a frozen `ExplorationContractV0`, and a recorded external
+`ResourceSnapshotV0`. It writes `history/result/evidence`, where the result is
+only a proposed `HypothesisV0` and the evidence contains the complete next
+frontier. Candidate content identity excludes its local name, while the
+resource receipt preserves both the name and recorded entropy. Algorithm
+drift, resource replay, question renaming, and post-hoc resource edits are
+rejected. The adapter closes no arithmetic obligation and authenticates no
+external claim; it supplies continuation integrity rather than liveness or
+truth.
+
+Reality-facing inquiry candidates may optionally retain a
+`RealityBoundaryV0`. It keeps protocol-bound independent remeasurement
+separate from the `CustodyPlanV0` used to declare damage assumptions. Integrity,
+authenticity, availability, fork accountability, and semantic reproducibility
+are distinct protected properties; deletion, mutation, equivocation, key
+compromise, and correlated capture are distinct threats. Rust checks nonempty
+coordinates and protocols, unique ledgers, and locally consistent positive
+thresholds. It does not contact an instrument, verify a signature, operate a
+replica set, execute a recovery drill, or infer truth from receipts.
+
+`VerificationFrontierV0` is an additive state layer over an embedded,
+byte-unchanged `InquiryFrontierV0`. A `verify` edge again reads
+`subject/method/object`: an inquiry or verification frontier, a frozen
+`VerificationContractV0`, and a `VerificationPacketV0`. It writes a decision
+history, a scoped result, and residual-frontier evidence. Obligations may be
+open, refined into typed children, discharged by a future typed predicate, or
+reopened by counterevidence. Version zero deliberately has no discharge
+predicate: a request containing only witness and scope digests is recorded as
+rejected. Refinement can therefore increase the number of open leaves without
+pretending that knowledge regressed. Semantic closure excludes the orthogonal
+custody ledger and additionally requires an empty unresolved-fork ledger.
+
+`MagicSquareFrontierV0` is the first bounded search state admitted through the
+same `learn` interface. Its method performs deterministic row-major search with
+recorded node fuel. A completed order-four square is checked in two independent
+ways: ten incidence-sensitive additive line equations and one order-insensitive
+characteristic-polynomial equation for the value multiset. The selected closure
+is then unfolded under three method-supplied automorphisms into a finite
+`MagicSquareClosureFamilyV0`. Members, generator edges, coherence relations,
+local line-content reuse, and shared-cell influences remain distinct records.
+This is a research-local closure ecology, not a stable solver or a generic
+closure operator.
+
+The grounded multi-hole through adapter is subject to the same boundary.  Its
+middle object is an explicitly declared quotient of upper incidences by exact
+upper cut-wire index.  Passing its Python validation layers does not promote a
+specialization, forgetting permission, active normalization, through-relation
+composition law, or universal machine.  A stable successor would require a
+Rust-owned result and certificate type.
+
+The triangular and connector calibrations remain one layer further out.  Their
+incidence relations and SourceId projections are candidate readings of one
+unchanged checked carrier.  Symmetric sibling comparison is not inverse
+execution, and a nonempty source-level cycle is not permission to identify
+occurrences.  Neither artifact is accepted back by Rust.
 
 Objectification witnesses, higher cells beyond their data boundaries,
 projective observers, generic proof transport, and compiler optimizations that
 consume objectification certificates remain research targets. They must not be
 simulated with booleans or Python callbacks.
+
+
+The additive `TraceProjectionWitnessPairV0` consumes a checked trace-arithmetic
+calibration. It reuses the existing research path validator to certify the
+temporal count rule and checks a finite obstruction to full construction
+recovery from equal time and space inputs. The complete source calibration,
+raw paths, method coordinate, and open questions remain present. A Cargo
+example emits the independent research schema; it does not extend the CLI or
+install a discharge predicate. See Research 0124 and ADR 0033.

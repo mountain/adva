@@ -1,6 +1,6 @@
 use crate::{
     CausalCut, CausalStep, CertificateId, FunctionSignature, GraftFrameId, GraftTrace, NodeId,
-    ProgramSlice, SharedProgramDiagram,
+    ProgramSlice, SharedProgramDiagram, TriadicObserverTransitionV0,
 };
 use serde::{Deserialize, Serialize};
 use std::collections::BTreeMap;
@@ -284,6 +284,92 @@ impl ProgramSliceCompositionCertificate {
 pub struct ProgramSliceCompositionArtifact {
     pub result: ProgramSlice,
     pub certificate: ProgramSliceCompositionCertificate,
+}
+
+/// Certificate for one bounded three-domain observer transition.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverTransitionCertificateV0 {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub slice_revalidated: CheckStatus,
+    pub total_triadic_policy: CheckStatus,
+    pub exact_incidence_partition: CheckStatus,
+    pub lineage_ancestry: CheckStatus,
+    pub complete_slice_residual: CheckStatus,
+    pub original_id_preservation: CheckStatus,
+    /// `None` means that no compiler graft trace was supplied.
+    pub graft_frame_consistency: Option<CheckStatus>,
+    pub lower_completed: Vec<NodeId>,
+    pub upper_completed: Vec<NodeId>,
+}
+
+impl TriadicObserverTransitionCertificateV0 {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.slice_revalidated,
+            self.total_triadic_policy,
+            self.exact_incidence_partition,
+            self.lineage_ancestry,
+            self.complete_slice_residual,
+            self.original_id_preservation,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+            && self
+                .graft_frame_consistency
+                .is_none_or(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverTransitionArtifactV0 {
+    pub result: TriadicObserverTransitionV0,
+    pub certificate: TriadicObserverTransitionCertificateV0,
+}
+
+/// Certificate for exact composition of adjacent triadic observer views.
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverTransitionCompositionCertificateV0 {
+    pub id: CertificateId,
+    pub scope: String,
+    pub diagram_integrity: CheckStatus,
+    pub inputs_revalidated: CheckStatus,
+    pub policy_agreement: CheckStatus,
+    pub middle_observation_agreement: CheckStatus,
+    pub slice_composition: CheckStatus,
+    pub lineage_relation_composition: CheckStatus,
+    pub exact_composition: CheckStatus,
+    pub lower_completed: Vec<NodeId>,
+    pub middle_completed: Vec<NodeId>,
+    pub upper_completed: Vec<NodeId>,
+}
+
+impl TriadicObserverTransitionCompositionCertificateV0 {
+    pub fn certified(&self) -> bool {
+        [
+            self.diagram_integrity,
+            self.inputs_revalidated,
+            self.policy_agreement,
+            self.middle_observation_agreement,
+            self.slice_composition,
+            self.lineage_relation_composition,
+            self.exact_composition,
+        ]
+        .into_iter()
+        .all(|status| status == CheckStatus::Checked)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct TriadicObserverTransitionCompositionArtifactV0 {
+    pub result: TriadicObserverTransitionV0,
+    pub certificate: TriadicObserverTransitionCompositionCertificateV0,
 }
 
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]

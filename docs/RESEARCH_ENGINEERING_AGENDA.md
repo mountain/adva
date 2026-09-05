@@ -1,9 +1,9 @@
 # Research and Engineering Agenda Beyond the Program-Slice Phase
 
-Status: durable research backlog and dependency map. This document records
-important directions that must not be lost while the exact `GraftTrace` and
-`ProgramSlice` phase is in progress. It does not authorize premature stable
-APIs or change the current implementation priority.
+Status: durable research backlog and dependency map. Exact `GraftTrace`,
+`ProgramSlice`, and bounded triadic-transition phases are complete. The
+typed-aperture open--close calibration is the current research-only bridge to
+specialization and open logic. It does not authorize premature stable APIs.
 
 The phrase "Futamura projections" below is the intended reading of the
 Chinese term 二村投影: the classical relationship among interpreters,
@@ -30,7 +30,8 @@ These tracks are related but must not be collapsed.
 
 ```mermaid
 flowchart TD
-    P["Exact program slices"] --> S["Observer specialization"]
+    P["Exact program slices"] --> H["Typed apertures"]
+    H --> S["Observer specialization"]
     P --> G["Complex Prog geometry"]
     S --> L["Intrinsic-structure learning"]
     S --> A["Practical Adva programs"]
@@ -42,9 +43,20 @@ flowchart TD
     G -. "geometric hypotheses" .-> L
 ```
 
-The current priority remains exact process structure. The specializer is the
-first major successor because it explains how a finite observer obtains a
-task-specific mechanism that need not be a literal subprogram of the world.
+Exact process structure and the bounded triadic observer carrier are now
+available. Before specialization, the project interposes one narrow aperture
+calibration: distinguish a grounded open hole, its finite filling fibre, an
+explicit close selection, retained alternatives, and a traced reopen. The
+specializer remains the first major transformation successor because it
+explains how a finite observer obtains a task-specific mechanism that need not
+be a literal subprogram of the world.
+The bounded neutral-carrier mechanism grammar in note 0109 is a syntax
+checkpoint inside this bridge: it separates three input labels, three process
+labels, and three output labels, and makes computation, verification, and
+learning apply different policies to one retained open frontier. It does not
+yet supply the specialization, feedback, or persistent-container semantics
+required by later phases.
+
 The complex-geometric track can proceed theoretically in parallel. Learning
 depends on a precise observer/specialization semantics. Practical programs
 both calibrate and pressure-test the language. Intrinsic compilation becomes
@@ -595,6 +607,19 @@ The schedule is organized by research cycles rather than calendar promises.
 Exit condition: the common finite process carrier between cuts is exact and
 certified.
 
+### Phase 0.5: typed-aperture calibration
+
+- derive typed apertures only from existing checked through carriers;
+- distinguish absence of an aperture, an empty filling fibre, and a
+  multivalued filling fibre;
+- require an explicit witness for multivalued close;
+- retain alternatives, residuals, and close/reopen trace;
+- keep new hole-type creation, forgetting, singularity identification, and
+  stable open/close semantics outside the API.
+
+Exit condition: one three-domain boundary and the empty/multivalued negative
+controls pass without allocating semantic identities or erasing residuals.
+
 ### Phase 1: bounded specialization calibration
 
 - formalize slice versus specialization;
@@ -662,6 +687,7 @@ Engineering promotion remains downstream of exact process slices.
 | Priority | Track | Resume when |
 |---|---|---|
 | P0 | exact graft frames and program slices | now |
+| P0.5 | typed-aperture open--close calibration | exact triadic through carriers exist |
 | P1 | observer specialization on existing finite programs | Phase 0 exit condition |
 | P1-parallel | complex `Prog` geometry | theoretical work may begin now |
 | P2 | bounded evaluator, finite-field, and Metamath programs | required exact data/control semantics are scoped |

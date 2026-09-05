@@ -107,6 +107,33 @@ and quadruples. The two legal schedules have different step paths but the same
 outer slice, showing that a chosen linear extension is extra data rather than
 part of the canonical interval.
 
+## The first bounded triadic observer companion
+
+The exact slice now supports one deliberately narrow observer transition. A
+`TriadicObserverPolicyV0` assigns the three checked input sources to
+construction, space, and time. At either endpoint cut, every lineage position
+is resolved to its unchanged occurrence, source, and copy path. The view at one
+domain reads incidences from the other two domains and retains its own-domain
+complement. Source-free wires are retained outside all three source-relative
+views.
+
+For lower incidence `a` and upper incidence `b`, the transition records
+`a -> b` exactly when both have the same source and the path of `a` is a prefix
+of the path of `b`. This finite relation expresses the stable part of lineage
+transport: ordinary operations preserve a path, copy extends it, merge retains
+several occurrences, and discard has no upper descendant.
+
+For adjacent slices, Rust checks both the existing exact slice composition and
+literal relation composition through the common middle cut. The full
+`ProgramSlice` remains embedded in the observer artifact, so source-free
+constant/discard history and optional graft intersections do not disappear
+from the residual.
+
+This result does not promote construction, space, or time to intrinsic wire
+types. It does not define a bracket tree, active computation, braid,
+specialization, proof, or `D*`. It provides the finite evidence carrier on
+which those proposals must now be tested.
+
 ## Values and compiled presentations
 
 For a program \(P\), write \([P]_Q\) for its observation under a declared
