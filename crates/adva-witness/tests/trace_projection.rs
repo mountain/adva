@@ -141,7 +141,10 @@ fn pair_checker_rejects_forged_negative_evidence_method_and_source_binding() {
         adva_witness::CarrierIdV0::new(99);
     assert!(changed.check().is_err());
     let mut changed = original.clone();
-    changed.construction_obstruction.shared_time.frame_occurrences = 4;
+    changed
+        .construction_obstruction
+        .shared_time
+        .frame_occurrences = 4;
     assert!(changed.check().is_err());
     let mut changed = original.clone();
     changed.source_calibration_digest = format!("blake3:{}", "0".repeat(64));
@@ -150,7 +153,12 @@ fn pair_checker_rejects_forged_negative_evidence_method_and_source_binding() {
     changed.method.push_str(":changed");
     assert!(changed.check().is_err());
     let mut changed = original;
-    changed.source_calibration.left.construction.incidence.compute = 99;
+    changed
+        .source_calibration
+        .left
+        .construction
+        .incidence
+        .compute = 99;
     assert!(changed.check().is_err());
 }
 
@@ -158,7 +166,10 @@ fn pair_checker_rejects_forged_negative_evidence_method_and_source_binding() {
 fn pair_round_trip_rechecks_schema_and_every_derived_field() {
     let pair = first_pair();
     let json = pair.to_json().unwrap();
-    assert_eq!(TraceProjectionWitnessPairV0::from_json(&json).unwrap(), pair);
+    assert_eq!(
+        TraceProjectionWitnessPairV0::from_json(&json).unwrap(),
+        pair
+    );
     let mut candidate: serde_json::Value = serde_json::from_str(&json).unwrap();
     candidate["version"] = serde_json::json!(1);
     assert!(TraceProjectionWitnessPairV0::from_json(&candidate.to_string()).is_err());
