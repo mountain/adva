@@ -112,3 +112,13 @@ own typed interpretations. Existing semantic authority, dependency order,
 M6 obligations, and immutable inquiry artifacts remain as documented.
 This note introduces no new axiom into the checker and claims no completed
 physical theory or general equivalence of the three kinds of truth.
+
+
+## 7. Knowledge geometry and the first reverse interface search
+
+The subsequent attributed Knowledge Geometry Hypothesis, its embodied and
+finite observer conjecture, and the open three-physical-worlds proposal are
+recorded in [Research 0126](0126-knowledge-geometry-first-interface-witness.md).
+That note also gives a minimal Boolean observation refinement and retained
+comparator histories as an external finite calibration of a vocabulary
+interface. Its physical and spectral interpretations remain open.
