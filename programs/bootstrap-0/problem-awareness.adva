@@ -1,0 +1,51 @@
+{
+  "schema": "adva.problem-awareness.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "scope": "five-domain custody quorum-overlap model; one unavailable or adversarial domain",
+  "independent_domains": [
+    "custody-domain-0",
+    "custody-domain-1",
+    "custody-domain-2",
+    "custody-domain-3",
+    "custody-domain-4"
+  ],
+  "current_receipt_threshold": 3,
+  "adversarial_fault_budget": 1,
+  "observed_gap": "the existing three-of-five receipt threshold has no recorded proof that two accepted successor sets retain an honest common custodian under one adversarial fault",
+  "protected_invariants": [
+    "provenance",
+    "replay",
+    "challenge",
+    "succession"
+  ],
+  "retained_context": [
+    "finite-boundary",
+    "reality",
+    "custody",
+    "provenance",
+    "replay",
+    "challenge",
+    "succession",
+    "hypothesis-formation",
+    "search",
+    "trust-continuity"
+  ],
+  "parent_artifacts": [
+    "programs/bootstrap-0/trust-continuity-session-witness.adva",
+    "programs/bootstrap-0/hypothesis-formation-frontier-6.adva"
+  ]
+}
