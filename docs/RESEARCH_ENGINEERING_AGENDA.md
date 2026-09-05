@@ -50,6 +50,13 @@ explicit close selection, retained alternatives, and a traced reopen. The
 specializer remains the first major transformation successor because it
 explains how a finite observer obtains a task-specific mechanism that need not
 be a literal subprogram of the world.
+The bounded neutral-carrier mechanism grammar in note 0109 is a syntax
+checkpoint inside this bridge: it separates three input labels, three process
+labels, and three output labels, and makes computation, verification, and
+learning apply different policies to one retained open frontier. It does not
+yet supply the specialization, feedback, or persistent-container semantics
+required by later phases.
+
 The complex-geometric track can proceed theoretically in parallel. Learning
 depends on a precise observer/specialization semantics. Practical programs
 both calibrate and pressure-test the language. Intrinsic compilation becomes

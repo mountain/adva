@@ -1,0 +1,116 @@
+{
+  "schema": "adva.verification-packet.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "packet_coordinate": "session:2026-09-04:first-verification-refinement",
+  "basis_hypothesis_digest": "blake3:65c139bcf849bae3a250a2a1f2f6fdec2d5edcd95f3bb1d4b5e853179926160a",
+  "actions": [
+    {
+      "action": "refine",
+      "children": [
+        {
+          "id": "experiment:first:time-characteristic-adapter-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "characteristic_witness",
+            "target": "time"
+          },
+          "detail": "provide a typed map deriving the time characteristic from the retained space and construction coordinates",
+          "parents": [
+            "experiment:first:m6-time-characteristic-required"
+          ]
+        },
+        {
+          "id": "experiment:first:space-characteristic-adapter-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "characteristic_witness",
+            "target": "space"
+          },
+          "detail": "provide a typed map deriving the space characteristic from the retained construction and time coordinates",
+          "parents": [
+            "experiment:first:m6-space-characteristic-required"
+          ]
+        },
+        {
+          "id": "experiment:first:construction-characteristic-adapter-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "characteristic_witness",
+            "target": "construction"
+          },
+          "detail": "provide a typed map deriving the construction characteristic from the retained time and space coordinates",
+          "parents": [
+            "experiment:first:m6-construction-characteristic-required"
+          ]
+        },
+        {
+          "id": "experiment:first:ordered-holonomy-replay-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "ordered_holonomy_replay"
+          },
+          "detail": "provide an independently replayable order-preserving holonomy computation that normalizes to the multiplicative identity",
+          "parents": [
+            "experiment:first:m6-multiplicative-holonomy-required"
+          ]
+        },
+        {
+          "id": "experiment:first:external-coordinate-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "external_coordinate"
+          },
+          "detail": "provide one concrete versioned external coordinate containing interval, location, instrument, protocol, and sample digest",
+          "parents": [
+            "experiment:first:m6-common-truth-coordinate-required"
+          ]
+        },
+        {
+          "id": "experiment:first:independent-measurement-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "independent_measurement"
+          },
+          "detail": "provide raw measurements, calibration, tolerance, and independently produced protocol-conforming observation receipts",
+          "parents": [
+            "experiment:first:m6-common-truth-coordinate-required"
+          ]
+        },
+        {
+          "id": "experiment:first:shared-coordinate-transport-required",
+          "role": "semantic_closure",
+          "unit": {
+            "kind": "shared_coordinate_transport"
+          },
+          "detail": "show that both ordered traces reach the same external coordinate without identifying or erasing their distinct histories",
+          "parents": [
+            "experiment:first:m6-common-truth-coordinate-required"
+          ]
+        },
+        {
+          "id": "experiment:first:custody-recovery-drill-required",
+          "role": "custody",
+          "unit": {
+            "kind": "custody_recovery"
+          },
+          "detail": "run reconstruction, key-rotation, and fork-detection drills under the declared custody fault budget",
+          "parents": []
+        }
+      ]
+    }
+  ]
+}
