@@ -45,7 +45,9 @@ jobs:
             programs/bootstrap-0/first-trace-arithmetic.adva \
             > target/trace-projection-witness-pair.adva
           sha256sum target/trace-projection-witness-pair.adva
-          cat target/trace-projection-witness-pair.adva
+          cmp \
+            target/trace-projection-witness-pair.adva \
+            programs/bootstrap-0/trace-projection-witness-pair.adva
       - name: Run first persistent inquiry interface experiment
         run: |
           cargo run -p adva-witness --bin adva -- \
