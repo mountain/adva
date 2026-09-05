@@ -54,7 +54,7 @@ problem/value frontier of Research 0122.
 Run the complete bounded check with:
 
 ```console
-cargo build --locked -p adva-witness --bin adva
+cargo build -p adva-witness --bin adva
 python3 scripts/replay_arithmetic_vocabulary.py
 ```
 
