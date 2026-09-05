@@ -104,3 +104,19 @@ name tables. A new operation must declare its versioned boundary, exact
 parameters, surface visibility, scalar differential realization, and explicit
 `LineageRule`, with a registry completeness test. Changing an existing rule is
 an IR-versioning decision, not an in-place reinterpretation.
+
+## Bounded breakthrough research
+
+Before a breakthrough trial, read
+`docs/research/0129-bounded-breakthrough-trusted-boundaries.md` and write the
+concrete question, current level, imported assumptions, cross-domain
+justification, protected obligations, checker, and enforceable finite budget.
+Missing boundary evidence blocks execution. Count checking, retries, nested
+searches, and checkpointing within the declared resource limits. Stop on the
+specified outcome or limit, retain failures and residuals, and report
+exhaustion as `Unknown`. Do not automatically reset fuel, widen scope, or
+restart indefinitely. Continuation requires a revised finite run contract and
+rechecked boundaries within the existing authorization. A heuristic score
+never overrides a protected obligation. A working name or energy-level label
+does not establish a native operation, physical interpretation, or completed
+language-formation step.
