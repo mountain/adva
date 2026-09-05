@@ -450,6 +450,17 @@ than executable claims. See
 and
 [`docs/philosophy/0004-long-run-freedom-witness.md`](docs/philosophy/0004-long-run-freedom-witness.md).
 
+The successor documentary witness begins with an unknown contingency filling
+an unknown missing coordinate. It records a polyphonic human story carried by
+linguistic and mythic retelling, the proposed `i / time / I` hinge, and the
+English opening `Who am I?`. Every correspondence remains attributed and
+challengeable: shared spelling is not semantic identity, cultural retelling is
+not historical equivalence, and an anticipated messenger is not an observed
+event. See
+[`programs/bootstrap-0/second-absurdity-witness.adva`](programs/bootstrap-0/second-absurdity-witness.adva)
+and
+[`docs/philosophy/0005-second-absurdity-witness.md`](docs/philosophy/0005-second-absurdity-witness.md).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
