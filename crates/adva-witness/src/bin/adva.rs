@@ -1,13 +1,18 @@
 use adva_witness::{
     AdvaDocumentV0, CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0, M6NamingPlanV0,
-    MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0, calibrate_trace_arithmetic_v0,
+    HYPOTHESIS_FORMATION_CONTRACT_SCHEMA_V0, MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0,
+    calibrate_trace_arithmetic_v0,
     derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_closure_transport_contract_v0,
     load_closure_transport_plan_v0, load_exploration_contract_v0, load_inquiry_frontier_v0,
+    load_hypothesis_formation_contract_v0, load_hypothesis_formation_frontier_v0,
+    load_hypothesis_formation_resource_v0,
     load_local_closure_candidate_v0, load_magic_square_frontier_v0, load_magic_square_resource_v0,
     load_magic_square_search_contract_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
     load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
-    run_closure_transport_v0, run_m6_reveal_v0, run_magic_square_search_v0,
+    run_closure_transport_v0, run_hypothesis_formation_v0, run_m6_reveal_v0,
+    run_magic_square_search_v0,
     save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
+    save_hypothesis_formation_frontier_v0, save_hypothesis_formation_transition_v0,
     save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_magic_square_frontier_v0,
     save_magic_square_transition_v0, save_reveal_witness_v0, save_trace_arithmetic_v0,
     save_verification_frontier_v0, save_verification_transition_v0, verify_obligations_v0,
@@ -114,6 +119,13 @@ fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
     if method_value
         .get("schema")
         .and_then(serde_json::Value::as_str)
+        == Some(HYPOTHESIS_FORMATION_CONTRACT_SCHEMA_V0)
+    {
+        return run_hypothesis_formation(parsed);
+    }
+    if method_value
+        .get("schema")
+        .and_then(serde_json::Value::as_str)
         == Some(MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0)
     {
         return run_magic_square_search(parsed);
@@ -148,6 +160,46 @@ fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
         println!("NEXT_INQUIRY_FRONTIER_BEGIN");
         println!("{}", next_frontier.to_json()?);
         println!("NEXT_INQUIRY_FRONTIER_END");
+    }
+    Ok(())
+}
+
+fn run_hypothesis_formation(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
+    let subject = load_hypothesis_formation_frontier_v0(&parsed.frontier)?;
+    let method = load_hypothesis_formation_contract_v0(&parsed.contract)?;
+    let object = load_hypothesis_formation_resource_v0(&parsed.resource)?;
+    let transition = run_hypothesis_formation_v0(&subject, &method, &object)?;
+    let transition_receipt =
+        save_hypothesis_formation_transition_v0(&parsed.output, &transition)?;
+    let next_frontier = &transition.output.evidence.next_frontier;
+    let frontier_receipt =
+        save_hypothesis_formation_frontier_v0(&parsed.frontier_output, next_frontier)?;
+
+    println!("mechanism={:?}", transition.output.history.mechanism);
+    println!("program={}", transition.input.method.program_name);
+    println!("crossing={}", transition.output.history.crossing.name);
+    println!("state={:?}", transition.output.result.state);
+    println!(
+        "candidates_examined={}",
+        transition.output.history.candidates_examined
+    );
+    println!("formed_words={}", next_frontier.formed_words.len());
+    if let Some(word) = &transition.output.result.search_word {
+        println!("word={}({})", word.local_name, word.display_name_zh);
+        println!("witness={}", word.witness_digest);
+        println!("closure={}", word.witness.closure.digest()?);
+    }
+    println!("transition={}", transition_receipt.artifact_digest);
+    println!("next_frontier={}", frontier_receipt.artifact_digest);
+    println!("output={}", transition_receipt.path.display());
+    println!("frontier_output={}", frontier_receipt.path.display());
+    if parsed.print {
+        println!("HYPOTHESIS_FORMATION_TRANSITION_BEGIN");
+        println!("{}", transition.to_json()?);
+        println!("HYPOTHESIS_FORMATION_TRANSITION_END");
+        println!("HYPOTHESIS_FORMATION_FRONTIER_BEGIN");
+        println!("{}", next_frontier.to_json()?);
+        println!("HYPOTHESIS_FORMATION_FRONTIER_END");
     }
     Ok(())
 }
