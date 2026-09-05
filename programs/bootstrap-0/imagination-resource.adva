@@ -1,0 +1,72 @@
+{
+  "schema": "adva.imagination-resource.research",
+  "version": 0,
+  "interface": {
+    "schema": "adva.inquiry-interface.research",
+    "version": 0,
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "origin": "external:conversation-rereading:2026-09-05",
+  "status": "externally-proposed-candidate-directions",
+  "candidate_thresholds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "directions": [
+    {
+      "feature": "signed_parent",
+      "capability": "content-addressed signed parent handoff",
+      "supports": "provenance",
+      "cost_units": 1
+    },
+    {
+      "feature": "replay_bundle",
+      "capability": "versioned method, checker, inputs, and residual replay bundle",
+      "supports": "replay",
+      "cost_units": 1
+    },
+    {
+      "feature": "fork_ledger",
+      "capability": "append-only challenge and fork ledger",
+      "supports": "challenge",
+      "cost_units": 1
+    },
+    {
+      "feature": "recovery_handoff",
+      "capability": "recoverable successor boundary across failure domains",
+      "supports": "succession",
+      "cost_units": 1
+    },
+    {
+      "feature": "independent_remeasurement",
+      "capability": "independent protocol-conforming reality remeasurement",
+      "supports": "replay",
+      "cost_units": 1
+    }
+  ],
+  "external_need": "independently controlled custodians must later instantiate the declared domains and perform protocol-conforming remeasurement and recovery drills",
+  "help_first_contribution": "publish the exact counterexample, candidate enumeration, checker, replay fixture, and residual deployment obligations without asking a later observer to endorse the claim",
+  "falsifiers": [
+    "no policy in the declared finite candidate space satisfies honest overlap and one-fault availability",
+    "the retained counterexample does not replay under the frozen quorum model",
+    "a selected feature bundle drops provenance, replay, challenge, succession, or the compatible reserve",
+    "the declared cost exceeds the finite value-seeking budget"
+  ],
+  "finite_cost_boundary": "five thresholds times thirty-two feature subsets; every selected threshold approval and feature costs one unit",
+  "vocabulary": [
+    "imagination",
+    "candidate-direction"
+  ]
+}
