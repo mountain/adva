@@ -130,6 +130,36 @@ jobs:
               programs/bootstrap-0/hypothesis-formation-frontier-${round}.adva
             current=$next
           done
+      - name: Run problem formation and value seeking
+        run: |
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            programs/bootstrap-0/problem-awareness.adva \
+            programs/bootstrap-0/problem-formation.adva \
+            programs/bootstrap-0/imagination-resource.adva \
+            --output target/problem-formation-1.adva \
+            --frontier-output target/problem-value-frontier-1.adva \
+            --print
+          cargo run -p adva-witness --bin adva -- \
+            learn \
+            target/problem-value-frontier-1.adva \
+            programs/bootstrap-0/value-seeking.adva \
+            programs/bootstrap-0/value-seeking-resource.adva \
+            --output target/value-seeking-1.adva \
+            --frontier-output target/value-seeking-frontier-1.adva \
+            --print
+          cmp \
+            target/problem-formation-1.adva \
+            programs/bootstrap-0/problem-formation-1.adva
+          cmp \
+            target/problem-value-frontier-1.adva \
+            programs/bootstrap-0/problem-value-frontier-1.adva
+          cmp \
+            target/value-seeking-1.adva \
+            programs/bootstrap-0/value-seeking-1.adva
+          cmp \
+            target/value-seeking-frontier-1.adva \
+            programs/bootstrap-0/value-seeking-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
