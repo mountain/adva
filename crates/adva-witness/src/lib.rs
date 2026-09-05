@@ -18,6 +18,7 @@ mod relation;
 mod reveal;
 mod seed;
 mod trace_arithmetic;
+mod trace_projection;
 mod verification;
 mod witness;
 
@@ -34,6 +35,7 @@ pub use relation::*;
 pub use reveal::*;
 pub use seed::*;
 pub use trace_arithmetic::*;
+pub use trace_projection::*;
 pub use verification::*;
 pub use witness::*;
 
