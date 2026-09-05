@@ -616,7 +616,6 @@ fn derive_output(
                                         };
                                         witness.check()?;
                                         found = Some(witness);
-                                        local_ordinal += 1;
                                         break 'rows;
                                     }
                                 }
