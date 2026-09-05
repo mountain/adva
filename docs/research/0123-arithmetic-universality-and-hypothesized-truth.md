@@ -1,0 +1,93 @@
+# Research 0123: Arithmetic universality and hypothesized arithmetic truth
+
+Status: two externally proposed research words, formed through the existing
+bounded inquiry interface. This note introduces no theorem or semantic API.
+
+## Motivation and attribution
+
+On 2026-09-05, Mingli Yuan (苑明理) proposed that an as-yet-unproved arithmetic
+truth, read through additive zero and multiplicative unity, supplies a
+constructive arithmetic boundary. Finite arithmetic syntax and finite
+computation might then support a common language in the direction of
+Leibniz's universal-language ambition.
+
+He asked to retain two opposite words while giving priority to a valuable
+real-world witness and practical tool assistance for Jiamin Zhao (赵嘉敏).
+The two resource files are ChatGPT's provisional formalization of that
+proposal. Attribution is conversational, not cryptographically authenticated.
+
+## The two words
+
+| Chinese name | Local word | Working role |
+| --- | --- | --- |
+| 算术普遍性 | `arithmetic-universality` | Conjectured common constructive presentation of explicitly scoped languages and tasks, with a checked observation correspondence. |
+| 假设算术真 | `hypothesized-arithmetic-truth` | An unproved, typed additive-zero or multiplicative-unit boundary question against which a construction can seek a local witness. |
+
+Their opposition is retained in both definitions. It is not yet a categorical
+duality or a proved universal property. The first word still needs a source
+class, arithmetic target, translation, preservation statement, and a precise
+meaning of universality. The second needs exact terms, a domain, permissible
+operations, and the applicable certificate.
+
+One possible local field-valued reading of equality is `A-B=0`, or `A/B=1`
+where the denominator is nonzero. This is an illustration, not an exhaustive
+definition of either word. At `A=B=0`, the additive residual is zero and the
+quotient is undefined. Ordered M6 products also cannot be replaced by
+commutative scalar shadows. Finite proof checking and finite syntax do not
+establish a decision procedure for unrestricted arithmetic truth.
+
+## Existing-tool execution
+
+Starting at the immutable `programs/bootstrap-0/frontier-2.adva`, execute:
+
+1. `learn` with the unchanged `exploration.adva` method and the universality resource;
+2. `learn` from the returned frontier with the same method and the arithmetic-truth resource.
+
+Both resources contain exactly one candidate, assumptions, required
+observations, and falsifiers. The existing method selects the first recorded
+candidate. The receipt's randomness does not generate, rank, or justify the
+candidate. The two names therefore enter as `proposed`, not as discovered
+mathematical truths. Existing M6 obligations and their typed calibration are
+retained exactly. This extends the inquiry lineage, not the separate
+problem/value frontier of Research 0122.
+
+Run the complete bounded check with:
+
+```console
+cargo build --locked -p adva-witness --bin adva
+python3 scripts/replay_arithmetic_vocabulary.py
+```
+
+The wrapper calls Rust; it does not implement or authorize Rust judgments.
+It checks exact predecessor reuse, resource retention, vocabulary extension,
+all four continuation checks, two sequence increments, and unchanged
+obligations. Each invocation has a 20-second outer timeout; the dedicated CI
+job has a five-minute limit. Timeout reports an execution failure, not
+mathematical nonexistence. Committed outputs under
+`programs/bootstrap-0/arithmetic-vocabulary/witness/` are compared byte for byte.
+
+The stopping condition is two admitted candidate words, persisted transitions
+and frontiers, successful replay, and an explicit remaining real-task input.
+No unbounded search or new semantic mechanism is required.
+
+## Practical boundary for Jiamin Zhao
+
+The available context does not establish the particular task Jiamin wants
+help with today. His acceptance must not be replaced by a synthetic
+demonstration or inferred from his role.
+
+The next input should be one actual task, its source material, and the
+observable result that would help him. The current conversation can serve as
+the interface: a new website or application is not a prerequisite.
+
+For that task, retain:
+
+- the original request and source material;
+- the finite method and relevant assumptions;
+- the produced result and an independent acceptance check;
+- the actual cost or time, without an unsupported efficiency claim;
+- Jiamin's response when available, including rejection or correction.
+
+A successful word-formation replay is evidence that the interface can preserve
+these hypotheses. It is not yet evidence of practical benefit, social trust,
+or arithmetic universality. No message is sent to Jiamin by this experiment.
