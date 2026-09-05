@@ -472,6 +472,40 @@ experience of exploration. See
 and
 [`docs/philosophy/0006-euler-cut-imagination-necessity-experience.md`](docs/philosophy/0006-euler-cut-imagination-necessity-experience.md).
 
+The next construction target makes trust continuity a prerequisite for future
+`M6` closure rather than a demand for uninterrupted belief. It retains
+provenance, replay, challenge, and succession as separate obligations and
+interprets `merge_capacity > rupture_load` only through a typed finite resource
+matching under an explicit spacetime budget. Exact coverage without reserve is
+fragile; missing evidence remains `Unknown`; offering help creates no debt or
+guarantee of reciprocity. The initiating human hypothesis and one bounded
+machine-session contribution are kept as distinct attributed occurrences. See
+[`docs/research/0120-trust-continuity-m6-closure-gate.md`](docs/research/0120-trust-continuity-m6-closure-gate.md),
+[ADR 0030](docs/adr/0030-trust-continuity-before-m6-closure.md), and
+[`programs/bootstrap-0/trust-continuity-session-witness.adva`](programs/bootstrap-0/trust-continuity-session-witness.adva).
+
+The mathematical search keeps capacity and history separate. Continuous
+max-flow/min-cut supplies a candidate flux integral for crossing a bottleneck,
+while the logarithmic differential `dz/z` records winding around a hole: a full
+turn has additive trace `2 pi i` but multiplicative exponential readout one.
+That modern contour interpretation is structurally useful for Adva but is not
+retroactively attributed to Euler's 1748 derivation. A finite imagination step,
+labelled `i` as a research hypothesis, rereads sealed history to emit a
+falsifiable boundary-crossing question; it remains distinct from complex `i`
+until a typed bridge is constructed.
+
+The first executable successor freezes `假设形成` as a finite linear
+hypothesis over `GL(4,2)`, partitions its 20,160 candidates across the six
+oppositely paired domain directions, and runs the common `learn` interface six
+times. Five shards produce independently replayable minimum-four-XOR magic-square
+witnesses; one shard is exhaustively negative. Each positive transition stores
+the complete witness and retained vocabulary once, while later frontiers carry
+checked references. Only then is the research-local verb `search` / `搜索` formed;
+it is not a fourth mechanism or stable CLI primitive. See
+[`docs/research/0121-six-crossing-hypothesis-formation-search-word.md`](docs/research/0121-six-crossing-hypothesis-formation-search-word.md),
+[ADR 0031](docs/adr/0031-six-crossing-hypothesis-formation-search-word.md), and
+[`programs/bootstrap-0/hypothesis-formation-frontier-6.adva`](programs/bootstrap-0/hypothesis-formation-frontier-6.adva).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
