@@ -39,6 +39,13 @@ jobs:
           cmp \
             target/first-trace-arithmetic.adva \
             programs/bootstrap-0/first-trace-arithmetic.adva
+      - name: Run scoped trace projection witnesses
+        run: |
+          cargo run -p adva-witness --example trace_projection_witnesses -- \
+            programs/bootstrap-0/first-trace-arithmetic.adva \
+            > target/trace-projection-witness-pair.adva
+          sha256sum target/trace-projection-witness-pair.adva
+          cat target/trace-projection-witness-pair.adva
       - name: Run first persistent inquiry interface experiment
         run: |
           cargo run -p adva-witness --bin adva -- \
