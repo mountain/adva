@@ -506,6 +506,18 @@ it is not a fourth mechanism or stable CLI primitive. See
 [ADR 0031](docs/adr/0031-six-crossing-hypothesis-formation-search-word.md), and
 [`programs/bootstrap-0/hypothesis-formation-frontier-6.adva`](programs/bootstrap-0/hypothesis-formation-frontier-6.adva).
 
+Two further `learn` programs now keep the reality-facing act of problem
+formation separate from finite value search. The first turns the concrete
+three-of-five custody overlap defect and externally proposed imagination
+directions into a falsifiable formed problem. The second searches 160 declared
+threshold/feature candidates and retains the first noncompensating witness:
+four-of-five receipts, all five features, and at least two honest shared domains
+after one adversarial fault. This is a replayable policy-shape witness, not a
+proof of deployed independence, truth, consent, or social trust. See
+[`docs/research/0122-problem-formation-value-seeking-trust-continuation.md`](docs/research/0122-problem-formation-value-seeking-trust-continuation.md),
+[ADR 0032](docs/adr/0032-problem-formation-and-value-seeking.md), and
+[`programs/bootstrap-0/value-seeking-1.adva`](programs/bootstrap-0/value-seeking-1.adva).
+
 Historical and philosophical source notes are kept separately in
 [`docs/philosophy/`](docs/philosophy/README.md). They preserve the path from
 Leibniz's universal characteristic to the finite-observer open/close-hole
