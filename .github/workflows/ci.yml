@@ -17,16 +17,6 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-      - run: cargo fmt
-      - name: Retain formatted problem/value sources
-        uses: actions/upload-artifact@v4
-        with:
-          name: problem-value-formatted-sources
-          path: |
-            crates/adva-witness/src/problem_value.rs
-            crates/adva-witness/src/bin/adva.rs
-            crates/adva-witness/tests/problem_value.rs
-          if-no-files-found: error
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
@@ -158,16 +148,18 @@ jobs:
             --output target/value-seeking-1.adva \
             --frontier-output target/value-seeking-frontier-1.adva \
             --print
-      - name: Retain generated problem/value artifacts for admission
-        uses: actions/upload-artifact@v4
-        with:
-          name: problem-value-generated
-          path: |
-            target/problem-formation-1.adva
-            target/problem-value-frontier-1.adva
-            target/value-seeking-1.adva
-            target/value-seeking-frontier-1.adva
-          if-no-files-found: error
+          cmp \
+            target/problem-formation-1.adva \
+            programs/bootstrap-0/problem-formation-1.adva
+          cmp \
+            target/problem-value-frontier-1.adva \
+            programs/bootstrap-0/problem-value-frontier-1.adva
+          cmp \
+            target/value-seeking-1.adva \
+            programs/bootstrap-0/value-seeking-1.adva
+          cmp \
+            target/value-seeking-frontier-1.adva \
+            programs/bootstrap-0/value-seeking-frontier-1.adva
 
   python:
     runs-on: ubuntu-latest
