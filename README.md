@@ -525,6 +525,12 @@ hypothesis and its falsifiable experiment agenda. These notes provide
 interpretive research context only; they add no stable semantics or
 registered executable claims.
 
+Mingli Yuan's **Geometry of Truth** hypothesis organizes the interface among
+physical measurement and scale, mathematical form, and logical language with
+human-supplied names. Its attribution, working method, and open coherence
+conditions are recorded in
+[Research 0125](docs/research/0125-geometry-of-truth-interface-hypothesis.md).
+
 ## Status and license
 
 Adva is a private pre-alpha research tool. No open-source license has yet been
