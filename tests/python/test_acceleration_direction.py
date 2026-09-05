@@ -3,6 +3,7 @@ import copy
 import importlib.util
 import itertools
 import json
+import math
 from pathlib import Path
 import random
 import unittest
@@ -69,7 +70,7 @@ class AccelerationDirectionTests(unittest.TestCase):
         points = [(i, i*i, 1) for i in range(5)] + [(5, 26, 1)]
         scales = [-2, 3, -1, 4, 2, -3]
         scaled = [tuple(k*x for x in p) for k, p in zip(scales, points)]
-        self.assertEqual(A.incidence(scaled), 288 * __import__("math").prod(scales)**2)
+        self.assertEqual(A.incidence(scaled), 288 * math.prod(scales)**2)
         h = ((2, 1, 3), (0, 3, 2), (0, 0, 1))
         transformed = [A.matvec(h, p) for p in points]
         self.assertEqual(A.incidence(transformed), A.det3(h)**4 * 288)
@@ -88,6 +89,7 @@ class AccelerationDirectionTests(unittest.TestCase):
         self.assertEqual(result["status"], "conditional-cost-improvement")
         self.assertEqual(result["minimum_reuses_for_strict_improvement"], 11)
         self.assertEqual(A.robust_direction(0, 2, 3, 10)["status"], "not-certified")
+        self.assertIsNone(A.robust_direction(0, 2, 3, 10)["guaranteed_margin_ticks"])
         for values in ((True, 3, 1, 10), (-1, 3, 1, 10)):
             with self.assertRaises(ValueError):
                 A.robust_direction(*values)

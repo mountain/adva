@@ -206,7 +206,7 @@ def robust_direction(setup_upper, baseline_lower, reuse_upper, count_lower):
     gap = baseline_lower - reuse_upper
     margin = count_lower * gap - setup_upper
     return {"status": "conditional-cost-improvement" if gap > 0 and margin > 0 else "not-certified",
-            "guaranteed_margin_ticks": margin,
+            "guaranteed_margin_ticks": margin if gap >= 0 else None,
             "minimum_reuses_for_strict_improvement": setup_upper // gap + 1 if gap > 0 else None}
 
 
