@@ -122,13 +122,14 @@ jobs:
               programs/bootstrap-0/hypothesis-formation-resource.adva \
               --output target/hypothesis-formation-${round}.adva \
               --frontier-output "$next"
+            cmp \
+              target/hypothesis-formation-${round}.adva \
+              programs/bootstrap-0/hypothesis-formation-${round}.adva
+            cmp \
+              "$next" \
+              programs/bootstrap-0/hypothesis-formation-frontier-${round}.adva
             current=$next
           done
-      - uses: actions/upload-artifact@v4
-        with:
-          name: hypothesis-formation-six-run
-          path: target/hypothesis-formation-*.adva
-          retention-days: 7
 
   python:
     runs-on: ubuntu-latest
