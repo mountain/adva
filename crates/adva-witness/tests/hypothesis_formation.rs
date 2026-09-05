@@ -1,10 +1,9 @@
 use adva_ir::CheckStatus;
 use adva_witness::{
     HypothesisFormationContractV0, HypothesisFormationFrontierStateV0,
-    HypothesisFormationFrontierV0, HypothesisFormationResourceV0,
-    HypothesisFormationRunStateV0, load_hypothesis_formation_contract_v0,
-    load_hypothesis_formation_frontier_v0, load_hypothesis_formation_resource_v0,
-    run_hypothesis_formation_v0,
+    HypothesisFormationFrontierV0, HypothesisFormationResourceV0, HypothesisFormationRunStateV0,
+    load_hypothesis_formation_contract_v0, load_hypothesis_formation_frontier_v0,
+    load_hypothesis_formation_resource_v0, run_hypothesis_formation_v0,
 };
 use std::path::PathBuf;
 
@@ -50,7 +49,10 @@ fn six_runs_find_five_witnesses_and_form_search_as_a_verb() {
         assert_eq!(transition.output.result.state, state);
         assert_eq!(transition.output.history.candidates_examined, examined);
         assert_eq!(
-            transition.output.evidence.six_shards_partition_20160_candidates,
+            transition
+                .output
+                .evidence
+                .six_shards_partition_20160_candidates,
             CheckStatus::Checked
         );
         if let Some(word) = &transition.output.result.search_word {
@@ -61,14 +63,21 @@ fn six_runs_find_five_witnesses_and_form_search_as_a_verb() {
             assert_eq!(word.witness.xor_gate_count, 4);
             assert_eq!(word.witness.xor_lower_bound, 4);
             assert_eq!(word.witness.transport_orbit_size, 16);
-            assert!(word.witness.closure.content.characteristic_residual.is_one());
-            assert!(word
-                .witness
-                .closure
-                .content
-                .line_witnesses
-                .iter()
-                .all(|line| line.additive_residual == 0));
+            assert!(
+                word.witness
+                    .closure
+                    .content
+                    .characteristic_residual
+                    .is_one()
+            );
+            assert!(
+                word.witness
+                    .closure
+                    .content
+                    .line_witnesses
+                    .iter()
+                    .all(|line| line.additive_residual == 0)
+            );
         } else {
             assert_eq!(state, HypothesisFormationRunStateV0::NoWitness);
             assert_eq!(transition.output.history.unvisited_candidates, 0);
@@ -77,7 +86,10 @@ fn six_runs_find_five_witnesses_and_form_search_as_a_verb() {
         assert_eq!(frontier.sequence, sequence as u64 + 1);
     }
 
-    assert_eq!(frontier.state, HypothesisFormationFrontierStateV0::Completed);
+    assert_eq!(
+        frontier.state,
+        HypothesisFormationFrontierStateV0::Completed
+    );
     assert_eq!(frontier.next_crossing, 6);
     assert_eq!(frontier.formed_words.len(), 5);
     assert_eq!(
@@ -99,7 +111,13 @@ fn the_shortest_found_linear_path_is_four_xors_in_the_frozen_model() {
         &HypothesisFormationResourceV0::first(),
     )
     .unwrap();
-    let witness = &transition.output.result.search_word.as_ref().unwrap().witness;
+    let witness = &transition
+        .output
+        .result
+        .search_word
+        .as_ref()
+        .unwrap()
+        .witness;
 
     assert_eq!(witness.global_candidate_ordinal, 7_668);
     assert_eq!(witness.crossing_candidate_ordinal, 1_278);

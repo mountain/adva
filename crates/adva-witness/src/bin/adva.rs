@@ -1,21 +1,20 @@
 use adva_witness::{
-    AdvaDocumentV0, CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0, M6NamingPlanV0,
-    HYPOTHESIS_FORMATION_CONTRACT_SCHEMA_V0, MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0,
-    calibrate_trace_arithmetic_v0,
+    AdvaDocumentV0, CLOSURE_TRANSPORT_CONTRACT_SCHEMA_V0, HYPOTHESIS_FORMATION_CONTRACT_SCHEMA_V0,
+    M6NamingPlanV0, MAGIC_SQUARE_SEARCH_CONTRACT_SCHEMA_V0, calibrate_trace_arithmetic_v0,
     derive_inquiry_frontier_from_file_v0, learn_hypothesis_v0, load_closure_transport_contract_v0,
-    load_closure_transport_plan_v0, load_exploration_contract_v0, load_inquiry_frontier_v0,
+    load_closure_transport_plan_v0, load_exploration_contract_v0,
     load_hypothesis_formation_contract_v0, load_hypothesis_formation_frontier_v0,
-    load_hypothesis_formation_resource_v0,
+    load_hypothesis_formation_resource_v0, load_inquiry_frontier_v0,
     load_local_closure_candidate_v0, load_magic_square_frontier_v0, load_magic_square_resource_v0,
     load_magic_square_search_contract_v0, load_resource_snapshot_v0, load_reveal_witness_v0,
     load_verification_contract_v0, load_verification_packet_v0, load_verification_subject_v0,
     run_closure_transport_v0, run_hypothesis_formation_v0, run_m6_reveal_v0,
-    run_magic_square_search_v0,
-    save_closure_transport_frontier_v0, save_closure_transport_transition_v0,
-    save_hypothesis_formation_frontier_v0, save_hypothesis_formation_transition_v0,
-    save_hypothesis_transition_v0, save_inquiry_frontier_v0, save_magic_square_frontier_v0,
-    save_magic_square_transition_v0, save_reveal_witness_v0, save_trace_arithmetic_v0,
-    save_verification_frontier_v0, save_verification_transition_v0, verify_obligations_v0,
+    run_magic_square_search_v0, save_closure_transport_frontier_v0,
+    save_closure_transport_transition_v0, save_hypothesis_formation_frontier_v0,
+    save_hypothesis_formation_transition_v0, save_hypothesis_transition_v0,
+    save_inquiry_frontier_v0, save_magic_square_frontier_v0, save_magic_square_transition_v0,
+    save_reveal_witness_v0, save_trace_arithmetic_v0, save_verification_frontier_v0,
+    save_verification_transition_v0, verify_obligations_v0,
 };
 use std::env;
 use std::error::Error;
@@ -169,8 +168,7 @@ fn run_hypothesis_formation(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
     let method = load_hypothesis_formation_contract_v0(&parsed.contract)?;
     let object = load_hypothesis_formation_resource_v0(&parsed.resource)?;
     let transition = run_hypothesis_formation_v0(&subject, &method, &object)?;
-    let transition_receipt =
-        save_hypothesis_formation_transition_v0(&parsed.output, &transition)?;
+    let transition_receipt = save_hypothesis_formation_transition_v0(&parsed.output, &transition)?;
     let next_frontier = &transition.output.evidence.next_frontier;
     let frontier_receipt =
         save_hypothesis_formation_frontier_v0(&parsed.frontier_output, next_frontier)?;
