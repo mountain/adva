@@ -207,6 +207,18 @@ equation cell, source quotient, provenance erasure, fixed infinite family,
 deck transformation, hyperbolic lift, logic, or universality.
 
 
+The research crate may also run two bounded `learn` transitions for problem
+formation and value seeking. The first must retain an exact counterexample to a
+declared current policy and keeps candidate directions, falsifiers, external
+need, and finite cost visibly sourced from an imagination-resource input. The
+second enumerates one frozen finite family and admits only candidates meeting
+noncompensating availability, honest-overlap, typed-invariant, reserve, and
+budget constraints. A completed witness certifies that policy shape only. It
+does not derive value or imagination internally, verify the external meanings
+of feature names, authenticate custodians, establish domain independence,
+perform recovery or remeasurement, prove consensus, create consent, or turn a
+receipt threshold into truth.
+
 ## Equality interfaces
 
 The initial core distinguishes:
