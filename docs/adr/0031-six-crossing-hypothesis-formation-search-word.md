@@ -57,8 +57,9 @@ boundary only when a run actually produces such a witness.
    without a witness cannot form the word.
 9. Persist every output through the common
    `(subject, method, object) -> (history, result, evidence)` interface. The
-   final frontier accumulates formed-word occurrences without identifying
-   equal names or certificates.
+   transition retains the complete newly formed word and witness; the next
+   frontier accumulates checked occurrence, word, and witness digest references
+   without recopying the payload or identifying equal names and certificates.
 
 ## Consequences
 
@@ -71,6 +72,10 @@ Six residues cover the frozen finite family exactly. A negative residue result
 is an exhaustive statement only about that shard and predicate. A positive
 result may stop at its first witness and therefore does not enumerate the rest
 of its shard.
+
+The full payload/reference split is required for reuse: repeated frontiers must
+not grow by embedding every predecessor witness again. Replay follows the
+retained transition coordinate back to its complete word and certificate.
 
 This experiment does not close the open `M6` semantic filler, derive the six
 direction names from mathematics, prove a shortest path in another gate model,

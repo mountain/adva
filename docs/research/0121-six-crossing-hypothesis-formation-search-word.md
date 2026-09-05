@@ -116,8 +116,11 @@ A positive run packages one fresh word occurrence with:
 - the method's complete retained vocabulary; and
 - `search` as the sole introduced vocabulary item.
 
-After six terminal runs the final frontier contains five distinct `search`
-occurrences. They share a spelling and definition but do not thereby become one
+After six terminal runs the final frontier contains checked references to five
+distinct `search` occurrences. Each positive transition retains its complete
+word, vocabulary, and witness exactly once; later frontiers carry occurrence,
+word-digest, and witness-digest coordinates instead of embedding the payload
+again. They share a spelling and definition but do not thereby become one
 occurrence or one semantic identity. The fifth run contributes a retained
 negative history and no word.
 

@@ -196,6 +196,58 @@ impl SearchWordV0 {
         }
         Ok(())
     }
+
+    fn digest(
+        &self,
+        method: &HypothesisFormationContractV0,
+    ) -> Result<String, HypothesisFormationErrorV0> {
+        self.check_against(method)?;
+        digest_serialized(self)
+    }
+}
+
+#[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
+#[serde(deny_unknown_fields)]
+pub struct SearchWordReferenceV0 {
+    pub local_name: String,
+    pub occurrence: ArtifactKeyV0,
+    pub crossing: DomainTransportNameV0,
+    pub witness_digest: String,
+    pub word_digest: String,
+}
+
+impl SearchWordReferenceV0 {
+    fn from_word(
+        word: &SearchWordV0,
+        method: &HypothesisFormationContractV0,
+    ) -> Result<Self, HypothesisFormationErrorV0> {
+        word.check_against(method)?;
+        Ok(Self {
+            local_name: word.local_name.clone(),
+            occurrence: word.occurrence.clone(),
+            crossing: word.crossing.clone(),
+            witness_digest: word.witness_digest.clone(),
+            word_digest: word.digest(method)?,
+        })
+    }
+
+    fn check(
+        &self,
+        method: &HypothesisFormationContractV0,
+    ) -> Result<(), HypothesisFormationErrorV0> {
+        if self.local_name != "search" || self.occurrence.as_str().is_empty() {
+            return Err(invalid("a search-word reference lost its word coordinate"));
+        }
+        if !method
+            .crossing_order
+            .iter()
+            .any(|crossing| crossing == &self.crossing)
+        {
+            return Err(invalid("a search-word reference names no declared crossing"));
+        }
+        check_digest(&self.witness_digest)?;
+        check_digest(&self.word_digest)
+    }
 }
 
 #[derive(Clone, Debug, Eq, PartialEq, Serialize, Deserialize)]
@@ -208,7 +260,7 @@ pub struct HypothesisFormationFrontierV0 {
     pub state: HypothesisFormationFrontierStateV0,
     pub next_crossing: u8,
     pub crossing_cursor: u64,
-    pub formed_words: Vec<SearchWordV0>,
+    pub formed_words: Vec<SearchWordReferenceV0>,
     pub parent_digest: Option<String>,
 }
 
@@ -266,7 +318,7 @@ impl HypothesisFormationFrontierV0 {
         }
         let method = HypothesisFormationContractV0::first();
         for word in &self.formed_words {
-            word.check_against(&method)?;
+            word.check(&method)?;
         }
         let occurrences = self
             .formed_words
@@ -675,7 +727,7 @@ fn derive_output(
     };
     let mut formed_words = input.subject.formed_words.clone();
     if let Some(word) = &search_word {
-        formed_words.push(word.clone());
+        formed_words.push(SearchWordReferenceV0::from_word(word, &input.method)?);
     }
     let next_frontier = HypothesisFormationFrontierV0 {
         schema: HYPOTHESIS_FORMATION_FRONTIER_SCHEMA_V0.to_owned(),
@@ -908,6 +960,22 @@ fn key(value: impl Into<String>) -> Result<ArtifactKeyV0, HypothesisFormationErr
 fn pretty_json<T: Serialize>(value: &T) -> Result<String, HypothesisFormationErrorV0> {
     serde_json::to_string_pretty(value)
         .map_err(|error| HypothesisFormationErrorV0::Json(error.to_string()))
+}
+
+fn check_digest(digest: &str) -> Result<(), HypothesisFormationErrorV0> {
+    let Some(hex) = digest.strip_prefix("blake3:") else {
+        return Err(invalid("a search-word reference must use a BLAKE3 coordinate"));
+    };
+    if hex.len() != 64
+        || !hex
+            .bytes()
+            .all(|byte| byte.is_ascii_digit() || (b'a'..=b'f').contains(&byte))
+    {
+        return Err(invalid(
+            "a search-word reference must use a lowercase BLAKE3 coordinate",
+        ));
+    }
+    Ok(())
 }
 
 fn digest_serialized<T: Serialize>(value: &T) -> Result<String, HypothesisFormationErrorV0> {
