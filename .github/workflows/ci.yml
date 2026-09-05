@@ -110,6 +110,25 @@ jobs:
           cmp \
             target/magic-square-frontier-1.adva \
             programs/bootstrap-0/magic-square-frontier-1.adva
+      - name: Run six hypothesis-formation crossings
+        run: |
+          current=programs/bootstrap-0/hypothesis-formation-frontier.adva
+          for round in 1 2 3 4 5 6; do
+            next=target/hypothesis-formation-frontier-${round}.adva
+            cargo run -p adva-witness --bin adva -- \
+              learn \
+              "$current" \
+              programs/bootstrap-0/hypothesis-formation.adva \
+              programs/bootstrap-0/hypothesis-formation-resource.adva \
+              --output target/hypothesis-formation-${round}.adva \
+              --frontier-output "$next"
+            current=$next
+          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hypothesis-formation-six-run
+          path: target/hypothesis-formation-*.adva
+          retention-days: 7
 
   python:
     runs-on: ubuntu-latest
