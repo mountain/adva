@@ -39,6 +39,7 @@ computer, program geometry, or the proposed open logic.
 2. [From a Fixed Alphabet to Historical Primitives](0002-from-fixed-alphabet-to-historical-primitives.md)
 3. [Bounded Experiment Agenda for Opening and Closing Holes](0003-open-close-hole-experiment-agenda.md)
 4. [The Long Run: Observer Refutation and the Freedom Horizon](0004-long-run-freedom-witness.md)
+5. [The Second Absurdity Witness: Missingness, `I am`, and Polyphonic Retelling](0005-second-absurdity-witness.md)
 
 ## Relationship to the repository
 
