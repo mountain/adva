@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Run two existing Rust learn transitions; assert preservation, not truth."""
 import argparse
+import base64
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -64,6 +66,15 @@ def run(binary, output):
             expected = expected_dir / path.name
             require(expected.is_file(), "missing committed witness: " + path.name)
             require(path.read_bytes() == expected.read_bytes(), "replay drift: " + path.name)
+    # Text receipts provide a second authorized export route for small artifacts.
+    # Hashes concern byte integrity, never semantic identity.
+    for path in generated:
+        payload = path.read_bytes()
+        encoded = base64.b64encode(payload).decode("ascii")
+        print("ADVA_FILE_BEGIN", path.name, len(payload), hashlib.sha256(payload).hexdigest())
+        for offset in range(0, len(encoded), 4096):
+            print("ADVA_FILE_CHUNK", encoded[offset:offset + 4096])
+        print("ADVA_FILE_END", path.name)
     summary = {
         "introduced_words": all_new_words,
         "hypothesis_states": ["proposed", "proposed"],
