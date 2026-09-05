@@ -145,7 +145,27 @@ cargo run -p adva-witness --bin adva -- \
 
 Repeat for frontiers 1 through 5. Tests also exercise insufficient fuel,
 method drift, witness tampering, the six terminal states, and final vocabulary
-retention.
+retention. CI regenerates all twelve derived files and compares their bytes with
+the committed artifacts.
+
+The final retained coordinates are:
+
+| artifact | BLAKE3 coordinate |
+| --- | --- |
+| first `search` witness | `099db9bf6973565f8d9c1a589d2fe6e18895778035aae59b4fd2c675d4d5cdcd` |
+| second `search` witness | `91e72c91b09a3b5ad29a8333e9f6ea519a0fa19060ab373386fc33ba8fd2cc86` |
+| third `search` witness | `6aa7c0ae1f1730ccd6cdf18ffac6d6a888799af37f5d8c87a9274a46b7377916` |
+| fourth `search` witness | `91d160807e49fa9f0554496840d2f04b2184699ae2ce85fafe9a7a5cc84f9491` |
+| sixth-run `search` witness | `95e4c24d15e62298eefcfaa9444370347aa6c59ec56e4e07f9eb7a6f00353796` |
+| final completed frontier | `b64d93e46d5ea91e0727f33d14d8216b3c9ce38d0f406da4be12e4d5b348e071` |
+
+An initial implementation recopied every complete prior witness into every
+continued frontier. The fourth positive transition was about 437 KB, the sixth
+about 546 KB, and the final frontier about 235 KB. CI run 439 preserved that
+failed storage design as a temporary artifact. The checked-reference design
+stores each complete word in its producing transition and reduces the final
+frontier to 2,496 bytes; positive transitions stay between roughly 56 and 60
+KB. This cut is part of the experiment's result, not a formatting change.
 
 ## Boundary
 
