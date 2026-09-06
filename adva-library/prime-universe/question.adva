@@ -1,0 +1,18 @@
+{
+  "schema": "adva.prime-universe.question.proposed",
+  "version": 0,
+  "status": "Proposed",
+  "native_dispatch": "Unsupported; this file declares a research question and is not an executable adva.run.program.research document",
+  "name": "Universe(Prime)",
+  "attribution": {"Universe_naming": "Mingli Yuan, 2026-09-06", "mathematics": "Classical infinitude of primes; Euclid's finite-list argument", "operationalization": "Assistant proposal for review"},
+  "definition": {
+    "kind": "forall-finite-list",
+    "binder": {"name": "P", "type": "List(Nat)"},
+    "requires": {"kind": "all-elements", "predicate": "Prime", "list": "P"},
+    "conclusion": {"kind": "exists", "binder": {"name": "q", "type": "Nat"}, "body": {"kind": "and", "items": [{"predicate": "Prime", "arguments": ["q"]}, {"predicate": "NotMember", "arguments": ["q", "P"]}]}}
+  },
+  "finite_method": {"input": "One finite P and explicit fuel", "construct": "N = product(P) + 1, empty product = 1", "propose": "q and k such that q is prime and N = q*k", "verify": ["input domain and primality", "exact product-plus-one construction", "integer factor equation", "prime certificate", "q outside P"], "output": "FiniteExtensionVerified, Blocked or Unknown with evidence and residuals"},
+  "three_representations": {"adva": "Versioned question, input/output roles, proposed proof obligations and finite evidence references", "python": "Bounded exact candidate construction and external calibration", "rust": "Existing BigInt/ExactExprV0 for expression construction; proposed independent prime-certificate adapter"},
+  "proof_boundary": {"classical_theorem": "Proved by the external mathematical argument in Research 0147", "finite_instances": "See the bounded calibration report", "native_theorem_verification": "NotImplemented", "native_free": "NotGranted"},
+  "private_policy": "Retain within the existing private repository; no publication permission is created"
+}
