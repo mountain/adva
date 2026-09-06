@@ -8,6 +8,7 @@
 mod arithmetic;
 mod boundary;
 mod closure_transport;
+mod free_roundtrip;
 mod hypothesis_formation;
 mod inquiry;
 mod magic_square;
@@ -25,6 +26,7 @@ mod witness;
 pub use arithmetic::*;
 pub use boundary::*;
 pub use closure_transport::*;
+pub use free_roundtrip::*;
 pub use hypothesis_formation::*;
 pub use inquiry::*;
 pub use magic_square::*;
@@ -44,3 +46,4 @@ pub const WITNESS_SCHEMA_V0: &str = "adva.witness.research";
 
 /// Experimental schema version. Version zero is not part of `adva.ir`.
 pub const WITNESS_VERSION_V0: u32 = 0;
+
