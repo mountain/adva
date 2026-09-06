@@ -1,0 +1,27 @@
+{
+  "schema": "adva.boundary-research-host-cost.research",
+  "version": 0,
+  "command": [
+    "timeout",
+    "5s",
+    "python3",
+    "experiments/boundary_research/calibration.py",
+    "--contract",
+    "docs/research/0144-boundary-research-contract.json",
+    "--source",
+    "docs/research/0144-source-model-gap.json",
+    "--output",
+    "docs/research/0144-evidence/report.json"
+  ],
+  "exit_code": 0,
+  "wall_ns_including_startup_and_output_save": 43843065,
+  "child_peak_rss_kib_linux": 12928,
+  "child_user_seconds": 0.03702,
+  "child_system_seconds": 0.005556,
+  "runner_sha256": "215c9cc8c082547a5d4ab4475546e73a7cccbaa8169bda2b37ecbef21ad3022d",
+  "invocations": 1,
+  "repair_replays": 0,
+  "native_calls": 0,
+  "search_nodes": 0,
+  "scope": "Single supervised timeout/Python process tree; no other children in this supervisor; authoring/research/network costs not measured."
+}
