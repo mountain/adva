@@ -1,5 +1,12 @@
 # Architecture
 
+Research 0152 uses `python/adva/adva.py` as the outer CLI, with a bounded
+`verifier_search` supervisor. Its new Rust example owns arithmetic syntax,
+rewrite positions, residuals and witness checks; Python copies Rust-produced
+Lean/Metamath proof text and records external verification. Batched external
+acceptance admits only scoped research evidence. The stable semantic boundary
+and prior immutable library checkpoints are unchanged; see ADR 0040.
+
 ## Dependency direction
 
 ```text
@@ -419,3 +426,31 @@ and packages a local `learn` record. It does not extend `adva.ir`, allocate
 semantic identities, or synthesize a method. The native run and its limits are
 tracked in `docs/research/0136-native-learn-guarded-roundtrip.md`.
 
+## Frozen library stability research calibration
+
+Research 0149 and ADR 0037 add only the `library_stability` Cargo example.
+It consumes supplied, bounded `ExactExprV0` catalogues and observations and
+retains question-bound feature/exclusion certificates. Its shared study fuel,
+immutable requests and full-content replay are research protocol machinery,
+not changes to `ProgramTerm`, diagrams, the operation registry or live library
+storage. Existing Q4/M6 formation and braid regression oracles remain separate.
+
+Research 0150 and ADR 0038 subsequently add the Rust `library_checkpoint`
+module, with public functions re-exported from `adva-witness`. Its explicit
+epoch files retain parent bindings, ordered candidate and observation prefixes,
+complete diagnostic certificates and native ArithmeticTransition/Seal nodes.
+`load_library_v0` rederives the bounded ancestry into `CheckedLibraryV0`;
+`publish_library_v0` rechecks and publishes a complete file without clobbering.
+The `library_epoch` example performs one supplied continuation through disk
+reload. No existing diagram import, stable API meaning or documentary index
+is reinterpreted by this separate research schema.
+
+Research 0151 and ADR 0039 add the example-local `library_generation` proposal
+mechanism. It reads a checked 0150 seed, enumerates arithmetic proposal syntax
+without task access, checks expanded pairs against explicit calibration, and
+stores composite recipes in a separate exploration journal. Continuation
+drops the in-memory book and regenerates all prior stages from disk before
+reusing their recipes. Unknown/Open records are diagnostic, not knowledge
+admission. This journal does not change the old epoch loader or its checker
+fingerprint. Newest-recipe ablation and ordinary macro expansion calibrate
+bounded feedback without claiming native program or language formation.

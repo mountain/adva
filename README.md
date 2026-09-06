@@ -20,6 +20,35 @@ tool does not turn research targets into stable API promises.
 
 ## Initial executable slice
 
+The bounded [library-stability calibration](docs/research/0149-library-stability-and-zigzag.md)
+tests frozen research-library epochs, question-relative feature closure and
+no-progress controls. It does not implement a self-modifying native library.
+Run `cargo run -p adva-witness --example library_stability -- target/library-stability.json`
+with a **new** output path; the example refuses overwrite.
+
+[Research 0150](docs/research/0150-persistent-library-epochs.md) adds a bounded
+Rust snapshot loader and checked publication under `adva-library/stability/`.
+The `library_epoch` example loads a prior epoch, checks one supplied update,
+publishes without overwrite and reloads native research witness content.
+It does not discover its candidate or observation and does not add stable
+language operations.
+
+[Research 0151](docs/research/0151-library-driven-proposal-feedback.md) adds
+the `library_generation` example: target-blind candidate generation from a
+checked disk seed, retained composite proposal recipes, newest-recipe ablation
+and an ordinary-macro control. Its exploration journal is separate from
+knowledge epochs. Every reused expansion is rechecked; this is not native
+self-interpretation or general vocabulary promotion.
+
+[Research 0152](docs/research/0152-three-verifier-residual-search.md) connects
+the checked arithmetic seed to Lean 4 and Metamath proofs and compares bounded
+random/residual-guided rewrite search. The **outer CLI is `adva.py`**:
+`python python/adva/adva.py verifier-search --help`. It supervises the Rust
+`verifier_search` example and external checkers; Python does not issue
+arithmetic or native semantic judgments. The existing `prime-check` command
+remains available. Three accepting verifiers are not a three-computation
+theorem, and this discrete search is not SGD.
+
 - immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
   `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
 - explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,

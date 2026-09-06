@@ -77,3 +77,41 @@ programs that deliberately detach or evade operating-system limits.
 
 See `docs/research/0139-library-six-phase-and-communication.md` for the missing
 free predicate and the distinction among contract, seal and Seal.
+
+## Checked research library epochs (Research 0150)
+
+`stability/epoch-0000.json` and `stability/epoch-0001.json`, when published by
+the bounded 0150 run, use a **separate Rust-checked snapshot format**. They do
+not change the documentary status of the Pascal files or `index.json`.
+The loader `adva_witness::load_library_v0(directory, epoch, budget)` rechecks
+the full bounded parent chain and reconstructs native research witness nodes.
+It does not trust decoding, stored status flags or digests alone.
+
+The `library_epoch` Cargo example bootstraps from the retained 0149 proposal,
+loads that published snapshot, performs one supplied candidate/observation
+update, publishes the next epoch and reloads its guarded witness. An explicit
+new directory and report path are required; existing snapshots are never
+overwritten. See [the finite contract](../docs/research/0150-persistent-library-epochs.md)
+and its separate execution evidence. This remains a research loader, not a
+stable Lisp module system or automatically self-growing knowledge base.
+
+## Proposal exploration journal (Research 0151)
+
+The `library_generation` example reads the checked `stability/` seed and
+generates exact arithmetic candidates from it. Successful compositions are
+retained as proposal recipes under `exploration/0151/`, not published as a new
+knowledge epoch. The example replays the complete journal before using a
+recipe in a later bounded search; decoding alone never authorizes reuse.
+Rejected candidates, expanded alternatives, nonzero checks and macro/disabled
+controls remain visible. See the [finite contract](../docs/research/0151-library-driven-proposal-feedback.md).
+
+## External arithmetic calibration (Research 0152)
+
+The outer `python/adva/adva.py verifier-search` command loads the unchanged
+`stability/` seed through Rust, then checks selected arithmetic rewrite steps
+with Rust witnesses, Lean proofs and Metamath proofs. Its separate evidence
+and path journal live under
+[`docs/research/0152-evidence/`](../docs/research/0152-evidence/README.md).
+The comparison can change a research search policy, not the old library's
+meaning. There is no new knowledge epoch, new native word, silent deletion of
+backtracking paths, or promotion of external equality to program identity.
