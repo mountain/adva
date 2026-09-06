@@ -75,8 +75,11 @@ impl NativeRunReportV0 {
             state: "Rejected".to_owned(),
             error: None,
             error_phase: None,
-            arithmetic: "PSC0 builtin scalar realization: IEEE-754 f64; not exact rational arithmetic".to_owned(),
-            fuel_unit: "AST terms admitted before lowering; distinct from time and evaluated nodes".to_owned(),
+            arithmetic:
+                "PSC0 builtin scalar realization: IEEE-754 f64; not exact rational arithmetic"
+                    .to_owned(),
+            fuel_unit: "AST terms admitted before lowering; distinct from time and evaluated nodes"
+                .to_owned(),
             program_json: None,
             program: None,
             compilation: None,
@@ -125,9 +128,10 @@ pub fn run_native_program_v0(source_json: &str) -> NativeRunReportV0 {
             }
         }
     }
-    report
-        .phase_seconds
-        .insert("total_before_serialization".to_owned(), started.elapsed().as_secs_f64());
+    report.phase_seconds.insert(
+        "total_before_serialization".to_owned(),
+        started.elapsed().as_secs_f64(),
+    );
     report
 }
 
@@ -164,10 +168,20 @@ fn execute(program: &NativeRunProgramV0, report: &mut NativeRunReportV0) -> Resu
             return Err("entry must be the sole definition and explicitly exported".to_owned());
         }
         if definition.signature.inputs.len() > NATIVE_RUN_MAX_INPUTS
-            || definition.signature.inputs.iter().any(|port| port.value_type != ValueType::Real)
-            || definition.signature.outputs.iter().any(|value_type| *value_type != ValueType::Real)
+            || definition
+                .signature
+                .inputs
+                .iter()
+                .any(|port| port.value_type != ValueType::Real)
+            || definition
+                .signature
+                .outputs
+                .iter()
+                .any(|value_type| *value_type != ValueType::Real)
         {
-            return Err("profile permits at most eight Real inputs and only Real output ports".to_owned());
+            return Err(
+                "profile permits at most eight Real inputs and only Real output ports".to_owned(),
+            );
         }
         count_terms(&definition.body, &mut report.actual)?;
         if report.actual.ast_terms > program.fuel {
@@ -178,14 +192,19 @@ fn execute(program: &NativeRunProgramV0, report: &mut NativeRunReportV0) -> Resu
         Ok(())
     })
     .map_err(|error| ("term_preflight", error))?;
-    let linked = timed(&mut report.phase_seconds, "link", || link_modules(vec![parsed]))
-        .map_err(|error| ("link", error.to_string()))?;
+    let linked = timed(&mut report.phase_seconds, "link", || {
+        link_modules(vec![parsed])
+    })
+    .map_err(|error| ("link", error.to_string()))?;
     let compilation = timed(&mut report.phase_seconds, "compile", || {
         compile_function(&linked, &program.module, &program.entry)
     })
     .map_err(|error| ("compile", error.to_string()))?;
     if !compilation.certificate.certified() || !compilation.graft_trace.certificate.certified() {
-        return Err(("compile", "compiler did not return checked certificates".to_owned()));
+        return Err((
+            "compile",
+            "compiler did not return checked certificates".to_owned(),
+        ));
     }
     report.actual.compiled_nodes = compilation.result.nodes.len();
     report.actual.occurrences = compilation.result.occurrences.len();
@@ -197,13 +216,19 @@ fn execute(program: &NativeRunProgramV0, report: &mut NativeRunReportV0) -> Resu
     let evaluation = evaluation.map_err(|error| ("evaluate", error.to_string()))?;
     report.actual.evaluated_nodes = evaluation.certificate.executed_nodes.len();
     if evaluation.values.iter().any(|value| !value.is_finite()) {
-        return Err(("evaluate", "nonfinite output cannot be stored as a successful scalar result".to_owned()));
+        return Err((
+            "evaluate",
+            "nonfinite output cannot be stored as a successful scalar result".to_owned(),
+        ));
     }
     report.evaluation = Some(evaluation);
     Ok(())
 }
 
-fn preflight_source(program: &NativeRunProgramV0, actual: &mut NativeRunActualV0) -> Result<(), String> {
+fn preflight_source(
+    program: &NativeRunProgramV0,
+    actual: &mut NativeRunActualV0,
+) -> Result<(), String> {
     if program.schema != NATIVE_RUN_PROGRAM_SCHEMA_V0 || program.version != 0 {
         return Err("unsupported native run schema or version".to_owned());
     }
@@ -238,7 +263,9 @@ fn preflight_source(program: &NativeRunProgramV0, actual: &mut NativeRunActualV0
                 }
             }
             b')' => {
-                depth = depth.checked_sub(1).ok_or("unmatched closing parenthesis")?;
+                depth = depth
+                    .checked_sub(1)
+                    .ok_or("unmatched closing parenthesis")?;
             }
             _ => {}
         }
@@ -260,7 +287,10 @@ fn count_terms(term: &ProgramTerm, actual: &mut NativeRunActualV0) -> Result<(),
             return Err("Call is outside this first bounded run profile".to_owned());
         }
         ProgramTerm::Frontier { terms } => terms,
-        ProgramTerm::Apply { operation, arguments } => {
+        ProgramTerm::Apply {
+            operation,
+            arguments,
+        } => {
             // This caps an existing structural operation; it does not define it.
             if operation.name == "copy" {
                 actual.copy_operations += 1;
@@ -294,7 +324,8 @@ mod tests {
             "entry": "compute",
             "inputs": inputs,
             "fuel": 16
-        }).to_string()
+        })
+        .to_string()
     }
 
     fn unary(body: &str) -> String {
@@ -317,8 +348,15 @@ mod tests {
         let mut tampered: serde_json::Value = serde_json::from_str(&encoded).unwrap();
         tampered["history"]["prefix"] = json!([]);
         assert!(import_diagram_json(&tampered.to_string()).is_err());
-        let reuse = BTreeMap::from([("x".to_owned(), 5.0), ("y".to_owned(), 2.0), ("z".to_owned(), 3.0)]);
-        assert_eq!(evaluate(&checked.result, &reuse).unwrap().values, vec![11.0]);
+        let reuse = BTreeMap::from([
+            ("x".to_owned(), 5.0),
+            ("y".to_owned(), 2.0),
+            ("z".to_owned(), 3.0),
+        ]);
+        assert_eq!(
+            evaluate(&checked.result, &reuse).unwrap().values,
+            vec![11.0]
+        );
         let replay = run_native_program_v0(&input);
         assert_eq!(replay.compilation, report.compilation);
         assert_eq!(replay.evaluation, report.evaluation);
@@ -357,7 +395,8 @@ mod tests {
 
     #[test]
     fn native_run_checks_fuel_and_depth_before_compilation() {
-        let mut envelope: serde_json::Value = serde_json::from_str(&program(ARITHMETIC, json!({"x": 2, "y": 3, "z": 4}))).unwrap();
+        let mut envelope: serde_json::Value =
+            serde_json::from_str(&program(ARITHMETIC, json!({"x": 2, "y": 3, "z": 4}))).unwrap();
         envelope["fuel"] = json!(4);
         let report = run_native_program_v0(&envelope.to_string());
         assert_eq!(report.error_phase.as_deref(), Some("term_preflight"));
@@ -383,29 +422,63 @@ mod tests {
 
     #[test]
     fn native_run_refuses_unsupported_envelopes_and_nonreal_boundaries() {
-        for input in ["{}".to_owned(), "{".to_owned(), " ".repeat(NATIVE_RUN_MAX_ENVELOPE_BYTES + 1)] {
+        for input in [
+            "{}".to_owned(),
+            "{".to_owned(),
+            " ".repeat(NATIVE_RUN_MAX_ENVELOPE_BYTES + 1),
+        ] {
             assert_eq!(run_native_program_v0(&input).state, "Rejected");
         }
-        let mut envelope: serde_json::Value = serde_json::from_str(&program(&unary("(use x)"), json!({"x": 2}))).unwrap();
+        let mut envelope: serde_json::Value =
+            serde_json::from_str(&program(&unary("(use x)"), json!({"x": 2}))).unwrap();
         envelope["unexpected"] = json!(true);
-        assert_eq!(run_native_program_v0(&envelope.to_string()).error_phase.as_deref(), Some("envelope_parse"));
+        assert_eq!(
+            run_native_program_v0(&envelope.to_string())
+                .error_phase
+                .as_deref(),
+            Some("envelope_parse")
+        );
         envelope.as_object_mut().unwrap().remove("unexpected");
         envelope["version"] = json!(1);
-        assert_eq!(run_native_program_v0(&envelope.to_string()).error_phase.as_deref(), Some("source_preflight"));
+        assert_eq!(
+            run_native_program_v0(&envelope.to_string())
+                .error_phase
+                .as_deref(),
+            Some("source_preflight")
+        );
         envelope["version"] = json!(0);
         envelope["source"] = json!(";".repeat(NATIVE_RUN_MAX_SOURCE_BYTES + 1));
-        assert_eq!(run_native_program_v0(&envelope.to_string()).error_phase.as_deref(), Some("source_preflight"));
-        envelope["source"] = json!("(module arithmetic (export compute) (def compute (fn ((x Bool)) Bool (use x))))");
-        assert_eq!(run_native_program_v0(&envelope.to_string()).error_phase.as_deref(), Some("term_preflight"));
+        assert_eq!(
+            run_native_program_v0(&envelope.to_string())
+                .error_phase
+                .as_deref(),
+            Some("source_preflight")
+        );
+        envelope["source"] = json!(
+            "(module arithmetic (export compute) (def compute (fn ((x Bool)) Bool (use x))))"
+        );
+        assert_eq!(
+            run_native_program_v0(&envelope.to_string())
+                .error_phase
+                .as_deref(),
+            Some("term_preflight")
+        );
     }
 
     #[test]
     fn native_run_preserves_histories_even_when_values_agree() {
         let identity = run_native_program_v0(&program(&unary("(id (use x))"), json!({"x": 2})));
-        let reverse = run_native_program_v0(&program(&unary("(neg (neg (use x)))"), json!({"x": 2})));
+        let reverse =
+            run_native_program_v0(&program(&unary("(neg (neg (use x)))"), json!({"x": 2})));
         assert_eq!(identity.state, "Completed");
         assert_eq!(reverse.state, "Completed");
-        assert_eq!(identity.evaluation.unwrap().values, reverse.evaluation.unwrap().values);
-        assert_ne!(identity.compilation.unwrap().result.history, reverse.compilation.unwrap().result.history);
+        assert_eq!(
+            identity.evaluation.unwrap().values,
+            reverse.evaluation.unwrap().values
+        );
+        assert_ne!(
+            identity.compilation.unwrap().result.history,
+            reverse.compilation.unwrap().result.history
+        );
     }
 }
