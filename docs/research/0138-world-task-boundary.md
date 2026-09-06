@@ -1,6 +1,6 @@
 # Research 0138: World as the counterpart of open, at a task boundary
 
-Date: 2026-09-06. Status: proposed finite task-formation calibration; run pending.
+Date: 2026-09-06. Status: native bounded experiment completed; operational vocabulary remains Proposed.
 Base: main `57c1d04bcfe51b82f6e559a61ca02e668f630b5a`.
 
 ## User-defined placement and one-step objective
@@ -76,6 +76,9 @@ proposal used as agreement, a stale agreement after retasking, a display-only
 rename, and an incorrect candidate x=1 for goal3. There are eight case groups
 in total and no search beyond the frozen three candidate lists. Every outcome
 keeps task_closed=false because Human review is not supplied or simulated.
+This is an explicit conservative policy in the example, not a derived
+complete closure rule. The checks establish that the fixed cases respect
+that policy; they do not learn when an arbitrary World task should close.
 
 ## Boundary findings this experiment can and cannot support
 
@@ -115,12 +118,76 @@ timeout 30 target/release/examples/world_task_boundary \
 CI applies a 30-second process limit, 256 MiB virtual-memory limit, bounded
 file output and a ten-minute job timeout. The artifact basename is explicitly
 world-task.json, with create-new writes; no recursive extension is generated.
-One necessary implementation correction is permitted. The local environment
-has no Rust toolchain; actual native outcomes and costs remain pending until
-the CI record is retained. No additional search is authorized by a timeout.
+One necessary implementation correction was permitted; none was needed for
+native compilation or execution. The local environment has no Rust toolchain.
+CI formatted the source, passed example clippy, built it and executed the
+frozen cases once. The ordinary initial CI failed its formatting gate; this
+follow-up retains the exact executed rustfmt output and changes the dedicated
+workflow to check formatting. With retained evidence present, that workflow
+does not repeat the research execution. No additional search is authorized
+by a timeout. Use a fresh output directory for manual reproduction: an
+existing world-task.json is deliberately not overwritten.
 
 This step helps Mingli and later agents see which task obligation is attached
 to which goal, assumption and evidence. It does not yet establish value on
 Jiamin's real task. The next smallest continuation is one explicitly supplied
 review response or changed task requirement, with its source and scope
 retained, and a check of precisely which obligation it discharges or reopens.
+
+
+## Retained native result
+
+The [native job](https://github.com/mountain/adva/actions/runs/34032876417)
+succeeded on 2026-09-06. Its starting head was
+`9bfa9ac4274091a1754aa9e8710d332aa4c11f08`; CI applied rustfmt before building.
+The final example is exactly that executed formatted source, whose digest is
+recorded in `0138-world-task-cost.json`.
+
+| Fixed case | Arithmetic | Assumed agreement | Remaining action |
+| --- | --- | --- | --- |
+| Main, x+1=3, fuel2 | Verified x=2 | Conditionally applicable | Human review pending |
+| Short fuel1 | Unknown; checked x=1, remaining {2,3} | Conditionally applicable | Arithmetic witness still absent |
+| Reuse, x+1=4, fuel3 | Verified x=3 | Conditionally applicable | Human review pending |
+| Missing agreement | Verified | Missing | Scoped review assignment absent |
+| Machine proposal | Verified | Rejected as imported agreement | External assumption absent |
+| Retask with old agreement | Verified | Binding rejected | Matching agreement absent |
+| Display rename | Same verified witness | Same applicable assumption | Human review pending |
+| Wrong x=1 for goal3 | Rejected; native Seal refused | Conditionally applicable | Valid arithmetic witness absent |
+
+All eight groups passed their fixed checks. Complete native proof nodes,
+exact inputs, search prefixes, assumptions and judgments are retained in
+`0138-world-task-witness.json` (109446 bytes, without a final newline).
+SHA-256: `5db5990535f3cbf00c371204faa02caab92a2b6a9e109eb0d86ecd17d0330279`.
+The file digest matches the native CI output. It is an integrity check, not
+a semantic source identity. No agreement-origin tag is authentication.
+
+There were six candidate visits and fourteen counted native proof-check
+units: six candidate derivations, seven saved-witness replays and one forced
+Seal-refusal check. A unit is not every internal kernel invocation. Search
+and construction took 87023 ns; verification and case recording 196245 ns;
+serialization 148483 ns; file creation, write and sync 1194868 ns. The sum of
+these measured phases is 1.626619 ms, excluding startup, top-level evidence
+packaging, stdout, teardown, engineering, compilation and network time.
+The fresh goal4 reuse used three of the six candidate visits; separate reuse
+time was not measured.
+
+The outer native-command measurement recorded a peak resident set of 3852
+KiB (about 3.76 MiB). This covers the timed timeout/native-command process
+tree, not the compiler or full CI host. Its displayed 0.00-second times are
+rounded. Cargo reported 29.44 seconds for the lint/dev build and 55.08 seconds
+for the release build. Full research time, per-phase peak memory and isolated
+word-formation cost were not measured. The machine-readable cost record and
+raw host measurement are saved alongside the witness. No with/without-word
+cost comparison was run and no acceleration or added expression power is
+claimed.
+
+This result calibrates one proposed World/open interface. It supplies no
+general closure criterion, evidence of real agreement, native learn
+implementation, self-interpreter or proof of universal grammar reliability.
+No additional working word is required for this finite step.
+
+The example's witness replay reconstructs retained in-memory proof nodes in
+the native store. It does not yet expose an importer that reads this saved
+task JSON and validates it independently. The JSON is complete audit output;
+deserialization alone would not authorize a task or certificate. A standalone
+stored-task replay interface remains an engineering obligation.
