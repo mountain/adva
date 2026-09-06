@@ -1,0 +1,55 @@
+name: Self interpretation boundary
+
+on:
+  pull_request:
+    paths:
+      - "crates/adva-lisp/examples/observe_self_boundary.rs"
+      - "programs/self-boundary/**"
+      - ".github/workflows/self-boundary.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  observe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Capture native formatting
+        run: |
+          cargo fmt --all
+          git diff -- crates/adva-lisp/examples/observe_self_boundary.rs
+      - name: Check example lints
+        run: cargo clippy -p adva-lisp --example observe_self_boundary -- -D warnings
+      - name: Build the bounded native observer
+        run: cargo build --release -p adva-lisp --example observe_self_boundary
+      - name: Observe the frozen boundary once
+        shell: bash
+        run: |
+          mkdir -p target/self-boundary
+          ulimit -v 262144
+          ulimit -f 2048
+          /usr/bin/time -v -o target/self-boundary/host-cost.txt \
+            timeout 30 target/release/examples/observe_self_boundary \
+            --output target/self-boundary/self-boundary.json
+          sha256sum target/self-boundary/self-boundary.json
+          cat target/self-boundary/host-cost.txt
+      - name: Retain formatted source for review
+        if: always()
+        run: |
+          echo SELF_BOUNDARY_SOURCE_BEGIN
+          cat crates/adva-lisp/examples/observe_self_boundary.rs
+          echo SELF_BOUNDARY_SOURCE_END
+      - name: Retain the observation and its cost
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: self-boundary-observation
+          path: target/self-boundary/
+          if-no-files-found: warn
+          retention-days: 7
