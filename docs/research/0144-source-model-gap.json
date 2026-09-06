@@ -1,0 +1,273 @@
+{
+  "schema": "adva.boundary-research-source.research",
+  "version": 0,
+  "origin_commit": "cd5730119757ff8247e54b641dfc1aca4b112e22",
+  "origin_report_sha256": "03c4bee041be3b506b1ad18baffb46bf5ade569ef1d290631f0580e9aa6886f9",
+  "case": {
+    "expectation_met": true,
+    "expected_status": "ModelGap",
+    "id": "empty-survivor",
+    "input_refs": [
+      "subject-empty-survivor",
+      "method",
+      "object-base"
+    ],
+    "outcome": {
+      "evidence": {
+        "candidate_filter_crosscheck": true,
+        "knowledge_is_scope_local": true,
+        "point_check": {
+          "reason": "point-receipt-independently-replayed",
+          "recomputed_residual": "-1/18014398509481984",
+          "recomputed_values": [
+            {
+              "rational": "18014398509481983/18014398509481984"
+            },
+            {
+              "rational": "1"
+            }
+          ],
+          "recomputed_verdict": "Different",
+          "status": "Accepted"
+        },
+        "roles_present": [
+          "subject",
+          "method",
+          "object"
+        ]
+      },
+      "history": [
+        {
+          "after": [
+            "unit",
+            "dyadic-product"
+          ],
+          "before": [
+            "unit",
+            "dyadic-product"
+          ],
+          "index": 0,
+          "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+          "remaining_after": 477,
+          "remaining_before": 500,
+          "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+          "spent_after": 23,
+          "spent_before": 0,
+          "status": "ModelGap"
+        }
+      ],
+      "resource": {
+        "global_remaining": 1827,
+        "global_spent": 173,
+        "local_remaining": 477,
+        "local_spent": 23
+      },
+      "result": {
+        "after": [
+          "unit",
+          "dyadic-product"
+        ],
+        "before": [
+          "unit",
+          "dyadic-product"
+        ],
+        "free_candidate": null,
+        "knowledge": "NoUpdate",
+        "native_free": "Unimplemented",
+        "next_proposal_after": "unit",
+        "next_proposal_before": "unit",
+        "reason": "declared-hypotheses-miss-verified-observation",
+        "status": "ModelGap"
+      }
+    },
+    "presence_only_admits": true
+  },
+  "subject": {
+    "active_candidate_ids": [
+      "unit",
+      "dyadic-product"
+    ],
+    "candidate_coverage": [
+      "unit",
+      "dyadic-product"
+    ],
+    "candidate_universe": [
+      {
+        "id": "unit",
+        "prediction": "1"
+      },
+      {
+        "id": "dyadic-product",
+        "prediction": "2"
+      }
+    ],
+    "history": [],
+    "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+    "name": "k27-knowledge-question",
+    "question": {
+      "domain": "Q",
+      "environment": {
+        "x": "134217729/134217728",
+        "y": "134217727/134217728"
+      },
+      "name": "product-k27",
+      "observer": "exact-rational-v0",
+      "ordered_pair": [
+        [
+          "mul",
+          [
+            "input",
+            "x"
+          ],
+          [
+            "input",
+            "y"
+          ]
+        ],
+        [
+          "const",
+          "1"
+        ]
+      ],
+      "quantifier": "at-declared-input",
+      "relation": "equal",
+      "schema": "adva.judgment-question.research",
+      "version": 0
+    },
+    "remaining_fuel": 500,
+    "requested_action": "external-learn-checkpoint",
+    "schema": "adva.knowledge-subject.research",
+    "spent_fuel": 0,
+    "version": 0
+  },
+  "object": {
+    "name": "k27-verified-distinction",
+    "question": {
+      "domain": "Q",
+      "environment": {
+        "x": "134217729/134217728",
+        "y": "134217727/134217728"
+      },
+      "name": "product-k27",
+      "observer": "exact-rational-v0",
+      "ordered_pair": [
+        [
+          "mul",
+          [
+            "input",
+            "x"
+          ],
+          [
+            "input",
+            "y"
+          ]
+        ],
+        [
+          "const",
+          "1"
+        ]
+      ],
+      "quantifier": "at-declared-input",
+      "relation": "equal",
+      "schema": "adva.judgment-question.research",
+      "version": 0
+    },
+    "receipt": {
+      "authority": "external point observation only",
+      "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+      "ordered_trace": [
+        {
+          "operands": [],
+          "operation": "input",
+          "path": "0.0",
+          "value": {
+            "rational": "134217729/134217728"
+          }
+        },
+        {
+          "operands": [],
+          "operation": "input",
+          "path": "0.1",
+          "value": {
+            "rational": "134217727/134217728"
+          }
+        },
+        {
+          "operands": [
+            {
+              "rational": "134217729/134217728"
+            },
+            {
+              "rational": "134217727/134217728"
+            }
+          ],
+          "operation": "mul",
+          "path": "0",
+          "value": {
+            "rational": "18014398509481983/18014398509481984"
+          }
+        },
+        {
+          "operands": [],
+          "operation": "const",
+          "path": "1",
+          "value": {
+            "rational": "1"
+          }
+        }
+      ],
+      "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+      "residual": "-1/18014398509481984",
+      "schema": "adva.point-judgment-receipt.research",
+      "scope": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      },
+      "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+      "values": [
+        {
+          "rational": "18014398509481983/18014398509481984"
+        },
+        {
+          "rational": "1"
+        }
+      ],
+      "verdict": "Different",
+      "version": 0
+    },
+    "schema": "adva.knowledge-object.research",
+    "source": {
+      "commit": "2407780f21c428c7a801234e8bb2e27185093900",
+      "meaning": "Historical external receipt; checker must replay this point obligation before use",
+      "path": "docs/research/0142-evidence/report.json",
+      "sha256": "30d477911ac53b60fcee50e76a78dd0c33b9ca69d3bfcba090fe0e872755274b"
+    },
+    "version": 0
+  },
+  "note": "Retained ModelGap snapshot; old candidates are refuted, not still supported. Native-free remains an unresolved capability."
+}

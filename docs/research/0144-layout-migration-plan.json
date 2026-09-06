@@ -1,0 +1,214 @@
+{
+  "schema": "adva.layout-migration-plan.research",
+  "version": 0,
+  "status": "Proposed",
+  "execution_status": "NotRun",
+  "repository": "mountain/adva",
+  "source_main_commit": "24d7275971cfd61fabc3270ac2a71b79df377598",
+  "inspection_scope": {
+    "status": "Proposed",
+    "execution_status": "NotRun",
+    "method": "Read-only GitHub tree and selected source/configuration inspection; no path changes, builds, imports, tests or native calls were performed by this audit.",
+    "coverage": "Selected confirmed consumers, not an exhaustive reference inventory. A complete checkout-wide reference and runtime-path inventory remains a migration gate.",
+    "tree_truncated": false,
+    "repository_files_changed_by_plan": false
+  },
+  "authority": {
+    "status": "Proposed",
+    "execution_status": "NotRun",
+    "rule": "The three implementation directories do not identify the theoretical K/t/X domains, confer equal semantic authority, or require each implementation to duplicate the semantic kernel.",
+    "preserved_boundary": "Rust remains the sole authority for semantic identities, checked IR, histories, cells and certificates. Python adapts or orchestrates checked results. Versioned JSON IR is the language-independent interchange boundary.",
+    "operation_meaning": "A path is resolved relative to an invocation, package or contract root. Equal bytes at a new filename do not alone establish operational equivalence: interpreter, entrypoint, schema, argument order, scope, capabilities, history and resource accounting must remain related by an explicitly checked migration."
+  },
+  "path_mappings": [
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "Cargo.toml",
+      "proposed": "Cargo.toml",
+      "action": "Retain the root virtual workspace and root cargo invocation. Update member and workspace dependency paths, while preserving the existing root target directory convention.",
+      "consumers": ["cargo workspace commands", "pyproject.toml maturin manifest path", ".github/workflows/*", "scripts/replay_arithmetic_vocabulary.py default binary path"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "crates/*",
+      "proposed": "rust/crates/*",
+      "action": "Move the four Rust crates as a path-only phase; preserve crate names, module boundaries, public interfaces and semantic rules.",
+      "consumers": ["Cargo.toml workspace.members", "Cargo.toml workspace.dependencies", "pyproject.toml tool.maturin.manifest-path", "workflow path filters and source artifact paths", "documentation and future complete reference inventory"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "experiments/labs-search",
+      "proposed": "rust/experiments/labs-search",
+      "action": "Include the research-local Rust package in the same workspace-path inventory; it is the fifth workspace member and must not be omitted.",
+      "consumers": ["Cargo.toml workspace.members", "research commands and documentation to be inventoried"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "python/adva/*",
+      "proposed": "python/adva/*",
+      "action": "Retain the existing public package and adva._native binding. If a file named adva.py is useful, place the thin entrypoint at python/adva/adva.py and optionally expose it through python/adva/__main__.py. Do not replace the package with a competing top-level module.",
+      "import_boundary": "A top-level python/adva.py beside an existing package does not necessarily shadow it in every import context, but introduces avoidable launch/import ambiguity. Package-qualified entrypoints preserve a clear namespace.",
+      "existing_abstraction": "python/adva/research.py already contains ResearchMachineV0; proposed boundary research must distinguish its scope from that existing implementation.",
+      "consumers": ["python/adva/__init__.py exports", "python/adva/core.py relative _native imports", "pyproject.toml module-name and python-source", "installed wheel import and type checking"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "tests/python/*",
+      "proposed": "python/tests/*",
+      "action": "Optional later phase, separate from semantic implementation. Update test discovery and relative source resolution together.",
+      "consumers": ["pyproject.toml tool.pytest.ini_options.testpaths", "tests/python/test_phase_runner.py __file__.parents[2] source lookup", "other test source lookups requiring full inventory"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "experiments/<Python research tool>",
+      "proposed": "python/experiments/<Python research tool>",
+      "action": "Migrate selected Python tools one at a time after import, fixture and evidence dependencies are recorded. Do not move the mixed experiments tree wholesale or infer semantic ownership from file extension.",
+      "consumers": ["tests loading scripts by file path", "workflow invocation paths", "pinned checker imports and source hashes", "research reproduction commands"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "programs/*",
+      "proposed": "adva/programs/*",
+      "action": "Move input groups with their internal relationships intact; retain each artifact's declared format and native-execution status.",
+      "consumers": [".github/workflows/ci.yml program inputs and byte comparisons", "other workflow path filters and inputs", "scripts/replay_arithmetic_vocabulary.py INPUTS", "research reproduction commands and fixture references"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "adva-library/*",
+      "proposed": "adva/library/*",
+      "action": "Move contracts and their input subdirectories as a group. Preserve contract-relative paths rather than using upward traversal or duplicating semantic input files in three implementation directories.",
+      "protected_relation": "experiments/phase_runner/run_six.py input_path rejects absolute paths and paths escaping the contract directory. learn-free-six.contract.json and phase-runner/ input files must retain this relation.",
+      "consumers": ["phase-runner contract loader", "adva-library/index.json and README references", "CLI invocation and research reproduction commands"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "examples/<Adva input>",
+      "proposed": "adva/examples/<Adva input>",
+      "action": "Move only classified input examples; an .adva extension does not by itself prove native executability.",
+      "consumers": ["example loaders and documentation requiring inventory"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "current": "docs/, schemas/, ontology/, root package and governance files",
+      "proposed": "Retain shared root locations",
+      "action": "Keep common versioned contracts, claims, theory and governance outside the three implementation directories. This shared layer is not a fourth machine.",
+      "consumers": ["AGENTS.md dependency instructions", "versioned JSON IR imports", "claim and historical evidence links"]
+    }
+  ],
+  "confirmed_configuration_updates": [
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "path": "Cargo.toml",
+      "fields": ["workspace.members: four crates and experiments/labs-search", "workspace.dependencies.adva-ir.path", "workspace.dependencies.adva-lisp.path", "workspace.dependencies.adva-witness.path"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "path": "pyproject.toml",
+      "fields": ["tool.maturin.manifest-path: crates/adva-python/Cargo.toml -> rust/crates/adva-python/Cargo.toml", "Preserve tool.maturin.python-source=python", "Preserve tool.maturin.module-name=adva._native", "Change pytest testpaths only if tests move", "Preserve or explicitly revise mypy_path=python"]
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "path": ".github/workflows/",
+      "files": ["ci.yml", "arithmetic-vocabulary.yml", "learn-roundtrip.yml", "native-program-run.yml", "representation-residual.yml", "self-boundary.yml", "world-task.yml"],
+      "fields": ["paths filters", "program inputs", "source capture and artifact paths", "script invocations", "byte-comparison fixtures"],
+      "note": "The selected reads confirm affected consumers; they are not an exhaustive inventory of every reference within every file."
+    },
+    {
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "path": "scripts/replay_arithmetic_vocabulary.py",
+      "fields": ["ROOT = Path(__file__).resolve().parents[1]", "INPUTS = ROOT / programs/bootstrap-0", "default ROOT / target/debug/adva", "default ROOT / target/arithmetic-vocabulary"],
+      "note": "Keeping the script at its current root-relative depth and keeping the root Cargo workspace avoids unnecessary changes to binary and output conventions."
+    }
+  ],
+  "historical_draft_migration": {
+    "status": "Proposed",
+    "execution_status": "NotRun",
+    "draft_142_commit": "2407780f21c428c7a801234e8bb2e27185093900",
+    "draft_143_commit": "cd5730119757ff8247e54b641dfc1aca4b112e22",
+    "draft_relationship": "Both are unmerged at this inspection; PR 143 is stacked on PR 142. Their status must be rechecked before implementation.",
+    "known_142_checker_path": "experiments/judgment_distinction/calibration.py",
+    "known_142_checker_sha256": "2f1c1e90e3dc1ffd11c8e6d7630eed6bdf2956df7ea3492f144631c6b5d1b842",
+    "known_143_paths": ["experiments/knowledge_boundary/calibration.py", "adva-library/knowledge-boundary/subject.adva", "adva-library/knowledge-boundary/method.adva", "adva-library/knowledge-boundary/object.adva"],
+    "required_action": "Create a separate migration obligation for pinned source paths, method/checker digests, contract roots and reproduction commands. Record before/after provenance without rewriting historical reports or claiming an old certificate automatically authorizes a changed interpreter. Inventory the exact 143 pins from its frozen artifacts before moving anything."
+  },
+  "phase_order": [
+    {
+      "phase": 0,
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "action": "Freeze a complete migration manifest and inspect current branch dependencies.",
+      "acceptance_gate": "Record old/new location, content digest, schema, interpreter/entrypoint, input root, evidence scope and relevant build/CI consumer for each moved group; expose all unknown consumers."
+    },
+    {
+      "phase": 1,
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "action": "Apply the Rust path-only migration while retaining the root Cargo workspace.",
+      "acceptance_gate": "Declared workspace packages remain discoverable, required Rust build checks pass, and an installed Python package can import the unchanged adva._native binding. Run only the checks needed for these concrete risks."
+    },
+    {
+      "phase": 2,
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "action": "Move Adva program and library groups, updating live consumers and relative roots.",
+      "acceptance_gate": "Contract path containment remains enforced; one declared historical replay preserves its scoped result, refusal behavior and resource/history interpretation. Preserve original evidence and attach migration evidence separately."
+    },
+    {
+      "phase": 3,
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "action": "Organize selected Python tools/tests and an optional package-qualified thin entrypoint.",
+      "acceptance_gate": "Installed-package and declared CLI imports resolve to the intended package; relevant relative source/fixture lookups resolve; the entrypoint does not invent semantic identities or reset resource history."
+    },
+    {
+      "phase": 4,
+      "status": "Proposed",
+      "execution_status": "NotRun",
+      "action": "Begin a separate versioned native-free implementation phase after migration contracts stabilize.",
+      "acceptance_gate": "Specify the task-relative acceptance predicate, exact input/output adapter, protected obligations, resource bound, failure statuses and independent checker before native execution. Do not combine path migration, semantic reinterpretation and authority expansion in one change."
+    }
+  ],
+  "inspected_sources": [
+    {"path": "AGENTS.md", "git_blob_sha": "480649c51773b3be2c314ca2b9098328e2500695"},
+    {"path": "Cargo.toml", "git_blob_sha": "efa853bc376c5bc81845a78c6251e5ae9f298cf1"},
+    {"path": "pyproject.toml", "git_blob_sha": "6342e52eb51c3dfa05a12f3453621dd400e58ec9"},
+    {"path": "python/adva/__init__.py", "git_blob_sha": "0303cb03b838628892a99780f8559c0f32dd0ab1"},
+    {"path": "python/adva/core.py", "git_blob_sha": "0b727b306444023bb652dc42b2bd3d6ac621c19e"},
+    {"path": "python/adva/research.py", "git_blob_sha": "5541b405f80fd9c98854b41c1c8324b65f54721f"},
+    {"path": "docs/ARCHITECTURE.md", "git_blob_sha": "fdf6095ace7d6f18cb34f4ce6a6ee33a3d5bc265"},
+    {"path": "experiments/phase_runner/run_six.py", "git_blob_sha": "22f1a63381469b930e62d7fc812c6f04d29ffb5f"},
+    {"path": "tests/python/test_phase_runner.py", "git_blob_sha": "cf5771b3ccc0d9bd3713ce9ac84692142c62143d"},
+    {"path": "scripts/replay_arithmetic_vocabulary.py", "git_blob_sha": "995058c7d9e15fb2a6195d05440d556d9b41b7d0"},
+    {"path": "adva-library/learn-free-six.contract.json", "git_blob_sha": "a056c79263dc06f845fd930712769ba7ed05ae50"},
+    {"path": "crates/adva-python/Cargo.toml", "git_blob_sha": "2ec0708acb82e76fb3dc6412b970cfbe86d27d63"},
+    {"path": "experiments/labs-search/Cargo.toml", "git_blob_sha": "9e3b2feb3e442347411ef1810c46f780c68c13e0"},
+    {"path": ".github/workflows/ci.yml", "git_blob_sha": "de342e540b9a1475b092604a143fe43078ff1183"},
+    {"path": ".github/workflows/arithmetic-vocabulary.yml", "git_blob_sha": "eabfced7e9164f36d0d9def35dc9f7427fac13ad"},
+    {"path": ".github/workflows/learn-roundtrip.yml", "git_blob_sha": "39030f389af59a5e1e9c4a9a9f65b336d4a0b378"},
+    {"path": ".github/workflows/native-program-run.yml", "git_blob_sha": "397ac32603d9b08ae767c73ec4ab347c14002694"},
+    {"path": ".github/workflows/representation-residual.yml", "git_blob_sha": "d0a808006aea96b45c57f489d4d041e272c40c86"},
+    {"path": ".github/workflows/self-boundary.yml", "git_blob_sha": "ca552e9d01cfd6dd0077529df0ea50a984d5c0f5"},
+    {"path": ".github/workflows/world-task.yml", "git_blob_sha": "364c0b5413bc1f78a182d42d39c3ad14dbdc0f4c"}
+  ],
+  "residuals": [
+    "A complete checkout-wide path/reference inventory has not been performed.",
+    "No migration, Rust build, wheel build, installed-package import, native execution or replay has been run under this plan.",
+    "Names and paths are not proof of semantic equivalence; preservation remains conditional on declared interpreters, schemas, observations and evidence scope.",
+    "The native free command, its task-relative predicate and versioned adapter remain a separate implementation obligation.",
+    "Future merging or rebasing of drafts 142 and 143 can change the implementation base and requires a fresh dependency check."
+  ]
+}

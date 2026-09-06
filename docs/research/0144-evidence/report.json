@@ -1,0 +1,2937 @@
+{
+  "all_expectations_met": true,
+  "cases": [
+    {
+      "checking_ns": 255316,
+      "expectation_met": true,
+      "expected_status": "TaskBoundarySatisfied",
+      "id": "main-valid-revision",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 11,
+          "local_charged_units": 10,
+          "old_task_remains_open": true,
+          "remaining_after": 467,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 33,
+          "spent_before": 23,
+          "status": "TaskBoundarySatisfied"
+        },
+        "result": {
+          "checked_new_obligations": [
+            "candidate-v2"
+          ],
+          "integer_crosscheck": true,
+          "native_free": "Unimplemented",
+          "new_boundary": 1,
+          "old_task_status": "ModelGap",
+          "permitted_action": "external-revised-checkpoint",
+          "reason": "checked-external-boundary-revision",
+          "residual": [
+            "native-free"
+          ],
+          "status": "TaskBoundarySatisfied"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 11,
+            "local_charged_units": 10,
+            "old_task_remains_open": true,
+            "remaining_after": 467,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 33,
+            "spent_before": 23,
+            "status": "TaskBoundarySatisfied"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 198012,
+      "expectation_met": true,
+      "expected_status": "ModelGap",
+      "id": "rename-only-no-revision",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [],
+          "replaced": {},
+          "retained": [
+            "observation",
+            "model-gap",
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "ModelGap"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "display-rename-only-no-revision",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "ModelGap"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "ModelGap"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 0,
+        "candidate": null,
+        "method_version": 0,
+        "name": "display-renamed",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [],
+          "replaced": {},
+          "retained": [
+            "observation",
+            "model-gap",
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "rename_only": true,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 179094,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "drop-native-residual",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": []
+        },
+        "proposed_target_obligations": [
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-obligation-not-exactly-once",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": []
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 217100,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "overlap-partition",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation",
+            "native-free"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-obligation-not-exactly-once",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation",
+            "native-free"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 158013,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "stale-boundary-binding",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-or-question-binding",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "stale",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 168839,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "same-name-changed-prediction",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 11,
+          "local_charged_units": 10,
+          "old_task_remains_open": true,
+          "remaining_after": 467,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 33,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "candidate-prediction-refuted",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 11,
+            "local_charged_units": 10,
+            "old_task_remains_open": true,
+            "remaining_after": 467,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 33,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "1"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 43243,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "fuel-reset",
+      "outcome": {
+        "old_refutations": [],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": null,
+        "resource": {
+          "global_charged_units": 1,
+          "local_charged_units": 0,
+          "old_task_remains_open": true,
+          "remaining_after": 477,
+          "remaining_before": 477,
+          "requested_ledger": [
+            500,
+            0
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 23,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-fuel-not-inherited",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 1,
+            "local_charged_units": 0,
+            "old_task_remains_open": true,
+            "remaining_after": 477,
+            "remaining_before": 477,
+            "requested_ledger": [
+              500,
+              0
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 23,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 500,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 0,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 40400,
+      "expectation_met": true,
+      "expected_status": "Unknown",
+      "id": "zero-fuel",
+      "outcome": {
+        "old_refutations": [],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": null,
+        "resource": {
+          "global_charged_units": 1,
+          "local_charged_units": 0,
+          "old_task_remains_open": true,
+          "remaining_after": 477,
+          "remaining_before": 477,
+          "requested_ledger": [
+            0,
+            500
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 23,
+          "spent_before": 23,
+          "status": "Unknown"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "finite-fuel-exhausted",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Unknown"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 1,
+            "local_charged_units": 0,
+            "old_task_remains_open": true,
+            "remaining_after": 477,
+            "remaining_before": 477,
+            "requested_ledger": [
+              0,
+              500
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 23,
+            "spent_before": 23,
+            "status": "Unknown"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 0,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 500,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 262366,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "native-free-demand",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 8,
+          "local_charged_units": 7,
+          "old_task_remains_open": true,
+          "remaining_after": 470,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 30,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "native-free-unimplemented",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 8,
+            "local_charged_units": 7,
+            "old_task_remains_open": true,
+            "remaining_after": 470,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 30,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "native-free",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 152515,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "old-refutation-erased",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "old-refutation-not-retained",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    },
+    {
+      "checking_ns": 170962,
+      "expectation_met": true,
+      "expected_status": "TaskBoundarySatisfied",
+      "id": "fresh-k30-reuse",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/1152921504606846976",
+            "id": "unit",
+            "observed": "1152921504606846975/1152921504606846976",
+            "prediction": "1",
+            "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383"
+          },
+          {
+            "difference": "1152921504606846977/1152921504606846976",
+            "id": "dyadic-product",
+            "observed": "1152921504606846975/1152921504606846976",
+            "prediction": "2",
+            "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "1152921504606846975/1152921504606846976",
+        "resource": {
+          "global_charged_units": 11,
+          "local_charged_units": 10,
+          "old_task_remains_open": true,
+          "remaining_after": 467,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "2873dcd013366dec1ad00bb96b2e7fd75c3d018372f4b386202854ecfa82706e",
+          "spent_after": 33,
+          "spent_before": 23,
+          "status": "TaskBoundarySatisfied"
+        },
+        "result": {
+          "checked_new_obligations": [
+            "candidate-v2"
+          ],
+          "integer_crosscheck": true,
+          "native_free": "Unimplemented",
+          "new_boundary": 1,
+          "old_task_status": "ModelGap",
+          "permitted_action": "external-revised-checkpoint",
+          "reason": "checked-external-boundary-revision",
+          "residual": [
+            "native-free"
+          ],
+          "status": "TaskBoundarySatisfied"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 11,
+            "local_charged_units": 10,
+            "old_task_remains_open": true,
+            "remaining_after": 467,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "2873dcd013366dec1ad00bb96b2e7fd75c3d018372f4b386202854ecfa82706e",
+            "spent_after": 33,
+            "spent_before": 23,
+            "status": "TaskBoundarySatisfied"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "1152921504606846975/1152921504606846976"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/1152921504606846976",
+            "id": "unit",
+            "observed": "1152921504606846975/1152921504606846976",
+            "prediction": "1",
+            "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383"
+          },
+          {
+            "difference": "1152921504606846977/1152921504606846976",
+            "id": "dyadic-product",
+            "observed": "1152921504606846975/1152921504606846976",
+            "prediction": "2",
+            "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "1073741825/1073741824",
+            "y": "1073741823/1073741824"
+          },
+          "name": "product-k30",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "2873dcd013366dec1ad00bb96b2e7fd75c3d018372f4b386202854ecfa82706e",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "fresh-k30"
+    },
+    {
+      "checking_ns": 151273,
+      "expectation_met": true,
+      "expected_status": "Blocked",
+      "id": "changed-question-stale-evidence",
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-or-question-binding",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      },
+      "proposal": {
+        "boundary_version": 1,
+        "candidate": {
+          "id": "dyadic-product-v2",
+          "prediction": "18014398509481983/18014398509481984"
+        },
+        "method_version": 0,
+        "name": "revised-question",
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "1073741825/1073741824",
+            "y": "1073741823/1073741824"
+          },
+          "name": "product-k30",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 477,
+        "requested_action": "external-revised-checkpoint",
+        "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+        "spent_fuel": 23,
+        "target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ]
+      },
+      "source": "historical-k27"
+    }
+  ],
+  "charged_units": 138,
+  "contract_sha256": "e11b9a87c868ca831ff82d4f6a61a07d6cf167d00cda9c6ce5362f5ed1bf971c",
+  "cost_note": "Fresh reuse timing is a subset of checking time. Final report encoding/writing and host process startup are outside phase timings; measured by host supervisor if supplied.",
+  "costs": {
+    "checking_ns": 2007959,
+    "construction_ns": 2267531,
+    "fresh_reuse_checking_ns": 170962,
+    "reconstruction_ns": 810174,
+    "serialization_roundtrip_ns": 2081007
+  },
+  "invocations_in_this_report": 1,
+  "max_charged_units": 2000,
+  "native_calls": 0,
+  "peak_rss_platform": "Linux ru_maxrss KiB; whole process, not file size",
+  "process_peak_rss_kib": 12672,
+  "residual": [
+    "native-free",
+    "native cut/translation semantics",
+    "automatic candidate generation",
+    "real user utility"
+  ],
+  "runner_elapsed_ns_before_final_write": 7436209,
+  "schema": "adva.boundary-research-report.research",
+  "scope": "This checks external accounting/observation correspondence, not native split, ProgramSlice, CausalCut, translation completeness, global anti-fork resources or customer usefulness.",
+  "search_nodes": 0,
+  "serialized_reconstruction": [
+    {
+      "id": "main-valid-revision",
+      "matches": true,
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": [
+            "native-free"
+          ]
+        },
+        "proposed_target_obligations": [
+          "native-free",
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 11,
+          "local_charged_units": 10,
+          "old_task_remains_open": true,
+          "remaining_after": 467,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 33,
+          "spent_before": 23,
+          "status": "TaskBoundarySatisfied"
+        },
+        "result": {
+          "checked_new_obligations": [
+            "candidate-v2"
+          ],
+          "integer_crosscheck": true,
+          "native_free": "Unimplemented",
+          "new_boundary": 1,
+          "old_task_status": "ModelGap",
+          "permitted_action": "external-revised-checkpoint",
+          "reason": "checked-external-boundary-revision",
+          "residual": [
+            "native-free"
+          ],
+          "status": "TaskBoundarySatisfied"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 11,
+            "local_charged_units": 10,
+            "old_task_remains_open": true,
+            "remaining_after": 467,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 33,
+            "spent_before": 23,
+            "status": "TaskBoundarySatisfied"
+          }
+        ]
+      }
+    },
+    {
+      "id": "drop-native-residual",
+      "matches": true,
+      "outcome": {
+        "old_refutations": [
+          {
+            "difference": "1/18014398509481984",
+            "id": "unit",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "1",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          },
+          {
+            "difference": "18014398509481985/18014398509481984",
+            "id": "dyadic-product",
+            "observed": "18014398509481983/18014398509481984",
+            "prediction": "2",
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+          }
+        ],
+        "proposed_partition": {
+          "discharged": [
+            "observation"
+          ],
+          "replaced": {
+            "model-gap": [
+              "candidate-v2"
+            ]
+          },
+          "retained": []
+        },
+        "proposed_target_obligations": [
+          "candidate-v2"
+        ],
+        "recomputed_observation": "18014398509481983/18014398509481984",
+        "resource": {
+          "global_charged_units": 7,
+          "local_charged_units": 6,
+          "old_task_remains_open": true,
+          "remaining_after": 471,
+          "remaining_before": 477,
+          "requested_ledger": [
+            477,
+            23
+          ],
+          "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+          "spent_after": 29,
+          "spent_before": 23,
+          "status": "Blocked"
+        },
+        "result": {
+          "native_free": "Unimplemented",
+          "new_boundary": null,
+          "old_task_status": "ModelGap",
+          "permitted_action": null,
+          "reason": "source-obligation-not-exactly-once",
+          "residual": [
+            "native-free",
+            "model-gap"
+          ],
+          "status": "Blocked"
+        },
+        "source_history": [
+          {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "index": 0,
+            "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+            "remaining_after": 477,
+            "remaining_before": 500,
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "spent_after": 23,
+            "spent_before": 0,
+            "status": "ModelGap"
+          }
+        ],
+        "source_obligations": [
+          "observation",
+          "model-gap",
+          "native-free"
+        ],
+        "transition_history": [
+          {
+            "global_charged_units": 7,
+            "local_charged_units": 6,
+            "old_task_remains_open": true,
+            "remaining_after": 471,
+            "remaining_before": 477,
+            "requested_ledger": [
+              477,
+              23
+            ],
+            "source_binding": "ebc622129b101b2625286d8dce036c050355670a83c1861ec3fd94b90e1e0a2a",
+            "spent_after": 29,
+            "spent_before": 23,
+            "status": "Blocked"
+          }
+        ]
+      }
+    }
+  ],
+  "source_sha256": "c6e5f7a88dabbb3141d16e3fbe9da59853dba79db756f2f6ee868b33956df09f",
+  "sources": {
+    "fresh-k30": {
+      "case": {
+        "expectation_met": true,
+        "expected_status": "ModelGap",
+        "id": "empty-survivor",
+        "input_refs": [
+          "subject-empty-survivor",
+          "method",
+          "object-base"
+        ],
+        "outcome": {
+          "history": [
+            {
+              "after": [
+                "unit",
+                "dyadic-product"
+              ],
+              "before": [
+                "unit",
+                "dyadic-product"
+              ],
+              "index": 0,
+              "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+              "remaining_after": 477,
+              "remaining_before": 500,
+              "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383",
+              "spent_after": 23,
+              "spent_before": 0,
+              "status": "ModelGap"
+            }
+          ],
+          "resource": {
+            "global_remaining": 1827,
+            "global_spent": 173,
+            "local_remaining": 477,
+            "local_spent": 23
+          },
+          "result": {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "free_candidate": null,
+            "knowledge": "NoUpdate",
+            "native_free": "Unimplemented",
+            "next_proposal_after": "unit",
+            "next_proposal_before": "unit",
+            "reason": "declared-hypotheses-miss-verified-observation",
+            "status": "ModelGap"
+          }
+        },
+        "presence_only_admits": true
+      },
+      "note": "Fresh k30 synthetic ModelGap fixture; prescribed 477/23 post-ledger, independently reconstructed before revision.",
+      "object": {
+        "name": "k27-verified-distinction",
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "1073741825/1073741824",
+            "y": "1073741823/1073741824"
+          },
+          "name": "product-k30",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "receipt": {
+          "authority": "new external point data, constructed in this run",
+          "residual": "-1/1152921504606846976",
+          "scope": {
+            "domain": "Q",
+            "environment": {
+              "x": "1073741825/1073741824",
+              "y": "1073741823/1073741824"
+            },
+            "observer": "exact-rational-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "scope_sha256": "812139cea49ebbffa3adfd1ec3a55e3b3791372a9ff18d7cbcb44d465e148383",
+          "values": [
+            {
+              "rational": "1152921504606846975/1152921504606846976"
+            },
+            {
+              "rational": "1"
+            }
+          ],
+          "verdict": "Different"
+        },
+        "schema": "adva.knowledge-object.research",
+        "source": {
+          "meaning": "fresh calibration fixture; not a historical receipt"
+        },
+        "version": 0
+      },
+      "schema": "adva.boundary-research-source.research",
+      "subject": {
+        "active_candidate_ids": [
+          "unit",
+          "dyadic-product"
+        ],
+        "candidate_coverage": [
+          "unit",
+          "dyadic-product"
+        ],
+        "candidate_universe": [
+          {
+            "id": "unit",
+            "prediction": "1"
+          },
+          {
+            "id": "dyadic-product",
+            "prediction": "2"
+          }
+        ],
+        "history": [],
+        "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+        "name": "k27-knowledge-question",
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "1073741825/1073741824",
+            "y": "1073741823/1073741824"
+          },
+          "name": "product-k30",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 500,
+        "requested_action": "external-learn-checkpoint",
+        "schema": "adva.knowledge-subject.research",
+        "spent_fuel": 0,
+        "version": 0
+      },
+      "version": 0
+    },
+    "historical-k27": {
+      "case": {
+        "expectation_met": true,
+        "expected_status": "ModelGap",
+        "id": "empty-survivor",
+        "input_refs": [
+          "subject-empty-survivor",
+          "method",
+          "object-base"
+        ],
+        "outcome": {
+          "evidence": {
+            "candidate_filter_crosscheck": true,
+            "knowledge_is_scope_local": true,
+            "point_check": {
+              "reason": "point-receipt-independently-replayed",
+              "recomputed_residual": "-1/18014398509481984",
+              "recomputed_values": [
+                {
+                  "rational": "18014398509481983/18014398509481984"
+                },
+                {
+                  "rational": "1"
+                }
+              ],
+              "recomputed_verdict": "Different",
+              "status": "Accepted"
+            },
+            "roles_present": [
+              "subject",
+              "method",
+              "object"
+            ]
+          },
+          "history": [
+            {
+              "after": [
+                "unit",
+                "dyadic-product"
+              ],
+              "before": [
+                "unit",
+                "dyadic-product"
+              ],
+              "index": 0,
+              "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+              "remaining_after": 477,
+              "remaining_before": 500,
+              "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+              "spent_after": 23,
+              "spent_before": 0,
+              "status": "ModelGap"
+            }
+          ],
+          "resource": {
+            "global_remaining": 1827,
+            "global_spent": 173,
+            "local_remaining": 477,
+            "local_spent": 23
+          },
+          "result": {
+            "after": [
+              "unit",
+              "dyadic-product"
+            ],
+            "before": [
+              "unit",
+              "dyadic-product"
+            ],
+            "free_candidate": null,
+            "knowledge": "NoUpdate",
+            "native_free": "Unimplemented",
+            "next_proposal_after": "unit",
+            "next_proposal_before": "unit",
+            "reason": "declared-hypotheses-miss-verified-observation",
+            "status": "ModelGap"
+          }
+        },
+        "presence_only_admits": true
+      },
+      "note": "Retained ModelGap snapshot; old candidates are refuted, not still supported. Native-free remains an unresolved capability.",
+      "object": {
+        "name": "k27-verified-distinction",
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "receipt": {
+          "authority": "external point observation only",
+          "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+          "ordered_trace": [
+            {
+              "operands": [],
+              "operation": "input",
+              "path": "0.0",
+              "value": {
+                "rational": "134217729/134217728"
+              }
+            },
+            {
+              "operands": [],
+              "operation": "input",
+              "path": "0.1",
+              "value": {
+                "rational": "134217727/134217728"
+              }
+            },
+            {
+              "operands": [
+                {
+                  "rational": "134217729/134217728"
+                },
+                {
+                  "rational": "134217727/134217728"
+                }
+              ],
+              "operation": "mul",
+              "path": "0",
+              "value": {
+                "rational": "18014398509481983/18014398509481984"
+              }
+            },
+            {
+              "operands": [],
+              "operation": "const",
+              "path": "1",
+              "value": {
+                "rational": "1"
+              }
+            }
+          ],
+          "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+          "residual": "-1/18014398509481984",
+          "schema": "adva.point-judgment-receipt.research",
+          "scope": {
+            "domain": "Q",
+            "environment": {
+              "x": "134217729/134217728",
+              "y": "134217727/134217728"
+            },
+            "observer": "exact-rational-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+          "values": [
+            {
+              "rational": "18014398509481983/18014398509481984"
+            },
+            {
+              "rational": "1"
+            }
+          ],
+          "verdict": "Different",
+          "version": 0
+        },
+        "schema": "adva.knowledge-object.research",
+        "source": {
+          "commit": "2407780f21c428c7a801234e8bb2e27185093900",
+          "meaning": "Historical external receipt; checker must replay this point obligation before use",
+          "path": "docs/research/0142-evidence/report.json",
+          "sha256": "30d477911ac53b60fcee50e76a78dd0c33b9ca69d3bfcba090fe0e872755274b"
+        },
+        "version": 0
+      },
+      "origin_commit": "cd5730119757ff8247e54b641dfc1aca4b112e22",
+      "origin_report_sha256": "03c4bee041be3b506b1ad18baffb46bf5ade569ef1d290631f0580e9aa6886f9",
+      "schema": "adva.boundary-research-source.research",
+      "subject": {
+        "active_candidate_ids": [
+          "unit",
+          "dyadic-product"
+        ],
+        "candidate_coverage": [
+          "unit",
+          "dyadic-product"
+        ],
+        "candidate_universe": [
+          {
+            "id": "unit",
+            "prediction": "1"
+          },
+          {
+            "id": "dyadic-product",
+            "prediction": "2"
+          }
+        ],
+        "history": [],
+        "method_sha256": "d9d71c7dd2f4703fd8673f5cc7f8d3d26e06ceebf4ab1935c7e0147cedf72553",
+        "name": "k27-knowledge-question",
+        "question": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "name": "product-k27",
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "remaining_fuel": 500,
+        "requested_action": "external-learn-checkpoint",
+        "schema": "adva.knowledge-subject.research",
+        "spent_fuel": 0,
+        "version": 0
+      },
+      "version": 0
+    }
+  },
+  "unmeasured": [
+    "research and implementation wall time",
+    "complete toolchain runnability",
+    "global anti-fork resource conservation"
+  ],
+  "version": 0
+}
