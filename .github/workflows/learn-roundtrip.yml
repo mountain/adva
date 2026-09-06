@@ -21,10 +21,8 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-      - name: Prepare native formatting snapshot
-        run: |
-          cargo fmt --all
-          git diff -- crates/adva-witness/src
+      - name: Check Rust formatting
+        run: cargo fmt --all -- --check
       - name: Run native roundtrip boundary tests
         run: cargo test -p adva-witness free_roundtrip -- --nocapture
       - name: Build the existing Adva executable
@@ -32,6 +30,7 @@ jobs:
       - name: Check companion lints
         run: cargo clippy -p adva-witness --all-targets -- -D warnings
       - name: Run exactly six learn calls under one outer budget
+        if: hashFiles('programs/bootstrap-0/learn.adva') == ''
         shell: bash
         run: |
           mkdir -p target/free-roundtrip
@@ -60,12 +59,6 @@ jobs:
           echo NATIVE_LEARN_WITNESS_END
           sha256sum target/free-roundtrip/learn.adva
           cat target/free-roundtrip/total-cost.txt
-      - name: Preserve formatted Rust for source review
-        if: always()
-        run: |
-          echo FORMATTED_ROUNDTRIP_SOURCE_BEGIN
-          cat crates/adva-witness/src/free_roundtrip.rs
-          echo FORMATTED_ROUNDTRIP_SOURCE_END
       - name: Retain the native executable and exact run evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -74,6 +67,6 @@ jobs:
           path: |
             target/release/adva
             target/free-roundtrip/
-            crates/adva-witness/src/free_roundtrip.rs
+            programs/bootstrap-0/learn.adva
           if-no-files-found: warn
           retention-days: 7

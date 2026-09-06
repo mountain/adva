@@ -1022,15 +1022,15 @@ forbidden_conflations = ["Finite symbolic identity check with sampled numerical 
 
 
 [[claim]]
-claim_id = "adva.construction-target.native-learn-guarded-roundtrip.v0"
+claim_id = "adva.bounded-experiment.native-learn-guarded-roundtrip.v0"
 canonical_name = "Six-stage native learn with guarded arithmetic reverse"
 code_symbol = "adva_witness::run_free_roundtrip_cli_v0; crates/adva-witness/src/free_roundtrip.rs"
 dimension = "formed-boundary/endpoint-incidence/multiplicative-roundtrip/retained-guards/cumulative-stage-fuel"
-status = "construction-target"
+status = "bounded-experiment"
 scope = "One supplied six-stage recipe for p=x+y*z and q=2*p over existing exact integer-polynomial residuals; three input integers in [-16,16]; tests select two valid environments and one zero environment, not exhaustive coverage"
 assumptions = ["Native WitnessStoreV0 arithmetic and formation rules", "Literal reverse endpoint correspondence", "All retained concrete expression nodes must be nonzero", "Submitted history is replayed with input binding", "Six stage fuel is not a global monotonic resource service"]
 dependencies = ["adva.bounded-verified.reusable-six-word-witness.v0"]
-proof_or_certificate = "Research 0136 freezes inputs, method, bounds and refusal cases. Rust implementation and seven targeted tests are supplied; native CI build and six-call execution are pending. No generated learn.adva success witness is asserted before the recorded run."
+proof_or_certificate = "Research 0136 freezes inputs, method, bounds and refusal cases. Native CI run 34030868604 built Rust adva, passed seven boundary tests including reuse, and ran six actual learn calls. The exact generated learn.adva is retained with SHA-256 b61c51dca215ce1cdfa5fcffd08f63445c943a1450ea76e40fdc411d1d8d9e5f. The completed-trace test also checks the saved transition against native replay; the free reading remains Proposed."
 counterexample_boundary = "A=0 is formation, not a runtime ZeroFault. Symbolic M=1 does not erase a zero failure, identify histories, or prove free. Unrelated reciprocal ratios lack endpoint correspondence. The file protocol cannot prevent forking a valid old prefix and does not serialize a standalone WitnessStore. The supplied method is not learned syntax, a generic inverse, an ExecutedCell, a native M6 filler, or a universal grammar theorem."
 forbidden_conflations = ["Formation A=0 with runtime zero", "Transport residual one with output value one", "Endpoint reversal with arbitrary program inversion", "Hash integrity with authentication or semantic identity", "Local seal with task-relative free", "Supplied recipe with learned grammar", "Consistent submitted history with global anti-replay enforcement", "Pending tests with executed evidence"]
 

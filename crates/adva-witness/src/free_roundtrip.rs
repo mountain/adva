@@ -305,7 +305,10 @@ fn advance(subject: &Subject, contract: &Contract, resource: &Resource) -> RunRe
         || subject.account.len() > 128
         || subject.account != resource.account
         || subject.history.len() > 6
-        || subject.values.iter().any(|value| !(-16..=16).contains(value))
+        || subject
+            .values
+            .iter()
+            .any(|value| !(-16..=16).contains(value))
     {
         return Err(invalid("invalid bounded subject or account"));
     }
@@ -341,7 +344,8 @@ fn advance(subject: &Subject, contract: &Contract, resource: &Resource) -> RunRe
                 "free requires a separate task-relative acceptance condition".to_owned(),
                 "the six-stage method is supplied, not learned syntax".to_owned(),
                 "no source, occurrence, program, or M6 cell identity is inferred".to_owned(),
-                "stage fuel is not arithmetic work, wall time, or global anti-replay enforcement".to_owned(),
+                "stage fuel is not arithmetic work, wall time, or global anti-replay enforcement"
+                    .to_owned(),
             ],
         })
     } else {
@@ -381,10 +385,7 @@ fn encode_bounded<T: Serialize>(value: &T) -> RunResult<Vec<u8>> {
 }
 
 fn write_new(path: &Path, bytes: &[u8]) -> RunResult<()> {
-    let mut file = OpenOptions::new()
-        .write(true)
-        .create_new(true)
-        .open(path)?;
+    let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
     file.write_all(bytes)?;
     file.sync_all()?;
     Ok(())
@@ -469,6 +470,17 @@ mod tests {
         assert_eq!(evidence.local_name, "learn");
         assert_eq!(evidence.free_status, "Proposed");
         assert!(result.output.history[5].local_close);
+
+        // Validate the actual persisted CLI transition, including its input
+        // history and output fields, with the same bounded native replay.
+        let saved_bytes = include_str!("../../../programs/bootstrap-0/learn.adva");
+        let persisted: Transition = serde_json::from_str(saved_bytes).unwrap();
+        let (_, contract, mut resource) = initial(persisted.input.values);
+        resource.account.clone_from(&persisted.input.account);
+        assert_eq!(
+            advance(&persisted.input, &contract, &resource).unwrap(),
+            persisted
+        );
     }
 
     #[test]
@@ -529,7 +541,8 @@ mod tests {
         let other_before = ExactExprV0::constant(6);
         let other_after = ExactExprV0::constant(3);
         let a = crate::MultiplicativeResidualV0::from_transition(&p, &q).unwrap();
-        let b = crate::MultiplicativeResidualV0::from_transition(&other_before, &other_after).unwrap();
+        let b =
+            crate::MultiplicativeResidualV0::from_transition(&other_before, &other_after).unwrap();
         assert!(a.checked_multiply(&b).unwrap().is_one());
         assert!(!matching_reverse(&p, &q, &other_before, &other_after));
     }
