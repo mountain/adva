@@ -17,6 +17,16 @@ ADR 0041 and the explicit 100-round contract.
 
 ## Dependency direction
 
+The separate math topic catalog (ADR 0042) is a Python documentary adapter.
+`adva.py math-check` validates metadata, one-home topic membership, references
+and byte pins, never Rust semantics or proof truth. Its fixed growth obligation
+requires Pascal-rooted, same-home proposed geometry ancestry and retains Open
+discharge. Cross-topic references are not imports or derivation parents; the
+checkpoint is documentary seal, not native Seal. Actual program and proof
+checks still enter through their original authority boundaries. Research 0154
+records existing arithmetic, external Pascal and finite logic task mechanisms;
+it does not add a unified task-loop executor or native feedback.
+
 ```text
 adva-ir  <-  adva-lisp  <-  adva-python  <-  Python adapters
    ^              ^

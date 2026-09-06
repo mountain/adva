@@ -96,6 +96,21 @@ full abstraction, and physical interpretations out of the stable API.
 All semantic transformations return a result together with a certificate.
 Tests are evidence for the declared finite scope, not unrestricted theorems.
 
+## Math directory growth obligation
+
+When extending mathematical library content or proposing mathematical program
+growth, read `adva-library/math/README.md` and the pinned obligation and
+documentary checkpoint under `adva-library/math/constraints/`.
+Each entry has one home directory. Cross-topic references are not derivation
+parents, implicit imports, or permission transfers. Geometry growth must start
+at the pinned Pascal presentations and retain a same-directory derivation
+chain; unconnected Q4/M6 or other legacy materials are references, not admitted
+Pascal descendants. The current geometry obligation is Open. Do not mark it
+discharged or issue a native `Seal` without the missing native import and
+derivation certificates. A documentary `seal` pins an obligation; it is not a
+Rust `Seal`. Do not rewrite the obligation or reseal it merely to pass a check.
+Continuations remain separately finite and do not reset fuel automatically.
+
 ## Operation changes
 
 Stable Lisp builtins are declared through the Rust `OperationSpec` registry.
