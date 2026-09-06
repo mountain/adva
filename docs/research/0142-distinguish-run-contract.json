@@ -1,0 +1,82 @@
+{
+  "schema": "adva.distinguish-run-contract.research",
+  "version": 0,
+  "status": "Frozen before arithmetic execution",
+  "source_main": "24d7275971cfd61fabc3270ac2a71b79df377598",
+  "question": "Can question-indexed evidence distinguish observed binary64 equality, exact pointwise equality and missing native formation/transport evidence, while refusing cross-question promotion?",
+  "level": "External finite judgment-organization experiment; no new native operation",
+  "objects": [
+    {"id": "product-k27", "kind": "existing-witness-reinterpretation", "k": 27},
+    {"id": "product-k29", "kind": "fresh-instance-reuse", "k": 29},
+    {"id": "nonunit-identity", "kind": "nonunit-control", "value": 2}
+  ],
+  "arithmetic": "Exact dyadic rationals compared with finite Python binary64; add and multiply only, with ordered ASTs",
+  "quantifier": "Equality at the explicitly declared input only; no full-domain equality certificate",
+  "candidate_pair": "For each product, ordered mul(x,y) versus constant 1 with x=1+2^-k,y=1-2^-k; control constant 2 versus constant 2",
+  "judgment_kinds": ["binary64-point-equality", "rational-point-equality", "native-formation-A0", "native-transport-M1"],
+  "scope_binding": ["schema version", "ordered expression pair", "exact input environment", "domain", "observer", "relation", "quantifier"],
+  "presentation_only": ["human-readable task name"],
+  "native_evidence": {
+    "mode": "Read only retained k27 report; zero new native invocations",
+    "path": "docs/research/0141-native-evidence/product-k27.native-result.adva",
+    "sha256": "57ab7a7e45d88991682d6b1bbb7cba59ebf1d63f4e06a20c5f87ecd3fabb205a",
+    "program_path": "docs/research/0141-native-evidence/product-k27.program.adva",
+    "program_sha256": "db78db984d54532af77ada97a25662a489b228dc591943102147ffc71bc51827",
+    "authority": "Stored Rust compiler/evaluation report, authenticated here only by fixed source hashes and embedded program byte agreement; not independently executed or promoted to M1"
+  },
+  "three_readings": {
+    "K": "External expression construction, declared types and relation obligations",
+    "t": "Ordered external evaluation trace and explicitly referenced stored native history",
+    "X": "Observer selection, pointwise scope and residual distinctions",
+    "boundary": "Every judgment retains all three readings; these are not native wire domains or TriadicObserverTransitionV0 invocations"
+  },
+  "acceptance": [
+    "Both product cases are indistinguishable from 1 under the specified binary64 point observation but separated by independently replayable nonzero exact residuals",
+    "The k29 receipt is newly checked, not copied from k27",
+    "Constant 2 identity is pointwise equal and has external quotient 1, while native A0/M1 witnesses remain unavailable",
+    "A counterexample to exact preservation refutes the proposed product-to-one action even when native witness status is Unknown",
+    "One fixed finite scope gates evidence reuse; presentation rename does not change this scope",
+    "Zero checker fuel yields Unknown; missing native evidence never becomes a success flag",
+    "A committed report is serialized and independently recomputed once within the same run budget"
+  ],
+  "adversarial_controls": [
+    "reuse float evidence for exact observer",
+    "reuse evidence after domain change",
+    "reuse point evidence for an all-input quantifier",
+    "reuse evidence after operand-order/history change",
+    "reuse evidence for a changed input environment",
+    "forge verdict or exact residual inside otherwise matching scope",
+    "promote scalar evidence to native A0 or M1",
+    "copy k27 evidence unchanged to k29",
+    "change only a presentation name (must remain admissible)",
+    "zero local verification fuel"
+  ],
+  "comparison": "Naive bare-boolean forwarding versus question-indexed replay on the same finite promotion attempts and budget; no speedup or expression-power claim",
+  "budget": {
+    "routes": 1,
+    "candidate_search_nodes": 0,
+    "max_instances": 3,
+    "max_ast_depth": 8,
+    "max_ast_nodes_per_expression": 15,
+    "max_fraction_bits": 128,
+    "max_charged_units_per_invocation": 2000,
+    "max_invocations_including_one_implementation_repair": 2,
+    "max_total_charged_units": 4000,
+    "wall_seconds_per_invocation": 5,
+    "cpu_seconds_per_invocation": 5,
+    "address_space_mib": 256,
+    "max_input_bytes": 262144,
+    "max_report_bytes": 262144,
+    "native_calls": 0
+  },
+  "costs": "Measure construction, verification, serialization, replay and fresh reuse, charged work, process peak RSS and traced Python allocations separately; source writing/network time excluded and not zero",
+  "stop": "One build/validation/replay and report save. At most one implementation repair replay; no candidate enlargement, automatic continuation or native bit audit.",
+  "protected_obligations": [
+    "Python creates no native semantic identities or certificates",
+    "Final scalar value is distinct from native formation balance A and transition residual M",
+    "Nonzero total value residual refutes exact preservation at that point, not all possible relations",
+    "Old native reports remain historical observations; no new native program success is inferred",
+    "Research0090 coverage and Research0092 promotion remain open; unknown-syntax-building stays paused",
+    "distinguish remains a Proposed composite working word, not universal grammar reliability"
+  ]
+}
