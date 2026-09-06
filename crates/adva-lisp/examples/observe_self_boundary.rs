@@ -14,16 +14,12 @@ type AuditResult<T> = Result<T, Box<dyn Error>>;
 type Costs = BTreeMap<String, f64>;
 
 const WORDS: &str = include_str!("../../../programs/self-boundary/words.lisp");
-const CODE: &str =
-    "(module code-gap (export f) (def f (fn ((x Code)) Real (id (use x)))))";
-const QUOTE: &str =
-    "(module quote-gap (export f) (def f (fn ((x Real)) Real (quote (use x)))))";
-const CASE: &str =
-    "(module case-gap (export f) (def f (fn ((x Real)) Real (case (use x)))))";
+const CODE: &str = "(module code-gap (export f) (def f (fn ((x Code)) Real (id (use x)))))";
+const QUOTE: &str = "(module quote-gap (export f) (def f (fn ((x Real)) Real (quote (use x)))))";
+const CASE: &str = "(module case-gap (export f) (def f (fn ((x Real)) Real (case (use x)))))";
 const RECURSION: &str =
     "(module recursive-gap (export f) (def f (fn ((x Real)) Real (call f (use x)))))";
-const IDENTITY: &str =
-    "(module history-test (export f) (def f (fn ((x Real)) Real (id (use x)))))";
+const IDENTITY: &str = "(module history-test (export f) (def f (fn ((x Real)) Real (id (use x)))))";
 const DOUBLE_NEGATION: &str =
     "(module history-test (export f) (def f (fn ((x Real)) Real (neg (neg (use x))))))";
 
@@ -61,8 +57,14 @@ fn compile_source(
     *nodes = nodes
         .checked_add(compiled.result.nodes.len())
         .ok_or("node count overflow")?;
-    require(*nodes <= MAX_COMPILED_NODES, "compiled node budget exceeded")?;
-    require(compiled.certificate.certified(), "compilation not certified")?;
+    require(
+        *nodes <= MAX_COMPILED_NODES,
+        "compiled node budget exceeded",
+    )?;
+    require(
+        compiled.certificate.certified(),
+        "compilation not certified",
+    )?;
     require(
         compiled.graft_trace.certificate.certified(),
         "graft trace not certified",
@@ -95,7 +97,10 @@ fn output_path() -> AuditResult<Option<PathBuf>> {
     let Some(flag) = args.next() else {
         return Ok(None);
     };
-    require(flag == "--output", "usage: observe_self_boundary [--output PATH]")?;
+    require(
+        flag == "--output",
+        "usage: observe_self_boundary [--output PATH]",
+    )?;
     let path = PathBuf::from(args.next().ok_or("missing --output path")?);
     require(args.next().is_none(), "unexpected extra argument")?;
     require(
@@ -106,7 +111,10 @@ fn output_path() -> AuditResult<Option<PathBuf>> {
 }
 
 fn write_new(path: &Path, bytes: &[u8]) -> AuditResult<()> {
-    require(bytes.len() <= MAX_ARTIFACT_BYTES, "artifact byte budget exceeded")?;
+    require(
+        bytes.len() <= MAX_ARTIFACT_BYTES,
+        "artifact byte budget exceeded",
+    )?;
     let mut file = OpenOptions::new().write(true).create_new(true).open(path)?;
     file.write_all(bytes)?;
     file.sync_all()?;
@@ -114,9 +122,20 @@ fn write_new(path: &Path, bytes: &[u8]) -> AuditResult<()> {
 }
 
 fn audit() -> AuditResult<Value> {
-    let sources = [WORDS, CODE, QUOTE, CASE, RECURSION, IDENTITY, DOUBLE_NEGATION];
+    let sources = [
+        WORDS,
+        CODE,
+        QUOTE,
+        CASE,
+        RECURSION,
+        IDENTITY,
+        DOUBLE_NEGATION,
+    ];
     for source in sources {
-        require(source.len() <= MAX_SOURCE_BYTES, "source byte budget exceeded")?;
+        require(
+            source.len() <= MAX_SOURCE_BYTES,
+            "source byte budget exceeded",
+        )?;
     }
     let mut costs = Costs::new();
     let mut compiled_nodes = 0;
@@ -184,7 +203,10 @@ fn audit() -> AuditResult<Value> {
         evaluate(&double_negation.result, &inputs)
     })?;
     require(id_value.values == vec![2.0], "identity value mismatch")?;
-    require(id_value.values == neg_value.values, "value comparison failed")?;
+    require(
+        id_value.values == neg_value.values,
+        "value comparison failed",
+    )?;
     require(
         identity.result.function == double_negation.result.function
             && identity.result.signature == double_negation.result.signature,
@@ -290,11 +312,17 @@ fn main() -> AuditResult<()> {
     let serialization_start = Instant::now();
     let bytes = serde_json::to_vec_pretty(&payload)?;
     let serialization_seconds = serialization_start.elapsed().as_secs_f64();
-    require(bytes.len() <= MAX_ARTIFACT_BYTES, "artifact byte budget exceeded")?;
+    require(
+        bytes.len() <= MAX_ARTIFACT_BYTES,
+        "artifact byte budget exceeded",
+    )?;
     if let Some(path) = output {
         let write_start = Instant::now();
         write_new(&path, &bytes)?;
-        eprintln!("output_write_seconds={}", write_start.elapsed().as_secs_f64());
+        eprintln!(
+            "output_write_seconds={}",
+            write_start.elapsed().as_secs_f64()
+        );
     }
     println!("SELF_BOUNDARY_EVIDENCE_BEGIN");
     println!("{}", std::str::from_utf8(&bytes)?);

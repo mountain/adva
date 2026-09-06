@@ -1,6 +1,6 @@
 # Research 0137: Forming the self-interpretation boundary
 
-Date: 2026-09-06. Status: problem formation and proposed native capability audit.
+Date: 2026-09-06. Status: completed native capability audit; self interpretation Unknown.
 Base: main `57c1d04bcfe51b82f6e559a61ca02e668f630b5a`.
 
 ## Motivation and current evidence
@@ -178,9 +178,9 @@ timeout 30 target/release/examples/observe_self_boundary \
 ```
 
 The dedicated CI additionally bounds virtual memory to 256 MiB and the job
-to ten minutes. Existing output paths must be refused. Native execution and
-measured costs are pending at this writing; no unrun positive result is
-claimed. Outputs retain source texts, errors and history observations so a
+to ten minutes. Existing output paths must be refused. Native execution
+succeeded in the bounded run recorded below. Outputs retain source texts,
+errors and history observations so a
 later run can reconstruct the finite checks. Timings are observations, so
 replay is a repetition of the checks rather than a byte-identical benchmark.
 
@@ -192,3 +192,54 @@ enough to express its own evaluator, with a separate typing and resource gate.
 This order exposes what remains, rather than hiding the gap inside a host
 dispatcher. It helps Mingli and later agents choose the actual next language
 feature; practical value on Jiamin's task remains unmeasured.
+
+## Native result and actual cost
+
+[Draft PR 137](https://github.com/mountain/adva/pull/137) retains this independent
+change. [Native run 34031716645](https://github.com/mountain/adva/actions/runs/34031716645),
+job 101482337806, succeeded on source commit
+`ac19f682d7785102434a4fc5b1425669d6bc4e55` after rustfmt. Clippy, release build
+and all six audit groups passed. The separate ordinary formatting gate failed
+on the first commit; the captured formatting is applied in the next commit.
+No behavior fix or second research execution was required. Once the artifact
+exists, the dedicated workflow skips another audit for formatting changes.
+
+The exact native output is `0137-self-boundary-observation.json`, 12,561 bytes,
+SHA-256 `4e4ec48a1ee7c85ff75a753c2df5375780102bc4d3ca7aec0552f63d6da66871`.
+It contains all seven source texts, complete native history observations,
+evaluation/compilation certificates and the exact four refusal messages.
+Log extraction removed only a separately labelled stderr byte-count line
+interleaved before the JSON; the saved bytes match the runner's SHA-256.
+The [run archive](https://github.com/mountain/adva/actions/runs/34031716645/artifacts/9988835801)
+also retains the outer GNU time report under seven-day retention.
+
+Actual work: three successful compilations, one rejected compilation, three
+rejected parses, eight compiled nodes, four evaluations and three history
+observations. The named composition returned 2 and reused the same compiled
+diagram to return 3. The two counterexample histories contain two and three
+events respectively, although both scalar readings are 2. The self interpreter
+status remains Unknown. These rejections do not justify an unrestricted
+impossibility claim or a replacement of existing stable semantics.
+
+| Component | Measured seconds |
+| --- | --- |
+| Native parse total | 0.000058879 |
+| Native link total | 0.000008654 |
+| Native compile total | 0.000125059 |
+| First and counterexample evaluations | 0.000018718 |
+| Fresh-input reuse evaluation | 0.000006069 |
+| Native history observations | 0.000001492 |
+| Evidence construction | 0.000061213 |
+| Whole audit | 0.000304150 |
+| Serialization | 0.000035804 |
+| File write and sync | 0.010774428 |
+| Outer supervised wall time, coarse GNU time reading | 0.01 |
+| Clippy including its compilation | 7.31 |
+| Release build | 19.78 |
+
+Whole-audit time includes the listed inner work and is not added to it again.
+The runner reports maximum RSS 3420 KiB for the supervised process and exit
+status zero. This is not total CI memory or a file-size-derived estimate.
+Outer timing precision is coarser than the internal measurements. Editing,
+network and total research wall time were not measured. No speedup or
+expression-power increase is inferred from these small timings.

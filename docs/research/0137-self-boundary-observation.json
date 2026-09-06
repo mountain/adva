@@ -1,0 +1,430 @@
+{
+  "actual": {
+    "compiled_nodes_aggregate": 8,
+    "evaluations": 4,
+    "history_observations": 3,
+    "peak_memory_bytes": null,
+    "rejected_compilations": 1,
+    "rejected_parses": 3,
+    "source_bytes": [
+      416,
+      70,
+      74,
+      72,
+      79,
+      74,
+      81
+    ],
+    "successful_compilations": 3
+  },
+  "budget": {
+    "automatic_restarts": 0,
+    "fixed_case_groups": 6,
+    "fixed_source_texts": 7,
+    "max_artifact_bytes": 131072,
+    "max_compiled_nodes_aggregate": 64,
+    "max_source_bytes_each": 2048,
+    "search_candidates": 0,
+    "wall_timeout_and_memory": "external supervisor required"
+  },
+  "forget_counterexample": {
+    "conclusion": "Value alone does not determine retained program history.",
+    "double_negation": {
+      "compile_certificate": {
+        "boundary": {
+          "inputs": [
+            {
+              "name": "x",
+              "value_type": "real"
+            }
+          ],
+          "outputs": [
+            "real"
+          ]
+        },
+        "call_history": "checked",
+        "diagram_integrity": "checked",
+        "id": "compile:history-test/f:v1",
+        "linear_use": "checked",
+        "module_links": "checked",
+        "scope": "PSC0 finite acyclic module lowering",
+        "types": "checked"
+      },
+      "evaluation": {
+        "certificate": {
+          "diagram_integrity": "checked",
+          "executed_nodes": [
+            0,
+            1
+          ],
+          "id": "evaluate:history-test/f:v1",
+          "input_types_checked": true,
+          "operation_rules_checked": true,
+          "scope": "PSC0 builtin scalar realization"
+        },
+        "values": [
+          2.0
+        ]
+      },
+      "history": {
+        "history": {
+          "occurrence_paths": {
+            "occ:0": []
+          },
+          "prefix": [
+            {
+              "kind": "source",
+              "occurrence": "occ:0",
+              "source": "source:history-test/f:0:x"
+            },
+            {
+              "kind": "operation",
+              "node": 0,
+              "operation": {
+                "name": "neg",
+                "namespace": "adva.builtin",
+                "version": 1
+              }
+            },
+            {
+              "kind": "operation",
+              "node": 1,
+              "operation": {
+                "name": "neg",
+                "namespace": "adva.builtin",
+                "version": 1
+              }
+            }
+          ],
+          "rewrite_trace": []
+        },
+        "kind": "history"
+      },
+      "history_event_count": 3,
+      "source": "(module history-test (export f) (def f (fn ((x Real)) Real (neg (neg (use x))))))"
+    },
+    "identity": {
+      "compile_certificate": {
+        "boundary": {
+          "inputs": [
+            {
+              "name": "x",
+              "value_type": "real"
+            }
+          ],
+          "outputs": [
+            "real"
+          ]
+        },
+        "call_history": "checked",
+        "diagram_integrity": "checked",
+        "id": "compile:history-test/f:v1",
+        "linear_use": "checked",
+        "module_links": "checked",
+        "scope": "PSC0 finite acyclic module lowering",
+        "types": "checked"
+      },
+      "evaluation": {
+        "certificate": {
+          "diagram_integrity": "checked",
+          "executed_nodes": [
+            0
+          ],
+          "id": "evaluate:history-test/f:v1",
+          "input_types_checked": true,
+          "operation_rules_checked": true,
+          "scope": "PSC0 builtin scalar realization"
+        },
+        "values": [
+          2.0
+        ]
+      },
+      "history": {
+        "history": {
+          "occurrence_paths": {
+            "occ:0": []
+          },
+          "prefix": [
+            {
+              "kind": "source",
+              "occurrence": "occ:0",
+              "source": "source:history-test/f:0:x"
+            },
+            {
+              "kind": "operation",
+              "node": 0,
+              "operation": {
+                "name": "id",
+                "namespace": "adva.builtin",
+                "version": 1
+              }
+            }
+          ],
+          "rewrite_trace": []
+        },
+        "kind": "history"
+      },
+      "history_event_count": 2,
+      "source": "(module history-test (export f) (def f (fn ((x Real)) Real (id (use x)))))"
+    },
+    "same_history": false,
+    "same_module_function_and_input_boundary": true,
+    "same_observed_value": true
+  },
+  "limitations": [
+    "Only seven frozen sources and two composition inputs were checked.",
+    "Real uses f64; these binary-exact cases are not exact-arithmetic proofs.",
+    "No native polynomial, multiplicative-residual, or M6 certificate is made.",
+    "No Code value, quote, case, recursion, or interpreter builtin is added.",
+    "Compiler and checker continue to run in Rust outside the fixture.",
+    "No source identity is authorized by scalar equality or a name.",
+    "No historical inverse follows from the value-level roundtrip.",
+    "No file named adva.adva or recursive extension is generated.",
+    "A refusal here is not a proof that every encoding is impossible."
+  ],
+  "named_composition": {
+    "compile_certificate": {
+      "boundary": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "call_history": "checked",
+      "diagram_integrity": "checked",
+      "id": "compile:self-boundary/learn:v1",
+      "linear_use": "checked",
+      "module_links": "checked",
+      "scope": "PSC0 finite acyclic module lowering",
+      "types": "checked"
+    },
+    "compiled_nodes": 5,
+    "evaluation": {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "id": "evaluate:self-boundary/learn:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "values": [
+        2.0
+      ]
+    },
+    "function": {
+      "function": "learn",
+      "module": "self-boundary"
+    },
+    "graft_certificate": {
+      "argument_body_regions": "checked",
+      "boundary_maps": "checked",
+      "call_history_links": "checked",
+      "deterministic_frame_ids": "checked",
+      "diagram_integrity": "checked",
+      "frame_ids": [
+        "graft:self-boundary/learn:root",
+        "graft:self-boundary/learn:root-body",
+        "graft:self-boundary/learn:root-body/call-argument-0",
+        "graft:self-boundary/learn:root-body/call-argument-0/callee-body",
+        "graft:self-boundary/learn:root-body/call-argument-0/callee-body/call-argument-0"
+      ],
+      "id": "graft-trace:self-boundary/learn:v1",
+      "ordered_hole_bindings": "checked",
+      "parent_child_nesting": "checked",
+      "scope": "compiler-emitted PSC0 finite nested call frames; unchanged adva.ir v1 diagram"
+    },
+    "history": {
+      "history": {
+        "occurrence_paths": {
+          "occ:0": []
+        },
+        "prefix": [
+          {
+            "kind": "source",
+            "occurrence": "occ:0",
+            "source": "source:self-boundary/learn:0:x"
+          },
+          {
+            "function": {
+              "function": "self",
+              "module": "self-boundary"
+            },
+            "kind": "call"
+          },
+          {
+            "function": {
+              "function": "forward",
+              "module": "self-boundary"
+            },
+            "kind": "call"
+          },
+          {
+            "kind": "operation",
+            "node": 0,
+            "operation": {
+              "name": "constant",
+              "namespace": "adva.builtin",
+              "parameters": {
+                "value": {
+                  "denominator": 1,
+                  "numerator": 2
+                }
+              },
+              "version": 1
+            }
+          },
+          {
+            "kind": "operation",
+            "node": 1,
+            "operation": {
+              "name": "scale",
+              "namespace": "adva.builtin",
+              "version": 1
+            }
+          },
+          {
+            "function": {
+              "function": "reverse",
+              "module": "self-boundary"
+            },
+            "kind": "call"
+          },
+          {
+            "kind": "operation",
+            "node": 2,
+            "operation": {
+              "name": "constant",
+              "namespace": "adva.builtin",
+              "parameters": {
+                "value": {
+                  "denominator": 2,
+                  "numerator": 1
+                }
+              },
+              "version": 1
+            }
+          },
+          {
+            "kind": "operation",
+            "node": 3,
+            "operation": {
+              "name": "scale",
+              "namespace": "adva.builtin",
+              "version": 1
+            }
+          },
+          {
+            "function": {
+              "function": "observe",
+              "module": "self-boundary"
+            },
+            "kind": "call"
+          },
+          {
+            "kind": "operation",
+            "node": 4,
+            "operation": {
+              "name": "id",
+              "namespace": "adva.builtin",
+              "version": 1
+            }
+          }
+        ],
+        "rewrite_trace": []
+      },
+      "kind": "history"
+    },
+    "history_event_count": 10,
+    "input": {
+      "x": 2.0
+    },
+    "reuse_evaluation": {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "id": "evaluate:self-boundary/learn:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "values": [
+        3.0
+      ]
+    },
+    "reuse_input": {
+      "x": 3.0
+    },
+    "reuse_recompilation": false,
+    "source": "; Named finite composition, not a self-interpreter or a learned method.\n(module self-boundary\n  (export learn)\n  (def forward (fn ((x Real)) Real (scale 2 (use x))))\n  (def reverse (fn ((x Real)) Real (scale 1/2 (use x))))\n  (def self (fn ((x Real)) Real (call reverse (call forward (use x)))))\n  (def observe (fn ((x Real)) Real (id (use x))))\n  (def learn (fn ((x Real)) Real (call observe (call self (use x))))))\n"
+  },
+  "phase_seconds": {
+    "compile": 0.00012505899999999998,
+    "evaluate": 0.000018718,
+    "evidence_construction": 0.000061213,
+    "link": 8.653999999999999e-6,
+    "observe": 1.492e-6,
+    "parse": 0.00005887899999999999,
+    "reuse_evaluate": 6.069e-6
+  },
+  "refusals": [
+    {
+      "case": "code-input",
+      "checked_expected_fragment": "unknown type \"Code\"",
+      "error": "type error: unknown type \"Code\"",
+      "refusal_phase": "parse",
+      "source": "(module code-gap (export f) (def f (fn ((x Code)) Real (id (use x)))))"
+    },
+    {
+      "case": "quote",
+      "checked_expected_fragment": "unknown operation \"quote\"",
+      "error": "syntax error: unknown operation \"quote\"",
+      "refusal_phase": "parse",
+      "source": "(module quote-gap (export f) (def f (fn ((x Real)) Real (quote (use x)))))"
+    },
+    {
+      "case": "case",
+      "checked_expected_fragment": "unknown operation \"case\"",
+      "error": "syntax error: unknown operation \"case\"",
+      "refusal_phase": "parse",
+      "source": "(module case-gap (export f) (def f (fn ((x Real)) Real (case (use x)))))"
+    },
+    {
+      "case": "recursive-call",
+      "checked_expected_fragment": "recursive call",
+      "error": "module error: recursive call to recursive-gap/f is outside PSC0",
+      "parse_and_link": "accepted",
+      "refusal_phase": "compile",
+      "source": "(module recursive-gap (export f) (def f (fn ((x Real)) Real (call f (use x)))))"
+    }
+  ],
+  "role_distinctions": {
+    "free_and_Universe": "No new interpretation established by this audit.",
+    "learn": "Fixture function name for finite composition; no learning update.",
+    "observe_history": "Existing native Rust history observation API.",
+    "observe_in_fixture": "Value identity function named by the author.",
+    "self": "Finite directed roundtrip; does not interpret its own code."
+  },
+  "schema": "adva.research.self-boundary",
+  "self_interpreter_status": "Unknown",
+  "source_base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "status": "finite-capability-audit-passed",
+  "version": 0
+}
