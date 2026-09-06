@@ -211,10 +211,25 @@ def main():
     search.add_argument("--database", required=True, type=Path)
     search.add_argument("--library", type=Path, default=Path("adva-library/stability"))
     search.add_argument("--output", required=True, type=Path, help="fresh evidence directory")
+    campaign = commands.add_parser("search-campaign", help="Research 0153 policy comparison and 100 frozen-policy rounds")
+    campaign.add_argument("--native", required=True, help="built Rust search_campaign example")
+    campaign.add_argument("--lean", default="lean")
+    campaign.add_argument("--metamath", required=True)
+    campaign.add_argument("--database", required=True, type=Path)
+    campaign.add_argument("--library", type=Path, default=Path("adva-library/stability"))
+    campaign.add_argument("--output", required=True, type=Path, help="fresh evidence directory")
     args = parser.parse_args()
     try:
         if args.output.exists() or args.output.is_symlink():
             raise FileExistsError("output must be a fresh path")
+        if args.command == "search-campaign":
+            if __package__:
+                from .search_campaign import run
+            else:
+                from search_campaign import run
+            report = run(args)
+            print(json.dumps({"status": report["status"], "completed_rounds": report["completed_rounds"], "output": str(args.output)}))
+            return 0 if report["status"] == "Completed" else 3 if report["status"] == "Unknown" else 2
         if args.command == "verifier-search":
             if __package__:
                 from .verifier_search import run
