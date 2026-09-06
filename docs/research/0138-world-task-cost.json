@@ -1,0 +1,81 @@
+{
+  "schema": "adva.research.world-task-cost.v0",
+  "date": "2026-09-06",
+  "provenance": {
+    "source_head_commit": "9bfa9ac4274091a1754aa9e8710d332aa4c11f08",
+    "run_url": "https://github.com/mountain/adva/actions/runs/34032876417",
+    "job_id": 101485577130,
+    "note": "CI ran cargo fmt before clippy, release build and the one native execution. The exact formatted source is retained unchanged in the final research branch.",
+    "executed_formatted_source_sha256": "db6b53e0cd3915ed9b289444eea707528a33ff8bd245291922a044788a2bae9a",
+    "frozen_contract_sha256": "46a1462bc5dc4944f3f808112a684e71ec3cfdf67e7927d92055a46249faf311",
+    "witness_sha256": "5db5990535f3cbf00c371204faa02caab92a2b6a9e109eb0d86ecd17d0330279",
+    "artifact": {
+      "archive_download_url": "https://api.github.com/repos/mountain/adva/actions/artifacts/9989214933/zip",
+      "created_at": "2026-09-06T12:23:38Z",
+      "digest": "sha256:372c4bc775015acd8a3fc4fb9c7a2054daee068d2143b0d5c2fcc0bfc68d7ca8",
+      "expired": false,
+      "expires_at": "2026-09-13T12:23:37Z",
+      "id": 9989214933,
+      "name": "world-task-boundary",
+      "size_in_bytes": 4793,
+      "updated_at": "2026-09-06T12:23:38Z",
+      "url": "https://api.github.com/repos/mountain/adva/actions/artifacts/9989214933",
+      "workflow_run": {
+        "head_branch": "research/world-task-boundary-2026-09-06",
+        "head_repository_id": 1349961823,
+        "head_sha": "9bfa9ac4274091a1754aa9e8710d332aa4c11f08",
+        "id": 34032876417,
+        "repository_id": 1349961823
+      }
+    },
+    "rustc": "1.98.1 (48a229cea 2026-09-01)"
+  },
+  "outcome": "Eight fixed case groups passed; no task is closed; assumed review arrangement has no authenticated consent evidence.",
+  "counts": {
+    "routes": 1,
+    "native_executions": 1,
+    "candidate_visits": 6,
+    "native_proof_check_units": 14,
+    "implementation_correction_replays": 0,
+    "formatting_only_followup": 1
+  },
+  "proof_check_unit": "One candidate derivation, saved-witness replay, or seal-refusal check; not a count of every internal kernel call.",
+  "measured_ns": {
+    "search_and_construction": 87023,
+    "verification_and_case_recording": 196245,
+    "serialization": 148483,
+    "file_creation_write_and_sync": 1194868,
+    "sum_of_measured_phases": 1626619
+  },
+  "phase_boundaries": "The three searches include the fresh goal4 reuse. Verification includes seven saved-witness replays and one forced seal refusal. Top-level evidence packaging, stdout, startup, teardown and network time are not included in the phase sum.",
+  "reuse_cost": {
+    "candidate_visits": 3,
+    "native_candidate_derivations": 3,
+    "isolated_elapsed_ns": null,
+    "note": "Reuse is included in aggregate measured times; no speedup or separate timing is claimed."
+  },
+  "host": {
+    "command": "timeout 30 target/release/examples/world_task_boundary --output target/world-task/world-task.json",
+    "user_seconds_display": "0.00",
+    "system_seconds_display": "0.00",
+    "elapsed_display": "0:00.00",
+    "peak_resident_kib": 3852,
+    "exit_status": 0,
+    "measurement": "/usr/bin/time -v around the timeout/native-command process tree; displayed zero times are rounded, not exact zero. This is not compiler or CI-host peak memory."
+  },
+  "output_bytes": 109446,
+  "compilation": {
+    "clippy_dev_profile_seconds": 29.44,
+    "release_build_seconds": 55.08,
+    "source": "Cargo Finished lines in the native CI log; not included in experiment-phase times."
+  },
+  "missing": {
+    "total_research_walltime_seconds": null,
+    "network_seconds": null,
+    "independent_phase_peak_memory": null,
+    "total_ci_peak_memory": null,
+    "isolated_reuse_elapsed_ns": null,
+    "vocabulary_formation_elapsed_ns": null
+  },
+  "claim_boundary": "One finite protocol calibration. No comparison with and without a vocabulary primitive was run; neither expression-power gain nor acceleration is claimed."
+}
