@@ -1,0 +1,22 @@
+{
+  "schema": "adva.external.three-turn-revise-contract.v0",
+  "base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "authorization": "Mingli requested execution of the three-turn engineering-boundary proposal on 2026-09-06",
+  "question": "After revising an existence task to nonuniqueness, can three typed engineering turns reuse observations and close only the revised obligation, while an equally long insufficient-evidence cycle remains Unknown?",
+  "level": "External finite arithmetic calibration of proposed vocabulary; no native compiler, interpreter or identity authority",
+  "domain": "F7 with canonical integer representatives 0..6; x is one typed input",
+  "source_grammar": "A quadratic coefficient triple [a,b,c] denotes a*x*x+b*x+c modulo 7",
+  "target_grammar": "Exactly nine stack instructions CONST a, X, MUL, CONST b, ADD, X, MUL, CONST c, ADD",
+  "quantifiers": {"old_v1": "exists x in F7 with f(x)=rhs", "new_v2": "exists distinct x,y in F7 with f(x)=f(y)=rhs", "compiler": "all seven x in F7: source value equals target VM value"},
+  "turns": ["specification to syntax: lower the declared arithmetic form and retain goal/version", "syntax to interpretation: validate full-domain source/target agreement, replay old observations, and explore a fixed finite continuation", "interpretation to specification: judge the new goal and retain missing positions and versioned obligations"],
+  "instances": {"main": {"coefficients": [2,0,6], "rhs": 1, "old_x": 1, "next_x": 6}, "fresh": {"coefficients": [1,2,3], "rhs": 3, "old_x": 0, "next_x": 5}},
+  "frozen_runs": "main and fresh: cached continuation with fuel 1, and ordinary uncached baseline with fuel 2 over [old_x,next_x]; main cached zero fuel; main cached fuel 1 over [2]; main cached fuel 1 over [2,6] (must retain cursor 1 and next position 6)",
+  "routes": ["one fixed compiler/interpreter/specification chain; two-instance reuse and insufficient-evidence controls"],
+  "checker": "Stack VM produces scalar values; a separate expanded-power evaluator checks every compiler row, old and new observation, version/goal binding, deterministic prefix, distinctness, minimal stopping, residual and obligation receipt. Checker never calls the compiler to authorize target shape.",
+  "protected": ["the old existence claim remains true in v1", "v1 completion is not v2 completion", "three turns alone are not evidence", "new task receives a new version", "old polynomial/domain binding must match before value reuse", "no duplicated observations or automatic fuel reset", "all seven compiler rows are required by this checker", "missing frontier remains recorded after local close", "equal values do not identify native histories", "I and its proposed duality with identity remain unresolved"],
+  "limits": {"runs": 7, "new_candidates_per_run": 2, "scalar_evaluations_and_checks_per_process": 2000, "metadata_items_per_process": 30000, "wall_seconds_per_process": 5, "cpu_seconds_standalone": 5, "address_space_bytes_standalone": 268435456, "artifact_bytes": 131072, "automatic_continuations": 0, "correction_replays": 1, "research_minutes": 20},
+  "comparison": "Each paired run has the same total two-observation ceiling, arithmetic task, checker and order. Cached mode imports one charged old observation and computes one new value; uncached mode computes both. Include cache construction and revalidation; do not claim net speedup from one fewer new candidate.",
+  "negative_controls": ["stale v1 Close applied to v2", "compiler mutation or incomplete compilation coverage", "changed polynomial/domain with old cache", "duplicate witness", "omitted or altered history", "forged close after zero fuel or one nonsolution", "turn-count-only acceptance", "revision version/goal mismatch", "malformed or Boolean scalar"],
+  "exit": "Each fixed run halts on two distinct checked solutions or its declared candidate/fuel boundary. Incomplete evidence returns Unknown with continuation cursor and unvisited positions. Hard interruption may prevent checkpointing; never claim persistence without successful write.",
+  "residuals": ["No learned syntax or proposed native builtin", "No native A=0, M=1, ZeroFault or M6 filler inference", "No interpreter/identity duality or three-turn identity law", "No universal grammar completeness", "No physical or institutional validation", "No resumed unknown-syntax-building", "No automatic merge"]
+}
