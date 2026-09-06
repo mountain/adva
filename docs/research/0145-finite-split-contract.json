@@ -1,0 +1,128 @@
+{
+  "schema": "adva.finite-split-contract.research",
+  "version": 0,
+  "frozen_at_utc": "2026-09-06T17:11:14.501072+00:00",
+  "main": "24d7275971cfd61fabc3270ac2a71b79df377598",
+  "draft_dependency": 144,
+  "draft_commit": "d2f7208e42e2f9682e0af169feacf3389c04efe6",
+  "question": "Can a fixed finite observation-preservation contract survive representation changes and worklist splits with complete coverage, distinct histories and a strictly decreasing shared work budget?",
+  "arithmetic_domain": "Z with exact Python integers, strict integer types excluding bool; coefficients in [-3,3], evaluation intermediates bounded to 128 bits",
+  "input_set": [
+    -3,
+    -2,
+    -1,
+    0,
+    1,
+    2,
+    3
+  ],
+  "source_representation": "expanded-v0: a*x*x + b*x + c, with an ordered five-operation trace",
+  "target_representation": "horner-v0: (a*x+b)*x+c, with an ordered four-operation trace",
+  "main_coefficients": [
+    2,
+    3,
+    1
+  ],
+  "fresh_coefficients": [
+    -1,
+    2,
+    3
+  ],
+  "quantifier": "for every x in the declared finite input set",
+  "observation": "exact integer value equality under identity input/output correspondence; execution histories remain separate",
+  "representation_invariants": [
+    "question version, domain, quantifier, input set, observer, source and target representation versions and coefficients",
+    "source/target histories retained rather than identified",
+    "display names are excluded from question binding only",
+    "changed scope cannot consume an unchanged receipt as if its applicability were already established"
+  ],
+  "worklist_invariant": "D = checked points disjoint-union all pending blocks, after every committed transition",
+  "split_policy": "Replace one pending block with exactly two nonempty ordered proper subblocks; no duplicate atoms, disjoint union equals parent; maximum arity2, depth6, pending atoms7; no per-child fuel field. Generate midpoint split in this fixture.",
+  "termination_argument": "Phi=sum(|block|-1) decreases by one at every valid binary split; at most6 splits. Psi=sum(2*|block|-1) decreases by one at every split or leaf check; at most13 successful work steps. All attempts additionally cost shared fuel. This is not general termination for arbitrary new obligations.",
+  "accounting": "One global invocation meter <=2000. Each case has a declared total ledger E+64, with E work units and64 reserved for final independent checking and checkpoint serialization. All nodes share that ledger, no child balances. Every split attempt/whole point check costs at least1 work unit. Invalid proposals spend their attempted work and preserve the old frontier. Final checking/serialization consume the same total ledger; a reserve is not a new grant.",
+  "cases": [
+    {
+      "id": "main",
+      "work_fuel": 13,
+      "expected": "FinitePreservationVerified"
+    },
+    {
+      "id": "fresh-coefficients",
+      "work_fuel": 13,
+      "expected": "FinitePreservationVerified"
+    },
+    {
+      "id": "wrong-target",
+      "work_fuel": 13,
+      "expected": "Refuted"
+    },
+    {
+      "id": "missing-child",
+      "work_fuel": 13,
+      "expected": "Blocked"
+    },
+    {
+      "id": "overlapping-children",
+      "work_fuel": 13,
+      "expected": "Blocked"
+    },
+    {
+      "id": "copied-child-fuel",
+      "work_fuel": 13,
+      "expected": "Blocked"
+    },
+    {
+      "id": "display-rename",
+      "mode": "reuse main receipt under display-only task rename",
+      "expected": "FinitePreservationVerified"
+    },
+    {
+      "id": "changed-scope-stale-receipt",
+      "mode": "reuse main receipt with changed input set",
+      "expected": "Blocked"
+    },
+    {
+      "id": "zero-work-fuel",
+      "work_fuel": 0,
+      "expected": "Unknown"
+    },
+    {
+      "id": "partial-work-fuel",
+      "work_fuel": 4,
+      "expected": "Unknown"
+    },
+    {
+      "id": "self-child-split",
+      "work_fuel": 13,
+      "expected": "Blocked"
+    },
+    {
+      "id": "inconsistent-final-frontier",
+      "mode": "main receipt with an extra pending block",
+      "expected": "Blocked"
+    }
+  ],
+  "verification": "Independent receipt checker reconstructs queue transitions, coverage, resource charges and source/target arithmetic (separate polynomial computation); checks preserved distinct traces. Producer and checker share Python integers, not independent runtimes. Reconstruct serialized main and partial-Unknown reports under the same global budget.",
+  "budget": {
+    "routes": 1,
+    "cases": 12,
+    "max_global_charged_units": 2000,
+    "max_case_work_units": 13,
+    "case_reserve_units": 64,
+    "max_split_arity": 2,
+    "max_atoms": 7,
+    "max_depth": 6,
+    "max_file_bytes": 262144,
+    "max_wall_seconds": 5,
+    "max_cpu_seconds": 5,
+    "max_address_space_mib": 256,
+    "max_invocations": 2,
+    "max_necessary_repair_replays": 1,
+    "native_calls": 0,
+    "candidate_search_nodes": 0
+  },
+  "success": "All declared outcomes agree with independently checked receipts; main/fresh cover all seven points, unchanged display-name interpretation, invalid splits preserve coverage, zero/partial work retain Unknown frontier, two serialized reconstructions match; no automatic continuation",
+  "scope": "External finite obligation-partition and observation-preservation calibration; not a native CausalCut, ProgramSlice, identity, M6 filler, recursive splitter, native free, universal grammar proof, new compiler theorem, automatic direction selection or acceleration. No repository moves.",
+  "costs": "Measure construction/work, final verification, serialization/replay, fresh reuse and process RSS; phases may overlap and must be labelled; source authoring/research/network costs Missing if unmeasured.",
+  "word": "Refines proposed research workflow; no new primitive or library research API rename"
+}
