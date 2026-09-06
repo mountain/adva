@@ -1,0 +1,27 @@
+{
+  "schema": "adva.prime-universe.finite-contract",
+  "version": 0,
+  "working_name": "Universe(Prime)",
+  "meaning": "Every finite list of natural-number primes has a prime outside the list",
+  "question": "Can a bounded exact construction produce an independently checked outside-prime certificate, without claiming native verification of the universally quantified theorem?",
+  "domain": "natural numbers, exact integers; not Real/f64",
+  "candidate": "N = product(P) + 1; q is a prime divisor of N; N = q*k; q not in P",
+  "input_boundary": {"max_list_length": 6, "sorted_unique": true, "min_entry": 2, "max_entry": 13, "empty_product": 1, "max_N": 65535},
+  "limits": {"global_units": 2000, "search_divisor_checks_per_case": 256, "search_seconds_per_case": 1, "verification_units_per_call": 1024, "wall_seconds": 5, "address_space_mib": 256, "max_file_bytes": 262144, "executions": 1, "serialized_rechecks": 1, "native_calls": 0, "repair_replays_max": 1},
+  "cases": [
+    {"id": "main", "primes": [2, 3, 5], "mode": "normal", "expected": "FiniteExtensionVerified"},
+    {"id": "fresh", "primes": [2, 3, 5, 7, 11, 13], "mode": "normal", "expected": "FiniteExtensionVerified"},
+    {"id": "composite-successor", "primes": [3], "mode": "normal", "expected": "FiniteExtensionVerified"},
+    {"id": "empty", "primes": [], "mode": "normal", "expected": "FiniteExtensionVerified"},
+    {"id": "zero-search-fuel", "primes": [2, 3, 5], "mode": "zero-search-fuel", "expected": "Unknown"},
+    {"id": "forged-q-one", "primes": [2, 3, 5], "mode": "forged-q-one", "expected": "Blocked"},
+    {"id": "falsely-prime-successor", "primes": [2, 3, 5, 7, 11, 13], "mode": "falsely-prime-successor", "expected": "Blocked"},
+    {"id": "composite-input", "primes": [4], "mode": "normal", "expected": "Blocked"}
+  ],
+  "checker": "Independent product reconstruction, finite input prime checks, exact factor equation, outside-list relation and exhaustive q-divisor checks; producer searches only to isqrt(N), checker tries all 2 <= d < q until refutation or budget",
+  "logical_assumptions": ["Natural-number arithmetic", "Every integer N >= 2 has a least divisor greater than one and that divisor is prime", "A divisor of both M and M+1 divides 1", "The arbitrary finite-list argument is a classical mathematical proof external to the current Adva proof checker"],
+  "protected": ["Universe is a typed research predicate, not an implemented builtin", "One finite extension does not certify all finite lists", "N need not be prime", "q outside a list need not exceed its largest member", "No fixed fuel covers all natural numbers", "Zero and one remain distinct; divisibility uses integer witnesses, not a field quotient or native M1"],
+  "source_main": "24d7275971cfd61fabc3270ac2a71b79df377598",
+  "stack_base": "67c1173295a2289a8973dd37134e48808dcace6c",
+  "residuals": ["Rust prime-certificate verifier is a proposed adapter, not implemented or run", "Adva has no admitted natural-number quantified theorem checker for Universe(Prime)", "No universal grammar, social-value or native free conclusion"]
+}
