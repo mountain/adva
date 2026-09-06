@@ -7,6 +7,14 @@ Lean/Metamath proof text and records external verification. Batched external
 acceptance admits only scoped research evidence. The stable semantic boundary
 and prior immutable library checkpoints are unchanged; see ADR 0040.
 
+Research 0153 adds a separate `adva.py search-campaign` supervisor and Rust
+example for policy comparison and a bounded frozen-policy continuation. It
+imports the 0152 external log checks unchanged and enforces byte-identical
+Rust arithmetic/proof-export blocks before running. Visit memory is over
+research arithmetic syntax only. Per-direction pilot selection controls
+proposals, not verifier rules, native identities or library admission; see
+ADR 0041 and the explicit 100-round contract.
+
 ## Dependency direction
 
 ```text

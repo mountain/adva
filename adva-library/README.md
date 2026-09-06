@@ -115,3 +115,11 @@ and path journal live under
 The comparison can change a research search policy, not the old library's
 meaning. There is no new knowledge epoch, new native word, silent deletion of
 backtracking paths, or promotion of external equality to program identity.
+
+Research 0153 keeps these epochs and recipe journals fixed during a policy
+comparison and conditional 100-round campaign, invoked through
+`python/adva/adva.py search-campaign`. Its separate
+[campaign evidence](../docs/research/0153-evidence/README.md) retains the
+selected proposal policies, complete traversals and checked batch receipts.
+A selected policy is not a new library word, and no epoch is published by
+completing a round.

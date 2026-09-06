@@ -376,3 +376,13 @@ majority vote. Arithmetic subtree duplication/contraction is not a native
 linear program operation. A syntactic residual, a checked equation and a
 retained path are distinct; no metric-space structure, path erasure, SGD,
 three-computation completeness or general language evolution is established.
+
+Research 0153 changes only bounded search policy. Exact arithmetic-tree visit
+memory may prefer an unvisited candidate but may not delete histories, create
+native source/occurrence identities or identify polynomial-equal programs.
+Relaxed visit filtering retains returns; scheduled exploration has a fixed
+cap. Pilot-best is relative to declared task directions and cost ordering,
+not a universal optimum. One hundred frozen-policy rounds remain repeated
+checks in a finite task family, not one hundred knowledge epochs or a learned
+semantic calculus. Every selected path still requires unchanged Rust and
+external verifier checks, with Unknown and incomplete batches kept distinct.

@@ -49,6 +49,14 @@ arithmetic or native semantic judgments. The existing `prime-check` command
 remains available. Three accepting verifiers are not a three-computation
 theorem, and this discrete search is not SGD.
 
+[Research 0153](docs/research/0153-frozen-verifier-search-campaign.md) keeps
+those verifier rules fixed while comparing random, visit-memory and bounded
+residual/exploration policies. `python python/adva/adva.py search-campaign --help`
+describes the outer entry for one fixed pilot followed conditionally by 100
+new-seed rounds with frozen, direction-specific policy choices. Every selected
+path is still checked; visit memory does not delete native history or publish
+a new knowledge epoch.
+
 - immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
   `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
 - explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,
