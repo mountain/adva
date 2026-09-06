@@ -1,0 +1,55 @@
+{
+  "schema": "adva.private-merge-host-cost.research",
+  "version": 0,
+  "executions": [
+    {
+      "command": [
+        "timeout",
+        "5s",
+        "python3",
+        "experiments/private_merge/calibration.py",
+        "--contract",
+        "docs/research/0146-private-merge-contract.json",
+        "--output-dir",
+        "docs/research/0146-evidence"
+      ],
+      "exit_code": 0,
+      "wall_ns_including_startup_and_save": 53578843,
+      "child_cumulative_peak_rss_kib_linux": 13356,
+      "cumulative_child_user_seconds": 0.044995,
+      "cumulative_child_system_seconds": 0.008397
+    },
+    {
+      "command": [
+        "timeout",
+        "5s",
+        "python3",
+        "experiments/private_merge/merge.py",
+        "--root",
+        "docs/research/0146-evidence/main-root.json",
+        "--receipts",
+        "docs/research/0146-evidence/main-receipts.json",
+        "--output",
+        "docs/research/0146-evidence/cli-replay.json"
+      ],
+      "exit_code": 0,
+      "wall_ns_including_startup_and_save": 39238764,
+      "child_cumulative_peak_rss_kib_linux": 13356,
+      "cumulative_child_user_seconds": 0.07882299999999999,
+      "cumulative_child_system_seconds": 0.012619
+    }
+  ],
+  "peak_scope": "Maximum over the two timeout/Python process trees, not the sum",
+  "repair_replays": 0,
+  "native_calls": 0,
+  "research_authoring_network_cost": "Missing; not included in runtime timing",
+  "source_sha256": {
+    "experiments/private_merge/merge.py": "9be0fe2e7c8717cca953c51ef38374f3d617aab086fc8aa489270750b509504a",
+    "experiments/private_merge/calibration.py": "1bf386b1f144bd1207658afaec739996f52bcd807d27c194ee8e14d0335bc9b7",
+    "docs/research/0146-private-merge-contract.json": "4b9092955efa1328f10bd111c4c18304fe367838a2528f404df66058f11120b5"
+  },
+  "total_physical_units": 314,
+  "combined_wall_ns": 92817607,
+  "cli_semantic_matches": true,
+  "cli_history_cost_matches": true
+}

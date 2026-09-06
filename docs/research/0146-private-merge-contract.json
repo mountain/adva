@@ -1,0 +1,78 @@
+{
+  "schema": "adva.private-merge-run-contract.research",
+  "version": 0,
+  "question": "Can fixed finite split receipts be merged without changing the common task, subject role, value-direction, library contract, private policy, coverage or resource allocation?",
+  "level": "external finite research protocol; not native adva semantics",
+  "source_sha256": "66824a1982bc7576c0ca53aa8f3e8ec5dde1c6db329b9ff931258d8278f06187",
+  "source_pr": 145,
+  "source_commit": "3d73f8567b6cec2e64772b79ddd3e34ac5d6da53",
+  "arithmetic": {
+    "domain": "Z",
+    "inputs": [-3, -2, -1, 0, 1, 2, 3],
+    "coefficient_range": [-3, 3],
+    "main_coefficients": [2, 3, 1],
+    "fresh_coefficients": [-1, 2, 3],
+    "representations": ["expanded-v0", "horner-v0"],
+    "observer": "exact-integer-value",
+    "quantifier": "all declared seven inputs",
+    "intermediates": "signed 128-bit bound, exact Python integers",
+    "native_A0_M1": "NotRun; no zero-to-one promotion or inversion"
+  },
+  "partition": {"left": [-3, -2, -1], "right": [0, 1, 2, 3]},
+  "cases": [
+    ["full-main", "FiniteMergeVerified"],
+    ["missing-right", "Unknown"],
+    ["partial-right", "Unknown"],
+    ["exact-duplicate-left", "FiniteMergeVerified"],
+    ["reversed-arrival", "FiniteMergeVerified"],
+    ["conflicting-duplicate", "Blocked"],
+    ["purpose-drift", "Blocked"],
+    ["subject-drift", "Blocked"],
+    ["privacy-downgrade", "Blocked"],
+    ["copied-root-fuel", "Blocked"],
+    ["forged-trace", "Blocked"],
+    ["erased-pending", "Blocked"],
+    ["fresh-coefficients", "FiniteMergeVerified"],
+    ["genuine-root-counterexample", "Refuted"]
+  ],
+  "limits": {
+    "subprocess_seconds": 5,
+    "global_units": 2000,
+    "root_grant": 256,
+    "fork_cost": 1,
+    "left_work": 5,
+    "right_work": 7,
+    "partial_right_work": 2,
+    "branch_reserve": 64,
+    "merge_reserve": 64,
+    "max_receipts": 3,
+    "max_json_bytes": 262144,
+    "new_searches": 0,
+    "calibration_invocations": 1,
+    "standalone_cli_replays": 1,
+    "implementation_error_repair_replays": 1
+  },
+  "protected": [
+    "Subject is a neutral role, not an implementation language or a native identity",
+    "Recorded value-direction is preserved; human benefit and agreement remain unverified",
+    "The common library contract is immutable across this fork",
+    "Private-only policy cannot be downgraded; no publication or network operation",
+    "Unreported child allocations stay reserved; no refund or reallocation",
+    "Duplicate receipts contribute historical work once, but current checking is charged",
+    "All submitted conflicts are checked before deriving a merged arithmetic verdict",
+    "Refuted and pending points remain represented; a missing branch cannot close coverage",
+    "Source/occurrence/native identity and original histories are not merged by value equality"
+  ],
+  "outcomes": {
+    "success": "FiniteMergeVerified permits only an external merge checkpoint",
+    "false_proposition": "Refuted requires a correctly scoped exact counterexample",
+    "invalid_protocol_or_evidence": "Blocked preserves the original frontier and submitted material",
+    "missing_or_partial_evidence": "Unknown preserves concrete unverified atoms and allocated resources"
+  },
+  "residuals": [
+    "Native free and Rust certificate-bearing branch semantics remain unimplemented",
+    "No signature, ACL implementation, global atomic ledger or cross-process anti-replay guarantee",
+    "No unrestricted merge associativity, conflict resolution or inverse-of-split theorem",
+    "No claim of measured customer utility, speedup, universal grammar or fulfilled human promise"
+  ]
+}
