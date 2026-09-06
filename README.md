@@ -57,6 +57,15 @@ new-seed rounds with frozen, direction-specific policy choices. Every selected
 path is still checked; visit memory does not delete native history or publish
 a new knowledge epoch.
 
+The [math catalog](adva-library/math/README.md) adds arithmetic, geometry and
+logic views without moving the existing evidence. Run
+`python3 python/adva/adva.py math-check` for bounded metadata and integrity
+checks, with no native build or prover required. Each entry has one home;
+cross-topic references confer no derivation authority. A pinned documentary
+growth obligation keeps geometry rooted at the original Pascal presentations,
+with native discharge still Open. This is not a new logic, theorem importer,
+native Seal, or general task-loop executor.
+
 - immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
   `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
 - explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,

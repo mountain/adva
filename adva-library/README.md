@@ -123,3 +123,30 @@ comparison and conditional 100-round campaign, invoked through
 selected proposal policies, complete traversals and checked batch receipts.
 A selected policy is not a new library word, and no epoch is published by
 completing a round.
+
+## Constrained math topic view
+
+[`math/`](math/README.md) now indexes existing arithmetic, geometry and logic
+materials through one strict manifest and three topic indexes. Each entry has
+one home; other topics may hold documentary references, not derivation rights.
+Existing snapshots, journals, the Pascal pair and this directory's original
+`index.json` are not moved or reinterpreted. `adva.py math-check` checks only
+metadata, directory membership and pinned bytes; success grants no native
+admission or proof authority.
+
+The version-zero growth obligation is fixed by a documentary `seal`, with
+status Open and native Seal NotIssued. Geometry successors need a proposed
+same-directory ancestry reaching the pinned Pascal root and, before actual
+admission, the still-missing native import and derivation certificates.
+Unconnected braid material stays external reference. Existing external Pascal
+calculation and finite logic experiments are indexed, but not promoted to a
+native task-loop API. See ADR 0042 and Research 0154 for the precise boundary.
+
+The detailed Chinese note
+[密码学封存、双语言校准与 Adva 的信任边界](../docs/research/0155-cryptographic-sealing-and-calibration-boundary.md)
+is registered as a proposed logic-home document, with an arithmetic reference.
+It compares Python/Rust support for Ed25519, AES-256-GCM and
+ChaCha20-Poly1305, separates signatures from native proofs, and records the
+key-management, directory and finite-run obligations for any later work.
+This registration installs no crypto dependency, issues no signature or
+native Seal, and starts no calibration run.
