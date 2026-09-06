@@ -1022,6 +1022,19 @@ forbidden_conflations = ["Finite symbolic identity check with sampled numerical 
 
 
 [[claim]]
+claim_id = "adva.bounded-experiment.prefix-coverage-gated-close.v0"
+canonical_name = "Coverage-gated dyadic feature closure with retained missing leaves"
+code_symbol = "experiments/prefix_frontier/coverage_gate.py; tests/python/test_prefix_coverage_gate.py"
+dimension = "finite-prefix/coverage/exact-dyadic/feature-closure/reopen"
+status = "bounded-experiment"
+scope = "All 256 assignments of P/N/A/M to depth-2 binary leaves, precisions one and two, all compatible leaf completions, and four depth-3/4 fixtures; external reference model only"
+assumptions = ["Positive and negative prefix roles are declared finite input assumptions", "All unresolved and missing leaves have independent Boolean fillings", "Exact integer and dyadic rational arithmetic", "Observer is floor(2^k*x), with mass-one endpoint explicitly retained", "Python reference reports carry no native semantic authority"]
+dependencies = []
+proof_or_certificate = "Research 0130 gives the elementary endpoint criterion for the declared complete-coverage model. Independent leaf-subset enumeration checks 512 observations; the unsafe interval-only control has 154 false closes, while missing coverage causes 350 certification obstructions. The full table, missing-eighth counterexample, restored frontier, fresh reuse and finer-observer witnesses are retained. Seven targeted tests cover malformed inputs, overlap, refinement, zero fuel, dyadic endpoints, replay and tampering. Actual local costs and process peak RSS are recorded separately."
+counterexample_boundary = "A partial calibration of Research 0090, not completion of its A--F controls, a Rust closure certificate, a halting result, or authorization for Research 0092 promotion. The deliberately unsafe control is not a bug report against stable Adva. No universal grammar, increased expressive power, speedup, authenticated history, practical customer benefit, or social trust is established."
+forbidden_conflations = ["Recorded interval with covered possibility space", "Feature closure with object closure", "Missing coverage with semantic nonexistence", "Equal mass with identical frontier or history", "Proposed word with learned theorem or native builtin", "Process peak RSS with artifact size", "External finite reference evidence with Rust certificate", "Partial 0090 calibration with 0092 promotion authority"]
+
+[[claim]]
 claim_id = "adva.bounded-experiment.finite-learner-judgment-reuse.v0"
 canonical_name = "Finite learner outcome updates and checked quadratic reuse"
 code_symbol = "experiments/finite_learner/calibration.py; tests/python/test_finite_learner.py"
