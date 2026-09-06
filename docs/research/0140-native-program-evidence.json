@@ -1,0 +1,107 @@
+{
+  "schema": "adva.native-program-run-evidence.research",
+  "version": 0,
+  "state": "Completed",
+  "tested_starting_commit": "900b847e652e8f08c67910a1228fcaa8f392c3fe",
+  "formatting_applied_before_testing": true,
+  "exact_tested_source_sha256": {
+    "crates/adva-witness/src/native_run.rs": "3bfe54fbe91e91eeb9f9e3099cda4c5b9790d405de4c1c5a5d1671cc5f07f263",
+    "crates/adva-witness/src/bin/support/native_run_cli.rs": "e9470e80d9fc2b0e9630ae3285a82ab794ba6b7e5bb75d97345e5e20edc903af",
+    "crates/adva-witness/tests/native_run_cli.rs": "6bff857de14e995d68ec3d838d9ec358d2ab2cfcb7386024ed6a393da83f7f1d"
+  },
+  "workflow_run": 34039297072,
+  "workflow_url": "https://github.com/mountain/adva/actions/runs/34039297072",
+  "job_id": 101503009574,
+  "rustc": "1.98.1 (48a229cea 2026-09-01)",
+  "validation": {
+    "clippy": "Passed",
+    "native_unit_methods": 7,
+    "native_cli_test_methods": 7,
+    "failures": 0,
+    "unit_test_reported_seconds": 0.01,
+    "cli_test_reported_seconds": 0.02,
+    "cli_test_invocations": 7,
+    "additional_release_cli_invocations": 2
+  },
+  "build_reported_cost": {
+    "clippy_dev_seconds": 27.53,
+    "unit_test_build_seconds": 16.3,
+    "integration_test_build_seconds": 14.96,
+    "release_build_display": "1m 21s"
+  },
+  "programs": {
+    "arithmetic": {
+      "state": "Completed",
+      "values": [
+        14.0
+      ],
+      "report_path": "docs/research/0140-native-run-evidence/arithmetic-result.adva",
+      "report_sha256": "378f3e957393c9d6c981845070ef5bf2f9fd8b526e83b857ef4d8a6580fb49df",
+      "report_bytes": 11452,
+      "ast_fuel_used": 5,
+      "ast_fuel_remaining": 11,
+      "phase_seconds": {
+        "compile": 6.3277e-05,
+        "envelope_parse": 4.6386e-05,
+        "evaluate": 1.4337e-05,
+        "link": 5.711e-06,
+        "lisp_parse": 2.8493e-05,
+        "source_preflight": 3.988e-06,
+        "term_preflight": 8.42e-07,
+        "total_before_serialization": 0.000173834
+      },
+      "external_peak_rss_kib": 4080,
+      "external_wall_display": "0:00.00 (GNU time display precision; not zero elapsed time)"
+    },
+    "reuse": {
+      "state": "Completed",
+      "values": [
+        11.0
+      ],
+      "report_path": "docs/research/0140-native-run-evidence/reuse-result.adva",
+      "report_sha256": "93f0d0edd0dde3b84ab215c06c07051350ffaf9c4b28fc27a8084597e0384abe",
+      "report_bytes": 11450,
+      "ast_fuel_used": 5,
+      "ast_fuel_remaining": 11,
+      "phase_seconds": {
+        "compile": 5.8198e-05,
+        "envelope_parse": 1.5499e-05,
+        "evaluate": 1.3265e-05,
+        "link": 4.91e-06,
+        "lisp_parse": 2.3334e-05,
+        "source_preflight": 9.72e-07,
+        "term_preflight": 7.31e-07,
+        "total_before_serialization": 0.000127878
+      },
+      "external_peak_rss_kib": 4228,
+      "external_wall_display": "0:00.00 (GNU time display precision; not zero elapsed time)"
+    }
+  },
+  "artifact": {
+    "id": 9991202702,
+    "name": "native-adva-program-run",
+    "expires_on": "2026-09-13",
+    "includes_linux_executable": true
+  },
+  "implementation_error_corrections": 0,
+  "generic_ci_first_attempt": {
+    "rust": "cargo fmt --check rejected the unformatted submission; retained formatter output is exactly the code tested successfully by Native program run",
+    "python_311_312_313": "Passed",
+    "arithmetic_vocabulary": "Passed"
+  },
+  "missing_costs": [
+    "serialization time separately",
+    "filesystem publication time separately",
+    "total engineering wall time",
+    "full workflow peak memory",
+    "portable in-process wall deadline"
+  ],
+  "residuals": [
+    "f64 realization is not exact rational proof",
+    "finite inputs/final outputs do not assert every discarded intermediate is finite",
+    "the Pascal proposal schemas and generic self-interpreter remain unsupported",
+    "no native free method or six stateful learn/free run was implemented in this change",
+    "report bytes are not memory use",
+    "saved report flags require independent recompilation and checked diagram import"
+  ]
+}

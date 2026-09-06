@@ -71,6 +71,16 @@ claim that the surrounding calculus has been completely presented.
 
 ## Bounded research companion
 
+The research `adva run` file adapter in ADR 0035 executes a restricted,
+call-free PSC0 source module through the existing Rust compiler and evaluator.
+Its strict `adva.run.program.research` envelope is separate from neutral-carrier
+documents and saved witnesses. It retains compiler history and certificates,
+and numerical evaluation evidence. `Real` remains the existing f64 realization;
+completion is not an exact rational identity, a native Pascal proof, a general
+self-interpreter, `free`, or a universal grammar result. Explicit source, AST,
+copy and admission-fuel caps precede compilation; host time and memory remain
+separate measured resources. Unknown schemas and unsupported calls are refused.
+
 The Rust `adva-witness` crate may check the corrected six initial declarations,
 finite signed formation ledgers, pure add/multiply expression witnesses, and
 linear three-hole template instances. It reuses verified proof artifacts by a

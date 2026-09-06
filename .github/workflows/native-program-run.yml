@@ -1,0 +1,76 @@
+name: Native program run
+
+on:
+  pull_request:
+    paths:
+      - "crates/adva-witness/**"
+      - "programs/native-run/**"
+      - ".github/workflows/native-program-run.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Check formatting and retain exact sources
+        run: |
+          cargo fmt --all -- --check
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          paths = ["crates/adva-witness/src/native_run.rs", "crates/adva-witness/src/bin/support/native_run_cli.rs", "crates/adva-witness/tests/native_run_cli.rs"]
+          print("TESTED_SOURCES_BEGIN")
+          print(json.dumps({p: Path(p).read_text() for p in paths}))
+          print("TESTED_SOURCES_END")
+          PY
+      - name: Check native adapter lints
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        run: cargo clippy -p adva-witness --all-targets -- -D warnings
+      - name: Check native admission, rejection, and replay
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        run: cargo test -p adva-witness --lib native_run -- --nocapture
+      - name: Check actual command and file preservation
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        run: cargo test -p adva-witness --test native_run_cli -- --nocapture
+      - name: Build native Adva
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        run: cargo build --release -p adva-witness --bin adva
+      - name: Execute the two bounded native programs
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p target/native-program-run
+          ulimit -v 524288
+          ulimit -f 8192
+          /usr/bin/time -v -o target/native-program-run/arithmetic-cost.txt timeout 5 target/release/adva run programs/native-run/arithmetic.adva --output target/native-program-run/arithmetic-result.adva
+          /usr/bin/time -v -o target/native-program-run/reuse-cost.txt timeout 5 target/release/adva run programs/native-run/reuse.adva --output target/native-program-run/reuse-result.adva
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          folder = Path("target/native-program-run")
+          print("NATIVE_EVIDENCE_BEGIN")
+          print(json.dumps({p.name: p.read_text() for p in sorted(folder.iterdir()) if p.is_file()}))
+          print("NATIVE_EVIDENCE_END")
+          PY
+      - name: Retain executable and native evidence
+        if: always() && hashFiles('docs/research/0140-native-program-evidence.json') == ''
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-adva-program-run
+          path: |
+            target/release/adva
+            target/native-program-run/
+            crates/adva-witness/src/native_run.rs
+            crates/adva-witness/src/bin/support/native_run_cli.rs
+            crates/adva-witness/tests/native_run_cli.rs
+          retention-days: 7
+          if-no-files-found: warn
