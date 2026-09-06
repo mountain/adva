@@ -2,8 +2,8 @@
 //! Agreement fixtures are assumptions, not authentication or evidence of real consent.
 
 use adva_witness::{
-    ArtifactKeyV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0, ExactExprV0,
-    RoleV0, WitnessArtifactV0, WitnessProofV0, WitnessStoreV0,
+    ArtifactKeyV0, BoundaryChargeV0, BoundaryCoordinateV0, BoundaryTermV0, ExactExprV0, RoleV0,
+    WitnessArtifactV0, WitnessProofV0, WitnessStoreV0,
 };
 use serde::Serialize;
 use serde_json::{Value, json};
@@ -28,7 +28,10 @@ struct Meter {
 
 fn proof_check(meter: &mut Meter) -> Result<()> {
     meter.native_proof_checks += 1;
-    require(meter.native_proof_checks <= 16, "native verification budget exceeded")
+    require(
+        meter.native_proof_checks <= 16,
+        "native verification budget exceeded",
+    )
 }
 
 fn require(condition: bool, message: &str) -> Result<()> {
@@ -151,14 +154,20 @@ fn trial(spec: &TaskSpec, candidate: i32, meter: &mut Meter) -> Result<Trial> {
     let goal = after.evaluate_guarded(&BTreeMap::new())?.to_string();
     let key = store.insert(proof)?;
     let forward = store.artifact(&key).expect("inserted transition").clone();
-    require(forward.summary.is_formed(), "unformed arithmetic transition")?;
+    require(
+        forward.summary.is_formed(),
+        "unformed arithmetic transition",
+    )?;
     let mut artifacts = vec![forward.clone()];
     let (sealed, rejection) = if forward.summary.is_multiplicatively_closed() {
         let key = store.insert(WitnessProofV0::Seal { body: key })?;
         artifacts.push(store.artifact(&key).expect("inserted seal").clone());
         (Some(key), None)
     } else {
-        (None, Some("M != 1; candidate does not meet equation".to_owned()))
+        (
+            None,
+            Some("M != 1; candidate does not meet equation".to_owned()),
+        )
     };
     Ok(Trial {
         task: spec.clone(),
@@ -185,7 +194,12 @@ fn search(task: Task, meter: &mut Meter) -> Result<Search> {
     task.spec.validate()?;
     let mut trials = Vec::new();
     let mut witness = None;
-    for candidate in task.spec.domain.into_iter().take(usize::from(task.spec.fuel)) {
+    for candidate in task
+        .spec
+        .domain
+        .into_iter()
+        .take(usize::from(task.spec.fuel))
+    {
         let record = trial(&task.spec, candidate, meter)?;
         if record.sealed.is_some() {
             witness = Some(record.clone());
@@ -197,8 +211,20 @@ fn search(task: Task, meter: &mut Meter) -> Result<Search> {
     }
     let spent = trials.len();
     let remaining = task.spec.domain[spent..].to_vec();
-    let status = if witness.is_some() { "WitnessFound" } else { "Unknown" }.to_owned();
-    Ok(Search { task, trials, remaining, spent, status, witness })
+    let status = if witness.is_some() {
+        "WitnessFound"
+    } else {
+        "Unknown"
+    }
+    .to_owned();
+    Ok(Search {
+        task,
+        trials,
+        remaining,
+        spent,
+        status,
+        witness,
+    })
 }
 
 // Verification replays supplied nodes; it does not enumerate or search candidates.
@@ -233,7 +259,9 @@ fn verify(spec: &TaskSpec, record: &Trial, meter: &mut Meter) -> Result<bool> {
     let Some(sealed) = &record.sealed else {
         return Ok(false);
     };
-    let expected_seal = WitnessProofV0::Seal { body: record.artifacts[0].key.clone() };
+    let expected_seal = WitnessProofV0::Seal {
+        body: record.artifacts[0].key.clone(),
+    };
     Ok(record.artifacts.len() == 2
         && record.artifacts[1].proof == expected_seal
         && &record.artifacts[1].key == sealed
@@ -257,14 +285,23 @@ fn judge(
     meter: &mut Meter,
 ) -> Result<Judgment> {
     let arithmetic = match witness {
-        Some(record) => if verify(&task.spec, record, meter)? { "Verified" } else { "Rejected" },
+        Some(record) => {
+            if verify(&task.spec, record, meter)? {
+                "Verified"
+            } else {
+                "Rejected"
+            }
+        }
         None => "Unknown",
     };
     let agreement_status = match agreement {
         None => "Missing",
         Some(a) if a.origin == Origin::MachineProposal => "MachineProposalRejected",
-        Some(a) if a.task != task.spec
-            || a.human_ref != task.spec.human_ref || a.action != ACTION => "BindingRejected",
+        Some(a)
+            if a.task != task.spec || a.human_ref != task.spec.human_ref || a.action != ACTION =>
+        {
+            "BindingRejected"
+        }
         Some(_) => "ConditionallyApplicable",
     };
     let pending_review = arithmetic == "Verified" && agreement_status == "ConditionallyApplicable";
@@ -290,21 +327,36 @@ fn case(
 
 fn main() -> Result<()> {
     let mut args = std::env::args_os().skip(1);
-    require(args.next().as_deref() == Some(OsStr::new("--output")), "expected --output")?;
+    require(
+        args.next().as_deref() == Some(OsStr::new("--output")),
+        "expected --output",
+    )?;
     let output = PathBuf::from(args.next().ok_or("missing output path")?);
     require(args.next().is_none(), "unexpected argument")?;
-    require(output.file_name() == Some(OsStr::new("world-task.json")), "invalid output basename")?;
+    require(
+        output.file_name() == Some(OsStr::new("world-task.json")),
+        "invalid output basename",
+    )?;
     let started = Instant::now();
     let mut meter = Meter::default();
     let main = search(task("main", 3, 2), &mut meter)?;
     let short = search(task("short", 3, 1), &mut meter)?;
     let reuse = search(task("reuse", 4, 3), &mut meter)?;
     let search_ns = started.elapsed().as_nanos();
-    require(main.spent + short.spent + reuse.spent == 6, "candidate budget mismatch")?;
-    require(short.status == "Unknown" && short.remaining == [2, 3], "short-fuel residual")?;
+    require(
+        main.spent + short.spent + reuse.spent == 6,
+        "candidate budget mismatch",
+    )?;
+    require(
+        short.status == "Unknown" && short.remaining == [2, 3],
+        "short-fuel residual",
+    )?;
     let main_witness = main.witness.as_ref().ok_or("missing main witness")?;
     let reuse_witness = reuse.witness.as_ref().ok_or("missing reuse witness")?;
-    require(main_witness.candidate == 2 && reuse_witness.candidate == 3, "wrong witness")?;
+    require(
+        main_witness.candidate == 2 && reuse_witness.candidate == 3,
+        "wrong witness",
+    )?;
     let validation = Instant::now();
     let agreement = assumed_agreement(&main.task);
     let reuse_agreement = assumed_agreement(&reuse.task);
@@ -317,33 +369,106 @@ fn main() -> Result<()> {
     proof_check(&mut meter)?;
     let mut refusal_store = WitnessStoreV0::new();
     let wrong_key = refusal_store.insert(wrong.artifacts[0].proof.clone())?;
-    let refusal = refusal_store.insert(WitnessProofV0::Seal { body: wrong_key }).err()
-        .ok_or("kernel sealed a wrong candidate")?.to_string();
+    let refusal = refusal_store
+        .insert(WitnessProofV0::Seal { body: wrong_key })
+        .err()
+        .ok_or("kernel sealed a wrong candidate")?
+        .to_string();
     let cases = vec![
-        case("main", &main.task, Some(main_witness), Some(&agreement), &mut meter)?,
-        case("short_fuel", &short.task, None, Some(&short_agreement), &mut meter)?,
-        case("reuse", &reuse.task, Some(reuse_witness), Some(&reuse_agreement), &mut meter)?,
-        case("missing_agreement", &main.task, Some(main_witness), None, &mut meter)?,
-        case("machine_proposal", &main.task, Some(main_witness), Some(&proposal), &mut meter)?,
-        case("stale_agreement", &reuse.task, Some(reuse_witness), Some(&agreement), &mut meter)?,
-        case("display_rename", &renamed, Some(main_witness), Some(&agreement), &mut meter)?,
-        case("wrong_candidate", &main.task, Some(wrong), Some(&agreement), &mut meter)?,
+        case(
+            "main",
+            &main.task,
+            Some(main_witness),
+            Some(&agreement),
+            &mut meter,
+        )?,
+        case(
+            "short_fuel",
+            &short.task,
+            None,
+            Some(&short_agreement),
+            &mut meter,
+        )?,
+        case(
+            "reuse",
+            &reuse.task,
+            Some(reuse_witness),
+            Some(&reuse_agreement),
+            &mut meter,
+        )?,
+        case(
+            "missing_agreement",
+            &main.task,
+            Some(main_witness),
+            None,
+            &mut meter,
+        )?,
+        case(
+            "machine_proposal",
+            &main.task,
+            Some(main_witness),
+            Some(&proposal),
+            &mut meter,
+        )?,
+        case(
+            "stale_agreement",
+            &reuse.task,
+            Some(reuse_witness),
+            Some(&agreement),
+            &mut meter,
+        )?,
+        case(
+            "display_rename",
+            &renamed,
+            Some(main_witness),
+            Some(&agreement),
+            &mut meter,
+        )?,
+        case(
+            "wrong_candidate",
+            &main.task,
+            Some(wrong),
+            Some(&agreement),
+            &mut meter,
+        )?,
     ];
     for (index, expected) in [true, false, true, false, false, false, true, false]
-        .into_iter().enumerate()
+        .into_iter()
+        .enumerate()
     {
-        require(cases[index]["judgment"]["pending_review"] == expected,
-            "unexpected conditional review judgment")?;
-        require(cases[index]["judgment"]["task_closed"] == false,
-            "task was improperly closed")?;
+        require(
+            cases[index]["judgment"]["pending_review"] == expected,
+            "unexpected conditional review judgment",
+        )?;
+        require(
+            cases[index]["judgment"]["task_closed"] == false,
+            "task was improperly closed",
+        )?;
     }
-    require(cases[1]["judgment"]["arithmetic"] == "Unknown", "short run closed")?;
-    require(cases[3]["judgment"]["agreement"] == "Missing", "missing agreement accepted")?;
-    require(cases[4]["judgment"]["agreement"] == "MachineProposalRejected",
-        "proposal accepted as agreement")?;
-    require(cases[5]["judgment"]["agreement"] == "BindingRejected", "stale agreement accepted")?;
-    require(cases[6]["judgment"] == cases[0]["judgment"], "rename changed judgment")?;
-    require(cases[7]["judgment"]["arithmetic"] == "Rejected", "wrong candidate accepted")?;
+    require(
+        cases[1]["judgment"]["arithmetic"] == "Unknown",
+        "short run closed",
+    )?;
+    require(
+        cases[3]["judgment"]["agreement"] == "Missing",
+        "missing agreement accepted",
+    )?;
+    require(
+        cases[4]["judgment"]["agreement"] == "MachineProposalRejected",
+        "proposal accepted as agreement",
+    )?;
+    require(
+        cases[5]["judgment"]["agreement"] == "BindingRejected",
+        "stale agreement accepted",
+    )?;
+    require(
+        cases[6]["judgment"] == cases[0]["judgment"],
+        "rename changed judgment",
+    )?;
+    require(
+        cases[7]["judgment"]["arithmetic"] == "Rejected",
+        "wrong candidate accepted",
+    )?;
     let verification_ns = validation.elapsed().as_nanos();
     let evidence = json!({
         "schema": "adva.research.world-task-boundary.v0",
@@ -368,13 +493,19 @@ fn main() -> Result<()> {
     let serialization_ns = serializing.elapsed().as_nanos();
     require(bytes.len() < MAX_BYTES, "evidence exceeds 128 KiB")?;
     let writing = Instant::now();
-    let mut file = OpenOptions::new().write(true).create_new(true).open(output)?;
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(output)?;
     file.write_all(&bytes)?;
     file.sync_all()?;
     let write_ns = writing.elapsed().as_nanos();
     println!("WORLD_TASK_EVIDENCE_BEGIN");
     println!("{}", std::str::from_utf8(&bytes)?);
     println!("WORLD_TASK_EVIDENCE_END");
-    eprintln!("serialization_ns={serialization_ns} write_ns={write_ns} bytes={}", bytes.len());
+    eprintln!(
+        "serialization_ns={serialization_ns} write_ns={write_ns} bytes={}",
+        bytes.len()
+    );
     Ok(())
 }
