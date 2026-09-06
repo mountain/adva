@@ -1,0 +1,216 @@
+{
+  "schema": "adva.pascal-three-party-task.research",
+  "version": 0,
+  "status": "Proposed",
+  "name": "pascal-task",
+  "title_zh": "三个 Human、三个 World、三台 Machine 的 Pascal 共同任务",
+  "document_role": "task and meeting contract; research JSON, not a registered executable Adva program",
+  "attribution": {
+    "problem_and_working_names": "Mingli Yuan / 苑明理",
+    "formalization_and_document_design": "assistant",
+    "date": "2026-09-06"
+  },
+  "interface": {
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "input": {
+    "subject": {
+      "participants": [
+        {
+          "self_ref": "self-1",
+          "human_ref": "Human-1",
+          "world_ref": "World-1",
+          "machine_ref": "Machine-1",
+          "actual_identity": {
+            "status": "Unknown",
+            "reason": "not supplied"
+          },
+          "assignment": "X=AB intersect DE"
+        },
+        {
+          "self_ref": "self-2",
+          "human_ref": "Human-2",
+          "world_ref": "World-2",
+          "machine_ref": "Machine-2",
+          "actual_identity": {
+            "status": "Unknown",
+            "reason": "not supplied"
+          },
+          "assignment": "Y=BC intersect EF"
+        },
+        {
+          "self_ref": "self-3",
+          "human_ref": "Human-3",
+          "world_ref": "World-3",
+          "machine_ref": "Machine-3",
+          "actual_identity": {
+            "status": "Unknown",
+            "reason": "not supplied"
+          },
+          "assignment": "Z=CD intersect FA"
+        }
+      ],
+      "reference_rule": "The three roles remain distinct. Labels are document-local references, not native SourceId, authenticated people or a claim about three physical universes."
+    },
+    "method": {
+      "task_key": "pascal-three-party/v0",
+      "question": "Prove that the three intersections of opposite sides of a hexagon on one nonsingular conic are collinear.",
+      "scope": "Exact normalized conic over Q; the polynomial identities also hold over R.",
+      "parameters": [
+        "d",
+        "e",
+        "f"
+      ],
+      "assumptions": [
+        "d,e,f are rational, pairwise distinct, and each differs from 0 and 1",
+        "all parties use the same six point labels, task version, coordinate basis and parameter binding",
+        "coordinates are homogeneous nonzero triples modulo nonzero scalar"
+      ],
+      "conic": "u*w-v*v=0",
+      "point_coordinates": {
+        "A": [
+          "1",
+          "0",
+          "0"
+        ],
+        "B": [
+          "0",
+          "0",
+          "1"
+        ],
+        "C": [
+          "1",
+          "1",
+          "1"
+        ],
+        "D": [
+          "1",
+          "d",
+          "d*d"
+        ],
+        "E": [
+          "1",
+          "e",
+          "e*e"
+        ],
+        "F": [
+          "1",
+          "f",
+          "f*f"
+        ]
+      },
+      "general_pascal_bridge": {
+        "status": "Imported mathematical lemma, not checked by this arithmetic replay",
+        "lemma": "A nonsingular conic with rational points admits a rational projective parametrization; a projective parameter change sends three distinct marked points to 0,infinity,1.",
+        "instance_obligation": "An arbitrary input conic requires an explicit invertible coordinate/parameter transport before this normalized witness is applied."
+      }
+    },
+    "object": {
+      "Resource": {
+        "materials": [
+          "public six-point construction",
+          "three local incidence presentations",
+          "shared Pascal line certificate"
+        ],
+        "execution_limits": {
+          "routes": 1,
+          "search_candidates": 0,
+          "symbolic_checks": 27,
+          "controls": [
+            "tampered Z has residual 1",
+            "off-conic F gives determinant 12"
+          ],
+          "numeric_instances": 2,
+          "seconds": 5,
+          "polynomial_operations_max": 10000,
+          "support_terms_max": 1000
+        },
+        "verification_and_saving_budget": "Verification is included in the bounded arithmetic pass; serialization and delivery are separately reported. No automatic restart or fuel increase.",
+        "physical_resources": "An execution environment must supply actual compute, memory and any access permission; a resource description does not allocate them."
+      }
+    }
+  },
+  "meeting": {
+    "time": {
+      "status": "Unknown",
+      "reason": "not supplied"
+    },
+    "place": {
+      "status": "Unknown",
+      "reason": "not supplied"
+    },
+    "participation_and_agreement": {
+      "status": "Unknown",
+      "reason": "No three-party meeting or human acceptance has been observed."
+    },
+    "shared_task": "pascal-three-party/v0"
+  },
+  "vocabulary": {
+    "self": "A distinct participant-relative reference with World, Human, Machine, boundary and history; no merged self is asserted.",
+    "Presentation": "A task-bound public construction, its evidence, disclosure boundary and unresolved obligations.",
+    "key": "Reference to a task, presentation or witness; neither authentication nor a decryption key.",
+    "secret": {
+      "status": "Unspecified",
+      "payload_included": false,
+      "rule": "An observer-relative disclosure boundary; do not infer knowledge or truth merely from nondisclosure."
+    },
+    "verify": "Check the declared mathematical obligations within budget; report Verified, Rejected or Unknown with reasons.",
+    "Unknown": "A scoped missing item with reason, retained history, residual obligation and continuation condition.",
+    "learn": "Proposed incorporation of witnessed corrections while retaining the three participant histories.",
+    "close": "Discharge this scoped task only when its required obligations and applicable human acceptance are recorded."
+  },
+  "proposed_call": {
+    "surface": "adva run program",
+    "program": "pascal-task.adva",
+    "presentation": "pascal-witness.adva",
+    "native_dispatch_available": false,
+    "note": "Design notation. Neither file adds or invokes a registered run command."
+  },
+  "acceptance": {
+    "mathematics": [
+      "nondegeneracy and shared input binding",
+      "six conic memberships",
+      "twelve endpoint-line incidences",
+      "six local intersection incidences",
+      "three incidences with one nonzero Pascal line"
+    ],
+    "human_task": [
+      "each participant contribution and review must have an actual source",
+      "meeting and acceptance remain separate from arithmetic verification"
+    ],
+    "unknown_policy": "Missing evidence, interpreter, transport or budget retains the specific gap; rejecting a candidate does not refute the existence of a solution."
+  },
+  "cogito": {
+    "user_hint": "我思故我在",
+    "working_reading": "Preserve whose questioning, construction and verification occurred, including unsuccessful or Unknown attempts.",
+    "boundary": "A computational record is a presentation of activity; this document does not certify subjective consciousness or exhaust what a Human is."
+  },
+  "output": {
+    "history": {
+      "status": "design_recorded",
+      "actual_three_party_execution": "NotRun"
+    },
+    "result": {
+      "status": "Open",
+      "task_closed": false
+    },
+    "evidence": {
+      "file": "pascal-witness.adva",
+      "required_remaining": [
+        "native interpreter/importer",
+        "actual participants and meeting",
+        "scoped human review",
+        "coordinate transport for a non-normalized input"
+      ]
+    }
+  }
+}
