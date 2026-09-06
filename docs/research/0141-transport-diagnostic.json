@@ -1,0 +1,73 @@
+{
+  "schema": "adva.representation-transport-diagnostic.research",
+  "version": 0,
+  "state": "ObservedTransportMismatch",
+  "original_suite_state": "Incomplete",
+  "original_case_native_state": "Unknown",
+  "qualification": "Native bit patterns are inferred by decoding its serialized input/output values; no direct Rust to_bits trace was recorded. This does not isolate parser versus serialization behavior.",
+  "source_sha256": {
+    "report.json": "ebc74ce1c7b1f0f3bc8ccb29b2fd004f63fde8cd0bf9b6c22b9d43508cfd54c6",
+    "product-k28.native-result.adva": "30513ae2e6c8c3d821643768aa3b445433345f52984c9a6d90ffbabb84ca1c76"
+  },
+  "native_input_lexemes": {
+    "x": "1.0000000037252903",
+    "y": "0.9999999962747096"
+  },
+  "native_input_hex_inferred": {
+    "x": "0x1.0000001000000p+0",
+    "y": "0x1.ffffffdffffffp-1"
+  },
+  "input_differences_from_python": {
+    "x": [
+      "0",
+      "1"
+    ],
+    "y": [
+      "-1",
+      "9007199254740992"
+    ]
+  },
+  "input_differences_from_exact_intention": {
+    "x": [
+      "0",
+      "1"
+    ],
+    "y": [
+      "-1",
+      "9007199254740992"
+    ]
+  },
+  "exact_product_of_reported_inputs": [
+    "2417851639229258047422463",
+    "2417851639229258349412352"
+  ],
+  "native_output_lexeme": "0.9999999999999999",
+  "native_output_hex_inferred": "0x1.fffffffffffffp-1",
+  "residuals": {
+    "input": [
+      "0",
+      "1"
+    ],
+    "transport": [
+      "-268435457",
+      "2417851639229258349412352"
+    ],
+    "operation": [
+      "33554433",
+      "2417851639229258349412352"
+    ],
+    "total": [
+      "-7",
+      "72057594037927936"
+    ]
+  },
+  "nonzero_inputs_preserved": true,
+  "native_calls": 0,
+  "additional_ast_visits": 3,
+  "combined_math_ast_visits": 115,
+  "remaining_math_ast_budget": 13,
+  "elapsed_ns_before_serialization": 587617,
+  "serialization_ns": null,
+  "peak_memory_bytes": null,
+  "next_obligation": "Record exact IEEE-754 input/output bit patterns at the native JSON boundary before changing arithmetic or accepting the cross-language adapter."
+}
