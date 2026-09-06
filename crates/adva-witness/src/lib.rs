@@ -48,3 +48,6 @@ pub const WITNESS_SCHEMA_V0: &str = "adva.witness.research";
 
 /// Experimental schema version. Version zero is not part of `adva.ir`.
 pub const WITNESS_VERSION_V0: u32 = 0;
+
+mod prime_certificate;
+pub use prime_certificate::*;
