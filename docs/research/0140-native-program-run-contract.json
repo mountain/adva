@@ -22,9 +22,23 @@
     "ci_job_minutes": 10,
     "implementation_error_correction_replays": 1
   },
-  "checks": ["existing Rust compilation and evaluation certificates", "checked diagram import and replay", "positive result 14 and fresh-instance result 11", "pre-compilation fuel/call/copy/source limits", "rejection remains rejection", "output files cannot replace input or prior evidence"],
-  "protected_obligations": ["source and occurrence identity remain compiler owned", "stored diagrams require semantic validation", "no f64 result becomes an exact arithmetic theorem", "Pascal proposals remain unsupported schemas", "free and self-interpretation remain separate obligations", "no reset or repeated search"],
-  "cost_policy": "record actual phase timings, process wall time and peak RSS separately; missing measurements stay missing; report byte size is not peak memory",
+  "checks": [
+    "existing Rust compilation and evaluation certificates",
+    "checked diagram import and replay",
+    "positive result 14 and fresh-instance result 11",
+    "pre-compilation fuel/call/copy/source limits",
+    "rejection remains rejection",
+    "output files cannot replace input or prior evidence"
+  ],
+  "protected_obligations": [
+    "source and occurrence identity remain compiler owned",
+    "stored diagrams require semantic validation",
+    "no f64 result becomes an exact arithmetic theorem",
+    "Pascal proposals remain unsupported schemas",
+    "free and self-interpretation remain separate obligations",
+    "no reset or repeated search"
+  ],
+  "cost_policy": "Record phase timings before serialization plus external process wall/RSS. Separate serialization, filesystem publication, total engineering time and a hard in-process wall deadline are not measured; no report byte size is presented as peak memory.",
   "stop": "after one bounded validation or one necessary implementation correction; preserve remaining failures",
   "unknown_syntax_building": "paused"
 }

@@ -14,7 +14,9 @@ fn invalid(message: impl Into<String>) -> io::Error {
 
 fn check_extension(path: &Path) -> io::Result<()> {
     if path.extension().and_then(|ext| ext.to_str()) != Some("adva") {
-        return Err(invalid("native run input and output require .adva extensions"));
+        return Err(invalid(
+            "native run input and output require .adva extensions",
+        ));
     }
     Ok(())
 }
@@ -27,7 +29,11 @@ pub fn run(arguments: impl Iterator<Item = String>) -> Result<(), Box<dyn Error>
     while let Some(argument) = arguments.next() {
         match argument.as_str() {
             "--output" if output.is_none() => {
-                output = Some(PathBuf::from(arguments.next().ok_or_else(|| invalid("--output requires a path"))?));
+                output = Some(PathBuf::from(
+                    arguments
+                        .next()
+                        .ok_or_else(|| invalid("--output requires a path"))?,
+                ));
             }
             "--print" if !print => print = true,
             _ => return Err(invalid(format!("unknown or repeated argument {argument:?}")).into()),
@@ -48,7 +54,9 @@ pub fn run(arguments: impl Iterator<Item = String>) -> Result<(), Box<dyn Error>
     let report = run_native_program_v0(&source);
     let bytes = serde_json::to_vec_pretty(&report)?;
     if bytes.len() > MAX_REPORT_BYTES {
-        return Err(invalid("report exceeds the 2 MiB serialization limit; nothing published").into());
+        return Err(
+            invalid("report exceeds the 2 MiB serialization limit; nothing published").into(),
+        );
     }
     publish_new(&output, &bytes)?;
     println!("state={}", report.state);
@@ -59,7 +67,12 @@ pub fn run(arguments: impl Iterator<Item = String>) -> Result<(), Box<dyn Error>
         println!("NATIVE_RUN_REPORT_END");
     }
     if report.state != "Completed" {
-        return Err(invalid(report.error.unwrap_or_else(|| "native program rejected".to_owned())).into());
+        return Err(invalid(
+            report
+                .error
+                .unwrap_or_else(|| "native program rejected".to_owned()),
+        )
+        .into());
     }
     Ok(())
 }
@@ -67,11 +80,16 @@ pub fn run(arguments: impl Iterator<Item = String>) -> Result<(), Box<dyn Error>
 // A same-directory hard link publishes a completely written file without
 // replacing an existing target. A failed write never leaves a result document.
 fn publish_new(output: &Path, bytes: &[u8]) -> io::Result<()> {
-    let name = output.file_name().ok_or_else(|| invalid("output needs a file name"))?;
+    let name = output
+        .file_name()
+        .ok_or_else(|| invalid("output needs a file name"))?;
     let mut temporary_name = name.to_os_string();
     temporary_name.push(format!(".{}.tmp", std::process::id()));
     let temporary = output.with_file_name(temporary_name);
-    let mut file = OpenOptions::new().write(true).create_new(true).open(&temporary)?;
+    let mut file = OpenOptions::new()
+        .write(true)
+        .create_new(true)
+        .open(&temporary)?;
     let result = (|| {
         file.write_all(bytes)?;
         file.sync_all()?;

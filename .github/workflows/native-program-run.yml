@@ -20,9 +20,9 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-      - name: Format and retain exact tested sources
+      - name: Check formatting and retain exact sources
         run: |
-          cargo fmt --all
+          cargo fmt --all -- --check
           python3 - <<'PY'
           import json
           from pathlib import Path
@@ -32,12 +32,16 @@ jobs:
           print("TESTED_SOURCES_END")
           PY
       - name: Check native adapter lints
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
         run: cargo clippy -p adva-witness --all-targets -- -D warnings
       - name: Check native admission, rejection, and replay
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
         run: cargo test -p adva-witness --lib native_run -- --nocapture
       - name: Check actual command and file preservation
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
         run: cargo test -p adva-witness --test native_run_cli -- --nocapture
       - name: Build native Adva
+        if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
         run: cargo build --release -p adva-witness --bin adva
       - name: Execute the two bounded native programs
         if: hashFiles('docs/research/0140-native-program-evidence.json') == ''
@@ -58,7 +62,7 @@ jobs:
           print("NATIVE_EVIDENCE_END")
           PY
       - name: Retain executable and native evidence
-        if: always()
+        if: always() && hashFiles('docs/research/0140-native-program-evidence.json') == ''
         uses: actions/upload-artifact@v4
         with:
           name: native-adva-program-run

@@ -119,9 +119,8 @@ fn the_same_program_runs_with_a_fresh_input_instance() {
 fn implicit_input_reuse_is_rejected_with_a_report() {
     let directory = TestDirectory::new();
     let mut document = program(2, 3, 4);
-    document["source"] = json!(
-        "(module demo (export calc) (def calc (fn ((x Real)) Real (add (use x) (use x)))))"
-    );
+    document["source"] =
+        json!("(module demo (export calc) (def calc (fn ((x Real)) Real (add (use x) (use x)))))");
     document["inputs"] = json!({ "x": 2 });
     let input = directory.write_program(&document);
     let report_path = directory.path("result.adva");

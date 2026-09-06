@@ -36,17 +36,37 @@ cargo test -p adva-witness --test native_run_cli
 Choose new output paths for replay; existing evidence is not overwritten.
 For a five-second Linux process boundary, prefix a run with `timeout 5` and
 use `ulimit -v 524288`. AST admission fuel and these host limits measure
-different resources. The CLI adds a 2 MiB report serialization ceiling.
+different resources. The CLI adds a 2 MiB report serialization ceiling. Oversized input reports
+count the bounded prefix read, not the complete file size. The regular-file
+check follows open; the external process deadline also bounds a blocking path.
+The current finite-output check covers inputs and final values, not every
+intermediate value that the existing evaluator might later discard.
 
 ## Evidence and costs
 
-Native compilation/execution is not available in this local environment.
-The bounded `Native program run` workflow builds the actual Rust executable,
-runs focused unit/integration checks, executes both inputs, records phase
-timings and GNU time wall/RSS observations, and retains exact tested sources.
-Before those results are attached, execution status is **NotRun**, not passed.
-Search candidate count is zero. No speedup or learned-vocabulary theorem is
-claimed, so no artificial with/without naming benchmark is reported.
+Native execution completed in [workflow 34039297072](https://github.com/mountain/adva/actions/runs/34039297072),
+job 101503009574, using Rust 1.98.1. Clippy passed. Seven unit methods and seven
+actual CLI integration tests passed; two additional release invocations returned
+14 and 11. The full reports and GNU time records are in `0140-native-run-evidence/`;
+`0140-native-program-evidence.json` records hashes, tested sources, counts and costs.
+The original generic CI Rust job stopped at formatting; its Python matrices and
+arithmetic vocabulary checks passed. The formatter output is the exact source
+that the successful native workflow compiled and tested, and is retained here.
+
+Each positive program used five of sixteen AST admission units and evaluated
+two operation nodes. Internal elapsed time before serialization was 0.173834 ms
+and 0.127878 ms respectively. External process peak RSS was 4080 and 4228 KiB.
+GNU time displayed wall time as `0:00.00`, which is rounded, not literally zero.
+Release build reported 1m 21s; test-build costs are recorded separately. Native
+unit and CLI test execution reported 0.01s and 0.02s. Serialization/publication
+costs separately, total engineering time and whole-workflow peak memory were not
+measured. Report sizes are storage sizes, never peak-memory measurements.
+
+Search candidate count is zero; no semantic implementation repair or experiment
+replay was needed. Formatting retention does not add a new mathematical run.
+No speedup or learned-vocabulary theorem is claimed, so no artificial with/without
+naming benchmark is reported. Native execution takes priority over draft #139's
+later Python repetition; this result is not a six-step learning experiment.
 
 ## Use and remaining obligations
 
