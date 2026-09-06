@@ -73,7 +73,10 @@ judgments.
   label frames rather than carriers, while shared carrier references express
   explicit output-to-input reuse across frames.
 
-This crate depends only on `adva-ir` among Adva crates. Its schema is
+The bounded native `adva run` adapter also depends on `adva-lisp` for parsing,
+compilation, checked diagrams and evaluation; it introduces no evaluator or
+operation registry of its own. Its separate research program envelope is
+described in ADR 0035. The witness artifact schema is
 `adva.witness.research` version zero, not an extension of `adva.ir` version 1.
 Artifact hashes are cache coordinates and never semantic identities.
 
