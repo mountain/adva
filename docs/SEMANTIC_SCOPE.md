@@ -386,3 +386,13 @@ not a universal optimum. One hundred frozen-policy rounds remain repeated
 checks in a finite task family, not one hundred knowledge epochs or a learned
 semantic calculus. Every selected path still requires unchanged Rust and
 external verifier checks, with Unknown and incomplete batches kept distinct.
+
+Research 0154 / ADR 0042 adds a documentary math catalog and bounded Python
+metadata checker, not a semantic loader. Single-home keys, fixed topic paths,
+reference pins and proposed Pascal-rooted geometry ancestry constrain catalog
+organization. They cannot authenticate a proposition or discharge native
+geometry obligations. The fixed documentary seal records an Open obligation;
+it is not WitnessProofV0::Seal. Existing finite logic and external Pascal
+fixtures can define bounded research tasks, but neither the catalog nor a
+successful fixture installs a general task-loop, stable logic, recursive
+program, certificate-bearing geometry import or automatic library growth.

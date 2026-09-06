@@ -195,3 +195,5 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install '.[test]'
       - run: pytest
+      - name: Check documentary math catalog and open growth obligation
+        run: python -S python/adva/adva.py math-check

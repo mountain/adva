@@ -1,0 +1,571 @@
+{
+  "schema": "adva.math-catalog.research",
+  "version": 0,
+  "policy": {
+    "authority": "documentary-only",
+    "native_admission": "not-granted",
+    "logic_role": "research-object-not-checker-override"
+  },
+  "topics": {
+    "arithmetic": "arithmetic/index.json",
+    "geometry": "geometry/index.json",
+    "logic": "logic/index.json"
+  },
+  "entries": [
+    {
+      "key": "polynomial-shadow-epochs",
+      "title": "Frozen polynomial-shadow research epochs 0 and 1",
+      "domains": [
+        "arithmetic"
+      ],
+      "theory": {
+        "name": "Exact integer-coefficient polynomial shadow with guarded research witnesses",
+        "version": "Research 0150 v0"
+      },
+      "assumptions": [
+        "The finite catalogue and f(0)=0, f(1)=2, f(2)=4 observations are supplied calibration assumptions, not world measurements."
+      ],
+      "scope": "Two immutable snapshots; epoch 1 retains five candidates, two active syntaxes, one polynomial shadow, and one ArithmeticTransition/Seal pair.",
+      "recorded_status": "checked-research-snapshot",
+      "materials": [
+        {
+          "path": "adva-library/stability/epoch-0000.json",
+          "sha256": "27016fc510e067caa930eb4e75b0d445342d4c1bc611dcf5b2577644e96ff8bb"
+        },
+        {
+          "path": "adva-library/stability/epoch-0001.json",
+          "sha256": "eafbee5a0e8d56d326088c608ee34e3f5557c55a9f1cdb40feb7aa73342013bb"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0150-evidence/README.md",
+          "sha256": "979968cd86bef4d280148dd650b5b71f6dcafca8c7def77c61ebdddb504b0985"
+        }
+      ],
+      "checker": {
+        "name": "Rust load_library_v0 and reuse_library_word_v0",
+        "version": "Research 0150 v0",
+        "sources": [
+          {
+            "path": "crates/adva-witness/src/library_checkpoint.rs",
+            "sha256": "7e4c5abd0f8224cc0f7cd9092928394cc2fbc81a9b5b9b255834d04977d2b975"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Reload the complete bounded parent chain with the original Rust checker; separately check all concrete nonzero guards."
+      ],
+      "open_obligations": [
+        "No open-world identification, stable Lisp word, automatic epoch update, or transfer of closure to a new question."
+      ],
+      "home": "arithmetic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "composite-proposal-recipes",
+      "title": "One seed and three retained composite proposal recipes",
+      "domains": [
+        "arithmetic"
+      ],
+      "theory": {
+        "name": "Finite add/multiply proposal syntax and exact polynomial expansion",
+        "version": "Research 0151 v0"
+      },
+      "assumptions": [
+        "Candidate grammar, supplied observations, recipe order, and ordinary-macro control remain explicit."
+      ],
+      "scope": "Three retained stages reconstruct r1=4x, r2=8x, r3=32x from the checked r0 seed without publishing another epoch.",
+      "recorded_status": "replayable-proposal-journal",
+      "materials": [
+        {
+          "path": "adva-library/exploration/0151/stage-0000.json",
+          "sha256": "27ac1392e2b158a06deaf12311cc14e85d08cd1088fcc04f8e85a5324b93c64c"
+        },
+        {
+          "path": "adva-library/exploration/0151/stage-0001.json",
+          "sha256": "d2842b50ab0c82ef54b168f57d48e157fee83a6598a90ad41d4ca175d80f1e6a"
+        },
+        {
+          "path": "adva-library/exploration/0151/stage-0002.json",
+          "sha256": "eed760dffeb7d4e9f61b8a9f702ce9f104ab5d97ddd9bb286b9e2001994d3598"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0151-evidence/README.md",
+          "sha256": "cde866e7d478fd4bd4638e7e5777eb7c98e6c5ee070db30a7090801b33545b70"
+        }
+      ],
+      "checker": {
+        "name": "Rust library_generation journal replay",
+        "version": "Research 0151 v0",
+        "sources": [
+          {
+            "path": "crates/adva-witness/examples/library_generation.rs",
+            "sha256": "c8efda18b1615042a5e0910d00dba57d557babc0b08a62b164ee177bf8269efe"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Regenerate and compare the complete journal under its finite contract; freshly check each reused expanded pair."
+      ],
+      "open_obligations": [
+        "General vocabulary promotion, native source/occurrence realization, and advantage over ordinary macros are not established."
+      ],
+      "home": "arithmetic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "three-verifier-arithmetic-calibration",
+      "title": "Scoped arithmetic proofs across Rust, Lean and Metamath",
+      "domains": [
+        "arithmetic",
+        "logic"
+      ],
+      "theory": {
+        "name": "Rust guarded polynomial witnesses, Lean Int, and Metamath complex-class arithmetic",
+        "version": "Research 0152; Lean 4.24.0; Metamath 0.199.pre; set.mm cf7f961faff0f17b72f05daf986daed963184da4"
+      },
+      "assumptions": [
+        "The three theories, guards, imported axioms and translations are distinct; selected labels and all axiom audits must pass."
+      ],
+      "scope": "Completed Research 0152 run-02 evidence, including selected steps on exhausted paths; original failed run remains retained separately.",
+      "recorded_status": "external-calibration-record",
+      "materials": [
+        {
+          "path": "docs/research/0152-three-verifier-residual-search.md",
+          "sha256": "ca94e8d857bd9d16dc3dde946913bb941b6793f8cf647dd3e77077cef0f5cf68"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0152-evidence/run-02/report.json",
+          "sha256": "0536763721800399ded061d6ddaae70403f0092019614452d4bdb71d0d48bf91"
+        }
+      ],
+      "checker": {
+        "name": "Rust witnesses plus unchanged Lean/Metamath proof-log admission",
+        "version": "Research 0152 v0",
+        "sources": [
+          {
+            "path": "crates/adva-witness/examples/verifier_search.rs",
+            "sha256": "ee938cb0589c16cb0765e5c2d9a992e51c9106d59790d2a3bd1c3a461f7b04ca"
+          },
+          {
+            "path": "python/adva/verifier_search.py",
+            "sha256": "388553cd6293576b5b449ecafe7fba50c2cb8bf6bc93a459a42de110febab6a3"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Use the original bounded Rust/prover checks and explicit theory interpretations, not this catalog report or prover exit codes alone."
+      ],
+      "open_obligations": [
+        "No native program equality, implicit sharing, complete three-computation, or automatic import of external theorem libraries."
+      ],
+      "home": "arithmetic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "frozen-policy-campaign",
+      "title": "Pilot policy comparison and 100 frozen-policy rounds",
+      "domains": [
+        "arithmetic"
+      ],
+      "theory": {
+        "name": "Finite arithmetic rewrite search under a frozen verifier",
+        "version": "Research 0153 v0"
+      },
+      "assumptions": [
+        "Depths 2/3/4, fixed grammar and seeds, per-arm 48-step cap, unchanged verifier rules, and imported external theories."
+      ],
+      "scope": "Hybrid wins the declared pilot; 100 continuation rounds reach 200 tasks. The complete run records 2015 selected checked edges, not 2015 independent laws.",
+      "recorded_status": "finite-policy-evidence",
+      "materials": [
+        {
+          "path": "docs/research/0153-evidence/run-01/selection.json",
+          "sha256": "c8d017eeb2c538b2e0191d58ccab7a707205da2ba550bd7978947a4039fa4724"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0153-evidence/run-01/report.json",
+          "sha256": "0c38b39a6e4b7da1e422d75d085ba98f7ddc1e7181ff43b2f8fa63c8d12774c6"
+        }
+      ],
+      "checker": {
+        "name": "Rust search_campaign replay with the frozen external supervisor",
+        "version": "Research 0153 v0; historical runtime commit 5d956deaeff5f55bf5ec885a343b91877f53d8b4",
+        "sources": [
+          {
+            "path": "crates/adva-witness/examples/search_campaign.rs",
+            "sha256": "4c28cfcb4393ab90f3173e1d742cc6e76d7cccd1715d03bed85233f521725d23"
+          },
+          {
+            "path": "python/adva/search_campaign.py",
+            "sha256": "8b54233e625425d662bc80a6efab1664c06cef7a8fcc2cf3dd2b28e496ddd650"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Use the recorded original runtime revision and a separately authorized finite replay contract; this index starts no campaign."
+      ],
+      "open_obligations": [
+        "No general convergence, unrestricted optimality, 100-round baseline speedup, path deletion, or new knowledge epoch."
+      ],
+      "home": "arithmetic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "pascal-research-presentations",
+      "title": "Pascal problem and geometric/arithmetic research presentations",
+      "domains": [
+        "arithmetic",
+        "geometry"
+      ],
+      "theory": {
+        "name": "Proposed three-party Pascal task and normalized conic presentation",
+        "version": "Delivered research documents v0"
+      },
+      "assumptions": [
+        "The supplied problem, coordinate interpretation and three human roles remain documentary; acceptance is unresolved."
+      ],
+      "scope": "The two original Pascal documents, including arithmetic evidence, counterexamples and retained residuals.",
+      "recorded_status": "proposed-document",
+      "materials": [
+        {
+          "path": "adva-library/pascal-task.adva",
+          "sha256": "60d3ca374486239afb82bbe31d821a4d0c02ef947ccf62557753e85137087a5d"
+        },
+        {
+          "path": "adva-library/pascal-witness.adva",
+          "sha256": "f20338add39c292db6bac482a2c9265353d6a5a1a5189cc2823398ddc29fe448"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0139-library-six-phase-and-communication.md",
+          "sha256": "a1ad5fd99985ae9886f8c5b55356bbffd70751028734c5f1acfe6858453bced3"
+        }
+      ],
+      "checker": null,
+      "reuse_requires": [
+        "Read as research documents; a native importer and its required semantic certificates are absent."
+      ],
+      "open_obligations": [
+        "No native Pascal theorem admission, executable interpretation, or resolved human acceptance."
+      ],
+      "home": "geometry",
+      "geometry_lineage": {
+        "kind": "pascal-root",
+        "parents": [],
+        "derivation_evidence": [],
+        "discharge": "Open"
+      }
+    },
+    {
+      "key": "q4-m6-relation-presentations",
+      "title": "Finite Q4/M6 relation profiles and retained reveal witness",
+      "domains": [
+        "geometry"
+      ],
+      "theory": {
+        "name": "Q4 trace-monoid/Klein-four and M6 positive-braid-monoid/S3 presentations",
+        "version": "Research 0111/0113 v0"
+      },
+      "assumptions": [
+        "Relation profiles, typed endpoints, orientation and raw path occurrences remain distinct."
+      ],
+      "scope": "Existing finite relation-profile checks and the first retained M6 reveal witness; this classification does not close its open filler.",
+      "recorded_status": "bounded-research-evidence",
+      "materials": [
+        {
+          "path": "docs/research/0111-group-neutral-operations-and-q4-m6-relation-profiles.md",
+          "sha256": "919a77b67549a329b5a7e5fd867289673121046d0252910ff1b1d6ad96076eca"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "programs/bootstrap-0/first-reveal-witness.adva",
+          "sha256": "fd8e2e7aef5a89c920318e906d18666a52b56fcd1c196b630e793ecbe6ff1059"
+        }
+      ],
+      "checker": {
+        "name": "Rust research relation-profile checker",
+        "version": "Research relation v0",
+        "sources": [
+          {
+            "path": "crates/adva-witness/src/relation.rs",
+            "sha256": "c3a6e7fe174b0095cefe4a36578f7b0c45791ebfbb6bf7afd61af5cae373d5f0"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Use the original Rust profile and reveal checks; preserve raw paths and all missing-filler obligations.",
+        "External geometric reference only: no checked derivation from the Pascal root is supplied."
+      ],
+      "open_obligations": [
+        "No general braid normalizer, automatic arithmetic-path equivalence, manifold ontology or knowledge-space topology.",
+        "Not admitted as a successor in the Pascal-rooted geometry growth line."
+      ],
+      "home": "geometry",
+      "geometry_lineage": {
+        "kind": "external-reference",
+        "parents": [],
+        "derivation_evidence": [],
+        "discharge": "Open"
+      }
+    },
+    {
+      "key": "fixed-checking-rule-boundary",
+      "title": "Checking rules remain explicit when logic becomes catalog content",
+      "domains": [
+        "logic"
+      ],
+      "theory": {
+        "name": "Versioned proof-checking and admission boundary descriptions",
+        "version": "ADR 0040 / Research 0152 v0"
+      },
+      "assumptions": [
+        "Rust checking, Lean proof terms and Metamath proofs have explicit separate assumptions; the catalog does not authenticate a checker."
+      ],
+      "scope": "The fixed external-calibration admission rules, including axiom auditing and rejection controls, are available for inspection but not overridden by entries.",
+      "recorded_status": "checker-boundary-description",
+      "materials": [
+        {
+          "path": "docs/adr/0040-three-verifier-arithmetic-calibration.md",
+          "sha256": "ebd9afa3ec3185db7bb9cf214daf179a50e947b896168c171ca5382bce1ec056"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "docs/research/0152-evidence/run-02/report.json",
+          "sha256": "0536763721800399ded061d6ddaae70403f0092019614452d4bdb71d0d48bf91"
+        }
+      ],
+      "checker": {
+        "name": "Existing Rust/external admission profile; not this metadata checker",
+        "version": "Research 0152 v0",
+        "sources": [
+          {
+            "path": "crates/adva-witness/examples/verifier_search.rs",
+            "sha256": "ee938cb0589c16cb0765e5c2d9a992e51c9106d59790d2a3bd1c3a461f7b04ca"
+          },
+          {
+            "path": "python/adva/verifier_search.py",
+            "sha256": "388553cd6293576b5b449ecafe7fba50c2cb8bf6bc93a459a42de110febab6a3"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Retain the original trusted checking boundary; a candidate logic or catalog entry cannot authorize its own rule changes."
+      ],
+      "open_obligations": [
+        "No self-verifier, native logical calculus, checker independence theorem or elimination of metalevel trust."
+      ],
+      "home": "logic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "logic-as-research-content",
+      "title": "Mingli Yuan's organizational proposal: logic 降位 into math",
+      "domains": [
+        "logic"
+      ],
+      "theory": {
+        "name": "Adva documentary knowledge-organization proposal",
+        "version": "ADR 0042 v0"
+      },
+      "assumptions": [
+        "This is an attributed organizational interpretation, not a universal historical assertion or an implemented semantic lowering."
+      ],
+      "scope": "Place arithmetic, geometry and logic in a shared topic view while separating research content from current checking authority.",
+      "recorded_status": "research-hypothesis",
+      "materials": [
+        {
+          "path": "docs/adr/0042-math-topic-catalog-without-semantic-authority.md",
+          "sha256": "11159d6f8accdb42424230e6d246c8fa4b606db40775c5991f74bd81dbb592d3"
+        },
+        {
+          "path": "docs/research/0125-geometry-of-truth-interface-hypothesis.md",
+          "sha256": "836aa31ef7a5eec1697ed1fdd50f7e0bce920f7fabde362c73b9ce6447bb0159"
+        }
+      ],
+      "evidence": [],
+      "checker": null,
+      "reuse_requires": [
+        "Use as an explicit research framing; retain the earlier physical/mathematical/logical interface as a distinct view."
+      ],
+      "open_obligations": [
+        "A semantic account of logic lowering or objectification remains unconstructed; no logical rule is installed by a directory."
+      ],
+      "home": "logic",
+      "geometry_lineage": null
+    },
+    {
+      "key": "geometry-pascal-incidence-task",
+      "title": "Existing external Pascal incidence calculation as a proposed geometry successor",
+      "domains": [
+        "geometry"
+      ],
+      "home": "geometry",
+      "geometry_lineage": {
+        "kind": "candidate",
+        "parents": [
+          "pascal-research-presentations"
+        ],
+        "derivation_evidence": [
+          {
+            "path": "examples/verified_witness/acceleration-direction.json",
+            "sha256": "8c4b5ed79631b6cd7096e7ad0968303fe96f1551447d5d90ccf18d2f3cb41be1"
+          }
+        ],
+        "discharge": "Open"
+      },
+      "theory": {
+        "name": "Exact six-point incidence/determinant identity with geometric side conditions",
+        "version": "Research 0128"
+      },
+      "assumptions": [
+        "Existing Python exact polynomial and integer arithmetic, six ordered homogeneous points, and separately checked nondegeneracy conditions."
+      ],
+      "scope": "An external executable witness, two calculation routes, and 320 fixed workload inputs already exist. Placement as a Pascal-rooted native successor is still a proposal; cross-chart/native derivation is not certified.",
+      "recorded_status": "proposed-document",
+      "materials": [
+        {
+          "path": "docs/research/0128-acceleration-direction-pascal-incidence.md",
+          "sha256": "97e367459e86e60991996a9d4c02e007186bf875b6c5b732e370b2692704dfcb"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "examples/verified_witness/acceleration-direction.json",
+          "sha256": "8c4b5ed79631b6cd7096e7ad0968303fe96f1551447d5d90ccf18d2f3cb41be1"
+        },
+        {
+          "path": "tests/python/test_acceleration_direction.py",
+          "sha256": "0c33006d91a64c3a965e0a6425974582cc47388ded2a67e5c91ce0a0e014b2dc"
+        }
+      ],
+      "checker": {
+        "name": "External Python polynomial replay and exact incidence calculation",
+        "version": "Research 0128; not a Rust/Lean/Metamath import",
+        "sources": [
+          {
+            "path": "experiments/knowledge_geometry/acceleration_direction.py",
+            "sha256": "ff1241b6eb1f4404e6c95fcec7833aaf590921c69a6165addaa6491a83894b34"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "A finite external task may use the original checker; native geometry growth still requires Pascal import and certificate-bearing derivation."
+      ],
+      "open_obligations": [
+        "Geometry ancestry here is an explicit proposal link, not a proved coordinate/semantic transport; discharge remains Open.",
+        "No universal task-loop CLI, native feedback or automatic knowledge growth follows from the existing batch loops."
+      ]
+    },
+    {
+      "key": "logic-finite-task-calibrations",
+      "title": "Existing finite logical satisfaction and focused proof-search tasks",
+      "domains": [
+        "logic"
+      ],
+      "home": "logic",
+      "geometry_lineage": null,
+      "theory": {
+        "name": "Finite many-sorted Boolean semantics and the separate ordered right-implication TND0 proof fragment",
+        "version": "Research 0082 / 0084 / 0094"
+      },
+      "assumptions": [
+        "Finite explicitly enumerated models for satisfaction; ordered contexts and the separately declared research proof rules for derivation. Do not identify these two logical fragments."
+      ],
+      "scope": "Existing test-local finite evaluators, natural-deduction checks and focused proof-search replay can define calculation tasks; none is a stable Adva connective, quantifier, proof AST or general task executor.",
+      "recorded_status": "bounded-research-evidence",
+      "materials": [
+        {
+          "path": "docs/research/0082-threaded-finite-logic-adequacy.md",
+          "sha256": "da3ecf05910f709b6f339b8eca1dd1e6c8c2a41687cb3f2f9d63cb9083edc287"
+        },
+        {
+          "path": "docs/research/0094-focused-normal-forms-subformula-decidable-derivability.md",
+          "sha256": "635d475f92f5d6f4e7bea41bf3b98a371708e9d40c95565493509ff57a3059f7"
+        }
+      ],
+      "evidence": [
+        {
+          "path": "tests/python/test_threaded_finite_logic_adequacy.py",
+          "sha256": "97134f824be0f374ecf2f4103d31f7c20cb976a659fcaa300d2a16ccd24dc71d"
+        },
+        {
+          "path": "tests/python/test_threaded_natural_deduction_calibration.py",
+          "sha256": "3287eeb1567d0e5fb3eb55ebdf0a80e549ebc05ca8e7901364d857290b08b791"
+        },
+        {
+          "path": "tests/python/test_threaded_focused_proof_completion_calibration.py",
+          "sha256": "0dd51c007065bce56728ec93bcbb0d832fc8a68f3a3277e7fc696457a733c777"
+        }
+      ],
+      "checker": {
+        "name": "Research-local Python finite satisfaction and proof skeleton checks",
+        "version": "Frozen repository research fixtures 0082/0084/0094",
+        "sources": [
+          {
+            "path": "tests/python/test_threaded_finite_logic_adequacy.py",
+            "sha256": "97134f824be0f374ecf2f4103d31f7c20cb976a659fcaa300d2a16ccd24dc71d"
+          },
+          {
+            "path": "tests/python/test_threaded_focused_proof_completion_calibration.py",
+            "sha256": "0dd51c007065bce56728ec93bcbb0d832fc8a68f3a3277e7fc696457a733c777"
+          }
+        ]
+      },
+      "reuse_requires": [
+        "Use only the declared finite model or proof fragment with an explicit resource contract; a checked Python proof tree is not a Rust certificate."
+      ],
+      "open_obligations": [
+        "Missing search evidence is not unrestricted logical falsity; no general logical calculus, native loop or self-changing proof checker is installed.",
+        "A common versioned task-loop transport and native proof-admission bridge are still absent."
+      ]
+    },
+    {
+      "key": "logic-cryptographic-sealing-and-calibration-boundary",
+      "title": "密码学封存、Python/Rust 校准与 Adva 的信任边界",
+      "domains": [
+        "logic",
+        "arithmetic"
+      ],
+      "home": "logic",
+      "geometry_lineage": null,
+      "theory": {
+        "name": "External cryptographic specifications and proposed authorization/calibration boundaries; not an Adva calculus",
+        "version": "Research 0155 documentary v0; sources consulted 2026-09-06"
+      },
+      "assumptions": [
+        "Ed25519, AES-256-GCM and IETF ChaCha20-Poly1305 are imported external specifications; Python/Rust API documentation is not an installed or verified backend.",
+        "A trusted public-key binding, purpose-specific authorization, protected checker and independent version state are prerequisites for actual authenticated sealing, not facilities implemented by this note.",
+        "The logic home records verification and trust rules; arithmetic membership is a documentary reference to finite computation, not an implicit proof transport."
+      ],
+      "scope": "Detailed documentation of current digests, proposed signatures and authenticated encryption, exact-byte interoperability, finite task-loop controls and missing promotion gates. No crypto installation, key generation, signing, encryption, trial, native operation or geometry successor.",
+      "recorded_status": "proposed-document",
+      "materials": [
+        {
+          "path": "docs/research/0155-cryptographic-sealing-and-calibration-boundary.md",
+          "sha256": "99f7dbb2dbfa8b979563ddd50a4da59e5dfa720e5c75adbe02e03331ef0d93bd"
+        }
+      ],
+      "evidence": [],
+      "checker": null,
+      "reuse_requires": [
+        "Treat the note as a proposal. Recheck external specifications and pin implementations, vector bytes, translation rules and enforceable finite resources before any separately authorized calibration.",
+        "Actual sealing additionally requires an approved versioned envelope, independently bound trust roots and key lifecycle policy; retain all existing semantic checks and immutable historical checkpoints."
+      ],
+      "open_obligations": [
+        "No authenticated seal protocol, production key custody, rollback/fork protection or cross-language crypto execution evidence has been implemented.",
+        "No complete crypto specification/proof has been imported into Rust/Lean/Metamath; two host implementations and a coordinator do not establish three independent semantic verifiers.",
+        "Exact native cryptographic data/control semantics and certificates remain absent; the Pascal-rooted geometry obligation stays Open with native Seal NotIssued."
+      ]
+    }
+  ]
+}
