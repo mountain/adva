@@ -1,0 +1,99 @@
+{
+  "checkpoint_units_prepaid": 4,
+  "completed_checkpoints": 0,
+  "error": null,
+  "final_definitions": [
+    {
+      "Seed": {
+        "after": {
+          "kind": "add",
+          "left": {
+            "kind": "variable",
+            "name": "x"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        },
+        "before": {
+          "kind": "multiply",
+          "left": {
+            "kind": "constant",
+            "value": [
+              1,
+              [
+                2
+              ]
+            ]
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        },
+        "snapshot": "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "witness": "blake3:a521490f03bccac1209ae92ad555ebfaf2218bb1d2ba6339a6c8307cd490426f"
+      }
+    },
+    {
+      "Composite": {
+        "proposal": {
+          "Use": {
+            "argument": {
+              "Use": {
+                "argument": "X",
+                "recipe": 0
+              }
+            },
+            "recipe": 0
+          }
+        },
+        "stage": 0
+      }
+    },
+    {
+      "Composite": {
+        "proposal": {
+          "Use": {
+            "argument": {
+              "Use": {
+                "argument": "X",
+                "recipe": 0
+              }
+            },
+            "recipe": 1
+          }
+        },
+        "stage": 1
+      }
+    },
+    {
+      "Composite": {
+        "proposal": {
+          "Use": {
+            "argument": {
+              "Use": {
+                "argument": "X",
+                "recipe": 1
+              }
+            },
+            "recipe": 2
+          }
+        },
+        "stage": 2
+      }
+    }
+  ],
+  "fuel_remaining": 36351,
+  "fuel_spent": 13649,
+  "mode": "replay",
+  "native_promotion": "NotGranted",
+  "non_search_units": "total minus reported search vectors; includes base loading, replay, comparison and prepaid persistence",
+  "phase": "read-only-replay-complete",
+  "replayed_stages": 3,
+  "revision": "8fd579b4b035616c89f6c0f66c4ecdcf080ffb98a670d06dee853f868a577f95",
+  "schema": "adva.proposal-feedback-workflow.research.v0",
+  "stages": [],
+  "status": "Completed"
+}

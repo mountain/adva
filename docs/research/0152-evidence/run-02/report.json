@@ -1,0 +1,691 @@
+{
+  "aggregate": {
+    "enumerated_including_replay": 8640,
+    "library_units_including_replay": 1600,
+    "selected_edges_including_calibration": 792
+  },
+  "allowed_action": "retain-scoped-calibration-and-search-evidence",
+  "base_audit": "Passed",
+  "calibration": {
+    "controls": {
+      "invalid_position_rejected": true,
+      "nonduplicate_contraction_rejected": true,
+      "unequal_polynomial_rejected": true,
+      "zero_guard_refused": true,
+      "zero_polynomial_equality": true
+    },
+    "external_controls": [
+      "LeanFalseRejected",
+      "LeanSorryRejected",
+      "MetamathFalseRejected"
+    ],
+    "status": "Passed"
+  },
+  "calls": [
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "--version"
+      ],
+      "cpu_seconds": 0.09764899999999993,
+      "name": "lean-version",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.11824834300205112
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 13.176183,
+      "name": "metamath-base",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 13.19770051499654
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "calibrate",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.014566000000001855,
+      "name": "rust-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.022560432997124735
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "calibrate",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.015750999999998627,
+      "name": "replay-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.01896364199637901
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/proofs-calibrate.lean"
+      ],
+      "cpu_seconds": 0.4212470000000005,
+      "name": "lean-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.4685196249993169
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.1273510000000004,
+      "name": "metamath-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.17992969500483
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/negative.lean"
+      ],
+      "cpu_seconds": 0.37485999999999975,
+      "name": "lean-negative",
+      "returncode": 1,
+      "status": "Completed",
+      "wall_seconds": 0.4206113920008647
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/sorry.lean"
+      ],
+      "cpu_seconds": 0.38697999999999655,
+      "name": "lean-sorry",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.4260866240001633
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.125022000000003,
+      "name": "metamath-negative",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.1309705000021495
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "2",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.14187699999999848,
+      "name": "rust-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.16854507099924376
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "2",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.14502199999999954,
+      "name": "replay-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.17413261999899987
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/proofs-2.lean"
+      ],
+      "cpu_seconds": 1.7701330000000008,
+      "name": "lean-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.7304432099990663
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.2329450000000026,
+      "name": "metamath-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.235949784000695
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "3",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 1.4343679999999965,
+      "name": "rust-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.47709781100275
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "3",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 1.4636610000000008,
+      "name": "replay-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.4787437569975737
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/proofs-3.lean"
+      ],
+      "cpu_seconds": 13.731068999999996,
+      "name": "lean-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 24.419652950004092
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.4712380000000005,
+      "name": "metamath-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 4.606355426003574
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "4",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 4.814538000000006,
+      "name": "rust-4",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 9.57342042199889
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "4",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 4.809230999999998,
+      "name": "replay-4",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 9.998056803997315
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-02/proofs-4.lean"
+      ],
+      "cpu_seconds": 27.12287400000001,
+      "name": "lean-4",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 56.008248225996795
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.591847000000006,
+      "name": "metamath-4",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 4.1521743970006355
+    }
+  ],
+  "cost": {
+    "child_cpu_seconds": 81.468412,
+    "child_peak_rss_kib": 513380,
+    "children": 21,
+    "retained_bytes_before_final_checkpoint": 9494992,
+    "wall_seconds_before_final_checkpoint": 136.89173216500058
+  },
+  "implementation_sha256": {
+    "crates/adva-witness/examples/verifier_search.rs": "ee938cb0589c16cb0765e5c2d9a992e51c9106d59790d2a3bd1c3a461f7b04ca",
+    "docs/research/0152-three-verifier-residual-search.md": "ca94e8d857bd9d16dc3dde946913bb941b6793f8cf647dd3e77077cef0f5cf68",
+    "python/adva/adva.py": "9948dc2380cf0ccbf6ec97bb5bc2baa7fc00d71d74cf5ae6fca01f209b3b896b",
+    "python/adva/verifier_search.py": "388553cd6293576b5b449ecafe7fba50c2cb8bf6bc93a459a42de110febab6a3"
+  },
+  "rounds": [
+    {
+      "arms": [
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 7,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 8,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 17,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 6,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        }
+      ],
+      "counts": {
+        "bounded_exclusions": 0,
+        "enumerated": 134,
+        "selected": 56,
+        "witness_checks": 190
+      },
+      "depth": 2,
+      "status": "ThreeVerifierChecked"
+    },
+    {
+      "arms": [
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 9,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "residual",
+          "residual": 22,
+          "seed": 1,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 13,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "residual",
+          "residual": 22,
+          "seed": 7,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 7,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 3,
+          "expand": true,
+          "policy": "residual",
+          "residual": 22,
+          "seed": 19,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "random",
+          "residual": 22,
+          "seed": 1,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "random",
+          "residual": 20,
+          "seed": 7,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "random",
+          "residual": 20,
+          "seed": 19,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 3,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        }
+      ],
+      "counts": {
+        "bounded_exclusions": 0,
+        "enumerated": 1305,
+        "selected": 326,
+        "witness_checks": 1631
+      },
+      "depth": 3,
+      "status": "ThreeVerifierChecked"
+    },
+    {
+      "arms": [
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "random",
+          "residual": 36,
+          "seed": 1,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "residual",
+          "residual": 40,
+          "seed": 1,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 10,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "residual",
+          "residual": 40,
+          "seed": 7,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "random",
+          "residual": 36,
+          "seed": 19,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": true,
+          "policy": "residual",
+          "residual": 40,
+          "seed": 19,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "random",
+          "residual": 38,
+          "seed": 1,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 4,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "random",
+          "residual": 36,
+          "seed": 7,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 4,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "random",
+          "residual": 12,
+          "seed": 19,
+          "status": "Unknown",
+          "steps": 48,
+          "stop_reason": "48_step_limit"
+        },
+        {
+          "depth": 4,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 4,
+          "stop_reason": "literal_target"
+        }
+      ],
+      "counts": {
+        "bounded_exclusions": 0,
+        "enumerated": 2881,
+        "selected": 406,
+        "witness_checks": 3287
+      },
+      "depth": 4,
+      "status": "ThreeVerifierChecked"
+    }
+  ],
+  "schema": "adva.three-verifier-run.research.v0",
+  "status": "Completed",
+  "tools": {
+    "database": {
+      "path": "/home/ubuntu/MetaMath/set.mm/set.mm",
+      "sha256": "cf534eb74bd665c41a3ba8867296ad969e80834c750eea2094f6428e9af1f931"
+    },
+    "lean": {
+      "path": "/home/ubuntu/.local/bin/lean",
+      "sha256": "8fadc3ed92cc9decb94c96ee9c0876e91e03a3a5e69138f32114f02789e2766c",
+      "version": "Lean (version 4.24.0, x86_64-unknown-linux-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)"
+    },
+    "metamath": {
+      "path": "/home/ubuntu/MetaMath/metamath-exe/metamath",
+      "sha256": "475a7ca3b9cc8b5c6e82d4a10f25e9a10b72adc0297391a12e54364e1b173397"
+    },
+    "native": {
+      "path": "target/debug/examples/verifier_search",
+      "sha256": "76af4cf68f80cec9c48b74be38dffa1b5b023af79471fd4a96032a0bfe99980e"
+    }
+  }
+}
