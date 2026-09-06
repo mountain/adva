@@ -26,6 +26,8 @@ jobs:
         run: timeout 180s cargo test --locked -p adva-witness --example library_generation
       - name: Test scoped three-verifier arithmetic proof export
         run: timeout 180s cargo test --locked -p adva-witness --example verifier_search
+      - name: Test frozen-verifier policy campaign boundaries
+        run: timeout 180s cargo test --locked -p adva-witness --example search_campaign
       - name: Run first bounded M6 reveal
         run: |
           cargo run -p adva-witness --bin adva -- \
