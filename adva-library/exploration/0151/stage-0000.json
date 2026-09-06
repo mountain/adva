@@ -1,0 +1,3618 @@
+{
+  "schema": "adva.proposal-feedback.research.v0",
+  "revision": "8fd579b4b035616c89f6c0f66c4ecdcf080ffb98a670d06dee853f868a577f95",
+  "seed_digest": "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+  "task": {
+    "stage": 0,
+    "observations": [
+      [
+        1,
+        4
+      ],
+      [
+        2,
+        8
+      ],
+      [
+        -1,
+        -4
+      ]
+    ],
+    "authority": "supplied-calibration-assumptions-not-world-measurements"
+  },
+  "definitions_before": [
+    {
+      "Seed": {
+        "snapshot": "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "witness": "blake3:a521490f03bccac1209ae92ad555ebfaf2218bb1d2ba6339a6c8307cd490426f",
+        "before": {
+          "kind": "multiply",
+          "left": {
+            "kind": "constant",
+            "value": [
+              1,
+              [
+                2
+              ]
+            ]
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        },
+        "after": {
+          "kind": "add",
+          "left": {
+            "kind": "variable",
+            "name": "x"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        }
+      }
+    }
+  ],
+  "searches": [
+    {
+      "mode": "LibraryEnabled",
+      "enabled": [
+        0
+      ],
+      "proposals": [
+        "X",
+        "Two",
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": "X"
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": "Two"
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": {
+              "Use": {
+                "recipe": 0,
+                "argument": "X"
+              }
+            }
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": {
+              "Use": {
+                "recipe": 0,
+                "argument": "Two"
+              }
+            }
+          }
+        },
+        {
+          "Add": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "Two"
+          ]
+        }
+      ],
+      "generation_complete": true,
+      "entries": [
+        {
+          "ordinal": 0,
+          "proposal": "X",
+          "pair": {
+            "before": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "after": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "-1",
+              "-1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 1,
+          "proposal": "Two",
+          "pair": {
+            "before": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "after": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 2,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": "X"
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 3,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": "Two"
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 4,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": {
+                "Use": {
+                  "recipe": 0,
+                  "argument": "X"
+                }
+              }
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            },
+            "nodes": [
+              5,
+              7
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 4
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "-4",
+              "-4"
+            ]
+          ],
+          "status": "AcceptedPair",
+          "error": null,
+          "witnesses": [
+            {
+              "schema": "adva.witness.research",
+              "version": 0,
+              "key": "blake3:a80686c46878f0e815df4fc4c43d447b77b6ddc3e54d7be03322cd0c08dfc798",
+              "proof": {
+                "kind": "arithmetic_transition",
+                "actual_boundary": {
+                  "terms": []
+                },
+                "declared_boundary": {
+                  "terms": []
+                },
+                "before": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  }
+                },
+                "after": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  }
+                }
+              },
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "constant",
+                        "value": [
+                          1,
+                          [
+                            2
+                          ]
+                        ]
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "schema": "adva.witness.research",
+              "version": 0,
+              "key": "blake3:0c7bcb2a5306ffd7f944dcd2978303f2079085ad8867342ec002fd78ba84ed57",
+              "proof": {
+                "kind": "seal",
+                "body": "blake3:a80686c46878f0e815df4fc4c43d447b77b6ddc3e54d7be03322cd0c08dfc798"
+              },
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "constant",
+                        "value": [
+                          1,
+                          [
+                            2
+                          ]
+                        ]
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": {
+                "Use": {
+                  "recipe": 0,
+                  "argument": "Two"
+                }
+              }
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              }
+            },
+            "nodes": [
+              5,
+              7
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "8",
+              "8"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "8",
+              "8"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 6,
+          "proposal": {
+            "Add": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 7,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 8,
+          "proposal": {
+            "Add": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 9,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 10,
+          "proposal": {
+            "Add": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 11,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 12,
+          "proposal": {
+            "Add": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 13,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        }
+      ],
+      "pending": 14,
+      "status": "AcceptedPair",
+      "costs": {
+        "definition": 1,
+        "generation": 14,
+        "expansion": 180,
+        "checking": 184
+      }
+    },
+    {
+      "mode": "NewestDisabled",
+      "enabled": [],
+      "proposals": [
+        "X",
+        "Two",
+        {
+          "Add": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "Two"
+          ]
+        }
+      ],
+      "generation_complete": true,
+      "entries": [
+        {
+          "ordinal": 0,
+          "proposal": "X",
+          "pair": {
+            "before": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "after": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "-1",
+              "-1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 1,
+          "proposal": "Two",
+          "pair": {
+            "before": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "after": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 2,
+          "proposal": {
+            "Add": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 3,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 4,
+          "proposal": {
+            "Add": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 5,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 6,
+          "proposal": {
+            "Add": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 7,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 8,
+          "proposal": {
+            "Add": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 9,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        }
+      ],
+      "pending": 10,
+      "status": "Open",
+      "costs": {
+        "definition": 1,
+        "generation": 10,
+        "expansion": 58,
+        "checking": 130
+      }
+    },
+    {
+      "mode": "OrdinaryMacro",
+      "enabled": [
+        0
+      ],
+      "proposals": [
+        "X",
+        "Two",
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": "X"
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": "Two"
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": {
+              "Use": {
+                "recipe": 0,
+                "argument": "X"
+              }
+            }
+          }
+        },
+        {
+          "Use": {
+            "recipe": 0,
+            "argument": {
+              "Use": {
+                "recipe": 0,
+                "argument": "Two"
+              }
+            }
+          }
+        },
+        {
+          "Add": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "X",
+            "Two"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "X"
+          ]
+        },
+        {
+          "Add": [
+            "Two",
+            "Two"
+          ]
+        },
+        {
+          "Multiply": [
+            "Two",
+            "Two"
+          ]
+        }
+      ],
+      "generation_complete": true,
+      "entries": [
+        {
+          "ordinal": 0,
+          "proposal": "X",
+          "pair": {
+            "before": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "after": {
+              "kind": "variable",
+              "name": "x"
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "-1",
+              "-1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 1,
+          "proposal": "Two",
+          "pair": {
+            "before": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "after": {
+              "kind": "constant",
+              "value": [
+                1,
+                [
+                  2
+                ]
+              ]
+            },
+            "nodes": [
+              1,
+              1
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ],
+            [
+              "2",
+              "2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 2,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": "X"
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 3,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": "Two"
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 4,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": {
+                "Use": {
+                  "recipe": 0,
+                  "argument": "X"
+                }
+              }
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            },
+            "nodes": [
+              5,
+              7
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 4
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "-4",
+              "-4"
+            ]
+          ],
+          "status": "AcceptedPair",
+          "error": null,
+          "witnesses": [
+            {
+              "schema": "adva.witness.research",
+              "version": 0,
+              "key": "blake3:a80686c46878f0e815df4fc4c43d447b77b6ddc3e54d7be03322cd0c08dfc798",
+              "proof": {
+                "kind": "arithmetic_transition",
+                "actual_boundary": {
+                  "terms": []
+                },
+                "declared_boundary": {
+                  "terms": []
+                },
+                "before": {
+                  "kind": "multiply",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  }
+                },
+                "after": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  },
+                  "right": {
+                    "kind": "add",
+                    "left": {
+                      "kind": "variable",
+                      "name": "x"
+                    },
+                    "right": {
+                      "kind": "variable",
+                      "name": "x"
+                    }
+                  }
+                }
+              },
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "constant",
+                        "value": [
+                          1,
+                          [
+                            2
+                          ]
+                        ]
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "schema": "adva.witness.research",
+              "version": 0,
+              "key": "blake3:0c7bcb2a5306ffd7f944dcd2978303f2079085ad8867342ec002fd78ba84ed57",
+              "proof": {
+                "kind": "seal",
+                "body": "blake3:a80686c46878f0e815df4fc4c43d447b77b6ddc3e54d7be03322cd0c08dfc798"
+              },
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": [
+                            {
+                              "variable": "x",
+                              "exponent": 1
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "multiply",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "multiply",
+                      "left": {
+                        "kind": "constant",
+                        "value": [
+                          1,
+                          [
+                            2
+                          ]
+                        ]
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  },
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    },
+                    "right": {
+                      "kind": "add",
+                      "left": {
+                        "kind": "variable",
+                        "name": "x"
+                      },
+                      "right": {
+                        "kind": "variable",
+                        "name": "x"
+                      }
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "ordinal": 5,
+          "proposal": {
+            "Use": {
+              "recipe": 0,
+              "argument": {
+                "Use": {
+                  "recipe": 0,
+                  "argument": "Two"
+                }
+              }
+            }
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              },
+              "right": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                }
+              }
+            },
+            "nodes": [
+              5,
+              7
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "8",
+              "8"
+            ],
+            [
+              "8",
+              "8"
+            ],
+            [
+              "8",
+              "8"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 6,
+          "proposal": {
+            "Add": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 7,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 2
+              },
+              {
+                "x": 2
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 8,
+          "proposal": {
+            "Add": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 9,
+          "proposal": {
+            "Multiply": [
+              "X",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 10,
+          "proposal": {
+            "Add": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "3",
+              "3"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "1",
+              "1"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 11,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "X"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {
+                "x": 1
+              },
+              {
+                "x": 1
+              }
+            ]
+          },
+          "predictions": [
+            [
+              "2",
+              "2"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "-2",
+              "-2"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 12,
+          "proposal": {
+            "Add": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        },
+        {
+          "ordinal": 13,
+          "proposal": {
+            "Multiply": [
+              "Two",
+              "Two"
+            ]
+          },
+          "pair": {
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "after": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              }
+            },
+            "nodes": [
+              3,
+              3
+            ],
+            "variable_occurrences": [
+              {},
+              {}
+            ]
+          },
+          "predictions": [
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ],
+            [
+              "4",
+              "4"
+            ]
+          ],
+          "status": "RejectedCalibration",
+          "error": null,
+          "witnesses": []
+        }
+      ],
+      "pending": 14,
+      "status": "AcceptedPair",
+      "costs": {
+        "definition": 1,
+        "generation": 14,
+        "expansion": 180,
+        "checking": 184
+      }
+    }
+  ],
+  "selected": {
+    "Use": {
+      "recipe": 0,
+      "argument": {
+        "Use": {
+          "recipe": 0,
+          "argument": "X"
+        }
+      }
+    }
+  },
+  "status": "FeedbackVerified",
+  "residuals": [
+    "GeneralVocabularyPromotion: CertificateObstruction (no coverage/invariance certificate)",
+    "NativeProgramRealization: NotRepresentableInThisExperiment (no source/occurrence or copy certificate)",
+    "SelfInterpretation: NotImplemented; Rust-hosted proposal construction only",
+    "WorldIdentification: Open; supplied observations are not world measurements",
+    "OrdinaryMacroAdvantage: NotDemonstrated; full expanded costs must be compared"
+  ]
+}

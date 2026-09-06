@@ -1,0 +1,543 @@
+{
+  "schema": "adva.library-epoch.research.v0",
+  "checker_revision": "34f4d38420963c49809aa09c5fd7258f0247faaac6caba89221650356e941b27",
+  "epoch": 1,
+  "parent": {
+    "epoch": 0,
+    "digest": "4a86b8c7aaf99369254df6972e22ab20d7f433253c007f81d96acb91e9e320a9"
+  },
+  "origin": {
+    "artifact_blake3": "119951ea09dd508c73f6668212d0945415efab4d9cd5dd5c891001fc13d5f334",
+    "case": "delayed-evidence",
+    "prior_checker": "adva.library-stability.polynomial-shadow.research.v0",
+    "observation_authority": "supplied-calibration-assumptions-not-world-measurements"
+  },
+  "input": {
+    "catalogue": [
+      {
+        "kind": "variable",
+        "name": "x"
+      },
+      {
+        "kind": "multiply",
+        "left": {
+          "kind": "constant",
+          "value": [
+            1,
+            [
+              2
+            ]
+          ]
+        },
+        "right": {
+          "kind": "variable",
+          "name": "x"
+        }
+      },
+      {
+        "kind": "add",
+        "left": {
+          "kind": "variable",
+          "name": "x"
+        },
+        "right": {
+          "kind": "variable",
+          "name": "x"
+        }
+      },
+      {
+        "kind": "multiply",
+        "left": {
+          "kind": "variable",
+          "name": "x"
+        },
+        "right": {
+          "kind": "variable",
+          "name": "x"
+        }
+      },
+      {
+        "kind": "multiply",
+        "left": {
+          "kind": "constant",
+          "value": [
+            1,
+            [
+              2
+            ]
+          ]
+        },
+        "right": {
+          "kind": "multiply",
+          "left": {
+            "kind": "variable",
+            "name": "x"
+          },
+          "right": {
+            "kind": "variable",
+            "name": "x"
+          }
+        }
+      }
+    ],
+    "rounds": [
+      {
+        "Observe": {
+          "input": 0,
+          "value": 0
+        }
+      },
+      "Revisit",
+      "Revisit",
+      "Revisit",
+      {
+        "Observe": {
+          "input": 1,
+          "value": 2
+        }
+      },
+      {
+        "Observe": {
+          "input": 2,
+          "value": 4
+        }
+      }
+    ]
+  },
+  "analysis": {
+    "readings": [
+      {
+        "active": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 0,
+        "status": "Open"
+      },
+      {
+        "active": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 0,
+        "status": "Open"
+      },
+      {
+        "active": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 0,
+        "status": "Open"
+      },
+      {
+        "active": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 0,
+        "status": "Open"
+      },
+      {
+        "active": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[1]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 0,
+        "status": "Open"
+      },
+      {
+        "active": [
+          1,
+          2,
+          4
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":2}]}}]}"
+        ],
+        "representative": 1,
+        "status": "Open"
+      },
+      {
+        "active": [
+          1,
+          2
+        ],
+        "features": [
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}",
+          "{\"terms\":[{\"coefficient\":[1,[2]],\"monomial\":{\"powers\":[{\"variable\":\"x\",\"exponent\":1}]}}]}"
+        ],
+        "representative": 1,
+        "status": "FeatureClosed"
+      }
+    ],
+    "comparisons": [
+      {
+        "round": 0,
+        "candidate": 0,
+        "input": 0,
+        "expected": 0,
+        "predicted": "0",
+        "agrees": true
+      },
+      {
+        "round": 0,
+        "candidate": 1,
+        "input": 0,
+        "expected": 0,
+        "predicted": "0",
+        "agrees": true
+      },
+      {
+        "round": 0,
+        "candidate": 2,
+        "input": 0,
+        "expected": 0,
+        "predicted": "0",
+        "agrees": true
+      },
+      {
+        "round": 0,
+        "candidate": 3,
+        "input": 0,
+        "expected": 0,
+        "predicted": "0",
+        "agrees": true
+      },
+      {
+        "round": 0,
+        "candidate": 4,
+        "input": 0,
+        "expected": 0,
+        "predicted": "0",
+        "agrees": true
+      },
+      {
+        "round": 4,
+        "candidate": 0,
+        "input": 1,
+        "expected": 2,
+        "predicted": "1",
+        "agrees": false
+      },
+      {
+        "round": 4,
+        "candidate": 1,
+        "input": 1,
+        "expected": 2,
+        "predicted": "2",
+        "agrees": true
+      },
+      {
+        "round": 4,
+        "candidate": 2,
+        "input": 1,
+        "expected": 2,
+        "predicted": "2",
+        "agrees": true
+      },
+      {
+        "round": 4,
+        "candidate": 3,
+        "input": 1,
+        "expected": 2,
+        "predicted": "1",
+        "agrees": false
+      },
+      {
+        "round": 4,
+        "candidate": 4,
+        "input": 1,
+        "expected": 2,
+        "predicted": "2",
+        "agrees": true
+      },
+      {
+        "round": 5,
+        "candidate": 1,
+        "input": 2,
+        "expected": 4,
+        "predicted": "4",
+        "agrees": true
+      },
+      {
+        "round": 5,
+        "candidate": 2,
+        "input": 2,
+        "expected": 4,
+        "predicted": "4",
+        "agrees": true
+      },
+      {
+        "round": 5,
+        "candidate": 4,
+        "input": 2,
+        "expected": 4,
+        "predicted": "8",
+        "agrees": false
+      }
+    ]
+  },
+  "words": [
+    {
+      "left": 1,
+      "right": 2,
+      "nodes": [
+        {
+          "schema": "adva.witness.research",
+          "version": 0,
+          "key": "blake3:782e38af6fec699b4c4d757475e953919a813eb6b17509967067c0345615b298",
+          "proof": {
+            "kind": "arithmetic_transition",
+            "actual_boundary": {
+              "terms": []
+            },
+            "declared_boundary": {
+              "terms": []
+            },
+            "before": {
+              "kind": "multiply",
+              "left": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    2
+                  ]
+                ]
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            },
+            "after": {
+              "kind": "add",
+              "left": {
+                "kind": "variable",
+                "name": "x"
+              },
+              "right": {
+                "kind": "variable",
+                "name": "x"
+              }
+            }
+          },
+          "summary": {
+            "additive_residual": {
+              "terms": []
+            },
+            "multiplicative_residual": {
+              "numerator": {
+                "terms": [
+                  {
+                    "coefficient": [
+                      1,
+                      [
+                        2
+                      ]
+                    ],
+                    "monomial": {
+                      "powers": [
+                        {
+                          "variable": "x",
+                          "exponent": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "denominator": {
+                "terms": [
+                  {
+                    "coefficient": [
+                      1,
+                      [
+                        2
+                      ]
+                    ],
+                    "monomial": {
+                      "powers": [
+                        {
+                          "variable": "x",
+                          "exponent": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "nonzero_obligations": [
+              {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              },
+              {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "schema": "adva.witness.research",
+          "version": 0,
+          "key": "blake3:a521490f03bccac1209ae92ad555ebfaf2218bb1d2ba6339a6c8307cd490426f",
+          "proof": {
+            "kind": "seal",
+            "body": "blake3:782e38af6fec699b4c4d757475e953919a813eb6b17509967067c0345615b298"
+          },
+          "summary": {
+            "additive_residual": {
+              "terms": []
+            },
+            "multiplicative_residual": {
+              "numerator": {
+                "terms": [
+                  {
+                    "coefficient": [
+                      1,
+                      [
+                        2
+                      ]
+                    ],
+                    "monomial": {
+                      "powers": [
+                        {
+                          "variable": "x",
+                          "exponent": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              },
+              "denominator": {
+                "terms": [
+                  {
+                    "coefficient": [
+                      1,
+                      [
+                        2
+                      ]
+                    ],
+                    "monomial": {
+                      "powers": [
+                        {
+                          "variable": "x",
+                          "exponent": 1
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            "nonzero_obligations": [
+              {
+                "kind": "multiply",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              },
+              {
+                "kind": "add",
+                "left": {
+                  "kind": "variable",
+                  "name": "x"
+                },
+                "right": {
+                  "kind": "variable",
+                  "name": "x"
+                }
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

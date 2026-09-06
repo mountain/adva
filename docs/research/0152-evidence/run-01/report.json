@@ -1,0 +1,378 @@
+{
+  "allowed_action": null,
+  "base_audit": "Passed",
+  "calibration": {
+    "controls": {
+      "invalid_position_rejected": true,
+      "nonduplicate_contraction_rejected": true,
+      "unequal_polynomial_rejected": true,
+      "zero_guard_refused": true,
+      "zero_polynomial_equality": true
+    },
+    "external_controls": [
+      "LeanFalseRejected",
+      "LeanSorryRejected",
+      "MetamathFalseRejected"
+    ],
+    "status": "Passed"
+  },
+  "calls": [
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "--version"
+      ],
+      "cpu_seconds": 0.09421099999999999,
+      "name": "lean-version",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.1188229070030502
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 12.527089,
+      "name": "metamath-base",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 12.546772556997894
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "calibrate",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.015600999999999587,
+      "name": "rust-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.020527699001831934
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "calibrate",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.016496000000000843,
+      "name": "replay-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.023624262001249008
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-01/proofs-calibrate.lean"
+      ],
+      "cpu_seconds": 0.5328110000000008,
+      "name": "lean-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.7809316589991795
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.2897049999999997,
+      "name": "metamath-calibrate",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.34984691599675
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-01/negative.lean"
+      ],
+      "cpu_seconds": 0.40282700000000027,
+      "name": "lean-negative",
+      "returncode": 1,
+      "status": "Completed",
+      "wall_seconds": 0.4755451710007037
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-01/sorry.lean"
+      ],
+      "cpu_seconds": 0.3883410000000005,
+      "name": "lean-sorry",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.42109290700318525
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.359541000000002,
+      "name": "metamath-negative",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.3924160669994308
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "2",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.1673499999999999,
+      "name": "rust-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.16883545000018785
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "2",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 0.14585900000000174,
+      "name": "replay-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 0.16786150600091787
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-01/proofs-2.lean"
+      ],
+      "cpu_seconds": 1.7830659999999996,
+      "name": "lean-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.730515622999519
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 2.360966000000001,
+      "name": "metamath-2",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 2.382831802999135
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "3",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 1.599165999999998,
+      "name": "rust-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.6465952610014938
+    },
+    {
+      "command": [
+        "target/debug/examples/verifier_search",
+        "3",
+        "/home/ubuntu/adva/adva-library/stability"
+      ],
+      "cpu_seconds": 1.4229550000000009,
+      "name": "replay-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 1.4260872550003114
+    },
+    {
+      "command": [
+        "/home/ubuntu/.local/bin/lean",
+        "/home/ubuntu/adva/docs/research/0152-evidence/run-01/proofs-3.lean"
+      ],
+      "cpu_seconds": 12.069579000000004,
+      "name": "lean-3",
+      "returncode": 0,
+      "status": "Completed",
+      "wall_seconds": 11.552711113996338
+    },
+    {
+      "command": [
+        "/home/ubuntu/MetaMath/metamath-exe/metamath"
+      ],
+      "cpu_seconds": 128.86369399999998,
+      "name": "metamath-3",
+      "returncode": -15,
+      "status": "Completed",
+      "wall_seconds": 129.16798628000106
+    }
+  ],
+  "cost": {
+    "child_cpu_seconds": 167.039257,
+    "child_peak_rss_kib": 435016,
+    "children": 17,
+    "retained_bytes_before_final_checkpoint": 3471017,
+    "wall_seconds_before_final_checkpoint": 168.1377738250012
+  },
+  "implementation_sha256": {
+    "crates/adva-witness/examples/verifier_search.rs": "ee938cb0589c16cb0765e5c2d9a992e51c9106d59790d2a3bd1c3a461f7b04ca",
+    "docs/research/0152-three-verifier-residual-search.md": "ca94e8d857bd9d16dc3dde946913bb941b6793f8cf647dd3e77077cef0f5cf68",
+    "python/adva/adva.py": "9948dc2380cf0ccbf6ec97bb5bc2baa7fc00d71d74cf5ae6fca01f209b3b896b",
+    "python/adva/verifier_search.py": "5f8978f4de4b94cb20aff9d19023be7fb42951890e93aedcf1f8b8548575d9ec"
+  },
+  "reason": "Metamath 3 proof check failed",
+  "rounds": [
+    {
+      "arms": [
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 7,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 3,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "random",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": true,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 8,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 1,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 17,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 7,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "random",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 6,
+          "stop_reason": "literal_target"
+        },
+        {
+          "depth": 2,
+          "expand": false,
+          "policy": "residual",
+          "residual": 0,
+          "seed": 19,
+          "status": "Reached",
+          "steps": 2,
+          "stop_reason": "literal_target"
+        }
+      ],
+      "counts": {
+        "bounded_exclusions": 0,
+        "enumerated": 134,
+        "selected": 56,
+        "witness_checks": 190
+      },
+      "depth": 2,
+      "status": "ThreeVerifierChecked"
+    }
+  ],
+  "schema": "adva.three-verifier-run.research.v0",
+  "status": "Blocked",
+  "tools": {
+    "database": {
+      "path": "/home/ubuntu/MetaMath/set.mm/set.mm",
+      "sha256": "cf534eb74bd665c41a3ba8867296ad969e80834c750eea2094f6428e9af1f931"
+    },
+    "lean": {
+      "path": "/home/ubuntu/.local/bin/lean",
+      "sha256": "8fadc3ed92cc9decb94c96ee9c0876e91e03a3a5e69138f32114f02789e2766c",
+      "version": "Lean (version 4.24.0, x86_64-unknown-linux-gnu, commit 797c613eb9b6d4ec95db23e3e00af9ac6657f24b, Release)"
+    },
+    "metamath": {
+      "path": "/home/ubuntu/MetaMath/metamath-exe/metamath",
+      "sha256": "475a7ca3b9cc8b5c6e82d4a10f25e9a10b72adc0297391a12e54364e1b173397"
+    },
+    "native": {
+      "path": "target/debug/examples/verifier_search",
+      "sha256": "76af4cf68f80cec9c48b74be38dffa1b5b023af79471fd4a96032a0bfe99980e"
+    }
+  }
+}
