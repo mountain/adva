@@ -1,0 +1,341 @@
+{
+  "schema": "adva.run.report.research",
+  "version": 0,
+  "state": "Completed",
+  "error": null,
+  "error_phase": null,
+  "arithmetic": "PSC0 builtin scalar realization: IEEE-754 f64; not exact rational arithmetic",
+  "fuel_unit": "AST terms admitted before lowering; distinct from time and evaluated nodes",
+  "program_json": "{\n  \"entry\": \"main\",\n  \"fuel\": 16,\n  \"inputs\": {\n    \"x\": 9007199254740993,\n    \"y\": -9007199254740992\n  },\n  \"module\": \"representation\",\n  \"schema\": \"adva.run.program.research\",\n  \"source\": \"(module representation (export main) (def main (fn ((x Real) (y Real)) Real (add (use x) (use y)))))\",\n  \"version\": 0\n}\n",
+  "program": {
+    "schema": "adva.run.program.research",
+    "version": 0,
+    "source": "(module representation (export main) (def main (fn ((x Real) (y Real)) Real (add (use x) (use y)))))",
+    "module": "representation",
+    "entry": "main",
+    "inputs": {
+      "x": 9007199254740992.0,
+      "y": -9007199254740992.0
+    },
+    "fuel": 16
+  },
+  "compilation": {
+    "result": {
+      "schema": "adva.ir",
+      "version": 1,
+      "module": "representation",
+      "function": {
+        "module": "representation",
+        "function": "main"
+      },
+      "signature": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          },
+          {
+            "name": "y",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "nodes": [
+        {
+          "id": 0,
+          "operation": {
+            "namespace": "adva.builtin",
+            "name": "add",
+            "version": 1
+          },
+          "inputs": [
+            {
+              "producer": {
+                "kind": "input",
+                "index": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0"
+              ]
+            },
+            {
+              "producer": {
+                "kind": "input",
+                "index": 1
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:1"
+              ]
+            }
+          ],
+          "output_types": [
+            "real"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 0
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:0",
+            "occ:1"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "id": "occ:0",
+          "source": "source:representation/main:0:x",
+          "path": []
+        },
+        {
+          "id": "occ:1",
+          "source": "source:representation/main:1:y",
+          "path": []
+        }
+      ],
+      "history": {
+        "prefix": [
+          {
+            "kind": "source",
+            "source": "source:representation/main:0:x",
+            "occurrence": "occ:0"
+          },
+          {
+            "kind": "source",
+            "source": "source:representation/main:1:y",
+            "occurrence": "occ:1"
+          },
+          {
+            "kind": "operation",
+            "node": 0,
+            "operation": {
+              "namespace": "adva.builtin",
+              "name": "add",
+              "version": 1
+            }
+          }
+        ],
+        "occurrence_paths": {
+          "occ:0": [],
+          "occ:1": []
+        },
+        "rewrite_trace": []
+      }
+    },
+    "certificate": {
+      "id": "compile:representation/main:v1",
+      "scope": "PSC0 finite acyclic module lowering",
+      "boundary": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          },
+          {
+            "name": "y",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "module_links": "checked",
+      "linear_use": "checked",
+      "types": "checked",
+      "call_history": "checked",
+      "diagram_integrity": "checked"
+    },
+    "graft_trace": {
+      "result": {
+        "root": "graft:representation/main:root",
+        "frames": [
+          {
+            "id": "graft:representation/main:root",
+            "scope_path": [],
+            "kind": "root",
+            "parent": null,
+            "children": [],
+            "region_in_parent": {
+              "kind": "root"
+            },
+            "caller": {
+              "module": "representation",
+              "function": "main"
+            },
+            "callee": {
+              "module": "representation",
+              "function": "main"
+            },
+            "boundary": {
+              "inputs": [
+                {
+                  "name": "x",
+                  "value_type": "real"
+                },
+                {
+                  "name": "y",
+                  "value_type": "real"
+                }
+              ],
+              "outputs": [
+                "real"
+              ]
+            },
+            "arguments": [],
+            "holes": [
+              {
+                "hole_index": 0,
+                "hole": {
+                  "name": "x",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 0
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:0"
+                  ]
+                }
+              },
+              {
+                "hole_index": 1,
+                "hole": {
+                  "name": "y",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 1
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:1"
+                  ]
+                }
+              }
+            ],
+            "body_region": [
+              0
+            ],
+            "entry_wires": [
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 0
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:0"
+                ]
+              },
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 1
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:1"
+                ]
+              }
+            ],
+            "exit_wires": [
+              {
+                "producer": {
+                  "kind": "node",
+                  "node": 0
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:0",
+                  "occ:1"
+                ]
+              }
+            ],
+            "call_history_index": null
+          }
+        ]
+      },
+      "certificate": {
+        "id": "graft-trace:representation/main:v1",
+        "scope": "compiler-emitted PSC0 finite nested call frames; unchanged adva.ir v1 diagram",
+        "diagram_integrity": "checked",
+        "deterministic_frame_ids": "checked",
+        "parent_child_nesting": "checked",
+        "ordered_hole_bindings": "checked",
+        "argument_body_regions": "checked",
+        "boundary_maps": "checked",
+        "call_history_links": "checked",
+        "frame_ids": [
+          "graft:representation/main:root"
+        ]
+      }
+    }
+  },
+  "evaluation": {
+    "values": [
+      0.0
+    ],
+    "certificate": {
+      "id": "evaluate:representation/main:v1",
+      "scope": "PSC0 builtin scalar realization",
+      "executed_nodes": [
+        0
+      ],
+      "input_types_checked": true,
+      "diagram_integrity": "checked",
+      "operation_rules_checked": true
+    }
+  },
+  "actual": {
+    "envelope_bytes": 312,
+    "source_bytes": 100,
+    "lexical_max_depth": 5,
+    "ast_terms": 3,
+    "copy_operations": 0,
+    "reserved_fuel": 3,
+    "remaining_fuel": 13,
+    "compiled_nodes": 1,
+    "occurrences": 2,
+    "history_events": 3,
+    "evaluated_nodes": 1,
+    "peak_memory_bytes": null
+  },
+  "phase_seconds": {
+    "compile": 0.000055032,
+    "envelope_parse": 0.00002182,
+    "evaluate": 0.00001039,
+    "link": 6.452e-6,
+    "lisp_parse": 0.000027221,
+    "source_preflight": 1.252e-6,
+    "term_preflight": 7.72e-7,
+    "total_before_serialization": 0.000137105
+  }
+}

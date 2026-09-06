@@ -1,0 +1,160 @@
+{
+  "schema": "adva.representation-evidence.research",
+  "version": 0,
+  "state": "PartialWithCounterexamples",
+  "date": "2026-09-06",
+  "base_draft": 140,
+  "base_commit": "e008c8f70e44d31d44d15f615260003ea02bb562",
+  "run_commit": "da8f7d3a53896de5a502c1cfb59d48f49ae6e69c",
+  "native_suite_status": "Incomplete",
+  "external_cases_completed": 8,
+  "native_calls": 5,
+  "native_matched": [
+    "input-alias",
+    "ordered-absorption",
+    "reassociated-control",
+    "product-k27"
+  ],
+  "native_mismatched": [
+    "product-k28"
+  ],
+  "native_not_run": [
+    "product-k26",
+    "input-distinct-control",
+    "zero-guard-control"
+  ],
+  "native_program_status_note": "All five invoked Rust programs returned Completed. Cross-language matcher rejected case five; this is not a Rust crash or an all-eight success.",
+  "comparison": {
+    "accepted_false_with_exact_oracle_gate": 0,
+    "claim": "pointwise oracle checks only; no acceleration or scope-coverage claim",
+    "incremental_oracle_validation_ns": 2444864,
+    "raw_binary64_baseline_ns": 134961,
+    "raw_false_one": [
+      "product-k27",
+      "product-k28"
+    ],
+    "raw_false_zero": [
+      "input-alias",
+      "ordered-absorption"
+    ],
+    "same_finite_cases": 8
+  },
+  "original_run": {
+    "id": 34040613970,
+    "url": "https://github.com/mountain/adva/actions/runs/34040613970",
+    "job": 101506565431,
+    "conclusion": "failure",
+    "artifact_id": 9991547888
+  },
+  "evidence_recovery": {
+    "run": 34040709028,
+    "job": 101506822445,
+    "url": "https://github.com/mountain/adva/actions/runs/34040709028",
+    "conclusion": "success",
+    "native_replays": 0,
+    "reason": "Repair text export after set -e prevented failed-run output from reaching logs; original failure artifact was already saved."
+  },
+  "word": {
+    "name": "representation-residual",
+    "status": "Proposed external diagnostic",
+    "revision": "Separate input quantization, cross-language transport/reading, and operation residuals; no native M1/Seal authority"
+  },
+  "source_sha256": {
+    "experiments/representation_residual/run.py": "4dee944f9730b31d786c3f93574997078a55fee656266b93e7188620610dcd68",
+    "experiments/representation_residual/diagnose.py": "3144e4c7a7b1d8d08e83bc351748187a52fdf0ceadabdc742f1fede43af74625",
+    "programs/representation-residual/representation-question.adva": "41d10a60e3d101e5ace5145af07cbaff664054f470e5a86347c4aa7d1712bb7f"
+  },
+  "evidence_sha256": {
+    "docs/research/0141-native-evidence/host-cost.txt": "03666046b240d2f91b8d97b65a8db01dedccf188d0a4223a9450910657a509ae",
+    "docs/research/0141-native-evidence/input-alias.native-result.adva": "a88b19d81d8ae8b909f0f933bec6c8ed3fdf8392715fba22f19c2fb4ae91cd61",
+    "docs/research/0141-native-evidence/input-alias.native-result.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/0141-native-evidence/input-alias.native-result.stdout.txt": "ddfe364627e7e689f74f81817068693f600d3faa9b815fb097f83bd654eed77e",
+    "docs/research/0141-native-evidence/input-alias.program.adva": "5f1a4529b30e5548897910b1efa3a9ca18fa862c8db666ecc9e03fb16aea08e2",
+    "docs/research/0141-native-evidence/input-distinct-control.program.adva": "5175f445cff3e8d0989a51ff54e7206a7b6dc3cea4bee3350ccb5b9786a38bbd",
+    "docs/research/0141-native-evidence/ordered-absorption.native-result.adva": "50ad857a1802154700b43db4e99978f5b753c8ba95acfd70e26ae16ee031245e",
+    "docs/research/0141-native-evidence/ordered-absorption.native-result.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/0141-native-evidence/ordered-absorption.native-result.stdout.txt": "ce55b48be60d8611d42b5c93fbf7aa0096a6785c0d9909a0127d67c578399693",
+    "docs/research/0141-native-evidence/ordered-absorption.program.adva": "f27c3cc7c18e456ea89afa33a53d6dd8ad568d9d8ba33c4df151033345f7a90b",
+    "docs/research/0141-native-evidence/product-k26.program.adva": "ec8ac32a2b10acdc3d7192f2124333b8816ef390b464637ec37177cc4a971499",
+    "docs/research/0141-native-evidence/product-k27.native-result.adva": "57ab7a7e45d88991682d6b1bbb7cba59ebf1d63f4e06a20c5f87ecd3fabb205a",
+    "docs/research/0141-native-evidence/product-k27.native-result.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/0141-native-evidence/product-k27.native-result.stdout.txt": "a2bfd7fe8a6ce1ab92251ff16830816f2262e43aaeb739c0c7ac2515fc049b8f",
+    "docs/research/0141-native-evidence/product-k27.program.adva": "db78db984d54532af77ada97a25662a489b228dc591943102147ffc71bc51827",
+    "docs/research/0141-native-evidence/product-k28.native-result.adva": "30513ae2e6c8c3d821643768aa3b445433345f52984c9a6d90ffbabb84ca1c76",
+    "docs/research/0141-native-evidence/product-k28.native-result.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/0141-native-evidence/product-k28.native-result.stdout.txt": "723eb7dba24abe438a2da1d9c354ce15ab3b9cb058a2c705e69335885b38e1c7",
+    "docs/research/0141-native-evidence/product-k28.program.adva": "5bce3761ac9cb104f134727361ca8e6f0e5cd3fad76c2c9b2ea4cfdc592c22b0",
+    "docs/research/0141-native-evidence/question.adva": "41d10a60e3d101e5ace5145af07cbaff664054f470e5a86347c4aa7d1712bb7f",
+    "docs/research/0141-native-evidence/reassociated-control.native-result.adva": "c60adcc5a4e03bba86d38446251caf32a568789cdf8cbf681842e9dbcf7e98a1",
+    "docs/research/0141-native-evidence/reassociated-control.native-result.stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "docs/research/0141-native-evidence/reassociated-control.native-result.stdout.txt": "69a6491ac24b863bae2effc9c13f368597e51f33b23a66bbeddca2484d96db02",
+    "docs/research/0141-native-evidence/reassociated-control.program.adva": "5d24f0b75d05a9f450efc111a02ccefccb6fd3da6fdb18f0ebe1ff4681fddbd0",
+    "docs/research/0141-native-evidence/report.json": "ebc74ce1c7b1f0f3bc8ccb29b2fd004f63fde8cd0bf9b6c22b9d43508cfd54c6",
+    "docs/research/0141-native-evidence/zero-guard-control.program.adva": "861ca23dbc2c19ed67a54013c582d45a7ce496bae998065b681a620cb0f25631"
+  },
+  "actual_cost": {
+    "ci_metrics": {
+      "admitted_ast_nodes": 28,
+      "construction_ns": 2670442,
+      "elapsed_ns_before_final_serialization": 50789707,
+      "exact_ast_visits": 56,
+      "float_ast_visits": 28,
+      "memory_note": "tracemalloc covers this Python process's traced allocations only; RSS and native peaks unmeasured",
+      "native_launches": 5,
+      "native_peak_rss_bytes": null,
+      "native_wall_ns": 32448539,
+      "oracle_validation_ns": 2444864,
+      "process_peak_rss_bytes": null,
+      "python_tracemalloc_peak_bytes_before_final_serialization": 2130762,
+      "raw_float_ns": 134961,
+      "serialization_note": "one complete report encoding measured; final encoding and disk persistence excluded",
+      "serialization_ns": 4886933,
+      "trace_ast_visits": 28
+    },
+    "ci_supervised_wall_seconds": 0.11,
+    "ci_supervised_max_rss_kib": 21812,
+    "ci_exit_code": 1,
+    "native_binary_sha256": "51e1e8c1336692bf2ab8659994316b940cc90b8355b670567a39489eb3214237",
+    "confirmed_math_ast_visits": 227,
+    "inferred_negative_control_visits": 112,
+    "aggregate_math_ast_visits_confirmed_plus_inferred": 339,
+    "math_ast_limit_scope": "128 per invocation, not a shared whole-research limit; original main suite112 plus diagnostic3=115",
+    "diagnostic_ast_visits": 3,
+    "diagnostic_elapsed_ns_before_serialization": 587617,
+    "search_candidates": 0,
+    "native_retries": 0,
+    "missing": [
+      "negative-control elapsed/memory/retained AST counters",
+      "first local pilot source hash",
+      "final serialization and disk persistence costs separately",
+      "individual native peak RSS",
+      "whole research engineering wall time",
+      "direct Rust input/output to_bits trace"
+    ]
+  },
+  "failure_boundary": {
+    "submitted_lower_factor": "0.9999999962747097",
+    "reported_native_lower_factor": "0.9999999962747096",
+    "native_output": "0.9999999999999999",
+    "diagnosis": "Observed mismatch across the native input-reporting boundary; exact bit patterns are inferred from serialized numbers, not directly recorded. Parser versus serializer root cause remains open.",
+    "diagnostic_residuals": {
+      "input": [
+        "0",
+        "1"
+      ],
+      "transport": [
+        "-268435457",
+        "2417851639229258349412352"
+      ],
+      "operation": [
+        "33554433",
+        "2417851639229258349412352"
+      ],
+      "total": [
+        "-7",
+        "72057594037927936"
+      ]
+    }
+  },
+  "next_minimum_step": "Record and compare direct native f64 bit patterns at JSON decode and output for the single k28 case under a newly frozen small contract; do not change multiplication or assert full adapter validation."
+}

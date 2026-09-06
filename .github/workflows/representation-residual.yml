@@ -1,41 +1,38 @@
-name: Representation residual
+name: Retained representation evidence
 
 on:
   pull_request:
     paths:
       - "experiments/representation_residual/**"
       - "programs/representation-residual/**"
+      - "docs/research/0141-**"
       - ".github/workflows/representation-residual.yml"
 
 permissions:
   contents: read
-  actions: read
 
 jobs:
-  finite:
+  retained-evidence:
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 2
     steps:
       - uses: actions/checkout@v4
-      - name: Recover the original finite run without replaying it
-        if: hashFiles('docs/research/0141-representation-evidence.json') == ''
-        uses: actions/download-artifact@v4
-        with:
-          name: representation-residual
-          run-id: 34040613970
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          path: target/retained-representation
-      - name: Export success and failure evidence equally
-        if: hashFiles('docs/research/0141-representation-evidence.json') == ''
+      - name: Check retained bytes without replaying the finite experiment
         run: |
           python3 - <<'PYCODE'
+          import hashlib
           import json
           from pathlib import Path
-          root=Path('target/retained-representation/representation-residual')
-          bundle={str(p.relative_to(root)):p.read_text() for p in sorted(root.rglob('*')) if p.is_file()}
-          bundle['host-cost.txt']=Path('target/retained-representation/representation-host-cost.txt').read_text()
-          assert 'report.json' in bundle
-          print('REPRESENTATION_EVIDENCE_BEGIN')
-          print(json.dumps(bundle))
-          print('REPRESENTATION_EVIDENCE_END')
+          root = Path('.')
+          summary = json.loads((root / 'docs/research/0141-representation-evidence.json').read_text())
+          count = 0
+          for group in ('source_sha256', 'evidence_sha256'):
+              for name, expected in summary[group].items():
+                  path = (root / name).resolve()
+                  assert path.is_relative_to(root.resolve()), name
+                  assert hashlib.sha256(path.read_bytes()).hexdigest() == expected, name
+                  count += 1
+          print(f'Verified {count} retained file hashes; no native experiment executed.')
+          print('Recorded native comparison status:', summary['native_suite_status'])
+          print('Evidence integrity does not imply numerical comparison success.')
           PYCODE
