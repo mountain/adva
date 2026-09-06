@@ -1,0 +1,25 @@
+{
+  "schema": "adva.external.goal-exploration-contract.v0",
+  "base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "authorization": "Mingli requested the explore/open/universe finite calibration on 2026-09-06",
+  "question": "For the same finite open equation, which evidence permits existence, complete enumeration or uniqueness to be decided before the declared universe is exhausted?",
+  "level": "external finite arithmetic and proposed vocabulary; no native semantics or open-world completeness",
+  "universe": [0,1,2,3,4,5,6],
+  "grammar": "Horner quadratic (a*x+b)*x+c over F7; x is a typed open position; a,b,c,rhs are canonical F7 elements",
+  "instances": {
+    "main": {"coefficients": [2,0,6], "rhs": 1},
+    "fresh": {"coefficients": [1,2,3], "rhs": 3},
+    "unique": {"coefficients": [1,0,0], "rhs": 0},
+    "empty": {"coefficients": [2,0,6], "rhs": 2}
+  },
+  "goals": {"exists": "exists x in U: h(x)=rhs", "all": "return precisely every satisfying x in U", "unique": "there exists exactly one satisfying x in U"},
+  "policies": ["goal_aware: stop at first witness for exists or second distinct witness for unique", "exhaustive: visit the whole declared U unless fuel is exhausted"],
+  "frozen_runs": "all three goals on all four instances with ascending order and fuel 7; an exhaustive comparison on the main instance for each goal; main instance with fuel 2 for all goals; a zero-fuel exists run; and a uniqueness run with order [6,1,0,2,3,4,5] and fuel 2",
+  "checker": "Independently recompute visited values by expanded powers, verify schedule prefix, stopping policy, exact coverage and goal-specific evidence; never trust the producer's verdict",
+  "protected": ["fixed task/goal/domain binding", "distinct witness positions", "no complete solution set without domain coverage", "one discovered solution does not prove uniqueness", "empty discovered set before coverage remains Unknown", "missing input is distinct from an empty verified solution set", "retained unvisited positions even when the question is decided", "no native A/M or M6 inference"],
+  "limits": {"candidates_per_run": 7, "runs": 20, "scalar_evaluations_and_checks_per_process": 1000, "metadata_items_per_process": 20000, "wall_seconds": 5, "cpu_seconds_standalone": 5, "address_space_bytes_standalone": 268435456, "artifact_bytes": 131072, "automatic_continuations": 0, "correction_replays": 1, "research_minutes": 20},
+  "cost_comparison": "Same main equation, schedule, checker and maximum fuel for both policies; count construction, evaluation, validation and persistence. Ordinary early-stopping algorithms can obtain the same savings; no novel speedup claim.",
+  "negative_controls": ["one witness promoted to unique", "partial discovered set promoted to complete", "false no-solution from zero fuel", "duplicate schedule hiding missing position", "omitted row or changed value", "goal changed without evidence rechecking", "None or malformed input"],
+  "exit": "Finite execution stops at policy witness, domain exhaustion or fuel exhaustion. Only a separate checked finite-coverage argument can establish absence; raw search exhaustion remains insufficient.",
+  "residuals": ["The finite universe is not the physical open world", "No learned goal rules or new syntax", "No native explore/open/universe command", "No universal optimality or general grammar completeness", "Hard process interruption has no guaranteed checkpoint", "Human interpretation and customer utility untested"]
+}

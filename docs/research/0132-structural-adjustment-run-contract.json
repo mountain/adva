@@ -1,0 +1,25 @@
+{
+  "schema": "adva.external.structural-adjustment-contract.v0",
+  "base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "authorization": "Mingli requested execution of the switch/reorganize/revise proposal on 2026-09-06",
+  "level": "external finite arithmetic evidence applicability; no native semantic changes",
+  "question": "Can a finite adjustment distinguish transported observation, equality-preserving reorganization, and revised-target inapplicability, while fuel-limited proposals remain uncommitted?",
+  "domain": "F7, canonical integers 0 through 6; exact Python modular arithmetic",
+  "grammar": "f(x)=a*x*x+b*x+c; h(x)=f(x+s); h_expanded(x)=a*x*x+(2*a*s+b)*x+(a*s*s+b*s+c); k(x)=h_expanded(x)+d; coefficients reduced modulo 7",
+  "instances": [
+    {"coefficients": [2,3,1], "shift": 1, "delta": 1},
+    {"coefficients": [1,2,3], "shift": 2, "delta": 2}
+  ],
+  "quantifiers": "all seven inputs for each of the three declared relations, separately for each of two fixed instances",
+  "source_observation": "f(0)=c; translate to h(-s)=c, retain it under h reorganization, and derive k(-s)=c+d with a new task binding",
+  "checker": "Independent expanded-power evaluator reconstructs 24 rows per instance: one source observation, seven switch rows, seven reorganize rows, seven revise rows, blind-copy counterexample, stale-value counterexample",
+  "protected": ["source observation stays bound to its original task", "explicit coordinate direction", "all seven relation rows covered", "distinct expression/task/history records", "no accepted adjustment until all obligations checked", "old true statement is not deleted by new-target refutation", "raw zero values retained; no ratios used", "no native A/M or M6 judgment"],
+  "routes": ["one fixed three-adjustment chain; same parameterized recipe reused on the second instance"],
+  "limits": {"relations_per_full_instance": 24, "row_checks_build_plus_replay": 100, "row_checks_targeted_test_process": 100, "wall_seconds_per_process": 5, "cpu_seconds_standalone": 5, "address_space_bytes_standalone": 268435456, "artifact_bytes": 131072, "metadata_items_per_process": 20000, "automatic_continuations": 0, "correction_replays": 1, "research_minutes": 20},
+  "accounting": "A row check is one complete scalar relation/observation record compared with its independently recomputed specification, not one machine instruction or field operation. Build checks 24+24+0+2 rows; replay checks the same 50 rows. Targeted tests have a separate 100-row allowance.",
+  "pending_cases": "zero and two-row fuel on the primary instance; active state unchanged, explicit proposed changes and remaining obligations retained",
+  "negative_controls": ["copy f(0)=c to h(0)=c", "reuse h(-s)=c as k(-s)=c", "wrong inverse observation coordinate", "altered expanded coefficients", "missing relation row", "stale source binding", "forged accepted pending state", "Boolean or malformed field input"],
+  "acceptance": "Every retained row replays; full adjustment commits a new state without changing its input state; partial adjustment produces Unknown with no promoted state; second instance references the same recipe definition",
+  "costs": "Construction, verification, serialization, parsing, replay, persistence, and reuse measured; peak process RSS measured separately from artifact bytes; design/import/network costs excluded explicitly",
+  "residuals": ["No general language completeness", "No native switch/reorganize/revise/judge operations", "No novel theorem or learned substitution rule", "No incremental-validation speedup experiment", "Hard process interruption has no guaranteed checkpoint", "No human-intent or customer-value validation"]
+}
