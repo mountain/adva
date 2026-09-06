@@ -1,0 +1,16 @@
+{
+  "schema": "adva.research-run-contract.v0",
+  "base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "question": "Which current native Adva facilities can express named composition, and which required self-interpreter interfaces are absent? Can a value-only observation lose the history needed for reverse?",
+  "level": "Capability audit and problem formation; no self-interpreter or grammar extension",
+  "route": "One native Rust parse/link/compile/evaluate/observe audit over seven frozen source texts",
+  "cases": ["named forward/reverse/self/observe/learn composition at x=2 and reuse x=3", "Code value type rejection", "quote operation rejection", "case operation rejection", "recursive call rejection", "same qualified function with id versus double negation: equal value, distinct histories"],
+  "arithmetic": "Existing PSC0 Real evaluator uses f64. Inputs 2 and 3 and scale constants 2 and 1/2 are exactly representable; numeric results are implementation observations, not a new exact arithmetic certificate or the Research 0136 M residual",
+  "protected": ["Rust alone allocates semantic identities", "No stable types, builtins, IR version or compiler behavior change", "A name does not establish self interpretation or learning", "Equal scalar values do not identify histories", "A fixed artifact name is not a program identity", "No adva.adva.adva or recursive file creation", "Code, case and control remain construction targets when rejected", "No unknown-syntax-building restart", "No automatic merge"],
+  "checker": "Existing native parser, linker, compiler, evaluator and observe_history, plus explicit finite audit assertions; no external mathematical oracle",
+  "limits": {"source_texts":7,"source_bytes_each":2048,"compiled_nodes_total":64,"search_candidates":0,"routes":1,"execution_seconds":30,"execution_virtual_memory_kib":262144,"output_bytes":131072,"ci_minutes":10,"implementation_correction_replays":1,"automatic_restarts":0},
+  "success": "Record exact accepted definitions, rejected interfaces, and both histories of the value-forgetting counterexample; self interpretation remains Unknown unless its actual construction exists",
+  "exit": "Stop on the finite audit outcome, implementation mismatch, or cap. Do not add more cases or extend the stable language to force a positive self result.",
+  "cost": "Measure construction/compile/evaluate/observe and serialization where exposed; outer time and maximum RSS separately; missing components stay missing, and artifact bytes are not memory.",
+  "residuals": ["typed runtime code representation", "native syntax constructors and structural elimination", "fuel-bounded control and costs", "interpreter expressed in the same declared language", "independent direct/interpreted observation agreement", "a learned change that affects next use", "task-relative free and declared Universe"]
+}

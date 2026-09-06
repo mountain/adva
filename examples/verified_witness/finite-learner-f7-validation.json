@@ -1,0 +1,13 @@
+{
+  "schema": "adva.external.finite-learner-validation.v0",
+  "witness_sha256": "e2bff862aa78c432407c83848b7a90b202f7d281bf5f29348819eb97feef598b",
+  "command": "timeout 5s python -m unittest discover -s tests/python -p test_finite_learner.py -v",
+  "initial": {"tests": 7, "passed": 7, "reported_seconds": 0.024},
+  "implementation_correction": "Removed process-wide limits from test setup so collection in the repository pytest process cannot affect unrelated tests. Standalone CLI retains its limits.",
+  "correction_replays": 1,
+  "final": {"tests": 7, "passed": 7, "reported_seconds": 0.024},
+  "test_peak_memory": null,
+  "test_work_units": null,
+  "whole_repository_suite": "not run",
+  "ci_status": "not observed"
+}
