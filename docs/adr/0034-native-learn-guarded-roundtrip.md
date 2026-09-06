@@ -1,6 +1,6 @@
 # ADR 0034: A bounded native learn roundtrip method
 
-Status: proposed research implementation, subject to build and replay.
+Status: proposed research integration; native bounded run succeeded in draft PR 136.
 Date: 2026-09-06.
 
 Mingli authorized Rust work after the learn-only preflight found no executable
@@ -48,7 +48,8 @@ mechanism. The proposed reading free remains separate from the checked local
 M=1 result. The six-stage recipe is written by the implementer, not synthesized
 from its own result, and no general language-formation theorem is asserted.
 
-The input language is fixed and bounded, rather than an arbitrary expression
-or arbitrary-code loader. A completed or failed frontier cannot silently gain
-fresh fuel. Identical hashes are integrity/cache coordinates, not semantic or
-historical identities. The counterexample and guard tests are required gates.
+The input language is fixed and bounded. A completed or failed submitted
+frontier cannot silently gain fresh fuel. This file protocol cannot globally
+prevent copying a valid earlier prefix and forking another history. Identical
+hashes are integrity/cache coordinates, not semantic or historical identities.
+The counterexample and guard tests are required gates.

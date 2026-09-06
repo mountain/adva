@@ -678,4 +678,3 @@ fn parse_verify_args(arguments: impl IntoIterator<Item = String>) -> io::Result<
 fn invalid_input(detail: impl Into<String>) -> io::Error {
     io::Error::new(ErrorKind::InvalidInput, detail.into())
 }
-
