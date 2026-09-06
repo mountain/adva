@@ -1,0 +1,22 @@
+{
+  "schema": "adva.finalize-python-entry.contract.research",
+  "version": 0,
+  "preparation": "Finalized for this bounded implementation step",
+  "parent_commit": "37dc8a3c87ab7f24c9b8e8bb15b78b9bc9c694b1",
+  "question": "Can Python adva.py receive a checked finite prime-extension judgment from a bounded Rust research verifier without creating semantic authority or changing older task contracts?",
+  "sequence": ["read retained finite candidate", "Rust finite certificate verification", "Python transport validation and report save"],
+  "request_schema": "adva.prime-extension.request.research",
+  "result_schema": "adva.prime-extension.result.research",
+  "arithmetic_boundary": {"domain": "bounded exact Nat", "max_primes": 6, "prime_entries": [2, 13], "max_n_q_k": 65535, "max_verification_fuel": 1024},
+  "cases": [
+    {"name": "main", "expected": "FiniteExtensionVerified"},
+    {"name": "fresh", "expected": "FiniteExtensionVerified"},
+    {"name": "composite-successor", "expected": "FiniteExtensionVerified"},
+    {"name": "false-prime-successor", "expected": "Blocked"},
+    {"name": "zero-fuel", "expected": "Unknown"}
+  ],
+  "limits": {"native_cli_calls": 5, "native_seconds_per_call": 3, "cli_fuel_total_max": 5120, "focused_unit_test_count_max": 8, "unit_test_seconds": 60, "compile_seconds": 240, "workflow_minutes": 6, "process_memory_mib": 256, "request_bytes": 16384, "output_bytes": 262144, "local_missing_backend_preflights": 1, "ci_attempts": 1, "implementation_error_repair_attempts_max": 1},
+  "working_relations": {"equal": "Exact product-plus-one and integer factor equalities, with separate primality and outside-list obligations", "breakthrough": "Proposed reading of one checked finite-list extension; no new builtin", "free": "Existing task-relative admission remains separate; this adapter only permits retention of its finite certificate", "finalize": "Freeze preparation and the finite implementation sequence, not an assertion that every open theorem is solved"},
+  "protected": ["Rust owns its scoped verification judgment; Python performs no fallback arithmetic", "Zero divisor remainders are legal; the older nonzero expression guard is unchanged", "The original six-stage learn task and six free slots retain their own task and ledger", "Private repository, subject neutrality and stated value-direction are preserved", "Unknown, missing backend and transport failure cannot become verified arithmetic", "Finite prime certificates do not prove Universe(Prime) inside the native Adva logic"],
+  "deferred": ["Native free adapter", "Quantified Nat/Prime theorem checker", "Directory migration", "Global ledger or distributed merge", "New unbounded research tasks"]
+}
