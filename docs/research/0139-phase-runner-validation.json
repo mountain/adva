@@ -1,0 +1,33 @@
+{
+  "schema": "adva.phase-runner.validation-record.v0",
+  "date": "2026-09-06",
+  "scope": "Python supervisor regression only; all child fixtures synthetic",
+  "tests_methods_passed": 8,
+  "test_invocations": [
+    {
+      "scope": "initial five supervisor tests",
+      "elapsed_seconds": 0.428,
+      "synthetic_backend_launches": 9
+    },
+    {
+      "scope": "two targeted binary-hash and exact-version tests",
+      "elapsed_seconds": 0.222,
+      "synthetic_backend_launches": 3
+    },
+    {
+      "scope": "one targeted process-group descendant cleanup test",
+      "elapsed_seconds": 0.536,
+      "synthetic_backend_launches": 6,
+      "synthetic_descendant_processes": 6
+    }
+  ],
+  "synthetic_backend_launches_total": 18,
+  "synthetic_descendant_processes_total": 6,
+  "native_adva_launches": 0,
+  "production_preflight_launches": 0,
+  "recorded_outcome": "learn NotRun BackendUnavailable; free NotRun LearnPhaseNotCompleted and AdapterUnavailable",
+  "cost_note": "Test times are observed unittest durations; no total engineering, network or peak-memory measurement. Zero native launches are not six native successes.",
+  "source_sha256": "209c7ab1e37e4bbdbb39ac3444a38893100bb0cf1120a77a988caab6963e2987",
+  "test_sha256": "9b91fc629058587e04e63fccb94e4e8943f52692a659ed8a7177a343a206107a",
+  "reproduction": "python -m unittest discover -s tests/python -p test_phase_runner.py -v"
+}

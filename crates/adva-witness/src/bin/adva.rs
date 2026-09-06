@@ -128,6 +128,20 @@ fn run_learn(parsed: LearnArgs) -> Result<(), Box<dyn Error>> {
     if method_value
         .get("schema")
         .and_then(serde_json::Value::as_str)
+        == Some(adva_witness::FREE_ROUNDTRIP_CONTRACT_SCHEMA_V0)
+    {
+        return adva_witness::run_free_roundtrip_cli_v0(
+            &parsed.frontier,
+            &parsed.contract,
+            &parsed.resource,
+            &parsed.output,
+            &parsed.frontier_output,
+            parsed.print,
+        );
+    }
+    if method_value
+        .get("schema")
+        .and_then(serde_json::Value::as_str)
         == Some(PROBLEM_FORMATION_CONTRACT_SCHEMA_V0)
     {
         return run_problem_formation(parsed);

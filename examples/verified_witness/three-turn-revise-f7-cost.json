@@ -1,0 +1,34 @@
+{
+  "times": {
+    "build_and_initial_check_ms": 0.890192,
+    "serialization_ms": 0.11515,
+    "parse_ms": 0.110693,
+    "replay_ms": 0.609338,
+    "witness_save_ms": 0.099336
+  },
+  "per_record_build_and_check_ms": [
+    0.149961,
+    0.094188,
+    0.32562,
+    0.090183,
+    0.075542,
+    0.07464,
+    0.071035
+  ],
+  "counts": {
+    "producer": 64,
+    "checker": 226,
+    "metadata": 865
+  },
+  "total_ms": 1.86599,
+  "peak_rss_kib": 11008,
+  "artifact_bytes": 11952,
+  "artifact_sha256": "17f528489aace95984db2121190f5b9735a9bbd5670289653e45f8e91cf91814",
+  "excluded": [
+    "imports/startup",
+    "design",
+    "network",
+    "cost report write"
+  ],
+  "note": "Linux peak process RSS; record times are nested in build time. Includes old-observation construction and rechecking. Compiler checks see all seven values; learner observation separation is imposed, not information-theoretic secrecy."
+}

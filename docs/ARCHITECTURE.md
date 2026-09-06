@@ -408,3 +408,14 @@ recovery from equal time and space inputs. The complete source calibration,
 raw paths, method coordinate, and open questions remain present. A Cargo
 example emits the independent research schema; it does not extend the CLI or
 install a discharge predicate. See Research 0124 and ADR 0033.
+
+
+## Guarded native learn roundtrip research method
+
+Research 0136 and ADR 0034 add a version-zero method dispatch in the existing
+`adva-witness` Rust executable. It replays a supplied six-stage arithmetic
+round trip, checks literal reverse endpoints and retained nonzero obligations,
+and packages a local `learn` record. It does not extend `adva.ir`, allocate
+semantic identities, or synthesize a method. The native run and its limits are
+tracked in `docs/research/0136-native-learn-guarded-roundtrip.md`.
+

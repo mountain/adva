@@ -1,0 +1,22 @@
+{
+  "schema": "adva.external.finite-learner-contract.v0",
+  "base_commit": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "authorization": "Mingli accepted the finite learner proposal and requested execution; unknown-syntax-building remains paused",
+  "level": "external finite arithmetic and learner-state calibration; no native semantic promotion",
+  "question": "Can checked success, checked refutation and fuel exhaustion cause distinct replayable state updates, followed by checked reuse on a different polynomial?",
+  "domain": {"field_modulus": 7, "inputs": [0,1,2,3,4,5,6]},
+  "target_coefficients_descending": [2,3,1],
+  "grammar": "g(a,b,c,x)=(a*x+b)*x+c; a,b,c in range(7); lexicographic coefficient order",
+  "quantifiers": "exists candidate in 343 coefficient triples, forall x in the seven-element field",
+  "reuse": "Externally supplied substitution x -> x+1 into the checked first expression; new target has coefficients [2,0,6]; fresh seven-point verification required",
+  "interfaces": ["Producer uses Horner evaluation; checker uses independently written expanded powers", "All values are external model scalars, not Adva identities or physical measurements", "Only nonzero field values admit multiplicative inverses; zero cases retain equality checks", "Pointwise additive differences are not native formation residual A; field ratios are not native transport residual M"],
+  "protected_obligations": ["fixed task and grammar version", "all seven verification inputs retained", "failure observations scoped to their target", "timeouts do not add refutations or words", "append-only ordered ledger", "new target never inherits old acceptance", "ordinary algebraic reuse control"],
+  "routes": ["lexicographic search", "checked expression reuse", "ordinary algebraic reuse control"],
+  "limits": {"candidates_per_search": 343, "candidate_checks_per_search": 2401, "aggregate_work_units_per_process": 50000, "wall_seconds_per_process": 5, "cpu_seconds_per_process": 5, "address_space_bytes": 268435456, "artifact_bytes": 524288, "explicit_continuations_in_fixture": 1, "automatic_continuations": 0, "implementation_correction_replays": 1, "research_wall_minutes": 20},
+  "work_unit": "one producer point evaluation, checker point comparison, candidate inspection, finite schema item check, or state/result validation item; serialization/read/write bounded separately by bytes and process limits",
+  "controls": ["wrong constant coefficient", "zero candidate fuel", "three candidate fuel and one explicit continuation", "missing verification point", "stale task", "corrupted word", "malformed coefficient", "ordinary reuse with the same fresh checker"],
+  "acceptance": "Exact result verification and state-transition replay pass; reuse references the retained expression and is independently rechecked; every unsuccessful exit retains its reason and residual",
+  "exit": "Stop at accepted witness, checked refutation, explicit fuel exhaustion, complete declared enumeration (Unknown here), invalid input, implementation failure, or resource limit; never widen or reset automatically",
+  "costs": "Measure construction/search/verification/update/serialization/replay/reuse time and aggregate work; process peak RSS separately; design and network costs explicitly excluded from phase timings",
+  "residuals": ["No universal grammar or unrestricted soundness/completeness proof", "No endogenous invention of grammar or substitution policy", "No M6 filler or 0092 all-fillings promotion", "No native syntax-formation, word-formation or judge command", "No customer value or physical theory tested"]
+}
