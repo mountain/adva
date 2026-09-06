@@ -160,7 +160,9 @@ pub fn verify_prime_extension_v0(request: PrimeExtensionRequestV0) -> PrimeExten
                 return result;
             }
             let remainder = prime % divisor;
-            result.input_divisor_checks.push([prime, divisor, remainder]);
+            result
+                .input_divisor_checks
+                .push([prime, divisor, remainder]);
             if remainder == 0 {
                 return result.blocked("an input candidate is composite");
             }

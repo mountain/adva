@@ -337,3 +337,42 @@ name `learn` and proposed reading `free` do not establish task completion,
 learned grammar, semantic program identity or an M6 filler. Six-stage fuel
 bounds the submitted history, not globally forked copies or physical cost.
 
+## Question-relative library stability (Research 0149)
+
+The example-local Rust calibration may certify that every remaining candidate
+in one supplied nonempty finite catalogue has the same point, polynomial or
+syntax feature. This conditional closure does not identify programs, delete
+alternatives, execute a zero-valued guarded expression, certify world evidence,
+or transfer to a revised catalogue/checker/question. Unchanged rounds alone
+provide no closure proof. No stable learner, library-update operation, general
+convergence detector, braid normalizer or inverse execution is installed.
+
+Research 0150 adds persistent **research** epochs and a Rust loader, not a
+stable library-update operation. It freshly checks imported proposal data,
+exact parent/prefix preservation and stored witness content. Scoped polynomial
+equality may be stored using existing ArithmeticTransition/Seal nodes; their
+nonzero obligations survive loading and must pass before guarded reuse.
+Publication does not authenticate observations or justify extending an old
+model's closure to a new candidate. The extra observation in this calibration
+is an explicitly supplied assumption, not a discovered fact or native M6 filler.
+
+Research 0151 adds only example-local arithmetic **proposal recipes**. Their
+backward references and exact expanded pairs can be replayed; every future
+pair is checked anew. Three-node proposal reachability is relative to the
+currently enabled recipe dictionary, not native semantic identity or an
+unrestricted expressibility theorem. A diagnostic journal may retain Open,
+Unknown and rejection without becoming a checked knowledge epoch. Ordinary
+macro behavior is a required control, not independent proof authority.
+No all-fillings closure, general substitution transport, program copying,
+source/occurrence correspondence, self-interpreter or new stable operation is
+implemented by this arithmetic-tree experiment.
+
+Research 0152 adds three-verifier **arithmetic interpretation calibration**
+and finite residual-guided search through the outer `adva.py` CLI. Lean `Int`
+and Metamath complex-class proofs do not redefine Adva guarded execution.
+Selected steps remain provisional until both external proof batches pass;
+failed, incomplete or axiom-contaminated evidence cannot be admitted by a
+majority vote. Arithmetic subtree duplication/contraction is not a native
+linear program operation. A syntactic residual, a checked equation and a
+retained path are distinct; no metric-space structure, path erasure, SGD,
+three-computation completeness or general language evolution is established.

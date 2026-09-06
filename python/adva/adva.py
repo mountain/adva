@@ -1,4 +1,4 @@
-"""Bounded standalone transport to the Rust research prime checker.
+"""Outer CLI for bounded Adva research and external verifier orchestration.
 
 Invoke this file directly; importing the package still requires its PyO3 kernel.
 This adapter checks the protocol, never primality, arithmetic, or native free.
@@ -199,14 +199,30 @@ def _save_new(path, report):
 
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("command", choices=["prime-check"])
-    parser.add_argument("request", type=Path)
-    parser.add_argument("--native", help="trusted Rust adva-prime-verify executable")
-    parser.add_argument("--output", required=True, type=Path)
+    commands = parser.add_subparsers(dest="command", required=True)
+    prime = commands.add_parser("prime-check", help="bounded Rust prime-check transport")
+    prime.add_argument("request", type=Path)
+    prime.add_argument("--native", help="trusted Rust adva-prime-verify executable")
+    prime.add_argument("--output", required=True, type=Path)
+    search = commands.add_parser("verifier-search", help="Research 0152 finite three-verifier calibration and search")
+    search.add_argument("--native", required=True, help="built Rust verifier_search example")
+    search.add_argument("--lean", default="lean")
+    search.add_argument("--metamath", required=True)
+    search.add_argument("--database", required=True, type=Path)
+    search.add_argument("--library", type=Path, default=Path("adva-library/stability"))
+    search.add_argument("--output", required=True, type=Path, help="fresh evidence directory")
     args = parser.parse_args()
     try:
         if args.output.exists() or args.output.is_symlink():
             raise FileExistsError("output must be a fresh path")
+        if args.command == "verifier-search":
+            if __package__:
+                from .verifier_search import run
+            else:
+                from verifier_search import run
+            report = run(args)
+            print(json.dumps({"status": report["status"], "output": str(args.output)}))
+            return 0 if report["status"] == "Completed" else 3 if report["status"] == "Unknown" else 2
         report = prime_check(args.request, args.native)
         _save_new(args.output, report)
         print(json.dumps({"status": report["status"], "execution": report["execution"]}))

@@ -20,6 +20,12 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
+      - name: Test frozen library stability research boundary
+        run: timeout 180s cargo test -p adva-witness --example library_stability
+      - name: Test library-driven proposal feedback and ablations
+        run: timeout 180s cargo test --locked -p adva-witness --example library_generation
+      - name: Test scoped three-verifier arithmetic proof export
+        run: timeout 180s cargo test --locked -p adva-witness --example verifier_search
       - name: Run first bounded M6 reveal
         run: |
           cargo run -p adva-witness --bin adva -- \
