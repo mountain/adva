@@ -218,8 +218,30 @@ def main():
     campaign.add_argument("--database", required=True, type=Path)
     campaign.add_argument("--library", type=Path, default=Path("adva-library/stability"))
     campaign.add_argument("--output", required=True, type=Path, help="fresh evidence directory")
+    catalog = commands.add_parser(
+        "math-check", help="check math catalog metadata and references; no proof admission"
+    )
+    catalog.add_argument(
+        "--root", type=Path, default=Path(__file__).resolve().parents[2],
+        help="repository checkout containing adva-library/math",
+    )
+    catalog.add_argument(
+        "--output", type=Path, help="optional fresh report path; otherwise stdout only"
+    )
     args = parser.parse_args()
     try:
+        if args.command == "math-check":
+            if args.output is not None and (args.output.exists() or args.output.is_symlink()):
+                raise FileExistsError("output must be a fresh path")
+            if __package__:
+                from .math_catalog import check_catalog
+            else:
+                from math_catalog import check_catalog
+            report = check_catalog(args.root)
+            if args.output is not None:
+                _save_new(args.output, report)
+            print(json.dumps(report, sort_keys=True, allow_nan=False))
+            return {"CatalogConsistent": 0, "Unknown": 3}.get(report["status"], 2)
         if args.output.exists() or args.output.is_symlink():
             raise FileExistsError("output must be a fresh path")
         if args.command == "search-campaign":
