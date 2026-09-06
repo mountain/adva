@@ -1,0 +1,31 @@
+{
+  "schema": "adva.knowledge-boundary-host-cost.research",
+  "version": 0,
+  "invocations": 1,
+  "command": [
+    "timeout",
+    "5s",
+    "python3",
+    "experiments/knowledge_boundary/calibration.py",
+    "--contract",
+    "docs/research/0143-knowledge-boundary-contract.json",
+    "--subject",
+    "adva-library/knowledge-boundary/subject.adva",
+    "--method",
+    "adva-library/knowledge-boundary/method.adva",
+    "--object",
+    "adva-library/knowledge-boundary/object.adva",
+    "--output",
+    "docs/research/0143-evidence/report.json"
+  ],
+  "exit_code": 0,
+  "wall_ns_including_python_startup_and_output_save": 113061527,
+  "child_peak_rss_kib_linux": 16864,
+  "child_user_seconds": 0.096134,
+  "child_system_seconds": 0.016429,
+  "runner_sha256": "0934d2a6d589ca8b48d0d7e4ac438ed3785462832e37854aa22995029d05db73",
+  "native_calls": 0,
+  "search_nodes": 0,
+  "repair_replays": 0,
+  "measurement_scope": "One timeout/Python child process tree; no other children in this supervising process; RSS is memory, not file size. Authoring/network costs not included."
+}
