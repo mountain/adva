@@ -1,0 +1,220 @@
+"""Bounded standalone transport to the Rust research prime checker.
+
+Invoke this file directly; importing the package still requires its PyO3 kernel.
+This adapter checks the protocol, never primality, arithmetic, or native free.
+The executable is a trusted local backend, not an untrusted-program sandbox.
+"""
+from __future__ import annotations
+
+import argparse
+import base64
+import hashlib
+import json
+import os
+from pathlib import Path
+import resource
+import shutil
+import signal
+import subprocess
+import sys
+import tempfile
+import time
+
+INPUT_LIMIT, OUTPUT_LIMIT = 16_384, 262_144
+REQUEST_KEYS = {"schema", "version", "primes", "n", "q", "k", "fuel"}
+RESULT_KEYS = {"schema", "version", "request", "status", "reason", "fuel_spent",
+               "fuel_remaining", "input_divisor_checks", "q_divisor_checks",
+               "native_universe", "native_free", "allowed_action"}
+EXIT_CODES = {"FiniteExtensionVerified": 0, "Blocked": 2, "Unknown": 3}
+
+
+def _pairs(items):
+    result = {}
+    for key, value in items:
+        if key in result:
+            raise ValueError("duplicate JSON key")
+        result[key] = value
+    return result
+
+
+def _constant(_):
+    raise ValueError("non-finite JSON constant")
+
+
+def _decode(raw):
+    return json.loads(raw.decode("utf-8"), object_pairs_hook=_pairs,
+                      parse_constant=_constant)
+
+
+def _read(path, limit):
+    with open(path, "rb") as stream:
+        raw = stream.read(limit + 1)
+    if len(raw) > limit:
+        raise ValueError("file exceeds declared byte limit")
+    return raw
+
+
+def _request(raw):
+    obj = _decode(raw)
+    if not isinstance(obj, dict) or set(obj) != REQUEST_KEYS:
+        raise ValueError("request keys do not match research profile")
+    if obj["schema"] != "adva.prime-extension.request.research" or type(obj["version"]) is not int or obj["version"] != 0:
+        raise ValueError("unsupported request schema/version")
+    if not isinstance(obj["primes"], list) or any(type(p) is not int for p in obj["primes"]):
+        raise ValueError("primes must be an integer array")
+    if any(type(obj[k]) is not int for k in ("n", "q", "k", "fuel")):
+        raise ValueError("n, q, k, fuel must be integers")
+    if len(obj["primes"]) > 6 or any(not 0 <= value < 2**64 for value in obj["primes"] + [obj["n"], obj["q"], obj["k"]]):
+        raise ValueError("transport accepts at most six primes and unsigned 64-bit values")
+    if not 0 <= obj["fuel"] <= 1024:
+        raise ValueError("transport fuel must be between 0 and 1024")
+    return obj
+
+
+def _result(raw, request, returncode):
+    obj = _decode(raw)
+    if not isinstance(obj, dict) or set(obj) != RESULT_KEYS:
+        raise ValueError("native result keys do not match research profile")
+    if obj["schema"] != "adva.prime-extension.result.research" or type(obj["version"]) is not int or obj["version"] != 0:
+        raise ValueError("unsupported result schema/version")
+    # Revalidate the echo to reject bool/int equality and malformed envelopes.
+    echo = _request(json.dumps(obj["request"], allow_nan=False).encode())
+    if echo != request:
+        raise ValueError("native result does not bind the submitted request")
+    if not isinstance(obj["status"], str) or EXIT_CODES.get(obj["status"]) != returncode:
+        raise ValueError("native status and exit code disagree")
+    if not isinstance(obj["reason"], str):
+        raise ValueError("native reason must be a string")
+    used, left = obj["fuel_spent"], obj["fuel_remaining"]
+    if type(used) is not int or type(left) is not int or min(used, left) < 0 or used + left != request["fuel"]:
+        raise ValueError("native fuel ledger does not match the request")
+    for key, width in (("input_divisor_checks", 3), ("q_divisor_checks", 2)):
+        rows = obj[key]
+        if not isinstance(rows, list) or len(rows) > used or any(not isinstance(row, list) or len(row) != width or any(type(v) is not int for v in row) for row in rows):
+            raise ValueError("malformed native divisor-check record")
+    action = "retain-finite-prime-certificate" if obj["status"] == "FiniteExtensionVerified" else None
+    if obj["native_universe"] != "NotImplemented" or obj["native_free"] != "NotGranted" or obj["allowed_action"] != action:
+        raise ValueError("native result exceeds declared capabilities")
+    return obj
+
+
+def _limits():
+    resource.setrlimit(resource.RLIMIT_AS, (256 * 1024 * 1024,) * 2)
+    resource.setrlimit(resource.RLIMIT_FSIZE, (OUTPUT_LIMIT,) * 2)
+    resource.setrlimit(resource.RLIMIT_CPU, (3, 3))
+    resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
+
+
+def _blob(raw, prefix=None):
+    kept = raw if prefix is None else raw[:prefix]
+    return {"sha256": hashlib.sha256(raw).hexdigest(), "byte_length": len(raw),
+            "base64": base64.b64encode(kept).decode("ascii"),
+            "truncated": len(kept) != len(raw)}
+
+
+def prime_check(request_path, native=None):
+    """Make at most one bounded native call and retain its protocol judgment."""
+    started = time.perf_counter_ns()
+    report = {"schema": "adva.python-prime-check.research", "version": 0,
+              "execution": "NotRun", "status": "InputError", "reason": "",
+              "request_sha256": None, "native_result": None, "native_artifact": None,
+              "diagnostics": {}, "native_universe": "NotImplemented",
+              "native_free": "NotGranted", "allowed_action": None,
+              "cost": {"subprocess_invocations": 0, "subprocess_wall_ns": 0}}
+    try:
+        raw = _read(request_path, INPUT_LIMIT)
+        report["request_sha256"] = hashlib.sha256(raw).hexdigest()
+        request = _request(raw)
+        backend = shutil.which(native or "adva-prime-verify")
+        if backend is None:
+            report.update(status="BackendUnavailable", reason="Rust prime checker is unavailable")
+            return report
+        if not sys.platform.startswith("linux"):
+            report.update(status="BackendUnavailable", reason="This bounded adapter requires Linux resource limits")
+            return report
+        with tempfile.TemporaryDirectory(prefix="adva-prime-check-") as work:
+            root = Path(work)
+            snapshot, result = root / "request.json", root / "result.json"
+            snapshot.write_bytes(raw)
+            with (root / "stdout").open("wb") as stdout, (root / "stderr").open("wb") as stderr:
+                report["status"] = "ExecutionError"
+                call_started = time.perf_counter_ns()
+                process = subprocess.Popen([backend, str(snapshot), "--output", str(result)],
+                                           stdin=subprocess.DEVNULL, stdout=stdout, stderr=stderr,
+                                           start_new_session=True, preexec_fn=_limits)
+                report["cost"]["subprocess_invocations"] = 1
+                timed_out = False
+                try:
+                    process.wait(timeout=3)
+                except subprocess.TimeoutExpired:
+                    timed_out = True
+                finally:
+                    try:
+                        os.killpg(process.pid, signal.SIGKILL)
+                    except ProcessLookupError:
+                        pass
+                    process.wait()
+                    report["cost"]["subprocess_wall_ns"] = time.perf_counter_ns() - call_started
+            report["diagnostics"] = {key: _blob(_read(root / key, OUTPUT_LIMIT), 8192) for key in ("stdout", "stderr")}
+            report["native_exit_code"] = process.returncode
+            if timed_out:
+                report.update(execution="Unknown", status="Unknown", reason="Native wall-time limit reached")
+                return report
+            if process.returncode not in (0, 2, 3) or not result.is_file():
+                report.update(execution="Failed", status="ExecutionError", reason="Native execution did not produce a bounded result")
+                return report
+            report.update(execution="Failed", status="ProtocolError")
+            native_raw = _read(result, OUTPUT_LIMIT)
+            report["native_artifact"] = _blob(native_raw)
+            checked = _result(native_raw, request, process.returncode)
+            report.update(execution="Completed", status=checked["status"], reason=checked["reason"],
+                          native_result=checked, allowed_action=checked["allowed_action"])
+    except (OSError, ValueError, RecursionError, subprocess.SubprocessError) as error:
+        report["reason"] = str(error)
+        if report["cost"]["subprocess_invocations"]:
+            report["execution"] = "Failed"
+    finally:
+        report["cost"].update(total_wall_ns=time.perf_counter_ns() - started,
+                              python_peak_rss_kib=resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
+                              native_peak_rss_kib=resource.getrusage(resource.RUSAGE_CHILDREN).ru_maxrss if report["cost"]["subprocess_invocations"] else None,
+                              memory_scope="Linux process peaks, not simultaneous combined memory; child peak includes pre-exec and any earlier children when the Python API is reused",
+                              checkpoint_cost="Final report serialization/write is outside total_wall_ns; measure with the supervising run")
+    return report
+
+
+def _save_new(path, report):
+    raw = (json.dumps(report, sort_keys=True, indent=2, allow_nan=False) + "\n").encode()
+    if len(raw) > OUTPUT_LIMIT:
+        raise ValueError("wrapper report exceeds checkpoint limit")
+    fd, temporary = tempfile.mkstemp(prefix=".adva-prime-", dir=path.parent)
+    try:
+        with os.fdopen(fd, "wb") as stream:
+            stream.write(raw)
+            stream.flush()
+            os.fsync(stream.fileno())
+        os.link(temporary, path)  # Atomic fresh-name installation; never replace.
+    finally:
+        os.unlink(temporary)
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("command", choices=["prime-check"])
+    parser.add_argument("request", type=Path)
+    parser.add_argument("--native", help="trusted Rust adva-prime-verify executable")
+    parser.add_argument("--output", required=True, type=Path)
+    args = parser.parse_args()
+    try:
+        if args.output.exists() or args.output.is_symlink():
+            raise FileExistsError("output must be a fresh path")
+        report = prime_check(args.request, args.native)
+        _save_new(args.output, report)
+        print(json.dumps({"status": report["status"], "execution": report["execution"]}))
+        return EXIT_CODES.get(report["status"], 2)
+    except (OSError, ValueError) as error:
+        print(str(error), file=sys.stderr)
+        return 2
+
+
+if __name__ == "__main__":
+    raise SystemExit(main())

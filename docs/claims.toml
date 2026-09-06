@@ -1242,3 +1242,16 @@ dependencies = []
 proof_or_certificate = "Research 0147 retains one execution: four FiniteExtensionVerified, three Blocked and one Unknown, plus an identical serialized main recheck. Main gives 31, fresh gives 30031=59*509, input [3] gives 4=2*2, and the empty list gives 2. Total measured logical cost 548/2000; no native execution."
 counterexample_boundary = "Product-plus-one need not be prime; an outside prime need not exceed the input maximum. Zero search fuel leaves an explicit Unknown interval. Forged q=1, treating 30031 as prime, and a composite prime-list input are refused. The proposed Universe(Prime) schema is not admitted by the native dispatcher; the separate Real construction program remains NotRun."
 forbidden_conflations = ["Finite extension witnesses with a universally quantified proof", "A finite proof about infinity with an infinite runtime", "Product-plus-one with a necessarily prime number", "Outside-list membership with greater-than-maximum", "Integer divisibility with arbitrary field division", "Remainder one with native M1 or an M6 filler", "Existing BigInt expressions with an implemented Nat/Prime proof theory", "A proposed .adva document with an executable native program", "Classical infinitude of primes with a new arithmetic universality theorem"]
+
+[[claim]]
+claim_id = "adva.definition.finite-prime-extension-check.v0"
+canonical_name = "Bounded Rust prime-certificate check and thin Python entry"
+code_symbol = "adva_witness::verify_prime_extension_v0"
+dimension = "research exact-integer certificate and host transport boundary"
+status = "definition"
+scope = "Version-zero prime-extension request/result; at most six increasing input candidates from 2 through 13, n/q/k at most 65535, at most 1024 logical verification checks per request"
+assumptions = ["The Rust compiler and execution environment are trusted at the declared tool boundary", "The caller selects a trusted native executable; hashes are not authentication", "Python checks transport consistency and does not recompute prime arithmetic", "CLI parsing and saving have separate finite byte and host-time bounds"]
+dependencies = ["adva.bounded-experiment.prime-universe-finite-extension.v0"]
+proof_or_certificate = "Research 0148 and ADR 0036 define the finite Rust checker, explicit divisor prefix and fuel ledger, raw-native-result Python wrapper, six focused Rust test groups and five frozen end-to-end cases. Execution status is retained separately in Research 0148; definition alone does not assert tests passed."
+counterexample_boundary = "Composite input or q, wrong successor/factor equation and nonmembership failure are refused; exhaustion is Unknown and an absent backend is NotRun. Preparation finalized is distinct from a completed native free or Universe proof. Existing six-stage learn/free tasks retain their separate scopes and resources."
+forbidden_conflations = ["Host compile success with mathematical verification", "A specification with a proved implementation", "Rust host compilation with native Adva diagram lowering", "Transport validation with Python-issued arithmetic authority", "An exact prime certificate with an EquationCell or native free", "A bounded finite verifier with a quantified Nat theory", "A working name with a new Lisp builtin", "A missing executable with a refuted mathematical proposition"]
