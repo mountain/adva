@@ -1,0 +1,951 @@
+{
+  "actual": {
+    "admitted_ast_nodes": 28,
+    "construction_ns": 1446902,
+    "elapsed_ns_before_final_serialization": 4894204,
+    "exact_ast_visits": 56,
+    "float_ast_visits": 28,
+    "memory_note": "tracemalloc covers this Python process's traced allocations only; RSS and native peaks unmeasured",
+    "native_launches": 0,
+    "native_peak_rss_bytes": null,
+    "native_wall_ns": 0,
+    "oracle_validation_ns": 1868393,
+    "process_peak_rss_bytes": null,
+    "python_tracemalloc_peak_bytes_before_final_serialization": 88086,
+    "raw_float_ns": 85955,
+    "serialization_note": "one complete report encoding measured; final encoding and disk persistence excluded",
+    "serialization_ns": 2987023,
+    "trace_ast_visits": 28
+  },
+  "authority": "Python exact finite oracle; no native exact-arithmetic theorem or universal syntax claim",
+  "cases": [
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": false,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "0",
+        "1"
+      ],
+      "exact_intention": [
+        "1",
+        "1"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "0",
+        "1"
+      ],
+      "float_output_hex": "0x0.0p+0",
+      "full_exact_value_preserved": false,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "input-alias",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000000000000p+53",
+          "intended": [
+            "9007199254740993",
+            "1"
+          ],
+          "rounded_exact": [
+            "9007199254740992",
+            "1"
+          ]
+        },
+        "y": {
+          "binary64_hex": "-0x1.0000000000000p+53",
+          "intended": [
+            "-9007199254740992",
+            "1"
+          ],
+          "rounded_exact": [
+            "-9007199254740992",
+            "1"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 228988,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "0",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000000p+53",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "0x0.0p+0",
+          "path": "root",
+          "right_hex": "-0x1.0000000000000p+53"
+        }
+      ],
+      "program_sha256": "5f1a4529b30e5548897910b1efa3a9ca18fa862c8db666ecc9e03fb16aea08e2",
+      "raw_float_ns": 24946,
+      "residuals": {
+        "input": [
+          "-1",
+          "1"
+        ],
+        "operations": [
+          "0",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "-1",
+          "1"
+        ]
+      },
+      "role": "seed",
+      "scalar_predicate": {
+        "gate": "refuted",
+        "intended": "one",
+        "matches": false,
+        "observed": "zero",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 5,
+      "commuting_at_this_point": false,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "1",
+        "1"
+      ],
+      "exact_intention": [
+        "1",
+        "1"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "0",
+        "1"
+      ],
+      "float_output_hex": "0x0.0p+0",
+      "full_exact_value_preserved": false,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "ordered-absorption",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000000000000p+53",
+          "intended": [
+            "9007199254740992",
+            "1"
+          ],
+          "rounded_exact": [
+            "9007199254740992",
+            "1"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.0000000000000p+0",
+          "intended": [
+            "1",
+            "1"
+          ],
+          "rounded_exact": [
+            "1",
+            "1"
+          ]
+        },
+        "z": {
+          "binary64_hex": "-0x1.0000000000000p+53",
+          "intended": [
+            "-9007199254740992",
+            "1"
+          ],
+          "rounded_exact": [
+            "-9007199254740992",
+            "1"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 418096,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "9007199254740993",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000000p+53",
+          "local_rounding_residual": [
+            "-1",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "0x1.0000000000000p+53",
+          "path": "root.left",
+          "right_hex": "0x1.0000000000000p+0"
+        },
+        {
+          "exact_of_rounded_operands": [
+            "0",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000000p+53",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "0x0.0p+0",
+          "path": "root",
+          "right_hex": "-0x1.0000000000000p+53"
+        }
+      ],
+      "program_sha256": "f27c3cc7c18e456ea89afa33a53d6dd8ad568d9d8ba33c4df151033345f7a90b",
+      "raw_float_ns": 15703,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "-1",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "-1",
+          "1"
+        ]
+      },
+      "role": "seed",
+      "scalar_predicate": {
+        "gate": "refuted",
+        "intended": "one",
+        "matches": false,
+        "observed": "zero",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 5,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "1",
+        "1"
+      ],
+      "exact_intention": [
+        "1",
+        "1"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "1",
+        "1"
+      ],
+      "float_output_hex": "0x1.0000000000000p+0",
+      "full_exact_value_preserved": true,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "reassociated-control",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000000000000p+53",
+          "intended": [
+            "9007199254740992",
+            "1"
+          ],
+          "rounded_exact": [
+            "9007199254740992",
+            "1"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.0000000000000p+0",
+          "intended": [
+            "1",
+            "1"
+          ],
+          "rounded_exact": [
+            "1",
+            "1"
+          ]
+        },
+        "z": {
+          "binary64_hex": "-0x1.0000000000000p+53",
+          "intended": [
+            "-9007199254740992",
+            "1"
+          ],
+          "rounded_exact": [
+            "-9007199254740992",
+            "1"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 228727,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "-9007199254740991",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000000p+0",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "-0x1.fffffffffffffp+52",
+          "path": "root.right",
+          "right_hex": "-0x1.0000000000000p+53"
+        },
+        {
+          "exact_of_rounded_operands": [
+            "1",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000000p+53",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "0x1.0000000000000p+0",
+          "path": "root",
+          "right_hex": "-0x1.fffffffffffffp+52"
+        }
+      ],
+      "program_sha256": "5d24f0b75d05a9f450efc111a02ccefccb6fd3da6fdb18f0ebe1ff4681fddbd0",
+      "raw_float_ns": 11917,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "0",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "0",
+          "1"
+        ]
+      },
+      "role": "control",
+      "scalar_predicate": {
+        "gate": "exact-oracle-confirmed",
+        "intended": "one",
+        "matches": true,
+        "observed": "one",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "18014398509481983",
+        "18014398509481984"
+      ],
+      "exact_intention": [
+        "18014398509481983",
+        "18014398509481984"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "1",
+        "1"
+      ],
+      "float_output_hex": "0x1.0000000000000p+0",
+      "full_exact_value_preserved": false,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "product-k27",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000002000000p+0",
+          "intended": [
+            "134217729",
+            "134217728"
+          ],
+          "rounded_exact": [
+            "134217729",
+            "134217728"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.ffffffc000000p-1",
+          "intended": [
+            "134217727",
+            "134217728"
+          ],
+          "rounded_exact": [
+            "134217727",
+            "134217728"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 203110,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "18014398509481983",
+            "18014398509481984"
+          ],
+          "left_hex": "0x1.0000002000000p+0",
+          "local_rounding_residual": [
+            "1",
+            "18014398509481984"
+          ],
+          "operation": "mul",
+          "output_hex": "0x1.0000000000000p+0",
+          "path": "root",
+          "right_hex": "0x1.ffffffc000000p-1"
+        }
+      ],
+      "program_sha256": "db78db984d54532af77ada97a25662a489b228dc591943102147ffc71bc51827",
+      "raw_float_ns": 7721,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "1",
+          "18014398509481984"
+        ],
+        "sum_checked": true,
+        "total": [
+          "1",
+          "18014398509481984"
+        ]
+      },
+      "role": "seed",
+      "scalar_predicate": {
+        "gate": "refuted",
+        "intended": "other",
+        "matches": false,
+        "observed": "one",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "72057594037927935",
+        "72057594037927936"
+      ],
+      "exact_intention": [
+        "72057594037927935",
+        "72057594037927936"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "1",
+        "1"
+      ],
+      "float_output_hex": "0x1.0000000000000p+0",
+      "full_exact_value_preserved": false,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "product-k28",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000001000000p+0",
+          "intended": [
+            "268435457",
+            "268435456"
+          ],
+          "rounded_exact": [
+            "268435457",
+            "268435456"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.ffffffe000000p-1",
+          "intended": [
+            "268435455",
+            "268435456"
+          ],
+          "rounded_exact": [
+            "268435455",
+            "268435456"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 191081,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "72057594037927935",
+            "72057594037927936"
+          ],
+          "left_hex": "0x1.0000001000000p+0",
+          "local_rounding_residual": [
+            "1",
+            "72057594037927936"
+          ],
+          "operation": "mul",
+          "output_hex": "0x1.0000000000000p+0",
+          "path": "root",
+          "right_hex": "0x1.ffffffe000000p-1"
+        }
+      ],
+      "program_sha256": "5bce3761ac9cb104f134727361ca8e6f0e5cd3fad76c2c9b2ea4cfdc592c22b0",
+      "raw_float_ns": 6780,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "1",
+          "72057594037927936"
+        ],
+        "sum_checked": true,
+        "total": [
+          "1",
+          "72057594037927936"
+        ]
+      },
+      "role": "reuse",
+      "scalar_predicate": {
+        "gate": "refuted",
+        "intended": "other",
+        "matches": false,
+        "observed": "one",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x1.ffffffffffffep-1",
+      "exact_after_input_rounding": [
+        "4503599627370495",
+        "4503599627370496"
+      ],
+      "exact_intention": [
+        "4503599627370495",
+        "4503599627370496"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "4503599627370495",
+        "4503599627370496"
+      ],
+      "float_output_hex": "0x1.ffffffffffffep-1",
+      "full_exact_value_preserved": true,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "product-k26",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000004000000p+0",
+          "intended": [
+            "67108865",
+            "67108864"
+          ],
+          "rounded_exact": [
+            "67108865",
+            "67108864"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.ffffff8000000p-1",
+          "intended": [
+            "67108863",
+            "67108864"
+          ],
+          "rounded_exact": [
+            "67108863",
+            "67108864"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 221737,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "4503599627370495",
+            "4503599627370496"
+          ],
+          "left_hex": "0x1.0000004000000p+0",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "mul",
+          "output_hex": "0x1.ffffffffffffep-1",
+          "path": "root",
+          "right_hex": "0x1.ffffff8000000p-1"
+        }
+      ],
+      "program_sha256": "ec8ac32a2b10acdc3d7192f2124333b8816ef390b464637ec37177cc4a971499",
+      "raw_float_ns": 5848,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "0",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "0",
+          "1"
+        ]
+      },
+      "role": "control",
+      "scalar_predicate": {
+        "gate": "exact-oracle-confirmed",
+        "intended": "other",
+        "matches": true,
+        "observed": "other",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x1.0000000000000p+0",
+      "exact_after_input_rounding": [
+        "1",
+        "1"
+      ],
+      "exact_intention": [
+        "1",
+        "1"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "1",
+        "1"
+      ],
+      "float_output_hex": "0x1.0000000000000p+0",
+      "full_exact_value_preserved": true,
+      "guard": {
+        "exact_passed": true,
+        "required_nonzero_inputs": [],
+        "rounded_passed": true,
+        "scope": "declared point only"
+      },
+      "id": "input-distinct-control",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x1.0000000000001p+52",
+          "intended": [
+            "4503599627370497",
+            "1"
+          ],
+          "rounded_exact": [
+            "4503599627370497",
+            "1"
+          ]
+        },
+        "y": {
+          "binary64_hex": "-0x1.0000000000000p+52",
+          "intended": [
+            "-4503599627370496",
+            "1"
+          ],
+          "rounded_exact": [
+            "-4503599627370496",
+            "1"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 226163,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "1",
+            "1"
+          ],
+          "left_hex": "0x1.0000000000001p+52",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "add",
+          "output_hex": "0x1.0000000000000p+0",
+          "path": "root",
+          "right_hex": "-0x1.0000000000000p+52"
+        }
+      ],
+      "program_sha256": "5175f445cff3e8d0989a51ff54e7206a7b6dc3cea4bee3350ccb5b9786a38bbd",
+      "raw_float_ns": 6750,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "0",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "0",
+          "1"
+        ]
+      },
+      "role": "control",
+      "scalar_predicate": {
+        "gate": "exact-oracle-confirmed",
+        "intended": "one",
+        "matches": true,
+        "observed": "one",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    },
+    {
+      "admitted_ast_nodes": 3,
+      "commuting_at_this_point": true,
+      "correctly_rounded_intention_hex": "0x0.0p+0",
+      "exact_after_input_rounding": [
+        "0",
+        "1"
+      ],
+      "exact_intention": [
+        "0",
+        "1"
+      ],
+      "expectation_checks": {
+        "classifier": true,
+        "exact": true,
+        "exactclass": true,
+        "float_hex": true
+      },
+      "float_output_exact": [
+        "0",
+        "1"
+      ],
+      "float_output_hex": "0x0.0p+0",
+      "full_exact_value_preserved": true,
+      "guard": {
+        "exact_passed": false,
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ],
+        "rounded_passed": false,
+        "scope": "declared point only"
+      },
+      "id": "zero-guard-control",
+      "input_observation": {
+        "x": {
+          "binary64_hex": "0x0.0p+0",
+          "intended": [
+            "0",
+            "1"
+          ],
+          "rounded_exact": [
+            "0",
+            "1"
+          ]
+        },
+        "y": {
+          "binary64_hex": "0x1.0000000000000p+0",
+          "intended": [
+            "1",
+            "1"
+          ],
+          "rounded_exact": [
+            "1",
+            "1"
+          ]
+        }
+      },
+      "native": {
+        "reason": "backend absent",
+        "state": "NativeNotRun"
+      },
+      "oracle_validation_ns": 150491,
+      "ordered_trace": [
+        {
+          "exact_of_rounded_operands": [
+            "0",
+            "1"
+          ],
+          "left_hex": "0x0.0p+0",
+          "local_rounding_residual": [
+            "0",
+            "1"
+          ],
+          "operation": "mul",
+          "output_hex": "0x0.0p+0",
+          "path": "root",
+          "right_hex": "0x1.0000000000000p+0"
+        }
+      ],
+      "program_sha256": "861ca23dbc2c19ed67a54013c582d45a7ce496bae998065b681a620cb0f25631",
+      "raw_float_ns": 6290,
+      "residuals": {
+        "input": [
+          "0",
+          "1"
+        ],
+        "operations": [
+          "0",
+          "1"
+        ],
+        "sum_checked": true,
+        "total": [
+          "0",
+          "1"
+        ]
+      },
+      "role": "control",
+      "scalar_predicate": {
+        "gate": "guard-refused",
+        "intended": "zero",
+        "matches": true,
+        "observed": "zero",
+        "scope": "only zero/one/other at this finite point; no Seal/M1"
+      },
+      "state": "Completed"
+    }
+  ],
+  "comparison": {
+    "accepted_false_with_exact_oracle_gate": 0,
+    "claim": "pointwise oracle checks only; no acceleration or scope-coverage claim",
+    "incremental_oracle_validation_ns": 1868393,
+    "raw_binary64_baseline_ns": 85955,
+    "raw_false_one": [
+      "product-k27",
+      "product-k28"
+    ],
+    "raw_false_zero": [
+      "input-alias",
+      "ordered-absorption"
+    ],
+    "same_finite_cases": 8
+  },
+  "execution_mode": "external_only",
+  "limits": {
+    "admitted_ast_nodes": 128,
+    "cases": 8,
+    "fraction_bits": 256,
+    "native_fuel_per_case": 16,
+    "native_seconds_per_call": 5.0,
+    "retries": 0,
+    "search_candidates": 0,
+    "source_bytes_per_case": 4096,
+    "wall_seconds_total": 30.0
+  },
+  "native_state": "NativeNotRun",
+  "question_sha256": "41d10a60e3d101e5ace5145af07cbaff664054f470e5a86347c4aa7d1712bb7f",
+  "schema": "adva.representation-report.research",
+  "state": "Completed",
+  "version": 0
+}
