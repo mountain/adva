@@ -1,0 +1,65 @@
+name: Prime Python entry
+
+on:
+  pull_request:
+    paths:
+      - "crates/adva-witness/src/prime_certificate.rs"
+      - "crates/adva-witness/src/bin/adva-prime-verify.rs"
+      - "crates/adva-witness/src/lib.rs"
+      - "python/adva/adva.py"
+      - "scripts/check_prime_entry.py"
+      - "adva-library/prime-universe/requests/**"
+      - "docs/research/0148-finalize-python-entry-contract.json"
+      - ".github/workflows/prime-python-entry.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  finite-prime-entry:
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt
+      - uses: Swatinem/rust-cache@v2
+      - name: Build the exact finite verifier
+        run: |
+          mkdir -p target/prime-entry-cost
+          /usr/bin/time -v -o target/prime-entry-cost/build.txt timeout 240s cargo build -p adva-witness --bin adva-prime-verify
+      - name: Check finite verifier unit obligations
+        run: |
+          /usr/bin/time -v -o target/prime-entry-cost/tests.txt timeout 60s cargo test -p adva-witness --lib prime_certificate -- --nocapture
+      - name: Execute the five frozen Python-to-Rust checks
+        run: |
+          ulimit -v 262144
+          /usr/bin/time -v -o target/prime-entry-cost/pipeline.txt timeout 35s python3 scripts/check_prime_entry.py --native "$PWD/target/debug/adva-prime-verify" --output target/prime-entry
+      - name: Retain tested sources and costs
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import hashlib, json
+          from pathlib import Path
+          paths = ["crates/adva-witness/src/prime_certificate.rs", "crates/adva-witness/src/bin/adva-prime-verify.rs", "python/adva/adva.py", "scripts/check_prime_entry.py"]
+          print("PRIME_ENTRY_SOURCES_BEGIN")
+          print(json.dumps({p: {"sha256": hashlib.sha256(Path(p).read_bytes()).hexdigest()} for p in paths}))
+          print("PRIME_ENTRY_SOURCES_END")
+          binary = Path("target/debug/adva-prime-verify")
+          print("PRIME_ENTRY_BINARY_BEGIN")
+          print(json.dumps({"sha256": hashlib.sha256(binary.read_bytes()).hexdigest(), "bytes": binary.stat().st_size} if binary.exists() else {"status": "NotBuilt"}))
+          print("PRIME_ENTRY_BINARY_END")
+          print("PRIME_ENTRY_COSTS_BEGIN")
+          print(json.dumps({str(p): p.read_text() for p in sorted(Path("target/prime-entry-cost").glob("*.txt"))}))
+          print("PRIME_ENTRY_COSTS_END")
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: prime-python-entry
+          path: |
+            target/prime-entry/
+            target/prime-entry-cost/
+          retention-days: 7
+          if-no-files-found: warn
