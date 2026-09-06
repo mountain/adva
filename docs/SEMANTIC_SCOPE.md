@@ -325,3 +325,15 @@ single-valued recovery from those inputs on any domain containing that pair.
 It preserves the source calibration and its five open questions. These
 projection results do not supply execution provenance, semantic time,
 ordered holonomy, shared external truth, or an M6 discharge predicate.
+
+
+## Native learn roundtrip boundary (Research 0136)
+
+The proposed `adva.free-roundtrip.contract.v0` is a fixed research method.
+Additive residual zero means formed boundary; runtime ZeroFault remains a
+separate refusal. A matched forward/reverse pair may yield multiplicative
+residual one only with retained history and concrete guards. The local result
+name `learn` and proposed reading `free` do not establish task completion,
+learned grammar, semantic program identity or an M6 filler. Six-stage fuel
+bounds the submitted history, not globally forked copies or physical cost.
+
