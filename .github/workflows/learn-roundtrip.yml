@@ -1,0 +1,72 @@
+name: Native learn roundtrip
+
+on:
+  pull_request:
+    paths:
+      - "crates/adva-witness/**"
+      - "programs/bootstrap-0/free-roundtrip/**"
+      - "programs/bootstrap-0/learn.adva"
+      - ".github/workflows/learn-roundtrip.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Check Rust formatting
+        run: cargo fmt --all -- --check
+      - name: Run native roundtrip boundary tests
+        run: cargo test -p adva-witness free_roundtrip -- --nocapture
+      - name: Build the existing Adva executable
+        run: cargo build --release -p adva-witness --bin adva
+      - name: Check companion lints
+        run: cargo clippy -p adva-witness --all-targets -- -D warnings
+      - name: Run exactly six learn calls under one outer budget
+        if: hashFiles('programs/bootstrap-0/learn.adva') == ''
+        shell: bash
+        run: |
+          mkdir -p target/free-roundtrip
+          /usr/bin/time -v -o target/free-roundtrip/total-cost.txt timeout 180 bash <<'RUN'
+          set -euo pipefail
+          ulimit -v 262144
+          ulimit -f 2048
+          current=programs/bootstrap-0/free-roundtrip/subject.adva
+          for round in 1 2 3 4 5 6; do
+            next=target/free-roundtrip/frontier-${round}.adva
+            output=target/free-roundtrip/transition-${round}.adva
+            if [ "$round" -eq 6 ]; then
+              output=target/free-roundtrip/learn.adva
+            fi
+            /usr/bin/time -v -o "target/free-roundtrip/cost-${round}.txt" \
+              timeout 30 target/release/adva learn \
+                "$current" \
+                programs/bootstrap-0/free-roundtrip/method.adva \
+                programs/bootstrap-0/free-roundtrip/resource.adva \
+                --output "$output" --frontier-output "$next"
+            current=$next
+          done
+          RUN
+          echo NATIVE_LEARN_WITNESS_BEGIN
+          cat target/free-roundtrip/learn.adva
+          echo NATIVE_LEARN_WITNESS_END
+          sha256sum target/free-roundtrip/learn.adva
+          cat target/free-roundtrip/total-cost.txt
+      - name: Retain the native executable and exact run evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: native-adva-learn-roundtrip
+          path: |
+            target/release/adva
+            target/free-roundtrip/
+            programs/bootstrap-0/learn.adva
+          if-no-files-found: warn
+          retention-days: 7
