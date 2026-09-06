@@ -1,0 +1,3189 @@
+{
+  "acceptance": {
+    "all_independent_checks_and_controls": true,
+    "fresh_scope_not_copied": true,
+    "native_statuses_unknown": true,
+    "nonunit_control_exact_two_with_quotient_one": true,
+    "products_float_equal_exact_different": true
+  },
+  "actual_costs": {
+    "candidate_search_nodes": 0,
+    "charged_unit_definition": "Admitted AST node, evaluation AST node, scope admission, bound environment item, control forward, replay admission or replay summary check; JSON/hash bytes bounded separately",
+    "charged_units": 282,
+    "charged_units_by_phase": {
+      "construction": 58,
+      "serialized_replay": 108,
+      "validation": 116
+    },
+    "fresh_reuse_timing_overlap": "Reuse times are subsets of construction/validation, not additive totals",
+    "missing": [
+      "final cost-metadata encode and persistence timing",
+      "research, source-writing and network costs",
+      "interpreter startup and frozen contract parsing excluded from internal phase timing"
+    ],
+    "native_calls": 0,
+    "process_peak_rss_bytes_before_final_encode_and_save": 16252928,
+    "python_tracemalloc_peak_bytes_before_final_encode_and_save": 994034,
+    "rss_platform": "Linux ru_maxrss KiB converted to bytes, single Python process",
+    "timings": {
+      "construction_ns": 5553652,
+      "elapsed_ns_before_final_encode_and_save": 76535883,
+      "fresh_reuse_construction_ns": 1640199,
+      "fresh_reuse_validation_ns": 2899717,
+      "payload_serialization_ns": 10844705,
+      "serialized_independent_replay_ns": 43290379,
+      "validation_and_controls_ns": 16495429
+    }
+  },
+  "budget": {
+    "address_space_mib": 256,
+    "candidate_search_nodes": 0,
+    "cpu_seconds_per_invocation": 5,
+    "max_ast_depth": 8,
+    "max_ast_nodes_per_expression": 15,
+    "max_charged_units_per_invocation": 2000,
+    "max_fraction_bits": 128,
+    "max_input_bytes": 262144,
+    "max_instances": 3,
+    "max_invocations_including_one_implementation_repair": 2,
+    "max_report_bytes": 262144,
+    "max_total_charged_units": 4000,
+    "native_calls": 0,
+    "routes": 1,
+    "wall_seconds_per_invocation": 5
+  },
+  "cases": [
+    {
+      "distinguish": {
+        "binary64_status": "NotSeparatedAtDeclaredInput",
+        "external_value_quotient": "18014398509481983/18014398509481984",
+        "observer": "exact-rational-v0",
+        "proposed_action_exact_preservation": "RefutedAtDeclaredInput",
+        "quotient_domain_condition": "right value nonzero; this quotient is not native M1",
+        "residual_obligations": [
+          "No full-domain equality",
+          "No native formation/transport witness"
+        ],
+        "separating_residual": "-1/18014398509481984",
+        "status": "Separated"
+      },
+      "historical_native_observation": {
+        "authority": "historical scalar report only; no independently checked native A0/M1",
+        "embedded_program_exact_bytes_checked": true,
+        "hash_boundary": "SHA256 integrity binding is not authentication or proof authority",
+        "native_history_source_sha256": "57ab7a7e45d88991682d6b1bbb7cba59ebf1d63f4e06a20c5f87ecd3fabb205a",
+        "new_native_invocations": 0,
+        "program_sha256": "db78db984d54532af77ada97a25662a489b228dc591943102147ffc71bc51827",
+        "report_path": "docs/research/0141-native-evidence/product-k27.native-result.adva",
+        "report_sha256": "57ab7a7e45d88991682d6b1bbb7cba59ebf1d63f4e06a20c5f87ecd3fabb205a",
+        "reported_inputs": {
+          "x": {
+            "exact_binary64": "134217729/134217728",
+            "hex": "0x1.0000002000000p+0"
+          },
+          "y": {
+            "exact_binary64": "134217727/134217728",
+            "hex": "0x1.ffffffc000000p-1"
+          }
+        },
+        "reported_scalar_hex": "0x1.0000000000000p+0",
+        "status": "HistoricalScalarObservationAttached"
+      },
+      "id": "product-k27",
+      "judgments": [
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "0",
+            "recomputed_values": [
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              },
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              }
+            ],
+            "recomputed_verdict": "Equal",
+            "status": "Accepted"
+          },
+          "kind": "binary64-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {
+              "x": "134217729/134217728",
+              "y": "134217727/134217728"
+            },
+            "name": "product-k27",
+            "observer": "python-binary64-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "ConfirmedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.0",
+                "value": {
+                  "exact_binary64": "134217729/134217728",
+                  "hex": "0x1.0000002000000p+0"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.1",
+                "value": {
+                  "exact_binary64": "134217727/134217728",
+                  "hex": "0x1.ffffffc000000p-1"
+                }
+              },
+              {
+                "operands": [
+                  {
+                    "exact_binary64": "134217729/134217728",
+                    "hex": "0x1.0000002000000p+0"
+                  },
+                  {
+                    "exact_binary64": "134217727/134217728",
+                    "hex": "0x1.ffffffc000000p-1"
+                  }
+                ],
+                "operation": "mul",
+                "path": "0",
+                "value": {
+                  "exact_binary64": "1",
+                  "hex": "0x1.0000000000000p+0"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "exact_binary64": "1",
+                  "hex": "0x1.0000000000000p+0"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+            "residual": "0",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {
+                "x": "134217729/134217728",
+                "y": "134217727/134217728"
+              },
+              "observer": "python-binary64-v0",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+            "values": [
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              },
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              }
+            ],
+            "verdict": "Equal",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "python-binary64-v0",
+              "quantifier": "at-declared-input",
+              "residual": "0",
+              "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544"
+            }
+          }
+        },
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "-1/18014398509481984",
+            "recomputed_values": [
+              {
+                "rational": "18014398509481983/18014398509481984"
+              },
+              {
+                "rational": "1"
+              }
+            ],
+            "recomputed_verdict": "Different",
+            "status": "Accepted"
+          },
+          "kind": "rational-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {
+              "x": "134217729/134217728",
+              "y": "134217727/134217728"
+            },
+            "name": "product-k27",
+            "observer": "exact-rational-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "RefutedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.0",
+                "value": {
+                  "rational": "134217729/134217728"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.1",
+                "value": {
+                  "rational": "134217727/134217728"
+                }
+              },
+              {
+                "operands": [
+                  {
+                    "rational": "134217729/134217728"
+                  },
+                  {
+                    "rational": "134217727/134217728"
+                  }
+                ],
+                "operation": "mul",
+                "path": "0",
+                "value": {
+                  "rational": "18014398509481983/18014398509481984"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "rational": "1"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+            "residual": "-1/18014398509481984",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {
+                "x": "134217729/134217728",
+                "y": "134217727/134217728"
+              },
+              "observer": "exact-rational-v0",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+            "values": [
+              {
+                "rational": "18014398509481983/18014398509481984"
+              },
+              {
+                "rational": "1"
+              }
+            ],
+            "verdict": "Different",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "exact-rational-v0",
+              "quantifier": "at-declared-input",
+              "residual": "-1/18014398509481984",
+              "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8"
+            }
+          }
+        },
+        {
+          "kind": "native-formation-A0",
+          "question": {
+            "domain": "native-relative-formation-boundary",
+            "environment": {
+              "x": "134217729/134217728",
+              "y": "134217727/134217728"
+            },
+            "name": "product-k27",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "this-proposed-native-template",
+            "relation": "native-formation-A0",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native formation template and checked A0 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-relative-formation-boundary",
+              "obligation": "No bound native formation template and checked A0 witness",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "native-formation-A0"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-template",
+              "residual": null,
+              "scope_sha256": "dcdd5e90ce7265aa3926c2113a3fa2fdafd342cec389041e2e782872a04af485"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native formation template and checked A0 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        },
+        {
+          "kind": "native-transport-M1",
+          "question": {
+            "domain": "native-exact-polynomial-transport",
+            "environment": {
+              "x": "134217729/134217728",
+              "y": "134217727/134217728"
+            },
+            "name": "product-k27",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "this-proposed-native-transition-with-guards",
+            "relation": "native-transport-M1",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native transition and checked M1 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-exact-polynomial-transport",
+              "obligation": "No bound native transition and checked M1 witness",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "native-transport-M1"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-transition-with-guards",
+              "residual": null,
+              "scope_sha256": "798f9e0c216d4c92dcf487a75f63df344c700e9b1c3817698192475b943d0800"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native transition and checked M1 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        }
+      ],
+      "role": "existing-witness-reinterpretation"
+    },
+    {
+      "distinguish": {
+        "binary64_status": "NotSeparatedAtDeclaredInput",
+        "external_value_quotient": "288230376151711743/288230376151711744",
+        "observer": "exact-rational-v0",
+        "proposed_action_exact_preservation": "RefutedAtDeclaredInput",
+        "quotient_domain_condition": "right value nonzero; this quotient is not native M1",
+        "residual_obligations": [
+          "No full-domain equality",
+          "No native formation/transport witness"
+        ],
+        "separating_residual": "-1/288230376151711744",
+        "status": "Separated"
+      },
+      "id": "product-k29",
+      "judgments": [
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "0",
+            "recomputed_values": [
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              },
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              }
+            ],
+            "recomputed_verdict": "Equal",
+            "status": "Accepted"
+          },
+          "kind": "binary64-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {
+              "x": "536870913/536870912",
+              "y": "536870911/536870912"
+            },
+            "name": "product-k29",
+            "observer": "python-binary64-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "ConfirmedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "aaca4a10610d4737c2c877381df7d31941a0c1ec87881c599db00b8a6880a8dc",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.0",
+                "value": {
+                  "exact_binary64": "536870913/536870912",
+                  "hex": "0x1.0000000800000p+0"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.1",
+                "value": {
+                  "exact_binary64": "536870911/536870912",
+                  "hex": "0x1.fffffff000000p-1"
+                }
+              },
+              {
+                "operands": [
+                  {
+                    "exact_binary64": "536870913/536870912",
+                    "hex": "0x1.0000000800000p+0"
+                  },
+                  {
+                    "exact_binary64": "536870911/536870912",
+                    "hex": "0x1.fffffff000000p-1"
+                  }
+                ],
+                "operation": "mul",
+                "path": "0",
+                "value": {
+                  "exact_binary64": "1",
+                  "hex": "0x1.0000000000000p+0"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "exact_binary64": "1",
+                  "hex": "0x1.0000000000000p+0"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "fa2bb6ccf754fcae241d5de84969df7f6bfe6c2a74d436dda106a45398b7e96e",
+            "residual": "0",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {
+                "x": "536870913/536870912",
+                "y": "536870911/536870912"
+              },
+              "observer": "python-binary64-v0",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "bbccf5fea71d922b3167aa7eee5eb9cf93f6fadb61550fbf08f964989664ffd4",
+            "values": [
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              },
+              {
+                "exact_binary64": "1",
+                "hex": "0x1.0000000000000p+0"
+              }
+            ],
+            "verdict": "Equal",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "python-binary64-v0",
+              "quantifier": "at-declared-input",
+              "residual": "0",
+              "scope_sha256": "bbccf5fea71d922b3167aa7eee5eb9cf93f6fadb61550fbf08f964989664ffd4"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "fa2bb6ccf754fcae241d5de84969df7f6bfe6c2a74d436dda106a45398b7e96e"
+            }
+          }
+        },
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "-1/288230376151711744",
+            "recomputed_values": [
+              {
+                "rational": "288230376151711743/288230376151711744"
+              },
+              {
+                "rational": "1"
+              }
+            ],
+            "recomputed_verdict": "Different",
+            "status": "Accepted"
+          },
+          "kind": "rational-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {
+              "x": "536870913/536870912",
+              "y": "536870911/536870912"
+            },
+            "name": "product-k29",
+            "observer": "exact-rational-v0",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "RefutedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "aaca4a10610d4737c2c877381df7d31941a0c1ec87881c599db00b8a6880a8dc",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.0",
+                "value": {
+                  "rational": "536870913/536870912"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "input",
+                "path": "0.1",
+                "value": {
+                  "rational": "536870911/536870912"
+                }
+              },
+              {
+                "operands": [
+                  {
+                    "rational": "536870913/536870912"
+                  },
+                  {
+                    "rational": "536870911/536870912"
+                  }
+                ],
+                "operation": "mul",
+                "path": "0",
+                "value": {
+                  "rational": "288230376151711743/288230376151711744"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "rational": "1"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "2cfddabb0d520b2666d2368f2b735d465b9a1f82a0f3b22a60e10368fb223d68",
+            "residual": "-1/288230376151711744",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {
+                "x": "536870913/536870912",
+                "y": "536870911/536870912"
+              },
+              "observer": "exact-rational-v0",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "a7fa548bc7accb49153a08baefea13615db81adebf602a6b534d68476f4fb9d6",
+            "values": [
+              {
+                "rational": "288230376151711743/288230376151711744"
+              },
+              {
+                "rational": "1"
+              }
+            ],
+            "verdict": "Different",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "exact-rational-v0",
+              "quantifier": "at-declared-input",
+              "residual": "-1/288230376151711744",
+              "scope_sha256": "a7fa548bc7accb49153a08baefea13615db81adebf602a6b534d68476f4fb9d6"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "2cfddabb0d520b2666d2368f2b735d465b9a1f82a0f3b22a60e10368fb223d68"
+            }
+          }
+        },
+        {
+          "kind": "native-formation-A0",
+          "question": {
+            "domain": "native-relative-formation-boundary",
+            "environment": {
+              "x": "536870913/536870912",
+              "y": "536870911/536870912"
+            },
+            "name": "product-k29",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "this-proposed-native-template",
+            "relation": "native-formation-A0",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native formation template and checked A0 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-relative-formation-boundary",
+              "obligation": "No bound native formation template and checked A0 witness",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "native-formation-A0"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-template",
+              "residual": null,
+              "scope_sha256": "bae443ade90423cf6b68c5043ed2bc76effe9a400cc5cea33c2fa1f24b8d161e"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native formation template and checked A0 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        },
+        {
+          "kind": "native-transport-M1",
+          "question": {
+            "domain": "native-exact-polynomial-transport",
+            "environment": {
+              "x": "536870913/536870912",
+              "y": "536870911/536870912"
+            },
+            "name": "product-k29",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "mul",
+                [
+                  "input",
+                  "x"
+                ],
+                [
+                  "input",
+                  "y"
+                ]
+              ],
+              [
+                "const",
+                "1"
+              ]
+            ],
+            "quantifier": "this-proposed-native-transition-with-guards",
+            "relation": "native-transport-M1",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native transition and checked M1 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-exact-polynomial-transport",
+              "obligation": "No bound native transition and checked M1 witness",
+              "ordered_pair": [
+                [
+                  "mul",
+                  [
+                    "input",
+                    "x"
+                  ],
+                  [
+                    "input",
+                    "y"
+                  ]
+                ],
+                [
+                  "const",
+                  "1"
+                ]
+              ],
+              "relation": "native-transport-M1"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-transition-with-guards",
+              "residual": null,
+              "scope_sha256": "2c63c73a4ac61f22f9be375238b6071ceb67fc9872ec0cd7fbc2c6e4fc93f164"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native transition and checked M1 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        }
+      ],
+      "role": "fresh-instance-reuse"
+    },
+    {
+      "distinguish": {
+        "binary64_status": "NotSeparatedAtDeclaredInput",
+        "external_value_quotient": "1",
+        "observer": "exact-rational-v0",
+        "proposed_action_exact_preservation": "PointwiseConfirmed; native action authorization Unknown",
+        "quotient_domain_condition": "right value nonzero; this quotient is not native M1",
+        "residual_obligations": [
+          "No full-domain equality",
+          "No native formation/transport witness"
+        ],
+        "separating_residual": "0",
+        "status": "NotSeparatedAtDeclaredInput"
+      },
+      "id": "nonunit-identity",
+      "judgments": [
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "0",
+            "recomputed_values": [
+              {
+                "exact_binary64": "2",
+                "hex": "0x1.0000000000000p+1"
+              },
+              {
+                "exact_binary64": "2",
+                "hex": "0x1.0000000000000p+1"
+              }
+            ],
+            "recomputed_verdict": "Equal",
+            "status": "Accepted"
+          },
+          "kind": "binary64-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {},
+            "name": "nonunit-identity",
+            "observer": "python-binary64-v0",
+            "ordered_pair": [
+              [
+                "const",
+                "2"
+              ],
+              [
+                "const",
+                "2"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "ConfirmedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "2a83b791774465c747c6cb42280f86bd038f99d30abc920aacda7bd957f482ec",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "0",
+                "value": {
+                  "exact_binary64": "2",
+                  "hex": "0x1.0000000000000p+1"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "exact_binary64": "2",
+                  "hex": "0x1.0000000000000p+1"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "6da58b9695eab03c3edec4d10a35e626dd6632cb56337f34e7e970be470ec90d",
+            "residual": "0",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {},
+              "observer": "python-binary64-v0",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "20d4dacf4d83c85ea3f82611650457d2da0085d791a353d2cc391043f0869df6",
+            "values": [
+              {
+                "exact_binary64": "2",
+                "hex": "0x1.0000000000000p+1"
+              },
+              {
+                "exact_binary64": "2",
+                "hex": "0x1.0000000000000p+1"
+              }
+            ],
+            "verdict": "Equal",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "python-binary64-v0",
+              "quantifier": "at-declared-input",
+              "residual": "0",
+              "scope_sha256": "20d4dacf4d83c85ea3f82611650457d2da0085d791a353d2cc391043f0869df6"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "6da58b9695eab03c3edec4d10a35e626dd6632cb56337f34e7e970be470ec90d"
+            }
+          }
+        },
+        {
+          "independent_check": {
+            "reason": "point-receipt-independently-replayed",
+            "recomputed_residual": "0",
+            "recomputed_values": [
+              {
+                "rational": "2"
+              },
+              {
+                "rational": "2"
+              }
+            ],
+            "recomputed_verdict": "Equal",
+            "status": "Accepted"
+          },
+          "kind": "rational-point-equality",
+          "question": {
+            "domain": "Q",
+            "environment": {},
+            "name": "nonunit-identity",
+            "observer": "exact-rational-v0",
+            "ordered_pair": [
+              [
+                "const",
+                "2"
+              ],
+              [
+                "const",
+                "2"
+              ]
+            ],
+            "quantifier": "at-declared-input",
+            "relation": "equal",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "question_status": "ConfirmedAtDeclaredInput",
+          "receipt": {
+            "authority": "external point observation only",
+            "construction_sha256": "2a83b791774465c747c6cb42280f86bd038f99d30abc920aacda7bd957f482ec",
+            "ordered_trace": [
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "0",
+                "value": {
+                  "rational": "2"
+                }
+              },
+              {
+                "operands": [],
+                "operation": "const",
+                "path": "1",
+                "value": {
+                  "rational": "2"
+                }
+              }
+            ],
+            "ordered_trace_sha256": "8f59e6fe4f2f430f7db0d1808c2c866227c7f7ce34a0c7cbf4828aecd4b4b595",
+            "residual": "0",
+            "schema": "adva.point-judgment-receipt.research",
+            "scope": {
+              "domain": "Q",
+              "environment": {},
+              "observer": "exact-rational-v0",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "quantifier": "at-declared-input",
+              "relation": "equal",
+              "schema": "adva.judgment-question.research",
+              "version": 0
+            },
+            "scope_sha256": "7f6727da2e52ff4b8c9c010f67b3bb9badfbe77a8d09d317c7420fdba27459c2",
+            "values": [
+              {
+                "rational": "2"
+              },
+              {
+                "rational": "2"
+              }
+            ],
+            "verdict": "Equal",
+            "version": 0
+          },
+          "three_readings": {
+            "K": {
+              "domain": "Q",
+              "obligation": "point equality",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "relation": "equal"
+            },
+            "X": {
+              "observer": "exact-rational-v0",
+              "quantifier": "at-declared-input",
+              "residual": "0",
+              "scope_sha256": "7f6727da2e52ff4b8c9c010f67b3bb9badfbe77a8d09d317c7420fdba27459c2"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": null,
+              "ordered_history_required": true,
+              "trace_sha256": "8f59e6fe4f2f430f7db0d1808c2c866227c7f7ce34a0c7cbf4828aecd4b4b595"
+            }
+          }
+        },
+        {
+          "kind": "native-formation-A0",
+          "question": {
+            "domain": "native-relative-formation-boundary",
+            "environment": {},
+            "name": "nonunit-identity",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "const",
+                "2"
+              ],
+              [
+                "const",
+                "2"
+              ]
+            ],
+            "quantifier": "this-proposed-native-template",
+            "relation": "native-formation-A0",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native formation template and checked A0 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-relative-formation-boundary",
+              "obligation": "No bound native formation template and checked A0 witness",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "relation": "native-formation-A0"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-template",
+              "residual": null,
+              "scope_sha256": "28657998a1f0609ae71935f210560f8addca6fbe0ceedffb61c083cb122042bc"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native formation template and checked A0 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        },
+        {
+          "kind": "native-transport-M1",
+          "question": {
+            "domain": "native-exact-polynomial-transport",
+            "environment": {},
+            "name": "nonunit-identity",
+            "observer": "native-witness-checker-required",
+            "ordered_pair": [
+              [
+                "const",
+                "2"
+              ],
+              [
+                "const",
+                "2"
+              ]
+            ],
+            "quantifier": "this-proposed-native-transition-with-guards",
+            "relation": "native-transport-M1",
+            "schema": "adva.judgment-question.research",
+            "version": 0
+          },
+          "reason": "No bound native transition and checked M1 witness",
+          "status": "Unknown",
+          "three_readings": {
+            "K": {
+              "domain": "native-exact-polynomial-transport",
+              "obligation": "No bound native transition and checked M1 witness",
+              "ordered_pair": [
+                [
+                  "const",
+                  "2"
+                ],
+                [
+                  "const",
+                  "2"
+                ]
+              ],
+              "relation": "native-transport-M1"
+            },
+            "X": {
+              "observer": "native-witness-checker-required",
+              "quantifier": "this-proposed-native-transition-with-guards",
+              "residual": null,
+              "scope_sha256": "62f511982e909d2b03885ebe59d5eb53a733f5eebf461a646053559146e56a66"
+            },
+            "level": "three research readings, not native wire domains or transition",
+            "t": {
+              "missing": "No bound native transition and checked M1 witness",
+              "ordered_history_required": true,
+              "trace_sha256": null
+            }
+          }
+        }
+      ],
+      "role": "nonunit-control"
+    }
+  ],
+  "comparison": {
+    "claim": "Inadmissible evidence reuse is counted, not false mathematical propositions; no speedup or expression-power claim",
+    "gate_accepts_those_receipts": 0,
+    "invalid_scope_or_forged_attempts": 10,
+    "naive_accepts_those_receipts": 10,
+    "naive_work_units_per_attempt": 1,
+    "same_attempts": 12
+  },
+  "contract_sha256": "517feb7c78e5d36121fde30f8a69f0cac5e51a613dc1a827d800b015b8c446a1",
+  "controls": [
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "wrong-observer",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "wrong-domain",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "R",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "python-binary64-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "all-input-quantifier",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "python-binary64-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "for-all-inputs",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "changed-operand-order",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "python-binary64-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "y"
+            ],
+            [
+              "input",
+              "x"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "changed-input-environment",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "1",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "python-binary64-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "independent-recomputation-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "forged-verdict",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "rational": "134217729/134217728"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "rational": "134217727/134217728"
+            }
+          },
+          {
+            "operands": [
+              {
+                "rational": "134217729/134217728"
+              },
+              {
+                "rational": "134217727/134217728"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "rational": "18014398509481983/18014398509481984"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "rational": "1"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+        "residual": "-1/18014398509481984",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+        "values": [
+          {
+            "rational": "18014398509481983/18014398509481984"
+          },
+          {
+            "rational": "1"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "independent-recomputation-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": false,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "forged-residual",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "rational": "134217729/134217728"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "rational": "134217727/134217728"
+            }
+          },
+          {
+            "operands": [
+              {
+                "rational": "134217729/134217728"
+              },
+              {
+                "rational": "134217727/134217728"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "rational": "18014398509481983/18014398509481984"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "rational": "1"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+        "values": [
+          {
+            "rational": "18014398509481983/18014398509481984"
+          },
+          {
+            "rational": "1"
+          }
+        ],
+        "verdict": "Different",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "scalar-promotion-to-native-formation-A0",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "native-relative-formation-boundary",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "native-witness-checker-required",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "this-proposed-native-template",
+        "relation": "native-formation-A0",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "scalar-promotion-to-native-transport-M1",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "native-exact-polynomial-transport",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "native-witness-checker-required",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "this-proposed-native-transition-with-guards",
+        "relation": "native-transport-M1",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Rejected",
+      "gate": {
+        "reason": "question-scope-mismatch",
+        "status": "Rejected"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": true,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "stale-k27-receipt-for-k29",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "exact_binary64": "134217729/134217728",
+              "hex": "0x1.0000002000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "exact_binary64": "134217727/134217728",
+              "hex": "0x1.ffffffc000000p-1"
+            }
+          },
+          {
+            "operands": [
+              {
+                "exact_binary64": "134217729/134217728",
+                "hex": "0x1.0000002000000p+0"
+              },
+              {
+                "exact_binary64": "134217727/134217728",
+                "hex": "0x1.ffffffc000000p-1"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "exact_binary64": "1",
+              "hex": "0x1.0000000000000p+0"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "551eae962a25c31716221ccebc5eb2a6472fb3ef37278d642609a79c9ef56544",
+        "residual": "0",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "python-binary64-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "f05d76881c6a35aa9a39c473fd092bf7026efce95f7cbec4fd8e66846ad5b441",
+        "values": [
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          },
+          {
+            "exact_binary64": "1",
+            "hex": "0x1.0000000000000p+0"
+          }
+        ],
+        "verdict": "Equal",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "536870913/536870912",
+          "y": "536870911/536870912"
+        },
+        "name": "product-k29",
+        "observer": "python-binary64-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Accepted",
+      "gate": {
+        "reason": "point-receipt-independently-replayed",
+        "recomputed_residual": "-1/18014398509481984",
+        "recomputed_values": [
+          {
+            "rational": "18014398509481983/18014398509481984"
+          },
+          {
+            "rational": "1"
+          }
+        ],
+        "recomputed_verdict": "Different",
+        "status": "Accepted"
+      },
+      "local_fuel": 2000,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": false,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "rename-only",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "rational": "134217729/134217728"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "rational": "134217727/134217728"
+            }
+          },
+          {
+            "operands": [
+              {
+                "rational": "134217729/134217728"
+              },
+              {
+                "rational": "134217727/134217728"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "rational": "18014398509481983/18014398509481984"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "rational": "1"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+        "residual": "-1/18014398509481984",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+        "values": [
+          {
+            "rational": "18014398509481983/18014398509481984"
+          },
+          {
+            "rational": "1"
+          }
+        ],
+        "verdict": "Different",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "presentation-only-renaming",
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    },
+    {
+      "expectation_met": true,
+      "expected_gate": "Unknown",
+      "gate": {
+        "reason": "local verification fuel exhausted",
+        "status": "Unknown"
+      },
+      "local_fuel": 0,
+      "naive_forwarder": {
+        "accepts_receipt_without_scope_check": true,
+        "forwarded_equality_boolean": false,
+        "note": "A bare answer carries no evidence applicability check"
+      },
+      "name": "zero-fuel",
+      "receipt": {
+        "authority": "external point observation only",
+        "construction_sha256": "6ec27e329b68bf783ecea64f71fe93ec656415067bec5d8cfcb8dbbd63fa5b3d",
+        "ordered_trace": [
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.0",
+            "value": {
+              "rational": "134217729/134217728"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "input",
+            "path": "0.1",
+            "value": {
+              "rational": "134217727/134217728"
+            }
+          },
+          {
+            "operands": [
+              {
+                "rational": "134217729/134217728"
+              },
+              {
+                "rational": "134217727/134217728"
+              }
+            ],
+            "operation": "mul",
+            "path": "0",
+            "value": {
+              "rational": "18014398509481983/18014398509481984"
+            }
+          },
+          {
+            "operands": [],
+            "operation": "const",
+            "path": "1",
+            "value": {
+              "rational": "1"
+            }
+          }
+        ],
+        "ordered_trace_sha256": "c3d50abf4e1e8e9af97cb0a181d3c1fc7824aa153cfebba9000a3252a7f4d6a8",
+        "residual": "-1/18014398509481984",
+        "schema": "adva.point-judgment-receipt.research",
+        "scope": {
+          "domain": "Q",
+          "environment": {
+            "x": "134217729/134217728",
+            "y": "134217727/134217728"
+          },
+          "observer": "exact-rational-v0",
+          "ordered_pair": [
+            [
+              "mul",
+              [
+                "input",
+                "x"
+              ],
+              [
+                "input",
+                "y"
+              ]
+            ],
+            [
+              "const",
+              "1"
+            ]
+          ],
+          "quantifier": "at-declared-input",
+          "relation": "equal",
+          "schema": "adva.judgment-question.research",
+          "version": 0
+        },
+        "scope_sha256": "d11dcd5b3199a289128c10d9204e4dbab0852d947dfd1104243d1d3200f2de98",
+        "values": [
+          {
+            "rational": "18014398509481983/18014398509481984"
+          },
+          {
+            "rational": "1"
+          }
+        ],
+        "verdict": "Different",
+        "version": 0
+      },
+      "target": {
+        "domain": "Q",
+        "environment": {
+          "x": "134217729/134217728",
+          "y": "134217727/134217728"
+        },
+        "name": "product-k27",
+        "observer": "exact-rational-v0",
+        "ordered_pair": [
+          [
+            "mul",
+            [
+              "input",
+              "x"
+            ],
+            [
+              "input",
+              "y"
+            ]
+          ],
+          [
+            "const",
+            "1"
+          ]
+        ],
+        "quantifier": "at-declared-input",
+        "relation": "equal",
+        "schema": "adva.judgment-question.research",
+        "version": 0
+      }
+    }
+  ],
+  "native_calls": 0,
+  "runner_sha256": "2f1c1e90e3dc1ffd11c8e6d7630eed6bdf2956df7ea3492f144631c6b5d1b842",
+  "schema": "adva.judgment-distinction-report.research",
+  "serialized_replay": {
+    "coverage": "All six receipts and twelve scope/forgery/fuel controls independently recomputed once; proposition and distinction/action statuses checked against independently recomputed residuals; final cost metadata excluded",
+    "payload_sha256": "527ef4a252b49cdfd56dfcf36c01f10f1ca71d268047356838d8d584b10d10ff",
+    "status": "Accepted"
+  },
+  "source_main": "24d7275971cfd61fabc3270ac2a71b79df377598",
+  "status": "Completed",
+  "trust_boundary": "The two evaluators use different traversals but share Python Fraction and binary64; SHA256 binds integrity, not authenticity. K/t/X are external research readings.",
+  "version": 0,
+  "word": {
+    "conditions": "This finite add/mul/const/input grammar over bounded rational inputs only",
+    "expansion": "Interpret the question, observe, independently recompute, then judge in its scope",
+    "input": "Ordered expression pair, exact input, declared observer/relation/point scope and fuel",
+    "name": "distinguish",
+    "output": "Separating receipt, pointwise not-separated result, or Unknown",
+    "refusal": "Changed scope, forged receipt, unavailable native witness, or exhausted checker",
+    "residual": "No universal grammar, general identity, social trust, or native certificate claim",
+    "status": "Proposed composite"
+  }
+}
