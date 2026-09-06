@@ -127,17 +127,35 @@ it is retained as such and not relabelled as a final-source execution.
 No local Rust toolchain was available. The final-source native execution
 status is recorded separately below.
 
-Native CI evidence: **Pending at the initial source commit**. The workflow
-and exact commands are included; completion, failure or timeout will be
-recorded without an automatic retry. At most one correction attempt is
-permitted for an actual implementation error.
+Native CI evidence: **NotRun; workflow failed before any recorded step**.
+The [single workflow attempt](https://github.com/mountain/adva/actions/runs/34052226236)
+on source commit `f927549c451ed017e2b9ce10be22a6c3a940c8e7` completed
+with failure at 2026-09-06T18:35:56Z. Its job had no assigned runner
+(`runner_id=0`) and an empty step list. Compilation, six focused unit-test
+groups and all five planned Python-to-Rust calls therefore remain NotRun;
+their runtime and memory costs are unmeasured. This is not evidence of an
+implementation failure or of mathematical rejection.
+
+The [API evidence](0148-evidence/ci-preflight.json) retains the job response.
+The connector does not allow the check-annotation endpoint, so the underlying
+failure reason is Unknown; billing or quota is not inferred. No retry was
+made. The frozen commands remain the next execution step when a suitable
+executor is available. A correction replay is reserved for an actual
+implementation error, which this run has not established.
+
+The [source manifest](0148-evidence/source-manifest.json) identifies the saved
+sources and evidence. It excludes itself to avoid a circular content hash.
+No native binary exists in this run, so no binary hash or native memory
+measurement is claimed. Total research and network wall time was not
+instrumented; the local preflight measurement does not include those costs.
 
 ## Handoff
 
 The preparation is closed at this specific boundary. The implemented tool
 can support finite cooperative work once its compiled checker is available.
-The next semantic integration is an explicitly admitted Adva result
-interface for this certificate, if that is the next selected task. Native
+The immediate next obligation is the frozen native verification run. After
+that succeeds, a possible semantic integration is an explicitly admitted
+Adva result interface for this certificate, if selected as the next task. Native
 free, the quantified Universe proof, global ledgers and philosophical value
 judgments remain separate; none is required to keep expanding this preparation.
 

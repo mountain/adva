@@ -1,0 +1,55 @@
+{
+  "schema": "adva.prime-entry.ci-preflight.research",
+  "version": 0,
+  "source_commit": "f927549c451ed017e2b9ce10be22a6c3a940c8e7",
+  "run_url": "https://github.com/mountain/adva/actions/runs/34052226236",
+  "run_id": 34052226236,
+  "observation": "Workflow completed with failure before any recorded step or assigned runner.",
+  "native_compile": "NotRun",
+  "native_unit_tests": "NotRun",
+  "planned_python_to_rust_calls": {
+    "planned": 5,
+    "executed": 0
+  },
+  "native_runtime_metrics": null,
+  "root_cause": "Unknown",
+  "diagnostic_limit": {
+    "endpoint": "https://api.github.com/repos/mountain/adva/check-runs/101537758179/annotations",
+    "response": "GitHub connector rejected this endpoint as outside its allowed endpoint set (HTTP 400 INVALID_ARGUMENT).",
+    "consequence": "The underlying GitHub failure annotation was not read. No billing, quota or implementation diagnosis is established."
+  },
+  "retry_count": 0,
+  "next_step": "When an executor with the declared Rust toolchain is available, run the frozen build, focused test and five-call sequence once; preserve the results.",
+  "jobs_response": {
+    "jobs": [
+      {
+        "check_run_url": "https://api.github.com/repos/mountain/adva/check-runs/101537758179",
+        "completed_at": "2026-09-06T18:35:56Z",
+        "conclusion": "failure",
+        "created_at": "2026-09-06T18:35:52Z",
+        "head_branch": "engineering/finalize-python-entry-2026-09-06",
+        "head_sha": "f927549c451ed017e2b9ce10be22a6c3a940c8e7",
+        "html_url": "https://github.com/mountain/adva/actions/runs/34052226236/job/101537758179",
+        "id": 101537758179,
+        "labels": [
+          "ubuntu-latest"
+        ],
+        "name": "finite-prime-entry",
+        "node_id": "CR_kwDOUHbIX88AAAAXpB874w",
+        "run_attempt": 1,
+        "run_id": 34052226236,
+        "run_url": "https://api.github.com/repos/mountain/adva/actions/runs/34052226236",
+        "runner_group_id": 0,
+        "runner_group_name": "",
+        "runner_id": 0,
+        "runner_name": "",
+        "started_at": "2026-09-06T18:35:52Z",
+        "status": "completed",
+        "steps": [],
+        "url": "https://api.github.com/repos/mountain/adva/actions/jobs/101537758179",
+        "workflow_name": "Prime Python entry"
+      }
+    ],
+    "total_count": 1
+  }
+}
