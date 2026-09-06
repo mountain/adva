@@ -1,5 +1,13 @@
 # Adva
 
+The bounded research native program entry is `adva run program.adva --output
+result.adva`. Build it with `cargo build --release -p adva-witness --bin adva`.
+For a first executable program, run
+`target/release/adva run programs/native-run/arithmetic.adva --output target/arithmetic-result.adva`.
+Use a fresh output path. This first profile wraps the existing Rust PSC0
+compiler and f64 evaluator; see [Research 0140](docs/research/0140-native-program-run.md)
+for its finite limits, certificates, refusals and remaining exact-arithmetic work.
+
 Adva is a tool for typed symbolic computation and program geometry. Its native
 engine is a small modular Lisp implemented in Rust. Rust owns typing, explicit
 sharing, source and occurrence identity, history, calculus, certificates, and
