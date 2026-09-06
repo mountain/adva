@@ -1,0 +1,19 @@
+{
+  "schema": "adva.research-run-contract.v0",
+  "base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "authorization": "Mingli explicitly authorized Rust implementation after the learn-only preflight obstruction, and requested a resulting witness named learn.adva",
+  "question": "Can six bounded native learn stages retain an A=0 but M!=1 forward transition, introduce an endpoint-matched reverse witness, check every retained nonzero guard, and seal the resulting M=1 local round trip?",
+  "domain": "Exact integer polynomial witness expressions from the existing adva-witness crate; fixed p=x+y*z and q=2*p; three concrete integer inputs restricted to [-16,16]",
+  "main_input": [2,3,4],
+  "reuse_input": [5,2,3],
+  "candidate_grammar": "One fixed p-to-q-to-p method with six stages; no search over arbitrary expressions, no unknown-program inversion",
+  "stages": ["formation and unit connector", "forward witness and incomplete-M reverse request", "endpoint-matched reverse witness", "compose", "retained concrete nonzero guards", "seal and package local word learn"],
+  "protected": ["A=0 is successful formation, not a concrete zero fault", "both children must individually be formed", "reverse endpoints must literally match the retained forward endpoints", "reversing a zero-fault history cannot erase its guards", "M=1 is a transport residual, not the final scalar value", "free remains a proposed interpretation of this scoped witness", "no native sources or occurrences allocated from values or hashes", "one cumulative six-stage allowance, no refill or seventh progress step", "full recorded inputs and history must replay before continuation", "renaming output to learn.adva does not redefine the learn command or establish M6 closure"],
+  "checker": "Existing Rust WitnessStoreV0 derives exact A/M summaries and checks Seal; the new bounded control layer additionally checks endpoint connection, all runtime guards, fixed schema/method/resource binding and replay of the complete frontier",
+  "success": "Six successful native learn calls produce an exact locally sealed witness whose full nonzero guards succeed and whose bytes are retained as learn.adva; naming free is still Proposed",
+  "negative_controls": ["A=0 forward edge sealed before M=1", "ratio cancellation with disconnected endpoints", "intermediate zero retained after reversal", "modified stage/history/remaining fuel", "method or resource drift", "seventh stage", "replay under a second bounded input"],
+  "limits": {"native_learn_calls_main": 6, "new_stage_units_total": 6, "input_or_artifact_bytes": 131072, "search_routes": 1, "search_candidates": 0, "seconds_per_cli_call": 30, "seconds_all_six_cli_calls": 180, "cli_virtual_memory_kib": 262144, "ci_job_minutes": 15, "automatic_research_restarts": 0, "implementation_correction_replays": 1},
+  "accounting": "Record CI compile/test outcome separately from six CLI calls. Measure CLI wall/user/system time and peak RSS via the runner when available. Compilation, input replay and tests are not free and are not counted as learned vocabulary. Unavailable measurements remain missing.",
+  "exit": "Stop on guard failure, invalid boundary, exceeded resource bound or completed sixth stage; preserve concrete failure and uncompleted obligations. Do not repeatedly wait for CI or widen the problem to obtain a positive result.",
+  "residuals": ["No general definition or proof of free", "No automatically learned grammar or new native learn algorithm synthesized from the witness", "No general inverse or physical reversal", "No endpoint/history identity from scalar M=1", "No global M6 filler or arithmetic universality theorem", "No repair of ZeroFault by reversing a retained failed history", "Actual local Rust toolchain download was blocked at network approval; CI execution remains conditional on available repository permissions"]
+}

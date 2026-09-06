@@ -1,0 +1,51 @@
+name: World task boundary
+
+on:
+  pull_request:
+    paths:
+      - "crates/adva-witness/examples/world_task_boundary.rs"
+      - ".github/workflows/world-task.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Check native formatting
+        run: cargo fmt --all -- --check
+      - name: Check example lints
+        run: cargo clippy -p adva-witness --example world_task_boundary -- -D warnings
+      - name: Build the bounded task example
+        run: cargo build --release -p adva-witness --example world_task_boundary
+      - name: Run the frozen task cases once
+        if: hashFiles('docs/research/0138-world-task-witness.json') == ''
+        shell: bash
+        run: |
+          mkdir -p target/world-task
+          ulimit -v 262144
+          ulimit -f 2048
+          /usr/bin/time -v -o target/world-task/host-cost.txt \
+            timeout 30 target/release/examples/world_task_boundary \
+            --output target/world-task/world-task.json
+          sha256sum target/world-task/world-task.json
+          cat target/world-task/host-cost.txt
+      - name: Retain the witness and cost
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: world-task-boundary
+          path: |
+            target/world-task/
+            docs/research/0138-world-task-witness.json
+            docs/research/0138-world-task-cost.json
+            docs/research/0138-world-task-host-cost.txt
+          if-no-files-found: warn
+          retention-days: 7
