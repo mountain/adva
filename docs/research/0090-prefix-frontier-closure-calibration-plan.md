@@ -676,3 +676,12 @@ between:
 
 That distinction is the minimal semantic substrate needed before a
 finite-observer open logic can be stated responsibly.
+
+
+## 19. Partial external calibration, 2026-09-05
+
+[Research 0130](0130-prefix-coverage-gated-close.md) adds a bounded external
+reference check for coverage-gated dyadic feature closure, a missing-region
+counterexample, refinement conservation, and fresh-instance reopening. It does
+not complete Experiments A--F, implement a native closure judgment, or authorize
+the all-fillings transfer and promotion required by Research 0092.
