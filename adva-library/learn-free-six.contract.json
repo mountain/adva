@@ -1,0 +1,46 @@
+{
+  "schema": "adva.phase-runner.contract.v0",
+  "version": 0,
+  "source_base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
+  "learn_backend_source": "4cbbfebfead3918b4da46920d55708d10f3baee8 (draft PR #136, not merged)",
+  "note": "A Python orchestration protocol; not an implementation of free. Pascal documents remain independent proposed inputs.",
+  "limits": {
+    "call_timeout_seconds": 30,
+    "phase_timeout_seconds": 180,
+    "output_bytes_per_file": 131072,
+    "child_virtual_memory_kib": 262144
+  },
+  "phases": [
+    {
+      "name": "learn",
+      "requested_slots": 6,
+      "initial_subject": "phase-runner/learn-subject.adva",
+      "method": "phase-runner/learn-method.adva",
+      "resource": "phase-runner/learn-resource.adva",
+      "command_template": [
+        "{backend}",
+        "learn",
+        "{subject}",
+        "{method}",
+        "{resource}",
+        "--output",
+        "{transition}",
+        "--frontier-output",
+        "{frontier}"
+      ],
+      "expected_transition_schema": "adva.free-roundtrip.transition.v0",
+      "expected_frontier_schema": "adva.free-roundtrip.frontier.v0"
+    },
+    {
+      "name": "free",
+      "requested_slots": 6,
+      "initial_subject": null,
+      "method": null,
+      "resource": null,
+      "command_template": null,
+      "expected_transition_schema": null,
+      "expected_frontier_schema": null,
+      "obstruction": "No task-relative free acceptance predicate, native command or versioned input/output adapter has been established."
+    }
+  ]
+}
