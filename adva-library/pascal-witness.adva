@@ -1,0 +1,527 @@
+{
+  "schema": "adva.pascal-three-party-presentation.research",
+  "version": 0,
+  "name": "pascal-witness",
+  "status": "Proposed interface with externally checked exact arithmetic",
+  "document_role": "three attributed presentation slots and a mathematical witness; not an actual meeting receipt or native Rust certificate",
+  "task_binding": {
+    "file": "pascal-task.adva",
+    "task_key": "pascal-three-party/v0",
+    "sha256": "60d3ca374486239afb82bbe31d821a4d0c02ef947ccf62557753e85137087a5d",
+    "hash_role": "byte-integrity binding only; not human identity or authenticity"
+  },
+  "interface": {
+    "inputs": [
+      "subject",
+      "method",
+      "object"
+    ],
+    "outputs": [
+      "history",
+      "result",
+      "evidence"
+    ]
+  },
+  "presentations": [
+    {
+      "key": "presentation-1",
+      "self_ref": "self-1",
+      "human_ref": "Human-1",
+      "world_ref": "World-1",
+      "machine_ref": "Machine-1",
+      "construction": "X",
+      "public_point": [
+        "1",
+        "0",
+        "-d*e"
+      ],
+      "incidence_lines": [
+        "AB",
+        "DE"
+      ],
+      "origin": "assistant-prepared mathematical template; not submitted by an actual Human",
+      "secret": {
+        "status": "Unspecified",
+        "payload_included": false
+      },
+      "verify": {
+        "rule": "exact dot product with each incident line is the zero polynomial",
+        "arithmetic": "ExternallyChecked",
+        "human_provenance": "Unknown"
+      }
+    },
+    {
+      "key": "presentation-2",
+      "self_ref": "self-2",
+      "human_ref": "Human-2",
+      "world_ref": "World-2",
+      "machine_ref": "Machine-2",
+      "construction": "Y",
+      "public_point": [
+        "1",
+        "1",
+        "e+f-e*f"
+      ],
+      "incidence_lines": [
+        "BC",
+        "EF"
+      ],
+      "origin": "assistant-prepared mathematical template; not submitted by an actual Human",
+      "secret": {
+        "status": "Unspecified",
+        "payload_included": false
+      },
+      "verify": {
+        "rule": "exact dot product with each incident line is the zero polynomial",
+        "arithmetic": "ExternallyChecked",
+        "human_provenance": "Unknown"
+      }
+    },
+    {
+      "key": "presentation-3",
+      "self_ref": "self-3",
+      "human_ref": "Human-3",
+      "world_ref": "World-3",
+      "machine_ref": "Machine-3",
+      "construction": "Z",
+      "public_point": [
+        "1+d-f",
+        "d",
+        "d*f"
+      ],
+      "incidence_lines": [
+        "CD",
+        "FA"
+      ],
+      "origin": "assistant-prepared mathematical template; not submitted by an actual Human",
+      "secret": {
+        "status": "Unspecified",
+        "payload_included": false
+      },
+      "verify": {
+        "rule": "exact dot product with each incident line is the zero polynomial",
+        "arithmetic": "ExternallyChecked",
+        "human_provenance": "Unknown"
+      }
+    }
+  ],
+  "proof": {
+    "coefficient_ring": "Z[d,e,f]",
+    "expression_grammar": "integer literals, d/e/f, parentheses, unary minus, +, -, *; no floating point or division",
+    "lines": {
+      "AB": [
+        "0",
+        "1",
+        "0"
+      ],
+      "BC": [
+        "1",
+        "-1",
+        "0"
+      ],
+      "CD": [
+        "d",
+        "-(1+d)",
+        "1"
+      ],
+      "DE": [
+        "d*e",
+        "-(d+e)",
+        "1"
+      ],
+      "EF": [
+        "e*f",
+        "-(e+f)",
+        "1"
+      ],
+      "FA": [
+        "0",
+        "-f",
+        "1"
+      ]
+    },
+    "pascal_line": [
+      "d*e",
+      "-(d*e+e+f-e*f)",
+      "1"
+    ],
+    "line_nonzero_witness": "The coefficient of w is 1.",
+    "points_nonzero_witness": "X and Y have first coordinate 1; Z has second coordinate d != 0.",
+    "third_point_residual": "d*e*(1+d-f)-d*(d*e+e+f-e*f)+d*f",
+    "expanded_terms": [
+      "d*e",
+      "d*d*e",
+      "-d*e*f",
+      "-d*d*e",
+      "-d*e",
+      "-d*f",
+      "d*e*f",
+      "d*f"
+    ],
+    "normal_form": [],
+    "conclusion": "X,Y,Z lie on the same nonzero projective line.",
+    "normalization_boundary": "The checked symbolic proof covers the normalized conic. General Pascal follows with the separately stated parametrization/transport lemma in the task file.",
+    "checks": [
+      {
+        "name": "A on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "B on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "C on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "D on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "E on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "F on uw=v*v",
+        "residual_normal_form": []
+      },
+      {
+        "name": "A on AB",
+        "residual_normal_form": []
+      },
+      {
+        "name": "B on AB",
+        "residual_normal_form": []
+      },
+      {
+        "name": "B on BC",
+        "residual_normal_form": []
+      },
+      {
+        "name": "C on BC",
+        "residual_normal_form": []
+      },
+      {
+        "name": "C on CD",
+        "residual_normal_form": []
+      },
+      {
+        "name": "D on CD",
+        "residual_normal_form": []
+      },
+      {
+        "name": "D on DE",
+        "residual_normal_form": []
+      },
+      {
+        "name": "E on DE",
+        "residual_normal_form": []
+      },
+      {
+        "name": "E on EF",
+        "residual_normal_form": []
+      },
+      {
+        "name": "F on EF",
+        "residual_normal_form": []
+      },
+      {
+        "name": "F on FA",
+        "residual_normal_form": []
+      },
+      {
+        "name": "A on FA",
+        "residual_normal_form": []
+      },
+      {
+        "name": "X on AB",
+        "residual_normal_form": []
+      },
+      {
+        "name": "X on DE",
+        "residual_normal_form": []
+      },
+      {
+        "name": "X on Pascal line",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Y on BC",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Y on EF",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Y on Pascal line",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Z on CD",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Z on FA",
+        "residual_normal_form": []
+      },
+      {
+        "name": "Z on Pascal line",
+        "residual_normal_form": []
+      }
+    ]
+  },
+  "controls": {
+    "main_instance": {
+      "parameters": {
+        "d": 2,
+        "e": 3,
+        "f": 4
+      },
+      "points": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          9
+        ],
+        [
+          1,
+          4,
+          16
+        ]
+      ],
+      "intersection_representatives": [
+        [
+          -1,
+          0,
+          6
+        ],
+        [
+          1,
+          1,
+          -5
+        ],
+        [
+          -4,
+          8,
+          32
+        ]
+      ],
+      "determinant": 0
+    },
+    "reuse_with_infinite_Z": {
+      "parameters": {
+        "d": 2,
+        "e": 4,
+        "f": 3
+      },
+      "points": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          4,
+          16
+        ],
+        [
+          1,
+          3,
+          9
+        ]
+      ],
+      "intersection_representatives": [
+        [
+          -2,
+          0,
+          16
+        ],
+        [
+          -1,
+          -1,
+          5
+        ],
+        [
+          0,
+          6,
+          18
+        ]
+      ],
+      "determinant": 0
+    },
+    "tampered_Z": {
+      "coordinates": [
+        "1+d-f",
+        "d",
+        "d*f+1"
+      ],
+      "line_residual": 1,
+      "arithmetic_status": "Rejected"
+    },
+    "missing_shared_conic": {
+      "points": [
+        [
+          1,
+          0,
+          0
+        ],
+        [
+          0,
+          0,
+          1
+        ],
+        [
+          1,
+          1,
+          1
+        ],
+        [
+          1,
+          2,
+          4
+        ],
+        [
+          1,
+          3,
+          9
+        ],
+        [
+          1,
+          4,
+          17
+        ]
+      ],
+      "intersection_representatives": [
+        [
+          1,
+          0,
+          -6
+        ],
+        [
+          1,
+          1,
+          -7
+        ],
+        [
+          -5,
+          8,
+          34
+        ]
+      ],
+      "determinant": 12,
+      "status": "Local incidences hold but Pascal collinearity fails outside the common-conic assumptions."
+    },
+    "reference_only_presentation": {
+      "expected_status": "Unknown",
+      "reason": "a key without accessible proof content is insufficient",
+      "runtime_test": "NotRun; protocol design only"
+    }
+  },
+  "replay": {
+    "manual_steps": [
+      "Read and check the exact task binding and all stated side conditions.",
+      "For each A..F check u*w-v*v=0.",
+      "For each line check its two endpoints; for each X,Y,Z check its two incident lines.",
+      "Check the three dot products with the displayed Pascal line; expand the eight terms and cancel.",
+      "For a new rational instance substitute d,e,f satisfying the side conditions, keeping homogeneous coordinates.",
+      "Retain a nonzero residual as rejection evidence, and missing inputs or exhausted resources as scoped Unknown."
+    ],
+    "independent_arithmetic_route": "Recompute opposite-side intersections by vector cross products and check their 3x3 determinant. Compare points projectively, not as equal coordinate triples.",
+    "native_replay": "NotRun; the current Adva loaders do not register these two proposed schemas."
+  },
+  "output": {
+    "history": {
+      "authoring": "assistant prepared all three mathematical templates; no three-human execution is claimed",
+      "external_checker": "bounded local Python integer sparse-polynomial arithmetic and independent integer cross-product fixtures",
+      "symbolic_checks": 27,
+      "search_candidates": 0,
+      "numeric_instances": 2,
+      "polynomial_operations": 226,
+      "measured_verification_ns": 1080582,
+      "peak_process_rss_kib": 11136,
+      "memory_scope": "whole local authoring/checking Python process; not per-party Machine or full application",
+      "unmeasured": [
+        "human work",
+        "native execution",
+        "individual phase memory",
+        "physical meeting cost",
+        "file serialization and delivery elapsed time"
+      ]
+    },
+    "result": {
+      "normalized_pascal": "VerifiedByExternalArithmetic",
+      "general_pascal": "ConditionalOnDeclaredNormalizationLemma",
+      "three_party_meeting": "Unknown",
+      "human_acceptance": "Unknown",
+      "task_closed": false
+    },
+    "evidence": {
+      "retained": "all constructions, polynomial-zero checks, numeric reuse, tampering residual and off-conic counterexample are in this file",
+      "open_obligations": [
+        {
+          "item": "three actual Human participants",
+          "reason": "unbound role labels",
+          "continue_when": "actual scoped participation evidence is supplied"
+        },
+        {
+          "item": "meeting time and place",
+          "reason": "not supplied",
+          "continue_when": "a real meeting record is provided"
+        },
+        {
+          "item": "native interpreter and durable replay",
+          "reason": "research schemas have no registered loader",
+          "continue_when": "a bounded typed import/checking interface is implemented"
+        },
+        {
+          "item": "human review",
+          "reason": "no acceptance receipt",
+          "continue_when": "task-bound review is supplied"
+        },
+        {
+          "item": "subjective consciousness",
+          "reason": "no claim or operational criterion established",
+          "continue_when": "requires a separate philosophical and empirical inquiry"
+        }
+      ]
+    }
+  }
+}

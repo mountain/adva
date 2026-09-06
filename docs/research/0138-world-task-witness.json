@@ -1,0 +1,3936 @@
+{
+  "cases": [
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "judgment": {
+        "agreement": "ConditionallyApplicable",
+        "arithmetic": "Verified",
+        "human_review": "Pending",
+        "pending_review": true,
+        "task_closed": false
+      },
+      "name": "main",
+      "task": {
+        "display_name": "seek-main",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+            "proof": {
+              "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 2,
+        "goal": "3",
+        "observed": "3",
+        "rejection": null,
+        "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 1,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "short"
+        }
+      },
+      "judgment": {
+        "agreement": "ConditionallyApplicable",
+        "arithmetic": "Unknown",
+        "human_review": "Unknown",
+        "pending_review": false,
+        "task_closed": false
+      },
+      "name": "short_fuel",
+      "task": {
+        "display_name": "seek-short",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 1,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "short"
+        }
+      },
+      "witness": null
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      },
+      "judgment": {
+        "agreement": "ConditionallyApplicable",
+        "arithmetic": "Verified",
+        "human_review": "Pending",
+        "pending_review": true,
+        "task_closed": false
+      },
+      "name": "reuse",
+      "task": {
+        "display_name": "seek-reuse",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    4
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+            "proof": {
+              "body": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 3,
+        "goal": "4",
+        "observed": "4",
+        "rejection": null,
+        "sealed": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      }
+    },
+    {
+      "agreement_input": null,
+      "judgment": {
+        "agreement": "Missing",
+        "arithmetic": "Verified",
+        "human_review": "Unknown",
+        "pending_review": false,
+        "task_closed": false
+      },
+      "name": "missing_agreement",
+      "task": {
+        "display_name": "seek-main",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+            "proof": {
+              "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 2,
+        "goal": "3",
+        "observed": "3",
+        "rejection": null,
+        "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "MachineProposal",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "judgment": {
+        "agreement": "MachineProposalRejected",
+        "arithmetic": "Verified",
+        "human_review": "Unknown",
+        "pending_review": false,
+        "task_closed": false
+      },
+      "name": "machine_proposal",
+      "task": {
+        "display_name": "seek-main",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+            "proof": {
+              "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 2,
+        "goal": "3",
+        "observed": "3",
+        "rejection": null,
+        "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "judgment": {
+        "agreement": "BindingRejected",
+        "arithmetic": "Verified",
+        "human_review": "Unknown",
+        "pending_review": false,
+        "task_closed": false
+      },
+      "name": "stale_agreement",
+      "task": {
+        "display_name": "seek-reuse",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    4
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+            "proof": {
+              "body": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 3,
+        "goal": "4",
+        "observed": "4",
+        "rejection": null,
+        "sealed": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      }
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "judgment": {
+        "agreement": "ConditionallyApplicable",
+        "arithmetic": "Verified",
+        "human_review": "Pending",
+        "pending_review": true,
+        "task_closed": false
+      },
+      "name": "display_rename",
+      "task": {
+        "display_name": "World task, renamed display",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+            "proof": {
+              "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 2,
+        "goal": "3",
+        "observed": "3",
+        "rejection": null,
+        "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    },
+    {
+      "agreement_input": {
+        "action": "review-witness",
+        "human_ref": "fixture-human",
+        "origin": "ExternalAssumption",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "judgment": {
+        "agreement": "ConditionallyApplicable",
+        "arithmetic": "Rejected",
+        "human_review": "Unknown",
+        "pending_review": false,
+        "task_closed": false
+      },
+      "name": "wrong_candidate",
+      "task": {
+        "display_name": "seek-main",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:5a77ab5cd39f830423774231d326cc289d01098a2a37dd32905be5c37a6c4f20",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          2
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 1,
+        "goal": "3",
+        "observed": "2",
+        "rejection": "M != 1; candidate does not meet equation",
+        "sealed": null,
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    }
+  ],
+  "cost": {
+    "counts": {
+      "candidate_visits": 6,
+      "native_proof_checks": 14
+    },
+    "native_proof_check_unit": "one candidate derivation, saved-witness replay, or seal-refusal check",
+    "peak_memory": null,
+    "search_and_construction_ns": 87023,
+    "verification_and_case_recording_ns": 196245
+  },
+  "counterpart": "open",
+  "name": "World",
+  "name_origin": "user_defined",
+  "operational_status": "Proposed",
+  "origin_warning": "ExternalAssumption is a fixture tag, not authentication or real consent",
+  "residual": "Human review and real-world applicability are unverified; World is not Universe",
+  "role_warning": "Role refs and task keys are fixture labels, not SourceId or semantic identity",
+  "schema": "adva.research.world-task-boundary.v0",
+  "scope": "One finite existential task and conditional pending review under a fixture agreement",
+  "searches": [
+    {
+      "remaining": [
+        3
+      ],
+      "spent": 2,
+      "status": "WitnessFound",
+      "task": {
+        "display_name": "seek-main",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      },
+      "trials": [
+        {
+          "artifacts": [
+            {
+              "key": "blake3:5a77ab5cd39f830423774231d326cc289d01098a2a37dd32905be5c37a6c4f20",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            2
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 1,
+          "goal": "3",
+          "observed": "2",
+          "rejection": "M != 1; candidate does not meet equation",
+          "sealed": null,
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 2,
+            "goal": 3,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "main"
+          }
+        },
+        {
+          "artifacts": [
+            {
+              "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            },
+            {
+              "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+              "proof": {
+                "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+                "kind": "seal"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 2,
+          "goal": "3",
+          "observed": "3",
+          "rejection": null,
+          "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 2,
+            "goal": 3,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "main"
+          }
+        }
+      ],
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    3
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      2
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+            "proof": {
+              "body": "blake3:9bce14c0805508f70fc5abdb6e47dff73223b0a71e61dbad79ce817e9a2578d6",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          3
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 2,
+        "goal": "3",
+        "observed": "3",
+        "rejection": null,
+        "sealed": "blake3:3cb47c97346e16c3ab16b56f3d54e89bfbf8d5364a7a7dcaac6be89c197a8d54",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 2,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "main"
+        }
+      }
+    },
+    {
+      "remaining": [
+        2,
+        3
+      ],
+      "spent": 1,
+      "status": "Unknown",
+      "task": {
+        "display_name": "seek-short",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 1,
+          "goal": 3,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "short"
+        }
+      },
+      "trials": [
+        {
+          "artifacts": [
+            {
+              "key": "blake3:5a77ab5cd39f830423774231d326cc289d01098a2a37dd32905be5c37a6c4f20",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            2
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 1,
+          "goal": "3",
+          "observed": "2",
+          "rejection": "M != 1; candidate does not meet equation",
+          "sealed": null,
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 1,
+            "goal": 3,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "short"
+          }
+        }
+      ],
+      "witness": null
+    },
+    {
+      "remaining": [],
+      "spent": 3,
+      "status": "WitnessFound",
+      "task": {
+        "display_name": "seek-reuse",
+        "spec": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      },
+      "trials": [
+        {
+          "artifacts": [
+            {
+              "key": "blake3:28ce64b6d76efb6ec784dd53ad5190ba71b2d386768f15e62fc5bd5b96818890",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            2
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        4
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 1,
+          "goal": "4",
+          "observed": "2",
+          "rejection": "M != 1; candidate does not meet equation",
+          "sealed": null,
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 3,
+            "goal": 4,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "reuse"
+          }
+        },
+        {
+          "artifacts": [
+            {
+              "key": "blake3:0249c2484ee43fd3de1dc0a883458e42e116732f463de176f9839f8ac2dc5647",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        2
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            3
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          2
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        4
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 2,
+          "goal": "4",
+          "observed": "3",
+          "rejection": "M != 1; candidate does not meet equation",
+          "sealed": null,
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 3,
+            "goal": 4,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "reuse"
+          }
+        },
+        {
+          "artifacts": [
+            {
+              "key": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+              "proof": {
+                "actual_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "after": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                },
+                "before": {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                "declared_boundary": {
+                  "terms": [
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "construction"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "space"
+                      }
+                    },
+                    {
+                      "coefficient": 1,
+                      "coordinate": {
+                        "kind": "role",
+                        "role": "time"
+                      }
+                    }
+                  ]
+                },
+                "kind": "arithmetic_transition"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          3
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        4
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            },
+            {
+              "key": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+              "proof": {
+                "body": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+                "kind": "seal"
+              },
+              "schema": "adva.witness.research",
+              "summary": {
+                "additive_residual": {
+                  "terms": []
+                },
+                "multiplicative_residual": {
+                  "denominator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  },
+                  "numerator": {
+                    "terms": [
+                      {
+                        "coefficient": [
+                          1,
+                          [
+                            4
+                          ]
+                        ],
+                        "monomial": {
+                          "powers": []
+                        }
+                      }
+                    ]
+                  }
+                },
+                "nonzero_obligations": [
+                  {
+                    "kind": "add",
+                    "left": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          3
+                        ]
+                      ]
+                    },
+                    "right": {
+                      "kind": "constant",
+                      "value": [
+                        1,
+                        [
+                          1
+                        ]
+                      ]
+                    }
+                  },
+                  {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        4
+                      ]
+                    ]
+                  }
+                ]
+              },
+              "version": 0
+            }
+          ],
+          "candidate": 3,
+          "goal": "4",
+          "observed": "4",
+          "rejection": null,
+          "sealed": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+          "task": {
+            "acceptance": "x + 1 = goal",
+            "domain": [
+              1,
+              2,
+              3
+            ],
+            "fuel": 3,
+            "goal": 4,
+            "human_ref": "fixture-human",
+            "machine_ref": "fixture-machine",
+            "subject_ref": "fixture-subject",
+            "task_key": "reuse"
+          }
+        }
+      ],
+      "witness": {
+        "artifacts": [
+          {
+            "key": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+            "proof": {
+              "actual_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "after": {
+                "kind": "constant",
+                "value": [
+                  1,
+                  [
+                    4
+                  ]
+                ]
+              },
+              "before": {
+                "kind": "add",
+                "left": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      3
+                    ]
+                  ]
+                },
+                "right": {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      1
+                    ]
+                  ]
+                }
+              },
+              "declared_boundary": {
+                "terms": [
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "construction"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "space"
+                    }
+                  },
+                  {
+                    "coefficient": 1,
+                    "coordinate": {
+                      "kind": "role",
+                      "role": "time"
+                    }
+                  }
+                ]
+              },
+              "kind": "arithmetic_transition"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          },
+          {
+            "key": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+            "proof": {
+              "body": "blake3:87cb9e153968ead77c7ae6512bb087e40d5e3c2f5c2d4854eace1ccded3a20b4",
+              "kind": "seal"
+            },
+            "schema": "adva.witness.research",
+            "summary": {
+              "additive_residual": {
+                "terms": []
+              },
+              "multiplicative_residual": {
+                "denominator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                },
+                "numerator": {
+                  "terms": [
+                    {
+                      "coefficient": [
+                        1,
+                        [
+                          4
+                        ]
+                      ],
+                      "monomial": {
+                        "powers": []
+                      }
+                    }
+                  ]
+                }
+              },
+              "nonzero_obligations": [
+                {
+                  "kind": "add",
+                  "left": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        3
+                      ]
+                    ]
+                  },
+                  "right": {
+                    "kind": "constant",
+                    "value": [
+                      1,
+                      [
+                        1
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "kind": "constant",
+                  "value": [
+                    1,
+                    [
+                      4
+                    ]
+                  ]
+                }
+              ]
+            },
+            "version": 0
+          }
+        ],
+        "candidate": 3,
+        "goal": "4",
+        "observed": "4",
+        "rejection": null,
+        "sealed": "blake3:0a6a8511105fb5d071b85d5fa3a484c8fd56cdb54b69b42b002dad04607cf6f6",
+        "task": {
+          "acceptance": "x + 1 = goal",
+          "domain": [
+            1,
+            2,
+            3
+          ],
+          "fuel": 3,
+          "goal": 4,
+          "human_ref": "fixture-human",
+          "machine_ref": "fixture-machine",
+          "subject_ref": "fixture-subject",
+          "task_key": "reuse"
+        }
+      }
+    }
+  ],
+  "task_closed": false,
+  "wrong_candidate_kernel_refusal": "artifact blake3:5a77ab5cd39f830423774231d326cc289d01098a2a37dd32905be5c37a6c4f20 has a non-unit multiplicative residual MultiplicativeResidualV0 { numerator: PolynomialV0 { terms: [PolynomialTermV0 { coefficient: 3, monomial: MonomialV0 { powers: [] } }] }, denominator: PolynomialV0 { terms: [PolynomialTermV0 { coefficient: 2, monomial: MonomialV0 { powers: [] } }] } }"
+}
