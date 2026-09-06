@@ -1,0 +1,65 @@
+name: Representation residual
+
+on:
+  pull_request:
+    paths:
+      - "experiments/representation_residual/**"
+      - "programs/representation-residual/**"
+      - ".github/workflows/representation-residual.yml"
+
+permissions:
+  contents: read
+  actions: read
+
+jobs:
+  finite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Read existing tested native executable
+        if: hashFiles('docs/research/0141-representation-evidence.json') == ''
+        uses: actions/download-artifact@v4
+        with:
+          name: native-adva-program-run
+          run-id: 34039297072
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: target/native-origin
+      - name: Match the retained native sources
+        if: hashFiles('docs/research/0141-representation-evidence.json') == ''
+        run: |
+          python3 - <<'PY'
+          import hashlib,json
+          from pathlib import Path
+          expected=json.loads(Path('docs/research/0140-native-program-evidence.json').read_text())['exact_tested_source_sha256']
+          for path,digest in expected.items():
+              assert hashlib.sha256((Path('target/native-origin')/path).read_bytes()).hexdigest()==digest,path
+          PY
+          chmod +x target/native-origin/target/release/adva
+      - name: Execute the frozen question in Python with native comparisons
+        if: hashFiles('docs/research/0141-representation-evidence.json') == ''
+        shell: bash
+        run: |
+          set -euo pipefail
+          ulimit -v 524288
+          ulimit -f 32768
+          /usr/bin/time -v -o target/representation-host-cost.txt timeout 40 python3 experiments/representation_residual/run.py --question programs/representation-residual/representation-question.adva --output-dir target/representation-residual --backend "$PWD/target/native-origin/target/release/adva"
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path('target/representation-residual')
+          bundle={str(p.relative_to(root)):p.read_text() for p in sorted(root.rglob('*')) if p.is_file()}
+          bundle['host-cost.txt']=Path('target/representation-host-cost.txt').read_text()
+          print('REPRESENTATION_EVIDENCE_BEGIN')
+          print(json.dumps(bundle))
+          print('REPRESENTATION_EVIDENCE_END')
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always() && hashFiles('docs/research/0141-representation-evidence.json') == ''
+        with:
+          name: representation-residual
+          path: |
+            target/representation-residual/
+            target/representation-host-cost.txt
+          retention-days: 7
+          if-no-files-found: warn

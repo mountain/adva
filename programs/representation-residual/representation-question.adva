@@ -1,0 +1,315 @@
+{
+  "schema": "adva.representation-question.research",
+  "version": 0,
+  "status": "Proposed external question envelope; embedded arithmetic programs use native adva.run.program.research",
+  "question": "Does binary64 representation preserve exact zero/one questions for these finite expressions, and where does the representation residual arise?",
+  "machines": {
+    "construction_K": "Exact rational intention, expression shape and declared nonzero obligations",
+    "time_t": "Ordered native evaluation and external rounding trace; distinct histories remain distinct",
+    "space_X": "Finite scalar observation and its non-singleton exact-value fibre"
+  },
+  "native_triadic_observer_status": "Not invoked: this research decomposition is not a TriadicObserverTransitionV0 certificate or an intrinsic domain assignment to wires",
+  "arithmetic_domain": "Intended rational inputs with exact dyadic fractions in this suite; observed IEEE-754 binary64 finite scalars",
+  "quantifiers": "Exactly the eight frozen pointwise cases, including one newly varied product instance; no all-program theorem",
+  "candidate_syntax": [
+    "input name",
+    "binary add",
+    "binary mul"
+  ],
+  "budget": {
+    "max_cases": 8,
+    "max_ast_steps": 128,
+    "fraction_bits": 256,
+    "total_seconds": 30,
+    "native_call_seconds": 5,
+    "native_virtual_memory_kib": 524288,
+    "native_fuel": 16,
+    "search_candidates": 0,
+    "routes": 3,
+    "implementation_correction_replays": 1
+  },
+  "comparisons": [
+    "exact intended execution",
+    "exact execution after input quantization",
+    "ordered binary64 execution",
+    "actual unchanged Rust Real execution when backend is provided",
+    "raw zero/one decisions versus exact-oracle guard on identical cases"
+  ],
+  "protected_obligations": [
+    "Python allocates no semantic SourceId or OccurrenceId",
+    "Every native judgment comes from a fresh invocation of the existing Rust executable",
+    "Python Fraction comparison is external evidence, not a new Rust theorem or operation",
+    "Scalar zero is not additive formation A0; scalar one is not native M1 or Seal",
+    "Commuting rounded evaluation does not imply exact predicate reflection",
+    "Nonzero guards and original exact inputs are retained",
+    "Different association changes a program and its history; it is not an authorized native rewrite",
+    "Unsupported syntax or exhausted budget produces Unknown rather than invented success"
+  ],
+  "stop": "After this fixed suite and evidence serialization; no candidate search, no budget reset",
+  "cases": [
+    {
+      "id": "input-alias",
+      "role": "seed",
+      "expression": [
+        "add",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "9007199254740993",
+          "1"
+        ],
+        "y": [
+          "-9007199254740992",
+          "1"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "1",
+          "1"
+        ],
+        "float_hex": "0x0.0p+0",
+        "classifier": "zero",
+        "exactclass": "one"
+      }
+    },
+    {
+      "id": "ordered-absorption",
+      "role": "seed",
+      "expression": [
+        "add",
+        [
+          "add",
+          "x",
+          "y"
+        ],
+        "z"
+      ],
+      "inputs": {
+        "x": [
+          "9007199254740992",
+          "1"
+        ],
+        "y": [
+          "1",
+          "1"
+        ],
+        "z": [
+          "-9007199254740992",
+          "1"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "1",
+          "1"
+        ],
+        "float_hex": "0x0.0p+0",
+        "classifier": "zero",
+        "exactclass": "one"
+      }
+    },
+    {
+      "id": "reassociated-control",
+      "role": "control",
+      "expression": [
+        "add",
+        "x",
+        [
+          "add",
+          "y",
+          "z"
+        ]
+      ],
+      "inputs": {
+        "x": [
+          "9007199254740992",
+          "1"
+        ],
+        "y": [
+          "1",
+          "1"
+        ],
+        "z": [
+          "-9007199254740992",
+          "1"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "1",
+          "1"
+        ],
+        "float_hex": "0x1.0000000000000p+0",
+        "classifier": "one",
+        "exactclass": "one"
+      }
+    },
+    {
+      "id": "product-k27",
+      "role": "seed",
+      "expression": [
+        "mul",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "134217729",
+          "134217728"
+        ],
+        "y": [
+          "134217727",
+          "134217728"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "18014398509481983",
+          "18014398509481984"
+        ],
+        "float_hex": "0x1.0000000000000p+0",
+        "classifier": "one",
+        "exactclass": "other"
+      },
+      "guard": {
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "product-k28",
+      "role": "reuse",
+      "expression": [
+        "mul",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "268435457",
+          "268435456"
+        ],
+        "y": [
+          "268435455",
+          "268435456"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "72057594037927935",
+          "72057594037927936"
+        ],
+        "float_hex": "0x1.0000000000000p+0",
+        "classifier": "one",
+        "exactclass": "other"
+      },
+      "guard": {
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "product-k26",
+      "role": "control",
+      "expression": [
+        "mul",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "67108865",
+          "67108864"
+        ],
+        "y": [
+          "67108863",
+          "67108864"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "4503599627370495",
+          "4503599627370496"
+        ],
+        "float_hex": "0x1.ffffffffffffep-1",
+        "classifier": "other",
+        "exactclass": "other"
+      },
+      "guard": {
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ]
+      }
+    },
+    {
+      "id": "input-distinct-control",
+      "role": "control",
+      "expression": [
+        "add",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "4503599627370497",
+          "1"
+        ],
+        "y": [
+          "-4503599627370496",
+          "1"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "1",
+          "1"
+        ],
+        "float_hex": "0x1.0000000000000p+0",
+        "classifier": "one",
+        "exactclass": "one"
+      }
+    },
+    {
+      "id": "zero-guard-control",
+      "role": "control",
+      "expression": [
+        "mul",
+        "x",
+        "y"
+      ],
+      "inputs": {
+        "x": [
+          "0",
+          "1"
+        ],
+        "y": [
+          "1",
+          "1"
+        ]
+      },
+      "expected": {
+        "exact": [
+          "0",
+          "1"
+        ],
+        "float_hex": "0x0.0p+0",
+        "classifier": "zero",
+        "exactclass": "zero"
+      },
+      "guard": {
+        "required_nonzero_inputs": [
+          "x",
+          "y"
+        ]
+      }
+    }
+  ]
+}
