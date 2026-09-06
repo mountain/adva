@@ -20,15 +20,14 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
-      - name: Capture native formatting
-        run: |
-          cargo fmt --all
-          git diff -- crates/adva-lisp/examples/observe_self_boundary.rs
+      - name: Check formatting
+        run: cargo fmt --all -- --check
       - name: Check example lints
         run: cargo clippy -p adva-lisp --example observe_self_boundary -- -D warnings
       - name: Build the bounded native observer
         run: cargo build --release -p adva-lisp --example observe_self_boundary
       - name: Observe the frozen boundary once
+        if: hashFiles('docs/research/0137-self-boundary-observation.json') == ''
         shell: bash
         run: |
           mkdir -p target/self-boundary
@@ -39,17 +38,13 @@ jobs:
             --output target/self-boundary/self-boundary.json
           sha256sum target/self-boundary/self-boundary.json
           cat target/self-boundary/host-cost.txt
-      - name: Retain formatted source for review
-        if: always()
-        run: |
-          echo SELF_BOUNDARY_SOURCE_BEGIN
-          cat crates/adva-lisp/examples/observe_self_boundary.rs
-          echo SELF_BOUNDARY_SOURCE_END
       - name: Retain the observation and its cost
         if: always()
         uses: actions/upload-artifact@v4
         with:
           name: self-boundary-observation
-          path: target/self-boundary/
+          path: |
+            target/self-boundary/
+            docs/research/0137-self-boundary-observation.json
           if-no-files-found: warn
           retention-days: 7
