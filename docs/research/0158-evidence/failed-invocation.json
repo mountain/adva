@@ -1,0 +1,17 @@
+{
+  "command": [
+    "python3",
+    "experiments/disclosure_binding/calibration.py",
+    "--output",
+    "docs/research/0158-evidence/run-01"
+  ],
+  "exit_code": 1,
+  "peak_child_rss_kib_linux": 15516,
+  "research_child_invocations": 1,
+  "stderr": "Traceback (most recent call last):\n  File \"/workspace/scratch/e83be47dbd2c/adva-night-20260907/experiments/disclosure_binding/calibration.py\", line 265, in <module>\n    main()\n  File \"/workspace/scratch/e83be47dbd2c/adva-night-20260907/experiments/disclosure_binding/calibration.py\", line 216, in main\n    cases = study.fixtures()\n            ^^^^^^^^^^^^^^^^\n  File \"/workspace/scratch/e83be47dbd2c/adva-night-20260907/experiments/disclosure_binding/calibration.py\", line 116, in fixtures\n    self.save(rel, request)\n  File \"/workspace/scratch/e83be47dbd2c/adva-night-20260907/experiments/disclosure_binding/calibration.py\", line 63, in save\n    with path.open(\"xb\") as handle:\n         ^^^^^^^^^^^^^^^\n  File \"/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py\", line 1013, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileExistsError: [Errno 17] File exists: 'docs/research/0158-evidence/run-01/main/substituted-anchor.json'\n",
+  "stdout": "",
+  "wall_ns": 143217005,
+  "status": "ImplementationError",
+  "reason": "A synthetic request filename collided with the separate substituted-anchor filename; no verification controls ran.",
+  "repair": "Place request files in requests/; preserve partial run-01 and use fresh run-02. This is the sole implementation correction replay."
+}
