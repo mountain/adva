@@ -379,6 +379,22 @@ Unknown、π_n 缺失降级重放、量子与仪式备注不并入验收结论�
 8. `verify` 的固定测试向量清单（RFC 8032 / RFC 8439 选择纪律）由谁 pin，
    双侧实现分歧的仲裁流程由谁记录？
 
+## 13. 实施状态（2026-09-07）
+
+Phase 0 已作为纯标准库的文档性适配器实现：
+
+- `python/adva/lineage.py`：规范化序列化、记录校验、哈希链、Merkle 检查点、
+  锚点链、`tamper-check` / `verify` / `key-issue` 核心；
+- `python/adva/adva.py` 新增 `lineage-update`、`tamper-check`、`verify`、
+  `key-issue` 四个命令（退出码 0/2/3）；
+- `tests/python/test_lineage.py`：19 项验收测试（篡改定位、预算耗尽、锚点链、
+  退出码控制）；既有 math_catalog 测试与 `math-check` 回归通过；
+- 证据：`docs/research/0156-evidence/`（10 份真实 CLI 运行报告 + 篡改仿真）。
+
+边界不变：本实现只做文档性完整性，不发原生 Seal、不做语义判断；
+Phase 1–3 与第 12 节的开放问题仍待决策。本文状态保持 `proposed-document`，
+实现不自动解除任何义务。
+
 ## 参考
 
 - Research 0155：密码学封存、双语言校准与信任边界（摘要/签名分离、字节边界、密钥生命周期）
