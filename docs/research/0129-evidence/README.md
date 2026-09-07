@@ -49,3 +49,18 @@
 - 结果：**energy 76，merit 4.111842105263**（`run6-report.json`），
   独立 `verify` 重算 24 个相关值一致；负控制 `run6-tampered.json`
   被拒（"stored energy 77 differs from exact energy 76"）。
+
+## 梯度引导消融（ablation-*.json，length 25 / seed 1 / 10000 步）
+
+三程序单独引导 vs 合奏（Run 6 同预算对照）：
+
+| 程序 | 引导机制 | energy | merit |
+| --- | --- | ---: | ---: |
+| spatial | **残差自相关场（离散梯度场）** | 56 | 5.580357 |
+| temporal | top-k 轨迹增量翻转 | 52 | 6.009615 |
+| constructive | 归档见证拼接变异 | 52 | 6.009615 |
+| ensemble（Run 6） | 三程序合奏 | 76 | 4.111842 |
+
+观察：同种子同预算下，单程序聚焦（尤其 spatial 的梯度场引导与
+temporal/constructive）优于合奏——分数排序是引导而非录取，各程序
+优劣属有限样本观察，不构成通用结论（0129 边界）。
