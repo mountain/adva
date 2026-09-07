@@ -41,3 +41,14 @@ API（parse_module → link_modules → compile_function）计算。这也解释
 证据）：`rehearse.py` 实现 min-residual-first + party 序号 tie-break；
 `all-agree.json` 演示全残差 0 时次序退化为固定序列；
 `one-tampered.json` 演示篡改方（P4=15）被排到最后一步且值一致断言 Rejected。
+
+## 追加：项目自有程序 words.lisp 的 GraftTrace（2026-09-07）
+
+对 `programs/self-boundary/words.lisp`（5 个 def、含注释、3 层嵌套 call）
+走同一编译 API：
+
+- `graft-words-result.json`：**5 帧**完整调用链
+  learn → observe → self → reverse → forward
+  （root → root-body → call-argument-0 → callee-body → call-argument-0）；
+- `graft-words-certificate.json`：`certified: true`，7 项检查全部 checked；
+- 复现：`words-driver/`（include_str! 指向仓库 words.lisp）。

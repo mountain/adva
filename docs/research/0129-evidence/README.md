@@ -28,3 +28,10 @@
 - 结果：**energy 55，merit 4.400000000000**（`run3-report.json`），
   独立 `verify` 重算 21 个相关值一致；负控制 `run3-tampered.json`
   被拒（"stored energy 56 differs from exact energy 55"）。
+
+## Run 4（contract-run4.json，0129 §4 第三次续试）
+
+- 修订：length 22 → 23；其余不变；
+- 结果：**energy 51，merit 5.186274509804**（`run4-report.json`），
+  独立 `verify` 重算 22 个相关值一致；负控制 `run4-tampered.json`
+  被拒（"stored energy 52 differs from exact energy 51"）。
