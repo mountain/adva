@@ -1,0 +1,55 @@
+{
+  "schema": "adva.arithmetic-lineage.tamper-report.v0",
+  "version": 0,
+  "status": "Tampered",
+  "anchor": {
+    "path": "/Users/mingli/Adva/AEG/.merge-six-tampered/lineage/anchors/0000.json",
+    "global_seq": 0,
+    "match": true,
+    "prev_anchor_match": null
+  },
+  "packages": {
+    "arithmetic": {
+      "checkpoint": {
+        "chain_head": "8cc591fbc88f17a04b5f63725d37cecc6608da1a08c0d6b153eee0827fca6e7b",
+        "count": 5,
+        "height": 4,
+        "last_seq": 5,
+        "merkle_root": "90d4fb9bfc229ccad5db513995cf62e73c078b851d012799ccb4d5a325310962",
+        "package": "arithmetic",
+        "schema": "adva.arithmetic-lineage.checkpoint.v0",
+        "version": 0
+      },
+      "records": 5,
+      "first_divergence": {
+        "seq": 3,
+        "kind": "invalid-record",
+        "reason": "record arithmetic/3: digest does not match its record content"
+      },
+      "checkpoint_match": false,
+      "checkpoint_diff": null
+    },
+    "geometry": {
+      "checkpoint": null,
+      "records": 0,
+      "first_divergence": null,
+      "checkpoint_match": null
+    },
+    "logic": {
+      "checkpoint": null,
+      "records": 0,
+      "first_divergence": null,
+      "checkpoint_match": null
+    }
+  },
+  "budget_spent": {
+    "units": 3,
+    "wall_ms": 0,
+    "bytes_read": 3576
+  },
+  "first_divergence": {
+    "seq": 3,
+    "kind": "invalid-record",
+    "reason": "record arithmetic/3: digest does not match its record content"
+  }
+}

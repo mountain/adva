@@ -1,0 +1,125 @@
+{
+  "schema": "adva.merge-six.rehearsal.v0",
+  "version": 0,
+  "note": "real Ed25519 keys and signatures, synthetic parties; private seeds retained in AEG workspace only, never in the repository",
+  "parties": [
+    {
+      "id": "P1",
+      "value": 14.0,
+      "key_id": "ed25519:edec15f1897c2e051baf0486a0c93ee5"
+    },
+    {
+      "id": "P2",
+      "value": 14.0,
+      "key_id": "ed25519:28b3512580c6548a29ad9ef6e18f09ff"
+    },
+    {
+      "id": "P3",
+      "value": 14.0,
+      "key_id": "ed25519:21a6690ccf0fd2709453d33fd80a8117"
+    },
+    {
+      "id": "P4",
+      "value": 14.0,
+      "key_id": "ed25519:b1bef3bb4f3ada64379cd5072f1e1830"
+    },
+    {
+      "id": "P5",
+      "value": 14.0,
+      "key_id": "ed25519:bcc31f716ac03a0bd5aa17a7f7903310"
+    },
+    {
+      "id": "P6",
+      "value": 14.0,
+      "key_id": "ed25519:32146bcbbbf06667c2b63d02ecdbfc2b"
+    }
+  ],
+  "merge_steps": [
+    {
+      "order_rank": 1,
+      "order_score": 0.0,
+      "left": [
+        "P1"
+      ],
+      "right": [
+        "P2"
+      ],
+      "value_assertion": "Verified"
+    },
+    {
+      "order_rank": 2,
+      "order_score": 0.0,
+      "left": [
+        "P3"
+      ],
+      "right": [
+        "P4"
+      ],
+      "value_assertion": "Verified"
+    },
+    {
+      "order_rank": 3,
+      "order_score": 0.0,
+      "left": [
+        "P5"
+      ],
+      "right": [
+        "P6"
+      ],
+      "value_assertion": "Verified"
+    },
+    {
+      "order_rank": 4,
+      "order_score": 0.0,
+      "left": [
+        "P1",
+        "P2"
+      ],
+      "right": [
+        "P3",
+        "P4"
+      ],
+      "value_assertion": "Verified"
+    },
+    {
+      "order_rank": 5,
+      "order_score": 0.0,
+      "left": [
+        "P5",
+        "P6"
+      ],
+      "right": [
+        "P1",
+        "P2",
+        "P3",
+        "P4"
+      ],
+      "value_assertion": "Verified"
+    }
+  ],
+  "anchor_self_sha256": "3b74a39a95ac4bdc3c597732924a5c1269e8149a173ad78b141156d9fd989c85",
+  "signatures_verified": 6,
+  "tamper_check": "Intact",
+  "negative_control": {
+    "status": "Tampered",
+    "seq": 3
+  },
+  "files": {
+    "public": [
+      "key-issue-P1.json",
+      "key-issue-P2.json",
+      "key-issue-P3.json",
+      "key-issue-P4.json",
+      "key-issue-P5.json",
+      "key-issue-P6.json",
+      "signature-request-P1.json",
+      "signature-request-P2.json",
+      "signature-request-P3.json",
+      "signature-request-P4.json",
+      "signature-request-P5.json",
+      "signature-request-P6.json",
+      "lineage/anchors/0000.json",
+      "lineage/arithmetic/records/*"
+    ]
+  }
+}
