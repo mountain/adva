@@ -21,3 +21,10 @@
 - 两次都是**采样搜索**，不声称族内最优（exhaustive 是单独命令，未跑）；
 - 结果只对各自声明族有效；不产生新原生词、无语言形成步骤；
 - 预算均未耗尽（各约 0.3s / 120s 上限）；续试计数 2，无自动重启。
+
+## Run 3（contract-run3.json，0129 §4 第二次续试）
+
+- 修订：length 21 → 22；其余不变；理由：相邻族继续滚动；
+- 结果：**energy 55，merit 4.400000000000**（`run3-report.json`），
+  独立 `verify` 重算 21 个相关值一致；负控制 `run3-tampered.json`
+  被拒（"stored energy 56 differs from exact energy 55"）。
