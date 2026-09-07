@@ -64,3 +64,10 @@
 观察：同种子同预算下，单程序聚焦（尤其 spatial 的梯度场引导与
 temporal/constructive）优于合奏——分数排序是引导而非录取，各程序
 优劣属有限样本观察，不构成通用结论（0129 边界）。
+
+## Run 7（contract-run7.json，0129 §4 第六次续试，无人输入）
+
+- 修订：length 25 → 26；其余不变；修订合同自动生成（记录，非许可）；
+- 结果：**energy 77，merit 4.389610389610**（`run7-report.json`），
+  独立 `verify` 重算 25 个相关值一致；负控制 `run7-tampered.json`
+  被拒（"stored energy 78 differs from exact energy 77"）。
