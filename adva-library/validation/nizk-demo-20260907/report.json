@@ -1,0 +1,69 @@
+{
+  "schema": "adva.local-demo-smoke-report",
+  "version": 0,
+  "status": "PassedDeclaredControls",
+  "scope": "Unmodified educational demo smoke check only; not native proof admission or a security audit",
+  "date": "2026-09-07",
+  "python": "3.11.15",
+  "environment": "adva-library/.venv-zkp",
+  "source_commit": "fc9a81b3862643aef352b9aa49b67793593bede0",
+  "demo_sha256": "04e389b09ca24d164da9a8679eb61d094507d94cdb17f3baf448620551852e62",
+  "requirements_sha256": "8907b16ec495b4ebf4b2b9530baf1cdeeaeae954d4997852dae5e302cea65861",
+  "full_exit_code": 0,
+  "stdlib_exit_code": 0,
+  "controls": {
+    "groth16_positive": true,
+    "groth16_altered_public_rejected": true,
+    "schnorr_positive": true,
+    "schnorr_altered_public_rejected": true,
+    "stdlib_schnorr_positive": true,
+    "stdlib_schnorr_altered_public_rejected": true,
+    "stdlib_has_no_groth16": true,
+    "no_unexpected_acceptance_or_traceback": true
+  },
+  "groth16_reported_seconds": {
+    "setup": 0.281,
+    "prove": 0.096,
+    "verify": 1.591
+  },
+  "reported_timing_scope": "Script-reported individual positive-operation times, excluding other work; not end-to-end measurement",
+  "parallel_workers": 1,
+  "launches": 2,
+  "retries": 0,
+  "native_admission": "not-granted",
+  "geometry_obligation": "Open",
+  "native_seal": "NotIssued",
+  "original_logs_include_disposable_toy_secrets": true,
+  "checkout_commit": "d9ebd85c2dd47f2de9075e11b86c5014127d4758",
+  "source_repository": "https://github.com/Merricx/zksnake.git",
+  "source_path": "adva-library/vendor/zksnake-py",
+  "platform": "Linux x86_64",
+  "expected_control_lines": {
+    "groth16_positive": "正确公开值 y=35 的验证结果: ✓ 通过",
+    "groth16_altered_public_rejected": "伪造公开值 y=36     的验证结果: ✗ 失败（符合预期）",
+    "schnorr_positive": "对正确公开值 h     的验证: ✓ 通过",
+    "schnorr_altered_public_rejected": "对伪造公开值 h_fake 的验证: ✗ 失败（符合预期）"
+  },
+  "raw_logs_committed": false,
+  "published_logs_include_toy_secrets": false,
+  "published_logs": "Allowlisted verbatim control and timing excerpts only; random parameters, witnesses, proof values and explanatory security claims omitted",
+  "original_stdout_sha256": {
+    "full": "d92b6bce05f45e1a12340ae340835df13291c8d7b14feafcfffebbb91a073af5",
+    "stdlib": "1cfe628b242ce3bc81f4bed5b77e2a462cb4770978f3a65cce657f19f2f54819"
+  },
+  "execution_limits": {
+    "max_launches": 2,
+    "retries": 0,
+    "wall_seconds_per_launch": 30,
+    "kill_grace_seconds_per_launch": 2,
+    "cpu_seconds_per_launch": 20,
+    "address_space_bytes": 1073741824,
+    "file_size_bytes": 1048576,
+    "open_files": 128
+  },
+  "formal_verification": {
+    "lean": "NotRun",
+    "metamath": "NotRun",
+    "implementation_refinement": "NotProvided"
+  }
+}
