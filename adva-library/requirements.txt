@@ -1,0 +1,11 @@
+# NIZK 演示环境依赖（Python 3.14 / 3.13 实测通过；按元数据支持 3.8–3.14）
+#
+# 说明: zksnake 的 PyPI 发行版已改为 Rust 内核，本 demo 使用其 GitHub 仓库的
+#       纯 Python 版本（vendor/zksnake-py，提交 fc9a81b，要求 Python >= 3.8）。
+#
+# 版本自动解析（无需手动指定具体版本）:
+#   - Python 3.8 / 3.9 : joblib 1.4.2（requires >=3.8）
+#   - Python 3.10+     : joblib 1.5.0 / 1.6.0（requires >=3.9 / >=3.10）
+#   - py_ecc 8.0.0     : 纯 Python wheel，requires >=3.8,<4
+joblib>=1.4.0
+py_ecc>=6.0.0
