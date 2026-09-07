@@ -71,3 +71,20 @@ temporal/constructive）优于合奏——分数排序是引导而非录取，�
 - 结果：**energy 77，merit 4.389610389610**（`run7-report.json`），
   独立 `verify` 重算 25 个相关值一致；负控制 `run7-tampered.json`
   被拒（"stored energy 78 differs from exact energy 77"）。
+
+## Run 12（contract-run12.json，用户指示"learn×100 → free → breakthrough"扩权）
+
+- 修订：length 30 → 31（本次扩权由用户指示）；
+- 结果：**energy 83，merit 5.789156626506**（`run12-report.json`），
+  独立 `verify` 重算 30 个相关值一致；负控制 `run12-tampered.json`
+  被拒（"stored energy 84 differs from exact energy 83"）。
+
+## 三段式战役（learn×100 → free → breakthrough，2026-09-07）
+
+六槽流水线第 6 轮 100 遍 + 1 次 breakthrough：
+
+- learn 阶段：100/100 Completed（每遍 6 槽链式前进）；
+- run 阶段：100/100 Completed（每遍 6 槽原生传输）；
+- free 阶段：100/100 AdapterUnavailable（阻塞记录，0157 谓词未批准）；
+- breakthrough：Run 12（length 31）如上；
+- 流水线 1200 次合成子进程调用、全部退出 0、见证零丢失。
