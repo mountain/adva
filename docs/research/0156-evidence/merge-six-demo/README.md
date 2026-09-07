@@ -47,3 +47,13 @@ Rust 侧（`target/debug/adva run arithmetic.adva`，f64 值 14.0）与 Python �
 - 汇总：`summary-two-sides.json`。
 
 私钥种子（`python-side-seed.key`、`rust-side-seed.key`）仅存于 AEG 工作区。
+
+## 追加：披露边界接入 merge 链（seq 7 + 锚点 0002）
+
+- 隐藏内容 `{"answer": 14}` 的 Pedersen 承诺 + Schnorr NIZK 作为
+  `lineage/arithmetic/records/000007.json` 的 `secret_slot` 上链
+  （proposition 为 undisclosed-candidate，verdict Unknown，内容永不上链）；
+- 新锚点 `0002.json`（global_seq 2）链向 0001；
+- `tamper-check` Intact 且 prev chain True；
+- 披露：`disclosure-request.json` → **Verified**；
+  负控制 `disclosure-bad.json`（content 改 15）→ **Rejected**。
