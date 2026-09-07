@@ -30,3 +30,20 @@ AEG 工作区**，本目录仅含公钥记录与签名，符合 Research 0155 �
    记入 `environment`；若 §14 需要独立字段，应作为 schema v1 的设计决策；
 2. key-issue 目前仅注册 `anchor-signing` 用途域；merge 专属用途域
    （如 `merge-signing`）是待定扩展。
+
+## 追加：真实两侧 merge（merge-two-sides.py）
+
+Rust 侧（`target/debug/adva run arithmetic.adva`，f64 值 14.0）与 Python 侧
+（精确整数 2+3*4 = 14）按 §14.4 预言合并：
+
+- 归一化残差 |norm(14.0) − norm(14)| = **0**（§14.4 第二例的实测确认）；
+- merge 记录为链上 **seq 6**（环境含两侧证据 sha256、order_score=0、
+  order_rank=6，见 `lineage/arithmetic/records/000006.json`）；
+- 新锚点 **0001.json**（global_seq 1）链向前锚点 0000；
+- 两侧各签一把新密钥（`key-issue-{python,rust}-side.json`），
+  `signature-request-{python,rust}-side.json` 复核 2/2 Verified；
+- `tamper-check` Intact 且 `prev-anchor chain: True`；
+- 两侧证据文件：`rust-side/result.adva`、`python-side/presentation.json`；
+- 汇总：`summary-two-sides.json`。
+
+私钥种子（`python-side-seed.key`、`rust-side-seed.key`）仅存于 AEG 工作区。
