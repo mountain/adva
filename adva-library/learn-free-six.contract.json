@@ -3,7 +3,7 @@
   "version": 0,
   "source_base": "57c1d04bcfe51b82f6e559a61ca02e668f630b5a",
   "learn_backend_source": "4cbbfebfead3918b4da46920d55708d10f3baee8 (draft PR #136, not merged)",
-  "note": "A Python orchestration protocol; not an implementation of free. Pascal documents remain independent proposed inputs.",
+  "note": "A Python orchestration protocol; not an implementation of learn, run or free. The run phase is a bounded native program-run transport whose .adva output is recorded as bytes, never interpreted. Pascal documents remain independent proposed inputs.",
   "limits": {
     "call_timeout_seconds": 30,
     "phase_timeout_seconds": 180,
@@ -13,6 +13,7 @@
   "phases": [
     {
       "name": "learn",
+      "kind": "learn-roundtrip",
       "requested_slots": 6,
       "initial_subject": "phase-runner/learn-subject.adva",
       "method": "phase-runner/learn-method.adva",
@@ -30,6 +31,24 @@
       ],
       "expected_transition_schema": "adva.free-roundtrip.transition.v0",
       "expected_frontier_schema": "adva.free-roundtrip.frontier.v0"
+    },
+    {
+      "name": "run",
+      "kind": "run-transport",
+      "requested_slots": 6,
+      "initial_subject": "phase-runner/run-program.adva",
+      "method": null,
+      "resource": null,
+      "command_template": [
+        "{backend}",
+        "run",
+        "{subject}",
+        "--output",
+        "{transition}"
+      ],
+      "expected_transition_schema": null,
+      "expected_frontier_schema": null,
+      "meaning": "Each slot makes one bounded native program run; the .adva output is recorded as bytes without schema or semantic interpretation. The subject is a byte copy of programs/native-run/arithmetic.adva pinned into the library directory. Six report slots are not six executions or six successes."
     },
     {
       "name": "free",

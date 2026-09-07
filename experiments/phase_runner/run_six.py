@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Bounded host orchestration only; no implementation of learn, free, or Seal."""
+"""Bounded host orchestration only; no implementation of learn, run, free, or Seal."""
 
 import argparse
 import hashlib
@@ -74,12 +74,27 @@ def empty_phase(name, reason):
                       for i in range(1, 7)]}
 
 
+def _check_template(template, requires, forbids):
+    if not isinstance(template, list) or not template or template[0] != "{backend}":
+        raise ValueError("command_template must start with {backend}")
+    if not all(isinstance(arg, str) for arg in template):
+        raise ValueError("command arguments must be strings")
+    for arg in template:
+        arg.format_map({key: key for key in TOKENS})
+    for token in requires:
+        if not any("{" + token + "}" in arg for arg in template):
+            raise ValueError(f"command_template omits {token}")
+    for token in forbids:
+        if any("{" + token + "}" in arg for arg in template):
+            raise ValueError(f"command_template must not use {token}")
+
+
 def check_contract(contract):
     if contract.get("schema") != SCHEMA or contract.get("version") != 0:
         raise ValueError("unsupported contract schema/version")
     phases = contract.get("phases", [])
-    if not isinstance(phases, list) or [p.get("name") for p in phases] != ["learn", "free"]:
-        raise ValueError("exactly learn then free phases are required")
+    if not isinstance(phases, list) or [p.get("name") for p in phases] != ["learn", "run", "free"]:
+        raise ValueError("exactly learn, run, free phases are required in that order")
     limits = contract.get("limits", {})
     for key, cap in CAPS.items():
         value = limits.get(key)
@@ -91,23 +106,29 @@ def check_contract(contract):
     for phase in phases:
         if phase.get("requested_slots") != 6:
             raise ValueError("each phase must have six requested slots")
+        kind = phase.get("kind")
         template = phase.get("command_template")
         if template is None:
+            if kind is not None:
+                raise ValueError("a null command_template phase must not declare a kind")
             continue  # An unformed adapter may deliberately have null inputs and schemas.
-        for key in ("initial_subject", "method", "resource", "expected_transition_schema",
-                    "expected_frontier_schema"):
-            if not isinstance(phase.get(key), str) or not phase[key]:
-                raise ValueError(f"missing phase field {key}")
-        if template is not None:
-            if not isinstance(template, list) or not template or template[0] != "{backend}":
-                raise ValueError("command_template must start with {backend}")
-            if not all(isinstance(arg, str) for arg in template):
-                raise ValueError("command arguments must be strings")
-            for arg in template:
-                arg.format_map({key: key for key in TOKENS})
-            for token in TOKENS:
-                if not any("{" + token + "}" in arg for arg in template):
-                    raise ValueError(f"command_template omits {token}")
+        if kind == "learn-roundtrip":
+            for key in ("initial_subject", "method", "resource", "expected_transition_schema",
+                        "expected_frontier_schema"):
+                if not isinstance(phase.get(key), str) or not phase[key]:
+                    raise ValueError(f"missing phase field {key}")
+            _check_template(template, requires=TOKENS, forbids=())
+        elif kind == "run-transport":
+            if not isinstance(phase.get("initial_subject"), str) or not phase["initial_subject"]:
+                raise ValueError("missing phase field initial_subject")
+            for key in ("method", "resource", "expected_transition_schema",
+                        "expected_frontier_schema"):
+                if phase.get(key) is not None:
+                    raise ValueError(f"run-transport must leave {key} null")
+            _check_template(template, requires=("backend", "subject", "transition"),
+                            forbids=("method", "resource", "frontier"))
+        else:
+            raise ValueError(f"unknown phase kind {kind!r}")
 
 
 def input_path(base, name):
@@ -142,7 +163,95 @@ def stop_process_group(process):
     return outcome
 
 
+def run_transport_phase(phase, base, report_dir, backend, limits):
+    """One bounded native `run` per slot; output bytes recorded, not interpreted."""
+    result = empty_phase(phase["name"], "NotYetRun")
+    if backend is None or not backend.is_absolute() or not backend.is_file() or not os.access(backend, os.X_OK):
+        return empty_phase(phase["name"], "BackendUnavailable")
+    # File output bounds and process-group cleanup are mandatory for execution.
+    supported = os.name == "posix" and resource is not None and hasattr(resource, "RLIMIT_AS")
+    if not supported:
+        return empty_phase(phase["name"], "RequiredProcessLimitsUnavailable")
+    cap = limits["output_bytes_per_file"]
+    phase_started = time.monotonic_ns()
+    deadline = time.monotonic() + limits["phase_timeout_seconds"]
+    try:
+        subject = input_path(base, phase["initial_subject"])
+        load_json(subject, cap)
+    except (OSError, ValueError, TypeError) as error:
+        return empty_phase(phase["name"], f"InvalidInput: {error}")
+    result.update({"input_bindings": {"subject": digest(subject, cap)}, "limits": limits,
+                   "memory_limit_applied": True, "peak_memory_bytes": None,
+                   "peak_memory_note": "Not measured; virtual-memory limit is not peak memory"})
+    terminal = None
+    for index, row in enumerate(result["steps"], 1):
+        if terminal:
+            row["reason"] = "EarlierStepStoppedPhase"
+            continue
+        remaining = deadline - time.monotonic()
+        if remaining <= 0:
+            terminal = ("Unknown", "PhaseBudgetExhausted")
+            row["reason"] = terminal[1]
+            continue
+        prefix = report_dir / f"{phase['name']}-{index:02d}"
+        transition = prefix.with_suffix(".transition.adva")
+        stdout, stderr = prefix.with_suffix(".stdout.txt"), prefix.with_suffix(".stderr.txt")
+        values = {"backend": str(backend), "subject": str(subject), "transition": str(transition)}
+        command = [arg.format_map(values) for arg in phase["command_template"]]
+        row.update({"command": command, "return_code": None, "output_bindings": {},
+                    "partial_save": False,
+                    "timeout_seconds": min(limits["call_timeout_seconds"], remaining)})
+        started = time.monotonic_ns()
+        process = None
+        try:
+            # Refuse drift of the immutable subject input between calls.
+            if digest(subject, cap) != result["input_bindings"]["subject"]:
+                raise ValueError("subject changed within phase")
+            with stdout.open("xb") as out, stderr.open("xb") as err:
+                process = subprocess.Popen(command, stdin=subprocess.DEVNULL, stdout=out, stderr=err,
+                                           shell=False, start_new_session=True,
+                                           preexec_fn=lambda: child_limits(limits), cwd=base)
+                result["actual_launches"] += 1
+                try:
+                    row["return_code"] = process.wait(timeout=row["timeout_seconds"])
+                except subprocess.TimeoutExpired:
+                    stop_process_group(process)
+                    row["return_code"] = process.returncode
+                    terminal = ("Unknown", "CallTimedOut")
+            row["stderr"], row["stderr_truncation_possible"] = read_stderr(stderr, cap)
+            row["stream_bindings"] = {"stdout": digest(stdout, cap), "stderr": digest(stderr, cap)}
+            row["stdout_truncation_possible"] = row["stream_bindings"]["stdout"]["bytes_observed"] >= cap
+            if terminal is None and row["return_code"] != 0:
+                terminal = ("BackendError", "NonzeroBackendExit")
+            if transition.exists():
+                row["output_bindings"]["transition"] = digest(transition, cap)
+            if terminal is None:
+                row.update({"status": "Completed",
+                            "reason": "NativeRunCompleted; output recorded as bytes, not interpreted"})
+        except (OSError, ValueError, TypeError, KeyError, AttributeError, subprocess.SubprocessError) as error:
+            terminal = ("BackendError", f"ProtocolFailure: {error}")
+        finally:
+            if process is not None:
+                try:
+                    # A completed leader may leave same-group descendants alive.
+                    row["process_group_cleanup"] = stop_process_group(process)
+                except OSError as error:
+                    row["preceding_outcome"] = terminal or (row["status"], row["reason"])
+                    row["process_group_cleanup"] = f"Failed: {error}"
+                    terminal = ("BackendError", f"ProcessGroupCleanupFailed: {error}")
+            row["elapsed_ns"] = time.monotonic_ns() - started
+        if terminal:
+            row.update({"status": terminal[0], "reason": terminal[1]})
+    result.update({"status": terminal[0] if terminal else "Completed",
+                   "reason": terminal[1] if terminal else "SixNativeRunsCompleted",
+                   "elapsed_ns": time.monotonic_ns() - phase_started,
+                   "final_subject": str(subject), "automatic_retries": 0})
+    return result
+
+
 def run_phase(phase, base, report_dir, backend, limits):
+    if phase.get("kind") == "run-transport":
+        return run_transport_phase(phase, base, report_dir, backend, limits)
     result = empty_phase(phase["name"], "NotYetRun")
     if phase["command_template"] is None:
         return empty_phase(phase["name"], "AdapterUnavailable")
@@ -271,16 +380,18 @@ def main(argv=None):
         check_contract(contract)
         base = args.contract.resolve().parent
         for phase in contract["phases"]:
-            if phase["name"] == "free" and reports[0]["status"] != "Completed":
-                report = empty_phase("free", "LearnPhaseNotCompleted")
+            previous = reports[-1] if reports else None
+            if previous is not None and previous["status"] != "Completed":
+                reason = f"{previous['phase'].capitalize()}PhaseNotCompleted"
+                report = empty_phase(phase["name"], reason)
                 report["adapter_available"] = phase["command_template"] is not None
-                report["blockers"] = ["LearnPhaseNotCompleted"] + ([] if report["adapter_available"] else ["AdapterUnavailable"])
+                report["blockers"] = [reason] + ([] if report["adapter_available"] else ["AdapterUnavailable"])
             else:
                 report = run_phase(phase, base, args.report_dir.resolve(), args.backend, contract["limits"])
             reports.append(report)
     except (OSError, ValueError, TypeError, KeyError, AttributeError) as caught:
         error = str(caught)
-        reports = [empty_phase(name, f"InvalidContract: {error}") for name in ("learn", "free")]
+        reports = [empty_phase(name, f"InvalidContract: {error}") for name in ("learn", "run", "free")]
     status = "Completed" if all(p["status"] == "Completed" for p in reports) else "Incomplete"
     summary = {"schema": "adva.phase-runner.report.v0", "version": 0,
                "status": status, "contract": str(args.contract.resolve()),
@@ -292,7 +403,8 @@ def main(argv=None):
         summary["contract_binding"] = digest(args.contract, 131072)
     try:
         for report in reports:
-            save(args.report_dir / f"{report['phase']}-report.json", report)
+            name = "run-phase" if report["phase"] == "run" else report["phase"]
+            save(args.report_dir / f"{name}-report.json", report)
         save(args.report_dir / "run-report.json", summary)
     except OSError as caught:
         print(f"report save failed: {caught}", file=sys.stderr)
