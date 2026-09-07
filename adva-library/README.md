@@ -11,10 +11,14 @@ repository or a claim that a language module/loader exists.
 - `pascal-witness.adva`: three presentations, the normalized conic proof,
   exact arithmetic checks, reuse and counterexamples, and retained residuals.
 - `index.json`: file types, byte digests, source attribution and native status.
-- `learn-free-six.contract.json`: orchestration contract with two six-slot
-  phases. The `free` adapter remains absent until its meaning is defined.
+- `learn-free-six.contract.json`: orchestration contract with three six-slot
+  phases: `learn` (draft #136 roundtrip), `run` (bounded native program-run
+  transport; output recorded as bytes, not interpreted) and `free` (adapter
+  remains absent until its meaning is defined).
 - `phase-runner/`: the fixed native learn method inputs copied from draft
-  PR #136, pinned to commit `4cbbfebfead3918b4da46920d55708d10f3baee8`.
+  PR #136, pinned to commit `4cbbfebfead3918b4da46920d55708d10f3baee8`, plus
+  `run-program.adva`, a byte copy of `programs/native-run/arithmetic.adva`
+  serving as the run phase's pinned subject.
 
 The Pascal files are preserved byte for byte from their delivered versions.
 They remain proposed research JSON documents. Their arithmetic is external
@@ -38,8 +42,9 @@ python experiments/phase_runner/run_six.py \
 ```
 
 With no backend supplied, this records the missing implementation and zero
-native launches. It produces `learn-report.json`, `free-report.json` and
-`run-report.json`. Six report slots are not six executions or six successes.
+native launches. It produces `learn-report.json`, `run-phase-report.json`,
+`free-report.json` and the overall `run-report.json`. Six report slots are not
+six executions or six successes.
 
 The existing learn calibration can be invoked after obtaining an executable
 built from the declared draft source:
@@ -53,7 +58,8 @@ python experiments/phase_runner/run_six.py \
 
 The command hashes the supplied binary for the record; a digest alone is not
 authenticated build provenance. Supplying main's binary does not add #136's
-draft method. The `free` phase remains blocked even when learn succeeds.
+draft method. The `free` phase remains blocked even when learn and run
+succeed.
 There is no Python substitute for the native arithmetic operation.
 
 ## Reporting and continuation
