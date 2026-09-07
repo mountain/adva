@@ -228,6 +228,48 @@ def main():
     catalog.add_argument(
         "--output", type=Path, help="optional fresh report path; otherwise stdout only"
     )
+    lineage_update = commands.add_parser(
+        "lineage-update",
+        help="Research 0156 Phase 0: build a checkpoint and a fresh chained anchor",
+    )
+    lineage_update.add_argument(
+        "--root", type=Path, default=Path(__file__).resolve().parents[2],
+        help="root containing lineage/<package>/records",
+    )
+    lineage_update.add_argument("--package", required=True,
+                                choices=["arithmetic", "geometry", "logic"])
+    lineage_update.add_argument("--global-seq", required=True, type=int)
+    lineage_update.add_argument("--anchor-out", required=True, type=Path,
+                                help="fresh anchor path; existing files are refused")
+    tamper = commands.add_parser(
+        "tamper-check",
+        help="Research 0156 Phase 0: replay lineage records and compare with anchor",
+    )
+    tamper.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[2])
+    tamper.add_argument("--anchor", required=True, type=Path)
+    tamper.add_argument("--prev-anchor", type=Path,
+                        help="optional previous anchor for chain verification")
+    tamper.add_argument("--output", type=Path, help="optional fresh report path")
+    verify = commands.add_parser(
+        "verify",
+        help="Research 0156 Phase 0: verify one credential object (inclusion/signature)",
+    )
+    verify.add_argument("--kind", required=True, choices=["inclusion", "signature"])
+    verify.add_argument("--input", required=True, type=Path)
+    verify.add_argument("--anchor", type=Path, help="required for inclusion checks")
+    verify.add_argument("--output", type=Path, help="optional fresh report path")
+    key_issue = commands.add_parser(
+        "key-issue",
+        help="Research 0156 Phase 0: issue an anchor-signing public key record",
+    )
+    key_issue.add_argument("--purpose", required=True,
+                           help="declared purpose domain; undeclared purposes are Blocked")
+    key_issue.add_argument("--home", required=True)
+    key_issue.add_argument("--policy-version", required=True)
+    key_issue.add_argument("--output", required=True, type=Path,
+                           help="fresh record path (public part only)")
+    key_issue.add_argument("--private-out", type=Path,
+                           help="optional fresh private-seed path (0600, operator custody)")
     args = parser.parse_args()
     try:
         if args.command == "math-check":
@@ -242,6 +284,43 @@ def main():
                 _save_new(args.output, report)
             print(json.dumps(report, sort_keys=True, allow_nan=False))
             return {"CatalogConsistent": 0, "Unknown": 3}.get(report["status"], 2)
+        if args.command in {"lineage-update", "tamper-check", "verify", "key-issue"}:
+            if __package__:
+                from . import lineage
+            else:
+                import lineage
+        if args.command == "lineage-update":
+            report = lineage.lineage_update(args.root, args.package, args.global_seq,
+                                            args.anchor_out)
+            print(json.dumps(report, sort_keys=True, allow_nan=False))
+            return lineage.exit_code(report["status"])
+        if args.command == "tamper-check":
+            if args.output is not None and (args.output.exists() or args.output.is_symlink()):
+                raise FileExistsError("output must be a fresh path")
+            report = lineage.tamper_check(args.root, args.anchor,
+                                          prev_anchor_path=args.prev_anchor)
+            if args.output is not None:
+                _save_new(args.output, report)
+            print(json.dumps(report, sort_keys=True, allow_nan=False))
+            return lineage.exit_code(report["status"])
+        if args.command == "verify":
+            if args.output is not None and (args.output.exists() or args.output.is_symlink()):
+                raise FileExistsError("output must be a fresh path")
+            report = lineage.verify(args.kind, args.input, anchor_path=args.anchor)
+            if args.output is not None:
+                _save_new(args.output, report)
+            print(json.dumps(report, sort_keys=True, allow_nan=False))
+            return lineage.exit_code(report["status"])
+        if args.command == "key-issue":
+            if args.output.exists() or args.output.is_symlink():
+                raise FileExistsError("output must be a fresh path")
+            report = lineage.key_issue(purpose=args.purpose, home=args.home,
+                                       policy_version=args.policy_version,
+                                       private_out=args.private_out)
+            if report["record"] is not None:
+                args.output.write_bytes(lineage.canonical_bytes(report["record"]))
+            print(json.dumps(report, sort_keys=True, allow_nan=False))
+            return lineage.exit_code(report["status"])
         if args.output.exists() or args.output.is_symlink():
             raise FileExistsError("output must be a fresh path")
         if args.command == "search-campaign":
