@@ -1,0 +1,18 @@
+{
+  "schema": "adva.graft-trace-evidence.record.v0",
+  "version": 0,
+  "date": "2026-09-07",
+  "toolchain": "rustc 1.96.1 (stable-aarch64-apple-darwin)",
+  "method": "standalone cargo project with path dependency on crates/adva-lisp; parse_module -> link_modules -> compile_function(\"client\", \"quadruple\")",
+  "key_discovery": "the adva run profile rejects call programs with 'profile requires one definition and no imports' (exit 2, state Rejected), so GraftTrace computation requires the full compilation API path, not the run transport",
+  "program": "quadruple(x) = double(double(x)); two modules (arithmetic/shared-double, client/quadruple) with import and two nested (call ...)",
+  "result": {
+    "frames": 3,
+    "root": "graft:client/quadruple:root",
+    "certificate_certified": true,
+    "certificate_checks_checked": 7,
+    "graft_result_sha256": "60530d3891f7bef6cf55c15a246f8cbda978fa8b91508c168edd0507564e71ab",
+    "graft_certificate_sha256": "7cfe28d41a846c7b3305b1047b90926c148ffef476dd3c32770bd9fec6ca4a5f"
+  },
+  "boundary": "compile-time structural certificate, not a semantic proof; synthetic program; no new native word registered"
+}

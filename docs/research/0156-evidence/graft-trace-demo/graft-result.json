@@ -1,0 +1,322 @@
+{
+  "root": "graft:client/quadruple:root",
+  "frames": [
+    {
+      "id": "graft:client/quadruple:root",
+      "scope_path": [],
+      "kind": "root",
+      "parent": null,
+      "children": [
+        "graft:client/quadruple:root-body"
+      ],
+      "region_in_parent": {
+        "kind": "root"
+      },
+      "caller": {
+        "module": "client",
+        "function": "quadruple"
+      },
+      "callee": {
+        "module": "client",
+        "function": "quadruple"
+      },
+      "boundary": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "arguments": [],
+      "holes": [
+        {
+          "hole_index": 0,
+          "hole": {
+            "name": "x",
+            "value_type": "real"
+          },
+          "argument_index": null,
+          "argument_output_index": 0,
+          "entry_wire": {
+            "producer": {
+              "kind": "input",
+              "index": 0
+            },
+            "output_index": 0,
+            "value_type": "real",
+            "lineage": [
+              "occ:0"
+            ]
+          }
+        }
+      ],
+      "body_region": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "entry_wires": [
+        {
+          "producer": {
+            "kind": "input",
+            "index": 0
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:0"
+          ]
+        }
+      ],
+      "exit_wires": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 3
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:3",
+            "occ:5",
+            "occ:4",
+            "occ:6"
+          ]
+        }
+      ],
+      "call_history_index": null
+    },
+    {
+      "id": "graft:client/quadruple:root-body",
+      "scope_path": [
+        {
+          "kind": "root_body"
+        }
+      ],
+      "kind": "call",
+      "parent": "graft:client/quadruple:root",
+      "children": [
+        "graft:client/quadruple:root-body/call-argument-0"
+      ],
+      "region_in_parent": {
+        "kind": "root_body"
+      },
+      "caller": {
+        "module": "client",
+        "function": "quadruple"
+      },
+      "callee": {
+        "module": "arithmetic",
+        "function": "shared-double"
+      },
+      "boundary": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "arguments": [
+        {
+          "argument_index": 0,
+          "nodes": [
+            0,
+            1
+          ],
+          "outputs": [
+            {
+              "producer": {
+                "kind": "node",
+                "node": 1
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:1",
+                "occ:2"
+              ]
+            }
+          ]
+        }
+      ],
+      "holes": [
+        {
+          "hole_index": 0,
+          "hole": {
+            "name": "x",
+            "value_type": "real"
+          },
+          "argument_index": 0,
+          "argument_output_index": 0,
+          "entry_wire": {
+            "producer": {
+              "kind": "node",
+              "node": 1
+            },
+            "output_index": 0,
+            "value_type": "real",
+            "lineage": [
+              "occ:1",
+              "occ:2"
+            ]
+          }
+        }
+      ],
+      "body_region": [
+        2,
+        3
+      ],
+      "entry_wires": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 1
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:1",
+            "occ:2"
+          ]
+        }
+      ],
+      "exit_wires": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 3
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:3",
+            "occ:5",
+            "occ:4",
+            "occ:6"
+          ]
+        }
+      ],
+      "call_history_index": 5
+    },
+    {
+      "id": "graft:client/quadruple:root-body/call-argument-0",
+      "scope_path": [
+        {
+          "kind": "root_body"
+        },
+        {
+          "kind": "call_argument",
+          "index": 0
+        }
+      ],
+      "kind": "call",
+      "parent": "graft:client/quadruple:root-body",
+      "children": [],
+      "region_in_parent": {
+        "kind": "argument",
+        "index": 0
+      },
+      "caller": {
+        "module": "client",
+        "function": "quadruple"
+      },
+      "callee": {
+        "module": "arithmetic",
+        "function": "shared-double"
+      },
+      "boundary": {
+        "inputs": [
+          {
+            "name": "x",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "arguments": [
+        {
+          "argument_index": 0,
+          "nodes": [],
+          "outputs": [
+            {
+              "producer": {
+                "kind": "input",
+                "index": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0"
+              ]
+            }
+          ]
+        }
+      ],
+      "holes": [
+        {
+          "hole_index": 0,
+          "hole": {
+            "name": "x",
+            "value_type": "real"
+          },
+          "argument_index": 0,
+          "argument_output_index": 0,
+          "entry_wire": {
+            "producer": {
+              "kind": "input",
+              "index": 0
+            },
+            "output_index": 0,
+            "value_type": "real",
+            "lineage": [
+              "occ:0"
+            ]
+          }
+        }
+      ],
+      "body_region": [
+        0,
+        1
+      ],
+      "entry_wires": [
+        {
+          "producer": {
+            "kind": "input",
+            "index": 0
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:0"
+          ]
+        }
+      ],
+      "exit_wires": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 1
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:1",
+            "occ:2"
+          ]
+        }
+      ],
+      "call_history_index": 1
+    }
+  ]
+}

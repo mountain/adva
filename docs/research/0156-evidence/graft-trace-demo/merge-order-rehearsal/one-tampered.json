@@ -1,0 +1,112 @@
+{
+  "schema": "adva.merge-order.rehearsal.v0",
+  "version": 0,
+  "scenario": "one-tampered",
+  "parties": [
+    {
+      "id": "P1",
+      "value": 14.0
+    },
+    {
+      "id": "P2",
+      "value": 14.0
+    },
+    {
+      "id": "P3",
+      "value": 14.0
+    },
+    {
+      "id": "P4",
+      "value": 15.0
+    },
+    {
+      "id": "P5",
+      "value": 14.0
+    },
+    {
+      "id": "P6",
+      "value": 14.0
+    }
+  ],
+  "note": "synthetic rehearsal of 0156 section 14; not executed merge evidence",
+  "steps": [
+    {
+      "order_rank": 1,
+      "order_score": 0.0,
+      "left": [
+        "P1"
+      ],
+      "right": [
+        "P2"
+      ],
+      "left_value": 14.0,
+      "right_value": 14.0,
+      "value_assertion": "Verified",
+      "tie_break": "party-index lexicographic (fixed, replayable)"
+    },
+    {
+      "order_rank": 2,
+      "order_score": 0.0,
+      "left": [
+        "P3"
+      ],
+      "right": [
+        "P5"
+      ],
+      "left_value": 14.0,
+      "right_value": 14.0,
+      "value_assertion": "Verified",
+      "tie_break": "party-index lexicographic (fixed, replayable)"
+    },
+    {
+      "order_rank": 3,
+      "order_score": 0.0,
+      "left": [
+        "P6"
+      ],
+      "right": [
+        "P1",
+        "P2"
+      ],
+      "left_value": 14.0,
+      "right_value": 14.0,
+      "value_assertion": "Verified",
+      "tie_break": "party-index lexicographic (fixed, replayable)"
+    },
+    {
+      "order_rank": 4,
+      "order_score": 0.0,
+      "left": [
+        "P3",
+        "P5"
+      ],
+      "right": [
+        "P6",
+        "P1",
+        "P2"
+      ],
+      "left_value": 14.0,
+      "right_value": 14.0,
+      "value_assertion": "Verified",
+      "tie_break": "party-index lexicographic (fixed, replayable)"
+    },
+    {
+      "order_rank": 5,
+      "order_score": 1.0,
+      "left": [
+        "P4"
+      ],
+      "right": [
+        "P3",
+        "P5",
+        "P6",
+        "P1",
+        "P2"
+      ],
+      "left_value": 15.0,
+      "right_value": 14.0,
+      "value_assertion": "Rejected",
+      "tie_break": "party-index lexicographic (fixed, replayable)"
+    }
+  ]
+}
