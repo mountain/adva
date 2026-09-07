@@ -1,0 +1,11 @@
+Demo 1: Groth16 zk-SNARK —— 证明 y = x³ + x + 5 的解存在（zksnake）
+setup 耗时:   0.281s
+prove 耗时:   0.096s
+verify 耗时:  1.591s
+正确公开值 y=35 的验证结果: ✓ 通过
+伪造公开值 y=36     的验证结果: ✗ 失败（符合预期）
+Demo 2: Schnorr NIZK —— 证明知道离散对数（纯标准库 + Fiat-Shamir）
+prove 耗时:  96 μs
+verify 耗时: 98 μs
+对正确公开值 h     的验证: ✓ 通过
+对伪造公开值 h_fake 的验证: ✗ 失败（符合预期）

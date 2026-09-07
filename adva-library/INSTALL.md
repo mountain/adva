@@ -1,7 +1,9 @@
 # NIZK Demo 分版本安装说明
 
 本说明覆盖 `nizk_demo.py` 的全部安装路径，按 Python 版本给出结论与命令。
-标注「**实测**」的结论在本机（macOS arm64，Homebrew Python 3.14.6 / 3.13）验证过；
+下表及第 6 节原有「**实测**」结论来自 macOS arm64，Homebrew Python 3.14.6 / 3.13；
+另有 2026-09-07 的 [Linux x86_64 / Python 3.11.15 验收记录](validation/nizk-demo-20260907/README.md)，
+覆盖路径 A 和 C，附依赖版本、wheel 摘要和脱敏结果摘录。
 其余结论依据撰写时查询的 PyPI 元数据（`requires_python` 与 wheel 标签）。
 
 ---
@@ -39,11 +41,17 @@ GitHub 仓库的**纯 Python 版本**（提交 `fc9a81b`，已检出在 `vendor/
 | Linux（Debian/Ubuntu） | `sudo apt install python3 python3-venv python3-pip` |
 | Windows | 从 [python.org](https://www.python.org/downloads/) 安装 3.8–3.14 任一版本 |
 
-### 2.2 获取纯 Python 版 zksnake（若使用本仓库可跳过）
+### 2.2 获取纯 Python 版 zksnake（确认源码存在后才可跳过）
+
+以下命令从 `adva-library` 目录执行。demo 实际导入的是 `vendor/zksnake-py/src`。
+仓库目前缺少 `.gitmodules`；只有 Git 引用或空目录不代表源码已恢复，
+不能假定 clone 主仓库后即可跳过此步。仅在目标目录不存在或为空时克隆；
+若已有源码，先检查 HEAD 和本地改动，不要覆盖已有工作。
 
 ```bash
-git clone https://github.com/Merricx/zksnake.git vendor/zksnake
-cd vendor/zksnake && git checkout fc9a81b && cd ../..
+git clone https://github.com/Merricx/zksnake.git vendor/zksnake-py
+git -C vendor/zksnake-py checkout --detach fc9a81b3862643aef352b9aa49b67793593bede0
+git -C vendor/zksnake-py rev-parse HEAD
 ```
 
 ### 2.3 创建虚拟环境并安装依赖
