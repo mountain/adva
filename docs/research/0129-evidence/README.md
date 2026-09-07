@@ -1,0 +1,23 @@
+# Bounded breakthrough trials（Research 0129 证据，2026-09-07）
+
+状态：研究本地证据；两次有限试验，按 0129 六要素合同执行。
+
+## Run 1（contract-run1.json）
+
+- 问题：length-20 ±1 序列族内找低能量序列；10,000 步、seed 1、workers 1；
+- 结果：**energy 34，merit 5.882352941176**（`run1-report.json`），
+  独立 `verify` 重算 19 个相关值一致；负控制（篡改 energy）被拒。
+
+## Run 2（contract-run2.json，0129 §4 续试）
+
+- 修订：length 20 → 21；其余不变（同检查器、同种子、同预算）；
+  理由：相邻族的有用新证据；
+- 结果：**energy 34，merit 6.485294117647**（`run2-report.json`），
+  独立 `verify` 重算 20 个相关值一致；负控制
+  `run2-tampered.json` 被拒（"stored energy 35 differs from exact energy 34"）。
+
+## 边界
+
+- 两次都是**采样搜索**，不声称族内最优（exhaustive 是单独命令，未跑）；
+- 结果只对各自声明族有效；不产生新原生词、无语言形成步骤；
+- 预算均未耗尽（各约 0.3s / 120s 上限）；续试计数 2，无自动重启。

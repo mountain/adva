@@ -1,0 +1,61 @@
+{
+  "schema": "adva.bounded-breakthrough.contract.v0",
+  "version": 0,
+  "date": "2026-09-07",
+  "protocol": "Research 0129 bounded breakthrough: six-element run contract written before launch",
+  "executor": "adva-labs-search (target/debug), bounded triadic LABS search",
+  "1_question_and_level": {
+    "input_family": "All length-20 binary sequences over {-1, +1} (2^20 candidates)",
+    "requested_conclusion": "Within the declared budget, find and independently verify one low-energy sequence together with its energy and merit factor",
+    "level": "Computation-level finite search; the 'reveal' working level is not interpreted and no physical energy is asserted",
+    "resolving_witness": "The independently rechecked run report (best sequence, energy, correlations); exhaustion yields Unknown with its stopping reason"
+  },
+  "2_imported_knowledge": {
+    "domains": [
+      {
+        "source": "Finite aperiodic autocorrelation arithmetic",
+        "result": "E(s) = sum_k C_k(s)^2 for off-peak correlations C_k; merit factor = N^2 / (2E)",
+        "scope": "Exact integer arithmetic over fixed length N=20",
+        "side_conditions": "Binary entries in {-1, +1}; deterministic SplitMix64 seeds"
+      },
+      {
+        "source": "adva-labs-search research programs",
+        "result": "temporal / spatial / constructive deterministic search programs",
+        "scope": "Repository-local bounded experiment; not an external solver claim"
+      }
+    ],
+    "conjectures": "none imported; the search itself is the experiment",
+    "observations": "LABS is a known hard finite combinatorial family; results here are trial evidence only"
+  },
+  "3_interface": {
+    "translation": "Candidate sequence -> (energy, merit_factor) via exact correlation arithmetic in Rust",
+    "required_equality": "report.verify() must independently recompute the same correlations and merit factor",
+    "retained_distinctions": "A score orders admissible proposals only; it is not physical energy, not global optimality, and not a native operation",
+    "forgotten_distinctions": "none; the checker refuses malformed reports"
+  },
+  "4_protected_obligations": [
+    "No exhaustive-optimality claim at length 20 from this sampled search (exhaustive is a separate N<=25 command, not run here)",
+    "Resource exhaustion reports Unknown and retains the stopping reason; no automatic fuel reset",
+    "No new native word, vocabulary promotion, or language-formation step follows from a finite search result",
+    "The run report, checkpoint and contract bytes are retained as the audit trail"
+  ],
+  "5_acceptance_and_verification": {
+    "checker": "adva-labs-search verify <report> (independent recomputation)",
+    "success": "Search completes within budget AND report.verify() passes AND the independent verify command recomputes matching values",
+    "negative_controls": [
+      "A one-field tampered copy of the report must be rejected by verify"
+    ],
+    "unresolved_outcomes": "Time or step budget exhaustion -> Unknown with reason; checker failure -> trial failed, artifacts retained"
+  },
+  "6_resources_and_exit": {
+    "length": 20,
+    "iterations": 10000,
+    "workers": 1,
+    "seed": 1,
+    "checkpoint_every": 5000,
+    "wall_clock_limit_s": 120,
+    "continuation_count": 1,
+    "output_bytes_bound": 262144,
+    "enforcement": "Python supervisor enforces the wall-clock bound and captures exit codes; artifact sizes checked after exit"
+  }
+}
