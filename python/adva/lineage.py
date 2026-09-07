@@ -1,13 +1,23 @@
-"""Research 0156 Phase 0: documentary tamper-evident lineage for finite
-arithmetic discovery sequences.
+"""Research 0156 Phases 0-1: documentary tamper-evident lineage for finite
+arithmetic discovery sequences, with the Phase 1 disclosure boundary.
 
 Scope and boundaries (mirror docs/research/0156-tamper-evident-arithmetic-lineage.md):
 
 - This module is a **documentary integrity adapter**. It hashes, chains and
   pins bytes. It performs **no semantic judgment**: a record whose shape is
   valid here has not been checked as a mathematical statement.
-- Stdlib-only (hashlib/json/pathlib/time). No ZKP material is implemented in
-  Phase 0; `secret_slot` must be absent, and no native Seal is issued.
+- Stdlib-only (hashlib/json/pathlib/time/secrets). Phase 1 implements the
+  disclosure boundary: a record may carry a ``secret_slot`` holding a Pedersen
+  commitment plus a Schnorr NIZK (Fiat-Shamir) proof of knowledge of an
+  opening. The hidden content never enters the chain in plaintext; after
+  disclosure anyone verifies the opening directly. Phase 2 (predicate SNARK)
+  is not implemented, and no native Seal is issued.
+- The Phase 1 group is a pinned 128-bit safe-prime subgroup (research scale,
+  NOT production scale). Its parameters are versioned constants below; the
+  second generator's discrete log is derived from a nothing-up-my-sleeve hash
+  and is known, which is documented and acceptable only for the disclosure
+  boundary where hiding relies on the commitment equation, not on an unknown
+  relation. Production use requires an independent group-parameter decision.
 - Ed25519 support is provided only when the optional ``cryptography`` package
   is importable (see Research 0155 section 3). Without it, signature-related
   operations report ``Unknown`` with a retained reason, never a fallback
@@ -29,6 +39,7 @@ from __future__ import annotations
 import contextlib
 import hashlib
 import json
+import secrets
 import time
 from collections.abc import Callable
 from pathlib import Path
@@ -44,6 +55,14 @@ VERIFY_REPORT_SCHEMA = "adva.arithmetic-lineage.verify-report.v0"
 KEY_ISSUE_RECORD_SCHEMA = "adva.key-issue.record.v0"
 KEY_ISSUE_REPORT_SCHEMA = "adva.key-issue.report.v0"
 UPDATE_REPORT_SCHEMA = "adva.arithmetic-lineage.update-report.v0"
+DISCLOSURE_REQUEST_SCHEMA = "adva.arithmetic-lineage.disclosure-request.v0"
+
+# Phase 1 pinned group parameters (research scale; see module docstring).
+# q = 2r + 1 safe prime (128-bit); G, H are generators of the r-order subgroup.
+PHASE1_Q = 322872484535397780528067544767737952967
+PHASE1_R = 161436242267698890264033772383868976483
+PHASE1_G = 25
+PHASE1_H = 71533574933411570582921841641289478467
 
 PACKAGES = frozenset({"arithmetic", "geometry", "logic"})
 VERDICTS = frozenset({"Verified", "Rejected", "Unknown"})
@@ -292,8 +311,10 @@ def validate_record(value: Any, *, seq: int, package: str) -> dict[str, Any]:
     for key, amount in budget.items():
         _nonnegative_int(amount, f"{context}.budget_consumed.{key}")
 
-    if "secret_slot" in record and record["secret_slot"] is not None:
-        raise _fail(context, "secret_slot is not implemented in Phase 0 and must be absent")
+    if "secret_slot" in record:
+        slot = record["secret_slot"]
+        if slot is not None:
+            _validate_secret_slot(slot, context)
 
     digest = _hex(record.get("digest"), f"{context}.digest", 64)
     body = {key: value for key, value in record.items() if key != "digest"}
@@ -598,6 +619,110 @@ def sign_ed25519(private_seed_hex: str, message: Any) -> str:
 
 
 # ---------------------------------------------------------------------------
+# Phase 1 disclosure boundary: Pedersen commitments + Schnorr NIZK
+# ---------------------------------------------------------------------------
+
+def _decimal(value: Any, context: str) -> int:
+    text = _text(value, context, maximum=64)
+    if not text.isdigit() or (len(text) > 1 and text[0] == "0"):
+        raise _fail(context, "expected a canonical decimal string without leading zeros")
+    return int(text)
+
+
+def content_hash(content: Any) -> int:
+    """Hash canonical bytes of a JSON document into the Phase 1 exponent range."""
+    digest = hashlib.sha256(canonical_bytes(content)).digest()
+    return int.from_bytes(digest, "big") % PHASE1_R
+
+
+def commit_content(content: Any, blinding: int | None = None) -> tuple[int, int]:
+    """Pedersen commitment C = G^{H(content)} * H^{blinding} (mod Q).
+
+    Returns (C, blinding); a fresh blinding is drawn from the system CSPRNG
+    when none is supplied. The blinding must remain secret until disclosure.
+    """
+    if blinding is None:
+        blinding = secrets.randbelow(PHASE1_R - 1) + 1
+    if not 1 <= blinding < PHASE1_R:
+        raise ValueError("blinding must be in [1, R)")
+    value = pow(PHASE1_G, content_hash(content), PHASE1_Q) * \
+        pow(PHASE1_H, blinding, PHASE1_Q) % PHASE1_Q
+    return value, blinding
+
+
+def _challenge(*values: Any) -> int:
+    digest = hashlib.sha256(
+        canonical_bytes([str(value) for value in values])).digest()
+    return int.from_bytes(digest, "big") % PHASE1_R
+
+
+def prove_opening(content: Any, blinding: int) -> dict[str, int]:
+    """Schnorr NIZK (Fiat-Shamir) of knowledge of an opening (m, b) of C."""
+    commitment, _ = commit_content(content, blinding)
+    k1 = secrets.randbelow(PHASE1_R - 1) + 1
+    k2 = secrets.randbelow(PHASE1_R - 1) + 1
+    t = pow(PHASE1_G, k1, PHASE1_Q) * pow(PHASE1_H, k2, PHASE1_Q) % PHASE1_Q
+    challenge = _challenge(PHASE1_Q, PHASE1_G, PHASE1_H, commitment, t)
+    s1 = (k1 + challenge * content_hash(content)) % PHASE1_R
+    s2 = (k2 + challenge * blinding) % PHASE1_R
+    return {"t": t, "s1": s1, "s2": s2}
+
+
+def verify_opening(commitment: int, proof: dict[str, int]) -> bool:
+    """Public verification that the prover knows an opening of ``commitment``."""
+    t, s1, s2 = proof["t"], proof["s1"], proof["s2"]
+    if not (1 <= t < PHASE1_Q and 0 <= s1 < PHASE1_R and 0 <= s2 < PHASE1_R):
+        return False
+    challenge = _challenge(PHASE1_Q, PHASE1_G, PHASE1_H, commitment, t)
+    left = pow(PHASE1_G, s1, PHASE1_Q) * pow(PHASE1_H, s2, PHASE1_Q) % PHASE1_Q
+    right = t * pow(commitment, challenge, PHASE1_Q) % PHASE1_Q
+    return left == right
+
+
+def verify_disclosure(content: Any, blinding: int, commitment: int) -> bool:
+    """Direct opening check after disclosure: C == G^{H(content)} * H^{blinding}."""
+    expected, _ = commit_content(content, blinding)
+    return expected == commitment
+
+
+def build_secret_slot(content: Any, blinding: int | None = None) -> tuple[dict[str, Any], int]:
+    """Build a record secret_slot for hidden content; returns (slot, blinding).
+
+    The slot holds only the commitment and the public NIZK; the blinding and
+    the content stay with the discloser until the disclosure step.
+    """
+    commitment, blinding = commit_content(content, blinding)
+    proof = prove_opening(content, blinding)
+    slot = {
+        "commitment": {"q": str(PHASE1_Q), "g": str(PHASE1_G),
+                       "h": str(PHASE1_H), "c": str(commitment)},
+        "proof": {"t": str(proof["t"]), "s1": str(proof["s1"]),
+                  "s2": str(proof["s2"])},
+    }
+    return slot, blinding
+
+
+def _validate_secret_slot(slot: Any, context: str) -> None:
+    """Validate a record secret_slot: pinned group, well-formed, proof verifies."""
+    target = _object(slot, frozenset({"commitment", "proof"}), f"{context}.secret_slot")
+    commitment = _object(target.get("commitment"), frozenset({"q", "g", "h", "c"}),
+                         f"{context}.secret_slot.commitment")
+    q = _decimal(commitment.get("q"), f"{context}.secret_slot.commitment.q")
+    g = _decimal(commitment.get("g"), f"{context}.secret_slot.commitment.g")
+    h = _decimal(commitment.get("h"), f"{context}.secret_slot.commitment.h")
+    c = _decimal(commitment.get("c"), f"{context}.secret_slot.commitment.c")
+    if (q, g, h) != (PHASE1_Q, PHASE1_G, PHASE1_H):
+        raise _fail(context, "secret_slot group parameters must equal the pinned Phase 1 constants")
+    proof = _object(target.get("proof"), frozenset({"t", "s1", "s2"}),
+                    f"{context}.secret_slot.proof")
+    t = _decimal(proof.get("t"), f"{context}.secret_slot.proof.t")
+    s1 = _decimal(proof.get("s1"), f"{context}.secret_slot.proof.s1")
+    s2 = _decimal(proof.get("s2"), f"{context}.secret_slot.proof.s2")
+    if not verify_opening(c, {"t": t, "s1": s1, "s2": s2}):
+        raise _fail(context, "secret_slot NIZK proof does not verify against the commitment")
+
+
+# ---------------------------------------------------------------------------
 # tamper-check
 # ---------------------------------------------------------------------------
 
@@ -789,6 +914,22 @@ def verify(kind: str, input_path: Path, *, anchor_path: Path | None = None,
                                 request.get("signature_hex"))
             report.update(status="Verified" if ok else "Rejected",
                           detail={"key_id": request.get("key_id")})
+            return report
+        if kind == "disclosure":
+            request = _object(document, frozenset({
+                "schema", "version", "commitment", "content", "blinding", "proof",
+            }), "disclosure request")
+            if request.get("schema") != DISCLOSURE_REQUEST_SCHEMA \
+                    or request.get("version") != 0:
+                raise _fail("disclosure request", "schema mismatch")
+            _validate_secret_slot(
+                {"commitment": request.get("commitment"),
+                 "proof": request.get("proof")}, "disclosure request")
+            commitment = int(request["commitment"]["c"])
+            blinding = _decimal(request.get("blinding"), "disclosure request.blinding")
+            ok = verify_disclosure(request.get("content"), blinding, commitment)
+            report.update(status="Verified" if ok else "Rejected",
+                          detail={"commitment_c": request["commitment"]["c"]})
             return report
         raise ValueError(f"unknown verify kind: {kind}")
     except BudgetExceeded as error:

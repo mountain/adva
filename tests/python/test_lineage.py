@@ -1,8 +1,9 @@
-"""Research 0156 Phase 0: documentary tamper-evident lineage tests.
+"""Research 0156 Phases 0-1: documentary tamper-evident lineage tests.
 
 These tests cover byte integrity, chain replay, divergence localization,
-Merkle inclusion, anchor chaining and the three CLI surface commands. They
-perform no semantic judgment and require no optional Ed25519 backend
+Merkle inclusion, anchor chaining, the CLI surface commands and the Phase 1
+disclosure boundary (Pedersen commitment, Schnorr NIZK, disclosure verify).
+They perform no semantic judgment and require no optional Ed25519 backend
 (no-backend paths must report Unknown, never a downgraded "hash only" result).
 """
 
@@ -336,3 +337,73 @@ def test_cli_key_issue_bad_purpose_blocked(tmp_path):
                      "--policy-version", "v0", "--output", str(output))
     assert result.returncode == 2
     assert "Blocked" in result.stdout
+
+
+# --- Phase 1 disclosure boundary --------------------------------------------
+
+def secret_record(seq, slot):
+    body = {
+        "schema": lineage.RECORD_SCHEMA, "version": 0, "package": "arithmetic",
+        "seq": seq, "proposition": "undisclosed-candidate",
+        "environment": {"note": "hidden content committed; see secret_slot"},
+        "checker": {"id": "merge-residual-v0", "version": "0"},
+        "verdict": "Unknown", "residual": None,
+        "cites_same_home": [seq - 1] if seq > 1 else [], "cites_cross": [],
+        "budget_consumed": {"units": 1}, "secret_slot": slot,
+    }
+    body["digest"] = lineage.sha256_hex(lineage.canonical_bytes(body))
+    return body
+
+
+def test_phase1_commitment_proof_and_disclosure():
+    hidden = {"answer": 14}
+    slot, blinding = lineage.build_secret_slot(hidden)
+    commitment = int(slot["commitment"]["c"])
+    proof = {key: int(value) for key, value in slot["proof"].items()}
+    assert lineage.verify_opening(commitment, proof)
+    tampered = dict(proof, t=(proof["t"] + 1) % lineage.PHASE1_Q)
+    assert not lineage.verify_opening(commitment, tampered)
+    assert lineage.verify_disclosure(hidden, blinding, commitment)
+    assert not lineage.verify_disclosure({"answer": 15}, blinding, commitment)
+
+
+def test_phase1_secret_slot_record_on_chain(tmp_path):
+    slot, _blinding = lineage.build_secret_slot({"answer": 14})
+    write_record(tmp_path, "arithmetic", 1, secret_record(1, slot))
+    report = lineage.lineage_update(tmp_path, "arithmetic", 0,
+                                    tmp_path / "lineage" / "anchors" / "0000.json")
+    assert report["status"] == "CheckpointBuilt"
+    anchor = Path(report["anchor"]["path"])
+    assert lineage.tamper_check(tmp_path, anchor)["status"] == "Intact"
+
+
+def test_phase1_broken_proof_and_foreign_group_rejected(tmp_path):
+    slot, _blinding = lineage.build_secret_slot({"answer": 14})
+    broken = secret_record(1, {
+        "commitment": slot["commitment"],
+        "proof": dict(slot["proof"], s1="1"),
+    })
+    with pytest.raises(ValueError):
+        lineage.validate_record(broken, seq=1, package="arithmetic")
+    foreign = secret_record(1, {
+        "commitment": dict(slot["commitment"], q=str(lineage.PHASE1_Q + 6)),
+        "proof": slot["proof"],
+    })
+    with pytest.raises(ValueError):
+        lineage.validate_record(foreign, seq=1, package="arithmetic")
+
+
+def test_cli_verify_disclosure_exit_codes(tmp_path):
+    hidden = {"answer": 14}
+    slot, blinding = lineage.build_secret_slot(hidden)
+    request = {"schema": lineage.DISCLOSURE_REQUEST_SCHEMA, "version": 0,
+               "commitment": slot["commitment"], "content": hidden,
+               "blinding": str(blinding), "proof": slot["proof"]}
+    good = tmp_path / "disclosure.json"
+    good.write_bytes(lineage.canonical_bytes(request))
+    result = run_cli("verify", "--kind", "disclosure", "--input", str(good))
+    assert result.returncode == 0
+    request["content"] = {"answer": 15}
+    good.write_bytes(lineage.canonical_bytes(request))
+    result = run_cli("verify", "--kind", "disclosure", "--input", str(good))
+    assert result.returncode == 2

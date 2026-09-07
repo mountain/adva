@@ -252,9 +252,11 @@ def main():
     tamper.add_argument("--output", type=Path, help="optional fresh report path")
     verify = commands.add_parser(
         "verify",
-        help="Research 0156 Phase 0: verify one credential object (inclusion/signature)",
+        help="Research 0156 Phases 0-1: verify one credential object "
+             "(inclusion/signature/disclosure)",
     )
-    verify.add_argument("--kind", required=True, choices=["inclusion", "signature"])
+    verify.add_argument("--kind", required=True,
+                        choices=["inclusion", "signature", "disclosure"])
     verify.add_argument("--input", required=True, type=Path)
     verify.add_argument("--anchor", type=Path, help="required for inclusion checks")
     verify.add_argument("--output", type=Path, help="optional fresh report path")
