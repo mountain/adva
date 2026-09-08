@@ -167,8 +167,8 @@ def test_directory_partition_contract_is_a_proposal_with_one_home():
     assert entry["checker"] is None
     assert entry["evidence"] == []
     assert [ref["path"] for ref in entry["materials"]] == [
-        "docs/research/0161-library-directory-partition-contract.md",
-        "docs/research/0161-library-directory-partition-contract.json",
+        "docs/adr/0043-directory-partition-contract.md",
+        "docs/adr/0043-directory-partition-contract.json",
     ]
     for topic in catalog.TOPICS:
         index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())

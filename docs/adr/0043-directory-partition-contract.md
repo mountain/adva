@@ -1,8 +1,8 @@
-# Research 0161：adva-library 目录分割工程合同
+# ADR 0043：adva-library 目录分割工程合同
 
 日期：2026-09-08。状态：`proposed-document`，供评审；不改变任何检查器、不授予任何原生权限、不修改增长义务。
 起草：assistant（基于与明理的边界讨论）；评审人：Mingli Yuan。
-合同数据文件：`docs/research/0161-library-directory-partition-contract.json`
+合同数据文件：`docs/adr/0043-directory-partition-contract.json`
 （schema `adva.library-directory-partition.contract.research`）。
 
 ## 1. 中文交接
@@ -55,11 +55,11 @@ adva-library 自 2026-09-06 起持续生长：Pascal 原件、phase-runner 编�
 - 本地 AEG 点号目录（.breakthrough、.campaign 等）是"没有 drop 的活帧"：
   运行与检查已完成，但帧未释放到仓库内指定归宿（docs/research/0NNN-evidence/）。
   本合同 cross_directory_rules 第 5 条即补这条规则；本次提交执行第一次归档
-  （Run 8–11 补入 0129-evidence，advance-loop 登记为 0160 证据）。
+  （Run 8–11 补入 0129-evidence，advance-loop 登记为 0162 证据）。
 
 ## 5. 工程推进路线
 
-1. 归档未入仓推进（本次完成：Run 8–11、0160；merge-six keys/、.rust-run100、
+1. 归档未入仓推进（本次完成：Run 8–11、0162；merge-six keys/、.rust-run100、
    archive-run2..5 待按合同分类）；
 2. free 谓词工程化（0157 评审 → acceptance schema → learn-free-six 合同 v1 →
    原生 free 的 Rust 设计门；drop 作为 F2 候选进入该门）；
@@ -80,4 +80,4 @@ adva-library 自 2026-09-06 起持续生长：Pascal 原件、phase-runner 编�
 - 不注册新原生命令（free/drop 无原生实现，本文件不注册）；
 - 不改变 learn-free-six.contract.json 的 free 阶段（仍 AdapterUnavailable/NotRun）；
 - 不修改增长义务与 documentary seal（保持 Open / NotIssued）；
-- 不修改任何检查器；本文件是 proposed-document，不是已接受的 ADR。
+- 不修改任何检查器；本 ADR 状态为 proposed（尚未 accepted）；math 目录学条目为 proposed-document。
