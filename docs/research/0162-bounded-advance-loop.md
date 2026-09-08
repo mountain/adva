@@ -1,6 +1,7 @@
 # Research 0162：有界推进循环（bounded advance loop）证据登记
 
-日期：2026-09-08（运行 2026-09-07）。状态：bounded evidence registration；
+日期：2026-09-08（运行 2026-09-07）。状态：bounded evidence registration。
+编号注：本地暂用 0162；远端研究号推进快（0159/0160 已占），推送前按当时空闲号重排。
 循环状态 **Unknown**。循环设计：assistant；运行与授权边界：按 Research 0129
 §4 / 0139 纪律。
 
