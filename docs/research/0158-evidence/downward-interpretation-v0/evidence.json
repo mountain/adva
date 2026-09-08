@@ -1,0 +1,455 @@
+{
+  "arithmetic": [
+    {
+      "abstract_witness": 4,
+      "other_roots": [
+        5
+      ],
+      "roots": [
+        2,
+        5
+      ],
+      "selected": 2,
+      "status": "Lifted",
+      "target": 0
+    },
+    {
+      "abstract_witness": 1,
+      "other_roots": [
+        6
+      ],
+      "roots": [
+        1,
+        6
+      ],
+      "selected": 1,
+      "status": "Lifted",
+      "target": 1
+    },
+    {
+      "abstract_witness": 5,
+      "other_roots": [],
+      "roots": [],
+      "selected": null,
+      "status": "NoLiftFiniteScope",
+      "target": 2
+    },
+    {
+      "abstract_witness": 2,
+      "other_roots": [
+        4
+      ],
+      "roots": [
+        3,
+        4
+      ],
+      "selected": 3,
+      "status": "Lifted",
+      "target": 3
+    },
+    {
+      "abstract_witness": 6,
+      "other_roots": [],
+      "roots": [],
+      "selected": null,
+      "status": "NoLiftFiniteScope",
+      "target": 4
+    },
+    {
+      "abstract_witness": 3,
+      "other_roots": [],
+      "roots": [],
+      "selected": null,
+      "status": "NoLiftFiniteScope",
+      "target": 5
+    },
+    {
+      "abstract_witness": 0,
+      "other_roots": [],
+      "roots": [
+        0
+      ],
+      "selected": 0,
+      "status": "Lifted",
+      "target": 6
+    }
+  ],
+  "contract_sha256": "7850c7710845df916d7c62f149258b635064bc7a455fcfbf20634f3345a01252",
+  "costs": {
+    "by_phase": {
+      "arithmetic_header": 14,
+      "arithmetic_proposal": 56,
+      "arithmetic_row": 98,
+      "closure": 10108,
+      "countermodel": 7,
+      "global_compatibility": 8,
+      "relation": 689,
+      "relational_pair": 37477,
+      "return_header": 18,
+      "return_proposal": 17,
+      "return_row": 36,
+      "serialization": 4670
+    },
+    "elapsed_before_final_checkpoint_seconds": 0.059976487995299976,
+    "final_checkpoint_budget": "one exclusive write, at most 1 MiB; OS resource limits remain active",
+    "logical_work_units": 53198,
+    "peak_rss_kib": 11520
+  },
+  "countermodels": {
+    "balanced_forgery": {
+      "claimed_response_tokens": 1,
+      "link_valid": false,
+      "payload": {
+        "x": 2,
+        "y": 1
+      },
+      "raw_balance": 0,
+      "requested_tokens": 1
+    },
+    "noninjective": {
+      "distinct_inputs": [
+        1,
+        6
+      ],
+      "left_inverse": "Impossible for the square map",
+      "same_feature": 1
+    },
+    "retained_branch": {
+      "decodes_all_seven": true,
+      "encoding": [
+        [
+          0,
+          0
+        ],
+        [
+          1,
+          0
+        ],
+        [
+          4,
+          0
+        ],
+        [
+          2,
+          0
+        ],
+        [
+          2,
+          1
+        ],
+        [
+          4,
+          1
+        ],
+        [
+          1,
+          1
+        ]
+      ],
+      "max_branch_bits": 1,
+      "max_fibre_size": 2
+    },
+    "round_trip": {
+      "final_frame": "A",
+      "grant": 2,
+      "history": [
+        "A-to-B",
+        "B-to-A"
+      ],
+      "initial_frame": "A",
+      "remaining": 0,
+      "spent": 2
+    },
+    "scalar_zero": {
+      "all_obligations_satisfied": false,
+      "per_obligation_residual": [
+        1,
+        -1
+      ],
+      "scalar_sum": 0
+    },
+    "three_way_obstruction": {
+      "covered_global_assignments": 8,
+      "each_pair_nonempty": true,
+      "global_solutions": [],
+      "pair_relations": [
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      ]
+    },
+    "vacuity": {
+      "abstract_point": 3,
+      "all_fibre_members_satisfy_false": true,
+      "existential_witness": false,
+      "fibre": []
+    }
+  },
+  "relations": {
+    "closure_checks": 10108,
+    "relations": 689,
+    "subset_pairs": 37477,
+    "transpose_round_trips": 689
+  },
+  "return_runs": [
+    {
+      "judgment": {
+        "accepted_response": true,
+        "history_rows": 2,
+        "pending_exists_obligations": 0,
+        "status": "VerifiedExists"
+      },
+      "receipt": {
+        "abstract_witness": 1,
+        "frame": "external:F7-square-return:v0",
+        "fuel": 7,
+        "goal": "exists",
+        "rows": [
+          {
+            "square": 0,
+            "value": 6,
+            "x": 0
+          },
+          {
+            "square": 1,
+            "value": 1,
+            "x": 1
+          }
+        ],
+        "status": "VerifiedExists",
+        "target": 1,
+        "unvisited": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "witness": 1
+      }
+    },
+    {
+      "judgment": {
+        "accepted_response": true,
+        "history_rows": 7,
+        "pending_exists_obligations": 0,
+        "status": "RefutedExistsFiniteScope"
+      },
+      "receipt": {
+        "abstract_witness": 3,
+        "frame": "external:F7-square-return:v0",
+        "fuel": 7,
+        "goal": "exists",
+        "rows": [
+          {
+            "square": 0,
+            "value": 6,
+            "x": 0
+          },
+          {
+            "square": 1,
+            "value": 1,
+            "x": 1
+          },
+          {
+            "square": 4,
+            "value": 0,
+            "x": 2
+          },
+          {
+            "square": 2,
+            "value": 3,
+            "x": 3
+          },
+          {
+            "square": 2,
+            "value": 3,
+            "x": 4
+          },
+          {
+            "square": 4,
+            "value": 0,
+            "x": 5
+          },
+          {
+            "square": 1,
+            "value": 1,
+            "x": 6
+          }
+        ],
+        "status": "RefutedExistsFiniteScope",
+        "target": 5,
+        "unvisited": [],
+        "witness": null
+      }
+    },
+    {
+      "judgment": {
+        "accepted_response": false,
+        "history_rows": 0,
+        "pending_exists_obligations": 1,
+        "status": "Unknown"
+      },
+      "receipt": {
+        "abstract_witness": 1,
+        "frame": "external:F7-square-return:v0",
+        "fuel": 0,
+        "goal": "exists",
+        "rows": [],
+        "status": "Unknown",
+        "target": 1,
+        "unvisited": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "witness": null
+      }
+    },
+    {
+      "judgment": {
+        "accepted_response": false,
+        "history_rows": 1,
+        "pending_exists_obligations": 1,
+        "status": "Unknown"
+      },
+      "receipt": {
+        "abstract_witness": 1,
+        "frame": "external:F7-square-return:v0",
+        "fuel": 1,
+        "goal": "exists",
+        "rows": [
+          {
+            "square": 0,
+            "value": 6,
+            "x": 0
+          }
+        ],
+        "status": "Unknown",
+        "target": 1,
+        "unvisited": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "witness": null
+      }
+    },
+    {
+      "judgment": {
+        "accepted_response": false,
+        "history_rows": 2,
+        "pending_exists_obligations": 1,
+        "status": "Unknown"
+      },
+      "receipt": {
+        "abstract_witness": 3,
+        "frame": "external:F7-square-return:v0",
+        "fuel": 2,
+        "goal": "exists",
+        "rows": [
+          {
+            "square": 0,
+            "value": 6,
+            "x": 0
+          },
+          {
+            "square": 1,
+            "value": 1,
+            "x": 1
+          }
+        ],
+        "status": "Unknown",
+        "target": 5,
+        "unvisited": [
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "witness": null
+      }
+    }
+  ],
+  "schema": "external.downward-interpretation.evidence.v0",
+  "script_sha256": "0a9a8cdc4df416919f30fd10d752e0d6108608df39f74e70e679b06790e145a0",
+  "serialized_arithmetic_replay": "Passed",
+  "status": "PassedFiniteCalibration",
+  "tamper_controls": [
+    {
+      "control": "wrong_value",
+      "reason": "false row",
+      "status": "Rejected"
+    },
+    {
+      "control": "stale_target",
+      "reason": "stale target",
+      "status": "Rejected"
+    },
+    {
+      "control": "stale_frame",
+      "reason": "stale frame",
+      "status": "Rejected"
+    },
+    {
+      "control": "changed_goal",
+      "reason": "goal changed",
+      "status": "Rejected"
+    },
+    {
+      "control": "missing_coverage",
+      "reason": "unsupported verdict",
+      "status": "Rejected"
+    },
+    {
+      "control": "forged_zero_fuel",
+      "reason": "fuel exceeded",
+      "status": "Rejected"
+    },
+    {
+      "control": "duplicate_position",
+      "reason": "schedule coverage",
+      "status": "Rejected"
+    },
+    {
+      "control": "boolean_position",
+      "reason": "schedule coverage",
+      "status": "Rejected"
+    }
+  ]
+}
