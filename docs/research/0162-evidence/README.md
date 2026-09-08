@@ -1,4 +1,4 @@
-# Research 0160 evidence: bounded advance loop
+# Research 0162 evidence: bounded advance loop
 
 The three-cycle bounded advance loop ran locally on 2026-09-07 with the
 synthetic six-slot pipeline driver. Files are byte copies of the local

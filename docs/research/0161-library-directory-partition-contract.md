@@ -1,8 +1,8 @@
-# Research 0159：adva-library 目录分割工程合同
+# Research 0161：adva-library 目录分割工程合同
 
 日期：2026-09-08。状态：`proposed-document`，供评审；不改变任何检查器、不授予任何原生权限、不修改增长义务。
 起草：assistant（基于与明理的边界讨论）；评审人：Mingli Yuan。
-合同数据文件：`docs/research/0159-library-directory-partition-contract.json`
+合同数据文件：`docs/research/0161-library-directory-partition-contract.json`
 （schema `adva.library-directory-partition.contract.research`）。
 
 ## 1. 中文交接
