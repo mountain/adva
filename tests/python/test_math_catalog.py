@@ -122,11 +122,11 @@ def repository(tmp_path):
 def test_real_catalog_is_consistent_without_admission():
     report = catalog.check_catalog(ROOT)
     assert report["status"] == "CatalogConsistent", report
-    assert len(report["entries"]) == 11
+    assert len(report["entries"]) == 12
     assert {key: len(value) for key, value in report["topics"].items()} == {
         "arithmetic": 6,
         "geometry": 3,
-        "logic": 5,
+        "logic": 6,
     }
     assert report["native_admission"] == "not-granted"
     assert report["proofs_rechecked"] is False
@@ -155,6 +155,26 @@ def test_crypto_note_is_a_proposal_with_one_home_and_no_geometry_admission():
         assert (key in index["owned"]) == (topic == "logic")
         assert (key in index["references"]) == (topic == "arithmetic")
         assert (key in index["entries"]) == (topic != "geometry")
+
+
+def test_directory_partition_contract_is_a_proposal_with_one_home():
+    key = "logic-directory-partition-contract"
+    entry = next(entry for entry in read_manifest(ROOT)["entries"] if entry["key"] == key)
+    assert entry["home"] == "logic"
+    assert set(entry["domains"]) == {"logic"}
+    assert entry["geometry_lineage"] is None
+    assert entry["recorded_status"] == "proposed-document"
+    assert entry["checker"] is None
+    assert entry["evidence"] == []
+    assert [ref["path"] for ref in entry["materials"]] == [
+        "docs/research/0159-library-directory-partition-contract.md",
+        "docs/research/0159-library-directory-partition-contract.json",
+    ]
+    for topic in catalog.TOPICS:
+        index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
+        assert (key in index["owned"]) == (topic == "logic")
+        assert key not in index["references"]
+        assert (key in index["entries"]) == (topic == "logic")
 
 
 def test_shared_membership_reuses_one_reference_without_mutation(repository):
