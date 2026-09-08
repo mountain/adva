@@ -1,0 +1,803 @@
+{
+  "schema": "adva.phase-runner.report.v0",
+  "version": 0,
+  "status": "Incomplete",
+  "contract": "/Users/mingli/Adva/AEG/.campaign/work/contract.json",
+  "backend_binding": {
+    "path": "/opt/homebrew/opt/python@3.14/bin/python3.14",
+    "sha256": "b502cb4c5b46b8d4192ec6bcb600ce8922f1afc396fcf646e8765c6eba74a0bf",
+    "bytes": 52448,
+    "hash_read_limit_bytes": 67108864,
+    "reason": "CompleteFileHash"
+  },
+  "phases": [
+    {
+      "phase": "learn",
+      "requested_slots": 6,
+      "actual_launches": 6,
+      "status": "Completed",
+      "reason": "SixProtocolStepsCompleted",
+      "meaning": "Completed means protocol completion, not a mathematical or learning claim",
+      "steps": [
+        {
+          "slot": 1,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/subject.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.transition.adva",
+              "bytes_observed": 241,
+              "sha256": "1384b1bcd1300f1160a463fade71b13b92a0ec57cf7d97dfb2f2328b9b5234e0",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.frontier.adva",
+              "bytes_observed": 106,
+              "sha256": "16be9899f86e770cb9f8861bbef40e39e92f8ee989657b0d92bad545439a5e18",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/subject.json",
+              "bytes_observed": 61,
+              "sha256": "53aa5b12923049f9167fe6ea8842187255d11b898f3268507bd17744844e95fd",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 39456542
+        },
+        {
+          "slot": 2,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.frontier.adva",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.transition.adva",
+              "bytes_observed": 318,
+              "sha256": "c8a3f2ca21bd0bc2171843b6fe9d18f351602c2df43dffa351da8da4a36f39ec",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.frontier.adva",
+              "bytes_observed": 138,
+              "sha256": "b5aace113ac3c87f457e62c55e1a562a66b2779cd075f53eaf3f925d3b50f50e",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-01.frontier.adva",
+              "bytes_observed": 106,
+              "sha256": "16be9899f86e770cb9f8861bbef40e39e92f8ee989657b0d92bad545439a5e18",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 38234625
+        },
+        {
+          "slot": 3,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.frontier.adva",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.transition.adva",
+              "bytes_observed": 382,
+              "sha256": "edee8e31580d112fae09b767e123b512e221632a41040d7a45ebd94de83ca3d1",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.frontier.adva",
+              "bytes_observed": 170,
+              "sha256": "f0eee6dd91c984c0cc4f516357f591cf8e3f4df0dc8829f524eca8de1bd6b2fe",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-02.frontier.adva",
+              "bytes_observed": 138,
+              "sha256": "b5aace113ac3c87f457e62c55e1a562a66b2779cd075f53eaf3f925d3b50f50e",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 36657583
+        },
+        {
+          "slot": 4,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.frontier.adva",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.transition.adva",
+              "bytes_observed": 446,
+              "sha256": "3e64297a0057bf2b50917af80a71cee9af2c9f5bb52a0f11719c895d12951b85",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.frontier.adva",
+              "bytes_observed": 202,
+              "sha256": "2d663f5bbc30c5b8e43957f220025a0a0d86c60689072a4ac7ef74aa6f60dbf7",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-03.frontier.adva",
+              "bytes_observed": 170,
+              "sha256": "f0eee6dd91c984c0cc4f516357f591cf8e3f4df0dc8829f524eca8de1bd6b2fe",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 39480167
+        },
+        {
+          "slot": 5,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.frontier.adva",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.transition.adva",
+              "bytes_observed": 510,
+              "sha256": "a07853daa667e88c5ab66956600a4764f05b97a8e84baf9576098389a3ab4ae4",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.frontier.adva",
+              "bytes_observed": 234,
+              "sha256": "cdc994b4bc0184233008979d7dfa129166cd0dfd23eb4e8a9deb2353a3087532",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-04.frontier.adva",
+              "bytes_observed": 202,
+              "sha256": "2d663f5bbc30c5b8e43957f220025a0a0d86c60689072a4ac7ef74aa6f60dbf7",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 20576542
+        },
+        {
+          "slot": 6,
+          "status": "Completed",
+          "reason": "ProtocolOutputChecked",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/child.py",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.frontier.adva",
+            "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+            "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.transition.adva",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.frontier.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.transition.adva",
+              "bytes_observed": 574,
+              "sha256": "64908b5fc10076675b5bf4dbdce966c802a7562c31d5ab5b7792f21e3a4cecaa",
+              "oversized": false
+            },
+            "frontier": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.frontier.adva",
+              "bytes_observed": 266,
+              "sha256": "58acdaec90cc69b7079e5e4fd4f56f9e42e2a735971bba2e7e453f2a54f7c526",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "input_bindings": {
+            "subject": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-05.frontier.adva",
+              "bytes_observed": 234,
+              "sha256": "cdc994b4bc0184233008979d7dfa129166cd0dfd23eb4e8a9deb2353a3087532",
+              "oversized": false
+            },
+            "method": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            },
+            "resource": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+              "bytes_observed": 2,
+              "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+              "oversized": false
+            }
+          },
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 39466167
+        }
+      ],
+      "input_bindings": {
+        "method": {
+          "path": "/Users/mingli/Adva/AEG/.campaign/work/method.json",
+          "bytes_observed": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "oversized": false
+        },
+        "resource": {
+          "path": "/Users/mingli/Adva/AEG/.campaign/work/resource.json",
+          "bytes_observed": 2,
+          "sha256": "44136fa355b3678a1146ad16f7e8649e94fb4fc21fe77e8310c060f61caaff8a",
+          "oversized": false
+        }
+      },
+      "limits": {
+        "call_timeout_seconds": 30,
+        "phase_timeout_seconds": 180,
+        "output_bytes_per_file": 131072,
+        "child_virtual_memory_kib": 262144
+      },
+      "memory_limit_applied": true,
+      "peak_memory_bytes": null,
+      "peak_memory_note": "Not measured; virtual-memory limit is not peak memory",
+      "elapsed_ns": 214271917,
+      "final_frontier": "/Users/mingli/Adva/AEG/.campaign/round-034/learn-06.frontier.adva",
+      "automatic_retries": 0
+    },
+    {
+      "phase": "run",
+      "requested_slots": 6,
+      "actual_launches": 6,
+      "status": "Completed",
+      "reason": "SixNativeRunsCompleted",
+      "meaning": "Completed means protocol completion, not a mathematical or learning claim",
+      "steps": [
+        {
+          "slot": 1,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-01.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-01.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-01.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-01.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 39305375
+        },
+        {
+          "slot": 2,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-02.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-02.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-02.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-02.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 40617042
+        },
+        {
+          "slot": 3,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-03.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-03.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-03.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-03.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 40287959
+        },
+        {
+          "slot": 4,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-04.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-04.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-04.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-04.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 38002125
+        },
+        {
+          "slot": 5,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-05.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-05.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-05.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-05.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 40524167
+        },
+        {
+          "slot": 6,
+          "status": "Completed",
+          "reason": "NativeRunCompleted; output recorded as bytes, not interpreted",
+          "command": [
+            "/opt/homebrew/opt/python@3.14/bin/python3.14",
+            "/Users/mingli/Adva/AEG/.campaign/work/run_child.py",
+            "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+            "--output",
+            "/Users/mingli/Adva/AEG/.campaign/round-034/run-06.transition.adva"
+          ],
+          "return_code": 0,
+          "output_bindings": {
+            "transition": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-06.transition.adva",
+              "bytes_observed": 122,
+              "sha256": "db02dc607703c37393be297914e0ac83d6eaec1cbbe513f6f5227cae60990969",
+              "oversized": false
+            }
+          },
+          "partial_save": false,
+          "timeout_seconds": 30,
+          "stderr": "",
+          "stderr_truncation_possible": false,
+          "stream_bindings": {
+            "stdout": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-06.stdout.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            },
+            "stderr": {
+              "path": "/Users/mingli/Adva/AEG/.campaign/round-034/run-06.stderr.txt",
+              "bytes_observed": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "oversized": false
+            }
+          },
+          "stdout_truncation_possible": false,
+          "process_group_cleanup": "AlreadyExited",
+          "elapsed_ns": 39718417
+        }
+      ],
+      "input_bindings": {
+        "subject": {
+          "path": "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+          "bytes_observed": 60,
+          "sha256": "b3dc6a5f1a7f91740e3a78dfc926bfbc73df40d62a99f4cf86032713a8e5ba09",
+          "oversized": false
+        }
+      },
+      "limits": {
+        "call_timeout_seconds": 30,
+        "phase_timeout_seconds": 180,
+        "output_bytes_per_file": 131072,
+        "child_virtual_memory_kib": 262144
+      },
+      "memory_limit_applied": true,
+      "peak_memory_bytes": null,
+      "peak_memory_note": "Not measured; virtual-memory limit is not peak memory",
+      "elapsed_ns": 238859042,
+      "final_subject": "/Users/mingli/Adva/AEG/.campaign/work/run-subject.json",
+      "automatic_retries": 0
+    },
+    {
+      "phase": "free",
+      "requested_slots": 6,
+      "actual_launches": 0,
+      "status": "NotRun",
+      "reason": "AdapterUnavailable",
+      "meaning": "Completed means protocol completion, not a mathematical or learning claim",
+      "steps": [
+        {
+          "slot": 1,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        },
+        {
+          "slot": 2,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        },
+        {
+          "slot": 3,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        },
+        {
+          "slot": 4,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        },
+        {
+          "slot": 5,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        },
+        {
+          "slot": 6,
+          "status": "NotRun",
+          "reason": "AdapterUnavailable"
+        }
+      ]
+    }
+  ],
+  "actual_launches": 12,
+  "elapsed_ns": 453456333,
+  "native_semantics_implemented_here": false,
+  "error": null,
+  "contract_binding": {
+    "path": "/Users/mingli/Adva/AEG/.campaign/work/contract.json",
+    "bytes_observed": 1161,
+    "sha256": "c21e1b5706c7b81be8cbffe42b29d05b06aa3d784ddb8a47022e5de8ab6e91bd",
+    "oversized": false
+  }
+}
