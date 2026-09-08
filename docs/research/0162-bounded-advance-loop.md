@@ -1,4 +1,4 @@
-# Research 0160：有界推进循环（bounded advance loop）证据登记
+# Research 0162：有界推进循环（bounded advance loop）证据登记
 
 日期：2026-09-08（运行 2026-09-07）。状态：bounded evidence registration；
 循环状态 **Unknown**。循环设计：assistant；运行与授权边界：按 Research 0129
@@ -6,7 +6,7 @@
 
 ## 中文说明
 
-`.advance-loop.py`（入仓为 `0160-evidence/driver.py`，字节保留）执行三个
+`.advance-loop.py`（入仓为 `0162-evidence/driver.py`，字节保留）执行三个
 有界周期，每周期 100 遍六槽流水线（learn→run→free，合成后端）。循环自身
 不扩权：breakthrough 只来自人类授权标记文件 `AEG/.breakthrough-auth.json`
 （`{"authorized_length": N}`）。标记文件不存在 → 三周期耗尽停止，状态
@@ -23,7 +23,7 @@
 
 ## 证据目录
 
-`docs/research/0160-evidence/`：
+`docs/research/0162-evidence/`：
 
 - `advance-loop-summary.json`：循环汇总（schema adva.bounded-advance-loop.summary.v0）；
 - `driver.py`：循环驱动原样保留；
