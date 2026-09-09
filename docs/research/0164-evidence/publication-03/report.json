@@ -1,0 +1,612 @@
+{
+  "schema": "adva.quine-relay-report.research.v0",
+  "status": "ClosedFiniteByteRelay",
+  "phase": "complete",
+  "controls": {
+    "different_library_commit_rejected": true,
+    "zero_guard_rejected_in_both_libraries": true,
+    "changed_byte_fails_closure": true,
+    "regenerated_p_repeats_q": true,
+    "fraction_rejected": true,
+    "unknown-print_rejected": true,
+    "same_bytes_distinct_diagrams": true
+  },
+  "native_semantics_changed": false,
+  "library_admission": "NotGranted",
+  "general_duality": "Open",
+  "continuation": "none-automatic",
+  "contract_sha256": "690960325b7cd64026b05204f8c71349dfb4874135f4657732d9828fdf150f0d",
+  "source_boundary": {
+    "implementation_head": "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+    "kernel_base": "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+    "kernel_content_unchanged": true
+  },
+  "library_fuel": {
+    "limit": 50000,
+    "spent": 453
+  },
+  "closure": {
+    "p_bytes": 5772,
+    "q_bytes": 6073,
+    "r_bytes": 167492,
+    "p_sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e",
+    "regenerated_sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e",
+    "byte_equal": true
+  },
+  "native": {
+    "ast_terms": 28861,
+    "compiled_nodes": 28860,
+    "source_count": 0,
+    "output_bytes": 5772,
+    "scale_control_nodes": 28860
+  },
+  "files": {
+    "base-and-gitlink.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "base-and-gitlink.stdout": {
+      "bytes": 82,
+      "sha256": "aa35ea6f9a6ea67cf2f27bb7096ee4cdcc384e981be256f2af38589fa1de7221"
+    },
+    "build-observer.stderr": {
+      "bytes": 72,
+      "sha256": "59639588a6f1826f129cbcd121edc07279dab94786f5fa5bde6b3439b2e845cc"
+    },
+    "build-observer.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "check-libraries.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "check-libraries.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-q.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "compile-q.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "context.json": {
+      "bytes": 1012,
+      "sha256": "05f92e565e1e4b2a69872262b2a1e5700e14d91f711591be92e9300b2d285220"
+    },
+    "contract.json": {
+      "bytes": 5397,
+      "sha256": "690960325b7cd64026b05204f8c71349dfb4874135f4657732d9828fdf150f0d"
+    },
+    "embedded-clean.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "embedded-clean.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "embedded-commit-tree.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "embedded-commit-tree.stdout": {
+      "bytes": 82,
+      "sha256": "c0a018e627c8530423d47c8e0cad5e5e91b7cc04cbf542362b9114052b07c6de"
+    },
+    "embedded-origin.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "embedded-origin.stdout": {
+      "bytes": 41,
+      "sha256": "e3b25a693efe35b6dc016e3f5e2650f069a9c4770576c3abcf10b91b8e5087c7"
+    },
+    "fraction.adva": {
+      "bytes": 57,
+      "sha256": "7739a9e9f76f25ba041c8872a67a9452a86cf0af016144a34c9107e82d9b8fd2"
+    },
+    "fraction.json": {
+      "bytes": 83,
+      "sha256": "d37b691c321483ed3959618b695b26d7459627d6954bf0cc01bc6f84170a6008"
+    },
+    "fraction.stderr": {
+      "bytes": 61,
+      "sha256": "3231a96c072595defb6e4168f7190dcd2aa97e46dfd6488665bb93b8465eaa21"
+    },
+    "fraction.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "implementation/Cargo.lock": {
+      "bytes": 8871,
+      "sha256": "b687d45dd12b4da84efdb0f258c8990fd867e23b666e38d6fdea59b7ac5b5e16"
+    },
+    "implementation/crates__adva-witness__examples__quine_relay.rs": {
+      "bytes": 7105,
+      "sha256": "af6c706250f2fc9b138e6a2da126f66827ec4fcd9498c01236384b74c0ade9f6"
+    },
+    "implementation/python__adva__adva.py": {
+      "bytes": 19471,
+      "sha256": "5f37674bac7fb13eb64b1762e97a2f4d2944aa2f153a824070ae9b7d00d55af6"
+    },
+    "implementation/python__adva__quine_relay.py": {
+      "bytes": 22306,
+      "sha256": "9701a7f28c9352a676a97b8b87ad28ccadf1775eda8c0f20a7a93403f3b66131"
+    },
+    "library-recheck.json": {
+      "bytes": 7433,
+      "sha256": "fdce43b20a0e81824bef613cbdb12d06e57036d4ad8a58ead35b5be3b6390678"
+    },
+    "p-regenerated.py": {
+      "bytes": 5772,
+      "sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e"
+    },
+    "p-scale-control.py": {
+      "bytes": 5772,
+      "sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e"
+    },
+    "p-tampered.py": {
+      "bytes": 5772,
+      "sha256": "d0b934685d53fcb986b9e38deae608389495818af3a1aa390c01750826e7fcdd"
+    },
+    "p-to-q.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "p.py": {
+      "bytes": 5772,
+      "sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e"
+    },
+    "q-bin": {
+      "bytes": 4414280,
+      "sha256": "223f9ed57eb7b2dfee81e5a5f1729f9311ec636436e9d972f689693cfe1f93aa"
+    },
+    "q-regenerated.rs": {
+      "bytes": 6073,
+      "sha256": "ccb77e85b798180a4cb62bac41577173b83bdbee52ab7dd4e5096d5c27d54315"
+    },
+    "q-to-r.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "q.rs": {
+      "bytes": 6073,
+      "sha256": "ccb77e85b798180a4cb62bac41577173b83bdbee52ab7dd4e5096d5c27d54315"
+    },
+    "r-native.json": {
+      "bytes": 11792069,
+      "sha256": "fd53ebea770dc375ed83df0291f538422f515ce395da9f08554848194f42e55e"
+    },
+    "r-scale-control.adva": {
+      "bytes": 150176,
+      "sha256": "bfad186921c6adfe2e92aa8043c5697d15cc083fe182a41d3576d29e24f6fdaf"
+    },
+    "r-to-p.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "r-to-p.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "r.adva": {
+      "bytes": 167492,
+      "sha256": "320ebede4d7455c26dc4501b1849f3b5214cad89e75f1c2117e68498c3c9d1a3"
+    },
+    "regenerated-p-to-q.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "scale-control.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "scale-control.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "scale-native.json": {
+      "bytes": 11932819,
+      "sha256": "3347029ac861900da7fb9fdb47890b32e717a0f91b62611c5ee5b6170b3212dc"
+    },
+    "source-base-ancestor.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source-base-ancestor.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source-base-content.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source-base-content.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-branch.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-branch.stdout": {
+      "bytes": 5,
+      "sha256": "6403203dd5a0867eb14d104ee8a73730bd72dd9ad92e78d996a6dba0a5dcfc01"
+    },
+    "standalone-clean.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-clean.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-commit-tree.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-commit-tree.stdout": {
+      "bytes": 82,
+      "sha256": "c0a018e627c8530423d47c8e0cad5e5e91b7cc04cbf542362b9114052b07c6de"
+    },
+    "standalone-origin.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "standalone-origin.stdout": {
+      "bytes": 41,
+      "sha256": "e3b25a693efe35b6dc016e3f5e2650f069a9c4770576c3abcf10b91b8e5087c7"
+    },
+    "unknown-print.adva": {
+      "bytes": 64,
+      "sha256": "4d55c6ab24fb6f096de8eba5209fde9a633d96bec30074091b782ac861226d24"
+    },
+    "unknown-print.json": {
+      "bytes": 73,
+      "sha256": "86c182330b532e7ab6ee3d5c244ebc1a6af6d00e7bcb0910a0817a9b5713c17d"
+    },
+    "unknown-print.stderr": {
+      "bytes": 45,
+      "sha256": "5787916b2d195f63f20ce8f033e1050bdc054d55ac4ae08a36d455378f5a9564"
+    },
+    "unknown-print.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "retained_bytes_before_report": 28564453,
+  "calls": [
+    {
+      "name": "base-and-gitlink",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva",
+        "rev-parse",
+        "HEAD",
+        "HEAD:adva-library"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.00658399700478185,
+      "stdout_bytes": 82,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "source-base-ancestor",
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.0065397199941799045,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "source-base-content",
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+        "--",
+        "Cargo.toml",
+        "Cargo.lock",
+        "crates",
+        ".cargo",
+        "rust-toolchain",
+        "rust-toolchain.toml",
+        "build.rs",
+        ":(exclude)crates/adva-witness/examples/quine_relay.rs"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.019335665012476966,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-commit-tree",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006615888996748254,
+      "stdout_bytes": 82,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-commit-tree",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "rev-parse",
+        "HEAD",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.007377382993581705,
+      "stdout_bytes": 82,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-clean",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.01207286499266047,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-clean",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006615976002649404,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-branch",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006696968994219787,
+      "stdout_bytes": 5,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-origin",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.0069487250002566725,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-origin",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.007442916001309641,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "build-observer",
+      "argv": [
+        "cargo",
+        "rustc",
+        "--locked",
+        "--offline",
+        "-j",
+        "1",
+        "-p",
+        "adva-witness",
+        "--example",
+        "quine_relay",
+        "--",
+        "-C",
+        "debuginfo=0",
+        "-C",
+        "strip=debuginfo"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.1674271840020083,
+      "stdout_bytes": 0,
+      "stderr_bytes": 72
+    },
+    {
+      "name": "check-libraries",
+      "argv": [
+        "/home/ubuntu/adva/target/debug/examples/quine_relay",
+        "libraries",
+        "/home/ubuntu/adva/adva-library",
+        "/home/ubuntu/adva-library",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/library-recheck.json"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.03521221700066235,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "p-to-q",
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-S",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/p.py"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 0.0352542549953796,
+      "stdout_bytes": 6073,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "compile-q",
+      "argv": [
+        "rustc",
+        "--edition=2024",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/q.rs",
+        "-o",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/q-bin"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 0.21805693799979053,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "q-to-r",
+      "argv": [
+        "/home/ubuntu/adva/target/quine-relay-publication-03/q-bin"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 0.010722917999373749,
+      "stdout_bytes": 167492,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "r-to-p",
+      "argv": [
+        "/home/ubuntu/adva/target/debug/examples/quine_relay",
+        "emit",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/r.adva",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/p-regenerated.py",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/r-native.json"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 8.247800416997052,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "regenerated-p-to-q",
+      "argv": [
+        "/usr/bin/python3",
+        "-I",
+        "-S",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/p-regenerated.py"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 0.035817538999253884,
+      "stdout_bytes": 6073,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "fraction",
+      "argv": [
+        "/home/ubuntu/adva/target/debug/examples/quine_relay",
+        "emit",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/fraction.adva",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/fraction.out",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/fraction.json"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 1,
+      "wall_seconds": 0.01128929600236006,
+      "stdout_bytes": 0,
+      "stderr_bytes": 61
+    },
+    {
+      "name": "unknown-print",
+      "argv": [
+        "/home/ubuntu/adva/target/debug/examples/quine_relay",
+        "emit",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/unknown-print.adva",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/unknown-print.out",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/unknown-print.json"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 1,
+      "wall_seconds": 0.012086533010005951,
+      "stdout_bytes": 0,
+      "stderr_bytes": 45
+    },
+    {
+      "name": "scale-control",
+      "argv": [
+        "/home/ubuntu/adva/target/debug/examples/quine_relay",
+        "emit",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/r-scale-control.adva",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/p-scale-control.py",
+        "/home/ubuntu/adva/target/quine-relay-publication-03/scale-native.json"
+      ],
+      "cwd": "/home/ubuntu/adva/target/quine-relay-publication-03/empty-cwd",
+      "exit_code": 0,
+      "wall_seconds": 7.143058757996187,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    }
+  ],
+  "cost": {
+    "wall_seconds_before_report": 16.671029862001888,
+    "child_cpu_seconds": 15.70096,
+    "processes": 20,
+    "candidate_constructions": 1,
+    "memory_scope": "2 GiB cap per child; no claim of a measured combined peak"
+  }
+}
