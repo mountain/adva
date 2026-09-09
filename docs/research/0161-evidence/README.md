@@ -12,3 +12,14 @@ Byte copies of the local AEG trials (repo `AEG`, commits `f7de663`,
 
 Registered as local research note 0161 (fills the remote numbering gap);
 no claim entry in claims.toml, no native admission, no new epoch.
+
+## Two-binary connection (receipt 07)
+
+- [receipt-07.json](receipt-07.json): two pinned binaries plus the
+  256-value three-way frontier agreement (status VariationObserved).
+- [binary-connection-program.adva](binary-connection-program.adva):
+  the rejected single 256-value module (fuel cap 1..=16).
+- [binary-connection-out.adva](binary-connection-out.adva): its retained
+  rejection report.
+- The 256 bounded single-byte runs used transient files; the procedure,
+  counts and aggregate result are recorded in receipt 07.

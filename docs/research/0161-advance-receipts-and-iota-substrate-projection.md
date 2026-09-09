@@ -52,3 +52,24 @@ learning evidence; native learning and `free` remain Open.
 
 Evidence: byte copies under [0161-evidence](0161-evidence/README.md);
 original trials retained in the local AEG repository.
+
+## 4. Two-binary frontier connection (2026-09-09)
+
+The machine-level embodiment of the substrate bridge: two compiled
+artifacts from the same pinned Rust sources are bound by hash pins and
+agree with the iota/SKI substrate on the full 256-byte frontier.
+
+| Artifact | SHA-256 | Source pin |
+| --- | --- | --- |
+| main adva CLI (`target/debug/adva`) | `755cc1ecfc48…` | HEAD `ac2c173`; Rust inputs unchanged, rust-source-boundary holds |
+| byte observer (`target/debug/examples/quine_relay`) | `dfc2de43e862…` | `a7b82a1` via the advance contract |
+
+The main binary's run admission caps fuel at 1..=16, so a single
+256-value module is rejected at source_preflight (attempt retained in the
+evidence). The frontier is instead checked as 256 bounded single-byte
+runs (fuel 8): values equal `range(256)` exactly and agree with the
+substrate model 256/256. Receipt 07 binds the relation
+(same-pinned-source artifacts agreeing on the shared frontier); the
+per-run transient outputs are reproducible from the recorded procedure.
+This is a value-level frontier relation, not bit-level isomorphism and
+not a cross-machine reproducibility claim.
