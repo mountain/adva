@@ -122,11 +122,11 @@ def repository(tmp_path):
 def test_real_catalog_is_consistent_without_admission():
     report = catalog.check_catalog(ROOT)
     assert report["status"] == "CatalogConsistent", report
-    assert len(report["entries"]) == 13
+    assert len(report["entries"]) == 14
     assert {key: len(value) for key, value in report["topics"].items()} == {
         "arithmetic": 6,
         "geometry": 3,
-        "logic": 7,
+        "logic": 8,
     }
     assert report["native_admission"] == "not-granted"
     assert report["proofs_rechecked"] is False
@@ -188,6 +188,25 @@ def test_party_naming_layer_is_a_proposal_with_one_home():
     assert entry["evidence"] == []
     assert [ref["path"] for ref in entry["materials"]] == [
         "adva-library/names/party-naming-layer-v0.json"
+    ]
+    for topic in catalog.TOPICS:
+        index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
+        assert (key in index["owned"]) == (topic == "logic")
+        assert key not in index["references"]
+        assert (key in index["entries"]) == (topic == "logic")
+
+
+def test_meaning_interpretation_is_a_proposal_with_one_home():
+    key = "logic-meaning-interpretation"
+    entry = next(entry for entry in read_manifest(ROOT)["entries"] if entry["key"] == key)
+    assert entry["home"] == "logic"
+    assert set(entry["domains"]) == {"logic"}
+    assert entry["geometry_lineage"] is None
+    assert entry["recorded_status"] == "proposed-document"
+    assert entry["checker"] is None
+    assert entry["evidence"] == []
+    assert [ref["path"] for ref in entry["materials"]] == [
+        "adva-library/meaning-interpretation-v0.md"
     ]
     for topic in catalog.TOPICS:
         index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
