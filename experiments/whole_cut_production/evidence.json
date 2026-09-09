@@ -1,0 +1,50 @@
+{
+  "base": "a70cedc82834fc800dc3471c7b4d244cd44c88d4",
+  "kind": "final-targeted-replay-after-formatting",
+  "command": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py",
+    "tests/python/test_bootstrap_zero_cell_carrier_views.py",
+    "tests/python/test_bootstrap_zero_whole_cut_m6_bridge.py",
+    "tests/python/test_bootstrap_zero_production_ledger.py"
+  ],
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "returncode": 0,
+  "stdout": "........................................................................ [ 29%]\n........................................................................ [ 59%]\n........................................................................ [ 88%]\n............................                                             [100%]\n244 passed in 0.36s\n",
+  "stderr": "",
+  "wall_seconds": 0.664520188998722,
+  "max_child_rss_kib": 29904,
+  "rss_scope": "largest child process on Linux, not total simultaneous memory",
+  "source_partitions": 203,
+  "tested_file_sha256": {
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py": "4321547d73a07956939a7b0bd7b3f5a5e7ed7d8a5a52ba07a7bc702cb321fbf2",
+    "tests/python/test_bootstrap_zero_cell_carrier_views.py": "be1579c26628f7740bc95285d4a8113fd5fa5d1bdc4900f09246faa58902a950",
+    "tests/python/test_bootstrap_zero_whole_cut_m6_bridge.py": "98d4f05356e4e09434394e1d01ad0d2117434d05489f1a9f39fa0be1d7f9963c",
+    "tests/python/test_bootstrap_zero_production_ledger.py": "d822012a4bd45227e33eb9a130754c4c7204af18faebb6b56f87e88c9c5309b5"
+  },
+  "contract_sha256": "27da3fdf7df5e4ac6157ac8921e05a09a29977f737475306bbc77b5be3e0759d",
+  "lint": {
+    "ruff": "0.16.6",
+    "final_check": "passed",
+    "final_format_check": "passed",
+    "initial_lint_findings": [
+      "I001 import grouping",
+      "RUF005 tuple expansion (two locations)"
+    ],
+    "semantic_test_failure": false
+  },
+  "unmeasured": [
+    "separate construction, verification and serialization costs",
+    "authoring and network time"
+  ],
+  "claims_not_tested": [
+    "full coordination theorem",
+    "native Rust identities",
+    "full workspace",
+    "remote CI"
+  ]
+}
