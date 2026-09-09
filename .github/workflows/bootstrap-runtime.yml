@@ -1,0 +1,34 @@
+name: Bootstrap runtime boundary
+
+on:
+  pull_request:
+    paths:
+      - "crates/**"
+      - "Cargo.lock"
+      - "Cargo.toml"
+      - "bootstrap/**"
+      - "scripts/*bootstrap*"
+      - ".github/workflows/bootstrap-runtime.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  native-cli:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@1.94.0
+        with:
+          components: rustfmt, clippy
+      - name: Check adapter formatting and lints
+        run: |
+          cargo +1.94.0 fmt --all -- --check
+          cargo +1.94.0 clippy --locked -p adva-witness --bin adva --test library_cli -- -D warnings
+      - name: Test the actual CLI with synthetic bounded epochs
+        run: cargo +1.94.0 test --locked -p adva-witness --test library_cli --test native_run_cli
+      - name: Compile the native executable
+        run: cargo +1.94.0 build --locked --release -p adva-witness --bin adva
+      # Private library access is not presumed. The checked-in acceptance report
+      # records the real pinned library run; synthetic CI is a separate boundary.
