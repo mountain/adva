@@ -1,0 +1,30 @@
+name: Retained Quine relay evidence
+
+on:
+  push:
+    branches: ["research/quine-relay-20260909"]
+    paths:
+      - "experiments/quine_relay/**"
+      - "docs/research/0164-**"
+      - "python/adva/quine_relay.py"
+      - "tests/python/test_quine_relay_boundary.py"
+      - ".github/workflows/quine-relay-evidence.yml"
+  pull_request:
+    paths:
+      - "experiments/quine_relay/**"
+      - "docs/research/0164-**"
+      - "python/adva/quine_relay.py"
+      - "tests/python/test_quine_relay_boundary.py"
+      - ".github/workflows/quine-relay-evidence.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  retained-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check stored evidence without starting another finite experiment
+        run: python3 experiments/quine_relay/verify_evidence.py
