@@ -25,35 +25,57 @@
     "hypotheses": [
       {
         "h": "H1 same producer/toolchain",
-        "check": "PDF version + EncodingApplications",
-        "observed": "BP001: PDF 1.3, macOS Quartz PDFContext; NeoLab: PDF 1.7, producer metadata absent",
+        "check": "Producer/Creator metadata",
+        "observed": "BP001: Keynote via macOS Quartz, 2026-08-25. TrustBase: author Jiamin Zhao, 2026-09-09 (producer absent)",
         "status": "VariationObserved"
       },
       {
         "h": "H2 one embeds the other",
-        "check": "shared vocabulary / byte containment",
-        "observed": "shared extracted words: ['not'] (1 word)",
+        "check": "shared extracted vocabulary",
+        "observed": "1 shared word ('not') among stream-extracted text",
         "status": "EvidenceStutter"
       },
       {
         "h": "H3 same-project companion documents",
-        "check": "BP001 vocabulary mentions the NeoLab/trust mission",
-        "observed": "BP001 words include: neolab, trust, trustworthy, machine-veri, metamath, mathlib, gowers, sawin, wiedijk, megill, founders, mingli, jiamin, kai, civilization-scale, ai-native",
+        "check": "BP001 vocabulary vs deck outline thesis",
+        "observed": "BP001 words (neolab, trust, trustworthy, machine-veri, founders...) match the deck's stated thesis (explicit, independently checkable, bounded trust; computable trust gaps)",
         "status": "VariationObserved"
       },
       {
-        "h": "H4 cross-language textual derivation (EN<->ZH)",
-        "check": "text overlap across languages",
-        "observed": "NeoLab extractable Latin words: 26 glyph fragments (CJK text not ASCII-extractable) -> hole",
+        "h": "H5 strategy-to-pitch derivation, dated",
+        "check": "creation dates + thesis containment",
+        "observed": "BP001 (strategy, 2026-08-25) precedes the deck (pitch, 2026-09-09); the deck operationalizes the strategy into a 14-slide argument",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H4 slide-body content relation",
+        "check": "slide body text extraction",
+        "observed": "only 26 glyph fragments extracted; slide bodies not captured by the crude Tj regex (likely images or escaped syntax) -> hole",
         "status": "Unknown"
       }
+    ],
+    "outline": [
+      "Slide 1: From Generation to Verification",
+      "Slide 2: AI generation is becoming cheap. Verification is not.",
+      "Slide 3: As AI autonomy increases, trust must become explicit, independently checkable, and bounded.",
+      "Slide 4: The Opportunity Map",
+      "Slide 5: A reusable trust infrastructure layer is technically possible. TrustBase combines real-world grounding with trust computation.",
+      "Slide 6: TrustBase makes trust gaps computable. Decisions remain contextual.",
+      "Slide 7: The Current State of the Argument",
+      "Slide 8: The commercial path is still frontier territory.",
+      "Slide 9: Different workflows expose different paths to value.",
+      "Slide 10: We move the frontier through falsifiable experiments.",
+      "Slide 11: Where defensibility could emerge",
+      "Slide 12: NeoLab is built to explore this frontier.",
+      "Slide 13: Moving the Frontier",
+      "Slide 14: From Generation to Verification"
     ]
   },
   "holes": [
-    "otool is not an object file (PDFs, not Mach-O) - tooling hole, now adapted",
-    "NeoLab CJK text not ASCII-extractable (26 glyph fragments); needs ToUnicode/OCR for cross-language comparison",
-    "NeoLab producer metadata absent; BP001 produced by macOS Quartz",
-    "cross-language derivation relation (H4) remains Unknown - next round's energy"
+    "otool is not an object file (PDFs) - tooling adapted",
+    "TrustBase slide-body text not extracted (26 glyph fragments); outline extracted via strings - pdftotext/OCR is the next round",
+    "TrustBase producer metadata absent; BP001 produced by Keynote/Quartz",
+    "derivation direction (BP001 -> deck) inferred from dates and vocabulary, not from sentence-level content overlap"
   ],
   "bounds": {
     "read_only": true
