@@ -87,6 +87,12 @@ class OpenPort:
 
 
 @dataclass(frozen=True)
+class Production:
+    source: str
+    occurrences: tuple[str, ...]
+
+
+@dataclass(frozen=True)
 class WholeCut6:
     name: str
     cells: tuple[WholeCutCell, ...]
@@ -95,6 +101,7 @@ class WholeCut6:
     open_ports: tuple[OpenPort, ...]
     circle_order: tuple[str, ...]
     residuals: tuple[str, ...]
+    productions: tuple[Production, ...]
 
 
 @dataclass(frozen=True)
@@ -240,9 +247,7 @@ def _fixture(open_last: bool = False) -> WholeCut6:
             name=f"p-{edge}-{side.value}",
             cut=f"c-{edge}",
             side=side,
-            polarity=(
-                Polarity.POSITIVE if side is Side.LEFT else Polarity.NEGATIVE
-            ),
+            polarity=(Polarity.POSITIVE if side is Side.LEFT else Polarity.NEGATIVE),
             value_type="A",
             source=f"s-{edge}-{side.value}",
             occurrence=f"o-{edge}-{side.value}",
@@ -279,6 +284,7 @@ def _fixture(open_last: bool = False) -> WholeCut6:
             "p-Xt-R",
         ),
         residuals,
+        tuple(Production(port.source, (port.occurrence,)) for port in ports),
     )
 
 
@@ -313,10 +319,38 @@ def _validate_closed_alternating_cycle(form: WholeCut6) -> None:
         raise ValueError("cut and through steps must alternate around the circle")
 
 
+def _validate_productions(form: WholeCut6) -> None:
+    """Check research-local allocation records, without allocating native IDs."""
+    ports = {port.occurrence: port for port in form.ports}
+    sources: set[str] = set()
+    assigned: list[str] = []
+    for production in form.productions:
+        if not isinstance(production.source, str) or not production.source:
+            raise ValueError("production source must be a nonempty name")
+        if production.source in sources:
+            raise ValueError("one production entry is required per source")
+        sources.add(production.source)
+        if not production.occurrences:
+            raise ValueError("a production must retain at least one occurrence")
+        value_types: set[str] = set()
+        for occurrence in production.occurrences:
+            if not isinstance(occurrence, str) or not occurrence:
+                raise ValueError("production occurrence must be a nonempty name")
+            if occurrence not in ports:
+                raise ValueError("production names an unknown occurrence")
+            port = ports[occurrence]
+            if port.source != production.source:
+                raise ValueError("production source disagrees with port source")
+            value_types.add(port.value_type)
+            assigned.append(occurrence)
+        if len(value_types) != 1:
+            raise ValueError("one source must retain one value type")
+    if Counter(assigned) != Counter(port.occurrence for port in form.ports):
+        raise ValueError("production ledger must account for each occurrence exactly once")
+
+
 def _validate_whole(form: WholeCut6) -> None:
-    triples = tuple(
-        (cell.left_role, cell.right_role, cell.middle_role) for cell in form.cells
-    )
+    triples = tuple((cell.left_role, cell.right_role, cell.middle_role) for cell in form.cells)
     if triples != EXPECTED_ROLE_TRIPLES:
         raise ValueError("WholeCut6 needs the ordered three-role cut cycle")
     if len(form.ports) != 6:
@@ -328,6 +362,8 @@ def _validate_whole(form: WholeCut6) -> None:
         raise ValueError("initial port and occurrence names must be distinct")
     if any(port.multiplicity != 1 for port in form.ports):
         raise ValueError("initial ports must have unit multiplicity")
+
+    _validate_productions(form)
 
     ports_by_name = {port.name: port for port in form.ports}
     for cell in form.cells:
@@ -345,9 +381,7 @@ def _validate_whole(form: WholeCut6) -> None:
             raise ValueError("a cut must have opposite local polarities")
 
     accounted = tuple(
-        name
-        for channel in form.channels
-        for name in (channel.source_port, channel.target_port)
+        name for channel in form.channels for name in (channel.source_port, channel.target_port)
     ) + tuple(item.port for item in form.open_ports)
     if Counter(accounted) != Counter(port_names):
         raise ValueError("every port must be accounted for exactly once")
@@ -385,9 +419,7 @@ def _flip_polarity(ports: tuple[Port, ...]) -> tuple[Port, ...]:
         replace(
             port,
             polarity=(
-                Polarity.NEGATIVE
-                if port.polarity is Polarity.POSITIVE
-                else Polarity.POSITIVE
+                Polarity.NEGATIVE if port.polarity is Polarity.POSITIVE else Polarity.POSITIVE
             ),
         )
         for port in ports
@@ -400,11 +432,7 @@ def _conjugate_motion(
     return tuple(
         replace(
             channel,
-            motion=(
-                Motion.REVERSE
-                if channel.motion is Motion.FORWARD
-                else Motion.FORWARD
-            ),
+            motion=(Motion.REVERSE if channel.motion is Motion.FORWARD else Motion.FORWARD),
         )
         for channel in channels
     )
@@ -425,9 +453,7 @@ def _validate_collision(collision: Collision) -> None:
         raise ValueError("a collision needs at least two retained members")
     if len({member.name for member in collision.members}) != len(collision.members):
         raise ValueError("collision members must retain distinct port names")
-    if collision.output_multiplicity != sum(
-        member.multiplicity for member in collision.members
-    ):
+    if collision.output_multiplicity != sum(member.multiplicity for member in collision.members):
         raise ValueError("collision multiplicity must equal member multiplicity")
 
 
@@ -522,12 +548,8 @@ def test_duality_polarity_and_conjugation_change_different_fields() -> None:
 
     assert line.carrier is Carrier.LINE
     assert circle.carrier is Carrier.CIRCLE
-    assert tuple(port.side for port in flipped) == tuple(
-        port.side for port in form.ports
-    )
-    assert tuple(port.polarity for port in flipped) != tuple(
-        port.polarity for port in form.ports
-    )
+    assert tuple(port.side for port in flipped) == tuple(port.side for port in form.ports)
+    assert tuple(port.polarity for port in flipped) != tuple(port.polarity for port in form.ports)
     assert tuple(channel.motion for channel in conjugated) != tuple(
         channel.motion for channel in form.channels
     )
@@ -541,9 +563,7 @@ def test_braid_routing_preserves_every_complete_port_record() -> None:
     routed = _route_adjacent(_route_adjacent(ports, 1), 4)
 
     assert Counter(routed) == Counter(ports)
-    assert {port.occurrence for port in routed} == {
-        port.occurrence for port in ports
-    }
+    assert {port.occurrence for port in routed} == {port.occurrence for port in ports}
     assert sum(port.multiplicity for port in routed) == 6
 
 
