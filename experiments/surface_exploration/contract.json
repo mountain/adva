@@ -1,0 +1,14 @@
+{
+  "version": 0,
+  "base": "7a900db49a08276d2e76a53fdb191a295ece37ac",
+  "question": "Can three coupled three-input arithmetic expressions preserve exact recoverability while approaching a Legendre degeneration and covering a declared normalized direction grid?",
+  "domain": "Q(i), characteristic zero; positive nonzero rational scale epsilon; ordered triples of Gaussian rationals",
+  "machines": "M_i(epsilon,z_i,z_next)=epsilon*(2*z_i+z_next)/3, cyclic indices; external Python calibration, no native identities",
+  "candidate_syntax": "fixed addition, subtraction, multiplication, division by checked nonzero rationals; fixed permutations and retained operation words",
+  "finite_scope": "64 binary six-coordinate direction grid points in [1,2]+i[1,2], at scales 1/8,1/16,1/32; eight fresh points at scale 1/64",
+  "checks": ["exact encode/decode", "nonzero Legendre discriminants", "independent cubic coefficient discriminant", "j relabel invariance", "transported swaps and braid relation", "naive swap counterexample", "coverage omission Unknown", "zero-scale refusal", "singular parameter refusal", "finite serialization replay", "old monodromy central-sign regression"],
+  "budget": {"routes": 1, "max_states": 200, "max_seconds": 30, "max_integer_bits": 4096, "automatic_restart": false},
+  "success": "All declared finite checks pass and concrete residuals are retained; no whole-space density claim",
+  "geometry_boundary": "Three input slots are not three topological punctures. Elliptic product is a broad Calabi-Yau torus, not an irreducible SU(3)-holonomy threefold. Moduli base is not fibre. Coordinate coupling is not a geometric interaction or faithful braid representation.",
+  "promotion": "Proposed external research only; no free, Seal, M6 filler, syntax completeness, native arithmetic admission or library growth discharge"
+}
