@@ -1,0 +1,58 @@
+{
+  "base": "7a900db49a08276d2e76a53fdb191a295ece37ac",
+  "command": [
+    "python",
+    "-m",
+    "pytest",
+    "-q",
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py",
+    "tests/python/test_bootstrap_zero_cell_carrier_views.py",
+    "tests/python/test_bootstrap_zero_whole_cut_m6_bridge.py",
+    "tests/python/test_bootstrap_zero_production_ledger.py",
+    "tests/python/test_bootstrap_zero_retention.py"
+  ],
+  "python": "3.12.14",
+  "pytest": "9.1.1",
+  "returncode": 0,
+  "stdout": "........................................................................ [  7%]\n........................................................................ [ 14%]\n........................................................................ [ 21%]\n........................................................................ [ 29%]\n........................................................................ [ 36%]\n........................................................................ [ 43%]\n........................................................................ [ 50%]\n........................................................................ [ 58%]\n........................................................................ [ 65%]\n........................................................................ [ 72%]\n........................................................................ [ 80%]\n........................................................................ [ 87%]\n........................................................................ [ 94%]\n.....................................................                    [100%]\n989 passed in 1.65s\n",
+  "stderr": "",
+  "wall_seconds": 2.1122673170029884,
+  "max_child_rss_kib": 33360,
+  "rss_scope": "largest child process on Linux, not aggregate memory",
+  "finite_map_candidates": 729,
+  "retained_source_partition_candidates": 203,
+  "tested_file_sha256": {
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py": "1ae36a564c445e3dd6b348ae79a8315b94f9554810b9788c72c458919ff914e2",
+    "tests/python/test_bootstrap_zero_cell_carrier_views.py": "be1579c26628f7740bc95285d4a8113fd5fa5d1bdc4900f09246faa58902a950",
+    "tests/python/test_bootstrap_zero_whole_cut_m6_bridge.py": "98d4f05356e4e09434394e1d01ad0d2117434d05489f1a9f39fa0be1d7f9963c",
+    "tests/python/test_bootstrap_zero_production_ledger.py": "d822012a4bd45227e33eb9a130754c4c7204af18faebb6b56f87e88c9c5309b5",
+    "tests/python/test_bootstrap_zero_retention.py": "ba527259e0ce9cdb19ee7ca01f295a31962348c78c59ce168d5fddf54ee4e0dd"
+  },
+  "contract_sha256": "7b5f9775fc9e3473b8b21565ae770f97ffb5a88b15d7b70509b70221ce95f795",
+  "prior_run": {
+    "passed": 988,
+    "pytest_seconds": 1.25,
+    "deprecation_warnings": 2,
+    "change_before_final": "Materialize the two unchanged finite parametrize families as tuples."
+  },
+  "implementation_test_failures": 0,
+  "scope_expansions": 0,
+  "unmeasured": [
+    "authoring and network time",
+    "separate construction/verification/serialization costs"
+  ],
+  "remaining": [
+    "distributivity production and hole binding records",
+    "complete raw formation coverage",
+    "full syntax coordination theorem"
+  ],
+  "issue_disposition": "Open",
+  "contract_corrections": 1,
+  "correction": "Permit open holes without any candidate family; omission is rejected only relative to an independently supplied prior record. Add one unexplored-hole control.",
+  "pre_review_evidence": "pre-review-evidence.json",
+  "lint": {
+    "ruff": "0.16.6",
+    "check": "passed",
+    "format": "applied"
+  }
+}
