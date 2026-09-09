@@ -1,5 +1,12 @@
 # Adva
 
+For a pinned Linux source build and a relocatable native runtime with two
+checked library epochs, see [Bootstrap runtime v0](docs/BOOTSTRAP_RUNTIME_V0.md).
+The research commands `adva library check` and `adva library reuse` load and
+recheck existing snapshots through Rust; they do not execute every library
+document or change the stored witness rules. The bootstrap source bundle
+includes its required library files and preserves the current private license.
+
 The bounded research native program entry is `adva run program.adva --output
 result.adva`. Build it with `cargo build --release -p adva-witness --bin adva`.
 For a first executable program, run
