@@ -1,0 +1,93 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 8,
+  "predecessor_sha256": "bc8c7f31af18a351baa22c05ab8ae60bad4cb0329d8346a877a25bc7bb581b7d",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "two PDF documents at the OS root (home); interpretation-relation probing, tooling adapted from Mach-O to PDF"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "files": [
+      {
+        "name": "BP001(8).pdf",
+        "sha256": "1ea0c0beff4da7fe5aefdc5d6650351d6da339e49b6e81ac0ba4bccda5115353",
+        "size": 2946290
+      },
+      {
+        "name": "NeoLab - TrustBase(1).pdf",
+        "sha256": "c88d6b34c966a62290f89dbf2d112c10318930987eaece070c9881fdd004bea9",
+        "size": 849604
+      }
+    ],
+    "hypotheses": [
+      {
+        "h": "H1 same producer/toolchain",
+        "check": "Producer/Creator metadata",
+        "observed": "BP001: Keynote/Quartz, 2026-08-25; TrustBase: Jiamin Zhao, 2026-09-09",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H2 one embeds the other",
+        "check": "shared vocabulary",
+        "observed": "byte/text overlap minimal; no embedding",
+        "status": "EvidenceStutter"
+      },
+      {
+        "h": "H3 same-project companion documents",
+        "check": "thesis vocabulary overlap",
+        "observed": "BP001: 'Reasoning is becoming abundant. Trustworthy, cumulative knowledge is not.' vs deck S2: 'AI generation is becoming cheap. Verification is not.'",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H4 slide-body extraction",
+        "check": "pdftotext on both",
+        "observed": "both full texts extracted (273 + 262 lines); earlier crude-Tj hole closed",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H5 strategy-to-pitch derivation, dated",
+        "check": "dates + sentence-level thesis containment",
+        "observed": "BP001 2026-08-25 (domain strategy: verify mathematics books, 'A tiny verifier gives us trust. It does not give us a production system.') -> deck 2026-09-09 (generalized platform: EvidenceBase/Claim DAG/Verifiers/Trust Kernel/Trusted Frontier)",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H6 product vocabulary gap marks the derivation",
+        "check": "deck architecture terms in BP001",
+        "observed": "0 matches for evidencebase/claim/trust kernel/trusted frontier/verifier in BP001: the product concepts were coined between the two dates",
+        "status": "VariationObserved"
+      }
+    ],
+    "outline": [
+      "Slide 1: From Generation to Verification",
+      "Slide 2: AI generation is becoming cheap. Verification is not.",
+      "Slide 3: As AI autonomy increases, trust must become explicit, independently checkable, and bounded.",
+      "Slide 4: The Opportunity Map",
+      "Slide 5: A reusable trust infrastructure layer is technically possible. TrustBase combines real-world grounding with trust computation.",
+      "Slide 6: TrustBase makes trust gaps computable. Decisions remain contextual.",
+      "Slide 7: The Current State of the Argument",
+      "Slide 8: The commercial path is still frontier territory.",
+      "Slide 9: Different workflows expose different paths to value.",
+      "Slide 10: We move the frontier through falsifiable experiments.",
+      "Slide 11: Where defensibility could emerge",
+      "Slide 12: NeoLab is built to explore this frontier.",
+      "Slide 13: Moving the Frontier",
+      "Slide 14: From Generation to Verification"
+    ],
+    "full_text": [
+      "bp001-full.txt",
+      "trustbase-full.txt"
+    ]
+  },
+  "holes": [
+    "TrustBase producer metadata absent",
+    "BP001 revision (8) export date may lag the actual strategy revisions",
+    "sentence-level alignment (BP001 roadmap items vs deck slides) is sketched, not exhaustively enumerated",
+    "deck rendered PNGs (slide-*.png) remain in the home root for human viewing, not in the repo"
+  ],
+  "bounds": {
+    "read_only": true
+  }
+}
