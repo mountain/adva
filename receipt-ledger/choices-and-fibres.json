@@ -139,6 +139,26 @@
           "payload_sha256": null
         }
       ]
+    },
+    {
+      "name": "catalog-key-linking",
+      "hole": "catalog key source phrases",
+      "selected": {
+        "value": "explicit key-words declarations (library names/catalog-key-words.json, ecc72f0)",
+        "payload_sha256": "4e2b86ac02fd75854051e7bb0e619d42e3e7b4dcafa70d408f4294935cf7f199"
+      },
+      "retained": [
+        {
+          "value": "explicit key-words declarations (selected)",
+          "retention": "adva-library/names/catalog-key-words.json",
+          "payload_sha256": "4e2b86ac02fd75854051e7bb0e619d42e3e7b4dcafa70d408f4294935cf7f199"
+        },
+        {
+          "value": "implicit convention (previous state, superseded)",
+          "retention": "documentary (the historical titles remain in the manifest)",
+          "payload_sha256": null
+        }
+      ]
     }
   ],
   "fibres": [
@@ -219,6 +239,12 @@
       "question": "four-phrase interface vs independent path and algebraic action?",
       "fibre_status": "discharged",
       "predecessor_fibre": 12
+    },
+    {
+      "receipt": 14,
+      "question": "do the declared phrases link to their keys exactly?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 13
     }
   ],
   "status": "proposed"
