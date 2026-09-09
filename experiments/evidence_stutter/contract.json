@@ -1,0 +1,34 @@
+{
+  "schema": "adva.evidence-stutter.contract.v0",
+  "version": 0,
+  "question": "Do the 400 retained Research 0162 rounds contain any byte-level variation in their 18 declared learn/run artifacts, or are later rounds evidence stutter under this projection?",
+  "objects": "Git tree entries for six learn transitions, six learn frontiers, and six run transitions per round",
+  "types": ["path", "GitBlobOid", "byte_count", "finite_round_index", "finite_slot_index"],
+  "quantifiers": "all four retained 100-round directories; all rounds 001..100; all 18 projected artifacts per round",
+  "arithmetic_domain": "finite natural counts and exact byte-identity represented by pinned Git blob object IDs; no Real arithmetic and no additive-zero or multiplicative-identity judgment",
+  "candidate_grammar": ["EvidenceStutter", "VariationObserved", "UnknownCoverageGap", "RejectedMalformedIndex"],
+  "acceptance": "EvidenceStutter iff coverage is exact and every normalized round projection has the same fingerprint; VariationObserved iff coverage is exact and at least two fingerprints occur; missing coverage is Unknown, never stutter",
+  "budget": {
+    "wall_seconds": 10,
+    "cpu_seconds": 8,
+    "address_space_mib": 256,
+    "max_entries": 8000,
+    "max_input_bytes": 2097152,
+    "max_output_bytes": 2097152,
+    "search_candidates": 0,
+    "correction_replays": 1
+  },
+  "controls": [
+    "one fresh synthetic OID change must yield VariationObserved",
+    "one removed expected artifact must yield UnknownCoverageGap",
+    "one duplicate normalized coordinate must be rejected"
+  ],
+  "forbidden_inferences": [
+    "protocol completion implies learning",
+    "byte variation implies semantic learning",
+    "byte identity implies native semantic identity",
+    "stutter authorizes free or history deletion",
+    "Git object identity is authentication",
+    "this projection covers omitted reports, timing, or external human inputs"
+  ]
+}
