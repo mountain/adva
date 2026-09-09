@@ -159,6 +159,26 @@
           "payload_sha256": null
         }
       ]
+    },
+    {
+      "name": "link-direction",
+      "hole": "link direction representation",
+      "selected": {
+        "value": "bidirectional link with direction in the ledger (正行/逆行 vocabulary)",
+        "payload_sha256": "9bdadd5e564a57ff73e5c69013bfce6b4fb706c74e631bc6950e37789cd17177"
+      },
+      "retained": [
+        {
+          "value": "bidirectional link (selected)",
+          "retention": "trials/name-linking-round-01/directional-report.json",
+          "payload_sha256": "9bdadd5e564a57ff73e5c69013bfce6b4fb706c74e631bc6950e37789cd17177"
+        },
+        {
+          "value": "single-direction implicit (previous, superseded)",
+          "retention": "documentary",
+          "payload_sha256": null
+        }
+      ]
     }
   ],
   "fibres": [
@@ -245,6 +265,12 @@
       "question": "do the declared phrases link to their keys exactly?",
       "fibre_status": "discharged",
       "predecessor_fibre": 13
+    },
+    {
+      "receipt": 15,
+      "question": "does the link carry both directions with ledger-visible histories?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 14
     }
   ],
   "status": "proposed"
