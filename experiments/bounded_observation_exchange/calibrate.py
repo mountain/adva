@@ -83,7 +83,7 @@ def main():
         template[side] = {"record_ref": "replace-with-opaque-record-label", "projection": dict.fromkeys(FIELDS)}
     template["omissions"] = "Describe what is withheld or unverified. This template is not a peer reply."
     (ROOT / "response-template.json").write_bytes(encode(template))
-    (ROOT / "status.json").write_bytes(encode(check(request)))
+    # The live exchange status is maintained separately; calibration must not reset it.
     saved = time.perf_counter()
     evidence = {"kind": "synthetic protocol calibration", "real_peer_reply": "AwaitingReply",
                 "passed": len(results), "results": results,
