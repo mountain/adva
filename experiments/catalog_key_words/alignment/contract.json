@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "question": "Does adding the fifteenth catalog entry require a matching explicit naming entry before the unchanged opt-in checker accepts coverage?",
+  "adva_base": "e62daacbca6ec33717326504d7ad5bede27ca680",
+  "library_base": "b3ff7ad6a87f6bc61c5122f7c699a528729870b0",
+  "checker_source": "PR 166 commit 06a085302cb00c9331e3b29c2295d6c8b2234880; implementation unchanged",
+  "scope": "15 registered keys; one missing key in the two naming documents; documentary JSON and SHA256 integrity only",
+  "routes": 1,
+  "search_nodes": 0,
+  "budget": {"seconds_per_child": 30, "child_address_space_bytes": 536870912, "total_driver_seconds": 120, "automatic_restart": false},
+  "expected_baseline": {"default": "CatalogConsistent", "key_words": "InvalidCatalog"},
+  "repair": "Explicitly append logic-yau-calabi-mapping to source and v1 documents, then repin source and owner materials; retain all other keys and the seven exceptions",
+  "checks": ["baseline rejection", "all 15 names roundtrip", "old entries and pinned Pascal materials retained", "fresh sixteenth synthetic entry rejected until its declared words are present", "repinned omitted entry rejected", "existing targeted naming/catalog regressions"],
+  "non_goals": ["new theorem", "receipt-19 replay or authentication", "Nelder-Mead or Metamath execution", "native admission", "semantic title validation", "automatic merge"],
+  "prior_evidence": "Original contract.json and evidence.json remain historical and unchanged; this continuation records its own evidence."
+}
