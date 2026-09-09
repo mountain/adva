@@ -122,11 +122,11 @@ def repository(tmp_path):
 def test_real_catalog_is_consistent_without_admission():
     report = catalog.check_catalog(ROOT)
     assert report["status"] == "CatalogConsistent", report
-    assert len(report["entries"]) == 15
+    assert len(report["entries"]) == 16
     assert {key: len(value) for key, value in report["topics"].items()} == {
         "arithmetic": 6,
         "geometry": 3,
-        "logic": 9,
+        "logic": 10,
     }
     assert report["native_admission"] == "not-granted"
     assert report["proofs_rechecked"] is False
@@ -228,6 +228,25 @@ def test_yau_calabi_mapping_is_a_proposal_with_one_home():
     assert entry["evidence"] == []
     assert [ref["path"] for ref in entry["materials"]] == [
         "adva-library/meaning-yau-calabi-mapping-v0.md"
+    ]
+    for topic in catalog.TOPICS:
+        index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
+        assert (key in index["owned"]) == (topic == "logic")
+        assert key not in index["references"]
+        assert (key in index["entries"]) == (topic == "logic")
+
+
+def test_birman_burau_duality_is_a_proposal_with_one_home():
+    key = "logic-birman-burau-duality"
+    entry = next(entry for entry in read_manifest(ROOT)["entries"] if entry["key"] == key)
+    assert entry["home"] == "logic"
+    assert set(entry["domains"]) == {"logic"}
+    assert entry["geometry_lineage"] is None
+    assert entry["recorded_status"] == "proposed-document"
+    assert entry["checker"] is None
+    assert entry["evidence"] == []
+    assert [ref["path"] for ref in entry["materials"]] == [
+        "adva-library/meaning-birman-burau-duality-v0.md"
     ]
     for topic in catalog.TOPICS:
         index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
