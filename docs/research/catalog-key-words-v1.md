@@ -5,6 +5,13 @@ Status: proposed documentary engineering, not native admission.
 Adva base: ff8272102ce294e77ba1b4cf03ca6296721bfb39.
 Library base: 695d6b4c26ebfd373ae696decfe82724f43b4c71.
 
+Historical baseline: the fourteen-entry counts and preserved source bytes
+below refer to the original PR snapshot 06a0853, not the current continuation.
+[The fifteen-entry alignment](catalog-key-words-alignment.md) records the
+explicit source update on newer main, fresh evidence, and revised merge order.
+Original contract/evidence bytes remain unchanged; use the historical commit
+when reproducing the original run.
+
 ## Problem and exact domain
 
 All fourteen declared names previously linked and unlinked correctly. But
