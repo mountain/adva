@@ -1,0 +1,50 @@
+{
+  "schema": "adva.quine-publication-validation.research.v0",
+  "authorization": "User requested commit and push after the publication plan on 2026-09-09.",
+  "question": "Does the committed research implementation close the same finite relay while refusing changes to the pinned Rust kernel?",
+  "contract": "contract.json",
+  "prior_runs": [
+    {
+      "run": "quine-relay-run-01",
+      "report_sha256": "82ac3b3f9a80712a5606d147cfb36ba905ec9a2155c2d9ff8d4f7270c3e134f3",
+      "original_status": "Rejected",
+      "cost": {
+        "wall_seconds_before_report": 5.273734431000776,
+        "child_cpu_seconds": 2.238447,
+        "processes": 12,
+        "candidate_constructions": 1,
+        "memory_scope": "2 GiB cap per child; no claim of a measured combined peak"
+      }
+    },
+    {
+      "run": "quine-relay-run-02",
+      "report_sha256": "3fde7eb688529687946e440aca257cf91b37cff8a758cfb3336d0ffa8a866a2e",
+      "original_status": "ClosedFiniteByteRelay",
+      "cost": {
+        "wall_seconds_before_report": 17.203147122010705,
+        "child_cpu_seconds": 16.330672,
+        "processes": 18,
+        "candidate_constructions": 1,
+        "memory_scope": "2 GiB cap per child; no claim of a measured combined peak"
+      }
+    }
+  ],
+  "prior_failure_audit": "Run 01 failed before constructing a candidate; its retained status-addendum.json classifies nested linker SIGXFSZ as Unknown. The original report is preserved.",
+  "additional_validation": {
+    "full_runs": 1,
+    "automatic_retries": 0,
+    "wall_seconds": 300,
+    "child_cpu_seconds": 180,
+    "supervised_calls": 32,
+    "max_retained_bytes": 201326592
+  },
+  "combined_declared_ceiling": {
+    "wall_seconds": 600,
+    "child_cpu_seconds": 360,
+    "supervised_calls": 64,
+    "full_relay_laps": 2
+  },
+  "scope": "A separately declared publication validation; original costs are retained and no original allowance is reset. Authoring, packaging and ordinary engineering checks are reported separately from relay execution.",
+  "protection": "Same p/q templates, byte observer, library versions and seven controls; no native semantics, library admission or general-duality claim changes.",
+  "exit": "Stop after this publication replay, preserving success, rejection or Unknown; no automatic retry."
+}
