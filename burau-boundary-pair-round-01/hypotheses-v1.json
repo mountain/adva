@@ -1,0 +1,58 @@
+{
+  "schema": "aeg.burau-pair.hypotheses",
+  "version": 1,
+  "round": "burau-boundary-pair-round-01",
+  "objects": {
+    "positive": "2607.05283v1.pdf (BBB 2026, n=4 faithful, 26 pp)",
+    "negative": "9904100v2.pdf (Bigelow 1999, n=5 not faithful, 8 pp)"
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "boundary-pair",
+      "statement": "The two theorems are adjacent in parameter and opposite in sign; jointly with Magnus-Peluso (n=3 faithful) and Long-Paton (n>=6 not faithful) they close the question: Burau faithful iff n <= 4.",
+      "check": "positive theorem: rho_4 faithful. negative theorem: rho_n not faithful for n >= 5. Together with known n=3 and n>=6 results, the threshold is exactly 4. Provenance-verified from abstracts (both text layers).",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H2",
+      "name": "title-negation-shift",
+      "statement": "The negative title is the positive title under negation of 'faithful', parameter increment 4->5, and dropping of the qualifier 'of the braid group'.",
+      "check": "alignment.json titles.relation: 3 edit operations. Verbatim from the two title fields.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H3",
+      "name": "method-duality",
+      "statement": "The witness objects are dual: Bigelow's counterexample is a curve on the 5-punctured disk; BBB's proof object is sequences of disks / point-pushing / the Brunnian group in D4. The negative paper's object type does not appear in the positive paper and vice versa.",
+      "check": "phrase counts: curve 7 vs 13; disk 160 vs 0; point-pushing 17 vs 0; Brunnian 7 vs 0. Disjoint method vocabularies over a shared problem vocabulary (overlap 0.6731).",
+      "status": "VariationObserved"
+    },
+    {
+      "id": "H4",
+      "name": "reverse-learning-link",
+      "statement": "The 2026 positive paper builds on the 1999 negative paper's ideas: the counterexample technique, reversed, became the proof technique.",
+      "check": "BBB introduction: 'we use ideas introduced earlier by Moody, Long, Long-Paton and Bigelow [Big99] to prove the theorem of the title'. Bigelow cited 13x in the positive paper. Directional link 1999 -> 2026.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H5",
+      "name": "person-bridge",
+      "statement": "Joan Birman is the human bridge: proposer of the 1999 negative paper, co-author of the 2026 positive paper; the 27-year gap measures the cost of the positive result against the negative one.",
+      "check": "provenance block in alignment.json: 'Proposed: Joan Birman' (G&T 3 (1999) 397-404); authors of 2607.05283: Bharathram, Birman, Brendle. Year gap 27.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H6",
+      "name": "method-generality",
+      "statement": "The pair-alignment method yields meaningful conclusions for this unrelated-domain pair, hence is not overfit to the PDF pair of round 08; but it extracts RELATIONS, not content truth.",
+      "check": "Five concrete readings obtained (boundary arithmetic, title negation, method duality, reverse-learning link, person bridge), all anchored to measured surface facts. The method does NOT verify the mathematics: proof correctness of either paper is unexamined (hole).",
+      "status": "MatchedFiniteScope"
+    }
+  ],
+  "alignment_measure": {
+    "vocabulary_overlap_coefficient": 0.6731,
+    "shared_problem_statement": true,
+    "title_edit_operations": 3
+  }
+}
