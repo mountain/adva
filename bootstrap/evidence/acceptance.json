@@ -1,0 +1,101 @@
+{
+  "acceptance": {
+    "status": "PassedBootstrapAcceptance",
+    "checks": {
+      "arithmetic_14": true,
+      "snapshot_rechecked": true,
+      "exact_reuse_4": true,
+      "same_checked_snapshot": true,
+      "zero_guard_refused": true,
+      "zero_exit_2": true,
+      "library_unchanged": true,
+      "same_retained_snapshot": true
+    },
+    "scope": "Saved-report protocol checks; no new native semantic judgment"
+  },
+  "additional_actual_calls": [
+    {
+      "name": "reuse-negative",
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/reports/reuse-negative.json",
+        "--input",
+        "-3"
+      ],
+      "exit_code": 0,
+      "status": "ReuseChecked"
+    },
+    {
+      "name": "fuel-zero",
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/reports/fuel-zero.json",
+        "--input",
+        "2",
+        "--fuel",
+        "0"
+      ],
+      "exit_code": 2,
+      "status": "Unknown"
+    },
+    {
+      "name": "wrong-digest",
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/reports/wrong-digest.json",
+        "--input",
+        "2",
+        "--expect-digest",
+        "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+      ],
+      "exit_code": 2,
+      "status": "Rejected"
+    }
+  ],
+  "report_checker_controls": [
+    {
+      "name": "wrong-value",
+      "rejected": true
+    },
+    {
+      "name": "different-snapshot",
+      "rejected": true
+    },
+    {
+      "name": "changed-library",
+      "rejected": true
+    }
+  ],
+  "wall_seconds": 0.023258656001416966,
+  "child_user_seconds": 0.0038299999999999996,
+  "child_system_seconds": 0.0075899999999999995,
+  "largest_child_ru_maxrss_kib": 11136,
+  "binary_sha256": "b77954194eaffb085d2dbf823d92b942ccf0fffcd7cb99dee8868e8ad5adc598"
+}
