@@ -1,0 +1,12 @@
+{
+  "version": 1,
+  "base": "ff8272102ce294e77ba1b4cf03ca6296721bfb39",
+  "library_base": "695d6b4c26ebfd373ae696decfe82724f43b4c71",
+  "question": "Can a restricted lossless naming codec be checked through an explicit opt-in catalog gate without upgrading title semantics or native authority?",
+  "domain": "nonempty ordered lists of at most 16 distinct lowercase ASCII alphanumeric tokens; joined length at most 80; no normalization",
+  "fixed_registration": "v1 and original v0 source are explicit materials of logic-party-naming-layer; old material bytes retained",
+  "finite_family": "all 516 length 1..4 permutations of six fixed tokens; all 14 real catalog entries; one fresh synthetic catalog extension",
+  "budget": {"seconds_per_test_process": 30, "candidate_names": 516, "routes": 1, "automatic_restart": false},
+  "checks": ["roundtrip and injectivity", "delimiter and case collisions refused", "repeated token policy", "exact coverage", "exact historical exceptions", "repinned semantic corruption", "opt-in CLI and output protection", "old catalog regressions", "fresh reuse", "resource exhaustion Unknown"],
+  "non_goals": ["arbitrary Unicode naming", "title-to-meaning fidelity", "authentication", "native identity", "geometry obligation discharge", "universal grammar completeness"]
+}
