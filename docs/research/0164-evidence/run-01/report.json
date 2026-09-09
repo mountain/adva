@@ -1,0 +1,211 @@
+{
+  "schema": "adva.quine-relay-report.research.v0",
+  "status": "Rejected",
+  "phase": "build-and-native-library-check",
+  "controls": {
+    "different_library_commit_rejected": true
+  },
+  "native_semantics_changed": false,
+  "library_admission": "NotGranted",
+  "general_duality": "Open",
+  "continuation": "none-automatic",
+  "contract_sha256": "368ae4aea8d583291dcc92ffe5fa56cd7e2234091957d7af52577dbe8ba89c3d",
+  "error": "build-observer failed with exit 101; see build-observer.stderr",
+  "calls": [
+    {
+      "name": "base",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.008844938987749629,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "gitlink",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva",
+        "rev-parse",
+        "HEAD:adva-library"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.0066446069977246225,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-head",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.007085917997756042,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-head",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006592618010472506,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-tree",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.00641074099985417,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-tree",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "rev-parse",
+        "HEAD^{tree}"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006952645999263041,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-clean",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.011919492986635305,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-clean",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "status",
+        "--porcelain",
+        "--untracked-files=all"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006991711008595303,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-branch",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "symbolic-ref",
+        "--short",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006318218001979403,
+      "stdout_bytes": 5,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "embedded-origin",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva/adva-library",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "cwd": "/home/ubuntu/adva/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.006785828998545185,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "standalone-origin",
+      "argv": [
+        "git",
+        "-C",
+        "/home/ubuntu/adva-library",
+        "remote",
+        "get-url",
+        "origin"
+      ],
+      "cwd": "/home/ubuntu/adva-library",
+      "exit_code": 0,
+      "wall_seconds": 0.008033252001041546,
+      "stdout_bytes": 41,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "build-observer",
+      "argv": [
+        "cargo",
+        "build",
+        "--locked",
+        "--offline",
+        "-p",
+        "adva-witness",
+        "--example",
+        "quine_relay"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 101,
+      "wall_seconds": 5.183476881997194,
+      "stdout_bytes": 0,
+      "stderr_bytes": 20074
+    }
+  ],
+  "cost": {
+    "wall_seconds_before_report": 5.273734431000776,
+    "child_cpu_seconds": 2.238447,
+    "processes": 12,
+    "candidate_constructions": 1,
+    "memory_scope": "2 GiB cap per child; no claim of a measured combined peak"
+  }
+}

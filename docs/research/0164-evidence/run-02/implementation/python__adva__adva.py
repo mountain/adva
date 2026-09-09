@@ -231,10 +231,7 @@ def main():
     quine = commands.add_parser("quine-relay", help="bounded Python/Rust/PSC0 source-byte relay")
     quine.add_argument("--external-library", required=True, type=Path)
     quine.add_argument("--output", required=True, type=Path, help="fresh local evidence directory")
-    quine.add_argument(
-        "--previous", type=Path,
-        help="one explicit correction, debiting the prior report's budget",
-    )
+    quine.add_argument("--previous", type=Path, help="one explicit correction, debiting the prior report's budget")
     lineage_update = commands.add_parser(
         "lineage-update",
         help="Research 0156 Phase 0: build a checkpoint and a fresh chained anchor",
@@ -287,11 +284,8 @@ def main():
             else:
                 from quine_relay import run as run_quine
             report = run_quine(args)
-            print(json.dumps({
-                "status": report["status"], "phase": report["phase"],
-                "output": str(args.output),
-            }))
-            return {"ClosedFiniteByteRelay": 0, "Unknown": 3, "Rejected": 2}[report["status"]]
+            print(json.dumps({"status": report["status"], "phase": report["phase"], "output": str(args.output)}))
+            return 0 if report["status"] == "ClosedFiniteByteRelay" else 3 if report["status"] == "Unknown" else 2
         if args.command == "math-check":
             if args.output is not None and (args.output.exists() or args.output.is_symlink()):
                 raise FileExistsError("output must be a fresh path")
