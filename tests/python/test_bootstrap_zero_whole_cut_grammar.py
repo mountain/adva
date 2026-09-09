@@ -93,6 +93,26 @@ class Production:
 
 
 @dataclass(frozen=True)
+class HoleDecl:
+    name: str
+    value_type: str
+    port: str
+
+
+@dataclass(frozen=True)
+class Alternative:
+    name: str
+    value_type: str
+    form: AMTerm
+
+
+@dataclass(frozen=True)
+class AlternativeDecl:
+    hole: str
+    alternatives: tuple[Alternative, ...]
+
+
+@dataclass(frozen=True)
 class WholeCut6:
     name: str
     cells: tuple[WholeCutCell, ...]
@@ -102,6 +122,8 @@ class WholeCut6:
     circle_order: tuple[str, ...]
     residuals: tuple[str, ...]
     productions: tuple[Production, ...]
+    holes: tuple[HoleDecl, ...]
+    alternatives: tuple[AlternativeDecl, ...]
 
 
 @dataclass(frozen=True)
@@ -146,11 +168,34 @@ class Generate:
 
 
 @dataclass(frozen=True)
+class FibrePoint:
+    name: str
+    value_type: str
+
+
+@dataclass(frozen=True)
+class Fibre:
+    target: FibrePoint
+    members: tuple[FibrePoint, ...]
+
+
+@dataclass(frozen=True)
+class FibreAccount:
+    expansion: str
+    boundary: str
+    domain: tuple[FibrePoint, ...]
+    codomain: tuple[FibrePoint, ...]
+    images: tuple[tuple[str, str], ...]
+    fibres: tuple[Fibre, ...]
+
+
+@dataclass(frozen=True)
 class Retract:
     name: str
     source: Expansion
     target: Boundary
     residuals: tuple[str, ...]
+    account: FibreAccount
 
 
 @dataclass(frozen=True)
@@ -285,6 +330,16 @@ def _fixture(open_last: bool = False) -> WholeCut6:
         ),
         residuals,
         tuple(Production(port.source, (port.occurrence,)) for port in ports),
+        tuple(HoleDecl(item.hole, "A", item.port) for item in open_ports),
+        tuple(
+            AlternativeDecl(
+                item.hole,
+                tuple(
+                    Alternative(f"{item.hole}-option-{i}", "A", Atom(f"body-{i}")) for i in (0, 1)
+                ),
+            )
+            for item in open_ports
+        ),
     )
 
 
@@ -399,6 +454,41 @@ def _validate_whole(form: WholeCut6) -> None:
         if not item.hole or item.residual not in form.residuals:
             raise ValueError("an open port needs a named hole and retained residual")
 
+    _validate_hole_ledgers(form)
+
+
+def _validate_hole_ledgers(form: WholeCut6) -> None:
+    expected = {item.hole: item.port for item in form.open_ports}
+    if len(expected) != len(form.open_ports):
+        raise ValueError("open ports must have distinct hole names")
+    names = tuple(hole.name for hole in form.holes)
+    if len(set(names)) != len(names) or set(names) != set(expected):
+        raise ValueError("hole declarations must exactly account for open holes")
+    ports = {port.name: port for port in form.ports}
+    holes = {hole.name: hole for hole in form.holes}
+    for hole in form.holes:
+        if hole.port != expected[hole.name] or hole.value_type != ports[hole.port].value_type:
+            raise ValueError("hole declaration must retain its port and type")
+    alternative_holes = tuple(entry.hole for entry in form.alternatives)
+    if len(set(alternative_holes)) != len(alternative_holes) or not set(alternative_holes) <= set(
+        expected
+    ):
+        raise ValueError("alternative declarations must name distinct existing open holes")
+    for entry in form.alternatives:
+        option_names = tuple(option.name for option in entry.alternatives)
+        if not option_names or len(set(option_names)) != len(option_names):
+            raise ValueError("an alternative declaration needs distinct nonempty options")
+        if any(not isinstance(name, str) or not name for name in option_names):
+            raise ValueError("alternative names must be nonempty strings")
+        if any(option.value_type != holes[entry.hole].value_type for option in entry.alternatives):
+            raise ValueError("alternative type disagrees with its hole")
+        # Bodies are retained raw AM syntax; no evaluation or general type inference.
+        if any(
+            not isinstance(option.form, (Atom, EmptyZero, PolarDual, Plus, Tensor))
+            for option in entry.alternatives
+        ):
+            raise ValueError("unsupported alternative body constructor")
+
 
 def _line_view(form: WholeCut6) -> LineView:
     _validate_whole(form)
@@ -457,7 +547,53 @@ def _validate_collision(collision: Collision) -> None:
         raise ValueError("collision multiplicity must equal member multiplicity")
 
 
+def _validate_retraction(retract: Retract) -> None:
+    account = retract.account
+    if (account.expansion, account.boundary) != (retract.source.name, retract.target.name):
+        raise ValueError("fibre account must bind the declared retraction boundary")
+    domain = {point.name: point for point in account.domain}
+    codomain = {point.name: point for point in account.codomain}
+    if len(domain) != len(account.domain) or len(codomain) != len(account.codomain):
+        raise ValueError("fibre point names must be distinct within each boundary")
+    if any(
+        not isinstance(p.name, str)
+        or not p.name
+        or not isinstance(p.value_type, str)
+        or not p.value_type
+        for p in (*account.domain, *account.codomain)
+    ):
+        raise ValueError("fibre points need nonempty names and types")
+    if Counter(source for source, _ in account.images) != Counter(tuple(domain)):
+        raise ValueError("retraction images must account for each domain point once")
+    if any(target not in codomain for _, target in account.images):
+        raise ValueError("retraction image is outside the codomain")
+    expected = {target: [] for target in codomain}
+    for source, target in account.images:
+        expected[target].append(domain[source])
+    if Counter(f.target.name for f in account.fibres) != Counter(tuple(codomain)):
+        raise ValueError("fibres must retain every codomain point, including empty fibres")
+    for fibre in account.fibres:
+        if fibre.target != codomain[fibre.target.name]:
+            raise ValueError("fibre target payload disagrees with the codomain")
+        if Counter(fibre.members) != Counter(expected[fibre.target.name]):
+            raise ValueError("fibre members disagree with the declared map")
+
+
+def _singleton_account(expansion: Expansion, boundary: Boundary) -> FibreAccount:
+    source = FibrePoint("domain-point", "A")
+    target = FibrePoint("boundary-point", "A")
+    return FibreAccount(
+        expansion.name,
+        boundary.name,
+        (source,),
+        (target,),
+        ((source.name, target.name),),
+        (Fibre(target, (source,)),),
+    )
+
+
 def _validate_split(witness: SplitWitness) -> None:
+    _validate_retraction(witness.retract)
     if witness.generate.source != witness.retract.target:
         raise ValueError("retract after generate must return the same boundary")
     if witness.generate.target != witness.retract.source:
@@ -465,6 +601,7 @@ def _validate_split(witness: SplitWitness) -> None:
 
 
 def _factor_traversal(name: str, retract: Retract, generate: Generate) -> Traversal:
+    _validate_retraction(retract)
     if retract.target != generate.source:
         raise ValueError("traversal needs one common retraction/generation boundary")
     return Traversal(
@@ -593,7 +730,13 @@ def test_split_witness_returns_the_boundary_but_not_raw_expansion_identity() -> 
     boundary = Boundary("B")
     expansion = Expansion("E")
     generate = Generate("g", boundary, expansion)
-    retract = Retract("r", expansion, boundary, ("forgotten-local-detail",))
+    retract = Retract(
+        "r",
+        expansion,
+        boundary,
+        ("forgotten-local-detail",),
+        _singleton_account(expansion, boundary),
+    )
     witness = SplitWitness("split-rg", generate, retract)
 
     _validate_split(witness)
@@ -606,7 +749,7 @@ def test_traversal_must_factor_as_retraction_then_generation() -> None:
     common = Boundary("B")
     source = Expansion("E-i")
     target = Expansion("E-j")
-    retract = Retract("r-i", source, common, ("r-i-residual",))
+    retract = Retract("r-i", source, common, ("r-i-residual",), _singleton_account(source, common))
     generate = Generate("g-j", common, target)
 
     traversal = _factor_traversal("T-i-j", retract, generate)
