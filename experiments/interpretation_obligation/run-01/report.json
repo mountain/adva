@@ -1,0 +1,777 @@
+{
+  "schema": "adva.interpretation-obligation.report.research.v0",
+  "status": "CompletedFiniteCalibration",
+  "contract_sha256": "c496984fa1d578f83561f3fd5441b27dec67d6408e296bbf3800adafa9d26b94",
+  "native_admission": "NotGranted",
+  "word": {
+    "name": "interpretation-obligation",
+    "status": "Proposed"
+  },
+  "calls": [
+    {
+      "input": 2,
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/tmp/adva-interpret-library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--input",
+        "2",
+        "--fuel",
+        "1000",
+        "--expect-digest",
+        "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/experiments/interpretation_obligation/run-01/native-0.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.004207713998766849,
+      "report_sha256": "c75be96b73d1a0a123865122a7fdd8536ad284ae1fd9b821e995b5daee7643eb",
+      "fuel": {
+        "limit": 1000,
+        "spent": 204
+      }
+    },
+    {
+      "input": 3,
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/tmp/adva-interpret-library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--input",
+        "3",
+        "--fuel",
+        "1000",
+        "--expect-digest",
+        "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/experiments/interpretation_obligation/run-01/native-1.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.003840363002382219,
+      "report_sha256": "c746a53e5d59e377f612c9f480b94a83e0eae38132b4e7ce386218bbd7489ef3",
+      "fuel": {
+        "limit": 1000,
+        "spent": 204
+      }
+    },
+    {
+      "input": -3,
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/tmp/adva-interpret-library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--input",
+        "-3",
+        "--fuel",
+        "1000",
+        "--expect-digest",
+        "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/experiments/interpretation_obligation/run-01/native-2.json"
+      ],
+      "exit_code": 0,
+      "wall_seconds": 0.007816628000000492,
+      "report_sha256": "a7769cbefb97f1b70ab4d60a1ed6a7b132793a401ae929b502aba74ecb11d090",
+      "fuel": {
+        "limit": 1000,
+        "spent": 204
+      }
+    },
+    {
+      "input": 0,
+      "argv": [
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/target/clean-bootstrap-bundle/bin/adva",
+        "library",
+        "reuse",
+        "--path",
+        "/tmp/adva-interpret-library",
+        "--epoch",
+        "1",
+        "--word",
+        "0",
+        "--input",
+        "0",
+        "--fuel",
+        "1000",
+        "--expect-digest",
+        "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+        "--output",
+        "/workspace/scratch/e83be47dbd2c/adva-bootstrap/experiments/interpretation_obligation/run-01/native-3.json"
+      ],
+      "exit_code": 2,
+      "wall_seconds": 0.0037939380017633084,
+      "report_sha256": "4c692ca60c0669be046bb5c690bbac580444a7866d5afe909fcbf99bb6c4cdae",
+      "fuel": {
+        "limit": 1000,
+        "spent": 203
+      }
+    }
+  ],
+  "cases": [
+    {
+      "name": "old-square-agrees",
+      "interpretation": {
+        "name": "square",
+        "ast": [
+          "mul",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "e091b17880cee72509b31eb8a52b5f2e3fed79248ca1d3eec9db6eaf076cd808",
+        "question_sha256": "cd492ec393d82379d9293066fac8fad6233ade8523175678a565375f4d07d573"
+      },
+      "outcome": {
+        "status": "MatchedFiniteScope",
+        "binding_passed": true,
+        "scope": [
+          2
+        ],
+        "comparisons": [
+          {
+            "input": 2,
+            "native": [
+              "4",
+              "4"
+            ],
+            "interpretation": [
+              "4",
+              "4"
+            ],
+            "equal": true
+          }
+        ],
+        "residual": "Unlisted inputs and arbitrary prose remain unchecked"
+      }
+    },
+    {
+      "name": "target-double-matches",
+      "interpretation": {
+        "name": "doubling",
+        "ast": [
+          "add",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2,
+          3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "6a3766d5ddeb36ffe6d65d87b2c6db9977750762ce7b0eb5169510d28506e941"
+      },
+      "outcome": {
+        "status": "MatchedFiniteScope",
+        "binding_passed": true,
+        "scope": [
+          2,
+          3
+        ],
+        "comparisons": [
+          {
+            "input": 2,
+            "native": [
+              "4",
+              "4"
+            ],
+            "interpretation": [
+              "4",
+              "4"
+            ],
+            "equal": true
+          },
+          {
+            "input": 3,
+            "native": [
+              "6",
+              "6"
+            ],
+            "interpretation": [
+              "6",
+              "6"
+            ],
+            "equal": true
+          }
+        ],
+        "residual": "Unlisted inputs and arbitrary prose remain unchecked"
+      }
+    },
+    {
+      "name": "repinned-square-is-false",
+      "interpretation": {
+        "name": "square",
+        "ast": [
+          "mul",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2,
+          3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "e091b17880cee72509b31eb8a52b5f2e3fed79248ca1d3eec9db6eaf076cd808",
+        "question_sha256": "6a3766d5ddeb36ffe6d65d87b2c6db9977750762ce7b0eb5169510d28506e941"
+      },
+      "outcome": {
+        "status": "Counterexample",
+        "binding_passed": true,
+        "scope": [
+          2,
+          3
+        ],
+        "comparisons": [
+          {
+            "input": 2,
+            "native": [
+              "4",
+              "4"
+            ],
+            "interpretation": [
+              "4",
+              "4"
+            ],
+            "equal": true
+          },
+          {
+            "input": 3,
+            "native": [
+              "6",
+              "6"
+            ],
+            "interpretation": [
+              "9",
+              "9"
+            ],
+            "equal": false
+          }
+        ],
+        "residual": {
+          "counterexample": {
+            "input": 3,
+            "native": [
+              "6",
+              "6"
+            ],
+            "interpretation": [
+              "9",
+              "9"
+            ],
+            "equal": false
+          }
+        }
+      }
+    },
+    {
+      "name": "changed-without-repin",
+      "interpretation": {
+        "name": "square",
+        "ast": [
+          "mul",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2,
+          3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "6a3766d5ddeb36ffe6d65d87b2c6db9977750762ce7b0eb5169510d28506e941"
+      },
+      "outcome": {
+        "status": "RejectedBinding",
+        "binding_passed": false,
+        "scope": [
+          2,
+          3
+        ],
+        "comparisons": [],
+        "residual": null
+      }
+    },
+    {
+      "name": "missing-new-input",
+      "interpretation": {
+        "name": "square",
+        "ast": [
+          "mul",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2,
+          3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "e091b17880cee72509b31eb8a52b5f2e3fed79248ca1d3eec9db6eaf076cd808",
+        "question_sha256": "6a3766d5ddeb36ffe6d65d87b2c6db9977750762ce7b0eb5169510d28506e941"
+      },
+      "outcome": {
+        "status": "UnknownCoverage",
+        "binding_passed": true,
+        "scope": [
+          2,
+          3
+        ],
+        "comparisons": [],
+        "residual": {
+          "missing_inputs": [
+            3
+          ]
+        }
+      }
+    },
+    {
+      "name": "duplicate-input",
+      "interpretation": {
+        "name": "doubling",
+        "ast": [
+          "add",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "cd492ec393d82379d9293066fac8fad6233ade8523175678a565375f4d07d573"
+      },
+      "outcome": {
+        "status": "RejectedEvidence",
+        "binding_passed": true,
+        "scope": [
+          2
+        ],
+        "comparisons": [],
+        "residual": null
+      }
+    },
+    {
+      "name": "fresh-double",
+      "interpretation": {
+        "name": "doubling",
+        "ast": [
+          "add",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          -3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "f1d344402a0df2e2d0c1f01cce7b35f6531f61bc61120c3885ffcdc25acd98e5"
+      },
+      "outcome": {
+        "status": "MatchedFiniteScope",
+        "binding_passed": true,
+        "scope": [
+          -3
+        ],
+        "comparisons": [
+          {
+            "input": -3,
+            "native": [
+              "-6",
+              "-6"
+            ],
+            "interpretation": [
+              "-6",
+              "-6"
+            ],
+            "equal": true
+          }
+        ],
+        "residual": "Unlisted inputs and arbitrary prose remain unchecked"
+      }
+    },
+    {
+      "name": "fresh-square",
+      "interpretation": {
+        "name": "square",
+        "ast": [
+          "mul",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          -3
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "e091b17880cee72509b31eb8a52b5f2e3fed79248ca1d3eec9db6eaf076cd808",
+        "question_sha256": "f1d344402a0df2e2d0c1f01cce7b35f6531f61bc61120c3885ffcdc25acd98e5"
+      },
+      "outcome": {
+        "status": "Counterexample",
+        "binding_passed": true,
+        "scope": [
+          -3
+        ],
+        "comparisons": [
+          {
+            "input": -3,
+            "native": [
+              "-6",
+              "-6"
+            ],
+            "interpretation": [
+              "9",
+              "9"
+            ],
+            "equal": false
+          }
+        ],
+        "residual": {
+          "counterexample": {
+            "input": -3,
+            "native": [
+              "-6",
+              "-6"
+            ],
+            "interpretation": [
+              "9",
+              "9"
+            ],
+            "equal": false
+          }
+        }
+      }
+    },
+    {
+      "name": "guard-boundary",
+      "interpretation": {
+        "name": "doubling",
+        "ast": [
+          "add",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          0
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "b3edbad9a876a0cc6648ed04d3bb26b2e564a756b2251e7892cc6b2b7c22701e"
+      },
+      "outcome": {
+        "status": "RejectedScope",
+        "binding_passed": true,
+        "scope": [
+          0
+        ],
+        "comparisons": [],
+        "residual": null
+      }
+    },
+    {
+      "name": "unknown-syntax-repinned",
+      "interpretation": {
+        "name": "uninterpreted",
+        "ast": [
+          "free"
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "b65f6a3dab68a897a74e666aa3a8706745df8d0a95da55529fbc17a04a22cec4",
+        "question_sha256": "cd492ec393d82379d9293066fac8fad6233ade8523175678a565375f4d07d573"
+      },
+      "outcome": {
+        "status": "RejectedSyntax",
+        "binding_passed": true,
+        "scope": [
+          2
+        ],
+        "comparisons": [],
+        "residual": null
+      }
+    },
+    {
+      "name": "wrong-report-coordinate",
+      "interpretation": {
+        "name": "doubling",
+        "ast": [
+          "add",
+          [
+            "x"
+          ],
+          [
+            "x"
+          ]
+        ]
+      },
+      "question": {
+        "relation": {
+          "kind": "ordered-guarded-values-equal-interpretation",
+          "domain": "integers -8..8 with zero outside admitted reuse",
+          "quantifier": "for every input in the explicitly selected finite scope",
+          "observation": "two ordered exact integer strings; no process identity claim"
+        },
+        "inputs": [
+          2
+        ]
+      },
+      "binding": {
+        "schema": "adva.interpretation-binding.research.v0",
+        "mechanism_sha256": "f7567a56c9633ffd33fc9308f76ab5e56f0fbbc188f9896870923705a7e8114a",
+        "interpretation_sha256": "bae8ac11fb6e5c73977e8d6bb279540cfa03eb14fab99278884dadd73287b2fc",
+        "question_sha256": "cd492ec393d82379d9293066fac8fad6233ade8523175678a565375f4d07d573"
+      },
+      "outcome": {
+        "status": "RejectedEvidence",
+        "binding_passed": true,
+        "scope": [
+          2
+        ],
+        "comparisons": [],
+        "residual": null
+      }
+    }
+  ],
+  "costs": {
+    "native_construction_and_verification_seconds": 0.020318915998359444,
+    "binding_and_relation_checks_seconds": 0.0015405929989356082,
+    "serialization_and_same_checker_replay_seconds": 0.0018176979974668939,
+    "wall_seconds_before_checkpoint": 0.03711208399909083,
+    "self_peak_rss_kib": 12416,
+    "largest_child_rss_kib": 12160,
+    "memory_scope": "Linux per-process peaks; not aggregate concurrent memory"
+  },
+  "search_nodes": 0,
+  "binary_sha256": "b77954194eaffb085d2dbf823d92b942ccf0fffcd7cb99dee8868e8ad5adc598",
+  "matches_reference_binary": true,
+  "library_files": {
+    "stability/epoch-0000.json": "27016fc510e067caa930eb4e75b0d445342d4c1bc611dcf5b2577644e96ff8bb",
+    "stability/epoch-0001.json": "eafbee5a0e8d56d326088c608ee34e3f5557c55a9f1cdb40feb7aa73342013bb"
+  },
+  "native_fuel_spent": 815,
+  "files": {
+    "native-0.stdout": {
+      "bytes": 136,
+      "sha256": "9b96bcd886aeb6a4ce6151e7427fe2bfc094b54c3fa3bc33e23f57e65bf40f20"
+    },
+    "native-3.stderr": {
+      "bytes": 872,
+      "sha256": "5c05c13b33573d976a2c3b3e81439d416bdacabe32db4fd05b541e0fb2506889"
+    },
+    "native-1.json": {
+      "bytes": 16914,
+      "sha256": "c746a53e5d59e377f612c9f480b94a83e0eae38132b4e7ce386218bbd7489ef3"
+    },
+    "native-3.stdout": {
+      "bytes": 132,
+      "sha256": "a64fc42218a6902b41c1904323461ddb01619f9f5e0be141c5f196bf48fb3a25"
+    },
+    "native-0.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-2.json": {
+      "bytes": 16918,
+      "sha256": "a7769cbefb97f1b70ab4d60a1ed6a7b132793a401ae929b502aba74ecb11d090"
+    },
+    "native-1.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "native-2.stdout": {
+      "bytes": 136,
+      "sha256": "b214f1c7a76951c431ad30a4fade8e99ce3dba2bd9078bd27bb6b61c31a07c23"
+    },
+    "calibration.py": {
+      "bytes": 13225,
+      "sha256": "7d4c76fa1ef773cf2c2dd3d73af07b3588a8bc240e04b6e9c711a8f9852f690a"
+    },
+    "native-0.json": {
+      "bytes": 16914,
+      "sha256": "c75be96b73d1a0a123865122a7fdd8536ad284ae1fd9b821e995b5daee7643eb"
+    },
+    "native-3.json": {
+      "bytes": 16714,
+      "sha256": "4c692ca60c0669be046bb5c690bbac580444a7866d5afe909fcbf99bb6c4cdae"
+    },
+    "native-1.stdout": {
+      "bytes": 136,
+      "sha256": "d16d3a31e1a40401e14c1e7c953d4301e633d71532134e8ecccd087550c2b319"
+    },
+    "contract.json": {
+      "bytes": 3029,
+      "sha256": "c496984fa1d578f83561f3fd5441b27dec67d6408e296bbf3800adafa9d26b94"
+    },
+    "native-2.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  }
+}
