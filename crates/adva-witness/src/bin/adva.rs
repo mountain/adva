@@ -30,7 +30,12 @@ use std::path::PathBuf;
 #[path = "support/native_run_cli.rs"]
 mod native_run_cli;
 
+#[path = "support/library_cli.rs"]
+mod library_cli;
+
 const USAGE: &str = "usage:
+  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]
+  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]
   adva run <program.adva> --output <result.adva> [--print]
   adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
   adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]
@@ -94,6 +99,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         .next()
         .ok_or_else(|| invalid_input("missing command"))?;
     match command.as_str() {
+        "library" => library_cli::run(arguments),
         "run" => native_run_cli::run(arguments),
         "reveal" => run_reveal(parse_reveal_args(arguments)?),
         "trace-arithmetic" => run_trace_arithmetic(parse_trace_arithmetic_args(arguments)?),
