@@ -228,6 +228,10 @@ def main():
     catalog.add_argument(
         "--output", type=Path, help="optional fresh report path; otherwise stdout only"
     )
+    catalog.add_argument(
+        "--key-words", action="store_true",
+        help="also check the fixed registered v1 key-word mapping; not title meaning",
+    )
     quine = commands.add_parser("quine-relay", help="bounded Python/Rust/PSC0 source-byte relay")
     quine.add_argument("--external-library", required=True, type=Path)
     quine.add_argument("--output", required=True, type=Path, help="fresh local evidence directory")
@@ -314,7 +318,7 @@ def main():
                 from .math_catalog import check_catalog
             else:
                 from math_catalog import check_catalog
-            report = check_catalog(args.root)
+            report = check_catalog(args.root, key_words=args.key_words)
             if args.output is not None:
                 _save_new(args.output, report)
             print(json.dumps(report, sort_keys=True, allow_nan=False))
