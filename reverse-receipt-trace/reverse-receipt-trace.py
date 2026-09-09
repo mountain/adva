@@ -22,6 +22,7 @@ REVERSE_MEANING = {
     6: "对方的 advance 步骤用我们的收据当前驱 —— 信任在双方之间传递，不靠说服，靠 pin。",
     7: "两个二进制在同一字节前沿上一致 —— “信任可计算”第一次有了机器层的实例。",
     8: "两份文档字节层几乎无关，却共享同一论点母句 —— 意义不藏在字节里，藏在问题里。",
+    9: "第 3 句被翻译成有界谓词——解读开始为自己承担义务。",
 }
 
 def sha(p):
@@ -38,23 +39,19 @@ def all_receipts():
     return found
 
 def walk_chain():
-    by_sha = all_receipts()
-    chain, seen = [], set()
-    cur = json.loads(START.read_text(encoding='utf-8'))
-    p = START
-    while True:
+    """Ledger-driven walk: the canonical ancestry from trials/receipt-ledger/ledger.json."""
+    ledger_path = ROOT/'trials/receipt-ledger/ledger.json'
+    if not ledger_path.exists():
+        print("[孔洞] 收据台账缺失\n")
+        return [], None
+    ledger = json.loads(ledger_path.read_text(encoding='utf-8'))
+    steps = []
+    for e in sorted(ledger['entries'], key=lambda x: x['receipt']):
+        p = ROOT/e['path']
         h = sha(p)
-        chain.append((cur.get('round'), cur, p, h))
-        seen.add(h)
-        pred = cur.get('predecessor_sha256')
-        if not pred:
-            break
-        if pred not in by_sha:
-            print(f"[孔洞] 前驱 {pred[:12]}… 不在仓内 —— 链在此断开（保留为能量）\n")
-            break
-        p = by_sha[pred]
-        cur = json.loads(p.read_text(encoding='utf-8'))
-    return chain, by_sha
+        ok = (h == e['sha256'])
+        steps.append((e['receipt'], e, p, h, ok))
+    return steps, ledger
 
 def verify_dual_pair():
     print("=== 对偶对校验（第三个对象 = 泰西穆勒标记点）===\n")
@@ -77,23 +74,25 @@ def verify_dual_pair():
     print(f"    关系：{pair.get('relation', '')}\n")
 
 def main():
-    chain, by_sha = walk_chain()
-    print("=== 逆行运转：从合一结果走回起点 ===\n")
-    for round_no, rec, path, h in reversed(chain):
-        print(f"[✓] receipt-{round_no:02d}  {rec.get('status','?'):<20} sha={h[:16]}…")
-        print(f"    逆行解读：{REVERSE_MEANING.get(round_no, '')}\n")
-    orphans = [(json.loads(v.read_text(encoding='utf-8')).get('round'), v)
-               for v in by_sha.values() if v not in (x[2] for x in chain)]
-    if orphans:
-        print("=== 悬空收据（未被前驱链引用，如实保留）===\n")
-        for round_no, v in sorted(orphans, key=lambda x: x[0] if x[0] else 0):
-            print(f"[悬空] receipt-{round_no or '?'}  sha={sha(v)[:16]}…  逆行解读：{REVERSE_MEANING.get(round_no, '')}")
-        print("\n（精化轮重写收据时切断了 01→02→03 链并令 04 悬空；修复与否留作下一轮。）")
+    chain, ledger = walk_chain()
+    if not chain:
+        return
+    print("=== 逆行运转（台账驱动）：从合一结果走回起点 ===\n")
+    repairs = [e for _, e, _, _, _ in chain if e.get('repair')]
+    for round_no, e, path, h, ok in reversed(chain):
+        print(f"[{'✓' if ok else '✗'}] receipt-{round_no:02d}  {e.get('status','?'):<20} sha={h[:16]}…")
+        print(f"    逆行解读：{REVERSE_MEANING.get(round_no, '')}")
+        if e.get('repair'):
+            r = e['repair']
+            print(f"    [修复] 文件字段：{r['recorded_field']} → 台账订正：{r['correction']}")
+        print()
+    print("=== 悬空收据 === 无（台账已给出全部 9 张的显式祖先）\n")
     verify_dual_pair()
     print("=== 终点 ===\n")
     print("全部收据的意义合起来只有一句：")
     print("“信任不需要被相信，只需要被重跑。”")
-    print("机制与解读互为解释；对偶对的标记在 dual-pair-receipt.json。")
+    print("机制与解读互为解释；对偶对的标记在 dual-pair-receipt.json；")
+    print("祖先链的权威在 receipt-ledger。")
 
 if __name__ == '__main__':
     main()

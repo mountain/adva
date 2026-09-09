@@ -1,0 +1,96 @@
+{
+  "schema": "aeg.receipt-ledger.research",
+  "version": 0,
+  "authority": "explicit-ancestry-ledger; no default inferred; on-disk fields are evidence, this ledger is the canonical ancestry",
+  "rules": [
+    "every receipt 01-09 appears exactly once; unknown, missing or repeated entries fail",
+    "every entry pin must match the on-disk file bytes",
+    "every non-root has exactly one canonical predecessor; each receipt is the predecessor of at most one entry",
+    "disagreements between an on-disk predecessor field and the canonical predecessor require an explicit repair naming both; silent drop fails",
+    "no entry rewrites the historical files; repairs live in this ledger"
+  ],
+  "entries": [
+    {
+      "receipt": 1,
+      "path": "trials/advance-receipt-round-01/receipt-01.json",
+      "sha256": "2aff68d341e07c8c2c0f48662c266ec47e29c0c8a54d8fa83a831972bb9fbc79",
+      "canonical_predecessor": null,
+      "repair": null,
+      "status": "EvidenceStutter"
+    },
+    {
+      "receipt": 2,
+      "path": "trials/advance-receipt-round-01/receipt-02.json",
+      "sha256": "15f252996ca69ed43d102b2afc12712fec721a4774f5ecd568c47da59c0577b8",
+      "canonical_predecessor": 1,
+      "repair": {
+        "recorded_field": "None（精化轮重写清空）",
+        "correction": "predecessor = receipt-01"
+      },
+      "status": "EvidenceStutter"
+    },
+    {
+      "receipt": 3,
+      "path": "trials/advance-receipt-round-01/receipt-03.json",
+      "sha256": "1c0e5deea7a15ed0f489c3018793da299126c76417e63376f7d0c2e69e182aef",
+      "canonical_predecessor": 2,
+      "repair": {
+        "recorded_field": "None（精化轮重写清空）",
+        "correction": "predecessor = receipt-02"
+      },
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 4,
+      "path": "trials/iota-projection-round-01/receipt-04.json",
+      "sha256": "6bc159485ea22c869ce74dba489105753873cf47db973d8786eb4f69270da1cf",
+      "canonical_predecessor": 3,
+      "repair": null,
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 5,
+      "path": "trials/iota-projection-round-01/receipt-05.json",
+      "sha256": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9",
+      "canonical_predecessor": 4,
+      "repair": {
+        "recorded_field": "sha(receipt-03)（书写期复用错误）",
+        "correction": "predecessor = receipt-04"
+      },
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 6,
+      "path": "trials/advance-receipt-round-01/receipt-06.json",
+      "sha256": "751bfbc7c09150eba2c951beb8048772ce079a740d05448104072c6ffc055fb2",
+      "canonical_predecessor": 5,
+      "repair": null,
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 7,
+      "path": "trials/advance-receipt-round-01/receipt-07.json",
+      "sha256": "bc8c7f31af18a351baa22c05ab8ae60bad4cb0329d8346a877a25bc7bb581b7d",
+      "canonical_predecessor": 6,
+      "repair": null,
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 8,
+      "path": "trials/binary-relation-round-01/evidence-pdf-01/receipt-08.json",
+      "sha256": "afbc002371cdb6f020b9de25a4c792911cc8ddd421d7b57924a5076a8336b3fc",
+      "canonical_predecessor": 7,
+      "repair": null,
+      "status": "VariationObserved"
+    },
+    {
+      "receipt": 9,
+      "path": "trials/interpretation-obligation-round-01/receipt-09.json",
+      "sha256": "c9331549d7aec41e5a2f1d1e23ba4ba4f7025f044795723fe2d65148b8ebafeb",
+      "canonical_predecessor": 8,
+      "repair": null,
+      "status": "MatchedFiniteScope"
+    }
+  ],
+  "status": "proposed"
+}
