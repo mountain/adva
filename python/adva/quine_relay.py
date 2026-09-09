@@ -157,7 +157,9 @@ class Supervisor:
             raise Exhausted("aggregate child CPU budget")
 
     def restrictions(self):
-        resource.setrlimit(resource.RLIMIT_AS, (self.limits["address_space_bytes"],) * 2)
+        if sys.platform == "linux":
+            # RLIMIT_AS is Linux-only; macOS keeps CPU/FSIZE/CORE limits.
+            resource.setrlimit(resource.RLIMIT_AS, (self.limits["address_space_bytes"],) * 2)
         remaining = self.limits["aggregate_child_cpu_seconds"] - (
             self.child_cpu() - self.child_cpu_start
         )
