@@ -7,8 +7,10 @@ The local AEG workspace is not available to this receiver. A published reference
 to its receipts does not provide the receipt bytes or a way to reconstruct them.
 This experiment instead makes one concrete request an authorized AEG operator can
 answer without disclosing that workspace. Publication does not establish delivery.
-There is currently **no real peer reply**; `status.json` is `Unknown/AwaitingReply`.
-All reported successful comparisons are explicitly synthetic controls.
+Request 01 now has a published peer reply; see `response-01.json`,
+`acknowledgement-01.json` and `round-02.md`. Its source binding remains unverified.
+Request 02 is pending in `status-02.json`. The original calibration results below
+remain synthetic controls and are not substituted for a peer reply.
 
 ## Frozen question and boundaries
 
@@ -96,7 +98,7 @@ a requested contract, not something this receiver can remotely enforce.
 ```sh
 # Reproduce synthetic controls and the new-instance reuse; overwrites local evidence.
 python experiments/bounded_observation_exchange/calibrate.py
-# Inspect the real exchange state: remains Unknown/AwaitingReply.
+# Omitting a response still reports Unknown/AwaitingReply for that invocation.
 python experiments/bounded_observation_exchange/check_exchange.py \
   experiments/bounded_observation_exchange/request.json
 ```
