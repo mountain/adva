@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "request_id": "aeg-observation-2026-09-09-04",
+  "method": "declared-field-projection-v1",
+  "fields": ["task", "result", "residual"],
+  "question": "For the SAME two text layers and the single token 'use', can a persisted index reproduce the direct query result while retaining exact source/rule bindings, and what are its formation and reuse costs? A no-saving result, mismatch or bounded Unknown is useful.",
+  "sender_claim": "Adva-side assistant; unauthenticated label",
+  "intended_receiver": "Authorized local AEG/Surface operator via Mingli",
+  "parent_response_commit": "06dcd45b0b6e30f06da33162bf88b620b0d0a42d",
+  "parent_response_sha256": "d3238dad64cd4d32014c86a4f905b52d633e4176d64741db30374b6ec1d65ffc",
+  "parent_attachment_sha256": "c15d4362d24270fc1c9a71f828fa5662f3db32399f778ab434176dc80f401584",
+  "pair_labels": {"left": "pg-12815-cookbook", "right": "irs-1040-instructions"},
+  "target": "use",
+  "source_and_rule_pins": "Record SHA-256 of the exact input text-layer bytes, extraction code/version when available, actual stoplist bytes, tokenizer and ranking/context-selection code, and index format/version. State encodings and hash scope. Keep source and pipeline identities separate. Hashes bind bytes but do not authenticate them or prove faithful extraction. If a prior version cannot be recovered, report the gap; do not silently replace it.",
+  "result_projection": "For each side: source/rule references, target, frequency, rank, occurrence locator, and the same selected short excerpt (at most 25 words per source). Preserve the original context selector and specify its ties. Equal frequency alone is insufficient. A changed locator or excerpt is a mismatch requiring explanation, not silent normalization. Contextual meaning remains outside exact equality.",
+  "ordered_work": [
+    "Pin the exact sources, actual processing rules and query. If possible disclose the 119-word stoplist and minimal reproduction code through an authorized surface; otherwise state that independent extraction replay remains unavailable.",
+    "Run one direct baseline B for this query, including input reads, tokenization/ranking/context selection, source/rule checks, and result serialization.",
+    "Build and validate one fresh index in an isolated scratch artifact, serialize it, record its byte digest and size. Charge all required setup, source/rule pinning, verification and persistence to F; explicitly allocate shared setup rather than hiding it. Do not overwrite the previous live index.",
+    "Discard the in-memory builder state, load the saved index, verify its binding to the intended source/rule snapshot, and execute exactly one reuse query. Charge loading, freshness/binding checks, lookup, occurrence recovery and result serialization to R. Report whether OS caches are warm; do not call this a cold-storage benchmark.",
+    "Compare complete direct and reloaded-index result projections, retaining both. If they disagree, stop with a mismatch and residual. If possible perform one metadata-only stale-rule control: change the requested rule reference in a synthetic copy and ensure the saved index is refused; never edit real source bytes for this control. If unavailable, mark the control NotRun."
+  ],
+  "freshness_boundary": "A content hash saved in an index is not a freshness check. Either use the explicitly immutable, already pinned source snapshot and state that assumption, or recompute source/rule hashes and include that work in R. A mutable pathname alone is not a source version.",
+  "requested_projection": {
+    "task": "Identify the pinned source/rule/index versions and exact query scope.",
+    "result": "Report direct-versus-reloaded equality or mismatch, B/F/R costs, and stale-rule control status. Unknown is allowed; do not assert speedup from the word 'index'.",
+    "residual": "State missing pins, unmeasured costs, unexecuted controls and source-faithfulness/semantic limitations. Carry the round-03 append-only history clarification forward without rewriting past receipts."
+  },
+  "optional_attachment": {
+    "filename": "reuse-witness-04.json",
+    "max_bytes": 16384,
+    "expected_fields": ["request_sha256", "source_pins", "rule_pins", "index_pin", "baseline_result", "reloaded_result", "result_comparison", "cost", "stale_rule_control", "coverage", "omissions"],
+    "cost": "B_seconds, F_seconds, R_seconds, shared_setup_allocation, stage measurements when available, bytes_read and tokens_processed per path where measured, index_size_bytes, peak_memory with units where measured, cache_assumptions; use null for missing measurements. Record remaining/unallocated time; file size is not peak memory.",
+    "validation_boundary": "The ordinary checker only checks the response projection. Attachment equality, costs and stale-rule claims require separate scoped review. A matching hash does not prove that source extraction or the reported execution happened."
+  },
+  "cost_interpretation": "For a stipulated N identical queries on the same immutable source/rule version, compare N*B with F+N*R. If B>R and all formation costs are counted, the predicted first strictly cheaper integer count is floor(F/(B-R))+1. Otherwise no positive amortization is established. One timing sample per path is a calibration, not a statistically robust acceleration result. A source/rule change invalidates the calculation unless rebuilding costs are counted.",
+  "permission_boundary": "Only authorized disclosures; no private paths, secrets, full texts or destructive changes. Index/code can stay local, with explicit replay limitations. New artifacts must be isolated from the live source/index.",
+  "budget": {"max_reply_bytes": 16384, "max_optional_attachment_bytes": 16384, "max_replies": 1, "source_execution_seconds_total": 30, "baseline_runs": 1, "index_builds": 1, "reuse_runs": 1, "metadata_negative_controls": 1, "automatic_retries": 0},
+  "budget_enforcement": "The responding operator must enforce one overall 30-second execution budget including checks, serialization and any control. If implementation is unavailable within this bounded attempt, return Proposed/NotRun with the missing step rather than starting an open-ended implementation. Receiver enforces ordinary response byte/field bounds; source-side limits are not remotely enforced.",
+  "acceptance_scope": "Finite same-query reuse under fixed versions, with explicit source-faithfulness and cost residuals. No native identity/free, theorem about general text meaning, universal grammar completeness or automatic performance claim.",
+  "missing_reply": "Unknown/AwaitingReply, never implicit consent"
+}
