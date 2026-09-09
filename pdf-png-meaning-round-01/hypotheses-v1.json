@@ -1,0 +1,68 @@
+{
+  "schema": "aeg.pdf-png.hypotheses",
+  "version": 1,
+  "round": "pdf-png-meaning-round-01",
+  "objects": {
+    "strategy_pdf": "/Users/mingli/BP001(8).pdf",
+    "pitch_pdf": "/Users/mingli/NeoLab - TrustBase(1).pdf",
+    "binaries_between": [
+      "/Users/mingli/slide-01.png",
+      "/Users/mingli/slide-02.png",
+      "/Users/mingli/slide-03.png",
+      "/Users/mingli/slide-04.png",
+      "/Users/mingli/slide-05.png",
+      "/Users/mingli/slide-06.png",
+      "/Users/mingli/slide-07.png",
+      "/Users/mingli/slide-08.png",
+      "/Users/mingli/slide-09.png",
+      "/Users/mingli/slide-10.png",
+      "/Users/mingli/slide-11.png",
+      "/Users/mingli/slide-12.png",
+      "/Users/mingli/slide-13.png",
+      "/Users/mingli/slide-14.png"
+    ]
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "raster-projection-identity",
+      "statement": "The 14 PNGs are the deterministic raster projection of the pitch PDF's 14 pages at 150 dpi; the count and geometry invariants survive.",
+      "check": "probe.json checks: count_equals_pitch_pages=true, uniform_geometry=true (2000x1125), aspect_16_by_9=true, all_pinned=true.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H2",
+      "name": "structure-swap",
+      "statement": "The projection drops the text layer as text: words become pixels and are no longer machine-grep-able, while geometry is preserved exactly (150/72 = 25/12 scale).",
+      "check": "959.76 x 540 pts -> 2000 x 1125 px; 540*150/72 = 1125 exact, 959.76*150/72 = 1999.5 -> 2000 (round-up). Words exist in evidence text layer only, not in the PNG bytes as text.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H3",
+      "name": "carrier-overlap",
+      "statement": "Pixel weight (PNG bytes) tracks verbal weight (words per page), i.e. the two carriers overlap.",
+      "check": "pearson(words, bytes) = 0.4648 — only ~46% shared variance; not rejected outright but far from identity.",
+      "status": "VariationObserved"
+    },
+    {
+      "id": "H4",
+      "name": "zero-added-meaning",
+      "statement": "The PNGs add no meaning beyond the pitch PDF itself.",
+      "check": "Rejected: the pixel layer carries the visual grammar the text layer dropped. slide-14 (thesis page) = 27 words / 234 KB = 8.66 KB/word; slide-09 (value matrix) = 68 words / 204 KB = 3.0 KB/word. The thesis is carried visually 2.9x heavier per word than the matrix — information present in pixels, absent in text.",
+      "status": "Rejected"
+    },
+    {
+      "id": "H5",
+      "name": "pixel-text-equivalence-via-ocr",
+      "statement": "OCR of the PNGs would reproduce the evidence text layer page-for-page.",
+      "check": "Not executed: no OCR engine installed on this machine. The pixel layer's typography/color/layout semantics are not machine-read; only size-distribution proxies were measured.",
+      "status": "Unknown"
+    }
+  ],
+  "meaning_overlap": {
+    "words_total": 420,
+    "bytes_total": 1827308,
+    "words_per_kb": 0.235,
+    "pearson": 0.4648
+  }
+}

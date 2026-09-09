@@ -13,7 +13,7 @@ def main():
 
     # coverage: exactly once, no unknown/missing/duplicate
     nums = [e['receipt'] for e in entries]
-    if sorted(nums) != list(range(1, 10)):
+    if sorted(nums) != list(range(1, len(entries) + 1)):
         findings.append(f"coverage violation: {sorted(nums)}")
     if len(set(nums)) != len(nums):
         findings.append("duplicate receipt entries")

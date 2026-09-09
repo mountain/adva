@@ -1,0 +1,55 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 20,
+  "predecessor_sha256": "456e7613d212d232db20bf5e8f387c68f5b05744d300a181820583dcbeb65ee9",
+  "delta": {
+    "kind": "observation",
+    "admitted": true,
+    "description": "meaning of the binaries between the two PDFs: slide-01..14.png in /Users/mingli (raster renderings of the pitch at 150 dpi). Count invariant 14=14=14; geometry invariant exact (x25/12); structure dropped (words became pixels); carrier overlap pearson(words, bytes)=0.4648; thesis slide 14 is the pixel-heaviest (8.66 KB/word vs slide-09's 3.0)."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "count_invariant": {
+      "pngs": 14,
+      "pitch_pages": 14,
+      "text_layer_pages": 14,
+      "equal": true
+    },
+    "geometry_invariant": {
+      "scale": "150/72 = 25/12",
+      "height_exact": "540 * 25/12 = 1125",
+      "width_roundup": "959.76 * 25/12 = 1999.5 -> 2000",
+      "aspect_16_by_9": true
+    },
+    "structure_swap": {
+      "text_grep_able_in_pngs": false,
+      "words_live_in_text_layer_only": true
+    },
+    "carrier_overlap": {
+      "pearson": 0.4648,
+      "words_total": 420,
+      "bytes_total": 1827308,
+      "words_per_kb": 0.235
+    },
+    "outliers": {
+      "slide_09_value_matrix": {"words": 68, "bytes": 204181, "kb_per_word": 3.0},
+      "slide_14_thesis": {"words": 27, "bytes": 233975, "kb_per_word": 8.66}
+    },
+    "pins": {
+      "all_14_pngs_sha256": true,
+      "pitch_pdf_sha256": "c88d6b34c966a62290f89dbf2d112c10318930987eaece070c9881fdd004bea9",
+      "strategy_pdf_sha256": "1ea0c0beff4da7fe5aefdc5d6650351d6da339e49b6e81ac0ba4bccda5115353"
+    }
+  },
+  "documented_holes": [
+    "no OCR engine on this machine: H5 (pixel-text equivalence) stays Unknown; typography/color/layout semantics not machine-read",
+    "150 dpi is a lossy quotient of the vector page: sub-150-dpi detail discarded without measurement",
+    "all 14 PNGs share one mtime second (14:11): intra-batch order unverifiable from timestamps"
+  ],
+  "no_claims": [
+    "no promotion of the correlation 0.4648 to a law: it is a probe of 14 slides, n=14",
+    "no claim that the pixel layer's visual grammar has been read: only size-distribution proxies were measured",
+    "the PNGs remain outside the repos; full texts and pixels stay in local AEG only"
+  ]
+}
