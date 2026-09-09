@@ -1,0 +1,45 @@
+{
+  "schema": "aeg.unrelated-pair.hypotheses",
+  "version": 1,
+  "round": "unrelated-pair-round-01",
+  "objects": {
+    "tax": "irs-1040-instructions.pdf (126 pp)",
+    "cookbook": "cookbook.pdf (43 pp, PG #12815)"
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "naive-gate-separates",
+      "statement": "The 0.2 vocabulary-overlap gate proposed in method-generality-note-v0 refuses the unrelated pair.",
+      "check": "naive overlap coefficient = 0.2567 > 0.2: the gate would ADMIT the pair. Falsified.",
+      "status": "Rejected"
+    },
+    {
+      "id": "H2",
+      "name": "stopword-gate-separates",
+      "statement": "Filtering function words before computing overlap brings the unrelated pair below the gate.",
+      "check": "content-word overlap = 0.2092, still above 0.2 (generic verbs and homographs: line, return, check). Falsified.",
+      "status": "Rejected"
+    },
+    {
+      "id": "H3",
+      "name": "term-head-gate-separates",
+      "statement": "The intersection of the top-25 content-word heads discriminates: the unrelated pair has a disjoint head; related pairs overlap.",
+      "check": "cookbook vs irs: 0/25 = 0.00. Calibration: BP001 vs TrustBase 3/25 = 0.12 (weak, real); BBB vs Bigelow 14/25 = 0.56 (strong). Monotone, ordered, and correct on all three.",
+      "status": "MatchedFiniteScope"
+    },
+    {
+      "id": "H4",
+      "name": "method-refuses-honestly",
+      "statement": "On the unrelated pair the method reports 'no common term' and declines to read, instead of manufacturing a relation.",
+      "check": "heads disjoint, no shared key phrases, no shared named entities: the alignment machinery has no surface to align. The refusal is the correct null reading.",
+      "status": "MatchedFiniteScope"
+    }
+  ],
+  "supersedes": {
+    "document": "method-generality-note-v0.md (burau-boundary-pair-round-01)",
+    "field": "proposed_overlap_prefilter 0.2",
+    "replacement": "top-25 content-word head intersection, refuse below 0.08",
+    "reason": "both vocabulary-overlap variants admit a cookbook/tax-form pair; only the head intersection refuses it"
+  }
+}
