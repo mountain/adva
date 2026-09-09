@@ -1,7 +1,8 @@
 """Read-only math topic catalog checks, never proof or semantic admission.
 
-Only the six named catalog/checkpoint files and their declared references are
-read. Referenced content is hashed, not parsed, imported, evaluated or executed.
+The default reads six named catalog/checkpoint files and declared references.
+The explicit key-words option also parses its fixed, registered v1 document.
+Other referenced content is hashed, not imported, evaluated or executed.
 Catalog keys and SHA256 values are documentary coordinates, not semantic IDs.
 """
 
@@ -65,6 +66,22 @@ LIMITS = {
     "reference_bytes_each": 8 * 1024 * 1024,
     "total_read_bytes": 32 * 1024 * 1024,
     "cooperative_seconds": 5,
+}
+
+KEY_WORDS_PATH = "adva-library/names/catalog-key-words-v1.json"
+KEY_WORDS_SOURCE = "adva-library/names/catalog-key-words.json"
+KEY_WORDS_OWNER = "logic-party-naming-layer"
+KEY_WORDS_POLICY = {
+    "token_pattern": "[a-z0-9]+",
+    "separator": "-",
+    "normalization": "none",
+    "repeated_tokens": "reject",
+    "maximum_tokens": 16,
+    "maximum_key_characters": 80,
+    "title_semantics": "not-checked",
+}
+GRANDFATHERED_KEY_HOMES = {
+    key: home for key, home in RESERVED_HOMES.items() if key.split("-", 1)[0] != home
 }
 
 
@@ -390,7 +407,111 @@ def _entry(value: Any, reader: _Reader) -> dict[str, Any]:
     }
 
 
-def check_catalog(root: Path) -> dict[str, Any]:
+def link_words(words: Any) -> str:
+    """Lossless documentary naming on a restricted domain; no normalization."""
+    values = _array(words, "key words", KEY_WORDS_POLICY["maximum_tokens"])
+    for token in values:
+        if not isinstance(token, str) or not token:
+            raise ValueError("key words require nonempty strings")
+        if len(token) > KEY_WORDS_POLICY["maximum_key_characters"]:
+            raise CatalogLimitError("key word character limit exceeded")
+        if not re.fullmatch(KEY_WORDS_POLICY["token_pattern"], token):
+            raise ValueError("key words require lowercase ASCII alphanumeric tokens")
+    if len(set(values)) != len(values):
+        raise ValueError("repeated tokens are forbidden by the naming policy")
+    key = "-".join(values)
+    if len(key) > KEY_WORDS_POLICY["maximum_key_characters"]:
+        raise CatalogLimitError("linked key character limit exceeded")
+    return key
+
+
+def unlink_key(key: Any) -> list[str]:
+    """Recover the exact ordered words; malformed keys are never repaired."""
+    if not isinstance(key, str) or not key:
+        raise ValueError("key requires a nonempty string")
+    if len(key) > KEY_WORDS_POLICY["maximum_key_characters"]:
+        raise CatalogLimitError("key character limit exceeded")
+    words = key.split("-")
+    if link_words(words) != key:
+        raise ValueError("key does not round-trip")
+    return words
+
+
+def _check_key_words(reader: _Reader, entries: list[dict[str, Any]]) -> dict[str, Any]:
+    owners = [entry for entry in entries if entry["key"] == KEY_WORDS_OWNER]
+    if len(owners) != 1 or owners[0]["home"] != "logic":
+        raise ValueError("key words require their declared logic owner")
+    materials = {ref["path"]: ref for ref in owners[0]["materials"]}
+    if KEY_WORDS_PATH not in materials or KEY_WORDS_SOURCE not in materials:
+        raise ValueError("key words v1 and its source must be registered materials")
+    document = _object(
+        reader.document(KEY_WORDS_PATH),
+        {
+            "schema",
+            "version",
+            "status",
+            "policy",
+            "source_document",
+            "entries",
+            "grandfathered_keys",
+        },
+        "key words v1",
+    )
+    # Reading metadata again cannot silently replace the previously checked pin.
+    if reader.files[KEY_WORDS_PATH]["sha256"] != materials[KEY_WORDS_PATH]["sha256"]:
+        raise ValueError("key words changed after the reference check")
+    if (
+        document["schema"] != "adva.catalog-key-words.research"
+        or type(document["version"]) is not int
+        or document["version"] != 1
+        or document["status"] != "proposed-document"
+    ):
+        raise ValueError("unsupported key words schema/version/status")
+    if document["policy"] != KEY_WORDS_POLICY:
+        raise ValueError("key words cannot replace the fixed v1 naming policy")
+    if document["source_document"] != materials[KEY_WORDS_SOURCE]:
+        raise ValueError("key words source must retain its registered source reference")
+    historical = _strings(document["grandfathered_keys"], "grandfathered keys", empty=True)
+    if set(historical) != set(GRANDFATHERED_KEY_HOMES):
+        raise ValueError("grandfathered keys must be the exact seven historical exceptions")
+    catalog = {entry["key"]: entry for entry in entries}
+    seen = set()
+    result = []
+    for value in _array(document["entries"], "key word entries", LIMITS["entries"]):
+        reader.tick()
+        entry = _object(value, {"key", "key_words"}, "key word entry")
+        key = link_words(entry["key_words"])
+        if key != entry["key"] or unlink_key(key) != entry["key_words"]:
+            raise ValueError("key words and catalog key disagree")
+        if key in seen or key not in catalog:
+            raise ValueError("duplicate or foreign key word entry")
+        seen.add(key)
+        home = catalog[key]["home"]
+        if home != GRANDFATHERED_KEY_HOMES.get(key, entry["key_words"][0]):
+            raise ValueError("key word root disagrees with the home topic")
+        result.append(
+            {
+                "key": key,
+                "words": list(entry["key_words"]),
+                "home": home,
+                "historical_exception": key in GRANDFATHERED_KEY_HOMES,
+            }
+        )
+    if seen != set(catalog):
+        raise ValueError("key words must cover every declared catalog key")
+    return {
+        "schema": "adva.catalog-key-words-check.research",
+        "version": 1,
+        "status": "MatchedDeclaredKeys",
+        "path": KEY_WORDS_PATH,
+        "sha256": reader.files[KEY_WORDS_PATH]["sha256"],
+        "entries": result,
+        "title_semantics_checked": False,
+        "native_admission": "not-granted",
+    }
+
+
+def check_catalog(root: Path, *, key_words: bool = False) -> dict[str, Any]:
     """Check documentary structure/integrity; never authenticate its claims.
 
     The time bound is cooperative between local reads, not an OS watchdog.
@@ -484,6 +605,9 @@ def check_catalog(root: Path) -> dict[str, Any]:
                 if set(partition) != expected_partition:
                     raise ValueError("cross-topic reference cannot become local ownership")
             topics[topic] = members
+        reader.tick()
+        if key_words:
+            report["key_words"] = _check_key_words(reader, manifest["entries"])
         reader.tick()
         report.update(
             status="CatalogConsistent",
