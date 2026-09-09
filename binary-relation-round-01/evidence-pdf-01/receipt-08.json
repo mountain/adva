@@ -1,0 +1,61 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 8,
+  "predecessor_sha256": "bc8c7f31af18a351baa22c05ab8ae60bad4cb0329d8346a877a25bc7bb581b7d",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "two PDF documents at the OS root (home); interpretation-relation probing, tooling adapted from Mach-O to PDF"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "files": [
+      {
+        "name": "BP001(8).pdf",
+        "sha256": "1ea0c0beff4da7fe5aefdc5d6650351d6da339e49b6e81ac0ba4bccda5115353",
+        "size": 2946290
+      },
+      {
+        "name": "NeoLab - TrustBase(1).pdf",
+        "sha256": "c88d6b34c966a62290f89dbf2d112c10318930987eaece070c9881fdd004bea9",
+        "size": 849604
+      }
+    ],
+    "hypotheses": [
+      {
+        "h": "H1 same producer/toolchain",
+        "check": "PDF version + EncodingApplications",
+        "observed": "BP001: PDF 1.3, macOS Quartz PDFContext; NeoLab: PDF 1.7, producer metadata absent",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H2 one embeds the other",
+        "check": "shared vocabulary / byte containment",
+        "observed": "shared extracted words: ['not'] (1 word)",
+        "status": "EvidenceStutter"
+      },
+      {
+        "h": "H3 same-project companion documents",
+        "check": "BP001 vocabulary mentions the NeoLab/trust mission",
+        "observed": "BP001 words include: neolab, trust, trustworthy, machine-veri, metamath, mathlib, gowers, sawin, wiedijk, megill, founders, mingli, jiamin, kai, civilization-scale, ai-native",
+        "status": "VariationObserved"
+      },
+      {
+        "h": "H4 cross-language textual derivation (EN<->ZH)",
+        "check": "text overlap across languages",
+        "observed": "NeoLab extractable Latin words: 26 glyph fragments (CJK text not ASCII-extractable) -> hole",
+        "status": "Unknown"
+      }
+    ]
+  },
+  "holes": [
+    "otool is not an object file (PDFs, not Mach-O) - tooling hole, now adapted",
+    "NeoLab CJK text not ASCII-extractable (26 glyph fragments); needs ToUnicode/OCR for cross-language comparison",
+    "NeoLab producer metadata absent; BP001 produced by macOS Quartz",
+    "cross-language derivation relation (H4) remains Unknown - next round's energy"
+  ],
+  "bounds": {
+    "read_only": true
+  }
+}
