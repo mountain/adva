@@ -94,6 +94,26 @@
           "payload_sha256": null
         }
       ]
+    },
+    {
+      "name": "surface-language",
+      "hole": "Surface working language",
+      "selected": {
+        "value": "scale-marked cyclic (M0/M1/M2, remote 260b99b, proposed)",
+        "payload_sha256": "5fae5a30a622ce4250b034d333f52241572d58295c4738a897d040a0ebf33e77"
+      },
+      "retained": [
+        {
+          "value": "scale-marked cyclic (selected)",
+          "retention": "docs/research/0043-scale-marked-surface-exploration.md",
+          "payload_sha256": "5fae5a30a622ce4250b034d333f52241572d58295c4738a897d040a0ebf33e77"
+        },
+        {
+          "value": "wenyan 文言 (human-interface language)",
+          "retention": "adva-library/names/party-naming-layer-v0.json (Surface.language field)",
+          "payload_sha256": null
+        }
+      ]
     }
   ],
   "fibres": [
@@ -156,6 +176,18 @@
       "question": "receipt ancestry ledger consistent?",
       "fibre_status": "discharged",
       "predecessor_fibre": 9
+    },
+    {
+      "receipt": 11,
+      "question": "choice witnesses and fibre accounts consistent?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 10
+    },
+    {
+      "receipt": 12,
+      "question": "surface working language: cyclic recoverability on declared scope?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 11
     }
   ],
   "status": "proposed"

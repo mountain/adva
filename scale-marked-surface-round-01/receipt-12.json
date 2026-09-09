@@ -1,0 +1,34 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 12,
+  "predecessor_sha256": "0df3646d850d42f9be25b609ff67973e60985df97b3bdb06d6dc5e52e7258fa2",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "surface working language calibration: scale-marked cyclic M0/M1/M2 over Q(i) with recoverability and input-use ledger"
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "C1_example_recovery": true,
+    "C2_random_recovery": true,
+    "C3_epsilon_zero_refused": true,
+    "C4_tampered_fails": true,
+    "C5_input_use_ledger": {
+      "epsilon": 3,
+      "z0": "2 uses (x2, x1)",
+      "z1": "2 uses (x2, x1)",
+      "z2": "2 uses (x2, x1)"
+    },
+    "C6_special_case_mapping": "byte-formula body 2u+v == (2*z0+z1) without scale/cycle (proposed mapping, not equivalence)"
+  },
+  "no_claims": [
+    "outside the math catalog",
+    "no native authorization",
+    "no three-hole manifold identification"
+  ],
+  "bounds": {
+    "read_only": true,
+    "pure_python": true
+  }
+}
