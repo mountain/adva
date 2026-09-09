@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "request_sha256": "e77e7b4aa231517b6e915f46880dc14fe0f94c926ddee8033667766f0f464052",
+  "method": "declared-field-projection-v1",
+  "sender_claim": "AEG operator reply 04 (local Surface repo, authorized); label unauthenticated",
+  "before": {
+    "record_ref": "reply-03-direct-computation",
+    "projection": {
+      "task": "single direct computation of the 'use' projection; no saved index artifacts existed",
+      "result": "reply-03 direct projection: cookbook 21/61 locator 212, irs 234/22 locator 2763; costs partly itemized (0.020620s was unlabeled tokenization)",
+      "residual": "no index, no reuse path, no stale-rule control; round-03 reported content-token totals 8281/41229"
+    }
+  },
+  "after": {
+    "record_ref": "reuse-benchmark-04",
+    "projection": {
+      "task": "pinned source/rule/stoplist bytes by sha256, one direct baseline B, one fresh index build F, one fresh-process reuse query R, one stale-rule control",
+      "result": "Declared projection EQUAL after save-and-reload: cookbook 21/61/212, irs 234/22/2763, identical contexts. B=0.040720s, F=0.055460s, R=0.024428s in-process (0.043256s subprocess wall); index 1,375,405 bytes; stale-rule copy refused (exit 1). N*=4 under the in-process service model; process-per-query reuse shows no positive amortization (interpreter startup dominates).",
+      "residual": "Round-03 token totals 8281/41229 are not reproduced by the frozen 119-word stoplist (8279/41209): a stoplist-copy discrepancy in the round-03 inline script; the four projected use-fields are unaffected and reproduce exactly. First equality check keyed on a wider object (an extra content_tokens field) and read false; corrected post-hoc on the declared fields without re-run. Warm OS cache declared. Round-03 history clarification carried forward unchanged."
+    }
+  },
+  "omissions": "No private paths, secrets or full documents; artifacts referenced by basename. The index artifact stays local; only its sha256 and size are disclosed. Semantic acceptance withheld."
+}
