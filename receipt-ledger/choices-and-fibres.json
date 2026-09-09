@@ -1,0 +1,162 @@
+{
+  "schema": "aeg.choice-fibre-ledger.research",
+  "version": 0,
+  "authority": "explicit selections and fibre accounting; complete alternative retention; silent drops rejected",
+  "rules": [
+    "every selection has a named witness and belongs to its declared hole",
+    "the complete set of alternatives is retained with the selection; an empty or partial retained set is rejected",
+    "selected payload pins, where declared, must match the retained payload bytes",
+    "every receipt 01-10 has exactly one fibre entry with status discharged|empty|unknown",
+    "remote-branch retentions are documentary; local retentions are pin-checked"
+  ],
+  "choices": [
+    {
+      "name": "party-naming-scheme",
+      "hole": "three-party renaming",
+      "selected": {
+        "value": "A: Substrate/Knowledge/Surface",
+        "payload_sha256": "feb270db2d784720bb6803b6f9b17668a06f57594a0ba732223663ae1b1917c8"
+      },
+      "retained": [
+        {
+          "value": "A: Substrate/Knowledge/Surface",
+          "retention": "adva-library/names/party-naming-layer-v0.json",
+          "payload_sha256": "feb270db2d784720bb6803b6f9b17668a06f57594a0ba732223663ae1b1917c8"
+        },
+        {
+          "value": "B: Iota/Adva/Wenyan",
+          "retention": "proto/party-naming-layer.md (documentary text)",
+          "payload_sha256": null
+        },
+        {
+          "value": "C: Machine/World/Human",
+          "retention": "proto/party-naming-layer.md (documentary text)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "macos-restrictions-guard",
+      "hole": "supervisor platform limits",
+      "selected": {
+        "value": "surgical RLIMIT_AS linux guard (main ac2c173)",
+        "payload_sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f"
+      },
+      "retained": [
+        {
+          "value": "surgical RLIMIT_AS linux guard (selected)",
+          "retention": "python/adva/quine_relay.py",
+          "payload_sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f"
+        },
+        {
+          "value": "full no-op patch (run-time variant)",
+          "retention": "trials/advance-local-run-02/implementation-quine_relay.py",
+          "payload_sha256": "2bed9d1af5000ae64ab0486740f235c8848e635636995a5a23979896eee7179f"
+        }
+      ]
+    },
+    {
+      "name": "byte-formula-interpretation",
+      "hole": "0164 formula interpretation (0166 experiment)",
+      "selected": {
+        "value": "doubling 2x (native reuse matched, add(x,x))",
+        "payload_sha256": null
+      },
+      "retained": [
+        {
+          "value": "add(x,x) doubling",
+          "retention": "origin/research/0166-interpretation-obligation (remote branch, documentary)",
+          "payload_sha256": null
+        },
+        {
+          "value": "mul(x,x) square - counterexample at 3",
+          "retention": "origin/research/0166-interpretation-obligation (remote branch, documentary)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "receipt-ancestry",
+      "hole": "receipt 02/03/05 predecessor fields",
+      "selected": {
+        "value": "explicit ledger repairs (canonical chain 01..09)",
+        "payload_sha256": "fcba65ba5eb3b4648071de6aa595a5d3346ffa1ab96c6d94700ace1ee4051e79"
+      },
+      "retained": [
+        {
+          "value": "explicit ledger repairs (selected)",
+          "retention": "trials/receipt-ledger/ledger.json",
+          "payload_sha256": "fcba65ba5eb3b4648071de6aa595a5d3346ffa1ab96c6d94700ace1ee4051e79"
+        },
+        {
+          "value": "on-disk field values (historical evidence)",
+          "retention": "the receipt files themselves, unmodified",
+          "payload_sha256": null
+        }
+      ]
+    }
+  ],
+  "fibres": [
+    {
+      "receipt": 1,
+      "question": "unchanged input -> byte variation?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": null
+    },
+    {
+      "receipt": 2,
+      "question": "100 native runs of one program -> variation?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 1
+    },
+    {
+      "receipt": 3,
+      "question": "declared-carrier variation on two admitted programs?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 2
+    },
+    {
+      "receipt": 4,
+      "question": "0164 formula on the iota/SKI substrate?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 3
+    },
+    {
+      "receipt": 5,
+      "question": "full 0..255 byte set on the substrate?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 4
+    },
+    {
+      "receipt": 6,
+      "question": "local rerun of the remote advance step?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 5
+    },
+    {
+      "receipt": 7,
+      "question": "two binaries agree on the frontier?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 6
+    },
+    {
+      "receipt": 8,
+      "question": "interpretation relation of the two documents?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 7
+    },
+    {
+      "receipt": 9,
+      "question": "sentence-3 predicate on its declared scope?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 8
+    },
+    {
+      "receipt": 10,
+      "question": "receipt ancestry ledger consistent?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 9
+    }
+  ],
+  "status": "proposed"
+}

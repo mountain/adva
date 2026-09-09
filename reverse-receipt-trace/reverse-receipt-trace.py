@@ -73,6 +73,21 @@ def verify_dual_pair():
         print(f"[未定位] 解读文件不在约定路径 {LIB_CHECKOUT}/{MD_REL}；记录的 pin：{interp['sha256'][:16]}…")
     print(f"    关系：{pair.get('relation', '')}\n")
 
+def show_choices_fibres():
+    doc_path = ROOT/'trials/receipt-ledger/choices-and-fibres.json'
+    if not doc_path.exists():
+        return
+    doc = json.loads(doc_path.read_text(encoding='utf-8'))
+    print("=== 选择见证与纤维账户 ===\n")
+    for c in doc['choices']:
+        print(f"[选择] {c['name']}（孔：{c['hole']}）")
+        print(f"      选中：{c['selected']['value']}")
+        print(f"      保留备选：{len(c['retained'])} 项（静默丢弃即拒）")
+    print()
+    for f in doc['fibres']:
+        print(f"[纤维] receipt-{f['receipt']:02d}  {f['fibre_status']:<10} 问题：{f['question']}")
+    print()
+
 def main():
     chain, ledger = walk_chain()
     if not chain:
@@ -87,6 +102,7 @@ def main():
             print(f"    [修复] 文件字段：{r['recorded_field']} → 台账订正：{r['correction']}")
         print()
     print("=== 悬空收据 === 无（台账已给出全部 9 张的显式祖先）\n")
+    show_choices_fibres()
     verify_dual_pair()
     print("=== 终点 ===\n")
     print("全部收据的意义合起来只有一句：")
