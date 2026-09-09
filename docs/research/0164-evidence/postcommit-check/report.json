@@ -1,0 +1,57 @@
+{
+  "status": "CommittedSourceMatchesExecutedSource",
+  "commit": "16b96e2ac256bba4ac3058a1d9272049da544a75",
+  "full_relay_before_commit": true,
+  "reason": "The initial commit lacked a Git identity; the successful relay used exactly the source subsequently committed. The post-commit kernel gate was checked separately.",
+  "calls": [
+    {
+      "name": "source-base-ancestor",
+      "argv": [
+        "git",
+        "merge-base",
+        "--is-ancestor",
+        "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+        "HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.007995364998350851,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    },
+    {
+      "name": "source-base-content",
+      "argv": [
+        "git",
+        "diff",
+        "--exit-code",
+        "--no-ext-diff",
+        "7643ac6bfca4235f6e558e8ae9e2f5eeb113a3e5",
+        "--",
+        "Cargo.toml",
+        "Cargo.lock",
+        "crates",
+        ".cargo",
+        "rust-toolchain",
+        "rust-toolchain.toml",
+        "build.rs",
+        ":(exclude)crates/adva-witness/examples/quine_relay.rs"
+      ],
+      "cwd": "/home/ubuntu/adva",
+      "exit_code": 0,
+      "wall_seconds": 0.019867113995132968,
+      "stdout_bytes": 0,
+      "stderr_bytes": 0
+    }
+  ],
+  "wall_seconds": 0.031002654999610968,
+  "child_cpu_seconds": 0.023847999999999994,
+  "closure": {
+    "p_bytes": 5772,
+    "q_bytes": 6073,
+    "r_bytes": 167492,
+    "p_sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e",
+    "regenerated_sha256": "93e754f53767d806aece0c6aca90a3a757425772e5c980ad0985839db21e945e",
+    "byte_equal": true
+  }
+}
