@@ -72,6 +72,23 @@ temporal/constructive）优于合奏——分数排序是引导而非录取，�
   独立 `verify` 重算 25 个相关值一致；负控制 `run7-tampered.json`
   被拒（"stored energy 78 differs from exact energy 77"）。
 
+## Run 8–11（contract-run8..11.json，0129 §4 继续滚动，证据补齐归档）
+
+本批四轮（length 27→30）的运行时证据此前仅存于本地工作目录，2026-09-08
+按 ADR 0043 目录分割合同归档补齐。合同修订沿用相邻族（length +1），检查器、
+seed 1、10000 步、workers 1 与预算均不变。
+
+| Run | 族 | energy | merit | 负控制 |
+| --- | --- | ---: | ---: | --- |
+| 8 | 27 | 65 | 5.607692 | 拒绝 ✓ |
+| 9 | 28 | 66 | 5.939394 | 拒绝 ✓ |
+| 10 | 29 | 86 | 4.889535 | 拒绝 ✓ |
+| 11 | 30 | 83 | 5.421687 | 拒绝 ✓ |
+
+负控制为完整报告副本、仅篡改存储 energy（+1），与系列既有 verify 拒绝
+机制一致（存储值与按序列精确重算不符即拒）。本批未保存独立 verify 记录
+文件，故不另行声称复核计数；系列收官统计中 Run 9 进入 merit 前三的依据
+即本表。
 ## Run 12（contract-run12.json，用户指示"learn×100 → free → breakthrough"扩权）
 
 - 修订：length 30 → 31（本次扩权由用户指示）；

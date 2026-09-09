@@ -1,0 +1,32 @@
+{
+  "schema": "adva.evidence-stutter.failed-invocation.v0",
+  "version": 0,
+  "attempts": [
+    {
+      "kind": "launcher",
+      "command": "timeout 12s /usr/bin/time -v python3 experiments/evidence_stutter/calibration.py --output experiments/evidence_stutter/evidence.json",
+      "exit_code": 127,
+      "effect": "no experiment launched",
+      "error": "/usr/bin/time was unavailable"
+    },
+    {
+      "kind": "actual_child",
+      "command": "timeout 12s python3 experiments/evidence_stutter/calibration.py --output experiments/evidence_stutter/evidence.json",
+      "exit_code": 1,
+      "effect": "classification and controls ran, but no output file was written",
+      "error": "Python NameError from JSON spelling true in the report constructor"
+    }
+  ],
+  "sole_correction": {
+    "change": "replace Python token true with True",
+    "input_changed": false,
+    "classification_changed": false,
+    "expected_outcomes_changed": false,
+    "budget_changed": false
+  },
+  "replay": {
+    "exit_code": 0,
+    "status": "PassedFiniteCalibration",
+    "actual": "EvidenceStutter"
+  }
+}

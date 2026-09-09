@@ -1,0 +1,136 @@
+{
+  "schema": "adva.library-directory-partition.contract.research",
+  "version": 0,
+  "kind": "documentary-engineering-contract",
+  "status": "proposed-document",
+  "scope": "adva-library directory partition and admission gates",
+  "requested_by": "Mingli Yuan",
+  "drafted_by": "assistant",
+  "recorded_on": "2026-09-08",
+  "parent_documents": [
+    "docs/adr/0042-math-topic-catalog-without-semantic-authority.md",
+    "docs/research/0139-library-six-phase-and-communication.md",
+    "docs/research/0154-math-catalog-and-task-loop-boundary.md",
+    "docs/research/0157-free-acceptance-predicate-candidate.md",
+    "docs/research/0158-downward-interpretation-and-drop-route.md"
+  ],
+  "axioms": [
+    "location-grants-nothing: a file gains no semantic status by sitting in a directory; registration is explicit and checkable",
+    "one-home-cross-directory-is-reference: every entry has exactly one home; cross-topic references are documentary views, never derivation parents, implicit imports or permission transfers",
+    "promotion-requires-new-contract: journal-to-epoch, proposed-to-native and documentary-to-Seal moves each require a new versioned bounded contract; no in-place rewriting of pinned bytes"
+  ],
+  "directories": [
+    {
+      "path": ".",
+      "role": "pinned originals",
+      "checker": "SHA-256 byte pins in index.json and math/constraints",
+      "growth_rule": "additive documented pins only; the two Pascal files remain byte-immutable",
+      "statuses_allowed": [
+        "proposed-document"
+      ]
+    },
+    {
+      "path": "phase-runner",
+      "role": "frozen orchestration inputs",
+      "checker": "pins recorded in learn-free-six.contract.json (source_base, learn_backend_source)",
+      "growth_rule": "only by a new contract version; runtime outputs never stored here",
+      "statuses_allowed": [
+        "pinned-input"
+      ]
+    },
+    {
+      "path": "stability",
+      "role": "checked knowledge epoch store",
+      "checker": "adva_witness::load_library_v0 full parent-chain replay with fresh Rust derivations",
+      "growth_rule": "append-only via a bounded checked run; existing snapshots never overwritten; no mutable latest pointer",
+      "statuses_allowed": [
+        "checked-research-snapshot"
+      ]
+    },
+    {
+      "path": "exploration",
+      "role": "proposal journal",
+      "checker": "complete-stage regeneration replay with field comparison",
+      "growth_rule": "additive stages; rejected, Open and Unknown outcomes retained; decoding alone never authorizes reuse",
+      "statuses_allowed": [
+        "replayable-proposal-journal"
+      ]
+    },
+    {
+      "path": "math",
+      "role": "documentary topic catalog",
+      "checker": "python3 python/adva/adva.py math-check (schema, one-home, topic coverage, bounded references, byte pins)",
+      "growth_rule": "explicit reviewed catalog edit with version bump; bounds 32 entries / 256 reference occurrences / 96 files / 256 KiB per metadata file / 8 MiB per referenced file / 32 MiB total read / 5 s cooperative deadline",
+      "statuses_allowed": [
+        "hypothesis",
+        "proposed-document",
+        "checked-research-snapshot",
+        "proposal-journal",
+        "bounded-evidence",
+        "external-calibration",
+        "checking-boundary"
+      ],
+      "native_admission": "not-granted"
+    },
+    {
+      "path": "validation",
+      "role": "external install/run acceptance records",
+      "checker": "pinned parent commit, source digests, dependency versions, observed controls",
+      "growth_rule": "additive records; not a crypto audit, not a fresh experiment claim",
+      "statuses_allowed": [
+        "acceptance-record"
+      ]
+    },
+    {
+      "path": "vendor",
+      "role": "pinned external dependencies",
+      "checker": "exact commit per gitlink; .gitmodules must match the index",
+      "growth_rule": "new vendor only by explicit review; no local edits to vendored sources",
+      "statuses_allowed": []
+    },
+    {
+      "path": "knowledge-boundary",
+      "role": "declared fixture home (subject/method/object)",
+      "checker": "its own experiment contract",
+      "growth_rule": "additive; fixtures never promoted to native words by directory placement",
+      "statuses_allowed": [
+        "pinned-input"
+      ]
+    },
+    {
+      "path": "prime-universe",
+      "role": "declared fixture home (finite product question, program, requests)",
+      "checker": "its own experiment contract",
+      "growth_rule": "additive; requests are bounded evidence inputs",
+      "statuses_allowed": [
+        "bounded-evidence"
+      ]
+    }
+  ],
+  "cross_directory_rules": [
+    "Geometry successors cite same-home parents whose chains reach the pinned pascal-research-presentations root; external references and Q4/M6 are never derivation parents.",
+    "Topics (arithmetic/geometry/logic) are views, not homes; shared topic membership grants no ownership, import or identity.",
+    "A candidate logic cannot select or replace the checker that admits it.",
+    "The run phase records .adva output as bytes, never interprets it; transport does not confer admission.",
+    "Trial outputs (reports, contracts, tampered controls, archives) live outside the library under docs/research/<NNNN>-evidence/; a local experiment directory is a live frame and must be dropped there with its receipts, or declared a local-only experiment in its driver.",
+    "Vendored external sources are pinned by exact commit; no local edits."
+  ],
+  "admission_procedure": [
+    "Declare: home directory, theory/version, assumptions, finite scope, recorded status, materials with SHA-256, evidence, checker/version/source, reuse requirements, open obligations.",
+    "Check: run the declared checker under its bounded contract; record exit status and residuals.",
+    "Accept: where the task declares human acceptance (0157 F3), retain the acceptance record; a signature is provenance, not acceptance.",
+    "Commit: additive change only; historical pins remain unchanged."
+  ],
+  "revision_discipline": [
+    "Policy changes require an explicit versioned contract, never a reinterpretation of v0.",
+    "The checker never updates a digest for the user; fingerprint changes require a reviewed catalog edit.",
+    "The growth obligation and its documentary seal are immutable; discharge requires the listed native prerequisites.",
+    "No directory change maps topics to compute/verify/learn or Rust/Lean/Metamath."
+  ],
+  "open_obligations": [
+    "free: task-relative predicate not yet chosen (0157 candidate F1/F2/F3); native free command absent; contract free phase remains AdapterUnavailable/NotRun.",
+    "drop/thread: intended thread dual and the preserved observation are Open (0158); the F7^2 linear fixture is externally supplied.",
+    "growth: geometry growth obligation Open; native Seal NotIssued.",
+    "hygiene: .gitmodules empty while four gitlinks exist; pysnark untracked circuit artifacts; research number 0158 shared with the unmerged disclosure branch."
+  ]
+}

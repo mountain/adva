@@ -1,0 +1,681 @@
+{
+  "actual_route_surface": "AwaitingMingliThread; illustrative root is not a supplied user thread",
+  "cases": [
+    {
+      "receipt": {
+        "archive": [
+          {
+            "evidence": {
+              "square": 1,
+              "target": 1,
+              "x": 1
+            },
+            "source": {
+              "grant": 4,
+              "name": "aligned",
+              "need": {
+                "kind": "root-receiver",
+                "label": "external-receiver-demo",
+                "scope": "F7:t=1:y=1:v0",
+                "square": 1,
+                "target": 1
+              },
+              "order": [
+                "offer",
+                "need"
+              ],
+              "profile": "route-profile-v0",
+              "program": "(switch swap break)",
+              "thread": {
+                "bits": [
+                  1,
+                  0,
+                  0
+                ],
+                "kind": "root-offer",
+                "label": "external-thread-demo",
+                "scope": "F7:t=1:y=1:v0",
+                "value": 1
+              }
+            }
+          }
+        ],
+        "checked": true,
+        "grant": 4,
+        "history": [
+          "switch",
+          "break",
+          "cut-check",
+          "drop"
+        ],
+        "live_frame": false,
+        "order": [],
+        "remaining": 0,
+        "result": 1,
+        "spent": 4,
+        "status": "Returned"
+      },
+      "source": {
+        "grant": 4,
+        "name": "aligned",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [
+          {
+            "evidence": {
+              "square": 1,
+              "target": 1,
+              "x": 6
+            },
+            "source": {
+              "grant": 6,
+              "name": "reversed",
+              "need": {
+                "kind": "root-receiver",
+                "label": "external-receiver-demo",
+                "scope": "F7:t=1:y=1:v0",
+                "square": 1,
+                "target": 1
+              },
+              "order": [
+                "need",
+                "offer"
+              ],
+              "profile": "route-profile-v0",
+              "program": "(switch swap break)",
+              "thread": {
+                "bits": [
+                  0,
+                  1,
+                  1
+                ],
+                "kind": "root-offer",
+                "label": "external-thread-demo",
+                "scope": "F7:t=1:y=1:v0",
+                "value": 6
+              }
+            }
+          }
+        ],
+        "checked": true,
+        "grant": 6,
+        "history": [
+          "switch",
+          "swap",
+          "switch",
+          "break",
+          "cut-check",
+          "drop"
+        ],
+        "live_frame": false,
+        "order": [],
+        "remaining": 0,
+        "result": 6,
+        "spent": 6,
+        "status": "Returned"
+      },
+      "source": {
+        "grant": 6,
+        "name": "reversed",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "need",
+          "offer"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            0,
+            1,
+            1
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 6
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [
+          "switch",
+          "break",
+          "cut-check"
+        ],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 1,
+        "result": null,
+        "spent": 3,
+        "status": "Refuted:ThreadDoesNotFill"
+      },
+      "source": {
+        "grant": 4,
+        "name": "false_thread",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            0,
+            1,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 2
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 4,
+        "result": null,
+        "spent": 0,
+        "status": "Surface:MissingThread"
+      },
+      "source": {
+        "grant": 4,
+        "name": "missing_thread",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": null
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 4,
+        "result": null,
+        "spent": 0,
+        "status": "Surface:UnspecifiedDual"
+      },
+      "source": {
+        "grant": 4,
+        "name": "unspecified_dual",
+        "need": {
+          "kind": "unspecified-dual",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 4,
+        "result": null,
+        "spent": 0,
+        "status": "Blocked:ScopeMismatch"
+      },
+      "source": {
+        "grant": 4,
+        "name": "stale_scope",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=5:y=3:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [
+          "switch",
+          "break",
+          "cut-check"
+        ],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 1,
+        "result": null,
+        "spent": 3,
+        "status": "Refuted:ThreadDoesNotFill"
+      },
+      "source": {
+        "grant": 4,
+        "name": "bad_encoding",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            0,
+            1,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 0,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 0,
+        "result": null,
+        "spent": 0,
+        "status": "Unknown:Fuel"
+      },
+      "source": {
+        "grant": 0,
+        "name": "zero_fuel",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": true,
+        "grant": 3,
+        "history": [
+          "switch",
+          "break",
+          "cut-check"
+        ],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 0,
+        "result": null,
+        "spent": 3,
+        "status": "Unknown:Fuel"
+      },
+      "source": {
+        "grant": 3,
+        "name": "fuel_before_drop",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 4,
+        "result": null,
+        "spent": 0,
+        "status": "Surface:MissingInterpretation"
+      },
+      "source": {
+        "grant": 4,
+        "name": "unbound_interpretation",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": null,
+        "program": "(switch swap break)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    },
+    {
+      "receipt": {
+        "archive": [],
+        "checked": false,
+        "grant": 4,
+        "history": [],
+        "live_frame": true,
+        "order": [
+          "offer",
+          "need"
+        ],
+        "remaining": 4,
+        "result": null,
+        "spent": 0,
+        "status": "Surface:UnsupportedForm"
+      },
+      "source": {
+        "grant": 4,
+        "name": "unrecognized_form",
+        "need": {
+          "kind": "root-receiver",
+          "label": "external-receiver-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "square": 1,
+          "target": 1
+        },
+        "order": [
+          "offer",
+          "need"
+        ],
+        "profile": "route-profile-v0",
+        "program": "(switch swap drop)",
+        "thread": {
+          "bits": [
+            1,
+            0,
+            0
+          ],
+          "kind": "root-offer",
+          "label": "external-thread-demo",
+          "scope": "F7:t=1:y=1:v0",
+          "value": 1
+        }
+      }
+    }
+  ],
+  "codec": [
+    {
+      "bits": [
+        0,
+        0,
+        0
+      ],
+      "x": 0
+    },
+    {
+      "bits": [
+        1,
+        0,
+        0
+      ],
+      "x": 1
+    },
+    {
+      "bits": [
+        0,
+        1,
+        0
+      ],
+      "x": 2
+    },
+    {
+      "bits": [
+        1,
+        1,
+        0
+      ],
+      "x": 3
+    },
+    {
+      "bits": [
+        0,
+        0,
+        1
+      ],
+      "x": 4
+    },
+    {
+      "bits": [
+        1,
+        0,
+        1
+      ],
+      "x": 5
+    },
+    {
+      "bits": [
+        0,
+        1,
+        1
+      ],
+      "x": 6
+    }
+  ],
+  "contract_sha256": "8fdc86ece2e4f58d39f766eee58ea98407c1b7d37901e21f310769632c173d8a",
+  "corruption_controls": [
+    {
+      "name": "archive_erasure",
+      "reason": "archive loss",
+      "status": "Rejected"
+    },
+    {
+      "name": "unchecked_drop",
+      "reason": "unchecked or repeated drop",
+      "status": "Rejected"
+    },
+    {
+      "name": "duplicate_drop",
+      "reason": "fuel reset",
+      "status": "Rejected"
+    },
+    {
+      "name": "fuel_reset",
+      "reason": "fuel reset",
+      "status": "Rejected"
+    },
+    {
+      "name": "result_substitution",
+      "reason": "bad return",
+      "status": "Rejected"
+    }
+  ],
+  "costs": {
+    "elapsed_before_checkpoint_seconds": 0.0009362299970234744,
+    "logical_units": 350,
+    "peak_rss_kib": 11264
+  },
+  "logic_as_data": {
+    "checker_override": "RejectedAsData",
+    "invalid": 175,
+    "override_counterexample_valuation": 0,
+    "rules_checked": 256,
+    "valid": 81
+  },
+  "serialized_receipt_replay": "Passed",
+  "source_sha256": "1d6632993afc3b914370b238590138f8511bd360fababe790147b03fff6269e3",
+  "status": "PassedFiniteCalibration"
+}
