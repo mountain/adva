@@ -1,0 +1,24 @@
+{
+  "command": [
+    "python3",
+    "experiments/disclosure_binding/calibration.py",
+    "--output",
+    "docs/research/0158-evidence/run-02"
+  ],
+  "exit_code": 0,
+  "peak_child_rss_kib_linux": 12544,
+  "research_child_invocations": 1,
+  "stderr": "",
+  "stdout": "{\"status\": \"CounterexampleRetained\", \"controls\": 10, \"replays\": 10, \"repository_api_calls\": 48, \"output_files\": 19, \"output_bytes\": 20631}\n",
+  "wall_ns": 103834284,
+  "correction_replay": 1,
+  "failed_source_sha256": "f68c48627e4245f9659018cf0bcbe1db83734cd721f2cdca7d36514199c566cd",
+  "total_measured_child_wall_ns": 247051289,
+  "launcher_preflight": {
+    "status": "NotRun",
+    "command": "/usr/bin/time -v timeout ...",
+    "reason": "/usr/bin/time unavailable; no experiment process launched",
+    "exit_code": 127
+  },
+  "cost_scope": "Two actual research child processes (one failed fixture construction, one correction replay); no CI, no native process, no real key access. Internal counts of the failed child were not instrumented; the retained traceback bounds it to fixture construction."
+}

@@ -449,6 +449,20 @@ Phase 1–3 与第 12 节的开放问题仍待决策。本文状态保持 `propo
 - 域边界：本条目**不借用** LABS 的 energy/merit 数值（跨域翻译未证成，
   0129 第 3 节禁止），只借用"分数排序"这一机制本身。
 
+## Subsequent boundary clarification (Research 0158, 2026-09-07)
+
+[Research 0158](0158-opening-equation-and-anchor-binding.md) retains a bounded
+challenge to two stronger readings of Phase 1. The current disclosure API
+checks a request's opening equation but does not bind it to a supplied anchor.
+The documented known-log generator setup also does not justify computational
+message binding: hiding and binding are different properties. The new study
+retains two small-group conditional equivocation witnesses and ten actual
+pinned-source context controls, including a fresh instance and serialized
+replay. It does not recover the pinned group's logarithm, alter real chains,
+change these parameters, or implement a cryptographic repair. Until a versioned
+binding contract is reviewed, a successful opening must not be described as
+proof that the original hidden content has been preserved.
+
 ## 参考
 
 - Research 0155：密码学封存、双语言校准与信任边界（摘要/签名分离、字节边界、密钥生命周期）

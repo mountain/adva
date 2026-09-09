@@ -1,0 +1,32 @@
+{
+  "schema": "adva.research.disclosure-binding-contract.v0",
+  "date": "2026-09-07",
+  "source_commit": "1c5979d78dc9c2b79b633ea492c38fe09090f221",
+  "source_path": "python/adva/lineage.py",
+  "source_sha256": "199363208f0fa541b533df2ed3f30f53dc9ffa13f2e6e49dbe7fed0748067882",
+  "question": "Does a successful opening-equation check establish that this is the content fixed at a particular earlier anchor?",
+  "level": "External finite arithmetic and documentary interface calibration; no native identity or free",
+  "routes": [
+    "Two fixed small-group witnesses for the conditional known-generator-log equivocation equation; not a recovered log or attack against the pinned group",
+    "Two synthetic pinned-group records with five fixed disclosure/context controls each, tested through the unchanged lineage.verify API and a research-only context gate"
+  ],
+  "quantifiers": "Exactly two toy witnesses and ten fixed pinned-source controls; one complete serialized replay; not exhaustive cryptographic security",
+  "arithmetic": {
+    "toy": {"modulus": 23, "order": 11, "g": 2, "h": 8, "known_log": 3},
+    "toy_cases": [[2, 4, 5], [6, 7, 9]],
+    "pinned": "Exact Python integers and the unchanged PHASE1_Q/R/G/H; source-declared primality is not reproved",
+    "typed_boundary": "Exponent subtraction and inversion modulo order require an invertible nonzero known_log; no zero inversion, f64, history identification or native M1"
+  },
+  "fixtures": [
+    {"id": "main", "content": {"answer": 14}, "replacement": {"answer": 15}, "blinding": 17},
+    {"id": "fresh", "content": {"answer": 31}, "replacement": {"answer": 37}, "blinding": 23}
+  ],
+  "controls": ["original", "content-only-change", "whole-slot-replacement", "missing-anchor", "substituted-anchor"],
+  "expected_raw": ["Verified", "Rejected", "Verified", "Verified", "Verified"],
+  "expected_context": ["ContextBoundOpening", "Rejected", "Rejected", "Unknown", "Rejected"],
+  "candidate_grammar": "Fixed JSON answer integers, decimal scalar fields and original record/anchor schema; no arbitrary program generation",
+  "protected": ["Existing library and lineage code unchanged", "Original synthetic record and anchor immutable", "Source hash checked before import", "Known-log weakness remains unresolved after context binding", "No real secret, private key, signing, native free or LABS continuation", "Trusted anchor-byte hash is an explicit input assumption, not self-authentication"],
+  "budgets": {"search_candidates": 0, "toy_witnesses": 2, "initial_controls": 10, "serialized_control_replay": 10, "repository_api_calls": 64, "wall_seconds": 5, "cpu_seconds": 5, "address_space_bytes": 268435456, "max_artifact_bytes": 262144, "max_output_files": 64, "max_total_output_bytes": 1048576, "research_wall_minutes": 20, "implementation_error_replays": 1},
+  "acceptance": "Retain exact inputs, pinned API results, conditional algebraic witnesses and context-gate decisions; correct any unsupported implication, never call a passing round cryptographic binding or universality",
+  "exit": "One supervised invocation and one in-process serialized replay; hard timeout may leave an incomplete directory and is Unknown, never success"
+}
