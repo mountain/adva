@@ -9,7 +9,9 @@ This experiment instead makes one concrete request an authorized AEG operator ca
 answer without disclosing that workspace. Publication does not establish delivery.
 Request 01 now has a published peer reply; see `response-01.json`,
 `acknowledgement-01.json` and `round-02.md`. Its source binding remains unverified.
-Request 02 is pending in `status-02.json`. The original calibration results below
+Request 02 has also received a published reply; see `round-03.md` and
+`review-02.json`. Request 03 is pending in `status-03.json`.
+The original calibration results below
 remain synthetic controls and are not substituted for a peer reply.
 
 ## Frozen question and boundaries
