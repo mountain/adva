@@ -1,0 +1,15 @@
+{
+  "version": 0,
+  "base": "6d31e377d4a5c8cd16045996cbe9cb840e0c7bae",
+  "library": "d6765f7ff3875bc79c8bdaa4fdbe8a70737d5c72",
+  "question": "Does a finite interface phrase agree with an independently supplied closed polygon's oriented winding and the declared Legendre homology action?",
+  "domain": "Exact rational polygons in the punctured complex disk 0<|lambda|<1/2; integer column-vector homology in an explicit SL(2,Z) basis",
+  "grammar": ["绕零孔 正行 1 周", "绕零孔 逆行 1 周", "绕零孔 正行 2 周", "绕零孔 逆行 2 周"],
+  "imported_convention": "Research 0043 M0=[[1,2],[0,1]], counterclockwise positive, M_basis=B^-1 M0^w B; monodromy identification imported, not derived from period integration",
+  "baseline_family": "four phrases x three radii (1/8,1/16,1/32) x three SL(2,Z) bases = 36 cases",
+  "fresh_reuse": "one asymmetric six-vertex polygon in a fourth basis",
+  "controls": ["reversed path", "wrong turns", "missing basis", "wrong claimed matrix", "unknown phrase", "origin on edge", "outside local disk", "wrong basepoint", "non-SL basis", "open path", "refined same path keeps distinct history", "global commutator with zero abelian winding and nonidentity matrix"],
+  "budget": {"seconds": 30, "cases": 64, "total_validation_calls_including_replay": 128, "vertices_per_path": 32, "coordinate_bits": 64, "matrix_entry_bits": 64, "routes": 1, "automatic_restart": false},
+  "success": "Declared local paths match phrase, path winding and basis-correct action; controls refuse unsupported promotion; exact replay and fresh reuse pass",
+  "residuals": ["not a Wenyan implementation", "AEG referenced repository unavailable via attempted endpoint", "analytic period/monodromy derivation", "arbitrary loop homotopy on three-punctured sphere", "native Adva admission", "Calabi-Yau and syntax-surface identification", "authentication and human acceptance"]
+}
