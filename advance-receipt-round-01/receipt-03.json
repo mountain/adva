@@ -2,23 +2,25 @@
   "schema": "aeg.advance-receipt.research",
   "version": 0,
   "round": 3,
-  "predecessor_sha256": "d1367b014828e27358f49483112dd9ba92315d059acbc304d0c1b1cc1b42d608",
+  "predecessor_sha256": null,
   "delta": {
     "kind": "resource",
     "admitted": true,
-    "description": "two different pinned programs: examples/arithmetic.adva vs programs/native-run/arithmetic.adva"
+    "description": "two distinct pinned programs, both admitted by the same binary (exit 0)"
   },
   "status": "VariationObserved",
   "evidence": {
     "p1": {
-      "exit": 2,
-      "sha": "7f231130a9616674",
-      "size": 1164
+      "exit": 0,
+      "state": "state=Completed",
+      "sha": "550d96a617c94a06",
+      "size": 11458
     },
     "p2": {
       "exit": 0,
-      "sha": "4cf8db047f7b75d7",
-      "size": 11454
+      "state": "state=Completed",
+      "sha": "0844a5c709b59f2e",
+      "size": 14252
     }
   },
   "bounds": {

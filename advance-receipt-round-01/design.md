@@ -50,3 +50,12 @@
 - 合成/原生运行都不构成 learn/free；不产生新纪元、不动目录学；
 - 不声称 ι 与 PSC0 等价，只记录候选投影方向；
 - 全部证据字节保留于本目录，收据 pin 之。
+
+## 5. 修正记录（第一轮测量后的分类精化）
+
+- 变异必须发生在"声明的语义载波"上；纯计时/元数据字段差异记为
+  IncidentalVariation，不构成推进（实测：100 次原生运行只在
+  compile/evaluate 等计时字段不同）。
+- 资源 delta 被承认的前提：两端程序都由同一二进制独立准入（exit 0）。
+- 状态词表：EvidenceStutter / VariationObserved / IncidentalVariation /
+  Rejected / Unknown。

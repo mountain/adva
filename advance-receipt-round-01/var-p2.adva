@@ -6,17 +6,18 @@
   "error_phase": null,
   "arithmetic": "PSC0 builtin scalar realization: IEEE-754 f64; not exact rational arithmetic",
   "fuel_unit": "AST terms admitted before lowering; distinct from time and evaluated nodes",
-  "program_json": "{\n  \"schema\": \"adva.run.program.research\",\n  \"version\": 0,\n  \"source\": \"(module arithmetic (export main) (def main (fn ((x Real) (y Real) (z Real)) Real (add (use x) (mul (use y) (use z))))))\",\n  \"module\": \"arithmetic\",\n  \"entry\": \"main\",\n  \"inputs\": {\"x\": 2, \"y\": 3, \"z\": 4},\n  \"fuel\": 16\n}\n",
+  "program_json": "{\n  \"schema\": \"adva.run.program.research\",\n  \"version\": 0,\n  \"source\": \"(module prime_product (export main) (def main (fn ((p1 Real) (p2 Real) (p3 Real) (unit Real)) Real (add (mul (mul (use p1) (use p2)) (use p3)) (use unit)))))\",\n  \"module\": \"prime_product\",\n  \"entry\": \"main\",\n  \"inputs\": {\"p1\": 2, \"p2\": 3, \"p3\": 5, \"unit\": 1},\n  \"fuel\": 16\n}\n",
   "program": {
     "schema": "adva.run.program.research",
     "version": 0,
-    "source": "(module arithmetic (export main) (def main (fn ((x Real) (y Real) (z Real)) Real (add (use x) (mul (use y) (use z))))))",
-    "module": "arithmetic",
+    "source": "(module prime_product (export main) (def main (fn ((p1 Real) (p2 Real) (p3 Real) (unit Real)) Real (add (mul (mul (use p1) (use p2)) (use p3)) (use unit)))))",
+    "module": "prime_product",
     "entry": "main",
     "inputs": {
-      "x": 2.0,
-      "y": 3.0,
-      "z": 4.0
+      "p1": 2.0,
+      "p2": 3.0,
+      "p3": 5.0,
+      "unit": 1.0
     },
     "fuel": 16
   },
@@ -24,23 +25,27 @@
     "result": {
       "schema": "adva.ir",
       "version": 1,
-      "module": "arithmetic",
+      "module": "prime_product",
       "function": {
-        "module": "arithmetic",
+        "module": "prime_product",
         "function": "main"
       },
       "signature": {
         "inputs": [
           {
-            "name": "x",
+            "name": "p1",
             "value_type": "real"
           },
           {
-            "name": "y",
+            "name": "p2",
             "value_type": "real"
           },
           {
-            "name": "z",
+            "name": "p3",
+            "value_type": "real"
+          },
+          {
+            "name": "unit",
             "value_type": "real"
           }
         ],
@@ -60,11 +65,47 @@
             {
               "producer": {
                 "kind": "input",
+                "index": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0"
+              ]
+            },
+            {
+              "producer": {
+                "kind": "input",
                 "index": 1
               },
               "output_index": 0,
               "value_type": "real",
               "lineage": [
+                "occ:1"
+              ]
+            }
+          ],
+          "output_types": [
+            "real"
+          ]
+        },
+        {
+          "id": 1,
+          "operation": {
+            "namespace": "adva.builtin",
+            "name": "mul",
+            "version": 1
+          },
+          "inputs": [
+            {
+              "producer": {
+                "kind": "node",
+                "node": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0",
                 "occ:1"
               ]
             },
@@ -85,7 +126,7 @@
           ]
         },
         {
-          "id": 1,
+          "id": 2,
           "operation": {
             "namespace": "adva.builtin",
             "name": "add",
@@ -94,25 +135,26 @@
           "inputs": [
             {
               "producer": {
-                "kind": "input",
-                "index": 0
+                "kind": "node",
+                "node": 1
               },
               "output_index": 0,
               "value_type": "real",
               "lineage": [
-                "occ:0"
+                "occ:0",
+                "occ:1",
+                "occ:2"
               ]
             },
             {
               "producer": {
-                "kind": "node",
-                "node": 0
+                "kind": "input",
+                "index": 3
               },
               "output_index": 0,
               "value_type": "real",
               "lineage": [
-                "occ:1",
-                "occ:2"
+                "occ:3"
               ]
             }
           ],
@@ -125,31 +167,37 @@
         {
           "producer": {
             "kind": "node",
-            "node": 1
+            "node": 2
           },
           "output_index": 0,
           "value_type": "real",
           "lineage": [
             "occ:0",
             "occ:1",
-            "occ:2"
+            "occ:2",
+            "occ:3"
           ]
         }
       ],
       "occurrences": [
         {
           "id": "occ:0",
-          "source": "source:arithmetic/main:0:x",
+          "source": "source:prime_product/main:0:p1",
           "path": []
         },
         {
           "id": "occ:1",
-          "source": "source:arithmetic/main:1:y",
+          "source": "source:prime_product/main:1:p2",
           "path": []
         },
         {
           "id": "occ:2",
-          "source": "source:arithmetic/main:2:z",
+          "source": "source:prime_product/main:2:p3",
+          "path": []
+        },
+        {
+          "id": "occ:3",
+          "source": "source:prime_product/main:3:unit",
           "path": []
         }
       ],
@@ -157,18 +205,23 @@
         "prefix": [
           {
             "kind": "source",
-            "source": "source:arithmetic/main:0:x",
+            "source": "source:prime_product/main:0:p1",
             "occurrence": "occ:0"
           },
           {
             "kind": "source",
-            "source": "source:arithmetic/main:1:y",
+            "source": "source:prime_product/main:1:p2",
             "occurrence": "occ:1"
           },
           {
             "kind": "source",
-            "source": "source:arithmetic/main:2:z",
+            "source": "source:prime_product/main:2:p3",
             "occurrence": "occ:2"
+          },
+          {
+            "kind": "source",
+            "source": "source:prime_product/main:3:unit",
+            "occurrence": "occ:3"
           },
           {
             "kind": "operation",
@@ -184,6 +237,15 @@
             "node": 1,
             "operation": {
               "namespace": "adva.builtin",
+              "name": "mul",
+              "version": 1
+            }
+          },
+          {
+            "kind": "operation",
+            "node": 2,
+            "operation": {
+              "namespace": "adva.builtin",
               "name": "add",
               "version": 1
             }
@@ -192,26 +254,31 @@
         "occurrence_paths": {
           "occ:0": [],
           "occ:1": [],
-          "occ:2": []
+          "occ:2": [],
+          "occ:3": []
         },
         "rewrite_trace": []
       }
     },
     "certificate": {
-      "id": "compile:arithmetic/main:v1",
+      "id": "compile:prime_product/main:v1",
       "scope": "PSC0 finite acyclic module lowering",
       "boundary": {
         "inputs": [
           {
-            "name": "x",
+            "name": "p1",
             "value_type": "real"
           },
           {
-            "name": "y",
+            "name": "p2",
             "value_type": "real"
           },
           {
-            "name": "z",
+            "name": "p3",
+            "value_type": "real"
+          },
+          {
+            "name": "unit",
             "value_type": "real"
           }
         ],
@@ -227,10 +294,10 @@
     },
     "graft_trace": {
       "result": {
-        "root": "graft:arithmetic/main:root",
+        "root": "graft:prime_product/main:root",
         "frames": [
           {
-            "id": "graft:arithmetic/main:root",
+            "id": "graft:prime_product/main:root",
             "scope_path": [],
             "kind": "root",
             "parent": null,
@@ -239,25 +306,29 @@
               "kind": "root"
             },
             "caller": {
-              "module": "arithmetic",
+              "module": "prime_product",
               "function": "main"
             },
             "callee": {
-              "module": "arithmetic",
+              "module": "prime_product",
               "function": "main"
             },
             "boundary": {
               "inputs": [
                 {
-                  "name": "x",
+                  "name": "p1",
                   "value_type": "real"
                 },
                 {
-                  "name": "y",
+                  "name": "p2",
                   "value_type": "real"
                 },
                 {
-                  "name": "z",
+                  "name": "p3",
+                  "value_type": "real"
+                },
+                {
+                  "name": "unit",
                   "value_type": "real"
                 }
               ],
@@ -270,7 +341,7 @@
               {
                 "hole_index": 0,
                 "hole": {
-                  "name": "x",
+                  "name": "p1",
                   "value_type": "real"
                 },
                 "argument_index": null,
@@ -290,7 +361,7 @@
               {
                 "hole_index": 1,
                 "hole": {
-                  "name": "y",
+                  "name": "p2",
                   "value_type": "real"
                 },
                 "argument_index": null,
@@ -310,7 +381,7 @@
               {
                 "hole_index": 2,
                 "hole": {
-                  "name": "z",
+                  "name": "p3",
                   "value_type": "real"
                 },
                 "argument_index": null,
@@ -326,11 +397,32 @@
                     "occ:2"
                   ]
                 }
+              },
+              {
+                "hole_index": 3,
+                "hole": {
+                  "name": "unit",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 3
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:3"
+                  ]
+                }
               }
             ],
             "body_region": [
               0,
-              1
+              1,
+              2
             ],
             "entry_wires": [
               {
@@ -365,20 +457,32 @@
                 "lineage": [
                   "occ:2"
                 ]
+              },
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 3
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:3"
+                ]
               }
             ],
             "exit_wires": [
               {
                 "producer": {
                   "kind": "node",
-                  "node": 1
+                  "node": 2
                 },
                 "output_index": 0,
                 "value_type": "real",
                 "lineage": [
                   "occ:0",
                   "occ:1",
-                  "occ:2"
+                  "occ:2",
+                  "occ:3"
                 ]
               }
             ],
@@ -387,7 +491,7 @@
         ]
       },
       "certificate": {
-        "id": "graft-trace:arithmetic/main:v1",
+        "id": "graft-trace:prime_product/main:v1",
         "scope": "compiler-emitted PSC0 finite nested call frames; unchanged adva.ir v1 diagram",
         "diagram_integrity": "checked",
         "deterministic_frame_ids": "checked",
@@ -397,21 +501,22 @@
         "boundary_maps": "checked",
         "call_history_links": "checked",
         "frame_ids": [
-          "graft:arithmetic/main:root"
+          "graft:prime_product/main:root"
         ]
       }
     }
   },
   "evaluation": {
     "values": [
-      14.0
+      31.0
     ],
     "certificate": {
-      "id": "evaluate:arithmetic/main:v1",
+      "id": "evaluate:prime_product/main:v1",
       "scope": "PSC0 builtin scalar realization",
       "executed_nodes": [
         0,
-        1
+        1,
+        2
       ],
       "input_types_checked": true,
       "diagram_integrity": "checked",
@@ -419,27 +524,27 @@
     }
   },
   "actual": {
-    "envelope_bytes": 292,
-    "source_bytes": 119,
-    "lexical_max_depth": 6,
-    "ast_terms": 5,
+    "envelope_bytes": 347,
+    "source_bytes": 157,
+    "lexical_max_depth": 7,
+    "ast_terms": 7,
     "copy_operations": 0,
-    "reserved_fuel": 5,
-    "remaining_fuel": 11,
-    "compiled_nodes": 2,
-    "occurrences": 3,
-    "history_events": 5,
-    "evaluated_nodes": 2,
+    "reserved_fuel": 7,
+    "remaining_fuel": 9,
+    "compiled_nodes": 3,
+    "occurrences": 4,
+    "history_events": 7,
+    "evaluated_nodes": 3,
     "peak_memory_bytes": null
   },
   "phase_seconds": {
-    "compile": 0.0004705,
-    "envelope_parse": 0.001124,
-    "evaluate": 0.000037709,
-    "link": 0.000316541,
-    "lisp_parse": 0.001481,
-    "source_preflight": 0.000796875,
-    "term_preflight": 0.000529292,
-    "total_before_serialization": 0.005044166
+    "compile": 0.000126041,
+    "envelope_parse": 0.000034917,
+    "evaluate": 0.000043833,
+    "link": 0.000012375,
+    "lisp_parse": 0.00004475,
+    "source_preflight": 0.000011875,
+    "term_preflight": 4.5e-6,
+    "total_before_serialization": 0.000291459
   }
 }
