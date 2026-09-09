@@ -1,0 +1,12 @@
+{
+  "schema": "external.mingli-drop-retraction.contract.v0",
+  "date": "2026-09-08",
+  "reason_for_supplement": "Reading Research 0101 exposed the concrete pre-existing factorization T_ij=g_j r_i. Test whether additive cancellation follows from a split pair, a necessary unresolved bridge in the current task.",
+  "question": "In a finite linear realization, can drop=r_i retain a skeleton and annihilate the complementary component, and does a nonlinear split pair refute unconditional additive cancellation?",
+  "assumptions": ["External vector space F7^2", "Linear coordinate inclusions g0,g1 and projections r0,r1", "For the negative control only, the nonlinear square map onto {0,1,2,4} and a supplied section"],
+  "scope": "49 two-coordinate vectors; seven values in the nonlinear example; no actual M6 import or assertion that its dual is a kernel complement",
+  "expected": "Linear retraction, projector and transport equations hold on all 49 vectors; a square-map split pair at x=6 refutes r(x-e(x))=0; original vectors reconstruct exactly when the residual is retained",
+  "checker": "Matrix application compared with independently written coordinate equations; nonlinear calculation checked by finite evaluation",
+  "limits": {"executions": 1, "wall_seconds": 5, "cpu_seconds": 3, "memory_mib": 256, "max_output_bytes": 1048576, "rows": 56},
+  "exit": "Stop after 56 rows or failure; no automatic retry or continuation. This supplements rather than overwrites the previous source/evidence pair."
+}
