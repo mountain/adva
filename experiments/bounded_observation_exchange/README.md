@@ -11,7 +11,8 @@ Request 01 now has a published peer reply; see `response-01.json`,
 `acknowledgement-01.json` and `round-02.md`. Its source binding remains unverified.
 Request 02 has also received a published reply; see `round-03.md` and
 `review-02.json`. Request 03 has received a reply, reviewed in `review-03.json`.
-The current handoff is `round-04.md`; request 04 is pending in `status-04.json`.
+Request 04 has received a reply, reviewed in `review-04.json`.
+The current handoff is `round-05.md`; request 05 is pending in `status-05.json`.
 The original calibration results below
 remain synthetic controls and are not substituted for a peer reply.
 
