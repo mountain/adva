@@ -179,6 +179,26 @@
           "payload_sha256": null
         }
       ]
+    },
+    {
+      "name": "unlink-via-swap",
+      "hole": "direction implementation primitive",
+      "selected": {
+        "value": "staircase swap word (0158 swap; rev^2 = identity)",
+        "payload_sha256": "f695c52bb478eb36ff295080d7372cc3d7229cb306444edddb750c15c18cdcdf"
+      },
+      "retained": [
+        {
+          "value": "staircase swap word (selected)",
+          "retention": "trials/name-linking-round-01/swap-report.json",
+          "payload_sha256": "f695c52bb478eb36ff295080d7372cc3d7229cb306444edddb750c15c18cdcdf"
+        },
+        {
+          "value": "wholesale list reversal (previous, superseded)",
+          "retention": "documentary",
+          "payload_sha256": null
+        }
+      ]
     }
   ],
   "fibres": [
@@ -271,6 +291,12 @@
       "question": "does the link carry both directions with ledger-visible histories?",
       "fibre_status": "discharged",
       "predecessor_fibre": 14
+    },
+    {
+      "receipt": 16,
+      "question": "is reversal expressible as the staircase swap word with rev^2 = identity?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 15
     }
   ],
   "status": "proposed"

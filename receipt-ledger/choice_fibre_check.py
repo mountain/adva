@@ -34,7 +34,7 @@ def main():
                     findings.append(f"choice {c['name']}: retained payload pin mismatch: {r['retention']}")
     fs = doc.get('fibres') or []
     nums = [f['receipt'] for f in fs]
-    if sorted(nums) != list(range(1, 16)):
+    if sorted(nums) != list(range(1, 17)):
         findings.append(f"fibre coverage violation: {sorted(nums)}")
     for f in fs:
         if f.get('fibre_status') not in ('discharged', 'empty', 'unknown'):
