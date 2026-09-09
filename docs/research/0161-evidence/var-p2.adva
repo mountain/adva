@@ -1,0 +1,550 @@
+{
+  "schema": "adva.run.report.research",
+  "version": 0,
+  "state": "Completed",
+  "error": null,
+  "error_phase": null,
+  "arithmetic": "PSC0 builtin scalar realization: IEEE-754 f64; not exact rational arithmetic",
+  "fuel_unit": "AST terms admitted before lowering; distinct from time and evaluated nodes",
+  "program_json": "{\n  \"schema\": \"adva.run.program.research\",\n  \"version\": 0,\n  \"source\": \"(module prime_product (export main) (def main (fn ((p1 Real) (p2 Real) (p3 Real) (unit Real)) Real (add (mul (mul (use p1) (use p2)) (use p3)) (use unit)))))\",\n  \"module\": \"prime_product\",\n  \"entry\": \"main\",\n  \"inputs\": {\"p1\": 2, \"p2\": 3, \"p3\": 5, \"unit\": 1},\n  \"fuel\": 16\n}\n",
+  "program": {
+    "schema": "adva.run.program.research",
+    "version": 0,
+    "source": "(module prime_product (export main) (def main (fn ((p1 Real) (p2 Real) (p3 Real) (unit Real)) Real (add (mul (mul (use p1) (use p2)) (use p3)) (use unit)))))",
+    "module": "prime_product",
+    "entry": "main",
+    "inputs": {
+      "p1": 2.0,
+      "p2": 3.0,
+      "p3": 5.0,
+      "unit": 1.0
+    },
+    "fuel": 16
+  },
+  "compilation": {
+    "result": {
+      "schema": "adva.ir",
+      "version": 1,
+      "module": "prime_product",
+      "function": {
+        "module": "prime_product",
+        "function": "main"
+      },
+      "signature": {
+        "inputs": [
+          {
+            "name": "p1",
+            "value_type": "real"
+          },
+          {
+            "name": "p2",
+            "value_type": "real"
+          },
+          {
+            "name": "p3",
+            "value_type": "real"
+          },
+          {
+            "name": "unit",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "nodes": [
+        {
+          "id": 0,
+          "operation": {
+            "namespace": "adva.builtin",
+            "name": "mul",
+            "version": 1
+          },
+          "inputs": [
+            {
+              "producer": {
+                "kind": "input",
+                "index": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0"
+              ]
+            },
+            {
+              "producer": {
+                "kind": "input",
+                "index": 1
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:1"
+              ]
+            }
+          ],
+          "output_types": [
+            "real"
+          ]
+        },
+        {
+          "id": 1,
+          "operation": {
+            "namespace": "adva.builtin",
+            "name": "mul",
+            "version": 1
+          },
+          "inputs": [
+            {
+              "producer": {
+                "kind": "node",
+                "node": 0
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0",
+                "occ:1"
+              ]
+            },
+            {
+              "producer": {
+                "kind": "input",
+                "index": 2
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:2"
+              ]
+            }
+          ],
+          "output_types": [
+            "real"
+          ]
+        },
+        {
+          "id": 2,
+          "operation": {
+            "namespace": "adva.builtin",
+            "name": "add",
+            "version": 1
+          },
+          "inputs": [
+            {
+              "producer": {
+                "kind": "node",
+                "node": 1
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:0",
+                "occ:1",
+                "occ:2"
+              ]
+            },
+            {
+              "producer": {
+                "kind": "input",
+                "index": 3
+              },
+              "output_index": 0,
+              "value_type": "real",
+              "lineage": [
+                "occ:3"
+              ]
+            }
+          ],
+          "output_types": [
+            "real"
+          ]
+        }
+      ],
+      "outputs": [
+        {
+          "producer": {
+            "kind": "node",
+            "node": 2
+          },
+          "output_index": 0,
+          "value_type": "real",
+          "lineage": [
+            "occ:0",
+            "occ:1",
+            "occ:2",
+            "occ:3"
+          ]
+        }
+      ],
+      "occurrences": [
+        {
+          "id": "occ:0",
+          "source": "source:prime_product/main:0:p1",
+          "path": []
+        },
+        {
+          "id": "occ:1",
+          "source": "source:prime_product/main:1:p2",
+          "path": []
+        },
+        {
+          "id": "occ:2",
+          "source": "source:prime_product/main:2:p3",
+          "path": []
+        },
+        {
+          "id": "occ:3",
+          "source": "source:prime_product/main:3:unit",
+          "path": []
+        }
+      ],
+      "history": {
+        "prefix": [
+          {
+            "kind": "source",
+            "source": "source:prime_product/main:0:p1",
+            "occurrence": "occ:0"
+          },
+          {
+            "kind": "source",
+            "source": "source:prime_product/main:1:p2",
+            "occurrence": "occ:1"
+          },
+          {
+            "kind": "source",
+            "source": "source:prime_product/main:2:p3",
+            "occurrence": "occ:2"
+          },
+          {
+            "kind": "source",
+            "source": "source:prime_product/main:3:unit",
+            "occurrence": "occ:3"
+          },
+          {
+            "kind": "operation",
+            "node": 0,
+            "operation": {
+              "namespace": "adva.builtin",
+              "name": "mul",
+              "version": 1
+            }
+          },
+          {
+            "kind": "operation",
+            "node": 1,
+            "operation": {
+              "namespace": "adva.builtin",
+              "name": "mul",
+              "version": 1
+            }
+          },
+          {
+            "kind": "operation",
+            "node": 2,
+            "operation": {
+              "namespace": "adva.builtin",
+              "name": "add",
+              "version": 1
+            }
+          }
+        ],
+        "occurrence_paths": {
+          "occ:0": [],
+          "occ:1": [],
+          "occ:2": [],
+          "occ:3": []
+        },
+        "rewrite_trace": []
+      }
+    },
+    "certificate": {
+      "id": "compile:prime_product/main:v1",
+      "scope": "PSC0 finite acyclic module lowering",
+      "boundary": {
+        "inputs": [
+          {
+            "name": "p1",
+            "value_type": "real"
+          },
+          {
+            "name": "p2",
+            "value_type": "real"
+          },
+          {
+            "name": "p3",
+            "value_type": "real"
+          },
+          {
+            "name": "unit",
+            "value_type": "real"
+          }
+        ],
+        "outputs": [
+          "real"
+        ]
+      },
+      "module_links": "checked",
+      "linear_use": "checked",
+      "types": "checked",
+      "call_history": "checked",
+      "diagram_integrity": "checked"
+    },
+    "graft_trace": {
+      "result": {
+        "root": "graft:prime_product/main:root",
+        "frames": [
+          {
+            "id": "graft:prime_product/main:root",
+            "scope_path": [],
+            "kind": "root",
+            "parent": null,
+            "children": [],
+            "region_in_parent": {
+              "kind": "root"
+            },
+            "caller": {
+              "module": "prime_product",
+              "function": "main"
+            },
+            "callee": {
+              "module": "prime_product",
+              "function": "main"
+            },
+            "boundary": {
+              "inputs": [
+                {
+                  "name": "p1",
+                  "value_type": "real"
+                },
+                {
+                  "name": "p2",
+                  "value_type": "real"
+                },
+                {
+                  "name": "p3",
+                  "value_type": "real"
+                },
+                {
+                  "name": "unit",
+                  "value_type": "real"
+                }
+              ],
+              "outputs": [
+                "real"
+              ]
+            },
+            "arguments": [],
+            "holes": [
+              {
+                "hole_index": 0,
+                "hole": {
+                  "name": "p1",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 0
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:0"
+                  ]
+                }
+              },
+              {
+                "hole_index": 1,
+                "hole": {
+                  "name": "p2",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 1
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:1"
+                  ]
+                }
+              },
+              {
+                "hole_index": 2,
+                "hole": {
+                  "name": "p3",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 2
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:2"
+                  ]
+                }
+              },
+              {
+                "hole_index": 3,
+                "hole": {
+                  "name": "unit",
+                  "value_type": "real"
+                },
+                "argument_index": null,
+                "argument_output_index": 0,
+                "entry_wire": {
+                  "producer": {
+                    "kind": "input",
+                    "index": 3
+                  },
+                  "output_index": 0,
+                  "value_type": "real",
+                  "lineage": [
+                    "occ:3"
+                  ]
+                }
+              }
+            ],
+            "body_region": [
+              0,
+              1,
+              2
+            ],
+            "entry_wires": [
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 0
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:0"
+                ]
+              },
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 1
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:1"
+                ]
+              },
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 2
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:2"
+                ]
+              },
+              {
+                "producer": {
+                  "kind": "input",
+                  "index": 3
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:3"
+                ]
+              }
+            ],
+            "exit_wires": [
+              {
+                "producer": {
+                  "kind": "node",
+                  "node": 2
+                },
+                "output_index": 0,
+                "value_type": "real",
+                "lineage": [
+                  "occ:0",
+                  "occ:1",
+                  "occ:2",
+                  "occ:3"
+                ]
+              }
+            ],
+            "call_history_index": null
+          }
+        ]
+      },
+      "certificate": {
+        "id": "graft-trace:prime_product/main:v1",
+        "scope": "compiler-emitted PSC0 finite nested call frames; unchanged adva.ir v1 diagram",
+        "diagram_integrity": "checked",
+        "deterministic_frame_ids": "checked",
+        "parent_child_nesting": "checked",
+        "ordered_hole_bindings": "checked",
+        "argument_body_regions": "checked",
+        "boundary_maps": "checked",
+        "call_history_links": "checked",
+        "frame_ids": [
+          "graft:prime_product/main:root"
+        ]
+      }
+    }
+  },
+  "evaluation": {
+    "values": [
+      31.0
+    ],
+    "certificate": {
+      "id": "evaluate:prime_product/main:v1",
+      "scope": "PSC0 builtin scalar realization",
+      "executed_nodes": [
+        0,
+        1,
+        2
+      ],
+      "input_types_checked": true,
+      "diagram_integrity": "checked",
+      "operation_rules_checked": true
+    }
+  },
+  "actual": {
+    "envelope_bytes": 347,
+    "source_bytes": 157,
+    "lexical_max_depth": 7,
+    "ast_terms": 7,
+    "copy_operations": 0,
+    "reserved_fuel": 7,
+    "remaining_fuel": 9,
+    "compiled_nodes": 3,
+    "occurrences": 4,
+    "history_events": 7,
+    "evaluated_nodes": 3,
+    "peak_memory_bytes": null
+  },
+  "phase_seconds": {
+    "compile": 0.000126041,
+    "envelope_parse": 0.000034917,
+    "evaluate": 0.000043833,
+    "link": 0.000012375,
+    "lisp_parse": 0.00004475,
+    "source_preflight": 0.000011875,
+    "term_preflight": 4.5e-6,
+    "total_before_serialization": 0.000291459
+  }
+}
