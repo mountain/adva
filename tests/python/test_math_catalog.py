@@ -187,7 +187,9 @@ def test_party_naming_layer_is_a_proposal_with_one_home():
     assert entry["checker"] is None
     assert entry["evidence"] == []
     assert [ref["path"] for ref in entry["materials"]] == [
-        "adva-library/names/party-naming-layer-v0.json"
+        "adva-library/names/party-naming-layer-v0.json",
+        "adva-library/names/catalog-key-words.json",
+        "adva-library/names/catalog-key-words-v1.json",
     ]
     for topic in catalog.TOPICS:
         index = json.loads((ROOT / catalog.CATALOG / topic / "index.json").read_text())
