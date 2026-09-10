@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "81b3998b75650d5b459c4710dfda129a8f996a8af25df24e98aa197593ef28c2",
+    "sha256": "4c80d79fab635ad01998f26259a0f9aff046c91a8b15e9dfb71226b035a53f16",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -153,7 +153,586 @@
       "translated_copy_meets": true,
       "nearby_copy_misses": true
     },
-    "link_certificate": "not constructed"
+    "linking_numbers": {
+      "z0|x0": {
+        "forward_crossings": 2,
+        "forward_sum": 0,
+        "backward_crossings": 0,
+        "backward_sum": 0
+      },
+      "z0|y0": {
+        "forward_crossings": 0,
+        "forward_sum": 0,
+        "backward_crossings": 2,
+        "backward_sum": 0
+      },
+      "x0|y0": {
+        "forward_crossings": 2,
+        "forward_sum": 0,
+        "backward_crossings": 0,
+        "backward_sum": 0
+      }
+    },
+    "linking_control": {
+      "crossings": 1,
+      "signed_sum": 1
+    },
+    "link_certificate": {
+      "seifert_surfaces": "the three filled rectangles, boundaries verified against the components",
+      "pairwise_linking_numbers": "zero, computed in the previous round",
+      "triple_intersection": {
+        "z0,x0,y0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "x0,y0,z0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "y0,z0,x0": {
+          "signed_sum": 1,
+          "points": 1
+        }
+      },
+      "triple_point": "the origin, the single common point of the three disks",
+      "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
+      "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
+      "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
+      "controls": {
+        "unlink": {
+          "pairwise_zero": true,
+          "triple_points": 0,
+          "signed": 0
+        },
+        "scaled_instance": {
+          "triple_points": 1,
+          "signed": 1
+        },
+        "failing_precondition": {
+          "pairwise_values": [
+            1,
+            0,
+            1
+          ],
+          "judgement": "withheld"
+        }
+      }
+    }
+  },
+  "golden_triangle": {
+    "tiles": {
+      "golden-triangle": "1 : phi : phi",
+      "golden-gnomon": "1 : 1 : phi"
+    },
+    "subdivision": "one golden triangle -> one copy at scale 1/phi plus one gnomon",
+    "cos36": [
+      "1/2",
+      "1/2"
+    ],
+    "cos72": [
+      "-1/2",
+      "1/2"
+    ]
+  },
+  "dodecahedron": {
+    "vertices": 20,
+    "edges": 30,
+    "faces": 12,
+    "inradius_squared": [
+      "7/3",
+      "1"
+    ],
+    "circumradius_squared": [
+      "5",
+      "1"
+    ],
+    "dual_edge_squared": [
+      "4/3",
+      "4/9"
+    ],
+    "cube_edge_squared": [
+      "28/9",
+      "4/3"
+    ],
+    "inscribed_cube_vertices": 8,
+    "inscribed_cube_relation": "cube edges are pentagon diagonals, not dodecahedron edges",
+    "inscribed_octahedron": "the dual of the inscribed cube, its six face centres",
+    "octahedra_on_icosahedron_vertices": 0
+  },
+  "golden_angle": {
+    "alpha": [
+      "3",
+      "-1"
+    ],
+    "rotation_structures": {
+      "5": {
+        "short_gap": [
+          "7",
+          "-3"
+        ],
+        "long_gap": [
+          "-4",
+          "2"
+        ],
+        "short_count": 2,
+        "long_count": 3
+      },
+      "34": {
+        "short_gap": [
+          "47",
+          "-21"
+        ],
+        "long_gap": [
+          "-29",
+          "13"
+        ],
+        "short_count": 13,
+        "long_count": 21
+      },
+      "233": {
+        "short_gap": [
+          "322",
+          "-144"
+        ],
+        "long_gap": [
+          "-199",
+          "89"
+        ],
+        "short_count": 89,
+        "long_count": 144
+      }
+    },
+    "latitude_rule": "equal z steps give equal band areas",
+    "not_asserted": "minimal separation, energy or coverage optimality"
+  },
+  "penrose": {
+    "prototiles": {
+      "thick": "72/108",
+      "thin": "36/144"
+    },
+    "inflation_matrix": [
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "counts_after_six_steps": [
+      233,
+      144
+    ],
+    "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
+    "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling"
+  },
+  "complement_diagram": {
+    "direction": [
+      [
+        "2",
+        "0"
+      ],
+      [
+        "1",
+        "1"
+      ],
+      [
+        "3",
+        "1"
+      ]
+    ],
+    "crossings_total": 12,
+    "per_pair": {
+      "z0|x0": {
+        "crossings": 4,
+        "signed_sum": 0
+      },
+      "z0|y0": {
+        "crossings": 4,
+        "signed_sum": 0
+      },
+      "x0|y0": {
+        "crossings": 4,
+        "signed_sum": 0
+      }
+    },
+    "crossings": [
+      {
+        "over": "z0",
+        "under": "y0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "z0",
+        "sign": -1,
+        "under_segment": 0,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "z0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "-3",
+            "1"
+          ],
+          [
+            "-1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "z0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "-1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "y0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-3/2",
+          "3/2"
+        ],
+        "point": [
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "z0",
+        "sign": 1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "x0",
+        "sign": 1,
+        "under_segment": 0,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "3",
+            "-1"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "x0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "3/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "y0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "x0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-3",
+            "1"
+          ],
+          [
+            "-1",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "x0",
+        "sign": -1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "y0",
+        "sign": -1,
+        "under_segment": 3,
+        "under_parameter": [
+          "-5/2",
+          "3/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "3",
+            "-1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "relation_words": [
+      [
+        9,
+        4,
+        -12,
+        -4
+      ],
+      [
+        1,
+        12,
+        -4,
+        -12
+      ],
+      [
+        2,
+        8,
+        -1,
+        -8
+      ],
+      [
+        3,
+        8,
+        -2,
+        -8
+      ],
+      [
+        11,
+        4,
+        -10,
+        -4
+      ],
+      [
+        4,
+        11,
+        -3,
+        -11
+      ],
+      [
+        5,
+        4,
+        -8,
+        -4
+      ],
+      [
+        6,
+        4,
+        -5,
+        -4
+      ],
+      [
+        10,
+        8,
+        -9,
+        -8
+      ],
+      [
+        7,
+        9,
+        -6,
+        -9
+      ],
+      [
+        8,
+        12,
+        -7,
+        -12
+      ],
+      [
+        12,
+        8,
+        -11,
+        -8
+      ]
+    ],
+    "note": "the halved signed sum is the pairwise linking number by the diagram route, whose global sign depends on the declared projection direction"
+  },
+  "complement_presentation": {
+    "generators": 12,
+    "relations": 12,
+    "rank_of_abelianised_relations": 9,
+    "expected_rank": 9,
+    "cokernel": "Z^3, the first homology of a three-component complement",
+    "not_computed": [
+      "the non-abelian relation words themselves",
+      "the Magnus expansion and mu-bar(123)"
+    ]
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -387,9 +966,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.09749887511134148,
-    "checks": 830,
-    "nodes": 2744,
+    "wall_seconds_before_serialization": 0.6632604158949107,
+    "checks": 1052,
+    "nodes": 4270,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -994,6 +1573,228 @@
     "golden-rectangles-boundaries-disjoint::x0::y0",
     "golden-rectangles-control-translated-meets",
     "golden-rectangles-control-nearby-misses",
+    "linking-zero::z0::x0",
+    "linking-agrees::z0::x0",
+    "linking-accounted::z0::x0",
+    "linking-zero::z0::y0",
+    "linking-agrees::z0::y0",
+    "linking-accounted::z0::y0",
+    "linking-zero::x0::y0",
+    "linking-agrees::x0::y0",
+    "linking-accounted::x0::y0",
+    "linking-control-threaded-once",
+    "borromean-disk-spans::z0",
+    "borromean-disk-spans::x0",
+    "borromean-disk-spans::y0",
+    "borromean-pair-segment::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-pair-segment::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-pair-segment::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-triple-point-count::z0",
+    "borromean-triple-unit::z0",
+    "borromean-triple-point-count::x0",
+    "borromean-triple-unit::x0",
+    "borromean-triple-point-count::y0",
+    "borromean-triple-unit::y0",
+    "borromean-triple-order-consistent",
+    "borromean-control-unlink-pairwise",
+    "borromean-control-unlink-triple-zero",
+    "borromean-control-scaled-instance",
+    "borromean-control-precondition-fails",
+    "cos36-in-range",
+    "cos36-chebyshev-root",
+    "cos72-double-angle",
+    "cos72-closed-form",
+    "golden-triangle-apex-cosine",
+    "golden-triangle-base-cosine",
+    "subdivision-splits-the-leg",
+    "subdivision-third-side",
+    "gnomon-is-1-1-phi",
+    "gnomon-apex-cosine",
+    "smaller-tile-is-1-1-phi-inverse",
+    "smaller-tile-apex-cosine",
+    "subdivision-self-similar",
+    "subdivision-areas-positive",
+    "subdivision-area-ratio-copy",
+    "subdivision-area-ratio-gnomon",
+    "dual-face-count",
+    "dual-twenty-vertices",
+    "dual-equal-radius",
+    "inradius-closed-form",
+    "circumradius-closed-form",
+    "circumradius-phi-form",
+    "sphere-ratio-closed-form",
+    "face-plane-distance::0",
+    "face-plane-distance::1",
+    "face-plane-distance::2",
+    "face-plane-distance::3",
+    "face-plane-distance::4",
+    "face-plane-distance::5",
+    "face-plane-distance::6",
+    "face-plane-distance::7",
+    "face-plane-distance::8",
+    "face-plane-distance::9",
+    "face-plane-distance::10",
+    "face-plane-distance::11",
+    "face-plane-distance::12",
+    "face-plane-distance::13",
+    "face-plane-distance::14",
+    "face-plane-distance::15",
+    "face-plane-distance::16",
+    "face-plane-distance::17",
+    "face-plane-distance::18",
+    "face-plane-distance::19",
+    "dual-edge-source",
+    "dual-thirty-edges",
+    "dual-degree-three",
+    "dual-equal-edge-length",
+    "pentagon-arity::0",
+    "pentagon-cycle::0",
+    "pentagon-arity::1",
+    "pentagon-cycle::1",
+    "pentagon-arity::2",
+    "pentagon-cycle::2",
+    "pentagon-arity::3",
+    "pentagon-cycle::3",
+    "pentagon-arity::4",
+    "pentagon-cycle::4",
+    "pentagon-arity::5",
+    "pentagon-cycle::5",
+    "pentagon-arity::6",
+    "pentagon-cycle::6",
+    "pentagon-arity::7",
+    "pentagon-cycle::7",
+    "pentagon-arity::8",
+    "pentagon-cycle::8",
+    "pentagon-arity::9",
+    "pentagon-cycle::9",
+    "pentagon-arity::10",
+    "pentagon-cycle::10",
+    "pentagon-arity::11",
+    "pentagon-cycle::11",
+    "dual-twelve-faces",
+    "dual-edge-closed-form",
+    "dual-circumradius-over-edge",
+    "pentagon-five-sides::0",
+    "pentagon-regular::0",
+    "pentagon-diagonal-ratio::0",
+    "pentagon-five-sides::1",
+    "pentagon-regular::1",
+    "pentagon-diagonal-ratio::1",
+    "pentagon-five-sides::2",
+    "pentagon-regular::2",
+    "pentagon-diagonal-ratio::2",
+    "pentagon-five-sides::3",
+    "pentagon-regular::3",
+    "pentagon-diagonal-ratio::3",
+    "pentagon-five-sides::4",
+    "pentagon-regular::4",
+    "pentagon-diagonal-ratio::4",
+    "pentagon-five-sides::5",
+    "pentagon-regular::5",
+    "pentagon-diagonal-ratio::5",
+    "pentagon-five-sides::6",
+    "pentagon-regular::6",
+    "pentagon-diagonal-ratio::6",
+    "pentagon-five-sides::7",
+    "pentagon-regular::7",
+    "pentagon-diagonal-ratio::7",
+    "pentagon-five-sides::8",
+    "pentagon-regular::8",
+    "pentagon-diagonal-ratio::8",
+    "pentagon-five-sides::9",
+    "pentagon-regular::9",
+    "pentagon-diagonal-ratio::9",
+    "pentagon-five-sides::10",
+    "pentagon-regular::10",
+    "pentagon-diagonal-ratio::10",
+    "pentagon-five-sides::11",
+    "pentagon-regular::11",
+    "pentagon-diagonal-ratio::11",
+    "cube-body-diagonal-partners::0",
+    "cube-eight-vertices",
+    "cube-twelve-edges",
+    "cube-degree-three",
+    "cube-edges-are-not-dodecahedron-edges",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "cube-edge-in-exactly-one-pentagon",
+    "cube-edge-is-a-pentagon-diagonal",
+    "octahedron-six-cube-faces",
+    "octahedron-six-vertices",
+    "octahedron-equal-radius",
+    "octahedron-twelve-edges",
+    "octahedron-degree-four",
+    "octahedron-eight-triangular-faces",
+    "octahedron-dual-of-the-cube",
+    "octahedron-none-on-icosahedron-vertices",
+    "golden-angle-in-range",
+    "golden-angle-complement",
+    "golden-angle-two-gaps::5",
+    "golden-angle-gap-ratio::5",
+    "golden-angle-gap-partition::5",
+    "golden-angle-two-gaps::34",
+    "golden-angle-gap-ratio::34",
+    "golden-angle-gap-partition::34",
+    "golden-angle-two-gaps::233",
+    "golden-angle-gap-ratio::233",
+    "golden-angle-gap-partition::233",
+    "golden-angle-equal-bands::8",
+    "golden-angle-equal-bands::13",
+    "golden-angle-equal-bands::21",
+    "penrose-cos72-closed-form",
+    "penrose-cos144-from-cos72",
+    "penrose-cos36-chebyshev",
+    "penrose-thick-diagonal-ratio-squared",
+    "penrose-thin-diagonal-ratio-squared",
+    "golden-rhombus-diagonal-ratio",
+    "penrose-thick-is-not-the-golden-rhombus",
+    "penrose-thin-is-not-the-golden-rhombus",
+    "golden-cosine-differs",
+    "penrose-inflation-characteristic-polynomial",
+    "penrose-inflation-eigenvalues",
+    "penrose-inflation-counts::1",
+    "penrose-inflation-counts::2",
+    "penrose-inflation-counts::3",
+    "penrose-inflation-counts::4",
+    "penrose-inflation-counts::5",
+    "penrose-inflation-counts::6",
+    "penrose-inflation-total-recurrence",
+    "complement-relation-word-count",
+    "complement-relation-words-agree-with-abelian-rows",
+    "complement-diagram-generic",
+    "complement-diagram-crossings",
+    "complement-diagram-over-under-decided",
+    "complement-diagram-linking-zero",
+    "complement-diagram-crossing-counts",
+    "complement-presentation-one-arc-per-crossing",
+    "complement-presentation-arcs-per-component",
+    "complement-presentation-relations",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
@@ -1230,6 +2031,6 @@
     "The replay reproduces a supplied implementation; it is not an independent oracle.",
     "The plates and the captured PDF are pinned and structurally described, never read as geometry.",
     "No general receipt calculus and no general field-translation theorem is established.",
-    "The sphere-sampling generator, the Penrose patch matching and the Borromean link certificate were not executed."
+    "The rotation set's optimality, the Penrose patch acceptance and the Borromean triple linking invariant were not established."
   ]
 }
