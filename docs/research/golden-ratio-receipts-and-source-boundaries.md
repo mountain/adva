@@ -493,6 +493,20 @@ now the correct one — each word's exponent vector equals \`+-(e_out - e_in)\`,
 the row already used for the rank-nine abelian matrix — so the words are tied to
 the earlier level instead of to an invented property.
 
+**Handoff: exactly where the extraction stands.** With the relation words built
+and the Magnus algebra validated, the remaining step is to write each component's
+**longitude** from the diagram - walking the component and inserting a meridian
+factor at every crossing, signed by the crossing sign and inverted where the
+component passes over - then expand it at degree three and read \`mu-bar(123)\`
+from its degree-two commutator coefficient, which is where Milnor's invariant
+sits once the pairwise linking numbers vanish. The two validation targets come
+**before** any number is read: the unlink must give zero and the Borromean
+configuration plus or minus one, and a failed target stops the run as \`Unknown\`.
+
+That framing convention needs iterative debugging, and this line's session budget
+ran out before it, so the item keeps its last closure check unbacked. Recording
+the recipe is not executing it.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
