@@ -125,13 +125,19 @@ def main() -> int:
             matches = (
                 [name for name in check_names if name.startswith(prefix)] if prefix else []
             )
+            closure = item.get("closure_checks", [])
+            missing = [name for name in closure if name not in check_names]
             entry = {
                 "id": item["id"],
                 "kind": item["kind"],
                 "status": item["status"],
-                "backed_checks": len(matches),
+                "prefix_matches": len(matches),
+                "closure_checks": len(closure),
+                "closure_missing": missing,
             }
-            if item["kind"] == "executable" and item["status"] == "Open" and not matches:
+            # Partial progress is not closure: an item is pending until every
+            # declared closure check is present in the witness.
+            if item["kind"] == "executable" and item["status"] == "Open" and missing:
                 pending.append(entry)
             else:
                 backed.append(entry)
