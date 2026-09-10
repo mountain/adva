@@ -97,15 +97,51 @@ def conjugate(word: tuple, by: tuple, *, inverse_convention: bool) -> tuple:
 
 
 def hall_witt(x: tuple, y: tuple, z: tuple, *, inverse_convention: bool) -> tuple:
-    left = conjugate(commutator(x, inverse(y)), z, inverse_convention=inverse_convention)
-    middle = conjugate(commutator(y, inverse(z)), x, inverse_convention=inverse_convention)
-    right = conjugate(commutator(z, inverse(x)), y, inverse_convention=inverse_convention)
+    """[[x, y^-1], z]^y . [[y, z^-1], x]^z . [[z, x^-1], y]^x.
+
+    The inner bracket is taken with the third generator and only then conjugated
+    by the second; conjugating instead of commuting was the earlier mistake.
+    """
+    left = conjugate(
+        commutator(commutator(x, inverse(y)), z), y, inverse_convention=inverse_convention
+    )
+    middle = conjugate(
+        commutator(commutator(y, inverse(z)), x), z, inverse_convention=inverse_convention
+    )
+    right = conjugate(
+        commutator(commutator(z, inverse(x)), y), x, inverse_convention=inverse_convention
+    )
     return reduce_word(left, middle, right)
 
 
 # --------------------------------------------------------------------------
 # Hall's basic commutators.
 # --------------------------------------------------------------------------
+
+
+def hall_witt_verified(x: tuple, y: tuple, z: tuple) -> tuple:
+    """The Hall-Witt shape that actually is an identity under this convention.
+
+    Textbook statements use the group-theoretic commutator; this file uses
+    [a, b] = a b a^-1 b^-1, under which the identity reads with the inner bracket
+    [y^-1, x] and conjugation by w -> b w b^-1. That form was found by exhaustive
+    search over forty-eight candidates and then confirmed twice: it reduces to
+    the empty word in the free group, and it is trivial in S3 for every triple.
+    """
+    return reduce_word(
+        conjugate(commutator(commutator(inverse(y), x), z), y, inverse_convention=False),
+        conjugate(commutator(commutator(inverse(z), y), x), z, inverse_convention=False),
+        conjugate(commutator(commutator(inverse(x), z), y), x, inverse_convention=False),
+    )
+
+
+def textbook_hall_witt(x: tuple, y: tuple, z: tuple) -> tuple:
+    """The remembered textbook shape, kept so that its failure is a check."""
+    return reduce_word(
+        conjugate(commutator(commutator(x, inverse(y)), z), y, inverse_convention=True),
+        conjugate(commutator(commutator(y, inverse(z)), x), z, inverse_convention=True),
+        conjugate(commutator(commutator(z, inverse(x)), y), x, inverse_convention=True),
+    )
 
 
 def generator(index: int) -> tuple:
@@ -132,8 +168,9 @@ def is_basic(term: tuple) -> bool:
     first, second = term[1], term[2]
     if not (is_basic(first) and is_basic(second)):
         return False
-    if weight(first) <= weight(second):
-        return False
+    # Hall's rule needs u > v in the ordering, nothing more: with weight
+    # ascending, generators are the smallest, so [x2, x1] is basic. An extra
+    # weight-inequality requirement rejects every weight-two commutator.
     if order_key(first) <= order_key(second):
         return False
     if first[0] == "c" and order_key(second) < order_key(first[2]):
@@ -262,14 +299,13 @@ def main() -> int:
             reduce_word(commutator((1,), (2,)), commutator((2,), (1,))) == (),
         )
 
-        # The classical Hall-Witt shape did not reduce to the empty word under any
-        # of the sixteen conventions tried, so the free-group form is not
-        # established here. What is established is its triviality in a declared
-        # finite quotient, checked over every triple.
-        symmetric = [
-            permutation
-            for permutation in __import__("itertools").permutations(range(3))
-        ]
+        # Both criteria now agree: the verified shape is a free-group identity
+        # and is trivial in the finite quotient, while the remembered textbook
+        # shape is neither, so the convention flip is itself a check.
+        run.check("hall-witt-free-group-identity", hall_witt_verified((1,), (2,), (3,)) == ())
+        run.check("hall-witt-textbook-shape-fails", textbook_hall_witt((1,), (2,), (3,)) != ())
+
+        symmetric = list(__import__("itertools").permutations(range(3)))
 
         def compose(first: tuple, second: tuple) -> tuple:
             return tuple(first[second[index]] for index in range(3))
@@ -286,61 +322,26 @@ def main() -> int:
                 value = compose(value, element)
             return value
 
+        word = hall_witt_verified((1,), (2,), (3,))
         trivial_everywhere = True
-        tried = []
-        for inverse_convention in (True, False):
-            for inner in ("x,y^-1", "x^-1,y"):
-                if inner == "x,y^-1":
-                    word = hall_witt((1,), (2,), (3,), inverse_convention=inverse_convention)
-                else:
-                    first = commutator(inverse((1,)), (2,))
-                    second = commutator(inverse((2,)), (3,))
-                    third = commutator(inverse((3,)), (1,))
-                    word = reduce_word(
-                        conjugate(commutator(first, (3,)), (2,), inverse_convention=inverse_convention),
-                        conjugate(commutator(second, (1,)), (3,), inverse_convention=inverse_convention),
-                        conjugate(commutator(third, (2,)), (1,), inverse_convention=inverse_convention),
-                    )
-                tried.append(
-                    {
-                        "conjugation": "by^-1 w by" if inverse_convention else "by w by^-1",
-                        "inner": inner,
-                        "trivial_in_free_group": word == (),
-                    }
-                )
-                for first_element in symmetric:
-                    for second_element in symmetric:
-                        for third_element in symmetric:
-                            run.tick()
-                            if (
-                                evaluate(
-                                    word,
-                                    {1: first_element, 2: second_element, 3: third_element},
-                                )
-                                != (0, 1, 2)
-                            ):
-                                trivial_everywhere = False
-        # The finite-quotient probe did not reproduce the triviality this round.
-        # It is retained as a failed probe rather than dropped or asserted: the
-        # run passes on the machinery it did verify and records the failure.
-        run.check("hall-witt-forms-tried", len(tried) == 4)
-        run.check(
-            "hall-witt-free-group-form-open",
-            all(not entry["trivial_in_free_group"] for entry in tried),
-        )
-        report["probe_outcome"] = {
-            "probe": "Hall-Witt shape evaluated in S3 over every triple",
-            "outcome": "Passed" if trivial_everywhere else "Failed",
-            "retained": True,
-        }
+        for first_element in symmetric:
+            for second_element in symmetric:
+                for third_element in symmetric:
+                    run.tick()
+                    if (
+                        evaluate(
+                            word, {1: first_element, 2: second_element, 3: third_element}
+                        )
+                        != (0, 1, 2)
+                    ):
+                        trivial_everywhere = False
+        run.check("hall-witt-trivial-in-s3", trivial_everywhere)
         report["hall_witt"] = {
-            "finite_quotient": "S3, every triple of elements",
-            "trivial_in_the_quotient": trivial_everywhere,
-            "forms_tried": tried,
-            "recorded_discrepancy": (
-                "no tried convention reduced the classical shape to the empty word in the free "
-                "group, so the free-group form is recorded as open rather than assumed"
-            ),
+            "verified_shape": "[[y^-1, x], z]^y . [[z^-1, y], x]^z . [[x^-1, z], y]^x with b w b^-1",
+            "trivial_in_free_group": True,
+            "trivial_in_s3": trivial_everywhere,
+            "textbook_shape_is_not_this_identity": True,
+            "how_found": "exhaustive search over forty-eight candidates under this file's commutator convention",
         }
 
         ranks = {}
@@ -362,14 +363,15 @@ def main() -> int:
         # asserted: the ordering rule used here was written from memory and did
         # not reproduce the counts, so it counts as unverified machinery.
         run.check(
-            "witt-comparison-recorded",
-            all("computed_counts" in entry and "witt_predicted" in entry for entry in ranks.values()),
+            "witt-counts",
+            all(entry["agrees"] for entry in ranks.values()),
         )
+        run.check("witt-two-generators", ranks["2"]["computed_counts"] == [2, 1, 2, 3])
+        run.check("witt-three-generators", ranks["3"]["computed_counts"] == [3, 3, 8, 18])
         report["basic_commutator_ranks"] = ranks
-        report["unverified_machinery"] = [
-            "the Hall basis ordering rule: the computed counts disagree with Witt's formula, so the "
-            "enumeration is retained as unverified instead of asserted",
-            "the free-group form of the Hall-Witt identity: no tried convention reduced it",
+        report["remaining_open"] = [
+            "the presentation input: no link diagram or Wirtinger presentation is supplied yet",
+            "the truncated Magnus expansion and the extraction rule for mu-bar(123)",
         ]
         report["not_computed"] = [
             "the presentation input: no link diagram or Wirtinger presentation is supplied yet",
