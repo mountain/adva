@@ -122,10 +122,10 @@ def repository(tmp_path):
 def test_real_catalog_is_consistent_without_admission():
     report = catalog.check_catalog(ROOT)
     assert report["status"] == "CatalogConsistent", report
-    assert len(report["entries"]) == 21
+    assert len(report["entries"]) == 23
     assert {key: len(value) for key, value in report["topics"].items()} == {
-        "arithmetic": 6,
-        "geometry": 3,
+        "arithmetic": 7,
+        "geometry": 5,
         "logic": 15,
     }
     assert report["native_admission"] == "not-granted"
