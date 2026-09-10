@@ -462,6 +462,18 @@ therefore a new finite contract; contract-v2 deliberately does not cover it. The
 queue item therefore stays Open with its last closure check unbacked, and this
 line reports the boundary instead of asserting a number it did not compute.
 
+**A third contract now declares the missing step.** The extraction rule needed
+machinery that neither earlier contract covered, so
+[`contract-v3.json`](../../experiments/golden_ratio/contract-v3.json) declares it
+alone: exact field parameters kept in process, truncated Magnus expansions in
+non-commuting variables at degree three, and two validation targets — an
+unlinked control where the number must vanish, and the Borromean configuration
+where version 1's triple intersection is plus one. The identification of the
+extracted number with `mu-bar(123)` is imported, exactly as version 1 imported
+the Seifert-surface identification, and a target that fails to reproduce its
+known value stops the run as `Unknown` rather than yielding a partial invariant.
+Writing the contract is not executing it: no number is computed yet.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
