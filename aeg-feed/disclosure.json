@@ -1,0 +1,20 @@
+{
+  "schema": "aeg.feed.disclosure",
+  "version": 0,
+  "policy": "receipts only: summaries, pins, declared holes; no source documents, no full texts, no secrets, no private filesystem paths beyond declared exceptions",
+  "scan_patterns": [
+    "/Users/",
+    "/home/",
+    "/private/",
+    "/var/"
+  ],
+  "exceptions": [
+    {
+      "receipt": 20,
+      "pattern": "/Users/",
+      "count": 1,
+      "declared_scope": "home-root mention of the operator account only; no deeper paths, no secrets"
+    }
+  ],
+  "undeclared": []
+}

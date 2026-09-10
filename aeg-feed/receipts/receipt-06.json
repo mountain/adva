@@ -1,0 +1,40 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 6,
+  "predecessor_sha256": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "local fresh execution of the remote advance byte-observer step; both sides' 256-byte frontiers agree"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "report": "trials/advance-local-run-02/report.json",
+    "controls": {
+      "changed_predecessor_refused": true,
+      "library_nonzero_guard": true,
+      "unchanged_is_evidence_stutter": true,
+      "tampered_value_refused": true,
+      "out_of_range_refused_by_rust": true,
+      "fresh_ski_matches_native": true,
+      "iota_samples_match": true
+    },
+    "finding": {
+      "native_programs": 4,
+      "byte_positions_per_program": 256,
+      "checked_byte_constructions": 1024,
+      "first_separator_counts": {
+        "ordered-operation-names": 256
+      },
+      "class_count_patterns": {
+        "1/1/3/4": 256
+      },
+      "interpretation": "First separating observation in the frozen list only; compilation-node order is not a canonical causal schedule."
+    },
+    "macos_note": "Supervisor restrictions() required a local no-op patch (RLIMIT_AS is Linux-only); patched bytes retained in evidence, tracked tree reverted"
+  },
+  "bounds": {
+    "from_contract": "experiments/advance_byte_observer/contract.json"
+  }
+}
