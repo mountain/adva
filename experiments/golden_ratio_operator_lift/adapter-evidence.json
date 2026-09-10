@@ -1,0 +1,751 @@
+{
+  "status": "Passed",
+  "checks": 13,
+  "cases": [
+    {
+      "case": "fresh-nonstandard-basis",
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "exit_code": 0,
+      "process_seconds": 0.07790138500422472,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "4ea74268493f082bd88a4d2f438147f8b8b409ecc18f7b288efd2abaaadc7028",
+      "receipt_bytes_sha256": "e5aace6cdb07c4e11325bdba8b544ac31a09ddbeeb35a9fa8ff7bf196c05242e",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 0,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJjb250ZXh0IjogeyJiYXNpcyI6IFtbIjEiLCAiMSJdLCBbIjAiLCAiMSJdXSwgImNvbXBvc2l0aW9uIjogInJpZ2h0bW9zdC1maXJzdCIsICJkaW1lbnNpb24iOiAyLCAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsICJvcGVyYXRvciI6IFtbIjEiLCAiMSJdLCBbIjEiLCAiMiJdXSwgIndvcmQiOiAiYWJiYmFCQUFCIn0sICJjb250ZXh0X3NoYTI1NiI6ICIwM2ZhOTRlOTM1OTI0M2M1YjI0ODYyNmYwNGMyOGQzOGQ5YjYxM2RjNDAxOGU3ZGQ4OWUzZWEyODkwMDgzZjkxIiwgIm1pc3NpbmdfYmFzaXNfaW5kaWNlcyI6IFtdLCAibmF0aXZlX2FkbWlzc2lvbiI6ICJOb3RHcmFudGVkIiwgInJlcGxheWVkIjogW3siYmFzaXNfaW5kZXgiOiAwLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiXX0sIHsiYmFzaXNfaW5kZXgiOiAxLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiXX1dLCAic2NvcGUiOiAiYWxsIHJhdGlvbmFsIHRyYW5zbGF0aW9ucyBpbiB0aGUgZGVjbGFyZWQgc3BhY2UsIHZpYSBjaGVja2VkIGJhc2lzIGFuZCBhZmZpbmUtd29yZCBsZW1tYSIsICJzdGF0dXMiOiAiQ2xvc2VkRm9yQWxsVHJhbnNsYXRpb25zQnlMaW5lYXJpdHkiLCAidmFsaWRhdGlvbl9zZWNvbmRzIjogMC4wMDA2NTgyNTE5OTk5OTM4MDg2LCAid29ya191bml0cyI6IDIyNH0K",
+          "byte_length": 708,
+          "sha256": "229c9e10eca105082a166ad1e7e456bd52ce2e762834d556df5592cc2b19585f"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.032758064997324254,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.03394591699907323
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "external_result": {
+          "context": {
+            "basis": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "composition": "rightmost-first",
+            "dimension": 2,
+            "domain": "Q-vector-affine",
+            "operator": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "2"
+              ]
+            ],
+            "word": "abbbaBAAB"
+          },
+          "context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+          "missing_basis_indices": [],
+          "native_admission": "NotGranted",
+          "replayed": [
+            {
+              "basis_index": 0,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "basis_index": 1,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0"
+              ]
+            }
+          ],
+          "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+          "status": "ClosedForAllTranslationsByLinearity",
+          "validation_seconds": 0.0006582519999938086,
+          "work_units": 224
+        },
+        "incoming_receipt": {
+          "base64": "eyJjb250ZXh0Ijp7ImJhc2lzIjpbWyIxIiwiMSJdLFsiMCIsIjEiXV0sImNvbXBvc2l0aW9uIjoicmlnaHRtb3N0LWZpcnN0IiwiZGltZW5zaW9uIjoyLCJkb21haW4iOiJRLXZlY3Rvci1hZmZpbmUiLCJvcGVyYXRvciI6W1siMSIsIjEiXSxbIjEiLCIyIl1dLCJ3b3JkIjoiYWJiYmFCQUFCIn0sImNvbnRleHRfc2hhMjU2IjoiMDNmYTk0ZTkzNTkyNDNjNWIyNDg2MjZmMDRjMjhkMzhkOWI2MTNkYzQwMThlN2RkODllM2VhMjg5MDA4M2Y5MSIsIm9ic2VydmF0aW9ucyI6W3siYmFzaXNfaW5kZXgiOjAsImNsb3NlZCI6dHJ1ZSwidHJhbnNsYXRpb25fcmVzaWR1YWwiOlsiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MSwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCJdfV0sInNjaGVtYSI6ImFkdmEuZXh0ZXJuYWwub3BlcmF0b3ItbGlmdC1yZWNlaXB0LnYwIn0=",
+          "byte_length": 449,
+          "sha256": "e5aace6cdb07c4e11325bdba8b544ac31a09ddbeeb35a9fa8ff7bf196c05242e"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogImZyZXNoLW5vbnN0YW5kYXJkLWJhc2lzIiwKICAiY29udGV4dCI6IHsKICAgICJiYXNpcyI6IFsKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMSIKICAgICAgXSwKICAgICAgWwogICAgICAgICIwIiwKICAgICAgICAiMSIKICAgICAgXQogICAgXSwKICAgICJjb21wb3NpdGlvbiI6ICJyaWdodG1vc3QtZmlyc3QiLAogICAgImRpbWVuc2lvbiI6IDIsCiAgICAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsCiAgICAib3BlcmF0b3IiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjIiCiAgICAgIF0KICAgIF0sCiAgICAid29yZCI6ICJhYmJiYUJBQUIiCiAgfQp9Cg==",
+          "byte_length": 445,
+          "sha256": "4ea74268493f082bd88a4d2f438147f8b8b409ecc18f7b288efd2abaaadc7028"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "fresh-nonstandard-basis",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "ClosedForAllTranslationsByLinearity"
+      }
+    },
+    {
+      "case": "whitespace-only",
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "exit_code": 0,
+      "process_seconds": 0.07756949599570362,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "28c9e29570ad17ee853da56cbdc42298282d33a31a3cd3139660284c3c1ebee9",
+      "receipt_bytes_sha256": "f4c6ae8eb157a91f15577cdb3e1bafe8462444b17248019479831ee0dc5104ba",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 0,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJjb250ZXh0IjogeyJiYXNpcyI6IFtbIjEiLCAiMSJdLCBbIjAiLCAiMSJdXSwgImNvbXBvc2l0aW9uIjogInJpZ2h0bW9zdC1maXJzdCIsICJkaW1lbnNpb24iOiAyLCAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsICJvcGVyYXRvciI6IFtbIjEiLCAiMSJdLCBbIjEiLCAiMiJdXSwgIndvcmQiOiAiYWJiYmFCQUFCIn0sICJjb250ZXh0X3NoYTI1NiI6ICIwM2ZhOTRlOTM1OTI0M2M1YjI0ODYyNmYwNGMyOGQzOGQ5YjYxM2RjNDAxOGU3ZGQ4OWUzZWEyODkwMDgzZjkxIiwgIm1pc3NpbmdfYmFzaXNfaW5kaWNlcyI6IFtdLCAibmF0aXZlX2FkbWlzc2lvbiI6ICJOb3RHcmFudGVkIiwgInJlcGxheWVkIjogW3siYmFzaXNfaW5kZXgiOiAwLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiXX0sIHsiYmFzaXNfaW5kZXgiOiAxLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiXX1dLCAic2NvcGUiOiAiYWxsIHJhdGlvbmFsIHRyYW5zbGF0aW9ucyBpbiB0aGUgZGVjbGFyZWQgc3BhY2UsIHZpYSBjaGVja2VkIGJhc2lzIGFuZCBhZmZpbmUtd29yZCBsZW1tYSIsICJzdGF0dXMiOiAiQ2xvc2VkRm9yQWxsVHJhbnNsYXRpb25zQnlMaW5lYXJpdHkiLCAidmFsaWRhdGlvbl9zZWNvbmRzIjogMC4wMDA2ODAzNTYwMDI3MDM3NzQ3LCAid29ya191bml0cyI6IDIyNH0K",
+          "byte_length": 708,
+          "sha256": "fd66bf3b56be36c35ebde8fa095e4d3f349986c95d5097eafbd59bffefe3336c"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.032823002999066375,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.03404792999936035
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "external_result": {
+          "context": {
+            "basis": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "0",
+                "1"
+              ]
+            ],
+            "composition": "rightmost-first",
+            "dimension": 2,
+            "domain": "Q-vector-affine",
+            "operator": [
+              [
+                "1",
+                "1"
+              ],
+              [
+                "1",
+                "2"
+              ]
+            ],
+            "word": "abbbaBAAB"
+          },
+          "context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+          "missing_basis_indices": [],
+          "native_admission": "NotGranted",
+          "replayed": [
+            {
+              "basis_index": 0,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "basis_index": 1,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0"
+              ]
+            }
+          ],
+          "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+          "status": "ClosedForAllTranslationsByLinearity",
+          "validation_seconds": 0.0006803560027037747,
+          "work_units": 224
+        },
+        "incoming_receipt": {
+          "base64": "IAp7CiAgImNvbnRleHQiOiB7CiAgICAiYmFzaXMiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAiY29tcG9zaXRpb24iOiAicmlnaHRtb3N0LWZpcnN0IiwKICAgICJkaW1lbnNpb24iOiAyLAogICAgImRvbWFpbiI6ICJRLXZlY3Rvci1hZmZpbmUiLAogICAgIm9wZXJhdG9yIjogWwogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIxIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIgogICAgICBdCiAgICBdLAogICAgIndvcmQiOiAiYWJiYmFCQUFCIgogIH0sCiAgImNvbnRleHRfc2hhMjU2IjogIjAzZmE5NGU5MzU5MjQzYzViMjQ4NjI2ZjA0YzI4ZDM4ZDliNjEzZGM0MDE4ZTdkZDg5ZTNlYTI4OTAwODNmOTEiLAogICJvYnNlcnZhdGlvbnMiOiBbCiAgICB7CiAgICAgICJiYXNpc19pbmRleCI6IDAsCiAgICAgICJjbG9zZWQiOiB0cnVlLAogICAgICAidHJhbnNsYXRpb25fcmVzaWR1YWwiOiBbCiAgICAgICAgIjAiLAogICAgICAgICIwIgogICAgICBdCiAgICB9LAogICAgewogICAgICAiYmFzaXNfaW5kZXgiOiAxLAogICAgICAiY2xvc2VkIjogdHJ1ZSwKICAgICAgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWwogICAgICAgICIwIiwKICAgICAgICAiMCIKICAgICAgXQogICAgfQogIF0sCiAgInNjaGVtYSI6ICJhZHZhLmV4dGVybmFsLm9wZXJhdG9yLWxpZnQtcmVjZWlwdC52MCIKfQog",
+          "byte_length": 768,
+          "sha256": "f4c6ae8eb157a91f15577cdb3e1bafe8462444b17248019479831ee0dc5104ba"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogIndoaXRlc3BhY2Utb25seSIsCiAgImNvbnRleHQiOiB7CiAgICAiYmFzaXMiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAiY29tcG9zaXRpb24iOiAicmlnaHRtb3N0LWZpcnN0IiwKICAgICJkaW1lbnNpb24iOiAyLAogICAgImRvbWFpbiI6ICJRLXZlY3Rvci1hZmZpbmUiLAogICAgIm9wZXJhdG9yIjogWwogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIxIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIgogICAgICBdCiAgICBdLAogICAgIndvcmQiOiAiYWJiYmFCQUFCIgogIH0KfQo=",
+          "byte_length": 437,
+          "sha256": "28c9e29570ad17ee853da56cbdc42298282d33a31a3cd3139660284c3c1ebee9"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "whitespace-only",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "ClosedForAllTranslationsByLinearity"
+      }
+    },
+    {
+      "case": "self-rehashed-operator-old-anchor",
+      "expected_status": "InvalidContextBinding",
+      "exit_code": 2,
+      "process_seconds": 0.07771304099878762,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "8e5c59cea2705c509e186530f291a7591152324edecf5bf7b25792fe4e2cee6b",
+      "receipt_bytes_sha256": "7ebf1fae16972015d71a9a7981ea4aed917879e943a5c586fb3b7891a1d99265",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 2,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJuYXRpdmVfYWRtaXNzaW9uIjogIk5vdEdyYW50ZWQiLCAicmVhc29uIjogImNvbnRleHQgZGlmZmVycyBmcm9tIHJlY2VpdmVyIHNlbGVjdGlvbiIsICJzdGF0dXMiOiAiSW52YWxpZENvbnRleHRCaW5kaW5nIiwgInZhbGlkYXRpb25fc2Vjb25kcyI6IDAuMDAwMjI3ODczOTk5MzkyNjEzNzcsICJ3b3JrX3VuaXRzIjogMH0K",
+          "byte_length": 186,
+          "sha256": "9f3c611165ac08186eb01e56cf8c3bd148fec20282f4549cd2158a44d3c4b4a4"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.033086520998040214,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.0341557229985483
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+        "external_result": {
+          "native_admission": "NotGranted",
+          "reason": "context differs from receiver selection",
+          "status": "InvalidContextBinding",
+          "validation_seconds": 0.00022787399939261377,
+          "work_units": 0
+        },
+        "incoming_receipt": {
+          "base64": "eyJjb250ZXh0Ijp7ImJhc2lzIjpbWyIxIiwiMCJdLFsiMCIsIjEiXV0sImNvbXBvc2l0aW9uIjoicmlnaHRtb3N0LWZpcnN0IiwiZGltZW5zaW9uIjoyLCJkb21haW4iOiJRLXZlY3Rvci1hZmZpbmUiLCJvcGVyYXRvciI6W1siMSIsIjIiXSxbIjEvMiIsIjIiXV0sIndvcmQiOiJhYmJiYUJBQUIifSwiY29udGV4dF9zaGEyNTYiOiIxZGZkNGYxZDg3YmY4ZWQzZDhhNTY0ODlhMTkwODZkYzhlYmU5OGU0ZDRlMjU1YWJjOTFlOWVjMGE5OTJhZWQ4Iiwib2JzZXJ2YXRpb25zIjpbeyJiYXNpc19pbmRleCI6MCwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCJdfSx7ImJhc2lzX2luZGV4IjoxLCJjbG9zZWQiOnRydWUsInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjpbIjAiLCIwIl19XSwic2NoZW1hIjoiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1saWZ0LXJlY2VpcHQudjAifQ==",
+          "byte_length": 451,
+          "sha256": "7ebf1fae16972015d71a9a7981ea4aed917879e943a5c586fb3b7891a1d99265"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogInNlbGYtcmVoYXNoZWQtb3BlcmF0b3Itb2xkLWFuY2hvciIsCiAgImNvbnRleHQiOiB7CiAgICAiYmFzaXMiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjAiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAiY29tcG9zaXRpb24iOiAicmlnaHRtb3N0LWZpcnN0IiwKICAgICJkaW1lbnNpb24iOiAyLAogICAgImRvbWFpbiI6ICJRLXZlY3Rvci1hZmZpbmUiLAogICAgIm9wZXJhdG9yIjogWwogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIxIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIgogICAgICBdCiAgICBdLAogICAgIndvcmQiOiAiYWJiYmFCQUFCIgogIH0KfQo=",
+          "byte_length": 455,
+          "sha256": "8e5c59cea2705c509e186530f291a7591152324edecf5bf7b25792fe4e2cee6b"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "self-rehashed-operator-old-anchor",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "InvalidContextBinding"
+      }
+    },
+    {
+      "case": "missing-third-direction",
+      "expected_status": "UnknownCoverage",
+      "exit_code": 3,
+      "process_seconds": 0.11074048299633432,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "2ff5b9e2cf7e2e28c3be875753ca2858a7e2f6e33578321cd4f47473c8d8014b",
+      "receipt_bytes_sha256": "ee89fc9dc2c24ef2f58ac8a91367846a22fd22d57632d24cd3647cacf48350bf",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 2,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJjb250ZXh0IjogeyJiYXNpcyI6IFtbIjEiLCAiMCIsICIwIl0sIFsiMCIsICIxIiwgIjAiXSwgWyIwIiwgIjAiLCAiMSJdXSwgImNvbXBvc2l0aW9uIjogInJpZ2h0bW9zdC1maXJzdCIsICJkaW1lbnNpb24iOiAzLCAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsICJvcGVyYXRvciI6IFtbIjEiLCAiMSIsICIwIl0sIFsiMSIsICIyIiwgIjAiXSwgWyIwIiwgIjAiLCAiMSJdXSwgIndvcmQiOiAiYWJiYmFCQUFCIn0sICJjb250ZXh0X3NoYTI1NiI6ICI3Mzg5NjMwODMwM2Y0OGRiYTFkZmMxYWI1OWFlNDUyM2FmMDJhZTQzM2FhZTcxZmM0MDFlOGRiMWIzMmJkMmE0IiwgIm1pc3NpbmdfYmFzaXNfaW5kaWNlcyI6IFsyXSwgIm5hdGl2ZV9hZG1pc3Npb24iOiAiTm90R3JhbnRlZCIsICJyZXBsYXllZCI6IFt7ImJhc2lzX2luZGV4IjogMCwgImNsb3NlZCI6IHRydWUsICJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6IFsiMCIsICIwIiwgIjAiXX0sIHsiYmFzaXNfaW5kZXgiOiAxLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiLCAiMCJdfV0sICJzY29wZSI6ICJhbGwgcmF0aW9uYWwgdHJhbnNsYXRpb25zIGluIHRoZSBkZWNsYXJlZCBzcGFjZSwgdmlhIGNoZWNrZWQgYmFzaXMgYW5kIGFmZmluZS13b3JkIGxlbW1hIiwgInN0YXR1cyI6ICJVbmtub3duQ292ZXJhZ2UiLCAidmFsaWRhdGlvbl9zZWNvbmRzIjogMC4wMDExNjgzNTE5OTg3ODU1MTA3LCAid29ya191bml0cyI6IDU3Nn0K",
+          "byte_length": 753,
+          "sha256": "e7475a017b87a819c7f5642c16e06840ef9e6d82957bcca1bf8c6ec6eb73bcca"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.0649083129974315,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.06631167000159621
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "external_result": {
+          "context": {
+            "basis": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "composition": "rightmost-first",
+            "dimension": 3,
+            "domain": "Q-vector-affine",
+            "operator": [
+              [
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "1",
+                "2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "word": "abbbaBAAB"
+          },
+          "context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+          "missing_basis_indices": [
+            2
+          ],
+          "native_admission": "NotGranted",
+          "replayed": [
+            {
+              "basis_index": 0,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "basis_index": 1,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0",
+                "0"
+              ]
+            }
+          ],
+          "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+          "status": "UnknownCoverage",
+          "validation_seconds": 0.0011683519987855107,
+          "work_units": 576
+        },
+        "incoming_receipt": {
+          "base64": "eyJjb250ZXh0Ijp7ImJhc2lzIjpbWyIxIiwiMCIsIjAiXSxbIjAiLCIxIiwiMCJdLFsiMCIsIjAiLCIxIl1dLCJjb21wb3NpdGlvbiI6InJpZ2h0bW9zdC1maXJzdCIsImRpbWVuc2lvbiI6MywiZG9tYWluIjoiUS12ZWN0b3ItYWZmaW5lIiwib3BlcmF0b3IiOltbIjEiLCIxIiwiMCJdLFsiMSIsIjIiLCIwIl0sWyIwIiwiMCIsIjEiXV0sIndvcmQiOiJhYmJiYUJBQUIifSwiY29udGV4dF9zaGEyNTYiOiI3Mzg5NjMwODMwM2Y0OGRiYTFkZmMxYWI1OWFlNDUyM2FmMDJhZTQzM2FhZTcxZmM0MDFlOGRiMWIzMmJkMmE0Iiwib2JzZXJ2YXRpb25zIjpbeyJiYXNpc19pbmRleCI6MCwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MSwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX1dLCJzY2hlbWEiOiJhZHZhLmV4dGVybmFsLm9wZXJhdG9yLWxpZnQtcmVjZWlwdC52MCJ9",
+          "byte_length": 501,
+          "sha256": "ee89fc9dc2c24ef2f58ac8a91367846a22fd22d57632d24cd3647cacf48350bf"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogIm1pc3NpbmctdGhpcmQtZGlyZWN0aW9uIiwKICAiY29udGV4dCI6IHsKICAgICJiYXNpcyI6IFsKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMCIsCiAgICAgICAgIjAiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjAiLAogICAgICAgICIwIiwKICAgICAgICAiMSIKICAgICAgXQogICAgXSwKICAgICJjb21wb3NpdGlvbiI6ICJyaWdodG1vc3QtZmlyc3QiLAogICAgImRpbWVuc2lvbiI6IDMsCiAgICAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsCiAgICAib3BlcmF0b3IiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIiwKICAgICAgICAiMCIKICAgICAgXSwKICAgICAgWwogICAgICAgICIwIiwKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAid29yZCI6ICJhYmJiYUJBQUIiCiAgfQp9Cg==",
+          "byte_length": 607,
+          "sha256": "2ff5b9e2cf7e2e28c3be875753ca2858a7e2f6e33578321cd4f47473c8d8014b"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "missing-third-direction",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "UnknownCoverage"
+      }
+    },
+    {
+      "case": "third-direction-refutes",
+      "expected_status": "Refuted",
+      "exit_code": 2,
+      "process_seconds": 0.07463150400144514,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "dfdd685ef377d7a690846262cb4a3f6cbb46e28eb65521d73d7b6e9c5b303d7f",
+      "receipt_bytes_sha256": "3c4d00710bbc9c08633dd18cbd8e02d5eab67644f348ee40fa35925ae8ce2fcd",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 2,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJjb250ZXh0IjogeyJiYXNpcyI6IFtbIjEiLCAiMCIsICIwIl0sIFsiMCIsICIxIiwgIjAiXSwgWyIwIiwgIjAiLCAiMSJdXSwgImNvbXBvc2l0aW9uIjogInJpZ2h0bW9zdC1maXJzdCIsICJkaW1lbnNpb24iOiAzLCAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsICJvcGVyYXRvciI6IFtbIjEiLCAiMSIsICIwIl0sIFsiMSIsICIyIiwgIjAiXSwgWyIwIiwgIjAiLCAiMSJdXSwgIndvcmQiOiAiYWJiYmFCQUFCIn0sICJjb250ZXh0X3NoYTI1NiI6ICI3Mzg5NjMwODMwM2Y0OGRiYTFkZmMxYWI1OWFlNDUyM2FmMDJhZTQzM2FhZTcxZmM0MDFlOGRiMWIzMmJkMmE0IiwgIm1pc3NpbmdfYmFzaXNfaW5kaWNlcyI6IFtdLCAibmF0aXZlX2FkbWlzc2lvbiI6ICJOb3RHcmFudGVkIiwgInJlcGxheWVkIjogW3siYmFzaXNfaW5kZXgiOiAwLCAiY2xvc2VkIjogdHJ1ZSwgInRyYW5zbGF0aW9uX3Jlc2lkdWFsIjogWyIwIiwgIjAiLCAiMCJdfSwgeyJiYXNpc19pbmRleCI6IDEsICJjbG9zZWQiOiB0cnVlLCAidHJhbnNsYXRpb25fcmVzaWR1YWwiOiBbIjAiLCAiMCIsICIwIl19LCB7ImJhc2lzX2luZGV4IjogMiwgImNsb3NlZCI6IGZhbHNlLCAidHJhbnNsYXRpb25fcmVzaWR1YWwiOiBbIjAiLCAiMCIsICIxIl19XSwgInNjb3BlIjogImFsbCByYXRpb25hbCB0cmFuc2xhdGlvbnMgaW4gdGhlIGRlY2xhcmVkIHNwYWNlLCB2aWEgY2hlY2tlZCBiYXNpcyBhbmQgYWZmaW5lLXdvcmQgbGVtbWEiLCAic3RhdHVzIjogIlJlZnV0ZWQiLCAidmFsaWRhdGlvbl9zZWNvbmRzIjogMC4wMDE0Mjc5MDMwMDAxNDg5NDQ2LCAid29ya191bml0cyI6IDgxMH0K",
+          "byte_length": 822,
+          "sha256": "8ce204b49f8e88f469365e0a0f55a9c52dbb6a041b3c9ae4d07b714810fe3f57"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.0326309840020258,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.033661277004284784
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "external_result": {
+          "context": {
+            "basis": [
+              [
+                "1",
+                "0",
+                "0"
+              ],
+              [
+                "0",
+                "1",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "composition": "rightmost-first",
+            "dimension": 3,
+            "domain": "Q-vector-affine",
+            "operator": [
+              [
+                "1",
+                "1",
+                "0"
+              ],
+              [
+                "1",
+                "2",
+                "0"
+              ],
+              [
+                "0",
+                "0",
+                "1"
+              ]
+            ],
+            "word": "abbbaBAAB"
+          },
+          "context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+          "missing_basis_indices": [],
+          "native_admission": "NotGranted",
+          "replayed": [
+            {
+              "basis_index": 0,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "basis_index": 1,
+              "closed": true,
+              "translation_residual": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "basis_index": 2,
+              "closed": false,
+              "translation_residual": [
+                "0",
+                "0",
+                "1"
+              ]
+            }
+          ],
+          "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+          "status": "Refuted",
+          "validation_seconds": 0.0014279030001489446,
+          "work_units": 810
+        },
+        "incoming_receipt": {
+          "base64": "eyJjb250ZXh0Ijp7ImJhc2lzIjpbWyIxIiwiMCIsIjAiXSxbIjAiLCIxIiwiMCJdLFsiMCIsIjAiLCIxIl1dLCJjb21wb3NpdGlvbiI6InJpZ2h0bW9zdC1maXJzdCIsImRpbWVuc2lvbiI6MywiZG9tYWluIjoiUS12ZWN0b3ItYWZmaW5lIiwib3BlcmF0b3IiOltbIjEiLCIxIiwiMCJdLFsiMSIsIjIiLCIwIl0sWyIwIiwiMCIsIjEiXV0sIndvcmQiOiJhYmJiYUJBQUIifSwiY29udGV4dF9zaGEyNTYiOiI3Mzg5NjMwODMwM2Y0OGRiYTFkZmMxYWI1OWFlNDUyM2FmMDJhZTQzM2FhZTcxZmM0MDFlOGRiMWIzMmJkMmE0Iiwib2JzZXJ2YXRpb25zIjpbeyJiYXNpc19pbmRleCI6MCwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MSwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MiwiY2xvc2VkIjpmYWxzZSwidHJhbnNsYXRpb25fcmVzaWR1YWwiOlsiMCIsIjAiLCIxIl19XSwic2NoZW1hIjoiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1saWZ0LXJlY2VpcHQudjAifQ==",
+          "byte_length": 571,
+          "sha256": "3c4d00710bbc9c08633dd18cbd8e02d5eab67644f348ee40fa35925ae8ce2fcd"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogInRoaXJkLWRpcmVjdGlvbi1yZWZ1dGVzIiwKICAiY29udGV4dCI6IHsKICAgICJiYXNpcyI6IFsKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMCIsCiAgICAgICAgIjAiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjAiLAogICAgICAgICIwIiwKICAgICAgICAiMSIKICAgICAgXQogICAgXSwKICAgICJjb21wb3NpdGlvbiI6ICJyaWdodG1vc3QtZmlyc3QiLAogICAgImRpbWVuc2lvbiI6IDMsCiAgICAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsCiAgICAib3BlcmF0b3IiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIiwKICAgICAgICAiMCIKICAgICAgXSwKICAgICAgWwogICAgICAgICIwIiwKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAid29yZCI6ICJhYmJiYUJBQUIiCiAgfQp9Cg==",
+          "byte_length": 607,
+          "sha256": "dfdd685ef377d7a690846262cb4a3f6cbb46e28eb65521d73d7b6e9c5b303d7f"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "third-direction-refutes",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "Refuted"
+      }
+    },
+    {
+      "case": "forged-zero",
+      "expected_status": "InvalidEvidence",
+      "exit_code": 2,
+      "process_seconds": 0.07611758999701124,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "fc6fd6d1856c8b4c2a6ac3e65994aeaf23c8be23ee9bffefb767fe20b102317e",
+      "receipt_bytes_sha256": "7448e2a49ebcad1c22c5c8c90dd87dd22c0b9dec811729b53f94a263c531548d",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_exit_code": 2,
+        "backend_stderr": {
+          "base64": "",
+          "byte_length": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "backend_stdout": {
+          "base64": "eyJuYXRpdmVfYWRtaXNzaW9uIjogIk5vdEdyYW50ZWQiLCAicmVhc29uIjogInJlcG9ydGVkIHJlc2lkdWFsIG9yIEJvb2xlYW4gZG9lcyBub3QgcmVwbGF5IiwgInN0YXR1cyI6ICJJbnZhbGlkRXZpZGVuY2UiLCAidmFsaWRhdGlvbl9zZWNvbmRzIjogMC4wMDE0MDkzMzQ5OTY0MjQxNDk3LCAid29ya191bml0cyI6IDgxMH0K",
+          "byte_length": 186,
+          "sha256": "1cc4b570b1bb884479f6f474dfdebc9084bcc9df3672e9f828bc9f3d9e65c5e1"
+        },
+        "cost": {
+          "backend_invocations": 1,
+          "backend_wall_seconds": 0.03265587100031553,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": 11008,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13696,
+          "total_wall_seconds": 0.03370671599986963
+        },
+        "execution": "Completed",
+        "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "external_result": {
+          "native_admission": "NotGranted",
+          "reason": "reported residual or Boolean does not replay",
+          "status": "InvalidEvidence",
+          "validation_seconds": 0.0014093349964241497,
+          "work_units": 810
+        },
+        "incoming_receipt": {
+          "base64": "eyJjb250ZXh0Ijp7ImJhc2lzIjpbWyIxIiwiMCIsIjAiXSxbIjAiLCIxIiwiMCJdLFsiMCIsIjAiLCIxIl1dLCJjb21wb3NpdGlvbiI6InJpZ2h0bW9zdC1maXJzdCIsImRpbWVuc2lvbiI6MywiZG9tYWluIjoiUS12ZWN0b3ItYWZmaW5lIiwib3BlcmF0b3IiOltbIjEiLCIxIiwiMCJdLFsiMSIsIjIiLCIwIl0sWyIwIiwiMCIsIjEiXV0sIndvcmQiOiJhYmJiYUJBQUIifSwiY29udGV4dF9zaGEyNTYiOiI3Mzg5NjMwODMwM2Y0OGRiYTFkZmMxYWI1OWFlNDUyM2FmMDJhZTQzM2FhZTcxZmM0MDFlOGRiMWIzMmJkMmE0Iiwib2JzZXJ2YXRpb25zIjpbeyJiYXNpc19pbmRleCI6MCwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MSwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX0seyJiYXNpc19pbmRleCI6MiwiY2xvc2VkIjp0cnVlLCJ0cmFuc2xhdGlvbl9yZXNpZHVhbCI6WyIwIiwiMCIsIjAiXX1dLCJzY2hlbWEiOiJhZHZhLmV4dGVybmFsLm9wZXJhdG9yLWxpZnQtcmVjZWlwdC52MCJ9",
+          "byte_length": 570,
+          "sha256": "7448e2a49ebcad1c22c5c8c90dd87dd22c0b9dec811729b53f94a263c531548d"
+        },
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogImZvcmdlZC16ZXJvIiwKICAiY29udGV4dCI6IHsKICAgICJiYXNpcyI6IFsKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMCIsCiAgICAgICAgIjAiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjAiLAogICAgICAgICIwIiwKICAgICAgICAiMSIKICAgICAgXQogICAgXSwKICAgICJjb21wb3NpdGlvbiI6ICJyaWdodG1vc3QtZmlyc3QiLAogICAgImRpbWVuc2lvbiI6IDMsCiAgICAiZG9tYWluIjogIlEtdmVjdG9yLWFmZmluZSIsCiAgICAib3BlcmF0b3IiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiLAogICAgICAgICIwIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIiwKICAgICAgICAiMCIKICAgICAgXSwKICAgICAgWwogICAgICAgICIwIiwKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAid29yZCI6ICJhYmJiYUJBQUIiCiAgfQp9Cg==",
+          "byte_length": 595,
+          "sha256": "fc6fd6d1856c8b4c2a6ac3e65994aeaf23c8be23ee9bffefb767fe20b102317e"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "forged-zero",
+        "reason": "",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "InvalidEvidence"
+      }
+    },
+    {
+      "case": "bad-question",
+      "expected_status": "InputError",
+      "exit_code": 2,
+      "process_seconds": 0.03750609500275459,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "b63cc9546ecc4b9210b98959808a9d688c744a2ef762966b4e38afe64ba0b8f0",
+      "receipt_bytes_sha256": "e5aace6cdb07c4e11325bdba8b544ac31a09ddbeeb35a9fa8ff7bf196c05242e",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_stderr": null,
+        "backend_stdout": null,
+        "cost": {
+          "backend_invocations": 0,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": null,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13568,
+          "total_wall_seconds": 8.843300020089373e-05
+        },
+        "execution": "NotRun",
+        "expected_context_sha256": null,
+        "external_result": null,
+        "incoming_receipt": null,
+        "local_question": {
+          "base64": "eyJzY2hlbWEiOmZhbHNlfQ==",
+          "byte_length": 16,
+          "sha256": "b63cc9546ecc4b9210b98959808a9d688c744a2ef762966b4e38afe64ba0b8f0"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": null,
+        "reason": "local question schema fields",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "InputError"
+      }
+    },
+    {
+      "case": "oversized-input",
+      "expected_status": "InputError",
+      "exit_code": 2,
+      "process_seconds": 0.04030748900549952,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "e0f06b06081a28a56806b7f967c93c8e14f060e73adbea63424dc820d781279f",
+      "receipt_bytes_sha256": "0a6f21fda2a49df0c6671aacfe31136e24b4880f334ee89182752f35c2f0cb3d",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_stderr": null,
+        "backend_stdout": null,
+        "cost": {
+          "backend_invocations": 0,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": null,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13568,
+          "total_wall_seconds": 0.0003267330030212179
+        },
+        "execution": "NotRun",
+        "expected_context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "external_result": null,
+        "incoming_receipt": null,
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogIm92ZXJzaXplZC1pbnB1dCIsCiAgImNvbnRleHQiOiB7CiAgICAiYmFzaXMiOiBbCiAgICAgIFsKICAgICAgICAiMSIsCiAgICAgICAgIjEiCiAgICAgIF0sCiAgICAgIFsKICAgICAgICAiMCIsCiAgICAgICAgIjEiCiAgICAgIF0KICAgIF0sCiAgICAiY29tcG9zaXRpb24iOiAicmlnaHRtb3N0LWZpcnN0IiwKICAgICJkaW1lbnNpb24iOiAyLAogICAgImRvbWFpbiI6ICJRLXZlY3Rvci1hZmZpbmUiLAogICAgIm9wZXJhdG9yIjogWwogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIxIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIyIgogICAgICBdCiAgICBdLAogICAgIndvcmQiOiAiYWJiYmFCQUFCIgogIH0KfQo=",
+          "byte_length": 437,
+          "sha256": "e0f06b06081a28a56806b7f967c93c8e14f060e73adbea63424dc820d781279f"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "oversized-input",
+        "reason": "input exceeds byte limit",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "InputError"
+      }
+    },
+    {
+      "case": "symlink-input",
+      "expected_status": "InputError",
+      "exit_code": 2,
+      "process_seconds": 0.03813036600331543,
+      "inputs_unchanged": true,
+      "question_bytes_sha256": "40962768eeb673fd92ad314047875417f9414328298c89946969cefb50b6f1ff",
+      "receipt_bytes_sha256": "e5aace6cdb07c4e11325bdba8b544ac31a09ddbeeb35a9fa8ff7bf196c05242e",
+      "report": {
+        "backend": {
+          "kind": "ExternalPython",
+          "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e"
+        },
+        "backend_stderr": null,
+        "backend_stdout": null,
+        "cost": {
+          "backend_invocations": 0,
+          "checkpoint_cost": "Final report serialization/write excluded",
+          "child_peak_RSS_KiB": null,
+          "memory_scope": "Linux process peaks; child peak includes pre-exec and prior children if API reused",
+          "python_peak_RSS_KiB": 13568,
+          "total_wall_seconds": 0.00018604000069899485
+        },
+        "execution": "NotRun",
+        "expected_context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "external_result": null,
+        "incoming_receipt": null,
+        "local_question": {
+          "base64": "ewogICJzY2hlbWEiOiAiYWR2YS5leHRlcm5hbC5vcGVyYXRvci1xdWVzdGlvbi52MCIsCiAgInF1ZXN0aW9uX2lkIjogInN5bWxpbmstaW5wdXQiLAogICJjb250ZXh0IjogewogICAgImJhc2lzIjogWwogICAgICBbCiAgICAgICAgIjEiLAogICAgICAgICIxIgogICAgICBdLAogICAgICBbCiAgICAgICAgIjAiLAogICAgICAgICIxIgogICAgICBdCiAgICBdLAogICAgImNvbXBvc2l0aW9uIjogInJpZ2h0bW9zdC1maXJzdCIsCiAgICAiZGltZW5zaW9uIjogMiwKICAgICJkb21haW4iOiAiUS12ZWN0b3ItYWZmaW5lIiwKICAgICJvcGVyYXRvciI6IFsKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMSIKICAgICAgXSwKICAgICAgWwogICAgICAgICIxIiwKICAgICAgICAiMiIKICAgICAgXQogICAgXSwKICAgICJ3b3JkIjogImFiYmJhQkFBQiIKICB9Cn0K",
+          "byte_length": 435,
+          "sha256": "40962768eeb673fd92ad314047875417f9414328298c89946969cefb50b6f1ff"
+        },
+        "native_admission": "NotGranted",
+        "native_free": "NotGranted",
+        "question_id": "symlink-input",
+        "reason": "[Errno 40] Too many levels of symbolic links: '/tmp/adva-operator-integration-qc8x50tr/symlink-input/receipt.json'",
+        "schema": "adva.python-operator-check.external.v0",
+        "status": "InputError"
+      }
+    },
+    {
+      "case": "fresh-output-no-overwrite",
+      "exit_code": 2,
+      "output_unchanged": true
+    },
+    {
+      "case": "backend-context-mismatch",
+      "status": "ProtocolRejected"
+    },
+    {
+      "case": "backend-native-escalation",
+      "status": "ProtocolRejected"
+    },
+    {
+      "case": "backend-exit-mismatch",
+      "status": "ProtocolRejected"
+    }
+  ],
+  "cost": {
+    "suite_wall_seconds": 0.65538300100161,
+    "cli_invocations": 10,
+    "backend_invocations": 6,
+    "suite_peak_RSS_KiB": 12928,
+    "search_candidates": 0,
+    "research_and_coding_seconds": null,
+    "serialization_roundtrip_seconds": 0.0006038409992470406
+  },
+  "correction_replays": 1,
+  "prior_attempt": "adapter-first-failure.json; 7 CLI and 6 backend calls before fixture error",
+  "pins": {
+    "python/adva/adva.py": "e0c941ba525402cd4872e367885b219f1c34b85c1ded797e89a30f40b831bc46",
+    "python/adva/operator_receipt.py": "86da1ee325a1c636890c010b7b9e1a2537338798c95abae853be0010f0fc338a",
+    "experiments/golden_ratio_operator_lift/check_adapter.py": "6c42212796ae82371afbb997263bb962cf5c4f825202c90413de9d27a7ee719d",
+    "experiments/golden_ratio_operator_lift/adapter-contract.json": "14739e5e20de63e809caa8df59013b857a0a656b3589e8c0e749accc7db8163e",
+    "experiments/golden_ratio_operator_lift/adapter-correction-contract.json": "1e952350c63e8a9d338a669a88cbd88ce50ddad863505d9605ce4cb316170b26",
+    "experiments/golden_ratio_operator_lift/adapter-first-failure.json": "635cb302139990cfe1bda5c7ae8f1b578129e1e2987dd40fba007606a99fad15",
+    "experiments/golden_ratio_operator_lift/receipt.py": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e",
+    "experiments/golden_ratio_operator_lift/receipt-evidence.json": "445db483b9f13faf88344e1d2830b3c576fd9bee7147a7c3a05a8d234376abec"
+  }
+}
