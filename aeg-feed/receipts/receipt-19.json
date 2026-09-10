@@ -1,0 +1,46 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 19,
+  "predecessor_sha256": "497bd138ee8e5c141523506cf2647c670e7d4b5495ad1296dab94f33b39dbc62",
+  "delta": {
+    "kind": "question",
+    "admitted": true,
+    "description": "rational-gap criterion and the simplex caveats from #167 (exact-zero bridge, projective gauge, observer-relative cells, shrink count)"
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "gap_criterion": {
+      "contrapositive_exhaustive_5x100": true,
+      "zero_certified": true,
+      "D_gt_B_breaks_bridge": true
+    },
+    "projective_gauge": {
+      "lambda3_det": "1/1073741824",
+      "exact": true
+    },
+    "observer_relative": {
+      "observed_values": [
+        0,
+        1
+      ],
+      "width_lt_cell": true
+    },
+    "shrink_count": {
+      "m": 10,
+      "D10_le_eps": true
+    }
+  },
+  "documented_holes": [
+    "McKinnon's nonstationary-convergence construction is not re-run here (documentary caveat: small diameter does not imply a root or proof)",
+    "the whole-run shrink formula is invalidated by intervening reflection/expansion (declared in the source doc)"
+  ],
+  "no_claims": [
+    "no promotion to geometric or native claims",
+    "exact Fractions only"
+  ],
+  "bounds": {
+    "read_only": true,
+    "exact_fractions": true
+  }
+}
