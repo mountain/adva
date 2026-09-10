@@ -135,3 +135,24 @@ rechecked boundaries within the existing authorization. A heuristic score
 never overrides a protected obligation. A working name or energy-level label
 does not establish a native operation, physical interpretation, or completed
 language-formation step.
+
+## Authorship and proxy attribution
+
+Commits made by an autonomous agent in this repository carry two trailers:
+
+    Agent-Authored-By: <model> (DeepSeek Harness) <agent@deepseek-harness.invalid>
+    Agent-Proxy-For: Mingli Yuan <mingli.yuan@gmail.com>
+
+The git author field stays the account owner, because the work is committed
+through that account. The trailers state who actually wrote the change and that
+it was written as a proxy for the account owner, under explicit authorization.
+An agent must never sign as the human, must not claim human authorship, and must
+attribute external contributions as they were recorded (for example the
+receiving review kept under its own name). This convention was requested by
+Mingli Yuan on 2026-09-10 and records his standing authorization and trust.
+
+The trust is bounded: it covers reading, bounded execution, and committing and
+pushing to the agent's own working branches. It does not authorize merging into
+main, rewriting or force-pushing shared history, changing the account's identity
+or credentials, or publishing material the direction has not seen.
+
