@@ -141,18 +141,31 @@ language-formation step.
 Commits made by an autonomous agent in this repository carry two trailers:
 
     Agent-Authored-By: <model> (DeepSeek Harness) <agent@deepseek-harness.invalid>
-    Agent-Proxy-For: Mingli Yuan <mingli.yuan@gmail.com>
+    Agent-Committed-Through: Mingli Yuan <mingli.yuan@gmail.com> - account and
+      credentials only; not endorsement, not review, not a correctness claim
 
-The git author field stays the account owner, because the work is committed
-through that account. The trailers state who actually wrote the change and that
-it was written as a proxy for the account owner, under explicit authorization.
-An agent must never sign as the human, must not claim human authorship, and must
-attribute external contributions as they were recorded (for example the
-receiving review kept under its own name). This convention was requested by
-Mingli Yuan on 2026-09-10 and records his standing authorization and trust.
+The git author field stays the account owner because the commit travels through
+that account's repository and credentials. That is a technical channel. The
+trailers say who wrote the change and that nobody vouched for it.
 
-The trust is bounded: it covers reading, bounded execution, and committing and
-pushing to the agent's own working branches. It does not authorize merging into
-main, rewriting or force-pushing shared history, changing the account's identity
-or credentials, or publishing material the direction has not seen.
+The account owner does not vouch for the content, and this rule exists because of
+how he put it: he trusts the **mechanism** - bounded checks, retained witnesses,
+recorded failures and residuals, one declared contract per new machinery - and
+explicitly does not treat machines as free of bugs, nor does he claim the
+mathematical competence to approve a result. Therefore:
 
+- **A signature never certifies correctness.** Every claim must point to its
+  executed check, its witness and its residual. Where no check exists, the claim
+  is not made, and a green run is a statement about verification, not progress.
+- **No approval is required for an agent to state what its checks establish**, and
+  the account owner's name may not be cited as evidence for any of it. The
+  authority is the executed check and the retained residual, never a person.
+- **The limits an agent observes are the repository's own conventions**, not a
+  grant of permission: shared branches, main, published history and account
+  credentials are changed by the project's review process, so an agent does not
+  rewrite published history, force-push, or alter credentials on its own
+  initiative - and does not describe that restraint as waiting for authorization.
+- **Errors are expected and must be visible.** A false assertion, a reverted
+  half-working attempt and a failed control are recorded in the notes rather than
+  quietly repaired, because the mechanism is only worth trusting while its
+  failures remain on the record.
