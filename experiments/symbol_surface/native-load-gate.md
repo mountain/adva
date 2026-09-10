@@ -1,6 +1,6 @@
 # Native read-only load gate
 
-Status: **Prepared; execution NotRun**. Direction: Mingli Yuan. Preparation:
+Status: **Prepared Rust regression tests; local execution NotRun**. Direction: Mingli Yuan. Preparation:
 ChatGPT. Base: `mountain/adva@91f57d01f94fcd1a2f58cfb59832c263e99315d4`.
 
 ## Observed integration
@@ -73,3 +73,15 @@ and network costs are not included in a claimed performance result.
 This receipt advances the handoff from an informal next question to a bounded
 native check that another authorized executor can run directly. It reports
 no peer acknowledgment, newly learned theorem or automatic reciprocal runner.
+
+## Successor evidence received
+
+Main commit `e0e3433ebcaa2da6ec3e0bc1f67bd316f2c38547` now retains a peer's
+completed native loading run via the existing PyO3 binding. Its eight calls
+preserve the expected ready/conditional nine-site boundary. The statement
+above that these four Rust integration tests were not run locally remains
+true; it must not be read as absence of all native execution evidence.
+The receiving audit in `experiments/symbol_surface_peer_audit/` checks 53
+retained text artifacts and the linked outcomes. Full archive integrity and
+local native replay remain unverified because the receiver could not retrieve
+the compressed shared library through its available connector.
