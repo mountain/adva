@@ -1,0 +1,101 @@
+{
+  "schema": "adva.research.pairing-transport-contract.v0",
+  "base_commit": "0e4be5f81f59cd208b14bd21ea8a3250e8f7f289",
+  "depends_on": "adva.bounded-experiment.lattice-polar-boundary.v0",
+  "question": "Can a fixed primal/dual chart change preserve all finite polar pairings while its actual compiled program, copies and history remain inspectable?",
+  "level": "research-only adapter to existing Rust compiler, validator and evaluator",
+  "source": "programs/research/lattice-polar/pairing.lisp",
+  "input_order": [
+    "x1",
+    "x2",
+    "x3",
+    "y1",
+    "y2",
+    "y3"
+  ],
+  "coordinate_roles": [
+    "primal",
+    "primal",
+    "primal",
+    "dual-numerator",
+    "dual-numerator",
+    "dual-numerator"
+  ],
+  "arithmetic": "External Z and Q; native Real/f64 receives only bounded integers. Positive denominator is retained outside native program; no rounded thirds are supplied.",
+  "A": [
+    [
+      1,
+      1,
+      0
+    ],
+    [
+      0,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "B": [
+    [
+      1,
+      0,
+      0
+    ],
+    [
+      -1,
+      1,
+      0
+    ],
+    [
+      0,
+      0,
+      1
+    ]
+  ],
+  "quantifier": "Every pair in TO24 vertices x its 14 denominator-six polar numerators (336), then a new unit-cube x six polar numerators (48). Nine matrix coefficient checks certify A^T B=I externally; no other native inputs claimed.",
+  "grammar": [
+    "module",
+    "export",
+    "def",
+    "fn",
+    "outputs",
+    "frontier",
+    "use",
+    "call",
+    "copy",
+    "add",
+    "mul",
+    "neg"
+  ],
+  "acceptance": [
+    "Exact integer numerator pairing preserved on 384 declared pairs",
+    "Wrong dual-side shear detected in each fixture",
+    "Native compilation, diagram import replay, full graft and slice records retained if available",
+    "Same scalar result never identifies the three programs",
+    "Missing native runtime leaves native result UnknownRuntime; no mock certificate"
+  ],
+  "protected": [
+    "No stable keyword, D*, M6 filler, free or Seal",
+    "No mirror, quotient, Calabi-Yau metric or Universe closure",
+    "Six scalar inputs are not the existing exactly-three-source triadic observer policy",
+    "Hashes bind bytes for reproducibility, not semantic identity",
+    "Frozen old polar evidence and Pascal growth obligation remain unchanged"
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_bytes": 536870912,
+    "max_pairs": 384,
+    "max_native_evaluations": 1155,
+    "max_output_bytes": 2097152,
+    "max_native_nodes_per_program": 100,
+    "correction_replays": 1
+  },
+  "residual": "Until actually run, source parsing, explicit-use validity, graft binding and native numerical results are unverified. Even a pass is a finite chart calibration, not native lattice semantics or observer pullback.",
+  "source_sha256": "810d595b5650eb0cff53635a989ad267b34d3f313bad781762e5dc5831d75b45"
+}
