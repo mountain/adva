@@ -1,5 +1,5 @@
 use crate::LispError;
-use crate::operation::builtin_surface_form;
+use crate::operation::builtin_surface_operation;
 use adva_ir::{
     FunctionDefinition, FunctionName, FunctionSignature, ModuleDefinition, ModuleImport, ModuleIr,
     ModuleName, OperationRef, ProgramTerm, QualifiedName, Rational, TypedPort, ValueType,
@@ -230,11 +230,19 @@ fn parse_term(
                 arguments: parse_arguments(&items[2..], module, local_names, imports)?,
             })
         }
-        operation if builtin_surface_form(operation) => Ok(ProgramTerm::Apply {
-            operation: OperationRef::builtin(operation),
-            arguments: parse_arguments(&items[1..], module, local_names, imports)?,
-        }),
-        other => Err(LispError::Syntax(format!("unknown operation {other:?}"))),
+        other => {
+            let spec = builtin_surface_operation(other)
+                .ok_or_else(|| LispError::Syntax(format!("unknown operation {other:?}")))?;
+            Ok(ProgramTerm::Apply {
+                operation: OperationRef {
+                    namespace: spec.namespace.to_owned(),
+                    name: spec.name.to_owned(),
+                    version: spec.version,
+                    parameters: BTreeMap::new(),
+                },
+                arguments: parse_arguments(&items[1..], module, local_names, imports)?,
+            })
+        }
     }
 }
 

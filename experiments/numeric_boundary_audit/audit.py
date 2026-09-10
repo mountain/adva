@@ -32,6 +32,17 @@ def method(path, cls, name, env):
 
 
 def run():
+    # This is the pre-fix reproduction, not a regression test of new sources.
+    # Refuse source drift before running models or labelling evidence as pinned.
+    baseline = json.loads((HERE / 'report.json').read_text())
+    for item in baseline['source_inventory']:
+        path = ROOT / item['path']
+        if not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != item['sha256']:
+            raise SystemExit(
+                'Baseline source differs: ' + item['path']
+                + '. Replay audit at acc950528b1f2b47a56d2a0e5a11c292adcf880b;'
+                + ' use tests/python/test_quine_cpu_budget.py for the corrected supervisor.'
+            )
     started = time.perf_counter()
     with tempfile.TemporaryDirectory(prefix='adva-float-audit-') as tmp:
         executable = Path(tmp) / 'model'
