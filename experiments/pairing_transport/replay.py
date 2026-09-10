@@ -113,7 +113,8 @@ def native_run(source, contract, rows):
         require([hole["hole"]["name"] for hole in root["holes"]] == contract["input_order"], "RootHoles")
         initial = function.causal_cut([])
         for hole in root["holes"]:
-            require(hole["entry_wire"] in initial.frontier, "UnboundHole")
+            require(any(hole["entry_wire"] == item["wire"] for item in initial.frontier),
+                    "UnboundHole")
         binding = [{"coordinate_role": role, "hole": hole}
                    for role, hole in zip(contract["coordinate_roles"], root["holes"], strict=True)]
         entire = function.program_slice([], [node["id"] for node in ir["nodes"]])
