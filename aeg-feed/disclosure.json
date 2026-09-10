@@ -1,0 +1,44 @@
+{
+  "schema": "aeg.feed.disclosure",
+  "version": 0,
+  "policy": "receipts only: summaries, pins, declared holes; no source documents, no full texts, no secrets, no private filesystem paths beyond declared exceptions",
+  "scan_patterns": [
+    "/Users/",
+    "/home/",
+    "/private/",
+    "/var/"
+  ],
+  "exceptions": [
+    {
+      "receipt": 20,
+      "pattern": "/Users/",
+      "count": 1,
+      "declared_scope": "home-root mention of the operator account only; no deeper paths, no secrets"
+    },
+    {
+      "receipt": 23,
+      "pattern": "/Users/",
+      "count": 2,
+      "declared_scope": "self-referential pattern-name mentions inside receipt-23's documentation of the disclosure preflight tool; not actual paths"
+    },
+    {
+      "receipt": 23,
+      "pattern": "/home/",
+      "count": 1,
+      "declared_scope": "self-referential pattern-name mentions inside receipt-23's documentation of the disclosure preflight tool; not actual paths"
+    },
+    {
+      "receipt": 23,
+      "pattern": "/private/",
+      "count": 1,
+      "declared_scope": "self-referential pattern-name mentions inside receipt-23's documentation of the disclosure preflight tool; not actual paths"
+    },
+    {
+      "receipt": 23,
+      "pattern": "/var/",
+      "count": 1,
+      "declared_scope": "self-referential pattern-name mentions inside receipt-23's documentation of the disclosure preflight tool; not actual paths"
+    }
+  ],
+  "undeclared": []
+}

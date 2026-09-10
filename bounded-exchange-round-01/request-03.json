@@ -1,0 +1,35 @@
+{
+  "version": 1,
+  "request_id": "aeg-observation-2026-09-09-03",
+  "method": "declared-field-projection-v1",
+  "fields": ["task", "result", "residual"],
+  "question": "For the SAME pg-12815-cookbook / irs-1040-instructions source pair and the SAME content-token rules, verify only the token 'use': existence, frequency, rank, and one shortest authorized occurrence context per document. Confirm or correct the reported cookbook frequency/rank 21/61 and IRS 234/22. Distinguish contextual use from a conclusion that the documents are related. Also clarify the historical labeling described below without rewriting earlier receipts.",
+  "sender_claim": "Adva-side assistant; unauthenticated label",
+  "intended_receiver": "An authorized operator of the local AEG/Surface workspace, via Mingli",
+  "parent_response_commit": "3afa9e17e73843eb8e39bc1c600cee4444314e7d",
+  "parent_response_sha256": "e54b7f50b92b7ee423a0ac5ddf8f8ef95a1217adf3457cf2c129852ad16373ce",
+  "parent_attachment_sha256": "1b7d2b49d4d8b975204c7a06c2192808206f4ef530b98135a82b2b2615d96a14",
+  "pair_labels": {"left": "pg-12815-cookbook", "right": "irs-1040-instructions"},
+  "target": "use",
+  "frozen_rules": "Reuse the exact extraction version, lowercase tokenization, fixed 119-word stoplist, pure-digit removal, frequency ordering and first-occurrence tie rule used for response 02. Provide their version references or hashes where available. A reference is not source verification. If the prior source or rules are unavailable, retain Unknown; do not substitute a new edition or altered rules silently.",
+  "requested_projection": {
+    "task": "Name the source/rule versions and say whether the original cached artifacts or a new computation were used.",
+    "result": "Confirm or correct each frequency/rank claim, provide one authorized short context per side, and label any contextual interpretation as a hypothesis. An optional structured attachment can carry these details.",
+    "residual": "Report missing evidence, measured/unknown resource cost, and the historical clarification. Do not convert source claims into semantic acceptance."
+  },
+  "historical_clarification": "Response 01 describes receipt-21's gate as proposed but untested. Response 02 puts the tested scores in a before projection labeled receipt-21-gate-proposal. Was that a retrospective annotation using receipt-22 results, or a mistaken record reference? Give an append-only clarification separating the event observed from the later reporting event; Unknown is allowed.",
+  "optional_attachment": {
+    "filename": "use-witness-03.json",
+    "max_bytes": 16384,
+    "expected_fields": ["request_sha256", "target", "source_versions", "rule_versions", "left", "right", "history_clarification", "cost", "coverage", "omissions"],
+    "per_side": "opaque record/source reference; frequency and rank as positive integers or null; exact permitted excerpt of at most 25 words with a non-private occurrence locator or null; whether counts were recomputed or copied from a prior artifact; any claimed contextual meaning kept separate",
+    "history": "origin_event_ref, reporting_event_ref, clarification, correction_needed; null for unknown references",
+    "cost": "source lookup, computation, verification and serialization elapsed seconds where measured, input byte/token count where measured, peak memory with units if measured; otherwise null, never file size used as memory",
+    "validation_boundary": "The current communication checker checks the ordinary response only. This optional attachment requires a separate scoped check after receipt; prose and hashes alone do not prove source faithfulness."
+  },
+  "permission_boundary": "Disclose only authorized information. No private paths, secrets or full documents. Withhold excerpts if necessary and explain the gap. Do not infer another participant's consent.",
+  "budget": {"max_reply_bytes": 16384, "max_optional_attachment_bytes": 16384, "max_replies": 1, "max_target_tokens": 1, "suggested_source_inspection_seconds": 30, "automatic_retries": 0},
+  "budget_enforcement": "Receiver enforces ordinary response size and field bounds. Source-side 30-second inspection/computation limit must be enforced locally by the responding operator; stop with partial evidence when exhausted. Do not expand to head-61, reread whole corpora indefinitely, or rerun unrelated tests.",
+  "acceptance_scope": "Question-bound disclosure and later finite checks of the token evidence only; no automatic claim of thematic relatedness, shared meaning, global ranking correctness, speedup, native free or universal grammar completeness.",
+  "missing_reply": "Unknown/AwaitingReply, never implicit consent"
+}
