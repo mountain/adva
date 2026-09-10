@@ -1,0 +1,115 @@
+{
+  "schema": "adva.research.golden-ratio-contract",
+  "version": 1,
+  "base_commit": "99193036aa1651f8d1299901d57e3fd9a987e322",
+  "library_base_commit": "bc92ddc",
+  "date": "2026-09-10",
+  "question": "Can one bounded checker consume the delivered golden-ratio resource set, distinguish the four receipt kinds the atlas asks for, independently re-derive its exact identities in a different encoding, and refuse its eight listed corrections?",
+  "level": "Documentary resource integrity plus external exact arithmetic; no stable semantic operation, no native witness, no Rust authority",
+  "objects": [
+    "staged resource set: atlas, delivery container, external checker and record, illustration source and rendering, delivery digest record, captured source PDF, seven plates",
+    "K = Q[u]/(u^2-u-1) with the real embedding 1 < u < 2, encoded as rational pairs (p,q) for (p+q*sqrt(5))/2; Z[phi] is the matching-parity integer subset",
+    "Fibonacci and Lucas sequences, convergent brackets, the matrix M=[[1,1],[1,0]] and its powers",
+    "the affine word abbbaBAAB, its parameter controls and the figure-eight arithmetic parameter t=phi^2",
+    "the HNN affine realization u:x->x+1, v:x->x+phi, t:x->phi^-2 x and its commuting shadow",
+    "rectangle R0=[0,phi]x[0,1] under S(x,y)=(phi-y/phi, x/phi), nested images, residual area and diameter",
+    "twelve icosahedron vertices, their 66 pairwise squared distances, edge graph and triangular faces",
+    "the A->AB, B->A substitution, and the golden-section interval contraction with and without reuse"
+  ],
+  "types": {
+    "exact_field": "rational coefficient pair (p,q) meaning (p+q*sqrt(5))/2; conjugation is q -> -q; norm is (p^2-5q^2)/4; sign uses rational squares; zero has no inverse. Every element of Q(sqrt 5) is representable this way; the integer ring Z[phi] is the subset with integer coefficients of matching parity and is tested separately, so integer-pair wording does not describe the field.",
+    "rationals": "fractions.Fraction for convergent brackets, interval widths and search traces",
+    "receipts": "four labelled kinds, each carrying the twelve fields declared by the atlas: question_id, object_type, arithmetic_domain, embedding, expression_or_word, evaluation_order, frame, assumptions, fuel_used, claim_scope, witness, residual",
+    "resources": "staged bytes with SHA256 and byte counts from adva-library/golden-ratio/index.json",
+    "plates": "structure only: media type and pixel dimensions; content is not read",
+    "native_identity": "none"
+  },
+  "quantifiers": [
+    "All 15 staged artifacts against their recorded digests and byte counts",
+    "All five delivered SHA256.json claims and all six delivery-container members against the staged copies",
+    "All 310 recorded check names of the delivered external checker, replayed once in a bounded child process",
+    "The Fibonacci power and Cassini identities for every 1 <= n <= 24, and the convergent bracket for every 1 <= n <= 24",
+    "Every unordered pair among the twelve icosahedron vertices, 66 squared distances",
+    "Every one of the eight atlas corrections as a refusal control",
+    "Both search objectives for exactly 12 contraction steps, with and without observation reuse",
+    "No unbounded search, no random sampling, no transcendental evaluation",
+    "The near-integer residual bound 0 < phi^(-n) < 1/2 is checked for 2 <= n <= 24; it fails at n = 1, and the guard is exercised rather than assumed.",
+    "The translation component of the affine word is a Laurent polynomial: equal counts of a and A restore multiplier one but do not in general remove negative powers, so the nine-letter word is checked to have none and a two-letter control is checked to have one."
+  ],
+  "assumptions": [
+    "The delivered atlas, checker, record, plates and PDF are inputs supplied by the direction; the delivered Python checker is an external oracle, not the Rust semantic kernel",
+    "A plate or a captured PDF is a source object or illustration and never a witness for an arithmetic or geometric claim",
+    "Digests record byte integrity only; they are not authentication, semantic identity or proof",
+    "The four receipt kinds are labels over one checker and do not by themselves establish a general receipt calculus",
+    "The integer-pair encoding and the delivered rational-pair encoding are two representations of one field; agreement between them is evidence for these finite instances, not a general translation theorem"
+  ],
+  "protected": [
+    "No native word, Rust type, IR version, Lisp builtin or stable API is added or changed",
+    "No contraction, memoization or CSE is authorized by exact value equality",
+    "The Pascal-rooted geometry growth obligation stays Open; admitted geometry successors stay at zero",
+    "The delivered resource directory is left untouched; staged copies are byte-identical",
+    "No transcendental evaluator, no float acceptance path and no unbounded loop is introduced"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_bytes": 268435456,
+    "max_checks": 20000,
+    "max_nodes": 200000,
+    "max_staged_bytes": 8388608,
+    "child_processes": 1,
+    "child_timeout_seconds": 30,
+    "max_output_file_bytes": 1048576,
+    "correction_replays": 1,
+    "fibonacci_index_max": 24,
+    "rectangle_steps_max": 16,
+    "search_steps": 12
+  },
+  "acceptance": [
+    "Every staged artifact matches its recorded sha256 and byte count; the delivered digest claims and all container members agree with the staged copies",
+    "The PDF probe recovers the title, the creation date, the article revision identifier cited by the atlas and a well-formed trailer",
+    "The delivered checker replays with identical status, identical check count and an identical check-name list; timing and platform fields are excluded rather than compared",
+    "The independent integer-pair derivations pass for the field laws, Fibonacci powers, Cassini, convergent brackets, matrix powers, the word residual and its two controls, the HNN relations and their commuting shadow, rectangle images, coverage and residual, the fixed point, icosahedral incidence, the two hyperbolic cosh values, the substitution counts and the bounded search traces",
+    "All eight atlas corrections are refused by an executable control",
+    "Four receipt kinds are emitted with all twelve declared fields, and each relabeling refusal holds",
+    "The three golden rectangle boundaries are pairwise disjoint while their filled sets share an interior point, and the translated-copy and nearby-copy controls behave as declared.",
+    "The successor contract supersedes the frozen version by digest, and the retained receiving review is pinned by digest.",
+    "The PDF title and creation date are parsed from the staged bytes at run time, not copied from declared metadata.",
+    "The declared arithmetic bounds behave as stated: a fractional coefficient is representable and outside the integer ring, and the near-integer bound fails at n = 1.",
+    "Both installed and refused resource limits are recorded, and neither is reported as enforced unless it was installed."
+  ],
+  "unknown": "Any budget, bound, digest or replay failure is reported as Unknown or Invalid and never promoted to partial acceptance",
+  "replay": "python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-fresh.json (the output path must not exist)",
+  "amendments": [
+    {
+      "recorded": "2026-09-10",
+      "after_first_execution": true,
+      "addition": "Exact boundary-disjointness checks for the three mutually perpendicular golden rectangles determined by the twelve icosahedron vertices, with two controls: a translated copy whose boundary must be detected as meeting, and a nearby copy whose crossings fall at the other golden half-extent and must not.",
+      "reason": "The atlas lists this configuration as its Borromean candidate. The first execution verified the vertex, edge and face incidence but left the boundary structure unconstructed.",
+      "effect_on_scope": "The question, objects, types, protected list, budget and unknown policy are unchanged. The acceptance list gains the boundary obligation below."
+    }
+  ],
+  "supersedes": {
+    "path": "experiments/golden_ratio/contract.json",
+    "sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
+    "note": "The version-zero contract is retained byte for byte as the frozen task the first executions ran under. This successor states the receiving audit's corrections instead of rewriting it; the run checks this digest so a later edit of the frozen file is a failure rather than a silent reinterpretation."
+  },
+  "review": {
+    "path": "docs/research/golden-ratio-receiving-review.md",
+    "sha256": "c87c0c71e71a994a8f73035235641a809f05fb8e459ea10d68016cd2662408a5",
+    "received": "2026-09-10",
+    "receiver": "independent receiving audit; see the document"
+  },
+  "budget_enforcement": {
+    "max_seconds": "cooperative clock inside the run",
+    "max_checks": "counter inside the run",
+    "max_nodes": "counter inside the run",
+    "max_staged_bytes": "per-artifact and total byte checks inside the run",
+    "child_timeout_seconds": "subprocess timeout inside the run",
+    "max_output_file_bytes": "size check before writing the report",
+    "cpu_seconds": "installed as RLIMIT_CPU by the run where the platform allows; the outcome is recorded",
+    "address_space_bytes": "declared outer bound; the run attempts RLIMIT_AS and records refusal. On this platform the install fails after startup because the current address space already exceeds the bound, so the caller must impose it, as the receiving audit's external wrapper did.",
+    "note": "A recorded outcome is not enforcement; where a limit is not installed the caller owns it."
+  }
+}
