@@ -68,8 +68,9 @@ certificate found to over-claim exact numerical truth; no memory unsafety.
   (documented certificate scope).
 - No rounding-error bound for arbitrary programs; `log@2` removes the
   avoidable overflow, not every last-bit difference.
-- `toolchain-watch.json` historical fields (`related_fix.merged: false`,
-  `NativeAcceptance: NotEstablished`) are pre-merge snapshots; refresh pending.
+- `toolchain-watch.json` historical fields are pre-merge snapshots; the
+  post-merge state is recorded in `merge_refresh_20260910` (commit `60b37d8`,
+  now on origin/main).
 - k28 closure record lives on `research/k28-json-transport-closure` (`4a881d7`),
   not yet merged.
 - AEG `.merge-two-sides.py` `norm()` latent 2^53 collapse (A-2) unfixed.
