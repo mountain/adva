@@ -1,0 +1,11 @@
+{
+  "version": 0,
+  "parent": "d1e3c9093e263d5d16314e838ff76b197e2aece9",
+  "question": "Can the Python CLI select an independent local question, preserve incoming bytes, call the external receipt checker once, and retain its scoped outcome without modifying inputs or granting native authority?",
+  "inputs": "A local versioned question file and a separate incoming receipt, each a regular file of at most 16384 bytes",
+  "authority": "The local question selects the context. The pinned external checker verifies rational affine evidence. Neither can issue Rust certificates or free.",
+  "retention": "Base64 exact accepted input bytes with SHA-256 and length; raw checker stdout/stderr; ordered word and external context in result. Oversized/unreadable inputs stop before execution and are not claimed fully retained.",
+  "controls": ["new basis through real CLI", "same context with different JSON whitespace", "changed self-rehashed context against old local question", "missing third direction", "third direction counterexample", "forged residual", "fresh output refuses overwrite", "malformed local question", "oversized input", "symbolic-link input refusal", "backend context mismatch", "backend native-authority escalation", "backend exit/status mismatch"],
+  "budget": {"routes": 1, "suite_wall_seconds": 20, "suite_cpu_seconds": 15, "suite_address_space_bytes": 268435456, "suite_cli_invocations_max": 10, "backend_calls_per_request_max": 1, "backend_wall_seconds": 3, "backend_cpu_seconds": 5, "backend_address_space_bytes": 268435456, "backend_output_bytes": 32768, "report_bytes": 262144, "suite_evidence_bytes": 524288, "search_candidates": 0},
+  "exit": "One fixed integration suite, stop on first unexpected result or resource limit. No automatic rerun, fuel reset, merge or native promotion. At most one correction replay for an identified implementation defect."
+}

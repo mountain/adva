@@ -1,0 +1,51 @@
+{
+  "schema": "adva.research.golden-operator-lift-contract",
+  "version": 1,
+  "question": "Does the delivered nine-letter affine word lift from scalar roots to invertible rational matrices annihilated by t^2-3t+1, while refusing incomplete basis coverage?",
+  "level": "external exact arithmetic over finite-dimensional rational vector spaces",
+  "dependency_adva": "d423ea83259b982a891d03cea3e3fcdc670a7876",
+  "dependency_library": "c9fce90d13fe927614a3b9e9e81826b23692e0fe",
+  "source_path": "experiments/golden_ratio/calibration.py",
+  "source_sha256": "ac145fccbbcd86d4b4ea399d680fe34c1fcd72a1208affef4125f890e9fbe845",
+  "word": "abbbaBAAB",
+  "composition": "leftmost map acts last; retain the entire ordered word",
+  "interface": "a(x)=L*x; b(x)=x+v; uppercase letters are actual affine inverses. Integer Laurent polynomials act on a rational vector space by substituting L; translations form its additive module.",
+  "inputs": [
+    "H=[[1,1],[1,2]], all two basis translations",
+    "C*H*C^-1, C=diag(2,1), all two basis translations",
+    "D=diag(2,1/2), all two basis translations and the zero-translation control",
+    "block_diag(H,1), first two basis translations as an incomplete receipt, then all three",
+    "zero 2x2 operator as a noninvertible refusal"
+  ],
+  "quantifiers": "Every listed basis vector in each finite case. The accompanying algebraic derivation has explicit invertibility and module assumptions; finite execution is not its universal proof.",
+  "acceptance": [
+    "Source digest and word residual polynomial match the delivered tool",
+    "Direct homogeneous affine composition agrees with (I,-(L^2-3L+I)*v)",
+    "H and its changed frame close for every tested basis translation, while H itself is nonidentity",
+    "The non-root matrix leaves nonzero residuals; zero translation alone cannot certify all translations",
+    "Incomplete basis evidence returns UnknownCoverage and the third direction of block_diag(H,1) produces a counterexample",
+    "Noninvertible input is refused rather than supplied a formal inverse"
+  ],
+  "protected": [
+    "No identification of scalar, vector-affine and Mobius actions",
+    "No erased history, native identity, Rust certificate, free, Seal, or Pascal geometry admission",
+    "No claim that this is a holonomy computation or proof of universal grammar"
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 10,
+    "cpu_seconds": 5,
+    "address_space_bytes": 268435456,
+    "arithmetic_work_units": 20000,
+    "max_dimension": 3,
+    "output_bytes": 65536,
+    "candidate_search": 0
+  },
+  "execution": "timeout 10s python -B -S experiments/golden_ratio_operator_lift/replay_main.py --output /existing/directory/fresh.json",
+  "exit": "Passed within scope, Invalid for a failed obligation, or Unknown on resource exhaustion; no retries or automatic scope expansion",
+  "supersedes": {
+    "path": "experiments/golden_ratio_operator_lift/contract.json",
+    "sha256": "197c3c3c229910233f2880a238e50f2c8e5f80c3186b301039fd5e49c4624d33"
+  },
+  "change": "Explicit compatibility replay against merged scalar checker successor 34a7383; operator question, word, objects, obligations and budget unchanged. Historical version-zero command requires its original checkout."
+}
