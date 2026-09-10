@@ -1,0 +1,59 @@
+{
+  "schema": "adva.research.lattice-polar-contract",
+  "version": 0,
+  "base_commit": "0e4be5f81f59cd208b14bd21ea8a3250e8f7f289",
+  "date": "2026-09-10",
+  "question": "Does the centered standard TO24 admit a lattice with integral primal and polar vertices, and do exact polar checks distinguish this from rational biduality?",
+  "level": "Adva research terminology and external exact arithmetic; no stable semantic operation",
+  "objects": [
+    "TO24: signed permutations of (0,1,2)",
+    "unit cube: all (+/-1,+/-1,+/-1)",
+    "sheared unit cube: A(x,y,z)=(x+y,y,z)",
+    "twice TO24: fixed new scale"
+  ],
+  "types": {
+    "coordinates": "Q^3 with exact Fraction",
+    "origin": "(0,0,0), fixed",
+    "pairing": "standard dot product between declared dual coordinate spaces",
+    "polar": "P^o={y: dot(v,y)<=1 for every supplied primal vertex v}",
+    "lattice": "standard Z^3 for positive checks; arbitrary full-rank M and its dual for obstruction theorem",
+    "native_identity": "none"
+  },
+  "quantifiers": [
+    "All constraint triples for each frozen vertex list and its computed polar",
+    "All primal-polar vertex pairings in each fixture",
+    "The obstruction theorem quantifies over every compatible full-rank lattice for this fixed centered polytope; it is not a lattice search"
+  ],
+  "assumptions": [
+    "Classical polar duality for full-dimensional compact convex polytopes with interior origin",
+    "Vertices of a full-dimensional bounded 3D H-polytope have three linearly independent active normals",
+    "The self-contained checker is an external mathematical oracle, not the Rust semantic kernel",
+    "Literature on Calabi-Yau and mirrors supplies motivation only, not executable authority"
+  ],
+  "protected": [
+    "Q4/M6 typed histories and unfilled boundaries remain unchanged",
+    "Batyrev reflexivity includes a paired integer lattice, not only real bipolarity",
+    "Pascal-rooted growth obligation remains Open; no geometry catalog admission",
+    "No group quotient, metric refinement, Ricci-flat metric or mirror constructed"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_bytes": 268435456,
+    "max_triples": 10000,
+    "max_checks": 300000,
+    "max_artifact_bytes": 2097152,
+    "max_output_file_bytes": 1048576,
+    "correction_replays": 1
+  },
+  "acceptance": [
+    "Exactly 14 polar vertices and 24 bipolar vertices for TO24",
+    "A verified nonintegral primal-polar pairing obstructs every compatible lattice",
+    "Cube and a fresh unimodular shear have integral primal and polar vertices",
+    "Scale reuse retains the obstruction while shrinking polar coordinates",
+    "Forged polarity, epsilon-based integrality and missing checks are refused"
+  ],
+  "unknown": "Budget or required evidence unavailable; never promote partial enumeration",
+  "replay": "python3 -S experiments/lattice_polar/calibration.py --output /tmp/lattice-polar-fresh.json (output must not exist)"
+}
