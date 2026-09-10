@@ -20,10 +20,11 @@ jobs:
       - run: cargo fmt --check
       - run: cargo clippy --workspace --all-targets --all-features -- -D warnings
       - run: cargo test --workspace
-      - name: Check versioned log differential in release mode
+      - name: Check versioned numerical boundaries in release mode
         run: |
           timeout 180s cargo test --locked --release -p adva-lisp --test numeric_boundary
           timeout 120s cargo test --locked --release -p adva-lisp --lib operation::tests
+          timeout 120s cargo test --locked --release -p adva-ir --test numeric_rounding --test numeric_json
       - name: Test frozen library stability research boundary
         run: timeout 180s cargo test -p adva-witness --example library_stability
       - name: Test library-driven proposal feedback and ablations

@@ -386,6 +386,7 @@ pub struct EvaluationCertificate {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct EvaluationResult {
+    #[serde(serialize_with = "crate::numeric_serialization::values")]
     pub values: Vec<f64>,
     pub certificate: EvaluationCertificate,
 }
@@ -404,7 +405,9 @@ pub struct DifferentiationCertificate {
 #[derive(Clone, Debug, PartialEq, Serialize, Deserialize)]
 #[serde(deny_unknown_fields)]
 pub struct DifferentialResult {
+    #[serde(serialize_with = "crate::numeric_serialization::values")]
     pub values: Vec<f64>,
+    #[serde(serialize_with = "crate::numeric_serialization::jacobian")]
     pub jacobian: Vec<BTreeMap<String, f64>>,
     pub certificate: DifferentiationCertificate,
 }

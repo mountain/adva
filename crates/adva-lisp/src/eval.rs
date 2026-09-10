@@ -14,6 +14,8 @@ struct RunResult {
     operation_rules: BTreeSet<String>,
 }
 
+/// Evaluate the recorded IEEE-754 operation versions, including special values.
+/// Use [`evaluate_finite`] at finite numerical application boundaries.
 pub fn evaluate(
     diagram: &SharedProgramDiagram,
     inputs: &BTreeMap<String, f64>,
@@ -32,6 +34,7 @@ pub fn evaluate(
     })
 }
 
+/// Replay the recorded rules without imposing a finite-result policy.
 pub fn evaluate_with_differential(
     diagram: &SharedProgramDiagram,
     inputs: &BTreeMap<String, f64>,
@@ -53,6 +56,64 @@ pub fn evaluate_with_differential(
             diagram_integrity: CheckStatus::Checked,
         },
     })
+}
+
+/// Require finite inputs and final values without reinterpreting operation rules.
+/// Intermediate values and unused differentials are not certified finite.
+pub fn evaluate_finite(
+    diagram: &SharedProgramDiagram,
+    inputs: &BTreeMap<String, f64>,
+) -> Result<EvaluationResult, LispError> {
+    require_finite_inputs(inputs)?;
+    let mut result = evaluate(diagram, inputs)?;
+    require_finite_values(&result.values)?;
+    result.certificate.id =
+        CertificateId::explicit(format!("evaluate:{}:finite-v1", diagram.function));
+    result.certificate.scope =
+        "PSC0 finite inputs and final scalar values; no error bound".to_owned();
+    Ok(result)
+}
+
+/// Require finite inputs, final values and every final Jacobian component.
+pub fn evaluate_with_finite_differential(
+    diagram: &SharedProgramDiagram,
+    inputs: &BTreeMap<String, f64>,
+) -> Result<DifferentialResult, LispError> {
+    require_finite_inputs(inputs)?;
+    let mut result = evaluate_with_differential(diagram, inputs)?;
+    require_finite_values(&result.values)?;
+    for (row, gradient) in result.jacobian.iter().enumerate() {
+        for (name, value) in gradient {
+            if !value.is_finite() {
+                return Err(LispError::Evaluation(format!(
+                    "nonfinite derivative at output {row}, input {name:?}"
+                )));
+            }
+        }
+    }
+    result.certificate.id =
+        CertificateId::explicit(format!("differentiate:{}:finite-v1", diagram.function));
+    result.certificate.scope =
+        "PSC0 finite inputs, final values and Jacobian; no error bound".to_owned();
+    Ok(result)
+}
+
+fn require_finite_inputs(inputs: &BTreeMap<String, f64>) -> Result<(), LispError> {
+    for (name, value) in inputs {
+        if !value.is_finite() {
+            return Err(LispError::Evaluation(format!("nonfinite input {name:?}")));
+        }
+    }
+    Ok(())
+}
+
+fn require_finite_values(values: &[f64]) -> Result<(), LispError> {
+    for (index, value) in values.iter().enumerate() {
+        if !value.is_finite() {
+            return Err(LispError::Evaluation(format!("nonfinite output {index}")));
+        }
+    }
+    Ok(())
 }
 
 pub fn observe_source_partition(diagram: &SharedProgramDiagram) -> Observation {

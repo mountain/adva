@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 import contextlib
+import functools
 import hashlib
 import json
 import math
@@ -171,8 +172,9 @@ class Supervisor:
             raise Exhausted("no whole second remains for child CPU limit")
         return cpu
 
-    def restrictions(self):
-        cpu = self.child_cpu_limit()
+    def restrictions(self, cpu):
+        # This runs after fork: RUSAGE_CHILDREN here cannot measure the
+        # supervisor's completed children. Install its precomputed allowance.
         if sys.platform == "linux":
             # RLIMIT_AS is Linux-only; macOS keeps CPU/FSIZE/CORE limits.
             resource.setrlimit(resource.RLIMIT_AS, (self.limits["address_space_bytes"],) * 2)
@@ -184,9 +186,8 @@ class Supervisor:
         self.check()
         if len(self.calls) >= self.limits["max_processes"]:
             raise Exhausted("subprocess count")
-        # Refuse before recording a call, opening files or forking. The child
-        # rechecks the allowance before installing its limits.
-        self.child_cpu_limit()
+        # Compute in the parent before side effects; this supervisor is serial.
+        cpu = self.child_cpu_limit()
         stdout = output or self.output / (name + ".stdout")
         stderr = self.output / (name + ".stderr")
         record = {"name": name, "argv": [str(x) for x in command], "cwd": str(cwd)}
@@ -203,7 +204,7 @@ class Supervisor:
                 stdout=out,
                 stderr=err,
                 start_new_session=True,
-                preexec_fn=self.restrictions,
+                preexec_fn=functools.partial(self.restrictions, cpu),
             )
             try:
                 child.wait(timeout=max(0.001, self.deadline - time.monotonic()))
