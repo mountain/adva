@@ -1,0 +1,87 @@
+{
+  "schema": "adva.golden-ratio-research-queue",
+  "version": 0,
+  "status": "Open",
+  "note": "Declared backlog for autonomous rounds. A run may never close an item: the runner reports which closure checks the witness already contains and which are still missing. A matching check-name prefix is partial progress only; an item is pending until every declared closure check is present.",
+  "kinds": {
+    "executable": "an exact bounded check can be added to experiments/golden_ratio/calibration.py",
+    "documentary": "a decision recorded in prose that no run can settle",
+    "human": "needs a person: identities, merges, or review"
+  },
+  "items": [
+    {
+      "id": "borromean-adversarial-controls",
+      "kind": "executable",
+      "status": "ClosedByRun",
+      "question": "Does the triple-intersection method separate the Borromean configuration from the unlink and from a pairwise-linked configuration, and does it refuse when its pairwise hypothesis fails?",
+      "evidence_check_prefix": "borromean-control-",
+      "closure_requires": "at least three controls named borromean-control-* in the retained witness",
+      "closed_by": "borromean-control-unlink-triple-zero, borromean-control-scaled-instance, borromean-control-precondition-fails",
+      "outcome": "Unlink gives zero triple points; a configuration scaled by two gives one triple point with signed sum one; a fixture with pairwise linking number one has its triple judgement withheld.",
+      "closure_checks": [
+        "borromean-control-unlink-triple-zero",
+        "borromean-control-scaled-instance",
+        "borromean-control-precondition-fails"
+      ]
+    },
+    {
+      "id": "borromean-complement-cross-check",
+      "kind": "executable",
+      "status": "Open",
+      "question": "Can Milnor's invariant be recomputed from the link complement by a route independent of the triple intersection number?",
+      "evidence_check_prefix": "complement-",
+      "closure_requires": "a revised finite contract, since a Wirtinger presentation is new machinery",
+      "note": "Blocked until a contract revision is written; the current contract covers the triple intersection only.",
+      "progress": "contract-v2 verified through the abelian presentation level; contract-v3 declares the Magnus step and its validation targets; the Magnus core is validated on classical identities; the twelve Wirtinger relation words are now built in process from exact parameters and agree with the abelian rows; the extraction rule and the two validation targets remain",
+      "blocked_by": "the extraction rule: mu-bar(123) as the coefficient of the degree-two commutator part of each component's longitude Magnus expansion; the longitude word needs the framing rule for under- and over-passages, which must be validated on both targets before any number is read",
+      "closure_checks": [
+        "complement-presentation-relations",
+        "complement-invariant-agrees-with-triple-intersection"
+      ],
+      "round_five_note": "A partial attempt at the relation words was written and then reverted rather than committed half-working: the arc lookup compared serialised string parameters, and even with that fixed the extraction rule is still outside contract-v2.",
+      "handoff": {
+        "step_one": "build each component's longitude word from the declared diagram: walk the component and insert a meridian factor at every crossing, with the sign taken from the crossing sign and the factor inverted where the component passes over",
+        "step_two": "expand each longitude with the validated truncated Magnus algebra in magnus.py at degree three",
+        "step_three": "read mu-bar(123) from the degree-two commutator coefficient of the longitude, which is where Milnor's invariant sits when the pairwise linking numbers vanish",
+        "validation_before_reading": "the unlink target must give zero and the Borromean configuration must give plus or minus one; if either target fails, the run stops as Unknown and no number is reported",
+        "why_it_is_not_done": "the framing convention needs iterative debugging, and this line's session budget ran out; a fresh session should start at step one with the two targets"
+      }
+    },
+    {
+      "id": "penrose-matching-acceptance",
+      "kind": "documentary",
+      "status": "Open",
+      "question": "Do the Penrose matching rules force aperiodicity, and is a full-plane tiling accepted?",
+      "note": "The atlas did not attempt this either; the prototiles and inflation are checked, the acceptance layer is not."
+    },
+    {
+      "id": "plot-script-execution",
+      "kind": "documentary",
+      "status": "DecidedNotExecuted",
+      "question": "Should the delivered plotting script be run?",
+      "note": "Decision: no. It needs external libraries and its rendering is not evidence; its three panels' mathematical content is checked exactly instead."
+    },
+    {
+      "id": "branch-consolidation",
+      "kind": "human",
+      "status": "Open",
+      "question": "Should research/golden-ratio-receipt-calibration and research/golden-ratio-continuation be consolidated into one line?",
+      "note": "Touches shared branches and main; needs the direction to decide."
+    },
+    {
+      "id": "three-party-task-witness",
+      "kind": "human",
+      "status": "Open",
+      "question": "Is the Pascal-style three-party task and witness presentation to be built for the golden-ratio material?",
+      "note": "Three Human identities and the native importer do not exist."
+    }
+  ],
+  "autonomous_loop": {
+    "stopped": true,
+    "condition": "two consecutive rounds added no new executable evidence (rounds 9 and 10), one of the declared stop conditions",
+    "rounds_run": 10,
+    "evidence_gained": "rounds 1 to 8 each added executed checks: resources, geometry, adversarial controls, linking numbers, triple intersection, projection, abelian presentation level, Magnus core and relation words",
+    "remaining": "the extraction rule in the handoff field, which needs the framing convention debugged",
+    "resume_with": "a fresh session starting at handoff.step_one, with the two validation targets before any number is read"
+  }
+}
