@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "5609f80b341ebd048c5e9bd5764b22718759ab014ed71a014f35e06f7f430293",
+    "sha256": "4c80d79fab635ad01998f26259a0f9aff046c91a8b15e9dfb71226b035a53f16",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -197,7 +197,26 @@
       "triple_point": "the origin, the single common point of the three disks",
       "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
       "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
-      "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate"
+      "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
+      "controls": {
+        "unlink": {
+          "pairwise_zero": true,
+          "triple_points": 0,
+          "signed": 0
+        },
+        "scaled_instance": {
+          "triple_points": 1,
+          "signed": 1
+        },
+        "failing_precondition": {
+          "pairwise_values": [
+            1,
+            0,
+            1
+          ],
+          "judgement": "withheld"
+        }
+      }
     }
   },
   "golden_triangle": {
@@ -540,9 +559,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.6503034590277821,
-    "checks": 1038,
-    "nodes": 4190,
+    "wall_seconds_before_serialization": 0.6558573339134455,
+    "checks": 1042,
+    "nodes": 4194,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1176,6 +1195,10 @@
     "borromean-triple-point-count::y0",
     "borromean-triple-unit::y0",
     "borromean-triple-order-consistent",
+    "borromean-control-unlink-pairwise",
+    "borromean-control-unlink-triple-zero",
+    "borromean-control-scaled-instance",
+    "borromean-control-precondition-fails",
     "cos36-in-range",
     "cos36-chebyshev-root",
     "cos72-double-angle",

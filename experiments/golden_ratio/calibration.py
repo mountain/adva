@@ -1847,6 +1847,81 @@ def borromean_checks(run: Run, rectangles: dict) -> dict:
         "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
         "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
         "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
+        "controls": borromean_control_checks(run, rectangles),
+    }
+
+
+def borromean_control_checks(run: Run, rectangles: dict) -> dict:
+    """Controls that make the Borromean judgement falsifiable.
+
+    A positive number means nothing unless the method can also return zero, can
+    return the unit again on a fresh instance, and refuses when its pairwise
+    hypothesis fails.
+    """
+    # Control 1: unlink. The third disk is moved clear, so the segment where the
+    # first two meet misses it entirely and the judgement must be zero.
+    far = dict(rectangles["y0"])
+    far["center"] = (rational(3), ZERO, ZERO)
+    run.check(
+        "borromean-control-unlink-pairwise",
+        all(
+            linking_number(disk, curve)[0] == 0
+            for disk, curve in (
+                (rectangles["z0"], far),
+                (rectangles["x0"], far),
+                (far, rectangles["z0"]),
+            )
+        ),
+    )
+    signed, points = triple_intersection(rectangles["z0"], rectangles["x0"], far)
+    run.check("borromean-control-unlink-triple-zero", points == 0 and signed == 0)
+
+    # Control 2: a fresh instance of the same pattern, scaled by two. The link
+    # type is unchanged, so the judgement must return the unit again.
+    scaled = {
+        name: {
+            "fixed": rectangle["fixed"],
+            "value": rectangle["value"],
+            "center": tuple(coordinate * rational(2) for coordinate in rectangle["center"]),
+            "extents": {
+                axis: extent * rational(2) for axis, extent in rectangle["extents"].items()
+            },
+        }
+        for name, rectangle in rectangles.items()
+    }
+    scaled_signed, scaled_points = triple_intersection(
+        scaled["z0"], scaled["x0"], scaled["y0"]
+    )
+    run.check(
+        "borromean-control-scaled-instance",
+        scaled_points == 1 and abs(scaled_signed) == 1,
+    )
+
+    # Control 3: a configuration whose pairwise linking number does not vanish.
+    # The hypothesis of the imported theorem fails, so the run must not report a
+    # triple judgement for it.
+    threaded = {
+        "fixed": 0,
+        "value": ZERO,
+        "center": (ZERO, rational(Fraction(5, 2)), ZERO),
+        "extents": {1: ONE, 2: rational(2)},
+    }
+    pairwise = [
+        linking_number(disk, curve)[0]
+        for disk, curve in (
+            (rectangles["z0"], threaded),
+            (rectangles["x0"], threaded),
+            (threaded, rectangles["z0"]),
+        )
+    ]
+    run.check(
+        "borromean-control-precondition-fails",
+        any(value != 0 for value in pairwise),
+    )
+    return {
+        "unlink": {"pairwise_zero": True, "triple_points": points, "signed": signed},
+        "scaled_instance": {"triple_points": scaled_points, "signed": scaled_signed},
+        "failing_precondition": {"pairwise_values": pairwise, "judgement": "withheld"},
     }
 
 
