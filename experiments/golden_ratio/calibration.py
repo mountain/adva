@@ -1658,6 +1658,76 @@ def golden_angle_checks(run: Run) -> dict:
     }
 
 
+def penrose_checks(run: Run) -> dict:
+    """The two Penrose prototiles and their inflation, without sine values.
+
+    The rhombus angles are multiples of 36 degrees whose cosines lie in the
+    field while their sines do not, so every statement below uses cosine values,
+    squared diagonal ratios and integer counts. Matching-rule acceptance,
+    aperiodicity and any full-plane tiling are not verified here.
+    """
+    cos36 = PHI / rational(2)
+    cos72 = rational(2) * cos36 * cos36 - ONE
+    run.check("penrose-cos72-closed-form", cos72 == (PHI - ONE) / rational(2))
+    run.check("penrose-cos144-from-cos72", rational(2) * cos72 * cos72 - ONE == -cos36)
+    run.check("penrose-cos36-chebyshev", rational(16) * cos36 ** 5 - rational(20) * cos36 ** 3 + rational(5) * cos36 + ONE == ZERO)
+
+    # A rhombus with acute angle theta and side s has diagonals 2s sin(theta/2)
+    # and 2s cos(theta/2), so the squared diagonal ratio is (1 + cos)/(1 - cos).
+    def diagonal_ratio_squared(cosine: K) -> K:
+        return (ONE + cosine) / (ONE - cosine)
+
+    thick = diagonal_ratio_squared(cos72)
+    thin = diagonal_ratio_squared(cos36)
+    run.check("penrose-thick-diagonal-ratio-squared", ONE < thick)
+    run.check("penrose-thin-diagonal-ratio-squared", ONE < thin)
+    # The atlas warns that the golden rhombus is a different family: its
+    # diagonal ratio is phi, and neither prototile has that property.
+    golden_cosine = PHI / (PHI + rational(2))
+    run.check("golden-rhombus-diagonal-ratio", diagonal_ratio_squared(golden_cosine) == PHI ** 2)
+    run.check("penrose-thick-is-not-the-golden-rhombus", thick != PHI ** 2)
+    run.check("penrose-thin-is-not-the-golden-rhombus", thin != PHI ** 2)
+    run.check("golden-cosine-differs", golden_cosine != cos72 and golden_cosine != cos36)
+
+    # Inflation: thick -> 2 thick + 1 thin, thin -> 1 thick + 1 thin.
+    matrix = ((2, 1), (1, 1))
+    trace = matrix[0][0] + matrix[1][1]
+    determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    run.check("penrose-inflation-characteristic-polynomial",
+              (trace, determinant) == (3, 1)
+              and PHI ** 4 - rational(trace) * PHI ** 2 + rational(determinant) == ZERO)
+    run.check("penrose-inflation-eigenvalues", PHI ** 2 * PHI ** -2 == ONE
+              and PHI ** 2 + PHI ** -2 == rational(trace))
+    fib = fibonacci(14)
+    counts = (1, 0)
+    totals = [1]
+    for step in range(1, 7):
+        run.tick()
+        counts = (
+            matrix[0][0] * counts[0] + matrix[0][1] * counts[1],
+            matrix[1][0] * counts[0] + matrix[1][1] * counts[1],
+        )
+        totals.append(counts[0] + counts[1])
+        run.check(
+            f"penrose-inflation-counts::{step}",
+            counts == (fib[2 * step + 1], fib[2 * step]),
+        )
+    run.check(
+        "penrose-inflation-total-recurrence",
+        all(
+            totals[step + 1] == 3 * totals[step] - totals[step - 1]
+            for step in range(1, len(totals) - 1)
+        ),
+    )
+    return {
+        "prototiles": {"thick": "72/108", "thin": "36/144"},
+        "inflation_matrix": [[2, 1], [1, 1]],
+        "counts_after_six_steps": list(counts),
+        "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
+        "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling",
+    }
+
+
 def hyperbolic_checks(run: Run) -> dict:
     closeness = (PHI ** 2 + PHI ** -2) / rational(2)
     run.check("cosh-two-log-phi", closeness == rational(Fraction(3, 2)))
@@ -2113,6 +2183,7 @@ def main() -> int:
         report["golden_triangle"] = golden_triangle_checks(run)
         report["dodecahedron"] = dodecahedron_checks(run)
         report["golden_angle"] = golden_angle_checks(run)
+        report["penrose"] = penrose_checks(run)
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)

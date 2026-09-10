@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 1001 checks, 4,144 nodes, 0.662 s before
+1 MiB of output. Result: **Passed**, 1,019 checks, 4,168 nodes, 0.658 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -196,7 +196,10 @@ rectangle boundaries, computed in both directions and controlled by a ring
 threaded once; the golden angle's two gap lengths in ratio `phi` with
 consecutive Fibonacci counts for three Fibonacci rotation sizes, plus its
 equal-area latitude rule; and three bounded golden-section searches with
-identical interval traces.
+identical interval traces; and the two Penrose prototiles with their inflation,
+whose angles are checked through cosine identities, whose diagonal ratios are
+shown to differ from the golden rhombus's, and whose counts follow consecutive
+Fibonacci numbers under a matrix with characteristic polynomial `t^2 - 3t + 1`.
 
 Five checks are *new instances* rather than restatements of the delivered
 fixtures: the inverse word at the same parameter, the reverse cut from
@@ -341,8 +344,8 @@ artifact the first executions ran under.
 - The atlas's rotation-set generator is covered only by its combinatorial
   content: the gap structure and the equal-area latitude rule are exact, while
   minimal separation, energy and coverage optimality are not asserted. The
-  Penrose patch acceptance and the Borromean **triple** linking invariant remain
-  uncomputed.
+  Penrose matching-rule acceptance, aperiodicity and full-plane tiling remain
+  unverified, as does the Borromean **triple** linking invariant.
 - The atlas's own minimal next step, a three-party versioned task/witness
   presentation in the Pascal style, remains open: those presentations are
   proposed research JSON whose three Human identities and native importer do

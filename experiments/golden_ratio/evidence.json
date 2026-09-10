@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "d0c3fc24b07bdaf90104bfff5b9602e0c4183f2b7addad32c9c05a0e88ed2399",
+    "sha256": "a6c0511dc9a8544bbcddd85581ae22fa9c464f467be9cbdcf48614939a2a280a",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -264,6 +264,28 @@
     },
     "latitude_rule": "equal z steps give equal band areas",
     "not_asserted": "minimal separation, energy or coverage optimality"
+  },
+  "penrose": {
+    "prototiles": {
+      "thick": "72/108",
+      "thin": "36/144"
+    },
+    "inflation_matrix": [
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "counts_after_six_steps": [
+      233,
+      144
+    ],
+    "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
+    "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling"
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -497,9 +519,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.6617275001481175,
-    "checks": 1001,
-    "nodes": 4144,
+    "wall_seconds_before_serialization": 0.6582764170598239,
+    "checks": 1019,
+    "nodes": 4168,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1275,6 +1297,24 @@
     "golden-angle-equal-bands::8",
     "golden-angle-equal-bands::13",
     "golden-angle-equal-bands::21",
+    "penrose-cos72-closed-form",
+    "penrose-cos144-from-cos72",
+    "penrose-cos36-chebyshev",
+    "penrose-thick-diagonal-ratio-squared",
+    "penrose-thin-diagonal-ratio-squared",
+    "golden-rhombus-diagonal-ratio",
+    "penrose-thick-is-not-the-golden-rhombus",
+    "penrose-thin-is-not-the-golden-rhombus",
+    "golden-cosine-differs",
+    "penrose-inflation-characteristic-polynomial",
+    "penrose-inflation-eigenvalues",
+    "penrose-inflation-counts::1",
+    "penrose-inflation-counts::2",
+    "penrose-inflation-counts::3",
+    "penrose-inflation-counts::4",
+    "penrose-inflation-counts::5",
+    "penrose-inflation-counts::6",
+    "penrose-inflation-total-recurrence",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
