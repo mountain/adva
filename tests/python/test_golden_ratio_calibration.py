@@ -13,6 +13,8 @@ import pytest
 ROOT = Path(__file__).resolve().parents[2]
 CALIBRATION = ROOT / "experiments/golden_ratio/calibration.py"
 CONTRACT = ROOT / "experiments/golden_ratio/contract.json"
+CONTRACT_V1 = ROOT / "experiments/golden_ratio/contract-v1.json"
+REVIEW = ROOT / "docs/research/golden-ratio-receiving-review.md"
 EVIDENCE = ROOT / "experiments/golden_ratio/evidence.json"
 INDEX = ROOT / "adva-library/golden-ratio/index.json"
 TERMS = ROOT / "docs/terminology/golden-ratio-receipt-v0.json"
@@ -56,8 +58,11 @@ def staged_copy(tmp_path):
     shutil.copytree(ROOT / "adva-library/golden-ratio", root / "adva-library/golden-ratio")
     (root / "experiments/golden_ratio").mkdir(parents=True)
     shutil.copyfile(CONTRACT, root / "experiments/golden_ratio/contract.json")
+    shutil.copyfile(CONTRACT_V1, root / "experiments/golden_ratio/contract-v1.json")
     (root / "docs/terminology").mkdir(parents=True)
     shutil.copyfile(TERMS, root / "docs/terminology/golden-ratio-receipt-v0.json")
+    (root / "docs/research").mkdir(parents=True)
+    shutil.copyfile(REVIEW, root / "docs/research/golden-ratio-receiving-review.md")
     return root
 
 
@@ -97,7 +102,18 @@ def test_retained_evidence_records_a_passed_bounded_run():
     assert all(entry["holds"] for entry in report["relabeling_refusals"])
     assert report["residuals"]
     assert report["external_replay"]["status"] == "ReplayedAgreement"
-    assert report["contract"]["sha256"] == digest(CONTRACT)
+    # The active contract is the successor; the frozen version is pinned by the
+    # digest the successor records, and the receiving review is pinned too.
+    assert report["contract"]["sha256"] == digest(CONTRACT_V1)
+    assert report["contract"]["path"] == "experiments/golden_ratio/contract-v1.json"
+    assert report["contract"]["supersedes_sha256"] == digest(CONTRACT)
+    assert report["contract"]["review"] == "docs/research/golden-ratio-receiving-review.md"
+    limits = report["limits"]
+    assert set(limits["installed"]) | set(limits["refused"]) == {
+        "cpu_seconds",
+        "address_space_bytes",
+    }
+    assert not set(limits["installed"]) & set(limits["refused"])
 
 
 def test_fresh_run_reproduces_the_retained_evidence(tmp_path):
@@ -132,6 +148,30 @@ def test_tampered_container_member_is_refused(staged_copy, tmp_path):
     completed = invoke(staged_copy, output)
     assert completed.returncode == 2, completed.stdout
     assert load(output)["status"] == "Invalid"
+
+
+def test_editing_the_frozen_contract_is_detected(staged_copy, tmp_path):
+    frozen = staged_copy / "experiments/golden_ratio/contract.json"
+    frozen.write_bytes(frozen.read_bytes().replace(b'"version": 0', b'"version": 9'))
+    output = tmp_path / "frozen.json"
+    completed = invoke(staged_copy, output)
+    assert completed.returncode == 2, completed.stdout
+    report = load(output)
+    assert report["status"] == "Invalid"
+    assert "contract-supersedes-frozen" in report["reason"]
+
+
+def test_declared_pdf_metadata_must_match_the_bytes(staged_copy, tmp_path):
+    index = staged_copy / "adva-library/golden-ratio/index.json"
+    document = json.loads(index.read_text(encoding="utf-8"))
+    artifact = next(a for a in document["artifacts"] if a["role"] == "source-object")
+    artifact["delivered_structure"]["title"] = "Some other article"
+    index.write_text(json.dumps(document, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    output = tmp_path / "pdf.json"
+    completed = invoke(staged_copy, output)
+    assert completed.returncode == 2, completed.stdout
+    report = load(output)
+    assert "artifact-pdf-title-parsed" in report["reason"]
 
 
 def test_missing_receipt_contract_is_invalid(tmp_path):

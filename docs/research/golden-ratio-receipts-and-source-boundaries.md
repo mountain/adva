@@ -134,20 +134,30 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 815 checks, 2,729 nodes, 0.098 s before
+1 MiB of output. Result: **Passed**, 830 checks, 2,744 nodes, 0.097 s before
 serialization, one child process, no unbounded search, no random sampling and
-no transcendental evaluation. The contract carries one recorded amendment: the
-boundary-disjointness obligation of section 3.2 was added after the first
-execution, and is listed there rather than presented as part of the frozen
-scope.
+no transcendental evaluation.
+
+The active contract is version 1, which supersedes the frozen version zero by
+digest; the version-zero file stays byte identical and the run checks that its
+digest is unchanged. The successor carries the recorded amendment (the
+boundary-disjointness obligation of section 3.2), the receiving audit's
+corrections of section 8, and an explicit table of which bounds the run itself
+installs. The run also attempts the declared process limits and records the
+outcome: `RLIMIT_CPU` is installed here, and `RLIMIT_AS` is **refused** on this
+platform because the process address space already exceeds the declared bound.
+A recorded refusal is not enforcement, so the caller owns that bound.
 
 The run has four tiers.
 
 **Tier 0, resource integrity (15 artifacts).** Every staged artifact matches
 its recorded digest and byte count; the five delivered claims agree; all six
-container members equal their staged copies; the PDF probe recovers
-`Golden ratio - Wikipedia`, creation `D:20260910123359+00'00'`, the cited
-revision `oldid=1370346489` and a well-formed trailer; the eight images expose
+container members equal their staged copies; the PDF probe checks the pinned
+bytes, the header, the trailer and the revision marker `oldid=1370346489`, and
+parses the title `Golden ratio - Wikipedia` and the creation date
+`D:20260910123359+00'00'` out of the information dictionary in the staged bytes
+and compares them with the declared values. That is a byte probe, not a PDF
+validator, and it says nothing about the document's content; the eight images expose
 the recorded media type and dimensions (the seven plates are 500 px wide; the
 rendered figure is 2520x900).
 
@@ -161,7 +171,8 @@ norm 5 and leaves `Z[phi]` under inversion while `phi^2` stays; inverses for
 all 24 nonzero small elements and the refusal of zero; `phi^n = F_n*phi +
 F_{n-1}`, Cassini, the straddling convergent bracket with gap
 `1/(F_n*F_{n+1})`, Binet, Lucas, `L_n^2 - 5F_n^2 = 4(-1)^n` and the
-near-integer residual `0 < phi^-n < 1/2` for `n <= 24`; the matrix power
+near-integer residual `0 < phi^-n < 1/2` for `2 <= n <= 24`, with the
+n = 1 failure of that bound checked rather than assumed; the matrix power
 identity; the affine word `abbbaBAAB`, its residual as an exact polynomial
 `-(t^2 - 3t + 1)`, and the fact that the polynomial evaluated at `phi`
 agrees with the concrete composition; rectangle images, area, diameter,
@@ -255,7 +266,58 @@ calibration of section 4 instead. That
 substitution is stated here rather than hidden, and it is the reason the index
 is the single pinned root of the resource set.
 
-## 8. Residuals and open obligations
+## 8. Receiving audit and the successor contract
+
+An independent receiving review,
+[`docs/research/golden-ratio-receiving-review.md`](golden-ratio-receiving-review.md),
+audited the producer revisions `9ae99c9` (Adva) and `c9fce90` (library) and
+landed as an addendum. It reports its own bounded numbers (738 replayed checks,
+2,635 nodes among them), records that pytest was unavailable on the receiving
+side, and lists six corrections to this record's prose and contract. Each is now
+either fixed in text or turned into an executed check:
+
+1. **The encoding is a rational pair, not an integer pair.** Every element of
+   `Q(sqrt 5)` needs rational coefficients; `Z[phi]` is the matching-parity
+   integer subset and is tested separately. The successor contract says this,
+   and the run now checks a genuinely fractional element: `(2 + phi)/5`
+   multiplies back to `2 + phi` and is outside the integer ring.
+2. **The near-integer bound holds for `2 <= n <= 24`.** It fails at `n = 1`;
+   the guard is now exercised by a check that `phi^-1 > 1/2`.
+3. **PDF title and creation date are parsed, not copied.** The routine now
+   reads them out of the information dictionary in the staged bytes during the
+   run and compares them with the declared values. The scope stays a byte
+   probe: header, trailer, revision marker and two metadata strings are not a
+   PDF validator.
+4. **Declared limits are not installed limits.** The run now attempts
+   `RLIMIT_CPU` and `RLIMIT_AS` and records the outcome. Here the CPU limit is
+   installed and the address-space limit is refused, because the process
+   address space already exceeds the declared bound; the evidence says exactly
+   that, and the contract states that where the run cannot install a bound the
+   caller owns it.
+5. **The word routine returns a translation only.** Equal counts of `a` and
+   `A` restore multiplier one but do not in general clear negative powers from
+   the translation Laurent polynomial. The docstring no longer claims
+   otherwise, the nine-letter word is checked to have no negative power, and a
+   two-letter control `Ab` is checked to have one.
+6. **Bracket endpoint naming.** The ordered seeded bracket is
+   `[21/13, 13/8]`, so `21/13` is the lower endpoint; one control string said
+   otherwise. The string is corrected and the naming is now machine-checked.
+
+The historical artifacts are not rewritten: version zero of the contract, the
+frozen witness and the delivered resources keep their bytes and their pins. The
+corrections live in the [successor contract](../../experiments/golden_ratio/contract-v1.json),
+which records its predecessor's digest and the digest of the receiving review,
+and which the run verifies before doing any work.
+
+The successor contract is pinned by the executed run rather than by the catalog:
+the read-only checker's file bound is 96 files and the catalog is at 95, so one
+more reference would leave no room for later growth. The run enforces it instead,
+by checking the frozen predecessor's digest and the receiving review's digest
+before doing any work, and it stores the successor's own digest in the witness.
+The catalog keeps pinning the frozen version-zero contract as the historical
+artifact the first executions ran under.
+
+## 9. Residuals and open obligations
 
 - No native Adva, Rust or Lisp operation, type or builtin is created, and no
   `Seal` is issued.
@@ -278,7 +340,7 @@ is the single pinned root of the resource set.
   repository, so a checkout without it cannot run the calibration, exactly as
   it cannot run `math-check`.
 
-## 9. What this does not claim
+## 10. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
 historian's, artist's or biologist's reading of the atlas is settled; that the
