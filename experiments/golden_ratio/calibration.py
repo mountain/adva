@@ -1114,7 +1114,7 @@ def golden_rectangle_checks(run: Run) -> dict:
         "controls": {"translated_copy_meets": True, "nearby_copy_misses": True},
         "linking_numbers": linking,
         "linking_control": {"crossings": count, "signed_sum": signed},
-        "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed",
+        "link_certificate": borromean_checks(run, rectangles),
     }
 
 
@@ -1725,6 +1725,128 @@ def penrose_checks(run: Run) -> dict:
         "counts_after_six_steps": list(counts),
         "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
         "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling",
+    }
+
+
+def filled_intersection_segment(first: dict, second: dict) -> tuple:
+    """The segment where two filled rectangles meet.
+
+    Both lie in coordinate planes, so their intersection is the overlap of two
+    intervals along the remaining axis, returned as an ordered endpoint pair.
+    """
+    along = 3 - first["fixed"] - second["fixed"]
+    low = max(
+        first["center"][along] - first["extents"][along],
+        second["center"][along] - second["extents"][along],
+    )
+    high = min(
+        first["center"][along] + first["extents"][along],
+        second["center"][along] + second["extents"][along],
+    )
+    if high < low:
+        return None
+    endpoints = []
+    for value in (low, high):
+        coordinates = [ZERO, ZERO, ZERO]
+        coordinates[first["fixed"]] = first["value"]
+        coordinates[second["fixed"]] = second["value"]
+        coordinates[along] = value
+        endpoints.append(tuple(coordinates))
+    return tuple(endpoints)
+
+
+def triple_intersection(first: dict, second: dict, third: dict) -> tuple[int, int]:
+    """Signed crossings of the segment (first and second) with the third disk."""
+    segment = filled_intersection_segment(first, second)
+    if segment is None:
+        return 0, 0
+    plane_axis = third["fixed"]
+    value = third["value"]
+    start, end = segment
+    low, high = start[plane_axis], end[plane_axis]
+    if low == high:
+        return 0, 0
+    parameter = (value - low) / (high - low)
+    if not (ZERO <= parameter <= ONE):
+        return 0, 0
+    point = tuple(
+        coordinate + parameter * (other - coordinate)
+        for coordinate, other in zip(start, end)
+    )
+    inside = True
+    for axis in range(3):
+        if axis == plane_axis:
+            continue
+        offset = point[axis] - third["center"][axis]
+        size = offset if offset.sign() >= 0 else -offset
+        if not size <= third["extents"][axis]:
+            inside = False
+            break
+    if not inside:
+        return 0, 0
+    return (high - low).sign(), 1
+
+
+def borromean_checks(run: Run, rectangles: dict) -> dict:
+    """The triple linking judgement, with its imported theorem named.
+
+    The fills are disks whose boundaries are the three components, and their
+    pairwise linking numbers are zero, so the classical identification of
+    Milnor's invariant with the triple intersection number of Seifert surfaces
+    applies. That theorem is imported, not re-proved here; what is computed is
+    the signed triple intersection itself, in all three cyclic orders.
+    """
+    names = ("z0", "x0", "y0")
+    for name in names:
+        rectangle = rectangles[name]
+        run.check(
+            f"borromean-disk-spans::{name}",
+            {tuple(sorted((start, end))) for start, end in rectangle_segments(rectangle)}
+            == {tuple(sorted((start, end))) for start, end in oriented_boundary(rectangle)},
+        )
+
+    segments = {}
+    for first, second in (("z0", "x0"), ("z0", "y0"), ("x0", "y0")):
+        segment = filled_intersection_segment(rectangles[first], rectangles[second])
+        run.check(f"borromean-pair-segment::{first}::{second}", segment is not None)
+        along = 3 - rectangles[first]["fixed"] - rectangles[second]["fixed"]
+        for endpoint in segment:
+            on_boundary = any(
+                endpoint[axis] - rectangles[board]["center"][axis] == rectangles[board]["extents"][axis]
+                or endpoint[axis] - rectangles[board]["center"][axis] == -rectangles[board]["extents"][axis]
+                for board in (first, second)
+                for axis in range(3)
+                if axis != rectangles[board]["fixed"]
+                and axis != along
+            ) or any(
+                endpoint[axis] == rectangles[board]["value"]
+                for board in (first, second)
+                for axis in range(3)
+                if axis == rectangles[board]["fixed"]
+            )
+            run.check(f"borromean-endpoint-on-a-component::{first}::{second}", on_boundary)
+        segments[f"{first}|{second}"] = segment
+
+    orders = (("z0", "x0", "y0"), ("x0", "y0", "z0"), ("y0", "z0", "x0"))
+    results = {}
+    for first, second, third in orders:
+        run.tick()
+        signed, points = triple_intersection(
+            rectangles[first], rectangles[second], rectangles[third]
+        )
+        run.check(f"borromean-triple-point-count::{first}", points == 1)
+        run.check(f"borromean-triple-unit::{first}", abs(signed) == 1)
+        results[f"{first},{second},{third}"] = {"signed_sum": signed, "points": points}
+    signs = {entry["signed_sum"] for entry in results.values()}
+    run.check("borromean-triple-order-consistent", len(signs) == 1)
+    return {
+        "seifert_surfaces": "the three filled rectangles, boundaries verified against the components",
+        "pairwise_linking_numbers": "zero, computed in the previous round",
+        "triple_intersection": results,
+        "triple_point": "the origin, the single common point of the three disks",
+        "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
+        "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
+        "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
     }
 
 

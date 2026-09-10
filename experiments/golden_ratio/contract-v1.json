@@ -83,7 +83,8 @@
     "Every pair of golden rectangle boundaries has linking number zero in both directions, at least one direction showing cancelling crossings, and a control ring threaded once is counted as linked.",
     "The inscribed cube's dual octahedron has six equal-radius vertices, twelve edges, eight faces, and no octahedron has all six vertices among the twelve icosahedron vertices.",
     "For Fibonacci rotation sizes the golden angle's gaps take exactly two lengths in ratio phi with consecutive Fibonacci counts, and equal latitude steps give equal band areas.",
-    "The thick and thin rhombi have the stated angles, neither has the golden rhombus's diagonal ratio while the golden rhombus does, and the inflation matrix has characteristic polynomial t^2 - 3t + 1 with counts following consecutive Fibonacci numbers."
+    "The thick and thin rhombi have the stated angles, neither has the golden rhombus's diagonal ratio while the golden rhombus does, and the inflation matrix has characteristic polynomial t^2 - 3t + 1 with counts following consecutive Fibonacci numbers.",
+    "Each filled rectangle spans its component, every pairwise intersection is a segment whose endpoints lie on the components, and the triple intersection is a single signed point equal to one in all three cyclic orders."
   ],
   "unknown": "Any budget, bound, digest or replay failure is reported as Unknown or Invalid and never promoted to partial acceptance",
   "replay": "python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-fresh.json (the output path must not exist)",
@@ -115,6 +116,13 @@
       "addition": "Exact checks for the two Penrose prototiles and their inflation, stated with cosine values, squared diagonal ratios and integer counts because the sines of the tile angles lie outside the field.",
       "reason": "The Penrose patch item was the last unexecuted entry of the atlas's own task list.",
       "effect_on_scope": "Only the prototiles and the inflation counts are covered. Matching-rule acceptance, aperiodicity and any full-plane tiling remain outside this run."
+    },
+    {
+      "recorded": "2026-09-10",
+      "after_first_execution": true,
+      "addition": "The triple intersection number of the three filled rectangles, computed in all three cyclic orders, together with the structural checks that each fill spans its component and that every endpoint of a pairwise intersection lies on one of the two components.",
+      "reason": "The atlas's Borromean candidate had pairwise linking numbers of zero from the previous round; the triple judgement was the remaining unconstructed item.",
+      "effect_on_scope": "The identification with Milnor's invariant is imported as a classical theorem and is not re-proved here. The invariant computed from the link complement, and any Reidemeister or diagram-level certificate, remain outside this run."
     }
   ],
   "supersedes": {

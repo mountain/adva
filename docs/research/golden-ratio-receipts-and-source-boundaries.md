@@ -97,7 +97,7 @@ certification of a picture.
 | `plates/fake-real-log-spiral.webp` | the atlas's separation of a logarithmic spiral from a circular-arc imitation | Refusal R5: over one quarter turn an arc keeps radius ratio `1` while the spiral contracts by `phi^-1`, exactly, so the two are not similar |
 | `plates/golden-triangle-and-fibonacci-spiral.webp` | the golden triangle and its gnomon subdivision | Executed: `cos 36` is verified as a Chebyshev root instead of being taken from a table, the two tile shapes are identified by the cosine law, bisecting a base angle cuts the opposite leg into `1/phi` and `1`, the smaller tile is the original scaled by `1/phi`, and the Heron area ratios `1/phi^2` and `1/phi` hold. The arc chain the plate also shows carries the same unbounded model error as the first row |
 | `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | Executed: the twenty face centroids are the dual's vertices and sit at the icosahedron's inradius, whose closed form and the radius ratio are checked; the twelve faces are shown to be regular pentagons with diagonal-to-side ratio `phi`; and an inscribed cube is found by exact search with its edges as pentagon diagonals. The inscribed **octahedron** is now executed as the dual of that cube: six equal-radius face centres, twelve edges, eight faces. An exhaustive search over all 924 six-subsets of the twelve icosahedron vertices finds **no** octahedron there, so the dual construction is the octahedron this configuration supplies |
-| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves; the **triple** linking invariant, which is what "Borromean" adds, remains uncomputed |
+| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves. The **triple** judgement is now computed too: the three filled rectangles are disks spanning the components, each pairwise intersection is a segment whose endpoints lie on the components, and the triple intersection is a single point, the origin, with signed sum **+1 in all three cyclic orders**. Under the imported classical identification of that number with Milnor's invariant `mu-bar(123)`, this configuration **is** the Borromean pattern; the invariant read from the link complement is still not computed |
 | `plates/divina-proportione-illustration-13.jpg` | the Pacioli/Leonardo historical layer | Source object only. The atlas itself requires original text and later readings to be registered separately; nothing historical is imported |
 | `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence. Its third panel's configuration is now checked exactly, and its first two panels restate the rectangle and arc-versus-spiral distinctions that the run already settles |
 | `source/reference/Golden_ratio.pdf` | the article revision the atlas read | Byte probe only: title, creation date and `oldid=1370346489` confirmed; the text is not parsed and nothing is imported from it |
@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 1,019 checks, 4,168 nodes, 0.658 s before
+1 MiB of output. Result: **Passed**, 1,038 checks, 4,190 nodes, 0.650 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -199,7 +199,10 @@ equal-area latitude rule; and three bounded golden-section searches with
 identical interval traces; and the two Penrose prototiles with their inflation,
 whose angles are checked through cosine identities, whose diagonal ratios are
 shown to differ from the golden rhombus's, and whose counts follow consecutive
-Fibonacci numbers under a matrix with characteristic polynomial `t^2 - 3t + 1`.
+Fibonacci numbers under a matrix with characteristic polynomial `t^2 - 3t + 1`; and the
+Borromean judgement, where the three filled rectangles are verified to span the
+components, every pairwise intersection is a segment ending on the components,
+and the single triple point gives signed sum `+1` in all three cyclic orders.
 
 Five checks are *new instances* rather than restatements of the delivered
 fixtures: the inverse word at the same parameter, the reverse cut from
@@ -345,7 +348,10 @@ artifact the first executions ran under.
   content: the gap structure and the equal-area latitude rule are exact, while
   minimal separation, energy and coverage optimality are not asserted. The
   Penrose matching-rule acceptance, aperiodicity and full-plane tiling remain
-  unverified, as does the Borromean **triple** linking invariant.
+  unverified. The Borromean judgement rests on the imported classical theorem
+  that the triple intersection number of Seifert surfaces is Milnor's invariant
+  `mu-bar(123)`; the invariant itself is not computed from the link complement
+  and no Reidemeister or diagram-level certificate is produced.
 - The atlas's own minimal next step, a three-party versioned task/witness
   presentation in the Pascal style, remains open: those presentations are
   proposed research JSON whose three Human identities and native importer do
