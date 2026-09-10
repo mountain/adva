@@ -37,9 +37,9 @@ remote exploitability was found; no CVE-style advisory is implied.**
 | F-3 | eval/PyO3/serialization | nonfinite values accepted or serialized as null | Medium | Fixed `ade4f88` |
 | F-4 | `quine_relay.py` | `max(1, floor(remaining))` expands sub-second budget | Low | Fixed `61a7ae4` |
 | F-5 | `quine_relay.py` child recheck | allowance recomputed after fork from zero RUSAGE_CHILDREN | Low | Fixed `ade4f88` |
-| F-6 | serde_json reports | default float formatting loses 1 ulp (k28) | Medium | Fixed `ade4f88`, closure `4a881d7` |
+| F-6 | serde_json reports | decimal-to-binary parsing/round-trip discrepancy (k28) | Medium | Fixed `ade4f88`, closure `4a881d7` |
 | A-1 | AEG `calibration.py` | float `ceil(log)` on an integral boundary | Low | Fixed AEG `62bced8` |
-| A-2 | AEG `.merge-two-sides.py` `norm()` | float round-trip collapses integers > 2^53 | Info | Noted, demo-only |
+| A-2 | AEG `.merge-two-sides.py` `norm()` | float-based predicate needs input-type review | Info | Noted, demo-only |
 
 Severity definitions: **High** — silently wrong numerical values can be
 retained in evidence without a backstop. **Medium** — integrity or scope gaps
@@ -73,7 +73,7 @@ certificate found to over-claim exact numerical truth; no memory unsafety.
   now on origin/main).
 - k28 closure record lives on `research/k28-json-transport-closure` (`4a881d7`),
   not yet merged.
-- AEG `.merge-two-sides.py` `norm()` latent 2^53 collapse (A-2) unfixed.
+- AEG `.merge-two-sides.py` `norm()` (A-2) needs a full input-type review; the quoted expression preserves Python integer inputs.
 
 ## 7. Verification ledger
 
@@ -110,3 +110,18 @@ workspace 229 passed; release 64 passed; examples 37 passed; pytest
 Future audits can cite `report.json` (pinned commits, severity model,
 ledger). The checklist in section 8 is intended to be the standing method for
 boundary-class reviews.
+
+## Merge review corrections (2026-09-10)
+
+F-6: serde_json's `float_roundtrip` feature selects its decimal-to-binary
+parser (`src/de.rs`), not output formatting. The stored echo alone did not
+isolate the two boundaries; retain the bit-exact replay without attributing
+the loss to the formatter or promising arbitrary lexeme preservation.
+
+A-2: the quoted expression returns `int(value)` from the original value when
+its float predicate is integral. The Python integer 9007199254740993 remains
+9007199254740993 under this expression. The earlier claim that this code
+necessarily collapses integers above 2^53 is withdrawn. Other input types
+and the full AEG caller remain unreviewed; this is not a claim of safety for
+that program. Historical merge-status phrases above describe the authoring
+snapshot. See report.json for the correction and retained source coordinates.
