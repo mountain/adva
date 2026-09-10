@@ -97,7 +97,7 @@ certification of a picture.
 | `plates/fake-real-log-spiral.webp` | the atlas's separation of a logarithmic spiral from a circular-arc imitation | Refusal R5: over one quarter turn an arc keeps radius ratio `1` while the spiral contracts by `phi^-1`, exactly, so the two are not similar |
 | `plates/golden-triangle-and-fibonacci-spiral.webp` | the golden triangle and its gnomon subdivision | Executed: `cos 36` is verified as a Chebyshev root instead of being taken from a table, the two tile shapes are identified by the cosine law, bisecting a base angle cuts the opposite leg into `1/phi` and `1`, the smaller tile is the original scaled by `1/phi`, and the Heron area ratios `1/phi^2` and `1/phi` hold. The arc chain the plate also shows carries the same unbounded model error as the first row |
 | `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | Executed: the twenty face centroids are the dual's vertices and sit at the icosahedron's inradius, whose closed form and the radius ratio are checked; the twelve faces are shown to be regular pentagons with diagonal-to-side ratio `phi`; and an inscribed cube is found by exact search with its edges as pentagon diagonals. The inscribed **octahedron** is now executed as the dual of that cube: six equal-radius face centres, twelve edges, eight faces. An exhaustive search over all 924 six-subsets of the twelve icosahedron vertices finds **no** octahedron there, so the dual construction is the octahedron this configuration supplies |
-| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves. The **triple** judgement is now computed too: the three filled rectangles are disks spanning the components, each pairwise intersection is a segment whose endpoints lie on the components, and the triple intersection is a single point, the origin, with signed sum **+1 in all three cyclic orders**. Under the imported classical identification of that number with Milnor's invariant `mu-bar(123)`, this configuration **is** the Borromean pattern; the invariant read from the link complement is still not computed |
+| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves. The **triple** judgement is now computed too: the three filled rectangles are disks spanning the components, each pairwise intersection is a segment whose endpoints lie on the components, and the triple intersection is a single point, the origin, with signed sum **+1 in all three cyclic orders**. Under the imported classical identification of that number with Milnor's invariant `mu-bar(123)`, this configuration **is** the Borromean pattern, and the judgement is falsifiable: an unlinked control returns zero triple points, a fresh instance scaled by two returns the unit again, and a fixture with pairwise linking number one has its judgement **withheld**; the invariant read from the link complement is still not computed |
 | `plates/divina-proportione-illustration-13.jpg` | the Pacioli/Leonardo historical layer | Source object only. The atlas itself requires original text and later readings to be registered separately; nothing historical is imported |
 | `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence. Its third panel's configuration is now checked exactly, and its first two panels restate the rectangle and arc-versus-spiral distinctions that the run already settles |
 | `source/reference/Golden_ratio.pdf` | the article revision the atlas read | Byte probe only: title, creation date and `oldid=1370346489` confirmed; the text is not parsed and nothing is imported from it |
@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 1,038 checks, 4,190 nodes, 0.650 s before
+1 MiB of output. Result: **Passed**, 1,042 checks, 4,194 nodes, 0.654 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -364,7 +364,27 @@ artifact the first executions ran under.
   repository, so a checkout without it cannot run the calibration, exactly as
   it cannot run `math-check`.
 
-## 10. What this does not claim
+## 10. Autonomous rounds and their bounded queue
+
+The remaining work is declared in
+[`experiments/golden_ratio/queue.json`](../../experiments/golden_ratio/queue.json)
+and dispatched by
+[`experiments/golden_ratio/run_queue.py`](../../experiments/golden_ratio/run_queue.py):
+
+```sh
+python3 -S experiments/golden_ratio/run_queue.py --rounds 2 --output target/queue-run.json
+```
+
+Each round runs the calibration, compares the fresh witness with the retained
+one, counts which items are backed by checks that actually appear in the
+witness, and names the next unbacked executable item. The runner takes at most
+four rounds and two minutes, returns `Unknown` when a bound stops it, and
+**never edits the queue**: a status change is an explicit edit made with the
+checks that justify it. Items of kind `documentary` and `human` are never
+closed by a run at all, so a green loop is a statement about verification, not
+about progress.
+
+## 11. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
 historian's, artist's or biologist's reading of the atlas is settled; that the

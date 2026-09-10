@@ -1,0 +1,60 @@
+{
+  "schema": "adva.golden-ratio-research-queue",
+  "version": 0,
+  "status": "Open",
+  "note": "Declared backlog for autonomous rounds. A run may never close an item: the runner only reports which items are backed by checks present in the retained witness, and which item is next. Status changes are explicit edits made with evidence, and documentary or human items are never closed by a run at all.",
+  "kinds": {
+    "executable": "an exact bounded check can be added to experiments/golden_ratio/calibration.py",
+    "documentary": "a decision recorded in prose that no run can settle",
+    "human": "needs a person: identities, merges, or review"
+  },
+  "items": [
+    {
+      "id": "borromean-adversarial-controls",
+      "kind": "executable",
+      "status": "ClosedByRun",
+      "question": "Does the triple-intersection method separate the Borromean configuration from the unlink and from a pairwise-linked configuration, and does it refuse when its pairwise hypothesis fails?",
+      "evidence_check_prefix": "borromean-control-",
+      "closure_requires": "at least three controls named borromean-control-* in the retained witness",
+      "closed_by": "borromean-control-unlink-triple-zero, borromean-control-scaled-instance, borromean-control-precondition-fails",
+      "outcome": "Unlink gives zero triple points; a configuration scaled by two gives one triple point with signed sum one; a fixture with pairwise linking number one has its triple judgement withheld."
+    },
+    {
+      "id": "borromean-complement-cross-check",
+      "kind": "executable",
+      "status": "Open",
+      "question": "Can Milnor's invariant be recomputed from the link complement by a route independent of the triple intersection number?",
+      "evidence_check_prefix": "complement-",
+      "closure_requires": "a revised finite contract, since a Wirtinger presentation is new machinery",
+      "note": "Blocked until a contract revision is written; the current contract covers the triple intersection only."
+    },
+    {
+      "id": "penrose-matching-acceptance",
+      "kind": "documentary",
+      "status": "Open",
+      "question": "Do the Penrose matching rules force aperiodicity, and is a full-plane tiling accepted?",
+      "note": "The atlas did not attempt this either; the prototiles and inflation are checked, the acceptance layer is not."
+    },
+    {
+      "id": "plot-script-execution",
+      "kind": "documentary",
+      "status": "DecidedNotExecuted",
+      "question": "Should the delivered plotting script be run?",
+      "note": "Decision: no. It needs external libraries and its rendering is not evidence; its three panels' mathematical content is checked exactly instead."
+    },
+    {
+      "id": "branch-consolidation",
+      "kind": "human",
+      "status": "Open",
+      "question": "Should research/golden-ratio-receipt-calibration and research/golden-ratio-continuation be consolidated into one line?",
+      "note": "Touches shared branches and main; needs the direction to decide."
+    },
+    {
+      "id": "three-party-task-witness",
+      "kind": "human",
+      "status": "Open",
+      "question": "Is the Pascal-style three-party task and witness presentation to be built for the golden-ratio material?",
+      "note": "Three Human identities and the native importer do not exist."
+    }
+  ]
+}
