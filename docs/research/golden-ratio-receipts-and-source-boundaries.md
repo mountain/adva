@@ -507,6 +507,14 @@ That framing convention needs iterative debugging, and this line's session budge
 ran out before it, so the item keeps its last closure check unbacked. Recording
 the recipe is not executing it.
 
+**The autonomous loop stopped on its own declared condition.** Rounds nine
+and ten added no new executable evidence - the first only wrote the handoff, the
+second nothing at all - and two such rounds in a row are one of the stop
+conditions the loop was given. Rounds one to eight each added executed checks, and
+the chain from the staged resources to the relation words is committed and green.
+What remains is the extraction above, which needs a fresh session because the
+framing convention has to be debugged rather than guessed.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
