@@ -1,0 +1,37 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 28,
+  "predecessor_sha256": "651c245183b1048856df97ffd332a9f7ff53fb7d409d84e25ff53e20267847dc",
+  "delta": {
+    "kind": "observation",
+    "admitted": true,
+    "description": "Nine Chapters fangcheng interpretation: the counting-rod rectangular grid maps to the neutral carrier (positional meaning); the positive-negative method to signed arithmetic (正行/逆行, M0/M1/M2 marks, the i-j observer); 遍乘/直除 to elementary row operations (row scaling = normalization, row addition = the three declared repairs); row swap to the symbol-surface switch swap; elimination to ledger_check (forward elimination with predecessor pins as pivots); the receipt chain as an upper-triangular matrix whose reverse-trace is back-substitution. Pairs with al-Khwarizmi (entry 18): single unknown -> n unknowns, area -> grid, six forms -> one universal algorithm, and the matrix escapes the geometric dimension bound."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "mapping_table": "meaning-interpretation-jiuzhang-gaussian-v0.md",
+    "precise_correspondence": {
+      "ledger_check": "forward elimination (row-by-row pivot verification)",
+      "reverse_receipt_trace": "back-substitution along the predecessor chain",
+      "repairs": "elementary row operations of type 3 (add a multiple of one row to another)",
+      "switch_swap": "elementary row operation of type 2 (row exchange)"
+    },
+    "pair_with_entry_18": {
+      "unknowns": "single -> n",
+      "carrier": "area -> grid",
+      "form": "six standard types -> one universal algorithm",
+      "dimension": "matrix escapes the geometric dimension bound"
+    }
+  },
+  "documented_holes": [
+    "the user description says counting rods on an abacus (算盘); the standard account says rods on a counting board (算板) - flagged, not silently corrected",
+    "the mapping is interpretation, not isomorphism: no claim the receipt ledger 'is' a matrix, though it is checked matrix-wise",
+    "standard textbook account used; Guo Shuchun's collated edition not checked"
+  ],
+  "no_claims": [
+    "no claim of mathematical-history authority",
+    "no claim the mapping licenses new native semantics in adva",
+    "interpretation only; the public library entry keeps pins and minimal quotes discipline"
+  ]
+}
