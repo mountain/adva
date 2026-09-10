@@ -1,0 +1,44 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 23,
+  "predecessor_sha256": "67b9c75b5e0b1b17448c5fd6693846009e1e3ce5ff8e32824266cb0982cad8a2",
+  "delta": {
+    "kind": "result",
+    "admitted": true,
+    "description": "public surface for the local AEG workspace: (1) public anchor feed aeg/feed-v0 on mountain/adva carrying all 22 receipts byte-exact with pins, chain, three declared repairs and one declared disclosure exception, plus a self-contained checker (FeedConsistent); (2) mechanical projector project_receipt.py (receipt pair -> bounded-exchange response with byte-level witness: receipt pins, JSON pointers, verbatim excerpts, feed paths); (3) disclosure preflight disclose_preflight.py (byte budget, private-path patterns, field bounds, request binding) - ClearToSend on round-04 regression."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "feed": {
+      "branch": "aeg/feed-v0",
+      "commit": "447a51b",
+      "entries": 22,
+      "checker_status": "FeedConsistent",
+      "disclosure_exceptions": 1,
+      "declared_repairs": 3
+    },
+    "projector": {
+      "demo_pair": "receipt-21 to receipt-22 against request-02",
+      "exchange_checker_status": "VariationObserved",
+      "response_sha256": "8c6f6c2a7de90e98",
+      "witness_fields": ["receipt pins", "JSON pointers", "verbatim excerpts", "feed paths"]
+    },
+    "preflight": {
+      "round04_regression": "ClearToSend",
+      "generated_response": "ClearToSend",
+      "patterns": ["/Users/", "/home/", "/private/", "/var/", "/Library/", "/tmp/"]
+    }
+  },
+  "documented_holes": [
+    "the projector's deterministic mapping (task/result/residual) is a declared projection rule, not semantic extraction; the other side cannot verify intent, only byte equality",
+    "the feed is a snapshot per build; no append-only publication timeline yet (exchange ledger = next block)",
+    "the preflight scanner is pattern-based: non-path secrets (e.g. a bare API key) would not be caught by path patterns",
+    "receipt-20's /Users/mingli mention remains the single declared exception; any deeper path disclosure is still blocked"
+  ],
+  "no_claims": [
+    "no claim the feed authenticates provenance: pins bind bytes, not authorship",
+    "no claim semantic acceptance becomes automatic: source-to-projection verification still needs the receiver to run the checker against the feed bytes",
+    "source materials (PDFs, text layers, trial scripts) remain local and are not in the feed"
+  ]
+}
