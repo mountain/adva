@@ -807,7 +807,7 @@ def _research_backward_probe(
         operation = operation_ref["name"]
         if (
             operation_ref["namespace"] != "adva.builtin"
-            or operation_ref["version"] != 1
+            or operation_ref["version"] != (2 if operation == "constant" else 1)
             or operation not in BOUNDED_BACKWARD_OPERATIONS
         ):
             raise TypeError("the diagram leaves the bounded builtin research fragment")
@@ -993,7 +993,7 @@ def _research_symbolic_backward_probe(
         operation = operation_ref["name"]
         if (
             operation_ref["namespace"] != "adva.builtin"
-            or operation_ref["version"] != 1
+            or operation_ref["version"] != (2 if operation == "constant" else 1)
             or operation not in BOUNDED_BACKWARD_OPERATIONS
         ):
             raise TypeError("the diagram leaves the symbolic builtin research fragment")
@@ -1280,7 +1280,7 @@ def _symbolic_forward_endpoint_values(
         operation = operation_ref["name"]
         if (
             operation_ref["namespace"] != "adva.builtin"
-            or operation_ref["version"] != 1
+            or operation_ref["version"] != (2 if operation == "constant" else 1)
             or operation not in BOUNDED_BACKWARD_OPERATIONS
         ):
             raise TypeError("the diagram leaves the symbolic cut fragment")
@@ -1697,7 +1697,7 @@ def test_rust_parameter_differential_matches_formula_and_finite_difference() -> 
         assert certificate["diagram_integrity"] == "checked"
         assert set(certificate["operation_rules"]) == {
             "adva.builtin:add@1",
-            "adva.builtin:constant@1",
+            "adva.builtin:constant@2",
             "adva.builtin:copy@1",
             "adva.builtin:mul@1",
             "adva.builtin:neg@1",

@@ -140,6 +140,17 @@ static BUILTIN_OPERATIONS: &[OperationSpec] = &[
     },
     OperationSpec {
         namespace: BUILTIN_NAMESPACE,
+        name: "constant",
+        version: 2,
+        surface_form: false,
+        input_types: NO_TYPES,
+        output_types: ONE_REAL,
+        parameters: VALUE_PARAMETER,
+        lineage_rule: LineageRule::MergeInputs,
+        evaluator: evaluate_constant_v2,
+    },
+    OperationSpec {
+        namespace: BUILTIN_NAMESPACE,
         name: "id",
         version: BUILTIN_VERSION,
         surface_form: true,
@@ -287,6 +298,22 @@ pub fn builtin_operation_specs() -> &'static [OperationSpec] {
     BUILTIN_OPERATIONS
 }
 
+/// Numeric syntax selects the newest registered constant realization. Stored
+/// Constant terms and OperationRef::constant remain explicit legacy inputs.
+pub(crate) fn builtin_literal(value: Rational) -> OperationRef {
+    let spec = BUILTIN_OPERATIONS
+        .iter()
+        .filter(|spec| spec.name == "constant")
+        .max_by_key(|spec| spec.version)
+        .expect("the registry includes numeric literals");
+    OperationRef {
+        namespace: spec.namespace.to_owned(),
+        name: spec.name.to_owned(),
+        version: spec.version,
+        parameters: BTreeMap::from([("value".to_owned(), value)]),
+    }
+}
+
 pub(crate) fn builtin_surface_operation(name: &str) -> Option<&'static OperationSpec> {
     BUILTIN_OPERATIONS
         .iter()
@@ -321,7 +348,19 @@ fn evaluate_constant(
         .get("value")
         .expect("registry validation requires the constant value parameter");
     Ok(vec![Dual {
-        value: value.as_f64(),
+        // constant@1 is a historical, separately rounded realization.
+        value: value.numerator as f64 / value.denominator as f64,
+        gradient: BTreeMap::new(),
+    }])
+}
+
+fn evaluate_constant_v2(
+    parameters: &BTreeMap<String, Rational>,
+    arguments: &[Dual],
+) -> Result<Vec<Dual>, LispError> {
+    ensure_argument_count("constant", arguments, 0)?;
+    Ok(vec![Dual {
+        value: parameters["value"].as_f64(),
         gradient: BTreeMap::new(),
     }])
 }
@@ -559,7 +598,10 @@ mod tests {
         let expected = f64::from_bits(2043_u64 << 52); // 2^1020
         assert_eq!(result[0].gradient["x"].to_bits(), expected.to_bits());
         assert_eq!(result[0].gradient["zero"].to_bits(), 0.0_f64.to_bits());
-        assert_eq!(result[0].gradient["negative"].to_bits(), (-expected).to_bits());
+        assert_eq!(
+            result[0].gradient["negative"].to_bits(),
+            (-expected).to_bits()
+        );
         assert!(result[0].value.is_finite());
     }
 

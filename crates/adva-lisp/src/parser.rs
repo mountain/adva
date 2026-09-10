@@ -200,8 +200,9 @@ fn parse_term(
     imports: &BTreeMap<String, ModuleName>,
 ) -> Result<ProgramTerm, LispError> {
     if let SExpr::Atom(atom) = expression {
-        return Ok(ProgramTerm::Constant {
-            value: parse_rational(atom)?,
+        return Ok(ProgramTerm::Apply {
+            operation: crate::operation::builtin_literal(parse_rational(atom)?),
+            arguments: Vec::new(),
         });
     }
     let items = expression.list()?;

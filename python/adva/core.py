@@ -400,6 +400,7 @@ class KernelFunction:
         )
 
     def evaluate_checked(self, inputs: Mapping[str, Real]) -> Evaluation:
+        """Return Rust-checked finite inputs/results; no numerical error bound."""
         checked = self._check_inputs(inputs)
         values, certificate = self._native.evaluate(checked)
         return Evaluation(tuple(values), json.loads(certificate))
@@ -415,6 +416,7 @@ class KernelFunction:
         Mapping[str, float] | tuple[Mapping[str, float], ...],
         Mapping[str, Any],
     ]:
+        """Require finite inputs, final values and final Jacobian entries."""
         checked = self._check_inputs(inputs)
         values, jacobian, certificate = self._native.value_and_gradient(checked)
         value_view: float | tuple[float, ...]

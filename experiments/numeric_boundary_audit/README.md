@@ -2,10 +2,12 @@
 
 ## Correction follow-up
 
-This directory retains the original audit below. The current draft also contains
-the versioned `log@2` correction and contained CPU-limit admission. See
-[FOLLOWUP.md](FOLLOWUP.md) and ADR 0044 for changes, passing Python tests and
-the still-pending Rust gates. `report.json` is original pre-fix evidence.
+This directory retains the original audit below. The completed native correction
+and validation are in [NATIVE-FIXES.md](NATIVE-FIXES.md): versioned `log@2` and
+`constant@2`, finite application boundaries, bit-preserving JSON transport and
+parent-computed CPU-limit admission. See ADRs 0044 and 0045 for compatibility.
+[FOLLOWUP.md](FOLLOWUP.md) records the earlier partial correction;
+`report.json` is original pre-fix evidence.
 Run the original `audit.py` at commit
 `acc950528b1f2b47a56d2a0e5a11c292adcf880b`; on changed source, the current
 script deliberately refuses to label new behavior as that baseline.

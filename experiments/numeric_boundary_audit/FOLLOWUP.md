@@ -1,5 +1,9 @@
 # From boundary audit to reviewable corrections
 
+Historical record of the initial correction at `61a7ae4`. The pending native
+gates and open implementation issues described below are superseded by
+[NATIVE-FIXES.md](NATIVE-FIXES.md). These earlier measurements remain unchanged.
+
 Source baseline: main `7be406bfa6a3b7a5ef619081157e3b113da0cd40`.
 Original audit commit: `acc950528b1f2b47a56d2a0e5a11c292adcf880b`.
 Date: 2026-09-10. Existing draft PR #173; no main merge.

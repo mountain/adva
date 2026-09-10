@@ -64,6 +64,25 @@ def doc(root):
     return json.loads((root / catalog.KEY_WORDS_PATH).read_text())
 
 
+def copy_actual_catalog(root):
+    """Copy metadata and its declared files, never build/cache directories."""
+    shutil.copytree(ROOT / catalog.CATALOG, root / catalog.CATALOG)
+
+    def copy_references(value):
+        if isinstance(value, dict):
+            if "path" in value and "sha256" in value:
+                destination = root / value["path"]
+                destination.parent.mkdir(parents=True, exist_ok=True)
+                shutil.copyfile(ROOT / value["path"], destination)
+            for child in value.values():
+                copy_references(child)
+        elif isinstance(value, list):
+            for child in value:
+                copy_references(child)
+
+    copy_references(read_manifest(ROOT))
+
+
 def test_actual_catalog_v1_checks_all_twenty_names():
     report = catalog.check_catalog(ROOT, key_words=True)
     assert report["status"] == "CatalogConsistent", report
@@ -81,7 +100,7 @@ def test_actual_catalog_v1_checks_all_twenty_names():
 
 def test_repinning_omitted_fifteenth_key_still_fails(tmp_path):
     root = tmp_path / "omitted"
-    shutil.copytree(ROOT, root)
+    copy_actual_catalog(root)
     document = doc(root)
     document["entries"] = [
         e for e in document["entries"] if e["key"] != "logic-yau-calabi-mapping"
@@ -95,7 +114,7 @@ def test_repinning_omitted_fifteenth_key_still_fails(tmp_path):
 
 def test_actual_catalog_growth_requires_twenty_first_name(tmp_path):
     root = tmp_path / "expanded"
-    shutil.copytree(ROOT, root)
+    copy_actual_catalog(root)
     manifest = read_manifest(root)
     added = copy.deepcopy(manifest["entries"][-1])
     added["key"] = "logic-next-observation"

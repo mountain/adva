@@ -409,6 +409,30 @@ mod tests {
     }
 
     #[test]
+    fn native_input_and_report_preserve_k28_binary64_values() {
+        let source = "(module arithmetic (export compute) (def compute (fn ((x Real) (y Real)) Real (mul (use x) (use y)))))";
+        let input = program(
+            source,
+            json!({
+                "x": 1.0 + 2.0_f64.powi(-28),
+                "y": 1.0 - 2.0_f64.powi(-28),
+            }),
+        );
+        let report = run_native_program_v0(&input);
+        assert_eq!(report.state, "Completed");
+        let expected = (1.0 - 2.0_f64.powi(-28)).to_bits();
+        assert_eq!(
+            report.program.as_ref().unwrap().inputs["y"].to_bits(),
+            expected
+        );
+        assert_eq!(report.evaluation.as_ref().unwrap().values, vec![1.0]);
+        let encoded = serde_json::to_string(&report).unwrap();
+        let decoded: NativeRunReportV0 = serde_json::from_str(&encoded).unwrap();
+        assert_eq!(decoded.program.unwrap().inputs["y"].to_bits(), expected);
+        assert_eq!(decoded.evaluation.unwrap().values, vec![1.0]);
+    }
+
+    #[test]
     fn native_run_refuses_nonfinite_outputs_and_log_domain_failures() {
         for (body, x) in [("(exp (use x))", 1000.0), ("(log (use x))", 0.0)] {
             let report = run_native_program_v0(&program(&unary(body), json!({"x": x})));

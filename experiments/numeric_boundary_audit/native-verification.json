@@ -1,0 +1,95 @@
+{
+  "schema": "adva.numeric-boundary-native-verification.v1",
+  "date": "2026-09-10",
+  "baseline_main_commit": "7be406bfa6a3b7a5ef619081157e3b113da0cd40",
+  "initial_correction_commit": "61a7ae4",
+  "library_commit": "ba5be9fb672520ed22a7f2d923c1481bbe03aacc",
+  "toolchain": {
+    "rust": "rustc 1.97.1 (8bab26f4f 2026-07-14)",
+    "python": "3.11.15"
+  },
+  "commands": [
+    {
+      "command": "cargo fmt --check",
+      "result": "Passed",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo clippy --locked --workspace --all-targets --all-features -- -D warnings",
+      "result": "Passed",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test --locked --workspace",
+      "result": "229 passed",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test --locked --release -p adva-ir -p adva-lisp",
+      "result": "64 passed",
+      "exit_code": 0
+    },
+    {
+      "command": "cargo test --locked -p adva-witness --example library_stability --example library_generation --example verifier_search --example search_campaign",
+      "result": "37 passed",
+      "exit_code": 0
+    },
+    {
+      "command": "VIRTUAL_ENV=\"$PWD/.venv\" .venv/bin/maturin develop --locked",
+      "result": "Built and installed native extension",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python -m pytest -q",
+      "result": "1637 passed, 1 skipped, 10 subtests passed in 44.88s",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/ruff check tests/python/test_numeric_boundary.py tests/python/test_quine_cpu_budget.py tests/python/test_catalog_key_words.py tests/python/test_real_paraxial_optics_experiment.py",
+      "result": "Passed",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python experiments/quine_relay/verify_evidence.py",
+      "result": "Passed: 152 retained files, 2 completed runs, 50 calls",
+      "exit_code": 0
+    },
+    {
+      "command": ".venv/bin/python -S python/adva/adva.py math-check --key-words",
+      "result": "CatalogConsistent: 20 entries; documentary obligation remains Open",
+      "exit_code": 0
+    }
+  ],
+  "diagnostic": {
+    "path": "native-diagnostic.json",
+    "sha256": "aa2deab76482b22cde3e5101fc2319081be7e9d3710d7cd5156f3e75f5981bd3",
+    "debug_release_identical": true,
+    "commands": [
+      "cargo run --locked -q -p adva-lisp --example numeric_boundary_audit",
+      "cargo run --locked --release -q -p adva-lisp --example numeric_boundary_audit"
+    ]
+  },
+  "source_sha256": {
+    "Cargo.toml": "160ebc1de33c870b6814b56a928856ee7ae83fad698e20d47187313793931ef1",
+    "Cargo.lock": "b687d45dd12b4da84efdb0f258c8990fd867e23b666e38d6fdea59b7ac5b5e16",
+    "crates/adva-ir/src/term.rs": "60cfd6e7cac0b8d3410e2774b65762532674aafb85026feaa413fd982b768abf",
+    "crates/adva-ir/src/numeric_serialization.rs": "6803f97fe3d11a533837a6a4c1ef76486ebf649a7bade4bcd12b4665b7c00d0e",
+    "crates/adva-ir/src/certificate.rs": "cc8f30e8036c9e90c3da8a61385e5ad0d3934aec0b1d0032ceb9f1a6f4726f3a",
+    "crates/adva-ir/src/diagram.rs": "88cae59f72c43a5ac2ee2c6a1e6830268d15c85009f92000c26df5ff86da15e0",
+    "crates/adva-lisp/src/operation.rs": "db4aceec2fab806599dee5ad3511298b74da0e371b34569c27640465cc55f377",
+    "crates/adva-lisp/src/parser.rs": "d4ed380f1867846a0cd73f64597c338b5b657cfb531d235bef0044288442ab5b",
+    "crates/adva-lisp/src/eval.rs": "5d62de47010be63b278956fc852d68062359be50f95f5edf86821fa5ad64cec1",
+    "crates/adva-python/src/lib.rs": "3b072e85cb510b5798d95fee296cbf575e57eb1ea2d4469815ca0357ef9eeaa5",
+    "python/adva/quine_relay.py": "6ad1e190975d60a45d407be5a525bf7deea8a2ff8ef5061090da4a2f49ae35c5",
+    "crates/adva-lisp/examples/numeric_boundary_audit.rs": "21482125525317956eaa34e8503e5493ec3c0fe6d587885b18fcb1ffe8a4aaf8",
+    "tests/python/test_numeric_boundary.py": "208f9df31dde61debb4a94b42eba4a975bb446ca6eb43acbce578ccb0e3be1a0",
+    "tests/python/test_quine_cpu_budget.py": "9fb5d83902ade2769974f8daf2b60f604b17882f40bae499f405909221b0cb7d"
+  },
+  "environment_notes": [
+    "Initial workspace/release and full Python attempts encountered Errno 122 in /tmp; completed retries use writable TMPDIR.",
+    "A retry with TMPDIR inside the checkout was stopped after catalog fixtures recursively copied build/temp directories. The fixtures now copy only catalog metadata and declared files; final full Python TMPDIR was outside the checkout.",
+    "Two optical fixture version expectations were corrected for constant@2 before final acceptance.",
+    "One optional ed25519-backend test is skipped because the backend is not installed."
+  ],
+  "boundary": "Finite regression evidence and preserved historical replay, not universal numerical safety, a proof of Real equality, or exact OS CPU accounting. Original reports and library evidence were not regenerated."
+}
