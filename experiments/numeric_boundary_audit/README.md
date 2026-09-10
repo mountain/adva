@@ -1,5 +1,17 @@
 # Numerical boundary audit prompted by the Xe alignment bug
 
+## Correction follow-up
+
+This directory retains the original audit below. The current draft also contains
+the versioned `log@2` correction and contained CPU-limit admission. See
+[FOLLOWUP.md](FOLLOWUP.md) and ADR 0044 for changes, passing Python tests and
+the still-pending Rust gates. `report.json` is original pre-fix evidence.
+Run the original `audit.py` at commit
+`acc950528b1f2b47a56d2a0e5a11c292adcf880b`; on changed source, the current
+script deliberately refuses to label new behavior as that baseline.
+
+## Original audit scope and results
+
 Frozen source: Adva main `7be406bfa6a3b7a5ef619081157e3b113da0cd40`.
 Status: bounded source audit and external reproductions; native Rust run pending.
 No production implementation, operation version, certificate schema or runtime

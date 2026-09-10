@@ -1,5 +1,8 @@
 # Findings and limits
 
+This file describes the original pinned audit. The proposed corrections and
+their distinct verification status are in [FOLLOWUP.md](FOLLOWUP.md).
+
 The audit supports a concrete concern about numerical boundaries. It does not
 establish the Xe driver's memory-corruption bug in Adva or a whole-repository
 absence of similar bugs. The 58 production files were scanned for floating
