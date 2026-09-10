@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "status": "external calibration; not native semantics",
+  "question": "Can two declared sound finite observations strictly reduce a fixed candidate set while retaining its stipulated true point, and what happens under repetition, conflict or incomplete coverage?",
+  "arithmetic": "integer pairs (i,j), interpreted as rational coordinates (i/n,j/n)",
+  "candidate_family": "i>=0, j>=0, i+j<=n; n=16 or 12 only",
+  "observer_grammar": "a*i+b*j in [lo,hi], closed integer intervals",
+  "instances": [
+    {"n":16,"truth":[6,4],"A":[1,1,8,12],"B":[1,-1,0,4]},
+    {"n":12,"truth":[5,2],"A":[1,1,6,9],"B":[1,-1,0,3]}
+  ],
+  "assumptions": "Each interval is a sound observation of the same fixed object in the same coordinate frame. True points are stipulated synthetic oracles, not inferred from peer reports.",
+  "protected": ["retain true points when both observations are sound", "no native identities/free", "no elimination from incomplete coverage", "empty intersection reports Conflict", "no strict reduction from duplicate constraints"],
+  "success": "Compare full enumeration to independently parameterized sum/difference inverse; retain truth; pass controls and new-instance reuse; replay serialized evidence.",
+  "limits": {"wall_seconds":5,"cpu_seconds":2,"address_space_bytes":134217728,"predicate_visits":10000,"max_report_bytes":131072,"automatic_retries":0},
+  "enforcement": "Unix alarm, RLIMIT_CPU, RLIMIT_AS, explicit visit counter and serialized-output byte limit. No subprocesses, network or input code execution.",
+  "exit": "Stop after the two fixed instances and controls; limits produce Unknown. This is one finite calibration, not a universal convergence or speedup claim."
+}

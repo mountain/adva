@@ -1,0 +1,63 @@
+{
+  "request_sha256": "e77e7b4aa231517b6e915f46880dc14fe0f94c926ddee8033667766f0f464052",
+  "source_pins": {
+    "left": "8f6e8af59e11f8b6be7dcce6c928d366d0d49b5fa1443e0614355aa1a374afd7",
+    "right": "21f04d445eda145d9c05eb696460286c2f981fd9cafa0b692ade4c16cf34409a"
+  },
+  "rule_pins": {
+    "rule_module_sha256": "4010b60c7df8c114caca962371785e93cd7b1e929ee4ae425b8d73dc01138796",
+    "stoplist_sha256": "25c1edee0724b3d842556c36c11897b6d7e52e4732d89b1c06f95a867444ee9c",
+    "stoplist": "a an the and or but if then else for of to in on at by with from as is are was were be been being am do does did done have has had having will would shall should can could may might must not no nor this that these those it its i you your he she they them we us our his her their there here what which who whom when where why how all any each every some such more most much many few other own same so than too very just also only into upon per via about above after again against between below under over before during while until because although though since once",
+    "tokenizer": "[A-Za-z][A-Za-z'-]*|[0-9]+ lowercase; content = tokens minus stoplist minus pure digits",
+    "context_rule": "shortest span with at least 2 tokens on each side, at most 25 tokens, ties keep scan order; locator = 1-based index in the stripped non-empty line array"
+  },
+  "index_pin": {
+    "sha256": "2c09c398fc9ff4fff92e1212d01d2ab01f4065db85060a2b76a7331aa6c2d066",
+    "size_bytes": 1375405,
+    "artifact": "index-04.json (local, basename only)"
+  },
+  "baseline_result": {
+    "left": {"frequency": 21, "rank": 61, "locator": 212, "context": "Potatoes take rank for universal use profit and easy acquirement"},
+    "right": {"frequency": 234, "rank": 22, "locator": 2763, "context": "your beneficiary use your combined"}
+  },
+  "reloaded_result": {
+    "left": {"frequency": 21, "rank": 61, "locator": 212, "context": "Potatoes take rank for universal use profit and easy acquirement"},
+    "right": {"frequency": 234, "rank": 22, "locator": 2763, "context": "your beneficiary use your combined"}
+  },
+  "result_comparison": {
+    "declared_projection_equal": true,
+    "compared_fields": ["frequency", "rank", "locator", "context"],
+    "note": "first comparison keyed on a wider object (baseline carried an extra content_tokens field) and read false; corrected post-hoc on the four declared fields, no re-run"
+  },
+  "cost": {
+    "B_seconds": 0.0407197920139879,
+    "B_stages": {"lines": 0.0019550840370357037, "tokenize": 0.01743229106068611, "rank_and_context": 0.021316624945029616, "serialize": 1.579197123646736e-05},
+    "F_seconds": 0.055460374569520354,
+    "F_stages": {"tokenize": 0.017776875058189034, "build": 0.025242749834433198, "serialize": 0.004381249891594052, "write": 0.000378625001758337, "pin": 0.0010330418590456247, "validate": 0.006647832924500108},
+    "R_seconds_in_process": 0.02442833292298019,
+    "R_stages": {"load": 0.005423041991889477, "verify": 0.00035170791670680046, "lookup": 0.01865245890803635, "serialize": 5.41098415851593e-07},
+    "R_subprocess_wall_seconds": 0.04325591609813273,
+    "shared_setup_seconds": 0.0012410830240696669,
+    "total_wall_seconds": 0.19211208308115602,
+    "unallocated_seconds": 0.000194,
+    "amortization": {
+      "formula": "floor(F/(B-R))+1",
+      "in_process_service_model": {"B": 0.0407197920139879, "F": 0.055460374569520354, "R": 0.02442833292298019, "N_star": 4},
+      "process_per_query_model": {"B_in_process": 0.0407197920139879, "R_subprocess_wall": 0.04325591609813273, "verdict": "R_wall > B: no positive amortization established for process-per-query reuse (interpreter startup dominates)"}
+    },
+    "bytes_read": {"left_text_bytes": null, "right_text_bytes": null},
+    "tokens_processed": {"left_content": 8279, "right_content": 41209},
+    "index_size_bytes": 1375405,
+    "peak_memory_bytes": {"builder_process": 46153728, "query_subprocess": 28082176},
+    "cache_assumptions": "R runs in a fresh interpreter right after F; OS page cache is warm; warm-cache is not a cold-start claim"
+  },
+  "stale_rule_control": {
+    "executed": true,
+    "refused": true,
+    "exit_code": 1,
+    "seconds": 0.051240916131064296,
+    "method": "synthetic copy of the index JSON with rule_sha256 replaced by 64 zeros; loader refuses on binding mismatch before any lookup"
+  },
+  "coverage": "One token 'use', both sides. One baseline, one fresh index build, one fresh-process reuse query, one stale-rule control; no retries, no repeats, no head expansion.",
+  "omissions": "Round-03 reported content-token totals 8281/41229; the frozen 119-word stoplist recomputes 8279/41209 (stoplist-copy discrepancy in the round-03 inline script). The four projected use-fields are unaffected and reproduce exactly. Append-only; reply-03 not rewritten. Bytes-read counts unmeasured (null). Full texts and private paths not disclosed."
+}
