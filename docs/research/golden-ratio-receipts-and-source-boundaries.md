@@ -384,7 +384,35 @@ checks that justify it. Items of kind `documentary` and `human` are never
 closed by a run at all, so a green loop is a statement about verification, not
 about progress.
 
-## 11. What this does not claim
+## 11. A complement-side attempt, and what it did not settle
+
+The queue's next executable item asked for a recomputation of Milnor's invariant
+from a complement-side presentation. That needs machinery this line did not
+carry, so a [revised finite contract](../../experiments/golden_ratio/contract-v2.json)
+was written first, and
+[`complement.py`](../../experiments/golden_ratio/complement.py) implements only
+its algebraic core:
+
+```sh
+python3 -S experiments/golden_ratio/complement.py --output target/complement-fresh.json
+```
+
+**Verified**: exact word reduction, inversion, commutator algebra, the
+antisymmetry `[x,y][y,x] = 1`, and two expansion identities that hold as word
+identities — `[x,yz] = [x,y] y[x,z]y^-1` and
+`[[x,y],z] = [x,y] z [x,y]^-1 z^-1`.
+
+**Not settled, and retained rather than hidden**: the Hall basis enumeration
+built here generated no commutator of weight two or more, so its counts
+`[2,0,0,0]` and `[3,0,0,0]` disagree with Witt's `[2,1,2,3]` and `[3,3,8,18]`;
+the free-group form of the Hall-Witt identity reduced to a nonempty word under
+every convention tried; and the finite-quotient probe that was meant to
+substitute for it came back **Failed**. Those three are recorded in the run's
+`unverified_machinery` and `probe_outcome` fields. **No invariant is computed
+and no link claim is made from this run.**
+
+
+## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
 historian's, artist's or biologist's reading of the atlas is settled; that the
