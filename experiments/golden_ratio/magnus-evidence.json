@@ -1,0 +1,54 @@
+{
+  "schema": "adva.golden-ratio-magnus-core.research",
+  "version": 0,
+  "status": "Passed",
+  "reason": null,
+  "scope": "truncated Magnus algebra only; no link invariant is computed",
+  "authority": {
+    "authority": "external-exact-algebra-only",
+    "native_admission": "not-granted",
+    "invariant_computed": false
+  },
+  "budget": {
+    "max_seconds": 30.0,
+    "max_checks": 5000,
+    "max_nodes": 200000,
+    "max_degree": 3
+  },
+  "max_degree": 3,
+  "contract": {
+    "path": "experiments/golden_ratio/contract-v3.json",
+    "sha256": "c8071492a4397f93ecf1ba921a3ca66a259798ac77d7d3203bfeb431172455bf"
+  },
+  "classical_identities": {
+    "linear_part": [
+      0,
+      2,
+      1
+    ],
+    "commutator_quadratic": {
+      "[2, 1]": -1,
+      "[1, 2]": 1
+    },
+    "triple_commutator_terms_at_degree_three": 3
+  },
+  "not_computed": [
+    "the relation words of the declared diagram, which need their exact field parameters in process",
+    "the extraction rule for mu-bar(123) and its two validation targets"
+  ],
+  "cost": {
+    "wall_seconds_before_serialization": 0.002028374932706356,
+    "checks": 8,
+    "nodes": 322
+  },
+  "check_names": [
+    "contract-version-three",
+    "magnus-linear-part-is-the-exponent-vector",
+    "magnus-unit-constant",
+    "magnus-commutator-has-no-linear-part",
+    "magnus-commutator-quadratic-is-antisymmetric",
+    "magnus-triple-commutator-has-no-low-part",
+    "magnus-triple-commutator-degree-three",
+    "status-passed"
+  ]
+}
