@@ -273,3 +273,10 @@ change of TO24 is permitted.
 
 Classical results retain their attribution; the contextual vocabulary,
 negative admission question, and finite implementation are this Adva study.
+
+## Bounded continuation
+
+[Pairing transport](pairing-transport-native-boundary.md) supplies a fixed
+Lisp source and Rust-backed adapter, with 384 exact integer-pair checks.
+Its native result remains UnknownRuntime; it does not discharge the
+IR/source-binding obligation above. The original evidence is unchanged.
