@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 1,042 checks, 4,194 nodes, 0.654 s before
+1 MiB of output. Result: **Passed**, 1,047 checks, 4,265 nodes, 0.672 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -429,11 +429,17 @@ over: it reduces to the empty word in the free group, and it is trivial in S3
 for all 216 triples of elements. The remembered textbook shape is kept as a
 check that it is *not* this identity, so the convention flip stays visible.
 
-**Still open**: the presentation input (no link diagram or Wirtinger
-presentation is supplied), the truncated Magnus expansion, and the extraction
-rule for `mu-bar(123)`. The queue item therefore stays Open, and no link claim
-is made from this line yet.
+**Still open**: the Wirtinger presentation read off the diagram, the truncated
+Magnus expansion, and the extraction rule for mu-bar(123). The queue item
+therefore stays Open, and no link claim is made from this line yet.
 
+The representation input for the complement route now exists: a **declared
+regular projection** of the three components along the golden direction
+(1, phi, phi^2), computed by exact orientation signs with over and under decided
+by that direction's coordinate. It is generic, and it carries **twelve
+crossings, four per pair, whose signed sums are all zero** - so the pairwise
+linking numbers are recovered a second time, by the diagram route rather than by
+spanning disks. Minimality of the diagram is not claimed.
 
 ## 12. What this does not claim
 
