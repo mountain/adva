@@ -2,7 +2,7 @@
   "schema": "adva.golden-ratio-research-queue",
   "version": 0,
   "status": "Open",
-  "note": "Declared backlog for autonomous rounds. A run may never close an item: the runner only reports which items are backed by checks present in the retained witness, and which item is next. Status changes are explicit edits made with evidence, and documentary or human items are never closed by a run at all.",
+  "note": "Declared backlog for autonomous rounds. A run may never close an item: the runner reports which closure checks the witness already contains and which are still missing. A matching check-name prefix is partial progress only; an item is pending until every declared closure check is present.",
   "kinds": {
     "executable": "an exact bounded check can be added to experiments/golden_ratio/calibration.py",
     "documentary": "a decision recorded in prose that no run can settle",
@@ -17,7 +17,12 @@
       "evidence_check_prefix": "borromean-control-",
       "closure_requires": "at least three controls named borromean-control-* in the retained witness",
       "closed_by": "borromean-control-unlink-triple-zero, borromean-control-scaled-instance, borromean-control-precondition-fails",
-      "outcome": "Unlink gives zero triple points; a configuration scaled by two gives one triple point with signed sum one; a fixture with pairwise linking number one has its triple judgement withheld."
+      "outcome": "Unlink gives zero triple points; a configuration scaled by two gives one triple point with signed sum one; a fixture with pairwise linking number one has its triple judgement withheld.",
+      "closure_checks": [
+        "borromean-control-unlink-triple-zero",
+        "borromean-control-scaled-instance",
+        "borromean-control-precondition-fails"
+      ]
     },
     {
       "id": "borromean-complement-cross-check",
@@ -28,7 +33,11 @@
       "closure_requires": "a revised finite contract, since a Wirtinger presentation is new machinery",
       "note": "Blocked until a contract revision is written; the current contract covers the triple intersection only.",
       "progress": "contract-v2 written; word algebra, Hall basis and Hall-Witt all verified; the representation input exists as a declared regular projection with twelve crossings whose signed sums are zero, recovering the pairwise linking numbers by the diagram route; mu-bar(123) still not computed",
-      "blocked_by": "the Wirtinger presentation read off the diagram, and the extraction rule"
+      "blocked_by": "the Wirtinger presentation read off the diagram, and the extraction rule",
+      "closure_checks": [
+        "complement-presentation-relations",
+        "complement-invariant-agrees-with-triple-intersection"
+      ]
     },
     {
       "id": "penrose-matching-acceptance",
