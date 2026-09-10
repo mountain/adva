@@ -143,4 +143,9 @@ Yuan's explicit 2026-09-10 instruction. Sign AI-produced reports, PR bodies
 and commit messages with the actual assistant's name and state that they
 are submitted through his GitHub account as an authorized proxy. Account
 ownership does not imply personal authorship or technical verification by
-Mingli. This attribution rule does not expand operational authorization.
+Mingli. Authorization and mutual trust do not establish correctness: both
+human proposals and AI reasoning/code remain open to challenge and revision.
+Record actual contributions, checks and limits; do not imply guarantees or
+transfer responsibility merely through account use. Follow the mutual
+fallibility clarification in the linked document. This attribution rule
+does not expand operational authorization.
