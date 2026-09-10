@@ -474,6 +474,15 @@ the Seifert-surface identification, and a target that fails to reproduce its
 known value stops the run as `Unknown` rather than yielding a partial invariant.
 Writing the contract is not executing it: no number is computed yet.
 
+**The Magnus core is now implemented and validated on itself.** Truncated
+expansions in non-commuting variables with exact integer coefficients, at degree
+three, reproduce the classical facts the extraction will lean on: the degree-one
+part of a word is its exponent vector, a commutator has no linear part and its
+quadratic part is \`X1 X2 - X2 X1\`, and a triple commutator has nothing below
+degree three while its degree-three part is non-zero. Eight checks, and again
+**no invariant is computed**: the relation words and the extraction rule are
+still open, so the queue item stays Open.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
