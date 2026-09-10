@@ -1,0 +1,346 @@
+{
+  "schema": "adva.toolchain-defect-watch.v1",
+  "reviewed_at_date_utc": "2026-09-10",
+  "repository": "mountain/adva",
+  "baseline_main_commit": "7be406bfa6a3b7a5ef619081157e3b113da0cd40",
+  "related_fix": {
+    "pr": 173,
+    "head": "61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
+    "state": "draft",
+    "merged": false,
+    "native_acceptance": "NotEstablished",
+    "workflow_runs": [
+      34463820404,
+      34463820396,
+      34463820395
+    ],
+    "workflow_conclusions": "failure"
+  },
+  "inventory": {
+    "rust_channel": "stable",
+    "declared_msrv": "1.85",
+    "bootstrap_rust": "1.94.0",
+    "python_requirement": ">=3.11",
+    "ci_python_minor_versions": [
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "maturin_requirement": ">=1.14,<2",
+    "locked_crates": {
+      "pyo3": "0.29.2",
+      "serde_json": "1.0.151",
+      "num-bigint": "0.4.8",
+      "blake3": "1.8.7"
+    },
+    "declared_pyo3_features": [
+      "extension-module",
+      "abi3-py311"
+    ],
+    "scientific_minimums": {
+      "numpy": "1.26",
+      "scipy": "1.12",
+      "sympy": "1.12"
+    },
+    "declarations_are_not_installed_inventory": true
+  },
+  "inventory_sources": [
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/Cargo.toml",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/Cargo.lock",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/rust-toolchain.toml",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/pyproject.toml",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/.github/workflows/ci.yml",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/.github/workflows/bootstrap-runtime.yml",
+    "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/docs/BOOTSTRAP_RUNTIME_V0.md"
+  ],
+  "review_scope": {
+    "method": "Read-only repository and primary upstream source inspection",
+    "full_advisory_scan": false,
+    "native_adva_execution": false,
+    "reproductions_this_review": 0,
+    "dependency_changes": 0,
+    "ci_reruns": 0,
+    "unknowns": [
+      "deployment hardware and running kernel",
+      "actual compiler and interpreter builds",
+      "complete resolved feature graph",
+      "installed wheels and numeric backends",
+      "external checker builds"
+    ]
+  },
+  "records": [
+    {
+      "id": "TC-001",
+      "component": "linux/drm/xe",
+      "upstream": "https://github.com/torvalds/linux/commit/818bebeb63dd6bf5f4e07e145f6cdbace520a34c",
+      "upstream_date": "2026-08-21",
+      "evidence": "UpstreamConfirmed",
+      "applicability": "Unknown",
+      "priority": "P2",
+      "affected": "Commit 37173392741c and applicable driver/hardware configurations; distribution ranges not established",
+      "fixed": "818bebeb63dd; distribution backports and running kernel unverified",
+      "next_action": "Identify relevant host kernel build/backport, loaded Xe driver and GPU before exposure judgment",
+      "remaining": [
+        "host inventory",
+        "distribution patch mapping"
+      ],
+      "local_paths": [],
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "UpstreamConfirmed",
+          "applicability": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "TC-002",
+      "component": "rustc",
+      "upstream": "https://github.com/rust-lang/rust/issues/161441",
+      "release": "https://github.com/rust-lang/rust/releases/tag/1.98.1",
+      "upstream_date": "2026-09-03",
+      "evidence": "UpstreamConfirmed",
+      "applicability": "PotentiallyAffected",
+      "priority": "P1",
+      "affected": "Rust 1.98.0 with implicated trait/vtable code generation; exact Adva trigger unverified",
+      "fixed": "Rust 1.98.1",
+      "next_action": "Inspect actual rustc -Vv for accepted and cached builds; identify 1.98.0 artifacts and rebuild/verify under an explicitly fixed compiler",
+      "remaining": [
+        "actual build versions",
+        "Adva trigger reachability",
+        "installed binary provenance"
+      ],
+      "local_paths": [
+        "rust-toolchain.toml",
+        ".github/workflows/ci.yml",
+        ".github/workflows/bootstrap-runtime.yml"
+      ],
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "UpstreamConfirmed",
+          "applicability": "PotentiallyAffected"
+        }
+      ]
+    },
+    {
+      "id": "TC-003",
+      "component": "PyO3/PyPy",
+      "upstream": "https://github.com/PyO3/pyo3/releases/tag/v0.29.2",
+      "upstream_date": "2026-08-05",
+      "evidence": "UpstreamConfirmed",
+      "applicability": "FixedInLockedSource",
+      "priority": "P3",
+      "affected": "PyO3 0.29.1; PyPy 3.11 pyclass instance deletion regression",
+      "fixed": "PyO3 0.29.2",
+      "next_action": "Retain locked-source disposition; inspect installed wheel provenance if PyPy or stale wheels are in use",
+      "remaining": [
+        "installed artifact/runtime inventory"
+      ],
+      "local_paths": [
+        "Cargo.lock",
+        "Cargo.toml"
+      ],
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "UpstreamConfirmed",
+          "applicability": "FixedInLockedSource"
+        }
+      ]
+    },
+    {
+      "id": "TC-004",
+      "component": "CPython",
+      "upstream": "https://github.com/python/cpython/issues/157196",
+      "upstream_date": "2026-09-08",
+      "evidence": "Reported",
+      "applicability": "Unknown",
+      "priority": "P2",
+      "affected": "Reporter lists CPython 3.13 concurrency/memory cases; per-case patch range and threading prerequisites unverified",
+      "fixed": null,
+      "next_action": "Follow per-case upstream triage and map only used APIs to actual interpreter/threading mode",
+      "remaining": [
+        "per-case confirmation",
+        "affected/fixed patch versions",
+        "local API and concurrency match"
+      ],
+      "local_paths": [
+        "pyproject.toml",
+        ".github/workflows/ci.yml"
+      ],
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "Reported",
+          "applicability": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "TC-005",
+      "component": "adva/log differential",
+      "upstream": "https://github.com/mountain/adva/pull/173",
+      "upstream_date": "2026-09-10",
+      "evidence": "ModelReproduced",
+      "fix_status": "FixProposed",
+      "applicability": "PotentiallyAffected",
+      "priority": "P1",
+      "affected": "Inspected main 7be406bfa6a3b7a5ef619081157e3b113da0cd40: reciprocal-first log differential",
+      "fixed": "Proposed log@2 at PR #173 head 61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
+      "next_action": "Run existing native debug/release gates and bit diagnostic in one bounded acceptance environment",
+      "remaining": [
+        "native reproduction and acceptance",
+        "CI failure diagnosis",
+        "merge decision"
+      ],
+      "local_paths": [
+        "crates/adva-lisp/src/operation.rs"
+      ],
+      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FOLLOWUP.md",
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "ModelReproduced",
+          "applicability": "PotentiallyAffected"
+        }
+      ]
+    },
+    {
+      "id": "TC-006",
+      "component": "adva/Python CPU supervisor",
+      "upstream": "https://github.com/mountain/adva/pull/173",
+      "upstream_date": "2026-09-10",
+      "evidence": "NativeReproduced",
+      "evidence_scope": "Prior audit executed the actual Python method with mocked limit installation; follow-up reports six Python tests including an admitted real child. This review did not repeat them.",
+      "fix_status": "FixProposed",
+      "applicability": "AffectedInScope",
+      "priority": "P1",
+      "affected": "Main quine_relay supervisor expands a positive sub-second remainder to a one-second configured allowance",
+      "fixed": "Proposed pre-launch whole-second admission guard in PR #173",
+      "next_action": "Review retained Python acceptance and scope before merge; preserve post-execution checks",
+      "remaining": [
+        "merge decision",
+        "OS granularity and process-tree limits are not strict physical accounting"
+      ],
+      "local_paths": [
+        "python/adva/quine_relay.py"
+      ],
+      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FOLLOWUP.md",
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "NativeReproduced",
+          "applicability": "AffectedInScope"
+        }
+      ]
+    },
+    {
+      "id": "TC-007",
+      "component": "adva/numerical contract",
+      "upstream": "https://github.com/mountain/adva/pull/173",
+      "upstream_date": "2026-09-10",
+      "evidence": "ModelReproduced",
+      "applicability": "PotentiallyAffected",
+      "priority": "P1",
+      "affected": "Rational-to-f64 conversion model and inconsistent finite-value policy; numerical contract not fully specified",
+      "fixed": null,
+      "next_action": "State conversion quality, finite-input/output/Jacobian policy and native bit-pattern expectations",
+      "remaining": [
+        "native conversion bits",
+        "contract decision",
+        "finite Jacobian policy"
+      ],
+      "local_paths": [
+        "crates/adva-ir/src/term.rs",
+        "python/adva/core.py"
+      ],
+      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FINDINGS.md",
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "ModelReproduced",
+          "applicability": "PotentiallyAffected"
+        }
+      ]
+    },
+    {
+      "id": "TC-008",
+      "component": "serde_json/Adva serialization",
+      "upstream": "https://github.com/serde-rs/json/blob/v1.0.151/Cargo.toml",
+      "upstream_date": null,
+      "evidence": "Reported",
+      "applicability": "Unknown",
+      "priority": "P2",
+      "affected": "Existing Research 0141 bit discrepancy; attribution to parser or configuration is unproved",
+      "fixed": null,
+      "next_action": "Inspect resolved Cargo feature graph and input/decoded/output to_bits with controlled finite cases",
+      "remaining": [
+        "resolved features",
+        "parser/serializer attribution",
+        "native bit comparisons"
+      ],
+      "local_paths": [
+        "Cargo.toml",
+        "Cargo.lock"
+      ],
+      "classification": "configuration_or_contract_hypothesis_not_confirmed_upstream_bug",
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "Reported",
+          "applicability": "Unknown"
+        }
+      ]
+    },
+    {
+      "id": "TC-009",
+      "component": "build provenance",
+      "upstream": "https://github.com/mountain/adva/blob/7be406bfa6a3b7a5ef619081157e3b113da0cd40/rust-toolchain.toml",
+      "upstream_date": null,
+      "evidence": "RepositoryInspected",
+      "applicability": "AffectedInScope",
+      "priority": "P1",
+      "affected": "Rolling compiler/runner and broad Python dependency ranges in inspected build configuration",
+      "fixed": null,
+      "next_action": "Capture allowlisted environment and artifact identity for future accepted builds",
+      "remaining": [
+        "actual compiler and LLVM",
+        "Python patch/ABI/threading and installed packages",
+        "OS/libc/numeric backend",
+        "external checker identities"
+      ],
+      "local_paths": [
+        "rust-toolchain.toml",
+        "pyproject.toml",
+        ".github/workflows/ci.yml"
+      ],
+      "classification": "configuration_gap_not_upstream_bug",
+      "last_reviewed": "2026-09-10",
+      "history": [
+        {
+          "date": "2026-09-10",
+          "event": "Initial source-based triage",
+          "evidence": "RepositoryInspected",
+          "applicability": "AffectedInScope"
+        }
+      ]
+    }
+  ]
+}
