@@ -451,6 +451,17 @@ a three-component complement. The pairwise linking numbers are therefore
 recovered a **third** time, now from a presentation. The non-abelian words
 themselves, the Magnus expansion and `mu-bar(123)` remain uncomputed.
 
+**What the remaining extraction needs, and why it stops here.** Writing the
+non-abelian relation words `U_out . O . U_in^-1 . O^-1` turned out to need
+something the report format does not carry: the crossing records serialise their
+parameters as strings, while the arc lookup needs the exact field values, so a
+partial attempt was written, found to compare strings, and **reverted rather than
+committed half-working**. More decisively, extracting `mu-bar(123)` from those
+words needs a **Magnus or nilpotent-quotient step**, which is new machinery and
+therefore a new finite contract; contract-v2 deliberately does not cover it. The
+queue item therefore stays Open with its last closure check unbacked, and this
+line reports the boundary instead of asserting a number it did not compute.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
