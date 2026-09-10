@@ -1,0 +1,864 @@
+{
+  "status": "Passed",
+  "cases": [
+    {
+      "name": "standard-basis",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "result": {
+        "status": "ClosedForAllTranslationsByLinearity",
+        "context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          }
+        ],
+        "missing_basis_indices": [],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 224,
+        "validation_seconds": 0.0005770409989054315
+      }
+    },
+    {
+      "name": "fresh-nonstandard-basis",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"1\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+      "fuel_limit": 10000,
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "result": {
+        "status": "ClosedForAllTranslationsByLinearity",
+        "context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          }
+        ],
+        "missing_basis_indices": [],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 224,
+        "validation_seconds": 0.00040746500599198043
+      }
+    },
+    {
+      "name": "changed-frame-explicit-new-context",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"2\"],[\"1/2\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"1dfd4f1d87bf8ed3d8a56489a19086dc8ebe98e4d4e255abc91e9ec0a992aed8\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "1dfd4f1d87bf8ed3d8a56489a19086dc8ebe98e4d4e255abc91e9ec0a992aed8",
+      "fuel_limit": 10000,
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "result": {
+        "status": "ClosedForAllTranslationsByLinearity",
+        "context_sha256": "1dfd4f1d87bf8ed3d8a56489a19086dc8ebe98e4d4e255abc91e9ec0a992aed8",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "2"
+            ],
+            [
+              "1/2",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          }
+        ],
+        "missing_basis_indices": [],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 224,
+        "validation_seconds": 0.00036854599602520466
+      }
+    },
+    {
+      "name": "self-rehashed-basis-old-anchor",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"1\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidContextBinding",
+      "result": {
+        "status": "InvalidContextBinding",
+        "reason": "context differs from receiver selection",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 4.369599628262222e-05
+      }
+    },
+    {
+      "name": "self-rehashed-operator-old-anchor",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"2\"],[\"1/2\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"1dfd4f1d87bf8ed3d8a56489a19086dc8ebe98e4d4e255abc91e9ec0a992aed8\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidContextBinding",
+      "result": {
+        "status": "InvalidContextBinding",
+        "reason": "context differs from receiver selection",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 3.99209966417402e-05
+      }
+    },
+    {
+      "name": "self-rehashed-dimension-old-anchor",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":2,\"closed\":false,\"translation_residual\":[\"0\",\"0\",\"1\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidContextBinding",
+      "result": {
+        "status": "InvalidContextBinding",
+        "reason": "context differs from receiver selection",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 5.9609999880194664e-05
+      }
+    },
+    {
+      "name": "missing-third-direction",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+      "fuel_limit": 10000,
+      "expected_status": "UnknownCoverage",
+      "result": {
+        "status": "UnknownCoverage",
+        "context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 3,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "1",
+              "2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0",
+              "0"
+            ],
+            "closed": true
+          }
+        ],
+        "missing_basis_indices": [
+          2
+        ],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 576,
+        "validation_seconds": 0.0008132570001180284
+      }
+    },
+    {
+      "name": "third-direction-refutes",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":2,\"closed\":false,\"translation_residual\":[\"0\",\"0\",\"1\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+      "fuel_limit": 10000,
+      "expected_status": "Refuted",
+      "result": {
+        "status": "Refuted",
+        "context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 3,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "1",
+              "2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 2,
+            "translation_residual": [
+              "0",
+              "0",
+              "1"
+            ],
+            "closed": false
+          }
+        ],
+        "missing_basis_indices": [],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 810,
+        "validation_seconds": 0.0011569560010684654
+      }
+    },
+    {
+      "name": "one-negative-direction-suffices",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":2,\"closed\":false,\"translation_residual\":[\"0\",\"0\",\"1\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+      "fuel_limit": 10000,
+      "expected_status": "Refuted",
+      "result": {
+        "status": "Refuted",
+        "context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0",
+              "0"
+            ],
+            [
+              "0",
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 3,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1",
+              "0"
+            ],
+            [
+              "1",
+              "2",
+              "0"
+            ],
+            [
+              "0",
+              "0",
+              "1"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 2,
+            "translation_residual": [
+              "0",
+              "0",
+              "1"
+            ],
+            "closed": false
+          }
+        ],
+        "missing_basis_indices": [
+          0,
+          1
+        ],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 342,
+        "validation_seconds": 0.0005355280009098351
+      }
+    },
+    {
+      "name": "forged-zero",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":2,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidEvidence",
+      "result": {
+        "status": "InvalidEvidence",
+        "reason": "reported residual or Boolean does not replay",
+        "native_admission": "NotGranted",
+        "work_units": 810,
+        "validation_seconds": 0.001088110999262426
+      }
+    },
+    {
+      "name": "forged-Boolean",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\",\"0\"],[\"0\",\"1\",\"0\"],[\"0\",\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":3,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\",\"0\"],[\"1\",\"2\",\"0\"],[\"0\",\"0\",\"1\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"0\"]},{\"basis_index\":2,\"closed\":true,\"translation_residual\":[\"0\",\"0\",\"1\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "73896308303f48dba1dfc1ab59ae4523af02ae433aae71fc401e8db1b32bd2a4",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidEvidence",
+      "result": {
+        "status": "InvalidEvidence",
+        "reason": "reported residual or Boolean does not replay",
+        "native_admission": "NotGranted",
+        "work_units": 810,
+        "validation_seconds": 0.0010893830040004104
+      }
+    },
+    {
+      "name": "reordered-evidence-indices",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "ClosedForAllTranslationsByLinearity",
+      "result": {
+        "status": "ClosedForAllTranslationsByLinearity",
+        "context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [
+          {
+            "basis_index": 1,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          },
+          {
+            "basis_index": 0,
+            "translation_residual": [
+              "0",
+              "0"
+            ],
+            "closed": true
+          }
+        ],
+        "missing_basis_indices": [],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 224,
+        "validation_seconds": 0.00034980799682671204
+      }
+    },
+    {
+      "name": "empty-observation-list",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "UnknownCoverage",
+      "result": {
+        "status": "UnknownCoverage",
+        "context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+        "context": {
+          "basis": [
+            [
+              "1",
+              "0"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "replayed": [],
+        "missing_basis_indices": [
+          0,
+          1
+        ],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "native_admission": "NotGranted",
+        "work_units": 32,
+        "validation_seconds": 8.574900130042806e-05
+      }
+    },
+    {
+      "name": "duplicate-index",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "duplicate or invalid basis index",
+        "native_admission": "NotGranted",
+        "work_units": 128,
+        "validation_seconds": 0.00023591599892824888
+      }
+    },
+    {
+      "name": "out-of-range-index",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":2,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "duplicate or invalid basis index",
+        "native_admission": "NotGranted",
+        "work_units": 32,
+        "validation_seconds": 0.00013850899995304644
+      }
+    },
+    {
+      "name": "Boolean-index",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":false,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "duplicate or invalid basis index",
+        "native_admission": "NotGranted",
+        "work_units": 32,
+        "validation_seconds": 9.332099580205977e-05
+      }
+    },
+    {
+      "name": "Boolean-dimension",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":true,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "dimension must be 2 or 3",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.1928001185879111e-05
+      }
+    },
+    {
+      "name": "wrong-word",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"bbbaaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "unsupported interpretation",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 9.483999747317284e-06
+      }
+    },
+    {
+      "name": "wrong-order",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"leftmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "unsupported interpretation",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 9.174000297207385e-06
+      }
+    },
+    {
+      "name": "float-rational",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[1.0,\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "rational string required",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 2.0731997210532427e-05
+      }
+    },
+    {
+      "name": "noncanonical-rational",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"2/2\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "noncanonical or oversized rational",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.5604004147462547e-05
+      }
+    },
+    {
+      "name": "zero-denominator",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1/0\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "invalid rational syntax",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.1557000107131898e-05
+      }
+    },
+    {
+      "name": "oversized-rational",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"8589934592\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "noncanonical or oversized rational",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.4641998859588057e-05
+      }
+    },
+    {
+      "name": "unknown-field",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"override\":true,\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "unexpected object fields",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 9.04400076251477e-06
+      }
+    },
+    {
+      "name": "wrong-residual-dimension",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "vector dimension",
+        "native_admission": "NotGranted",
+        "work_units": 32,
+        "validation_seconds": 8.448700100416318e-05
+      }
+    },
+    {
+      "name": "dependent-basis",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"2\",\"0\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"630cd6f4491f3e81675729d564239192d203976fe86ef58638e8f9f7b4bb7482\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "630cd6f4491f3e81675729d564239192d203976fe86ef58638e8f9f7b4bb7482",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidBasis",
+      "result": {
+        "status": "InvalidBasis",
+        "reason": "singular matrix",
+        "native_admission": "NotGranted",
+        "work_units": 24,
+        "validation_seconds": 7.03169935150072e-05
+      }
+    },
+    {
+      "name": "singular-operator",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"0\",\"0\"],[\"0\",\"0\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"2a6db7ab9c0d8596f7aee1d5e98af378eec15cf04960b7d1b450f31999d301b4\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "2a6db7ab9c0d8596f7aee1d5e98af378eec15cf04960b7d1b450f31999d301b4",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidInverse",
+      "result": {
+        "status": "InvalidInverse",
+        "reason": "singular matrix",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 4.490699939196929e-05
+      }
+    },
+    {
+      "name": "missing-external-anchor",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidContextBinding",
+      "result": {
+        "status": "InvalidContextBinding",
+        "reason": "receiver context fingerprint required",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.6220001270994544e-06
+      }
+    },
+    {
+      "name": "duplicate-JSON-key",
+      "raw_json": "{\"schema\":0,\"schema\":1}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "duplicate JSON key",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 6.750000466126949e-06
+      }
+    },
+    {
+      "name": "oversized-input",
+      "raw_json": "                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 10000,
+      "expected_status": "InvalidSchema",
+      "result": {
+        "status": "InvalidSchema",
+        "reason": "input bytes limit/type",
+        "native_admission": "NotGranted",
+        "work_units": 0,
+        "validation_seconds": 1.853004505392164e-06
+      }
+    },
+    {
+      "name": "fuel-exhaustion",
+      "raw_json": "{\"context\":{\"basis\":[[\"1\",\"0\"],[\"0\",\"1\"]],\"composition\":\"rightmost-first\",\"dimension\":2,\"domain\":\"Q-vector-affine\",\"operator\":[[\"1\",\"1\"],[\"1\",\"2\"]],\"word\":\"abbbaBAAB\"},\"context_sha256\":\"b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291\",\"observations\":[{\"basis_index\":0,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]},{\"basis_index\":1,\"closed\":true,\"translation_residual\":[\"0\",\"0\"]}],\"schema\":\"adva.external.operator-lift-receipt.v0\"}",
+      "expected_context_sha256": "b178e71a7e13b392422715dc70c05bfc3acf323d35d824b2524f0a4ff3082291",
+      "fuel_limit": 0,
+      "expected_status": "UnknownResource",
+      "result": {
+        "status": "UnknownResource",
+        "reason": "arithmetic work limit",
+        "native_admission": "NotGranted",
+        "work_units": 1,
+        "validation_seconds": 4.423700011102483e-05
+      }
+    }
+  ],
+  "checks": 31,
+  "cost": {
+    "construction_seconds": 0.00415081199753331,
+    "suite_validation_seconds": 0.007482346001779661,
+    "fresh_basis_validation_seconds": 0.00040746500599198043,
+    "total_arithmetic_work_units": 7840,
+    "search_candidates": 0,
+    "peak_RSS_KiB": 12288,
+    "research_and_coding_seconds": null,
+    "serialization_roundtrip_seconds": 0.0007650539992027916
+  },
+  "residual": "Finite external validator, not native admission or authentication",
+  "pins": {
+    "receipt-contract.json": "3e7ffbc521c0f5c2630c79ea8b59145610a983db3177f217accd9a7a6eca8dfd",
+    "receipt.py": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e",
+    "check_receipts.py": "009d1c4d680d995f96a375eb27e9199f16436b98e238addad6c087a4fb8700d8",
+    "replay.py": "b75b0d4f2962fe4c9be4c4856cd65f8308727830eab1685581f849fd12dd5c35"
+  }
+}
