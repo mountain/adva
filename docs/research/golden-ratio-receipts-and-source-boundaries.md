@@ -441,6 +441,16 @@ crossings, four per pair, whose signed sums are all zero** - so the pairwise
 linking numbers are recovered a second time, by the diagram route rather than by
 spanning disks. Minimality of the diagram is not claimed.
 
+The presentation read off that diagram is now checked at its abelian level:
+each under-crossing splits its component, so there are as many generators as
+crossings (twelve), and each crossing contributes the relation
+`U_out = O U_in O^-1`. Abelianised, the over-strand cancels and the crossing
+contributes `e_out - e_in`, and the resulting integer matrix has rank nine,
+which is `crossings - components`: its cokernel is `Z^3`, the first homology of
+a three-component complement. The pairwise linking numbers are therefore
+recovered a **third** time, now from a presentation. The non-abelian words
+themselves, the Magnus expansion and `mu-bar(123)` remain uncomputed.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a

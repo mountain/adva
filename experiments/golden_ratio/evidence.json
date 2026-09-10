@@ -362,6 +362,11 @@
         "over": "z0",
         "under": "y0",
         "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
         "point": [
           [
             "2",
@@ -381,6 +386,11 @@
         "over": "y0",
         "under": "z0",
         "sign": -1,
+        "under_segment": 0,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
         "point": [
           [
             "2",
@@ -400,6 +410,11 @@
         "over": "x0",
         "under": "z0",
         "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
         "point": [
           [
             "-3",
@@ -419,6 +434,11 @@
         "over": "x0",
         "under": "z0",
         "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
         "point": [
           [
             "1",
@@ -438,6 +458,11 @@
         "over": "z0",
         "under": "y0",
         "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-3/2",
+          "3/2"
+        ],
         "point": [
           [
             "-2",
@@ -457,6 +482,11 @@
         "over": "y0",
         "under": "z0",
         "sign": 1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
         "point": [
           [
             "-2",
@@ -476,6 +506,11 @@
         "over": "z0",
         "under": "x0",
         "sign": 1,
+        "under_segment": 0,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
         "point": [
           [
             "3",
@@ -495,6 +530,11 @@
         "over": "z0",
         "under": "x0",
         "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "3/2",
+          "-1/2"
+        ],
         "point": [
           [
             "-1",
@@ -514,6 +554,11 @@
         "over": "x0",
         "under": "y0",
         "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
         "point": [
           [
             "0",
@@ -533,6 +578,11 @@
         "over": "y0",
         "under": "x0",
         "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
         "point": [
           [
             "0",
@@ -552,6 +602,11 @@
         "over": "y0",
         "under": "x0",
         "sign": -1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
         "point": [
           [
             "0",
@@ -571,6 +626,11 @@
         "over": "x0",
         "under": "y0",
         "sign": -1,
+        "under_segment": 3,
+        "under_parameter": [
+          "-5/2",
+          "3/2"
+        ],
         "point": [
           [
             "0",
@@ -588,6 +648,17 @@
       }
     ],
     "note": "the halved signed sum is the pairwise linking number by the diagram route, whose global sign depends on the declared projection direction"
+  },
+  "complement_presentation": {
+    "generators": 12,
+    "relations": 12,
+    "rank_of_abelianised_relations": 9,
+    "expected_rank": 9,
+    "cokernel": "Z^3, the first homology of a three-component complement",
+    "not_computed": [
+      "the non-abelian relation words themselves",
+      "the Magnus expansion and mu-bar(123)"
+    ]
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -821,9 +892,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.671483957907185,
-    "checks": 1047,
-    "nodes": 4265,
+    "wall_seconds_before_serialization": 0.6618438751902431,
+    "checks": 1050,
+    "nodes": 4268,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1645,6 +1716,9 @@
     "complement-diagram-over-under-decided",
     "complement-diagram-linking-zero",
     "complement-diagram-crossing-counts",
+    "complement-presentation-one-arc-per-crossing",
+    "complement-presentation-arcs-per-component",
+    "complement-presentation-relations",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
