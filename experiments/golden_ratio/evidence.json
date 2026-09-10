@@ -13,6 +13,8 @@
   },
   "budget": {
     "max_seconds": 30.0,
+    "cpu_seconds": 25,
+    "address_space_bytes": 268435456,
     "max_checks": 20000,
     "max_nodes": 200000,
     "max_staged_bytes": 8388608,
@@ -23,9 +25,21 @@
     "search_steps": 12,
     "lattice_box": 20
   },
+  "limits": {
+    "installed": {
+      "cpu_seconds": 25
+    },
+    "refused": {
+      "address_space_bytes": "ValueError: current limit exceeds maximum limit"
+    }
+  },
   "contract": {
-    "path": "experiments/golden_ratio/contract.json",
-    "sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
+    "path": "experiments/golden_ratio/contract-v1.json",
+    "sha256": "81b3998b75650d5b459c4710dfda129a8f996a8af25df24e98aa197593ef28c2",
+    "version": 1,
+    "supersedes": "experiments/golden_ratio/contract.json",
+    "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
+    "review": "docs/research/golden-ratio-receiving-review.md",
     "question": "Can one bounded checker consume the delivered golden-ratio resource set, distinguish the four receipt kinds the atlas asks for, independently re-derive its exact identities in a different encoding, and refuse its eight listed corrections?",
     "base_commit": "99193036aa1651f8d1299901d57e3fd9a987e322"
   },
@@ -89,6 +103,9 @@
       "bytes": 2714704,
       "declared_title": "Golden ratio - Wikipedia",
       "declared_creation_date": "D:20260910123359+00'00'",
+      "parsed_title": "Golden ratio - Wikipedia",
+      "parsed_creation_date": "D:20260910123359+00'00'",
+      "metadata_source": "parsed from the staged bytes during this run",
       "cited_revision": "oldid=1370346489",
       "cited_revision_present": true
     },
@@ -273,7 +290,7 @@
   "relabeling_refusals": [
     {
       "id": "relabel-seed-as-tail",
-      "control": "the seeded bracket lower endpoint 13/8 is not the unknown-tail image",
+      "control": "the seeded bracket lower endpoint 21/13 is not the unknown-tail lower image",
       "counterexample": "the positive tail x = 1/2 has image 29/18, below 21/13",
       "holds": true
     },
@@ -370,13 +387,19 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.09812404215335846,
-    "checks": 815,
-    "nodes": 2729,
+    "wall_seconds_before_serialization": 0.09749887511134148,
+    "checks": 830,
+    "nodes": 2744,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
   "check_names": [
+    "contract-version",
+    "contract-supersedes-frozen",
+    "contract-frozen-path",
+    "review-pinned",
+    "limits-attempted",
+    "limits-not-overclaimed",
     "receipt-fields-agree",
     "receipt-kinds-agree",
     "index-schema",
@@ -432,6 +455,8 @@
     "artifact-pdf-header::adva-library/golden-ratio/source/reference/Golden_ratio.pdf",
     "artifact-pdf-revision::adva-library/golden-ratio/source/reference/Golden_ratio.pdf",
     "artifact-pdf-trailer::adva-library/golden-ratio/source/reference/Golden_ratio.pdf",
+    "artifact-pdf-title-parsed::adva-library/golden-ratio/source/reference/Golden_ratio.pdf",
+    "artifact-pdf-creation-parsed::adva-library/golden-ratio/source/reference/Golden_ratio.pdf",
     "artifact-bytes::adva-library/golden-ratio/source/verify_golden.py",
     "artifact-digest::adva-library/golden-ratio/source/verify_golden.py",
     "staged-bytes-budget",
@@ -515,6 +540,9 @@
     "integer-ring::2::2",
     "field-inverse::2::2",
     "zero-inverse-refused",
+    "field-fractional-coefficient",
+    "field-fractional-not-in-integer-ring",
+    "field-rational-pair-required",
     "non-unit-in-ring",
     "non-unit-norm-five",
     "non-unit-inverse-leaves-ring",
@@ -759,6 +787,7 @@
     "matrix-power::23",
     "matrix-power::24",
     "phinary-same-value",
+    "near-integer-bound-guard",
     "word-identity-at-phi-squared",
     "word-identity-at-phi-minus-squared",
     "word-new-instance-inverse-word",
@@ -766,6 +795,8 @@
     "word-wrong-parameter",
     "word-deleted-letter",
     "word-residual-polynomial",
+    "word-translation-has-no-negative-power",
+    "word-translation-negative-power-control",
     "word-polynomial-at-phi-squared",
     "word-polynomial-matches-concrete",
     "deleted-polynomial-matches-concrete",
@@ -1143,6 +1174,7 @@
     "search-identical-trace::5/4",
     "seed-orbit-endpoint",
     "seed-orbit-predecessor",
+    "seed-bracket-naming",
     "seed-bracket-width",
     "seed-bracket-straddles",
     "tail-image-map",

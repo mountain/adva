@@ -30,10 +30,14 @@ from pathlib import Path
 HOME = "adva-library/golden-ratio"
 INDEX_PATH = HOME + "/index.json"
 CONTRACT_PATH = "experiments/golden_ratio/contract.json"
+CONTRACT_V1_PATH = "experiments/golden_ratio/contract-v1.json"
+REVIEW_PATH = "docs/research/golden-ratio-receiving-review.md"
 RECEIPT_CONTRACT_PATH = "docs/terminology/golden-ratio-receipt-v0.json"
 
 BUDGET = {
     "max_seconds": 30.0,
+    "cpu_seconds": 25,
+    "address_space_bytes": 268435456,
     "max_checks": 20_000,
     "max_nodes": 200_000,
     "max_staged_bytes": 8 * 1024 * 1024,
@@ -253,11 +257,14 @@ def affine_word(parameter: K, word: str) -> Affine:
 
 
 def word_residual_polynomial(word: str) -> dict[int, int]:
-    """Residual constant of the word as an exact Laurent polynomial in t.
+    """Translation component of the word as an exact Laurent polynomial in t.
 
-    Multipliers are monomials, so composition stays exact: the constant is a
-    dictionary from exponent to integer coefficient. A word that uses a and A
-    equally often leaves no negative exponent at the end.
+    Multipliers are monomials, so composition stays exact: the translation is a
+    dictionary from exponent to integer coefficient. Equal counts of a and A
+    restore multiplier one; they do not in general remove negative powers from
+    the translation, which is why both the nine-letter word and a two-letter
+    control are checked. Only the translation component is returned. This is an
+    external research routine: it is not a Rust witness or a general calculator.
     """
     # The multiplier stays a monomial t^exponent, so composing f after g gives
     # t' = t*t_g and c' = t^exponent * c_g + c: only the letter constant is
@@ -354,6 +361,56 @@ def media_and_size(blob: bytes) -> dict:
     return {"media_type": "application/octet-stream"}
 
 
+def pdf_metadata(blob: bytes) -> dict:
+    """Read the title and creation date out of the PDF's information dictionary.
+
+    This is a byte probe of the uncompressed trailer object, not a PDF parser:
+    it establishes that the declared metadata really is in the staged bytes, and
+    nothing about the document's structure or content.
+    """
+
+    def between(tag: bytes) -> str | None:
+        start = blob.find(tag)
+        if start < 0:
+            return None
+        end = blob.find(b")", start)
+        if end < 0:
+            return None
+        return blob[start + len(tag):end].decode("latin-1")
+
+    return {"title": between(b"/Title ("), "creation_date": between(b"/CreationDate (")}
+
+
+def install_limits(run: Run) -> dict:
+    """Attempt the declared process limits and record what actually happened.
+
+    A recorded refusal is not enforcement: where the platform refuses to install
+    a limit, the caller owns that bound and the evidence says so.
+    """
+    import resource as resource_module
+
+    outcome: dict = {"installed": {}, "refused": {}}
+    for name, limit, value in (
+        ("cpu_seconds", resource_module.RLIMIT_CPU, BUDGET["cpu_seconds"]),
+        ("address_space_bytes", resource_module.RLIMIT_AS, BUDGET["address_space_bytes"]),
+    ):
+        try:
+            resource_module.setrlimit(limit, (value, value))
+            outcome["installed"][name] = value
+        except (ValueError, OSError) as error:
+            outcome["refused"][name] = f"{type(error).__name__}: {error}"[:160]
+    run.check("limits-attempted", len(outcome["installed"]) + len(outcome["refused"]) == 2)
+    run.check(
+        "limits-not-overclaimed",
+        all(
+            name not in outcome["refused"]
+            for name in outcome["installed"]
+        )
+        and set(outcome["installed"]).isdisjoint(outcome["refused"]),
+    )
+    return outcome
+
+
 def read_bytes(path: Path, run: Run) -> bytes:
     run.tick()
     blob = path.read_bytes()
@@ -409,14 +466,26 @@ def resource_integrity(root: Path, run: Run) -> dict:
                 }
             )
         else:
+            metadata = pdf_metadata(blob)
             run.check(f"artifact-pdf-header::{relative}", blob[:8] == b"%PDF-1.4")
             run.check(f"artifact-pdf-revision::{relative}", blob.find(b"oldid=1370346489") >= 0)
             run.check(f"artifact-pdf-trailer::{relative}", blob.rstrip().endswith(b"%%EOF"))
+            run.check(
+                f"artifact-pdf-title-parsed::{relative}",
+                metadata["title"] == declared.get("title"),
+            )
+            run.check(
+                f"artifact-pdf-creation-parsed::{relative}",
+                metadata["creation_date"] == declared.get("creation_date"),
+            )
             pdf_probe = {
                 "staged_path": relative,
                 "bytes": len(blob),
                 "declared_title": declared.get("title"),
                 "declared_creation_date": declared.get("creation_date"),
+                "parsed_title": metadata["title"],
+                "parsed_creation_date": metadata["creation_date"],
+                "metadata_source": "parsed from the staged bytes during this run",
                 "cited_revision": "oldid=1370346489",
                 "cited_revision_present": True,
             }
@@ -557,6 +626,16 @@ def field_and_sequence_checks(run: Run, limit: int) -> None:
     except ZeroDivisionError:
         run.check("zero-inverse-refused", True)
 
+    # The encoding is a rational pair, not an integer pair: this element is in
+    # the field and outside the integer ring.
+    fractional = (rational(2) + PHI) / rational(5)
+    run.check("field-fractional-coefficient", fractional * rational(5) == rational(2) + PHI)
+    run.check("field-fractional-not-in-integer-ring", not fractional.in_integer_ring())
+    run.check(
+        "field-rational-pair-required",
+        fractional.p.denominator != 1 or fractional.q.denominator != 1,
+    )
+
     non_unit = rational(3) - PHI
     run.check("non-unit-in-ring", non_unit.in_integer_ring())
     run.check("non-unit-norm-five", non_unit.norm() == 5)
@@ -594,6 +673,9 @@ def field_and_sequence_checks(run: Run, limit: int) -> None:
 
     run.check("phinary-same-value", PHI ** 2 == PHI + ONE and "100" != "011")
 
+    # The guard is real: the bound is stated for n >= 2 because it fails at n = 1.
+    run.check("near-integer-bound-guard", HALF < PHI ** -1 and ZERO < PHI ** -1)
+
 
 def word_checks(run: Run) -> dict:
     word = "abbbaBAAB"
@@ -613,6 +695,10 @@ def word_checks(run: Run) -> dict:
 
     polynomial = word_residual_polynomial(word)
     run.check("word-residual-polynomial", polynomial == {2: -1, 1: 3, 0: -1})
+    # Balanced ratio letters do not by themselves clear negative powers: the
+    # nine-letter word has none, and a two-letter control has one.
+    run.check("word-translation-has-no-negative-power", min(polynomial) >= 0)
+    run.check("word-translation-negative-power-control", word_residual_polynomial("Ab") == {-1: 1})
     run.check("word-polynomial-at-phi-squared", evaluate_polynomial(polynomial, PHI ** 2) == ZERO)
     run.check(
         "word-polynomial-matches-concrete",
@@ -1186,6 +1272,7 @@ def build_receipts(run: Run) -> tuple[list[dict], list[dict]]:
     run.check("seed-orbit-endpoint", orbit[-1] == Fraction(21, 13))
     run.check("seed-orbit-predecessor", orbit[-2] == Fraction(13, 8))
     lower, upper = sorted((orbit[-1], orbit[-2]))
+    run.check("seed-bracket-naming", lower == Fraction(21, 13) and upper == Fraction(13, 8))
     run.check("seed-bracket-width", upper - lower == Fraction(1, 104))
     run.check("seed-bracket-straddles", rational(lower) < PHI < rational(upper))
 
@@ -1282,7 +1369,7 @@ def build_receipts(run: Run) -> tuple[list[dict], list[dict]]:
     relabel = [
         {
             "id": "relabel-seed-as-tail",
-            "control": "the seeded bracket lower endpoint 13/8 is not the unknown-tail image",
+            "control": "the seeded bracket lower endpoint 21/13 is not the unknown-tail lower image",
             "counterexample": f"the positive tail x = 1/2 has image {probe_image}, below 21/13",
             "holds": probe_image < lower,
         },
@@ -1351,11 +1438,33 @@ def main() -> int:
         "budget": dict(BUDGET),
     }
     try:
-        contract_bytes = (root / CONTRACT_PATH).read_bytes()
+        # The successor contract is active; the frozen version-zero file stays
+        # byte identical and is checked by digest rather than reinterpreted.
+        frozen_bytes = (root / CONTRACT_PATH).read_bytes()
+        contract_bytes = (root / CONTRACT_V1_PATH).read_bytes()
         contract = json.loads(contract_bytes.decode("utf-8"))
+        run.check("contract-version", contract["version"] == 1)
+        run.check(
+            "contract-supersedes-frozen",
+            contract["supersedes"]["sha256"] == hashlib.sha256(frozen_bytes).hexdigest(),
+        )
+        run.check(
+            "contract-frozen-path",
+            contract["supersedes"]["path"] == CONTRACT_PATH,
+        )
+        review_bytes = (root / REVIEW_PATH).read_bytes()
+        run.check(
+            "review-pinned",
+            contract["review"]["sha256"] == hashlib.sha256(review_bytes).hexdigest(),
+        )
+        report["limits"] = install_limits(run)
         report["contract"] = {
-            "path": CONTRACT_PATH,
+            "path": CONTRACT_V1_PATH,
             "sha256": hashlib.sha256(contract_bytes).hexdigest(),
+            "version": contract["version"],
+            "supersedes": contract["supersedes"]["path"],
+            "supersedes_sha256": contract["supersedes"]["sha256"],
+            "review": contract["review"]["path"],
             "question": contract["question"],
             "base_commit": contract["base_commit"],
         }
