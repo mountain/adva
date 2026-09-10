@@ -70,8 +70,18 @@
     "The delivered checker replays with identical status, identical check count and an identical check-name list; timing and platform fields are excluded rather than compared",
     "The independent integer-pair derivations pass for the field laws, Fibonacci powers, Cassini, convergent brackets, matrix powers, the word residual and its two controls, the HNN relations and their commuting shadow, rectangle images, coverage and residual, the fixed point, icosahedral incidence, the two hyperbolic cosh values, the substitution counts and the bounded search traces",
     "All eight atlas corrections are refused by an executable control",
-    "Four receipt kinds are emitted with all twelve declared fields, and each relabeling refusal holds"
+    "Four receipt kinds are emitted with all twelve declared fields, and each relabeling refusal holds",
+    "The three golden rectangle boundaries are pairwise disjoint while their filled sets share an interior point, and the translated-copy and nearby-copy controls behave as declared."
   ],
   "unknown": "Any budget, bound, digest or replay failure is reported as Unknown or Invalid and never promoted to partial acceptance",
-  "replay": "python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-fresh.json (the output path must not exist)"
+  "replay": "python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-fresh.json (the output path must not exist)",
+  "amendments": [
+    {
+      "recorded": "2026-09-10",
+      "after_first_execution": true,
+      "addition": "Exact boundary-disjointness checks for the three mutually perpendicular golden rectangles determined by the twelve icosahedron vertices, with two controls: a translated copy whose boundary must be detected as meeting, and a nearby copy whose crossings fall at the other golden half-extent and must not.",
+      "reason": "The atlas lists this configuration as its Borromean candidate. The first execution verified the vertex, edge and face incidence but left the boundary structure unconstructed.",
+      "effect_on_scope": "The question, objects, types, protected list, budget and unknown policy are unchanged. The acceptance list gains the boundary obligation below."
+    }
+  ]
 }

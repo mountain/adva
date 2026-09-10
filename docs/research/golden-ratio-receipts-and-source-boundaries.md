@@ -97,9 +97,9 @@ certification of a picture.
 | `plates/fake-real-log-spiral.webp` | the atlas's separation of a logarithmic spiral from a circular-arc imitation | Refusal R5: over one quarter turn an arc keeps radius ratio `1` while the spiral contracts by `phi^-1`, exactly, so the two are not similar |
 | `plates/golden-triangle-and-fibonacci-spiral.webp` | the golden triangle and its gnomon subdivision | **Not executed.** Only the rectangle and spiral parts were checked; the triangle subdivision, its two tile types and their cut witnesses remain obligations |
 | `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | **Not executed.** The dual, the in- and circum-spheres and the inscribed cube and octahedron were not run |
-| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles follow from the same coordinates, but the boundary disjointness the figure illustrates and the link certificate are **not constructed** |
+| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. The link certificate itself remains **not constructed** |
 | `plates/divina-proportione-illustration-13.jpg` | the Pacioli/Leonardo historical layer | Source object only. The atlas itself requires original text and later readings to be registered separately; nothing historical is imported |
-| `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence |
+| `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence. Its third panel's configuration is now checked exactly, and its first two panels restate the rectangle and arc-versus-spiral distinctions that the run already settles |
 | `source/reference/Golden_ratio.pdf` | the article revision the atlas read | Byte probe only: title, creation date and `oldid=1370346489` confirmed; the text is not parsed and nothing is imported from it |
 
 Eight of the nine rows end in a residual or an explicit `Not executed`; only the
@@ -134,9 +134,12 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 806 checks, 2,717 nodes, 0.095 s before
+1 MiB of output. Result: **Passed**, 815 checks, 2,729 nodes, 0.098 s before
 serialization, one child process, no unbounded search, no random sampling and
-no transcendental evaluation.
+no transcendental evaluation. The contract carries one recorded amendment: the
+boundary-disjointness obligation of section 3.2 was added after the first
+execution, and is listed there rather than presented as part of the frozen
+scope.
 
 The run has four tiers.
 
@@ -164,7 +167,11 @@ identity; the affine word `abbbaBAAB`, its residual as an exact polynomial
 agrees with the concrete composition; rectangle images, area, diameter,
 nesting, fixed point, coverage identity and strictly positive residual for
 `n <= 16`; the twelve icosahedron vertices with 66 squared distances, 30
-edges, degree 5 and 20 triangular faces; three exact hyperbolic `cosh`
+edges, degree 5 and 20 triangular faces; the three golden rectangles they
+determine, whose corner sets are exactly those vertices, whose filled sets
+share the origin while their boundaries are pairwise disjoint, and whose
+disjointness test is controlled in both directions by a translated copy that
+must meet and a nearby copy that must not; three exact hyperbolic `cosh`
 values; eight substitution steps; and three bounded golden-section searches
 with identical interval traces.
 

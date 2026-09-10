@@ -25,7 +25,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract.json",
-    "sha256": "08c14bb40769e8d1ff7d19493445952006535370ad77646f68c7d1f1e5119022",
+    "sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
     "question": "Can one bounded checker consume the delivered golden-ratio resource set, distinguish the four receipt kinds the atlas asks for, independently re-derive its exact identities in a different encoding, and refuse its eight listed corrections?",
     "base_commit": "99193036aa1651f8d1299901d57e3fd9a987e322"
   },
@@ -120,6 +120,23 @@
     "edges": 30,
     "faces": 20,
     "pairs": 66
+  },
+  "golden_rectangles": {
+    "rectangles": [
+      "x0",
+      "y0",
+      "z0"
+    ],
+    "corners": 12,
+    "boundary_segments_each": 4,
+    "boundary_pairs_checked": 3,
+    "filled_intersection": "the origin, interior to all three",
+    "boundary_intersection": "empty for every pair",
+    "controls": {
+      "translated_copy_meets": true,
+      "nearby_copy_misses": true
+    },
+    "link_certificate": "not constructed"
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -353,9 +370,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.09248883300460875,
-    "checks": 806,
-    "nodes": 2717,
+    "wall_seconds_before_serialization": 0.09812404215335846,
+    "checks": 815,
+    "nodes": 2729,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -937,6 +954,15 @@
     "icosahedron-thirty-edges",
     "icosahedron-degree-five",
     "icosahedron-twenty-faces",
+    "golden-rectangles-twelve-corners",
+    "golden-rectangles-corners-are-the-vertices",
+    "golden-rectangles-ratio",
+    "golden-rectangles-filled-sets-meet",
+    "golden-rectangles-boundaries-disjoint::z0::x0",
+    "golden-rectangles-boundaries-disjoint::z0::y0",
+    "golden-rectangles-boundaries-disjoint::x0::y0",
+    "golden-rectangles-control-translated-meets",
+    "golden-rectangles-control-nearby-misses",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
