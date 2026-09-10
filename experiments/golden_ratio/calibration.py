@@ -739,14 +739,19 @@ def rectangle_checks(run: Run) -> dict:
     }
 
 
-def icosahedron_checks(run: Run) -> dict:
-    # The twelve vertices are the cyclic arrangements of (0, +/-1, +/-phi).
+def icosahedron_vertices() -> list[tuple[K, K, K]]:
+    """The twelve vertices are the cyclic arrangements of (0, +/-1, +/-phi)."""
     vertices = []
     for first in (-1, 1):
         for second in (-1, 1):
             vertices.append((ZERO, rational(first), rational(second) * PHI))
             vertices.append((rational(first), rational(second) * PHI, ZERO))
             vertices.append((rational(second) * PHI, ZERO, rational(first)))
+    return vertices
+
+
+def icosahedron_checks(run: Run) -> dict:
+    vertices = icosahedron_vertices()
     run.check("icosahedron-twelve-vertices", len(set(vertices)) == 12)
     squared = {}
     for i in range(12):
@@ -772,6 +777,166 @@ def icosahedron_checks(run: Run) -> dict:
     ]
     run.check("icosahedron-twenty-faces", len(faces) == 20)
     return {"vertices": 12, "edges": len(edges), "faces": len(faces), "pairs": len(squared)}
+
+
+def rectangle_corners(rectangle: dict) -> list[tuple[K, K, K]]:
+    fixed = rectangle["fixed"]
+    axes = [axis for axis in range(3) if axis != fixed]
+    corners = []
+    for first in (-1, 1):
+        for second in (-1, 1):
+            point = list(rectangle["center"])
+            point[fixed] = rectangle["value"]
+            point[axes[0]] = point[axes[0]] + rational(first) * rectangle["extents"][axes[0]]
+            point[axes[1]] = point[axes[1]] + rational(second) * rectangle["extents"][axes[1]]
+            corners.append(tuple(point))
+    return corners
+
+
+def rectangle_segments(rectangle: dict) -> list[tuple[tuple[K, K, K], tuple[K, K, K]]]:
+    fixed = rectangle["fixed"]
+    axes = [axis for axis in range(3) if axis != fixed]
+    corners = rectangle_corners(rectangle)
+    segments = []
+    for axis in axes:
+        for sign in (-1, 1):
+            target = rectangle["center"][axis] + rational(sign) * rectangle["extents"][axis]
+            chosen = [point for point in corners if point[axis] == target]
+            if len(chosen) != 2:
+                raise Invalid("a rectangle edge must join exactly two of its corners")
+            segments.append((chosen[0], chosen[1]))
+    return segments
+
+
+def boundary_on_line(first: dict, second: dict) -> tuple[list[K], list[tuple[K, K]]]:
+    """Where the first boundary meets the intersection line of the two planes.
+
+    Each rectangle lies in its own coordinate plane, so any point shared by the
+    two boundaries lies on the line where those planes meet. The candidates are
+    therefore the crossings of that line by the first rectangle's four edges,
+    plus a closed interval for any edge that lies inside the second plane.
+    """
+    if first["fixed"] == second["fixed"]:
+        raise Invalid("boundary comparison needs two different coordinate planes")
+    along = 3 - first["fixed"] - second["fixed"]
+    value = second["value"]
+    points: list[K] = []
+    intervals: list[tuple[K, K]] = []
+    for start, end in rectangle_segments(first):
+        low, high = start[second["fixed"]], end[second["fixed"]]
+        if low == high:
+            if low == value:
+                first_along, second_along = start[along], end[along]
+                intervals.append((min(first_along, second_along), max(first_along, second_along)))
+            continue
+        parameter = (value - low) / (high - low)
+        if ZERO <= parameter <= ONE:
+            point = tuple(
+                coordinate + parameter * (end_coordinate - coordinate)
+                for coordinate, end_coordinate in zip(start, end)
+            )
+            points.append(point[along])
+    return points, intervals
+
+
+def boundaries_meet(first: dict, second: dict) -> bool:
+    """Exact meeting test for two rectangle boundaries in perpendicular planes."""
+    first_points, first_intervals = boundary_on_line(first, second)
+    second_points, second_intervals = boundary_on_line(second, first)
+    if any(a == b for a in first_points for b in second_points):
+        return True
+    if any(low <= point <= high for low, high in first_intervals for point in second_points):
+        return True
+    if any(low <= point <= high for low, high in second_intervals for point in first_points):
+        return True
+    return any(
+        low <= other_high and other_low <= high
+        for low, high in first_intervals
+        for other_low, other_high in second_intervals
+    )
+
+
+def golden_rectangle_checks(run: Run) -> dict:
+    """Filled sets meet, boundaries do not: the figure's combinatorial content."""
+    rectangles = {
+        "z0": {"fixed": 2, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {0: ONE, 1: PHI}},
+        "x0": {"fixed": 0, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {1: ONE, 2: PHI}},
+        "y0": {"fixed": 1, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {2: ONE, 0: PHI}},
+    }
+    corners: set = set()
+    for rectangle in rectangles.values():
+        corners.update(rectangle_corners(rectangle))
+    run.check("golden-rectangles-twelve-corners", len(corners) == 12)
+    run.check("golden-rectangles-corners-are-the-vertices", corners == set(icosahedron_vertices()))
+    run.check(
+        "golden-rectangles-ratio",
+        all(
+            max(rectangle["extents"].values()) == PHI * min(rectangle["extents"].values())
+            for rectangle in rectangles.values()
+        ),
+    )
+
+    def inside(rectangle: dict, point: tuple[K, K, K], strict: bool) -> bool:
+        if point[rectangle["fixed"]] != rectangle["value"]:
+            return False
+        for axis in range(3):
+            if axis == rectangle["fixed"]:
+                continue
+            offset = point[axis] - rectangle["center"][axis]
+            size = offset if offset.sign() >= 0 else -offset
+            if strict:
+                if not size < rectangle["extents"][axis]:
+                    return False
+            elif not size <= rectangle["extents"][axis]:
+                return False
+        return True
+
+    origin = (ZERO, ZERO, ZERO)
+    run.check(
+        "golden-rectangles-filled-sets-meet",
+        all(inside(rectangle, origin, True) for rectangle in rectangles.values()),
+    )
+
+    pairs = (("z0", "x0"), ("z0", "y0"), ("x0", "y0"))
+    for first, second in pairs:
+        run.tick()
+        run.check(
+            f"golden-rectangles-boundaries-disjoint::{first}::{second}",
+            not boundaries_meet(rectangles[first], rectangles[second]),
+        )
+
+    # Controls: the same test must detect a meeting, and must not report one for
+    # a nearby copy whose crossings fall at the other golden half-extent.
+    translated_x = {
+        "fixed": 0,
+        "value": ONE,
+        "center": (ONE, ZERO, ZERO),
+        "extents": {1: ONE, 2: PHI},
+    }
+    translated_y = {
+        "fixed": 2,
+        "value": ZERO,
+        "center": (ZERO, ONE, ZERO),
+        "extents": {0: ONE, 1: PHI},
+    }
+    run.check(
+        "golden-rectangles-control-translated-meets",
+        boundaries_meet(rectangles["z0"], translated_x),
+    )
+    run.check(
+        "golden-rectangles-control-nearby-misses",
+        not boundaries_meet(rectangles["y0"], translated_y),
+    )
+    return {
+        "rectangles": sorted(rectangles),
+        "corners": len(corners),
+        "boundary_segments_each": 4,
+        "boundary_pairs_checked": len(pairs),
+        "filled_intersection": "the origin, interior to all three",
+        "boundary_intersection": "empty for every pair",
+        "controls": {"translated_copy_meets": True, "nearby_copy_misses": True},
+        "link_certificate": "not constructed",
+    }
 
 
 def hyperbolic_checks(run: Run) -> dict:
@@ -1202,6 +1367,7 @@ def main() -> int:
         report["word"] = word_checks(run)
         report["rectangle"] = rectangle_checks(run)
         report["icosahedron"] = icosahedron_checks(run)
+        report["golden_rectangles"] = golden_rectangle_checks(run)
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)
