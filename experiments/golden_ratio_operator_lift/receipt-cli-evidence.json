@@ -1,0 +1,78 @@
+{
+  "status": "Passed",
+  "CLI_replays": [
+    {
+      "case": "fresh-nonstandard-basis",
+      "exit_code": 0,
+      "process_seconds": 0.031225106999045238,
+      "output": {
+        "context": {
+          "basis": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "0",
+              "1"
+            ]
+          ],
+          "composition": "rightmost-first",
+          "dimension": 2,
+          "domain": "Q-vector-affine",
+          "operator": [
+            [
+              "1",
+              "1"
+            ],
+            [
+              "1",
+              "2"
+            ]
+          ],
+          "word": "abbbaBAAB"
+        },
+        "context_sha256": "03fa94e9359243c5b248626f04c28d38d9b613dc4018e7dd89e3ea2890083f91",
+        "missing_basis_indices": [],
+        "native_admission": "NotGranted",
+        "replayed": [
+          {
+            "basis_index": 0,
+            "closed": true,
+            "translation_residual": [
+              "0",
+              "0"
+            ]
+          },
+          {
+            "basis_index": 1,
+            "closed": true,
+            "translation_residual": [
+              "0",
+              "0"
+            ]
+          }
+        ],
+        "scope": "all rational translations in the declared space, via checked basis and affine-word lemma",
+        "status": "ClosedForAllTranslationsByLinearity",
+        "validation_seconds": 0.0006472469976870343,
+        "work_units": 224
+      }
+    },
+    {
+      "case": "forged-zero",
+      "exit_code": 2,
+      "process_seconds": 0.03268592999665998,
+      "output": {
+        "native_admission": "NotGranted",
+        "reason": "reported residual or Boolean does not replay",
+        "status": "InvalidEvidence",
+        "validation_seconds": 0.0016717409962438978,
+        "work_units": 810
+      }
+    }
+  ],
+  "source_evidence_sha256": "445db483b9f13faf88344e1d2830b3c576fd9bee7147a7c3a05a8d234376abec",
+  "correction_replays": 0,
+  "note": "CLI uses 5 CPU seconds, 256 MiB address space; parent subprocess timeout 5 seconds per invocation. No candidates searched."
+}
