@@ -1,0 +1,89 @@
+audit-code-05.txt — retained code excerpts with line numbers
+provenance: OriginalCopy excerpts from the three retained files committed in local AEG 34d35f5.
+
+reuse_benchmark_04.py  sha256 dfdc2cd9ea6b021b8ac68ad4c1b301b789674f3df23c3c194e5bb33104950415
+lines 40-46 (baseline projection construction, note content_tokens field):
+    40 def projection_for(text):
+    41     lines = R.filtered_lines(text)
+    42     toks = R.content_tokens(text)
+    43     freq, rank, fd, order = R.build_freq_rank(toks)
+    44     loc, span = R.context_from_lines(lines)
+    45     return {"frequency": freq, "rank": rank, "locator": loc,
+    46             "context": span, "content_tokens": len(toks)}
+lines 61-78 (B timer boundaries; B = sum of stage timings):
+    61     t = now()
+    62     lines = {k: R.filtered_lines(v) for k, v in texts.items()}
+    63     b_stages["lines"] = now() - t
+    64     t = now()
+    65     toks = {k: R.content_tokens(v) for k, v in texts.items()}
+    66     b_stages["tokenize"] = now() - t
+    67     t = now()
+    68     proj_B = {}
+    69     for side in ("left", "right"):
+    70         f, rk, fd, order = R.build_freq_rank(toks[side])
+    71         loc, span = R.context_from_lines(lines[side])
+    72         proj_B[side] = {"frequency": f, "rank": rk, "locator": loc,
+    73                         "context": span, "content_tokens": len(toks[side])}
+    74     b_stages["rank_and_context"] = now() - t
+    75     t = now()
+    76     b_serialized = json.dumps(proj_B)
+    77     b_stages["serialize"] = now() - t
+    78     B = sum(b_stages.values())
+lines 147-158 (R subprocess wall timer and the ORIGINAL first comparison):
+   147     t = now()
+   148     cp = subprocess.run([sys.executable, BASE + "/reuse_query.py", index_path],
+   149                         capture_output=True, text=True, timeout=30)
+   150     r_total = now() - t
+   151     r_report = json.loads(cp.stdout)
+   152     proj_R = r_report["projection"]
+   153     R_cost = r_report["total_seconds"]
+   154 
+   155     # ---- comparison and accounting ----
+   156     equal = proj_B == proj_R
+   157     amortize = None
+   158     if B > R_cost:
+
+reuse_query.py  sha256 ef97fa66763edd8ea22d31dec7e441b59e8c4fa45b4caa40e9e7d7b65c95174f
+lines 28-58 (R stage timers; projection WITHOUT content_tokens):
+    28     t["load"] = time.perf_counter()
+    29     with open(index_path, "rb") as f:
+    30         idx = json.load(f)
+    31     t["verify"] = time.perf_counter()
+    32     bindings_ok = (idx["source_sha256"] == {k: sha(v) for k, v in sources.items()}
+    33                    and idx["rule_sha256"] == sha(R.__file__))
+    34     if not bindings_ok:
+    35         print(json.dumps({"refused": True, "reason": "binding mismatch"}))
+    36         return 1
+    37     t["lookup"] = time.perf_counter()
+    38     out = {}
+    39     for side in ("left", "right"):
+    40         entry = idx["sides"][side]["tokens"].get(R.TARGET)
+    41         if entry is None:
+    42             out[side] = None
+    43             continue
+    44         lines = idx["sides"][side]["lines"]
+    45         loc, span = R.context_from_lines(lines)
+    46         out[side] = {"frequency": entry["freq"], "rank": entry["rank"],
+    47                      "locator": loc, "context": span}
+    48     t["serialize"] = time.perf_counter()
+    49     report = {
+    50         "refused": False,
+    51         "projection": out,
+    52         "stage_seconds": {
+    53             "load": t["verify"] - t["load"],
+    54             "verify": t["lookup"] - t["verify"],
+    55             "lookup": t["serialize"] - t["lookup"],
+    56             "serialize": time.perf_counter() - t["serialize"],
+    57         },
+    58         "total_seconds": time.perf_counter() - t["start"],
+
+reuse_rules.py  sha256 4010b60c7df8c114caca962371785e93cd7b1e929ee4ae425b8d73dc01138796
+stoplist definition (verbatim 119 words, triple-quoted block):
+     2 """Frozen rule module for bounded exchange round 04.
+     6 """
+     9 STOP = set("""a an the and or but if then else for of to in on at by with from as is are was were be been being
+    14 because although though since once""".split())
+    14 because although though since once""".split())
+
+redactions: local filesystem paths in code lines were replaced by <redacted-local-path>;
+the sys.path.insert line in reuse_query.py and unrelated import/helper lines are omitted by line-range selection.

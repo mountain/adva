@@ -1,0 +1,47 @@
+{
+  "schema": "aeg.audit.comparison-objects-05",
+  "version": 0,
+  "provenance": "OriginalCopy: subobjects copied verbatim from the retained, committed reuse-measure-04.json (sha256 b63b4a6b5702320ffbe08739562b869faddcb6b3530b582e403efed78d448448, committed in local AEG 34d35f5)",
+  "baseline_projection_used_by_first_comparison": {
+    "left": {
+      "frequency": 21,
+      "rank": 61,
+      "locator": 212,
+      "context": "Potatoes take rank for universal use profit and easy acquirement",
+      "content_tokens": 8279
+    },
+    "right": {
+      "frequency": 234,
+      "rank": 22,
+      "locator": 2763,
+      "context": "your beneficiary use your combined",
+      "content_tokens": 41209
+    }
+  },
+  "reloaded_projection_used_by_first_comparison": {
+    "left": {
+      "frequency": 21,
+      "rank": 61,
+      "locator": 212,
+      "context": "Potatoes take rank for universal use profit and easy acquirement"
+    },
+    "right": {
+      "frequency": 234,
+      "rank": 22,
+      "locator": 2763,
+      "context": "your beneficiary use your combined"
+    }
+  },
+  "first_comparison_code": "reuse_benchmark_04.py line 156: equal = proj_B == proj_R (full-object equality; baseline carries the extra content_tokens field, reloaded projection does not -> false)",
+  "corrected_comparison": {
+    "declared_projection_equal": true,
+    "compared_fields": [
+      "frequency",
+      "rank",
+      "locator",
+      "context"
+    ],
+    "note": "first comparison keyed on a wider object (baseline carried an extra content_tokens field) and reported false; corrected post-hoc on the four declared fields, no re-run"
+  },
+  "note": "The corrected comparison was applied post-hoc to this output record; the code itself was never changed and still contains the full-object comparison at line 156."
+}
