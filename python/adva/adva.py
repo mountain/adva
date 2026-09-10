@@ -200,6 +200,10 @@ def _save_new(path, report):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     commands = parser.add_subparsers(dest="command", required=True)
+    operator = commands.add_parser("operator-check", help="bounded external rational-affine receipt check; no native admission")
+    operator.add_argument("--question", required=True, type=Path, help="independently selected local question")
+    operator.add_argument("--receipt", required=True, type=Path, help="incoming receipt file")
+    operator.add_argument("--output", required=True, type=Path, help="fresh report; inputs remain read-only")
     prime = commands.add_parser("prime-check", help="bounded Rust prime-check transport")
     prime.add_argument("request", type=Path)
     prime.add_argument("--native", help="trusted Rust adva-prime-verify executable")
@@ -293,6 +297,18 @@ def main():
                            help="optional fresh private-seed path (0600, operator custody)")
     args = parser.parse_args()
     try:
+        if args.command == "operator-check":
+            if args.output.exists() or args.output.is_symlink():
+                raise FileExistsError("output must be a fresh path")
+            if __package__:
+                from . import operator_receipt
+            else:
+                import operator_receipt
+            report = operator_receipt.run(args.question, args.receipt)
+            _save_new(args.output, report)
+            print(json.dumps({"status": report["status"], "execution": report["execution"],
+                              "output": str(args.output), "native_admission": "NotGranted"}))
+            return operator_receipt.exit_code(report["status"])
         if args.command == "advance":
             if args.profile == "symbol-surface-load-v0" and __package__:
                 from .advance_surface import run as run_advance
