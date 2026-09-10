@@ -1,0 +1,39 @@
+{
+  "schema": "adva.k28-transport-closure.research",
+  "version": 0,
+  "date": "2026-09-10",
+  "main_commit": "0e4be5f81f59cd208b14bd21ea8a3250e8f7f289",
+  "library_commit": "b99d9c7295e9d3a4a0d77f8a7e7e6db7deee4364",
+  "fix_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c",
+  "retained_evidence": {
+    "program": "docs/research/0141-native-evidence/product-k28.program.adva",
+    "old_result": "docs/research/0141-native-evidence/product-k28.native-result.adva",
+    "program_sha256": "5bce3761ac9cb104f134727361ca8e6f0e5cd3fad76c2c9b2ea4cfdc592c22b0",
+    "old_result_sha256": "30513ae2e6c8c3d821643768aa3b445433345f52984c9a6d90ffbabb84ca1c76"
+  },
+  "root_cause": "serde_json default float formatting lost the last ulp when the native runner echoed parsed inputs (0.9999999962747097 -> 0.9999999962747096); the Python exact-Fraction matcher then rejected product-k28. Workspace float_roundtrip (ade4f88) restores round-trip lexemes.",
+  "bit_patterns": {
+    "expected_y_binary64_bits": "0x3feffffffe000000",
+    "old_reported_lexeme": "0.9999999962747096",
+    "old_reported_bits": "0x3feffffffdffffff",
+    "old_ulp_delta": 1,
+    "new_reported_lexeme": "0.9999999962747097",
+    "new_reported_bits": "0x3feffffffe000000",
+    "new_ulp_delta": 0
+  },
+  "replay": {
+    "command": "./target/release/adva run docs/research/0141-native-evidence/product-k28.program.adva --output /tmp/k28-replay.adva",
+    "state": "Completed",
+    "values": [
+      1.0
+    ],
+    "echoed_inputs_equal_submitted": true,
+    "reported_y": 0.9999999962747097
+  },
+  "regression": {
+    "test": "crates/adva-witness/src/native_run.rs::native_input_and_report_preserve_k28_binary64_values",
+    "local_result": "passed (cargo test --locked -p adva-witness)",
+    "upstream_native_acceptance": "experiments/numeric_boundary_audit/native-verification.json"
+  },
+  "boundary": "Single-case closure of research 0141 product-k28. No universal JSON float round-trip claim; nonfinite serialization remains refused by adva-ir numeric_serialization."
+}
