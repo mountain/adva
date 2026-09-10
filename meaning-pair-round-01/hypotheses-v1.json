@@ -1,0 +1,44 @@
+{
+  "schema": "aeg.meaning-pair.hypotheses",
+  "version": 1,
+  "round": "meaning-pair-round-01",
+  "objects": {
+    "a": "0504358v1.pdf — Bobenko-Suris, Discrete Differential Geometry. Consistency as Integrability (2005, 157 pp)",
+    "b": "0608291v2.pdf — Bobenko-Suris, On Organizing Principles of Discrete Differential Geometry. Geometry of spheres (2006, 57 pp)"
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "derivation-pair",
+      "statement": "The 2006 survey derives from the 2005 book: same authors, same field, the 2006 paper cites the 2005 book.",
+      "check": "citation b_cites_a=true, a_cites_b=false; vocabulary overlap 0.7677 (highest yet); titles share 'Discrete Differential Geometry'.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H2",
+      "name": "principle-arithmetic",
+      "statement": "The 2005 book establishes ONE deep principle (consistency = integrability); the 2006 survey organizes TWO principles (transformation group + consistency).",
+      "check": "consistency 88->26, integrab* 137->30 (thesis foregrounded in 2005); transformation group 1->8, principle 10->19 (organizing vocabulary in 2006).",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H3",
+      "name": "concretization",
+      "statement": "The 2006 survey focuses on one concrete problem: curvature line parametrized surfaces in Lie geometry, unifying circular and conical nets.",
+      "check": "sphere 60->239 (4x), conical 0->38, lie geometry 0->24, curvature line 7->30; pages 157->57.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H4",
+      "name": "reverse-learning-structure",
+      "statement": "The pair exhibits the double movement: one principle splits into two (一分为二), and two discretizations unify into one parametrization (合二为一).",
+      "check": "titles: 2005 'Consistency as Integrability' (one identity); 2006 abstract: 'a discretization ... which unifies the circular and conical nets' (one unification).",
+      "status": "VariationObserved"
+    }
+  ],
+  "alignment_measure": {
+    "vocabulary_overlap_coefficient": 0.7677,
+    "pages": "157 -> 57",
+    "shared_title_term": "Discrete Differential Geometry"
+  }
+}

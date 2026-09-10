@@ -1,0 +1,2385 @@
+arXiv:math/0608291v2 [math.DG] 13 Oct 2006
+
+On Organizing Principles of
+Discrete Differential Geometry.
+Geometry of spheres
+Alexander I. Bobenko ∗
+
+Yuri B. Suris †
+
+February 2, 2008
+
+Abstract. Discrete differential geometry aims to develop discrete equivalents
+of the geometric notions and methods of classical differential geometry. In this
+survey we discuss the following two fundamental Discretization Principles: the
+transformation group principle (smooth geometric objects and their discretizations
+are invariant with respect to the same transformation group) and the consistency
+principle (discretizations of smooth parametrized geometries can be extended to
+multidimensional consistent nets). The main concrete geometric problem discussed
+in this survey is a discretization of curvature line parametrized surfaces in Lie
+geometry. By systematically applying the Discretization Principles we find a discretization of curvature line parametrization which unifies the circular and conical
+nets.
+
+∗
+
+Institut für Mathematik, Technische Universität Berlin, Str. des 17. Juni 136, 10623
+Berlin, Germany. E–mail: bobenko@math.tu-berlin.de
+†
+Zentrum Mathematik, Technische Universität München, Boltzmannstr. 3, 85747
+Garching bei München, Germany. E–mail: suris@ma.tum.de
+Research for this article was supported by the DFG Research Unit 565 ‘Polyhedral
+Surfaces” and the DFG Research Center Matheon “Mathematics for key technologies”
+in Berlin.
+
+1
+
+1
+
+Introduction
+
+The new field of discrete differential geometry is presently emerging on the
+border between differential and discrete geometry. Whereas classical differential geometry investigates smooth geometric shapes, discrete differential
+geometry studies geometric shapes with finite numbers of elements and aims
+to develop discrete equivalents of the geometric notions and methods of classical differential geometry. The latter appears then as a limit of refinements
+of the discretization. Current interest in this field derives not only from
+its importance in pure mathematics but also from its relevance for computer graphics. An important example one should keep in mind here are
+polyhedral surfaces approximating smooth surfaces.
+One may suggest many different reasonable discretizations with the same
+smooth limit. Which one is the best? From the theoretical point of view
+the best discretization is the one which preserves all fundamental properties of the smooth theory. Often such a discretization clarifies the structures of the smooth theory and possesses important connections to other
+fields of mathematics (projective geometry, integrable systems, algebraic
+geometry, complex analysis etc.). On the other hand, for applications the
+crucial point is the approximation: the best discretization is supposed to
+possess distinguished convergence properties and should represent a smooth
+shape by a discrete shape with just few elements. Although these theoretical and applied criteria for the best discretization are completely different, in many cases natural “theoretical” discretizations turn out to possess
+remarkable approximation properties and are very useful for applications
+[BSch, LPWYW].
+This interaction of the discrete and smooth versions of the theory led
+to important results in the surface theory as well as in the geometry of
+polyhedra. Classical achievements of discrete differential geometry are the
+fundamental results of Alexandrov and Pogorelov on metric geometry of
+polyhedra and convex surfaces: Alexandrov’s theorem [Al] states that any
+abstract convex polyhedral metric is uniquely realized by a convex polyhedron in Euclidean 3-space. Pogorelov proved [Pog] the corresponding existence and uniqueness result for abstract convex metrics by approximating
+smooth surfaces by polyhedra.
+Simplicial surfaces, i.e., discrete surfaces made from triangles, are basic in computer graphics. This class of discrete surfaces, however, is too
+unstructured for analytical investigation. An important tool in the theory
+of smooth surfaces is the introduction of (special) parametrizations of a
+surface. Natural analogues of parametrized surfaces are quadrilateral sur2
+
+faces, i.e. discrete surfaces made from (not necessarily planar) quadrilaterals. The strips of quadrilaterals obtained by gluing quadrilaterals along
+opposite edges are analogs of coordinate lines. Probably the first nontrivial
+example of quadrilateral surfaces studied this way are discrete surfaces with
+constant negative Gaussian curvature introduced by Sauer and Wunderlich
+[S1, Wu]. Currently discrete parametrized surfaces are becoming more important in computer graphics. They lead to meshes that better represent
+the shape of the surface and look regular [ACSDLD, DKG, MK, LPWYW].
+It is well known that differential equations describing interesting special classes of surfaces and parametrizations are integrable (in the sense of
+the theory of integrable systems), and, conversely, many of interesting integrable systems admit a differential-geometric interpretation. A progress in
+understanding of the unifying fundamental structure the classical differential
+geometers were looking for, and simultaneously in understanding of the very
+nature of integrability, came from the efforts to discretize these theories. It
+turns out that many sophisticated properties of differential-geometric objects find their simple explanation within the discrete differential geometry.
+The early period of this development is documented in the work of Sauer [S2].
+The modern period began with the work by Bobenko and Pinkall [BP1, BP2]
+and by Doliwa and Santini [DS, CDS]. A closely related development of the
+spectral theory of difference operators on graphs was initiated by Novikov
+with collaborators [ND, N1, N2], see also [DN] for a further development of
+a discrete complex analysis on simplicial manifolds.
+Discrete surfaces in Euclidean 3-space is the basic example considered in
+this survey. This case has all essential features of the theory in all generality,
+generalizations for higher dimensions are straightforward. On the other
+hand, our geometric three-dimensional intuition helps to understand their
+properties.
+Discrete differential geometry related to integrable systems deals with
+multidimensional discrete nets, i.e., maps from the regular cubic lattice Zm
+into RN specified by certain geometric properties (as mentioned above, we
+will be most interested in the case N = 3 in this survey). In this setting discrete surfaces appear as two dimensional layers of multidimensional discrete
+nets, and their transformations correspond to shifts in the transversal lattice
+directions. A characteristic feature of the theory is that all lattice directions are on equal footing with respect to the defining geometric properties.
+Discrete surfaces and their transformations become indistinguishable. We
+associate such a situation with the multidimensional consistency, and this is
+one of our fundamental discretization principles. The multidimensional consistency, and therefore the existence and construction of multidimensional
+3
+
+nets, relies just on certain incidence theorems of elementary geometry.
+Conceptually one can think of passing to a continuum limit by refining mesh size in some of the lattice directions. In these directions the net
+converges to smooth surfaces whereas those directions that remain discrete
+correspond to transformations of the surfaces (see Fig. 1). The smooth
+
+Figure 1: From the discrete master theory to the classical theory: surfaces
+and their transformations appear by refining two of three net directions.
+theory comes as a corollary of a more fundamental discrete master theory.
+The true roots of the classical surface theory are found, quite unexpectedly,
+in various incidence theorems of elementary geometry. This phenomenon,
+which has been shown for many classes of surfaces and coordinate systems
+[BP2, BS2], currently is getting accepted as one of the fundamental features
+of classical integrable differential geometry.
+Note that finding simple discrete explanations for complicated differential geometric theories is not the only outcome of this development. Having
+identified the roots of the integrable differential geometry in the multidimensional consistency of discrete nets, we are led to a new (geometric)
+understanding of the integrability itself [BS1, ABS, BS2].
+The simplest and at the same time the basic example of consistent multidimensional nets are multidimensional Q-nets [DS], or discrete conjugate
+nets [S2], which are characterized by planarity of all quadrilaterals. The planarity property is preserved by projective transformations and thus Q-nets
+are subject of projective geometry (like conjugate nets, which are smooth
+counterparts of Q-nets).
+Here we come to the next basic discretization principle. According to
+F. Klein’s Erlangen program, geometries are classified by their transforma4
+
+tion groups. Classical examples are projective, affine, Euclidean, spherical,
+hyperbolic geometry, and sphere geometries of Lie, Möebius, and Laguerre.
+We postulate that the transformation group as the most fundamental feature should be preserved by a discretization. This can be seen as a sort of
+discrete Erlangen program.
+Thus we come to the following fundamental
+Discretization Principles:
+• Transformation group principle: smooth geometric objects and their
+discretizations belong to the same geometry, i.e. are invariant with
+respect to the same transformation group.
+• Consistency principle: discretizations of smooth parametrized geometries can be extended to multidimensional consistent nets.
+Let us explain why such different imperatives as the transformation
+group principle and the consistency principle can be simultaneously imposed for discretization of classical geometries. The transformation groups
+of various geometries, including those of Lie, Möbius and Laguerre, are subgroups of the projective transformation group. Classically, such a subgroup
+is described as consisting of projective transformations which preserve some
+distinguished quadric called absolute. A remarkable result by Doliwa [D1]
+is that multidimensional Q-nets can be restricted to an arbitrary quadric.
+This is the reason why the Discretization Principles work for the classical
+geometries.
+In this survey we deal with three classical geometries described in terms
+of spheres: Möbius, Laguerre and Lie geometries. They have been developed
+by classics, the most elaborated presentation of these geometries can be
+found in Blaschke’s book [B1].
+Möbius geometry is the most popular one of these three geometries. It
+describes properties invariant with respect to Möbius transformations which
+are compositions of reflections in spheres. For N ≥ 3, Möbius transformations of RN coincide with conformal transformations. Möbius geometry does
+not distinguish between spheres and planes (planes are regarded as spheres
+through the infinitely remote point ∞, which compactifies RN to the N sphere SN ). On the other hand, points are considered as objects different
+from spheres. Surfaces are described through their points. Classical examples of Möbius-geometric properties of surfaces are conformal parametrization and the Willmore functional [Wi]. Recent progress in this field is to
+a large extent due to interrelations with the theory of integrable systems
+[FLPP, T].
+5
+
+Laguerre geometry does not distinguish points and spheres (points are
+treated as spheres of zero radius). On the other hand, planes are distinguished. Surfaces are described through their tangent planes. A particular
+Laguerre transformation of a surface is a shift of all tangent planes in the
+normal direction at a constant distance. This transformation is called the
+normal shift.
+Lie geometry is a natural unification of Möbius and Laguerre geometries:
+points, planes and spheres are treated on an equal footing. The transformation group is generated by Möbius transformations and the normal shift
+transformations. Surfaces are described through their contact elements. A
+contact element can be understood as a surface point together with the corresponding tangent plane. The one-parameter family of spheres through a
+point with a common tangent plane gives a Lie-geometric description of a
+contact element. The point of the surface and the tangent plane at this
+point are just two elements of this family.
+Integrability aspects of the surface theory in Lie geometry have been
+studied by Ferapontov [F1, F2], Musso and Nicolodi [MN], and Burstall and
+Hertrich-Jeromin [BHJ1, BHJ2].
+The main concrete geometric problem discussed in this survey is a discretization of curvature line parametrized surfaces. Curvature lines are integral curves of the principal directions. Any surface away from its umbilic
+points can be parametrized by curvature lines. Curvature line parametrization is attracting the attention of mathematicians and physicists for two
+centuries. The classical results in this field can be found in the books by
+Darboux [Da1, Da2] and Bianchi [Bi]. In particular a classical result of
+Dupin [D] claims that the coordinate surfaces of triply orthogonal coordinate systems intersect along their common curvature lines. Ribaucour
+has discovered a transformation of surfaces preserving the curvature line
+parametrization (see [E2]). A surface and its Ribaucour transform envelope
+a special sphere congruence. Bianchi has shown [Bi2] that Ribaucour transformations are permutable: given two Ribaucour transforms of a surface
+there exists a one-parameter family of their common Ribaucour transforms.
+Recently curvature line parametrizations and orthogonal systems came
+back into the focus of interest in mathematical physics as an example of an
+integrable system. Zakharov [Z] has constructed a variety of explicit solutions with the help of the dressing method. Algebro-geometric orthogonal
+coordinate systems were constructed by Krichever [K]. The recent interest
+to this problem is in particular motivated by applications to the theory of
+the associativity equations developed by Dubrovin [Du]. Remarkable geometric properties make curvature line parametrizations especially useful for
+6
+
+visualization of surfaces in computer graphics [ACSDLD, LPWYW].
+The question of proper discretization of the curvature line parametrized
+surfaces and orthogonal systems became recently a subject of intensive
+study. Circular nets, which are Q-nets with circular quadrilaterals, as discrete analogs of curvature line parametrized surfaces were mentioned by
+Nutbourne and Martin [NM]. Special circular nets as discrete isothermic
+surfaces were investigated in [BP2]. The circular discretization of triplyorthogonal coordinate systems was first suggested by one of the authors in
+[B]. Doliwa and Santini [DS] made the next crucial step in the development
+of the theory. They considered discrete orthogonal systems as a reduction of
+discrete conjugated systems [CDS], generalized them to arbitrary dimension
+and proved their multidimensional consistency based on the classical Miquel
+theorem [Be].
+Matthes and the authors of this survey have proven [BMS] that circular
+nets approximate smooth curvature line parametrized surfaces and orthogonal systems with all derivatives. Numerical experiments show that circular
+nets have the desired geometrical properties already at the coarse level and
+not only in the refinement limit as it approaches a smooth curvature line parameterized surface. This is important for applications in computer graphics
+[LPWYW].
+A convenient analytic description of circular nets has been given by
+Konopelchenko and Schief [KS]. Analytic methods of the soliton theory
+have been applied to circular nets by Doliwa, Manakov and Santini [DMS]
+¯
+(∂-method)
+and by Akhmetshin, Volvovskii and Krichever [AKV] (algebrogeometric solutions). Bobenko and Hertrich-Jeromin [BHJ] have given a
+Clifford algebra description of circular nets.
+Circular nets are preserved by Möbius transformations, and thus should
+be treated as the discretization of curvature line parametrizations in Möbius
+geometry. A remarkable recent development by Liu, Pottmann, Wallner,
+Yang, and Wang [LPWYW] is the introduction of conical nets, which should
+be treated as the discretization of curvature line parametrizations in Laguerre geometry. These are special Q-nets characterized by the property
+that four quadrilaterals meeting at a vertex are tangent to a common cone
+of revolution. Equivalently, conical nets can be characterized as Q-nets with
+circular Gauss maps, i.e., the unit normals to the quadrilaterals comprise a
+circular net in the unit sphere S 2 . Circular Gauss maps defined at vertices
+of a given circular net were previously introduced by Schief [Sch2], however
+without relation to conical nets. Conical nets, like circular ones, satisfy the
+second discretization principle (consistency).
+In the present survey, we find a discretization of curvature line parametriza7
+
+tion which unifies the circular and the conical nets by systematically applying the Discretization Principles.
+n
+r1 > 0
+x
+U
+r2 < 0
+
+Figure 2: Principal directions through touching spheres.
+It is well known that curvature lines are subject of Lie geometry, i.e., are
+invariant with respect to Möbius transformations and normal shifts. To see
+this, consider an infinitesimal neighborhood U of a point x of an oriented
+smooth surface in R3 , and the pencil of spheres S(r) of the signed radii r,
+touching the surface at x, see Fig. 2. The signed radius r is assumed positive
+if S(r) lies on the same side of the surface as the normal n, and negative
+otherwise; S(∞) is the tangent plane. For small r0 > 0 the spheres S(r0 )
+and S(−r0 ) intersect U in x only. The set of the touching spheres with
+this property (intersecting U in x only) has two connected components: M+
+containing S(r0 ) and M− containing S(−r0 ) for small r0 > 0. The boundary
+values
+r1 = sup{r : S(r) ∈ M+ },
+
+r2 = inf{r : S(r) ∈ M− }
+
+are the principal curvatures of the surface in x. The directions in which
+S(r1 ) and S(r2 ) touch U are the principal directions.
+Clearly, all ingredients of this description are Möbius-invariant. Under a
+normal shift by the distance d the centers of the principal curvature spheres
+are preserved and their radii are shifted by d. This implies that the principal
+directions and thus the curvature lines are preserved under normal shifts, as
+well.
+A Lie-geometric nature of the curvature line parametrization yields that
+it has a Lie-invariant description. Such a description can be found in
+Blaschke’s book [B1]. A surface in Lie geometry, as already said, is considered as consisting of contact elements. Two infinitesimally close contact
+elements (sphere pencils) belong to the same curvature line, if and only if
+they have a sphere in common, which is the principal curvature sphere.
+
+8
+
+By a literal discretization of this Blaschke’s Lie-geometric description of
+smooth curvature line parametrized surfaces, we define a discrete principal
+contact element net as a map Z2 → {contact elements of surfaces in R3 }
+such that any two neighboring contact elements have a sphere in common.
+In the projective model of Lie geometry spheres in R3 (including points
+and planes) are represented by elements of the so called Lie quadric L ⊂ RP5 ,
+contact elements are represented by isotropic lines, i.e., lines in L, surfaces are represented by congruences of isotropic lines. In the curvature
+line parametrization, the parametric families of isotropic lines comprise developable surfaces in L.
+Accordingly, a discrete principal contact element net in the projective
+model of Lie geometry is a discrete congruence of isotropic lines
+ℓ : Z2 → {isotropic lines in L}
+such that any two neighboring lines intersect. Intersection points of neighboring lines are, as in the smooth case, the principal curvature spheres.
+They are associated with the edges of Z2 . Four principal curvature spheres
+associated to the edges with a common vertex belong to the same contact
+element, i.e., have a common touching point.
+
+Figure 3: Geometry of principal contact element nets. Four neighboring
+contact elements are represented by points and (tangent) planes. The points
+are concircular, the planes are tangent to a cone of revolution. Neighboring
+normal lines intersect at the centers of principal curvature spheres.
+
+9
+
+In projective geometry, discrete line congruences have been introduced
+by Doliwa, Mañas and Santini [DMS]. Discrete line congruences are closely
+related to Q-nets, and, like the latter, are multidimensionally consistent. It
+follows from our results that they can be restricted to the Lie quadric (actually, to any ruled quadric). Thus, principal contact element nets satisfy the
+second discretization principle. In particular, this yields discrete Ribaucour
+transformations between principal contact element nets.
+The Lie-geometric notion of discrete principal contact element nets unifies the Möbius-geometric one (circular nets) and the Laguerre-geometric
+one (conical nets). Indeed, any contact element ℓ contains a point x and a
+plane P . It turns out that for a surface
+ℓ : Z2 → {isotropic lines in L} = {contact elements in R3 },
+the points comprise a circular net
+x : Z2 → R3 ,
+whereas the planes comprise a conical net
+P : Z2 → {planes in R3 }.
+The corresponding geometry is depicted on Fig. 3. Schematically, this Liegeometric merging of the Möbius- and Laguerre-geometric notions is presented on Fig. 4.
+This survey is organized as follows. In Sect. 2 we start with a review of
+the basic multidimensionally consistent systems – the Q-nets and discrete
+line congruences. The basic notions of Lie, Möbius and Laguerre geometries
+are briefly presented in Sect. 3. Sect. 4 contains main new results on discrete
+curvature line parametrized surfaces: Lie-geometric Definitions 18, 19, and
+Theorem 32 which describes interrelations of discrete curvature line nets in
+Lie, Möbius and Laguerre geometries. Geometric characterization of Ribaucour transformations and discrete R-congruences of spheres as quadrilateral
+nets in the Lie quadric is given in Sect. 5.
+Let us note that, due to the classical Lie’s sphere-line correspondence,
+the Lie-geometric theory presented in this survey can be transferred to the
+context of projective line geometry in three-space: the Lie quadric is replaced by the Plücker quadric, the curvature lines and R-congruences of
+spheres correspond to the asymptotic lines and the W-congruences of lines,
+respectively. The projective theory of discrete asymptotic nets has been
+developed by Doliwa [D2].
+10
+
+P12
+
+P2
+LAGUERRE
+P
+
+P1
+
+ℓ2
+
+ℓ12
+
+LIE
+ℓ1
+
+ℓ
+
+x12
+
+x2
+MÖBIUS
+x1
+
+x
+
+Figure 4: Geometry of principal contact element nets. Four neighboring
+contact elements produce a hexahedron with vertices in the Lie quadric
+L and with planar faces. The bottom quadrilateral is the intersection of
+the three-dimensional space V = span(ℓ, ℓ1 , ℓ2 , ℓ12 ) with the 4-space in RP5
+representing points in R3 . The top quadrilateral is the intersection of V
+with the 4-space in RP5 representing planes in R3 . Each side quadrilateral
+lies in the plane of two intersecting lines ℓ ⊂ L.
+
+Our research in discrete differential Lie geometry has been stimulated
+by the recent introduction of conical nets by Liu, Pottmann, Wallner, Yang,
+and Wang [LPWYW]. The advent of the second (after circular nets) discretization of curvature line parametrizations posed a question about the
+relation between the different discretizations. Independently, a relation between circular and conical nets has been found by Pottmann [P]. We are
+grateful to H. Pottmann and J. Wallner for numerous communications on
+conical nets and for providing us with their unpublished results. We thank
+also U. Pinkall for useful discussions.
+
+2
+
+Consistency as a discretization principle
+
+2.1
+
+Q-nets
+
+We use the following standard notation: for a function f on Zm we write
+τi f (u) = f (u + ei ),
+where ei is the unit vector of the i-th coordinate direction, 1 ≤ i ≤ m. We
+use also the shortcut notations fi for τi f , fij for τi τj f , etc.
+11
+
+The most general of the known discrete 3D systems possessing the property of 4D consistency are nets consisting of planar quadrilaterals, or Qnets. Two-dimensional Q-nets were introduced by Sauer [S2], the multidimensional generalization has been given by Doliwa and Santini [DS]. Our
+presentation in this section follows the latter paper. The fundamental importance of multi-dimensional consistency of discrete systems as their integrability has been put forward by the authors [BS1, ABS, BS2].
+Definition 1 (Q-net) A map f : Zm → RPN is called an m-dimensional
+Q-net (quadrilateral net, or discrete conjugate net) in RPN (N ≥ 3), if all
+its elementary quadrilaterals (f, fi , fij , fj ) (at any u ∈ Zm and for all pairs
+1 ≤ i 6= j ≤ m) are planar.
+Thus, for any elementary quadrilateral, any representatives f˜, f˜i , f˜j , f˜ij
+of its vertices in the space RN +1 of homogeneous coordinates satisfy an
+equation of the type
+f˜ij = cij f˜j + cji f˜i + ρij f˜.
+
+(1)
+
+Representatives in any hyperplane of RN +1 , for instance, in the affine part
+RN of RPN = P(RN +1 ), satisfy such an equation with 1 = cij + cji + ρij ,
+that is,
+f˜ij − f˜ = cij (f˜j − f˜) + cji (f˜i − f˜).
+(2)
+Given three points f , f1 , f2 in RPN , one can take any point of the plane
+through these three points as the fourth vertex f12 of an elementary quadrilateral (f, f1 , f12 , f2 ) of a Q-net. Correspondingly, given any two discrete
+curves f : Z × {0} → RPN and f : {0} × Z → RPN with a common point
+f (0, 0), one can construct infinitely many Q-surfaces f : Z2 → RPN with
+these curves as coordinate ones: the construction goes inductively, on each
+step one has a freedom of choosing a point in a plane (two real parameters).
+On the other hand, constructing elementary hexahedra of Q-nets corresponding to elementary 3D cubes of the lattice Zm admits a well-posed
+initial value problem with a unique solution, therefore one says that Q-nets
+are described by a discrete 3D system:
+Theorem 2 (Elementary hexahedron of a Q-net) Given seven points
+f , fi and fij (1 ≤ i < j ≤ 3) in RPN , such that each of the three quadrilaterals (f, fi , fij , fj ) is planar (i.e., fij lies in the plane Πij through f , fi , fj ),
+define three planes τk Πij as those passing through the point triples fk , fik ,
+fjk , respectively. Then these three planes intersect generically at one point:
+f123 = τ1 Π23 ∩ τ2 Π13 ∩ τ3 Π12 .
+12
+
+Proof. Planarity of the quadrilaterals (f, fi , fij , fj ) assures that all seven
+initial points f , fi and fij belong to the three-dimensional space Π123 through
+the four points f , f1 , f2 , f3 . Hence, the planes τk Πij lie in this threedimensional space, and therefore generically they intersect at exactly one
+point. 
+f23
+
+f123
+
+f3
+
+f13
+
+f2
+
+f12
+f1
+
+f
+
+Figure 5: 3D system on an elementary cube
+The elementary construction step from Theorem 2 is symbolically represented on Fig. 5, which is the picture we have in mind when thinking and
+speaking about discrete three-dimensional systems with dependent variables
+(fields) attached to the vertices of a regular cubic lattice.
+As follows from Theorem 2, a three-dimensional Q-net f : Z3 → RPN is
+completely determined by its three coordinate surfaces
+f : Z2 × {0} → RPN ,
+
+f : Z × {0} × Z → RPN ,
+
+f : {0} × Z2 → RPN .
+
+Turning to an elementary cube of the dimension m ≥ 4, we see that one
+can prescribe all points f , fi and fij for all 1 ≤ i < j ≤ m. Indeed, these
+data are clearly independent, and one can construct all other vertices of an
+elementary cube starting from these data, provided one does not encounter
+contradictions. To see the possible source of contradictions, consider in
+detail first the case of m = 4. From f , fi and fij (1 ≤ i < j ≤ 4) one
+determines all fijk uniquely. After that, one has, in principle, four different
+ways to determine f1234 , from four 3D cubic faces adjacent to this point;
+see Fig. 6. Absence of contradictions means that these four values for f1234
+automatically coincide. We call this property the 4D consistency.
+Definition 3 (4D consistency) A 3D system is called 4D consistent, if it
+can be imposed on all three-dimensional faces of an elementary cube of Z4 .
+13
+
+
+f1234
+
+f234
+f134
+f23
+
+f34
+f3
+f
+
+f2
+
+f123
+f13
+f12
+f1
+
+f24
+f4
+
+f124
+
+f14
+Figure 6: 4D consistency of 3D systems
+
+Remarkably, construction of Q-nets based on the planarity of all elementary quadrilaterals enjoys this property.
+Theorem 4 (Q-nets are 4D consistent) The 3D system governing Qnets is 4D-consistent.
+Proof. In the construction above, the four values in question are
+f1234 = τ1 τ2 Π34 ∩ τ1 τ3 Π24 ∩ τ1 τ4 Π23 ,
+and three other ones obtained by cyclic shifts of indices. Thus, we have to
+prove that the six planes τi τj Πkℓ intersect in one point.
+First, assume that the ambient space RPN has dimension N ≥ 4. Then,
+in general position, the space Π1234 through the five points f , fi (1 ≤ i ≤ 4)
+is four-dimensional. It is easy to understand that the plane τi τj Πkℓ is the
+intersection of two three-dimensional subspaces τi Πjkℓ and τj Πikℓ . Indeed,
+the subspace τi Πjkℓ through the four points fi , fij , fik , fiℓ contains also fijk ,
+fijℓ , and fjkℓ . Therefore, both τi Πjkℓ and τj Πikℓ contain three points fij ,
+fijk and fijℓ , which determine the plane τi τj Πkℓ . Now the intersection in
+question can be alternatively described as the intersection of the four threedimensional subspaces τ1 Π234 , τ2 Π134 , τ3 Π124 and τ4 Π123 of one and the
+same four-dimensional space Π1234 . This intersection consists in the generic
+case of exactly one point.
+In the case of N = 3, we embed the ambient space into RP4 , then
+slightly perturb the point f4 by adding a small component in the fourth
+14
+
+coordinate direction, then apply the above argument, and after that send
+the perturbation to zero. This proof works since, as one can easily see, on
+each step of the construction the perturbation remains regular. 
+The m-dimensional consistency of a 3D system for m > 4 is defined
+analogously to the m = 4 case. Remarkably and quite generally, the 4dimensional consistency already implies m-dimensional consistency for all
+m > 4.
+Theorem 5 (4D consistency yields consistency in all higher dimensions) Any 4D consistent discrete 3D system is also m-dimensionally consistent for any m > 4.
+Proof goes by induction from the (m−1)-dimensional consistency to the mdimensional consistency, but, for the sake of notational simplicity, we present
+the details for the case m = 5 only, the general case being absolutely similar.
+Initial data for a 3D system on the 5D cube C12345 with the fields on
+vertices consist of the fields f , fi and fij for all 1 ≤ i < j ≤ 5. From these
+data one first gets ten fields fijk for 1 ≤ i < j < k ≤ 5, and then five fields
+fijkℓ for 1 ≤ i < j < k < ℓ ≤ 5 (the fact that the latter are well defined
+is nothing but the assumed 4D consistency for the 4D cubes Cijkl ). Now,
+one has ten possibly different values for f12345 , coming from ten 3D cubes
+τi τj Ckℓm . To prove that these ten values coincide, consider five 4D cubes
+τi Cjkℓm. For instance, for the 4D cube τ1 C2345 the assumed consistency
+assures that the four values for f12345 coming from four 3D cubes
+τ1 τ2 C345 ,
+
+τ1 τ3 C245 ,
+
+τ1 τ4 C235 ,
+
+τ1 τ5 C234
+
+are all the same. Similarly, for the 4D cube τ2 C1345 the 4D consistency leads
+to the conclusion that the four values for f12345 coming from
+τ1 τ2 C345 ,
+
+τ2 τ3 C145 ,
+
+τ2 τ4 C135 ,
+
+τ2 τ5 C134
+
+coincide. Note that the 3D cube τ1 τ2 C345 , the intersection of τ1 C2345 and
+τ2 C1345 , is present in both lists, so that we now have seven coinciding values
+for f12345 . Adding similar conclusions for other 4D cubes τi Cjkℓm, we arrive
+at the desired result. 
+Theorems 4, 5 yield that Q-nets are m-dimensionally consistent for any
+m ≥ 4. This fact, in turn, yields the existence of transformations of Q-nets
+with remarkable permutability properties. Referring for details to [DSM,
+BS2], we mention here only the definition.
+
+15
+
+Definition 6 (F-transformation of Q-nets) Two m-dimensional Q-nets
+f, f + : Zm → RPN are called F-transforms (fundamental transforms) of
+one another, if all quadrilaterals (f, fi , fi+ , f + ) (at any u ∈ Zm and for all
+1 ≤ i ≤ m) are planar, i.e., if the net F : Zm × {0, 1} → RPN defined
+by F (u, 0) = f (u) and F (u, 1) = f + (u) is a two-layer (m + 1)-dimensional
+Q-net.
+It follows from Theorem 2 that, given a Q-net f , its F-transform f + is
+uniquely defined as soon as its points along the coordinate axes are suitably
+prescribed.
+
+2.2
+
+Discrete line congruences
+
+Another important geometrical objects described by a discrete 3D system
+which is 4D consistent, are discrete line congruences. Their theory has been
+developed by Doliwa, Santini and Mañas [DSM], whose presentation we
+follow in this section.
+Let LN be the space of lines in RPN ; it can be identified with the Grassmannian Gr(N + 1, 2) of two-dimensional vector subspaces of RN +1 .
+Definition 7 (Discrete line congruence) A map ℓ : Zm → LN is called
+an m-dimensional discrete line congruence in RPN (N ≥ 3), if any two
+neighboring lines ℓ, ℓi (at any u ∈ Zm and for any 1 ≤ i ≤ m) intersect (are
+co-planar).
+For instance, lines ℓ = (f f + ) connecting corresponding points of two
+Q-nets f, f + : Zm → RPN in the relation of F-transformation clearly build
+a discrete line congruence.
+A discrete line congruence is called generic, if for any u ∈ Zm and for
+any 1 ≤ i 6= j 6= k 6= i ≤ m, the four lines ℓ, ℓi , ℓj and ℓk span a fourdimensional space (i.e., a space of a maximal possible dimension). This
+yields, in particular, that for any u ∈ Zm and for any 1 ≤ i 6= j ≤ m, the
+three lines ℓ, ℓi and ℓj span a three-dimensional space.
+Construction of line congruences is similar to that of Q-nets. Given
+three lines ℓ, ℓ1 , ℓ2 of a congruence, one has a two-parameter family of lines
+admissible as the fourth one ℓ12 : connect by a line any point of ℓ1 with any
+point of ℓ2 . Thus, given any two sequences of lines ℓ : Z × {0} → LN and
+ℓ : {0} × Z → LN such that any two neighboring lines are co-planar, one
+can extend them to a two-dimensional line congruence f : Z2 → LN in an
+infinite number of ways: on each step of the inductive procedure one has a
+freedom of choosing a line from a two-parameter family.
+16
+
+The next theorem shows that non-degenerate line congruences are described by a discrete 3D system:
+Theorem 8 (Elementary hexahedron of a discrete line congruence)
+Given seven lines ℓ, ℓi and ℓij (1 ≤ i < j ≤ 3) in RPN , such that ℓ intersects
+each of ℓi , the space V123 spanned by ℓ, ℓ1 , ℓ2 , ℓ3 has dimension four, and
+each ℓi intersects both ℓij and ℓik , there is a unique line ℓ123 that intersects
+all three ℓij .
+Proof. All seven lines, and therefore also the three-dimensional spaces
+τi Vjk = span(ℓi , ℓij , ℓik ) lie in V123 . A line that intersects all three of ℓij
+should lie in the intersection of these three three-dimensional spaces. But a
+generic intersection of three three-dimensional spaces in V123 is a line:
+ℓ123 = τ1 V23 ∩ τ2 V13 ∩ τ3 V12 .
+It is now not difficult to realize that this line does, indeed, intersect all three
+of ℓij . For instance, τ1 V23 ∩ τ2 V13 = span(ℓ12 , ℓ13 ) ∩ span(ℓ12 , ℓ23 ) is a plane
+containing ℓ12 , therefore its intersection with τ3 V12 (the line ℓ123 ) intersects
+ℓ12 . 
+A similar argument shows:
+Theorem 9 (Discrete line congruences are 4D consistent) The 3D
+system governing discrete line congruences is 4D-consistent.
+Like in the case of Q-nets, this theorem yields the existence of transformations of discrete line congruences with remarkable permutability properties.
+Definition 10 (F-transformation of line congruences) Two m-dimensional line congruences ℓ, ℓ+ : Zm → LN are called F-transforms of one
+another, if the corresponding lines ℓ and ℓ+ intersect (at any u ∈ Zm ), i.e., if
+the map L : Zm ×{0, 1} → LN defined by L(u, 0) = ℓ(u) and L(u, 1) = ℓ+ (u)
+is a two-layer (m + 1)-dimensional line congruence.
+Again, it follows from Theorem 2 that, given a line congruence ℓ, its Ftransform ℓ+ is uniquely defined as soon as its lines along the coordinate
+axes are suitably prescribed.
+According to Definition 7, any two neighboring lines ℓ = ℓ(u) and ℓi =
+ℓ(u + ei ) of a line congruence intersect at exactly one point f = ℓ ∩ ℓi ∈ RPN
+which is thus combinatorially associated with the edge (u, u + ei ) of the
+lattice Zm : f = f (u, u + ei ). It is, however, sometimes more convenient to
+17
+
+f (i)
+(i)
+
+fj
+
+ℓi
+ℓ
+ℓij
+ℓj
+(j)
+
+fi
+
+f (j)
+
+Figure 7: Four lines of a congruence
+use the notation f (u, u + ei ) = f (i) (u) for this points, thus associating it to
+the vertex u of the lattice (and, of course, to the coordinate direction i). See
+Fig. 7.
+Definition 11 (Focal net) For a discrete line congruence ℓ : Zm → LN ,
+the map f (i) : Zm → RPN defined by f (i) (u) = ℓ(u) ∩ ℓ(u + ei ) is called its
+i-th focal net.
+Theorem 12 For a non-degenerate discrete line congruence ℓ : Zm → LN ,
+all its focal nets f (k) : Zm → RPN , 1 ≤ k ≤ m, are Q-nets.
+Proof consists of two steps.
+◮ First, one shows that for the k-th focal net f (k) , all elementary quadri(k) (k) (k)
+laterals (f (k) , fi , fik , fk ) are planar. This is true for any line congruence.
+(k)
+(k)
+Indeed, both points f (k) and fk lie on the line ℓk , while both points fi and
+(k)
+fik lie on the line ℓik . Therefore, all four points lie in the plane spanned by
+these two lines ℓk and ℓik which intersect by definition of a line congruence.
+◮ Second, one shows that for the k-th focal net f (k) , all elementary
+(k) (k) (k)
+quadrilaterals (f (k) , fi , fij , fj ), with both i 6= j different from k, are
+planar. Here, one uses essentially the assumption that the line congruence
+ℓ is generic. All four points in question lie in each of the three-dimensional
+spaces
+Vij = span(ℓ, ℓi , ℓj , ℓij ) and
+
+τk Vij = span(ℓk , ℓik , ℓjk , ℓijk )
+18
+
+(see Fig. 8). Both 3-spaces lie in the four-dimensional space Vijk = span(ℓ, ℓi , ℓj , ℓk ),
+so that generically their intersection is a plane. 
+
+ℓij
+ℓjk
+
+ℓi
+
+(k)
+
+fj
+
+(k)
+
+fij
+
+(k)
+
+f (k)
+
+ℓj
+ℓ
+
+ℓijk
+fi
+
+ℓik
+
+ℓk
+
+Figure 8: Elementary (ij) quadrilateral of the k-th focal net
+Corollary 13 (Focal net of F-transformation of a line congruence)
+Given two generic line congruences ℓ, ℓ+ : Zm → LN in the relation of Ftransformation, the intersection points f = ℓ ∩ ℓ+ form a Q-net f : Zm →
+RPN .
+
+2.3
+
+Q-nets in quadrics
+
+We consider an important admissible reduction of Q-nets: they can be consistently restricted to an arbitrary quadric in RPN . In the smooth differential geometry, i.e., for conjugate nets, this is due to Darboux [Da1]. In the
+discrete differential geometry this result has been found by Doliwa [D1].
+A deep reason for this result is the following fundamental fact well known
+in classical projective geometry (see, e.g., [B2]):
+Theorem 14 (Associated point) For any seven points of CP3 in general position, there exists the eighth point (called the associated one), which
+belongs to any quadric through the original seven points.
+
+19
+
+Proof is based on the following computations. The equation Q = 0 of a
+quadric in CP3 has ten coefficients (homogeneous polynomial of 4 variables).
+Therefore, a unique quadric Q = 0 can be drawn through nine points in general position. Similarly, a pencil (one-parameter linear family) of quadrics
+Q + λQ′ = 0 can be drawn through eight points in general position, and a
+two-parameter linear family of quadrics Q + λQ′ + µQ′′ = 0 can be drawn
+through seven points in general position. Generically, solution of a system
+of three quadratic equations
+Q = 0,
+
+Q′ = 0,
+
+Q′′ = 0
+
+for the intersection of three quadrics in CP3 consists of eight points. It
+can be shown that the three quadrics spanning the above-mentioned twoparameter family can be considered generic enough for such a conclusion.
+Clearly, the resulting eight points lie on every quadric of the two-parameter
+family. 
+Theorem 15 (Elementary hexahedron of a Q-net in a quadric) If
+seven points f , fi , and fij (1 ≤ i < j ≤ 3) of an elementary hexahedron
+of a Q-net f : Zm → RPN belong to a quadric Q ⊂ RPN , then so does the
+eighth point f123 .
+Proof. The original seven points can be considered lying in a three-dimensional space, and they are known to belong to three (degenerate) quadrics –
+the pairs of planes Πjk ∪ τi Πjk for (jk) = (12), (23), (31). Clearly, the eighth
+intersection point of these quadrics is f123 = τ1 Π23 ∩ τ2 Π31 ∩ τ3 Π12 , and this
+has to be the associated point. According to Theorem 14, it belongs to any
+quadric through the original seven points, in particular, to Q. 
+
+3
+
+Geometries of spheres
+
+3.1
+
+Lie geometry
+
+A classical source on Lie geometry is Blaschke’s book [B1], see also a modern
+account by Cecil [C].
+Following geometric objects in the Euclidean space RN are elements of
+Lie geometry:
+• Oriented hyperspheres. A hypersphere in RN with center c ∈ RN and
+radius r > 0 is described by the equation S = {x ∈ RN : |x−c|2 = r 2 }.
+It divides RN in two parts, inner and outer. If one denotes one of
+20
+
+two parts of RN as positive, one comes to the notion of an oriented
+hypersphere. Thus, there are two oriented hyperspheres S ± for any
+S. One can take the orientation of a hypersphere into account by
+assigning a signed radius ±r to it. For instance, one can assign positive
+radii r > 0 to hyperspheres with the inward field of unit normals and
+negative radii r < 0 to hyperspheres with the outward field of unit
+normals.
+• Oriented hyperplanes. A hyperplane in RN is given by the equation
+P = {x ∈ RN : hv, xi = d}, with a unit normal v ∈ SN −1 and
+d ∈ R. Clearly, the pairs (v, d) and (−v, −d) represent one and the
+same hyperplane. It divides RN in two halfspaces. Denoting one of
+two halfspaces as positive, one arrives at the notion of an oriented
+hyperplane. Thus, there are two oriented hyperplanes P ± for any P .
+One can take the orientation of a hypersphere into account by assigning
+the pair (v, d) to the hyperplane with the unit normal v pointing into
+the positive halfspace.
+• Points. One considers points x ∈ RN as hyperspheres of a vanishing
+radius.
+• Infinity. One compactifies the space RN by adding the point at infinity
+∞, with the understanding that a basis of open neighborhoods of
+∞ is given, e.g., by the outer parts of the hyperspheres |x|2 = r 2 .
+Topologically the so defined compactification is equivalent to a sphere
+SN .
+• Contact elements. A contact element of a hypersurface is a pair consisting of a point x ∈ RN and an (oriented) hyperplane P through x;
+alternatively, one can use a normal vector v to P at x. In the framework of Lie geometry, a contact element can be identified with a set (a
+pencil) of all hyperspheres S through x which are in an oriented contact with P (and with one another), thus sharing the normal vector v
+at x, see Fig. 9.
+All these elements are modelled in Lie geometry as points, resp. lines,
+in the (N + 2)-dimensional projective space P(RN +1,2 ) with the space of
+homogeneous coordinates RN +1,2 . The latter is the space spanned by N + 3
+linearly independent vectors e1 , . . . , eN +3 and equipped with the pseudo-
+
+21
+
+v
+x
+
+P
+
+Figure 9: Contact element
+euclidean scalar product
+
+
+
+1, i = j ∈ {1, . . . , N + 1},
+hei , ej i =
+−1, i = j ∈ {N + 2, N + 3},
+
+0, i 6= j.
+
+It is convenient to introduce two isotropic vectors
+e0 = 12 (eN +2 − eN +1 ),
+
+e∞ = 12 (eN +2 + eN +1 ),
+
+(3)
+
+for which
+he0 , e0 i = he∞ , e∞ i = 0,
+
+he0 , e∞ i = − 12 .
+
+The models of the above elements in the space RN +1,2 of homogeneous
+coordinates are as follows:
+• Oriented hypersphere with center c ∈ RN and signed radius r ∈ R:
+ŝ = c + e0 + (|c|2 − r 2 )e∞ + reN +3 .
+
+(4)
+
+• Oriented hyperplane hv, xi = d with v ∈ SN −1 and d ∈ R:
+p̂ = v + 0 · e0 + 2de∞ + eN +3 .
+
+(5)
+
+x̂ = x + e0 + |x|2 e∞ + 0 · eN +3 .
+
+(6)
+
+• Point x ∈ RN :
+
+22
+
+• Infinity ∞:
+∞
+ˆ = e∞ .
+
+(7)
+
+span(x̂, p̂).
+
+(8)
+
+• Contact element (x, P ):
+In the projective space P(RN +1,2 ) the first four types of elements are represented by the points which are equivalence classes of (4)–(7) with respect
+to the relation ξ ∼ η ⇔ ξ = λη with λ ∈ R∗ for ξ, η ∈ RN +1,2 . A contact element is represented by the line in P(RN +1,2 ) through the points with
+the representatives x̂ and p̂. We mention several fundamentally important
+features of this model:
+(i) All the above elements belong to the Lie quadric P(LN +1,2 ), where
+
+LN +1,2 = ξ ∈ RN +1,2 : hξ, ξi = 0 .
+(9)
+Moreover, points of P(LN +1,2 ) are in a one-to-one correspondence
+with oriented hyperspheres in RN , including degenerate case: proper
+hyperspheres correspond to points of P(LN +1,2 ) with both e0 - and
+eN +3 -components non-vanishing, hyperplanes correspond to points of
+P(LN +1,2 ) with vanishing e0 -component, points correspond to points
+of P(LN +1,2 ) with vanishing eN +3 -component, and infinity corresponds
+to the only point of P(LN +1,2 ) with both e0 - and eN +3 -components
+vanishing.
+(ii) Two oriented hyperspheres S1 , S2 are in an oriented contact (i.e., are
+tangent to each other with the unit normals at tangency pointing in
+the same direction), if and only if
+|c1 − c2 |2 = (r1 − r2 )2 ,
+
+(10)
+
+and this is equivalent to hŝ1 , ŝ2 i = 0.
+(iii) An oriented hypersphere S = {x ∈ RN : |x− c|2 = r 2 } is in an oriented
+contact with an oriented hyperplane P = {x ∈ RN : hv, xi = d}, if and
+only if
+hc, vi − r − d = 0.
+(11)
+Indeed, equation of the hyperplane P tangent to S at x0 ∈ S reads:
+hx0 − c, x − ci = r 2 . Denoting by v = (c − x0 )/r the unit normal
+vector of P (recall that the positive radii are assigned to spheres with
+inward unit normals), we can write the above equation as hv, xi = d
+23
+
+with d = hc, (c − x0 )/ri − r = hc, vi − r, which proves eq. (11). Now,
+the latter equation is equivalent to hŝ, p̂i = 0.
+(iv) A point x can be considered as a hypersphere of radius r = 0 (in
+this case both oriented hyperspheres coincide). An incidence relation
+x ∈ S with a hypersphere S (resp. x ∈ P with a hyperplane P ) can
+be interpreted as a particular case of an oriented contact of a sphere
+of radius r = 0 with S (resp. with P ), and it takes place if and only if
+hx̂, ŝi = 0 (resp. hx̂, p̂i = 0).
+(v) For any hyperplane P , there holds h ˆ
+∞, p̂i = 0. One can interpret
+hyperplanes as hyperspheres (of an infinite radius) through ∞. More
+precisely, a hyperplane hv, xi = d can be interpreted as a limit, as
+r → ∞, of the hyperspheres of radii r with the centers located at
+c = rv + u, with hv, ui = d. Indeed, the representatives (4) of such
+spheres are
+ŝ = (rv + u) + e0 + (2dr + hu, ui)e∞ + reN +3
+∼ (v + O(1/r)) + (1/r)e0 + (2d + O(1/r))e∞ + eN +3
+= p̂ + O(1/r).
+Moreover, for similar reasons, the infinity ∞ can be considered as a
+limiting position of any sequence of points x with |x| → ∞.
+(vi) Any two hyperspheres S1 , S2 in an oriented contact determine a contact element (their point of contact and their common tangent hyperplane). For their representatives ŝ1 , ŝ2 in RN +1,2 , the line in P(RN +1,2 )
+through the corresponding points in P(LN +1,2 ) is isotropic, i.e., lies entirely on the Lie quadric P(LN +1,2 ). This follows from
+hα1 ŝ1 + α2 ŝ2 , α1 ŝ1 + α2 ŝ2 i = 2α1 α2 hŝ1 , ŝ2 i = 0.
+Such a line contains exactly one point whose representative x̂ has vanishing eN +3 -component (and corresponds to x, the common point of
+contact of all hyperspheres), and, if x 6= ∞, exactly one point whose
+representative p̂ has vanishing e0 -component (and corresponds to P ,
+the common tangent hyperplane of all hyperspheres). In case when an
+isotropic line contains ˆ
+∞, all its points represent parallel hyperplanes,
+which constitute a contact element through ∞.
+Thus, if one considers hyperplanes as hyperspheres of infinite radii, and
+points as hyperspheres of vanishing radii, then one can conclude that:
+24
+
+◮ oriented hyperspheres are in a one-to-one correspondence with points
+of the Lie quadric P(LN +1,2 ) in the projective space P(RN +1,2 );
+◮ oriented contact of two oriented hyperspheres corresponds to orthogonality of (any) representatives of the corresponding points in P(RN +1,2 ).
+◮ contact elements of hypersurfaces are in a one-to-one correspondence
+with isotropic lines in P(RN +1,2 ). We will denote the set of all such
+lines by L0N +1,2 .
+According to F. Klein’s Erlangen Program, Lie geometry is the study of
+properties of transformations which map oriented hyperspheres (including
+points and hyperplanes) to oriented hyperspheres and, moreover, preserve
+the oriented contact of hypersphere pairs. In the projective model described
+above, Lie geometry is the study of projective transformations of P(RN +1,2 )
+which leave P(LN +1,2 ) invariant, and, moreover, preserve orthogonality of
+points of P(LN +1,2 ) (which is understood as orthogonality of their lifts to
+LN +1,2 ⊂ RN +1,2 ; clearly, this relation does not depend on the choice of
+lifts). Such transformations are called Lie sphere transformations.
+Theorem 16 (Fundamental theorem of Lie geometry)
+a) The group of Lie sphere transformations is isomorphic to O(N +1, 2)/{±I}.
+b) Every line preserving diffeomorphism of P(LN +1,2 ) is the restriction to
+P(LN +1,2 ) of a Lie sphere transformation.
+Since (non-)vanishing of the e0 - or of the eN +3 -component of a point in
+P(LN +1,2 ) is not invariant under a general Lie sphere transformation, there
+is no distinction between oriented hyperspheres, oriented hyperplanes and
+points in Lie geometry.
+
+3.2
+
+Möbius geometry
+
+Blaschke’s book [B1] serves also as a classical source on Möbius geometry, a
+modern account can be found in [HJ].
+Möbius geometry is a subgeometry of Lie geometry, with points distinguishable among all hyperspheres as those of radius zero. Thus, Möbius
+geometry studies properties of hyperspheres invariant under the subgroup
+of Lie sphere transformations preserving the set of points. In the projective model, points of RN are distinguished as points of P(LN +1,2 ) with the
+vanishing eN +3 -component. (Of course, one could replace here eN +3 by
+any time-like vector.) Thus, Möbius geometry studies the subgroup of Lie
+
+25
+
+sphere transformations preserving the subset of P(LN +1,2 ) with the vanishing eN +3 -component. Following geometric objects in RN are elements of
+Möbius geometry.
+• (Non-oriented) hyperspheres S = {x ∈ RN : |x− c|2 = r 2 } with centers
+c ∈ RN and radii r > 0.
+• (Non-oriented) hyperplanes P = {x ∈ RN : hv, xi = d}, with unit
+normals v ∈ SN −1 and d ∈ R.
+• Points x ∈ RN .
+• Infinity ∞ which compactifies RN into SN .
+In modelling these elements, one can use the Lie-geometric description
+and just omit the eN +3 -component. The resulting objects are points of the
+(N + 1)-dimensional projective space P(RN +1,1 ) with the space of homogeneous coordinates RN +1,1 . The latter is the space spanned by N + 2 linearly
+independent vectors e1 , . . . , eN +2 and equipped with the Minkowski scalar
+product
+
+ 1, i = j ∈ {1, . . . , N + 1},
+hei , ej i =
+−1, i = j = N + 2,
+
+0, i 6= j.
+
+We continue to use notations (3) in the context of the Möbius geometry.
+The above elements are modelled in the space RN +1,1 of homogeneous coordinates as follows:
+• Hypersphere with center c ∈ RN and radius r > 0:
+ŝ = c + e0 + (|c|2 − r 2 )e∞ .
+
+(12)
+
+• Hyperplane hv, xi = d with v ∈ SN −1 and d ∈ R:
+p̂ = v + 0 · e0 + 2de∞ .
+
+(13)
+
+x̂ = x + e0 + |x|2 e∞ .
+
+(14)
+
+∞
+ˆ = e∞ .
+
+(15)
+
+• Point x ∈ RN :
+• Infinity ∞:
+
+26
+
+In the projective space P(RN +1,1 ) these elements are represented by points
+which are equivalence classes of (12)–(15) with respect to the usual relation
+ξ ∼ η ⇔ ξ = λη with λ ∈ R∗ for ξ, η ∈ RN +1,1 . Fundamental features of
+these identifications:
+(i) The infinity ∞
+ˆ can be considered as a limit of any sequence of x̂ for
+N
+x ∈ R with |x| → ∞. Elements x ∈ RN ∪ {∞} are in a one-to-one
+correspondence with points of the projectivized light cone P(LN +1,1 ),
+where
+
+LN +1,1 = ξ ∈ RN +1,1 : hξ, ξi = 0 .
+(16)
+
+Points x ∈ RN correspond to points of P(LN +1,1 ) with a non-vanishing
+e0 -component, while ∞ corresponds to the only point of P(LN +1,1 )
+with the vanishing e0 -component.
+
+N +1,1
+(ii) Hyperspheres ŝ and hyperplanes p̂ belong to P(Rout
+), where
+
+N +1,1
+Rout
+= ξ ∈ RN +1,1 : hξ, ξi > 0
+
+(17)
+
+is the set of space-like vectors of the Minkowski space RN +1,1 . Hyperplanes can be interpreted as hyperspheres (of an infinite radius)
+through ∞.
+(iii) Two hyperspheres S1 , S2 with centers c1 , c2 and radii r1 , r2 intersect
+orthogonally, if and only if
+|c1 − c2 |2 = r12 + r22 ,
+
+(18)
+
+which is equivalent to hŝ1 , ŝ2 i = 0. Similarly, a hypersphere S intersects orthogonally with a hyperplane P , if and only if its center lies in
+P:
+hc, vi − d = 0,
+(19)
+which is equivalent to hŝ, p̂i = 0.
+(iv) A point x can be considered as a limiting case of a hypersphere with
+radius r = 0. An incidence relation x ∈ S with a hypersphere S (resp.
+x ∈ P with a hyperplane P ) can be interpreted as a particular case
+of an orthogonal intersection of a sphere of radius r = 0 with S (resp.
+with P ), and it takes place if and only if hx̂, ŝi = 0 (resp. hx̂, p̂i = 0).
+Note that a hypersphere S can also be interpreted as the set of points
+x ∈ S. Correspondingly, it admits, along with the representation ŝ, the dual
+representation as a transversal intersection of P(LN +1,1 ) with the projective
+27
+
+N -space P(ŝ⊥ ), polar to the point ŝ with respect to P(LN +1,1 ); here, of
+course, ŝ⊥ = {x̂ ∈ RN +1,1 : hŝ, x̂i = 0}. This can be generalized to model
+lower-dimensional spheres.
+• Spheres. A k-sphere is a (generic) intersection of N −k hyperspheres Si
+(i = 1, . . . , N − k). The intersection of N − k hyperspheres represented
+N +1,1
+by ŝi ∈ Rout
+(i = 1, . . . , N − k) is generic if the (N − k)-dimensional
+linear subspace of RN +1,1 spanned by ŝi is space-like:
+N +1,1
+Σ = span(ŝ1 , . . . , ŝN −k ) ⊂ Rout
+.
+
+As a set of points, this k-sphere is represented as P(LN +1,1 ∩Σ⊥ , where
+Σ⊥ =
+
+N\
+−k
+i=1
+
+n
+o
+N +1,1
+ŝ⊥
+=
+x̂
+∈
+R
+:
+hŝ
+,
+x̂i
+=
+.
+.
+.
+=
+hŝ
+,
+x̂i
+=
+0
+1
+N −k
+i
+
+is a (k+2)-dimensional linear subspace of RN +1,1 of signature (k+1, 1).
+Through any k + 2 points x1 , . . . , xk+2 ∈ RN in general position one
+can draw a unique k-sphere. It corresponds to the (k + 2)-dimensional
+linear subspace
+Σ⊥ = span(x̂1 , . . . , x̂k+2 ),
+of signature (k + 1, 1), with k + 2 linearly independent isotropic vectors x̂1 , . . . , x̂k+2 ∈ LN +1,1 . In the polar formulation, this k-sphere
+corresponds to the (N − k)-dimensional space-like linear subspace
+Σ=
+
+k+2
+\
+i=1
+
+n
+o
+N +1,1
+x̂⊥
+=
+ŝ
+∈
+R
+:
+hŝ,
+x̂
+i
+=
+.
+.
+.
+=
+hŝ,
+x̂
+i
+=
+0
+.
+1
+k+2
+i
+
+Möbius geometry is the study of properties of (non)-oriented hyperspheres invariant with respect to projective transformations of P(RN +1,1 )
+which map points to points, i.e., which leave P(LN +1,1 ) invariant. Such
+transformations are called Möbius transformations.
+Theorem 17 (Fundamental theorem of Möbius geometry)
+a) The group of Möbius transformations is isomorphic to O(N +1, 1)/{±I} ≃
+O+ (N +1, 1), the group of Lorentz transformations of RN +1,1 preserving the
+time-like direction.
+b) Every conformal diffeomorphism of SN ≃ RN ∪ {∞} is induced by the
+restriction to P(LN +1,1 ) of a Möbius transformation.
+28
+
+The group O+ (N + 1, 1) is generated by reflections
+Aŝ : RN +1,1 → RN +1,1 ,
+
+Aŝ (x̂) = x̂ −
+
+2hŝ, x̂i
+ŝ.
+hŝ, ŝi
+
+(20)
+
+If ŝ is a hypersphere (12), then the transformation induced on RN by Aŝ
+is obtained from (20) by a computation with the representatives (14) for
+points and is given by:
+x 7→ c +
+
+r2
+(x − c)
+|x − c|2
+
+(21)
+
+(inversion in the hypersphere S = {x ∈ RN : |x − c|2 = r 2 }); similarly, if
+ŝ = p̂ is the hyperplane (13), then the transformation induced on RN by Ap̂
+is easily computed to be
+x 7→ x −
+
+2(hv, xi − d)
+v
+hv, vi
+
+(22)
+
+(reflection in the hyperplane P = {x ∈ RN : hv, xi = d}).
+Since (non-)vanishing of the e∞ -component of a point in P(RN +1,1 ) is
+not invariant under a general Möbius transformation, there is no distinction
+in Möbius geometry between hyperspheres and hyperplanes.
+
+3.3
+
+Laguerre geometry
+
+Also in the case of Laguerre geometry the Blaschke’s book [B1] serves as
+the indispensable classical source. One can find a modern account, e.g., in
+[Benz, C, PP].
+Laguerre geometry is a subgeometry of Lie geometry, with hyperplanes
+distinguishable among all hyperspheres, as hyperspheres through ∞. Thus,
+Laguerre geometry studies properties of hyperspheres invariant under the
+subgroup of Lie sphere transformations which preserve the set of hyperplanes. Following objects in RN are elements of the Laguerre geometry.
+• (Oriented) hyperspheres S = {x ∈ RN : |x − c|2 = r 2 } with centers
+c ∈ RN and signed radii r ∈ R, can be put into correspondence with
+(N + 1)-tuples (c, r).
+• Points x ∈ RN are considered as hyperspheres of radius zero, and are
+put into correspondence with (N + 1)-tuples (x, 0).
+
+29
+
+• (Oriented) hyperplanes P = {x ∈ RN : hv, xi = d}, with unit normals
+v ∈ SN −1 and d ∈ R, can be put into correspondence with (N + 1)tuples (v, d).
+In the projective model of Lie geometry, hyperplanes are distinguished
+as elements of P(LN +1,2 ) with the vanishing e0 -component. (Of course, one
+could replace here e0 by any isotropic vector.) Thus, Laguerre geometry
+studies the subgroup of Lie sphere transformations preserving the subset of
+P(LN +1,2 ) with the vanishing e0 -component.
+There seems to exist no model of Laguerre geometry, where hyperspheres
+and hyperplanes would be modelled as points of one and the same space. Depending on which of both types of elements is modelled by points, one comes
+to the Blaschke cylinder model or to the cyclographic model of Laguerre geometry. We will use the first of these models which has an advantage of a
+simpler description of the distinguished objects of the Laguerre geometry,
+which are hyperplanes. The main advantage of the second model is a simpler
+description of the group of Laguerre transformations.
+The scene of the both models consists of two (N + 1)-dimensional projective spaces, whose spaces of homogeneous coordinates, RN,1,1 and (RN,1,1 )∗ ,
+are dual to one another and arise from RN +1,2 by “forgetting” the e0 -, resp.
+e∞ -components. Thus, RN,1,1 is spanned by N + 2 linearly independent
+vectors e1 , . . . , eN , eN +3 , e∞ , and is equipped with a degenerate bilinear
+form of the signature (N, 1, 1) in which the above vectors are pairwise orthogonal, the first N being space-like: hei , ei i = 1 for 1 ≤ i ≤ N , while
+the last two being time-like and isotropic, respectively: heN +3 , eN +3 i = −1
+and he∞ , e∞ i = 0. Similarly, (RN,1,1 )∗ is assumed to have an orthogonal
+basis consisting of e1 , . . . , eN , eN +3 , e0 , again with an isotropic last vector:
+he0 , e0 i = 0. Note that one and the same symbol h·, ·i is used to denote two
+degenerate bilinear forms in our two spaces. We will overload this symbol
+even more and use it also for the (non-degenerate) pairing between these
+two spaces, which is established by setting he0 , e∞ i = − 12 , additionally to
+the above relations. (Note that a degenerate bilinear form cannot be used
+to identify a vector space with its dual.)
+In both models mentioned above there holds:
+• Hyperplane P = (v, d) is modelled as a point in the space P(RN,1,1 )
+with a representative
+p̂ = v + 2de∞ + eN +3 .
+
+30
+
+(23)
+
+• Hypersphere S = (c, r) is modelled as a point in the space P (RN,1,1 )∗
+with a representative
+ŝ = c + e0 + reN +3 .
+
+
+
+(24)
+
+Each one of the models appears if one considers one of the spaces as a preferred (fundamental) one, and interprets the points of the second space as
+hyperplanes in the preferred one. In the Blaschke cylinder model, the preferred space is the space P(RN,1,1 ) whose points model hyperplanes P ⊂ RN .
+A hypersphere S ⊂ RN is then modelled as a hyperplane {ξ ∈ P(RN,1,1 ) :
+hŝ, ξi = 0} in the space P(RN,1,1 ). Basic features of this model:
+(i) Oriented hyperplanes P ⊂ RN are in a one-to-one correspondence with
+points p̂ of the quadric P(LN,1,1 ), where
+
+LN,1,1 = ξ ∈ RN,1,1 : hξ, ξi = 0 .
+(25)
+(iii) Two oriented hyperplanes P1 , P2 ⊂ RN are in an oriented contact
+(parallel), if and only if their representatives p̂1 , p̂2 differ by a vector
+parallel to e∞ .
+(iii) An oriented hypersphere S ⊂ RN is in an oriented contact with an
+oriented hyperplane P ⊂ RN , if and only if p̂ ∈ ŝ, that is, if hp̂, ŝi =
+0. Thus, a hypersphere S is interpreted as a set of all its tangent
+hyperplanes.
+The quadric P(LN,1,1 ) is diffeomorphic to the Blaschke cylinder
+
+Z = (v, d) ∈ RN +1 : |v| = 1 = SN −1 × R ⊂ RN +1 .
+
+(26)
+
+Two points of this cylinder represent parallel hyperplanes, if they lie on one
+straight line generator of Z parallel to its axis. In the ambient space RN +1
+of the Blaschke cylinder, oriented hyperspheres S ⊂ RN are in a one-to-one
+correspondence with hyperplanes non-parallel to the axis of Z:
+
+S ∼ (v, d) ∈ RN +1 : hc, vi − d − r = 0 .
+(27)
+An intersection of such a hyperplane with Z consists of points in Z which
+represent tangent hyperplanes to S ⊂ RN , as follows from eq. (11).
+In this paper, we will not use the cyclographic model of Laguerre geometry; its short description is put in Appendix A.
+
+31
+
+4
+
+Discrete curvature line parametrization in Lie,
+Möbius and Laguerre geometries
+
+Starting from here, we restrict ourselves to the geometry of surfaces in the
+three-dimensional Euclidean space R3 . Accordingly, one should set N = 3
+in all previous considerations.
+It is natural to consider following objects as discrete surfaces in the
+various geometries discussed above:
+• In Lie geometry, a surface is viewed as built of its contact elements.
+These contact elements are interpreted as points of the surface and
+tangent planes (or, equivalently, normals) at these points. This can be
+discretized in a natural way: a discrete surface is a map
+(x, P ) : Z2 → {contact elements of surfaces in R3 },
+or, in the projective model of Lie geometry, a map
+ℓ : Z2 → L4,2
+0 ,
+
+(28)
+
+4,2
+where, recall, L4,2
+0 denotes the set of isotropic lines in P(R ).
+
+• In Möbius geometry, a surface is viewed simply as built of points. A
+discrete surface is a map
+x : Z2 → R3 ,
+or, in the projective model, a map
+x̂ : Z2 → P(L4,1 ).
+
+(29)
+
+• In Laguerre geometry, a surface is viewed as the envelope of the system
+of its tangent planes. A discrete surface is a map
+P : Z2 → {oriented planes in R3 },
+or, in the projective model, a map
+p̂ : Z2 → P(L3,1,1 ).
+
+(30)
+
+It should be mentioned that a substantial part of the description of a
+surface in Laguerre geometry is its Gauss map
+v : Z2 → S2 ,
+
+(31)
+
+consisting of unit normals v to the tangent planes P = (v, d).
+Thus, description of a discrete surface in Lie geometry contains more
+information than description of a discrete surface in Möbius or in Laguerre
+geometry. Actually, the former merges the two latter ones.
+32
+
+4.1
+
+Lie geometry
+
+The following definition is a discretization of the Lie-geometric description
+of curvature line parametrized surfaces, as found, e.g., in [B1].
+Definition 18 (Principal contact element nets. Euclidean model)
+A map
+(x, P ) : Z2 → {contact elements of surfaces in R3 }
+is called a principal contact element net, if any two neighboring contact
+elements (x, P ), (xi , Pi ) have a sphere S (i) in common, that is, a sphere
+touching both planes P , Pi at the corresponding points x, xi .
+Thus, the normals to the neighboring planes P , Pi at the corresponding
+points x, xi intersect at a point c(i) (the center of the sphere S (i) ), and the
+distances from c(i) to x and to xi are equal, see Fig. 10. The spheres S (i) ,
+attached to the edges of Z2 parallel to the i-th coordinate axis, will be called
+principal curvature spheres of the discrete surface.
+
+S (i)
+c(i)
+P
+x
+
+xi
+
+Pi
+
+Figure 10: Principal curvature sphere
+A direct translation of Definition 18 into the projective model looks as
+follows:
+Definition 19 (Principal contact element nets. Projective model)
+A map ℓ : Z2 → L4,2
+is called a principal contact element net, if it is a
+0
+
+33
+
+discrete congruence of isotropic lines in P(R4,2 ), that is, any two neighboring
+lines intersect:
+ℓ(u) ∩ ℓ(u + ei ) = ŝ(i) (u) ∈ P(L4,2 ),
+
+∀u ∈ Z2 ,
+
+∀i = 1, 2.
+
+(32)
+
+In the projective model, the representatives of the principal curvature
+spheres S (i) of the i-th coordinate direction build the corresponding focal
+net of the line congruence ℓ;
+ŝ(i) : Z2 → P(L4,2 ),
+
+i = 1, 2,
+
+(33)
+
+cf. Definition 11. According to Theorem 12, both focal nets are Q-nets in
+P(R4,2 ). This motivates the following definition.
+Definition 20 (Discrete R-congruence of spheres) A map
+S : Zm → {oriented spheres in R3 }
+is called a discrete R-congruence (Ribaucour congruence) of spheres, if the
+corresponding map
+ŝ : Zm → P(L4,2 )
+is a Q-net in P(R4,2 ).
+A geometric characterization of discrete R-congruences will be given in Sect.
+5.
+Corollary 21 (Curvature spheres build an R-congruence) For a discrete contact element net, the principal curvature spheres of the i-th coordinate direction (i=1,2) build a two-dimensional discrete R-congruence.
+Turning to transformations of principal contact element nets, we introduce the following definition.
+Definition 22 (Ribaucour transformation. Euclidean model) Two
+principal contact element nets
+(x, P ), (x+, P + ) : Z2 → {contact elements of surfaces in R3 }
+are called Ribaucour transforms of one another, if any two corresponding
+contact elements (x, P ) and (x+, P + ) have a sphere S in common, that is, a
+sphere which touches both planes P , P + at the corresponding points x, x+ .
+Again, a direct translation of Definition 22 into the language of the
+projective model gives:
+34
+
+P+
+x+
+
+S
+
+P
+x
+
+Figure 11: Ribaucour transformation
+Definition 23 (Ribaucour transformation. Projective model) Two
+principal contact element nets ℓ, ℓ+ : Z2 → L4,2
+0 are called Ribaucour transforms of one another, if these discrete congruences of isotropic lines are in
+the relation of F-transformation, that is, if any pair of the corresponding
+lines intersect:
+ℓ(u) ∩ ℓ+ (u) = ŝ(u) ∈ P(L4,2 ),
+
+∀u ∈ Z2 .
+
+(34)
+
+Spheres S of a Ribaucour transformation are attached to the vertices u
+of the lattice Z2 , or, better, to the “vertical” edges connecting the vertices
+(u, 0) and (u, 1) of the lattice Z2 × {0, 1}. In the projective model, their
+representatives
+ŝ : Z2 → P(L4,2 )
+(35)
+build the focal net of the three-dimensional line congruence for the third
+coordinate direction. From Theorem 12 there follows:
+Corollary 24 (Spheres of a Ribaucour transformation build an Rcongruence) The spheres of a generic Ribaucour transformation build a
+discrete R-congruence.
+Now, we turn to the study of the geometry of an elementary quadrilateral
+of contact elements of a principal contact element net, consisting of ℓ ∼
+(x, P ), ℓ1 ∼ (x1 , P1 ), ℓ2 ∼ (x2 , P2 ), and ℓ12 ∼ (x12 , P12 ).
+35
+
+We leave aside a degenerate umbilic situation, when all four lines have
+a common point and span a four-dimensional space. Geometrically, this
+means that one is dealing with four contact elements of a sphere S ⊂ R3 . In
+this situation, one cannot draw any further conclusion about the four points
+x, x1 , x2 , x12 on the sphere S: they can be arbitrary.
+In the non-umbilic situation, the space spanned by the four lines ℓ, ℓ1 , ℓ2 , ℓ12
+is three-dimensional. The four elements x̂, x̂1 , x̂2 , x̂12 ∈ P(L4,2 ) corresponding to the points x, x1 , x2 , x12 ∈ R3 are obtained as the intersection of
+the four isotropic lines ℓ, ℓ1 , ℓ2 , ℓ12 with the projective hyperplane P(e⊥
+6)
+in P(R4,2 ). Therefore, the four elements x̂, x̂1 , x̂2 , x̂12 lie in a plane. A suitable framework for the study of this configuration is the projective model
+of the Möbius geometry. Namely, omitting the inessential (vanishing) e6 component, we arrive at a planar quadrilateral in the Möbius sphere P(L4,1 ).
+We devote Sect. 4.2 to the study of such objects.
+Analogously, the four elements p̂, p̂1 , p̂2 , p̂12 ∈ P(L4,2 ) corresponding to
+the planes P, P1 , P2 , P12 ∈ R3 are obtained as the intersection of the four
+4,2
+isotropic lines ℓ, ℓ1 , ℓ2 , ℓ12 with the projective hyperplane P(e⊥
+∞ ) in P(R ).
+Therefore, also the four elements p̂, p̂1 , p̂2 , p̂12 lie in a plane. A suitable
+framework for the study of such a configuration is the projective model of
+the Laguerre geometry; this will be performed in Sect. 4.3.
+
+4.2
+
+Möbius geometry: circular nets
+
+Circular nets were introduced and studied in the context of integrable systems in [B, CDS, KS].
+Caution: in this section, the notation x̂ refers to the Möbius-geometric
+representatives in L4,1 , and not to the Lie-geometric ones in L4,2 . The former
+are obtained from the latter one by omitting the (vanishing) e6 -component.
+We assume that the principal contact element nets under consideration
+are generic, i.e., do not contain umbilic quadruples. The main result of this
+section is the following claim.
+Theorem 25 (Points of principal contact element nets form circular nets) For a principal contact element net
+(x, P ) : Z2 → {contact elements of surfaces in R3 },
+its points x : Z2 → R3 form a circular net.
+This statement refers to the notion, which can be defined in two different
+ways.
+36
+
+Definition 26 (Circular net. Euclidean model) A net x : Zm → R3 is
+called circular, if the vertices of any elementary quadrilateral (x, xi , xij , xj )
+(at any u ∈ Zm and for all pairs 1 ≤ i 6= j ≤ m) lie on a circle (in particular,
+are co-planar).
+Definition 27 (Circular net. Projective model) A net x : Zm → R3 is
+called circular, if the corresponding x̂ : Zm → P(L4,1 ) is a Q-net in P(R4,1 ).
+This time a translation between the Euclidean model and the projective
+model is not straightforward and actually constitutes the matter of Theorem
+25: indeed, this theorem has already been demonstrated (or, better, is obvious) in terms of Definition 27, and it remains to establish the equivalence
+of Definitions 26,27.
+Conceptual proof. The linear subspace of R4,1 spanned by the isotropic
+vectors x̂, x̂i , x̂j , x̂ij is three-dimensional. Its orthogonal complement is
+therefore two-dimensional and lies in R4,1
+out . Therefore, it represents a circle
+(an intersection of two spheres). 
+Computational proof. For arbitrary representatives x̃ ∈ L4,1 of x̂, the
+requirement of Definition 27 is equivalent to equation of the type (1). Since
+the representatives x̂ = x+e0 +|x|2 e∞ fixed in (14) lie in an affine hyperplane
+of R4,1 (their e0 -component is equal to 1), one has an equation of the type
+(2) for them. Clearly, this holds if and only if x is a Q-net in R3 and |x|2
+satisfies the same equation (2) as x does. We show that the latter condition
+is equivalent to circularity. On a single planar elementary quadrilateral
+(x, xi , xij , xj ), the function |x|2 satisfies eq. (2) simultaneously with |x −
+c|2 = |x|2 − 2hx, ci + |c|2 with any c ∈ R3 . Choose c to be the center of the
+circle through the three points x, xi , xj , so that |x−c|2 = |xi −c|2 = |xj −c|2 .
+Then eq. (2) for |x − c|2 turns into |xij − c|2 = |x − c|2 , which means that
+xij lies on the same circle. 
+Two-dimensional circular nets (m = 2) are discrete analogs of the curvature lines parametrized surfaces, while the case m = 3 discretizes orthogonal
+coordinate systems in R3 . A construction of an elementary hexahedron of a
+circular net is based on the following geometric theorem:
+Theorem 28 (Elementary hexahedron of a circular net) Given seven
+points x, xi , and xij (1 ≤ i < j ≤ 3) in R3 , such that each of the three
+quadruples (x, xi , xj , xij ) lies on a circle Cij , define three new circles τi Cjk
+as those passing through the triples (xi , xij , xik ), respectively. Then these
+new circles intersect at one point, see Fig. 12:
+x123 = τ1 C23 ∩ τ2 C31 ∩ τ3 C12 .
+37
+
+Figure 12: An elementary hexahedron of a circular net
+
+Proof. This is a particular case of Theorem 15, applied to the quadric
+P(L4,1 ). 
+This theorem can be proven also by elementary geometrical considerations. If one notes that under conditions of Theorem 28 the seven points
+x, xi , xij lie on a two-dimensional sphere, and performs a stereographic
+projection of this sphere with the pole at x, one arrives at a planar picture
+which is nothing but the classical Miquel theorem.
+
+4.3
+
+Laguerre geometry: conical nets
+
+Conical meshes have been introduced recently in [LPWYW].
+Caution: in this section, the notation p̂ refers to the Laguerre-geometric
+representatives in L3,1,1 , and not to the Lie-geometric ones in L4,2 . The former are obtained from the latter by omitting the (vanishing) e0 -component.
+As in the previous section, we assume that the principal contact element
+nets under consideration do not contain umbilic quadruples. The main result
+of this section is the following claim.
+Theorem 29 (Tangent planes of principal contact element nets
+form conical nets) For a principal contact element net
+(x, P ) : Z2 → {contact elements of surfaces in R3 },
+its tangent planes P : Zm → {oriented planes in R3 } form a conical net.
+This statement refers to the notion which can be defined in two different
+ways.
+38
+
+Definition 30 (Conical net. Euclidean model) A net P : Zm →
+{oriented planes in R3 } is called conical, if at any u ∈ Zm and for all
+pairs 1 ≤ i 6= j ≤ m the four planes P, Pi , Pij , Pj touch a cone of revolution
+(in particular, intersect at the tip of the cone).
+Definition 31 (Conical net. Projective model) A net P : Zm →
+{oriented planes in R3 } is called conical, if the corresponding p̂ : Zm →
+P(L3,1,1 ) is a Q-net in P(R3,1,1 ).
+Theorem 29 is obvious in terms of Definition 31, so the real content of this
+theorem is the translation between the Euclidean model and the projective
+model, that is, establishing equivalence of Definitions 30, 31.
+Proof. Representatives p̂ in (23) form a Q-net, if and only if they
+satisfy eq. (2), that is, if v : Zm → S2 and d : Zm → R satisfy this equation.
+Equation (2) for v yields that v : Zm → S2 is actually a Q-net in S2 , so
+that any quadrilateral (v, vi , vij , vj ) in S2 is planar and therefore circular.
+Equation (2) for (v, d) yields that the (unique) intersection point of three
+planes P , Pi , Pj lies on Pij , as well, so that all four planes intersect in
+one point. Thus, we arrived at a characterization of conical nets in the
+sense of Definition 31 as those nets of planes for which every quadruple of
+planes (P, Pi , Pij , Pj ) is concurrent and every quadrilateral (v, vi , vij , vj ) of
+unit normal vectors is planar. It is clear that this description is equivalent to
+that of Definition 30. The direction of the axis of the tangent cone coincides
+with the spherical center of the quadrilateral (v, vi , vij , vj ) in S2 . 
+Thus, conical nets are Q-nets with circular Gauss maps. It is worthwhile
+to mention that, in order to prescribe a conical net, it is enough to prescribe
+a circular Gauss map v : Zm → S2 and additionally the numbers d (i.e., the
+planes P = (v, d)) along the coordinate axes of Zm . Indeed, these data allow
+one to reconstruct the conical net uniquely. This is done via a recursive
+procedure, whose elementary step consists in finding the fourth plane Pij
+provided three planes P, Pi , Pj and the normal direction vij of the fourth
+one are known. But this is easy: Pij is the plane normal to vij through the
+unique intersection point of the three planes P, Pi , Pj .
+
+4.4
+
+Synthesis
+
+In view of Theorems 25, 29, it is natural to ask whether, given a circular
+net x : Z2 → R3 , or a conical net P : Z2 → {oriented planes in R3 }, there
+exists a principal contact element net
+(x, P ) : Z2 → {contact elements of surfaces in R3 },
+39
+
+with the prescribed half of the data (x or P ). A positive answer to this
+question is a corollary of the following general theorem.
+Theorem 32 (Extending R-congruences of spheres to curvature
+line parametrized surfaces) Given a discrete R-congruence of spheres
+S : Z2 → {oriented spheres in R3 },
+there exists a two-parameter family of principal contact element nets
+(x, P ) : Z2 → {contact elements of surfaces in R3 }
+such that S belongs to the contact element (x, P ), i.e., P is the tangent
+plane to S at the point x ∈ S, for all u ∈ Z2 . Such a principal contact element net is uniquely determined by prescribing a contact element (x, P )(0, 0)
+containing the sphere S(0, 0).
+Proof. The input data is a Q-net ŝ : Z2 → P(L4,2 ) in the Lie quadric,
+and we are looking for a congruence of isotropic lines ℓ : Z2 → L04,2 such
+that ŝ(u) ∈ ℓ(u) for all u ∈ Z2 . The construction starts with an arbitrary
+isotropic line ℓ(0, 0) through ŝ(0, 0), and hinges on the following lemma.
+4,2
+Lemma 33 For an isotropic line ℓ ∈ L4,2
+0 and a point ŝ1 ∈ P(L ) not lying
+on ℓ, there is a unique isotropic line ℓ1 through ŝ1 intersecting ℓ.
+
+Proof. Let ŝ, σ̂ be two arbitrary points on ℓ (in homogeneous coordinates),
+so that the line ℓ is given by the linear combinations αŝ + β σ̂. Relation
+hαŝ + β σ̂, ŝ1 i = 0 yields
+α : β = − hσ̂, ŝ1 i : hŝ, ŝ1 i.
+Thus, there exists a unique point ŝ(1) ∈ ℓ such that hŝ(1) , ŝ1 i = 0. Now ℓ1 is
+the line through ŝ1 and ŝ(1) . 
+Proof of Theorem 32, continued. With the help of Lemma 33, one can
+construct the isotropic lines of the congruence along the coordinate axes,
+ℓ : Z × {0} → L4,2
+0
+
+and ℓ : {0} × Z → L04,2 .
+
+Next, one has to extend the congruence ℓ from the coordinate axes to the
+whole of Z2 . An elementary step of this extension consists in finding, for
+three given isotropic lines ℓ, ℓ1 , ℓ2 (such that ℓ intersects both ℓ1 and ℓ2 )
+the fourth one, ℓ12 , intersecting ℓ1 and ℓ2 and going through a given point
+ŝ12 . One can use for this Lemma 33, but then one has to demonstrate
+40
+
+that this construction is consistent, i.e., that the lines ℓ12 obtained from
+the requirements of intersecting with ℓ1 and with ℓ2 coincide. We show
+this with the following argument. The space V = span(ℓ, ℓ1 , ℓ2 ) is threedimensional. The points ŝ, ŝ1 , ŝ2 lie in V . By the hypothesis of the theorem,
+the quadrilateral (ŝ, ŝ1 , ŝ12 , ŝ2 ) is planar, therefore ŝ12 lies in V , as well.
+Draw two planes in V : Π1 = span(ℓ1 , ŝ12 ) and Π2 = span(ℓ2 , ŝ12 ). Their
+intersection is a line ℓ12 through ŝ12 . It remains to prove that this line is
+isotropic. For this, note that ℓ12 can be alternatively described as the line
+(2)
+(1)
+through two points ŝ1 = ℓ1 ∩ ℓ12 and ŝ2 = ℓ2 ∩ ℓ12 . Both these points lie
+in P(L4,2 ), since they belong to the isotropic lines ℓ1 and ℓ2 , respectively.
+But it is easy to see that a line in P(R4,2 ) through two points from P(L4,2 )
+is either isotropic, or contains no further points from P(L4,2 ), depending on
+whether these two points are polar to one another (with respect to P(L4,2 ))
+or not. In our case the line ℓ12 contains, by construction, one further point
+ŝ12 from P(L4,2 ), therefore it has to be isotropic. 
+Since the representatives x̂ in P(L4,2 ) of a circular net x : Z2 → R3 form
+a Q-net in P(R4,2 ), and the same holds for the representatives p̂ in P(L4,2 )
+of a conical net P : Z2 → {oriented planes in R3 }, we come to the following
+conclusion (obtained independently by Pottmann [P]).
+Corollary 34 (Extending circular and conical nets to principal contact element nets)
+i) Given a circular net x : Z2 → R3 , there exists a two-parameter family
+of conical nets P : Z2 → {planes in R3 } such that x ∈ P for all u ∈ Z2 , and
+the contact element net
+(x, P ) : Z2 → {contact elements of surfaces in R3 }
+is principal. Such a conical net is uniquely determined by prescribing a plane
+P (0, 0) through the point x(0, 0).
+ii) Given a conical net P : Z2 → {oriented planes in R3 }, there exists a
+two-parameter family of circular nets x : Z2 → R3 such that x ∈ P for all
+u ∈ Z2 , and the contact element net
+(x, P ) : Z2 → {contact elements of surfaces in R3 }
+is principal. Such a circular net is uniquely determined by prescribing a
+point x(0, 0) in the plane P (0, 0).
+These relations can be summarized as in Fig. 13. Note that the axes of
+conical nets corresponding to a given circular net coincide with the Gauss
+map at its vertices, considered by Schief [Sch2].
+41
+
+(1)
+
+S (1)
+
+S2
+P2
+
+P12
+
+LAGUERRE
+
+ℓ12
+
+LIE
+
+x12
+
+MÖBIUS
+
+P
+P1
+ℓ
+
+ℓ1
+
+ℓ2
+x2
+
+x
+
+x1
+
+S (2)
+
+(2)
+
+S1
+
+Figure 13: Elementary quadrilateral of a curvature line parametrized surface with vertices x and tangent planes P in the projective model. The
+vertices x build a circular net (Möbius geometry), and lie in the planes P
+building a conical net (Laguerre geometry). Contact elements (x, P ) are
+represented by isotropic lines ℓ (Lie geometry). Principal curvature spheres
+S (i) pass through pairs of neighboring points x, xi and are tangent to the
+corresponding pairs of planes P, Pi .
+
+42
+
+Remark. In the situations of Corollary 34, i.e., when the R-congruence
+S consists of points x (and is therefore a circular net) or of planes P (and
+is therefore a conical net), the elementary construction step of Lemma 33
+allows for a very simple description from the Euclidean perspective in R3 .
+This has been given by Pottmann [P].
+i) Given a contact element (x, P ) and a point x1 , find a plane P1 through
+x1 so that there exists a sphere S (1) tangent to both planes P , P1 at
+the points x, x1 , respectively. Solution: P1 is obtained from P by the
+reflection in the bisecting orthogonal plane of the edge [x, x1 ]. The
+center c(1) of the sphere S (1) is found as the intersection of the normal
+to P at x with the bisecting orthogonal plane of the edge [x, x1 ].
+ii) Given a contact element (x, P ) and a plane P1 , find a point x1 in P1
+so that there exists a sphere S (1) tangent to both planes P , P1 at the
+points x, x1 , respectively. Solution: the point x1 is obtained from x
+by the reflection in the bisecting plane of the dihedral angle formed by
+P , P1 . The center c(1) of the sphere S (1) is found as the intersection
+of the normal to P at x with this bisecting plane.
+
+5
+
+R-congruences of spheres
+
+In Sect. 4, Corollaries 21, 24, we have seen that principal curvature spheres
+of a principal contact element net and spheres of a Ribaucour transformation
+build discrete R-congruences, introduced in Definition 20. In this section we
+study the geometry of discrete R-congruences of spheres. Definition 20 can
+be re-formulated as follows: a map
+S : Z2 → {oriented spheres in R3 },
+or the corresponding map
+ŝ : Z2 → L4,2 ⊂ R4,2
+into the space of homogeneous coordinates, is called a discrete R-congruence
+of spheres, if for any u ∈ Zm and for any pair 1 ≤ i 6= j ≤ m the linear
+subspace
+Σ = span(ŝ, ŝi , ŝj , ŝij )
+is three-dimensional. Thus, to any elementary square of Zm there corresponds a three-dimensional linear subspace Σ ⊂ R4,2 .
+43
+
+The R-congruence of principal curvature spheres S (i) of the i-th coordinate direction is degenerate in the sense that the subspaces of its elementary
+quadrilaterals
+(i) (i) (i)
+Σ = span(ŝ(i) , ŝi , ŝij , ŝj )
+contain two-dimensional isotropic subspaces (corresponding to ℓi and ℓij ).
+The R-congruence of spheres of a generic Ribaucour transformation is, on the
+contrary, non-degenerate: its Σ’s do not contain two-dimensional isotropic
+subspaces, and its elementary quadrilaterals are included in planar families
+of spheres, introduced in the following definition.
+Definition 35 (Planar family of spheres) A planar family of spheres
+is a set of spheres whose representatives ŝ ∈ P(L4,2 ) are contained in a
+projective plane P(Σ), where Σ is a three-dimensional linear subspace of
+R4,2 such that the restriction of h·, ·i to Σ is non-degenerate.
+Thus, a planar family of spheres is an intersection P(Σ∩L4,2 ). Clearly, there
+are two possibilities:
+• Signature of h·, ·i|Σ is (2, 1), so that signature of h·, ·i|Σ⊥ is also (2, 1).
+• Signature of h·, ·i|Σ is (1, 2), so that signature of h·, ·i|Σ⊥ is (3, 0).
+It is easy to see that a planar family is one-parametric, parametrized by a
+circle S1 . Indeed, if e1 , e2 , e3 is an orthogonal basis of Σ such that he1 , e1 i =
+he2 , e2 i = −he3 , e3 i = 1 (say), then the spheres of the planar family come
+from the linear combinations ŝ = α1 e1 + α2 e2 + e3 with
+hα1 e1 + α2 e2 + e3 , α1 e1 + α2 e2 + e3 i = 0
+
+⇔
+
+α21 + α22 = 1.
+
+In the second of the cases mentioned above, the space Σ⊥ only has a trivial
+intersection with L4,2 , so that the spheres of the planar family P(L4,2 ∩ Σ)
+have no common touching spheres. This case has no counterpart in the
+smooth differential geometry. From the point of view of discrete differential
+geometry the first case is more significant.
+Definition 36 (Cyclidic family of spheres) A planar family of spheres
+is called cyclidic, if the signature of h·, ·i|Σ is (2, 1), so that the signature of
+h·, ·i|Σ⊥ is also (2, 1).
+Thus, for a cyclidic family P(L4,2 ∩ Σ) there is a dual cyclidic family
+P(L4,2 ∩ Σ⊥ ) such that any sphere of the first one is in an oriented contact
+44
+
+with any sphere of the second one. The family P(L4,2 ∩ Σ), as any oneparameter family of spheres, envelopes a canal surface in R3 , and this surface
+is an envelope of the dual family P(L4,2 ∩ Σ⊥ ), as well. Such surfaces are
+called Dupin cyclides. Thus, to any elementary quadrilateral of a discrete
+R-congruence whose spheres (ŝ, ŝi , ŝij , ŝj ) span a subspace of the signature
+(2,1) there corresponds a Dupin cyclide.
+
+Figure 14: A cyclidic family of spheres through a circle
+Examples:
+◮ points of a circle build a planar cyclidic family of spheres (of radius
+zero). The dual family consists of all (oriented) spheres through this circle,
+with centers lying on the line through the center of the circle orthogonal
+to its plane, see. Fig. 14. The corresponding Dupin cyclide is the circle
+itself. It can be shown that any Dupin cyclide is an image of this case under
+a Lie sphere transformation. For a circular net, considered as a discrete
+R-congruence, each elementary quadrilateral carries such a structure.
+◮ planes tangent to a cone of revolution build a planar cyclidic family
+of spheres, as well. The dual family consists of all (oriented) spheres tangent
+to the cone, with centers lying on the axis of the cone, see. Fig. 15. The
+corresponding Dupin cyclide is the cone itself. For a conical net, considered
+as a discrete R-congruence, each elementary quadrilateral carries such a
+structure.
+Theorem 37 (Common tangent spheres of two neighboring quadrilaterals of an R-congruence) For two neighboring quadrilaterals of a
+discrete R-congruence of spheres, carrying cyclidic familes, there are generically exactly two spheres tangent to all six spheres of the congruence.
+Proof. Let the quadrilaterals in question belong to the planar families generated by the subspaces Σ1 and Σ2 of the signature (2,1). These quadrilaterals share two spheres ŝ1 and ŝ2 , which span a linear space of the signature
+(1,1). Each of the planar families Σ1 and Σ2 adds one space-like vector,
+45
+
+Figure 15: A cyclidic family of spheres tangent to a cone
+so that the linear space Σ1 ∪ Σ2 spanned by all six spheres of the congruence is four-dimensional and has the signature (3,1), so that its orthogonal
+complement (Σ1 ∪ Σ2 )⊥ is two-dimensional and has the signature (1,1). Intersection of L4,2 with a two-dimensional linear subspace of the signature
+(1,1) gives, upon projectivization, exactly two spheres: indeed, if e1 , e2 form
+an orthogonal basis of (Σ1 ∪ Σ2 )⊥ with he1 , e1 i = −he2 , e2 i = 1, then the
+spheres in this space correspond to α1 e1 + α2 e2 with
+hα1 e1 + α2 e2 , α1 e1 + α2 e2 i = 0
+
+⇔
+
+α21 = α22
+
+⇔
+
+α1 : α2 = ±1. 
+
+In particular:
+◮ For any two neighboring quadrilaterals of a circular net, there is one
+non-oriented sphere (hence two oriented spheres) containing both circles. Its
+center is the intersection point of the lines passing through the centers of
+the circles orthogonallly to their respective planes, see Fig. 16.
+◮ For any two neighboring quadrilaterals of a conical net, there is a
+unique oriented sphere touching both cones (the second such sphere is the
+point at infinity). The center of this sphere is the intersection point of the
+axes of the cones.
+The next theorem is proved in exactly the same way as Theorem 37:
+Theorem 38 (Common tangent spheres of an elementary hexahedron of an R-congruence) For an elementary hexahedron of a discrete
+R-congruence of spheres, with all faces carrying cyclidic families, there are
+generically exactly two spheres tangent to all eight spheres at its vertices.
+It should be mentioned that these spheres, attached to elementary hexahedra, do not form a discrete R-congruence, contrary to what has been
+alleged by A. Doliwa as a main result of [D3].
+46
+
+Figure 16: Normals of two neighboring quadrilaterals of a circular net intersect: both lie in the bisecting orthogonal plane of the common edge
+
+Figure 17: Normals of two neighboring quadrilaterals of a conical net intersect: two common planes of the quadrilaterals are tangent to both cones,
+therefore the axes of both cones lie in the bisecting plane of these two planes
+
+47
+
+We now turn to a geometric characterization of discrete R-congruences.
+From eq. (4) there follows immediately that a map
+S : Zm → {oriented spheres in R3 },
+is a discrete R-congruence, if and only if the centers c : Zm → R3 form a
+Q-net in R3 , and the two real-valued functions,
+|c|2 − r 2 : Zm → R
+
+and r : Zm → R,
+
+satisfy the same equation of the type (2) as the centers c. By omitting
+the latter requirement for the signed radii r, one comes to a less restrictive
+definition than that of R-congruence. Actually, this definition belongs to
+Möbius geometry and refers to notations of Sect. 3.2 (with N = 3).
+Definition 39 (Q-congruence of spheres) A map
+
+S : Zm → non-oriented spheres in R3 ,
+is called an Q-congruence of spheres, if the corresponding map
+
+ŝ : Zm → P(R4,1
+ŝ = c + e0 + |c|2 − r 2 e∞ ,
+out ),
+
+(36)
+
+(37)
+
+is a Q-net in P(R4,1 ).
+Thus, a map (36) is a Q-congruence, if and only if the centers c : Zm → R3
+of the spheres S form a Q-net in R3 , and the function |c|2 − r 2 satisfies the
+same equation (2) as the centers c.
+Theorem 40 (Characterization of R- among Q-congruences) Four
+(oriented) spheres (S, Si , Sij , Sj ) in R3 comprise an elementary quadrilateral
+of an R-congruence, if and only if they comprise (as non-oriented spheres)
+an elementary quadrilateral of a Q-congruence, and satisfy additionally the
+following condition:
+(R) There exists a non-point sphere in an oriented contact with all four
+oriented spheres S, Si , Sj , Sij .
+Under this condition, any sphere in an oriented contact with three spheres
+S, Si , Sj is in an oriented contact with the fourth one, Sij , as well.
+
+48
+
+Proof. Let S0 be a sphere with the center c0 and (finite) oriented radius
+r0 6= 0 in an oriented contact with the three spheres S, Si , Sj . This means
+that the following conditions are satisfied:
+hc, c0 i − 12 (|c|2 − r 2 ) − 21 (|c0 |2 − r02 ) − rr0 = 0
+
+(38)
+
+(tangency of S, S0 , cf. (10)), and two similar equation with (c, r) replaced
+by (ci , ri ) and (cj , rj ). Now, using the fact that c and |c|2 − r 2 satisfy one
+and the same equation of the type (2), we conclude that eq. (38) is fulfilled
+for (cij , rij ), if and only if r satisfies the same equation (2) as c and |c|2 − r 2
+do. This proves the theorem in the case when the common tangent sphere
+S0 for the three spheres S, Si , Sj has a finite radius. The case when S0 has
+an infinite radius, i.e., is actually a plane, is dealt with similarly, with the
+help of equation
+hc, v0 i − r − d0 = 0,
+(39)
+which comes to replace eq. (38). 
+Remark. We have already seen that, generically, if three oriented
+spheres S, Si , Sj have a common sphere in an oriented contact, then they
+have a one-parameter (cyclidic) family of common touching spheres, represented by a three-dimensional linear subspace Σ of R4,2 . It is easy to see
+that if the projection of Σ onto e⊥
+∞ is non-vanishing, then the family of
+spheres represented by Σ⊥ contains exactly two planes. (The only exceptional case is that of a conical cyclidic family Σ, all of whose elements have
+vanishing e0 -component and represent planes, while the family Σ⊥ contains
+no planes.) Therefore, in all cases but the conical one, condition (R) can be
+replaced by the following requirement:
+(R0 ) The four oriented spheres S, Si , Sj , Sij have a common tangent plane
+(actually, two common tangent planes).
+It remains to give a geometric characterization of Q-congruences. This
+is done in the following theorem.
+Theorem 41 (Three types of Q-congruences) Four (non-oriented)
+spheres (S, Si , Sij , Sj ) in R3 comprise an elementary quadrilateral of a Qcongruence, if and only if they satisfy one of the following three conditions:
+(i) they have a common orthogonal circle, or
+(ii) they intersect along a pair of points (a 0-sphere), or else
+(iii) they intersect at exactly one point.
+49
+
+Case (iii) can be regarded as a degenerate case of both (i) and (ii).
+Conceptual proof. Caution: notations in this proof refer to the Möbiusgeometric objects which are different from the Lie-geometric objects denoted
+by the same symbols. The linear subspace Σ of R4,1 spanned by the points ŝ,
+ŝi , ŝj , ŝij is three-dimensional, so that its orthogonal complement Σ⊥ is twodimensional. If Σ⊥ lies in R4,1
+out , i.e., if the restriction of the Minkowski scalar
+product to Σ⊥ is positive-definite (of signature (2,0)), then Σ⊥ represents
+a 1-sphere (a circle) orthogonal to our four spheres, and we have the case
+(i). If, on the contrary, the restriction of the scalar product to Σ⊥ has
+signature (1, 1), so that Σ lies in R4,1
+out , then Σ represents a 0-sphere which
+is the intersection of our four spheres, and we have the case (ii). Finally,
+if the restriction of the scalar product to Σ is degenerate, then Σ ∩ Σ⊥ is
+an isotropic one-dimensional linear subspace, which represents the common
+point of our four spheres, and we have the case (iii). 
+Computational proof. The quadrilateral in R3 with the vertices at the
+sphere centers c, ci , cj , cij is planar; denote its plane by Π. In the same way
+as in the proof of Theorem 25 we show that there is a point C ∈ Π such
+that
+2
+|c − C|2 − r 2 = |ci − C|2 − ri2 = |cj − C|2 − rj2 = |cij − C|2 − rij
+.
+
+(40)
+
+Indeed, the first two of these equations define C uniquely as the intersection
+of two lines ℓi and ℓj in Π, where
+ℓi = {x ∈ Π : h2x − ci − c, ci − ci = r 2 − ri2 },
+and then the last equation in (40) is automatically satisfied. If the common
+value of all four expressions in (40) is positive (say, equal to R2 ), then the
+four spheres under consideration are orthogonal to the circle in the plane Π
+with the center C and radius R, so that we have the case (i), see Fig. 18.
+If the common value of (40) is negative (say, equal to −R2 ), then the pair
+of points on the line through C orthogonal to Π, at the distance R from
+C, belong to all four spheres, so that we have the case (ii). Finally, if the
+common value of (40) is equal to 0, then C is the intersection point of all
+four spheres, and we have the case (iii). .
+Clearly, case (i) of Q-congruences reduces to circular nets, if the radii
+of all spheres become infinitely small, cf. Fig. 18. Q-congruences with
+intersections of type (ii) are natural discrete analogs of sphere congruences
+parametrized along principal lines.
+50
+
+c
+rj j
+
+cij
+rij
+
+c
+r
+
+C
+
+ri ci
+
+Figure 18: Elementary quadrilateral of a Q-congruence of spheres, the orthogonal circle case
+Some remarks about Q-congruences of spheres are in order here. They
+are multidimensionally consistent, with the following reservation: given
+seven points ŝ, ŝi , ŝij in P(R4,1
+out ), the Q-property (planarity condition)
+uniquely defines the eighth point ŝ123 in P(R4,1 ), which, however, might get
+outside of P(R4,1
+out ), and therefore might not represent a real sphere. Thus,
+the corresponding discrete 3D system is well-defined on an open subset of the
+space of initial data only. As long as it is defined, it can be used to produce
+transformations of Q-congruences, with usual permutability properties.
+Note the following difference between Q-congruences and R-congruences:
+given three spheres S, Si , Sj of an elementary quadrilateral, one has a twoparameter family for the fourth sphere Sij in the case of a Q-congruence,
+and only a one-parameter family in the case of an R-congruence. This is
+4,1
+4,2 is a
+a consequence of the fact that R4,1
+out is an open set in R , while L
+4,2
+hypersurface in R .
+
+A
+
+Appendix: cyclographic model of Laguerre
+geometry
+
+In the cyclographic model of Laguerre geometry, the preferred space is the
+space of hyperspheres (RN,1,1 )∗ , so hyperspheres S ⊂ RN are modelled as
+51
+
+
+points ŝ ∈ P (RN,1,1 )∗ , while hyperplanes
+P ⊂ RN are modelled as hyper
+N,1,1
+∗
+planes {ξ : hp̂, ξi = 0} ⊂ P (R
+) . Thus, a hyperplane P is interpreted
+as a set of hyperspheres S which are in oriented contact with P .
+Basic features of this model:
+(i) The set of oriented hyperspheres S ⊂ RN is in a one-to-one correspondence with points
+σ = (c, r)
+(41)
+of the Minkowski space RN,1 spanned by the vectors e1 , . . . , eN , eN +3 .
+This space has an interpretation of an affine part of P (RN,1,1 )∗ .
+(ii) Oriented hyperplanes P ⊂ RN can be modelled as hyperplanes in RN,1 :
+
+π = (c, r) ∈ RN,1 : h(v, 1), (c, r)i = hv, ci − r = d .
+
+(42)
+
+Thus, oriented hyperplanes P ∈ RN are in a one-to-one correspondence
+with hyperplanes π ⊂ RN,1 which make angle π/4 with the subspace
+RN = {(x, 0)} ⊂ RN,1 .
+(iii) An oriented hypersphere S ⊂ RN is in an oriented contact with an
+oriented hyperplane P ⊂ RN , if and only if σ ∈ π.
+(iv) Two oriented hyperspheres S1 , S2 ⊂ RN are in an oriented contact, if
+and only if their representatives in the Minkowski space σ1 , σ2 ∈ RN,1
+differ by an isotropic vector: |σ1 − σ2 | = 0.
+In the cyclographic model, the group of Laguerre transformations admits a
+beautiful description:
+Theorem 42 (Fundamental theorem of the Laguerre geometry)
+The group of Laguerre transformations is isomorphic to the group of affine
+transformations of RN,1 : y 7→ λAy + b, where A ∈ O(N, 1), λ > 0, and
+b ∈ RN,1 .
+
+References
+[ABS]
+
+V.E. Adler, A.I. Bobenko, Yu.B. Suris. Classification of integrable equations on quad-graphs. The consistency approach.
+Commun. Math. Phys., 2003, 233, 513–543.
+
+[AKV]
+
+A.A. Akhmetshin, I.M. Krichever, Y.S. Volvovski. Discrete
+analogs of the Darboux-Egoroff metrics. Proc. Steklov Inst.
+Math., 2 (225) (1999), 16–39.
+52
+
+[Al]
+
+A.D. Alexandrov. Convex polyhedra Springer Monographs in
+Mathematics. Berlin: Springer, 2005, 539 p.
+
+[ACSDLD] P. Alliez, D. Cohen-Steiner, O. Devillers, B. Levy, M. Desbrun
+Anisotropic Polygonal Remeshing. In: ACM SIGGRAPH Conference Proceedings 2003, 485–493
+[Benz]
+
+W. Benz. Geometrische transformationen. Mannheim:
+Wiss.-Verlag, 1992.
+
+[Be]
+
+M. Berger. Geometry. Berlin etc.: Springer-Verlag, 1987.
+
+[Bi]
+
+L. Bianchi. Lezioni di geometria differenziale. 3rd edition. Pisa:
+Enrico Spoerri, 1923 (Italian). iv+806, xi+832 pp.
+
+[Bi2]
+
+L. Bianchi. Le transformazioni di Ribaucour dei sistemi n-pli
+ortogonali e il teorema generale di permutabilità. Annali di Mat.,
+27 (3) (1918), 183–257.
+
+[B1]
+
+W. Blaschke. Vorlesungen über Differentialgeometrie III: Differentialgeometrie der Kreise und Kugeln. Bearbeitet von G.
+Thomsen. Berlin: Springer, 1929 (German). x+474 pp.
+
+[B2]
+
+W. Blaschke. Projektive Geometrie. 3rd edition. Basel etc.:
+Birkhäuser, 1954. 197 pp.
+
+[B]
+
+A.I. Bobenko. Discrete conformal maps and surfaces. – In: Symmetries and integrability of difference equations (Canterbury,
+1996), CRM Proc. Lecture Notes, 255 (1999), pp. 97–108.
+
+[BHJ]
+
+A.I. Bobenko, U. Hertrich-Jeromin. Orthogonal nets and Clifford algebras. Tôhoku Math. Publ. 20 (2001), 7–22.
+
+[BMS]
+
+A.I. Bobenko, D. Matthes, Yu.B. Suris. Discrete and smooth
+orthogonal systems: C ∞ -approximation. Int. Math. Res. Not.,
+45 (2003), 2415–2459.
+
+[BP1]
+
+A.I. Bobenko, U. Pinkall. Discrete surfaces with constant negative Gaussian curvature and the Hirota equation. J. Differential
+Geom., 43 (1996), no. 3, 527–611.
+
+[BP2]
+
+A.I. Bobenko, U. Pinkall. Discrete isothermic surfaces. J. Reine
+Angew. Math., 475 (1996), 187–208.
+
+53
+
+BI-
+
+[BP3]
+
+A.I. Bobenko, U. Pinkall. Discretization of surfaces and integrable systems. – In: Discrete integrable geometry and physics,
+Eds. A.I. Bobenko and R. Seiler, Oxford: Clarendon Press, 1999,
+pp. 3–58.
+
+[BSch]
+
+A.I. Bobenko, P. Schröder. Discrete Willmore Flow. – In: Europgaphics Symposium on Geometry Processing, Eds. M. Desbrun,
+H. Pottmann, 2005, pp. 101–110
+
+[BS1]
+
+A.I. Bobenko, Yu.B. Suris. Integrable systems on quad-graphs.
+Internat. Math. Res. Notices, 2002, Nr. 11, 573–611.
+
+[BS2]
+
+A.I. Bobenko, Yu.B. Suris. Discrete differential geometry. Consistency as integrability. http://arxiv.org/math.DG/0504358.
+
+[BHJ1]
+
+F. Burstall, U. Hertrich-Jeromin. Harmonic maps in unfashionable geometries. Manuscripta Math., 108 (2002), 171–189.
+
+[BHJ2]
+
+F. Burstall, U. Hertrich-Jeromin. The Ribaucour transformation
+in Lie sphere geometry. http://arxiv.org/math.DG/0407244.
+
+[C]
+
+T. Cecil. Lie sphere geometry. New York: Springer, 1992.
+
+[CDS]
+
+J. Cieslinski, A. Doliwa, P.M. Santini. The integrable discrete analogues of orthogonal coordinate systems are multidimensional circular lattices. Phys. Lett. A 235 (1997), 480–488.
+
+[Da1]
+
+G. Darboux. Leçons sur la théorie générale des surfaces et les applications géométriques du calcul infinitésimal. T.I–IV. 3rd edition. Paris: Gauthier-Villars, 1914–1927.
+
+[Da2]
+
+G. Darboux, Leçons sur les Systèmes Orthogonaux et les Coordonnées Curviligne, Paris: Gauthier-Villars, 1910.
+
+[D1]
+
+A. Doliwa. Quadratic reductions of quadrilateral lattices. J.
+Geom. Phys. 30 (1999), 169–186.
+
+[D2]
+
+A. Doliwa. Discrete asymptotic nets and W -congruences in
+Plücker line geometry. J. Geom. Phys. 39 (2001), no. 1, 9–29.
+
+[D3]
+
+A. Doliwa. The Ribaucour congruences of spheres within Lie
+sphere geometry. – In: CRM Proceedings and Lecture Notes, 29
+(2001), 159–166.
+
+54
+
+[DMS]
+
+A. Doliwa, S.V. Manakov, P.M. Santini. ∂¯ reductions of the multidimensional quadrilateral lattice: the multidimensional circular lattice. Comm. Math. Phys., 196 (1998), 1–18.
+
+[DS]
+
+A. Doliwa, P.M. Santini. Multidimensional quadrilateral lattices
+are integrable. Phys. Lett. A, 233 (1997), 265–372.
+
+[DSM]
+
+A. Doliwa, P.M. Santini, M. Mañas. Transformations of quadrilateral lattices. J. Math. Phys. 41 (2000), 944–990.
+
+[DKG]
+
+S. Dong, S. Kircher, M. Garland. Harmonic functions for quadrilateral remeshing of arbitrary manifolds. Comp. Aided Geom.
+Design 22 (2005), 392–423
+
+[Du]
+
+B. Dubrovin. Integrable systems in topological field theory. Nucl.
+Phys., B 379 (1992), 627–689.
+
+[D]
+
+Ch. Dupin. Développements de géométrie. Paris: 1813.
+
+[DN]
+
+I.A. Dynnikov, S.P. Novikov. Geometry of the triangle equation
+on two-manifolds. Mosc. Math. J. 3 (2003), 419–438.
+
+[E2]
+
+L.P. Eisenhart. Transformations of surfaces. Princeton University Press, 1923. ix+379 pp.
+
+[F1]
+
+E.V. Ferapontov. Lie sphere geometry and integrable systems.
+Tohoku Math. J. (2), 52 (2000), 199–233.
+
+[F2]
+
+E.V. Ferapontov. Analog of Wilczynski’s projective frame in
+Lie sphere geometry: Lie-applicable surfaces and commuting
+Schrödinger operators with magnetic fields. Internat. J. Math.
+13 (2002), 959–985.
+
+[FLPP]
+
+D. Ferus, K. Leschke, F. Pedit, U. Pinkall. Quaternionic holomorphic geometry: Plücker formula, Dirac eigenvalue estimates
+and energy estimates of harmonic 2-tori. Invent. Math. 146:3
+(2001), 507–593
+
+[GT]
+
+E.I. Ganzha, S.P. Tsarev. An algebraic superposition formula
+and the completeness of Bäcklund transformations of (2 + 1)dimensional integrable systems. Uspekhi Mat. Nauk 51 (1996),
+no. 6, 197–198 (Russian); English translation in: Russian Math.
+Surveys 51 (1996), 1200–1202.
+
+55
+
+[HJ]
+
+U. Hertrich-Jeromin. Introduction to Möbius differential geometry. Cambridge University Press, 2003. xii+413 pp.
+
+[KS]
+
+B.G. Konopelchenko, W.K. Schief. Three-dimensional integrable
+lattices in Euclidean spaces: conjugacy and orthogonality. R.
+Soc. Lond. Proc. Ser. A, 454 (1998), 3075–3104.
+
+[K]
+
+I.M. Krichever. Algebraic-geometric n-orthogonal curvilinear coordinate systems and the solution of associativity equations.
+Funct. Anal. Appl., 31 (1997), 25–39.
+
+[LPWYW] Y. Liu, H. Pottmann, J. Wallner, Y. Yang, and W. Wang. Geometric modeling with conical meshes and developable surfaces.
+ACM Trans. Graphics, 25(3) (2006), Proceedings SIGGRAPH
+2006, to appear.
+[MK]
+
+M. Marinov, L. Kobbelt. Direct Anisotropic Quad-Dominant
+Remeshing, Proc. Pacific Graphics, 2004, 207–216
+
+[MN]
+
+E. Musso, L. Nicolodi. On the Cauchy problem for the integrable system of Lie minimal surfaces. J. Math. Phys., 46 (2005),
+113509 (15 pp.)
+
+[N1]
+
+S.P. Novikov. Schrödinger operators on graphs and symplectic
+geometry. In: The Arnoldfest, Fields Inst. Commun., 24, Providence: AMS, 1999, 397–413.
+
+[N2]
+
+S.P. Novikov. The discrete Schrödinger operator. Tr. Mat. Inst.
+Steklova 224 (1999) 275–290 (Russian); English translation:
+Proc. Steklov Inst. Math. 224 (1999) 250–265.
+
+[ND]
+
+S.P. Novikov, I.A. Dynnikov. Discrete spectral symmetries of
+small-dimensional differential operators and difference operators
+on regular lattices and two-dimensional manifolds. Uspekhi Mat.
+Nauk 52 (1997), no. 5(317), 175–234 (Russian); English translation: Russian Math. Surveys 52 (1997), 1057–1116.
+
+[NM]
+
+A.W. Nutbourne, R.R. Martin. Differential geometry applied to
+curve and surface design. Vol. 1. Foundations. Ellis Horwood
+Limited, 1988.
+
+[Pog]
+
+A.V. Pogorelov. Extrinsic geometry of convex surfaces, Translations of Mathematical Monographs. AMS. Providence, 1973
+56
+
+[P]
+
+H. Pottmann. Generalized principal meshes and their support
+structures. Geometry Preprint 158, TU Wien, 2006.
+
+[PP]
+
+H. Pottmann, M. Peternell. Applications of the Laguerre geometry in CAGD. Computer Aided Geom. Design, 15 (1998),
+165–186.
+
+[RSch]
+
+C. Rogers, W.K. Schief. Bäcklund and Darboux transformations.
+Geometry and modern applications in soliton theory. Cambridge
+University Press, 2002, xviii+413 pp.
+
+[S1]
+
+R. Sauer. Parallelogrammgitter als Modelle pseudosphärischer
+Flächen. Math. Z., 52 (1950), 611–622.
+
+[S2]
+
+R. Sauer. Differenzengeometrie. Berlin etc.: Springer, 1970, 234
+pp.
+
+[Sch]
+
+W.K. Schief. On the unification of classical and novel integrable
+surfaces. II. Difference geometry. R. Soc. Lond. Proc. Ser. A 459
+(2003), 373–391.
+
+[Sch2]
+
+W.K. Schief. On a maximum principle for minimal surfaces
+and their integrable discrete counterparts. J. Geom. Phys., xxx
+(2005), ppp–ppp.
+
+[T]
+
+I.A. Taimanov. Two-dimensional Dirac operator and surface theory. http://arxiv.org/math.DG/0512543.
+
+[Wi]
+
+T.J. Willmore. Riemannian geometry., Oxford:
+Press,1993, 318 p.
+
+[Wu]
+
+W. Wunderlich. Zur Differenzengeometrie der Flächen konstanter negativer Krümmung. Österreich. Akad. Wiss. Math.-Nat.
+Kl., 160 (1951), 39–77.
+
+[Z]
+
+V.I. Zakharov, Description of the n-orthogonal curvilinear coordinate systems and Hamiltonian integrable systems of hydrodynamic type, I. Integration of the Lame equations. Duke Math.
+J., 94 (1998), 103–139.
+
+57
+
+Clarendon
+
+

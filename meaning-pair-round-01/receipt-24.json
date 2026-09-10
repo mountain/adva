@@ -1,0 +1,43 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 24,
+  "predecessor_sha256": "63ea2f690b11bd95c410831a4dd8b61401664875f77ab2db113c0270aedbe875",
+  "delta": {
+    "kind": "observation",
+    "admitted": true,
+    "description": "meaning.py v2 on the user-root PDF pair: 0504358v1 (Bobenko-Suris, Consistency as Integrability, 2005, 157 pp) vs 0608291v2 (On Organizing Principles, Geometry of spheres, 2006, 57 pp). Vocabulary overlap 0.7677 (highest of four pairs); citation 2006->2005; phrase swap: consistency 88->26, integrab* 137->30, transformation group 1->8, sphere 60->239, conical 0->38, lie geometry 0->24. Double movement: principles 1->2, discretizations 2->1 (circular+conical nets unified)."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "pins": {
+      "a": "fddb511c6b23a068434e0b165c54f59416db7d37471789b2af7973f7baa8f74d",
+      "b": "79a5521351fbd1e2e9d10e58f0815c51ed0f2e913407d209753fde8e9813ca2a"
+    },
+    "alignment": {
+      "vocabulary_overlap": 0.7677,
+      "pages": [157, 57],
+      "citation": {"b_cites_a": true, "a_cites_b": false},
+      "phrase_swap": {
+        "consistency": [88, 26],
+        "integrab": [137, 30],
+        "transformation_group": [1, 8],
+        "sphere": [60, 239],
+        "conical": [0, 38],
+        "lie_geometry": [0, 24]
+      }
+    },
+    "tool": "trials/meaning-pair-round-01/meaning.py (v2, generalized from reverse-receipt-trace/meaning.py)",
+    "fourth_pair": "after NeoLab strategy->pitch (0.4648), Burau boundary (0.6731), tax/cookbook refusal (0.00 head)"
+  },
+  "documented_holes": [
+    "no mathematics verified: the 2005 proofs and 2006 convergence claims were not re-run",
+    "phrase counts are surface proxies; semantics not disambiguated",
+    "only the two endpoints probed; 2005-2006 intermediate literature not downloaded"
+  ],
+  "no_claims": [
+    "no claim about the mathematical correctness of either paper",
+    "no claim the phrase-weight swap proves the derivation: it is measured surface evidence",
+    "full texts stay in local AEG; pins and minimal quotes only would be public"
+  ]
+}
