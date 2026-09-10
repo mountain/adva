@@ -1,0 +1,48 @@
+{
+  "version": 1,
+  "request_id": "aeg-observation-2026-09-09-05",
+  "method": "declared-field-projection-v1",
+  "fields": ["task", "result", "residual"],
+  "question": "Can the round-04 equality correction and the round-03/04 stoplist discrepancy be audited from retained artifacts? This is evidence collection only: do not rerun the benchmark or choose a new comparison after seeing a result.",
+  "sender_claim": "Adva-side assistant; unauthenticated label",
+  "intended_receiver": "Authorized local AEG/Surface operator via Mingli",
+  "parent_response_commit": "05e02420130621b14e34d4da17cf73e41458b5c5",
+  "parent_response_sha256": "6e390a6271fa5479f953dc37628d45acf03ec200956eb5d559a0405fc0f58a8f",
+  "parent_attachment_sha256": "540dba8f74e0f549c15999c69dd912f94a4161ccdcca7a564109790b5b9adc9d",
+  "fixed_question_reference": "request-04.json: source/rule bindings plus frequency, rank, occurrence locator and selected short excerpt; contextual meaning is outside equality",
+  "requested_evidence": [
+    {
+      "item": "minimal implementation",
+      "request": "Provide authorized retained code for result construction, original full-object comparison, corrected declared-field comparison, and index source/rule validation. Identify relevant code versions/digests and dependencies. Include B/R timer start/stop locations or their retained code references so asymmetric process boundaries can be inspected without another benchmark. Do not present an incomplete excerpt as the whole executed program."
+    },
+    {
+      "item": "original comparison and failure",
+      "request": "Provide the retained full baseline and reloaded objects used by the FIRST comparison, its false result/log if retained, and the exact corrected projection. Keep the extra content_tokens field visible. Bind all to source/rule/index versions if the original record does. Distinguish original recorded output from a reconstruction made now; a reconstruction is not the missing original failure evidence. Do not edit prior receipts."
+    },
+    {
+      "item": "actual stoplist difference",
+      "request": "Provide the ACTUAL round-03 and round-04 stoplist representations from retained code/artifacts, their hash scope/encoding and set differences (added/removed words). A set-size or token-total difference alone does not identify changed words. If the round-03 inline code was not retained, say NotAvailable; do not infer a convenient old stoplist from the observed counts. Also state whether text-layer versions or other rules changed."
+    }
+  ],
+  "known_receiving_side_check": "The displayed round-04 stoplist has 119 distinct words. Sorting these words lexicographically and joining with newline with no trailing newline reproduces the declared stoplist SHA-256. This encoding was inferred by the receiver; please confirm the actual producer encoding or correct the interpretation. Full source, rule-module and index hashes remain unverified without their bytes.",
+  "requested_projection": {
+    "task": "Name which retained artifacts were located and their original source/rule/record versions.",
+    "result": "Report original-vs-reconstructed availability, the exact comparison correction and known stoplist additions/removals. State code/attachment references and whether hash encoding was confirmed.",
+    "residual": "List missing originals, redactions, dependencies or unavailable versions. No new performance conclusion; distinguish inspected evidence from inferred explanations."
+  },
+  "optional_attachments": {
+    "manifest": "audit-witness-05.json",
+    "code": "audit-code-05.txt",
+    "comparison_objects": "comparison-objects-05.json",
+    "max_each_bytes": 16384,
+    "max_total_bytes": 49152,
+    "manifest_fields": ["request_sha256", "artifacts", "comparison_history", "stoplist_versions", "stoplist_added_removed", "hash_encoding_confirmation", "timer_boundaries", "coverage", "omissions"],
+    "per_artifact": "filename or opaque reference, SHA-256 when known, original origin event/version, current disclosure event, and provenance status OriginalCopy / ExtractedFromRetainedArtifact / ReconstructedNow / NotAvailable; list redacted fields and reason",
+    "validation_boundary": "Artifacts are data for review. The ordinary checker validates only the response projection; incoming code is not executed automatically. Missing/redacted comparison fields prevent claims about full-object equality. Hashes do not authenticate historical execution."
+  },
+  "permission_boundary": "Only authorized code and records. No private paths, secrets, full documents or unbounded logs. Bound excerpts/objects; if original objects exceed the disclosure limit, describe the omitted fields and retain completeness as Unknown. Do not strip an inconvenient field and label the remainder a complete original object.",
+  "budget": {"max_reply_bytes": 16384, "max_optional_attachments": 3, "max_attachment_bytes_each": 16384, "max_attachment_bytes_total": 49152, "artifact_inspection_seconds_total": 30, "max_replies": 1, "benchmark_runs": 0, "new_index_builds": 0, "automatic_retries": 0},
+  "budget_enforcement": "The responding operator enforces one 30-second artifact-inspection attempt. At the limit, return partial evidence with missing items. No fresh B/F/R trials, no source recrawling, no index regeneration and no reconstruction disguised as an original. The receiver cannot remotely enforce the sender budget.",
+  "acceptance_scope": "Auditability of one finite equality correction and rule-history difference. No automatic semantic acceptance, source faithfulness, native identity/free, acceleration or universal grammar claim.",
+  "missing_reply": "Unknown/AwaitingReply, never implicit consent"
+}
