@@ -96,8 +96,8 @@ certification of a picture.
 | `plates/whirling-squares.webp` | the whirling-square division of the golden rectangle | One-step image, nesting, area, diameter, fixed point and the coverage identity are verified; the plate illustrates that chain and does not certify it |
 | `plates/fake-real-log-spiral.webp` | the atlas's separation of a logarithmic spiral from a circular-arc imitation | Refusal R5: over one quarter turn an arc keeps radius ratio `1` while the spiral contracts by `phi^-1`, exactly, so the two are not similar |
 | `plates/golden-triangle-and-fibonacci-spiral.webp` | the golden triangle and its gnomon subdivision | Executed: `cos 36` is verified as a Chebyshev root instead of being taken from a table, the two tile shapes are identified by the cosine law, bisecting a base angle cuts the opposite leg into `1/phi` and `1`, the smaller tile is the original scaled by `1/phi`, and the Heron area ratios `1/phi^2` and `1/phi` hold. The arc chain the plate also shows carries the same unbounded model error as the first row |
-| `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | Executed: the twenty face centroids are the dual's vertices and sit at the icosahedron's inradius, whose closed form and the radius ratio are checked; the twelve faces are shown to be regular pentagons with diagonal-to-side ratio `phi`; and an inscribed cube is found by exact search with its edges as pentagon diagonals. The inscribed **octahedron** was not run |
-| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. The link certificate itself remains **not constructed** |
+| `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | Executed: the twenty face centroids are the dual's vertices and sit at the icosahedron's inradius, whose closed form and the radius ratio are checked; the twelve faces are shown to be regular pentagons with diagonal-to-side ratio `phi`; and an inscribed cube is found by exact search with its edges as pentagon diagonals. The inscribed **octahedron** is now executed as the dual of that cube: six equal-radius face centres, twelve edges, eight faces. An exhaustive search over all 924 six-subsets of the twelve icosahedron vertices finds **no** octahedron there, so the dual construction is the octahedron this configuration supplies |
+| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves; the **triple** linking invariant, which is what "Borromean" adds, remains uncomputed |
 | `plates/divina-proportione-illustration-13.jpg` | the Pacioli/Leonardo historical layer | Source object only. The atlas itself requires original text and later readings to be registered separately; nothing historical is imported |
 | `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence. Its third panel's configuration is now checked exactly, and its first two panels restate the rectangle and arc-versus-spiral distinctions that the run already settles |
 | `source/reference/Golden_ratio.pdf` | the article revision the atlas read | Byte probe only: title, creation date and `oldid=1370346489` confirmed; the text is not parsed and nothing is imported from it |
@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 969 checks, 2,916 nodes, 0.117 s before
+1 MiB of output. Result: **Passed**, 1001 checks, 4,144 nodes, 0.662 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -190,8 +190,13 @@ than taken from a table; the dual dodecahedron, whose twenty face centroids sit
 at the icosahedron's inradius with both closed forms and the radius ratio
 checked, whose twelve faces are regular pentagons with diagonal-to-side ratio
 `phi`, and which contains a cube found by exact search whose edges are pentagon
-diagonals; and three bounded golden-section searches with identical interval
-traces.
+diagonals; the dual octahedron of that cube, and the absence of any octahedron
+on the twelve icosahedron vertices; the pairwise linking numbers of the three
+rectangle boundaries, computed in both directions and controlled by a ring
+threaded once; the golden angle's two gap lengths in ratio `phi` with
+consecutive Fibonacci counts for three Fibonacci rotation sizes, plus its
+equal-area latitude rule; and three bounded golden-section searches with
+identical interval traces.
 
 Five checks are *new instances* rather than restatements of the delivered
 fixtures: the inverse word at the same parameter, the reverse cut from
@@ -333,9 +338,11 @@ artifact the first executions ran under.
 - No general receipt calculus, no general translation theorem between the two
   encodings, and no error bound for the quarter-circle approximation of a
   logarithmic spiral is established.
-- The sphere-sampling generator, the Penrose patch matching, the inscribed
-  octahedron and the Borromean link certificate in the atlas were not executed
-  and are not covered here.
+- The atlas's rotation-set generator is covered only by its combinatorial
+  content: the gap structure and the equal-area latitude rule are exact, while
+  minimal separation, energy and coverage optimality are not asserted. The
+  Penrose patch acceptance and the Borromean **triple** linking invariant remain
+  uncomputed.
 - The atlas's own minimal next step, a three-party versioned task/witness
   presentation in the Pascal style, remains open: those presentations are
   proposed research JSON whose three Human identities and native importer do

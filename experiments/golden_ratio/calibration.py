@@ -942,6 +942,69 @@ def boundaries_meet(first: dict, second: dict) -> bool:
     )
 
 
+def oriented_boundary(rectangle: dict) -> list[tuple[tuple, tuple]]:
+    """The four edges in one consistent cyclic traversal.
+
+    The corner enumeration used elsewhere is not a traversal, and an
+    inconsistent one makes a signed crossing count meaningless, so the cycle is
+    built explicitly as (+,+), (+,-), (-,-), (-,+) on the two free axes.
+    """
+    fixed = rectangle["fixed"]
+    axes = [axis for axis in range(3) if axis != fixed]
+    corners = []
+    for first, second in ((1, 1), (1, -1), (-1, -1), (-1, 1)):
+        point = list(rectangle["center"])
+        point[fixed] = rectangle["value"]
+        point[axes[0]] = (
+            rectangle["center"][axes[0]] + rational(first) * rectangle["extents"][axes[0]]
+        )
+        point[axes[1]] = (
+            rectangle["center"][axes[1]] + rational(second) * rectangle["extents"][axes[1]]
+        )
+        corners.append(tuple(point))
+    return [(corners[step], corners[(step + 1) % 4]) for step in range(4)]
+
+
+def linking_number(disk: dict, curve: dict) -> tuple[int, int]:
+    """Signed crossings of one boundary with a spanning disk of the other.
+
+    The disk is the filled rectangle, whose normal is the positive coordinate
+    axis, and the curve is traversed by oriented_boundary. A curve disjoint from
+    the disk is unlinked from its boundary, so an empty count is a certificate
+    and not a default; the crossing count is returned beside the signed sum so
+    that a cancellation cannot be mistaken for an empty intersection.
+    """
+    plane_axis = disk["fixed"]
+    value = disk["value"]
+    crossings = 0
+    total = 0
+    for start, end in oriented_boundary(curve):
+        low, high = start[plane_axis], end[plane_axis]
+        if low == high:
+            continue
+        parameter = (value - low) / (high - low)
+        if not (ZERO <= parameter <= ONE):
+            continue
+        point = tuple(
+            coordinate + parameter * (other - coordinate)
+            for coordinate, other in zip(start, end)
+        )
+        inside = True
+        for axis in range(3):
+            if axis == plane_axis:
+                continue
+            offset = point[axis] - disk["center"][axis]
+            size = offset if offset.sign() >= 0 else -offset
+            if not size <= disk["extents"][axis]:
+                inside = False
+                break
+        if not inside:
+            continue
+        crossings += 1
+        total += (high - low).sign()
+    return total, crossings
+
+
 def golden_rectangle_checks(run: Run) -> dict:
     """Filled sets meet, boundaries do not: the figure's combinatorial content."""
     rectangles = {
@@ -1013,6 +1076,34 @@ def golden_rectangle_checks(run: Run) -> dict:
         "golden-rectangles-control-nearby-misses",
         not boundaries_meet(rectangles["y0"], translated_y),
     )
+    # Pairwise linking numbers. Disjoint boundaries are not yet unlinked
+    # curves: the linking number is a separate judgment, computed here as the
+    # signed count of one boundary's crossings with a spanning disk of the
+    # other, in both directions.
+    linking = {}
+    for first, second in pairs:
+        forward = linking_number(rectangles[first], rectangles[second])
+        backward = linking_number(rectangles[second], rectangles[first])
+        run.check(f"linking-zero::{first}::{second}", forward[0] == 0 and backward[0] == 0)
+        run.check(f"linking-agrees::{first}::{second}", abs(forward[0]) == abs(backward[0]))
+        run.check(f"linking-accounted::{first}::{second}", forward[1] + backward[1] >= 2)
+        linking[f"{first}|{second}"] = {
+            "forward_crossings": forward[1],
+            "forward_sum": forward[0],
+            "backward_crossings": backward[1],
+            "backward_sum": backward[0],
+        }
+    # Control: a ring threaded once through a spanning disk must be counted as
+    # linked, so a table of zeros cannot be an artefact of the test.
+    threaded = {
+        "fixed": 0,
+        "value": ZERO,
+        "center": (ZERO, rational(Fraction(5, 2)), ZERO),
+        "extents": {1: ONE, 2: rational(2)},
+    }
+    signed, count = linking_number(rectangles["z0"], threaded)
+    run.check("linking-control-threaded-once", count == 1 and abs(signed) == 1)
+
     return {
         "rectangles": sorted(rectangles),
         "corners": len(corners),
@@ -1021,7 +1112,9 @@ def golden_rectangle_checks(run: Run) -> dict:
         "filled_intersection": "the origin, interior to all three",
         "boundary_intersection": "empty for every pair",
         "controls": {"translated_copy_meets": True, "nearby_copy_misses": True},
-        "link_certificate": "not constructed",
+        "linking_numbers": linking,
+        "linking_control": {"crossings": count, "signed_sum": signed},
+        "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed",
     }
 
 
@@ -1395,6 +1488,98 @@ def dodecahedron_checks(run: Run) -> dict:
                 if index != other and {index, other} == {first, second}
             ),
         )
+    # The dual of the inscribed cube: its six face centres form a regular
+    # octahedron, and a cube face is a four-subset whose induced edges form a
+    # square.
+    cube_faces = []
+    for first in range(8):
+        for second in range(first + 1, 8):
+            for third in range(second + 1, 8):
+                for fourth in range(third + 1, 8):
+                    face = [cube[first], cube[second], cube[third], cube[fourth]]
+                    induced = [
+                        (a, b)
+                        for position, a in enumerate(face)
+                        for b in face[position + 1:]
+                        if squared_distance(centroids[a], centroids[b]) == cube_edge_squared
+                    ]
+                    if len(induced) == 4 and all(
+                        sum(node in edge for edge in induced) == 2 for node in face
+                    ):
+                        cube_faces.append(face)
+    run.check("octahedron-six-cube-faces", len(cube_faces) == 6)
+    octahedron = [
+        tuple(
+            sum((centroids[index][axis] for index in face), ZERO) / rational(4)
+            for axis in range(3)
+        )
+        for face in cube_faces
+    ]
+    run.check("octahedron-six-vertices", len(set(octahedron)) == 6)
+    run.check(
+        "octahedron-equal-radius",
+        len({vector_dot(point, point) for point in octahedron}) == 1,
+    )
+    octahedron_edge_squared = cube_edge_squared / rational(2)
+    octahedron_edges = {
+        (i, j)
+        for i in range(6)
+        for j in range(i + 1, 6)
+        if squared_distance(octahedron[i], octahedron[j]) == octahedron_edge_squared
+    }
+    run.check("octahedron-twelve-edges", len(octahedron_edges) == 12)
+    run.check(
+        "octahedron-degree-four",
+        all(sum(index in edge for edge in octahedron_edges) == 4 for index in range(6)),
+    )
+    run.check(
+        "octahedron-eight-triangular-faces",
+        len(
+            [
+                (i, j, k)
+                for i in range(6)
+                for j in range(i + 1, 6)
+                for k in range(j + 1, 6)
+                if (i, j) in octahedron_edges
+                and (i, k) in octahedron_edges
+                and (j, k) in octahedron_edges
+            ]
+        )
+        == 8,
+    )
+    run.check(
+        "octahedron-dual-of-the-cube",
+        all(
+            sum(
+                squared_distance(octahedron[index], centroids[vertex])
+                == octahedron_edge_squared
+                for index in range(6)
+            )
+            == 3
+            for vertex in cube
+        ),
+    )
+
+    # No octahedron has all six vertices among the twelve icosahedron vertices:
+    # the compound of five octahedra lives on the thirty edge midpoints instead.
+    octahedra_on_vertices = 0
+    for a in range(12):
+        for b in range(a + 1, 12):
+            for c in range(b + 1, 12):
+                for d in range(c + 1, 12):
+                    for e in range(d + 1, 12):
+                        for f in range(e + 1, 12):
+                            run.tick()
+                            chosen = (a, b, c, d, e, f)
+                            pairs_of: dict = {}
+                            for position, i in enumerate(chosen):
+                                for j in chosen[position + 1:]:
+                                    value = squared_distance(vertices[i], vertices[j])
+                                    pairs_of[value] = pairs_of.get(value, 0) + 1
+                            if sorted(pairs_of.values()) == [3, 12]:
+                                octahedra_on_vertices += 1
+    run.check("octahedron-none-on-icosahedron-vertices", octahedra_on_vertices == 0)
+
     return {
         "vertices": 20,
         "edges": 30,
@@ -1405,6 +1590,71 @@ def dodecahedron_checks(run: Run) -> dict:
         "cube_edge_squared": cube_edge_squared.pair(),
         "inscribed_cube_vertices": len(cube) if cube else 0,
         "inscribed_cube_relation": "cube edges are pentagon diagonals, not dodecahedron edges",
+        "inscribed_octahedron": "the dual of the inscribed cube, its six face centres",
+        "octahedra_on_icosahedron_vertices": octahedra_on_vertices,
+    }
+
+
+def golden_angle_checks(run: Run) -> dict:
+    """The golden angle as a fraction of a turn, exactly.
+
+    Only the combinatorial content is checked: the gap structure of the finite
+    rotation set and the equal-area latitude rule. No minimal-distance, energy
+    or coverage optimality is asserted, and no transcendental value is evaluated.
+    """
+    alpha = PHI ** -2
+    run.check("golden-angle-in-range", ZERO < alpha and alpha < ONE)
+    run.check("golden-angle-complement", alpha + PHI.inverse() == ONE)
+
+    fib = fibonacci(14)
+    structures = {}
+    for index in (5, 9, 13):
+        count = fib[index]
+        points = []
+        for n in range(count):
+            run.tick()
+            point = rational(n) * alpha
+            whole = rational(n)
+            while point < whole:
+                whole = whole - ONE
+            points.append(point - whole)
+        points.sort()
+        gaps = [points[step + 1] - points[step] for step in range(count - 1)]
+        gaps.append(points[0] + ONE - points[-1])
+        lengths = sorted(set(gaps))
+        run.check(f"golden-angle-two-gaps::{count}", len(lengths) == 2)
+        run.check(
+            f"golden-angle-gap-ratio::{count}",
+            lengths[1] == PHI * lengths[0],
+        )
+        run.check(
+            f"golden-angle-gap-partition::{count}",
+            sum(
+                (gap for gap in gaps),
+                ZERO,
+            )
+            == ONE,
+        )
+        structures[str(count)] = {
+            "short_gap": lengths[0].pair(),
+            "long_gap": lengths[1].pair(),
+            "short_count": gaps.count(lengths[0]),
+            "long_count": gaps.count(lengths[1]),
+        }
+
+    for divisor in (8, 13, 21):
+        bands = [ONE - rational(2 * n + 1) / rational(divisor) for n in range(divisor)]
+        differences = {bands[step] - bands[step + 1] for step in range(divisor - 1)}
+        run.check(
+            f"golden-angle-equal-bands::{divisor}",
+            len(differences) == 1
+            and next(iter(differences)) == rational(2) / rational(divisor),
+        )
+    return {
+        "alpha": alpha.pair(),
+        "rotation_structures": structures,
+        "latitude_rule": "equal z steps give equal band areas",
+        "not_asserted": "minimal separation, energy or coverage optimality",
     }
 
 
@@ -1862,6 +2112,7 @@ def main() -> int:
         report["golden_rectangles"] = golden_rectangle_checks(run)
         report["golden_triangle"] = golden_triangle_checks(run)
         report["dodecahedron"] = dodecahedron_checks(run)
+        report["golden_angle"] = golden_angle_checks(run)
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)
@@ -1889,8 +2140,8 @@ def main() -> int:
             "The replay reproduces a supplied implementation; it is not an independent oracle.",
             "The plates and the captured PDF are pinned and structurally described, never read as geometry.",
             "No general receipt calculus and no general field-translation theorem is established.",
-            "The sphere-sampling generator, the Penrose patch matching, the inscribed octahedron and "
-            "the Borromean link certificate were not executed.",
+            "The rotation set's optimality, the Penrose patch acceptance and the Borromean triple "
+            "linking invariant were not established.",
         ]
         payload = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if len(payload.encode("utf-8")) > BUDGET["max_output_file_bytes"]:

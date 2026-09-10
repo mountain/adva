@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "3bbd74fb5fc91298bf33be18533d0bb110ed6f39b21c909f7d7bfb2402924c5e",
+    "sha256": "d0c3fc24b07bdaf90104bfff5b9602e0c4183f2b7addad32c9c05a0e88ed2399",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -153,7 +153,31 @@
       "translated_copy_meets": true,
       "nearby_copy_misses": true
     },
-    "link_certificate": "not constructed"
+    "linking_numbers": {
+      "z0|x0": {
+        "forward_crossings": 2,
+        "forward_sum": 0,
+        "backward_crossings": 0,
+        "backward_sum": 0
+      },
+      "z0|y0": {
+        "forward_crossings": 0,
+        "forward_sum": 0,
+        "backward_crossings": 2,
+        "backward_sum": 0
+      },
+      "x0|y0": {
+        "forward_crossings": 2,
+        "forward_sum": 0,
+        "backward_crossings": 0,
+        "backward_sum": 0
+      }
+    },
+    "linking_control": {
+      "crossings": 1,
+      "signed_sum": 1
+    },
+    "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed"
   },
   "golden_triangle": {
     "tiles": {
@@ -191,7 +215,55 @@
       "4/3"
     ],
     "inscribed_cube_vertices": 8,
-    "inscribed_cube_relation": "cube edges are pentagon diagonals, not dodecahedron edges"
+    "inscribed_cube_relation": "cube edges are pentagon diagonals, not dodecahedron edges",
+    "inscribed_octahedron": "the dual of the inscribed cube, its six face centres",
+    "octahedra_on_icosahedron_vertices": 0
+  },
+  "golden_angle": {
+    "alpha": [
+      "3",
+      "-1"
+    ],
+    "rotation_structures": {
+      "5": {
+        "short_gap": [
+          "7",
+          "-3"
+        ],
+        "long_gap": [
+          "-4",
+          "2"
+        ],
+        "short_count": 2,
+        "long_count": 3
+      },
+      "34": {
+        "short_gap": [
+          "47",
+          "-21"
+        ],
+        "long_gap": [
+          "-29",
+          "13"
+        ],
+        "short_count": 13,
+        "long_count": 21
+      },
+      "233": {
+        "short_gap": [
+          "322",
+          "-144"
+        ],
+        "long_gap": [
+          "-199",
+          "89"
+        ],
+        "short_count": 89,
+        "long_count": 144
+      }
+    },
+    "latitude_rule": "equal z steps give equal band areas",
+    "not_asserted": "minimal separation, energy or coverage optimality"
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -425,9 +497,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.11709637497551739,
-    "checks": 969,
-    "nodes": 2916,
+    "wall_seconds_before_serialization": 0.6617275001481175,
+    "checks": 1001,
+    "nodes": 4144,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1032,6 +1104,16 @@
     "golden-rectangles-boundaries-disjoint::x0::y0",
     "golden-rectangles-control-translated-meets",
     "golden-rectangles-control-nearby-misses",
+    "linking-zero::z0::x0",
+    "linking-agrees::z0::x0",
+    "linking-accounted::z0::x0",
+    "linking-zero::z0::y0",
+    "linking-agrees::z0::y0",
+    "linking-accounted::z0::y0",
+    "linking-zero::x0::y0",
+    "linking-agrees::x0::y0",
+    "linking-accounted::x0::y0",
+    "linking-control-threaded-once",
     "cos36-in-range",
     "cos36-chebyshev-root",
     "cos72-double-angle",
@@ -1171,6 +1253,28 @@
     "cube-edge-is-a-pentagon-diagonal",
     "cube-edge-in-exactly-one-pentagon",
     "cube-edge-is-a-pentagon-diagonal",
+    "octahedron-six-cube-faces",
+    "octahedron-six-vertices",
+    "octahedron-equal-radius",
+    "octahedron-twelve-edges",
+    "octahedron-degree-four",
+    "octahedron-eight-triangular-faces",
+    "octahedron-dual-of-the-cube",
+    "octahedron-none-on-icosahedron-vertices",
+    "golden-angle-in-range",
+    "golden-angle-complement",
+    "golden-angle-two-gaps::5",
+    "golden-angle-gap-ratio::5",
+    "golden-angle-gap-partition::5",
+    "golden-angle-two-gaps::34",
+    "golden-angle-gap-ratio::34",
+    "golden-angle-gap-partition::34",
+    "golden-angle-two-gaps::233",
+    "golden-angle-gap-ratio::233",
+    "golden-angle-gap-partition::233",
+    "golden-angle-equal-bands::8",
+    "golden-angle-equal-bands::13",
+    "golden-angle-equal-bands::21",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
@@ -1407,6 +1511,6 @@
     "The replay reproduces a supplied implementation; it is not an independent oracle.",
     "The plates and the captured PDF are pinned and structurally described, never read as geometry.",
     "No general receipt calculus and no general field-translation theorem is established.",
-    "The sphere-sampling generator, the Penrose patch matching, the inscribed octahedron and the Borromean link certificate were not executed."
+    "The rotation set's optimality, the Penrose patch acceptance and the Borromean triple linking invariant were not established."
   ]
 }
