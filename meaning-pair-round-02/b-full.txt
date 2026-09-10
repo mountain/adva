@@ -1,0 +1,182 @@
+Accurate Proteome-wide
+Missense Variant Effect
+Prediction with AlphaMissense
+
+By
+Nen Bakraniya (4373688)
+
+TABLE OF CONTENTS
+
+01 Introduction
+and Background
+
+02
+Methodology and AI
+Architecture
+
+Overview of missense variants,
+challenges, and AlphaMissense
+objectives.
+
+Details of the AI model, data
+pipeline, and training
+methods.
+
+03
+
+04
+
+Results and
+Performance Analysis
+
+Limitations, Implications, and
+Summary
+
+Evaluation of AlphaMissense against
+existing tools and its real-world
+impact.
+
+Model limitations, future
+scope, and takeaways from
+the study.
+
+01 Introduction
+and Background
+Overview of missense
+variants, challenges, and
+AlphaMissense objectives.
+
+INTRODUCTION
+"AlphaMissense: A groundbreaking AI model for accurately predicting the pathogenic
+effects of genetic missense variants across the entire human proteome, enabling
+advancements in precision medicine.“
+
+What is a Missense Variant?
+• The human genome contains the instructions for building and maintaining the human
+body, encoded in the form of DNA.
+• A missense variant is a specific type of mutation where a single DNA base is altered,
+leading to the substitution of one amino acid for another in a protein.
+
+• Example:
+• DNA Sequence Before Mutation: GGA → Codes for Glycine
+• DNA Sequence After Mutation: GTA → Codes for Valine
+• Result: The protein structure and function may change, which can potentially
+cause diseases.
+• Missense variants can:
+• Be benign (no harm caused).
+• Be pathogenic (leading to diseases like cystic fibrosis or sickle cell anemia).
+
+02
+Methodology and
+AI Architecture
+Details of the AI model, data
+pipeline, and training methods.
+
+Accurate pr oteome-wide missense var iant effect prediction with AlphaMissense, Volum e: 381, Issue: 6664, DOI: (10.1126/science.adg7492)
+
+Importance of Predicting Variant Effects
+
+• Proteins are molecular machines essential for every biological process. A single
+amino acid substitution can disrupt a protein’s function, leading to diseases.
+• Predicting the effects of missense variants helps:
+• Diagnose genetic disorders: For instance, understanding a variant’s
+pathogenicity can identify a disease-causing mutation in a patient.
+• Personalized Medicine: Enables tailored treatments based on an individual’s
+genetic makeup.
+• Drug Development: Identifies targets for new therapies.
+• Example in Medicine:
+• In cancer, certain missense variants in genes like BRCA1 increase cancer
+risk. Predicting these variants’ effects allows early intervention and
+targeted treatments.
+
+Key components
+
+MSA Embeddings
+
+Recycling Process
+
+Variant Masking
+
+Multi-Sequence Alignments (MSA)
+represent evolutionary relationships
+among proteins.
+
+Iteratively updates embeddings to
+improve predictions.
+
+Specific masking techniques ensure
+the model focuses on variant
+pathogenicity prediction.
+
+Accurate pr oteome-wide missense var iant effect prediction with AlphaMissense, Volum e: 381, Issue: 6664, DOI: (10.1126/science.adg7492)
+
+Summary of Methodology
+AlphaMissense achieves accuracy and scalability by leveraging spatially cropped
+sequences, evolutionary insights through multiple sequence alignments, and
+advanced fine-tuning techniques to predict the pathogenicity of missense variants
+across the entire human proteome with high reliability.
+
+03
+Results and
+Performance Analysis
+Evaluation of AlphaMissense
+against existing tools and its
+real-world impact.
+
+Benchmark Comparisons:
+AlphaMissense vs. Other Tools
+
+• Comparison Tools:
+
+• PolyPhen-2, SIFT, PrimateAI, and other state-of-the-art models for variant
+pathogenicity prediction.
+
+• Key Metrics:
+•
+•
+•
+•
+•
+
+Area Under the Receiver Operating Characteristic (auROC):
+AlphaMissense: 0.947
+PolyPhen-2: 0.856
+SIFT: 0.857
+PrimateAI: 0.936 (Higher values indicate better prediction accuracy.)
+
+04
+Limitations,
+Implications, and
+summary
+Model limitations, future scope,
+and takeaways from the study.
+
+Model Limitations of AlphaMissense
+• Structural Impact Prediction:
+
+• AlphaMissense focuses on pathogenicity at the sequence level but
+struggles to predict how variants impact protein 3D structures or dynamics.
+• Example: It cannot fully model structural changes in key genes like TP53,
+where subtle folding differences may alter functionality.
+
+•
+
+Multivariant Interactions:
+•
+•
+
+The model evaluates variants individually and does not account for
+epistatic effects, where multiple variants interact to influence a protein’s
+behavior.
+This limits its application to diseases caused by complex variant
+combinations.
+
+• Data Bias and Generalization:
+
+• Despite improvements, the model still relies heavily on annotated datasets,
+which may introduce biases in underrepresented gene regions or
+populations.
+
+Thank you
+
+
