@@ -1967,11 +1967,13 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
         for start, end in oriented_boundary(rectangles[name]):
             segments.append((name, projected(start, basis), projected(end, basis), start, end))
 
-    vertices = [entry[3] for entry in segments] + [entry[4] for entry in segments]
     degenerate = []
     crossings = []
     for index, (first_name, first_start, first_end, first_a, first_b) in enumerate(segments):
-        for second_name, second_start, second_end, second_a, second_b in segments[index + 1:]:
+        for offset, (second_name, second_start, second_end, second_a, second_b) in enumerate(
+            segments[index + 1:]
+        ):
+            second_index = index + 1 + offset
             run.tick()
             denominator = cross_two(
                 (first_end[0] - first_start[0], first_end[1] - first_start[1]),
@@ -2005,6 +2007,7 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
                 degenerate.append((first_name, second_name))
                 continue
             over_first = ZERO < first_height - second_height
+            under_segment = second_index % 4 if over_first else index % 4
             direction_first = (first_end[0] - first_start[0], first_end[1] - first_start[1])
             direction_second = (second_end[0] - second_start[0], second_end[1] - second_start[1])
             sign = cross_two(
@@ -2016,6 +2019,8 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
                     "over": first_name if over_first else second_name,
                     "under": second_name if over_first else first_name,
                     "sign": sign,
+                    "under_segment": under_segment,
+                    "under_parameter": (second_parameter if over_first else first_parameter).pair(),
                     "point": [coordinate.pair() for coordinate in first_point],
                 }
             )
@@ -2052,6 +2057,94 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
             "whose global sign depends on the declared projection direction"
         ),
     }
+
+
+
+
+def complement_presentation_checks(run: Run, diagram: dict) -> dict:
+    """The Wirtinger presentation read off the declared diagram, at its abelian level.
+
+    Each under-crossing splits its component; the pieces are the generators, one
+    per crossing, and each crossing contributes the relation U_out = O U_in O^-1.
+    Abelianised, the over-strand cancels and the crossing contributes e_out -
+    e_in, so the matrix's rank must be c - k for a k-component link: its cokernel
+    is the first homology of the complement. The non-abelian words themselves, the
+    Magnus expansion and mu-bar(123) are not computed here.
+    """
+    crossings = diagram["crossings"]
+    total = len(crossings)
+    components = ("z0", "x0", "y0")
+
+    under = {}
+    for index, crossing in enumerate(crossings):
+        under.setdefault(crossing["under"], []).append(
+            (crossing["under_segment"], crossing["under_parameter"], index)
+        )
+
+    arcs: dict = {}
+    labels = {}
+    for component in components:
+        listed = sorted(under.get(component, []), key=lambda entry: (entry[0], entry[1]))
+        arcs[component] = listed
+        for position, entry in enumerate(listed):
+            labels[entry[2]] = (component, position)
+    run.check("complement-presentation-one-arc-per-crossing", len(labels) == total)
+    run.check(
+        "complement-presentation-arcs-per-component",
+        sum(len(arcs[component]) for component in components) == total,
+    )
+
+    # relation rows: e_out - e_in, indexed by global arc id
+    arc_ids = {}
+    for component in components:
+        for position in range(len(arcs[component])):
+            arc_ids[(component, position)] = len(arc_ids)
+    rows = []
+    for index, crossing in enumerate(crossings):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = (component, (position - 1) % count)
+        outgoing = (component, position)
+        row = [0] * len(arc_ids)
+        row[arc_ids[outgoing]] += 1
+        row[arc_ids[incoming]] -= 1
+        rows.append(row)
+
+    # exact rational rank by elimination
+    matrix = [[Fraction(value) for value in row] for row in rows]
+    rank = 0
+    for column in range(len(arc_ids)):
+        pivot = None
+        for row in range(rank, len(matrix)):
+            if matrix[row][column] != 0:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        lead = matrix[rank][column]
+        matrix[rank] = [value / lead for value in matrix[rank]]
+        for row in range(len(matrix)):
+            if row != rank and matrix[row][column] != 0:
+                factor = matrix[row][column]
+                matrix[row] = [
+                    value - factor * pivot_value
+                    for value, pivot_value in zip(matrix[row], matrix[rank])
+                ]
+        rank += 1
+    run.check("complement-presentation-relations", rank == total - len(components))
+    return {
+        "generators": len(arc_ids),
+        "relations": len(rows),
+        "rank_of_abelianised_relations": rank,
+        "expected_rank": total - len(components),
+        "cokernel": "Z^3, the first homology of a three-component complement",
+        "not_computed": [
+            "the non-abelian relation words themselves",
+            "the Magnus expansion and mu-bar(123)",
+        ],
+    }
+
 
 
 def hyperbolic_checks(run: Run) -> dict:
@@ -2515,6 +2608,7 @@ def main() -> int:
             "x0": {"fixed": 0, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {1: ONE, 2: PHI}},
             "y0": {"fixed": 1, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {2: ONE, 0: PHI}},
         })
+        report["complement_presentation"] = complement_presentation_checks(run, report["complement_diagram"])
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)
