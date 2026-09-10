@@ -263,6 +263,18 @@ The first deliverable should be a theorem/counterexample table, not an API:
 No numerical plot or sampled complex trajectory is sufficient evidence for a
 representation theorem.
 
+### 2.4 Lattice-polar terminology checkpoint
+
+Related Track B research checkpoint (2026-09-10):
+[lattice-polar and mirror boundaries](research/lattice-polar-and-mirror-boundary.md)
+registers [version-zero research terms](terminology/geometry-boundaries-v0.json)
+for refine, quotient, lattice-polar, and mirror. Only lattice-polar has new
+external exact finite evidence: a TO24 nonintegral vertex-polar pairing
+obstructs every compatible reflexive lattice for the fixed centered shape,
+while cube and shear controls pass. Rational biduality is not lattice
+admission. No stable API, new geometry catalog descendant, or CY construction
+is promoted; the next obligation is an explicit checked-diagram/frame binding.
+
 ## 3. Track C: learning intrinsic world structure
 
 ### 3.1 Problem statement
