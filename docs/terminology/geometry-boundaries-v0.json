@@ -179,7 +179,55 @@
         "source": "programs/research/lattice-polar/pairing.lisp",
         "native_test": "tests/python/test_pairing_transport_boundary.py",
         "residual": "Native compile, diagram/graft binding and numerical replay have not run. No native admission."
-      }
+      },
+      "additional_profiles": [
+        {
+          "profile": "cube-root-polar-covariance.v0",
+          "status": "Proposed",
+          "effect": "Distinguish complex conjugation from polarity while checking their contragredient covariance.",
+          "input": [
+            "Fixed Q(w) coefficient basis with w^2+w+1=0",
+            "Primal lattice Z^2 and its algebraic dual",
+            "Positive-definite Euclidean Gram matrix",
+            "Original triangle and one fixed unimodular shear",
+            "Finite contract and budget"
+          ],
+          "output": [
+            "Polar and bipolar vertices",
+            "Primal-to-dual covariance pairs",
+            "Positive lattice witness for each triangle",
+            "Counterexamples to same-matrix transport and real-part multiplicativity",
+            "Explicit residual"
+          ],
+          "preconditions": [
+            "Only the two frozen non-centrally-symmetric triangles; not the previous 3D profile",
+            "Non-collinearity and positive barycentric origin",
+            "Use <=1 polar convention; >=-1 convention requires explicit negation",
+            "Convert covectors by G inverse before comparison to physical primal vectors"
+          ],
+          "witness": {
+            "state": "ExecutedExternalFiniteEvidence",
+            "reference": "experiments/cube_root_polar/evidence.json",
+            "scope": "18 active pairs, 18 vertex pairings, 81 bounded conjugation-product checks, exact bipolar and Gram conversion; no native execution"
+          },
+          "refusal": [
+            "Missing frame/pairing -> UnknownInterpretation",
+            "A applied on both coordinate types fails the declared covariance control",
+            "Real-part projection cannot inherit multiplication",
+            "Budget exhaustion -> Unknown; no partial admission"
+          ],
+          "replay": "python3 -S experiments/cube_root_polar/replay.py --output /tmp/cube-root-polar-fresh.json",
+          "report": "docs/research/cube-root-conjugation-and-polar-covariance.md",
+          "contract": "experiments/cube_root_polar/contract.json",
+          "residual": [
+            "Native source/diagram and type binding",
+            "Generic untrusted-certificate validation",
+            "Mirror construction",
+            "Dynamics or force/conservation interpretation",
+            "No change to previous TO24 obstruction or Pascal growth obligation"
+          ]
+        }
+      ]
     },
     {
       "name": "mirror",
