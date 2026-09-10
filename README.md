@@ -288,6 +288,13 @@ The scientific adapters never create, merge, identify, or forget sources. They
 consume checked Rust IR. Removing Python does not change Rust judgments or
 certificates.
 
+Numerical source now selects `log@2` and correctly rounded `constant@2`;
+stored version-one operations remain replayable. Ordinary Python evaluation
+requires finite inputs/results and, when requested, a finite Jacobian.
+Rust also retains explicit raw IEEE replay. See
+[ADR 0045](docs/adr/0045-rational-rounding-and-finite-numeric-boundaries.md)
+for compatibility, JSON transport, and the distinction from error bounds.
+
 ## Bounded breakthrough research
 
 Before resuming a breakthrough search, use the trusted-boundary and finite-run

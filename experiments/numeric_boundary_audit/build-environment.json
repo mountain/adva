@@ -1,0 +1,56 @@
+{
+  "schema": "adva.numeric-boundary-build-environment.v1",
+  "date": "2026-09-10",
+  "fix_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c",
+  "integrated_commit": "bd19d2626f8585609749bc8caee3b717b7479b5c",
+  "integrated_upstream_main": "bcd8a06cb35123cad49bb548eb77e706d9ba058d",
+  "library_commit": "b99d9c7295e9d3a4a0d77f8a7e7e6db7deee4364",
+  "rustc_verbose": "rustc 1.97.1 (8bab26f4f 2026-07-14)\nbinary: rustc\ncommit-hash: 8bab26f4f68e0e26f0bb7960be334d5b520ea452\ncommit-date: 2026-07-14\nhost: x86_64-unknown-linux-gnu\nrelease: 1.97.1\nLLVM version: 22.1.6",
+  "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+  "rustflags": {
+    "RUSTFLAGS": null,
+    "CARGO_ENCODED_RUSTFLAGS": null,
+    "CARGO_BUILD_TARGET": null
+  },
+  "cargo_config_files": [],
+  "profiles": [
+    "debug",
+    "release"
+  ],
+  "python": {
+    "version": "3.11.15 (main, Jul 18 2026, 17:02:49) [Clang 22.1.3 ]",
+    "implementation": "CPython",
+    "soabi": "cpython-311-x86_64-linux-gnu",
+    "gil_disabled": null
+  },
+  "platform": {
+    "system": "Linux",
+    "release": "7.0.0-1012-aws",
+    "machine": "x86_64",
+    "libc": [
+      "glibc",
+      "2.43"
+    ]
+  },
+  "packages": {
+    "maturin": "1.15.0",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "sympy": "1.14.0",
+    "pytest": "9.1.1",
+    "ruff": "0.16.6",
+    "pip": "26.2.1"
+  },
+  "pyo3_extension": {
+    "filename": "_native.abi3.so",
+    "sha256": "586ac7e49a35fecc8295af5d873556bfdaf497348f4576a098fd40751cd1d685",
+    "build": "maturin develop --locked; debug; no distributable wheel was built"
+  },
+  "lock_sha256": "b687d45dd12b4da84efdb0f258c8990fd867e23b666e38d6fdea59b7ac5b5e16",
+  "serde_json_features": "serde_json v1.0.151\n\u251c\u2500\u2500 serde_json feature \"default\"\n\u2502   \u251c\u2500\u2500 adva-ir v0.1.0 (/home/ubuntu/adva/crates/adva-ir)\n\u2502   \u2502   \u2514\u2500\u2500 adva-ir feature \"default\" (command-line)\n\u2502   \u2502       \u251c\u2500\u2500 adva-lisp v0.1.0 (/home/ubuntu/adva/crates/adva-lisp)\n\u2502   \u2502       \u2502   \u2514\u2500\u2500 adva-lisp feature \"default\" (command-line)\n\u2502   \u2502       \u2502       \u251c\u2500\u2500 adva-python v0.1.0 (/home/ubuntu/adva/crates/adva-python)\n\u2502   \u2502       \u2502       \u2502   \u2514\u2500\u2500 adva-python feature \"default\" (command-line)\n\u2502   \u2502       \u2502       \u2514\u2500\u2500 adva-witness v0.1.0 (/home/ubuntu/adva/crates/adva-witness)\n\u2502   \u2502       \u2502           \u2514\u2500\u2500 adva-witness feature \"default\" (command-line)\n\u2502   \u2502       \u2502               \u2514\u2500\u2500 adva-python v0.1.0 (/home/ubuntu/adva/crates/adva-python) (*)\n\u2502   \u2502       \u251c\u2500\u2500 adva-python v0.1.0 (/home/ubuntu/adva/crates/adva-python) (*)\n\u2502   \u2502       \u2514\u2500\u2500 adva-witness v0.1.0 (/home/ubuntu/adva/crates/adva-witness) (*)\n\u2502   \u251c\u2500\u2500 adva-labs-search v0.1.0 (/home/ubuntu/adva/experiments/labs-search)\n\u2502   \u2502   \u2514\u2500\u2500 adva-labs-search feature \"default\" (command-line)\n\u2502   \u251c\u2500\u2500 adva-lisp v0.1.0 (/home/ubuntu/adva/crates/adva-lisp) (*)\n\u2502   \u251c\u2500\u2500 adva-python v0.1.0 (/home/ubuntu/adva/crates/adva-python) (*)\n\u2502   \u2514\u2500\u2500 adva-witness v0.1.0 (/home/ubuntu/adva/crates/adva-witness) (*)\n\u251c\u2500\u2500 serde_json feature \"float_roundtrip\"\n\u2502   \u251c\u2500\u2500 adva-ir v0.1.0 (/home/ubuntu/adva/crates/adva-ir) (*)\n\u2502   \u251c\u2500\u2500 adva-labs-search v0.1.0 (/home/ubuntu/adva/experiments/labs-search) (*)\n\u2502   \u251c\u2500\u2500 adva-lisp v0.1.0 (/home/ubuntu/adva/crates/adva-lisp) (*)\n\u2502   \u251c\u2500\u2500 adva-python v0.1.0 (/home/ubuntu/adva/crates/adva-python) (*)\n\u2502   \u2514\u2500\u2500 adva-witness v0.1.0 (/home/ubuntu/adva/crates/adva-witness) (*)\n\u2514\u2500\u2500 serde_json feature \"std\"\n    \u2514\u2500\u2500 serde_json feature \"default\" (*)",
+  "unknown_or_out_of_scope": [
+    "Deployment binaries/hosts, GPU driver and hardware were not inventoried.",
+    "BLAS/LAPACK backend and external Lean/Metamath binaries are not part of the numeric regression oracle.",
+    "This manifest identifies the local test artifact; it is not authenticated build provenance."
+  ]
+}

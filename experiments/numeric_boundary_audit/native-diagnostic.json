@@ -1,0 +1,400 @@
+{
+  "finite_input_boundary": [
+    {
+      "accepted": true,
+      "case": "finite",
+      "error": null
+    },
+    {
+      "accepted": false,
+      "case": "nan",
+      "error": "evaluation error: nonfinite input \"x\""
+    },
+    {
+      "accepted": false,
+      "case": "infinity",
+      "error": "evaluation error: nonfinite input \"x\""
+    }
+  ],
+  "input_boundary": [
+    {
+      "bits": "0000000000000000",
+      "case": "finite",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": true,
+      "log_version": 1,
+      "status": "Ok"
+    },
+    {
+      "bits": "7ff8000000000000",
+      "case": "nan",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": false,
+      "log_version": 1,
+      "status": "Ok"
+    },
+    {
+      "bits": "7ff0000000000000",
+      "case": "infinity",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": false,
+      "log_version": 1,
+      "status": "Ok"
+    },
+    {
+      "bits": "0000000000000000",
+      "case": "finite",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": true,
+      "log_version": 2,
+      "status": "Ok"
+    },
+    {
+      "bits": "7ff8000000000000",
+      "case": "nan",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": false,
+      "log_version": 2,
+      "status": "Ok"
+    },
+    {
+      "bits": "7ff0000000000000",
+      "case": "infinity",
+      "certificate": {
+        "diagram_integrity": "checked",
+        "executed_nodes": [
+          0,
+          1,
+          2
+        ],
+        "id": "evaluate:audit/f:v1",
+        "input_types_checked": true,
+        "operation_rules_checked": true,
+        "scope": "PSC0 builtin scalar realization"
+      },
+      "finite": false,
+      "log_version": 2,
+      "status": "Ok"
+    }
+  ],
+  "json_k28": {
+    "decoded_bits": "3feffffffe000000",
+    "expected_bits": "3feffffffe000000",
+    "matches": true
+  },
+  "log_gradients": [
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@1",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f10000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f10000000000000",
+      "input_bits": "00d0000000000000",
+      "log_version": 1,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1010
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@2",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f10000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f10000000000000",
+      "input_bits": "00d0000000000000",
+      "log_version": 2,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1010
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@1",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f40000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f40000000000000",
+      "input_bits": "00a0000000000000",
+      "log_version": 1,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1013
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@2",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f40000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f40000000000000",
+      "input_bits": "00a0000000000000",
+      "log_version": 2,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1013
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@1",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f50000000000000",
+      "finite_gradient": false,
+      "finite_value": true,
+      "gradient_bits": "7ff0000000000000",
+      "input_bits": "0090000000000000",
+      "log_version": 1,
+      "matches_expected": false,
+      "scale_exponent": 10,
+      "x_exponent": 1014
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@2",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f50000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f50000000000000",
+      "input_bits": "0090000000000000",
+      "log_version": 2,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1014
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@1",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7fb0000000000000",
+      "finite_gradient": false,
+      "finite_value": true,
+      "gradient_bits": "7ff0000000000000",
+      "input_bits": "0030000000000000",
+      "log_version": 1,
+      "matches_expected": false,
+      "scale_exponent": 10,
+      "x_exponent": 1020
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@2",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7fb0000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7fb0000000000000",
+      "input_bits": "0030000000000000",
+      "log_version": 2,
+      "matches_expected": true,
+      "scale_exponent": 10,
+      "x_exponent": 1020
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@1",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f10000000000000",
+      "finite_gradient": false,
+      "finite_value": true,
+      "gradient_bits": "7ff0000000000000",
+      "input_bits": "00d0000000000000",
+      "log_version": 1,
+      "matches_expected": false,
+      "scale_exponent": 20,
+      "x_exponent": 1010
+    },
+    {
+      "certificate": {
+        "diagram_integrity": "checked",
+        "id": "differentiate:audit/f:v1",
+        "input_types_checked": true,
+        "method": "forward-mode structural differential",
+        "operation_rules": [
+          "adva.builtin:constant@2",
+          "adva.builtin:log@2",
+          "adva.builtin:scale@1"
+        ],
+        "scope": "PSC0 forward differential over builtin Real operations"
+      },
+      "expected_bits": "7f10000000000000",
+      "finite_gradient": true,
+      "finite_value": true,
+      "gradient_bits": "7f10000000000000",
+      "input_bits": "00d0000000000000",
+      "log_version": 2,
+      "matches_expected": true,
+      "scale_exponent": 20,
+      "x_exponent": 1010
+    }
+  ],
+  "rational_conversion": [
+    {
+      "bits": "3ff0000000000000",
+      "denominator": 9007199254740994,
+      "legacy_bits": "3ff0000000000001",
+      "numerator": 9007199254740995
+    },
+    {
+      "bits": "3fefffffffffffff",
+      "denominator": 9007199254740993,
+      "legacy_bits": "3ff0000000000000",
+      "numerator": 9007199254740992
+    },
+    {
+      "bits": "3fefffffffffffff",
+      "denominator": 9007199254740994,
+      "legacy_bits": "3feffffffffffffe",
+      "numerator": 9007199254740993
+    },
+    {
+      "bits": "3f50000000000000",
+      "denominator": 1024,
+      "legacy_bits": "3f50000000000000",
+      "numerator": 1
+    }
+  ],
+  "schema": "adva.native-numeric-boundary-diagnostic.v2",
+  "scope": "No exact-identity or finite-gradient guarantee from structural certificates"
+}

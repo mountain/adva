@@ -76,10 +76,53 @@ impl Rational {
         }
     }
 
-    /// Numerically realize the exact rational as an IEEE-754 scalar.
+    /// Round the exact ratio once to binary64, nearest with ties to even.
+    ///
+    /// Nonzero i64 ratios lie in the normal, finite binary64 range. Integer
+    /// quotient/remainder arithmetic avoids rounding the operands first.
     #[allow(clippy::cast_precision_loss)]
     pub fn as_f64(self) -> f64 {
-        self.numerator as f64 / self.denominator as f64
+        if self.denominator == 0 {
+            // Public fields can represent invalid ratios; retain IEEE behavior
+            // here. Semantic import independently rejects zero denominators.
+            return self.numerator as f64 / 0.0;
+        }
+        let negative = (self.numerator < 0) != (self.denominator < 0);
+        let sign = u64::from(negative) << 63;
+        let n = u128::from(self.numerator.unsigned_abs());
+        let d = u128::from(self.denominator.unsigned_abs());
+        if n == 0 {
+            return f64::from_bits(sign);
+        }
+        let mut exponent = d.leading_zeros() as i32 - n.leading_zeros() as i32;
+        let below_power = if exponent >= 0 {
+            n < (d << exponent)
+        } else {
+            (n << -exponent) < d
+        };
+        if below_power {
+            exponent -= 1;
+        }
+        // The scaled numerator needs at most 117 bits: the denominator has
+        // at most 64 bits and the significand has 53. No shift loses data.
+        let shift = 52 - exponent;
+        let (scaled_n, scaled_d) = if shift >= 0 {
+            (n << shift, d)
+        } else {
+            (n, d << -shift)
+        };
+        let mut significand = scaled_n / scaled_d;
+        let twice_remainder = 2 * (scaled_n % scaled_d);
+        if twice_remainder > scaled_d || (twice_remainder == scaled_d && significand % 2 == 1) {
+            significand += 1;
+        }
+        if significand == 1 << 53 {
+            significand >>= 1;
+            exponent += 1;
+        }
+        f64::from_bits(
+            sign | (((exponent + 1023) as u64) << 52) | (significand as u64 & ((1 << 52) - 1)),
+        )
     }
 }
 

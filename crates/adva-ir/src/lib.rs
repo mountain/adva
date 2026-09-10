@@ -4,6 +4,7 @@ mod certificate;
 mod diagram;
 mod graft;
 mod ids;
+mod numeric_serialization;
 mod process;
 mod term;
 

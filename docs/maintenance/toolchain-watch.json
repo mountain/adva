@@ -5,16 +5,34 @@
   "baseline_main_commit": "7be406bfa6a3b7a5ef619081157e3b113da0cd40",
   "related_fix": {
     "pr": 173,
-    "head": "61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
     "state": "draft",
     "merged": false,
-    "native_acceptance": "NotEstablished",
-    "workflow_runs": [
+    "native_acceptance": "VerifiedForScopeInLocalEnvironment",
+    "workflow_conclusions": "Initial-head failures retained in history; current remote acceptance remains separate",
+    "history": [
+      {
+        "pr": 173,
+        "head": "61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
+        "state": "draft",
+        "merged": false,
+        "native_acceptance": "NotEstablished",
+        "workflow_runs": [
+          34463820404,
+          34463820396,
+          34463820395
+        ],
+        "workflow_conclusions": "failure"
+      }
+    ],
+    "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c",
+    "native_evidence": "experiments/numeric_boundary_audit/native-verification.json",
+    "build_metadata": "experiments/numeric_boundary_audit/build-environment.json",
+    "initial_head": "61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
+    "initial_workflow_runs": [
       34463820404,
       34463820396,
       34463820395
-    ],
-    "workflow_conclusions": "failure"
+    ]
   },
   "inventory": {
     "rust_channel": "stable",
@@ -190,22 +208,22 @@
       "component": "adva/log differential",
       "upstream": "https://github.com/mountain/adva/pull/173",
       "upstream_date": "2026-09-10",
-      "evidence": "ModelReproduced",
-      "fix_status": "FixProposed",
-      "applicability": "PotentiallyAffected",
+      "evidence": "VerifiedForScope",
+      "fix_status": "VerifiedForScope",
+      "applicability": "FixedAndVerifiedInEnvironment",
       "priority": "P1",
       "affected": "Inspected main 7be406bfa6a3b7a5ef619081157e3b113da0cd40: reciprocal-first log differential",
-      "fixed": "Proposed log@2 at PR #173 head 61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
-      "next_action": "Run existing native debug/release gates and bit diagnostic in one bounded acceptance environment",
+      "fixed": "Direct incoming-derivative division from 61a7ae4, accepted at ade4f885066a9c23096e963aedb8191bc4ae633c",
+      "next_action": "Review PR #173 for merge and remote acceptance; deployment environments remain unverified",
       "remaining": [
-        "native reproduction and acceptance",
-        "CI failure diagnosis",
-        "merge decision"
+        "remote CI acceptance",
+        "merge decision",
+        "deployment artifact verification"
       ],
       "local_paths": [
         "crates/adva-lisp/src/operation.rs"
       ],
-      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FOLLOWUP.md",
+      "evidence_source": "experiments/numeric_boundary_audit/native-verification.json",
       "last_reviewed": "2026-09-10",
       "history": [
         {
@@ -213,30 +231,51 @@
           "event": "Initial source-based triage",
           "evidence": "ModelReproduced",
           "applicability": "PotentiallyAffected"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Pre-acceptance disposition retained before authorized engineering correction",
+          "next_action": "Run existing native debug/release gates and bit diagnostic in one bounded acceptance environment",
+          "remaining": [
+            "native reproduction and acceptance",
+            "CI failure diagnosis",
+            "merge decision"
+          ],
+          "fixed": "Proposed log@2 at PR #173 head 61a7ae47049ec1b8e0f142aedaad4071d62c7ca4"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Versioned log@2; five native chains and nine Python dyadic chains pass; legacy log@1 replay retained",
+          "evidence": "VerifiedForScope",
+          "applicability": "FixedAndVerifiedInEnvironment",
+          "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c"
         }
-      ]
+      ],
+      "evidence_scope": "Versioned log@2; five native chains and nine Python dyadic chains pass; legacy log@1 replay retained"
     },
     {
       "id": "TC-006",
       "component": "adva/Python CPU supervisor",
       "upstream": "https://github.com/mountain/adva/pull/173",
       "upstream_date": "2026-09-10",
-      "evidence": "NativeReproduced",
-      "evidence_scope": "Prior audit executed the actual Python method with mocked limit installation; follow-up reports six Python tests including an admitted real child. This review did not repeat them.",
-      "fix_status": "FixProposed",
-      "applicability": "AffectedInScope",
+      "evidence": "VerifiedForScope",
+      "evidence_scope": "Six supervisor tests pass, including a real admitted child and a fake-fork assertion that child accounting is never read",
+      "fix_status": "VerifiedForScope",
+      "applicability": "FixedAndVerifiedInEnvironment",
       "priority": "P1",
       "affected": "Main quine_relay supervisor expands a positive sub-second remainder to a one-second configured allowance",
-      "fixed": "Proposed pre-launch whole-second admission guard in PR #173",
-      "next_action": "Review retained Python acceptance and scope before merge; preserve post-execution checks",
+      "fixed": "Positive contained whole-second admission plus unchanged parent-to-child allowance at ade4f885066a9c23096e963aedb8191bc4ae633c",
+      "next_action": "Review PR #173 for merge and remote acceptance; deployment environments remain unverified",
       "remaining": [
+        "remote CI acceptance",
         "merge decision",
-        "OS granularity and process-tree limits are not strict physical accounting"
+        "deployment artifact verification",
+        "Configured limit containment is not exact physical/process-tree CPU accounting"
       ],
       "local_paths": [
         "python/adva/quine_relay.py"
       ],
-      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FOLLOWUP.md",
+      "evidence_source": "experiments/numeric_boundary_audit/native-verification.json",
       "last_reviewed": "2026-09-10",
       "history": [
         {
@@ -244,6 +283,23 @@
           "event": "Initial source-based triage",
           "evidence": "NativeReproduced",
           "applicability": "AffectedInScope"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Pre-acceptance disposition retained before authorized engineering correction",
+          "next_action": "Review retained Python acceptance and scope before merge; preserve post-execution checks",
+          "remaining": [
+            "merge decision",
+            "OS granularity and process-tree limits are not strict physical accounting"
+          ],
+          "fixed": "Proposed pre-launch whole-second admission guard in PR #173"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Six supervisor tests pass, including a real admitted child and a fake-fork assertion that child accounting is never read",
+          "evidence": "VerifiedForScope",
+          "applicability": "FixedAndVerifiedInEnvironment",
+          "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c"
         }
       ]
     },
@@ -252,22 +308,22 @@
       "component": "adva/numerical contract",
       "upstream": "https://github.com/mountain/adva/pull/173",
       "upstream_date": "2026-09-10",
-      "evidence": "ModelReproduced",
-      "applicability": "PotentiallyAffected",
+      "evidence": "VerifiedForScope",
+      "applicability": "FixedAndVerifiedInEnvironment",
       "priority": "P1",
       "affected": "Rational-to-f64 conversion model and inconsistent finite-value policy; numerical contract not fully specified",
-      "fixed": null,
-      "next_action": "State conversion quality, finite-input/output/Jacobian policy and native bit-pattern expectations",
+      "fixed": "constant@2 and explicit Rust finite application policies at ade4f885066a9c23096e963aedb8191bc4ae633c",
+      "next_action": "Review PR #173 for merge and remote acceptance; deployment environments remain unverified",
       "remaining": [
-        "native conversion bits",
-        "contract decision",
-        "finite Jacobian policy"
+        "remote CI acceptance",
+        "merge decision",
+        "deployment artifact verification"
       ],
       "local_paths": [
         "crates/adva-ir/src/term.rs",
         "python/adva/core.py"
       ],
-      "evidence_source": "https://github.com/mountain/adva/blob/61a7ae47049ec1b8e0f142aedaad4071d62c7ca4/experiments/numeric_boundary_audit/FINDINGS.md",
+      "evidence_source": "experiments/numeric_boundary_audit/native-verification.json",
       "last_reviewed": "2026-09-10",
       "history": [
         {
@@ -275,30 +331,50 @@
           "event": "Initial source-based triage",
           "evidence": "ModelReproduced",
           "applicability": "PotentiallyAffected"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Pre-acceptance disposition retained before authorized engineering correction",
+          "next_action": "State conversion quality, finite-input/output/Jacobian policy and native bit-pattern expectations",
+          "remaining": [
+            "native conversion bits",
+            "contract decision",
+            "finite Jacobian policy"
+          ],
+          "fixed": null
+        },
+        {
+          "date": "2026-09-10",
+          "event": "518 native Python literal evaluations match Fraction; finite input/output/Jacobian refusal and nonfinite JSON serialization controls pass",
+          "evidence": "VerifiedForScope",
+          "applicability": "FixedAndVerifiedInEnvironment",
+          "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c"
         }
-      ]
+      ],
+      "fix_status": "VerifiedForScope",
+      "evidence_scope": "518 native Python literal evaluations match Fraction; finite input/output/Jacobian refusal and nonfinite JSON serialization controls pass"
     },
     {
       "id": "TC-008",
       "component": "serde_json/Adva serialization",
       "upstream": "https://github.com/serde-rs/json/blob/v1.0.151/Cargo.toml",
       "upstream_date": null,
-      "evidence": "Reported",
-      "applicability": "Unknown",
+      "evidence": "VerifiedForScope",
+      "applicability": "FixedAndVerifiedInEnvironment",
       "priority": "P2",
       "affected": "Existing Research 0141 bit discrepancy; attribution to parser or configuration is unproved",
-      "fixed": null,
-      "next_action": "Inspect resolved Cargo feature graph and input/decoded/output to_bits with controlled finite cases",
+      "fixed": "Adva enables serde_json 1.0.151 float_roundtrip at ade4f885066a9c23096e963aedb8191bc4ae633c",
+      "next_action": "Review PR #173 for merge and remote acceptance; deployment environments remain unverified",
       "remaining": [
-        "resolved features",
-        "parser/serializer attribution",
-        "native bit comparisons"
+        "remote CI acceptance",
+        "merge decision",
+        "deployment artifact verification"
       ],
       "local_paths": [
         "Cargo.toml",
         "Cargo.lock"
       ],
-      "classification": "configuration_or_contract_hypothesis_not_confirmed_upstream_bug",
+      "classification": "confirmed_adva_feature_configuration_mismatch_not_confirmed_upstream_bug",
       "last_reviewed": "2026-09-10",
       "history": [
         {
@@ -306,8 +382,29 @@
           "event": "Initial source-based triage",
           "evidence": "Reported",
           "applicability": "Unknown"
+        },
+        {
+          "date": "2026-09-10",
+          "event": "Pre-acceptance disposition retained before authorized engineering correction",
+          "next_action": "Inspect resolved Cargo feature graph and input/decoded/output to_bits with controlled finite cases",
+          "remaining": [
+            "resolved features",
+            "parser/serializer attribution",
+            "native bit comparisons"
+          ],
+          "fixed": null
+        },
+        {
+          "date": "2026-09-10",
+          "event": "The k28 default-parser regression fails before feature selection and passes with float_roundtrip; finite input and native report bits agree",
+          "evidence": "VerifiedForScope",
+          "applicability": "FixedAndVerifiedInEnvironment",
+          "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c"
         }
-      ]
+      ],
+      "fix_status": "VerifiedForScope",
+      "evidence_scope": "The k28 default-parser regression fails before feature selection and passes with float_roundtrip; finite input and native report bits agree",
+      "evidence_source": "experiments/numeric_boundary_audit/native-verification.json"
     },
     {
       "id": "TC-009",
@@ -342,5 +439,13 @@
         }
       ]
     }
-  ]
+  ],
+  "engineering_followup": {
+    "date": "2026-09-10",
+    "authorization": "User requested upstream synchronization, fixes and remote push",
+    "scope": "TC-005 through TC-008; no new upstream advisory scan",
+    "integrated_upstream_main": "bcd8a06cb35123cad49bb548eb77e706d9ba058d",
+    "implementation_commit": "ade4f885066a9c23096e963aedb8191bc4ae633c",
+    "baseline_inventory_and_review_scope_are_historical": true
+  }
 }

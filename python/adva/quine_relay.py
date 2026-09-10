@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import ast
 import contextlib
+import functools
 import hashlib
 import json
 import math
@@ -156,14 +157,27 @@ class Supervisor:
         if self.child_cpu() - self.child_cpu_start >= self.limits["aggregate_child_cpu_seconds"]:
             raise Exhausted("aggregate child CPU budget")
 
-    def restrictions(self):
-        if sys.platform == "linux":
-            # RLIMIT_AS is Linux-only; macOS keeps CPU/FSIZE/CORE limits.
-            resource.setrlimit(resource.RLIMIT_AS, (self.limits["address_space_bytes"],) * 2)
+    def child_cpu_limit(self):
+        """Admit only a whole-second limit contained in the remaining budget.
+
+        RLIMIT_CPU has integer-second granularity. This sequential supervisor
+        must stop before launch when no positive whole second remains; it must
+        not round a fractional remainder up to one second.
+        """
         remaining = self.limits["aggregate_child_cpu_seconds"] - (
             self.child_cpu() - self.child_cpu_start
         )
-        cpu = max(1, min(self.limits["child_cpu_seconds"], math.floor(remaining)))
+        cpu = math.floor(min(self.limits["child_cpu_seconds"], remaining))
+        if cpu < 1:
+            raise Exhausted("no whole second remains for child CPU limit")
+        return cpu
+
+    def restrictions(self, cpu):
+        # This runs after fork: RUSAGE_CHILDREN here cannot measure the
+        # supervisor's completed children. Install its precomputed allowance.
+        if sys.platform == "linux":
+            # RLIMIT_AS is Linux-only; macOS keeps CPU/FSIZE/CORE limits.
+            resource.setrlimit(resource.RLIMIT_AS, (self.limits["address_space_bytes"],) * 2)
         resource.setrlimit(resource.RLIMIT_CPU, (cpu,) * 2)
         resource.setrlimit(resource.RLIMIT_FSIZE, (self.limits["max_file_bytes"],) * 2)
         resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
@@ -172,6 +186,8 @@ class Supervisor:
         self.check()
         if len(self.calls) >= self.limits["max_processes"]:
             raise Exhausted("subprocess count")
+        # Compute in the parent before side effects; this supervisor is serial.
+        cpu = self.child_cpu_limit()
         stdout = output or self.output / (name + ".stdout")
         stderr = self.output / (name + ".stderr")
         record = {"name": name, "argv": [str(x) for x in command], "cwd": str(cwd)}
@@ -188,7 +204,7 @@ class Supervisor:
                 stdout=out,
                 stderr=err,
                 start_new_session=True,
-                preexec_fn=self.restrictions,
+                preexec_fn=functools.partial(self.restrictions, cpu),
             )
             try:
                 child.wait(timeout=max(0.001, self.deadline - time.monotonic()))

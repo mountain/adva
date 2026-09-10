@@ -244,6 +244,15 @@ cell.
 
 ## Certificates
 
+Numerical application policy is separate from recorded operation semantics.
+`evaluate_finite` and `evaluate_with_finite_differential` reject nonfinite
+inputs/final outputs and, for differentiation, final Jacobian components;
+Python's native bridge uses these APIs. Raw Rust replay retains historical
+special-value behavior. New source uses log@2 and constant@2, with legacy IR
+versions preserved. Numerical result serialization refuses special values,
+and finite JSON parsing uses exact float round trips. None of these checks
+provides error bounds or structural identity; see ADR 0045.
+
 Compilation and module linking return a `CompilationCertificate`.
 Compiler-produced artifacts additionally carry a `GraftTraceArtifact` whose
 certificate checks deterministic frame identity, nesting, regions, hole

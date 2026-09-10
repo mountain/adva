@@ -188,6 +188,7 @@ pub enum ObservationPolicy {
 #[serde(tag = "kind", rename_all = "snake_case")]
 pub enum Observation {
     Value {
+        #[serde(serialize_with = "crate::numeric_serialization::values")]
         values: Vec<f64>,
     },
     SourcePartition {
