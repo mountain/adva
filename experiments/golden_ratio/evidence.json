@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "a6c0511dc9a8544bbcddd85581ae22fa9c464f467be9cbdcf48614939a2a280a",
+    "sha256": "5609f80b341ebd048c5e9bd5764b22718759ab014ed71a014f35e06f7f430293",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -177,7 +177,28 @@
       "crossings": 1,
       "signed_sum": 1
     },
-    "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed"
+    "link_certificate": {
+      "seifert_surfaces": "the three filled rectangles, boundaries verified against the components",
+      "pairwise_linking_numbers": "zero, computed in the previous round",
+      "triple_intersection": {
+        "z0,x0,y0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "x0,y0,z0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "y0,z0,x0": {
+          "signed_sum": 1,
+          "points": 1
+        }
+      },
+      "triple_point": "the origin, the single common point of the three disks",
+      "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
+      "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
+      "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate"
+    }
   },
   "golden_triangle": {
     "tiles": {
@@ -519,9 +540,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.6582764170598239,
-    "checks": 1019,
-    "nodes": 4168,
+    "wall_seconds_before_serialization": 0.6503034590277821,
+    "checks": 1038,
+    "nodes": 4190,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1136,6 +1157,25 @@
     "linking-agrees::x0::y0",
     "linking-accounted::x0::y0",
     "linking-control-threaded-once",
+    "borromean-disk-spans::z0",
+    "borromean-disk-spans::x0",
+    "borromean-disk-spans::y0",
+    "borromean-pair-segment::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-pair-segment::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-pair-segment::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-triple-point-count::z0",
+    "borromean-triple-unit::z0",
+    "borromean-triple-point-count::x0",
+    "borromean-triple-unit::x0",
+    "borromean-triple-point-count::y0",
+    "borromean-triple-unit::y0",
+    "borromean-triple-order-consistent",
     "cos36-in-range",
     "cos36-chebyshev-root",
     "cos72-double-angle",
