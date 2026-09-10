@@ -37,9 +37,15 @@ observer = (obs == [0, 1] and Q(5,4) - Q(3,4) < eps)
 print('3. observer-relative: width 1/2 < eps yet two observed values:', obs, '->', observer)
 
 # 4. shrink count formula: D_m = sigma^m D_0; m >= ceil(log(D0/eps)/log(1/sigma))
+# computed with exact Fractions: a float ceil(log ratio) can snap one ulp off an
+# integral boundary (e.g. log2(2^10 + ulp) still rounds to 10.0), flipping m.
 sigma, D0 = Q(1, 2), Q(1)
 eps_t = Q(1, 1024)
-m_needed = math.ceil(math.log(float(D0/eps_t)) / math.log(1/float(sigma)))
+m_needed = 0
+shrink = D0
+while shrink > eps_t:
+    shrink *= sigma
+    m_needed += 1
 m_exact = 10
 shrink_ok = (sigma**m_exact * D0 <= eps_t and sigma**(m_exact-1) * D0 > eps_t and m_needed == m_exact)
 print('4. shrink count: m =', m_needed, '| D_10 =', sigma**10, '<= eps | D_9 =', sigma**9, '> eps:', shrink_ok)
