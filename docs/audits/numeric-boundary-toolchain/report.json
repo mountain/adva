@@ -94,9 +94,9 @@
     },
     {
       "id": "F-6",
-      "title": "k28 JSON transport: serde_json default formatting lost one ulp",
-      "location": "crates/adva-witness native run report serialization (serde_json without float_roundtrip)",
-      "class": "cross-language evidence transport precision loss at the JSON boundary",
+      "title": "k28 JSON transport: decimal-to-binary parsing/round-trip discrepancy",
+      "location": "serde_json decimal-to-binary deserialization used by the native runner; discrepancy observed in the output echo",
+      "class": "cross-language evidence transport precision loss; float_roundtrip selects the deserialization path",
       "severity": "Medium",
       "impact": "The native report echoed y = 0.9999999962747096 (0x3feffffffdffffff) for a submitted 0.9999999962747097 (0x3feffffffe000000 = 1 - 2^-28); the Python exact-Fraction matcher rejected product-k28 (false negative in the research 0141 suite).",
       "evidence": "retained docs/research/0141-native-evidence/product-k28.{program,native-result}.adva; k28-replay-20260910.json.",
@@ -118,15 +118,15 @@
     },
     {
       "id": "A-2",
-      "title": "AEG merge demo: norm() round-trips numbers through float",
+      "title": "AEG normalization: float-based predicate requires input-type review",
       "location": "AEG .merge-two-sides.py norm(): int(value) if float(value).is_integer() else float(value)",
-      "class": "same trap as F-2 at the harness level: values above 2^53 collapse to distinct floats",
+      "class": "The quoted expression tests float(value).is_integer() but returns int(value) from the original input; it does not necessarily round-trip the returned integer through float.",
       "severity": "Info",
-      "impact": "Demonstration values (14) are safe; the rule is latent for any future integer beyond 2^53.",
-      "evidence": "static read; IEEE-754 behavior.",
-      "fix": "not fixed; note only.",
-      "verification": "none required.",
-      "status": "Noted, demo-only."
+      "impact": "The quoted expression preserves Python integer inputs, including 2^53+1. The earlier integer-collapse claim is withdrawn. Behavior for other types and the full AEG caller remain unreviewed.",
+      "evidence": "Merge review evaluated norm(9007199254740993) using the quoted expression and obtained the identical integer. Full AEG source was not independently audited.",
+      "fix": "No code fix claimed; corrected the unsupported finding.",
+      "verification": "One exact Python integer control; not a complete AEG regression.",
+      "status": "Needs input-type review; integer-collapse claim withdrawn"
     }
   ],
   "not_found": [
@@ -140,7 +140,7 @@
     "No rounding-error bound for arbitrary programs; log@2 removes the avoidable overflow, not every last-bit difference.",
     "toolchain-watch.json historical fields are pre-merge snapshots; post-merge state recorded in merge_refresh_20260910 (commit 60b37d8, on origin/main).",
     "k28 closure record on research/k28-json-transport-closure (4a881d7) not yet merged.",
-    "AEG .merge-two-sides.py norm() latent 2^53 collapse (A-2) unfixed."
+    "AEG norm() full input-type/caller review remains open; quoted expression preserves Python integer inputs."
   ],
   "verification_ledger": {
     "local": {
@@ -208,5 +208,15 @@
     "Native acceptance gate order: fmt -> clippy -> debug/release tests -> examples -> extension build -> full pytest.",
     "Toolchain defect watch: MSRV/CI inventory with triage records."
   ],
-  "boundaries": "Single-repository evidence-grade audit, not a third-party security audit. No universal numerical-safety claim, no rounding-error bound for arbitrary programs, and no claim of exact OS CPU accounting. Original retained reports and library evidence were not regenerated."
+  "boundaries": "Single-repository evidence-grade audit, not a third-party security audit. No universal numerical-safety claim, no rounding-error bound for arbitrary programs, and no claim of exact OS CPU accounting. Original retained reports and library evidence were not regenerated.",
+  "merge_review": {
+    "date": "2026-09-10",
+    "prior_git_blob": "ca4d2e7d1f0d2f5360adbae1c13b8e7eb7a39ff3",
+    "corrections": [
+      "F-6: float_roundtrip changes deserialization, not formatting; no arbitrary lexeme guarantee.",
+      "A-2: quoted normalization preserves the tested large Python integer; withdraw unconditional integer-collapse claim."
+    ],
+    "reference": "https://docs.rs/crate/serde_json/1.0.151/source/src/de.rs",
+    "merge_status_scope": "not-yet-merged phrases in the original ledger describe its authoring snapshot"
+  }
 }
