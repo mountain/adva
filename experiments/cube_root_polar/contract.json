@@ -1,0 +1,33 @@
+{
+  "schema": "adva.research.cube-root-polar-contract.v0",
+  "base_commit": "60b37d8a4c155994acc7207f2feecc1da7cc6441",
+  "library_commit": "bc92ddce3053d6afc7df39dabeecf00a5ae0db07",
+  "input_document": "meaning-reflexive-duality-conservation-v0.md",
+  "question": "For the cube-root triangle, does conjugation equal polar duality, or does it instead intertwine polarity through the dual coordinate action?",
+  "level": "External exact arithmetic and Adva research terminology; no native semantic construction",
+  "domain": "Q(w), w^2+w+1=0; coefficient coordinates in basis (1,w); primal lattice Z^2 and algebraic dual lattice Hom(Z^2,Z)",
+  "objects": {
+    "P": [[1,0],[0,1],[-1,-1]],
+    "conjugation_C": [[1,-1],[0,-1]],
+    "euclidean_gram_G": [["1","-1/2"],["-1/2","1"]],
+    "reuse_shear_A": [[1,1],[0,1]],
+    "origin": [0,0],
+    "polar_convention": "dual coordinate covector y satisfies x dot y <= 1 for all x in P; not the >=-1 convention"
+  },
+  "quantifiers": [
+    "All pairs of active inequalities for the triangle and its polar, repeated on one unimodularly sheared triangle",
+    "All 9 primal/polar vertex pairings for conjugation transport, then all 9 for the shear reuse",
+    "Conjugation multiplication law for all 81 pairs of coefficient vectors in {-1,0,1}^2; this finite test does not by itself prove the universal law"
+  ],
+  "grammar": ["exact rational addition", "multiplication", "nonzero division", "2x2 matrices", "finite convex hull/halfspace data"],
+  "acceptance": [
+    "P is full-dimensional with positive barycentric origin; P and its dual-coordinate polar have integral vertices",
+    "Euclidean polar is computed only after Gram conversion; equality of differently typed coordinate lists is never an acceptance test",
+    "Conjugation transports polarity by inverse transpose; conjugation is not the polar construction itself",
+    "Sheared new-instance reuse preserves pairing and paired-lattice reflexivity",
+    "Real-part projection collision and multiplicative non-preservation retained"
+  ],
+  "protected": ["No native D*, M6 filler, free or Seal", "No mirror or spacetime/force claim", "Existing TO24 obstruction and original evidence unchanged", "Existing exactly-three-source observer policy unchanged", "No Pascal-derived geometry catalog admission"],
+  "budget": {"routes":1,"wall_seconds":30,"cpu_seconds":25,"memory_bytes":268435456,"max_active_pairs":24,"max_assertions":1000,"output_bytes":1048576,"correction_replays":1},
+  "residual": "Native compilation, general observer interpretation, mirror construction, dynamics and physical claims remain unproved. Frozen generated fixtures are trusted inputs, not a general untrusted-certificate API."
+}
