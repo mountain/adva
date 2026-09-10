@@ -1025,6 +1025,389 @@ def golden_rectangle_checks(run: Run) -> dict:
     }
 
 
+def heron_sixteen_area_squared(sides: tuple[K, K, K]) -> K:
+    """16 * area^2 by Heron's identity, exactly, without a square root."""
+    first, second, third = sides
+    return (
+        (first + second + third)
+        * (-first + second + third)
+        * (first - second + third)
+        * (first + second - third)
+    )
+
+
+def golden_triangle_checks(run: Run) -> dict:
+    """The golden triangle, its gnomon, and the exact self-similar subdivision."""
+    # cos 36 is verified, not assumed: it is the root of the Chebyshev relation
+    # cos(5x) = -1 inside the admissible range.
+    cos36 = PHI / rational(2)
+    cos72 = (PHI - ONE) / rational(2)
+    run.check("cos36-in-range", ZERO < cos36 and cos36 < ONE)
+    run.check(
+        "cos36-chebyshev-root",
+        rational(16) * cos36 ** 5 - rational(20) * cos36 ** 3 + rational(5) * cos36 + ONE == ZERO,
+    )
+    run.check("cos72-double-angle", cos72 == rational(2) * cos36 * cos36 - ONE)
+    run.check("cos72-closed-form", cos72 == ONE / (rational(2) * PHI))
+
+    # Golden triangle: legs phi, base 1. Angles are identified by the cosine law,
+    # which stays inside the field where a sine would not.
+    leg, base = PHI, ONE
+    run.check(
+        "golden-triangle-apex-cosine",
+        (leg * leg + leg * leg - base * base) / (rational(2) * leg * leg) == cos36,
+    )
+    run.check(
+        "golden-triangle-base-cosine",
+        (leg * leg + base * base - leg * leg) / (rational(2) * leg * base) == cos72,
+    )
+
+    # Bisecting a base angle cuts the opposite leg into 1/phi and 1.
+    far, near = PHI.inverse(), ONE
+    run.check("subdivision-splits-the-leg", far + near == leg)
+    # Tile ACD: sides AC = phi, CD = 1 and AD by the cosine law at C = 36 degrees.
+    ad_squared = leg * leg + near * near - rational(2) * leg * near * cos36
+    run.check("subdivision-third-side", ad_squared == ONE)
+    ad = ONE
+
+    gnomon = tuple(sorted((leg, near, ad)))
+    run.check("gnomon-is-1-1-phi", gnomon == (ONE, ONE, PHI))
+    run.check(
+        "gnomon-apex-cosine",
+        (gnomon[0] * gnomon[0] + gnomon[1] * gnomon[1] - gnomon[2] * gnomon[2])
+        / (rational(2) * gnomon[0] * gnomon[1])
+        == -cos72,
+    )
+    smaller = tuple(sorted((base, ad, far)))
+    run.check("smaller-tile-is-1-1-phi-inverse", smaller == (PHI.inverse(), ONE, ONE))
+    run.check(
+        "smaller-tile-apex-cosine",
+        (smaller[1] * smaller[1] + smaller[2] * smaller[2] - smaller[0] * smaller[0])
+        / (rational(2) * smaller[1] * smaller[2])
+        == cos36,
+    )
+
+    # Similarity: the smaller tile is the original scaled by 1/phi.
+    original_sides = tuple(sorted((base, leg, leg)))
+    run.check(
+        "subdivision-self-similar",
+        all(
+            larger == PHI * piece
+            for larger, piece in zip(reversed(original_sides), reversed(smaller))
+        ),
+    )
+    whole = heron_sixteen_area_squared(original_sides)
+    part_small = heron_sixteen_area_squared(smaller)
+    part_gnomon = heron_sixteen_area_squared(gnomon)
+    run.check(
+        "subdivision-areas-positive", ZERO < whole and ZERO < part_small and ZERO < part_gnomon
+    )
+    run.check("subdivision-area-ratio-copy", part_small * PHI ** 4 == whole)
+    run.check("subdivision-area-ratio-gnomon", part_gnomon * PHI ** 2 == whole)
+    return {
+        "tiles": {"golden-triangle": "1 : phi : phi", "golden-gnomon": "1 : 1 : phi"},
+        "subdivision": "one golden triangle -> one copy at scale 1/phi plus one gnomon",
+        "cos36": cos36.pair(),
+        "cos72": cos72.pair(),
+    }
+
+
+def vector_dot(first: tuple, second: tuple) -> K:
+    total = ZERO
+    for a, b in zip(first, second):
+        total = total + a * b
+    return total
+
+
+def vector_cross(first: tuple, second: tuple) -> tuple:
+    return (
+        first[1] * second[2] - first[2] * second[1],
+        first[2] * second[0] - first[0] * second[2],
+        first[0] * second[1] - first[1] * second[0],
+    )
+
+
+def squared_distance(first: tuple, second: tuple) -> K:
+    total = ZERO
+    for a, b in zip(first, second):
+        total = total + (a - b) * (a - b)
+    return total
+
+
+def dodecahedron_checks(run: Run) -> dict:
+    """The dual dodecahedron, its two spheres, and the inscribed cube."""
+    vertices = icosahedron_vertices()
+    edges = {
+        (i, j)
+        for i in range(12)
+        for j in range(i + 1, 12)
+        if squared_distance(vertices[i], vertices[j]) == rational(4)
+    }
+    faces = [
+        (i, j, k)
+        for i in range(12)
+        for j in range(i + 1, 12)
+        for k in range(j + 1, 12)
+        if (i, j) in edges and (i, k) in edges and (j, k) in edges
+    ]
+    run.check("dual-face-count", len(faces) == 20)
+
+    centroids = []
+    for i, j, k in faces:
+        total = tuple(
+            vertices[i][axis] + vertices[j][axis] + vertices[k][axis] for axis in range(3)
+        )
+        centroids.append(tuple(coordinate / rational(3) for coordinate in total))
+    run.check("dual-twenty-vertices", len(set(centroids)) == 20)
+
+    radii = {vector_dot(centroid, centroid) for centroid in centroids}
+    run.check("dual-equal-radius", len(radii) == 1)
+    inradius_squared = next(iter(radii))
+    run.check(
+        "inradius-closed-form",
+        inradius_squared == (rational(7) + rational(3) * SQRT5) / rational(6),
+    )
+    circumradius_squared = vector_dot(vertices[0], vertices[0])
+    run.check(
+        "circumradius-closed-form",
+        circumradius_squared == (rational(5) + SQRT5) / rational(2),
+    )
+    run.check("circumradius-phi-form", circumradius_squared == PHI ** 2 + ONE)
+    run.check(
+        "sphere-ratio-closed-form",
+        circumradius_squared / inradius_squared == rational(15) - rational(6) * SQRT5,
+    )
+
+    # The centroid is the foot of the perpendicular: its squared norm equals the
+    # squared distance from the origin to the face plane, computed independently.
+    for index, face in enumerate(faces):
+        run.tick()
+        first, second, third = (vertices[vertex] for vertex in face)
+        first_edge = tuple(b - a for a, b in zip(second, first))
+        second_edge = tuple(c - a for a, c in zip(third, first))
+        normal = vector_cross(first_edge, second_edge)
+        plane_squared = vector_dot(first, normal) ** 2 / vector_dot(normal, normal)
+        run.check(f"face-plane-distance::{index}", plane_squared == inradius_squared)
+
+    face_of_edge: dict = {}
+    for index, face in enumerate(faces):
+        for i in range(3):
+            for j in range(i + 1, 3):
+                key = tuple(sorted((face[i], face[j])))
+                face_of_edge.setdefault(key, []).append(index)
+    run.check(
+        "dual-edge-source",
+        len(face_of_edge) == 30 and all(len(owners) == 2 for owners in face_of_edge.values()),
+    )
+    dual_edges = {tuple(sorted(owners)) for owners in face_of_edge.values()}
+    run.check("dual-thirty-edges", len(dual_edges) == 30)
+    run.check(
+        "dual-degree-three",
+        all(sum(index in edge for edge in dual_edges) == 3 for index in range(20)),
+    )
+    run.check(
+        "dual-equal-edge-length",
+        len({squared_distance(centroids[i], centroids[j]) for i, j in dual_edges}) == 1,
+    )
+
+    pentagons = []
+    for vertex in range(12):
+        around = [index for index, face in enumerate(faces) if vertex in face]
+        run.check(f"pentagon-arity::{vertex}", len(around) == 5)
+        # The five faces around a vertex form a 5-cycle in the dual graph. The
+        # collected order is by face index, so the induced degree is what is
+        # checked, not the order of the list.
+        induced = [
+            tuple(sorted((first, second)))
+            for position, first in enumerate(around)
+            for second in around[position + 1:]
+            if tuple(sorted((first, second))) in dual_edges
+        ]
+        run.check(
+            f"pentagon-cycle::{vertex}",
+            len(induced) == 5
+            and all(
+                sum(index in edge for edge in induced) == 2 for index in around
+            ),
+        )
+        pentagons.append(around)
+    run.check("dual-twelve-faces", len({frozenset(pentagon) for pentagon in pentagons}) == 12)
+
+    # Each face is a regular pentagon: five equal sides, five equal diagonals,
+    # and the diagonal-to-side ratio phi. The cyclic order is reconstructed from
+    # the induced 5-cycle, so no enumeration order is assumed.
+    dual_edge_lengths = {
+        squared_distance(centroids[i], centroids[j]) for i, j in dual_edges
+    }
+    side_squared = next(iter(dual_edge_lengths))
+    run.check(
+        "dual-edge-closed-form",
+        side_squared == rational(2) * (rational(3) + SQRT5) / rational(9),
+    )
+    run.check(
+        "dual-circumradius-over-edge",
+        inradius_squared / side_squared == (rational(9) + rational(3) * SQRT5) / rational(8),
+    )
+    for vertex, around in enumerate(pentagons):
+        run.tick()
+        induced = {
+            tuple(sorted((first, second)))
+            for position, first in enumerate(around)
+            for second in around[position + 1:]
+            if tuple(sorted((first, second))) in dual_edges
+        }
+        order = [around[0]]
+        previous = None
+        while len(order) < 5:
+            following = next(
+                other
+                for edge in induced
+                if order[-1] in edge
+                for other in edge
+                if other != order[-1] and other != previous
+            )
+            order.append(following)
+            previous = order[-2]
+        sides = [tuple(sorted((order[step], order[(step + 1) % 5]))) for step in range(5)]
+        diagonals = [
+            tuple(sorted((around[first], around[second])))
+            for first in range(5)
+            for second in range(first + 1, 5)
+            if tuple(sorted((around[first], around[second]))) not in induced
+        ]
+        run.check(f"pentagon-five-sides::{vertex}", len(set(sides)) == 5 and len(diagonals) == 5)
+        run.check(
+            f"pentagon-regular::{vertex}",
+            {squared_distance(centroids[i], centroids[j]) for i, j in sides} == {side_squared}
+            and len(
+                {squared_distance(centroids[i], centroids[j]) for i, j in diagonals}
+            )
+            == 1,
+        )
+        diagonal_squared = squared_distance(centroids[diagonals[0][0]], centroids[diagonals[0][1]])
+        run.check(
+            f"pentagon-diagonal-ratio::{vertex}",
+            diagonal_squared == PHI ** 2 * side_squared,
+        )
+
+    # Inscribed cube: eight of the twenty vertices whose squared distances take
+    # exactly the cube spectrum a^2, 2a^2, 3a^2 with multiplicities 3, 3, 1.
+    # Inscribed cube. A cube vertex has one body-diagonal partner, three edge
+    # neighbours and three face-diagonal neighbours, so a cube is determined by
+    # any vertex and its body-diagonal partner.
+    # The cube edge is the pentagon diagonal, so its square is phi^2 * side^2.
+    cube_edge_squared = PHI ** 2 * side_squared
+    cube = None
+    for first in range(20):
+        run.tick()
+        partners = [
+            other
+            for other in range(20)
+            if other != first
+            and squared_distance(centroids[first], centroids[other])
+            == rational(3) * cube_edge_squared
+        ]
+        # Two inscribed cubes share a body diagonal, so the partner is unique.
+        run.check(f"cube-body-diagonal-partners::{first}", len(partners) == 1)
+        for second in partners:
+            # Three corner neighbours of a cube vertex are mutually a face
+            # diagonal apart; the remaining four follow from that triple.
+            near = [
+                other
+                for other in range(20)
+                if other not in (first, second)
+                and squared_distance(centroids[first], centroids[other]) == cube_edge_squared
+                and squared_distance(centroids[second], centroids[other])
+                == rational(2) * cube_edge_squared
+            ]
+            for i in range(len(near)):
+                for j in range(i + 1, len(near)):
+                    for k in range(j + 1, len(near)):
+                        triple = [near[i], near[j], near[k]]
+                        if not all(
+                            squared_distance(centroids[a], centroids[b])
+                            == rational(2) * cube_edge_squared
+                            for position, a in enumerate(triple)
+                            for b in triple[position + 1:]
+                        ):
+                            continue
+                        rest = [
+                            other
+                            for other in range(20)
+                            if other not in (first, second, *triple)
+                            and sum(
+                                squared_distance(centroids[member], centroids[other])
+                                == cube_edge_squared
+                                for member in triple
+                            )
+                            == 2
+                        ]
+                        chosen = [first, second, *triple, *rest]
+                        if len(chosen) != 8:
+                            continue
+                        profile = sorted(
+                            squared_distance(centroids[a], centroids[b])
+                            for a in chosen
+                            for b in chosen
+                            if a < b
+                        )
+                        if profile == sorted(
+                            [cube_edge_squared] * 12
+                            + [rational(2) * cube_edge_squared] * 12
+                            + [rational(3) * cube_edge_squared] * 4
+                        ):
+                            cube = chosen
+                            break
+                    if cube:
+                        break
+                if cube:
+                    break
+            if cube:
+                break
+        if cube:
+            break
+    run.check("cube-eight-vertices", cube is not None and len(cube) == 8)
+    cube_edges = {
+        (i, j)
+        for i in cube
+        for j in cube
+        if i < j and squared_distance(centroids[i], centroids[j]) == cube_edge_squared
+    }
+    run.check("cube-twelve-edges", len(cube_edges) == 12)
+    run.check(
+        "cube-degree-three",
+        all(sum(index in edge for edge in cube_edges) == 3 for index in cube),
+    )
+    run.check("cube-edges-are-not-dodecahedron-edges", cube_edges.isdisjoint(dual_edges))
+    for first, second in sorted(cube_edges):
+        containing = [
+            pentagon for pentagon in pentagons if set(pentagon) >= {first, second}
+        ]
+        run.check("cube-edge-in-exactly-one-pentagon", len(containing) == 1)
+        run.check(
+            "cube-edge-is-a-pentagon-diagonal",
+            len(containing) == 1
+            and all(
+                tuple(sorted((index, other))) not in dual_edges
+                for pentagon in containing
+                for index in pentagon
+                for other in pentagon
+                if index != other and {index, other} == {first, second}
+            ),
+        )
+    return {
+        "vertices": 20,
+        "edges": 30,
+        "faces": 12,
+        "inradius_squared": inradius_squared.pair(),
+        "circumradius_squared": circumradius_squared.pair(),
+        "dual_edge_squared": side_squared.pair(),
+        "cube_edge_squared": cube_edge_squared.pair(),
+        "inscribed_cube_vertices": len(cube) if cube else 0,
+        "inscribed_cube_relation": "cube edges are pentagon diagonals, not dodecahedron edges",
+    }
+
+
 def hyperbolic_checks(run: Run) -> dict:
     closeness = (PHI ** 2 + PHI ** -2) / rational(2)
     run.check("cosh-two-log-phi", closeness == rational(Fraction(3, 2)))
@@ -1477,6 +1860,8 @@ def main() -> int:
         report["rectangle"] = rectangle_checks(run)
         report["icosahedron"] = icosahedron_checks(run)
         report["golden_rectangles"] = golden_rectangle_checks(run)
+        report["golden_triangle"] = golden_triangle_checks(run)
+        report["dodecahedron"] = dodecahedron_checks(run)
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)
@@ -1504,7 +1889,8 @@ def main() -> int:
             "The replay reproduces a supplied implementation; it is not an independent oracle.",
             "The plates and the captured PDF are pinned and structurally described, never read as geometry.",
             "No general receipt calculus and no general field-translation theorem is established.",
-            "The sphere-sampling generator, the Penrose patch matching and the Borromean link certificate were not executed.",
+            "The sphere-sampling generator, the Penrose patch matching, the inscribed octahedron and "
+            "the Borromean link certificate were not executed.",
         ]
         payload = json.dumps(report, ensure_ascii=False, indent=2) + "\n"
         if len(payload.encode("utf-8")) > BUDGET["max_output_file_bytes"]:
