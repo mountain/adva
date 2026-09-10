@@ -1,10 +1,12 @@
 # Native numerical boundary corrections
 
 Date: 2026-09-10. Continues the audit and initial correction in draft PR #173.
-The upstream main baseline is `7be406bfa6a3b7a5ef619081157e3b113da0cd40`;
-the initial correction is `61a7ae4`. Both the embedded and standalone
-adva-library checkouts are synchronized to
-`ba5be9fb672520ed22a7f2d923c1481bbe03aacc` and require no content changes.
+The original upstream main baseline is `7be406bfa6a3b7a5ef619081157e3b113da0cd40`;
+the initial correction is `61a7ae4`, completed by `ade4f88`. Before publication,
+new upstream main `bcd8a06` was merged and both embedded and standalone
+adva-library checkouts were synchronized to
+`b99d9c7295e9d3a4a0d77f8a7e7e6db7deee4364`. The library content requires no
+local edits; Adva's gitlink advances to this already-published library commit.
 
 ## Corrected behavior
 
@@ -27,6 +29,8 @@ Reparsing source selects the new versions and can produce different artifacts.
 ## Acceptance
 
 `native-verification.json` records commands, outcomes and diagnostic hashes.
+`build-environment.json` retains allowlisted local compiler/runtime metadata,
+resolved JSON features and the rebuilt native extension's byte hash.
 `native-diagnostic.json` retains the actual Rust diagnostic. Its debug and
 release outputs are byte-identical, including ten log cases, four rational
 cases, legacy and finite input admission, and the k28 JSON bit comparison.
@@ -39,8 +43,11 @@ The numerical regression compares 518 literal ratios against Python Fraction,
 including 256 adjacent unit-boundary cases and 256 seeded signed cases, and
 checks nine exact dyadic log chains. Direct PyO3 and SciPy refusals are included.
 
-The Python full suite passes 1637 tests and 10 subtests; one optional ed25519
-backend test is skipped because that backend is not installed.
+Before the final upstream merge, the Python full suite passes 1637 tests and
+10 subtests; one optional ed25519 backend test is skipped because that backend
+is not installed. The integration replay is recorded separately in
+`native-verification.json`: 2382 tests and 10 subtests pass with the same one
+skip, including the additional upstream retention controls.
 The retained Quine evidence checker accepts all 152 files from the two original
 runs and 50 calls. The catalog checker accepts all 20 current library entries;
 its documentary open obligation remains open.
