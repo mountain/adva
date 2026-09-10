@@ -1,0 +1,13 @@
+{
+  "status": "ImplementationFailure",
+  "phase": "fixture preparation before oversized-input CLI invocation",
+  "exception": "JSONDecodeError: Expecting value: line 1 column 16386 (char 16385)",
+  "cause": "The shared fixture table already contains an oversized-input entry whose raw bytes are spaces; name-based selection parsed that malformed receipt as the local question context.",
+  "failed_script_sha256": "afe2537dae39071dde796b3e6345514d4c7d83c4b11dd4972267f3624c1adb62",
+  "completed_cli_invocations_before_failure": 7,
+  "completed_backend_invocations_before_failure": 6,
+  "partial_reports": "Temporary reports were removed on exception; not retained. No inference beyond completed assertion flow.",
+  "failed_process_wall_seconds": 0.57608865,
+  "cost_source": "exec tool wall_time_seconds; detailed timings unavailable",
+  "correction": "Select positive fixture explicitly for synthetic malformed-input tests; keep rejection expectations unchanged."
+}
