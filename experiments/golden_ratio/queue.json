@@ -33,12 +33,19 @@
       "closure_requires": "a revised finite contract, since a Wirtinger presentation is new machinery",
       "note": "Blocked until a contract revision is written; the current contract covers the triple intersection only.",
       "progress": "contract-v2 verified through the abelian presentation level; contract-v3 declares the Magnus step and its validation targets; the Magnus core is validated on classical identities; the twelve Wirtinger relation words are now built in process from exact parameters and agree with the abelian rows; the extraction rule and the two validation targets remain",
-      "blocked_by": "the extraction rule itself: mu-bar(123) from the degree-two and degree-three parts, checked against the unlink and Borromean targets",
+      "blocked_by": "the extraction rule: mu-bar(123) as the coefficient of the degree-two commutator part of each component's longitude Magnus expansion; the longitude word needs the framing rule for under- and over-passages, which must be validated on both targets before any number is read",
       "closure_checks": [
         "complement-presentation-relations",
         "complement-invariant-agrees-with-triple-intersection"
       ],
-      "round_five_note": "A partial attempt at the relation words was written and then reverted rather than committed half-working: the arc lookup compared serialised string parameters, and even with that fixed the extraction rule is still outside contract-v2."
+      "round_five_note": "A partial attempt at the relation words was written and then reverted rather than committed half-working: the arc lookup compared serialised string parameters, and even with that fixed the extraction rule is still outside contract-v2.",
+      "handoff": {
+        "step_one": "build each component's longitude word from the declared diagram: walk the component and insert a meridian factor at every crossing, with the sign taken from the crossing sign and the factor inverted where the component passes over",
+        "step_two": "expand each longitude with the validated truncated Magnus algebra in magnus.py at degree three",
+        "step_three": "read mu-bar(123) from the degree-two commutator coefficient of the longitude, which is where Milnor's invariant sits when the pairwise linking numbers vanish",
+        "validation_before_reading": "the unlink target must give zero and the Borromean configuration must give plus or minus one; if either target fails, the run stops as Unknown and no number is reported",
+        "why_it_is_not_done": "the framing convention needs iterative debugging, and this line's session budget ran out; a fresh session should start at step one with the two targets"
+      }
     },
     {
       "id": "penrose-matching-acceptance",
