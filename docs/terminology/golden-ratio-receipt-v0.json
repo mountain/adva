@@ -1,0 +1,146 @@
+{
+  "schema": "adva.research.golden-ratio-receipt-terms",
+  "version": 0,
+  "status": "Proposed",
+  "home": "adva/docs/terminology",
+  "origin": {
+    "direction": "Mingli Yuan / 苑明理",
+    "formalization": "ChatGPT",
+    "base_commit": "99193036aa1651f8d1299901d57e3fd9a987e322",
+    "library_base_commit": "bc92ddc",
+    "source": "adva-library/golden-ratio/atlas/golden_ratio_atlas.md (sections 13 and 14)"
+  },
+  "authority": {
+    "level": "research terminology",
+    "native_admission": "NotGranted",
+    "stable_keywords_added": [],
+    "semantic_identity_allocation": false,
+    "library_geometry_admission": false,
+    "admitted_geometry_successors": 0
+  },
+  "interpretation_boundary": "These four names label finite receipts over one external checker. They are not native operations, not a receipt calculus, not proof objects, and not permission to reuse a result outside the scope its receipt declares.",
+  "fields": [
+    "question_id",
+    "object_type",
+    "arithmetic_domain",
+    "embedding",
+    "expression_or_word",
+    "evaluation_order",
+    "frame",
+    "assumptions",
+    "fuel_used",
+    "claim_scope",
+    "witness",
+    "residual"
+  ],
+  "kinds": [
+    "fixed-seed",
+    "unknown-tail",
+    "exact-closure",
+    "finite-precision-stop"
+  ],
+  "field_notes": [
+    "question_id names the frozen question, not a program identity",
+    "object_type separates an orbit, an image, a word and a nesting chain",
+    "arithmetic_domain and embedding fix the field and the selected root",
+    "expression_or_word records the syntactic object, not its value",
+    "evaluation_order records reading direction and application order",
+    "frame records the declared space, scale and origin",
+    "assumptions are preconditions, never conclusions",
+    "fuel_used counts declared finite steps, not effort or priority",
+    "claim_scope is the boundary of what the witness may be reused for",
+    "witness records the finite object checked, not a general theorem",
+    "residual records what remains open even when the check passes"
+  ],
+  "terms": [
+    {
+      "name": "fixed-seed",
+      "profile": "golden-receipt.fixed-seed.v0",
+      "status": "Proposed",
+      "effect": "Records a finite orbit produced from a supplied seed under a fixed operation sequence.",
+      "input": [
+        "seed",
+        "operation sequence",
+        "declared field and frame",
+        "finite step budget"
+      ],
+      "output": [
+        "produced values",
+        "a bracket or equality between produced values",
+        "no statement about unseeded tails"
+      ],
+      "preconditions": [
+        "The seed is part of the question, not of the witness",
+        "The bracket concerns produced values only"
+      ]
+    },
+    {
+      "name": "unknown-tail",
+      "profile": "golden-receipt.unknown-tail.v0",
+      "status": "Proposed",
+      "effect": "Records the image of an unconstrained tail under a fixed operation prefix.",
+      "input": [
+        "operation prefix",
+        "declared tail domain",
+        "declared frame"
+      ],
+      "output": [
+        "an image set with its boundary status",
+        "the monotonicity or coverage argument"
+      ],
+      "preconditions": [
+        "The tail domain is declared, not assumed to be positive",
+        "An image interval is not a produced value and its endpoints need not be attained"
+      ]
+    },
+    {
+      "name": "exact-closure",
+      "profile": "golden-receipt.exact-closure.v0",
+      "status": "Proposed",
+      "effect": "Records an exact identity of a symbolic object at a declared parameter.",
+      "input": [
+        "syntactic word",
+        "exact parameter",
+        "declared field"
+      ],
+      "output": [
+        "an exact residual",
+        "the parameter set on which it vanishes"
+      ],
+      "preconditions": [
+        "The parameter is an exact root, not a decimal approximation",
+        "Closure at one parameter is not coverage of neighbouring parameters"
+      ]
+    },
+    {
+      "name": "finite-precision-stop",
+      "profile": "golden-receipt.finite-precision-stop.v0",
+      "status": "Proposed",
+      "effect": "Records that a declared resolution target was met inside a finite budget.",
+      "input": [
+        "nesting or refinement chain",
+        "declared resolution target",
+        "finite step budget"
+      ],
+      "output": [
+        "the stopping step",
+        "the residual that stays nonzero"
+      ],
+      "preconditions": [
+        "A residual below the target is not emptiness",
+        "The chain, frame and target are declared before the run"
+      ]
+    }
+  ],
+  "relabeling_prohibitions": [
+    "A seeded bracket may not be reported as tail coverage",
+    "A finite-precision stop may not be reported as an exact closure or an empty intersection",
+    "An exact closure at one parameter may not be reported as a general theorem",
+    "An open image interval may not be reported as a produced rational bracket"
+  ],
+  "execution": {
+    "contract": "experiments/golden_ratio/contract.json",
+    "checker": "experiments/golden_ratio/calibration.py",
+    "witness": "experiments/golden_ratio/evidence.json"
+  }
+}
