@@ -1,0 +1,32 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 26,
+  "predecessor_sha256": "d214152494b442a5069fadd2df41885b65c805beffb7c14266fda6875f587048",
+  "delta": {
+    "kind": "result",
+    "admitted": true,
+    "description": "pixel-layer experiment on the GPT-4 vs AlphaMissense pair (closes the round-25 hole). Both PDFs rendered at 150 dpi (100 + 37 pages), pure-Python ink probe: GPT-4 report mean ink 0.0752, 703 bytes/word, pearson(words,bytes)=0.7354 (text-carried); AlphaMissense deck mean ink 0.4674 (6.2x), 27,274 bytes/word (38.8x), pearson=0.0772 (pixel-carried), 16:9 slides with full-bleed imagery (ink ~0.98 on 14 pages). The two documents carry meaning on different layers."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "pixel_probe": {
+      "gpt4": {"page_count": 100, "mean_ink": 0.075166, "bytes_per_page": 328907, "words_per_page": 467.56, "bytes_per_word": 703.454, "pearson_words_bytes": 0.7354},
+      "alpha": {"page_count": 37, "mean_ink": 0.467406, "bytes_per_page": 464387, "words_per_page": 39.38, "bytes_per_word": 27273.51, "pearson_words_bytes": 0.0772},
+      "geometry": {"gpt4": "1275x1650", "alpha": "1500x844 (16:9)"},
+      "alpha_full_bleed_pages": [1, 2, 3, 4, 7, 8, 23, 24, 28, 29, 33, 34, 35, 37]
+    },
+    "tool": "trials/meaning-pair-round-02/probe_pixels.py (IHDR + zlib + PNG unfilter; white = all channels >= 240)",
+    "artifacts": "pixel-probe.json (137 pages), pixels/gpt4-*.png, pixels/alpha-*.png (local only)"
+  },
+  "documented_holes": [
+    "the pixel probe measures ink quantity, not figure content: what the figures say is still unread (no OCR on raster text, no figure classification)",
+    "white threshold 240 is a declared convention; antialiased edges are counted as ink",
+    "palette-type PNGs would be skipped (not encountered here)"
+  ],
+  "no_claims": [
+    "no claim about the figures' content or correctness",
+    "no claim that ink fraction equals meaning: it is a measured carrier-weight proxy",
+    "rendered PNGs and full texts stay local; pixel-probe.json aggregates may be disclosed"
+  ]
+}
