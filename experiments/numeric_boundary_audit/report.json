@@ -1,0 +1,506 @@
+{
+  "schema": "adva.numeric-boundary-audit.v0",
+  "source_commit": "7be406bfa6a3b7a5ef619081157e3b113da0cd40",
+  "status": "SourceAuditAndExternalReproductions",
+  "native_adva_execution": "NotRun",
+  "native_toolchain": "Unavailable in this receiving environment",
+  "log_gradient_model": [
+    {
+      "x_exponent": 1010,
+      "scale_exponent": 10,
+      "intermediate_bits": "0030000000000000",
+      "current_gradient_bits": "7f10000000000000",
+      "alternative_gradient_bits": "7f10000000000000",
+      "log_value_finite": true,
+      "exact_derivative": "2^1010",
+      "expected_binary64_bits": "7f10000000000000",
+      "current_matches_exact": true,
+      "alternative_matches_exact": true
+    },
+    {
+      "x_exponent": 1013,
+      "scale_exponent": 10,
+      "intermediate_bits": "0008000000000000",
+      "current_gradient_bits": "7f40000000000000",
+      "alternative_gradient_bits": "7f40000000000000",
+      "log_value_finite": true,
+      "exact_derivative": "2^1013",
+      "expected_binary64_bits": "7f40000000000000",
+      "current_matches_exact": true,
+      "alternative_matches_exact": true
+    },
+    {
+      "x_exponent": 1014,
+      "scale_exponent": 10,
+      "intermediate_bits": "0004000000000000",
+      "current_gradient_bits": "7ff0000000000000",
+      "alternative_gradient_bits": "7f50000000000000",
+      "log_value_finite": true,
+      "exact_derivative": "2^1014",
+      "expected_binary64_bits": "7f50000000000000",
+      "current_matches_exact": false,
+      "alternative_matches_exact": true
+    },
+    {
+      "x_exponent": 1020,
+      "scale_exponent": 10,
+      "intermediate_bits": "0000100000000000",
+      "current_gradient_bits": "7ff0000000000000",
+      "alternative_gradient_bits": "7fb0000000000000",
+      "log_value_finite": true,
+      "exact_derivative": "2^1020",
+      "expected_binary64_bits": "7fb0000000000000",
+      "current_matches_exact": false,
+      "alternative_matches_exact": true
+    },
+    {
+      "x_exponent": 1010,
+      "scale_exponent": 20,
+      "intermediate_bits": "0000100000000000",
+      "current_gradient_bits": "7ff0000000000000",
+      "alternative_gradient_bits": "7f10000000000000",
+      "log_value_finite": true,
+      "exact_derivative": "2^1010",
+      "expected_binary64_bits": "7f10000000000000",
+      "current_matches_exact": false,
+      "alternative_matches_exact": true
+    }
+  ],
+  "rational_conversion_model": [
+    {
+      "numerator": 9007199254740992,
+      "denominator": 9007199254740993,
+      "current_bits": "3ff0000000000000",
+      "nearest_bits": "3fefffffffffffff",
+      "current_is_nearest": false,
+      "exact_is_one": false
+    },
+    {
+      "numerator": 9007199254740993,
+      "denominator": 9007199254740994,
+      "current_bits": "3feffffffffffffe",
+      "nearest_bits": "3fefffffffffffff",
+      "current_is_nearest": false,
+      "exact_is_one": false
+    },
+    {
+      "numerator": 1,
+      "denominator": 1024,
+      "current_bits": "3f50000000000000",
+      "nearest_bits": "3f50000000000000",
+      "current_is_nearest": true,
+      "exact_is_one": false
+    }
+  ],
+  "python_input_method": [
+    {
+      "case": "finite",
+      "status": "AcceptedByPythonInputMethod",
+      "finite": true,
+      "bits": "3ff0000000000000"
+    },
+    {
+      "case": "nan",
+      "status": "AcceptedByPythonInputMethod",
+      "finite": false,
+      "bits": "7ff8000000000000"
+    },
+    {
+      "case": "positive_inf",
+      "status": "AcceptedByPythonInputMethod",
+      "finite": false,
+      "bits": "7ff0000000000000"
+    },
+    {
+      "case": "boolean",
+      "status": "Rejected",
+      "error": "input 'x' must be a real scalar, got bool"
+    }
+  ],
+  "resource_limit_method": [
+    {
+      "remaining_cpu_seconds": 0.25,
+      "installed_child_cpu_seconds": 1,
+      "not_above_remaining": false,
+      "execution": "Exact source method with mocked setrlimit; no child launched"
+    },
+    {
+      "remaining_cpu_seconds": 1.25,
+      "installed_child_cpu_seconds": 1,
+      "not_above_remaining": true,
+      "execution": "Exact source method with mocked setrlimit; no child launched"
+    },
+    {
+      "remaining_cpu_seconds": 2.0,
+      "installed_child_cpu_seconds": 2,
+      "not_above_remaining": true,
+      "execution": "Exact source method with mocked setrlimit; no child launched"
+    }
+  ],
+  "source_inventory": [
+    {
+      "path": "crates/adva-ir/src/certificate.rs",
+      "bytes": 13189,
+      "sha256": "93bf98054e53fc5abffe0a80d1454cf195d4125ee84298a162c5a2587c0a39e5",
+      "git_blob": "1aad6c92f75ab94a727817209ee87eb5d9c62608"
+    },
+    {
+      "path": "crates/adva-ir/src/diagram.rs",
+      "bytes": 5636,
+      "sha256": "fc89be77ee1515fde67790e4d12f4535fc78ebe3078ca0faf768cc4904a9a182",
+      "git_blob": "20deb86cf33ec42b954c947ec4b2b97981189df4"
+    },
+    {
+      "path": "crates/adva-ir/src/graft.rs",
+      "bytes": 3298,
+      "sha256": "0ab1f513a5e41aa8ced29281c9b75d07c3c029187624ba6f8487b9a2fa783119",
+      "git_blob": "4a203df29cccca76a115e5545a709fcda52007ce"
+    },
+    {
+      "path": "crates/adva-ir/src/ids.rs",
+      "bytes": 2211,
+      "sha256": "e0fe26fe9df1480fd7a9302343e4fb60915e7efdc9c9a9b29a863d9fc7fbec72",
+      "git_blob": "a2af9cb1ed85bab7f874e5f64d6d3065ef37318b"
+    },
+    {
+      "path": "crates/adva-ir/src/lib.rs",
+      "bytes": 2339,
+      "sha256": "791d5750e4969d4dcf61b37c6f92e3064b2e2ab2a5f3ef4cf080469678862f5d",
+      "git_blob": "7f35df9bfa8bf273bfcda9b85aefadbc8f1ced81"
+    },
+    {
+      "path": "crates/adva-ir/src/process.rs",
+      "bytes": 6064,
+      "sha256": "83ce50e2d2a1ed4ed4098b763688a3e5f31d519c757f80405d751a8f19912287",
+      "git_blob": "d34ebc79c3ac31fed6ce719101a9ab514c370cdf"
+    },
+    {
+      "path": "crates/adva-ir/src/term.rs",
+      "bytes": 9124,
+      "sha256": "44285bf435ef6aa19ee6af4221b0b795b3366a712bd98bf032d9912afcc35a85",
+      "git_blob": "75ecd07e547973ce56b366abe994a27297f1785d"
+    },
+    {
+      "path": "crates/adva-lisp/src/compile.rs",
+      "bytes": 41710,
+      "sha256": "7863a170ce14c248779bdd5fbcf466a26605b3bd45227bb378357f9f51db1f36",
+      "git_blob": "61b04ec39172992423b0e9a3681271e47f9ac014"
+    },
+    {
+      "path": "crates/adva-lisp/src/eval.rs",
+      "bytes": 5191,
+      "sha256": "efd3199d09ce4b759c85a2fe39d8db0db18c8fe4d22de2c6cfda012a088ba7ba",
+      "git_blob": "dc4202e708e90030e5af587dae4b9d0285f98905"
+    },
+    {
+      "path": "crates/adva-lisp/src/lib.rs",
+      "bytes": 1494,
+      "sha256": "6bee27934e881ae59c856b73d3e05192032c57ddd04a16ea60b960a8d02af422",
+      "git_blob": "a082b1969db8c96a092a0c090a417b6babe0a41d"
+    },
+    {
+      "path": "crates/adva-lisp/src/module.rs",
+      "bytes": 4668,
+      "sha256": "0c97a306a9da4c3772a5438d25503f1f992b0f5675d1242edff92e3cb62df388",
+      "git_blob": "d3215d47a61afdbcd87dd502773faaa76d2f4191"
+    },
+    {
+      "path": "crates/adva-lisp/src/operation.rs",
+      "bytes": 15350,
+      "sha256": "f26084b5557f7ae36f2a16e171d4fa56ea15e57fc801f74b37c0390fa6f5502c",
+      "git_blob": "412b5479461e3d0640e970d82b5f1db42591d9a3"
+    },
+    {
+      "path": "crates/adva-lisp/src/parser.rs",
+      "bytes": 12235,
+      "sha256": "64d7de124f5d3a92d77aa002f64fdc0aaaff788ce4a8c75d1bd238a6461c7f1c",
+      "git_blob": "8c176e46d2ede8f42344f9b9282e0e635568a83a"
+    },
+    {
+      "path": "crates/adva-lisp/src/process.rs",
+      "bytes": 46301,
+      "sha256": "ca5fc2e59d31fe9f6b77d1702aaf24620ec3a53de5c893bdbe86b124b7e25d9b",
+      "git_blob": "89ede968407369b903772f2f1f8caefe96c75535"
+    },
+    {
+      "path": "crates/adva-lisp/src/validate.rs",
+      "bytes": 23197,
+      "sha256": "32ef06a407d5adde13fea8df1869da12bdbb16be059f3866b2733c3caf0b2330",
+      "git_blob": "4178a576dd68a793c6cb601709f54c0a74ff7054"
+    },
+    {
+      "path": "crates/adva-python/src/lib.rs",
+      "bytes": 14450,
+      "sha256": "ff72b82c4dbb9f53e5337353c208dda8467819e8f42a8374edc93a6f72f2b4f7",
+      "git_blob": "6e6f4f59edefbe0ccc8a254c0f5ca9cc08f83779"
+    },
+    {
+      "path": "crates/adva-witness/src/arithmetic.rs",
+      "bytes": 11990,
+      "sha256": "dc0de3b4aec0932d36503a8253791d37ea7ca778ba212ea08c82189d6320f825",
+      "git_blob": "ed1d8e80488688c20619684e9e0e25a1934a9241"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/adva-prime-verify.rs",
+      "bytes": 3089,
+      "sha256": "a720883e91f758029b4146a23dc1058e4bae6c4c10ecb87893e922edb90a8920",
+      "git_blob": "a7f63e8490249fdb2dac0d79422eba5dcf12da4a"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/adva.rs",
+      "bytes": 28749,
+      "sha256": "1cf640b7c345fde3cac0ce0c15e1979c41796a6549dbe86e6b377d084f1e5481",
+      "git_blob": "2f3304c3574d5e4d861292567a356d900056c32f"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/support/library_cli.rs",
+      "bytes": 7888,
+      "sha256": "e5883ec7797267a9a52f9d60c26125ff4f538501d906feb76dbe7e28dffde262",
+      "git_blob": "f4bc400496cb18ebeb75656bf3da7f1795a8dbf3"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/support/native_run_cli.rs",
+      "bytes": 3611,
+      "sha256": "e9470e80d9fc2b0e9630ae3285a82ab794ba6b7e5bb75d97345e5e20edc903af",
+      "git_blob": "de5f0b50c2e2805281840da50f7512f138323af4"
+    },
+    {
+      "path": "crates/adva-witness/src/boundary.rs",
+      "bytes": 4642,
+      "sha256": "2da913fdc3ecc1a54eab9194b78ae5529ba266c6e951a898d89eb79abf8b6ab7",
+      "git_blob": "7b1b558ad7dfab01a67654f8e0e63c3baf5509e5"
+    },
+    {
+      "path": "crates/adva-witness/src/closure_transport.rs",
+      "bytes": 42699,
+      "sha256": "a4b0bf5d07cacbce836522857a69f8b2f02c26557479331ec5c8fdab15d39529",
+      "git_blob": "8b411ca1ec98a5c10b2c230df8549954544eaef6"
+    },
+    {
+      "path": "crates/adva-witness/src/free_roundtrip.rs",
+      "bytes": 19625,
+      "sha256": "0fb93fc5e130010b5ebf21481c7fc1ba71a33b4fa9fc4a21a2664cb5f329764a",
+      "git_blob": "8739b1790387b89eb4ca43af7c2ef7b560b904a7"
+    },
+    {
+      "path": "crates/adva-witness/src/hypothesis_formation.rs",
+      "bytes": 37395,
+      "sha256": "39112470e3f29931874497426c95887d7e59649bb84b9168a1325ef767f4e2e7",
+      "git_blob": "310034d9ff3cff4604a4f254044e416ea0024328"
+    },
+    {
+      "path": "crates/adva-witness/src/inquiry.rs",
+      "bytes": 38426,
+      "sha256": "618a73c77b8ee613c0d4061226f0348e0aaee4b08f0f4f35a4b936bea6a82411",
+      "git_blob": "df6fd8a1191f49417b79ea9e564ad77ceae2a278"
+    },
+    {
+      "path": "crates/adva-witness/src/lib.rs",
+      "bytes": 1418,
+      "sha256": "1e4cf68920233f66679b099f6c5d77f28c5b67f8827ad64bd778b5a6c1d981b8",
+      "git_blob": "d43871ce4bd2e316444d02ace238226b8b3676fd"
+    },
+    {
+      "path": "crates/adva-witness/src/library_checkpoint.rs",
+      "bytes": 20090,
+      "sha256": "7e4c5abd0f8224cc0f7cd9092928394cc2fbc81a9b5b9b255834d04977d2b975",
+      "git_blob": "ae8ed772ae9cc18c6378092696bcee0eff7b3097"
+    },
+    {
+      "path": "crates/adva-witness/src/magic_square.rs",
+      "bytes": 50579,
+      "sha256": "a1614f2a8359d91639e576f694bf0f74a8e42eaca7d174f428202cbcdb7cb8d4",
+      "git_blob": "d3d1c96d7b3fb022ffb16a6192045bd200ce2af9"
+    },
+    {
+      "path": "crates/adva-witness/src/mechanism.rs",
+      "bytes": 14041,
+      "sha256": "2f7a17b8e28756fa40a237ccca89e88af073403a0b6665c7e90ba0cc5a86acf3",
+      "git_blob": "32f379a730fe455d5f18121445e9b98f773147f4"
+    },
+    {
+      "path": "crates/adva-witness/src/native_run.rs",
+      "bytes": 18993,
+      "sha256": "3bfe54fbe91e91eeb9f9e3099cda4c5b9790d405de4c1c5a5d1671cc5f07f263",
+      "git_blob": "bc24b49c71e56ca7e086b695525ffab8849addfd"
+    },
+    {
+      "path": "crates/adva-witness/src/persistence.rs",
+      "bytes": 25528,
+      "sha256": "cf04c3fa52d4967edaf7826bf8211716833c0c000b482dc67a0082d9e4a3f72d",
+      "git_blob": "2c11dc8b8ff8ff017412eef8769040565097640a"
+    },
+    {
+      "path": "crates/adva-witness/src/prime_certificate.rs",
+      "bytes": 11258,
+      "sha256": "ee0eaba39e582f422cea3e8c9ff7741288bbfa7df57ed7a643fe7cfe4b9ec508",
+      "git_blob": "bb576d43228563ec46f86c54c69a83bae0949214"
+    },
+    {
+      "path": "crates/adva-witness/src/problem_value.rs",
+      "bytes": 58784,
+      "sha256": "d0a50d8814f2f46fa2b93699af1bced4daccbd66a3ee6ebf993d73993b39b569",
+      "git_blob": "9c02060e479b04fbb5ef90bf287880556be9e93c"
+    },
+    {
+      "path": "crates/adva-witness/src/relation.rs",
+      "bytes": 23370,
+      "sha256": "c3a6e7fe174b0095cefe4a36578f7b0c45791ebfbb6bf7afd61af5cae373d5f0",
+      "git_blob": "15494c5c3b3481701fa0c4ab480659ce054ff541"
+    },
+    {
+      "path": "crates/adva-witness/src/reveal.rs",
+      "bytes": 20149,
+      "sha256": "9413850b0633778d9b66b0fa640ef5fd64af57e9a2971f2640f1366276189d97",
+      "git_blob": "e37cf2c617053fab44ac5ba18d29d30b0541c0ca"
+    },
+    {
+      "path": "crates/adva-witness/src/seed.rs",
+      "bytes": 9472,
+      "sha256": "c4313ac5cb0f0ea3b5ac6e6315a1613b9775875d4c3a39c36c29a5abcdad81c9",
+      "git_blob": "1fcd7ac08472676e1bbd489d575aa2aabaed9317"
+    },
+    {
+      "path": "crates/adva-witness/src/trace_arithmetic.rs",
+      "bytes": 31305,
+      "sha256": "6964f6d716898262dcbb28d7e328f15551b1f574ed695b068e05c8ca45858d85",
+      "git_blob": "f42d76b823067afb7d7c0223dbb2478873270588"
+    },
+    {
+      "path": "crates/adva-witness/src/trace_projection.rs",
+      "bytes": 6958,
+      "sha256": "a706b5a7ee432990d96c9912e0e63d82869210deafe86e16520d1607e5c06097",
+      "git_blob": "6857be36f14475771913c1cdd8a0366b81a43baa"
+    },
+    {
+      "path": "crates/adva-witness/src/verification.rs",
+      "bytes": 47790,
+      "sha256": "dbd01809056265276a0ffc15d2302224509fe079fa47ddff90e8169d78a51256",
+      "git_blob": "192cfcc30fc6bf7be786fd628b088c29dbc00675"
+    },
+    {
+      "path": "crates/adva-witness/src/witness.rs",
+      "bytes": 31046,
+      "sha256": "5e6c7db19d414828fb84fe026330f17aafd5bf73cce10a4b5d01b0ed97955699",
+      "git_blob": "059523e2011d5536b629e1caa1daaa1ef501c4f9"
+    },
+    {
+      "path": "python/adva/__init__.py",
+      "bytes": 1353,
+      "sha256": "d65cb1df93057ddaa08822f00814be95193d66dfd0fa62972f10213a6f2f6e46",
+      "git_blob": "0303cb03b838628892a99780f8559c0f32dd0ab1"
+    },
+    {
+      "path": "python/adva/adva.py",
+      "bytes": 20883,
+      "sha256": "756e4f64d86ac0c42b15f625bbf8dd6010f228e9e018ef2d63ebb3c77f56a547",
+      "git_blob": "5dae2bbba7c2f9c94af32aaa10b7039addec134a"
+    },
+    {
+      "path": "python/adva/advance.py",
+      "bytes": 18015,
+      "sha256": "27518f5347e1953bff0254313fb7b296c48681a499b90062e8334b238bb01477",
+      "git_blob": "be3c1b0acdd74ff048b6b3505442df574545e008"
+    },
+    {
+      "path": "python/adva/advance_surface.py",
+      "bytes": 15569,
+      "sha256": "0b1533a40deec7e5341bda08b44fa865b8e3fd863b8183be50d1a57400ec63dd",
+      "git_blob": "e64df5a06c0788478abc8cc7f4daa6255b93680b"
+    },
+    {
+      "path": "python/adva/characteristic_research.py",
+      "bytes": 32282,
+      "sha256": "0555a52b413e18e463e648ad474c26d88644e75ec71b00b377188c6f3401d466",
+      "git_blob": "49245a70ffd6d737cf0259e56948abd3a0a7b468"
+    },
+    {
+      "path": "python/adva/connector_research.py",
+      "bytes": 26563,
+      "sha256": "61e61a3b64020fa3a0a7d732b964ceff195470056e9fe10a80ecaed07b8927cc",
+      "git_blob": "1cfe2cfe806072071538e2fac7338d6b12adef27"
+    },
+    {
+      "path": "python/adva/core.py",
+      "bytes": 22751,
+      "sha256": "7ec9f6af7678a6b3dd3ca16957e0af774614f7af7a47a3274da36aa1b95b7ed3",
+      "git_blob": "0b727b306444023bb652dc42b2bd3d6ac621c19e"
+    },
+    {
+      "path": "python/adva/historical_character_research.py",
+      "bytes": 25243,
+      "sha256": "0e2eca8ae956bda0d72994f7ca0ca0ef45d6b8e77280109bc1aa52471aae9a5c",
+      "git_blob": "f4c91ced768cbcbd64b0f4d5ae3525cab516ce71"
+    },
+    {
+      "path": "python/adva/hole_research.py",
+      "bytes": 18498,
+      "sha256": "f732ee723e4c01e7789567a48568f5c591f39da82e126402ef841c4e61af4222",
+      "git_blob": "ce13c1778ea67102eedb555e03a6c7b2b0610204"
+    },
+    {
+      "path": "python/adva/lineage.py",
+      "bytes": 46751,
+      "sha256": "199363208f0fa541b533df2ed3f30f53dc9ffa13f2e6e49dbe7fed0748067882",
+      "git_blob": "821e33b1d8753f1ec47076df8c929a51c825a2e9"
+    },
+    {
+      "path": "python/adva/math_catalog.py",
+      "bytes": 25647,
+      "sha256": "d9ee0143d5636de04f7c8c403eeb9ed5c6d645639cdcd91e5d982df1ed501dba",
+      "git_blob": "a841ff8813be1ac220a6505c336420da5163d41f"
+    },
+    {
+      "path": "python/adva/persistence.py",
+      "bytes": 2534,
+      "sha256": "25442756a8598d50b1273293ad9f3ebff30619b7bc4d6d83f255e7afa14b480a",
+      "git_blob": "8b8f49c69203ade266a8ba5ff5b6331d306fe4d6"
+    },
+    {
+      "path": "python/adva/quine_relay.py",
+      "bytes": 22420,
+      "sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f",
+      "git_blob": "6a6786815964bd1025259e703a309f660640c447"
+    },
+    {
+      "path": "python/adva/research.py",
+      "bytes": 45512,
+      "sha256": "d8f65fa9d54385eff0e892ee3410ccd6696664c434cd0ad860078de582e19ea4",
+      "git_blob": "5541b405f80fd9c98854b41c1c8324b65f54721f"
+    },
+    {
+      "path": "python/adva/search_campaign.py",
+      "bytes": 25850,
+      "sha256": "8b54233e625425d662bc80a6efab1664c06cef7a8fcc2cf3dd2b28e496ddd650",
+      "git_blob": "aad074f5ee4d36df64a71c0d7257998e8411d90a"
+    },
+    {
+      "path": "python/adva/triangular_research.py",
+      "bytes": 32068,
+      "sha256": "ecabf9d32fe95e92537d3f0bdc743d406ff5d82c832842e91de3cdbc605dae58",
+      "git_blob": "2f54448d528fcde4d6808987d54adef77b8a7aae"
+    },
+    {
+      "path": "python/adva/verifier_search.py",
+      "bytes": 16931,
+      "sha256": "388553cd6293576b5b449ecafe7fba50c2cb8bf6bc93a459a42de110febab6a3",
+      "git_blob": "4d4b06f3e648f5e28a09945ab98badbbedb3413b"
+    }
+  ],
+  "source_files": 58,
+  "c_build_ms": 87.74082000309136,
+  "wall_ms_before_serialization": 102.78905400627991,
+  "python_process_peak_rss_kib_linux": 15124,
+  "max_child_rss_kib_linux": 14848,
+  "rss_scope": "Separate parent and maximum completed-child peaks; not simultaneous aggregate peak",
+  "unmeasured": [
+    "source retrieval",
+    "research and authoring",
+    "report serialization"
+  ],
+  "remaining": [
+    "Rust native bit-pattern replay",
+    "Numeric policy/version decision before stable fixes",
+    "Research 0141 parser-versus-serializer mismatch remains unresolved"
+  ]
+}

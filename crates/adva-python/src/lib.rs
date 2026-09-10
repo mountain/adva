@@ -12,8 +12,8 @@ use adva_lisp::{
     compose_program_slices_with_graft as compose_slices_with_graft,
     compose_triadic_observer_transitions_v0 as compose_triadic_transitions,
     compose_triadic_observer_transitions_with_graft_v0 as compose_triadic_transitions_with_graft,
-    evaluate, evaluate_with_differential, import_diagram_json, link_modules as link_rust_modules,
-    parse_module, validate_diagram,
+    evaluate_finite, evaluate_with_finite_differential, import_diagram_json,
+    link_modules as link_rust_modules, parse_module, validate_diagram,
 };
 use adva_witness::{AdvaDocumentV0, load_adva_document_v0, save_adva_document_v0};
 use pyo3::exceptions::PyValueError;
@@ -288,13 +288,13 @@ impl PyProgram {
     }
 
     fn evaluate(&self, inputs: BTreeMap<String, f64>) -> PyResult<(Vec<f64>, String)> {
-        let result = evaluate(&self.diagram, &inputs).map_err(py_error)?;
+        let result = evaluate_finite(&self.diagram, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
         Ok((result.values, certificate))
     }
 
     fn value_and_gradient(&self, inputs: BTreeMap<String, f64>) -> PyResult<PyDifferential> {
-        let result = evaluate_with_differential(&self.diagram, &inputs).map_err(py_error)?;
+        let result = evaluate_with_finite_differential(&self.diagram, &inputs).map_err(py_error)?;
         let certificate = serde_json::to_string_pretty(&result.certificate).map_err(py_error)?;
         Ok((result.values, result.jacobian, certificate))
     }

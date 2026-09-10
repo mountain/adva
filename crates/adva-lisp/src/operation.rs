@@ -3,6 +3,7 @@ use adva_ir::{OperationRef, Rational, ValueType, WireRef};
 use std::collections::BTreeMap;
 
 pub const BUILTIN_NAMESPACE: &str = "adva.builtin";
+/// Legacy operation version; active Lisp surface versions come from the registry.
 pub const BUILTIN_VERSION: u32 = 1;
 
 const NO_TYPES: &[ValueType] = &[];
@@ -139,6 +140,17 @@ static BUILTIN_OPERATIONS: &[OperationSpec] = &[
     },
     OperationSpec {
         namespace: BUILTIN_NAMESPACE,
+        name: "constant",
+        version: 2,
+        surface_form: false,
+        input_types: NO_TYPES,
+        output_types: ONE_REAL,
+        parameters: VALUE_PARAMETER,
+        lineage_rule: LineageRule::MergeInputs,
+        evaluator: evaluate_constant_v2,
+    },
+    OperationSpec {
+        namespace: BUILTIN_NAMESPACE,
         name: "id",
         version: BUILTIN_VERSION,
         surface_form: true,
@@ -262,12 +274,23 @@ static BUILTIN_OPERATIONS: &[OperationSpec] = &[
         namespace: BUILTIN_NAMESPACE,
         name: "log",
         version: BUILTIN_VERSION,
-        surface_form: true,
+        surface_form: false,
         input_types: ONE_REAL,
         output_types: ONE_REAL,
         parameters: NO_PARAMETERS,
         lineage_rule: LineageRule::MergeInputs,
         evaluator: evaluate_logarithm,
+    },
+    OperationSpec {
+        namespace: BUILTIN_NAMESPACE,
+        name: "log",
+        version: 2,
+        surface_form: true,
+        input_types: ONE_REAL,
+        output_types: ONE_REAL,
+        parameters: NO_PARAMETERS,
+        lineage_rule: LineageRule::MergeInputs,
+        evaluator: evaluate_logarithm_v2,
     },
 ];
 
@@ -275,10 +298,26 @@ pub fn builtin_operation_specs() -> &'static [OperationSpec] {
     BUILTIN_OPERATIONS
 }
 
-pub fn builtin_surface_form(name: &str) -> bool {
+/// Numeric syntax selects the newest registered constant realization. Stored
+/// Constant terms and OperationRef::constant remain explicit legacy inputs.
+pub(crate) fn builtin_literal(value: Rational) -> OperationRef {
+    let spec = BUILTIN_OPERATIONS
+        .iter()
+        .filter(|spec| spec.name == "constant")
+        .max_by_key(|spec| spec.version)
+        .expect("the registry includes numeric literals");
+    OperationRef {
+        namespace: spec.namespace.to_owned(),
+        name: spec.name.to_owned(),
+        version: spec.version,
+        parameters: BTreeMap::from([("value".to_owned(), value)]),
+    }
+}
+
+pub(crate) fn builtin_surface_operation(name: &str) -> Option<&'static OperationSpec> {
     BUILTIN_OPERATIONS
         .iter()
-        .any(|spec| spec.surface_form && spec.name == name)
+        .find(|spec| spec.surface_form && spec.name == name)
 }
 
 pub fn resolve_operation(operation: &OperationRef) -> Result<&'static OperationSpec, LispError> {
@@ -309,7 +348,19 @@ fn evaluate_constant(
         .get("value")
         .expect("registry validation requires the constant value parameter");
     Ok(vec![Dual {
-        value: value.as_f64(),
+        // constant@1 is a historical, separately rounded realization.
+        value: value.numerator as f64 / value.denominator as f64,
+        gradient: BTreeMap::new(),
+    }])
+}
+
+fn evaluate_constant_v2(
+    parameters: &BTreeMap<String, Rational>,
+    arguments: &[Dual],
+) -> Result<Vec<Dual>, LispError> {
+    ensure_argument_count("constant", arguments, 0)?;
+    Ok(vec![Dual {
+        value: parameters["value"].as_f64(),
         gradient: BTreeMap::new(),
     }])
 }
@@ -428,6 +479,28 @@ fn evaluate_logarithm(
     }])
 }
 
+fn evaluate_logarithm_v2(
+    _: &BTreeMap<String, Rational>,
+    arguments: &[Dual],
+) -> Result<Vec<Dual>, LispError> {
+    let argument = unary_argument("log", arguments)?;
+    if argument.value <= 0.0 {
+        return Err(LispError::Evaluation(
+            "log expects a positive Real value".to_owned(),
+        ));
+    }
+    // Divide each incoming derivative directly. Materializing 1 / value first
+    // can overflow even when the final quotient is a finite, exact power of two.
+    Ok(vec![Dual {
+        value: argument.value.ln(),
+        gradient: argument
+            .gradient
+            .iter()
+            .map(|(name, value)| (name.clone(), value / argument.value))
+            .collect(),
+    }])
+}
+
 fn ensure_argument_count(name: &str, arguments: &[Dual], count: usize) -> Result<(), LispError> {
     if arguments.len() == count {
         Ok(())
@@ -500,9 +573,57 @@ mod tests {
             .filter(|spec| spec.surface_form)
             .count();
         assert_eq!(surface_names.len(), surface_count);
-        assert!(!builtin_surface_form("constant"));
+        assert!(builtin_surface_operation("constant").is_none());
+        assert_eq!(builtin_surface_operation("log").unwrap().version, 2);
         for spec in BUILTIN_OPERATIONS {
             spec.validate_lineage_shape().unwrap();
         }
+    }
+
+    #[test]
+    fn log_v2_divides_before_an_avoidable_reciprocal_overflow() {
+        let mut reference = OperationRef::builtin("log");
+        reference.version = 2;
+        let spec = resolve_operation(&reference).unwrap();
+        let small = f64::MIN_POSITIVE / 256.0;
+        let argument = Dual {
+            value: small,
+            gradient: BTreeMap::from([
+                ("x".to_owned(), 1.0 / 1024.0),
+                ("zero".to_owned(), 0.0),
+                ("negative".to_owned(), -1.0 / 1024.0),
+            ]),
+        };
+        let result = spec.evaluate(&reference.parameters, &[argument]).unwrap();
+        let expected = f64::from_bits(2043_u64 << 52); // 2^1020
+        assert_eq!(result[0].gradient["x"].to_bits(), expected.to_bits());
+        assert_eq!(result[0].gradient["zero"].to_bits(), 0.0_f64.to_bits());
+        assert_eq!(
+            result[0].gradient["negative"].to_bits(),
+            (-expected).to_bits()
+        );
+        assert!(result[0].value.is_finite());
+    }
+
+    #[test]
+    fn log_v2_preserves_domain_refusal_and_does_not_clamp_true_overflow() {
+        let mut reference = OperationRef::builtin("log");
+        reference.version = 2;
+        let spec = resolve_operation(&reference).unwrap();
+        for value in [-1.0, -0.0, 0.0] {
+            let argument = Dual {
+                value,
+                gradient: BTreeMap::new(),
+            };
+            assert!(spec.evaluate(&reference.parameters, &[argument]).is_err());
+        }
+        let argument = Dual {
+            value: f64::from_bits(1),
+            gradient: BTreeMap::from([("x".to_owned(), 1.0)]),
+        };
+        let result = spec.evaluate(&reference.parameters, &[argument]).unwrap();
+        assert!(result[0].gradient["x"].is_infinite());
+        reference.version = 3;
+        assert!(resolve_operation(&reference).is_err());
     }
 }

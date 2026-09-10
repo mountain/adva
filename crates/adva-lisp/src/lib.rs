@@ -9,7 +9,10 @@ mod process;
 mod validate;
 
 pub use compile::compile_function;
-pub use eval::{evaluate, evaluate_with_differential, observe_history, observe_source_partition};
+pub use eval::{
+    evaluate, evaluate_finite, evaluate_with_differential, evaluate_with_finite_differential,
+    observe_history, observe_source_partition,
+};
 pub use module::{LinkedModules, link_modules};
 pub use operation::{
     BUILTIN_NAMESPACE, BUILTIN_VERSION, LineageRule, OperationSpec, builtin_operation_specs,
