@@ -1,17 +1,17 @@
 """Pre-launch budget containment for the local Quine relay supervisor.
 
-Ported from the mainline adva repo test of the same name (research/
-numeric-boundary-audit, commit 61a7ae4); the implementation under test is the
-AEG-local copy at implementation-quine_relay.py. Runnable without the native
-extension.
+Ported from the mainline adva repo test of the same name (current main, after
+ade4f88 "fix: preserve numeric precision and parent CPU budget boundaries");
+the implementation under test is the AEG-local copy at
+implementation-quine_relay.py. Runnable without the native extension.
 """
 
 import importlib.util
 import math
-from pathlib import Path
 import tempfile
 import unittest
-from unittest.mock import patch
+from pathlib import Path
+from unittest.mock import Mock, patch
 
 HERE = Path(__file__).resolve().parent
 SPEC = importlib.util.spec_from_file_location(
@@ -39,9 +39,11 @@ class QuineCpuBudgetTests(unittest.TestCase):
                 output = Path(tmp)
                 with patch.object(relay.Supervisor, "child_cpu", return_value=0.0):
                     supervisor = self.supervisor(output, remaining)
-                    with patch.object(relay.subprocess, "Popen") as launch:
-                        with self.assertRaises(relay.Exhausted):
-                            supervisor.call("refused", ["never-run"], output)
+                    with (
+                        patch.object(relay.subprocess, "Popen") as launch,
+                        self.assertRaises(relay.Exhausted),
+                    ):
+                        supervisor.call("refused", ["never-run"], output)
                     launch.assert_not_called()
                     self.assertEqual(supervisor.calls, [])
                     self.assertEqual(list(output.iterdir()), [])
@@ -49,24 +51,42 @@ class QuineCpuBudgetTests(unittest.TestCase):
     def test_installed_limit_stays_inside_both_budgets(self):
         cases = ((1.0, 5, 1), (1.25, 5, 1), (2.0, 5, 2), (8.75, 3, 3))
         for remaining, per_child, expected in cases:
-            with self.subTest(remaining=remaining):
-                with patch.object(relay.Supervisor, "child_cpu", return_value=0.0):
-                    supervisor = self.supervisor(Path("unused"), remaining, per_child)
-                    with patch.object(relay.resource, "setrlimit") as install:
-                        supervisor.restrictions()
-                    install.assert_any_call(relay.resource.RLIMIT_CPU, (expected, expected))
-                    self.assertLessEqual(expected, remaining)
-                    self.assertLessEqual(expected, per_child)
+            with (
+                self.subTest(remaining=remaining),
+                patch.object(relay.Supervisor, "child_cpu", return_value=0.0),
+            ):
+                supervisor = self.supervisor(Path("unused"), remaining, per_child)
+                cpu = supervisor.child_cpu_limit()
+                with patch.object(relay.resource, "setrlimit") as install:
+                    supervisor.restrictions(cpu)
+                install.assert_any_call(relay.resource.RLIMIT_CPU, (expected, expected))
+                self.assertLessEqual(expected, remaining)
+                self.assertLessEqual(expected, per_child)
 
-    def test_child_recheck_refuses_before_installing_any_limit(self):
-        with patch.object(relay.Supervisor, "child_cpu", return_value=0.0):
-            supervisor = self.supervisor(Path("unused"), 1.25)
-            self.assertEqual(supervisor.child_cpu_limit(), 1)
-        with patch.object(relay.Supervisor, "child_cpu", return_value=0.5):
-            with patch.object(relay.resource, "setrlimit") as install:
-                with self.assertRaises(relay.Exhausted):
-                    supervisor.restrictions()
-            install.assert_not_called()
+    def test_parent_allowance_is_installed_without_reading_child_accounting(self):
+        with (
+            patch.object(relay.Supervisor, "child_cpu", return_value=0.0),
+            tempfile.TemporaryDirectory() as tmp,
+        ):
+            output = Path(tmp)
+            supervisor = self.supervisor(output, 10)
+
+            def fork(*args, **kwargs):
+                # A fresh child's RUSAGE_CHILDREN would be zero. It must
+                # never be consulted to revise the parent's allowance.
+                with patch.object(relay.Supervisor, "child_cpu", side_effect=AssertionError):
+                    kwargs["preexec_fn"]()
+                return Mock(pid=123, returncode=0)
+
+            with (
+                patch.object(relay.Supervisor, "child_cpu", return_value=6.25),
+                patch.object(relay.subprocess, "Popen", side_effect=fork),
+                patch.object(relay.resource, "setrlimit") as install,
+                patch.object(relay.os, "killpg"),
+            ):
+                supervisor.call("parent-budget", ["mock-child"], output)
+            install.assert_any_call(relay.resource.RLIMIT_CPU, (3, 3))
+            self.assertEqual(len(supervisor.calls), 1)
 
     def test_fractional_per_child_cap_is_not_rounded_up(self):
         with patch.object(relay.Supervisor, "child_cpu", return_value=0.0):
@@ -77,9 +97,11 @@ class QuineCpuBudgetTests(unittest.TestCase):
     def test_post_execution_exhaustion_check_is_retained(self):
         with patch.object(relay.Supervisor, "child_cpu", return_value=0.0):
             supervisor = self.supervisor(Path("unused"), 2)
-        with patch.object(relay.Supervisor, "child_cpu", return_value=2.01):
-            with self.assertRaisesRegex(relay.Exhausted, "aggregate child CPU"):
-                supervisor.check()
+        with (
+            patch.object(relay.Supervisor, "child_cpu", return_value=2.01),
+            self.assertRaisesRegex(relay.Exhausted, "aggregate child CPU"),
+        ):
+            supervisor.check()
 
     def test_admitted_real_child_can_complete(self):
         with tempfile.TemporaryDirectory() as tmp:
