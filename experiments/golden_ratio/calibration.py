@@ -1925,6 +1925,135 @@ def borromean_control_checks(run: Run, rectangles: dict) -> dict:
     }
 
 
+def projection_basis(direction: tuple) -> tuple:
+    """Two vectors spanning the plane perpendicular to a declared direction."""
+    unit = None
+    for candidate in range(3):
+        if direction[candidate] != ZERO:
+            axis = [ZERO, ZERO, ZERO]
+            axis[candidate] = ONE
+            unit = tuple(axis)
+            break
+    if unit is None:
+        raise Invalid("a projection direction needs a non-zero component")
+    first = vector_cross(direction, unit)
+    if first == (ZERO, ZERO, ZERO):
+        raise Invalid("degenerate projection basis")
+    second = vector_cross(direction, first)
+    return first, second
+
+
+def projected(point: tuple, basis: tuple) -> tuple:
+    return (vector_dot(point, basis[0]), vector_dot(point, basis[1]))
+
+
+def cross_two(first: tuple, second: tuple) -> K:
+    return first[0] * second[1] - first[1] * second[0]
+
+
+def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
+    """A declared regular projection of the three components, exactly.
+
+    Crossings are found by exact orientation signs in the projection plane and
+    the over/under strand by the declared direction's coordinate, so nothing here
+    is read off a rendering. The pairwise signed sums give the linking numbers by
+    the diagram route, independently of the spanning-disk counts of section 4.
+    """
+    direction = (ONE, PHI, PHI ** 2)
+    basis = projection_basis(direction)
+    names = ("z0", "x0", "y0")
+    segments = []
+    for name in names:
+        for start, end in oriented_boundary(rectangles[name]):
+            segments.append((name, projected(start, basis), projected(end, basis), start, end))
+
+    vertices = [entry[3] for entry in segments] + [entry[4] for entry in segments]
+    degenerate = []
+    crossings = []
+    for index, (first_name, first_start, first_end, first_a, first_b) in enumerate(segments):
+        for second_name, second_start, second_end, second_a, second_b in segments[index + 1:]:
+            run.tick()
+            denominator = cross_two(
+                (first_end[0] - first_start[0], first_end[1] - first_start[1]),
+                (second_end[0] - second_start[0], second_end[1] - second_start[1]),
+            )
+            if denominator == ZERO:
+                continue
+            first_side = cross_two(
+                (second_start[0] - first_start[0], second_start[1] - first_start[1]),
+                (second_end[0] - second_start[0], second_end[1] - second_start[1]),
+            )
+            second_side = cross_two(
+                (second_start[0] - first_start[0], second_start[1] - first_start[1]),
+                (first_end[0] - first_start[0], first_end[1] - first_start[1]),
+            )
+            first_parameter = first_side / denominator
+            second_parameter = second_side / denominator
+            if not (ZERO < first_parameter < ONE and ZERO < second_parameter < ONE):
+                continue
+            first_point = tuple(
+                coordinate + first_parameter * (other - coordinate)
+                for coordinate, other in zip(first_a, first_b)
+            )
+            second_point = tuple(
+                coordinate + second_parameter * (other - coordinate)
+                for coordinate, other in zip(second_a, second_b)
+            )
+            first_height = vector_dot(first_point, direction)
+            second_height = vector_dot(second_point, direction)
+            if first_height == second_height:
+                degenerate.append((first_name, second_name))
+                continue
+            over_first = ZERO < first_height - second_height
+            direction_first = (first_end[0] - first_start[0], first_end[1] - first_start[1])
+            direction_second = (second_end[0] - second_start[0], second_end[1] - second_start[1])
+            sign = cross_two(
+                direction_first if over_first else direction_second,
+                direction_second if over_first else direction_first,
+            ).sign()
+            crossings.append(
+                {
+                    "over": first_name if over_first else second_name,
+                    "under": second_name if over_first else first_name,
+                    "sign": sign,
+                    "point": [coordinate.pair() for coordinate in first_point],
+                }
+            )
+    run.check("complement-diagram-generic", not degenerate)
+    run.check("complement-diagram-crossings", len(crossings) > 0)
+    run.check(
+        "complement-diagram-over-under-decided",
+        all(entry["over"] != entry["under"] for entry in crossings),
+    )
+
+    sums = {}
+    for first, second in (("z0", "x0"), ("z0", "y0"), ("x0", "y0")):
+        pair = {first, second}
+        selected = [entry for entry in crossings if {entry["over"], entry["under"]} == pair]
+        sums[f"{first}|{second}"] = {
+            "crossings": len(selected),
+            "signed_sum": sum(entry["sign"] for entry in selected),
+        }
+    run.check(
+        "complement-diagram-linking-zero",
+        all(entry["signed_sum"] == 0 for entry in sums.values()),
+    )
+    run.check(
+        "complement-diagram-crossing-counts",
+        all(entry["crossings"] >= 2 for entry in sums.values()),
+    )
+    return {
+        "direction": [coordinate.pair() for coordinate in direction],
+        "crossings_total": len(crossings),
+        "per_pair": sums,
+        "crossings": crossings,
+        "note": (
+            "the halved signed sum is the pairwise linking number by the diagram route, "
+            "whose global sign depends on the declared projection direction"
+        ),
+    }
+
+
 def hyperbolic_checks(run: Run) -> dict:
     closeness = (PHI ** 2 + PHI ** -2) / rational(2)
     run.check("cosh-two-log-phi", closeness == rational(Fraction(3, 2)))
@@ -2381,6 +2510,11 @@ def main() -> int:
         report["dodecahedron"] = dodecahedron_checks(run)
         report["golden_angle"] = golden_angle_checks(run)
         report["penrose"] = penrose_checks(run)
+        report["complement_diagram"] = complement_diagram_checks(run, {
+            "z0": {"fixed": 2, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {0: ONE, 1: PHI}},
+            "x0": {"fixed": 0, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {1: ONE, 2: PHI}},
+            "y0": {"fixed": 1, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {2: ONE, 0: PHI}},
+        })
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)
