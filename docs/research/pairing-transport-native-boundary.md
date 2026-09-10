@@ -104,19 +104,31 @@ reserved future `D*` observer pullback.
 
 Saved files:
 
-- `experiments/pairing_transport/evidence.json`: all 384 inputs, exact outputs,
+- `experiments/pairing_transport/evidence-corrected.json`: all 384 inputs, exact outputs,
   reduced rational pairings, wrong-direction controls, nine coefficients,
   source/contract/adapter hashes and explicit empty native evidence.
-- `experiments/pairing_transport/execution-cost.json`: serialization/write
+- `experiments/pairing_transport/execution-cost-corrected.json`: serialization/write
   timing and final process high-water RSS.
 - `tests/python/test_pairing_transport_boundary.py`: a native-required test
   for the existing Python CI environment. It neither mocks nor skips Rust.
 
-The one local run used 4.616 ms for exact construction/checking and 4.854 ms
+The corrected run used 4.969 ms for exact construction/checking and 5.163 ms
 through the runtime-availability check. JSON serialization and same-code
-roundtrip checking took 1.326 ms; writing took 0.122 ms. Final process
+roundtrip checking took 1.533 ms; writing took 0.118 ms. Final process
 high-water RSS was **13,440 KiB (13.125 MiB)**. Output was 47,206 bytes;
-that size is not a memory estimate. There were zero correction replays.
+that size is not a memory estimate.
+
+One necessary correction replay was made. Static API review found that a
+causal frontier contains `CutWire` wrappers, whereas graft entry wires are
+`WireRef` values. The prepared adapter initially compared the different
+shapes directly; it now compares each wrapper's `wire` field. The native
+branch was not executed before or after this fix. Its runtime correctness
+remains unverified. The first evidence/cost files are preserved under their
+original names, with matching original code in `replay-before-cutwire-fix.py`.
+Both runs' measured pre-serialization, codec and write intervals total
+**13.116 ms**; their maximum high-water RSS is 13.125 MiB. This total is not
+end-to-end process startup or research time.
+
 Research, source formation, review and network time were not instrumented.
 No acceleration, novelty, learned theorem or real-user utility measurement
 is claimed. The cube reuse cost is included, not separately timed.
