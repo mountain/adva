@@ -91,5 +91,31 @@
     "Two optical fixture version expectations were corrected for constant@2 before final acceptance.",
     "One optional ed25519-backend test is skipped because the backend is not installed."
   ],
-  "boundary": "Finite regression evidence and preserved historical replay, not universal numerical safety, a proof of Real equality, or exact OS CPU accounting. Original reports and library evidence were not regenerated."
+  "boundary": "Finite regression evidence and preserved historical replay, not universal numerical safety, a proof of Real equality, or exact OS CPU accounting. Original reports and library evidence were not regenerated.",
+  "integration_replay": {
+    "upstream_main_commit": "bcd8a06cb35123cad49bb548eb77e706d9ba058d",
+    "merge_commit": "bd19d2626f8585609749bc8caee3b717b7479b5c",
+    "library_commit": "b99d9c7295e9d3a4a0d77f8a7e7e6db7deee4364",
+    "semantic_source_sha256_unchanged": true,
+    "commands": [
+      {
+        "command": ".venv/bin/python -m pytest -q",
+        "environment": "TMPDIR=/home/ubuntu/.cache/adva-numeric-test-tmp",
+        "result": "2382 passed, 1 skipped, 10 subtests passed in 45.53s",
+        "exit_code": 0
+      },
+      {
+        "command": ".venv/bin/python -S python/adva/adva.py math-check --key-words",
+        "result": "CatalogConsistent: 20 entries",
+        "exit_code": 0
+      },
+      {
+        "command": ".venv/bin/python experiments/quine_relay/verify_evidence.py",
+        "result": "RetainedBytesAndComparisonsChecked: 152 files, 2 runs, 50 calls",
+        "exit_code": 0
+      }
+    ],
+    "build_environment": "build-environment.json",
+    "note": "Upstream changed documentation, retained experiments, claims and Python tests; previously accepted Rust semantic sources and lockfile hashes remain identical."
+  }
 }

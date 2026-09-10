@@ -5,6 +5,28 @@ Direction: Mingli Yuan. Research and documentation assistance: ChatGPT/Codex.
 This document adds no semantic rule, runtime fix, dependency update or research
 execution. The machine-readable baseline is [toolchain-watch.json](toolchain-watch.json).
 
+## Engineering follow-up: native acceptance
+
+The initial review below is retained as history. The separately authorized
+PR #173 implementation at `ade4f88` now has local native acceptance for TC-005
+through TC-008. [Native results](../../experiments/numeric_boundary_audit/NATIVE-FIXES.md)
+and [build metadata](../../experiments/numeric_boundary_audit/build-environment.json)
+record the tested source, compiler, Python, extension hash and resolved JSON
+features. Both legacy operation versions remain replayable. New source uses
+`log@2` and `constant@2`; ordinary Python applies the Rust finite-result policy.
+CPU admission passes the parent's contained allowance into the child.
+
+The k28 JSON regression failed with the default parser feature selection and
+passes with `float_roundtrip` enabled at the same locked serde_json version.
+This resolves an Adva configuration mismatch with bit-preserving transport;
+it does not establish a violated upstream serde_json contract. Research 0141
+and the original audit reports remain historical evidence.
+
+These local results supersede the pending native actions for TC-005–TC-008.
+Main merge, remote CI and deployment verification are separate obligations.
+The other watch items retain their existing applicability judgments; this
+engineering follow-up is not a new upstream advisory scan.
+
 ## Purpose and authority
 
 Track defects that could change Adva's answers, certificate checking, resource
