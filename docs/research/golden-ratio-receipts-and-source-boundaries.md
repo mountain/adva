@@ -411,6 +411,29 @@ substitute for it came back **Failed**. Those three are recorded in the run's
 `unverified_machinery` and `probe_outcome` fields. **No invariant is computed
 and no link claim is made from this run.**
 
+**Round two resolved all three, by finding two implementation faults rather than
+by weakening the checks.** The enumeration carried an extra requirement that a
+basic commutator's first entry must have strictly greater weight, which rejects
+every weight-two commutator: Hall's rule needs `u > v` and nothing more, and
+with that removed the counts are exactly Witt's `[2,1,2,3]` and `[3,3,8,18]`.
+The Hall-Witt helper was missing the inner bracket with the third generator, so
+it was conjugating where it should have been commuting; with that fixed, an
+exhaustive search over forty-eight candidate shapes found **exactly one** word
+that is an identity in the free group, namely
+
+    [[y^-1, x], z]^y . [[z^-1, y], x]^z . [[x^-1, z], y]^x = 1   with  w^b = b w b^-1
+
+which is the mirror of the remembered textbook shape under this file's
+commutator convention `[a,b] = a b a^-1 b^-1`. That form is now checked twice
+over: it reduces to the empty word in the free group, and it is trivial in S3
+for all 216 triples of elements. The remembered textbook shape is kept as a
+check that it is *not* this identity, so the convention flip stays visible.
+
+**Still open**: the presentation input (no link diagram or Wirtinger
+presentation is supplied), the truncated Magnus expansion, and the extraction
+rule for `mu-bar(123)`. The queue item therefore stays Open, and no link claim
+is made from this line yet.
+
 
 ## 12. What this does not claim
 
