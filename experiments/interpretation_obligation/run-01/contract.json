@@ -1,0 +1,98 @@
+{
+  "schema": "adva.interpretation-obligation.contract.research.v0",
+  "source_base": "6d2717cf330072c789fab1f816756c3a3a227433",
+  "library_commit": "c9161549eaf667946e1830282261d4aa200cc3a4",
+  "mechanism_source_commit": "920ef97eb6fefc73fa1333e359330c7f84c38ba5",
+  "reference_binary_sha256": "b77954194eaffb085d2dbf823d92b942ccf0fffcd7cb99dee8868e8ad5adc598",
+  "mechanism": {
+    "kind": "guarded-library-word-values",
+    "epoch": 1,
+    "word": 0,
+    "snapshot_digest": "4480fa1e8b60ab945879f8644820ab8ef242dceaf494470bedb9b68b5fd976ee",
+    "checker_revision": "34f4d38420963c49809aa09c5fd7258f0247faaac6caba89221650356e941b27"
+  },
+  "library_files": {
+    "stability/epoch-0000.json": "27016fc510e067caa930eb4e75b0d445342d4c1bc611dcf5b2577644e96ff8bb",
+    "stability/epoch-0001.json": "eafbee5a0e8d56d326088c608ee34e3f5557c55a9f1cdb40feb7aa73342013bb"
+  },
+  "question": {
+    "kind": "ordered-guarded-values-equal-interpretation",
+    "domain": "integers -8..8 with zero outside admitted reuse",
+    "quantifier": "for every input in the explicitly selected finite scope",
+    "observation": "two ordered exact integer strings; no process identity claim"
+  },
+  "scopes": {
+    "old": [
+      2
+    ],
+    "target": [
+      2,
+      3
+    ],
+    "fresh": [
+      -3
+    ]
+  },
+  "native_inputs": [
+    2,
+    3,
+    -3,
+    0
+  ],
+  "interpretations": [
+    {
+      "name": "doubling",
+      "ast": [
+        "add",
+        [
+          "x"
+        ],
+        [
+          "x"
+        ]
+      ]
+    },
+    {
+      "name": "square",
+      "ast": [
+        "mul",
+        [
+          "x"
+        ],
+        [
+          "x"
+        ]
+      ]
+    }
+  ],
+  "limits": {
+    "wall_seconds": 20,
+    "child_seconds": 3,
+    "cpu_seconds": 10,
+    "address_bytes": 268435456,
+    "file_bytes": 2097152,
+    "total_output_bytes": 1048576,
+    "native_calls": 4,
+    "fuel_each": 1000,
+    "total_native_fuel_limit": 4000,
+    "ast_nodes": 7,
+    "ast_depth": 3,
+    "candidates": 2,
+    "search_nodes": 0,
+    "correction_replays": 1
+  },
+  "protected": [
+    "Old snapshots remain byte-identical; native checks and guards unchanged",
+    "A digest checks byte binding, not meaning, provenance or human trust",
+    "A successful finite scope cannot silently widen",
+    "Missing evidence stays Unknown; native refusal is not an interpretation counterexample",
+    "No Teichmuller/Calabi-Yau, M6 filler, self-interpretation or native free claim"
+  ],
+  "assumptions": [
+    "Trusted locally supplied Rust CLI built from the recorded mechanism source; binary hash is recorded, not an authenticity proof",
+    "Library replay uses exact Rust integer arithmetic; external AST evaluation uses Python integers",
+    "Small external AST meanings are stipulated by this contract; arbitrary prose is not interpreted",
+    "Existing epoch observations remain supplied assumptions"
+  ],
+  "expected_exit": "Finite counterexample and positive finite matches with refusal/coverage controls; otherwise Unknown or Rejected; no continuation"
+}
