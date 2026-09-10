@@ -9,9 +9,8 @@
 
 ## Status (2026-09-10)
 
-The research 0141 product-k28 input/reporting discrepancy is closed. Root
-cause: serde_json default float formatting dropped the last ulp when the
-native runner echoed parsed inputs (`0.9999999962747097` ->
+The research 0141 product-k28 input/reporting discrepancy is closed. The retained echo
+showed a one-ulp transport discrepancy (`0.9999999962747097` ->
 `0.9999999962747096`), so the Python exact-Fraction matcher rejected the
 case. Fix `ade4f88` enables the workspace `float_roundtrip` feature and adds
 the regression test
@@ -23,3 +22,12 @@ values `[1.0]`, and the echoed inputs equal the submitted JSON.
 
 Retained evidence under `docs/research/0141-native-evidence/` is frozen and
 unchanged.
+
+## Merge review clarification
+
+`float_roundtrip` selects the decimal-to-binary floating-point deserialization
+path in serde_json (`src/de.rs`), rather than an output-formatting policy.
+The old echoed lexeme alone did not isolate parsing from serialization; the
+feature change and native regression address the input parsing/round-trip
+boundary. This does not promise preservation of arbitrary JSON spellings.
+Source: https://docs.rs/crate/serde_json/1.0.151/source/src/de.rs .
