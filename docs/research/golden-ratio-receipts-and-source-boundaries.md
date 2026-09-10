@@ -483,6 +483,16 @@ degree three while its degree-three part is non-zero. Eight checks, and again
 **no invariant is computed**: the relation words and the extraction rule are
 still open, so the queue item stays Open.
 
+**The relation words are now built, and one of this line's own assertions was
+wrong.** The twelve Wirtinger words \`U_out . O . U_in^-1 . O^-1\` are constructed
+where the exact field parameters are still in scope, with the arc that closes a
+component handled as a wrap-around case rather than a single interval. My first
+check on them asserted that a relator's exponent vector vanishes; that is false
+in general, since the relator \`x = 1\` has exponent vector \`e_x\`. The check is
+now the correct one — each word's exponent vector equals \`+-(e_out - e_in)\`,
+the row already used for the rank-nine abelian matrix — so the words are tied to
+the earlier level instead of to an invented property.
+
 ## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a

@@ -1969,6 +1969,7 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
 
     degenerate = []
     crossings = []
+    raw = []
     for index, (first_name, first_start, first_end, first_a, first_b) in enumerate(segments):
         for offset, (second_name, second_start, second_end, second_a, second_b) in enumerate(
             segments[index + 1:]
@@ -2014,6 +2015,16 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
                 direction_first if over_first else direction_second,
                 direction_second if over_first else direction_first,
             ).sign()
+            raw.append(
+                {
+                    "over": first_name if over_first else second_name,
+                    "under": second_name if over_first else first_name,
+                    "under_segment": (second_index % 4) if over_first else (index % 4),
+                    "under_parameter": second_parameter if over_first else first_parameter,
+                    "over_segment": (index % 4) if over_first else (second_index % 4),
+                    "over_parameter": first_parameter if over_first else second_parameter,
+                }
+            )
             crossings.append(
                 {
                     "over": first_name if over_first else second_name,
@@ -2024,6 +2035,85 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
                     "point": [coordinate.pair() for coordinate in first_point],
                 }
             )
+    # Wirtinger relation words, built here because the arc lookup needs the exact
+    # field parameters that the serialised crossing records no longer carry.
+    under_positions: dict = {}
+    for index, record in enumerate(raw):
+        under_positions.setdefault(record["under"], []).append(
+            (record["under_segment"], record["under_parameter"], index)
+        )
+    arcs: dict = {}
+    labels: dict = {}
+    for name in names:
+        listed = sorted(under_positions.get(name, []), key=lambda entry: (entry[0], entry[1]))
+        arcs[name] = listed
+        for position, entry in enumerate(listed):
+            labels[entry[2]] = (name, position)
+    ids: dict = {}
+    for name in names:
+        for position in range(len(arcs[name])):
+            ids[(name, position)] = len(ids) + 1
+
+    def arc_at(name: str, segment: int, parameter: K) -> int:
+        listed = arcs[name]
+        here = (segment, parameter)
+        for position in range(len(listed)):
+            start = (listed[position][0], listed[position][1])
+            end = (
+                listed[(position + 1) % len(listed)][0],
+                listed[(position + 1) % len(listed)][1],
+            )
+            # The arc that closes the component wraps past its own end, so the
+            # containment test has two cases rather than one.
+            if start < end:
+                if start < here <= end:
+                    return position
+            elif here > start or here <= end:
+                return position
+        raise Invalid("a crossing did not fall inside an arc of its component")
+
+    relation_words = []
+    for index, record in enumerate(raw):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = ids[(component, (position - 1) % count)]
+        outgoing = ids[(component, position)]
+        over = ids[(record["over"], arc_at(
+            record["over"], record["over_segment"], record["over_parameter"]
+        ))]
+        # U_out . O . U_in^-1 . O^-1
+        stack: list = []
+        for letter in (outgoing, over, -incoming, -over):
+            if stack and stack[-1] == -letter:
+                stack.pop()
+            else:
+                stack.append(letter)
+        relation_words.append(tuple(stack))
+    run.check("complement-relation-word-count", len(relation_words) == len(ids))
+    # A relator's exponent vector need not vanish (the relator x = 1 has e_x), so
+    # the check is consistency with the abelian rows used earlier: each word's
+    # exponent vector is plus or minus (e_out - e_in).
+    def exponent_vector(word: tuple) -> tuple:
+        return tuple(
+            sum(1 if letter == arc else (-1 if letter == -arc else 0) for letter in word)
+            for arc in range(1, len(ids) + 1)
+        )
+
+    consistent = []
+    for index, record in enumerate(raw):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = ids[(component, (position - 1) % count)]
+        outgoing = ids[(component, position)]
+        row = [0] * len(ids)
+        row[outgoing - 1] += 1
+        row[incoming - 1] -= 1
+        vector = exponent_vector(relation_words[index])
+        consistent.append(
+            vector == tuple(row) or vector == tuple(-value for value in row)
+        )
+    run.check("complement-relation-words-agree-with-abelian-rows", all(consistent))
+
     run.check("complement-diagram-generic", not degenerate)
     run.check("complement-diagram-crossings", len(crossings) > 0)
     run.check(
@@ -2052,6 +2142,7 @@ def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
         "crossings_total": len(crossings),
         "per_pair": sums,
         "crossings": crossings,
+        "relation_words": [list(word) for word in relation_words],
         "note": (
             "the halved signed sum is the pairwise linking number by the diagram route, "
             "whose global sign depends on the declared projection direction"
