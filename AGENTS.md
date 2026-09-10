@@ -135,3 +135,12 @@ rechecked boundaries within the existing authorization. A heuristic score
 never overrides a protected obligation. A working name or energy-level label
 does not establish a native operation, physical interpretation, or completed
 language-formation step.
+
+## AI authorship and account proxy
+
+Follow [docs/AI_ATTRIBUTION.md](docs/AI_ATTRIBUTION.md), recording Mingli
+Yuan's explicit 2026-09-10 instruction. Sign AI-produced reports, PR bodies
+and commit messages with the actual assistant's name and state that they
+are submitted through his GitHub account as an authorized proxy. Account
+ownership does not imply personal authorship or technical verification by
+Mingli. This attribution rule does not expand operational authorization.

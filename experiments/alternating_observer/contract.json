@@ -1,0 +1,16 @@
+{
+  "schema": "adva.external.alternating-observer.v0",
+  "base_main": "42882e6f723ec7ab9c008a810f187b06887a2c74",
+  "question": "Does a point-image observer that separates A5 still separate A6, and what is the minimum extra point-image observation?",
+  "domain": "Exact permutations of labels 1..n, n in {5,6}; even permutations only",
+  "composition": "(p*q)(i)=p(q(i)); inclusion appends fixed label 6",
+  "observer": "Ordered tuple of images at distinct selected point labels; equality is tuple equality",
+  "quantifiers": "Every even permutation in each fully enumerated domain; every coordinate subset for minimum cardinality; every pair in A5 for inclusion homomorphism",
+  "reuse": "Nonprefix observer (2,4,5) on A5 and A6, extended by point 1",
+  "negative_controls": ["missing element", "duplicate replacing a missing element", "odd permutation", "zero fuel"],
+  "outcomes": ["Separated", "Ambiguous", "UnknownCoverage", "InvalidDomain", "UnknownResource"],
+  "budgets": {"wall_seconds": 10, "work_units": 100000, "address_space_bytes": 268435456, "output_bytes": 1048576, "execution_attempts": 1},
+  "work_unit": "One candidate permutation, fibre insertion, coordinate subset, inclusion pair, or explicit assertion; inner operations have dimension at most 6",
+  "protected": ["No native semantic identities", "No free or Seal", "No universal grammar claim", "No new vocabulary naming", "Incomplete coverage cannot certify separation"],
+  "residual": "External finite calibration only; no checked-diagram binding or general untrusted evidence protocol"
+}
