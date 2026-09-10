@@ -1,6 +1,19 @@
 schema_version = 1
 
 [[claim]]
+claim_id = "adva.bounded-experiment.cube-root-polar-covariance.v0"
+canonical_name = "Cube-root conjugation intertwines polarity but is not the polar construction"
+code_symbol = "experiments/cube_root_polar/replay.py"
+dimension = "external exact 2D primal/dual coordinate geometry"
+status = "bounded-experiment"
+scope = "The cube-root triangle in the (1,w) basis and one fixed unimodular shear; exact polar/bipolar, Gram conversion and finite conjugation transport"
+assumptions = ["Q(w), w^2+w+1=0, embedded in C with declared Euclidean Gram matrix", "Primal Z^2 and algebraic dual Hom(Z^2,Z)", "Non-collinear triangle with strictly positive barycentric origin", "Python Fraction is an external oracle, not native Adva authority", "Polar convention x dot y <= 1"]
+dependencies = []
+proof_or_certificate = "docs/research/cube-root-conjugation-and-polar-covariance.md gives the exact covariance proof and Euclidean polar -2P != conjugated P. experiments/cube_root_polar/evidence.json records 18 active pairs, 141 mathematical assertions plus one codec check in execution-cost.json, integral polar vertices, 18 preserved pairings and 16 wrong-direction mismatches. The sheared new instance reuses the unchanged checker."
+counterexample_boundary = "The 2D triangle is a new explicit object, not a repair of the fixed 3D TO24. Complex conjugation, Euclidean polarity, lattice reflexivity and Calabi-Yau mirror symmetry remain distinct. Native source/IR binding, dynamics and physical-force interpretations are not supplied."
+forbidden_conflations = ["Conjugation with polar construction", "Covector coordinates with primal Euclidean coordinates", "Reflexivity with geometric reflection", "Signs of three observed values with a metric signature", "Root sum/product identities with forces or energy conservation", "New positive triangle with repair of old TO24 obstruction", "External matrix inverse transpose with native D*", "Finite external evidence with semantic promotion"]
+
+[[claim]]
 claim_id = "adva.bounded-experiment.lattice-polar-boundary.v0"
 canonical_name = "Rational bipolarity and paired-lattice admission are distinct"
 code_symbol = "experiments/lattice_polar/calibration.py; docs/terminology/geometry-boundaries-v0.json"
