@@ -1,0 +1,114 @@
+{
+  "schema": "aeg.bounded-exchange.witness-02",
+  "scores": {
+    "naive_vocabulary_overlap": 0.2567,
+    "stopword_filtered_content_overlap": 0.2092,
+    "head_intersection_fraction": "0/25"
+  },
+  "vocab_sizes": {
+    "cookbook_naive": 2100,
+    "irs_naive": 4640,
+    "cookbook_content": 1965,
+    "irs_content": 3237,
+    "shared_naive": 539,
+    "shared_content": 411
+  },
+  "heads": {
+    "cookbook": [
+      "one",
+      "pound",
+      "put",
+      "water",
+      "half",
+      "butter",
+      "sugar",
+      "take",
+      "boil",
+      "flour",
+      "eggs",
+      "two",
+      "add",
+      "pint",
+      "bake",
+      "best",
+      "till",
+      "salt",
+      "milk",
+      "up",
+      "three",
+      "let",
+      "good",
+      "well",
+      "little"
+    ],
+    "irs": [
+      "line",
+      "form",
+      "tax",
+      "amount",
+      "income",
+      "t",
+      "filing",
+      "return",
+      "see",
+      "credit",
+      "enter",
+      "child",
+      "s",
+      "irs",
+      "spouse",
+      "schedule",
+      "qualified",
+      "box",
+      "information",
+      "b",
+      "married",
+      "use",
+      "instructions",
+      "received",
+      "file"
+    ]
+  },
+  "dropped_examples": [
+    {
+      "word": "line",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 3 rank 482; irs freq 1074 rank 1",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs in head. Mechanical rank exclusion; relevance only stipulated. form line / recipe line: homograph, sense not judged"
+    },
+    {
+      "word": "return",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1805; irs freq 478 rank 8",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs in head. Mechanical rank exclusion; relevance only stipulated. tax return / return to the kettle: homograph, sense not judged"
+    },
+    {
+      "word": "see",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1926; irs freq 461 rank 9",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs in head. Mechanical rank exclusion; relevance only stipulated. cross-reference verb in both"
+    },
+    {
+      "word": "use",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 21 rank 61; irs freq 234 rank 22",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs in head. Mechanical rank exclusion; relevance only stipulated. generic verb in both"
+    },
+    {
+      "word": "take",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 85 rank 8; irs freq 90 rank 86",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook in head; irs rank > 25. Mechanical rank exclusion; relevance only stipulated. generic verb in both"
+    },
+    {
+      "word": "half",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 114 rank 5; irs freq 55 rank 149",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook in head; irs rank > 25. Mechanical rank exclusion; relevance only stipulated. measure word in cookbook head; rare in tax text"
+    },
+    {
+      "word": "check",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 990; irs freq 165 rank 35",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs rank > 25. Mechanical rank exclusion; relevance only stipulated. payment/verification in tax; rare in cookbook"
+    },
+    {
+      "word": "person",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1949; irs freq 130 rank 49",
+      "new_exclusion_reason": "absent from the top-25 head intersection: cookbook rank > 25; irs rank > 25. Mechanical rank exclusion; relevance only stipulated. generic noun in both"
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 4,
+  "predecessor_sha256": "1c0e5deea7a15ed0f489c3018793da299126c76417e63376f7d0c2e69e182aef",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "iota/SKI substrate projection of the 0164 byte formula for byte targets {35,100,255}"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "results": "results.json",
+    "C1_combinator_laws": {
+      "I": {
+        "ok": true,
+        "fuel_used": 5
+      },
+      "K": {
+        "ok": true,
+        "fuel_used": 10
+      },
+      "S": {
+        "ok": true,
+        "fuel_used": 12
+      }
+    },
+    "bytes": [
+      {
+        "b": 35,
+        "value": 35,
+        "tampered": 36,
+        "substrate_roundtrip": 35
+      },
+      {
+        "b": 100,
+        "value": 100,
+        "tampered": 101,
+        "substrate_roundtrip": 100
+      },
+      {
+        "b": 255,
+        "value": 255,
+        "tampered": 256,
+        "substrate_roundtrip": 255
+      }
+    ],
+    "C5_distinct_terms": true
+  },
+  "bounds": {
+    "rewrite_fuel": 200000,
+    "model_fuel": 100000,
+    "pure_python": true
+  }
+}

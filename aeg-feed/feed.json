@@ -1,208 +1,178 @@
 {
-  "schema": "aeg.receipt-ledger.research",
+  "schema": "aeg.feed.receipts",
   "version": 0,
-  "authority": "explicit-ancestry-ledger; no default inferred; on-disk fields are evidence, this ledger is the canonical ancestry",
-  "rules": [
-    "every receipt 01-09 appears exactly once; unknown, missing or repeated entries fail",
-    "every entry pin must match the on-disk file bytes",
-    "every non-root has exactly one canonical predecessor; each receipt is the predecessor of at most one entry",
-    "disagreements between an on-disk predecessor field and the canonical predecessor require an explicit repair naming both; silent drop fails",
-    "no entry rewrites the historical files; repairs live in this ledger"
-  ],
+  "generated_by": "AEG build_feed.py (local; label unauthenticated)",
   "entries": [
     {
       "receipt": 1,
-      "path": "trials/advance-receipt-round-01/receipt-01.json",
+      "path": "receipts/receipt-01.json",
       "sha256": "2aff68d341e07c8c2c0f48662c266ec47e29c0c8a54d8fa83a831972bb9fbc79",
       "canonical_predecessor": null,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 2,
-      "path": "trials/advance-receipt-round-01/receipt-02.json",
+      "path": "receipts/receipt-02.json",
       "sha256": "15f252996ca69ed43d102b2afc12712fec721a4774f5ecd568c47da59c0577b8",
       "canonical_predecessor": 1,
       "repair": {
         "recorded_field": "None（精化轮重写清空）",
         "correction": "predecessor = receipt-01"
-      },
-      "status": "EvidenceStutter"
+      }
     },
     {
       "receipt": 3,
-      "path": "trials/advance-receipt-round-01/receipt-03.json",
+      "path": "receipts/receipt-03.json",
       "sha256": "1c0e5deea7a15ed0f489c3018793da299126c76417e63376f7d0c2e69e182aef",
       "canonical_predecessor": 2,
       "repair": {
         "recorded_field": "None（精化轮重写清空）",
         "correction": "predecessor = receipt-02"
-      },
-      "status": "VariationObserved"
+      }
     },
     {
       "receipt": 4,
-      "path": "trials/iota-projection-round-01/receipt-04.json",
+      "path": "receipts/receipt-04.json",
       "sha256": "6bc159485ea22c869ce74dba489105753873cf47db973d8786eb4f69270da1cf",
       "canonical_predecessor": 3,
-      "repair": null,
-      "status": "VariationObserved"
+      "repair": null
     },
     {
       "receipt": 5,
-      "path": "trials/iota-projection-round-01/receipt-05.json",
+      "path": "receipts/receipt-05.json",
       "sha256": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9",
       "canonical_predecessor": 4,
       "repair": {
         "recorded_field": "sha(receipt-03)（书写期复用错误）",
         "correction": "predecessor = receipt-04"
-      },
-      "status": "VariationObserved"
+      }
     },
     {
       "receipt": 6,
-      "path": "trials/advance-receipt-round-01/receipt-06.json",
+      "path": "receipts/receipt-06.json",
       "sha256": "751bfbc7c09150eba2c951beb8048772ce079a740d05448104072c6ffc055fb2",
       "canonical_predecessor": 5,
-      "repair": null,
-      "status": "VariationObserved"
+      "repair": null
     },
     {
       "receipt": 7,
-      "path": "trials/advance-receipt-round-01/receipt-07.json",
+      "path": "receipts/receipt-07.json",
       "sha256": "bc8c7f31af18a351baa22c05ab8ae60bad4cb0329d8346a877a25bc7bb581b7d",
       "canonical_predecessor": 6,
-      "repair": null,
-      "status": "VariationObserved"
+      "repair": null
     },
     {
       "receipt": 8,
-      "path": "trials/binary-relation-round-01/evidence-pdf-01/receipt-08.json",
+      "path": "receipts/receipt-08.json",
       "sha256": "afbc002371cdb6f020b9de25a4c792911cc8ddd421d7b57924a5076a8336b3fc",
       "canonical_predecessor": 7,
-      "repair": null,
-      "status": "VariationObserved"
+      "repair": null
     },
     {
       "receipt": 9,
-      "path": "trials/interpretation-obligation-round-01/receipt-09.json",
+      "path": "receipts/receipt-09.json",
       "sha256": "c9331549d7aec41e5a2f1d1e23ba4ba4f7025f044795723fe2d65148b8ebafeb",
       "canonical_predecessor": 8,
-      "repair": null,
-      "status": "MatchedFiniteScope"
+      "repair": null
     },
     {
       "receipt": 10,
-      "path": "trials/receipt-ledger/receipt-10.json",
+      "path": "receipts/receipt-10.json",
       "sha256": "b8641ebf90f75e4f3830b33ef4138be5fc658f67e364f4595ec1b1dc192fd4ee",
       "canonical_predecessor": 9,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 11,
-      "path": "trials/receipt-ledger/receipt-11.json",
+      "path": "receipts/receipt-11.json",
       "sha256": "0df3646d850d42f9be25b609ff67973e60985df97b3bdb06d6dc5e52e7258fa2",
       "canonical_predecessor": 10,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 12,
-      "path": "trials/scale-marked-surface-round-01/receipt-12.json",
+      "path": "receipts/receipt-12.json",
       "sha256": "74dcc2a518b9fb73cd5689a1825ff2de86ffafd02bb2dffa9928e467e9b24d2e",
       "canonical_predecessor": 11,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 13,
-      "path": "trials/path-bound-surface-round-01/receipt-13.json",
+      "path": "receipts/receipt-13.json",
       "sha256": "fe5ba786dc273fd20af03bbd6d78002131099797f138f94ab78fd8efb2184163",
       "canonical_predecessor": 12,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 14,
-      "path": "trials/name-linking-round-01/receipt-14.json",
+      "path": "receipts/receipt-14.json",
       "sha256": "ad03d349cf156dcfcd97f64e255d11d86727ad7b166bc42b1ac5d1996e372e8e",
       "canonical_predecessor": 13,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 15,
-      "path": "trials/name-linking-round-01/receipt-15.json",
+      "path": "receipts/receipt-15.json",
       "sha256": "3341d2c80f86d5f52ceec8b110ec72b239a0ff71989551563840281ac02e43ae",
       "canonical_predecessor": 14,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 16,
-      "path": "trials/name-linking-round-01/receipt-16.json",
+      "path": "receipts/receipt-16.json",
       "sha256": "3b2a1137483441a7014daa257311550afaa9aef70e5ba3e35360b24365630f6a",
       "canonical_predecessor": 15,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 17,
-      "path": "trials/yau-calabi-narrative-round-01/receipt-17.json",
+      "path": "receipts/receipt-17.json",
       "sha256": "ce3d76aab373ef5deb7cf0635e19242ce10f87067469ecf8c106a657251f81dd",
       "canonical_predecessor": 16,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 18,
-      "path": "trials/dual-spectrum-round-01/receipt-18.json",
+      "path": "receipts/receipt-18.json",
       "sha256": "497bd138ee8e5c141523506cf2647c670e7d4b5495ad1296dab94f33b39dbc62",
       "canonical_predecessor": 17,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 19,
-      "path": "trials/rational-gap-round-01/receipt-19.json",
+      "path": "receipts/receipt-19.json",
       "sha256": "456e7613d212d232db20bf5e8f387c68f5b05744d300a181820583dcbeb65ee9",
       "canonical_predecessor": 18,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 20,
-      "path": "trials/pdf-png-meaning-round-01/receipt-20.json",
+      "path": "receipts/receipt-20.json",
       "sha256": "9333925cc5e25247f800897e1284095ae5f5120ef3c3067e721feda344498a91",
       "canonical_predecessor": 19,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 21,
-      "path": "trials/burau-boundary-pair-round-01/receipt-21.json",
+      "path": "receipts/receipt-21.json",
       "sha256": "079c231db784adfbe630538bc2fcfacda04f3793185b4c0580b0b6524de78328",
       "canonical_predecessor": 20,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 22,
-      "path": "trials/unrelated-pair-round-01/receipt-22.json",
+      "path": "receipts/receipt-22.json",
       "sha256": "67b9c75b5e0b1b17448c5fd6693846009e1e3ce5ff8e32824266cb0982cad8a2",
       "canonical_predecessor": 21,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     },
     {
       "receipt": 23,
-      "path": "trials/public-surface-round-01/receipt-23.json",
+      "path": "receipts/receipt-23.json",
       "sha256": "63ea2f690b11bd95c410831a4dd8b61401664875f77ab2db113c0270aedbe875",
       "canonical_predecessor": 22,
-      "repair": null,
-      "status": "EvidenceStutter"
+      "repair": null
     }
   ],
-  "status": "proposed"
+  "status": "Proposed"
 }
