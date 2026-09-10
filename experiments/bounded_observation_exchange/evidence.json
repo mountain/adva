@@ -1,0 +1,232 @@
+{
+  "kind": "synthetic protocol calibration",
+  "real_peer_reply": "AwaitingReply",
+  "passed": 13,
+  "results": [
+    {
+      "name": "new disclosed difference",
+      "expected": "VariationObserved",
+      "result": {
+        "status": "VariationObserved",
+        "acknowledge": {
+          "request_sha256": "10493ba852e6f974450077e4cf3f389c60dc82232db5251830d359d46d265d5f",
+          "response_sha256": "f6d8d308d0cf284c897661ae170dd5c5a80db4dc2e7825729b39cd3473367204"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [],
+        "changed_fields": [
+          "result"
+        ],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DeclaredProjectionCompared",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      }
+    },
+    {
+      "name": "same disclosed projection",
+      "expected": "EvidenceStutter",
+      "result": {
+        "status": "EvidenceStutter",
+        "acknowledge": {
+          "request_sha256": "10493ba852e6f974450077e4cf3f389c60dc82232db5251830d359d46d265d5f",
+          "response_sha256": "6c3543f45382286bc5c84b716147dd09cf4e43ceff41aa33cb150463aa9cce0e"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [],
+        "changed_fields": [],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DeclaredProjectionCompared",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      }
+    },
+    {
+      "name": "difference with incomplete coverage",
+      "expected": "Unknown",
+      "result": {
+        "status": "Unknown",
+        "acknowledge": {
+          "request_sha256": "10493ba852e6f974450077e4cf3f389c60dc82232db5251830d359d46d265d5f",
+          "response_sha256": "7253952171acfc535a9c963ab49d84efac4b1ba3dd9ab8f380f84b70342f42f1"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [
+          "residual"
+        ],
+        "changed_fields": [
+          "result"
+        ],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DisclosureIncomplete",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      }
+    },
+    {
+      "name": "no real reply",
+      "expected": "Unknown",
+      "result": {
+        "status": "Unknown",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "AwaitingReply"
+      }
+    },
+    {
+      "name": "wrong request",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "response belongs to a different request byte sequence"
+      }
+    },
+    {
+      "name": "wrong method",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "observation method mismatch"
+      }
+    },
+    {
+      "name": "boolean version",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "response version mismatch"
+      }
+    },
+    {
+      "name": "duplicate JSON key",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "duplicate JSON key"
+      }
+    },
+    {
+      "name": "byte budget",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "byte budget exceeded"
+      }
+    },
+    {
+      "name": "omitted field",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "projection must explicitly list all three fields"
+      }
+    },
+    {
+      "name": "replay against changed question",
+      "expected": "Rejected",
+      "result": {
+        "status": "Rejected",
+        "acknowledge": null,
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "reason": "response belongs to a different request byte sequence"
+      }
+    },
+    {
+      "name": "new-instance reuse",
+      "expected": "VariationObserved",
+      "result": {
+        "status": "VariationObserved",
+        "acknowledge": {
+          "request_sha256": "10493ba852e6f974450077e4cf3f389c60dc82232db5251830d359d46d265d5f",
+          "response_sha256": "dc0280442bd54cf0b088b9ee54dc2b325dd757c9500cb54d3ad322428a8d4d69"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [],
+        "changed_fields": [
+          "residual"
+        ],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DeclaredProjectionCompared",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      }
+    },
+    {
+      "name": "repeat delivery",
+      "result": {
+        "status": "VariationObserved",
+        "acknowledge": {
+          "request_sha256": "10493ba852e6f974450077e4cf3f389c60dc82232db5251830d359d46d265d5f",
+          "response_sha256": "f6d8d308d0cf284c897661ae170dd5c5a80db4dc2e7825729b39cd3473367204"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [],
+        "changed_fields": [
+          "result"
+        ],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DeclaredProjectionCompared",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      },
+      "expected": "VariationObserved"
+    }
+  ],
+  "metrics": {
+    "construct_seconds": 0.00046002300223335624,
+    "verify_including_reuse_seconds": 0.0005043880009907298,
+    "serialization_replay_seconds": 0.00018470299983164296,
+    "artifact_writes_seconds": 0.0011719969988917,
+    "measured_elapsed_seconds": 0.002321111001947429,
+    "maxrss_native_units": 10752,
+    "maxrss_unit": "KiB",
+    "candidate_searches": 0,
+    "excluded": "research, coding, network, publication, final evidence file write"
+  }
+}
