@@ -32,12 +32,13 @@
       "evidence_check_prefix": "complement-",
       "closure_requires": "a revised finite contract, since a Wirtinger presentation is new machinery",
       "note": "Blocked until a contract revision is written; the current contract covers the triple intersection only.",
-      "progress": "contract-v2 written; word algebra, Hall basis and Hall-Witt verified; the declared projection supplies the representation input; the presentation is checked at its abelian level (12 arcs, 12 relations, rank 9, cokernel Z^3); the non-abelian words and mu-bar(123) remain",
-      "blocked_by": "the Wirtinger presentation read off the diagram, and the extraction rule",
+      "progress": "contract-v2 written; word algebra, Hall basis and Hall-Witt verified; the declared projection and the abelian presentation level are checked (12 arcs, 12 relations, rank 9, cokernel Z^3); the non-abelian words and mu-bar(123) remain",
+      "blocked_by": "the extraction rule needs a Magnus or nilpotent-quotient step, which is a new finite contract (contract-v3) and not part of contract-v2; the relation words additionally need their exact field parameters kept in process, since the report serialises them as strings",
       "closure_checks": [
         "complement-presentation-relations",
         "complement-invariant-agrees-with-triple-intersection"
-      ]
+      ],
+      "round_five_note": "A partial attempt at the relation words was written and then reverted rather than committed half-working: the arc lookup compared serialised string parameters, and even with that fixed the extraction rule is still outside contract-v2."
     },
     {
       "id": "penrose-matching-acceptance",
