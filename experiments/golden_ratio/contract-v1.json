@@ -77,7 +77,9 @@
     "The successor contract supersedes the frozen version by digest, and the retained receiving review is pinned by digest.",
     "The PDF title and creation date are parsed from the staged bytes at run time, not copied from declared metadata.",
     "The declared arithmetic bounds behave as stated: a fractional coefficient is representable and outside the integer ring, and the near-integer bound fails at n = 1.",
-    "Both installed and refused resource limits are recorded, and neither is reported as enforced unless it was installed."
+    "Both installed and refused resource limits are recorded, and neither is reported as enforced unless it was installed.",
+    "The golden triangle subdivides into one copy at scale 1/phi and one gnomon, with the tile shapes, the self-similarity and the Heron area ratios checked exactly.",
+    "The dual dodecahedron has twenty equal-radius vertices at the icosahedron's inradius, twelve regular pentagon faces, the closed-form radius ratio, and an inscribed cube whose edges are pentagon diagonals rather than dodecahedron edges."
   ],
   "unknown": "Any budget, bound, digest or replay failure is reported as Unknown or Invalid and never promoted to partial acceptance",
   "replay": "python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-fresh.json (the output path must not exist)",
@@ -88,6 +90,13 @@
       "addition": "Exact boundary-disjointness checks for the three mutually perpendicular golden rectangles determined by the twelve icosahedron vertices, with two controls: a translated copy whose boundary must be detected as meeting, and a nearby copy whose crossings fall at the other golden half-extent and must not.",
       "reason": "The atlas lists this configuration as its Borromean candidate. The first execution verified the vertex, edge and face incidence but left the boundary structure unconstructed.",
       "effect_on_scope": "The question, objects, types, protected list, budget and unknown policy are unchanged. The acceptance list gains the boundary obligation below."
+    },
+    {
+      "recorded": "2026-09-10",
+      "after_first_execution": true,
+      "addition": "Exact checks for the golden triangle and its gnomon (tile shapes, the base-angle bisector subdivision, self-similarity, Heron area ratios) and for the dual dodecahedron (twenty face centroids, inradius and circumradius closed forms, regular pentagon faces, and an inscribed cube found by exact search whose edges are pentagon diagonals).",
+      "reason": "Two rows of the denotation table were marked Not executed: the golden triangle with its gnomon, and the dual polyhedron with its spheres and inscribed solids.",
+      "effect_on_scope": "The question, protected list, budget and unknown policy are unchanged. The inscribed octahedron and the Borromean link certificate remain outside this run."
     }
   ],
   "supersedes": {
