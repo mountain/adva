@@ -25,6 +25,17 @@ The repository implements ideas developed in `process-geometry`, but it is not
 the theory repository. Mathematical claims remain scoped and registered; the
 tool does not turn research targets into stable API promises.
 
+## External topology correction
+
+The [boundary-word audit](docs/research/borromean-boundary-word-correction.md)
+completes the missing term in the golden-rectangle triple-linking calculation.
+With declared orientations the exact surface formula gives `(m,t,mu)=(0,1,-1)`.
+A concentric-square control gives `(1,1,0)`, showing why the raw triple-point
+count alone is insufficient. The finite checker, source binding, image-reading
+record and replay are retained separately from the unchanged historical runs.
+This is external mathematics using Mellor--Melvin's theorem; the independent
+complement/longitude route and native geometry admission remain open.
+
 ## Initial executable slice
 
 The bounded [library-stability calibration](docs/research/0149-library-stability-and-zigzag.md)

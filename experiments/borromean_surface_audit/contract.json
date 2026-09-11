@@ -1,0 +1,77 @@
+{
+  "schema": "adva.external.borromean-surface-contract.v0",
+  "date": "2026-09-11",
+  "base_commit": "cb5f62d6a0c468c47b0c8dd46ce0424d52256890",
+  "question": "For the three declared golden rectangles, do the oriented boundary words supply the missing term m in the Mellor-Melvin formula mu=m-t, and can the same raw triple-point count occur with mu=0?",
+  "level": "External exact finite mathematics and a separately attributed visual observation; no native semantics or library growth",
+  "source": {
+    "path": "experiments/golden_ratio/calibration.py",
+    "sha256": "5cfb50457f508cd14a9551de1eba8441c5a0c1a3814f398264c70418c2ebe543",
+    "binding": "Read only the literal rectangles assignment in golden_rectangle_checks by a restricted AST decoder; do not execute the historical module"
+  },
+  "imported_theorem": {
+    "authors": ["Blake Mellor", "Paul Melvin"],
+    "title": "A geometric interpretation of Milnor's triple linking numbers",
+    "url": "https://arxiv.org/pdf/math/0110001",
+    "published_pages": "559-562, definitions in section 2 and theorem on page 561",
+    "formula": "mu_ijk = m_ijk(F)-t_ijk(F) mod gcd(pairwise linking numbers)",
+    "m": "epsilon_ij(w_k)+epsilon_jk(w_i)+epsilon_ki(w_j), from signed boundary-surface intersection words",
+    "side_conditions": "Three oriented embedded Seifert surfaces with pairwise disjoint link boundaries in general position; the checked PL rectangles have all intersections away from polygon corners and are locally smoothable there",
+    "scope": "This checker admits only pairwise-zero links, for which the residue is an integer. Unit mu does not classify ambient isotopy. The theorem is imported, not reproved or formalized."
+  },
+  "geometry": {
+    "field": "a+b*sqrt(5), a,b exact rationals; independent implementation from the historical field class",
+    "surfaces": "Three filled axis-aligned rectangles on distinct coordinate planes",
+    "orientation": "Positive coordinate normals by default; boundary orientation checked from cross products. Component order is (z0,x0,y0).",
+    "events": "Enumerate all four edges against both other surfaces; retain signed crossings in boundary traversal order, reject boundary contacts and nongeneric endpoint/coplanar events",
+    "triple_points": "The unique candidate intersection of the three planes, admitted only when strictly interior to all three rectangles; sign from the determinant of the oriented normals"
+  },
+  "fixtures": [
+    "golden rectangles from pinned source: expected (m,t,mu)=(0,1,-1)",
+    "uniform scale by 2 and common translation by (1,2,3): same verdict",
+    "replace phi by rational 2: same verdict, no golden-ratio uniqueness inferred",
+    "concentric squares of half-widths 3,2,1 in component order: expected (1,1,0), a counterexample to triple-count-only admission",
+    "move the third golden surface to y=10: expected (0,0,0)",
+    "seven other normal-sign assignments: multiply mu by the product of signs",
+    "five other component permutations: multiply mu by permutation parity",
+    "missing component, equal-width boundary contact, nonzero pairwise linking, and invalid normal: explicit refusals"
+  ],
+  "independent_checks": [
+    "Every degree-two boundary-word coefficient computed by signed ordered pairs and independently by multiplication of truncated noncommutative Magnus series",
+    "Pairwise linking sums agree in both directions; no H1 rank is treated as a linking-number calculation",
+    "Boundary orientation and triple-point sign checked explicitly",
+    "Cyclic basepoint shifts preserve coefficients in the pairwise-zero scope",
+    "Every fixture input survives JSON serialization/decoding and a fresh judgment",
+    "One optional separate process replay compares mathematical projections, excluding host costs"
+  ],
+  "protected": [
+    "Historical sources, contracts, evidence and library gitlink stay byte identical",
+    "Pascal-rooted geometry obligation remains Open",
+    "No native Seal, free, universal grammar theorem, physical interpretation or working-word admission",
+    "The longitude/complement-side queue item remains Open; the surface route does not impersonate that independent route",
+    "Pixels supply observations and questions, never coordinates or evidence of an exact invariant"
+  ],
+  "budget": {
+    "max_process_attempts": 3,
+    "max_correction_attempts": 1,
+    "max_successful_fresh_replays": 1,
+    "per_attempt_outer_seconds": 8,
+    "per_attempt_alarm_seconds": 7,
+    "per_attempt_cpu_soft_seconds": 5,
+    "per_attempt_cpu_hard_seconds": 6,
+    "total_outer_seconds": 24,
+    "total_cpu_hard_seconds": 18,
+    "address_space_bytes": 268435456,
+    "max_judgments": 48,
+    "max_assertions": 10000,
+    "max_work_units": 1000000,
+    "input_coefficient_bits": 128,
+    "max_input_bytes": 524288,
+    "max_report_bytes": 2097152,
+    "retention_reserve_seconds": 2,
+    "enforcement": "Linux required; required RLIMIT_AS and RLIMIT_CPU must install before arithmetic, SIGALRM plus external timeout; shared per-process work/assertion/judgment counters; exclusive size-capped report publication. Retry and replay share the three-attempt session ledger. No automatic restart."
+  },
+  "exit": "Passed, Failed, Refused, or UnknownResource; save failures when the host allows it. A forced kill may leave no report and is recorded in the execution ledger. Do not relax a checker after failure.",
+  "accounting": "Includes fixture construction, validation and JSON round trips in process measurements; research, coding, network, visual interpretation and git integration are unmeasured and excluded from performance claims.",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy; authorization is not endorsement or a guarantee of correctness."
+}
