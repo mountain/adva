@@ -7,7 +7,7 @@
 ## 1. 这个目录是什么
 
 `~/AEG` 是 **Human 层（Surface）的工作现场**：算术表达式几何（AEG）及其相关研究、
-论文、实验与模型训练的本地项目簇。规模 **7.7 GB / 30 个条目 / 23 个 git 仓**。
+论文、实验与模型训练的本地项目簇。规模 **7.7 GB / 30 个条目 / 28 个 git 仓**（2026-09-11 起：原先四个非 git 目录与 `brain` 已纳管，见 §5）。
 
 它接替了 `/Users/mingli/Adva/AEG`（那个仓已在本日备份到
 `git@github.com:mountain/adva-aeg.git`，其试验树已迁入 `adva/trials`）。
@@ -65,20 +65,41 @@
 
 ## 4. 风险项（未备份或未纳管）
 
-1. **`brain`**：477 MB，git 已初始化但**没有任何提交**，分离 HEAD，15 处未提交，
-   **无远端** → 这是整个集群里最容易丢的一块。
-2. **未提交较多**：`autoresearch2` 34、`cayley` 28、`optaeg` 28、`knot-alexander` 12、
+1. **未提交较多**：`autoresearch2` 34、`cayley` 28、`optaeg` 28、`knot-alexander` 12、
    `topological-flow` 6、`aeg-ad`/`aeg-gas-calc`/`aeg-invitation`/`math-notes` 各 5、
-   `aeg-paper` 4、`aeg-lean` 3。
-3. 远端状态：除 `brain` 外，其余 git 仓都有 `origin` ✓（已核）。
+   `aeg-paper` 4、`aeg-lean` 3。这些都**已有远端**，风险仅是本地改动未提交。
+2. 远端状态：全部 28 个 git 仓现在都有 `origin` ✓（`brain` 于 2026-09-11 补齐，见 §5）。
+3. 各仓的 `.venv/`、`.pypy/` 等环境目录仍只在本机（合计约 1.5 GB+），它们**可重建**、
+   不入库，这是有意的。
 
-## 5. 四个非 git 目录
+## 5. 原先四个非 git 目录与 `brain`：已纳管
 
-`dags`（67M，含 `generate_hierarchy_catalog.py`、`build_h.sh`）、
-`gru`（622M，含 `lorenz.py`、`pyproject.toml`）、
-`moc`（154M，含 `main.py`、`pyproject.toml`）、
-`thermal`（204K，HTML 页面 + `pyproject.toml`）。
-它们**不在任何版本控制之下**；若其中有什么要保留，应各自 `git init` 或并入相邻仓。
+`dags`、`gru`、`moc`、`thermal` 此前不在任何版本控制之下；`brain` 虽已 `git init`
+却**从无提交**。2026-09-11 各自建立仓库、首次提交并推送到**私有**远端。
+
+| 目录 | 远端（private） | 分支 | 首次提交 | 入库文件 | `.git` |
+|---|---|---|---|---|---|
+| brain | `mountain/aeg-brain` | master | `7fd8e80` | 4 | 364K |
+| dags | `mountain/aeg-dags` | main | `0764e2e` | 6,611 | 36M |
+| gru | `mountain/aeg-gru` | main | `83d4b1d` | 54 | 33M |
+| moc | `mountain/aeg-moc` | main | `77c59ad` | 91 | 1.9M |
+| thermal | `mountain/aeg-thermal` | main | `9749353` | 5 | 160K |
+
+**入库**：源码与本地产出的工件（含 `gru/ckpts` 31M、`dags/tex` 60M 及其中的 PDF 与图片）。
+**排除**：`.venv/`、`.pypy/`、`__pycache__/`、`.idea/`、`.DS_Store`、LaTeX 中间件
+（`.aux/.log/.out/.toc`）。核验：五个仓中被跟踪的环境/IDE 文件均为 **0**；
+磁盘上约 1.5 GB 的这五块，入库约 **71 MB**。
+
+三点如实说明：
+
+1. **可见性默认取私有**。集群既有的仓（`process-geometry`、`aeg-paper`、
+   `knot-alexander` 等）都是 **public**，但这五个目录从未被审阅、也未发布过，而
+   "公开"不可逆；要跟随集群惯例公开，一条命令即可翻，反向不行。
+2. 推送前做过**内容级**密钥扫描（`sk-` / `ghp_` / `github_pat_` / `AKIA` / 私钥头 /
+   `api_key=` 等模式），五个目录命中均为 0；这只降低风险，不等于安全审计。
+3. `brain` 的暂存区原本由 IDE 放了 `.idea/*` 等文件，我把暂存区重置后按新的
+   `.gitignore` 重新收集；因此入库的是 `main.py`、`pyproject.toml`、
+   `forward-simulation.png`、`.gitignore` 四个文件，**IDE 元数据没有入库**。
 
 ## 6. 与本次交接相关的文件
 
@@ -91,7 +112,7 @@
 
 ## 7. 待办
 
-1. `brain` 补远端（或先建立首个提交），四个非 git 目录决定去留（§4、§5）。
+1. ~~`brain` 补远端、四个非 git 目录纳管~~ **Done 2026-09-11**（§5）；仍开着的只是各仓本地未提交的改动（§4）。
 2. `/Users/mingli/Adva/AEG` 的退休：目录旁移 + 在原路径留一个只含
    `trials -> /Users/mingli/Adva/adva/trials` 的 stub，使 17 个硬编码根路径的试验脚本
    继续可跑，**不动任何试验字节**。
