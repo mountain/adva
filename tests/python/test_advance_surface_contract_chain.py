@@ -18,7 +18,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 DIR = ROOT / "experiments/advance_symbol_surface"
-ACTIVE = DIR / "contract-v1.json"
+ACTIVE = DIR / "contract-v2.json"
+V1 = DIR / "contract-v1.json"
 FROZEN = DIR / "contract.json"
 MODULE = ROOT / "python/adva/advance_surface.py"
 
@@ -27,13 +28,21 @@ def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def test_the_successor_names_the_frozen_contract_by_digest():
-    active = load(ACTIVE)
-    assert active["version"] == 1
-    supersedes = active["supersedes"]
-    assert supersedes["path"] == "experiments/advance_symbol_surface/contract.json"
-    assert supersedes["sha256"] == hashlib.sha256(FROZEN.read_bytes()).hexdigest()
-    assert supersedes["note"].strip()
+def test_the_chain_supersedes_by_digest_from_v0_through_the_active_contract():
+    """Each contract names the digest of the one before it, so none can be edited."""
+    chain = [ACTIVE, V1, FROZEN]
+    for path in chain:
+        assert path.exists(), path.name
+    for newer, older in zip(chain, chain[1:]):
+        contract = load(newer)
+        assert contract["version"] == load(newer)["version"]
+        supersedes = contract["supersedes"]
+        assert supersedes["path"] == f"experiments/advance_symbol_surface/{older.name}"
+        assert supersedes["sha256"] == hashlib.sha256(older.read_bytes()).hexdigest()
+        assert supersedes["note"].strip()
+    assert load(ACTIVE)["version"] == 2
+    assert load(V1)["version"] == 1
+    assert load(FROZEN)["version"] == 0
 
 
 def test_the_frozen_contract_still_describes_the_first_run():
@@ -45,6 +54,11 @@ def test_the_frozen_contract_still_describes_the_first_run():
     assert frozen["pins"]["experiments/symbol_surface/README.md"] == (
         "e5a38e5745de316fbba026705230ee9d090221a1a0fb836c0b31b80af73eab37"
     )
+
+
+def test_the_successor_only_moved_the_base_and_not_the_pins():
+    """v2 exists because the Rust boundary moved, not because an input changed."""
+    assert load(ACTIVE)["pins"] == load(V1)["pins"]
 
 
 def test_every_pin_in_the_active_contract_matches_the_live_file():
@@ -60,10 +74,11 @@ def test_every_pin_in_the_active_contract_matches_the_live_file():
 
 def test_the_module_uses_the_successor_and_verifies_the_frozen_digest():
     source = MODULE.read_text(encoding="utf-8")
-    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v1.json"' in source
-    assert 'FROZEN_CONTRACT = ROOT / "experiments/advance_symbol_surface/contract.json"' in source
-    assert 'contract.get("version") != 1' in source
-    assert 'contract["supersedes"]["sha256"] != frozen' in source
+    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v2.json"' in source
+    # The chain check is generic: it hashes whatever the contract names, so a new
+    # successor does not require editing the module.
+    assert 'contract.get("version", 0) < 1 or "supersedes" not in contract' in source
+    assert 'superseded = ROOT / contract["supersedes"]["path"]' in source
 
 
 def test_the_base_commit_boundary_holds_at_this_commit():

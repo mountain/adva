@@ -20,11 +20,17 @@ else:
     from math_catalog import check_catalog
     from quine_relay import Exhausted, Supervisor, digest
 
-# The active contract is the version-one successor. The frozen version zero and
-# its digest are kept, and the run verifies that digest, so a later edit of the
-# frozen file is a failure rather than a silent reinterpretation.
-CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v1.json"
-FROZEN_CONTRACT = ROOT / "experiments/advance_symbol_surface/contract.json"
+# The active contract is the newest successor. Each successor names the digest
+# of the contract it supersedes, and the run verifies that digest, so editing a
+# superseded contract afterwards is a failure rather than a silent
+# reinterpretation. The chain is v0 <- v1 <- v2.
+CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v2.json"
+# The cargo cdylib artifact is `lib_native` with the platform dynamic-library
+# extension. The profile was written for Linux, where that is `.so`; on macOS it
+# is `.dylib`, and the hard-coded name made the run stop after a successful build
+# with "No such file or directory: target/debug/lib_native.so".
+CDYLIB_EXTENSION = {"darwin": ".dylib", "win32": ".dll"}.get(sys.platform, ".so")
+NATIVE_BINARY = ROOT / ("target/debug/lib_native" + CDYLIB_EXTENSION)
 SOURCE = ROOT / "experiments/symbol_surface"
 LIBRARY = ROOT / "adva-library"
 FILES = (
@@ -199,11 +205,16 @@ def run(args):
     output.mkdir(parents=False, exist_ok=False)
     raw_contract = read_bounded(CONTRACT, 262_144)
     contract = json.loads(raw_contract)
-    if contract.get("version") != 1:
-        raise ValueError("the active contract must be the version-one successor")
-    frozen = hashlib.sha256(read_bounded(FROZEN_CONTRACT, 262_144)).hexdigest()
-    if contract["supersedes"]["sha256"] != frozen:
-        raise ValueError("the frozen contract changed after the successor recorded it")
+    if contract.get("version", 0) < 1 or "supersedes" not in contract:
+        raise ValueError("the active contract must be a versioned successor")
+    superseded = ROOT / contract["supersedes"]["path"]
+    if contract["supersedes"]["sha256"] != hashlib.sha256(
+        read_bounded(superseded, 262_144)
+    ).hexdigest():
+        raise ValueError(
+            contract["supersedes"]["path"]
+            + " changed after this contract recorded its digest"
+        )
     supervisor = Supervisor(output, contract["limits"])
     report = {
         "schema": "adva.advance-symbol-surface.result.research",
@@ -215,7 +226,7 @@ def run(args):
         "native_free": "NotGranted",
         "mathematical_proof_admission": "not-granted",
         "contract": {
-            "path": "experiments/advance_symbol_surface/contract-v1.json",
+            "path": "experiments/advance_symbol_surface/contract-v2.json",
             "version": contract["version"],
             "supersedes": contract["supersedes"]["path"],
             "supersedes_sha256": contract["supersedes"]["sha256"],
@@ -311,7 +322,7 @@ def run(args):
             ],
             ROOT,
         )
-        binary = ROOT / "target/debug/lib_native.so"
+        binary = NATIVE_BINARY
         binary_raw = read_bounded(binary, contract["limits"]["max_file_bytes"])
         (output / "_native.abi3.so").write_bytes(binary_raw)
         report["native_binary_sha256"] = digest(binary_raw)
