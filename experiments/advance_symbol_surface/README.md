@@ -14,6 +14,17 @@ both pinned. [contract.json](contract.json) fixes all input hashes, eight
 native load calls, eight controls, finite limits and exit conditions before
 execution. The original `byte-observer-v0` profile remains unchanged.
 
+**Contract successor, and what a frozen replay would now do.** The active
+contract is [contract-v1.json](contract-v1.json), which supersedes
+`contract.json` by digest and states two moved inputs instead of rewriting it: the
+symbol-surface README pin, after the unearned game label was withheld, and the
+base commit, because this profile requires that nothing under `Cargo.toml`,
+`Cargo.lock` and `crates` has changed since it. The run-01 evidence below keeps
+the frozen version-zero contract and its original digests as the record of what
+that run actually executed, so a literal replay of run-01 now fails on the README
+pin **by design rather than by drift**: an input changed after that run. Use the
+successor, and read `supersedes.note` in it for the reasoning.
+
 The new outer profile invokes existing code: it builds the Rust/PyO3 extension
 offline, copies the fresh library to its evidence directory and directly loads
 that artifact. `load_adva_document_json` calls `load_adva_document_v0` in Rust.
