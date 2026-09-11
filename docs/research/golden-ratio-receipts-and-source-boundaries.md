@@ -97,7 +97,7 @@ certification of a picture.
 | `plates/fake-real-log-spiral.webp` | the atlas's separation of a logarithmic spiral from a circular-arc imitation | Refusal R5: over one quarter turn an arc keeps radius ratio `1` while the spiral contracts by `phi^-1`, exactly, so the two are not similar |
 | `plates/golden-triangle-and-fibonacci-spiral.webp` | the golden triangle and its gnomon subdivision | Executed: `cos 36` is verified as a Chebyshev root instead of being taken from a table, the two tile shapes are identified by the cosine law, bisecting a base angle cuts the opposite leg into `1/phi` and `1`, the smaller tile is the original scaled by `1/phi`, and the Heron area ratios `1/phi^2` and `1/phi` hold. The arc chain the plate also shows carries the same unbounded model error as the first row |
 | `plates/dodecahedron-vertices.webp` | the dual dodecahedron of the twelve-vertex icosahedron | Executed: the twenty face centroids are the dual's vertices and sit at the icosahedron's inradius, whose closed form and the radius ratio are checked; the twelve faces are shown to be regular pentagons with diagonal-to-side ratio `phi`; and an inscribed cube is found by exact search with its edges as pentagon diagonals. The inscribed **octahedron** is now executed as the dual of that cube: six equal-radius face centres, twelve edges, eight faces. An exhaustive search over all 924 six-subsets of the twelve icosahedron vertices finds **no** octahedron there, so the dual construction is the octahedron this configuration supplies |
-| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves; the **triple** linking invariant, which is what "Borromean" adds, remains uncomputed |
+| `plates/icosahedron-golden-rectangles.webp` | twelve vertices on three mutually perpendicular golden rectangles, the atlas's Borromean candidate | The vertex set is verified: 12 distinct vertices, 66 squared distances with minimum `4`, 30 edges, degree 5, 20 faces. The three rectangles are exactly the corner sets of those vertices; their boundaries are **pairwise disjoint** while their filled sets share the origin, and a translated copy is detected as meeting while a nearby copy is not. **Pairwise linking numbers are now computed and are zero in both directions**, with cancelling crossings in the direction that crosses at all, and a control ring threaded once through a disk is counted as linked, so the zeros are not vacuous. Disjoint boundaries are thus separated from unlinked curves. The **triple** judgement is now computed too: the three filled rectangles are disks spanning the components, each pairwise intersection is a segment whose endpoints lie on the components, and the triple intersection is a single point, the origin, with signed sum **+1 in all three cyclic orders**. Under the imported classical identification of that number with Milnor's invariant `mu-bar(123)`, this configuration **is** the Borromean pattern, and the judgement is falsifiable: an unlinked control returns zero triple points, a fresh instance scaled by two returns the unit again, and a fixture with pairwise linking number one has its judgement **withheld**; the invariant read from the link complement is still not computed |
 | `plates/divina-proportione-illustration-13.jpg` | the Pacioli/Leonardo historical layer | Source object only. The atlas itself requires original text and later readings to be registered separately; nothing historical is imported |
 | `source/golden_geometry.png` | the three explanatory panels of the delivery's plotting script | Illustration only. The script is staged and digest-checked but **not executed**: it needs external libraries and renders a figure that carries no evidence. Its third panel's configuration is now checked exactly, and its first two panels restate the rectangle and arc-versus-spiral distinctions that the run already settles |
 | `source/reference/Golden_ratio.pdf` | the article revision the atlas read | Byte probe only: title, creation date and `oldid=1370346489` confirmed; the text is not parsed and nothing is imported from it |
@@ -134,7 +134,7 @@ python3 -S experiments/golden_ratio/calibration.py --output target/golden-ratio-
 
 The output path must not exist. Routes: one. Budget: 30 seconds, 20,000 checks,
 200,000 nodes, 8 MiB of staged bytes, one child process with a 30-second cap,
-1 MiB of output. Result: **Passed**, 1001 checks, 4,144 nodes, 0.662 s before
+1 MiB of output. Result: **Passed**, 1,047 checks, 4,265 nodes, 0.672 s before
 serialization, one child process, no unbounded search, no random sampling and
 no transcendental evaluation.
 
@@ -196,7 +196,13 @@ rectangle boundaries, computed in both directions and controlled by a ring
 threaded once; the golden angle's two gap lengths in ratio `phi` with
 consecutive Fibonacci counts for three Fibonacci rotation sizes, plus its
 equal-area latitude rule; and three bounded golden-section searches with
-identical interval traces.
+identical interval traces; and the two Penrose prototiles with their inflation,
+whose angles are checked through cosine identities, whose diagonal ratios are
+shown to differ from the golden rhombus's, and whose counts follow consecutive
+Fibonacci numbers under a matrix with characteristic polynomial `t^2 - 3t + 1`; and the
+Borromean judgement, where the three filled rectangles are verified to span the
+components, every pairwise intersection is a segment ending on the components,
+and the single triple point gives signed sum `+1` in all three cyclic orders.
 
 Five checks are *new instances* rather than restatements of the delivered
 fixtures: the inverse word at the same parameter, the reverse cut from
@@ -341,8 +347,11 @@ artifact the first executions ran under.
 - The atlas's rotation-set generator is covered only by its combinatorial
   content: the gap structure and the equal-area latitude rule are exact, while
   minimal separation, energy and coverage optimality are not asserted. The
-  Penrose patch acceptance and the Borromean **triple** linking invariant remain
-  uncomputed.
+  Penrose matching-rule acceptance, aperiodicity and full-plane tiling remain
+  unverified. The Borromean judgement rests on the imported classical theorem
+  that the triple intersection number of Seifert surfaces is Milnor's invariant
+  `mu-bar(123)`; the invariant itself is not computed from the link complement
+  and no Reidemeister or diagram-level certificate is produced.
 - The atlas's own minimal next step, a three-party versioned task/witness
   presentation in the Pascal style, remains open: those presentations are
   proposed research JSON whose three Human identities and native importer do
@@ -355,7 +364,158 @@ artifact the first executions ran under.
   repository, so a checkout without it cannot run the calibration, exactly as
   it cannot run `math-check`.
 
-## 10. What this does not claim
+## 10. Autonomous rounds and their bounded queue
+
+The remaining work is declared in
+[`experiments/golden_ratio/queue.json`](../../experiments/golden_ratio/queue.json)
+and dispatched by
+[`experiments/golden_ratio/run_queue.py`](../../experiments/golden_ratio/run_queue.py):
+
+```sh
+python3 -S experiments/golden_ratio/run_queue.py --rounds 2 --output target/queue-run.json
+```
+
+Each round runs the calibration, compares the fresh witness with the retained
+one, counts which items are backed by checks that actually appear in the
+witness, and names the next unbacked executable item. The runner takes at most
+four rounds and two minutes, returns `Unknown` when a bound stops it, and
+**never edits the queue**: a status change is an explicit edit made with the
+checks that justify it. Items of kind `documentary` and `human` are never
+closed by a run at all, so a green loop is a statement about verification, not
+about progress.
+
+## 11. A complement-side attempt, and what it did not settle
+
+The queue's next executable item asked for a recomputation of Milnor's invariant
+from a complement-side presentation. That needs machinery this line did not
+carry, so a [revised finite contract](../../experiments/golden_ratio/contract-v2.json)
+was written first, and
+[`complement.py`](../../experiments/golden_ratio/complement.py) implements only
+its algebraic core:
+
+```sh
+python3 -S experiments/golden_ratio/complement.py --output target/complement-fresh.json
+```
+
+**Verified**: exact word reduction, inversion, commutator algebra, the
+antisymmetry `[x,y][y,x] = 1`, and two expansion identities that hold as word
+identities — `[x,yz] = [x,y] y[x,z]y^-1` and
+`[[x,y],z] = [x,y] z [x,y]^-1 z^-1`.
+
+**Not settled, and retained rather than hidden**: the Hall basis enumeration
+built here generated no commutator of weight two or more, so its counts
+`[2,0,0,0]` and `[3,0,0,0]` disagree with Witt's `[2,1,2,3]` and `[3,3,8,18]`;
+the free-group form of the Hall-Witt identity reduced to a nonempty word under
+every convention tried; and the finite-quotient probe that was meant to
+substitute for it came back **Failed**. Those three are recorded in the run's
+`unverified_machinery` and `probe_outcome` fields. **No invariant is computed
+and no link claim is made from this run.**
+
+**Round two resolved all three, by finding two implementation faults rather than
+by weakening the checks.** The enumeration carried an extra requirement that a
+basic commutator's first entry must have strictly greater weight, which rejects
+every weight-two commutator: Hall's rule needs `u > v` and nothing more, and
+with that removed the counts are exactly Witt's `[2,1,2,3]` and `[3,3,8,18]`.
+The Hall-Witt helper was missing the inner bracket with the third generator, so
+it was conjugating where it should have been commuting; with that fixed, an
+exhaustive search over forty-eight candidate shapes found **exactly one** word
+that is an identity in the free group, namely
+
+    [[y^-1, x], z]^y . [[z^-1, y], x]^z . [[x^-1, z], y]^x = 1   with  w^b = b w b^-1
+
+which is the mirror of the remembered textbook shape under this file's
+commutator convention `[a,b] = a b a^-1 b^-1`. That form is now checked twice
+over: it reduces to the empty word in the free group, and it is trivial in S3
+for all 216 triples of elements. The remembered textbook shape is kept as a
+check that it is *not* this identity, so the convention flip stays visible.
+
+**Still open**: the Wirtinger presentation read off the diagram, the truncated
+Magnus expansion, and the extraction rule for mu-bar(123). The queue item
+therefore stays Open, and no link claim is made from this line yet.
+
+The representation input for the complement route now exists: a **declared
+regular projection** of the three components along the golden direction
+(1, phi, phi^2), computed by exact orientation signs with over and under decided
+by that direction's coordinate. It is generic, and it carries **twelve
+crossings, four per pair, whose signed sums are all zero** - so the pairwise
+linking numbers are recovered a second time, by the diagram route rather than by
+spanning disks. Minimality of the diagram is not claimed.
+
+The presentation read off that diagram is now checked at its abelian level:
+each under-crossing splits its component, so there are as many generators as
+crossings (twelve), and each crossing contributes the relation
+`U_out = O U_in O^-1`. Abelianised, the over-strand cancels and the crossing
+contributes `e_out - e_in`, and the resulting integer matrix has rank nine,
+which is `crossings - components`: its cokernel is `Z^3`, the first homology of
+a three-component complement. The pairwise linking numbers are therefore
+recovered a **third** time, now from a presentation. The non-abelian words
+themselves, the Magnus expansion and `mu-bar(123)` remain uncomputed.
+
+**What the remaining extraction needs, and why it stops here.** Writing the
+non-abelian relation words `U_out . O . U_in^-1 . O^-1` turned out to need
+something the report format does not carry: the crossing records serialise their
+parameters as strings, while the arc lookup needs the exact field values, so a
+partial attempt was written, found to compare strings, and **reverted rather than
+committed half-working**. More decisively, extracting `mu-bar(123)` from those
+words needs a **Magnus or nilpotent-quotient step**, which is new machinery and
+therefore a new finite contract; contract-v2 deliberately does not cover it. The
+queue item therefore stays Open with its last closure check unbacked, and this
+line reports the boundary instead of asserting a number it did not compute.
+
+**A third contract now declares the missing step.** The extraction rule needed
+machinery that neither earlier contract covered, so
+[`contract-v3.json`](../../experiments/golden_ratio/contract-v3.json) declares it
+alone: exact field parameters kept in process, truncated Magnus expansions in
+non-commuting variables at degree three, and two validation targets — an
+unlinked control where the number must vanish, and the Borromean configuration
+where version 1's triple intersection is plus one. The identification of the
+extracted number with `mu-bar(123)` is imported, exactly as version 1 imported
+the Seifert-surface identification, and a target that fails to reproduce its
+known value stops the run as `Unknown` rather than yielding a partial invariant.
+Writing the contract is not executing it: no number is computed yet.
+
+**The Magnus core is now implemented and validated on itself.** Truncated
+expansions in non-commuting variables with exact integer coefficients, at degree
+three, reproduce the classical facts the extraction will lean on: the degree-one
+part of a word is its exponent vector, a commutator has no linear part and its
+quadratic part is \`X1 X2 - X2 X1\`, and a triple commutator has nothing below
+degree three while its degree-three part is non-zero. Eight checks, and again
+**no invariant is computed**: the relation words and the extraction rule are
+still open, so the queue item stays Open.
+
+**The relation words are now built, and one of this line's own assertions was
+wrong.** The twelve Wirtinger words \`U_out . O . U_in^-1 . O^-1\` are constructed
+where the exact field parameters are still in scope, with the arc that closes a
+component handled as a wrap-around case rather than a single interval. My first
+check on them asserted that a relator's exponent vector vanishes; that is false
+in general, since the relator \`x = 1\` has exponent vector \`e_x\`. The check is
+now the correct one — each word's exponent vector equals \`+-(e_out - e_in)\`,
+the row already used for the rank-nine abelian matrix — so the words are tied to
+the earlier level instead of to an invented property.
+
+**Handoff: exactly where the extraction stands.** With the relation words built
+and the Magnus algebra validated, the remaining step is to write each component's
+**longitude** from the diagram - walking the component and inserting a meridian
+factor at every crossing, signed by the crossing sign and inverted where the
+component passes over - then expand it at degree three and read \`mu-bar(123)\`
+from its degree-two commutator coefficient, which is where Milnor's invariant
+sits once the pairwise linking numbers vanish. The two validation targets come
+**before** any number is read: the unlink must give zero and the Borromean
+configuration plus or minus one, and a failed target stops the run as \`Unknown\`.
+
+That framing convention needs iterative debugging, and this line's session budget
+ran out before it, so the item keeps its last closure check unbacked. Recording
+the recipe is not executing it.
+
+**The autonomous loop stopped on its own declared condition.** Rounds nine
+and ten added no new executable evidence - the first only wrote the handoff, the
+second nothing at all - and two such rounds in a row are one of the stop
+conditions the loop was given. Rounds one to eight each added executed checks, and
+the chain from the staged resources to the relation words is committed and green.
+What remains is the extraction above, which needs a fresh session because the
+framing convention has to be debugged rather than guessed.
+
+## 12. What this does not claim
 
 That the golden ratio is part of Adva's kernel, surface or API; that a
 historian's, artist's or biologist's reading of the atlas is settled; that the

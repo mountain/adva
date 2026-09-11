@@ -1114,7 +1114,7 @@ def golden_rectangle_checks(run: Run) -> dict:
         "controls": {"translated_copy_meets": True, "nearby_copy_misses": True},
         "linking_numbers": linking,
         "linking_control": {"crossings": count, "signed_sum": signed},
-        "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed",
+        "link_certificate": borromean_checks(run, rectangles),
     }
 
 
@@ -1658,6 +1658,586 @@ def golden_angle_checks(run: Run) -> dict:
     }
 
 
+def penrose_checks(run: Run) -> dict:
+    """The two Penrose prototiles and their inflation, without sine values.
+
+    The rhombus angles are multiples of 36 degrees whose cosines lie in the
+    field while their sines do not, so every statement below uses cosine values,
+    squared diagonal ratios and integer counts. Matching-rule acceptance,
+    aperiodicity and any full-plane tiling are not verified here.
+    """
+    cos36 = PHI / rational(2)
+    cos72 = rational(2) * cos36 * cos36 - ONE
+    run.check("penrose-cos72-closed-form", cos72 == (PHI - ONE) / rational(2))
+    run.check("penrose-cos144-from-cos72", rational(2) * cos72 * cos72 - ONE == -cos36)
+    run.check("penrose-cos36-chebyshev", rational(16) * cos36 ** 5 - rational(20) * cos36 ** 3 + rational(5) * cos36 + ONE == ZERO)
+
+    # A rhombus with acute angle theta and side s has diagonals 2s sin(theta/2)
+    # and 2s cos(theta/2), so the squared diagonal ratio is (1 + cos)/(1 - cos).
+    def diagonal_ratio_squared(cosine: K) -> K:
+        return (ONE + cosine) / (ONE - cosine)
+
+    thick = diagonal_ratio_squared(cos72)
+    thin = diagonal_ratio_squared(cos36)
+    run.check("penrose-thick-diagonal-ratio-squared", ONE < thick)
+    run.check("penrose-thin-diagonal-ratio-squared", ONE < thin)
+    # The atlas warns that the golden rhombus is a different family: its
+    # diagonal ratio is phi, and neither prototile has that property.
+    golden_cosine = PHI / (PHI + rational(2))
+    run.check("golden-rhombus-diagonal-ratio", diagonal_ratio_squared(golden_cosine) == PHI ** 2)
+    run.check("penrose-thick-is-not-the-golden-rhombus", thick != PHI ** 2)
+    run.check("penrose-thin-is-not-the-golden-rhombus", thin != PHI ** 2)
+    run.check("golden-cosine-differs", golden_cosine != cos72 and golden_cosine != cos36)
+
+    # Inflation: thick -> 2 thick + 1 thin, thin -> 1 thick + 1 thin.
+    matrix = ((2, 1), (1, 1))
+    trace = matrix[0][0] + matrix[1][1]
+    determinant = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0]
+    run.check("penrose-inflation-characteristic-polynomial",
+              (trace, determinant) == (3, 1)
+              and PHI ** 4 - rational(trace) * PHI ** 2 + rational(determinant) == ZERO)
+    run.check("penrose-inflation-eigenvalues", PHI ** 2 * PHI ** -2 == ONE
+              and PHI ** 2 + PHI ** -2 == rational(trace))
+    fib = fibonacci(14)
+    counts = (1, 0)
+    totals = [1]
+    for step in range(1, 7):
+        run.tick()
+        counts = (
+            matrix[0][0] * counts[0] + matrix[0][1] * counts[1],
+            matrix[1][0] * counts[0] + matrix[1][1] * counts[1],
+        )
+        totals.append(counts[0] + counts[1])
+        run.check(
+            f"penrose-inflation-counts::{step}",
+            counts == (fib[2 * step + 1], fib[2 * step]),
+        )
+    run.check(
+        "penrose-inflation-total-recurrence",
+        all(
+            totals[step + 1] == 3 * totals[step] - totals[step - 1]
+            for step in range(1, len(totals) - 1)
+        ),
+    )
+    return {
+        "prototiles": {"thick": "72/108", "thin": "36/144"},
+        "inflation_matrix": [[2, 1], [1, 1]],
+        "counts_after_six_steps": list(counts),
+        "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
+        "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling",
+    }
+
+
+def filled_intersection_segment(first: dict, second: dict) -> tuple:
+    """The segment where two filled rectangles meet.
+
+    Both lie in coordinate planes, so their intersection is the overlap of two
+    intervals along the remaining axis, returned as an ordered endpoint pair.
+    """
+    along = 3 - first["fixed"] - second["fixed"]
+    low = max(
+        first["center"][along] - first["extents"][along],
+        second["center"][along] - second["extents"][along],
+    )
+    high = min(
+        first["center"][along] + first["extents"][along],
+        second["center"][along] + second["extents"][along],
+    )
+    if high < low:
+        return None
+    endpoints = []
+    for value in (low, high):
+        coordinates = [ZERO, ZERO, ZERO]
+        coordinates[first["fixed"]] = first["value"]
+        coordinates[second["fixed"]] = second["value"]
+        coordinates[along] = value
+        endpoints.append(tuple(coordinates))
+    return tuple(endpoints)
+
+
+def triple_intersection(first: dict, second: dict, third: dict) -> tuple[int, int]:
+    """Signed crossings of the segment (first and second) with the third disk."""
+    segment = filled_intersection_segment(first, second)
+    if segment is None:
+        return 0, 0
+    plane_axis = third["fixed"]
+    value = third["value"]
+    start, end = segment
+    low, high = start[plane_axis], end[plane_axis]
+    if low == high:
+        return 0, 0
+    parameter = (value - low) / (high - low)
+    if not (ZERO <= parameter <= ONE):
+        return 0, 0
+    point = tuple(
+        coordinate + parameter * (other - coordinate)
+        for coordinate, other in zip(start, end)
+    )
+    inside = True
+    for axis in range(3):
+        if axis == plane_axis:
+            continue
+        offset = point[axis] - third["center"][axis]
+        size = offset if offset.sign() >= 0 else -offset
+        if not size <= third["extents"][axis]:
+            inside = False
+            break
+    if not inside:
+        return 0, 0
+    return (high - low).sign(), 1
+
+
+def borromean_checks(run: Run, rectangles: dict) -> dict:
+    """The triple linking judgement, with its imported theorem named.
+
+    The fills are disks whose boundaries are the three components, and their
+    pairwise linking numbers are zero, so the classical identification of
+    Milnor's invariant with the triple intersection number of Seifert surfaces
+    applies. That theorem is imported, not re-proved here; what is computed is
+    the signed triple intersection itself, in all three cyclic orders.
+    """
+    names = ("z0", "x0", "y0")
+    for name in names:
+        rectangle = rectangles[name]
+        run.check(
+            f"borromean-disk-spans::{name}",
+            {tuple(sorted((start, end))) for start, end in rectangle_segments(rectangle)}
+            == {tuple(sorted((start, end))) for start, end in oriented_boundary(rectangle)},
+        )
+
+    segments = {}
+    for first, second in (("z0", "x0"), ("z0", "y0"), ("x0", "y0")):
+        segment = filled_intersection_segment(rectangles[first], rectangles[second])
+        run.check(f"borromean-pair-segment::{first}::{second}", segment is not None)
+        along = 3 - rectangles[first]["fixed"] - rectangles[second]["fixed"]
+        for endpoint in segment:
+            on_boundary = any(
+                endpoint[axis] - rectangles[board]["center"][axis] == rectangles[board]["extents"][axis]
+                or endpoint[axis] - rectangles[board]["center"][axis] == -rectangles[board]["extents"][axis]
+                for board in (first, second)
+                for axis in range(3)
+                if axis != rectangles[board]["fixed"]
+                and axis != along
+            ) or any(
+                endpoint[axis] == rectangles[board]["value"]
+                for board in (first, second)
+                for axis in range(3)
+                if axis == rectangles[board]["fixed"]
+            )
+            run.check(f"borromean-endpoint-on-a-component::{first}::{second}", on_boundary)
+        segments[f"{first}|{second}"] = segment
+
+    orders = (("z0", "x0", "y0"), ("x0", "y0", "z0"), ("y0", "z0", "x0"))
+    results = {}
+    for first, second, third in orders:
+        run.tick()
+        signed, points = triple_intersection(
+            rectangles[first], rectangles[second], rectangles[third]
+        )
+        run.check(f"borromean-triple-point-count::{first}", points == 1)
+        run.check(f"borromean-triple-unit::{first}", abs(signed) == 1)
+        results[f"{first},{second},{third}"] = {"signed_sum": signed, "points": points}
+    signs = {entry["signed_sum"] for entry in results.values()}
+    run.check("borromean-triple-order-consistent", len(signs) == 1)
+    return {
+        "seifert_surfaces": "the three filled rectangles, boundaries verified against the components",
+        "pairwise_linking_numbers": "zero, computed in the previous round",
+        "triple_intersection": results,
+        "triple_point": "the origin, the single common point of the three disks",
+        "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
+        "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
+        "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
+        "controls": borromean_control_checks(run, rectangles),
+    }
+
+
+def borromean_control_checks(run: Run, rectangles: dict) -> dict:
+    """Controls that make the Borromean judgement falsifiable.
+
+    A positive number means nothing unless the method can also return zero, can
+    return the unit again on a fresh instance, and refuses when its pairwise
+    hypothesis fails.
+    """
+    # Control 1: unlink. The third disk is moved clear, so the segment where the
+    # first two meet misses it entirely and the judgement must be zero.
+    far = dict(rectangles["y0"])
+    far["center"] = (rational(3), ZERO, ZERO)
+    run.check(
+        "borromean-control-unlink-pairwise",
+        all(
+            linking_number(disk, curve)[0] == 0
+            for disk, curve in (
+                (rectangles["z0"], far),
+                (rectangles["x0"], far),
+                (far, rectangles["z0"]),
+            )
+        ),
+    )
+    signed, points = triple_intersection(rectangles["z0"], rectangles["x0"], far)
+    run.check("borromean-control-unlink-triple-zero", points == 0 and signed == 0)
+
+    # Control 2: a fresh instance of the same pattern, scaled by two. The link
+    # type is unchanged, so the judgement must return the unit again.
+    scaled = {
+        name: {
+            "fixed": rectangle["fixed"],
+            "value": rectangle["value"],
+            "center": tuple(coordinate * rational(2) for coordinate in rectangle["center"]),
+            "extents": {
+                axis: extent * rational(2) for axis, extent in rectangle["extents"].items()
+            },
+        }
+        for name, rectangle in rectangles.items()
+    }
+    scaled_signed, scaled_points = triple_intersection(
+        scaled["z0"], scaled["x0"], scaled["y0"]
+    )
+    run.check(
+        "borromean-control-scaled-instance",
+        scaled_points == 1 and abs(scaled_signed) == 1,
+    )
+
+    # Control 3: a configuration whose pairwise linking number does not vanish.
+    # The hypothesis of the imported theorem fails, so the run must not report a
+    # triple judgement for it.
+    threaded = {
+        "fixed": 0,
+        "value": ZERO,
+        "center": (ZERO, rational(Fraction(5, 2)), ZERO),
+        "extents": {1: ONE, 2: rational(2)},
+    }
+    pairwise = [
+        linking_number(disk, curve)[0]
+        for disk, curve in (
+            (rectangles["z0"], threaded),
+            (rectangles["x0"], threaded),
+            (threaded, rectangles["z0"]),
+        )
+    ]
+    run.check(
+        "borromean-control-precondition-fails",
+        any(value != 0 for value in pairwise),
+    )
+    return {
+        "unlink": {"pairwise_zero": True, "triple_points": points, "signed": signed},
+        "scaled_instance": {"triple_points": scaled_points, "signed": scaled_signed},
+        "failing_precondition": {"pairwise_values": pairwise, "judgement": "withheld"},
+    }
+
+
+def projection_basis(direction: tuple) -> tuple:
+    """Two vectors spanning the plane perpendicular to a declared direction."""
+    unit = None
+    for candidate in range(3):
+        if direction[candidate] != ZERO:
+            axis = [ZERO, ZERO, ZERO]
+            axis[candidate] = ONE
+            unit = tuple(axis)
+            break
+    if unit is None:
+        raise Invalid("a projection direction needs a non-zero component")
+    first = vector_cross(direction, unit)
+    if first == (ZERO, ZERO, ZERO):
+        raise Invalid("degenerate projection basis")
+    second = vector_cross(direction, first)
+    return first, second
+
+
+def projected(point: tuple, basis: tuple) -> tuple:
+    return (vector_dot(point, basis[0]), vector_dot(point, basis[1]))
+
+
+def cross_two(first: tuple, second: tuple) -> K:
+    return first[0] * second[1] - first[1] * second[0]
+
+
+def complement_diagram_checks(run: Run, rectangles: dict) -> dict:
+    """A declared regular projection of the three components, exactly.
+
+    Crossings are found by exact orientation signs in the projection plane and
+    the over/under strand by the declared direction's coordinate, so nothing here
+    is read off a rendering. The pairwise signed sums give the linking numbers by
+    the diagram route, independently of the spanning-disk counts of section 4.
+    """
+    direction = (ONE, PHI, PHI ** 2)
+    basis = projection_basis(direction)
+    names = ("z0", "x0", "y0")
+    segments = []
+    for name in names:
+        for start, end in oriented_boundary(rectangles[name]):
+            segments.append((name, projected(start, basis), projected(end, basis), start, end))
+
+    degenerate = []
+    crossings = []
+    raw = []
+    for index, (first_name, first_start, first_end, first_a, first_b) in enumerate(segments):
+        for offset, (second_name, second_start, second_end, second_a, second_b) in enumerate(
+            segments[index + 1:]
+        ):
+            second_index = index + 1 + offset
+            run.tick()
+            denominator = cross_two(
+                (first_end[0] - first_start[0], first_end[1] - first_start[1]),
+                (second_end[0] - second_start[0], second_end[1] - second_start[1]),
+            )
+            if denominator == ZERO:
+                continue
+            first_side = cross_two(
+                (second_start[0] - first_start[0], second_start[1] - first_start[1]),
+                (second_end[0] - second_start[0], second_end[1] - second_start[1]),
+            )
+            second_side = cross_two(
+                (second_start[0] - first_start[0], second_start[1] - first_start[1]),
+                (first_end[0] - first_start[0], first_end[1] - first_start[1]),
+            )
+            first_parameter = first_side / denominator
+            second_parameter = second_side / denominator
+            if not (ZERO < first_parameter < ONE and ZERO < second_parameter < ONE):
+                continue
+            first_point = tuple(
+                coordinate + first_parameter * (other - coordinate)
+                for coordinate, other in zip(first_a, first_b)
+            )
+            second_point = tuple(
+                coordinate + second_parameter * (other - coordinate)
+                for coordinate, other in zip(second_a, second_b)
+            )
+            first_height = vector_dot(first_point, direction)
+            second_height = vector_dot(second_point, direction)
+            if first_height == second_height:
+                degenerate.append((first_name, second_name))
+                continue
+            over_first = ZERO < first_height - second_height
+            under_segment = second_index % 4 if over_first else index % 4
+            direction_first = (first_end[0] - first_start[0], first_end[1] - first_start[1])
+            direction_second = (second_end[0] - second_start[0], second_end[1] - second_start[1])
+            sign = cross_two(
+                direction_first if over_first else direction_second,
+                direction_second if over_first else direction_first,
+            ).sign()
+            raw.append(
+                {
+                    "over": first_name if over_first else second_name,
+                    "under": second_name if over_first else first_name,
+                    "under_segment": (second_index % 4) if over_first else (index % 4),
+                    "under_parameter": second_parameter if over_first else first_parameter,
+                    "over_segment": (index % 4) if over_first else (second_index % 4),
+                    "over_parameter": first_parameter if over_first else second_parameter,
+                }
+            )
+            crossings.append(
+                {
+                    "over": first_name if over_first else second_name,
+                    "under": second_name if over_first else first_name,
+                    "sign": sign,
+                    "under_segment": under_segment,
+                    "under_parameter": (second_parameter if over_first else first_parameter).pair(),
+                    "point": [coordinate.pair() for coordinate in first_point],
+                }
+            )
+    # Wirtinger relation words, built here because the arc lookup needs the exact
+    # field parameters that the serialised crossing records no longer carry.
+    under_positions: dict = {}
+    for index, record in enumerate(raw):
+        under_positions.setdefault(record["under"], []).append(
+            (record["under_segment"], record["under_parameter"], index)
+        )
+    arcs: dict = {}
+    labels: dict = {}
+    for name in names:
+        listed = sorted(under_positions.get(name, []), key=lambda entry: (entry[0], entry[1]))
+        arcs[name] = listed
+        for position, entry in enumerate(listed):
+            labels[entry[2]] = (name, position)
+    ids: dict = {}
+    for name in names:
+        for position in range(len(arcs[name])):
+            ids[(name, position)] = len(ids) + 1
+
+    def arc_at(name: str, segment: int, parameter: K) -> int:
+        listed = arcs[name]
+        here = (segment, parameter)
+        for position in range(len(listed)):
+            start = (listed[position][0], listed[position][1])
+            end = (
+                listed[(position + 1) % len(listed)][0],
+                listed[(position + 1) % len(listed)][1],
+            )
+            # The arc that closes the component wraps past its own end, so the
+            # containment test has two cases rather than one.
+            if start < end:
+                if start < here <= end:
+                    return position
+            elif here > start or here <= end:
+                return position
+        raise Invalid("a crossing did not fall inside an arc of its component")
+
+    relation_words = []
+    for index, record in enumerate(raw):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = ids[(component, (position - 1) % count)]
+        outgoing = ids[(component, position)]
+        over = ids[(record["over"], arc_at(
+            record["over"], record["over_segment"], record["over_parameter"]
+        ))]
+        # U_out . O . U_in^-1 . O^-1
+        stack: list = []
+        for letter in (outgoing, over, -incoming, -over):
+            if stack and stack[-1] == -letter:
+                stack.pop()
+            else:
+                stack.append(letter)
+        relation_words.append(tuple(stack))
+    run.check("complement-relation-word-count", len(relation_words) == len(ids))
+    # A relator's exponent vector need not vanish (the relator x = 1 has e_x), so
+    # the check is consistency with the abelian rows used earlier: each word's
+    # exponent vector is plus or minus (e_out - e_in).
+    def exponent_vector(word: tuple) -> tuple:
+        return tuple(
+            sum(1 if letter == arc else (-1 if letter == -arc else 0) for letter in word)
+            for arc in range(1, len(ids) + 1)
+        )
+
+    consistent = []
+    for index, record in enumerate(raw):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = ids[(component, (position - 1) % count)]
+        outgoing = ids[(component, position)]
+        row = [0] * len(ids)
+        row[outgoing - 1] += 1
+        row[incoming - 1] -= 1
+        vector = exponent_vector(relation_words[index])
+        consistent.append(
+            vector == tuple(row) or vector == tuple(-value for value in row)
+        )
+    run.check("complement-relation-words-agree-with-abelian-rows", all(consistent))
+
+    run.check("complement-diagram-generic", not degenerate)
+    run.check("complement-diagram-crossings", len(crossings) > 0)
+    run.check(
+        "complement-diagram-over-under-decided",
+        all(entry["over"] != entry["under"] for entry in crossings),
+    )
+
+    sums = {}
+    for first, second in (("z0", "x0"), ("z0", "y0"), ("x0", "y0")):
+        pair = {first, second}
+        selected = [entry for entry in crossings if {entry["over"], entry["under"]} == pair]
+        sums[f"{first}|{second}"] = {
+            "crossings": len(selected),
+            "signed_sum": sum(entry["sign"] for entry in selected),
+        }
+    run.check(
+        "complement-diagram-linking-zero",
+        all(entry["signed_sum"] == 0 for entry in sums.values()),
+    )
+    run.check(
+        "complement-diagram-crossing-counts",
+        all(entry["crossings"] >= 2 for entry in sums.values()),
+    )
+    return {
+        "direction": [coordinate.pair() for coordinate in direction],
+        "crossings_total": len(crossings),
+        "per_pair": sums,
+        "crossings": crossings,
+        "relation_words": [list(word) for word in relation_words],
+        "note": (
+            "the halved signed sum is the pairwise linking number by the diagram route, "
+            "whose global sign depends on the declared projection direction"
+        ),
+    }
+
+
+
+
+def complement_presentation_checks(run: Run, diagram: dict) -> dict:
+    """The Wirtinger presentation read off the declared diagram, at its abelian level.
+
+    Each under-crossing splits its component; the pieces are the generators, one
+    per crossing, and each crossing contributes the relation U_out = O U_in O^-1.
+    Abelianised, the over-strand cancels and the crossing contributes e_out -
+    e_in, so the matrix's rank must be c - k for a k-component link: its cokernel
+    is the first homology of the complement. The non-abelian words themselves, the
+    Magnus expansion and mu-bar(123) are not computed here.
+    """
+    crossings = diagram["crossings"]
+    total = len(crossings)
+    components = ("z0", "x0", "y0")
+
+    under = {}
+    for index, crossing in enumerate(crossings):
+        under.setdefault(crossing["under"], []).append(
+            (crossing["under_segment"], crossing["under_parameter"], index)
+        )
+
+    arcs: dict = {}
+    labels = {}
+    for component in components:
+        listed = sorted(under.get(component, []), key=lambda entry: (entry[0], entry[1]))
+        arcs[component] = listed
+        for position, entry in enumerate(listed):
+            labels[entry[2]] = (component, position)
+    run.check("complement-presentation-one-arc-per-crossing", len(labels) == total)
+    run.check(
+        "complement-presentation-arcs-per-component",
+        sum(len(arcs[component]) for component in components) == total,
+    )
+
+    # relation rows: e_out - e_in, indexed by global arc id
+    arc_ids = {}
+    for component in components:
+        for position in range(len(arcs[component])):
+            arc_ids[(component, position)] = len(arc_ids)
+    rows = []
+    for index, crossing in enumerate(crossings):
+        component, position = labels[index]
+        count = len(arcs[component])
+        incoming = (component, (position - 1) % count)
+        outgoing = (component, position)
+        row = [0] * len(arc_ids)
+        row[arc_ids[outgoing]] += 1
+        row[arc_ids[incoming]] -= 1
+        rows.append(row)
+
+    # exact rational rank by elimination
+    matrix = [[Fraction(value) for value in row] for row in rows]
+    rank = 0
+    for column in range(len(arc_ids)):
+        pivot = None
+        for row in range(rank, len(matrix)):
+            if matrix[row][column] != 0:
+                pivot = row
+                break
+        if pivot is None:
+            continue
+        matrix[rank], matrix[pivot] = matrix[pivot], matrix[rank]
+        lead = matrix[rank][column]
+        matrix[rank] = [value / lead for value in matrix[rank]]
+        for row in range(len(matrix)):
+            if row != rank and matrix[row][column] != 0:
+                factor = matrix[row][column]
+                matrix[row] = [
+                    value - factor * pivot_value
+                    for value, pivot_value in zip(matrix[row], matrix[rank])
+                ]
+        rank += 1
+    run.check("complement-presentation-relations", rank == total - len(components))
+    return {
+        "generators": len(arc_ids),
+        "relations": len(rows),
+        "rank_of_abelianised_relations": rank,
+        "expected_rank": total - len(components),
+        "cokernel": "Z^3, the first homology of a three-component complement",
+        "not_computed": [
+            "the non-abelian relation words themselves",
+            "the Magnus expansion and mu-bar(123)",
+        ],
+    }
+
+
+
 def hyperbolic_checks(run: Run) -> dict:
     closeness = (PHI ** 2 + PHI ** -2) / rational(2)
     run.check("cosh-two-log-phi", closeness == rational(Fraction(3, 2)))
@@ -2113,6 +2693,13 @@ def main() -> int:
         report["golden_triangle"] = golden_triangle_checks(run)
         report["dodecahedron"] = dodecahedron_checks(run)
         report["golden_angle"] = golden_angle_checks(run)
+        report["penrose"] = penrose_checks(run)
+        report["complement_diagram"] = complement_diagram_checks(run, {
+            "z0": {"fixed": 2, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {0: ONE, 1: PHI}},
+            "x0": {"fixed": 0, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {1: ONE, 2: PHI}},
+            "y0": {"fixed": 1, "value": ZERO, "center": (ZERO, ZERO, ZERO), "extents": {2: ONE, 0: PHI}},
+        })
+        report["complement_presentation"] = complement_presentation_checks(run, report["complement_diagram"])
         report["hyperbolic"] = hyperbolic_checks(run)
         report["substitution"] = substitution_checks(run)
         report["search"] = search_checks(run)

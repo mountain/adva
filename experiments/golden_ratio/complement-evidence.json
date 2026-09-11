@@ -1,0 +1,95 @@
+{
+  "schema": "adva.golden-ratio-complement-core.research",
+  "version": 0,
+  "status": "Passed",
+  "reason": null,
+  "scope": "free-group machinery only; no link invariant is computed",
+  "authority": {
+    "authority": "external-exact-algebra-only",
+    "native_admission": "not-granted",
+    "invariant_computed": false
+  },
+  "budget": {
+    "max_seconds": 30.0,
+    "max_checks": 5000,
+    "max_nodes": 100000,
+    "max_generators": 3,
+    "max_weight": 4,
+    "max_output_file_bytes": 1048576
+  },
+  "contract": {
+    "path": "experiments/golden_ratio/contract-v2.json",
+    "sha256": "d2213f02e150843c45f555a9bb548f454204885af4aad1e389f3759e8fa0c246",
+    "question": "Can Milnor's invariant mu-bar(123) be recomputed from a complement-side presentation of the three components by a route independent of the triple intersection number of Seifert surfaces?"
+  },
+  "hall_witt": {
+    "verified_shape": "[[y^-1, x], z]^y . [[z^-1, y], x]^z . [[x^-1, z], y]^x with b w b^-1",
+    "trivial_in_free_group": true,
+    "trivial_in_s3": true,
+    "textbook_shape_is_not_this_identity": true,
+    "how_found": "exhaustive search over forty-eight candidates under this file's commutator convention"
+  },
+  "basic_commutator_ranks": {
+    "2": {
+      "computed_counts": [
+        2,
+        1,
+        2,
+        3
+      ],
+      "witt_predicted": [
+        2,
+        1,
+        2,
+        3
+      ],
+      "agrees": true
+    },
+    "3": {
+      "computed_counts": [
+        3,
+        3,
+        8,
+        18
+      ],
+      "witt_predicted": [
+        3,
+        3,
+        8,
+        18
+      ],
+      "agrees": true
+    }
+  },
+  "remaining_open": [
+    "the presentation input: no link diagram or Wirtinger presentation is supplied yet",
+    "the truncated Magnus expansion and the extraction rule for mu-bar(123)"
+  ],
+  "not_computed": [
+    "the presentation input: no link diagram or Wirtinger presentation is supplied yet",
+    "the truncated Magnus expansion and the extraction rule for mu-bar(123)",
+    "any comparison with the triple intersection number of the version one witness"
+  ],
+  "cost": {
+    "wall_seconds_before_serialization": 0.0023033330217003822,
+    "checks": 15,
+    "nodes": 510
+  },
+  "check_names": [
+    "contract-version-two",
+    "commutator-is-not-trivial",
+    "commutator-inverse-swaps",
+    "reduction-cancels-inverses",
+    "commutator-alternates",
+    "commutator-expands-over-product",
+    "left-normed-expansion",
+    "commutator-antisymmetric",
+    "hall-witt-free-group-identity",
+    "hall-witt-textbook-shape-fails",
+    "hall-witt-trivial-in-s3",
+    "witt-counts",
+    "witt-two-generators",
+    "witt-three-generators",
+    "status-passed"
+  ]
+}

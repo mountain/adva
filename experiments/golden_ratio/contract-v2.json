@@ -1,0 +1,58 @@
+{
+  "schema": "adva.research.golden-ratio-complement-contract",
+  "version": 2,
+  "base_commit": "f76adda",
+  "library_base_commit": "fda5476",
+  "date": "2026-09-10",
+  "supersedes_scope": {
+    "path": "experiments/golden_ratio/contract-v1.json",
+    "note": "Version 1 covers the resource, field, geometry and receipt work and its borrowed theorem. This contract covers a different question and does not widen version 1; the triple-intersection judgement under the imported theorem stays exactly as version 1 records it."
+  },
+  "question": "Can Milnor's invariant mu-bar(123) be recomputed from a complement-side presentation of the three components by a route independent of the triple intersection number of Seifert surfaces?",
+  "level": "External exact algebra on finitely presented groups; no native Adva, Rust or Lisp operation",
+  "why_a_new_contract": "A complement-side route needs machinery this line does not carry: a declared diagram or presentation input, free-group words with a truncated Magnus expansion, and an extraction rule for the invariant. Adding that machinery silently inside version 1 would widen a frozen scope.",
+  "objects": [
+    "free group on n generators with words as signed generator sequences and exact reduction",
+    "commutators, conjugation and the Hall basic commutators with their weight and order",
+    "the lower central series quotients gamma_w / gamma_{w+1} and the Witt rank counts",
+    "a declared link presentation (not yet supplied) and its meridians",
+    "the truncated Magnus expansion and the extraction of mu-bar(123) from the relation words"
+  ],
+  "types": {
+    "words": "tuples of non-zero integers; sign is the inverse; reduction cancels adjacent inverse pairs",
+    "coefficients": "exact integers; no rational or floating arithmetic is used",
+    "presentations": "generators with relator words; abelianisation is computed exactly as a Smith-style rank, not by heuristics",
+    "native_identity": "none"
+  },
+  "quantifiers": [
+    "All basic commutators of weight at most four on two and on three generators",
+    "The Hall-Witt identity as a word identity, tested under both conjugation conventions and required to hold in exactly one",
+    "No search over presentations, no random words, no unbounded rewriting"
+  ],
+  "assumptions": [
+    "Hall's basis and Witt's formula are classical and are imported; the run checks the counts they predict but does not re-prove them",
+    "The identification of pairwise linking numbers with the abelianisation of the link group is imported",
+    "The triple-intersection route of version 1 is the only executed judgement of the Borromean configuration so far"
+  ],
+  "protected": [
+    "The version 1 witness, the frozen contract and its amendment history keep their bytes",
+    "No status in the queue is closed by this contract",
+    "The plates, the captured PDF and the plotting script stay outside this line"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_seconds": 30,
+    "max_checks": 5000,
+    "max_nodes": 100000,
+    "max_generators": 3,
+    "max_weight": 4,
+    "max_output_file_bytes": 1048576
+  },
+  "acceptance": [
+    "Word reduction, inversion and commutator algebra are implemented with exact integer words and pass the Hall-Witt identity under exactly one declared conjugation convention.",
+    "The Hall basic commutators reproduce Witt's rank counts for two and three generators up to weight four: 2/1/2/3 and 3/3/8/18.",
+    "The run reports that mu-bar(123) itself is not computed, and the presentation input, the Magnus expansion and the extraction rule stay open."
+  ],
+  "unknown": "Any bound, or a missing presentation input, stops the run as Unknown; no partial invariant is reported",
+  "replay": "python3 -S experiments/golden_ratio/complement.py --output target/complement-fresh.json (the output path must not exist)"
+}
