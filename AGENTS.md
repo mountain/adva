@@ -183,3 +183,22 @@ Record actual contributions, checks and limits; do not imply guarantees or
 transfer responsibility merely through account use. Follow the mutual
 fallibility clarification in the linked document. This attribution rule
 does not expand operational authorization.
+
+## Integration practice
+
+Mingli Yuan's instruction, 2026-09-11:
+
+> 直接合并主线，以后如果不是工程特别需要，请直接合并主线
+
+So finished work is committed on `main` and pushed there, rather than being
+parked on a side branch for a later merge. A branch is used only when the
+engineering itself requires one: an isolated build or CI job, a change that has
+to run detached from `main`, work that is not finished, or a line the project
+has explicitly agreed to keep separate until it is accepted.
+
+This changes where integration happens, not what an agent may do to published
+history. The restraint in the attribution section still holds: no force-push,
+no rewriting of published commits, no credential changes, and no push of a
+change whose checks have not run. A direct `main` push is still a fast-forward
+or a reviewed merge, and the checks for the change are reported with it,
+including the ones that could not run on the current host.
