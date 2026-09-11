@@ -1,0 +1,53 @@
+{
+  "attempt_limit": 3,
+  "attempts_used": 2,
+  "base_commit": "cb5f62d6a0c468c47b0c8dd46ce0424d52256890",
+  "commands": [
+    "timeout 8s python -B -S experiments/borromean_surface_audit/check.py --output experiments/borromean_surface_audit/attempt-01.json",
+    "timeout 8s python -B -S experiments/borromean_surface_audit/check.py --compare experiments/borromean_surface_audit/attempt-01.json --output experiments/borromean_surface_audit/replay-01.json"
+  ],
+  "correction_attempts_used": 0,
+  "date": "2026-09-11",
+  "failures": [],
+  "remaining": "Complement/longitude extraction remains Open; no native or library admission; separate reflexive-lattice budget discrepancy is not repaired by this scoped experiment.",
+  "research_authoring_network_visual_and_git_costs": "Unmeasured and excluded; no speedup claim",
+  "runs": [
+    {
+      "bytes": 165826,
+      "cost": {
+        "assertions": 597,
+        "before_serialization_seconds": 0.0958487050011172,
+        "exclusions": "Includes fixture construction, validation and JSON round trips in process measurements; research, coding, network, visual interpretation and git integration are unmeasured and excluded from performance claims.",
+        "judgments": 44,
+        "peak_rss_kib": 25368,
+        "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+        "work_units": 27725
+      },
+      "exit_code": 0,
+      "file": "attempt-01.json",
+      "sha256": "7f716433b1b9b222bcfce43404a490e908b7f0f3ae998f5406131120c6bb3073",
+      "status": "Passed",
+      "total_process_seconds_including_report_publication": 0.10341937599878293
+    },
+    {
+      "bytes": 165899,
+      "cost": {
+        "assertions": 598,
+        "before_serialization_seconds": 0.10344256899770699,
+        "exclusions": "Includes fixture construction, validation and JSON round trips in process measurements; research, coding, network, visual interpretation and git integration are unmeasured and excluded from performance claims.",
+        "judgments": 44,
+        "peak_rss_kib": 25388,
+        "platform": "Linux-6.18.35-x86_64-with-glibc2.39",
+        "work_units": 27726
+      },
+      "exit_code": 0,
+      "file": "replay-01.json",
+      "sha256": "4f2080d1bf08410af4a768dcfaa2af52fe5dc9257a0806fa993e8f013f0b079b",
+      "status": "Passed",
+      "total_process_seconds_including_report_publication": 0.11075267699925462
+    }
+  ],
+  "schema": "adva.external.borromean-surface-execution.v0",
+  "successful_fresh_replays": 1,
+  "total_measured_process_seconds": 0.21417205299803754
+}
