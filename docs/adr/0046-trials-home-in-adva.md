@@ -64,6 +64,61 @@ receive no identity by arriving.
   They should record this decision, and the number assigned to it, on the next
   pass with access to that repository.
 
+## Update 2026-09-11: the retirement ran
+
+The retiring repository moved to `~/AEG/_retired/adva-aeg-20260911/` and a stub
+now stands at `/Users/mingli/Adva/AEG` holding `README.md` and one `trials`
+symlink to this repository's tree. No trial byte was edited.
+
+- Pre-flight: the backup was current at `dc639c6`, with nothing unpushed and a
+  clean tree.
+- Live check: `trials/receipt-ledger/ledger_check.py`, run through its hardcoded
+  root `/Users/mingli/Adva/AEG`, reported `LedgerConsistent` before the move and
+  produced byte-identical output after it — through the symlink, into this
+  repository's copy. This repository's working tree stayed at zero changes, so
+  the checker's regenerated report matched the migrated bytes.
+- The 17 hardcoded root constants need no edit. The only non-`trials` subpath
+  they mention, `ROOT/adva-library`, pointed at a path that did not exist before
+  the move either.
+- Integrity: the retired copy is at `dc639c6`, 56 commits and 9,922 objects, and
+  equals its private remote.
+
+### The coupling the move exposed
+
+`adva-library/vendor/zksnake-py/.git` pointed into **another repository's**
+worktree metadata:
+
+    gitdir: /Users/mingli/Adva/AEG/vendor/zksnake/.git/worktrees/zksnake-py
+
+and that metadata's own back-pointer named the AEG copy, not the library path.
+The vendor mirror had been made by copying a checkout that belonged to the AEG
+side. Moving AEG therefore broke `git status` in adva and in the library
+(exit 128, `fatal: not a git repository: ...`), which is why this is recorded as
+a coupling rather than as a side effect of the move.
+
+The pointer was removed and both of its versions are preserved as evidence in
+this record; the entry at `adva-library/vendor/zksnake-py` is now
+**uninitialized plain files**, unlike its three siblings, which are initialized
+checkouts. All five repositories read clean again and nothing depends on the
+retired copy.
+
+Two errors of mine belong in the record as well. The first "no uncommitted work"
+reading came from a `git status` that was failing partway, and was replaced by a
+submodule-independent check (`diff-index` clean, no untracked files, no stash),
+which is what the claim now rests on. A first attempt to re-register that
+worktree inside the library wrote the wrong content into the admin `gitdir`
+file, which produced a distorted readout of 27 deletions and 10 untracked
+entries; the reliable figure comes from `git diff --stat` against the recorded
+gitlink, run from the library: about 20 files and 3,807 lines differ from
+`fc9a81b`.
+
+**Open.** The vendor entry is left uninitialized rather than reconciled, because
+reconciling changes content. The options are to leave it as it now is, to
+re-register it inside the library's own `zksnake` and accept the visible dirty
+state until the content is reconciled, or to reconcile the content with
+`fc9a81b`. The library's own plan already lists regularizing the vendor mirrors
+as separate work.
+
 ## Verification
 
 - Byte identity: `git ls-tree -r main trials` in AEG versus
