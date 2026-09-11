@@ -1,0 +1,65 @@
+{
+  "schema": "adva.external.triadic-period-bridge-contract.v0",
+  "date": "2026-09-11",
+  "base_commit": "8930407e7502ef58c62dd6a82a7517a897cd60fb",
+  "question": "Which implications in Research 0168 fail, and can quotient descent, role cycling and a genuine interval period-three witness be checked separately?",
+  "level": "External exact finite maps and one polynomial certificate; no native semantics or catalog growth.",
+  "corrected_source": {
+    "path": "docs/research/0168-triadic-cycle-and-continuation-discipline.md",
+    "historical_sha256": "b29d26991d56f69b0463b68e0782c25bd7ff18e07e8bfe6ebebd0942f88ecb69",
+    "binding": "Historical bytes are identified by base_commit; the live note is corrected and is not executable input."
+  },
+  "imported_assumptions": [
+    "Li and Yorke, Period Three Implies Chaos (1975), Theorem 1, https://www.its.caltech.edu/~matilde/LiYorke.pdf: a continuous self-map of a real interval with b=F(a), c=F^2(a), d=F^3(a) and d<=a<b<c (or reversed inequalities) has points of every least period and the stated uncountable set. The theorem is not reproved or executed.",
+    "Elementary real ordered-field rules: a polynomial is continuous; powers of a nonnegative real are nonnegative; a polynomial with nonnegative coefficients and positive constant is positive on [0,1]. These justify the symbolic zero exclusion, not a finite sample extrapolation.",
+    "For a surjective map q on finite sets, g with qF=gq exists iff qF is constant on every q-fibre. Sufficiency is checked by constructing g and checking every state; failure retains a conflicting pair. No native quotient authorization follows."
+  ],
+  "interface": "Finite state ordinals denote only experiment-local set elements. A phase label, a full-cycle return map, an observed quotient and an interval map remain different objects. No mapping from Adva identities to these examples is claimed.",
+  "fixtures": {
+    "square_map": "f(x)=x^2 on [-1,1]. Check polynomial composition f^3=x^8 and factor f^3-x=x(x-1)(1+x+...+x^6). Nonnegative factor certificate excludes roots in (0,1); for x<0, x^8-x>0. Roots 0,1 are fixed. Collision -1/2,1/2 witnesses non-injectivity.",
+    "tent_map": "T(x)=2x on [0,1/2], 2-2x on [1/2,1]. Check continuity at the join, endpoint self-map bounds, orbit 2/7 -> 4/7 -> 6/7 -> 2/7, distinctness and the printed Li-Yorke inequality. Only this fixed analytic template supplies the interval hypothesis.",
+    "role_cycle": "Six tagged states (phase,value), phase in {0,1,2}, value in {0,1}. S increments phase. Its exact period is 3, its phase-zero return S^3 is identity, and forgetting phase yields identity. FiniteSet is not RealInterval.",
+    "quotients": [
+      {"name":"descent-fails","F":[0,2,2,3],"q":[0,0,1,1],"expected":"RefusedDescent"},
+      {"name":"descent-noninjective-no-three","F":[2,3,2,3],"q":[0,0,1,1],"expected":"Descends","g":[1,1],"periods":[1]},
+      {"name":"descent-two-cycle","F":[2,3,0,1],"q":[0,0,1,1],"expected":"Descends","g":[1,0],"periods":[2]},
+      {"name":"descent-finite-three-cycle","F":[2,3,4,5,0,1],"q":[0,0,1,1,2,2],"expected":"Descends","g":[1,2,0],"periods":[3]}
+    ],
+    "history_lift": "Base F(0)=F(1)=0. Enumerate its valid histories of lengths 1..5; append the next value, check projection commutation and prefix recovery for every image. Retain a singleton with no predecessor under append. Injectivity on these histories is distinct from surjectivity on all nonempty histories.",
+    "controls": "Identity has F^3(x)=x but no least-period-three point; a fixed tent point fails strict orbit inequalities; role-tag and finite-quotient cycles are explicitly refused as interval-theorem witnesses; one perturbed polynomial factor fails the coefficient identity."
+  },
+  "acceptance": "All declared identities and exact finite state tables agree; rejected implications retain explicit counterexamples; the tent example passes only its imported-hypothesis boundary; JSON roundtrip and one fresh process reproduce all mathematical witnesses.",
+  "protected": [
+    "No stable Rust, source/occurrence identities, library gitlink or catalog change",
+    "Historical 0167 contract, source and evidence remain unchanged",
+    "No entropy computation, general chaos classifier, bijective history completion or Adva three-machine theorem",
+    "No discarded observation identifies native histories; Pascal geometry obligation remains Open",
+    "Old incorrect wording remains recoverable at the pinned commit and is explicitly identified in the correction record"
+  ],
+  "budget": {
+    "max_children": 2,
+    "max_corrections": 0,
+    "max_fresh_replays": 1,
+    "child_cpu_soft_seconds": 3,
+    "child_cpu_hard_seconds": 4,
+    "child_alarm_seconds": 4,
+    "child_outer_seconds": 5,
+    "supervisor_cpu_soft_seconds": 5,
+    "supervisor_cpu_hard_seconds": 6,
+    "supervisor_alarm_seconds": 12,
+    "session_outer_seconds": 14,
+    "aggregate_cpu_hard_seconds": 14,
+    "address_space_bytes_per_process": 268435456,
+    "max_work_units_per_child": 20000,
+    "max_assertions_per_child": 2000,
+    "max_states": 6,
+    "max_history_length": 5,
+    "max_polynomial_degree": 8,
+    "max_artifact_bytes": 262144,
+    "max_session_artifact_bytes": 1048576
+  },
+  "enforcement": "One session invocation reserves an exclusive ledger before launching at most two fresh children. Mandatory Linux RLIMIT_AS/CPU/FSIZE, alarms and subprocess timeouts; enclosing timeout 14s includes supervisor checkpointing. Shared child counters cover arithmetic, finite tables, controls and JSON replay. Stop on first failed or unknown child; no correction or automatic restart. Preserve failed reports when possible and forced-kill state in the ledger.",
+  "exit": "Passed, Failed, or UnknownResource. A successful finite check is not an unrestricted theorem. A later continuation needs a separately frozen contract.",
+  "cost_scope": "Includes both children, serialization and measured supervisor checkpoints. Research, writing, network and git integration are excluded; no speed claim.",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy. Authorization and trust are not correctness guarantees."
+}
