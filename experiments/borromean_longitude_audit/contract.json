@@ -1,0 +1,86 @@
+{
+  "schema": "adva.external.borromean-longitude-contract.v0",
+  "date": "2026-09-11",
+  "base_commit": "dbfea1b521caf45f737569f760132827f1849b55",
+  "question": "Do independently extracted preferred longitudes give the same signed integer triple invariant as the preceding complete surface calculation, including its concentric-square counterexample?",
+  "level": "External finite exact mathematics. Neither a native import nor catalog growth.",
+  "inputs": {
+    "path": "experiments/borromean_surface_audit/attempt-01.json",
+    "sha256": "7f716433b1b9b222bcfce43404a490e908b7f0f3ae998f5406131120c6bb3073",
+    "selection": "All 18 VerifiedForScope cases, in recorded order; all four refused/unknown cases as controls. Predictions are read only by the comparison harness after each independent calculation.",
+    "translation": "Rectangle coordinates and explicit orientation become four ordered vertices. The diagram and longitude functions receive only polygons and a projection direction, never filled surfaces, surface events, boundary words, m, t or a predicted mu."
+  },
+  "shared_arithmetic": {
+    "path": "experiments/borromean_surface_audit/check.py",
+    "sha256": "8f83d0135950f1bf026d037fcd3e757539f19a617ee14696e6950efba778667a",
+    "scope": "Reuse only Q for exact a+b sqrt(5) arithmetic, with its work counter connected to this run. No surface audit function is called. This is algorithmic independence of topology, not independence of arithmetic, inputs, host or theorem trust."
+  },
+  "imported_mathematics": [
+    {
+      "source": "Mellor and Melvin, A geometric interpretation of Milnor's triple linking numbers, AGT 3 (2003), section 1, pp. 557-558",
+      "url": "https://arxiv.org/pdf/math/0110001",
+      "rule": "For an ordered oriented link with all pairwise linking numbers zero, the coefficient X_i X_j in the preferred longitude of component k modulo the third lower central subgroup is the integer mu_ijk. Arc meridians may be replaced by conjugates of component meridians with abelianized conjugating words at this degree."
+    },
+    {
+      "source": "Audoux, Meilhan and Yasuhara, Milnor-type invariants for surface-links and cut-diagrams, arXiv:2109.14578, sections 1.3, 2.2 and 2.5",
+      "url": "https://arxiv.org/pdf/2109.14578",
+      "rule": "The one-dimensional diagram records signed undercrossings labelled by the overpassing arc. With a^b=b^-1 a b, successive arc meridians are prefix conjugates. The signed undercrossing word, normalized by self-writhe, gives the preferred longitude; Chen substitution supplies the nilpotent representative."
+    }
+  ],
+  "conventions": {
+    "ambient_orientation": "(+e_x,+e_y,+e_z)",
+    "projection_directions": [[7,11,19],[13,5,23]],
+    "view": "d points towards the viewer. e1=d cross e_x; e2=d cross e1. Project by dot products with e1,e2; greater dot(p,d) is over.",
+    "crossing_sign": "epsilon=sign(dot(cross(t_over,t_under),d)); checked against the oriented 2D projected determinant",
+    "relation": "a_out=b^(-epsilon) a_in b^(epsilon)",
+    "longitude": "Product b^(epsilon) at undercrossings in component traversal order. Admitted projected components are embedded convex rectangles, hence have no self-crossings and zero self-writhe; no framing correction is needed within this profile.",
+    "arc_substitution": "For arc a on component i, let V be the signed prefix up to a with each over-arc replaced by its component meridian. Use V^-1 m_i V; an additional truncated Chen iteration must agree through degree two.",
+    "side_conditions": "Exactly three oriented embedded rectangular polygons, distinct boundary points at every 3D crossing, regular diagrams with transverse interior double crossings only, no projected component collapse, vertex contacts, overlapping projected edges or triple crossings. Pairwise linking must vanish. PL corners can be rounded away from all crossing events."
+  },
+  "checks": [
+    "Both fixed directions must be regular on all 18 positive cases; no adaptive projection search",
+    "All signed crossings, over/under locations, cyclic arc labels, relations, longitude words and component-meridian representative words retained",
+    "Ordered undercrossing sums agree with half of the total crossing-sign sums for each pair and vanish",
+    "All Wirtinger relations hold through Magnus degree two, including each closing relation",
+    "One additional Chen iteration preserves each arc's degree-two series",
+    "All three cyclic longitude coefficients agree; all linear and diagonal degree-two coefficients vanish and off-diagonal coefficients are antisymmetric",
+    "Truncated-series multiplication agrees with independent signed ordered-pair counting on the explicit representative words",
+    "Rotate all polygon starting vertices once and reconstruct arc prefixes and longitudes; integer invariants must agree",
+    "Compare each computed mu with the pinned surface result only after calculation",
+    "Retain four inherited controls and an extra edge-on projection refusal",
+    "One optional fresh process replay compares the complete mathematical records"
+  ],
+  "protected": [
+    "Historical files, queue, surface evidence and gitlinks stay byte identical",
+    "No use of raw triple count as a proxy for the complete invariant",
+    "No ambient-isotopy classification from unit mu or arbitrary unlink classification from zero mu",
+    "Pascal-rooted geometry obligation and general complement-verifier scope stay Open",
+    "No native Seal, free, semantic identity, new word, physical interpretation or repository visibility change"
+  ],
+  "budget": {
+    "max_process_attempts": 3,
+    "max_correction_attempts": 1,
+    "max_successful_fresh_replays": 1,
+    "per_attempt_outer_seconds": 26,
+    "per_attempt_alarm_seconds": 25,
+    "per_attempt_cpu_soft_seconds": 20,
+    "per_attempt_cpu_hard_seconds": 21,
+    "mathematical_phase_seconds": 20,
+    "total_outer_seconds": 78,
+    "total_cpu_hard_seconds": 63,
+    "address_space_bytes": 268435456,
+    "max_diagrams": 80,
+    "max_longitude_computations": 74,
+    "max_crossings_per_diagram": 48,
+    "max_word_letters": 8192,
+    "max_assertions": 20000,
+    "max_work_units": 5000000,
+    "input_coefficient_bits": 128,
+    "max_input_bytes": 524288,
+    "max_report_bytes": 4194304,
+    "enforcement": "Linux RLIMIT_AS and RLIMIT_CPU before input arithmetic, SIGALRM and outer timeout; shared per-process counters include geometry, algebra, checks and report preparation; exclusive capped report publication. A separate exclusive three-slot session ledger includes every correction and replay. Limits never reset automatically."
+  },
+  "exit": "Passed, Failed, Refused, or UnknownResource. Preserve the first failure and source bytes before any correction. A forced kill with no report remains recorded in the session ledger. One implementation correction may preserve this contract, but no acceptance condition or convention may be tuned to the expected answer.",
+  "accounting": "Process measurements include input conversion, diagrams, algebra, controls and publication. Research, coding, network and integration are outside these measurements; no performance claim is made.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's GitHub account as an authorized proxy; authorization is not endorsement, review or a correctness guarantee."
+}

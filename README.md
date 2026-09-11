@@ -33,8 +33,11 @@ With declared orientations the exact surface formula gives `(m,t,mu)=(0,1,-1)`.
 A concentric-square control gives `(1,1,0)`, showing why the raw triple-point
 count alone is insufficient. The finite checker, source binding, image-reading
 record and replay are retained separately from the unchanged historical runs.
-This is external mathematics using Mellor--Melvin's theorem; the independent
-complement/longitude route and native geometry admission remain open.
+The [independent longitude audit](docs/research/borromean-independent-longitudes.md)
+now reproduces both values from signed link diagrams in two fixed projections,
+including orientation, order and basepoint controls and a fresh process replay.
+This is external finite mathematics using imported theorems; general complement
+verification and native geometry admission remain open.
 
 ## Initial executable slice
 
