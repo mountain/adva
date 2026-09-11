@@ -456,10 +456,12 @@
       "evidence": "VerifiedForScope",
       "applicability": "AffectedInScope",
       "priority": "P2",
-      "affected": "36 of the 37 resource.setrlimit(RLIMIT_AS, ...) call sites under experiments/ are unguarded by static inspection, and on Darwin that call raises ValueError: current limit exceeds maximum limit, so a bounded replay exits before any mathematics runs. Measured on this host on 2026-09-11: experiments/lattice_polar/calibration.py, experiments/cube_root_polar/replay.py, experiments/evidence_stutter/calibration.py and experiments/alternating_observer/replay.py all stop at that line; experiments/golden_ratio/calibration.py guards the call and completes. Two further probes were undecided because those scripts require explicit CLI arguments (pairing_transport, representation_residual). Linux CI and the retained Linux-produced evidence are unaffected.",
+      "affected": "36 of the 37 resource.setrlimit(RLIMIT_AS, ...) call sites under experiments/ are unguarded by static inspection, and on Darwin that call raises ValueError: current limit exceeds maximum limit, so a bounded replay exits before any mathematics runs. Measured on this host on 2026-09-11: experiments/lattice_polar/calibration.py, experiments/cube_root_polar/replay.py, experiments/evidence_stutter/calibration.py and experiments/alternating_observer/replay.py all stop at that line; experiments/golden_ratio/calibration.py guards the call and completes. Two further probes were undecided because those scripts require explicit CLI arguments (pairing_transport, representation_residual). The same day, with a freshly built abi3 extension, the full Python suite gave 2394 passed, 10 failed and 1 skipped, and all ten failures sit in tests/python/test_phase_runner.py with the uniform message ProtocolFailure: Exception occurred in preexec_fn. The phase runner already intends to refuse when the limits are missing - supported = os.name == 'posix' and resource is not None and hasattr(resource, 'RLIMIT_AS'), returning RequiredProcessLimitsUnavailable - but that predicate is true on Darwin, where getrlimit(RLIMIT_AS) reports (inf, inf) and every finite value is refused, so the intended refusal is bypassed and the launch dies inside preexec_fn instead. Four sites install the limit as preexec_fn without the guard that python/adva/quine_relay.py already carries: python/adva/adva.py:102, python/adva/operator_receipt.py:98, python/adva/verifier_search.py:40 and experiments/phase_runner/run_six.py:145. This host is outside the declared target: CI runs on ubuntu only, docs/BOOTSTRAP_RUNTIME_V0.md names Linux x86_64, README.md says the pinned source build is Linux, and the tests carry no platform guards. Linux CI and the retained Linux-produced evidence are unaffected.",
       "fixed": null,
-      "next_action": "Wrap each declared limit in a handler that records not-installed: <error> instead of aborting, derive the platform string and the ru_maxrss unit from the running host instead of transcribing a Linux reading, and state in each contract that a non-Linux replay installs fewer limits. experiments/reflexive_lattice_gate/calibration.py is the worked example: it reports address_space_bytes as not-installed: ValueError on Darwin and passes.",
+      "next_action": "First decide whether a non-Linux host is in scope at all, because the repository declares Linux x86_64 and verifier_search.py states that Linux resource limits are required: on a non-target host the smallest correct change is to make the refusal predicate dynamic - attempt the limit once and return RequiredProcessLimitsUnavailable when the platform refuses it - rather than to relax the declared bound. If a non-Linux host is wanted, apply the guard python/adva/quine_relay.py already carries to the four sites above, and wrap every declared limit so it records not-installed: <error> instead of aborting. experiments/reflexive_lattice_gate/calibration.py is the worked example for that second shape: it reports address_space_bytes as not-installed: ValueError on Darwin and passes. A local experiment applied the four guards, saw the intended effect, and reverted them uncommitted, because silently relaxing a declared bound on a non-target host is a scope decision rather than a portability fix.",
       "remaining": [
+        "the decision whether a non-Linux host is in scope for the repository at all",
+        "a dynamic limit-installation probe replacing the static supported predicate",
         "a full sweep of all 37 call sites on a non-Linux host",
         "whether an evidence artifact's platform string should be re-derived rather than transcribed",
         "whether CI should run one bounded replay on macOS"
@@ -471,6 +473,12 @@
         "experiments/evidence_stutter/calibration.py",
         "experiments/golden_ratio/calibration.py",
         "experiments/reflexive_lattice_gate/calibration.py",
+        "python/adva/adva.py",
+        "python/adva/operator_receipt.py",
+        "python/adva/verifier_search.py",
+        "python/adva/quine_relay.py",
+        "experiments/phase_runner/run_six.py",
+        "tests/python/test_phase_runner.py",
         "docs/research/reflexive-lattice-gate.md"
       ],
       "classification": "portability_gap_not_numerical_defect",
@@ -479,6 +487,12 @@
         {
           "date": "2026-09-11",
           "event": "Local Darwin reproduction during a bounded replay attempt, plus a static call-site inventory",
+          "evidence": "VerifiedForScope",
+          "applicability": "AffectedInScope"
+        },
+        {
+          "date": "2026-09-11",
+          "event": "Full suite run with a freshly built abi3 extension; ten failures root-caused to RLIMIT_AS inside preexec_fn and to the static supported predicate; four candidate guards applied and reverted uncommitted",
           "evidence": "VerifiedForScope",
           "applicability": "AffectedInScope"
         }
