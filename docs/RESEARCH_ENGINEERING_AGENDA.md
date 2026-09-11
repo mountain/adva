@@ -281,6 +281,18 @@ It supplies a positive 2D lattice example and a counterexample to equating
 conjugation with polarity; native binding remains outstanding. This does not
 extend the old 3D profile or repair the centered TO24 obstruction.
 
+A third Track B checkpoint (2026-09-11),
+[the lattice gate](research/reflexive-lattice-gate.md), turns the fixed TO24
+obstruction into an iff criterion: a compatible lattice pair exists exactly
+when every primal-polar vertex pairing is an integer, so the question is
+decided without a lattice search and the minimal witness is the lattice the
+vertices generate. Five positive fixtures in two and three dimensions and
+three failing TO24 rows are executed with six refusal controls and one
+retained correction replay. The obstruction reads as the facet-normal
+denominators 2 and 3, hence as a scale-invariant ratio. No new terminology,
+stable API or catalog descendant follows; the checked-diagram/frame binding
+remains the open obligation.
+
 ## 3. Track C: learning intrinsic world structure
 
 ### 3.1 Problem statement
