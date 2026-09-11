@@ -1,0 +1,44 @@
+{
+  "schema": "adva.research.integer-power-absurdity-contract.v0",
+  "base_commit": "5901512",
+  "question": "The conjecture records that (i - e)^(i - e) is exactly an integer. Complex powers are multi-valued, so the conjecture is one statement per branch. Decide what can be decided: is any branch refuted, and what exactly would the surviving branches require?",
+  "level": "Exact rational interval arithmetic at a declared precision, with e and pi derived from their series rather than quoted as decimals. No floating-point value enters any acceptance test, no transcendence result is assumed, and nothing here is a claim about a galaxy, a metric or the stable API",
+  "domain": "The single complex number i - e, its logarithm on every branch, and the branch values of its own power",
+  "imported_assumptions": [
+    "The exponential, logarithm and arctangent series with their standard remainder bounds, evaluated as exact rationals",
+    "pi is obtained from Machin's formula pi = 16 atan(1/5) - 4 atan(1/239), not quoted",
+    "e is obtained from the exponential series at 1, not quoted",
+    "The principal branch of the logarithm has argument in (-pi, pi]; every other branch differs by 2 pi i k for an integer k",
+    "Complex powers are read as z^w = exp(w log z) with the branch declared, which is the only reading under which the conjecture is a statement rather than a symbol"
+  ],
+  "quantifiers": [
+    "The principal branch and every branch with index k from minus six to six",
+    "Both conditions of integrality on each branch: the modulus condition and the phase condition",
+    "Every declared precision level in the enclosure ladder"
+  ],
+  "acceptance": [
+    "The enclosures of e and pi are derived from their series and are verified to contain the classical constants",
+    "The principal value's modulus is proved strictly below 1, and strictly below one tenth, by an enclosure that does not depend on the conjecture",
+    "The closed-form modulus exp(-e A - B) agrees with the modulus computed independently from the real and imaginary parts of the principal value",
+    "The elementary proof is also recorded: the real part of i - e is negative and the argument is positive, so both terms of Re((i - e) log(i - e)) are negative",
+    "On every branch with index k >= 0 the modulus only shrinks, so no such branch can be an integer",
+    "On each branch with index k < 0 the modulus is above one, so integrality is decided by whether the modulus enclosure contains an integer, and a branch whose enclosure is wider than one unit at its own magnitude is reported as undecided rather than decided",
+    "The nearest multiple of pi and the nearest integer are reported as distances, so a near miss is visible as a distance rather than as a verdict",
+    "Every branch left undecided is reported as Unknown with the reason, and no branch is reported as decided by a numerical approximation alone"
+  ],
+  "protected": [
+    "The conjecture is the user's and is recorded as a conjecture, not as a claim",
+    "No claim that the conjecture is false in full: only the principal branch and the non-negative branches are refuted",
+    "No use of Schanuel's conjecture, the four exponentials conjecture, or any transcendence theorem as if it were established here",
+    "No statement about whether e^e, pi^e or pi^pi are transcendental; those are cited as background and not decided",
+    "No native Rust witness, no library admission, no Seal"
+  ],
+  "objects": {
+    "precision_digits": 40,
+    "series_terms": 80,
+    "branch_range": [-6, 6],
+    "enclosure_ladder": [20, 40, 60]
+  },
+  "budget": {"wall_seconds": 300, "cpu_seconds": 280, "memory_bytes": 536870912, "max_assertions": 2000000, "output_bytes": 8388608},
+  "residual": "Every branch from minus six to six is refuted, and the two halves are refuted for different reasons: a non-negative branch has modulus below one, and a negative branch has a modulus whose enclosure is narrower than one unit at its own magnitude and contains no integer. The general statement over all branches is not decided. Its phase condition reduces to the identity (A - e B)/pi = j + 2 k e for integers j and k, an exact relation between e, pi and a logarithm of e that no theorem available here supplies and that Schanuel-type statements would forbid; the modulus condition reduces to a specific transcendental number being an integer. Both are reported as undecided for that stated reason rather than as false. Two precision limits are recorded: the enclosure grid is 10^-45 absolute, so at a magnitude near 10^14 a branch could still be undecided if the grid were coarser, and the published-digit cross-check is an agreement at the published precision, not a containment. Nothing here decides the transcendence of any combination of e and pi."
+}
