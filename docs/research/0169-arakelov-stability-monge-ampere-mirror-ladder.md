@@ -152,10 +152,14 @@ as objects will manufacture a forgetting that does not exist.
    is unique, and is computed exactly; its graded quotient slopes strictly
    decrease, and its slope weight is conserved exactly. This is the finite,
    checkable form of the HNS rung.
-2. **The backward direction loses the parameter and recovers the object.** What
-   the graded data forgets is **not the object but which member of the chamber one
-   was in**. The residual retained by the experiment is therefore the chamber
-   partition and its walls, not a lost object.
+2. **Inside the injective model the backward direction loses only the
+   parameter.** What the graded data forgets is **which member of the chamber one
+   was in**, and the residual is the chamber partition and its walls.
+   **Correction, 2026-09-11:** the object half of this claim does **not** survive
+   dropping injectivity, and section 7 reports the test that refutes it. The
+   original wording stands in the commit `c67c33b`; section 7 gives the corrected
+   scope. The correction is the point rather than an erratum, because section 6
+   named this test in advance.
 3. **That asymmetry is the shape of the ladder.** A combinatorial stability rung
    is lossless toward the object and lossy toward the parameter. So the ladder's
    seams are not about recovering objects from shadows; they are about **which
@@ -186,7 +190,7 @@ as objects will manufacture a forgetting that does not exist.
 - No native Rust witness, no claim beyond the bounded entry registered for this
   experiment, no library admission and no Seal.
 
-## 6. Next minimum step, and why it is sharp
+## 6. The next minimum step that was named in advance, and then taken
 
 The model's one structural simplification is injectivity. For a non-injective A2
 representation the isomorphism class is `(dim V1, dim V2, rank of the arrow)` —
@@ -197,8 +201,93 @@ live.** Stating and testing that is the sharpest next experiment this plan
 produces: it is finite, exact, and it decides whether the asymmetry of section 4
 is a property of stability theory or an artifact of the injective model.
 
+**This was tested, and the answer is that the asymmetry is an artefact of the
+injective model.** Section 7 reports it.
+
 Two further steps follow it: refine the parameter sweep to locate the walls
 exactly rather than between adjacent grid points, and ask whether the chamber data
 can be fed to the reflexive-lattice criterion at R2 — which is seam S1 and the
 only place where this ladder could connect the stability rung to the mirror rung
 with a checkable statement rather than an analogy.
+
+## 7. The injective-model claim, tested and refuted
+
+Section 6 said the object direction might stop being injective exactly when the
+arrow may fold, and that this would decide whether the asymmetry of section 4 is a
+property of stability theory or an artefact of the injective model. Mingli Yuan
+stated the answer as a claim on 2026-09-11: **it is an artefact of the injective
+model.** The claim was tested rather than accepted, and it holds.
+
+### The model, widened
+
+`experiments/hns_object_forgetting/` drops injectivity. The isomorphism class is
+now the triple `(dim V1, dim V2, rank of the arrow)`, one canonical representative
+per class, over `F_2` and `F_3` with total dimension at most four, the same eleven
+parameters, and every subspace pair `(U1, U2)` with `phi(U1) subset U2`. Forward and
+backward are the same as before, with one addition: each graded piece now carries
+its own rank, so two keys can be compared — dimension pairs with slopes, and
+dimension pairs with slopes plus the rank of the piece.
+
+### Result
+
+38 objects, 429 filtrations, 13,200 assertions, 0.6 seconds.
+
+| Key | Distinct shadows per field | Colliding shadows | Most classes on one shadow |
+|---|---:|---:|---:|
+| dimension pairs and slopes | 130 | **72** | 3 |
+| plus the rank of the piece | 137 | **60** | 3 |
+
+**The refuting witness, and it is the simplest one available.** Over `F_2` at the
+degenerate parameter `theta = (1,1)`, the two classes `(1,1,0)` and `(1,1,1)` share
+one shadow, `[[[1,1], 1]]`. The first is the zero arrow and the second is an
+isomorphism. Both are semistable there, so both filtrations are trivial and the
+shadow is the object's dimension vector with its slope. In the injective model the
+rank was pinned to `dim V1`, which is exactly why the same key was injective there.
+
+**And recording the rank does not repair it.** The rank-including key raises the
+number of distinct shadows from 130 to 137 and lowers collisions from 72 to 60, but
+60 remain, still with up to three classes on one shadow. The surviving witness is
+the same pair at `theta = (0,1)`, shadow `[[[0,1], 1, 0], [[1,0], 0, 0]]`: there the
+filtration itself splits off `(0, V2)` of slope 1 and leaves `(V1, 0)`, whose arrow
+is zero for both objects. So the loss is not an omitted coordinate that a better key
+would supply — **the filtration annihilates the rank difference**, and no per-piece
+bookkeeping recovers it.
+
+**The earlier result is recovered where it should be.** Restricting to `r = dim V1`
+reproduces the section-3 chamber structure, including the two-parameter chamber
+`{(1,0), (2,-1)}`, so the new model contains the old one rather than replacing it.
+
+### What this changes
+
+Section 4's second conclusion is now scoped. The correct statement is:
+
+- the **parameter** direction is many-to-one in both models, and that asymmetry is
+  not an artefact;
+- the **object** direction is injective only while the arrow is injective, and in
+  general the graded data forgets the **rank**, in the strong sense that the
+  filtration destroys it rather than merely omitting it.
+
+So the finite stability rung of section 2 is lossy in **both** directions once
+injectivity is dropped. That is the honest shape of R1, and it is a better result
+than the one section 4 first reported: the run produced a counterexample to its own
+author's earlier conclusion, which is what section 6 was for.
+
+### One further error, of the same family, recorded
+
+The first version of this widened model compared a key that I described as the
+quotient rank but computed as the rank of `E / F_i`, which is zero for the last
+piece of every object — so it agreed across the very pair it was meant to separate,
+and the experiment briefly reported no separation at all. The key is now the rank of
+the graded piece `F_i / F_{i-1}` itself, computed from `phi(U1_i)` and the previous
+accumulated subobject. Two errors in two rounds, and both were a quantity that was
+not the one its name said: the first counted embeddings as objects, the second
+counted a different quotient's rank. Each was caught by comparison against an
+expectation the model could not satisfy, which is the only reason they are visible.
+
+### What section 7 does not establish
+
+- No characteristic-zero statement. The counterexamples live over `F_2` at declared
+  parameters inside a finite range.
+- Nothing about whether the forgotten rank corresponds to an extension class in a
+  richer category. That is the natural question this raises, and it is not answered.
+- No metric, Arakelov, Monge–Ampère or mirror content, exactly as in section 5.

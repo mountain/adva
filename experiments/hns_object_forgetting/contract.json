@@ -1,0 +1,102 @@
+{
+  "schema": "adva.research.hns-object-forgetting-contract.v0",
+  "base_commit": "c67c33bac7bbf243659ba62e80be664592b41f7d",
+  "question": "In the finite stability model, is the injectivity of the object direction a property of stability theory or an artefact of the injective A2 model? Dropping injectivity, do two non-isomorphic objects share one graded data?",
+  "level": "External exact finite linear algebra over F_p plus exact rational slopes; no stable semantic operation, no native admission, no Arakelov, metric or mirror construction",
+  "domain": "All finite-dimensional A2 = (1 -> 2) representations over F_2 and F_3 with dimension pair of total at most four, one canonical representative per isomorphism class (dim V1, dim V2, rank of the arrow), exact rational slopes",
+  "objects": {
+    "fields": [
+      2,
+      3
+    ],
+    "max_total_dim": 4,
+    "max_ambient_dim": 3,
+    "theta_sweep": [
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        3,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        -1,
+        2
+      ],
+      [
+        -2,
+        1
+      ],
+      [
+        -3,
+        1
+      ]
+    ],
+    "degenerate_theta": [
+      [
+        1,
+        1
+      ]
+    ],
+    "keys": [
+      "dims_and_slopes",
+      "dims_slopes_and_piece_rank"
+    ],
+    "max_subobject_pairs": 40000,
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every isomorphism class (d1, d2, r) with 0 <= r <= min(d1, d2) and 1 <= d1 + d2 <= max_total_dim, in both declared fields",
+    "Every subspace pair (U1, U2) with phi(U1) subset U2, over every subspace of each finite space",
+    "Every stability parameter in the declared sweep, for every object"
+  ],
+  "acceptance": [
+    "The graded data records two keys: dimension pairs with slopes, and dimension pairs with slopes plus the rank of the piece itself",
+    "A collision under the first key is either exhibited with two distinct isomorphism classes and a parameter, or recorded as an exhaustive negative over the declared range",
+    "The rank-including key is tested on the same instances, so the loser is identified rather than described",
+    "The injective subfamily r = d1 reproduces the earlier experiment: object direction injective, parameter direction a chamber of more than one parameter",
+    "Successive quotient slopes are strictly decreasing as exact rationals at every instance",
+    "The rank-weighted slope identity sum_i (dim_i/dim E) mu_i == mu(E) holds exactly",
+    "The piece rank is the rank of the graded piece F_i / F_(i-1), computed from phi(U1_i) and the previous accumulated subobject, and never from the dimension vector"
+  ],
+  "protected": [
+    "The earlier contract experiments/hns_stability_chamber_roundtrip/contract.json is frozen and is not rewritten by this investigation",
+    "No claim that this finite model is the Harder-Narasimhan theory of vector bundles, Higgs bundles or arithmetic surfaces",
+    "No Arakelov, Green's function, Monge-Ampere, mirror symmetry or Calabi-Yau construction is introduced",
+    "F_p exactness is not rational exactness; the declared range is finite and no extrapolation is claimed",
+    "No native Rust witness, no library admission, no Seal"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 280,
+    "memory_bytes": 536870912,
+    "max_assertions": 2000000,
+    "output_bytes": 8388608
+  },
+  "residual": "This decides one question inside a finite model: whether a graded shadow separates isomorphism classes once the arrow may fail to be injective. It decides nothing about characteristic zero, about sheaves, about arithmetic bases, or about metric existence. If a collision is found, what it shows is that the graded data loses the rank, which in the injective model was pinned to the dimension vector; whether that loss corresponds to an extension datum in a richer category is not tested here."
+}
