@@ -1,0 +1,45 @@
+{
+  "schema": "adva.research.hns-extension-residual-contract.v0",
+  "base_commit": "b15380423d2d84c901e824c26c53e19cd933e022",
+  "question": "Is the information the graded shadow destroys an extension datum rather than a coordinate that better per-piece bookkeeping could record? Test it by using the strongest possible piece-level key: each graded piece recorded by its full isomorphism type, not only its dimension pair and slope.",
+  "level": "External exact finite linear algebra over F_p plus exact rational slopes; Ext computed for the declared small family; no stable semantic operation, no native admission, no Arakelov, metric or mirror construction",
+  "domain": "A2-quiver representations over F_2 and F_3 with total dimension at most four, isomorphism classes (dim V1, dim V2, rank), exact rational slopes, and the declared finite parameter sweep",
+  "objects": {
+    "fields": [2, 3],
+    "max_total_dim": 4,
+    "max_ambient_dim": 3,
+    "theta_sweep": [[-3, 1], [-2, 1], [-1, 1], [-1, 2], [0, 1], [1, -1], [1, 0], [1, 1], [2, -1], [2, 1], [3, -1]],
+    "ext_family_max_dim": 2,
+    "max_exponent": 8,
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every isomorphism class of total dimension at most four in both declared fields",
+    "Every graded piece of every filtration, recorded by its full isomorphism type (multiplicities of the three indecomposables)",
+    "Every collision under the strongest piece-level key, and every ordered pair of consecutive pieces in it, for the Ext computation"
+  ],
+  "acceptance": [
+    "The strongest piece-level key records, per graded piece, its dimension pair, its slope and its full isomorphism type",
+    "A collision under that strongest key is exhibited with two non-isomorphic objects, or recorded as an exhaustive negative over the declared range",
+    "For an exhibited collision the graded pieces agree as objects, so no per-piece key can separate the objects",
+    "Ext^1 between the relevant indecomposable pieces is computed exactly and is non-zero, so a non-split extension exists",
+    "The two colliding objects are identified with the split and the non-split extension of the same pieces",
+    "Every isomorphism class of a fixed dimension vector has the same slope, so the slope coordinate alone carries no decomposition information",
+    "The strongest piece-level key reproduces the previous experiment's key exactly: the same number of distinct shadows per field and the same number of colliding shadows, verified at run time against the sibling evidence pinned by sha256",
+    "Every collision is the whole set of isomorphism classes with one dimension vector, and its size is min(d1, d2) + 1, the number of possible gluing ranks"
+  ],
+  "protected": [
+    "The two earlier contracts are frozen and are not rewritten by this investigation",
+    "No claim that this finite hereditary model is the extension theory of coherent sheaves on a surface or of Higgs bundles",
+    "No Arakelov, Green's function, Monge-Ampere, mirror symmetry or Calabi-Yau construction is introduced",
+    "F_p exactness is not rational exactness; A2 is hereditary and of finite representation type, and neither property is claimed to carry over",
+    "No native Rust witness, no library admission, no Seal"
+  ],
+  "budget": {"wall_seconds": 300, "cpu_seconds": 280, "memory_bytes": 536870912, "max_assertions": 2000000, "output_bytes": 8388608},
+  "cross_experiment": {
+    "path": "experiments/hns_object_forgetting/evidence.json",
+    "sha256": "09280cf0cd5e3bdd17b32200f0d7121d1bbe31a8eafec6a4f4b85912fd59d550",
+    "note": "This experiment reimplements the strongest piece-level key independently. The number of distinct shadows per field and the number of colliding shadows must equal the earlier run's, which used the same key on the same classes and the same parameter sweep. A mismatch means one of the two keys is not what it claims to be, and the comparison is checked at run time against this pinned digest."
+  },
+  "residual": "This decides one question inside a finite hereditary model of finite representation type: whether the graded shadow's loss is extension data. Because A2 has exactly three indecomposables, this model cannot test the higher and non-hereditary cases where Ext^2 and non-split extensions of length greater than two matter. If the collision survives the strongest piece-level key, the correct conclusion is that piece-level bookkeeping cannot repair the shadow, and the residual is the extension class; whether that class is computable in a richer category is not tested here."
+}

@@ -289,5 +289,112 @@ expectation the model could not satisfy, which is the only reason they are visib
 - No characteristic-zero statement. The counterexamples live over `F_2` at declared
   parameters inside a finite range.
 - Nothing about whether the forgotten rank corresponds to an extension class in a
-  richer category. That is the natural question this raises, and it is not answered.
+  richer category. That is the natural question this raises, and it is not answered
+  here. Section 8 takes it up, and answers it in the finite model.
+
+## 8. Is the forgotten object an extension class, or a coordinate?
+
+The question section 7 leaves is precise: the rank that the filtration destroys might
+be a **coordinate** that better per-piece bookkeeping would record, or it might be
+**extension data** that no per-piece key can carry. The two have different
+consequences, and one experiment separates them.
+
+**The key used in section 7 was already the strongest piece-level key that exists.**
+For an `A2` representation the isomorphism class of an object is the triple
+`(dim V1, dim V2, rank of the arrow)`. Section 7's key recorded, for each graded
+piece, its dimension pair and its own arrow rank — and that is exactly the piece's
+complete isomorphism type, not a partial shadow of it. So the 60 surviving collisions
+were never going to be repaired by recording more about the pieces, because there was
+nothing more about the pieces to record. This is a statement about the key, and it is
+the first thing the new experiment checks: the same key, recomputed independently,
+finds the same 137 distinct shadows per field and the same 60 colliding shadows,
+verified at run time against the sibling evidence pinned by digest (`09280cf0…`). A
+disagreement there would have meant one of the two keys was not what it claimed to be.
+
+**The witness, and it is stronger than a shared shadow.** Over `F_2` at
+`theta = (0,1)` the classes `(1,1,0)` and `(1,1,1)` have graded pieces
+
+```
+(1,1,0):  [(0,1) slope 1 rank 0]  then  [(1,0) slope 0 rank 0]
+(1,1,1):  [(0,1) slope 1 rank 0]  then  [(1,0) slope 0 rank 0]
+```
+
+which are the same two objects in the same order, namely `S2` followed by `S1`. The
+rank-0 object is `S1 ⊕ S2` and the rank-1 object is the one whose arrow is an
+isomorphism. They are not isomorphic. **So the pieces agree as objects and the objects
+still differ** — which is what makes this extension data rather than a forgotten
+coordinate: no function of the pieces can separate two objects whose pieces are
+identical.
+
+**And the difference is a named element of `Ext^1`.** The new experiment computes
+`Ext^1` two independent ways and checks that they agree on all nine ordered pairs of
+indecomposables over both fields:
+
+- by brute force, enumerating isomorphism classes of middle terms of
+  `0 → N → E → M → 0`, which is what `Ext^1` classifies and which assumes no formula;
+- by the hereditary Euler form, `dim Ext^1(M,N) = dim Hom(M,N) − <dim M, dim N>`, with
+  `dim Hom` itself obtained by enumerating every commuting pair of linear maps.
+
+Exactly one pair has non-zero `Ext^1`, and it is the one the witness needs:
+
+| quotient `M` | subobject `N` | `dim Hom` | Euler pairing | `dim Ext^1` | middle terms |
+|---|---|---:|---:|---:|---|
+| `S1` | `S2` | 0 | −1 | **1** | `(1,1,0)`, `(1,1,1)` |
+| `S2` | `S1` | 0 | 0 | 0 | `(1,1,0)` only |
+
+So the non-split extension exists only in the direction of the `A2` arrow, the two
+middle terms of `Ext^1(S1, S2)` are exactly the two objects of the witness, and
+`(1,1,0)` and `(1,1,1)` are the split and the non-split extension of the same pieces.
+The reversed ordering has `Ext^1 = 0` and only the split middle term, which the same
+run checks. **The thing the graded shadow forgets is the extension class, and in this
+model it can be computed rather than merely named.**
+
+**Two further checks on why the shadow is structurally blind.** First, every
+isomorphism class with a fixed dimension vector has the same slope, since the slope is
+a function of the dimension vector alone; the run verifies this for every pair in the
+range. A quantity that is constant on all the classes a collision lumps together
+cannot detect their difference, whatever else it is combined with. Second, every
+collision found is the *whole* isomorphism-class set of a single dimension vector, and
+its size is `min(d1,d2) + 1` — exactly the number of possible gluing ranks, that is, of
+choosing how many `S1–S2` pairs are glued into `P1`. At the semistable parameter
+`(1,1)` the filtration is trivial and the single piece is the object itself, so the
+weakest key hides all `min(d1,d2)+1` classes while the strongest key separates them
+again; the run checks both sides of that.
+
+**The residual of `R1` therefore has a name.** Section 3 called the `R2 → R3` seam `S1`
+and could only say that chamber data stops short of the metric rung. What this round
+adds is a definite statement about the backward map at `R1`: its residual is the
+extension class, it is not piece-level data, and the reason section 6's aspiration —
+refine the parameter sweep until the shadow becomes injective — is unsatisfiable is
+that the collision is not a resolution problem. This is the precise finite form of the
+project's own line that a shadow is not the word it came from.
+
+**An error in this round, recorded.** The first run of the new experiment declared a
+seven-parameter sweep where the previous experiment used eleven, and reported 36
+collisions against the sibling's 60. The mismatch became visible only because the
+sibling's own counts were re-derived: its "137 distinct shadows" was more than the 19
+classes times 7 parameters I had assumed, which is impossible and therefore meant the
+sweep, not the key, was wrong. With the sweep matched, the two runs agree exactly on
+both counts. The wrong reading is recorded rather than quietly replaced because it is
+the third error of this series found by comparing a number against an expectation the
+model could not satisfy.
+
+### What section 8 does not establish
+
+- `A2` is hereditary and of finite representation type, with exactly three
+  indecomposables. So `Ext^2 = 0` here, every extension is assembled from
+  one-dimensional `Ext^1` between simples, and "one non-split class up to isomorphism"
+  is a consequence of a one-dimensional `Ext^1` over a finite field rather than a
+  general fact. A coherent-sheaf or Higgs category has non-hereditary, higher, and
+  longer-extension phenomena that this model cannot reach.
+- The counts are finite-field counts. Over `C` the middle terms of a non-split
+  extension are not a finite set, and `min(d1,d2)+1` has no characteristic-zero
+  counterpart in this form.
+- `Ext^1` is verified by enumeration only for the nine ordered pairs of
+  indecomposables with dimensions at most `(2,2)`, over `F_2` and `F_3`. The Euler-form
+  route agrees there; that agreement is a check on this model, not a derivation of the
+  Euler-form identity.
+- Nothing about whether the residual admits a *canonical* representative, or whether
+  an extension class is the right invariant in a category whose pieces themselves
+  deform. That is now the next question rather than this one.
 - No metric, Arakelov, Monge–Ampère or mirror content, exactly as in section 5.
