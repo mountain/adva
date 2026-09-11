@@ -1,0 +1,14 @@
+{
+  "schema": "aeg.scale-marked-surface.contract.research",
+  "version": 0,
+  "profile": "surface-working-language-calibration",
+  "antecedent": "docs/research/0043-scale-marked-surface-exploration.md (remote main 260b99b)",
+  "question": "Do the three cyclic scale-marked expressions M0/M1/M2 over Q(i) satisfy exact recoverability, refuse epsilon zero, and carry the declared input-use ledger?",
+  "bounds": {"read_only": true, "samples": 20, "max_denominator": 1000, "pure_python": true},
+  "controls": [
+    "epsilon zero must be refused",
+    "a tampered output coordinate must fail recovery",
+    "the special case (2*z0+z1) without scale is the 0164 byte-formula body (proposed mapping, not equivalence)"
+  ],
+  "no_claims": ["outside the math catalog", "no native authorization", "no three-hole manifold identification"]
+}

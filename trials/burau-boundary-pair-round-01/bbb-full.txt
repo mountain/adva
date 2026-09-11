@@ -1,0 +1,1243 @@
+The Burau representation is faithful for n = 4
+Vasudha Bharathram
+
+Joan S. Birman
+
+Tara E. Brendle
+
+arXiv:2607.05283v1 [math.GT] 6 Jul 2026
+
+July 7, 2026
+Abstract
+In this paper we use ideas introduced earlier by Moody [Moo91], Long [Lon86], Long–Paton [LP93]
+and Bigelow [Big99] to prove the theorem of the title, that the Burau representation of the classical braid
+group B4 is faithful. An immediate corollary is that the Jones representation of B4 is also faithful.
+
+1
+
+Introduction
+
+Let Dn be a disk with n marked points p1 , p2 , . . . , pn in its interior. The braid group Bn will be interpreted
+in this paper as the mapping class group Mod(Dn ). In 1935 Werner Burau introduced a representation of
+Bn into GLn−1 (Z[t, t−1 ]), now known as the reduced Burau representation [Bur35]. We will work mainly
+with the unreduced Burau representation ρn : Bn → GLn (Z[t, t−1 ]), and henceforth we refer to ρn simply as
+the Burau representation.
+Magnus–Peluso first established the faithfulness of the Burau representation for n = 3 by a direct algebraic
+calculation [MP69]. Moody later proved that ρn is not faithful for n ≥ 9 [Moo91]. Long–Paton built on
+Moody’s ideas to improve this to n ≥ 6 [LP93], and Bigelow later added the case n = 5 [Big99].
+In the years following Bigelow’s paper there have been many attempts to detect elements in the kernel of the
+remaining case ρ4 , or to narrow the search for such, each of which contributed to our understanding of this
+question as viewed through the lens of various areas of mathematics; see for example Alperin–Farb–Noskov
+[AFN02], Beridze–Traczyk [BT18a, BT18b], Calvez–Ito [CI17], Datta [Dat22], Dlugie [Dlu24], Fullarton–
+Shadrach [FS19], Gibson–Williamson–Yacobi [GWY25], and Witzel–Zaremsky [WZ15]. The question of
+faithfulness for ρ4 also appears as Question 3.1 in Margalit’s problem list for mapping class groups [Mar19].
+Main Theorem. The Burau representation ρ4 of B4 is faithful.
+As a first step to proving this result, we will give a new and simple topological proof of the faithfulness of
+the Burau representation in the case n = 3. We will then adapt these ideas to the case of n = 4 by exploiting
+the structure of point-pushing maps in B4 .
+This approach is in contrast to earlier work on Bn for n ≥ 5 and attempts to prove that the Burau representation ρ4 is not faithful. In particular, we do not consider elements in the image of ρ4 that potentially
+generate a free group. We refer the reader to the second author’s book [Bir74, Theorem 3.19], where this
+approach was first introduced. In addition to the papers mentioned above, see also Bigelow [Big99, Section
+3] and Moran [Mor91] for details of other approaches.
+Application to the Jones representation. In his seminal work, Jones introduced a representation of
+the braid group that contains the (reduced) Burau representation as a summand; for a full definition we
+refer the reader to his paper [Jon87]. As Jones points out, the faithfulness of Burau representation ρn for
+1
+
+any n implies the faithfulness of the Jones representation of the braid group Bn . Therefore we immediately
+obtain the following corollary of our Main Theorem.
+Corollary 1.1. The Jones representation of Bn is faithful for n = 4.
+We also refer the reader to Kasahara’s subsequent work on the Jones representation, in particular to his
+explanation of the equivalence between the faithfulness of the Burau representation and the Jones representation in the case n = 4 [Kas08, Remark 5.6].
+Strategy of proof. Let Ki denote the point-pushing subgroup of Bn obtained as the kernel of the Birman
+exact sequence for the disk Dn by “forgetting” the ith marked point in the disk Dn ; see Section 5 for more
+details. The intersection ∩ni=1 Ki of all point-pushing subgroups in Bn is known as the Brunnian group Brunn ,
+and it is a normal subgroup of Bn . A theorem of Long states that the Burau represention ρn is faithful on
+Bn if it is faithful on any nontrivial noncentral normal subgroup of Bn [Lon86, Theorem 2.2]. Suppose now
+that ker(ρ4 ) were nontrivial. By Long’s theorem, ker(ρ4 ) intersects Brun4 nontrivially.
+Proposition 1.2. If the Burau representation ρ4 is faithful on its restriction to the Brunnian group Brun4 ,
+then it is faithful on B4 .
+Building on ideas of Long–Paton and Bigelow, we associate to each braid in Bn a sequence of disks in Dn
+that carry certain combinatorial data. We use this technology to give a new proof of Magnus–Peluso’s
+theorem that the Burau representation ρ3 is faithful [MP69]. Our proof yields the more general result that
+any n-strand braid whose associated disk sequence satisfies a certain parity condition, defined in Section 4,
+does not lie in the kernel of ρn .
+Braids in Bn do not in general satisfy this parity condition when n ≥ 4. However, we show that when n = 4,
+the parity condition “almost” holds for any point-pushing braid Φ ∈ K4 that admits a factorization as a
+proper product of certain push-maps. The next step is to “correct” Φ by embedding K4 in B5 , that is, we
+use Φ to construct a 5-braid satisfying the parity condition. We then apply a result of Moody to conclude
+that the original braid Φ ∈ K4 does not lie in the kernel of ρ4 . The final step is to show that any braid in
+K4 is conjugate to another braid in K4 that can be realized as a proper product of push-maps.
+Finally, we remark that, a priori, it is not necessarily clear that Brunn is nontrivial. The simplest example
+of a Brunnian braid is a three-strand braid that closes to form the Borromean rings. Figure 1.1 gives
+an example of a nontrivial element of Brun4 , the case of interest to us, and a similar construction yields
+nontrivial examples of Brunnian braids in Bn for any n. Moreover, Whittlesey has shown that all nontrivial
+Brunnian braids are pseudo-Anosov [Whi00]. We note that Whittlesey’s results are stated for the mapping
+class group of the (n + 1)-punctured sphere, but the result holds in Bn ; see Lee-Song’s discussion of this
+point [LS05, Section 1].
+
+Figure 1.1: A Brunnian 4-braid β.
+
+Kernel and image of Burau. There is a great deal of literature on the faithfulness of the Burau representation, and this paper settles that question in the final outstanding case. The questions of giving both a
+useful characterization of its kernel and of its image remain wide open in general, and the authors believe
+that the methods of this paper may be useful in achieving progress on these important questions.
+2
+
+Outline of the paper. In Section 2, we introduce the Moody polynomial of a braid, an invariant that
+provides an obstruction for an element to lie in the kernel of the Burau representation. Building on Moody’s
+ideas and their development by Long–Paton, Bigelow later introduced combinatorial tools that are useful
+for computing the obstruction; we describe these in Section 3. Using these tools, in Section 4, we give our
+new topological proof of faithfulness of the Burau representation in the case n = 3. We introduce our key
+technical tool, proper products of point-pushing braids, in Section 5. In Section 6 we construct point-pushing
+maps arising as particular proper products, and use these to establish that the Burau representation ρ4 is
+faithful on its restriction to the point-pushing group Brun4 ; by Proposition 1.2, this completes the proof of
+the Main Theorem. Finally, we give an example illustrating the constructions used in our proof in Section 7.
+Acknowledgements. The authors heartily thank Dan Margalit for many helpful discussions and are
+especially grateful for his extensive and valuable feedback on initial drafts of this paper. The second author
+would also like to thank him for his interest in this project from its inception seven years ago, when the first
+two authors had begun to work on it together. The authors also thank Michael Dougherty and Benson Farb
+for additional helpful comments on an early draft and Ken Birman for further helpful remarks. The first
+author thanks David Gabai for his invaluable mentorship and constant encouragement. The third author
+is also grateful to the Institute for Computational and Experimental Research in Mathematics (ICERM) at
+Brown University, where in 2022 she was a participant in the semester-long program “Braids”, during which
+initial discussions that led to her joining this project took place, and to Muffy Calder for her support and
+encouragement throughout. AI was used to proofread a draft of the manuscript.
+
+2
+
+The Moody polynomial and winding numbers
+
+While Burau originally defined his representation by giving its values on the standard Artin generators of
+Bn (see, for example, [BB05, Section 4.2]), it will be more useful for present purposes to define ρn via the
+action of Bn on the disk Dn , which we consider here as an n-times punctured disk. Let p∗ denote a point
+in the boundary of the disk Dn , and let x1 , . . . , xn denote the standard free generators of π1 (Dn , p∗ ). We
+consider the mapping π1 (Dn , p∗ ) → Z that takes a word in x1 , . . . xn to the sum of its exponents, and let
+fn denote the covering space associated with its kernel.
+D
+fn is isomorphic to Z, which we denote as a multiplicative group
+The group of covering transformations of D
+generated by t. Following the treatment of Long–Paton, it will be convenient for us to work with the relative
+fn , {pe∗ }), where {pe∗ } denotes the full pre-image of the basepoint p∗ in the cover D
+fn .
+homology group H1 (D
+−1
+f
+The braid group Bn acts on the Z[t, t ]-module H1 (Dn , {pe∗ }), which is free of rank n; this action is the
+unreduced Burau representation ρn , which we will refer to simply as the Burau representation.
+We next record a basic fact that follows directly from the definition of ρn .
+Observation 2.1. Let f : Bn → Bn+1 be the inclusion map corresponding to the standard embedding of Dn
+into Dn+1 . If Φ ∈ Bn lies in the kernel of ρn , then f (Φ) lies in the kernel of ρn+1 .
+Observation 2.1 will be crucial in our proof of the Main Theorem.
+Moody polynomials. In what follows, we will closely follow Bigelow’s notation and exposition [Big99].
+We will use the term arc to refer to a proper embedding of an interval in the disk Dn and subarc to refer to
+its restriction to a compact connected subinterval. Our arcs will normally be oriented, and it will often be
+convenient to consider arcs in terms of their image in the disk Dn rather than as functions per se.
+Let α and β be two oriented arcs in Dn , considered as a disk with marked points, whose endpoints lie in
+fn . We define the Moody polynomial
+the set {p1 , . . . , pn , p∗ }, and choose two corresponding lifts α̃ and β̃ in D
+−1
+M(α, β) ∈ Z[t, t ] of the oriented arcs α and β as follows:
+X
+M(α, β) =
+(tℓ · α̃, β̃)tℓ
+ℓ∈Z
+
+3
+
+...
+
++ −
+
+p1
+
++
+
+−
+
+p2
+
+−
+
++ −
+
+p3
+
+p4
+
++
+
++
+
+−
+
+p1
+
++
+
+−
+
++
+
+p2
+
+−
+
+p3
+
++
+
+−
+
+p4
+
++ −
+
++ −
+
++
+
+p1
+
+p2
+
+p3
+
+−
+
++ −
+
+...
+
+p4
+
+t0
+t1
+t2
+f4 of the disk D4 .
+Figure 2.1: The zeroth, first, and second “decks” in the universal cyclic cover D
+fn . We note
+where (tℓ · α̃, β̃) denotes the algebraic intersection number of the lift tℓ · α̃ with β̃ in the cover D
+that the algebraic intersection number of arcs does not include intersections at any shared endpoints; in our
+case, we will always choose our arcs so that the endpoints of α are disjoint from those of β. We also note
+that the Moody polynomial M(α, β) is only well defined up to multiplication by a power of t, due to its
+dependence on our choice of the lifts α̃ and β̃. Our convention will be to choose our lifts so that the first
+point at which β crosses α is assigned the monomial ±t0 .
+Following Bigelow [Big99] and Long–Paton [LP93], we now describe a planar interpretation of the Moody
+polynomial that enables us to work entirely in the base space Dn rather then in the cover. Without loss of
+generality, we can assume that the oriented arcs α and β intersect transversely in finitely many points; we
+label these q1 , . . . , qm according to the order in which they appear as we traverse the arc β according to its
+orientation. Each intersection point qi corresponds to a single point of intersection between two lifts α̃ and
+β̃, and hence each point qi contributes a monomial ±tki to the overall sum in the Moody polynomial. Here
+the exponent ki is such that β̃ and tki · α̃ cross at a lift of qi , and the sign ϵi of the monomial is the sign
+of that crossing where ϵi ∈ {−1, 1}. Then an equivalent formulation of the Moody polynomial of the arcs α
+and β is as follows:
+m
+X
+ϵi tki .
+M(α, β) =
+i=1
+
+We emphasize that it may happen that ki = kj for i ̸= j. Indeed, our business in this paper will be to
+determine conditions under which this could happen. When we write the Moody polynomial as the sum
+of m terms of the form ϵi tki without combining like terms, we will refer to this as the unsimplified Moody
+polynomial; when we combine all like terms we will refer to this as the simplified Moody polynomial. Moody
+showed that the polynomial M(α, β) completely encodes the faithfulness of the Burau representation [Moo91].
+We will use one direction of his characterization; see Theorem 2.3.
+Conventions and color-coding. For the remainder of this paper, we will always choose the arc α to be
+the horizontal arc joining p1 to p2 oriented from left to right, and we will color it blue in all figures, as
+shown in Figure 2.2. We also let β∗3 denote the oriented arc shown in Figure 2.2 from the basepoint p∗ to
+the puncture p3 and color it red.
+When we apply a braid Φ ∈ Bn to the arc β∗3 , we will usually denote this by β = (β∗3 )Φ and also color β red;
+note that we write Φ on the right of the arc to which we are applying it because we will follow the tradition
+of writing multiplication of braids from left to right.
+Furthermore, from this point on, a blue (respectively red) arc will always be a subarc of α (respectively β).
+Later we will add gold to our list of special colors. Our sign convention will be to say that qi is a positive
+crossing, that is, ϵi = 1, if β is directed downwards at qi and that qi is a negative crossing with ϵi = −1 if β
+is directed upwards at qi .
+For any arcs γ and δ in the disk Dn , we let ι(γ, δ) denote their geometric intersection number. Consider
+now our fixed choice of arc α. A remarkable result of Moody states that the non-faithfulness of the Burau
+
+4
+
+p1
+
+p2
+
+p3
+
+p4
+
+α
+β∗3
+p∗
+Figure 2.2: The blue arc α joins p1 to p2 . The red arc β∗3 joins the basepoint on ∂D to the point p3 .
+representation is equivalent to the existence of an arc β joining the basepoint p∗ to the marked point p3 in
+Dn such that ι(α, β) > 0 and M(α, β) = 0 [Moo91]. With this in mind, we define the Moody polynomial of
+the braid Φ ∈ Bn as follows:
+MΦ = M(α, (β∗3 )Φ).
+We remark that by taking the boundary of a regular neighborhood of the arc (β∗3 )Φ, we can view as a loop
+based at p∗ traveling around p3 , and that MΦ is well defined on the homology class of a lift of [(β∗3 )Φ] in
+fn , {pe∗ }), which we denote by [(β∗3 )Φ]. We also emphasize that an element Φ ∈ Bn uniquely determines
+H1 (D
+an arc β = (β∗3 )Φ, but the converse does not hold: there exist infinitely many pairs Φ1 , Φ2 ∈ Bn for which
+(β∗3 )Φ1 = (β∗3 )Φ2 . We refer the reader to Long–Paton [LP93, Section 1] and Bigelow [Big99, Theorem 1.4]
+for further details. For our purposes, we do not need the full strength of Moody’s result; we will only require
+one direction of the equivalence.
+Theorem 2.2 (Moody). Let n ≥ 3. If, given any oriented arc β from p∗ to p3 such that ι(α, β) > 0, we
+have that M(α, β) ̸= 0, then the Burau representation ρn is faithful. Equivalently, if we have that MΦ ̸= 0,
+for any braid Φ such that Φ(p3 ) = p3 and ι(α, (β3∗ )Φ) > 0, then the Burau representation ρn is faithful.
+The equivalence of the two statements follows from the fact that every oriented arc β from p∗ to p3 arises as
+β = (β∗3 )Φ for some Φ ∈ Bn by the change of coordinates principle; note that such a braid Φ necessarily fixes
+the point p3 . It will be useful for our purposes to adapt Moody’s theorem to obtain a specific obstruction
+to an individual braid lying in the kernel of ρn , for which we give a short proof for the sake of completeness.
+Theorem 2.3 (Moody). Let Φ ∈ Bn for n ≥ 3. If MΦ·Γ ̸= MΓ for some Γ ∈ Bn , then Φ does not lie in the
+kernel of ρn .
+Proof. Suppose that Φ lies in the kernel of ρn . Then Γ−1 ·Φ·Γ must also lie in the kernel. We have that (β∗3 )·Γ
+fn relative to the pre-image of a basepoint.
+corresponds to an element [(β∗3 ) · Γ] in the homology of the cover D
+−1
+Since Γ · Φ · Γ acts trivially on this homology group, we have that [(β∗3 ) · (Φ · Γ)] = [((β∗3 ) · Γ) · (Γ−1 · Φ · Γ)] =
+[(β∗3 ) · Γ]. The result now follows from our previous observation that MΦ well defined on the homology class
+fn , {pe∗ }).
+[(β∗3 )Φ] in H1 (D
+In Section 6 we will identify certain products of braids in B4 to which we will then apply Theorem 2.3 in
+order to establish the faithfulness of ρ4 . Moreover, as discussed in Section 1, we ultimately reduce our search
+to the Brunnian subgroup Brunn in Bn , where all nontrivial braids are pseudo-Anosov, and hence for all
+Φ ∈ Brunn we have that ι(α, (β∗3 ) · Φ) > 0. We will also use the following special case of Theorem 2.3.
+Corollary 2.4. Let Φ ∈ Bn for n ≥ 3. If MΦ ̸= 0, then Φ does not lie in the kernel of ρn .
+
+5
+
+3
+
+Disk sequences and total winding number
+
+Let β = (β∗3 )Φ, and as above, we label the points of intersection of α with β by q1 , . . . , qm according to the
+order in which we encounter them as we travel along β. For i = 1, . . . m − 1, we let αi and βi denote the
+subarcs of α and β, respectively, that join the intersection point qi to qi+1 . Note that, with our choice of
+notation, this means that each arc βi contains no intersection point qj in its interior, while an arc αi may
+contain a number of other intersection points in its interior.
+By construction, for each i = 1, . . . m − 1, we have that αi ∪ βi bounds a k-punctured disk ∆i . We define the
+total winding number Wi associated to the disk ∆i to be equal to k if βi is oriented clockwise with respect
+to ∆i , or to be equal to −k otherwise. We will refer to the sequence W1 , . . . , Wm−1 as the winding number
+sequence of Φ, and to the sequence ∆1 , ∆2 , . . . , ∆m−1 as the disk sequence of Φ; see Figure 3.1 for examples.
+We will consider two such disks ∆i , ∆j to be equivalent if there is an isotopy of (Dn , α) taking the βcomponent of ∂∆i to the the β-component of ∂∆j ; in other words α is fixed setwise and the endpoints of
+the β-arc must be contained in α at each level of the isotopy). We note that this notion of equivalence
+corresponds to allowing isotopies of the arc β in the disk Dn .
+We will see that the combinatorial data of the winding number sequence is sufficient for determining the
+faithfulness of the Burau representation in the case n = 3, and that the more detailed information of the
+disk sequence is required in the case n = 4. The following lemma appears as a remark in Bigelow’s paper
+[Big99, Section 3]. His remark describes the relationship between winding numbers and the degree ki of the
+monomial that each intersection point qi contributes to the Moody polynomial.
+
+(a)
+
+(b)
+
+Figure 3.1: The arcs α and β in (a) give rise to a singleton winding number sequence given by W1 = 1,
+with corresponding Moody polynomial 1 − t. The winding number sequence for the arcs in (b) is given by
+1, 1, −1, −2, 1; its Moody polynomial is 2 − 2t + t2 − t−1 .
+Lemma 3.1 (Bigelow [Big99]). Let qi and qi+1 be two points in α ∩ β that are consecutive with respect to
+the oriented arc β, and let ki and ki+1 be the exponents of the monomials corresponding to qi and qi+1 . If
+Wi denotes the ith term in the winding number sequence for β, then we have:
+Wi = ki+1 − ki .
+
+(1)
+
+We record here the following useful corollary of Lemma 3.1, also observed by Bigelow:
+Corollary 3.2. Let W1 , . . . , Wm be a winding number sequence for a braid in Bn , and let ki and kj be the
+exponents of the Moody monomials corresponding to two points qi and qj in α ∩ β. Then ki = kj if and only
+Pj−1
+if k=i Wk = 0.
+Equipped with this useful criterion for tracking repeats of an exponent occurring in the Moody polynomial,
+we will proceed in the next section to consider the question of faithfulness of ρn when n = 3.
+
+6
+
+4
+
+Faithfulness for three strands
+
+The following theorem was first proved by Magnus and Peluso in 1969 using purely algebraic methods. We
+give a new proof.
+Theorem 4.1 (Magnus–Peluso [MP69]). The Burau representation ρ3 is faithful.
+Proof. Using the same notation as in the previous section, we let Φ ∈ B3 be an element such that the
+geometric intersection of α and β = (β∗3 )Φ is equal to m > 0.
+2.2, it suffices to show that
+PmBy Theorem
+ki
+any single term of the simplified Moody polynomial MΦ =
+ϵ
+t
+is
+nonzero.
+If m = 1, then the
+i=1 i
+Moody polynomial consists of a single linear term, and hence is nonzero. Suppose now that m > 1, and let
+W1 , . . . , Wm−1 denote the winding number sequence of the braid Φ. Each corresponding disk is bounded by
+a subarc of α and a subarc of β and contains 1, 2, or 3 marked points. The assumption that α and β are in
+minimal position then implies that, up to reflection about the coordinate axes and up to homeomorphism of
+the disk preserving each marked point pi pointwise and the arc α setwise, each disk in the disk sequence is
+equivalent to one of the three types of regions illustrated in Figure 4.1, possibly after applying a symmetry.
+
+(a) |Wi | = 1
+
+(b) |Wi | = 2
+
+(c) |Wi | = 3
+
+Figure 4.1: Possible disks in the disk sequence of an element of B3 .
+Notice that for each i such that |Wi | = 2, the sign ϵi of the two points of intersection of β with α must be
+the same, that is, ϵi = ϵi+1 . Furthermore, if |Wi | ∈ {1, 3}, then we have that ϵi = −ϵi+1 .
+Pj−1
+Suppose now that ki = kj for two distinct terms in the unsimplified Moody polynomial. Then ℓ=i Wℓ = 0
+by Corollary 3.2. Hence for i ≤ ℓ ≤ j − 1 we must have an even number of terms Wℓ with |Wℓ | ∈ {1, 3}. By
+our observations in the previous paragraph, it follows that ϵi = ϵj . In other words, no cancellation among
+terms of degree ki can occur in the summation above. It follows that the Moody polynomial of Φ is not
+equal to zero, and therefore the Burau representation of B3 is faithful.
+The parity condition. We note that the only information that we used in the proof of Theorem 4.1 was
+the fact that disks containing an odd number of punctures correspond to a change of sign of corresponding
+coefficients in the Moody polynomial, while disks containing an even number of punctures preserve the sign
+of the corresponding coefficients. We will record this key observation as a lemma.
+To make this precise, let qi be a point of intersection of the oriented arcs α and β. As in Section 2, we let
+ϵi denote the algebraic intersection number î(β, α) at qi . If ∆ is a disk in the sequence for Φ corresponding
+to the pair of points qi , qi+1 ∈ α ∩ β ∈ ∂∆, then we will say that ∆ is sign-changing if ϵi = −ϵi+1 and
+sign-preserving otherwise. Let P(∆) denote the set of marked points in Dn that are contained in the interior
+of ∆. We will say that a braid Φ satisfies the parity condition if a disk ∆ in its disk sequence is sign-changing
+if and only if |P(∆)| is odd.
+In other words, our proof of Theorem 4.1 reduces to showing that every 3-strand braid satisfies the parity
+condition. Our next lemma shows that the parity condition gives a sufficient criterion for a braid Φ ∈ Bn to
+not be contained in the kernel of the Burau representation ρn .
+Recall from Section 2 that the Moody polynomial of a braid ϕ is given by
+Mϕ =
+
+m
+X
+i=1
+
+7
+
+ϵi tki
+
+where each ϵi tki is the monomial associated to the i-th crossing of α and β = (β∗3 )ϕ, and where m = ι(α, β).
+We say that the Moody polynomial of ϕ admits no cancellations if there is no pair of indices i, j such that
+ki = kj and ϵi = −ϵj in the above expression.
+Lemma 4.2. Let ϕ ∈ Bn . If ϕ satisfies the parity condition, then the Moody polynomial of ϕ admits no
+cancellations.
+Proof. By Corollary 3.2, if ki = kj then |P(∆i )| + · · · + |P(∆j−1 )| = 0. In particular this sum is even.
+However, by the assumption that a given disk in the disk sequence is sign-changing if and only if it contains
+an odd number of punctures, this means there are an even number of sign-changing disks in the subsequence
+∆i , . . . , ∆j−1 . In particular we have ϵi = ϵj and so this completes the proof.
+In general, n-strand braids do not satisfy the parity condition when n ≥ 4. Our strategy for proving the
+Main Theorem will be to identify certain 4-braids satisfying the parity condition.
+
+5
+
+Push-maps and minimal position
+
+As discussed in Section 1, in order to prove our Main Theorem, it suffices to establish that ρ4 is faithful when
+restricted to the subgroup of B4 consisting of point-pushing maps, also known simply as push-maps. In light
+of Lemma 4.2, our strategy will be to identify elements of this subgroup satisfying the parity condition. In
+this section, as a first step in that direction, we will characterize configurations of the various arcs and curves
+involved that lead to the creation of bigons between α and the image of β∗3 under the action of push-maps.
+For the purpose of defining push-maps, it is convenient to use the notation Mod(Dn ) to denote the braid
+group Bn . Let p ∈ Dn be one of the marked points in Dn , and let Mod(Dn , p) denote the subgroup of
+Mod(Dn ) that fixes p. There is a forgetful map Mod(Dn , p) → Mod(Dn−1 ), and the Birman exact sequence
+for Dn identifies the kernel of this map with π1 (Dn−1 , p):
+F orget
+
+P ush
+
+1−
+→ π1 (Dn−1 , p) −−−→ Mod(Dn , p) −−−−→ Mod(Dn−1 ) −
+→1
+Given a loop Γ in π1 (Dn−1 , p), we can consider the push-map obtained by pushing the point p along Γ, and
+the image of π1 (Dn−1 , p) in Mod(Dn , p) ⊂ Mod(Dn ) is an example of a point-pushing subgroup. We refer
+the reader to Farb-Margalit’s book for a detailed discussion of point-pushing maps and subgroups [FM12,
+Section 4.2.2] .
+Now, let Ki ∼
+= π1 (Dn−1 , pi ) denote the point-pushing subgroup of Bn corresponding to the marked point pi
+in the disk Dn ; see Figure 5.1 for an example of an element of the point-pushing group K4 in B4 and its
+effect on the arc β∗3 . We remind the reader that throughout the paper, our figures show the arc α in blue
+and arcs of the form β = Φ(β∗3 ) in red. Henceforth we will also show any loops representing push-maps in
+gold.
+
+α
+
+α
+
+β∗3
+
+β
+
+Figure 5.1: The gold loop represents an element of the subgroup K4 . The image β of β∗3 under the push-map
+around the gold loop is shown in red on the right.
+
+8
+
+In this part of the paper, we do not need to restrict to the case n = 4, and so we will work in the disk Dn ,
+the braid group Bn , and its subgroup Kn for n ≥ 4. Before we begin, we note the following.
+• Without loss of generality, we can always choose a representative of a loop Γ that intersects itself
+minimally and transversely, and hence there are finitely many points of self-intersection.
+• The results in this section hold if we replace Kn with any other point-pushing subgroup Kj where
+j ≥ 4.
+• In this section we do not assume that our push-maps necessarily correspond to simple loops. However,
+we only require simple loops in order to prove Theorem 6.6 below.
+Bigon-forming polygons. Let Γ ∈ Kn , and let β be any simple arc joining p∗ to p3 . We wish to identify
+local configurations of subarcs of α, β, and Γ that lead to the creation of a bigon between (β)Γ and α. As a
+warm-up, suppose that as we travel along Γ there is a subarc of β that precedes a bigon between Γ and α.
+Then pushing along Γ will create a bigon (in fact, two); see Figure 5.2a. Of course, in general we can avoid
+
+Γ(2)
+
+Γ(1)
+α
+
+(a) A bigon between Γ (gold) and α (blue).
+
+(b) A generalized bigon of length 2 between Γ and α.
+
+Figure 5.2
+such a scenario simply by assuming that all curves are in pairwise minimal position. However, this points
+us to a more general kind of phenomenon in the case where Γ is not simple: a sequence of subarcs of Γ that,
+taken together, effectively form a bigon with Γ, as shown in Figure 5.2b. Then, depending on the ordering
+of these subarcs (as determined by the orientation of Γ), pushing along Γ can similarly create a bigon.
+To make this more precise, given two subarcs Γ(1) , Γ(2) of Γ in Dn with disjoint interiors, we will say that
+Γ(1) precedes Γ(2) and write Γ(1) < Γ(2) if the initial point of Γ(1) precedes the initial point of Γ(2) as we
+trace out Γ. We will further refer to a union of subarcs Γ(1) , . . . , Γ(ℓ) that are pairwise disjoint as a piecewise
+Γ-arc of length ℓ if the following conditions are satisfied:
+• for each i ∈ {1, . . . , ℓ − 1}, the final point of Γ(i) is a self-intersection point of Γ in Dn , such that the
+final point of Γ(i) is the initial point of Γ(i+1) ;
+• Γ(1) < Γ(2) < · · · < Γ(ℓ) ; and
+• the union Γ(1) ∪ · · · ∪ Γ(ℓ) in Dn contains no loops.
+We will now identify three types of local configurations (in addition to bigons) between α, β, and Γ that
+lead to the creation of bigons between α and (β)Γ.
+1. Generalized bigons. Consider now a piecewise Γ-arc γ of length ℓ where the initial point of Γ(1) and
+the final point of Γ(ℓ) are both points of intersection of Γ with α, so that γ together with the α-subarc
+with these two endpoints forms a (ℓ + 1)-gon in Dn containing no marked points in its interior. We will
+refer to such an (ℓ + 1)-gon as a generalized bigon. Figure 5.2b shows a generalized bigon with ℓ = 2.
+If the piecewise Γ-arc in a generalized bigon is preceded by a point of intersection with β, then (β)Γ
+and α will form a bigon in the same way as if the piecewise Γ-arc were replaced by a single subarc of
+Γ. We emphasize that the orientation and ordering of the Γ-subarcs as we traverse Γ is crucial here,
+since otherwise Γ would not push the β-subarc all the way around to form a bigon between (β)Γ and
+α. Finally, a “standard” bigon is a generalized bigon with a piecewise Γ-arc γ of length 1.
+9
+
+2. Generalized trigons. Figure 5.3a shows another configuration of curves that leads to the creation
+of a bigon, namely a trigon in D4 whose boundary consists of a subarc from each of the arcs α and
+β, and the loop Γ, where the Γ-subarc is oriented from the β-arc to the α-arc. We will refer to such
+a configuration of curves as a β-to-α trigon. The orientation of the Γ-subarc is crucial here: if its
+orientation were reversed, then (β)Γ does not form any bigons with α in this region. As with bigons,
+we can replace the single subarc of Γ here with a piecewise Γ-arc of any length; we refer to any such
+configuration as a generalized β-to-α trigon. See Figure 5.3b for an example.
+Γ(2)
+
+Γ
+
+Γ(1)
+
+β
+
+α
+
+Γ(3)
+
+α
+
+β
+
+(b) A five-sided example of a generalized β-to-α trigon.
+
+(a) A β-to-α trigon.
+
+Figure 5.3
+3. Generalized rectangles. Another configuration of curves that may create bigons between α and (β)Γ
+arises when two parallel subarcs of Γ traveling between β and α form a rectangle containing no marked
+points; we will call this a β-to-α rectangle. As with bigons and trigons, we can use two piecewise Γ-arcs
+instead of two Γ-arcs, and we refer to any such configuration as a generalized rectangle; see Figure 5.4a
+for an example. We emphasize that in the case of a generalized rectangle, we do not necessarily require
+the two piecewise Γ-arcs to be disjoint. In other words, we allow “degenerate” generalized rectangles,
+in which some number of the Γ-segments involved can play a role in both piecewise Γ-arcs; we will see
+examples of this in the proof of the next lemma (see Figure 5.4b). Note also that every generalized
+rectangle includes two crossings of Γ and α with the same sign that are adjacent, as the crossings are
+ordered along α.
+
+Γ(4)
+α
+α
+
+Γ(2)
+
+β
+Γ
+
+(a) An example of a generalized rectangle with piecewise Γ-arcs of length 1 and
+length 2.
+
+Γ(3)
+
+β
+
+Γ(1)
+
+(b) A degenerate generalized rectangle formed by
+Γ(1) ∪ Γ(2) ∪ Γ(3) and Γ(1) ∪ Γ(2) ∪ Γ(4) .
+
+Figure 5.4
+
+10
+
+In the proof of the next lemma, we will see that generalized bigons, β-to-α trigons, and rectangles are the
+only types of configurations that give rise to bigons between (β)Γ and α. Hence we will refer to these
+configurations collectively as bigon-forming polygons.
+Proper products. Let Φ ∈ Kn , and let β = (β∗3 )Φ. Our next step will be to establish a set of conditions
+on a loop Γ based at pn that will imply (β)Γ and α are in minimal position. To that end, we let ΓI denote
+the initial component of Γ, that is, the subarc of Γ from pn to the first crossing of Γ with α. Similarly, we
+let ΓF denote the final component of Γ, traveling from its final crossing with α back to pn . We also let β ′
+denote the β-component of the innermost disk in the disk sequence of Φ that contains only pn if such a disk
+exists; otherwise we set β ′ = ∅. We say that Φ · Γ is a proper product if we can choose a representative of
+the loop Γ that is in minimal position with respect to α and β, and satisfying the following two conditions:
+1. there are no bigon-forming polygons between α, β, and Γ; and
+2. one of the following two conditions holds:
+(a) ΓI ∩ β ′ ̸= ∅; or
+(b) ΓI ∩ β ′ = ∅ and ΓF ∩ β ′ = ∅.
+The second condition ensures that postcomposing with Γ does not “undo” the creation (by Φ) of a disk
+containing only p4 . Figure 5.5 depicts the local picture for each type of configuration: in first case (on the
+left in Figure 5.5), reversing the orientation of Γ has the effect of swapping the roles of ΓI and ΓF , resulting
+in a loop that does not form a proper product. In practice, we will generally be given a push-map Φ, and
+then seek the second factor Γ to form a proper product with Φ. We will also refer to Φ · Γ1 · Γ2 as a proper
+product if both Φ · Γ1 and (Φ · Γ1 ) · Γ2 are proper products.
+β′
+β′
+α
+
+α
+ΓI
+
+Figure 5.5: Two examples of the local picture for Condition 2 of a proper product Φ · Γ indicating the
+initial and final components of Γ in each case; reversing the orientation of Γ in the left-hand figure gives a
+non-example.
+The next lemma gives a straightforward criterion for ensuring that the product of two push-maps does not
+yield any bigons between α and the image of β∗3 under the product.
+Proposition 5.1. Let Φ ∈ Kn , and let β = Φ(β∗3 ). If Γ is a loop based at pn such that Φ · Γ is a proper
+product, then the arcs (β)Γ and α are in minimal position.
+Proof. We begin by choosing a specific representative of Γ so that α, β and Γ are pairwise in minimal position
+with no triple points of intersection. Up to isotopy we can assume that (β)Γ and α are transverse in Dn .
+Consider now a point s ∈ (β)Γ ∩ α. If s also lies in β ∩ α we will refer to this as an original point of
+intersection; otherwise we say that s is a new point of intersection.
+Suppose now that α and (β)Γ form a bigon, and suppose further that the two vertices of this bigon are both
+new points of intersection. New points of intersection occur when a β-subarc precedes an α-subarc as we
+travel along Γ. Therefore our two vertices correspond to adjacent crossings of Γ and α of the same sign or of
+different signs, as shown in Figure 5.6. If they are the same sign, this implies the existence of a generalized
+11
+
+(β)Γ
+
+α
+
+Γ
+
+Figure 5.6: On the left two subarcs of Γ intersect β with the same sign; on the right two subarcs of Γ intersect
+β with different signs.
+rectangle between Γ, α, and β, which contradicts our assumption that Φ · Γ is a proper product. If they are
+different signs, this implies the existence of a generalized bigon between Γ and α, which again contradicts
+our assumption that Φ · Γ is a proper product. Therefore at least one vertex of any bigon between α and
+(β)Γ must be an original point of intersection.
+Now, the support of the push-map Γ is a regular neighborhood of Γ in Dn . Hence we can decompose (β)Γ
+as the union of subarcs of β that are fixed by Γ, which we refer to as original subarcs, together with new
+subarcs that lie in the support of Γ. Each of the new subarcs is one of four types: (I) joins an original subarc
+to a new point of intersection, (II) joins two new points of intersection forming part of the boundary of a
+disk bounding pn , (III) joins two original subarcs, or (IV) joins two new points of intersection in a disk not
+containing only pn .
+
+(I)
+
+(III)
+
+(II)
+
+(IV)
+
+Figure 5.7: Subarcs of types (I)-(IV): here original subarcs of β appear in red, while new subarcs of β are
+colored purple.
+Suppose now that the vertices s1 , s2 of our bigon are both original points of intersection. Then the subarc
+of (β)Γ that joins s1 to s2 cannot contain any new subarcs of type (I), type (II), or type (III) and must
+therefore contain a new subarc of type (IV). It follows that we have two subarcs β ′ ⊂ β and α′ ⊂ α satisfying
+the following three statements:
+• the union α′ ∪ β ′ does not form a bigon;
+• the union α′ ∪ (β ′ )Γ forms a bigon; and
+• the intersection α′ ∩ (β ′ )Γ = α′ ∩ β ′ = {s1 , s2 }.
+
+12
+
+The disk bounded by α′ ∪ β ′ in Dn must contain at least one marked point, since we are assuming that α and
+β are in minimal position. If the disk bounded by α′ ∪ β ′ contained pi for some i ̸= n, then the disk bounded
+by α′ ∪ (β ′ )Γ would also contain pi , but this is not possible since α′ ∪ (β ′ )Γ bounds a bigon. Therefore the
+disk bounded by α′ ∪ β ′ contains only the marked point pn . We must also have that the final component
+ΓF of Γ intersects β ′ in a single point, since α′ ∪ (β ′ )Γ does not contain pn . Moreover, no other subarc of Γ
+can intersect β ′ , as otherwise α′ ∪ (β ′ )Γ would not form a bigon. In particular, it follows that ΓI intersects
+α′ ∪ (β ′ )Γ in a single point in α′ . Hence the loop Γ must intersect the disk bounded by α′ ∪ β ′ as shown in
+Figure 5.8. However, such a configuration contradicts the fact that Φ · Γ is a proper product. Therefore the
+vertices s1 and s2 cannot both be original points of intersection.
+α′
+s1
+
+pn
+β′
+
+ΓI
+
+s2
+
+Γ
+
+ΓF
+
+Figure 5.8: A new bigon involving two original points of intersection s1 and s2 between α and β must arise
+from a configuration of curves as depicted.
+It remains to consider the case in which precisely one vertex of our bigon between α and (β)Γ is an original
+point of intersection; we denote this vertex by s1 . The other vertex s2 must therefore be a new point of
+intersection formed when Γ meets a subarc of β and pushes it along until it crosses α. Without loss of
+generality, we can assume that s2 is the new point of intersection to the left of the loop Γ, as shown in
+Figure 5.9.
+s1
+s2
+
+β
+Γ
+
+s2
+
+α
+
+Figure 5.9: The simplest case where a bigon between α and (β)Γ involves precisely one original point of
+intersection.
+Then there are two possible candidate regions for a bigon with s2 as a vertex: one to the left of α as shown
+in the figure, and one to the right. In each case, the vertex s1 lies along α on the same side of Γ as s2 in the
+local picture shown in Figure 5.9. In the first case, there must be a piecewise Γ-arc forming a generalized
+β-to-α trigon with s2 corresponding to its final point of intersection with α, which contradicts that Φ · Γ
+is a proper product; see Figure 5.10. The second case also cannot occur, since this would imply that (β)Γ
+continues on along a new subarc from s2 to s1 to form our bigon, which in turn implies that Γ itself must form
+a generalized bigon with β and that s1 is also a new point of intersection, both of which are contradictions.
+The proposition follows.
+In the next section, we will restrict our attention to the case n = 4.
+
+6
+
+Disk sequences in the 4-strand braid group
+
+The aim of this section is to prove Theorem 6.6 below, which states that the Burau representation ρ4 is faithful
+on its restriction to the point-pushing group K4 . By Proposition 1.2, this will imply our Main Theorem.
+Our strategy for proving Theorem 6.6 is to use proper products to identify certain braids that satisfy the
+parity condition. This will allow us to apply Moody’s theorem (Theorem 2.3) to establish faithfulness.
+13
+
+α
+
+β
+Γ
+
+Figure 5.10: A possible bigon that arises from a generalized trigon. The oriented arcs in gold are subarcs of
+a loop Γ.
+
+6.1
+
+Disks and parity in B4
+
+We begin with a careful analysis of the types of disks that can arise in the disk sequence of a 4-strand braid.
+To that end, we introduce some useful notation: for a disk ∆ contained in D4 , we let P(∆) denote the set
+of marked points that are contained in the interior of ∆, and hence P(∆) ⊆ {p1 , p2 , p3 , p4 }. We note that
+up to this point in the paper we have not used the assumption that n = 4. We will use that assumption in
+this section, particularly in Lemmas 6.1 and 6.3.
+Lemma 6.1. Let ∆ be a disk arising in the disk sequence of an element of B4 . Then ∆ is sign-preserving
+if and only if P(∆) is one of the following:
+{p1 , p3 }, {p1 , p4 }, {p2 , p3 }, {p2 , p4 }, {p1 , p3 , p4 }, {p2 , p3 , p4 }.
+Moreover, ∆ is sign-changing if and only if P(∆) is one of the following:
+{p3 }, {p4 }, {p3 , p4 }, {p1 , p2 , p3 }, {p1 , p2 , p4 }, {p1 , p2 , p3 , p4 }.
+Proof. Let ∆ be a disk in the disk sequence of an element Φ ∈ B4 , and let q and q ′ denote the two points
+of intersection between α and β = (β∗3 )Φ that lie in ∂∆. Without loss of generality, we assume that q lies
+between p1 and q ′ on α, and that q precedes q ′ as we traveling along β.
+Suppose that P(∆) = {p1 }. Since β and α intersect transversely at q, the subarc of β joining the basepoint
+p∗ to q must intersect ∂∆. Hence this subarc either intersects the β component of ∂∆ or the subarc of α
+with endpoints q and q ′ . The former contradicts our assumption that β is simple, and the latter contradicts
+our assumption that β and α are in minimal position. Therefore P(∆) ̸= {p1 }. By a similar argument, we
+see that P(∆) ̸= {p2 } and that P(∆) ̸= {p1 , p2 }.
+We next claim that ∆ is sign-preserving if and only if it contains precisely one of the two endpoints of α;
+the lemma follows immediately from the claim. Suppose first that ∆ is sign-preserving. Without loss of
+generality, we assume that β is oriented down (in our standard picture where α is horizontal) at both q and
+q ′ , and that ∆ contains p1 ; see Figure 6.1.
+Then ∂∆ is the union of a subarc of β and a subarc of α, both with endpoints q, q ′ , and the interior of ∆
+lies to the right of β as we travel along β from q to q ′ . This implies that ∆ does not contain the subarc
+of α with endpoints q ′ and p2 ; in particular ∆ does not contain p2 . A similar argument shows that if ∆ is
+sign-changing and contains p1 , then it also contains p2 . The claim follows, and we are done.
+
+14
+
+q
+q′
+
+Figure 6.1: A sign-preserving disk
+
+6.2
+
+The point-pushing subgroup K4
+
+Our focus in the remainder of this section will be the point-pushing subgroup K4 . Our next step will be
+to analyze the types of disks that can appear in the disk sequence of certain braids in K4 . Specifically,
+we will be constructing proper products of certain elements in K4 to which we can apply Lemma 4.2. We
+will then analyze the corresponding disk sequences, which will ultimately provide a mechanism for applying
+Theorem 2.3.
+Lemma 6.2. Let Φ ∈ K4 , let Γ ∈ K4 be a push-map along a simple loop, and suppose that Φ = Ψ · Γ is
+a proper product. Let ∆1 , . . . , ∆m−1 denote the disk sequence of Φ. Then, for any fixed i, either ∆i is a
+1-disk containing only p4 , or there is an isotopy of β = (β∗3 )Φ so that the β-component of the boundary ∆i
+is disjoint from Γ.
+Before giving the proof, we emphasize that Lemma 6.2 only guarantees that the β-component of any single
+disk ∆i can be isotoped off Γ. It does not guarantee that each such β-component can be isotoped off
+Γ simultaneously; indeed, this is not possible in general. We also introduce some notation that will be
+convenient in the proof of the lemma and in what follows: if γ is an arc or a loop in the disk Dn , we will
+refer to a disk whose boundary is the union of a single subarc of α together with a single subarc of γ as an
+α-γ disk.
+Proof. Let β ′ = (β∗3 )Ψ. Again, we choose fixed representatives of Γ and α that are in minimal position. By
+Proposition 5.1, we may choose a representative of β ′ so that (β ′ )Γ is in minimal position with respect to
+α. Since Γ is a simple loop , we can represent the action of the push-map Γ via the schematic in Figure 6.2.
+Figure 6.2b shows the resulting local picture for β = (β∗3 )Φ after pushing β ′ along Γ, possibly creating a
+α
+β
+Γ1
+
+(a) The local picture of pushing along Γ1 .
+
+(b) Pushing the first β strand
+
+Figure 6.2: Here blue arcs represent subarcs of α, while red/pink arcs represent subarcs of β.
+number of new disks in the associated disk sequence. For each such disk that does not contain p4 , Figure 6.2b
+shows that its β-component is disjoint from Γ. For the remaining α-β disks in Figure 6.2b, there is an isotopy
+of β in Dn that preserves the disk sequence while removing the intersection of the β-component of these disks
+from Γ. This isotopy can be visualized by sliding the “topmost” part of any β-component of the boundary
+of a disk that intersects Γ in Figure 6.2b upwards along the rightmost subarc of α that appears in the local
+picture; one can perform a single isotopy that moves all such β-subarcs simultaneously off Γ.
+15
+
+A particular push-map.
+
+Let Γ1 be the push-map corresponding to the loop shown in Figure 6.3.
+
+Figure 6.3: A particular push map Γ1 .
+Lemma 6.3. Let Φ ∈ K4 , let Γ1 ∈ K4 be the push-map along the simple loop shown in Figure 6.3, and
+suppose that Φ = Ψ · Γ1 is a proper product. Let ∆ be a disk arising in the disk sequence of Φ. Then ∆ is
+sign-preserving if and only if P(∆) is the following:
+{p2 , p3 }.
+Moreover, ∆ is sign-changing if and only if P(∆) is one of the following:
+{p3 }, {p4 }, {p1 , p2 , p3 }, {p1 , p2 , p3 , p4 }.
+Proof. By Lemma 6.2 any disk ∆ in the disk sequence of Φ can have its β-component isotoped off of Γ1 .
+Referring to Figure 6.4, we see that, up to equivalence, there are only finitely many possible β-subarcs
+forming an α-β disk that is disjoint from Γ1 .
+
+p2
+
+p1
+
+p4
+
+p3
+
+Figure 6.4: The loop Γ1 is shown in gold, together with red arcs indicating all possible disks arising in the
+disk sequence of a braid in K4 such that the β-component of the disk can be isotoped off of Γ1 .
+The five possible types of disk that can arise up to equivalence are shown in Figure 6.5 using our standard
+embedding of α and Γ1 in D4 .
+
+16
+
+δ1
+δ2
+
+δ3
+
+δ4
+
+δ5
+
+Figure 6.5: The loop Γ1 is shown in gold, together with five red arcs δ1 , . . . , δ5 indicating all five types of
+disks arising in the disk sequence of a braid in K4 such that the β-component of the disk can be isotoped
+off of Γ1 .
+
+6.3
+
+Embedding in B5
+
+Under the hypotheses of Lemma 6.3, there is only one possible type of disk arising in the disk sequence
+of a braid in K4 that violates the parity condition: a disk containing all four punctures. In order to deal
+with this, we will pass briefly to the setting of the disk with five punctures. To that end, we now fix an
+embedding of D4 in the disk D5 ; we can think of this as simply fixing an additional marked point p5 in the
+interior of the disk D4 . If Φ ∈ B4 , we let f (Φ) ∈ B5 denote the image of Φ in B5 under the induced injection
+f : B4 ,→ B5 . We emphasize that throughout this section, the notation Γ1 refers to the particular push-map
+shown in Figure 6.3, while Γ refers to a push-map that generally depends on some other element Φ ∈ K4 .
+Proposition 6.4. Let Φ ∈ B4 , and suppose that Φ can be written as a proper product Φ = Φ′ · Γ1 . Then
+there exists a push-map Γ ∈ K5 such that f (Φ) · Γ is a proper product in B5 and such that both f (Φ) · Γ and
+Γ satisfy the parity condition. Furthermore we may choose Γ so that ι(β∗3 · (Φ · Γ), α) ̸= ι(β∗3 · Γ, α).
+Before we begin the proof of Proposition 6.4, we recall that an α-γ disk is a disk whose boundary is the
+union of a single subarc of α together with a single subarc of γ, where γ is a loop or an arc. In the case
+where γ is a union of two or more subarcs of a larger loop or arc Γ, we will also refer to such a disk as an
+α-Γ disk for convenience.
+Proof. Suppose that the braid Φ ∈ B4 does not satisfy the parity condition. By Lemma 6.3 there must be
+at least one disk ∆ in its disk sequence with P(∆) = {p1 , p2 , p3 , p4 }. Moreover, any 4-disks that occur in its
+disk sequence are necessarily nested in D4 . Consider the image f (Φ) of our braid in B5 . We will construct
+a push-map Γ ∈ K5 whose effect will be to replace each of the 4-disks in the disk sequence of f (Φ) with a
+5-disk while preserving every other disk.
+Let β denote the arc (β∗3 )f (Φ) in the disk D5 , and choose a point q in the interior of the innermost 4-disk
+of β such that q is not contained in a k-disk in the disk sequence of f (Φ) for any k ≤ 3. Since the arc β is
+17
+
+simple, its complement in the disk D5 is connected, and hence we can choose a simple path γ1 from p5 to q
+such that ι(γ1 , β) = 0; see Figure 6.6 for an example. We note that γ1 necessarily intersects α, since q lies
+in the interior of the disk ∆ and p5 does not.
+
+q
+γ2
+p5
+
+γ1
+
+β
+
+D4 ⊆ D5
+Figure 6.6: An example of the construction of the loop Γ = γ1 ∪ γ2 .
+Next we choose a simple path γ2 from q to p5 that is disjoint from α and not isotopic to γ1 , such that the
+intersection of γ2 and β consists of precisely one point in the β-component of each 4-disk in the disk sequence
+of Φ. In other words, γ2 travels transversely through the β-component of each 4-disk and then passes out
+of D4 to p5 without intersecting β again, and in particular without intersecting any other disks in the disk
+sequence of Φ; again, see Figure 6.6 for an example. Finally, we define the loop Γ ∈ K5 to be the product of
+paths γ2 ◦ γ1 .
+Now, Γ does not intersect any n-disks in the disk sequence of Φ for n < 4. Moreover, given any 4-disk
+in the disk sequence of Φ, Γ intersects the α-component of the disk’s boundary some nonzero number of
+times before finally “exiting” the disk at its single point of intersection with the β-component of the disk’s
+boundary and continuing on to p5 . This implies that the effect on the 4-disk of pushing p5 along Γ will
+be to replace it with a 5-disk containing {p1 , p2 , p3 , p4 , p5 }. As we have already observed, any 4-disk in the
+disk sequence of Φ must be sign-changing, and hence the newly created 5-disk replacing is also necessarily
+sign-changing.
+To summarize, the disk sequence of (β)Γ = (β∗3 )(Φ · Γ) is exactly the same as that of β = (β∗3 )Φ, except that
+any 4-disks in the original disk sequence of Φ ∈ B4 have now been replaced by a 5-disk. Hence f (Φ) · Γ ∈ B5
+satisfies the parity condition.
+Consider next the disk sequence of (β∗3 ) · Γ. We claim that any disk in this sequence is either a 5-disk, a
+1-disk containing p5 , or is equivalent to a disk formed with δi for some i ≥ 2 as shown in Figure 6.5; it then
+follows that Γ also satisfies the parity condition.
+To see this, we first note that by construction γ1 is a simple arc, and we may assume that it admits no
+bigon-forming polygons with β∗3 and α. Since γ1 is disjoint from β = (β∗3 )(Φ), and since Φ can be written as
+a proper product of the form Φ′ · Γ1 , we may further assume without loss of generality that each α-γ1 disk
+is equivalent to one of the five disks shown in Figure 6.5; otherwise we could have made a different choice
+of γ1 . It follows that any α-β disks that result from pushing β∗3 along γ1 will also be equivalent to one of
+the five disks shown in Figure 6.5, or else it is a 1-disk containing only p5 . In order to complete the push
+
+18
+
+around Γ, we next push along γ2 . As noted above, the effect of doing so will be to replace any existing
+4-disks formed in the first stage with 5-disks. The claim follows, and we have established the first statement
+of the proposition.
+It remains to show that we can always choose Γ to ensure the following statement holds:
+ι(α, (β∗3 ) · Γ) ̸= ι(α, (β∗3 )(Φ · Γ))
+
+(2)
+
+Suppose now that in our construction of Γ as above, we have ι(α, (β∗3 ) · Γ) = ι(α, (β∗3 )(Φ · Γ)), or in other
+words, ι(α, (β∗3 )Γ) = ι(α, (β)Γ). Our strategy is to alter our construction of the loop Γ slightly so that the
+left-hand side of this equality increases, while the right-hand side remains unchanged.
+To this end, we will form a new loop Γ′ starting with the same choice of γ1 as before, but we will choose a
+different arc γ2′ joining the point q to p5 to replace γ2 , and set Γ′ = γ1 ∪ γ2′ . We note that it is sufficient to
+find such an arc γ2′ satisfying the following two properties:
+1. as we traverse γ2′ from q to p5 , its first point of intersection with β = (β∗3 ) · (Φ) does not occur until
+after its final point of intersection with α; and
+2. ι(α, (β∗3 ) · Γ′ ) > ι(α, (β∗3 ) · Γ).
+This follows from the fact that the first condition implies that ι(α, (β)Γ′ ) = ι(α, (β)Γ).
+Revisiting the construction of Γ, let s denote the final point of intersection of γ1 with α as we travel along
+γ1 , and let (γ1 )F denote the subarc of γ1 joining s to the point q. Since D4 \(β ∪ γ1 ) is connected, there
+exists an arc γ ′ joining q to a point r ∈ α, where the point r depends on the choice of γ ′ , such that γ ′ is
+disjoint from β and such that γ ′ ∩ γ1 = {q}.
+We will now consider two cases. First, suppose that γ ′ can be chosen so that, the arc γ ′ ∪ (γ1 )F , together
+with the subarc of α joining r to s, forms a disk ∆ containing p1 , p2 , p3 , and p4 .
+
+γ2
+
+γ ′′
+r
+
+q
+s
+
+γ′
+
+p5
+
+(γ1 )F
+
+D4 ⊆ D5
+Figure 6.7: An alternate construction of γ2 : Case 1.
+We next look for an arc γ ′′ from r back to q satisfying the following:
+1. the arc γ ′′ is disjoint from β;
+19
+
+2. γ ′′ ∩ (γ1 ∪ γ ′ ) = {q, r}; and
+3. γ ′′ is not isotopic to γ ′ relative to the endpoints {q, r}.
+This is equivalent to finding a nontrivial loop based at r in D4 \(β ∪ γ1 ∪ γ ′ ). This is always possible since
+β ∩ (γ1 ∪ γ ′ ) = ∅, and hence D4 \(β ∪ γ1 ∪ γ ′ ) is homeomorphic to a disk with three punctures: p1 , p2 , and
+p4 . Finally, we set γ2′ = γ ′ ∪ γ ′′ ∪ γ2 , and set Γ′ = γ1 ∪ γ2′ . Since the subarc γ2′ satisfies the two properties
+above, we have established the result in this case.
+It remains to deal with the case where the arc γ ′ joining q to a point r ∈ α cannot be chosen so that γ ′ ∪(γ1 )F
+forms a 4-disk, and hence forms a disk containing a proper subset of {p1 , p2 , p3 , p4 }; recall that we are still
+using in this case that γ ′ is disjoint from β and that γ ′ ∩ γ1 = {q}.
+We will choose the arc γ ′ to travel from q to a point r ∈ α in parallel to the β-component of the boundary
+of the innermost 4-disk; there are two possibilities here. One choice will result in (γ1 )F ∪ γ ′ forming an α-Γ
+disk containing k punctures, where k < 4, and the other choice for γ ′ results in an α-Γ disk containing n − k
+punctures. Referring to Figure 6.8, we see that here γ ′ is chosen to follow the innermost such β-component
+in the right-hand direction (as shown in the figure), so that (γ1 )F ∪ γ ′ forms a 1-disk with α; following to
+the left would form a 3-disk instead. In other words, we can assume without loss of generality that the α-Γ
+disk formed by (γ1 )F ∪ γ ′ contains at most two punctures.
+γ′
+
+q
+
+(γ1 )F
+
+Figure 6.8: The horizontal lines in this figure represent β-components of 4-disks. The choice of the arc γ ′
+shown here yields a disk with 1 puncture, by traveling to the right in parallel with the β-component of the
+innermost 4-disk.
+Our construction now reduces as in the previous case to finding a nontrivial loop based at r in Dn \(β ∪ γ1 ∪
+γ ′ ∪ γ ′′ ). Again, this is always possible since β ∩ (γ1 ∪ γ ′ ) = ∅, and since by construction D4 \(β ∪ γ1 ∪ γ ′ ) is
+homeomorphic to a disk with at least one puncture. This completes the proof of the proposition.
+We remark that the same construction used to find the loop Γ in the proof of Proposition 6.4 could be
+iterated to find, for any n, and for any Φ ∈ Bn , some Γ1 , . . . , Γk so that, for the appropriate inclusion map f ,
+we have that f (Φ) · Γ1 . . . Γk ∈ Bn+k satisfies the parity condition. The rough idea here is to start with the
+innermost disk of each occuring type that does not satisfy the parity condition, and find a suitable push-map
+that “corrects” its parity. However, in this case we cannot guarantee that the braid Γ1 . . . Γk satisfies the
+parity condition. In our case, the fact the braid Γ also satisfies the parity condition is important in the proof
+of our Main Theorem. The fact that we only need to correct one type of disk, so we only require one push
+map Γ, is crucial. In the general case where k > 1, we would not be able to simultaneously assume that Γ2
+does not cross both β and (β) · Γ1 , and so this argument would fail.
+
+20
+
+The following corollary of Proposition 6.4 enables us to derive conditions on the Moody polynomial of a
+push-map Φ ∈ K4 , as part of a proper product.
+Corollary 6.5. If Φ ∈ K4 admits a proper product Φ = Φ′ · Γ1 and satisfies ι(α, (β∗3 )Φ) > 0, then there
+exists a push-map Γ ∈ K5 such that Mf (Φ)·Γ ̸= MΓ .
+Proof. Let Φ be a braid in K4 , and let Γ be an associated push-map in K5 as in the statement of Proposition 6.4. By Proposition 6.4, both Γ and Φ · Γ satisfy the parity condition. It then follows from Lemma 4.2
+that there are no cancellations in either of the corresponding Moody polynomials MΓ and Mf (Φ)·Γ .
+Let M− and M+ be the lowest and highest exponents that appear in the Moody polynomial Mf (Φ)·Γ , and
+′
+′
+similarly let M−
+and M+
+denote the corresponding values for MΓ . Then, since neither polynomial has any
+cancellations, we can write the corresponding Moody polynomials as follows:
+Mf (Φ)·Γ =
+
+M+
+X
+
+a j tj
+
+=
+
+|aM− | + · · · + |aM+ | = ι(α, (β∗3 )(f (Φ) · Γ));
+
+bj t j
+
+=
+
+|bM−′ | + · · · + |bM+′ | = ι(α, (β∗3 )Γ).
+
+and
+
+j=M−
+′
+
+MΓ =
+
+M+
+X
+′
+j=M−
+
+By Proposition 6.4 we can assume that ι(α, (β∗3 )(f (Φ) · Γ)) ̸= ι(α, (β∗3 )Γ). The result follows.
+
+6.4
+
+Faithfulness on Brun4
+
+As described in Section 1, the proof of our Main Theorem follows from the next result.
+Theorem 6.6. The Burau representation ρ4 is faithful on its restriction to Brun4 .
+Proof. Let Φ denote a nontrivial element in Brun4 . We make the following elementary observation: Φ ∈
+Brun4 lies in the kernel of the Burau representation ρ4 if and only if, for every element y ∈ B4 , the conjugate
+yΦy −1 also lies in the kernel of ρ4 . We also recall from our discussion in Section 1 that any nontrivial element
+of Brun4 is pseudo-Anosov, and that the image of the arc β∗3 under a pseudo-Anosov map necessarily intersects
+the arc α nontrivially.
+Given a simple loop such as Γ1 the only possible bigon-forming polygons that can occur are β-to-α trigons
+and rectangles. Now, β-to-α trigons can be resolved by an isotopy of β, and rectangles are not possible in
+this case since the points of intersection between α and Γ1 alternate in sign as we travel along α.
+Furthermore, if we consider Φ and Γ1 as freely reduced words in the free group K4 with respect to the free
+basis shown in Figure 6.9, and if the juxtaposition of the two words (yielding the product Φ · Γ1 ) is also
+a freely reduced word with respect to this free basis, then the second condition for Φ · Γ1 to be a proper
+product is immediately satisfied. One way to see this is to note that, as a freely reduced word in this basis,
+Γ1 begins with y2−1 . If Φ · Γ1 is freely reduced, then Φ cannot end with y2 ; if it does, we can replace Φ with
+an appropriate conjugate that does not end with y2 . Thus we may assume that Φ has been conjugated so
+that it can be written as a proper product Φ = Φ′ · Γ1 for some Φ′ ∈ K4 .
+By Corollary 6.5, there is some push-map Γ ∈ K5 < B5 so that Mf (Φ)·Γ ̸= MΓ . It now follows from
+Theorem 2.3 that f (Φ) does not lie in the kernel of ρ5 , and hence Φ does not lie in the kernel of ρ4 . Hence
+the Burau representation of B4 is faithful on the point-pushing subgroup Brun4 .
+
+21
+
+y3
+
+y2
+
+y1
+
+Figure 6.9: A free basis for K4 .
+
+7
+
+An example
+
+We end with an illustrative example of a push-map Γ ∈ K5 of the form guaranteed by Proposition 6.4. We
+will apply Γ to an arc β whose corresponding Moody polynomial admits cancellation, and we will see that
+after applying Γ there is no longer any cancellation. Let β denote the arc shown in Figure 7.1. We recall
+that an arc β does not uniquely determine a braid Φ such that β = (β∗3 )Φ; nevertheless in what follows it
+will be useful to make a choice of such a Φ to simplify notation.
+To simplify the calculation while explaining the important parts of the construction, we have chosen to
+specify an arc β whose disk sequence satisfies the same properties as those guaranteed by Lemma 6.3, but
+our choice of β does not arise as (β∗3 )Φ for any choice of Φ ∈ K4 . (Recall that we restricted to K4 in
+Theorem 6.6 in order to ensure that Φ can be written as a proper product Φ = Φ′ · Γ1 , which allows us to
+apply Lemma 6.3.) We make this choice for illustrative purposes because the simplest example of an arc β
+admitting cancellations, and arising from a proper product of the form Φ = Φ′ · Γ1 ∈ K4 , would have many
+more intersections.
+
+Figure 7.1: An example of an arc β whose Moody polynomial admits a cancellation.
+Note that any braid Φ inducing the arc β does not satisfy the parity condition. Here and throughout this
+appendix, we write the terms of the unsimplified Moody polynomial in order corresponding to points of
+intersection of α with β as we travel along β from the basepoint to p3 . We compute the Moody polynomial
+for Φ as follows, noting that the linear terms appear with opposite signs, yielding a cancellation.
+MΦ
+
+=
+
+t0 + t2 + t4 − t3 − t + t−3 + t−1 + t
+
+=
+
+1 + t2 + t4 − t3 + t−3 + t−1 .
+
+Following the procedure given in the proof of Proposition 6.4, we obtain the loop Γ ∈ K5 shown in Figure 7.2.
+Pushing β along Γ gives us β · Γ as shown in Figure 7.3, which now satisfies the parity condition. We next
+
+22
+
+q
+
+Figure 7.2: The push map Γ ∈ K5 shown in gold, with the point q marked from the proof of Proposition 6.4.
+
+Figure 7.3: The image (β)Γ in D5
+
+23
+
+compute the Moody polynomial of the arc Φ · Γ:
+MΦ·Γ (t)
+
+=
+
+t0 + t2 + t4 − t3 − t + t−4 + t−2 + t0
+
+=
+
+2 + t2 + t4 − t3 − t + t−4 + t−2 .
+
+Comparing with our calculation of the unsimplified Moody polynomial of Φ above, we see that the effect of
+Γ on the Moody polynomial has been to increase the exponent of each the last three terms (those following
+the appearance of the 5-disk) by 1, and there is no longer any cancellation.
+Furthermore, the arc (β∗3 ) · Γ determining the Moody polynomial of Γ is shown in Figure 7.4 and satisfies
+the parity condition as well. The unsimplified Moody polynomial for the arc (β∗3 ) · Γ has 20 terms; the key
+point here is that any β-arc satisfying the parity condition may have any number of terms appearing with
+equal exponents, but every term with the same exponent will have the same sign.
+MΓ (t)
+
+=
+
+−t0 − t2 + t + t−1 − t0 − t2 + t3 + t + t−1 − t−2 − t0 + t−1 + t−3 − t−2 − t0 + t + t−1 + t−3 − t−2 − t0
+
+=
+
+2t−3 − 3t−2 + 4t−1 − 5 + 3t − 2t2 + t3 .
+
+Figure 7.4: The image (β∗3 ) · Γ in D5 .
+
+References
+[AFN02] Roger C. Alperin, Benson Farb, and Guennadi A. Noskov. A Strong Schottky Lemma for Nonpositively Curved Singular Spaces. Geometriae Dedicata, 92(1):235–243, July 2002.
+[BB05] Joan S. Birman and Tara E. Brendle. Braids: a survey. In Handbook of knot theory, pages 19–103.
+Elsevier B. V., Amsterdam, 2005.
+[Big99] Stephen Bigelow. The Burau representation is not faithful for n = 5. Geom. Topol., 3:397–404,
+1999.
+
+24
+
+[Bir74] Joan S. Birman. Braids, links, and mapping class groups. Princeton University Press, Princeton,
+N.J.; University of Tokyo Press, Tokyo, 1974. Annals of Mathematics Studies, No. 82.
+[BT18a] A. Beridze and P. Traczyk. Burau representation for n = 4. J. Knot Theory Ramifications,
+27(3):1840002, 6, 2018.
+[BT18b] A. Beridze and P. Traczyk. Forks, noodles and the Burau representation for n = 4. Trans. A.
+Razmadze Math. Inst., 172(3):337–353, 2018.
+[Bur35] Werner Burau. Über Zopfgruppen und gleichsinnig verdrillte Verkettungen. Abh. Math. Sem. Univ.
+Hamburg, 11(1):179–186, 1935.
+[CI17]
+
+Matthieu Calvez and Tetsuya Ito. A Garside-theoretic analysis of the Burau representations. J.
+Knot Theory Ramifications, 26(7):1750040, 29, 2017.
+
+[Dat22] Amitesh Datta. A strong characterization of the entries of the Burau matrices of 4-braids: The
+Burau representation of the braid group B4 is faithful almost everywhere. Preprint, 2022.
+[Dlu24] Ethan Dlugie. The Burau representation and shapes of polyhedra.
+24(5):2787–2805, 2024.
+
+Algebr. Geom. Topol.,
+
+[FM12] Benson Farb and Dan Margalit. A primer on mapping class groups, volume 49 of Princeton Mathematical Series. Princeton University Press, Princeton, NJ, 2012.
+[FS19]
+
+Neil J. Fullarton and Richard Shadrach. Observed periodicity related to the four-strand Burau
+representation. Exp. Math., 28(1):57–66, 2019.
+
+[GWY25] Joel Gibson, Geordie Williamson, and Oded Yacobi. 4-strand Burau is unfaithful modulo 5. J.
+Exp. Math., 1(1):36–50, 2025.
+[Jon87] V. F. R. Jones. Hecke algebra representations of braid groups and link polynomials. Annals of
+Mathematics, 126(2):335–388, 1987.
+[Kas08] Yasushi Kasahara. Remarks on the faithfulness of the Jones representations. In Groups of diffeomorphisms, volume 52 of Adv. Stud. Pure Math., pages 369–381. Math. Soc. Japan, Tokyo, 2008.
+[Lon86] D. D. Long. A note on the normal subgroups of mapping class groups. Math. Proc. Cambridge
+Philos. Soc., 99(1):79–87, 1986.
+[LP93]
+
+D. D. Long and M. Paton. The Burau representation is not faithful for n ≥ 6. Topology, 32(2):439–
+447, 1993.
+
+[LS05]
+
+Sang Jin Lee and Won Taek Song. The kernel of Burau(4) ⊗ Zp is all pseudo-Anosov. Pacific J.
+Math., 219(2):303–310, 2005.
+
+[Mar19] Dan Margalit. Problems, questions, and conjectures about mapping class groups. In Breadth in
+contemporary topology, volume 102 of Proc. Sympos. Pure Math., pages 157–186. Amer. Math. Soc.,
+Providence, RI, 2019.
+[Moo91] John Atwell Moody. The Burau representation of the braid group Bn is unfaithful for large n. Bull.
+Amer. Math. Soc. (N.S.), 25(2):379–384, 1991.
+[Mor91] Siegfried Moran. Some free groups of matrices and the Burau representation of B4 . Math. Proc.
+Cambridge Philos. Soc., 110(2):225–228, 1991.
+[MP69] Wilhelm Magnus and Ada Peluso. On a theorem of V. I. Arnold. Comm. Pure Appl. Math.,
+22:683–692, 1969.
+
+25
+
+[Whi00] Whittlesey, Kim. Normal all pseudo-Anosov subgroups of mapping class groups. Geom. Topol.,
+4:293–307, 2000.
+[WZ15] Stefan Witzel and Matthew C. B. Zaremsky. A free subgroup in the image of the 4-strand Burau
+representation. J. Knot Theory Ramifications, 24(12):1550065, 16, 2015.
+
+26
+
+

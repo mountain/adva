@@ -1,0 +1,20 @@
+{
+  "schema": "aeg.interpretation-obligation.contract.research",
+  "version": 0,
+  "profile": "sentence-3-carrier-predicate",
+  "sentence": "变异必须落在声明的载波上——行动之前，先定义自己测量什么。",
+  "receipt_pin": "receipt-03",
+  "mechanism": "carrier-hash checker over the declared projection (learn transition/frontier + run transition)",
+  "interpretation": "the prose sentence above",
+  "question": "For unchanged inputs, is the declared-carrier hash constant (EvidenceStutter) while non-carrier instrumentation varies (IncidentalVariation)?",
+  "scope": {
+    "archives": "docs/research/0162-evidence/archive-cycle1 and archive-cycle2 (100 rounds each)",
+    "native_outputs": "AEG .rust-run100 out-001..100.adva (same pinned program, 100 native runs)"
+  },
+  "bounds": {"read_only": true, "max_files": 1200, "per_file_bytes": 8388608},
+  "controls": [
+    "counterexample: hashing a carrier that includes phase_seconds instrumentation must NOT satisfy the predicate (this is the failure mode the sentence forbids)",
+    "tampered round byte must change the carrier hash"
+  ],
+  "no_generalization": "one sentence only; no prose checker, no Teichmuller/Calabi-Yau step in this round"
+}

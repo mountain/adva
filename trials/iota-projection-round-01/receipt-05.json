@@ -1,0 +1,49 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 5,
+  "predecessor_sha256": "1c0e5deea7a15ed0f489c3018793da299126c76417e63376f7d0c2e69e182aef",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "signed (sign-pair) church encoding extended to the full 0..255 byte set"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "results": "fullset-results.json",
+    "values_correct": 256,
+    "distinct_terms": 256,
+    "tamper": true,
+    "round_trip_sample": {
+      "0": {
+        "value": 0,
+        "expand_steps": 3709,
+        "iota_size": 7417
+      },
+      "35": {
+        "value": 35,
+        "expand_steps": 4772,
+        "iota_size": 9543
+      },
+      "100": {
+        "value": 100,
+        "expand_steps": 6982,
+        "iota_size": 13963
+      },
+      "255": {
+        "value": 255,
+        "expand_steps": 12252,
+        "iota_size": 24503
+      }
+    },
+    "term_size_range": [
+      1811,
+      5831
+    ]
+  },
+  "bounds": {
+    "model_fuel": 2000000,
+    "expand_fuel": 2000000,
+    "pure_python": true
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 25,
+  "predecessor_sha256": "01f9f0ba599556c5c12841ad541ee61b6e9e5ced63109e218c4468b111356096",
+  "delta": {
+    "kind": "observation",
+    "admitted": true,
+    "description": "meaning.py v3 on the user-root PDF pair: 2303.08774v6 (GPT-4 Technical Report, OpenAI, 2024, 100 pp, 46637 words) vs nenbakraniya.pdf (AlphaMissense student study deck, 37 pp, 624 words). No citation either way; overlap 0.6984 (inflated by the deck's 305-word vocab); genre words survive (model 505/11, predict 46/14, limitation 21/5); domain words mutually exclusive (language 177/0, safety 93/0 vs missense 0/25, variant 2/21, pathogen 1/7). Reading: generation vs verification poles of AI; primary vs derived document; the deck's meaning lives in its figures (17 words/page)."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "pins": {
+      "a": "c33a66dadca2388d7b172d6293b00dc32b71110c6f38fafe0d41112e61be7774",
+      "b": "54fd5158471a77329a7736f975f297bcf75f4466a518ba899035282ecafe7f3c"
+    },
+    "alignment": {
+      "vocabulary_overlap": 0.6984,
+      "pages": [100, 37],
+      "words": [46637, 624],
+      "citation": {"either_direction": false},
+      "phrase_swap": {
+        "model": [505, 11],
+        "predict": [46, 14],
+        "evaluat": [105, 3],
+        "safety": [93, 0],
+        "language": [177, 0],
+        "variant": [2, 21],
+        "missense": [0, 25],
+        "pathogen": [1, 7]
+      }
+    },
+    "tool": "trials/meaning-pair-round-02/meaning.py (v3, generation-vs-verification pair)",
+    "fifth_pair": "after NeoLab (0.4648), Burau (0.6731), tax/cookbook refusal (0.00 head), Bobenko-Suris (0.7677)"
+  },
+  "documented_holes": [
+    "no experiments re-run: neither GPT-4 benchmarks nor AlphaMissense variant-effect claims were checked",
+    "the student deck's figures were not analyzed at pixel level; most of its meaning is outside the text layer",
+    "the 0.6984 overlap is inflated by the deck's tiny vocabulary and is not face-value comparable with earlier pairs"
+  ],
+  "no_claims": [
+    "no claim about the correctness of either report's results",
+    "no claim the generation/verification reading is the documents' intent: it is an interpretation anchored to measured phrase evidence",
+    "full texts stay in local AEG; pins and minimal quotes only would be public"
+  ]
+}

@@ -1,0 +1,53 @@
+{
+  "schema": "adva.advance-byte-observer.result.research",
+  "version": 0,
+  "status": "Rejected",
+  "phase": "preflight",
+  "controls": {
+    "changed_predecessor_refused": true
+  },
+  "native_admission": "not-granted",
+  "new_knowledge_epoch": false,
+  "native_free": "NotGranted",
+  "profile": "byte-observer-v0",
+  "predecessor_sha256": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9",
+  "error": "Exception occurred in preexec_fn.",
+  "files": {
+    "contract.json": {
+      "bytes": 5325,
+      "sha256": "ca9a6f40abfdbf8e3def930baac6f6d82a0c3a7b9d06fa28f89e09c22fc02cc6"
+    },
+    "predecessor.json": {
+      "bytes": 1083,
+      "sha256": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9"
+    },
+    "source-head.stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "source-head.stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "retained_bytes_before_report": 6408,
+  "calls": [
+    {
+      "name": "source-head",
+      "argv": [
+        "git",
+        "-C",
+        "/Users/mingli/Adva/adva",
+        "rev-parse",
+        "HEAD"
+      ],
+      "cwd": "/Users/mingli/Adva/adva"
+    }
+  ],
+  "cost": {
+    "wall_seconds_before_report": 0.00409941584803164,
+    "child_cpu_seconds": 0.000641,
+    "subprocess_invocations": 1,
+    "scope": "Includes preflight, build, controls, model, analysis and inventory; authoring and engineering tests are separate."
+  }
+}

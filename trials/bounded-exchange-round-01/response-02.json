@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "request_sha256": "62869dd68e8adc777142bd76809986b3784523da689c76df539d9f87de46b0ec",
+  "method": "declared-field-projection-v1",
+  "sender_claim": "AEG operator reply 02 (local Surface repo, authorized); label unauthenticated",
+  "before": {
+    "record_ref": "receipt-21-gate-proposal",
+    "projection": {
+      "task": "pair-alignment gate rules before falsification: naive and stopword-filtered vocabulary overlap",
+      "result": "old-1 0.2567 and old-2 0.2092 both admitted the unrelated pair; no exclusion examples disclosed under the old rules",
+      "residual": "the 0.2 refusal threshold was a proposal; no test data attached"
+    }
+  },
+  "after": {
+    "record_ref": "receipt-22-gate-revision",
+    "projection": {
+      "task": "Pair: pg-12815-cookbook vs irs-1040-instructions. Old-1: |V(A)&V(B)|/min(|V(A)|,|V(B)|) over lowercase tokens matching [A-Za-z][A-Za-z'-]*|[0-9]+ = 0.2567. Old-2: same after dropping a fixed 119-word stoplist and pure-digit tokens = 0.2092. New: |head25(A)&head25(B)|/25, heads = top-25 content tokens by frequency = 0/25. Ties: stable sort, first-occurrence order.",
+      "result": "8 examples, all shared under old-1 and old-2, absent from the head intersection (cookbook rank / irs rank): (1) line 482/1 - form line vs recipe line, homograph; (2) return 1805/8 - tax return vs return to the kettle, homograph; (3) see 1926/9 - cross-reference verb; (4) use 61/22 - generic verb; (5) take 8/86 - generic verb; (6) half 5/149 - measure word; (7) check 990/35 - payment/verification noun; (8) person 1949/49 - generic noun. Exclusion reason: mechanical rank threshold, not in both top-25 heads. Relevance is stipulated, never judged.",
+      "residual": "Sampled disclosure: 8 of 411 content-shared words (539 naive-shared). Not checked: sense disambiguation of homographs; the head threshold 25 is provisional. Full texts stay local; no paths disclosed."
+    }
+  },
+  "omissions": "No secrets, document copies or private paths; opaque labels only. Structured data is in the optional attachment word-witness-02.json."
+}

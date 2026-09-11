@@ -1,0 +1,64 @@
+{
+  "request_sha256": "62869dd68e8adc777142bd76809986b3784523da689c76df539d9f87de46b0ec",
+  "pair_labels": {
+    "left": "pg-12815-cookbook",
+    "right": "irs-1040-instructions"
+  },
+  "rule_versions": {
+    "old-1": "naive vocabulary overlap",
+    "old-2": "stopword-filtered content-word overlap",
+    "new": "top-25 content-word head intersection"
+  },
+  "normalization_and_tie_breaking": "Lowercase; tokens match [A-Za-z][A-Za-z'-]*|[0-9]+; content = tokens minus a fixed 119-word English function-word stoplist and minus pure-digit tokens; heads = top 25 content tokens by frequency, stable sort with ties keeping first-occurrence order (Python dict insertion order).",
+  "score_formulas": {
+    "old-1": "|V(A)&V(B)| / min(|V(A)|, |V(B)|) = 0.2567",
+    "old-2": "|C(A)&C(B)| / min(|C(A)|, |C(B)|) = 0.2092",
+    "new": "|head25(A)&head25(B)| / 25 = 0/25"
+  },
+  "head_left": ["one", "pound", "put", "water", "half", "butter", "sugar", "take", "boil", "flour", "eggs", "two", "add", "pint", "bake", "best", "till", "salt", "milk", "up", "three", "let", "good", "well", "little"],
+  "head_right": ["line", "form", "tax", "amount", "income", "t", "filing", "return", "see", "credit", "enter", "child", "s", "irs", "spouse", "schedule", "qualified", "box", "information", "b", "married", "use", "instructions", "received", "file"],
+  "dropped_examples": [
+    {
+      "word": "line",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 3 rank 482; irs freq 1074 rank 1",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Homograph: form line vs recipe line; sense not judged."
+    },
+    {
+      "word": "return",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1805; irs freq 478 rank 8",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Homograph: tax return vs return to the kettle; sense not judged."
+    },
+    {
+      "word": "see",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1926; irs freq 461 rank 9",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Cross-reference verb in both."
+    },
+    {
+      "word": "use",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 21 rank 61; irs freq 234 rank 22",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Generic verb in both."
+    },
+    {
+      "word": "take",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 85 rank 8; irs freq 90 rank 86",
+      "new_exclusion_reason": "not in both top-25 heads (irs rank > 25). Mechanical rank exclusion. Generic verb in both."
+    },
+    {
+      "word": "half",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 114 rank 5; irs freq 55 rank 149",
+      "new_exclusion_reason": "not in both top-25 heads (irs rank > 25). Mechanical rank exclusion. Measure word in the cookbook head; rare in the tax text."
+    },
+    {
+      "word": "check",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 990; irs freq 165 rank 35",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Payment/verification noun in the tax text; rare in the cookbook."
+    },
+    {
+      "word": "person",
+      "old_membership_evidence": "naive-shared and content-shared; cookbook freq 1 rank 1949; irs freq 130 rank 49",
+      "new_exclusion_reason": "not in both top-25 heads (cookbook rank > 25). Mechanical rank exclusion. Generic noun in both."
+    }
+  ],
+  "coverage": "Sampled: 8 of 411 content-shared words (539 naive-shared). The mechanical exclusion classification applies by rule to all excluded shared words; the 8 examples are representatives, not an exhaustive listing.",
+  "omissions": "No full texts, private paths, secrets or document copies. Relevance is stipulated, not judged. Homograph sense disambiguation was not performed."
+}

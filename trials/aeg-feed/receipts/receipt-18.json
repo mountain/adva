@@ -1,0 +1,55 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 18,
+  "predecessor_sha256": "ce3d76aab373ef5deb7cf0635e19242ce10f87067469ecf8c106a657251f81dd",
+  "delta": {
+    "kind": "question",
+    "admitted": true,
+    "description": "dual-side spectra of the scale-marked system: eigenvalues, energies and the one-positive-two-negative layout"
+  },
+  "status": "DualSpectrumComputed",
+  "evidence": {
+    "L_eigenvalues": {
+      "unit": 1,
+      "nonunit": [
+        "1/2 + i*sqrt(3)/6",
+        "1/2 - i*sqrt(3)/6"
+      ]
+    },
+    "L_inv_eigenvalues": {
+      "unit": 1,
+      "nonunit": [
+        "3/2 - i*sqrt(3)/2",
+        "3/2 + i*sqrt(3)/2"
+      ]
+    },
+    "relation": "dual-side non-unit eigenvalues are 3 * conjugate of the primal side",
+    "energies": {
+      "primal": [
+        1,
+        0.3333333333333333,
+        0.3333333333333333
+      ],
+      "dual": [
+        1,
+        3,
+        3
+      ]
+    },
+    "energy_products": {
+      "primal": "1/9 = det^2",
+      "dual": "9 = det^-2",
+      "reciprocal": true
+    },
+    "one_positive_two_negative": "lives in the three-winding zero-sum (w0+w1+w2=0, e.g. +2,-1,-1); needs the third cusp generator (open slot)"
+  },
+  "no_claims": [
+    "no identification with Calabi-Yau geometry",
+    "exact arithmetic over Q(i) only"
+  ],
+  "bounds": {
+    "read_only": true,
+    "exact": true
+  }
+}

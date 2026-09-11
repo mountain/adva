@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "request_sha256": "424584c52bfb5d58a6653119710bc1f6a0fd4dcd0507f3a9ed3e3416f81cca5b",
+  "method": "declared-field-projection-v1",
+  "sender_claim": "AEG operator reply 03 (local Surface repo, authorized); label unauthenticated",
+  "before": {
+    "record_ref": "response-02-claims",
+    "projection": {
+      "task": "token 'use' claims as disclosed in response-02, pair pg-12815-cookbook / irs-1040-instructions",
+      "result": "cookbook frequency/rank 21/61; irs 234/22; no occurrence contexts disclosed",
+      "residual": "no measured cost disclosed; no historical clarification attached"
+    }
+  },
+  "after": {
+    "record_ref": "use-recompute-03",
+    "projection": {
+      "task": "same pair, same frozen rules (lowercase [A-Za-z][A-Za-z'-]*|[0-9]+ tokens minus a fixed 119-word stoplist minus pure digits; descending frequency, first-occurrence tie order); recomputed fresh in one process from the local text layers",
+      "result": "CONFIRMED: cookbook 21/61, irs 234/22. Contexts (shortest occurrence with at least 2 tokens on each side, at most 25 words): cookbook line 212 'Potatoes take rank for universal use profit and easy acquirement'; irs line 2763 'your beneficiary use your combined'. Contextual meaning is hypothesis only: noun 'utility' vs verb in a form-row fragment.",
+      "residual": "Measured: tokenize+rank 0.002918s, contexts 0.016581s, total 0.040119s (perf_counter, one process, local artifacts). History clarification: response-02's before projection labeled receipt-21-gate-proposal is retrospective annotation - scores 0.2567/0.2092 were first computed during round 22 and were never recorded in receipt-21, which proposed the gate as untested. Append-only; no receipt rewritten. Relevance not judged."
+    }
+  },
+  "omissions": "No private paths, secrets or full documents. Occurrence locators are line numbers in local artifacts, not paths. Semantic acceptance withheld. Parent response/attachment hashes are bound by the frozen request-03."
+}

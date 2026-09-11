@@ -1,0 +1,31 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 9,
+  "predecessor_sha256": "afbc002371cdb6f020b9de25a4c792911cc8ddd421d7b57924a5076a8336b3fc",
+  "delta": {
+    "kind": "question",
+    "admitted": true,
+    "description": "sentence-3 predicate: declared-carrier constancy vs instrumentation-only variation (0166 M/I/Q/B pattern)"
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "archive_cycle1_distinct_carrier": 1,
+    "archive_cycle2_distinct_carrier": 1,
+    "cross_cycle_equal_rounds": 100,
+    "native_raw_distinct": 100,
+    "native_stripped_distinct": 1,
+    "counterexample_guard_passed": true,
+    "tamper_changes_hash": true,
+    "sample_carrier_sha": "75316b20f5c1541f"
+  },
+  "sentence_to_predicate_mapping": {
+    "sentence": "变异必须落在声明的载波上——行动之前，先定义自己测量什么。",
+    "predicate": "carrier = declared projection (learn transition/frontier + run transition); unchanged input implies carrier-hash constant AND any observed variation confined to instrumentation fields",
+    "status": "proposed-mapping (human review pending)"
+  },
+  "bounds": {
+    "read_only": true
+  },
+  "no_teichmuller_calabi_yau_step": true
+}
