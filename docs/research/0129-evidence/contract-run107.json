@@ -1,0 +1,41 @@
+{
+  "schema": "adva.bounded-breakthrough.contract.v0",
+  "version": 0,
+  "date": "2026-09-11",
+  "continuation_of": "run 106 (length 125)",
+  "revision": {
+    "reason": "adjacent family length; authorized 100-round extension",
+    "changed": "length 125 -> 126",
+    "unchanged": "checker, seed 1, iterations 10000, workers 1, budgets"
+  },
+  "1_question_and_level": {
+    "input_family": "All length-126 binary sequences over {-1, +1}",
+    "requested_conclusion": "Within the declared budget, find and independently verify one low-energy sequence with energy and merit factor",
+    "level": "Computation-level finite search; no physical interpretation",
+    "resolving_witness": "Independently rechecked run report; exhaustion yields Unknown"
+  },
+  "2_imported_knowledge": "Same finite aperiodic autocorrelation arithmetic as run 1; no new imports",
+  "3_interface": "Candidate sequence -> (energy, merit) via exact correlation arithmetic; report.verify() must recompute identically",
+  "4_protected_obligations": [
+    "No exhaustive-optimality claim at any length from this sampled search; the separate exhaustive command covers N <= 25 only and was not run",
+    "Resource exhaustion reports Unknown; no automatic fuel reset",
+    "No new native word or vocabulary promotion",
+    "Run 1-24 evidence remains unchanged and is not overwritten"
+  ],
+  "5_acceptance_and_verification": {
+    "checker": "adva-labs-search verify <report>",
+    "success": "search completes within the wall bound + independent verify command exits 0 + one-field tampered copy is rejected",
+    "negative_controls": [
+      "one-field tampered copy rejected by verify"
+    ]
+  },
+  "6_resources_and_exit": {
+    "length": 126,
+    "iterations": 10000,
+    "workers": 1,
+    "seed": 1,
+    "checkpoint_every": 5000,
+    "wall_clock_limit_s": 120,
+    "continuation_count": 107
+  }
+}
