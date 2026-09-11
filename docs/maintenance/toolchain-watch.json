@@ -495,6 +495,12 @@
           "event": "Full suite run with a freshly built abi3 extension; ten failures root-caused to RLIMIT_AS inside preexec_fn and to the static supported predicate; four candidate guards applied and reverted uncommitted",
           "evidence": "VerifiedForScope",
           "applicability": "AffectedInScope"
+        },
+        {
+          "date": "2026-09-11",
+          "event": "Paired control and experiment confirming the root cause: with a pytest plugin that neutralises only RLIMIT_AS in the parent process - preexec_fn runs after fork and inherits it - tests/python/test_phase_runner.py goes from 10 failed and 5 passed to 12 passed, and the full suite goes from 2394 passed, 10 failed, 1 skipped to 2401 passed, 0 failed, 1 skipped, 10 subtests passed. Every failure on this host is therefore attributable to the one refused call; nothing else fails. Probe: PYTHONPATH=<plugin dir> python -m pytest -q -p rlimit_patch",
+          "evidence": "VerifiedForScope",
+          "applicability": "AffectedInScope"
         }
       ]
     }
