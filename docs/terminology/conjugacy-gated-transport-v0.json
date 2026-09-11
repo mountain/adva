@@ -1,0 +1,55 @@
+{
+  "schema": "adva.research-term.v0",
+  "local_name": "conjugacy-gated-transport",
+  "status": "Proposed",
+  "role": "Transport a group representation, its finite observer, and an observer predicate across an invertible change of projective coordinates without mistaking one-sided composition for a representation.",
+  "input": {
+    "representation": "rho:G->Aut(X)",
+    "coordinate_change": "an invertible H:X->X",
+    "observer": "a declared probe family B and value/predicate interpretation",
+    "coverage": "the full declared carrier, including chart boundary points"
+  },
+  "output": {
+    "representation": "rho_H(g)=H*rho(g)*H^-1",
+    "probes": "H(B)",
+    "observed_values": "H(y), or decode with H^-1 before comparison",
+    "predicate": "P_H(w)=P(H^-1(w))",
+    "evidence": "identity, product, carrier, covariance, coverage, controls, costs, and residual"
+  },
+  "relation_boundary": [
+    "Conjugation always represents G in H*rho(G)*H^-1.",
+    "Landing back in the same named subgroup requires H to normalize rho(G).",
+    "One-sided H*rho(g) is a left coset action on representation values, not a representation unless its laws are independently satisfied.",
+    "A projectively total Mobius map may be partial in an affine chart; deleted pole and infinity points remain a coverage residual."
+  ],
+  "applicability": [
+    "H is invertible on the complete declared carrier.",
+    "Composition order and matrix scalar equivalence are frozen.",
+    "The receiver knows the source and target observer policies.",
+    "All required group and observer laws have either a proof or a declared finite check."
+  ],
+  "witness": {
+    "primary": "Over F_5, H=[[1,2],[1,1]] lies in PSL(2,F_5). Left translation stays in the 60-element carrier but fails the identity law and all 3600 checked ordered product pairs; conjugation preserves them all.",
+    "observer": "For every group element and projective point, rho_H(g)(H(x))=H(rho(g)(x)); 60 transported three-probe receipts decode exactly.",
+    "affine_boundary": "The affine restriction is injective on four returned F_5 values but drops input -1 and misses output 1, so the result is UnknownCoverage."
+  },
+  "reuse": "Over F_7 the same H is outside PSL(2,F_7): every one-sided output leaves the 168-element carrier, while conjugation preserves all 28224 ordered product pairs and all 1344 pointwise covariance squares.",
+  "refusal_conditions": [
+    "H is singular or not total on the declared carrier.",
+    "The proposed transported action fails identity, codomain, inverse, or product laws.",
+    "Probes, output decoding, or predicates are reused without their declared coordinate transport.",
+    "A chart deletes a pole, infinity, source, or output required by coverage.",
+    "A digest, finite sample, or local injectivity is offered as unrestricted transport authority."
+  ],
+  "expand_or_replay": "timeout 15s python -B -S experiments/mobius_conjugacy_transport/calibration.py --contract experiments/mobius_conjugacy_transport/contract.json --output /tmp/mobius-conjugacy-transport.json",
+  "residual": [
+    "No general untrusted receipt protocol.",
+    "No native Rust checked-diagram or observer transformation.",
+    "No proof-assistant formalization.",
+    "No representation of all simple groups.",
+    "No Riemann-hypothesis verification or zeta-function transport."
+  ],
+  "formation_cost": "Natural-language formation and report-writing time were not separately measured; no expression or solving-cost reduction is claimed.",
+  "evidence_path": "experiments/mobius_conjugacy_transport/evidence.json",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy; attribution and authorization are not correctness evidence"
+}

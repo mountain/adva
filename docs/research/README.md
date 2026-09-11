@@ -696,6 +696,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0167-li-yorke-period-three-and-homotopy-continuation.md`](0167-li-yorke-period-three-and-homotopy-continuation.md)
 - [`0168-triadic-cycle-and-continuation-discipline.md`](0168-triadic-cycle-and-continuation-discipline.md)
 - [`0169-arakelov-stability-monge-ampere-mirror-ladder.md`](0169-arakelov-stability-monge-ampere-mirror-ladder.md)
+- [`0170-mobius-conjugacy-and-observer-transport.md`](0170-mobius-conjugacy-and-observer-transport.md)
 
 ### Named notes
 
