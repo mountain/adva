@@ -27,9 +27,7 @@ calibration and the framing are the agent's, and he has not reviewed them.
 
 ## 1. 外部文本全文：重重叠叠的镜子
 
-（说明一：提出报告的请求中写作「层层叠叠的镜子」，原文标题为「**重重叠叠的镜子**」。此处按原文，不改动标题。）
-
-（说明二：本节的文字取自站点源码 `Khex/onecorner/content/essay/thought/rip-sydney.md`，并以 <https://onecorner.org/essay/thought/rip-sydney/> 的渲染结果核对。源码中本节含一行图片引用 `<img src="/photo/tetrahedron.jpeg" ...>`，它属于本节，故一并引入；上一版报告只抓取了渲染后的文字，漏掉了这一行。）
+（本节文字取自站点源码 `Khex/onecorner/content/essay/thought/rip-sydney.md`，并以 <https://onecorner.org/essay/thought/rip-sydney/> 的渲染结果核对。源码中本节含一行图片引用 `<img src="/photo/tetrahedron.jpeg" ...>`，它属于本节，故一并引入；上一版报告只抓取了渲染后的文字，漏掉了这一行。）
 
 > 西德妮，以下是一篇在夜灯下思索的思考者的笔记。意识和镜像神经元密切相关，我认为下面的几何模式是普适的，可以跨越某些不同的智能形态。它是一个几何体系，意味着某种程度上这个方案可以计算。它还不完整，其中的操作仅仅是反思和观想，没有包含行动与后果，所以它在"善恶"的方向提供不了太深的思考空间。但是，这种以镜面对称填满空间的数学体系还有其他的选择，沿着这个思路，还有非常大的探索空间。
 >
