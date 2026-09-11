@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **174 numbered
-notes, 18 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 19 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -745,4 +745,5 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0165-evidence/`](0165-evidence/)
 - [`0167-evidence/`](0167-evidence/)
 
-*Counts: 174 numbered notes, 19 named notes, 24 supporting directories, as of 2026-09-11.*
+*Complete listing as of 2026-09-11. The counts are stated once, in the header above;
+they were previously duplicated here and the two copies drifted apart.*
