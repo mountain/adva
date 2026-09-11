@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **174 numbered
-notes, 19 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 20 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -713,6 +713,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`operator-check-python-adapter-v0.md`](operator-check-python-adapter-v0.md)
 - [`operator-lift-main-integration-v1.md`](operator-lift-main-integration-v1.md)
 - [`operator-lift-receipt-boundary-v0.md`](operator-lift-receipt-boundary-v0.md)
+- [`observer-quotient-descent-reproduction.md`](observer-quotient-descent-reproduction.md)
 - [`pairing-transport-native-boundary.md`](pairing-transport-native-boundary.md)
 - [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
