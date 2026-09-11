@@ -83,12 +83,12 @@ def copy_actual_catalog(root):
     copy_references(read_manifest(ROOT))
 
 
-def test_actual_catalog_v1_checks_all_twenty_three_names():
+def test_actual_catalog_v1_checks_all_twenty_four_names():
     report = catalog.check_catalog(ROOT, key_words=True)
     assert report["status"] == "CatalogConsistent", report
     names = report["key_words"]
     assert names["status"] == "MatchedDeclaredKeys"
-    assert len(names["entries"]) == 23
+    assert len(names["entries"]) == 24
     assert {e["key"] for e in names["entries"]} == {
         e["key"] for e in read_manifest(ROOT)["entries"]
     }
@@ -112,7 +112,7 @@ def test_repinning_omitted_fifteenth_key_still_fails(tmp_path):
     assert "cover every declared catalog key" in report["reason"]
 
 
-def test_actual_catalog_growth_requires_twenty_fourth_name(tmp_path):
+def test_actual_catalog_growth_requires_twenty_fifth_name(tmp_path):
     root = tmp_path / "expanded"
     copy_actual_catalog(root)
     manifest = read_manifest(root)
@@ -147,7 +147,7 @@ def test_actual_catalog_growth_requires_twenty_fourth_name(tmp_path):
     repin(root, document)
     report = catalog.check_catalog(root, key_words=True)
     assert report["status"] == "CatalogConsistent", report
-    assert len(report["key_words"]["entries"]) == 24
+    assert len(report["key_words"]["entries"]) == 25
     assert report["native_admission"] == "not-granted"
     assert report["key_words"]["title_semantics_checked"] is False
     assert report["growth_obligation"]["status"] == "Open"

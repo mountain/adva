@@ -21,6 +21,7 @@ CLAIMS = ROOT / "docs/claims.toml"
 NOTE_0167 = ROOT / "docs/research/0167-li-yorke-period-three-and-homotopy-continuation.md"
 NOTE_0168 = ROOT / "docs/research/0168-triadic-cycle-and-continuation-discipline.md"
 CLAIM_ID = "adva.bounded-experiment.li-yorke-period-three-matrix.v0"
+CATALOG_KEY = "arithmetic-period-three-matrix-calibration"
 TIMING_KEYS = ("installed_limits",)
 
 
@@ -200,3 +201,63 @@ def test_the_notes_exist_and_keep_their_non_claims():
     for phrase in ("research plan", "tau_n", "does not claim", "Track B"):
         assert phrase in plan, phrase
     assert "Open" in plan and "three-machine identification" in plan
+
+
+def test_the_retained_evidence_is_pinned():
+    """The two artifacts that were outside version control are now pinned."""
+    evidence = ROOT / "docs/research/0167-evidence"
+    expected = {
+        "literature-report-raw.md": "7228b402b689d05d6c356e20005225b0f791d8b66255c6ff51cd0630da272248",
+        "first-draft-check.py": "824eb54e250e266417282cad942e794c5fc4f80357dbb5d2c760ea05982673ca",
+        "first-draft-matrix-bridge.py": "7c3f7f4cef09c25dab0a20d3a1ee5dee50dd7d81f9272379a059087627ea4da2",
+        "first-draft-one-hole.py": "3127bc58aa5da2295d2b79e7b36ed3c6dbcdee542bbda6af8ffb3cd5e5d00eb7",
+    }
+    for name, digest_value in expected.items():
+        assert digest(evidence / name) == digest_value, name
+    readme = (evidence / "README.md").read_text(encoding="utf-8")
+    # The superseded float scan must stay described as superseded.
+    assert "floating-point" in readme and "superseded" in readme
+    assert "not the claim's evidence" in readme
+
+
+def test_the_library_entry_pins_every_artifact_byte():
+    """Knowledge admission: the catalog pins bytes outside the library too."""
+    manifest = load(ROOT / "adva-library/math/manifest.json")
+    entry = next(e for e in manifest["entries"] if e["key"] == CATALOG_KEY)
+    assert entry["recorded_status"] == "external-calibration-record"
+    assert entry["home"] == "arithmetic"
+    assert entry["domains"] == ["arithmetic"]
+    assert entry["geometry_lineage"] is None
+    assert entry["checker"]["sources"] and entry["evidence"] and entry["materials"]
+    for reference in entry["materials"] + entry["evidence"] + entry["checker"]["sources"]:
+        assert digest(ROOT / reference["path"]) == reference["sha256"], reference["path"]
+    index = load(ROOT / "adva-library/math/arithmetic/index.json")
+    assert CATALOG_KEY in index["entries"] and CATALOG_KEY in index["owned"]
+    words = load(ROOT / "adva-library/names/catalog-key-words-v1.json")
+    matching = [e for e in words["entries"] if e["key"] == CATALOG_KEY]
+    assert len(matching) == 1
+    assert matching[0]["key_words"] == CATALOG_KEY.split("-")
+
+
+def test_the_round_is_registered_in_the_ledger_and_the_feed():
+    """The AEG-side round enters the append-only receipt chain."""
+    round_dir = ROOT / "trials/li-yorke-continuation-round-01"
+    assert (round_dir / "meaning-li-yorke-continuation-v0.md").is_file()
+    receipt = load(round_dir / "receipt-31.json")
+    predecessor = ROOT / "trials/reflexive-duality-round-01/receipt-30.json"
+    assert receipt["round"] == 31
+    assert receipt["predecessor_sha256"] == digest(predecessor)
+    assert receipt["documented_holes"] and receipt["no_claims"]
+    ledger = load(ROOT / "trials/receipt-ledger/ledger.json")
+    entries = {e["receipt"]: e for e in ledger["entries"]}
+    assert sorted(entries) == list(range(1, len(entries) + 1))
+    assert entries[31]["path"] == "trials/li-yorke-continuation-round-01/receipt-31.json"
+    assert entries[31]["sha256"] == digest(round_dir / "receipt-31.json")
+    assert entries[31]["canonical_predecessor"] == 30
+    feed = load(ROOT / "trials/aeg-feed/feed.json")
+    published = {e["receipt"]: e for e in feed["entries"]}
+    assert len(published) == len(entries)
+    assert published[31]["sha256"] == entries[31]["sha256"]
+    assert digest(ROOT / "trials/aeg-feed" / published[31]["path"]) == entries[31]["sha256"]
+    # The feed carries no private filesystem paths.
+    assert "/Users/" not in (round_dir / "receipt-31.json").read_text(encoding="utf-8")

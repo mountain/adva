@@ -219,6 +219,14 @@ evidence `e557a20ab20e3775a0202bb09c8b73e2f16a2e8f3fdc6f66c7006f05be13a790`.
 contract. `RLIMIT_CPU` and `RLIMIT_FSIZE` were installed; **`RLIMIT_AS` was
 refused by this platform** and is recorded as refused rather than as installed.
 
+The two artifacts that produced this note are retained byte-exact in
+[`0167-evidence/`](0167-evidence/README.md): the raw literature report, which
+previously existed only in a workspace directory that is not a repository, and
+the three first-draft scripts, one of which counted fixed points by
+floating-point scan and is superseded by the exact branch method above. That
+directory is a record of the work, not the claim's evidence; the registered
+entry names `experiments/li_yorke_period_three/` for that.
+
 ## 10. What this note does not establish
 
 - It does not claim that any Adva program, three-computer cycle, observer or

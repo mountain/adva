@@ -61,7 +61,13 @@ UNCHECKED_STATUSES = frozenset({"proposed-document", "research-hypothesis"})
 LIMITS = {
     "entries": 32,
     "references": 256,
-    "files": 96,
+    # Raised from 96 to 120 on 2026-09-11, by the direction, to admit the
+    # period-three external calibration. The bound had reached 95 of 96 with the
+    # golden-ratio record, so one further admission was already impossible; the
+    # earlier workaround was to pin an index instead of the artifacts. This is a
+    # recorded widening of a declared bound, granted once for that admission and
+    # not a standing invitation: the next increase needs its own reason.
+    "files": 120,
     "metadata_bytes_each": 262_144,
     "reference_bytes_each": 8 * 1024 * 1024,
     "total_read_bytes": 32 * 1024 * 1024,
