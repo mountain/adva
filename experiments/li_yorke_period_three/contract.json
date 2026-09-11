@@ -1,0 +1,46 @@
+{
+  "schema": "adva.research.li-yorke-period-three-contract.v0",
+  "base_commit": "59141a8af4d9a57ef192ded0b9354b0e93a34f51",
+  "library_commit": "2ba705f3ed8429d9d7d09bfd82ac5eddf4543f9c",
+  "input_document": "docs/research/0167-li-yorke-period-three-and-homotopy-continuation.md",
+  "question": "Does a period-three interval map force, as exact linear data, the same 2x2 transition matrix that carries the golden-ratio one-hole recursion, and does that shared matrix decide any dynamical statement?",
+  "level": "External exact arithmetic over Z-coefficient 2x2 matrices and exact rationals Q; imported theorems named but not reproved; no native semantic construction",
+  "domain": "Integer 2x2 matrices and their characteristic polynomials; exact rationals for the tent map on [0,1], the golden one-hole map on [1,2], and the rigid rotation by 1/3 on Q/Z",
+  "objects": {
+    "li_yorke_interval_graph": [[0, 1], [1, 1]],
+    "golden_one_hole_matrix": [[1, 1], [1, 0]],
+    "basis_swap": [[0, 1], [1, 0]],
+    "atlas_matrix_square": [[2, 1], [1, 1]],
+    "wrong_matrix_control": [[0, 1], [1, 2]],
+    "tent_cycle_a": ["2/7", "4/7", "6/7"],
+    "golden_one_hole_interval": ["1", "2"],
+    "rotation_denominator": 3,
+    "max_matrix_power": 24,
+    "max_tent_depth": 8
+  },
+  "quantifiers": [
+    "All n from 1 to 24 for matrix powers, Fibonacci entries and Lucas closed-walk counts",
+    "All 2^n linear pieces of the tent map iterate for every depth n from 1 to 8",
+    "All ordered pairs of a finite exact rational grid on the rotation circle for distance preservation",
+    "The two roots of x^2-x-1 bracketed exactly by rational intervals and by the rational-root test"
+  ],
+  "grammar": ["exact integer matrix multiplication", "exact rational arithmetic over Fraction", "piecewise-affine interval image with exact breakpoints", "exact rational root bracketing", "polynomial coefficient identity"],
+  "acceptance": [
+    "The Li-Yorke interval graph is DERIVED from a concrete exact interval covering of the tent-map 3-cycle, not stipulated",
+    "The tent-map 3-cycle satisfies the 1975 hypothesis in its stated inequality form d <= a < b < c",
+    "Every depth 1..8 of the tent map has exactly 2^n points fixed by the n-th iterate, so every period occurs; the count is obtained piecewise-affinely and each root is verified exactly",
+    "The closed-walk count of the derived interval graph is the Lucas number and is at most the tent-map fixed-point count at the same depth",
+    "The golden one-hole map on [1,2] is a strictly monotone self-map whose second iterate has exactly one fixed point in [1,2] and no 2-cycle",
+    "The rigid rotation by one third is an exact isometry of period three with no proximal pair",
+    "A wrong-matrix control refuses the identity so that the equality test is not vacuous"
+  ],
+  "protected": [
+    "No claim that any Adva program, three-computer cycle, observer or diagram is a Li-Yorke map",
+    "No claim that the shared characteristic polynomial identifies two spaces, two semantics or one dynamics",
+    "No native Rust witness, no Claim promotion beyond bounded-external-experiment, no Seal, no library admission",
+    "No floating-point value enters any acceptance test",
+    "The 1975 paper's uncountable set and the Sharkovsky ordering are imported theorems, not reproved here"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 30, "cpu_seconds": 25, "memory_bytes": 268435456, "max_assertions": 20000, "output_bytes": 1048576, "correction_replays": 1},
+  "residual": "The identity established is an identity of exact linear data carried by two different maps. It decides no dynamical statement: the same characteristic polynomial coexists here with a monotone contracting map and with a non-invertible chaotic one, and the difference is the folding, which this checker does not characterize. The Adva three-computer cycle is not shown to be an interval map, to carry an order structure, or to possess any periodic orbit. Topological entropy, the sharpness of the Sharkovsky ordering, and the existence of the uncountable set are imported, not established here."
+}
