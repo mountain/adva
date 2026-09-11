@@ -1,0 +1,34 @@
+{
+  "schema": "adva.research.reflexive-lattice-gate-execution-cost",
+  "version": 0,
+  "status": "Completed with one retained correction replay",
+  "run_count": 2,
+  "correction_replays": 1,
+  "command": "python3 -S experiments/reflexive_lattice_gate/calibration.py --output experiments/reflexive_lattice_gate/evidence.json",
+  "attempt_1": {
+    "outcome": "aborted on the declared CPU limit",
+    "signal": "SIGXCPU (exit 152, 128+24)",
+    "wall_seconds": 25.06,
+    "user_seconds": 24.89,
+    "cause": "the first lattice-basis helper did not terminate: its elimination step skipped every non-integral quotient and could cycle",
+    "repair": "replaced by a Euclidean integer reduction whose pivots strictly decrease; the budget counters were raised to cover the enumerated controls before the retained run",
+    "retained": "this failure is recorded rather than hidden; the failed run produced no evidence file"
+  },
+  "attempt_2": {
+    "outcome": "Passed",
+    "wall_seconds": 0.387,
+    "elapsed_before_final_write_ns": 310562625,
+    "constraint_triples": 7559,
+    "assertions": 51200,
+    "peak_rss_kib": 24768,
+    "rss_note": "Darwin reports ru_maxrss in bytes; divided by 1024 for this record",
+    "limits_installed": {
+      "cpu_seconds": 25,
+      "address_space_bytes": "not-installed: ValueError"
+    },
+    "limit_note": "Darwin refuses to lower RLIMIT_AS (current limit exceeds maximum limit); the refusal is recorded instead of the limit being reported as installed"
+  },
+  "evidence_sha256": "228e7a740ef27cdc6bc3c6e8f13c496e88418bec247ed90fc1119b8a9dc6d0eb",
+  "source_sha256": "8d20a5f01c46b83287b401df278071ab33c552dfa2b6a94d52d538cf1fd7b12b",
+  "scope": "Transcribed exact successful tool output plus one retained failed attempt. No elapsed claim includes research, authoring, network or final metadata checks. Comparison against a fresh run should use the mathematical projections, not timing, RSS or limit fields."
+}

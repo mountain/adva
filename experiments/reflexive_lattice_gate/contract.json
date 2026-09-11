@@ -1,0 +1,68 @@
+{
+  "schema": "adva.research.reflexive-lattice-gate-contract",
+  "version": 0,
+  "base_commit": "d5e5cb156d469493f7271adee3b7b924e842852f",
+  "date": "2026-09-11",
+  "question": "For a fixed centered full-dimensional rational polytope P with the origin in its interior, when does there exist a full-rank lattice M with Vert(P) subset M and Vert(P^o) subset M* under the declared dot pairing, and what is the minimal such M?",
+  "level": "Adva research terminology and external exact rational arithmetic; no stable semantic operation, no new vocabulary name",
+  "criterion": {
+    "name": "minimal-lattice lemma",
+    "statement": "Such an M exists if and only if every pairing dot(v,y) with a supplied primal vertex v and a computed polar vertex y is an integer. The minimal candidate is M = Z-span(Vert(P)); no larger lattice can be easier, because M1 subset M2 implies M2* subset M1*.",
+    "consequence": "The question is decided by one finite pairing check over the two vertex lists. No lattice search is performed and no enumeration of lattices is claimed."
+  },
+  "objects": [
+    "square_2d: vertices (+/-1,+/-1)",
+    "reflexive_triangle_2d: vertices (1,0),(0,1),(-1,-1)",
+    "cube_3d: vertices (+/-1,+/-1,+/-1)",
+    "sheared_cube_3d: A(x,y,z)=(x+y,y,z) applied to the cube vertices",
+    "reflexive_simplex_3d: vertices e1,e2,e3,-e1-e2-e3",
+    "to24_3d: signed permutations of (0,1,2), equivalently |x_i|<=2 and |x_1|+|x_2|+|x_3|<=3",
+    "unimodular_image_of_to24_3d: the same A applied to the TO24 vertices",
+    "twice_to24_3d: the TO24 vertex set scaled by 2"
+  ],
+  "types": {
+    "coordinates": "Q^d with exact Fraction, d in {2,3}",
+    "origin": "(0,...,0), fixed and required to be interior",
+    "pairing": "standard dot product between declared primal and dual coordinate spaces",
+    "polar": "P^o={y: dot(v,y)<=1 for every supplied primal vertex v}, vertices by complete active-constraint enumeration",
+    "minimal_lattice": "M = Z-span(Vert(P)), reported by a Hermite basis and its index in Z^d",
+    "native_identity": "none"
+  },
+  "quantifiers": [
+    "Every d-subset of each frozen vertex list, for each computed polar",
+    "Every primal-polar vertex pairing in each fixture",
+    "The existence question quantifies over every compatible full-rank lattice, discharged by the lemma's two directions rather than by a search"
+  ],
+  "assumptions": [
+    "Classical polar duality for full-dimensional compact convex polytopes with interior origin",
+    "Classical lattices: M full rank in Q^d, M*=Hom(M,Z) under the declared pairing",
+    "The self-contained checker is an external mathematical oracle, not the Rust semantic kernel",
+    "Batyrev reflexivity and Calabi-Yau mirror symmetry motivate the question only; no construction is attempted"
+  ],
+  "protected": [
+    "Q4/M6 typed histories and unfilled boundaries remain unchanged",
+    "The fixed centered TO24 obstruction from the 2026-09-10 record is extended, not reinterpreted",
+    "Pascal-rooted growth obligation remains Open; no geometry catalog admission",
+    "No group quotient, metric refinement, crepant subdivision or mirror constructed"
+  ],
+  "acceptance": [
+    "The square, the reflexive triangle, the cube, the sheared cube and the reflexive simplex satisfy the criterion",
+    "TO24, its unimodular image and twice TO24 fail it, each with an explicit nonintegral pairing certificate",
+    "The computed polar of the sheared cube equals the contragredient transport of the unsheared polar, and applying A instead of A^(-T) is refused",
+    "Every fixture whose facets are declared also matches the normals/offsets reading, and the offset set is reported",
+    "A forged polar vertex, an epsilon-integrality shortcut, incomplete coverage, a non-full-dimensional domain, a boundary origin and a wrong dual transport are each refused"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_bytes": 268435456,
+    "max_triples": 10000,
+    "max_checks": 300000,
+    "max_output_file_bytes": 1048576,
+    "max_artifact_bytes": 2097152,
+    "correction_replays": 0
+  },
+  "unknown": "Budget or required evidence unavailable; partial enumeration is never promoted, and a refused shortcut is reported as a refusal, not as evidence",
+  "replay": "python3 -S experiments/reflexive_lattice_gate/calibration.py --output /tmp/reflexive-lattice-gate-fresh.json (the output path must not exist)"
+}
