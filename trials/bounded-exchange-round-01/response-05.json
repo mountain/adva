@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "request_sha256": "b7d908d71edc5ca1338dfd1b54517a6b528f811c05108f618e719c03273e91aa",
+  "method": "declared-field-projection-v1",
+  "sender_claim": "AEG operator reply 05 (local Surface repo, authorized); label unauthenticated",
+  "before": {
+    "record_ref": "round-04-disclosures",
+    "projection": {
+      "task": "round-04 disclosed: comparison corrected post-hoc on declared fields (no re-run); stoplist discrepancy attributed to a round-03 script copy difference",
+      "result": "disclosed stoplist: 119 words, pin 25c1edee...; round-03 inline script not retained",
+      "residual": "no audit of retained artifacts was offered at that time"
+    }
+  },
+  "after": {
+    "record_ref": "audit-05",
+    "projection": {
+      "task": "Retained artifacts located: reuse_benchmark_04.py (dfdc2cd9...), reuse_query.py (ef97fa66...), reuse_rules.py (4010b60c...), reuse-measure-04.json (b63b4a6b...), all committed in local AEG 34d35f5; round-03 inline script NotAvailable",
+      "result": "Benchmark code OriginalCopy and still contains the original full-object comparison at line 156 (equal = proj_B == proj_R) that produced false; the first-run output record was overwritten pre-commit (NotAvailable), the failure statement survives in three retained records; both comparison objects retained with the extra content_tokens field visible (baseline 8279/41209). Stoplist: round-04 OriginalCopy, encoding CONFIRMED (sorted, newline-joined, no trailing newline -> 25c1edee...). Round-03 actual list NotAvailable: word-level added/removed unprovable; the 2-token total delta is observed, its explanation is inference. Text layers unchanged (8f6e8af5.../21f04d44...).",
+      "residual": "benchmark_runs=0, new_index_builds=0 honored; only digests, line references, verbatim subobject copies and the stoplist re-encoding check were performed. Redactions: local paths in code excerpts. Provenance statuses per artifact in audit-witness-05.json."
+    }
+  },
+  "omissions": "Round-03 inline code and the first-run output record do not exist as retained files; no reconstruction is offered in their place. Attachments: audit-witness-05.json, audit-code-05.txt, comparison-objects-05.json (each under 16 KiB)."
+}
