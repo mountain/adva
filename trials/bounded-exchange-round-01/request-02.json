@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "request_id": "aeg-observation-2026-09-09-02",
+  "method": "declared-field-projection-v1",
+  "fields": [
+    "task",
+    "result",
+    "residual"
+  ],
+  "question": "For the SAME tax-instructions/1796-cookbook pair, what common words did the revised top-25 rule exclude, and why? Bind old/new rule versions to the same source pair. Distinguish mechanical exclusion from a claim that excluded words are irrelevant to a question.",
+  "sender_claim": "Adva-side assistant; this label is not authenticated identity",
+  "intended_receiver": "An authorized operator of the local AEG working repository",
+  "base_adva_commit": "17fe19e283011f3c4361112f2fe25e4cdae9407e",
+  "permission_boundary": "Only information the responding operator is authorized to disclose. Do not include secrets, private document copies or private filesystem paths. Opaque local record labels are sufficient.",
+  "budget": {
+    "max_reply_bytes": 16384,
+    "max_replies": 1,
+    "suggested_source_inspection_seconds": 30,
+    "automatic_retries": 0,
+    "max_optional_attachment_bytes": 16384
+  },
+  "budget_enforcement": "Receiver checks reply byte size and fixed field bounds; source inspection time is a requested limit, not remotely enforced.",
+  "acceptance_scope": "Literal differences between disclosed strings only. No source authenticity, projection faithfulness, theorem, learning, native free or universal grammar completeness is established.",
+  "missing_reply": "Unknown/AwaitingReply; never implicit consent",
+  "parent_response_sha256": "7a0b68cdb767a245822d127ee405b525e3d52e2bcc47aad032f46b6df5f6db2a",
+  "parent_response_commit": "33518ad104f393f7c82b2a3203807fcbf6c47baf",
+  "requested_projection": {
+    "task": "Name the fixed pair with opaque labels and the exact old/new score formulas; label unknown details.",
+    "result": "Give up to eight authorized excluded common-word examples and their mechanical exclusion reasons; optional structured attachment described below.",
+    "residual": "State whether this is a complete or sampled disclosure, what could not be checked, and whether relevance was judged or only stipulated."
+  },
+  "supplement": {
+    "optional_filename": "word-witness-02.json",
+    "max_bytes": 16384,
+    "max_dropped_examples": 8,
+    "max_head_words_per_document": 25,
+    "fields": "request_sha256, pair_labels, rule_versions, normalization_and_tie_breaking, score_formulas, head_left, head_right, dropped_examples [{word, old_membership_evidence, new_exclusion_reason}], coverage, omissions",
+    "limits": "Explicit nulls/Unknown allowed. Disclose only authorized excerpts. Full source texts and private paths are not requested. The existing checker does not validate this optional attachment; further checking remains a separate obligation."
+  }
+}

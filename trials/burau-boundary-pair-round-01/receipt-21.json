@@ -1,0 +1,63 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 21,
+  "predecessor_sha256": "9333925cc5e25247f800897e1284095ae5f5120ef3c3067e721feda344498a91",
+  "delta": {
+    "kind": "observation",
+    "admitted": true,
+    "description": "pair alignment of the Burau boundary pair: 2607.05283v1 (BBB 2026, n=4 faithful, 26pp) vs math/9904100v2 (Bigelow 1999, n=5 not faithful, 8pp). Title negation in 3 edits; sign inversion (faithful 43 vs 13, not faithful 4 vs 10); disjoint witness objects (curve 7/13, disk 160/0, point-pushing 17/0, Brunnian 7/0); Bigelow cited 13x; Birman proposes 1999 and co-authors 2026 (27-year bridge). Faithfulness threshold closes at n <= 4. Method-generality verdict: relation-extraction generalizes across domains, content-verification does not; overlap coefficient as pre-filter gate."
+  },
+  "status": "MatchedFiniteScope",
+  "evidence": {
+    "pins": {
+      "positive_sha256": "ecaf125b6075bcbcca9d7b9a55274cb1c8e16bb1bf22bbe0737bf25ded381c7c",
+      "negative_sha256": "04e402f09205809eeadc47eaf7ccebc2cb18802c146c45923d9025be5fd8d8b8"
+    },
+    "boundary_arithmetic": {
+      "n3": "faithful (Magnus-Peluso 1969)",
+      "n4": "faithful (BBB 2026)",
+      "n5": "not faithful (Bigelow 1999)",
+      "n6_up": "not faithful (Long-Paton 1993)",
+      "threshold": "n <= 4",
+      "closed": true
+    },
+    "title_negation": {
+      "edit_operations": 3,
+      "ops": ["insert 'not'", "4 -> 5", "drop 'of the braid group'"]
+    },
+    "phrase_inversion": {
+      "faithful": [43, 13],
+      "not_faithful": [4, 10],
+      "n_eq_4": [11, 1],
+      "n_eq_5": [2, 6]
+    },
+    "witness_duality": {
+      "curve": [7, 13],
+      "disk": [160, 0],
+      "point_pushing": [17, 0],
+      "brunnian": [7, 0]
+    },
+    "provenance": {
+      "negative_proposed_by": "Joan Birman",
+      "positive_coauthor": "Joan S. Birman",
+      "year_gap": 27,
+      "vocabulary_overlap": 0.6731
+    },
+    "method_generality": {
+      "relation_extraction_cross_domain": true,
+      "content_verification_out_of_scope": true,
+      "overlap_prefilter_proposed": 0.2
+    }
+  },
+  "documented_holes": [
+    "no mathematical verification of either paper: the boundary reading is rigorous about the pair, not a re-derivation of the mathematics",
+    "phrase counts are surface proxies; 'disk' usage semantics not disambiguated",
+    "middle literature 1999-2026 not probed: the citation graph is sampled only at its endpoints"
+  ],
+  "no_claims": [
+    "no claim to have checked either proof",
+    "no claim that the overlap-coefficient pre-filter (0.2) is calibrated: it is a proposal, not a result",
+    "the two PDFs remain local to AEG trials; pins only, no full texts in public repos"
+  ]
+}

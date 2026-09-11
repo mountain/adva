@@ -1,0 +1,45 @@
+{
+  "schema": "aeg.meaning-pair.hypotheses",
+  "version": 1,
+  "round": "meaning-pair-round-02",
+  "objects": {
+    "a": "2303.08774v6.pdf — OpenAI, GPT-4 Technical Report (2024, 100 pp)",
+    "b": "nenbakraniya.pdf — Nen Bakraniya, Accurate Proteome-wide Missense Variant Effect Prediction with AlphaMissense (student study deck, 37 pp)"
+  },
+  "hypotheses": [
+    {
+      "id": "H1",
+      "name": "genre-pair",
+      "statement": "Both documents belong to the AI-model-report genre (model description, data, evaluation, limitations) while occupying disjoint domains (language vs proteome).",
+      "check": "vocabulary overlap 0.6984 inflated by the deck's tiny 305-word vocabulary; genre words survive (model 505/11, predict 46/14, limitation 21/5); domain words are mutually exclusive (language 177/0, safety 93/0 vs missense 0/25, pathogen 1/7). No citation either way.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H2",
+      "name": "generation-versus-verification",
+      "statement": "The pair instantiates the two poles of AI: GPT-4 predicts the next token (generation); AlphaMissense checks which missense variants are pathogenic (verification).",
+      "check": "a: next-token prediction, benchmark/evaluation-heavy (evaluat* 105, benchmark 38); b: variant effect prediction (variant 21, missense 25, pathogen 7).",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H3",
+      "name": "primary-versus-derived",
+      "statement": "One document is the primary source (the lab's own 100-page report); the other is a derived study deck whose meaning is largely visual.",
+      "check": "pages 100 vs 37; words 46,637 vs 624 (17 words/page); the deck's text layer is sparse — its figures carry most of its content.",
+      "status": "EvidenceStutter"
+    },
+    {
+      "id": "H4",
+      "name": "predictability-bridge",
+      "statement": "Both systems are prediction machines; the shared virtue is making outcomes checkable (predictable scaling vs proteome-wide variant effect prediction).",
+      "check": "a: performance predicted from 1/1000th compute (predictable scaling); b: variant effects predicted proteome-wide. Prediction appears 46/14 across the pair.",
+      "status": "VariationObserved"
+    }
+  ],
+  "alignment_measure": {
+    "vocabulary_overlap_coefficient": 0.6984,
+    "pages": "100 -> 37",
+    "words": "46637 -> 624",
+    "citation": "mutually independent"
+  }
+}

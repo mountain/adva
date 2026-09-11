@@ -1,0 +1,37 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 7,
+  "predecessor_sha256": "751bfbc7c09150eba2c951beb8048772ce079a740d05448104072c6ffc055fb2",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "two pinned binaries (main adva CLI and the quine_relay byte observer) agree with the iota/SKI substrate on the full 256-byte frontier"
+  },
+  "status": "VariationObserved",
+  "evidence": {
+    "binaries": {
+      "adva": {
+        "sha256": "755cc1ecfc4834c349b6827f469e95e80d19b88493e596ec3144093e9a00a828",
+        "source_pin": "ac2c173 (rust inputs unchanged; advance rust-source-boundary check holds)"
+      },
+      "quine_relay_observer": {
+        "sha256": "dfc2de43e8628d0664e4ab6943291a7c6b327b2ea760b49f06ac151bc1d0025e",
+        "source_pin": "a7b82a1 (advance contract rust-source-boundary)"
+      }
+    },
+    "frontier": {
+      "binary_values_exact_range": true,
+      "binary_vs_substrate_agree": 256,
+      "runs": 256,
+      "fuel_per_run": 8,
+      "note": "run admission caps fuel 1..=16; the single 256-value module was rejected (retained) and the frontier was checked as 256 bounded single-byte runs"
+    },
+    "relation": "same-pinned-source artifacts agreeing on the shared frontier; not bit-level isomorphism, not cross-machine reproducibility"
+  },
+  "bounds": {
+    "runs": 256,
+    "fuel": 8,
+    "offline": true
+  }
+}

@@ -1,0 +1,366 @@
+{
+  "schema": "aeg.choice-fibre-ledger.research",
+  "version": 0,
+  "authority": "explicit selections and fibre accounting; complete alternative retention; silent drops rejected",
+  "rules": [
+    "every selection has a named witness and belongs to its declared hole",
+    "the complete set of alternatives is retained with the selection; an empty or partial retained set is rejected",
+    "selected payload pins, where declared, must match the retained payload bytes",
+    "every receipt 01-10 has exactly one fibre entry with status discharged|empty|unknown",
+    "remote-branch retentions are documentary; local retentions are pin-checked"
+  ],
+  "choices": [
+    {
+      "name": "party-naming-scheme",
+      "hole": "three-party renaming",
+      "selected": {
+        "value": "A: Substrate/Knowledge/Surface",
+        "payload_sha256": "feb270db2d784720bb6803b6f9b17668a06f57594a0ba732223663ae1b1917c8"
+      },
+      "retained": [
+        {
+          "value": "A: Substrate/Knowledge/Surface",
+          "retention": "adva-library/names/party-naming-layer-v0.json",
+          "payload_sha256": "feb270db2d784720bb6803b6f9b17668a06f57594a0ba732223663ae1b1917c8"
+        },
+        {
+          "value": "B: Iota/Adva/Wenyan",
+          "retention": "proto/party-naming-layer.md (documentary text)",
+          "payload_sha256": null
+        },
+        {
+          "value": "C: Machine/World/Human",
+          "retention": "proto/party-naming-layer.md (documentary text)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "macos-restrictions-guard",
+      "hole": "supervisor platform limits",
+      "selected": {
+        "value": "surgical RLIMIT_AS linux guard (main ac2c173)",
+        "payload_sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f"
+      },
+      "retained": [
+        {
+          "value": "surgical RLIMIT_AS linux guard (selected)",
+          "retention": "python/adva/quine_relay.py",
+          "payload_sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f"
+        },
+        {
+          "value": "full no-op patch (run-time variant)",
+          "retention": "trials/advance-local-run-02/implementation-quine_relay.py",
+          "payload_sha256": "2bed9d1af5000ae64ab0486740f235c8848e635636995a5a23979896eee7179f"
+        }
+      ]
+    },
+    {
+      "name": "byte-formula-interpretation",
+      "hole": "0164 formula interpretation (0166 experiment)",
+      "selected": {
+        "value": "doubling 2x (native reuse matched, add(x,x))",
+        "payload_sha256": null
+      },
+      "retained": [
+        {
+          "value": "add(x,x) doubling",
+          "retention": "origin/research/0166-interpretation-obligation (remote branch, documentary)",
+          "payload_sha256": null
+        },
+        {
+          "value": "mul(x,x) square - counterexample at 3",
+          "retention": "origin/research/0166-interpretation-obligation (remote branch, documentary)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "receipt-ancestry",
+      "hole": "receipt 02/03/05 predecessor fields",
+      "selected": {
+        "value": "explicit ledger repairs (canonical chain 01..09)",
+        "payload_sha256": "fcba65ba5eb3b4648071de6aa595a5d3346ffa1ab96c6d94700ace1ee4051e79"
+      },
+      "retained": [
+        {
+          "value": "explicit ledger repairs (selected)",
+          "retention": "trials/receipt-ledger/ledger.json",
+          "payload_sha256": "fcba65ba5eb3b4648071de6aa595a5d3346ffa1ab96c6d94700ace1ee4051e79"
+        },
+        {
+          "value": "on-disk field values (historical evidence)",
+          "retention": "the receipt files themselves, unmodified",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "surface-language",
+      "hole": "Surface working language",
+      "selected": {
+        "value": "wenyan four-phrase interface + path-bound monodromy (remote 7752c2f)",
+        "payload_sha256": "18b82f881ba3c2079c83b7e0775903836346aaca778a879d11aea5fd7d9ad1fd"
+      },
+      "retained": [
+        {
+          "value": "wenyan four-phrase interface + path-bound monodromy (selected)",
+          "retention": "docs/research/0043-path-bound-interpretation.md",
+          "payload_sha256": "18b82f881ba3c2079c83b7e0775903836346aaca778a879d11aea5fd7d9ad1fd"
+        },
+        {
+          "value": "scale-marked cyclic (previous mechanism-side language, retained)",
+          "retention": "docs/research/0043-scale-marked-surface-exploration.md",
+          "payload_sha256": "5fae5a30a622ce4250b034d333f52241572d58295c4738a897d040a0ebf33e77"
+        },
+        {
+          "value": "wenyan 文言 (human-interface language)",
+          "retention": "adva-library/names/party-naming-layer-v0.json (Surface.language field)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "wenyan-fork",
+      "hole": "wenyan repository disposition",
+      "selected": {
+        "value": "fork at github mountain/wenyan (local Adva/mingli-wenyan, upstream tracked, HEAD 97f0a4b)",
+        "payload_sha256": null
+      },
+      "retained": [
+        {
+          "value": "fork at github mountain/wenyan (selected)",
+          "retention": "git@github.com:mountain/wenyan.git @ 97f0a4b (documentary)",
+          "payload_sha256": null
+        },
+        {
+          "value": "upstream-only reference clone (local Adva/wenyan, retained)",
+          "retention": "git@github.com:wenyan-lang/wenyan.git @ 97f0a4b (documentary)",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "catalog-key-linking",
+      "hole": "catalog key source phrases",
+      "selected": {
+        "value": "explicit key-words declarations, v1-verified (MatchedDeclaredKeys, 15 keys)",
+        "payload_sha256": "d51c18507236ac1cd65133ef26bfc9ab7edf81e93c320d7b5334454054a40aae"
+      },
+      "retained": [
+        {
+          "value": "explicit key-words declarations (selected)",
+          "retention": "adva-library/names/catalog-key-words.json",
+          "payload_sha256": "d51c18507236ac1cd65133ef26bfc9ab7edf81e93c320d7b5334454054a40aae"
+        },
+        {
+          "value": "implicit convention (previous state, superseded)",
+          "retention": "documentary (the historical titles remain in the manifest)",
+          "payload_sha256": null
+        },
+        {
+          "value": "v1 policy document (aligned with the remote checker contract)",
+          "retention": "adva-library/names/catalog-key-words-v1.json",
+          "payload_sha256": "51f889792bd65124c26547d828bf9d2a3f2f366df2926bba0a40eb627e325958"
+        }
+      ]
+    },
+    {
+      "name": "link-direction",
+      "hole": "link direction representation",
+      "selected": {
+        "value": "bidirectional link with direction in the ledger (正行/逆行 vocabulary)",
+        "payload_sha256": "9bdadd5e564a57ff73e5c69013bfce6b4fb706c74e631bc6950e37789cd17177"
+      },
+      "retained": [
+        {
+          "value": "bidirectional link (selected)",
+          "retention": "trials/name-linking-round-01/directional-report.json",
+          "payload_sha256": "9bdadd5e564a57ff73e5c69013bfce6b4fb706c74e631bc6950e37789cd17177"
+        },
+        {
+          "value": "single-direction implicit (previous, superseded)",
+          "retention": "documentary",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "unlink-via-swap",
+      "hole": "direction implementation primitive",
+      "selected": {
+        "value": "staircase swap word (0158 swap; rev^2 = identity)",
+        "payload_sha256": "f695c52bb478eb36ff295080d7372cc3d7229cb306444edddb750c15c18cdcdf"
+      },
+      "retained": [
+        {
+          "value": "staircase swap word (selected)",
+          "retention": "trials/name-linking-round-01/swap-report.json",
+          "payload_sha256": "f695c52bb478eb36ff295080d7372cc3d7229cb306444edddb750c15c18cdcdf"
+        },
+        {
+          "value": "wholesale list reversal (previous, superseded)",
+          "retention": "documentary",
+          "payload_sha256": null
+        }
+      ]
+    },
+    {
+      "name": "yau-calabi-mapping",
+      "hole": "Yau-Calabi narrative mapping registration",
+      "selected": {
+        "value": "registered as logic-yau-calabi-mapping (library 6016248)",
+        "payload_sha256": "43711060f0a6fe0953ad5e5578c8a3bb78c326771652d63aa846c804cc891b3a"
+      },
+      "retained": [
+        {
+          "value": "registered mapping (selected)",
+          "retention": "adva-library/meaning-yau-calabi-mapping-v0.md",
+          "payload_sha256": "43711060f0a6fe0953ad5e5578c8a3bb78c326771652d63aa846c804cc891b3a"
+        },
+        {
+          "value": "AEG-only proposed calibration (previous, retained)",
+          "retention": "trials/yau-calabi-narrative-round-01/receipt-17.json",
+          "payload_sha256": "ce3d76aab373ef5deb7cf0635e19242ce10f87067469ecf8c106a657251f81dd"
+        }
+      ]
+    },
+    {
+      "name": "birman-burau-mapping",
+      "hole": "NYT story duality mapping registration",
+      "selected": {
+        "value": "registered as logic-birman-burau-duality (library 84fdd9d)",
+        "payload_sha256": "6474936fc71491dada87b421d2cf288013497fcc5b88401529be76c84cc3055d"
+      },
+      "retained": [
+        {
+          "value": "registered mapping (selected)",
+          "retention": "adva-library/meaning-birman-burau-duality-v0.md",
+          "payload_sha256": "6474936fc71491dada87b421d2cf288013497fcc5b88401529be76c84cc3055d"
+        },
+        {
+          "value": "analysis in conversation (previous, retained)",
+          "retention": "documentary",
+          "payload_sha256": null
+        }
+      ]
+    }
+  ],
+  "fibres": [
+    {
+      "receipt": 1,
+      "question": "unchanged input -> byte variation?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": null
+    },
+    {
+      "receipt": 2,
+      "question": "100 native runs of one program -> variation?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 1
+    },
+    {
+      "receipt": 3,
+      "question": "declared-carrier variation on two admitted programs?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 2
+    },
+    {
+      "receipt": 4,
+      "question": "0164 formula on the iota/SKI substrate?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 3
+    },
+    {
+      "receipt": 5,
+      "question": "full 0..255 byte set on the substrate?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 4
+    },
+    {
+      "receipt": 6,
+      "question": "local rerun of the remote advance step?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 5
+    },
+    {
+      "receipt": 7,
+      "question": "two binaries agree on the frontier?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 6
+    },
+    {
+      "receipt": 8,
+      "question": "interpretation relation of the two documents?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 7
+    },
+    {
+      "receipt": 9,
+      "question": "sentence-3 predicate on its declared scope?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 8
+    },
+    {
+      "receipt": 10,
+      "question": "receipt ancestry ledger consistent?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 9
+    },
+    {
+      "receipt": 11,
+      "question": "choice witnesses and fibre accounts consistent?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 10
+    },
+    {
+      "receipt": 12,
+      "question": "surface working language: cyclic recoverability on declared scope?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 11
+    },
+    {
+      "receipt": 13,
+      "question": "four-phrase interface vs independent path and algebraic action?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 12
+    },
+    {
+      "receipt": 14,
+      "question": "do the declared phrases link to their keys exactly?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 13
+    },
+    {
+      "receipt": 15,
+      "question": "does the link carry both directions with ledger-visible histories?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 14
+    },
+    {
+      "receipt": 16,
+      "question": "is reversal expressible as the staircase swap word with rev^2 = identity?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 15
+    },
+    {
+      "receipt": 17,
+      "question": "does the Yau-Calabi narrative map to the five arithmetic anchors exactly?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 16
+    },
+    {
+      "receipt": 18,
+      "question": "are the dual-side eigenvalues/energies identical, conjugate-rescaled, or reciprocal?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 17
+    },
+    {
+      "receipt": 19,
+      "question": "does the rational bridge certify exact zero under the declared scope?",
+      "fibre_status": "discharged",
+      "predecessor_fibre": 18
+    }
+  ],
+  "status": "proposed"
+}

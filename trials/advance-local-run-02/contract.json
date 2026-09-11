@@ -1,0 +1,60 @@
+{
+  "schema": "adva.advance-byte-observer.contract.research",
+  "version": 0,
+  "profile": "byte-observer-v0",
+  "base_commit": "a7b82a1",
+  "library_commit": "7496a5c893fadf5d72fd29cf7ad5a63f42586b4b",
+  "question": "For each byte 0..255, which first observation in the frozen cumulative ladder distinguishes four separately Rust-compiled constant constructions of that byte, while their values also match a fresh external SKI calculation?",
+  "level": "Finite external observation of newly Rust-checked PSC0 artifacts; proposed research continuation of 0161/0160.",
+  "authorization": "User requested one further step through adva.py on 2026-09-09. This contract permits one invocation, with no automatic retry or publication.",
+  "predecessor": "docs/research/0161-evidence/receipt-05.json",
+  "pins": {
+    "docs/research/0161-evidence/receipt-05.json": "80f04b58687e7c9b4d4daba8f69c487aef79d81e9928f8baf228966c3d89a2b9",
+    "docs/research/0161-evidence/fullset-results.json": "0dadd116abbfe784cfae5dfa751b8f5c2b27f2ee353b55f9823c450314e1a5ff",
+    "docs/research/0161-evidence/reducer.py": "ca2c23b42151ace07e2c0fa638b76612dc1408987a267f5c5d4aeda9139e9ce6",
+    "docs/research/0161-evidence/signed.py": "af90ba2f583508f3517847c7cc70ef6019a036cef953ec6e36b4dbd6add3852f",
+    "crates/adva-witness/examples/quine_relay.rs": "af6c706250f2fc9b138e6a2da126f66827ec4fcd9498c01236384b74c0ade9f6",
+    "adva-library/math/constraints/growth-obligation-v0000.json": "8f3f457b4991752ec1284968c8e36feffb0ce59aa96d6f63993c3f98396a2c03",
+    "adva-library/math/constraints/growth-obligation-seal-v0000.json": "2513680a30871e9cbc2c5d74c8cea4d254f553eee0b2d7afdcce40335849c1cf"
+  },
+  "imported_assumptions": [
+    "Trusted local checkout and Rust toolchain; cargo rebuilds the existing observer offline from unchanged pinned Rust build inputs.",
+    "Research 0161's signed.py/reducer.py are external finite models, not native identities or proof kernels. Their bytes and import-time checks are retained.",
+    "Rust reloads epoch 1 through load_library_v0, including doubling reuse at 1..8 and zero refusal. Using one directory twice is a replay control, not independent witnesses.",
+    "All selected arithmetic intermediates are small exactly representable f64 integers; this does not establish a general integer scalar."
+  ],
+  "interface": "u=(b mod 8)+1, v=b-2u. Four supplied PSC0 source templates are compiled separately; their output wires are observed via existing Rust evaluation. Python compares returned values and reads operation records, never reconstructs semantic identities or authorizes a transformation.",
+  "templates": ["copy-add", "scale-add", "repeated-literal", "reordered-copy"],
+  "observers": ["byte-value", "node-count", "operation-histogram", "ordered-operation-names"],
+  "observer_policy": "Cumulative ladder. For each output, traverse explicit producer edges in the freshly returned Rust diagram, retain exact node IDs, then read names in original compilation-node order. This is not a canonical causal schedule or a native observation certificate. First means first in this four-item list, not absolute minimality or universal faithfulness.",
+  "protected_obligations": [
+    "Keep all complete Rust compilation, graft, occurrence, history and evaluation artifacts, including both same-output histories.",
+    "No new knowledge epoch, native learning, free/drop, source quotient, equation cell, semantic observer API or geometry admission.",
+    "Keep predecessor bytes unchanged; its unresolved earlier ancestry remains unresolved. Bind this new receipt to its exact full SHA256.",
+    "Preserve math catalog and Pascal growth pins; native Seal remains NotIssued."
+  ],
+  "controls": [
+    "Fresh replay of copy-add retains identical selected observations (EvidenceStutter).",
+    "Changing only the first v by +1 is natively evaluated but fails expected byte equality.",
+    "A 256 output is refused by the Rust byte observer.",
+    "A changed predecessor byte fails the pinned input check.",
+    "Fresh external SKI values match all 256 native output values; four iota round-trip samples and inherited primitive checks pass."
+  ],
+  "success": "VariationObserved if all 256 values match in all four templates and SKI, every control passes, and a frozen observation separates the four constructions at every byte. Otherwise Rejected, or Unknown on a budget/coverage limit.",
+  "limits": {
+    "wall_seconds": 180,
+    "child_cpu_seconds": 75,
+    "aggregate_child_cpu_seconds": 120,
+    "address_space_bytes": 2147483648,
+    "max_processes": 16,
+    "max_file_bytes": 16777216,
+    "max_retained_bytes": 67108864,
+    "bytes": 256,
+    "templates": 4,
+    "observer_levels": 4,
+    "model_fuel_per_evaluation": 2000000,
+    "iota_samples": [0, 35, 100, 255],
+    "correction_replays": 0
+  },
+  "enforcement": "Reuse the existing finite Supervisor for every build, Git and model/native child; count all calls and aggregate CPU, use process-group cleanup, per-child address/CPU/file caps, bounded inputs and inventory checks. Cooperative checks cover parent work; a 190-second external timeout is the final host guard, with ten seconds for checkpointing. Fixed loops bound parent analysis. Authoring and engineering tests precede execution and are reported separately. No automatic continuation."
+}

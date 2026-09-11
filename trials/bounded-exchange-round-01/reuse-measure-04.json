@@ -1,0 +1,118 @@
+{
+  "schema": "aeg.bounded-exchange.reuse-measure-04",
+  "rule_pin": "4010b60c7df8c114caca962371785e93cd7b1e929ee4ae425b8d73dc01138796",
+  "stoplist_pin": "25c1edee0724b3d842556c36c11897b6d7e52e4732d89b1c06f95a867444ee9c",
+  "source_pins": {
+    "left": "8f6e8af59e11f8b6be7dcce6c928d366d0d49b5fa1443e0614355aa1a374afd7",
+    "right": "21f04d445eda145d9c05eb696460286c2f981fd9cafa0b692ade4c16cf34409a"
+  },
+  "index_pin": "2c09c398fc9ff4fff92e1212d01d2ab01f4065db85060a2b76a7331aa6c2d066",
+  "index_size_bytes": 1375405,
+  "baseline": {
+    "projection": {
+      "left": {
+        "frequency": 21,
+        "rank": 61,
+        "locator": 212,
+        "context": "Potatoes take rank for universal use profit and easy acquirement",
+        "content_tokens": 8279
+      },
+      "right": {
+        "frequency": 234,
+        "rank": 22,
+        "locator": 2763,
+        "context": "your beneficiary use your combined",
+        "content_tokens": 41209
+      }
+    },
+    "stages": {
+      "lines": 0.0019550840370357037,
+      "tokenize": 0.01743229106068611,
+      "rank_and_context": 0.021316624945029616,
+      "serialize": 1.579197123646736e-05
+    },
+    "B_seconds": 0.0407197920139879
+  },
+  "formation": {
+    "stages": {
+      "tokenize": 0.017776875058189034,
+      "build": 0.025242749834433198,
+      "serialize": 0.004381249891594052,
+      "write": 0.000378625001758337,
+      "pin": 0.0010330418590456247,
+      "validate": 0.006647832924500108
+    },
+    "F_seconds": 0.055460374569520354
+  },
+  "reuse": {
+    "stages": {
+      "load": 0.005423041991889477,
+      "verify": 0.00035170791670680046,
+      "lookup": 0.01865245890803635,
+      "serialize": 5.41098415851593e-07
+    },
+    "R_seconds": 0.02442833292298019,
+    "wall_subprocess_seconds": 0.04325591609813273,
+    "peak_memory_bytes": 28082176,
+    "projection": {
+      "left": {
+        "frequency": 21,
+        "rank": 61,
+        "locator": 212,
+        "context": "Potatoes take rank for universal use profit and easy acquirement"
+      },
+      "right": {
+        "frequency": 234,
+        "rank": 22,
+        "locator": 2763,
+        "context": "your beneficiary use your combined"
+      }
+    }
+  },
+  "stale_rule_control": {
+    "refused": true,
+    "exit_code": 1,
+    "seconds": 0.051240916131064296
+  },
+  "result_comparison": {
+    "declared_projection_equal": true,
+    "compared_fields": [
+      "frequency",
+      "rank",
+      "locator",
+      "context"
+    ],
+    "note": "first comparison keyed on a wider object (baseline carried an extra content_tokens field) and reported false; corrected post-hoc on the four declared fields, no re-run"
+  },
+  "amortization": {
+    "formula": "floor(F/(B-R))+1",
+    "in_process_service_model": {
+      "B": 0.0407197920139879,
+      "F": 0.055460374569520354,
+      "R": 0.02442833292298019,
+      "N_star": 4
+    },
+    "process_per_query_model": {
+      "B_in_process": 0.0407197920139879,
+      "R_subprocess_wall": 0.04325591609813273,
+      "verdict": "R_wall > B: no positive amortization established for process-per-query reuse (interpreter startup dominates)"
+    }
+  },
+  "shared_setup_seconds": 0.0012410830240696669,
+  "total_wall_seconds": 0.19211208308115602,
+  "unallocated_seconds": 0.000194,
+  "builder_peak_memory_bytes": 46153728,
+  "cache_assumptions": "R runs in a fresh interpreter right after F; OS page cache is warm; warm-cache is not a cold-start claim",
+  "round03_token_total_discrepancy": {
+    "reported_in_reply03": {
+      "cookbook": 8281,
+      "irs": 41229
+    },
+    "frozen_rule_recomputes": {
+      "cookbook": 8279,
+      "irs": 41209
+    },
+    "explanation": "the round-03 inline script used a stoplist copy that differs from the frozen 119-word list; the four projected use-fields are reproduced exactly and are unaffected",
+    "status": "append-only disclosure; reply-03 not rewritten"
+  }
+}

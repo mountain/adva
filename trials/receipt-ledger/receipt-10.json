@@ -1,0 +1,43 @@
+{
+  "schema": "aeg.advance-receipt.research",
+  "version": 0,
+  "round": 10,
+  "predecessor_sha256": "c9331549d7aec41e5a2f1d1e23ba4ba4f7025f044795723fe2d65148b8ebafeb",
+  "delta": {
+    "kind": "resource",
+    "admitted": true,
+    "description": "explicit receipt-ancestry ledger (production-ledger discipline): canonical chain 01..09 with three declared repairs"
+  },
+  "status": "LedgerConsistent",
+  "evidence": {
+    "check": "trials/receipt-ledger/check-report.json",
+    "repairs_applied": [
+      {
+        "receipt": 2,
+        "repair": {
+          "recorded_field": "None（精化轮重写清空）",
+          "correction": "predecessor = receipt-01"
+        }
+      },
+      {
+        "receipt": 3,
+        "repair": {
+          "recorded_field": "None（精化轮重写清空）",
+          "correction": "predecessor = receipt-02"
+        }
+      },
+      {
+        "receipt": 5,
+        "repair": {
+          "recorded_field": "sha(receipt-03)（书写期复用错误）",
+          "correction": "predecessor = receipt-04"
+        }
+      }
+    ],
+    "entries": 9
+  },
+  "bounds": {
+    "read_only": true
+  },
+  "note": "on-disk predecessor fields remain historical evidence; the ledger is the canonical ancestry; no historical file was rewritten"
+}
