@@ -10,6 +10,9 @@ repository.workspace = true
 name = "_native"
 crate-type = ["cdylib", "rlib"]
 
+[build-dependencies]
+pyo3-build-config.workspace = true
+
 [dependencies]
 adva-ir.workspace = true
 adva-lisp.workspace = true
