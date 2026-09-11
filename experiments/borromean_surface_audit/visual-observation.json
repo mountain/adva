@@ -1,0 +1,41 @@
+{
+  "schema": "adva.external.visual-observation.v0",
+  "date": "2026-09-11",
+  "observer": "ChatGPT (OpenAI), the assistant in this session; exact model version not separately asserted",
+  "status": "ObservedUnderDeclaredPolicy",
+  "repo": "mountain/adva-library",
+  "ref": "2ba705f3ed8429d9d7d09bfd82ac5eddf4543f9c",
+  "method": "GitHub fetch_file with base64 encoding; decode exact original bytes, verify Git blob SHA, inspect via view_image; no image edit, OCR service, upscaling, or coordinate extraction",
+  "images": [
+    {
+      "path": "golden-ratio/plates/icosahedron-golden-rectangles.webp",
+      "git_blob": "1cc07dd75c0d8376255bec3311fa6c735eec79d5",
+      "sha256": "85c8dd69975c235c2e6cc92636b59d31797fdde1ac2d6362ddc093f68e723a7f",
+      "bytes": 38720,
+      "pixels": [
+        500,
+        463
+      ],
+      "observed": "Three colored planar rectangular regions are overlaid with a dense red polyhedral edge network and white vertex markers. Parts overlap or are occluded. No orientation arrows or coordinate labels are visible.",
+      "proposed_correspondence": "The three colored filled regions are candidates for the three source rectangles. Their boundaries and the red polyhedral network must be treated separately.",
+      "unresolved": "A single projection does not establish all hidden edge incidences, disjointness, orientation, exact dimensions or a link invariant. Color-to-component mapping is not supplied by the source.",
+      "effect": "Made the need to distinguish filled surfaces, their oriented boundaries and extra polyhedron edges explicit; motivated recording boundary order and normals."
+    },
+    {
+      "path": "golden-ratio/plates/fake-real-log-spiral.webp",
+      "git_blob": "42411ad55498a0c0bf9d96200e427a7a8f170672",
+      "sha256": "0bede8692299d8d07ed1ae8533ad0cd027b6a0de7dc255853cc50548f0f0a897",
+      "bytes": 17368,
+      "pixels": [
+        500,
+        338
+      ],
+      "observed": "A gray subdivision supports several colored curves which nearly coincide over parts of the spiral and visibly separate elsewhere. Labels involving phi are present.",
+      "proposed_correspondence": "This is consistent with a visual comparison of a circular-arc construction and a logarithmic spiral.",
+      "unresolved": "Curve colors do not independently identify formulas. No numerical error, scale, exact curve identity or source licence is inferred from pixels.",
+      "effect": "Supplies a concrete example of why visual similarity needs a declared exact or approximate comparison."
+    }
+  ],
+  "scope": "Human/AI observation is separate from executed mathematical evidence. Images are already present in the pinned library and are not copied or relicensed here. This record supplies no native certificate.",
+  "authorship": "Authored by ChatGPT (OpenAI). Submitted through Mingli Yuan's GitHub account as an authorized proxy."
+}
