@@ -110,11 +110,14 @@ catalog admission in `adva-library` when the result is knowledge.
 1. Retirement mechanics: move the repository directory aside, and leave a stub
    at `/Users/mingli/Adva/AEG` holding one `trials` symlink so the 17 hardcoded
    root constants keep working without editing trial bytes.
-2. The two split proposals are the only map of this cluster's relation to adva
-   and still live in the retiring repository; they must move to `~/AEG`, which
-   has no top-level index at all.
+2. **Done 2026-09-11.** The cluster has a top-level index at `~/AEG/README.md`,
+   byte-identical to [`docs/maintenance/aeg-cluster-index.md`](../maintenance/aeg-cluster-index.md)
+   here, and the two split proposals are copied to `~/AEG/_adva-bridge/`. The
+   originals stay in the retiring repository until its retirement step runs; that
+   repository owns a private backup, so the map is no longer single-copy.
 3. Risk items measured in `~/AEG` before it becomes the working home: `brain`
-   has no remote and a detached HEAD with 15 uncommitted files; `optaeg` (28),
-   `cayley` (28) and `autoresearch2` (34) carry uncommitted work; `dags`, `gru`,
-   `moc` and `thermal` are not repositories at all.
+   has no remote, no commits at all and a detached HEAD with 15 uncommitted
+   files; `optaeg` (28), `cayley` (28) and `autoresearch2` (34) carry
+   uncommitted work; `dags`, `gru`, `moc` and `thermal` are not repositories at
+   all. The index records each of them rather than implying they are managed.
 
