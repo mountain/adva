@@ -1,0 +1,69 @@
+{
+  "schema": "adva.external.sharkovsky-interval-extension-contract.v0",
+  "date": "2026-09-11",
+  "base_commit": "18160de0093dac4881eda9362b796c9060af443e",
+  "question": "Does a declared continuous interval extension of a finite three-cycle add periodic points absent from the original data, and is that extension uniquely determined by the finite observations?",
+  "level": "External exact piecewise-affine mathematics, conditional use of Sharkovsky's theorem; no native semantics or catalog growth.",
+  "input": {
+    "path": "experiments/triadic_period_bridge/attempt-01.json",
+    "git_blob": "8f599d4bbd26c10cb47e380bab79b38b5898e8fb",
+    "selector": "witnesses.quotients entry named descent-finite-three-cycle; consume its F and q tables and rederive its three-state g, never consume the supplied result as a computation"
+  },
+  "imported_mathematics": [
+    "Sharkovsky forcing theorem: a continuous self-map of a real interval with a least-period-three orbit has periodic points of every positive least period. Source: Burns and Hasselblatt, Sharkovsky's Theorem, Theorem 1.1, https://www.math.northwestern.edu/~burns/papers/boris1/SharkovskyISubmitted.pdf. The theorem is imported, not reproved or finitely enumerated in full.",
+    "Affine interpolation with increasing abscissae is continuous at shared endpoints; endpoint image bounds give interval self-map closure. The checker verifies the finite data required by these elementary facts.",
+    "On a fixed branch itinerary, iterates are affine. Intersecting every pulled-back branch interval gives its exact admissible initial interval. Solving Ax+B=x there enumerates the fixed points, unless a positive-length identity branch occurs, in which case this finite-root profile refuses.",
+    "A map from a finite set has finite image and cannot surject onto a nondegenerate real interval. The explicit embedding is checked to omit a declared interior point; the general cardinality statement is a separate elementary argument."
+  ],
+  "interface": "Recompute the finite quotient g from the pinned external tables. Embed its three elements as ordered rational interval points and check G e=e g. This is an embedding into an extension, not a quotient q F=g q onto an interval. New real points and the interpolation rule are added assumptions; original histories are not identified or deleted.",
+  "fixtures": [
+    {"name":"linear-three-cycle","nodes":[["0","1"],["1","2"],["2","0"]],"embedding":["0","1","2"]},
+    {"name":"bent-three-cycle","nodes":[["0","1"],["1/2","7/5"],["1","2"],["2","0"]],"embedding":["0","1","2"]},
+    {"name":"affine-transport","nodes":[["3","5"],["5","7"],["7","3"]],"embedding":["3","5","7"],"transport":["2","3"]},
+    {"name":"reflection-transport","nodes":[["0","2"],["1","0"],["2","1"]],"embedding":["2","1","0"],"transport":["-1","2"]},
+    {"name":"singleton-constant","nodes":[["0","0"],["1","0"]],"fixed_observation":"0"},
+    {"name":"singleton-tent","nodes":[["0","0"],["1/2","1"],["1","0"]],"fixed_observation":"0","period_three_start":"2/7"}
+  ],
+  "checks": [
+    "All six declared piecewise-affine maps are continuous interval self-maps; retain rational slopes and intercepts",
+    "For each depth 1..6 enumerate every branch itinerary, intersect exact pullback intervals, solve affine fixed-point equations and verify returned points by direct iteration; retain root witnesses and rejected-word counts",
+    "Determine each root's least period by direct return checks; retain all roots and deduplicate shared endpoints",
+    "The linear example has fixed point 4/3 and least-period-two orbit {2/3,5/3}; the bent example has least-period-two orbit {12/17,28/17}, while both agree on the embedded three-cycle",
+    "Both affine transports carry the complete computed fixed and least-period sets into each other at every tested depth",
+    "Constant and tent maps agree on the singleton fixed observation but differ on a directly verified least-period-three witness; this illustrates underdetermination and is not a native data export",
+    "Unordered abscissae, out-of-domain endpoint images, a missing source-orbit match and a positive-length identity iterate are refused",
+    "JSON roundtrip plus one fresh process compares every mathematical witness"
+  ],
+  "protected": [
+    "All previous experiments, receipts, Rust tests and library gitlinks stay unchanged",
+    "The new Rust observer-quotient fixture is read as context, not rerun or reinterpreted as a periodic self-map",
+    "No finite sample set is called a real interval or a dense set",
+    "All-period forcing is conditional on the added interval extension, not asserted of the source finite table or Adva",
+    "No entropy, chaos classification, universal representation, native quotient, new identity or geometry admission; Pascal obligation stays Open"
+  ],
+  "budget": {
+    "max_children": 2,
+    "max_corrections": 0,
+    "max_fresh_replays": 1,
+    "child_cpu_soft_seconds": 3,
+    "child_cpu_hard_seconds": 4,
+    "child_alarm_seconds": 4,
+    "child_outer_seconds": 5,
+    "supervisor_cpu_soft_seconds": 5,
+    "supervisor_cpu_hard_seconds": 6,
+    "supervisor_alarm_seconds": 12,
+    "session_outer_seconds": 14,
+    "aggregate_cpu_hard_seconds": 14,
+    "address_space_bytes_per_process": 268435456,
+    "max_work_units_per_child": 500000,
+    "max_assertions_per_child": 20000,
+    "max_depth": 6,
+    "max_nodes": 4,
+    "max_artifact_bytes": 2097152,
+    "max_session_artifact_bytes": 8388608
+  },
+  "enforcement": "Reuse the finite-session supervisor pattern from triadic_period_bridge/check.py, predecessor SHA256 f470dbaa5926eba90c58e2f0154b8d3182c280c36e91ef0ba05a5aac9096adf6. Mandatory Linux limits, two children maximum, no correction, exclusive ledger, child alarms/timeouts and enclosing timeout 14s. Checking, serialization and checkpoints are included. Any failed child stops the session; no automatic fuel reset.",
+  "exit": "Passed, Failed or UnknownResource. The fixed-point profile also refuses a positive-length identity interval. Preserve a failed report or forced-kill ledger; no convention changes after results.",
+  "cost_scope": "Process arithmetic, validation, replay and publication only. Research, writing, network and integration are unmeasured; no speedup claim.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's GitHub account as an authorized proxy. Authorization and trust are not correctness guarantees."
+}
