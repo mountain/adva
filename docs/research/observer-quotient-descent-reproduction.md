@@ -30,78 +30,103 @@ language, on the same inputs, with the same published outputs.
 
 The reimplementation also rechecks the commuting equation on every state after
 building `g`, instead of inferring it from the pairwise test, and the failing
-fixture retains its conflicting pair rather than an invented image.
+fixture retains its conflicting pair rather than an invented image. Two refusal
+controls keep it from being vacuous in either direction: a surjection that does
+not descend still fails, so many-to-one is not sufficient, and a constant
+observation descends for a step the non-constant observation rejects.
 
-Two refusal controls show the test is not vacuous in either direction: a
-surjection that does not descend still fails (many-to-one is not sufficient), and
-a constant observation descends for a step that the non-constant observation
-rejects.
-
-## 2. What was added beyond reproduction
+## 2. The five bindings, and which of them exist
 
 The correction's last section names the next admissible bridge: applying the
 criterion to an Adva example needs a declared checked carrier, a one-step
 transition, an observation `q`, a reachable domain, and an explicit forgotten
-residual. Four of those five already exist in the checked kernel, and the test
-reads exactly those:
+residual. Four of the five already exist in the checked kernel, and the tests
+read exactly those rather than inventing new ones:
 
 | Binding | Where it comes from | Present |
 |---|---|---|
-| checked carrier | `TriadicObserverTransitionV0::slice`, a checked `ProgramSlice` (`crates/adva-ir/src/process.rs`) | yes |
+| checked carrier | `TriadicObserverTransitionV0::slice`, a checked `ProgramSlice` | yes |
 | one-step transition | the checked `lineage_links` between the lower and upper cut incidences | yes |
-| observation `q` | the role label of each lower incidence, from `TriadicCutIncidenceV0::domain`, assigned by the declared `TriadicObserverPolicyV0` | yes |
-| reachable domain | computed from the lineage relation, not stored | computed here |
-| explicit forgotten residual | `source_free_wire_indices` on both cuts, retained rather than omitted | present as a field, empty for this fixture |
+| observation `q` | read from `TriadicCutIncidenceV0::domain` under the declared `TriadicObserverPolicyV0` | yes |
+| explicit forgotten residual | `source_free_wire_indices` on either cut, retained rather than omitted | yes, and non-empty cases exist |
+| reachable domain | derived from the lineage relation, not stored | derived here |
 
-So the missing binding is not a type. Reachability is a derived finite set, and
-the test derives it and asserts that reachable and unchecked incidences partition
-the lower cut exactly.
+So the missing binding was never a type. Reachability is a derived finite set.
 
-## 3. What the instantiation established
+## 3. The declared step family
 
-On the `triadic-flow` fixture (three declared input roles, one branching step),
-with the observation read from checked data:
+`triadic-flow` has six checked nodes — `constant, discard, copy, add, id, id` —
+and the tests declare a family of nested cuts over them
+(`[], [0], [0,1], [0,1,2], all`). Fourteen of the pairs are admitted as
+transitions. Every admitted step has a **non-empty lower cut** carrying three
+input sources, so unlike the composition fixture used elsewhere, nothing here is
+vacuous on the lower side.
 
-- **The role label descends, and descends to itself.** Each lower incidence
-  carries its own role to its image. The reason is structural rather than
-  numerical: a role label is a function of the input-source fibre, and the
-  checked lineage relation preserves source identity. So the per-incidence
-  observer reading is conserved by one step.
-- **The cut-level reading does not descend.** The two cuts have three and four
-  incidences, and the branch is a checked copy, so no map between the
-  incidence-index readings of the two cuts can be bijective. The per-incidence
-  reading descends while the reading of the whole cut does not, and the
-  difference is entirely a matter of what is taken to be one observation.
-- **Recorded exactly, and not asserted as a partition tautology.** The fixture
-  has `reachable = 3` and `unreachable = 0`, images `[{0},{1},{2}]`, and empty
-  source-free sets on both cuts with three frontier wires each. The test asserts
-  those numbers rather than only the identity that they sum to the lower count.
+## 4. What the instantiation established
 
-## 4. What this does not establish
+**Reading one, the role set, descends and is degenerate.** Which roles a cut
+carries, as a three-bit mask, descends on every step of the family, and it
+descends to itself. The reason is structural rather than numerical: a role label
+is a function of the input-source fibre and the checked lineage relation
+preserves source identity. So the per-incidence observer role is conserved by one
+step.
 
-- **This fixture does not exercise the forgotten-residual binding.** Every lower
-  incidence is carried across the step, so nothing is unchecked, and both
-  source-free sets are empty. A non-empty source-free residual is exercised by a
-  different fixture, in the sibling test
-  `triadic_transition_retains_source_free_wires_outside_all_three_views`; this
-  note does not extend that result.
+**Reading two, the role counts, does not descend.** The number of incidences of
+each role is a different reading of the same checked data, and it fails. The
+retained conflicting pair is two admitted steps that share a lower reading and
+differ in the upper one:
+
+| Step | Lower counts | Upper counts | Lineage links |
+|---|---|---|---|
+| `[] -> [0,1]` | `[1,1,1]` | `[1,1,1]` | 3 |
+| `[] -> [0,1,2]` | `[1,1,1]` | `[2,1,1]` | 4 |
+
+The duplication is in the temporal role, and it is the fixture's checked `copy`
+rather than a recount. This is a real obstruction read out of checked data, and
+it has the same shape as the correction's published failing fixture. The two
+readings differ only in whether a duplicated role is counted once or twice, which
+is the correction's own point that the choice of observation decides whether
+descent exists.
+
+**Composition is satisfied, and this fixture cannot test it.** Descending the
+composed transition `[] -> [0,1,2]` gives the same map as descending its two
+stages, so the law holds. But every descended map this fixture admits is the
+identity, so a wrong composition would agree as well. That limitation is asserted
+in the test rather than left as an impression: a fixture able to discriminate
+composition needs an observation that is not source-determined.
+
+**A residual on the observation side is exercised.** For the step `[0] -> [0,1]`
+the **lower** cut carries one source-free wire — that is, the residual sits on the
+side where the observation is taken, not on the far side. The cut has four wires
+and three source-carrying incidences, no chart claims the free wire, and the
+reading that descends still descends, because the residual carries no incidence
+for the observation to see. This is the binding the earlier fixture could not
+exercise, and it is now exercised on a non-empty cut.
+
+## 5. What this does not establish
+
 - **No period, cycle or chaos statement is made about any Adva object.** The
-  descended map is a finite role-label map. Least period is not computed here,
-  and the correction's own warning applies unchanged: a fixed point of `F` cubed
-  is not thereby a point of least period three, and a phase-tagged stage map is
-  not a full-cycle return map.
-- **No quotient of a checked diagram is constructed.** What descends is a
-  reading of already-derived incidences, not a new diagram, slice or program
+  descended maps are finite role readings. Least period is not computed, and the
+  correction's warning applies unchanged: a fixed point of `F` cubed is not
+  thereby a point of least period three, and a phase-tagged stage map is not a
+  full-cycle return map.
+- **No quotient of a checked diagram is constructed.** What descends is a reading
+  of already-derived incidences, not a new diagram, slice or program
   transformation. No native identity is allocated, merged or forgotten.
-- The direction is one step. Nothing here composes descent across adjacent
-  steps, and nothing here supplies the transport, holonomy or entropy structure
-  the correction leaves open.
+- **One fixture and one declared cut family.** The counts obstruction and the
+  composition limitation are properties of this fixture's declared family; they
+  are not theorems about checked transitions in general, and no second fixture
+  was tried for either.
+- **Composition is checked on one two-stage path**, not across an arbitrary
+  chain, and not against a fixture that can discriminate it.
+- Nothing here supplies the transport, holonomy or entropy structure the
+  correction leaves open.
 
-## 5. Reproduce
+## 6. Reproduce
 
 ```sh
 cargo test -p adva-lisp --test observer_quotient_descent
 ```
 
-Four tests, no fixtures beyond the module source embedded in the file, and no
+Seven tests, no fixtures beyond the module source embedded in the file, and no
 external service, path or data dependency.
