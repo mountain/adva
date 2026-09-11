@@ -10,7 +10,11 @@ existing three-computer records. It introduces no stable API, no interpreter, no
 scheduler, no three-computer promotion, and no claim beyond the bounded external
 entry it names. Rust remains the sole semantic authority.
 
-Base: `59141a8af4d9a57ef192ded0b9354b0e93a34f51`.
+Base: `59141a8af4d9a57ef192ded0b9354b0e93a34f51`. Library pin:
+`2ba705f3ed8429d9d7d09bfd82ac5eddf4543f9c`. AEG paper pin:
+`609ac96b4df802a8a4a6c4079c43c2fae466bc3a` (`mountain/aeg-paper`), the same
+commit the golden-ratio atlas audits; the hierarchy quoted in section 4 is from
+`governance/README.md` at that commit.
 
 ---
 
