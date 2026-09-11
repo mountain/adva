@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **178 numbered
-notes, 20 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 21 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -720,6 +720,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`observer-quotient-descent-reproduction.md`](observer-quotient-descent-reproduction.md)
 - [`pairing-transport-native-boundary.md`](pairing-transport-native-boundary.md)
 - [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md)
+- [`sharkovsky-interval-extension.md`](sharkovsky-interval-extension.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
 - [`triadic-period-bridge-correction.md`](triadic-period-bridge-correction.md)
 
