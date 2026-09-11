@@ -1,0 +1,60 @@
+{
+  "schema": "adva.research.density-wave-marginal-wall-contract.v0",
+  "base_commit": "6e18c94",
+  "question": "Can the stabilising mechanism of Lin-Shu density-wave theory be carried by a local scalar spatial fluctuation, and is its marginal wall the same kind of object as the stability wall found in the finite Harder-Narasimhan model? Answer only the part that is exact algebra: the local tight-winding dispersion relation as a quadratic in the radial wavenumber, its marginal locus, the Lindblad turning points of a declared rotation curve, and a finite certificate that no polynomial symbol equals the modulus.",
+  "level": "External exact rational arithmetic plus exact quadratic-surd arithmetic; the dispersion relation itself is imported from the literature and is not derived here. No partial differential equation is solved, no continuum mode is constructed, no galaxy is modelled, and nothing in this contract enters the stable API",
+  "domain": "The local tight-winding dispersion relation (omega - m Omega)^2 = kappa^2 - g|k| + c_s^2 k^2 with declared exact positive rationals, a declared family of exact power-law rotation curves, and the flat rotation curve with exact sqrt(2)",
+  "objects": {
+    "kappa_grid": ["1", "2", "3"],
+    "cs_grid": ["1/2", "1", "3/2"],
+    "g_grid": ["1/2", "1", "2", "3", "4", "5", "6", "8", "10", "12"],
+    "max_interpolation_degree": 6,
+    "rotation_exponents": ["0", "1/2", "1", "3/2", "2"],
+    "arm_numbers": [1, 2, 3, 4],
+    "radii_steps": 24,
+    "flat_curve_v": "1",
+    "flat_curve_r_cr": "1"
+  },
+  "imported_assumptions": [
+    "The tight-winding (WKB) dispersion relation of Lin and Shu is taken as given. It is a local approximation to a global problem and is not derived, verified or justified here",
+    "The self-gravity coefficient is a single declared rational g standing for 2 pi G Sigma. The physical identification g = 2 pi G Sigma is imported and is never checked, and neither G nor pi appears in any computation",
+    "kappa is the epicyclic frequency and kappa^2 = r d(Omega^2)/dr + 4 Omega^2 is taken as given for a declared rotation curve",
+    "The pattern is assumed to rotate rigidly at one pattern speed, so the frequency at azimuthal number m is omega = m Omega_p",
+    "The distinction between propagating and evanescent radial wavenumbers is read only from the local pressure-supported dispersion relation, with no global connection problem and no reflection or transmission coefficient"
+  ],
+  "quantifiers": [
+    "Every declared exact row of the (kappa, g, c_s) grid, including the exact marginal row g = 2 kappa c_s for each (kappa, c_s)",
+    "Every declared power-law rotation exponent, every declared azimuthal number, and every declared rational radius in the flat-curve grid",
+    "Every polynomial degree from zero to the declared maximum in the interpolation certificate"
+  ],
+  "acceptance": [
+    "The sign of the minimum of the dispersion relation over k >= 0 equals the sign of Q - 1 for every declared row, with the three quantities computed independently",
+    "At the marginal row the quadratic has a double root in k >= 0 and the minimum is exactly zero, and away from it the minimum is strictly signed",
+    "When the band is unstable both roots are strictly positive, so the disk is stable at long and at short wavelengths and unstable only in a bounded band",
+    "The product of the two band edges is independent of the self-gravity coefficient, so the geometry of the band and its existence are set by different data",
+    "A local surrogate that drops the modulus term produces no unstable wavenumber at all, and a surrogate that replaces the modulus by its square never produces a bounded band: it is either stable everywhere or unstable at arbitrarily short wavelengths",
+    "A finite exact certificate shows that no polynomial in k agrees with the modulus on a two-sided neighbourhood, so no local constant-coefficient scalar operator carries that term",
+    "For the declared power-law family the epicyclic frequency is real exactly when the Rayleigh criterion holds",
+    "For the flat rotation curve the two Lindblad radii are exact multiples of the corotation radius, they exist only when the azimuthal number exceeds the declared surd, and corotation is their exact midpoint",
+    "The turning points where the sign of the pressure-supported frequency relation changes are exactly the two Lindblad radii",
+    "Inside the evanescent band a real wavenumber requires the self-gravity coefficient to exceed a threshold, and that threshold has the same discriminant form as the marginal wall while meaning something different",
+    "The two requirements on self-gravity have opposite inequalities, so the coefficient is confined to a window, and the window is empty, open and closed in three declared regimes with the width and the emptiness decided by exactly the same comparison",
+    "At corotation the barrier depth equals the square of the epicyclic frequency, so the tunnelling threshold and the local stability wall coincide there and the window closes at the Toomre value; the depth is established by squaring the epicyclic frequency, not asserted",
+    "The marginal wall changes the number of real wavenumbers, while the finite Harder-Narasimhan wall changes only which subobject is maximal: the sibling evidence pinned by sha256 is used to check that no object or filtration count depends on its parameter"
+  ],
+  "protected": [
+    "The three committed Harder-Narasimhan experiments are frozen and are not rewritten; the sibling evidence is read and pinned, never modified",
+    "No claim that a galaxy is modelled, that a spiral mode exists, or that any structure is stable for a long time",
+    "No claim that the density-wave wall and the Harder-Narasimhan wall are the same object, the same theory, or instances of one theorem; only the shape of a wall is compared, and the difference in kind is checked",
+    "No Arakelov, Monge-Ampere, mirror, Calabi-Yau or metric content",
+    "No native Rust witness, no library admission, no Seal"
+  ],
+  "budget": {"wall_seconds": 300, "cpu_seconds": 280, "memory_bytes": 536870912, "max_assertions": 2000000, "output_bytes": 8388608},
+  "cross_experiment": {
+    "path": "experiments/hns_object_forgetting/evidence.json",
+    "contract_path": "experiments/hns_object_forgetting/contract.json",
+    "sha256": "09280cf0cd5e3bdd17b32200f0d7121d1bbe31a8eafec6a4f4b85912fd59d550",
+    "note": "Only used to check one contrast: the Harder-Narasimhan parameter does not enter its own object enumeration, so its wall cannot change a count, whereas the density-wave wall changes the number of real wavenumbers. A changed digest invalidates the comparison rather than being silently accepted."
+  },
+  "residual": "This decides one question about a local dispersion relation and one contrast between two kinds of wall. It does not decide whether a self-consistent global density wave exists, whether a pattern speed solves the self-consistency problem, whether spiral structure persists for a long time, whether angular momentum transport drives the observed morphology, or whether any of this is reachable from this repository's finite discrete core. The modulus term's nonlocality is certified for constant-coefficient polynomial symbols only; a nonlocal scalar completion is not excluded, and is in fact the correct reading."
+}

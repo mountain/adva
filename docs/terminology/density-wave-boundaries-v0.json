@@ -1,0 +1,99 @@
+{
+  "schema": "adva.research.density-wave-boundary-terms",
+  "version": 0,
+  "status": "Proposed",
+  "home": "adva/docs/terminology",
+  "origin": {
+    "direction": "Mingli Yuan / 苑明理 — the density-wave question and the scalar-fluctuation reading",
+    "formalization": "deepseek-v4-flash-vision-exp (DeepSeek Harness)",
+    "base_commit": "6e18c94",
+    "recorded_from": "this repository had no density-wave material before this file; the terms below are imported from the external literature and named here so that their boundaries are written down once"
+  },
+  "authority": {
+    "level": "research terminology over an imported external theory",
+    "native_admission": "NotGranted",
+    "stable_keywords_added": [],
+    "semantic_identity_allocation": false,
+    "library_geometry_admission": false,
+    "catalog_admission": false
+  },
+  "interpretation_boundary": "These names belong to an external continuum theory. Nothing here is derived from this repository's finite discrete core, no rung of the Arakelov-stability ladder of note 0169 is extended by them, and sharing the shape of a wall is not sharing a theory.",
+  "terms": [
+    {
+      "name": "density-wave",
+      "profile": "lin-shu-tight-winding-local.v0",
+      "status": "Proposed",
+      "effect": "Name the local tight-winding dispersion relation of Lin and Shu together with the marginal locus, the turning points and the non-local modulus that it imports.",
+      "input": [
+        "declared exact positive rational rotation data kappa and c_s",
+        "declared exact rational self-gravity coefficient g standing for 2 pi G Sigma",
+        "declared azimuthal number m and declared pattern speed through omega = m Omega_p",
+        "declared rotation curve, here a power-law family and the flat curve V/r",
+        "finite contract and budget"
+      ],
+      "output": [
+        "marginal locus and its double root",
+        "bounded unstable band and its two edges",
+        "exact Lindblad radii and the evanescent band between them",
+        "two-sided window on the self-gravity coefficient",
+        "certificate that no polynomial symbol equals the modulus",
+        "explicit residual"
+      ],
+      "preconditions": [
+        "The dispersion relation is imported from the literature and is never derived or verified here",
+        "The identification g = 2 pi G Sigma is imported; G and pi never appear in any computation",
+        "Every acceptance comparison is exact: rationals, or the declared quadratic-surd field",
+        "The pattern is assumed to rotate rigidly at one pattern speed"
+      ],
+      "preserves": [
+        "The discriminant character of the marginal locus",
+        "The separation between the existence of the band and its geometry",
+        "The distinction between the matter term m Omega and the epicyclic term kappa"
+      ],
+      "does_not_imply": [
+        "A rotational restoring tendency with an inward contraction",
+        "The wave's outward angular-momentum transport with the cause of the pattern's persistence",
+        "Local marginal stability with long-time stability of any structure",
+        "A scalar density fluctuation with the mechanism of the density wave",
+        "The Toomre marginal wall with a stability wall of the Harder-Narasimhan type",
+        "A local approximation with the global mode problem",
+        "This imported relation with a derived result"
+      ],
+      "witness": {
+        "state": "ExecutedExternalExactEvidence",
+        "reference": "experiments/density_wave_marginal_wall/evidence.json",
+        "description": "91 quadratic rows with the three sign computations agreeing, 9 exact marginal rows, 9 band groups whose edge product is independent of self-gravity, the two local surrogates failing to produce a bounded band, a degree-0-to-6 certificate that the modulus is not a polynomial, exact Lindblad radii in Q(sqrt 2) with corotation their midpoint, corotation is a root of the frequency relation, a 27-row two-sided window that is open, closed and empty in three declared regimes, and the tunnelling threshold coinciding with the local stability wall at corotation"
+      },
+      "refusal": [
+        "Missing declared rotation data -> UnknownRotation",
+        "A barrier depth that is not an exact square of a declared value -> UnknownDepth; the window is not evaluated",
+        "Any request for a global mode, a pattern speed eigenvalue, a growth rate, a reflection or transmission coefficient, or an angular-momentum flux -> RefusedGlobalProblem, not attempted and not approximated",
+        "Budget exhaustion -> Unknown; no partial admission"
+      ],
+      "replay": "python3 experiments/density_wave_marginal_wall/calibration.py --output /tmp/density-wave-fresh.json",
+      "report": "docs/research/0170-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md",
+      "contract": "experiments/density_wave_marginal_wall/contract.json",
+      "residual": [
+        "The self-consistency problem: density produces potential produces density, and the pattern speed must make this a fixed point",
+        "The global connection problem across the evanescent barrier, with its reflection and transmission data",
+        "Angular-momentum transport and the secular evolution it drives",
+        "Any observational comparison",
+        "Any path from this external continuum theory to the finite discrete core of this repository"
+      ]
+    }
+  ],
+  "proposed_call_order": [
+    "state the imported relation and its coefficients",
+    "freeze the declared grid and the exact arithmetic field",
+    "locate the marginal locus and the band",
+    "locate the turning points and the evanescent band",
+    "compare the two thresholds and report the window",
+    "refuse the global problem explicitly rather than approximating it"
+  ],
+  "gates": {
+    "coverage_gated_close": "May close only the declared local question; cannot discharge any residual",
+    "free": "NotGranted",
+    "Seal": "NotIssued",
+    "Universe": "No universality claim over disks or galaxies"
+  }
+}
