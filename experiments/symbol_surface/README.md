@@ -36,7 +36,16 @@ name `inspect` on the entrypoint does not introduce a native inspection command.
 | Codes `0`, `20`, `22` | Prefix-free finite words for the three symbols | Addresses, not the numbers denoted by the symbols |
 | Cantor construction | Two affine-map strings and a finite-interval schema | No interval arithmetic, limit calculation or infinite branch chosen |
 | Three named theorems | Preconditions, conclusions and missing instantiations | Application status stays Open |
-| Reverse-Nim proposal | History, exit and finite-fuel annotations | Players, turns, legal moves and winner remain unspecified |
+| `game` block, `status: ProtocolProposal` — the prose label **"Reverse-Nim proposal" is withheld, not adopted** | History, exit and finite-fuel annotations | The block carries no game name and no rules: players, turns, legal moves and winner remain unspecified |
+
+The last row's label is **withheld rather than adopted**. The payload carries no
+game name and declares its four rules missing, so naming it now would grant by
+location what the block does not contain (M2: location grants nothing), and
+`game.continuation` says to attach an open question or `DirectionMissing` and
+never invent progress. The former prose label is retained above as a comparison
+column (M5). The name is deferred to the naming record in the
+**protocol-engineering** repository, `naming-decision-symbol-surface-game-2026-09-11.md`
+(cross-repository reference; no bytes copied).
 
 The finite word `020` decodes syntactically to the names `i`, `pi`.
 This does not place either mathematical value inside the Cantor set. A finite
@@ -92,7 +101,8 @@ Python semantic implementation were introduced to bypass this boundary.
 7. Supply nested-interval premises and, for uniqueness, shrinking lengths;
    a finite prefix does not deliver an infinite-precision point.
 8. Type and replay the prior pi derivation, including branch and division guards.
-9. Define the game's legal turns and exit condition before allocating fuel.
+9. Define the game's legal turns and exit condition before allocating fuel, and
+   decide the game's name only after those four rules exist.
 
 The named theorems themselves are established mathematics. What remains open
 here is their application to the proposed objects. Likewise, leaving the
