@@ -1,6 +1,7 @@
 # ADR 0046: The trials tree lives in adva, and AEG keeps only its history
 
-- Status: accepted for the migration step; the AEG retirement step is open
+- Status: accepted for the migration step; the AEG backup is done, the
+  retirement step is open
 - Date: 2026-09-11
 - Relates to: the three-repo split proposal and the six-repo design proposal in
   the AEG repository (2026-09-08), whose decision point 1 asked whether AEG
@@ -74,3 +75,46 @@ receive no identity by arriving.
   for why that is required on this host), the full Python suite passes
   (2401 passed, 1 skipped, 0 failed). The trials tree is data; nothing in the
   suite reads it.
+
+## Update 2026-09-11: the AEG backup, and where the Human layer goes next
+
+**Backup done.** The retiring repository now has a private remote, because it
+had none and its non-trial content exists nowhere else: 1,512 of the 2,700
+unique blobs under `.campaign/` are absent from this repository, so the earlier
+assumption that `docs/research/0162-evidence/` already covered the campaign was
+wrong to rely on.
+
+- Remote: `git@github.com:mountain/adva-aeg.git`, **private**, one branch.
+- Tip at first push: `dc639c65e503a554e18ebe48bc65e627a0b63c01`, 56 commits,
+  9,922 objects, 58.57 MiB pack. The first push includes a commit that records
+  the six round-05 files, so the backup no longer depends on this repository
+  for them.
+- Verified: local tip equals the remote ref, the working tree is clean, and the
+  repository reads back as private.
+
+**Handover (directed by Mingli Yuan, 2026-09-11).** The Human-layer working home
+moves to `~/AEG`, the 7.7 GB cluster of about thirty projects and 23 git
+repositories that already holds `process-geometry`, `knot-alexander`,
+`aeg-lm`, `aeg-multiplication`, `aeg-shakespeare`, `aeg-topological-order` and
+the rest. This answers decision point 5 of the six-repo proposal, which asked
+whether that cluster is the Surface-side source of trials and objects: it is.
+
+The boundary that keeps the migration from unravelling: **`trials/` here stays
+the record home** of the trial tree, its receipt ledger and its feed, while
+`~/AEG` is where new lines are worked. Results return by the existing
+cross-repository rule — a byte-pinned receipt or an evidence registration here,
+catalog admission in `adva-library` when the result is knowledge.
+
+**Still open.**
+
+1. Retirement mechanics: move the repository directory aside, and leave a stub
+   at `/Users/mingli/Adva/AEG` holding one `trials` symlink so the 17 hardcoded
+   root constants keep working without editing trial bytes.
+2. The two split proposals are the only map of this cluster's relation to adva
+   and still live in the retiring repository; they must move to `~/AEG`, which
+   has no top-level index at all.
+3. Risk items measured in `~/AEG` before it becomes the working home: `brain`
+   has no remote and a detached HEAD with 15 uncommitted files; `optaeg` (28),
+   `cayley` (28) and `autoresearch2` (34) carry uncommitted work; `dags`, `gru`,
+   `moc` and `thermal` are not repositories at all.
+
