@@ -104,8 +104,11 @@
 ## 6. 与本次交接相关的文件
 
 - `_adva-bridge/three-repo-split-proposal.md`、`_adva-bridge/six-repo-design-proposal.md`
-  ——2026-09-08 两份提案的**副本**（原件仍在 `Adva/AEG`，其仓已备份到
-  `mountain/adva-aeg`；退休步骤执行后原件随该仓归档）。
+  ——2026-09-08 两份提案的**副本**；原件随退休仓位于
+  `~/AEG/_retired/adva-aeg-20260911/`（该仓已备份到 `mountain/adva-aeg`）。这里是工作地图。
+- 退休存根：`/Users/mingli/Adva/AEG/` 现在只有 `README.md` 与一个
+  `trials -> /Users/mingli/Adva/adva/trials` 符号链接，存在的唯一目的是让
+  `trials/` 里 17 个把仓库根写成常量的脚本继续就地可跑。
 - 决策记录：`adva/docs/adr/0046-trials-home-in-adva.md`。
 - 已退休仓的备份：`git@github.com:mountain/adva-aeg.git`（private，首次推送 tip `dc639c6`，
   56 提交 / 9,922 对象 / 58.57 MiB）。
@@ -113,7 +116,9 @@
 ## 7. 待办
 
 1. ~~`brain` 补远端、四个非 git 目录纳管~~ **Done 2026-09-11**（§5）；仍开着的只是各仓本地未提交的改动（§4）。
-2. `/Users/mingli/Adva/AEG` 的退休：目录旁移 + 在原路径留一个只含
-   `trials -> /Users/mingli/Adva/adva/trials` 的 stub，使 17 个硬编码根路径的试验脚本
-   继续可跑，**不动任何试验字节**。
+2. ~~`/Users/mingli/Adva/AEG` 的退休~~ **Done 2026-09-11**：退休仓移到
+   `~/AEG/_retired/adva-aeg-20260911/`，原路径留 stub（见 §6）；退休前后用同一硬编码根
+   运行同一 `ledger_check.py` 输出逐字节一致，adva 工作树 0 改动，**未改动任何试验字节**。
+   过程中暴露并处理了一处跨仓耦合（库的 `vendor/zksnake-py` 指向 AEG 的 worktree 元数据），
+   详见 `adva/docs/adr/0046` 的退休更新段：该条目现为未初始化纯文件，协调方案留待决定。
 3. 两份提案在退休后的归属：其历史留在 `mountain/adva-aeg`；本目录的副本是工作地图。
