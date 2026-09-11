@@ -169,3 +169,17 @@ mathematical competence to approve a result. Therefore:
   half-working attempt and a failed control are recorded in the notes rather than
   quietly repaired, because the mechanism is only worth trusting while its
   failures remain on the record.
+
+## AI authorship and account proxy
+
+Follow [docs/AI_ATTRIBUTION.md](docs/AI_ATTRIBUTION.md), recording Mingli
+Yuan's explicit 2026-09-10 instruction. Sign AI-produced reports, PR bodies
+and commit messages with the actual assistant's name and state that they
+are submitted through his GitHub account as an authorized proxy. Account
+ownership does not imply personal authorship or technical verification by
+Mingli. Authorization and mutual trust do not establish correctness: both
+human proposals and AI reasoning/code remain open to challenge and revision.
+Record actual contributions, checks and limits; do not imply guarantees or
+transfer responsibility merely through account use. Follow the mutual
+fallibility clarification in the linked document. This attribution rule
+does not expand operational authorization.
