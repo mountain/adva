@@ -1,0 +1,204 @@
+# Arakelov geometry, stability, Monge–Ampère and mirror symmetry: a ladder, and its first rung built
+
+Date: 2026-09-11. Direction and question: Mingli Yuan. Reading, model, execution
+and writing: assistant (DeepSeek Harness), submitted through his account as an
+authorized proxy.
+
+Status: **research plan plus one bounded external experiment**. It introduces no
+stable API, no native admission, no library admission and no Seal. Rust remains
+the sole semantic authority, and nothing here changes it.
+
+Base: `9aaba3257e21`. The bounded experiment is
+[`experiments/hns_stability_chamber_roundtrip/`](../../experiments/hns_stability_chamber_roundtrip/).
+
+## 0. Why this note exists
+
+The question was whether Arakelov geometry and the HNS equation have a potential
+connection, and whether that can be organized in an ordered way that reaches
+complex Monge–Ampère and mirror symmetry. The first finding is negative and worth
+recording before anything else: **neither `Arakelov` nor `HNS` occurs anywhere in
+this repository.** The only `Hns` in the tree is a function name in a third-party
+test fixture. So this is new ground, and no existing record can be extended to
+reach it.
+
+The second finding is that the far end of the requested ladder **is** already
+occupied, and carefully:
+
+| Existing record | What it decides |
+|---|---|
+| [`lattice-polar-and-mirror-boundary.md`](lattice-polar-and-mirror-boundary.md) | TO24 cannot be reflexive for any compatible full-rank lattice; "Hodge matching with full mirror symmetry" is forbidden |
+| [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md) and its contract | an iff criterion for the reflexive-lattice question, the minimal witness lattice and its index, and the TO24 failure read as the scale-invariant denominator pair (2,3) |
+| [`cube-root-conjugation-and-polar-covariance.md`](cube-root-conjugation-and-polar-covariance.md) | involutive aspects do not identify the operations; reflexivity is a lattice property, not geometric reflection |
+| [`adva-library/meaning-yau-calabi-mapping-v0.md`](../../adva-library/meaning-yau-calabi-mapping-v0.md) | a proposed mapping whose anchors are exact fractions, explicitly not verified prose |
+
+So the ordered organization does not start from nothing: it attaches two new
+rungs below an existing, executable one.
+
+## 1. What `HNS` is taken to mean, and the fork
+
+**"HNS equation" is not a name I can confirm.** Two readings fit the requested
+destination, and they are not equivalent:
+
+| Reading | Evidence | Its metric partner |
+|---|---|---|
+| **Harder–Narasimhan–Seshadri** (the HN filtration and NS-type stability) | `Gr^{HNS}` is the associated graded of the Harder–Narasimhan filtration, and appears in Hermitian–Yang–Mills contexts | the Hermitian–Yang–Mills equation (Donaldson–Uhlenbeck–Yau) |
+| **k-Hessian type equations** | the top case k = n of the complex Hessian equations **is** complex Monge–Ampère | complex Monge–Ampère directly |
+
+This note proceeds under the first reading, because under the second the rung
+would coincide with the endpoint and the ladder would collapse. **The fork is
+unresolved and is recorded as open.** The structure below changes only in its
+middle rung if the reading is the other one.
+
+## 2. The ladder
+
+Each rung states its object, what exists today, whether it is executable here, and
+what must be imported or refused at its seam.
+
+| Rung | Object | Exists today | Executable here |
+|---|---|---|---|
+| **R0** exact arithmetic carrier | exact fields, exact rationals, matrix powers, integer data | yes, this is the repository's strength | yes |
+| **R1** finite stability (the HNS rung) | a slope function and a Harder–Narasimhan filtration on a declared finite carrier | **no** | **yes, and now built** — see section 3 |
+| **R2** lattice and polytope (the combinatorial mirror rung) | existence of a reflexive lattice polytope, its minimal witness lattice, its obstructions | yes, `reflexive_lattice_gate` | yes |
+| **R3a** bundle metric | the Hermitian–Yang–Mills equation | no | **no**; DUY must be imported |
+| **R3b** Kähler metric | **complex Monge–Ampère** | only exact algebraic shadows, in the Yau–Calabi mapping | **only as an algebraic shadow** |
+| **R4** Arakelov | arithmetic intersection numbers, Green's functions, arithmetic metrics | no | intersection numbers as exact shadows; the Green's-function equation only imported or refused |
+| **R5a** combinatorial mirror | Hodge-number mirror symmetry on reflexive polytopes | the criterion is at R2 | yes |
+| **R5b** metric mirror | SYZ and special Lagrangian fibrations | no | **no — the ladder ends in a refusal** |
+
+### Two collapses this ladder must forbid
+
+These are the two places where the ladder would otherwise short-circuit, and both
+are classical errors:
+
+1. **Hermitian–Yang–Mills is not complex Monge–Ampère.** For a line bundle the
+   HYM equation `F_h = lambda omega` becomes *linear* in the potential once
+   `h = h_0 exp(-phi)`. Complex Monge–Ampère is the **Kähler–Einstein /
+   Calabi–Yau** rung: `Ric(omega) = lambda omega`, that is
+   `(omega + i dd^c phi)^n = e^f omega^n`, which Yau's theorem solves. The ladder
+   therefore has **two** metric rungs, **R3a** with slope stability as its
+   partner and **R3b** with K-stability, and slope stability is not K-stability.
+2. **Combinatorial mirror is not metric mirror.** The reflexive-lattice
+   criterion decides a Hodge-number statement. SYZ is a different and far less
+   settled level, and this repository already forbids treating Hodge matching as
+   full mirror symmetry.
+
+## 3. The first rung, built and run
+
+R1 was the only rung with nothing in it, and the only one executable with exact
+arithmetic, so it is the rung to build first.
+
+### The model
+
+Carrier: an **injective representation of the A2 quiver** `(1 -> 2)` over a prime
+field, realized as a subspace pair `V1 subset V2` inside `F_p^d`. Every object,
+subobject and quotient is a finite set of vectors, and every slope is an exact
+`Fraction`. Two things are declared at the outset:
+
+- an injective A2 representation is classified by its dimension pair, so the
+  **isomorphism class is the dimension vector**; and
+- the slope is `mu(U) = (theta1 dim U1 + theta2 dim U2) / (dim U1 + dim U2)` for
+  an exact integer parameter `theta = (theta1, theta2)`.
+
+**Forward**: at a parameter, compute the Harder–Narasimhan filtration by the
+iterated maximal-slope rule. **Backward**: from the graded data alone, recover
+what produced it — both the object and the parameter.
+
+### Results
+
+The run covers both prime fields, ambient dimensions two and three, every
+subspace and every subobject pair, eleven parameters in the declared sweep, and
+two degenerate parameters. **18 isomorphism classes, 256 filtrations, 12,300
+assertions, 0.9 seconds.**
+
+| What was checked | Result |
+|---|---|
+| The filtration exists and terminates | yes, at every instance |
+| Successive quotient slopes strictly decrease | yes, as exact rationals |
+| Each step is the maximal-slope subobject | yes, and the maximal-slope class is closed under sum, so its sum is the maximal member |
+| Exact slope conservation, `sum_i (dim_i/dim E) mu_i = mu(E)` | holds exactly at every instance |
+| Degenerate parameter `theta = (1,1)` | one piece, the object is semistable — 36 instances, so the test is not vacuous in that direction |
+| **Object direction** | **injective**: for a fixed parameter the graded data determines the isomorphism class, verified over all 18 classes |
+| **Parameter direction** | **many-to-one**: the graded data is produced by a set of parameters, not by one |
+
+The parameter direction is where the experiment has real content:
+
+- **Witness of parameter forgetting.** Over `F_2`, the object of dimension pair
+  `(1,1)` has graded data `[[[1,1], 1/2]]` at `theta = (1,0)` **and** at
+  `theta = (2,-1)`. Two different stability parameters, one graded shadow.
+  24 such witnesses were found, all non-degenerate.
+- **Chamber sizes.** Per field, 72 distinct graded data arise from 11 parameters
+  per object, and the largest chamber holds 6 of them.
+- **A full chamber partition, retained.** For one object the eleven parameters
+  fall into nine chambers, including a genuine chamber of two:
+  `{(1,0), (2,-1)}` and another `{(1,1), (3,-1)}`.
+- **Walls exist inside the declared grid.** 8 adjacent parameter pairs in the
+  sweep change the graded data, so the backward image is a proper part of the
+  grid and the chamber structure is not trivial.
+
+### One spurious result, found and removed rather than kept
+
+The first version of the model enumerated carriers as **embeddings**, so the same
+abstract object appeared once per embedding, and it reported an "object
+forgetting" witness: dimension pair `(1,1)` in ambient dimension two and in
+ambient dimension three sharing one graded data. Those are the same isomorphism
+class. The direction is now deduplicated by isomorphism class, and the object
+direction is asserted injective instead. **The claim was wrong, and the control
+that exposed it is the one that matters**: a finite model that counts embeddings
+as objects will manufacture a forgetting that does not exist.
+
+## 4. Conclusions
+
+1. **The forward direction is canonical.** The Harder–Narasimhan filtration exists,
+   is unique, and is computed exactly; its graded quotient slopes strictly
+   decrease, and its slope weight is conserved exactly. This is the finite,
+   checkable form of the HNS rung.
+2. **The backward direction loses the parameter and recovers the object.** What
+   the graded data forgets is **not the object but which member of the chamber one
+   was in**. The residual retained by the experiment is therefore the chamber
+   partition and its walls, not a lost object.
+3. **That asymmetry is the shape of the ladder.** A combinatorial stability rung
+   is lossless toward the object and lossy toward the parameter. So the ladder's
+   seams are not about recovering objects from shadows; they are about **which
+   parameter region a shadow belongs to**, which is exactly the structure a
+   stability manifold has.
+4. **The ladder reaches complex Monge–Ampère only through R3b, and only by
+   import.** Nothing here computes a metric, a curvature, or a solution of any
+   PDE, and section 2 fixes the two collapses that would make it look otherwise.
+5. **The honest endpoint is a refusal.** R5b is not reachable in this repository,
+   and the value of the organization is that it says so in the same place where it
+   says what is reachable.
+
+## 5. What this does not establish
+
+- **No Arakelov content.** No height, no Green's function, no arithmetic
+  intersection number, no arithmetic surface. The word appears only in the plan.
+- **No Monge–Ampère content.** No metric, no Kähler class, no curvature, no PDE,
+  no numerical solution, and no algebraic shadow is computed either.
+- **No mirror symmetry.** No polytope is identified with this model, and no Hodge
+  number is computed here.
+- **Characteristic p only.** The model is over `F_2` and `F_3`. Nothing is claimed
+  for characteristic zero, for coherent sheaves, or for an arithmetic base.
+- **Injective representations only.** Non-injective A2 representations are
+  excluded, and that exclusion is exactly where the object direction might stop
+  being injective — see section 6.
+- **A finite parameter grid.** Walls are detected only inside the eleven declared
+  parameters; the real walls are not located.
+- No native Rust witness, no claim beyond the bounded entry registered for this
+  experiment, no library admission and no Seal.
+
+## 6. Next minimum step, and why it is sharp
+
+The model's one structural simplification is injectivity. For a non-injective A2
+representation the isomorphism class is `(dim V1, dim V2, rank of the arrow)` —
+three numbers, not two — while the graded data still records only dimension pairs
+and slopes. **So the object direction may stop being injective exactly when the
+arrow fails to be injective, and that is where a genuine object forgetting would
+live.** Stating and testing that is the sharpest next experiment this plan
+produces: it is finite, exact, and it decides whether the asymmetry of section 4
+is a property of stability theory or an artifact of the injective model.
+
+Two further steps follow it: refine the parameter sweep to locate the walls
+exactly rather than between adjacent grid points, and ask whether the chamber data
+can be fed to the reflexive-lattice criterion at R2 — which is seam S1 and the
+only place where this ladder could connect the stability rung to the mirror rung
+with a checkable statement rather than an analogy.
