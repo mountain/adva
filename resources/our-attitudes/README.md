@@ -4,13 +4,33 @@
 来源登记：assistant（DeepSeek Harness），经账号代理提交；本条只记录可核验的来源事实，
 不对许可做法律判断。
 
-Hilbert 在哥廷根 Stadtfriedhof 的墓石上刻着：
+墓石上的刻字是：
 
-> Wir müssen wissen. Wir werden wissen.
+```
+DAVID HILBERT
+WIR MÜSSEN WISSEN
+WIR WERDEN WISSEN
+```
 
 本目录保留这张照片作为这项工作的态度标记，与仓库根目录的
 [`Unknown-LICENSE-v0.1-zh.md`](../../Unknown-LICENSE-v0.1-zh.md) 并列。
 **它不是证据，也不是证书**：仓库里没有任何检查读它，没有任何算术或几何结论依赖它。
+
+## 刻字：一次观察，不是证书
+
+上面的刻字是 2026-09-11 由视觉模型读出的**观察**，不是执行过的检查：
+
+- 读图模型：`deepseek-official` 路由的 `deepseek-v4-flash-vision-exp`
+  （目录条目声明 `inputModalities: [text, image]`）。
+- 适配器按像素预算缩放并重编码后送模型，**请求版本为 692×923、583877 字节**，
+  与仓库中存储的 613267 字节原图不同字节；模型看的是派生图，不是原件。
+- 可辨认：墓石上「DAVID HILBERT」与下面两行铭文。**不可辨认**：墓前两块地碑上的小字，
+  在交付分辨率下读不出来，此处不猜（Commons 的分类把它们记为 David 与 Käthe Hilbert 之墓，
+  那是 Commons 的说法，不是这里的读数）。
+- 这一条随模型而异，也不构成 OCR 检查：任何以图片内容为依据的判断都应在
+  [`experiments/`](../../experiments/) 里另立契约与证据，而不是引用本段散文。
+
+因此本文件里唯一「执行过的」事实仍是下一节的字节核验。
 
 ## 文件与逐字节核验
 
