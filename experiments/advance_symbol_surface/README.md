@@ -40,10 +40,23 @@ resolving or proving the external payload. Separately, the outer SHA256 check
 must reject altered payload bytes. Source files and historical statuses are
 never rewritten.
 
-Run once under the frozen contract, with a fresh output directory:
+Run once under the active contract, with a fresh output directory. GNU `timeout`
+is present on Linux and in CI; on macOS it is not, so the same command runs under
+`gtimeout` from `brew install coreutils`, or with no wrapper at all, in which case
+the profile's own 180-second account is the only bound:
 
 ```sh
 timeout 190s python3 python/adva/adva.py advance \
+  --profile symbol-surface-load-v0 \
+  --output target/advance-symbol-surface-20260910-01
+```
+
+```sh
+# macOS: `timeout` is absent. Either install coreutils and use gtimeout, or drop
+# the wrapper and rely on the contract's own wall_seconds: 180. Only the outer
+# host guard is lost, and it is the guard whose hard termination can prevent the
+# final checkpoint.
+gtimeout 190s python3 python/adva/adva.py advance \
   --profile symbol-surface-load-v0 \
   --output target/advance-symbol-surface-20260910-01
 ```
