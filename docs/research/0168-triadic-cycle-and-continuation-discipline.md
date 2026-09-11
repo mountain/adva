@@ -8,7 +8,13 @@ Status: **research plan**. It follows
 [0167](0167-li-yorke-period-three-and-homotopy-continuation.md) and the
 existing three-computer records. It introduces no stable API, no interpreter, no
 scheduler, no three-computer promotion, and no claim beyond the bounded external
-entry it names. Rust remains the sole semantic authority.
+entries it names. Rust remains the sole semantic authority.
+
+Correction, 2026-09-11: ChatGPT (OpenAI), through Mingli Yuan's account as an
+authorized proxy, revised the dynamical bridge after exact counterexample
+checks. Account use and trust are not correctness guarantees. The
+[correction record](triadic-period-bridge-correction.md) identifies the rejected
+implications and the original commit. The matrix experiment in 0167 is unchanged.
 
 Base: `59141a8af4d9a57ef192ded0b9354b0e93a34f51`. Library pin:
 `2ba705f3ed8429d9d7d09bfd82ac5eddf4543f9c`. AEG paper pin:
@@ -26,13 +32,10 @@ periodic structure is the obvious comparison. 0167 read the source. This note
 states what the reading does and does not connect, and turns it into three
 questions that a bounded checker could decide.
 
-The short version: **the classical literature already contains both halves of
-the situation this programme is in.** There is an impossibility statement (if
-you let the cycle close by quotienting away the layer, three forces unbounded
-structure) and a constructive programme (if you refuse the quotient and keep
-the path, you do not need that statement at all). The programme's residual
-discipline is already on the constructive side, but has not been described as
-such.
+The comparison suggests separate questions about observation quotients,
+iteration and path tracking. It does not give a theorem that forgetting a layer
+creates chaos or that retaining a layer prevents it. The corrected finite
+examples keep these questions separate before any application to Adva.
 
 ## 1. "Three computations" names two different things
 
@@ -73,24 +76,31 @@ Open）". This note does not close it.
 > away `tau_n` makes the path look closed; retaining it produces an open lifted
 > history.
 
-For `Phi = K o X o T` this is exactly a fork:
+For typed maps `T: S_T -> S_X`, `X: S_X -> S_K`, `K: S_K -> S_T`,
+`Phi = K o X o T` is the return map on `S_T`. A one-stage transition on the
+disjoint union of the three phase-tagged spaces is a different map. Three stage
+labels do not force least period three for Phi. Even `Phi^3(s)=s` permits a
+fixed point; a least-period-three witness must exclude earlier returns.
 
-- **Project `tau_n` away.** `Phi` becomes a self-map, `Phi^3` acquires a fixed
-  point, and one has a genuine period-three orbit. *If* the base carries an
-  order structure and `Phi` folds, the 1975 hypothesis applies and three forces
-  all periods plus the uncountable set of section 0167.
-- **Retain `tau_n`.** One has no periodic orbit at all, but a lifted path
-  carrying a holonomy element per circuit. That is not a dynamical object; it is
-  the object a continuation method tracks.
+For a proposed observation `q: S_T -> Y`, first check that `q(Phi(s))` is
+constant on each fibre of q. Only then is there a well-defined g on Y with
+`q Phi = g q`. Non-injectivity of g does not imply period three. For example,
+`g(x)=x^2` on `[-1,1]` is a continuous non-injective self-map, but
+`g^3(x)=x` has only the fixed points 0 and 1. The 1975 theorem additionally needs
+a real interval, continuity, self-map closure and an actual orbit satisfying
+its strict ordering inequalities. An ordered finite set is not that domain.
 
-The corpus already forbids the first branch on principle, and not for dynamical
-reasons: `AGENTS.md` ("Value equality and observational equivalence never
-authorize contraction, memoization, CSE, or a cell") and `ADR 0040` ("Path
-deletion is not authorized by endpoint equality").
+Retaining `tau_n` may define a lifted dynamical system if its transition law is
+specified. It does not by itself establish injectivity, surjectivity, absence
+of periodic points or absence of chaos. Appending the entire history supplies
+prefix recovery on its image, but is not onto the space of all nonempty finite
+histories: a singleton has no predecessor under append. Calling `tau_n` a
+holonomy element further requires a declared transport structure.
 
-So the residual discipline is not bookkeeping hygiene. Read dynamically, `tau_n`
-is the thing that keeps the cycle on the invertible side rather than the folding
-side, and the classical hypothesis is precisely the step the rules forbid.
+The repository forbids unauthorized identification of native histories, not
+every mathematical observation quotient. A checked quotient can be useful
+while distinct source histories and the information it forgets remain recorded.
+This discipline supplies an evidence boundary, not a chaos-prevention theorem.
 
 ## 3. Two controls that keep the comparison from inflating
 
@@ -99,10 +109,9 @@ Both are executed in `experiments/li_yorke_period_three/`.
 **The third-turn rotation has period three and no chaos.** `R(x) = x + 1/3` on
 the circle has every point of period exactly three, no fixed point, no
 two-cycle, and is an exact isometry, so no pair is proximal. A purely cyclic
-relabelling of three roles, with nothing folding, is a rigid rotation. The
-triadic cycle *as stated* — three cyclic readings of one carrier — is on that
-side. Three is critical for interval maps, not for threefold cyclic structure as
-such.
+relabelling can be modelled separately by a finite permutation. That analogy
+does not construct a metric, rotation or isometry for the Adva carrier. Three
+is critical under the interval-map hypotheses, not for threefold arity alone.
 
 **The shared polynomial decides nothing.** The interval graph forced by the
 three-cycle and the golden one-hole matrix are the same linear object up to a
@@ -114,14 +123,14 @@ attracting fixed point and no two-cycle. **The same polynomial governs an
 attracting fixed point and a chaotic three-cycle.** This is the atlas's own
 warning in dynamical form: "计数矩阵是忘却后的表示，不能替代整词."
 
-The consequence for the classical number: the Perron root of the derived
-interval graph is the golden ratio, so `h_top >= log(phi)` follows from the
-Markov graph. That lower bound is derived in the checker. The stronger classical
-statement — that `log(phi)` is the *minimum* entropy at which period three
-appears, attained by the golden-mean unimodal map — is a known result of
-combinatorial dynamics and was **not** re-derived here.
+The characteristic polynomial and the finite matrix-power checks concern exact
+linear data. An entropy bound from an interval covering graph requires a
+separately stated theorem connecting that graph to the map's dynamics. The
+0167 checker does not calculate or certify topological entropy: finite Lucas
+counts alone are not that certificate. The sharp lower bound and its attainment
+remain a source-and-hypothesis obligation for Q3, outside the present evidence.
 
-## 4. AEG, continuation, and the programme's rule are the same move
+## 4. A methodological comparison with continuation
 
 The AEG programme states its own hierarchy
 (`aeg-paper/governance/README.md`):
@@ -137,10 +146,13 @@ the solutions, so "the same solution" is defined only up to a path class. This
 repository's identity discipline is the same commitment a third time: identity
 is carried by source, occurrence and history, never by value.
 
-All three refuse the last arrow. The 1975 theorem states the price of taking it:
-the endpoint-value description is not merely lossy, it is scrambled, and the
-scrambling is formalized by `(2.1)` together with `(2.2)` — pairs that never
-merge yet become indistinguishable infinitely often.
+These are methodological comparisons with different mathematical objects and
+side conditions. Endpoint coordinates remain useful observations; a projection
+does not automatically scramble them. Li-Yorke's two limiting conditions apply
+to the special set supplied by its theorem under its interval hypotheses, not
+to every information-losing projection or to a repository history by analogy.
+Nor does retaining a path automatically construct a homotopy continuation,
+connection, metric or holonomy class for an Adva object.
 
 ## 5. What the continuation methodology offers this repository
 
@@ -155,7 +167,7 @@ existing record, not a proposal to import code.
 | no overwrite, no path jumping | snapshots are never overwritten; the example refuses overwrite |
 | a priori path count, and the deficient case where the bound overcounts | declared fuel and slots versus actual launches: "Six report slots are not six executions or six successes" |
 | endgame at a singular endpoint | report `Unknown`, retain the residual; exhaustion is never a proof of nonexistence |
-| the cheater's homotopy: legitimate-looking, wrong endpoints | the renaming fallacy: 0155 section 7, and "does not bridge the two tasks by renaming files" |
+| parameter homotopy with explicit applicability conditions | a possible future comparison with source-to-target bindings; the name "cheater's homotopy" supplies no wrong-endpoint or renaming theorem |
 | genericity must be in the homotopy, not merely plural | 0155 section 6.2: several keys of one signer are not several approvers |
 | monodromy by looping around the discriminant | `0111` relation profiles (`Q4`/trace monoid/Klein four vs `M6`/positive braid/S3) kept separate from the carrier; `0118` transport through `A->B->C` versus directly `A->C`; `0043` Legendre local monodromy with the change-of-basis square |
 
@@ -164,16 +176,20 @@ discrete monodromy reasoning without calling it that.
 
 ## 6. Three questions, in the repository's own form
 
-**Q1 — does the quotient exist, and is it injective?** For a declared triadic
-cycle contract, construct the finite induced transition datum and decide whether
-the induced map is monotone/invertible (no period greater than two) or folding
-(period three forcing all periods). Concretely: define an explicit quotient
-candidate that identifies states by value and observation only, then check
-whether `Phi` descends and whether the descent is injective. Expected content: if
-the descent is non-injective and the base carries an order, the cycle forces
-unbounded period structure, so the refusal of that quotient is exactly the step
-that prevents it. Shape: a positive result plus a matching control, in the style
-of the retained HNN faithfulness control.
+**Q1 — separate descent, injectivity and periodicity.** For a declared finite
+total transition F and surjective observation q, check constancy of qF on every
+q-fibre. On failure retain a pair with equal current observations and unequal
+next observations; on success construct g and check `qF=gq` at every state.
+Then determine injectivity and exact finite cycle lengths separately. Neither
+non-injectivity nor an arbitrary ordering implies a period-three point. A
+finite map has only finitely many possible least periods; using an interval
+theorem requires an additional real-domain construction and continuity proof.
+
+The [correction experiment](../../experiments/triadic_period_bridge/contract.json)
+now supplies a failed-descent example, a non-injective quotient with only a
+fixed point, a two-cycle quotient and a finite three-cycle quotient. A separate
+phase-tag example distinguishes a period-three stage map from its identity
+full-cycle return map. These are external examples, not an Adva quotient.
 
 **Q2 — a bounded path-lift contract.** Add a bounded report to the existing
 epoch/proposal machinery: an a priori declared path count, per-step recheck,
@@ -182,17 +198,18 @@ holonomy record for closed circuits. The per-receipt binding list already
 required by `golden_ratio_atlas.md` section 13 (`question_id`, `object_type`,
 `arithmetic_domain`, `embedding`, `expression_or_word`, `evaluation_order`,
 `frame`, `assumptions`, `fuel_used`, `claim_scope`, `witness`, `residual`) is
-the right carrier; the two missing fields are the a priori count and the
-holonomy class. This is a contract, not a new stable operation.
+a candidate record carrier. An a priori path bound can be added explicitly.
+Transport and holonomy require their own mathematical construction, not just
+two extra JSON fields; an unavailable class must remain Unknown. This is a
+research contract proposal, not a new stable operation.
 
-**Q3 — state the role of `phi` precisely.** The claim to state and check is that
-`log(phi)` is the least topological entropy at which a period-three orbit can
-appear in a one-dimensional unimodal family. The lower bound is already derived
-here; the attainment is imported. If it holds as stated, the programme's most
-mature constant is the threshold between the tame and chaotic regimes rather
-than a proportion — which is the direction the atlas's own corrections already
-point, by insisting that continuous flow, discrete orbit and display
-approximation be separated.
+**Q3 — bind any entropy statement to its map family and theorem.** Locate a
+precise primary result for the lower bound and attainment, including the
+interval, continuity and family assumptions. Explain the passage from a
+covering graph to entropy separately from the executed finite matrix identities.
+Until then, no entropy threshold is registered by this note. Even a sharp bound
+for maps with least period three would not identify a universal boundary between
+all tame and chaotic systems, or an entropy of the Adva three-computer carrier.
 
 ## 7. What this plan does not claim
 

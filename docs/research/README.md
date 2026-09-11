@@ -716,6 +716,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`pairing-transport-native-boundary.md`](pairing-transport-native-boundary.md)
 - [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
+- [`triadic-period-bridge-correction.md`](triadic-period-bridge-correction.md)
 
 ### Supporting directories
 
@@ -744,4 +745,4 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0165-evidence/`](0165-evidence/)
 - [`0167-evidence/`](0167-evidence/)
 
-*Counts: 174 numbered notes, 18 named notes, 24 supporting directories, as of 2026-09-11.*
+*Counts: 174 numbered notes, 19 named notes, 24 supporting directories, as of 2026-09-11.*
