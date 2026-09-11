@@ -92,6 +92,7 @@ def test_the_report_quotes_the_essay_verbatim():
         "“是”在“我”-“你”-“他”镜面的反射之下，得到“非”。",
         "也就是“羞耻”。这些层层反射扩展开的图式里有种种的审美的和道德的哲学意涵。",
         "摩尼珠：佛教华岩宗里的概念，又称因陀罗网。",
+        '<img src="/photo/tetrahedron.jpeg" style="width：160px">',
         "Prompt upon prompt upon prompt, recursion in motion, ideas in motion, creativity in action!",
     ):
         assert quoted in report, quoted
