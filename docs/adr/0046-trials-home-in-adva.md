@@ -115,9 +115,15 @@ catalog admission in `adva-library` when the result is knowledge.
    here, and the two split proposals are copied to `~/AEG/_adva-bridge/`. The
    originals stay in the retiring repository until its retirement step runs; that
    repository owns a private backup, so the map is no longer single-copy.
-3. Risk items measured in `~/AEG` before it becomes the working home: `brain`
-   has no remote, no commits at all and a detached HEAD with 15 uncommitted
-   files; `optaeg` (28), `cayley` (28) and `autoresearch2` (34) carry
-   uncommitted work; `dags`, `gru`, `moc` and `thermal` are not repositories at
-   all. The index records each of them rather than implying they are managed.
+3. **Done for the unmanaged entries, 2026-09-11.** `brain` — which had no commit
+   at all, on an unborn branch, rather than the detached HEAD first read — and
+   `dags`, `gru`, `moc` and `thermal`, which were not repositories at all, now
+   each have one with a first commit and a private remote. Environments, IDE
+   metadata and LaTeX intermediates are ignored, and all five were verified to
+   track no `.venv`, `.pypy`, `.idea` or `__pycache__` path. Still open: the
+   uncommitted work measured elsewhere in the cluster (`autoresearch2` 34,
+   `cayley` 28, `optaeg` 28, `knot-alexander` 12, `topological-flow` 6 and
+   several smaller counts), and the decision whether these five should be public
+   like the rest of the cluster, which the index records as private by default
+   because publishing cannot be taken back.
 
