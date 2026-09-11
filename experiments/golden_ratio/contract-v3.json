@@ -1,0 +1,57 @@
+{
+  "schema": "adva.research.golden-ratio-magnus-contract",
+  "version": 3,
+  "base_commit": "99abe41",
+  "library_base_commit": "80c38b0",
+  "date": "2026-09-10",
+  "supersedes_scope": {
+    "path": "experiments/golden_ratio/contract-v2.json",
+    "note": "Version 2 covers the projection and the abelian presentation level. This contract covers only the Magnus or nilpotent step that extracts mu-bar(123); it does not widen version 2's scope."
+  },
+  "question": "Can mu-bar(123) be extracted from the Wirtinger relations of the declared diagram by a truncated Magnus expansion, and does it agree with the triple intersection number of version 1?",
+  "level": "External exact integer algebra on group words; no native Adva, Rust or Lisp operation",
+  "objects": [
+    "the twelve-arc, twelve-relation Wirtinger presentation read off the declared projection, with exact field parameters kept in process rather than serialised",
+    "truncated Magnus expansions in non-commuting variables: generator x_i maps to 1 + X_i, products truncated at total degree three",
+    "the free-group word machinery already verified in version 2 (reduction, commutators, expansion identities, the verified Hall-Witt shape)",
+    "two declared validation targets: an unlinked control where the invariant must vanish, and the Borromean configuration where version 1 computed a triple intersection of plus one"
+  ],
+  "types": {
+    "expansions": "integer coefficient sums of non-commutative monomials of degree at most three, with exact integer arithmetic",
+    "words": "tuples of signed arc labels, reduced by the rule verified in version 2",
+    "parameters": "exact elements of Q(sqrt 5) held in process; the report stores string pairs only, which is why the arc lookup must not cross the serialisation boundary",
+    "native_identity": "none"
+  },
+  "quantifiers": [
+    "Every one of the twelve relations, expanded and truncated at degree three",
+    "Both validation targets, in every cyclic order where an order is meaningful",
+    "No search over presentations, no random words, no unbounded rewriting, no transcendental evaluation"
+  ],
+  "assumptions": [
+    "Magnus' theorem and the nilpotent-quotient interpretation of Milnor's invariants are classical and are imported, not re-proved",
+    "The identification of the extracted number with mu-bar(123) is imported, exactly as version 1 imported the Seifert-surface identification",
+    "The diagram is the one already checked in version 2: generic, twelve crossings, four per pair, signed sums zero"
+  ],
+  "protected": [
+    "Version 1's triple intersection, version 2's contracts, the frozen version-zero contract and the existing witness keep their bytes",
+    "The queue item may not be closed by a passing run alone: its declared closure checks must appear in the witness",
+    "The plates, the captured PDF and the plotting script stay outside this line"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_seconds": 30,
+    "max_checks": 5000,
+    "max_nodes": 200000,
+    "max_degree": 3,
+    "max_generators": 16,
+    "max_output_file_bytes": 1048576
+  },
+  "acceptance": [
+    "The relation words are built from exact field parameters held in process, and their exponent balance is checked as in the abelian case.",
+    "Truncated expansions of every relator agree with the abelian presentation level already checked: the degree-one part reproduces the rank-nine relation matrix.",
+    "The extracted number is zero on the unlinked validation target and plus or minus one on the Borromean configuration, agreeing in magnitude with version 1's triple intersection.",
+    "The run reports which of these hold and retains any that do not, rather than reporting a number whose validation did not run."
+  ],
+  "unknown": "A missing presentation, an exhausted bound, or a validation target that does not reproduce a known value stops the run as Unknown; no partial invariant is reported",
+  "replay": "python3 -S experiments/golden_ratio/magnus.py --output target/magnus-fresh.json (the output path must not exist)"
+}

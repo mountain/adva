@@ -1,0 +1,222 @@
+{
+  "schema": "adva.numeric-boundary-integrity-report.research",
+  "version": 0,
+  "title": "Numeric boundary and resource integrity report",
+  "date": "2026-09-10",
+  "repositories": {
+    "adva_origin": "github.com:mountain/adva",
+    "adva_baseline_commit": "7be406bfa6a3b7a5ef619081157e3b113da0cd40",
+    "adva_main_at_report": "60b37d8a4c155994acc7207f2feecc1da7cc6441",
+    "adva_main_at_draft": "0e4be5f81f59cd208b14bd21ea8a3250e8f7f289",
+    "adva_library_commit": "b99d9c7295e9d3a4a0d77f8a7e7e6db7deee4364",
+    "aeg_main_at_report": "c1515cf",
+    "aeg_has_remote": false
+  },
+  "fix_commits": {
+    "audit": "acc950528b1f2b47a56d2a0e5a11c292adcf880b",
+    "log_v2_and_admission": "61a7ae47049ec1b8e0f142aedaad4071d62c7ca4",
+    "precision_parent_budget_finite_roundtrip": "ade4f885066a9c23096e963aedb8191bc4ae633c",
+    "native_acceptance": "8cf88ca",
+    "k28_closure": "4a881d7 (branch research/k28-json-transport-closure)",
+    "toolchain_watch_refresh": "60b37d8a4c155994acc7207f2feecc1da7cc6441",
+    "aeg_calibration": "62bced8",
+    "aeg_quine_sync_1": "1ec4977",
+    "aeg_quine_sync_2": "c1515cf"
+  },
+  "threat_model": "Harness promises: (a) retained research evidence (receipts, lineage, reports) is replayed, cited and cross-language compared; (b) the Quine relay supervisor admits bounded child programs under strict resource limits. Malformed or adversarial inputs are in scope as accidental inputs; this is not a hostile multi-tenant boundary. Findings are numerical-integrity and resource-containment defects, not memory-safety issues.",
+  "severity_definitions": {
+    "High": "silently wrong numerical values can be retained in evidence without a backstop",
+    "Medium": "integrity or scope gaps with partial backstops, or evidence-pipeline false negatives",
+    "Low": "contained boundary overshoot with a fail-closed backstop, or latent traps",
+    "Info": "demonstration-only latent traps",
+    "no_critical_note": "No Critical assigned; no memory unsafety or remote exploitability was found."
+  },
+  "findings": [
+    {
+      "id": "F-1",
+      "title": "log chain gradient: avoidable intermediate overflow",
+      "location": "crates/adva-lisp/src/operation.rs evaluate_logarithm (log@1)",
+      "class": "boundary computation: materializes 1/value before multiplying; overflows for subnormal-scale arguments although the exact derivative is finite",
+      "severity": "Medium",
+      "impact": "Programs using log on subnormal-scale inputs recorded nonfinite gradients beside a structural certificate; optimizers and boundary decisions could be misled. No memory unsafety.",
+      "evidence": "f(x)=log((1/1024)*x) at x=2^-1020: old derivative 1/(2^-1030) * 2^-10 = inf; exact derivative 2^1020 is finite binary64; C model reproduced overflow in three of five cases.",
+      "fix": "log@2 registered (direct division of each incoming derivative), domain refusal for value <= 0; parser resolves the active version through the single registry; legacy log@1 retained for replay.",
+      "verification": "operation::tests 3/3 (incl. log_v2_divides_before_an_avoidable_reciprocal_overflow); numeric_boundary 3/3 debug + 3/3 release; diagnostic v1/v2 emitted; upstream workspace 229 passed.",
+      "status": "Fixed (61a7ae4)"
+    },
+    {
+      "id": "F-2",
+      "title": "Rational to f64: double-rounded operands cross the unit boundary",
+      "location": "crates/adva-ir/src/term.rs Rational::as_f64",
+      "class": "boundary crossing: numerator and denominator cast to f64 separately before division; nearest conversion of the exact ratio not guaranteed",
+      "severity": "High",
+      "impact": "9007199254740992/9007199254740993 evaluated to exactly 1.0 (bits 3ff0000000000000) although the nearest binary64 is one ulp below; values near the unit boundary silently wrong in evaluated programs and retainable in receipts.",
+      "evidence": "audit C model and native diagnostic v1/v2; old bits 3ff0000000000000 vs nearest 3fefffffffffffff; second case (2^53+1)/(2^53+2) erred the other direction by one ulp.",
+      "fix": "ade4f88 rewrites as_f64 with integer quotient/remainder arithmetic: round the exact ratio once to binary64, nearest with ties to even.",
+      "verification": "crates/adva-ir/tests/numeric_rounding.rs + numeric_json.rs (cargo test -p adva-ir 2/2 locally); pytest Fraction oracle over 2^53-boundary pairs and random i64 pairs (upstream 1637/2382 passed).",
+      "status": "Fixed (ade4f88)"
+    },
+    {
+      "id": "F-3",
+      "title": "Finite-value policy gap across APIs",
+      "location": "crates/adva-lisp/src/eval.rs, crates/adva-python bridge, crates/adva-ir numeric_serialization.rs",
+      "class": "boundary-policy gap: NaN and positive infinity accepted as inputs; nonfinite outputs could serialize as null beside a structural certificate",
+      "severity": "Medium",
+      "impact": "Structural certificates did not over-claim numerical truth, but callers could not obtain a finite-only guarantee; serializers could emit null beside a certificate.",
+      "evidence": "FINDINGS.md item 3: Python KernelFunction._check_inputs accepted NaN/inf; log guard value <= 0.0 is false for NaN.",
+      "fix": "evaluate_finite and evaluate_with_finite_differential entry points (explicit finite-input/output/Jacobian scope in the certificate); numeric_serialization.rs refuses nonfinite values and Jacobian entries; native run refuses nonfinite outputs and log domain failures.",
+      "verification": "native_run_refuses_nonfinite_outputs_and_log_domain_failures; pytest test_nonfinite refusals at public and direct native entry points; serialization refusal tests.",
+      "status": "Fixed (ade4f88); intermediate values and unused differentials remain out of the certified scope (documented)."
+    },
+    {
+      "id": "F-4",
+      "title": "Quine relay: sub-second CPU remainder expanded to one full second",
+      "location": "python/adva/quine_relay.py Supervisor.restrictions",
+      "class": "the Xe round_up class verbatim: max(1, min(child_limit, floor(remaining))) rounds a fractional remainder outward across the budget boundary",
+      "severity": "Low",
+      "impact": "With 0.25s aggregate remainder the child limit became 1s; post-hoc check() rejection held (no overspent run accepted), but the harness could not promise a strict pre-execution aggregate bound.",
+      "evidence": "FINDINGS.md item 4 with mocked setrlimit at remainders 0, 0.25, nextafter(1,0), 1, 1.25, 2, 8.75.",
+      "fix": "child_cpu_limit(): admit only a whole-second limit contained in both the per-child cap and the aggregate remainder; refuse before recording, opening files or forking.",
+      "verification": "test_quine_cpu_budget.py 6/6 locally and upstream; AEG ported suite 6/6.",
+      "status": "Fixed (61a7ae4); further hardened by F-5 fix."
+    },
+    {
+      "id": "F-5",
+      "title": "Quine relay: child recomputed the allowance after fork",
+      "location": "python/adva/quine_relay.py Supervisor.restrictions (61a7ae4 design)",
+      "class": "boundary recomputed on the wrong side of fork: the child's RUSAGE_CHILDREN is zero, so remaining = budget + start could inflate the installed limit",
+      "severity": "Low",
+      "impact": "The child could install an RLIMIT_CPU larger than the allowance the parent admitted; identified during fix review of F-4 before it shipped in a release beyond 61a7ae4's merged state.",
+      "evidence": "review of preexec_fn semantics: getrusage(RUSAGE_CHILDREN) in a fresh child returns zero.",
+      "fix": "restrictions(cpu) installs the parent-precomputed allowance via functools.partial; the child never reads its own child accounting.",
+      "verification": "test_parent_allowance_is_installed_without_reading_child_accounting (fork mock asserts child_cpu raises if consulted); AEG ported suite 6/6.",
+      "status": "Fixed (ade4f88)"
+    },
+    {
+      "id": "F-6",
+      "title": "k28 JSON transport: decimal-to-binary parsing/round-trip discrepancy",
+      "location": "serde_json decimal-to-binary deserialization used by the native runner; discrepancy observed in the output echo",
+      "class": "cross-language evidence transport precision loss; float_roundtrip selects the deserialization path",
+      "severity": "Medium",
+      "impact": "The native report echoed y = 0.9999999962747096 (0x3feffffffdffffff) for a submitted 0.9999999962747097 (0x3feffffffe000000 = 1 - 2^-28); the Python exact-Fraction matcher rejected product-k28 (false negative in the research 0141 suite).",
+      "evidence": "retained docs/research/0141-native-evidence/product-k28.{program,native-result}.adva; k28-replay-20260910.json.",
+      "fix": "workspace serde_json feature float_roundtrip (ade4f88); regression test native_input_and_report_preserve_k28_binary64_values.",
+      "verification": "regression test passed locally; replay of the retained program through the current backend reports exact bits and values [1.0] with echoed inputs equal to the submitted JSON.",
+      "status": "Fixed (ade4f88); closure record 4a881d7 on research/k28-json-transport-closure (not yet merged)."
+    },
+    {
+      "id": "A-1",
+      "title": "AEG calibration: float ceil(log) on an integral boundary",
+      "location": "AEG trials/rational-gap-round-01/calibration.py (shrink-count formula)",
+      "class": "boundary exactly on the cell edge computed in binary64: ceil(log2(1024 + ulp)) computed 10 while the true minimum is 11",
+      "severity": "Low",
+      "impact": "Correct by luck for the current constants (log2(1024) = 10.0 exactly); a one-ulp displacement of the constants would flip m, and the independent hard-coded check would convert a true proposition into Rejected (false negative).",
+      "evidence": "demonstrated at 2^10 + 1 ulp: old formula 10, exact loop 11.",
+      "fix": "AEG 62bced8: count shrink steps with exact Fraction arithmetic; archived report.json unchanged.",
+      "verification": "rerun JSON-equal to the archived report; boundary comparison script.",
+      "status": "Fixed (AEG 62bced8)"
+    },
+    {
+      "id": "A-2",
+      "title": "AEG normalization: float-based predicate requires input-type review",
+      "location": "AEG .merge-two-sides.py norm(): int(value) if float(value).is_integer() else float(value)",
+      "class": "The quoted expression tests float(value).is_integer() but returns int(value) from the original input; it does not necessarily round-trip the returned integer through float.",
+      "severity": "Info",
+      "impact": "The quoted expression preserves Python integer inputs, including 2^53+1. The earlier integer-collapse claim is withdrawn. Behavior for other types and the full AEG caller remain unreviewed.",
+      "evidence": "Merge review evaluated norm(9007199254740993) using the quoted expression and obtained the identical integer. Full AEG source was not independently audited.",
+      "fix": "No code fix claimed; corrected the unsupported finding.",
+      "verification": "One exact Python integer control; not a complete AEG regression.",
+      "status": "Needs input-type review; integer-collapse claim withdrawn"
+    }
+  ],
+  "not_found": [
+    "No floating-point-to-allocation-size path analogous to the Xe VRAM allocator bug.",
+    "No silent acceptance of an overspent budget run; post-hoc checks held in every case.",
+    "No certificate found to over-claim exact numerical truth beyond its declared scope.",
+    "No memory unsafety or remote exploitability."
+  ],
+  "residual_open_items": [
+    "Intermediate values and unused differentials are not certified finite (documented certificate scope).",
+    "No rounding-error bound for arbitrary programs; log@2 removes the avoidable overflow, not every last-bit difference.",
+    "toolchain-watch.json historical fields are pre-merge snapshots; post-merge state recorded in merge_refresh_20260910 (commit 60b37d8, on origin/main).",
+    "k28 closure record on research/k28-json-transport-closure (4a881d7) not yet merged.",
+    "AEG norm() full input-type/caller review remains open; quoted expression preserves Python integer inputs."
+  ],
+  "verification_ledger": {
+    "local": {
+      "environment": "macOS (arm64), rustc 1.96.1 (356927216 2026-06-26), Python 3.14.6",
+      "commands": [
+        {
+          "command": "cargo fmt --check",
+          "result": "Passed"
+        },
+        {
+          "command": "cargo test --locked -p adva-lisp --lib operation::tests",
+          "result": "3 passed"
+        },
+        {
+          "command": "cargo test --locked -p adva-lisp --test numeric_boundary",
+          "result": "3 passed (debug), 3 passed (release)"
+        },
+        {
+          "command": "cargo test --locked -p adva-ir",
+          "result": "2 passed"
+        },
+        {
+          "command": "cargo test --locked -p adva-lisp",
+          "result": "19 passed"
+        },
+        {
+          "command": "cargo test --locked -p adva-witness native_input_and_report_preserve_k28_binary64_values",
+          "result": "passed"
+        },
+        {
+          "command": "cargo run --locked -p adva-lisp --example numeric_boundary_audit",
+          "result": "diagnostic v2 emitted, exit 0"
+        },
+        {
+          "command": "python3 tests/python/test_quine_cpu_budget.py",
+          "result": "6 passed"
+        },
+        {
+          "command": "./target/release/adva run docs/research/0141-native-evidence/product-k28.program.adva --output /tmp/k28-replay.adva",
+          "result": "Completed; y bits 0x3feffffffe000000; values [1.0]; echo == submitted"
+        },
+        {
+          "command": "AEG trials/advance-local-run-02/test_quine_cpu_budget.py",
+          "result": "6 passed"
+        },
+        {
+          "command": "AEG calibration.py rerun vs archived report.json",
+          "result": "JSON-equal"
+        }
+      ]
+    },
+    "upstream": {
+      "environment": "Linux, rustc 1.97.1 (8bab26f4f 2026-07-14), Python 3.11.15",
+      "record": "experiments/numeric_boundary_audit/native-verification.json",
+      "summary": "fmt, clippy -D warnings, workspace 229 passed, release 64 passed, examples 37 passed, maturin build, pytest 1637 passed (integration replay 2382 passed), ruff, verify_evidence 152 files, math-check CatalogConsistent."
+    }
+  },
+  "methodology_checklist": [
+    "Boundary-direction questions: what lies below/above the line; does rounding contract (inward) or expand (outward) the safe region; is the assertion derived from the same logic it checks?",
+    "Independent oracles: exact Fractions, bit patterns, power-of-two expectations.",
+    "Model first, native second: C scalar model reproduces the defect, then native replay gates the fix.",
+    "Bit-pattern replay at every transport boundary (parse and serialize both sides; compare to_bits).",
+    "Frozen baselines: retained evidence is never relabeled; audit scripts refuse to run against drifted source.",
+    "Versioned fixes: register the corrected rule as a new version; legacy replay stays executable.",
+    "Native acceptance gate order: fmt -> clippy -> debug/release tests -> examples -> extension build -> full pytest.",
+    "Toolchain defect watch: MSRV/CI inventory with triage records."
+  ],
+  "boundaries": "Single-repository evidence-grade audit, not a third-party security audit. No universal numerical-safety claim, no rounding-error bound for arbitrary programs, and no claim of exact OS CPU accounting. Original retained reports and library evidence were not regenerated.",
+  "merge_review": {
+    "date": "2026-09-10",
+    "prior_git_blob": "ca4d2e7d1f0d2f5360adbae1c13b8e7eb7a39ff3",
+    "corrections": [
+      "F-6: float_roundtrip changes deserialization, not formatting; no arbitrary lexeme guarantee.",
+      "A-2: quoted normalization preserves the tested large Python integer; withdraw unconditional integer-collapse claim."
+    ],
+    "reference": "https://docs.rs/crate/serde_json/1.0.151/source/src/de.rs",
+    "merge_status_scope": "not-yet-merged phrases in the original ledger describe its authoring snapshot"
+  }
+}

@@ -275,6 +275,12 @@ while cube and shear controls pass. Rational biduality is not lattice
 admission. No stable API, new geometry catalog descendant, or CY construction
 is promoted; the next obligation is an explicit checked-diagram/frame binding.
 
+The separately scoped [cube-root triangle continuation](research/cube-root-conjugation-and-polar-covariance.md)
+checks conjugation/polar covariance with explicit primal/dual and Gram roles.
+It supplies a positive 2D lattice example and a counterexample to equating
+conjugation with polarity; native binding remains outstanding. This does not
+extend the old 3D profile or repair the centered TO24 obstruction.
+
 ## 3. Track C: learning intrinsic world structure
 
 ### 3.1 Problem statement

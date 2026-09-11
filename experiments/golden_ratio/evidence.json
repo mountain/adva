@@ -35,7 +35,7 @@
   },
   "contract": {
     "path": "experiments/golden_ratio/contract-v1.json",
-    "sha256": "d0c3fc24b07bdaf90104bfff5b9602e0c4183f2b7addad32c9c05a0e88ed2399",
+    "sha256": "4c80d79fab635ad01998f26259a0f9aff046c91a8b15e9dfb71226b035a53f16",
     "version": 1,
     "supersedes": "experiments/golden_ratio/contract.json",
     "supersedes_sha256": "27ca6f2b34bc4aabad1e7c24bb227727b0adc114a9fe787f108777344b04db69",
@@ -177,7 +177,47 @@
       "crossings": 1,
       "signed_sum": 1
     },
-    "link_certificate": "pairwise linking numbers are zero; the triple invariant is not computed"
+    "link_certificate": {
+      "seifert_surfaces": "the three filled rectangles, boundaries verified against the components",
+      "pairwise_linking_numbers": "zero, computed in the previous round",
+      "triple_intersection": {
+        "z0,x0,y0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "x0,y0,z0": {
+          "signed_sum": 1,
+          "points": 1
+        },
+        "y0,z0,x0": {
+          "signed_sum": 1,
+          "points": 1
+        }
+      },
+      "triple_point": "the origin, the single common point of the three disks",
+      "identification": "pairwise unlinked with unit triple linking, the Borromean pattern",
+      "imported": "the classical theorem identifying the triple intersection number of Seifert surfaces with Milnor's invariant mu-bar(123) when pairwise linking numbers vanish",
+      "not_computed": "the invariant itself from the link complement, and any Reidemeister or diagram-level certificate",
+      "controls": {
+        "unlink": {
+          "pairwise_zero": true,
+          "triple_points": 0,
+          "signed": 0
+        },
+        "scaled_instance": {
+          "triple_points": 1,
+          "signed": 1
+        },
+        "failing_precondition": {
+          "pairwise_values": [
+            1,
+            0,
+            1
+          ],
+          "judgement": "withheld"
+        }
+      }
+    }
   },
   "golden_triangle": {
     "tiles": {
@@ -264,6 +304,435 @@
     },
     "latitude_rule": "equal z steps give equal band areas",
     "not_asserted": "minimal separation, energy or coverage optimality"
+  },
+  "penrose": {
+    "prototiles": {
+      "thick": "72/108",
+      "thin": "36/144"
+    },
+    "inflation_matrix": [
+      [
+        2,
+        1
+      ],
+      [
+        1,
+        1
+      ]
+    ],
+    "counts_after_six_steps": [
+      233,
+      144
+    ],
+    "shared_polynomial": "t^2 - 3t + 1, which the affine word residual and M^2 also carry",
+    "not_verified": "matching-rule acceptance, aperiodicity, full-plane tiling"
+  },
+  "complement_diagram": {
+    "direction": [
+      [
+        "2",
+        "0"
+      ],
+      [
+        "1",
+        "1"
+      ],
+      [
+        "3",
+        "1"
+      ]
+    ],
+    "crossings_total": 12,
+    "per_pair": {
+      "z0|x0": {
+        "crossings": 4,
+        "signed_sum": 0
+      },
+      "z0|y0": {
+        "crossings": 4,
+        "signed_sum": 0
+      },
+      "x0|y0": {
+        "crossings": 4,
+        "signed_sum": 0
+      }
+    },
+    "crossings": [
+      {
+        "over": "z0",
+        "under": "y0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "z0",
+        "sign": -1,
+        "under_segment": 0,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "z0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "-3",
+            "1"
+          ],
+          [
+            "-1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "z0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "-1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "y0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "-3/2",
+          "3/2"
+        ],
+        "point": [
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "z0",
+        "sign": 1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "x0",
+        "sign": 1,
+        "under_segment": 0,
+        "under_parameter": [
+          "1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "3",
+            "-1"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "z0",
+        "under": "x0",
+        "sign": -1,
+        "under_segment": 1,
+        "under_parameter": [
+          "3/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "-1",
+            "1"
+          ],
+          [
+            "1",
+            "1"
+          ],
+          [
+            "0",
+            "0"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "y0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "2",
+            "0"
+          ],
+          [
+            "-1",
+            "1"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "x0",
+        "sign": 1,
+        "under_segment": 1,
+        "under_parameter": [
+          "5/2",
+          "-1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-3",
+            "1"
+          ],
+          [
+            "-1",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "over": "y0",
+        "under": "x0",
+        "sign": -1,
+        "under_segment": 2,
+        "under_parameter": [
+          "-1/2",
+          "1/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "-2",
+            "0"
+          ],
+          [
+            "1",
+            "-1"
+          ]
+        ]
+      },
+      {
+        "over": "x0",
+        "under": "y0",
+        "sign": -1,
+        "under_segment": 3,
+        "under_parameter": [
+          "-5/2",
+          "3/2"
+        ],
+        "point": [
+          [
+            "0",
+            "0"
+          ],
+          [
+            "3",
+            "-1"
+          ],
+          [
+            "1",
+            "1"
+          ]
+        ]
+      }
+    ],
+    "relation_words": [
+      [
+        9,
+        4,
+        -12,
+        -4
+      ],
+      [
+        1,
+        12,
+        -4,
+        -12
+      ],
+      [
+        2,
+        8,
+        -1,
+        -8
+      ],
+      [
+        3,
+        8,
+        -2,
+        -8
+      ],
+      [
+        11,
+        4,
+        -10,
+        -4
+      ],
+      [
+        4,
+        11,
+        -3,
+        -11
+      ],
+      [
+        5,
+        4,
+        -8,
+        -4
+      ],
+      [
+        6,
+        4,
+        -5,
+        -4
+      ],
+      [
+        10,
+        8,
+        -9,
+        -8
+      ],
+      [
+        7,
+        9,
+        -6,
+        -9
+      ],
+      [
+        8,
+        12,
+        -7,
+        -12
+      ],
+      [
+        12,
+        8,
+        -11,
+        -8
+      ]
+    ],
+    "note": "the halved signed sum is the pairwise linking number by the diagram route, whose global sign depends on the declared projection direction"
+  },
+  "complement_presentation": {
+    "generators": 12,
+    "relations": 12,
+    "rank_of_abelianised_relations": 9,
+    "expected_rank": 9,
+    "cokernel": "Z^3, the first homology of a three-component complement",
+    "not_computed": [
+      "the non-abelian relation words themselves",
+      "the Magnus expansion and mu-bar(123)"
+    ]
   },
   "hyperbolic": {
     "translation_length": "4*log(phi)",
@@ -497,9 +966,9 @@
     "note": "Replay reproduces a supplied implementation; it is not an independent oracle. Timing and platform fields are excluded rather than compared."
   },
   "cost": {
-    "wall_seconds_before_serialization": 0.6617275001481175,
-    "checks": 1001,
-    "nodes": 4144,
+    "wall_seconds_before_serialization": 0.6632604158949107,
+    "checks": 1052,
+    "nodes": 4270,
     "child_processes": 1,
     "subprocesses_beyond_replay": 0
   },
@@ -1114,6 +1583,29 @@
     "linking-agrees::x0::y0",
     "linking-accounted::x0::y0",
     "linking-control-threaded-once",
+    "borromean-disk-spans::z0",
+    "borromean-disk-spans::x0",
+    "borromean-disk-spans::y0",
+    "borromean-pair-segment::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-endpoint-on-a-component::z0::x0",
+    "borromean-pair-segment::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-endpoint-on-a-component::z0::y0",
+    "borromean-pair-segment::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-endpoint-on-a-component::x0::y0",
+    "borromean-triple-point-count::z0",
+    "borromean-triple-unit::z0",
+    "borromean-triple-point-count::x0",
+    "borromean-triple-unit::x0",
+    "borromean-triple-point-count::y0",
+    "borromean-triple-unit::y0",
+    "borromean-triple-order-consistent",
+    "borromean-control-unlink-pairwise",
+    "borromean-control-unlink-triple-zero",
+    "borromean-control-scaled-instance",
+    "borromean-control-precondition-fails",
     "cos36-in-range",
     "cos36-chebyshev-root",
     "cos72-double-angle",
@@ -1275,6 +1767,34 @@
     "golden-angle-equal-bands::8",
     "golden-angle-equal-bands::13",
     "golden-angle-equal-bands::21",
+    "penrose-cos72-closed-form",
+    "penrose-cos144-from-cos72",
+    "penrose-cos36-chebyshev",
+    "penrose-thick-diagonal-ratio-squared",
+    "penrose-thin-diagonal-ratio-squared",
+    "golden-rhombus-diagonal-ratio",
+    "penrose-thick-is-not-the-golden-rhombus",
+    "penrose-thin-is-not-the-golden-rhombus",
+    "golden-cosine-differs",
+    "penrose-inflation-characteristic-polynomial",
+    "penrose-inflation-eigenvalues",
+    "penrose-inflation-counts::1",
+    "penrose-inflation-counts::2",
+    "penrose-inflation-counts::3",
+    "penrose-inflation-counts::4",
+    "penrose-inflation-counts::5",
+    "penrose-inflation-counts::6",
+    "penrose-inflation-total-recurrence",
+    "complement-relation-word-count",
+    "complement-relation-words-agree-with-abelian-rows",
+    "complement-diagram-generic",
+    "complement-diagram-crossings",
+    "complement-diagram-over-under-decided",
+    "complement-diagram-linking-zero",
+    "complement-diagram-crossing-counts",
+    "complement-presentation-one-arc-per-crossing",
+    "complement-presentation-arcs-per-component",
+    "complement-presentation-relations",
     "cosh-two-log-phi",
     "cosh-four-log-phi",
     "matrix-trace-two-cosh",
