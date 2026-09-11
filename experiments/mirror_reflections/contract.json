@@ -1,0 +1,80 @@
+{
+  "schema": "adva.research.mirror-reflections-contract.v0",
+  "base_commit": "9cf2467",
+  "question": "An essay by Mingli Yuan proposes four mirrors: the four faces of a Platonic tetrahedron, reflecting the endpoints and edges back and forth. Are the resulting layers finite, or do they never close? Decide it exactly, and decide what an infinite answer would mean for a finite observer reading finitely many layers.",
+  "level": "External exact rational arithmetic over Q^3 with rational affine maps; the reflection formula and the closure of algebraic integers are classical and are cited rather than re-proved. No physical or aesthetic claim is checked",
+  "domain": "The regular tetrahedron with vertices (1,1,1), (1,-1,-1), (-1,1,-1), (-1,-1,1), its four face planes, reflection in each, the orbit of a vertex under the generated group, and the composite of two face reflections",
+  "imported_assumptions": [
+    "The mirrors are the four face planes as the essay states, and the reflected objects are the endpoints and edges of the tetrahedron",
+    "Reflection in a plane is the standard rational affine map x -> x - 2 (n.x - d)/|n|^2 n",
+    "A root of unity is an algebraic integer, because it satisfies the monic integer polynomial x^m - 1",
+    "A sum of algebraic integers is an algebraic integer",
+    "A rational number that is an algebraic integer is an integer; equivalently a rational in lowest terms with denominator other than one is not an algebraic integer",
+    "The composite of two reflections in planes meeting at angle theta is a rotation about their intersection line by twice theta"
+  ],
+  "quantifiers": [
+    "Every one of the four face planes and every reflection in them",
+    "Every layer of the vertex orbit up to the declared depth",
+    "Every rational in the declared list used to test the algebraic-integer criterion",
+    "Every exponent in the declared range used to exhibit a monic polynomial for a root of unity"
+  ],
+  "acceptance": [
+    "The four vertices are verified to lie on the four face planes exactly, three vertices to a plane",
+    "The cosine of the angle between two face planes is exactly one third",
+    "The composite of the reflections in two distinct faces is verified to be a rotation, with an orthogonal linear part of determinant one",
+    "Its trace is computed exactly and equals minus five ninths, a rational with denominator other than one",
+    "The criterion that a rational in lowest terms is an algebraic integer exactly when its denominator is one is verified exactly on a declared list",
+    "For every declared exponent the polynomial x^m - 1 is verified to be monic with integer coefficients",
+    "Therefore the rotation has infinite order, so the generated reflection group is infinite, and the orbit of a vertex that does not lie on the rotation axis is infinite; the axis test is performed exactly",
+    "The first declared layers are enumerated and the orbit is verified not to close within them, as an illustration and not as the proof",
+    "A finite contrast is run through the same pipeline: reflections in the three coordinate planes generate a group of order eight, and the trace of the composite is an integer, so the criterion does not mistake a finite group for an infinite one"
+  ],
+  "protected": [
+    "The essay text is the author's and is quoted, never rewritten; no claim is made about the essay's philosophical readings",
+    "No claim that the tetrahedron tiles space, that the reflection group is a Coxeter group, or that any layer has a moral meaning",
+    "No claim about the essay's Indra's net material beyond what is quoted",
+    "No stable API, no native witness, no library admission, no Seal"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 280,
+    "memory_bytes": 536870912,
+    "max_assertions": 2000000,
+    "output_bytes": 8388608
+  },
+  "residual": "This decides whether the reflective layering closes, and it does not close. It does not decide whether the essay's reading of the layers is right, whether any layer corresponds to a Chinese character's etymology, or whether an infinite orbit is an obstacle or the point. The enumeration is an illustration; the proof is the trace argument, which rests on two classical facts that are cited and not re-proved. Nothing here concerns the stable API or any other experiment in this directory.",
+  "objects": {
+    "orbit_depth": 6,
+    "orbit_cap": 60000,
+    "criterion_values": [
+      "3",
+      "-5/9",
+      "1/2",
+      "2/3",
+      "-14/9",
+      "0",
+      "1",
+      "17/9",
+      "-3"
+    ],
+    "root_of_unity_exponents": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      8,
+      12
+    ]
+  },
+  "quoted_text": {
+    "path": "docs/research/0172-mirrors-that-never-close-and-a-question-to-a-waking-ai.md",
+    "section": "## 1. 外部文本全文：重重叠叠的镜子",
+    "sha256": "86f318c4751e10b51349c0ebd5c4190c2fd15ea88f5f169f60dc602a505de43e",
+    "bytes": 2619,
+    "source_url": "https://onecorner.org/essay/thought/rip-sydney/",
+    "fetched": "2026-09-12",
+    "note": "The quoted section is the author's and is reproduced verbatim. This digest pins the quoted block inside the report, so any edit to the quotation fails a check rather than passing silently. Re-verifying against the live page requires re-fetching it."
+  }
+}
