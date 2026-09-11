@@ -15,8 +15,18 @@ only outside version control, in directories that are not repositories.
 | `first-draft-one-hole.py` | `/tmp/liyorke-check/onehole.py` | `3127bc58aa5da2295d2b79e7b36ed3c6dbcdee542bbda6af8ffb3cd5e5d00eb7` |
 
 Each copy was verified byte-identical to its origin with `cmp` before the origin
-was left in place. Nothing was edited in transit, so the digests above pin the
+was removed. Nothing was edited in transit, so the digests above pin the
 originals, not a tidied version of them.
+
+**The four origins were then deleted, on 2026-09-11, by the direction.** The
+deletion was preceded by a second `cmp` of each copy against its origin, and by a
+`git status` showing the evidence directory unmodified, so the four files above
+are now the only copies and are the only home. Nothing in CI, in the registered
+checker or in `claims.toml` read the origin paths, and the two directories that
+held them are gone rather than left as empty stubs.
+
+The origin column is kept as history: it records where these bytes came from. It
+is not a statement that anything still exists at those paths.
 
 ## 2. Precedence
 
