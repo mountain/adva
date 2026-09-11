@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import copy
+import hashlib
 import importlib.util
 import json
 import subprocess
@@ -19,7 +20,11 @@ else:
     from math_catalog import check_catalog
     from quine_relay import Exhausted, Supervisor, digest
 
-CONTRACT = ROOT / "experiments/advance_symbol_surface/contract.json"
+# The active contract is the version-one successor. The frozen version zero and
+# its digest are kept, and the run verifies that digest, so a later edit of the
+# frozen file is a failure rather than a silent reinterpretation.
+CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v1.json"
+FROZEN_CONTRACT = ROOT / "experiments/advance_symbol_surface/contract.json"
 SOURCE = ROOT / "experiments/symbol_surface"
 LIBRARY = ROOT / "adva-library"
 FILES = (
@@ -194,6 +199,11 @@ def run(args):
     output.mkdir(parents=False, exist_ok=False)
     raw_contract = read_bounded(CONTRACT, 262_144)
     contract = json.loads(raw_contract)
+    if contract.get("version") != 1:
+        raise ValueError("the active contract must be the version-one successor")
+    frozen = hashlib.sha256(read_bounded(FROZEN_CONTRACT, 262_144)).hexdigest()
+    if contract["supersedes"]["sha256"] != frozen:
+        raise ValueError("the frozen contract changed after the successor recorded it")
     supervisor = Supervisor(output, contract["limits"])
     report = {
         "schema": "adva.advance-symbol-surface.result.research",
@@ -204,6 +214,12 @@ def run(args):
         "new_knowledge_epoch": False,
         "native_free": "NotGranted",
         "mathematical_proof_admission": "not-granted",
+        "contract": {
+            "path": "experiments/advance_symbol_surface/contract-v1.json",
+            "version": contract["version"],
+            "supersedes": contract["supersedes"]["path"],
+            "supersedes_sha256": contract["supersedes"]["sha256"],
+        },
     }
     try:
         (output / "contract.json").write_bytes(raw_contract)
