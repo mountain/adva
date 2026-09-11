@@ -8,7 +8,9 @@ registers no native semantics.
 Status: external source audit plus one bounded external experiment. No Rust
 witness, no stable API change, no library admission, no Seal.
 
-Base: `59141a8af4d9a57ef192ded0b9354b0e93a34f51`.
+Base: `59141a8af4d9a57ef192ded0b9354b0e93a34f51`. Library pin:
+`2ba705f3ed8429d9d7d09bfd82ac5eddf4543f9c`, the library commit carrying the
+golden-ratio atlas cited in section 9.
 
 ---
 
