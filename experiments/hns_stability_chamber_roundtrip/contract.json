@@ -1,0 +1,109 @@
+{
+  "schema": "adva.research.hns-stability-chamber-roundtrip-contract.v0",
+  "base_commit": "9aaba3257e21ce54db3244a5cb6a1013335f56b7",
+  "question": "For the injective representations of the A2 quiver over a finite field, does the Harder-Narasimhan filtration at an exact stability parameter run forward to graded data, and can that graded data run backward to the parameter that produced it? What exactly is lost?",
+  "level": "External exact finite linear algebra over F_p plus exact rational slopes; no stable semantic operation, no native admission, no mirror or Arakelov construction",
+  "domain": "Finite-dimensional injective representations of A2 = (1 -> 2) over F_2 and F_3, realised as subspaces V1 subset V2; slopes in Q with an exact stability parameter theta = (theta1, theta2)",
+  "objects": {
+    "fields": [
+      2,
+      3
+    ],
+    "ambient_dims": [
+      2,
+      3
+    ],
+    "max_ambient_dim": 3,
+    "theta_sweep": [
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        3,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        -1,
+        2
+      ],
+      [
+        -2,
+        1
+      ],
+      [
+        -3,
+        1
+      ]
+    ],
+    "degenerate_theta": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        2
+      ]
+    ],
+    "max_subobject_pairs": 20000,
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every subspace of every declared ambient space over each declared field",
+    "Every subobject pair (U1, U2) with U1 subset U2, U1 subset V1, U2 subset V2 for every carrier",
+    "Every stability parameter in the declared sweep for every carrier",
+    "Every graded piece of every computed filtration"
+  ],
+  "acceptance": [
+    "The forward filtration is well defined: the maximal-slope class of subobjects is closed under sum, and the sum of all its members is itself admissible",
+    "Successive quotient slopes are strictly decreasing, checked as exact rationals",
+    "Each step's subobject is the maximal-slope one, verified by comparison against every admissible subobject",
+    "At a degenerate parameter the filtration is trivial, because every nonzero subobject has the same slope",
+    "The rank-weighted slope identity sum_i (dim_i / dim E) * mu_i == mu(E) holds exactly",
+    "The backward direction returns the set of sweep parameters that produce the same graded data, and every member of that set reproduces the graded data",
+    "The round trip is idempotent: forward, backward, forward returns the same graded data",
+    "At least one adjacent pair in the sweep produces different graded data, so the backward image is not the whole sweep",
+    "For a fixed parameter the graded data determines the isomorphism class: one object per key, since the graded dimensions sum to the object's dimension vector",
+    "The carriers are one representative per isomorphism class, so an embedding counted twice cannot be reported as two objects"
+  ],
+  "protected": [
+    "No claim that this finite model is the Harder-Narasimhan theory of vector bundles, Higgs bundles or arithmetic surfaces",
+    "No Arakelov, Green's function, Monge-Ampere, mirror symmetry or Calabi-Yau construction is introduced or claimed",
+    "The stability parameter sweep is a declared finite grid, not the full real parameter space; walls are detected only inside the grid",
+    "F_p exactness is not rational exactness; the field is declared for each instance",
+    "No native Rust witness, no claims.toml promotion beyond a bounded experiment, no library admission, no Seal"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 100,
+    "memory_bytes": 268435456,
+    "max_assertions": 2000000,
+    "output_bytes": 4194304
+  },
+  "residual": "This model computes a filtration of finite subobjects over F_p at exact rational slopes. It establishes no arithmetic-geometric correspondence, no metric existence statement, and no mirror relation. The backward direction is expected to be many-to-one: the graded data is a shadow of the stability parameter, and the retained residual is the wall structure inside the declared grid. Whether any of this survives passage to characteristic zero, to coherent sheaves, or to an arithmetic base is outside the contract and is not claimed."
+}

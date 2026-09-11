@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **174 numbered
+This directory holds the research record of the repository: **175 numbered
 notes, 20 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -695,6 +695,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0166-interpretation-obligation.md`](0166-interpretation-obligation.md)
 - [`0167-li-yorke-period-three-and-homotopy-continuation.md`](0167-li-yorke-period-three-and-homotopy-continuation.md)
 - [`0168-triadic-cycle-and-continuation-discipline.md`](0168-triadic-cycle-and-continuation-discipline.md)
+- [`0169-arakelov-stability-monge-ampere-mirror-ladder.md`](0169-arakelov-stability-monge-ampere-mirror-ladder.md)
 
 ### Named notes
 
