@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **182 numbered
-notes, 21 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 22 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -706,6 +706,8 @@ Every file in this directory, so that no note is reachable only through a summar
 
 ### Named notes
 
+- [`mobius-transport-receipt-boundary.md`](mobius-transport-receipt-boundary.md)
+
 - [`PR-0152-0158-integration.md`](PR-0152-0158-integration.md)
 - [`alternating-group-observer-expansion.md`](alternating-group-observer-expansion.md)
 - [`borromean-boundary-word-correction.md`](borromean-boundary-word-correction.md)
@@ -755,5 +757,5 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0165-evidence/`](0165-evidence/)
 - [`0167-evidence/`](0167-evidence/)
 
-*Complete listing as of 2026-09-11. The counts are stated once, in the header above;
+*Complete listing as of 2026-09-12. The counts are stated once, in the header above;
 they were previously duplicated here and the two copies drifted apart.*
