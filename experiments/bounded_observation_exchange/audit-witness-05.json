@@ -1,0 +1,83 @@
+{
+  "request_sha256": "b7d908d71edc5ca1338dfd1b54517a6b528f811c05108f618e719c03273e91aa",
+  "artifacts": [
+    {
+      "ref": "reuse_benchmark_04.py",
+      "sha256": "dfdc2cd9ea6b021b8ac68ad4c1b301b789674f3df23c3c194e5bb33104950415",
+      "origin_event": "written before the round-04 benchmark run; never modified afterwards",
+      "disclosure_event": "committed in local AEG 34d35f5; excerpted in audit-code-05.txt",
+      "provenance": "OriginalCopy",
+      "redactions": "local filesystem paths in excerpted lines replaced by <redacted-local-path>"
+    },
+    {
+      "ref": "reuse_query.py",
+      "sha256": "ef97fa66763edd8ea22d31dec7e441b59e8c4fa45b4caa40e9e7d7b65c95174f",
+      "origin_event": "written before the round-04 benchmark run; never modified afterwards",
+      "disclosure_event": "committed in local AEG 34d35f5; excerpted in audit-code-05.txt",
+      "provenance": "OriginalCopy",
+      "redactions": "sys.path.insert line omitted (local path)"
+    },
+    {
+      "ref": "reuse_rules.py",
+      "sha256": "4010b60c7df8c114caca962371785e93cd7b1e929ee4ae425b8d73dc01138796",
+      "origin_event": "frozen before the round-04 benchmark run; matches the rule_pin declared in reuse-witness-04.json",
+      "disclosure_event": "committed in local AEG 34d35f5; stoplist block excerpted verbatim",
+      "provenance": "OriginalCopy"
+    },
+    {
+      "ref": "reuse-measure-04.json",
+      "sha256": "b63b4a6b5702320ffbe08739562b869faddcb6b3530b582e403efed78d448448",
+      "origin_event": "written by the round-04 run, then corrected post-hoc in place (comparison/accounting fields only; B/F/R measurements and projections untouched)",
+      "disclosure_event": "committed in local AEG 34d35f5; subobjects copied verbatim into comparison-objects-05.json",
+      "provenance": "OriginalCopy of the corrected record; the pre-correction first-run record was overwritten and is NotAvailable"
+    },
+    {
+      "ref": "round-03 inline computation script",
+      "sha256": null,
+      "origin_event": "ran inline (heredoc), not saved to a file",
+      "disclosure_event": "none",
+      "provenance": "NotAvailable"
+    }
+  ],
+  "comparison_history": {
+    "first_run": {
+      "code": "reuse_benchmark_04.py line 156: equal = proj_B == proj_R (full-object equality)",
+      "result": "false (baseline projection carried the extra content_tokens field; reloaded projection did not)",
+      "output_record": "NotAvailable: the first-run reuse-measure-04.json was overwritten by the post-hoc correction before any commit; no retained copy exists",
+      "statement_retained_in": ["reuse-measure-04.json result_comparison.note", "response-04.json residual", "reuse-witness-04.json result_comparison.note"]
+    },
+    "corrected": {
+      "applied_to": "the output record only; the benchmark code was never changed and still contains the full-object comparison",
+      "comparison": "declared four fields (frequency, rank, locator, context) equal on both sides",
+      "objects": "both projections retained with the extra field visible: baseline WITH content_tokens (8279/41209), reloaded WITHOUT; see comparison-objects-05.json"
+    }
+  },
+  "stoplist_versions": {
+    "round-04": {
+      "source": "reuse_rules.py STOP set (119 words)",
+      "producer_encoding": "lexicographic sort (Unicode code point order), join with newline, no trailing newline, UTF-8",
+      "sha256": "25c1edee0724b3d842556c36c11897b6d7e52e4732d89b1c06f95a867444ee9c",
+      "confirmed": true
+    },
+    "round-03": {
+      "status": "NotAvailable: the inline script was not retained; no file, no hash, no word list",
+      "observed_delta": "round-03 reported content-token totals 8281/41229; the frozen 119-word rule recomputes 8279/41209",
+      "word_level_explanation": "unprovable from retained artifacts; any specific added/removed words would be inference, not evidence"
+    }
+  },
+  "stoplist_added_removed": {
+    "status": "NotAvailable",
+    "reason": "the actual round-03 stoplist bytes were never retained, so added/removed words cannot be named"
+  },
+  "hash_encoding_confirmation": {
+    "confirmed": true,
+    "encoding": "sorted lexicographically, newline-joined, no trailing newline, UTF-8 — exactly the receiver's inference"
+  },
+  "timer_boundaries": {
+    "B": "reuse_benchmark_04.py lines 61-78: per-stage perf_counter pairs (lines/tokenize/rank_and_context/serialize), B = sum of stages",
+    "R": "reuse_query.py lines 28-58: child stage timers (load/verify/lookup/serialize) with t['start'] at entry; parent wall timer reuse_benchmark_04.py lines 147-150 around subprocess.run",
+    "asymmetry": "B is in-process stage time; R is reported both in-process (child stage sum) and as parent wall time including interpreter startup — the asymmetry is declared, not hidden"
+  },
+  "coverage": "Inspection only: file digests, line references, verbatim subobject copies, stoplist re-encoding check. benchmark_runs = 0, new_index_builds = 0, retries = 0 — honored.",
+  "omissions": "Round-03 inline code NotAvailable. First-run output record NotAvailable. Code excerpts redact local paths. Text-layer pins (8f6e8af5... / 21f04d44...) and the tokenizer are unchanged across rounds 03/04."
+}
