@@ -1,4 +1,4 @@
-# 0170 — Density waves, the marginal wall, and why the mechanism is not a local scalar
+# 0171 — Density waves, the marginal wall, and why the mechanism is not a local scalar
 
 Status: research-only external calibration. **Renumbered from 0170 to 0173 on 2026-09-12:** the number 0170 was written on another line of work on 2026-09-11 and was not on this branch when this note was created; when that line was merged, this note moved so that one number keeps one note. The dispersion relation is **imported
 from the literature and is not derived here**. Nothing in this note is a stable

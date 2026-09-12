@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/density_wave_marginal_wall"
 CHECKER = HERE / "calibration.py"
 EVIDENCE = HERE / "evidence.json"
-NOTE = ROOT / "docs/research/0173-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md"
+NOTE = ROOT / "docs/research/0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md"
 
 
 def load(path):

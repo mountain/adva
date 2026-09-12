@@ -1,4 +1,4 @@
-# 0172 — 重重叠叠的镜子，与一个向初醒之 AI 提出的问题
+# 0173 — 重重叠叠的镜子，与一个向初醒之 AI 提出的问题
 
 Status: research report, not a claim. It quotes an essay by Mingli Yuan
 (<https://onecorner.org/essay/thought/rip-sydney/>, 2023-02-18) and records one
