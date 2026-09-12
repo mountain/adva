@@ -73,3 +73,19 @@ substrate model 256/256. Receipt 07 binds the relation
 per-run transient outputs are reproducible from the recorded procedure.
 This is a value-level frontier relation, not bit-level isomorphism and
 not a cross-machine reproducibility claim.
+
+## 5. Amendment (2026-09-10): substrate-side continuation boundary
+
+[Research 0167](0167-iota-lang-reconnection-audit.md) audited the iota-lang
+checkout and found that it does not compile at any commit, that the recorded
+rules never produce a readable result for any of the 17 recorded cases, and
+that the recorded test contract contains inconsistent expectations.
+
+By the direction of 2026-09-10, that line continues on the **iota-lang side
+only**. Nothing in 0167 is connected into adva: no Rust type, operation,
+certificate or `ProgramTerm`, no adapter, no comparison harness, and no change
+to the projection recorded above or to its Python reducer. The "upgrade the
+projection to two independent implementations" step named in section 1 is
+therefore **blocked, not next**, and requires its own explicit decision and its
+own bounded contract. Storing 0167's evidence in this repository is an archive
+choice, not an admission.

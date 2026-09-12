@@ -1,0 +1,38 @@
+# DualMachine v0 run
+# date: 2026-09-10T14:53:05Z
+# spec: DUALMACHINE.md
+# spec_sha256: 1b31a6306117fbd17848583c4474812f9a878a580719b63a5cc42f89c17d52d8
+# java: openjdk version "26.0.1" 2026-04-21
+# javac: javac 26.0.1
+# javac_exit: 0
+{"kind": "case", "group": "A", "name": "testXY", "term": "(x y)", "expected": "(x y)", "results": "(x y)", "arity": 1, "steps": 1, "pass": true}
+{"kind": "case", "group": "A", "name": "testI", "term": "(i x)", "expected": "x", "results": "x", "arity": 1, "steps": 2, "pass": true}
+{"kind": "case", "group": "A", "name": "testK", "term": "((k x) y)", "expected": "x", "results": "x", "arity": 1, "steps": 2, "pass": true}
+{"kind": "case", "group": "A", "name": "testS", "term": "(((s x) y) z)", "expected": "((x z) (y z))", "results": "(((y z) (x z)) x)", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testFalse", "term": "(((s k) x) y)", "expected": "y", "results": "(x y)", "arity": 1, "steps": 3, "pass": false}
+{"kind": "case", "group": "A", "name": "testReverse", "term": "((((s (k (s i))) k) x) y)", "expected": "(y x)", "results": "[(k (s i)) (x y)]", "arity": 2, "steps": 3, "pass": false}
+{"kind": "case", "group": "A", "name": "testKSKS", "term": "(((k s) k) s)", "expected": "(s s)", "results": "[s k]", "arity": 2, "steps": 3, "pass": false}
+{"kind": "case", "group": "A", "name": "testKKKSKS", "term": "(((((k k) k) s) k) s)", "expected": "(s s)", "results": "[k k]", "arity": 2, "steps": 4, "pass": false}
+{"kind": "case", "group": "A", "name": "testSKK", "term": "((((s k) k) x) y)", "expected": "(x y)", "results": "[k (x y)]", "arity": 2, "steps": 3, "pass": false}
+{"kind": "case", "group": "A", "name": "testIota2", "term": "((ι ι) x)", "expected": "x", "results": "(((ι k) s) x)", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIota4", "term": "((ι (ι (ι ι))) (x y))", "expected": "x", "results": "((((ι (ι ι)) k) s) (x y))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIota5", "term": "((ι (ι (ι (ι ι)))) ((x y) z))", "expected": "((x z) (y z))", "results": "((((ι (ι (ι ι))) k) s) ((x y) z))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testII", "term": "((ι ι) (ι ι))", "expected": "(i i)", "results": "(((ι k) s) (ι ι))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIII", "term": "((ι ι) (ι ι))", "expected": "((i i) i)", "results": "(((ι k) s) (ι ι))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIIII", "term": "((ι ι) (ι ι))", "expected": "((i i) (i i))", "results": "(((ι k) s) (ι ι))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIIIII", "term": "((ι ι) (ι ι))", "expected": "(((i i) (i i)) i)", "results": "(((ι k) s) (ι ι))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "A", "name": "testIIIIII", "term": "((ι ι) (ι ι))", "expected": "(((i i) (i i)) (i i))", "results": "(((ι k) s) (ι ι))", "arity": 1, "steps": 2, "pass": false}
+{"kind": "case", "group": "B", "name": "spaceEmpty", "term": "[]", "expected": "[]", "results": "[]", "arity": 0, "steps": 1, "pass": true}
+{"kind": "case", "group": "B", "name": "spaceAtom", "term": "[x]", "expected": "[x]", "results": "[x]", "arity": 1, "steps": 2, "pass": true}
+{"kind": "case", "group": "B", "name": "spaceOrder", "term": "[z y x]", "expected": "[z y x]", "results": "[z y x]", "arity": 1, "steps": 4, "pass": true}
+{"kind": "case", "group": "B", "name": "spaceEval", "term": "[(i x)]", "expected": "[x]", "results": "[x]", "arity": 1, "steps": 3, "pass": true}
+{"kind": "case", "group": "B", "name": "spaceNested", "term": "[x [y z]]", "expected": "[x [y z]]", "results": "[x [y z]]", "arity": 1, "steps": 5, "pass": true}
+{"kind": "case", "group": "B", "name": "spaceDoesNotReduce", "term": "[k x y]", "expected": "[k x y]", "results": "[k x y]", "arity": 1, "steps": 4, "pass": true}
+{"kind": "case", "group": "C", "name": "spaceOfTimes", "term": "[((k x) y) (i z)]", "expected": "[x z]", "results": "(x z)", "arity": 1, "steps": 5, "pass": false}
+{"kind": "case", "group": "C", "name": "timeOfSpaces", "term": "([x y] z)", "expected": null, "stopped": "space frame in head position: [x y] applied to [z] at | frames:[]; giving [] a head-consuming behaviour would make it a third reduction mechanism (DUALMACHINE.md section 6)"}
+{"kind": "case", "group": "C", "name": "timeOfSpaceHead", "term": "(([x] y) z)", "expected": null, "stopped": "space frame in head position: [x] applied to [y, z] at | frames:[]; giving [] a head-consuming behaviour would make it a third reduction mechanism (DUALMACHINE.md section 6)"}
+{"kind": "case", "group": "D", "name": "angleTop", "term": "<a b>", "expected": null, "refused": "refused <a b>: the angle form is a judgement over a typed singular middle object (research 0070), not a term; DualMachine v0 has no middle N_D, pinch maps, observer policy or resolution, so the form is refused at parse time rather than evaluated. See DUALMACHINE.md section 7"}
+{"kind": "case", "group": "D", "name": "angleNested", "term": "(i <a b>)", "expected": null, "refused": "refused <a b>: the angle form is a judgement over a typed singular middle object (research 0070), not a term; DualMachine v0 has no middle N_D, pinch maps, observer policy or resolution, so the form is refused at parse time rather than evaluated. See DUALMACHINE.md section 7"}
+{"kind": "case", "group": "D", "name": "angleInSpace", "term": "[<a b>]", "expected": null, "refused": "refused <a b>: the angle form is a judgement over a typed singular middle object (research 0070), not a term; DualMachine v0 has no middle N_D, pinch maps, observer policy or resolution, so the form is refused at parse time rather than evaluated. See DUALMACHINE.md section 7"}
+{"kind": "summary", "cases": 29, "passed": 9, "failed": 20}
+# driver_exit: 1
