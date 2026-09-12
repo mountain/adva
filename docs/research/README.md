@@ -696,9 +696,9 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0167-li-yorke-period-three-and-homotopy-continuation.md`](0167-li-yorke-period-three-and-homotopy-continuation.md)
 - [`0168-triadic-cycle-and-continuation-discipline.md`](0168-triadic-cycle-and-continuation-discipline.md)
 - [`0169-arakelov-stability-monge-ampere-mirror-ladder.md`](0169-arakelov-stability-monge-ampere-mirror-ladder.md)
-- [`0173-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md`](0173-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md)
-- [`0171-the-i-minus-e-integrality-conjecture.md`](0171-the-i-minus-e-integrality-conjecture.md)
-- [`0172-mirrors-that-never-close-and-a-question-to-a-waking-ai.md`](0172-mirrors-that-never-close-and-a-question-to-a-waking-ai.md)
+- [`0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md`](0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md)
+- [`0172-the-i-minus-e-integrality-conjecture.md`](0172-the-i-minus-e-integrality-conjecture.md)
+- [`0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md`](0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md)
 
 ### Named notes
 

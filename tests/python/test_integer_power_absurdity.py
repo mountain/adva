@@ -18,7 +18,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/integer_power_absurdity"
 CHECKER = HERE / "calibration.py"
 EVIDENCE = HERE / "evidence.json"
-NOTE = ROOT / "docs/research/0171-the-i-minus-e-integrality-conjecture.md"
+NOTE = ROOT / "docs/research/0172-the-i-minus-e-integrality-conjecture.md"
 
 
 def load(path):

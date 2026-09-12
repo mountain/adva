@@ -20,7 +20,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/mirror_reflections"
 CHECKER = HERE / "calibration.py"
 EVIDENCE = HERE / "evidence.json"
-REPORT = ROOT / "docs/research/0172-mirrors-that-never-close-and-a-question-to-a-waking-ai.md"
+REPORT = ROOT / "docs/research/0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md"
 
 
 def load(path):
@@ -122,7 +122,7 @@ def test_editing_the_quotation_would_fail_the_check(tmp_path):
     (work / "experiments").mkdir(parents=True)
     (work / "docs/research").mkdir(parents=True)
     shutil.copytree(HERE, work / "experiments/mirror_reflections")
-    source = ROOT / "docs/research/0172-mirrors-that-never-close-and-a-question-to-a-waking-ai.md"
+    source = ROOT / "docs/research/0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md"
     edited = source.read_text(encoding="utf-8").replace("恻隐之心", "恻隐之念", 1)
     assert edited != source.read_text(encoding="utf-8")
     (work / "docs/research" / source.name).write_text(edited, encoding="utf-8")

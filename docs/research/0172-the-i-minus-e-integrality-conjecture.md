@@ -1,4 +1,4 @@
-# 0171 — The `(i − e)^(i − e)` integrality conjecture: recorded, and refuted on its principal reading
+# 0172 — The `(i − e)^(i − e)` integrality conjecture: recorded, and refuted on its principal reading
 
 Status: research-only. This note records a conjecture that was put to the
 repository by Mingli Yuan, states it precisely, and reports what can and cannot
