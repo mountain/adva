@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **181 numbered
+This directory holds the research record of the repository: **182 numbered
 notes, 21 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -523,6 +523,7 @@ Every file in this directory, so that no note is reachable only through a summar
 
 - [`0001-paired-spectral-objectification.md`](0001-paired-spectral-objectification.md)
 - [`0002-affine-exp-observer-spectrum.md`](0002-affine-exp-observer-spectrum.md)
+- [`0003-affine-boundary-two-jet-faithfulness.md`](0003-affine-boundary-two-jet-faithfulness.md)
 - [`0004-whole-cut-program-cells.md`](0004-whole-cut-program-cells.md)
 - [`0005-causal-cut-alexandrov-topology.md`](0005-causal-cut-alexandrov-topology.md)
 - [`0006-frontier-transport-interchange.md`](0006-frontier-transport-interchange.md)
