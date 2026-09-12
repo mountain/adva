@@ -1,0 +1,59 @@
+{
+  "schema": "adva.external.mobius-conjugacy-transport.v0",
+  "base_main": "b15380423d2d84c901e824c26c53e19cd933e022",
+  "question": "For H(z)=(z+2)/(z+1), which transport preserves a finite projective group representation and its observer: left multiplication H*rho(g), or conjugation H*rho(g)*H^-1 with transported probes and values?",
+  "objects": {
+    "fields": [5, 7],
+    "groups": "PSL(2,F_p) as normalized projective 2x2 matrices with nonzero square determinant",
+    "carrier": "P^1(F_p)=F_p union {infinity}",
+    "mobius_matrix": [[1, 2], [1, 1]],
+    "action": "[[a,b],[c,d]] sends z to (az+b)/(cz+d), with projective infinity cases",
+    "composition": "matrix product and function composition are both left-after-right"
+  },
+  "types": {
+    "group_element": "canonical PGL matrix class",
+    "point": "finite field element or infinity",
+    "observer": "ordered images of a declared tuple of distinct projective points",
+    "judgment": ["Transported", "NotRepresentation", "InvalidCodomain", "UnknownCoverage", "InvalidEvidence", "UnknownResource"]
+  },
+  "quantifiers": [
+    "all normalized projective matrices in PSL(2,F_5) and PSL(2,F_7)",
+    "all ordered group-element pairs for representation and conjugation laws",
+    "all projective points for action and observer covariance",
+    "all coordinate subsets up to the first separating cardinality",
+    "all affine inputs when testing the deleted-pole control"
+  ],
+  "candidate_grammar": [
+    "left(g)=H*g",
+    "conjugate(g)=H*g*H^-1",
+    "transport a probe x to H(x) and its observed value y to H(y)",
+    "delete infinity and the pole from the affine chart"
+  ],
+  "acceptance": [
+    "two independent PSL enumerations agree",
+    "the projective action is faithful and preserves every product",
+    "conjugation preserves identity, products, carrier membership and observer covariance",
+    "left multiplication is refused if it fails identity, codomain or product laws",
+    "affine deletion cannot return a total projective closure",
+    "the F_7 reuse passes without changing the method"
+  ],
+  "budgets": {
+    "wall_seconds": 15,
+    "cpu_seconds": 15,
+    "address_space_bytes": 268435456,
+    "work_units": 100000,
+    "candidate_nodes": 100000,
+    "output_bytes": 1048576,
+    "execution_attempts": 1,
+    "correction_replays": 1
+  },
+  "work_unit": "one candidate matrix, group pair, point action, observer key insertion, coordinate subset, control, or assertion; inner field/matrix dimension is at most 2 and point count at most 8",
+  "protected_boundaries": [
+    "exact modular arithmetic only; no floating-point acceptance",
+    "the affine pole is never silently dropped from projective coverage",
+    "left multiplication is not renamed as conjugation or basis change",
+    "no native Adva identity, D*, free, Seal, simple-group universality or Riemann-hypothesis claim",
+    "coverage failure returns UnknownCoverage rather than closure"
+  ],
+  "residual": "external finite calibration over two fields; no general untrusted receipt validator, native checked-diagram binding, proof-assistant theorem, or practical-user acceptance"
+}
