@@ -1,6 +1,6 @@
 {
   "status": "DisclosedByteChainChecked",
-  "received_rounds": 4,
+  "received_rounds": 5,
   "question_count": 5,
   "rows": [
     {
@@ -109,19 +109,37 @@
       "parent_reply_bytes_match": true,
       "parent_attachment_bytes_match": true,
       "old_reply_cannot_answer_next_question": true
+    },
+    {
+      "round": 5,
+      "receipt": {
+        "status": "VariationObserved",
+        "acknowledge": {
+          "request_sha256": "b7d908d71edc5ca1338dfd1b54517a6b528f811c05108f618e719c03273e91aa",
+          "response_sha256": "837e042bace7972c95be81748346eb78de6bc80e54d94fdd8c1e39c5edb8f6ed"
+        },
+        "source_binding": "Unverified",
+        "semantic_acceptance": "Withheld",
+        "native_admission": "not-granted",
+        "resource_grant": 0,
+        "missing_fields": [],
+        "changed_fields": [
+          "task",
+          "result",
+          "residual"
+        ],
+        "scope": "literal equality of the three disclosed strings only",
+        "reason": "DeclaredProjectionCompared",
+        "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+      },
+      "next_request": null,
+      "parent_reply_bytes_match": true,
+      "terminal_round": true
     }
   ],
-  "fifth_round": {
-    "status": "Unknown",
-    "acknowledge": null,
-    "source_binding": "Unverified",
-    "semantic_acceptance": "Withheld",
-    "native_admission": "not-granted",
-    "resource_grant": 0,
-    "reason": "AwaitingReply"
-  },
-  "limits": "Five bounded requests, four bounded responses, three bounded attachments, four stale-reply controls; no search or peer code execution.",
+  "terminal_round": 5,
+  "limits": "Five bounded requests, five bounded responses, three bounded attachments, four stale-reply controls; no search or peer code execution.",
   "residual": "Neither parent hashes nor local acknowledgements authenticate private sources, actual execution, historical event order or semantic faithfulness.",
-  "local_replay_seconds": 0.03667282700189389,
+  "local_replay_seconds": 0.02784004108980298,
   "memory": "NotMeasured"
 }

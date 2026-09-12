@@ -1,0 +1,65 @@
+{
+  "protocol": {
+    "status": "VariationObserved",
+    "acknowledge": {
+      "request_sha256": "b7d908d71edc5ca1338dfd1b54517a6b528f811c05108f618e719c03273e91aa",
+      "response_sha256": "837e042bace7972c95be81748346eb78de6bc80e54d94fdd8c1e39c5edb8f6ed"
+    },
+    "source_binding": "Unverified",
+    "semantic_acceptance": "Withheld",
+    "native_admission": "not-granted",
+    "resource_grant": 0,
+    "missing_fields": [],
+    "changed_fields": [
+      "task",
+      "result",
+      "residual"
+    ],
+    "scope": "literal equality of the three disclosed strings only",
+    "reason": "DeclaredProjectionCompared",
+    "next_obligation": "Supply an authorized source-to-projection witness before semantic acceptance."
+  },
+  "attachment_sha256": {
+    "audit-witness-05.json": "4bb96e31a9ffcdb590c0df33efc4feb8b41b3bc481efbb46b28884f1f244d45c",
+    "audit-code-05.txt": "0bdcb56f4bbb3e503fbc0db40022d1768fa7150ea030ab0ee6614911c0d74cc3",
+    "comparison-objects-05.json": "75bc3c1b124bc07d7e0c9658842079e3f0ff897c65ace20600425ca57c99e6c8"
+  },
+  "budget_met": true,
+  "stoplist_encoding_closed": {
+    "round4_pending_question": "producer confirmation of the receiver's inferred encoding",
+    "producer_confirmed": true,
+    "recomputed_locally": true,
+    "digest": "25c1edee0724b3d842556c36c11897b6d7e52e4732d89b1c06f95a867444ee9c",
+    "scope": "the round-04 word list as disclosed in reuse-witness-04.json"
+  },
+  "original_failure_mechanism": {
+    "extra_field_present_in_baseline": true,
+    "extra_field_absent_in_reloaded": true,
+    "declared_four_fields_equal": true,
+    "full_objects_equal": false,
+    "reading": "the retained objects differ in exactly one field, so a full-object comparison could only have returned false; the failure is explained by the disclosed evidence and not merely reported"
+  },
+  "code_excerpt": {
+    "line_references_verified": [
+      "156 equal = proj_B == proj_R",
+      "40-46",
+      "61-78",
+      "147-158",
+      "28-58"
+    ],
+    "incoming_code_executed": false
+  },
+  "unavailable_stays_unavailable": {
+    "round_03_inline_script": "NotAvailable, no hash, no word list",
+    "first_run_output_record": "NotAvailable, overwritten before commit",
+    "reconstruction_offered": false,
+    "word_level_added_removed": "unprovable from retained artifacts"
+  },
+  "still_unverified": [
+    "the four artifact digests are the sender's claim; the corresponding bytes were not disclosed in full",
+    "no local replay of any peer timing, and the process-per-query comparison stays NotComparable",
+    "source, index and rule-module bytes remain unverified without their bytes",
+    "text-layer pins 8f6e8af5 and 21f04d44 are declared unchanged across rounds 03 and 04, not checked",
+    "the first-run failure is explained by the retained objects; the execution event itself is not authenticated"
+  ]
+}
