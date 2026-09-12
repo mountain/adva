@@ -1,6 +1,6 @@
 """The density-wave mechanism is not a local scalar, and its wall is a degeneracy.
 
-Research 0170 answers an external question at the only level this repository can
+Research 0173 answers an external question at the only level this repository can
 check. This test holds the answer in place: the marginal locus must stay a
 discriminant, the band must stay bounded and its edge product independent of
 self-gravity, the local surrogates must keep failing, the modulus must stay
@@ -19,7 +19,7 @@ ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/density_wave_marginal_wall"
 CHECKER = HERE / "calibration.py"
 EVIDENCE = HERE / "evidence.json"
-NOTE = ROOT / "docs/research/0170-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md"
+NOTE = ROOT / "docs/research/0173-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md"
 
 
 def load(path):
