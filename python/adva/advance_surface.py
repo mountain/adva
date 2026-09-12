@@ -24,7 +24,7 @@ else:
 # of the contract it supersedes, and the run verifies that digest, so editing a
 # superseded contract afterwards is a failure rather than a silent
 # reinterpretation. The chain is v0 <- v1 <- v2.
-CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v2.json"
+CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v3.json"
 # The cargo cdylib artifact is `lib_native` with the platform dynamic-library
 # extension. The profile was written for Linux, where that is `.so`; on macOS it
 # is `.dylib`, and the hard-coded name made the run stop after a successful build
@@ -226,7 +226,7 @@ def run(args):
         "native_free": "NotGranted",
         "mathematical_proof_admission": "not-granted",
         "contract": {
-            "path": "experiments/advance_symbol_surface/contract-v2.json",
+            "path": "experiments/advance_symbol_surface/contract-v3.json",
             "version": contract["version"],
             "supersedes": contract["supersedes"]["path"],
             "supersedes_sha256": contract["supersedes"]["sha256"],
