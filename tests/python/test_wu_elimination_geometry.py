@@ -26,14 +26,20 @@ def load(path):
 
 
 def test_a_fresh_run_reproduces_the_retained_evidence(tmp_path):
+    """The calibration writes its evidence beside itself, so it is replayed on a
+    copy: running it in place would dirty the repository."""
+    import shutil
+    copied = tmp_path / "wu_elimination_geometry"
+    shutil.copytree(EXPERIMENT, copied)
     completed = subprocess.run(
-        [sys.executable, str(EXPERIMENT / "calibration.py")],
+        [sys.executable, str(copied / "calibration.py")],
         cwd=tmp_path, capture_output=True, text=True, timeout=900, check=False,
     )
     assert completed.returncode == 0, completed.stderr
-    fresh = load(EXPERIMENT / "evidence.json")
-    assert fresh["status"] == "ExternalExactPass"
-    assert all(fresh["checks"].values())
+    fresh = load(copied / "evidence.json")
+    retained = load(EVIDENCE)
+    assert fresh["status"] == retained["status"] == "ExternalExactPass"
+    assert all(retained["checks"].values())
 
 
 def test_true_statements_reduce_to_zero_and_falsified_ones_do_not():

@@ -1,0 +1,144 @@
+{
+  "certificate": {
+    "conclusion_degree": 8,
+    "conclusion_is_not_identically_zero": true,
+    "conclusion_terms": 720,
+    "cost": {
+      "build_conclusion_seconds": 0.243,
+      "build_hypothesis_seconds": 0.622,
+      "note": "the expansion is the whole cost; the reduction is cheap",
+      "reduction_seconds": 0.785
+    },
+    "hypothesis_degree": 8,
+    "hypothesis_terms": 720,
+    "main_variable": "y6",
+    "meaning": "the conclusion vanishes on the hypothesis variety wherever the leading coefficient in the main variable does not vanish",
+    "non_degeneracy_condition": {
+      "degree": 6,
+      "terms": 120,
+      "what_it_is": "the leading coefficient of the hypothesis in the main variable"
+    },
+    "pseudo_divisibility_not_ideal_membership": true,
+    "pseudo_remainder_is_zero": true
+  },
+  "checker_sha256": "5b63c32f4bfccd504da33ffa5658c948080349c828caac906b4fef26b44d43aa",
+  "checks": {
+    "random_instances_all_vanish": true,
+    "the_certificate_is_zero": true,
+    "the_conclusion_is_not_vacuous": true,
+    "the_falsified_pairing_is_detected": true,
+    "the_hypothesis_and_conclusion_have_the_expected_size": true,
+    "the_non_degeneracy_condition_is_recorded": true,
+    "the_tooling_is_declared": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/wu_elimination_general_conic/contract.json",
+  "controls": {
+    "falsified_pairing_is_detected": true,
+    "falsified_pairing_remainder_is_zero": false,
+    "hypothesis_is_required": true,
+    "why": "a falsified pairing must not reduce to zero, and a conclusion that were identically zero would need no hypothesis at all"
+  },
+  "cost": {
+    "assertions": 0,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 32.922
+  },
+  "determinant_method_comparison": {
+    "same_polynomial": true,
+    "seconds": {
+      "bareiss": 1.0914,
+      "berkowitz": 0.0691
+    },
+    "size": 5,
+    "terms": {
+      "bareiss_terms": 120,
+      "berkowitz_terms": 120
+    }
+  },
+  "random_exact_instances": [
+    {
+      "collinearity_determinant": "0",
+      "conic": [
+        "-1",
+        "-1",
+        "1/2"
+      ],
+      "is_zero": true,
+      "parameters": [
+        "1/3",
+        "-5/3",
+        "1/2",
+        "3/2",
+        "-3",
+        "1/2"
+      ]
+    },
+    {
+      "collinearity_determinant": "0",
+      "conic": [
+        "-1",
+        "3/2",
+        "-1"
+      ],
+      "is_zero": true,
+      "parameters": [
+        "-1",
+        "5/3",
+        "0",
+        "1",
+        "4",
+        "-1/3"
+      ]
+    },
+    {
+      "collinearity_determinant": "0",
+      "conic": [
+        "3/2",
+        "3/2",
+        "-4/3"
+      ],
+      "is_zero": true,
+      "parameters": [
+        "-1",
+        "-5/4",
+        "1",
+        "0",
+        "5/2",
+        "0"
+      ]
+    }
+  ],
+  "reconnaissance_not_rerun": {
+    "default_determinant_method": {
+      "cost_seconds": 112.5,
+      "division_free_method_cost_seconds": 0.6,
+      "what": "the same 6x6 conic determinant with the library's default division-based method",
+      "why_recorded": "the method choice changes the cost by two orders of magnitude, which matters for anyone using elimination here"
+    },
+    "parametrised_general_conic": {
+      "cost_seconds": 145,
+      "outcome": "the collinearity determinant is identically zero, so the theorem also holds in that formulation",
+      "what": "a general conic as the image of the projective line with six coefficients, six points at symbolic parameters",
+      "why_not_rerun": "its symbolic expansion costs minutes, so it is recorded as reconnaissance rather than as part of this run"
+    }
+  },
+  "schema": "adva.external.wu-elimination-general-conic.v0",
+  "status": "ExternalExactPass",
+  "tooling": {
+    "available": true,
+    "determinant_method": "berkowitz",
+    "external_oracle_not_native_authority": true,
+    "polynomial_library": "sympy",
+    "version": "1.14.0"
+  },
+  "version": 0,
+  "what_is_not_claimed": {
+    "anything_about_the_feigenbaum_line": false,
+    "geometry_catalog_admission": false,
+    "ideal_membership": false,
+    "native_certificate": false,
+    "proof_without_non_degeneracy_conditions": false
+  }
+}
