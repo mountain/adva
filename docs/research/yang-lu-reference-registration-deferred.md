@@ -60,3 +60,34 @@ DOI were obtained).
 
 Nothing in 0185 depends on this decision: the run's contract, checker, evidence and claim
 are already committed and pushed, and the readings it cites are recorded in its own text.
+
+## Resolution, 2026-09-13
+
+The direction gave the bound its own reason, verbatim:
+
+> 给 entries 上限自己的理由并放宽至 101 条，因为我设立 100 条，必须让小朋友跑出来
+
+So `LIMITS["entries"]` in `python/adva/math_catalog.py` moved from **32 to 101**, recorded
+in a comment that quotes that reason, dates it, and keeps the file's existing discipline:
+a recorded widening asked for by the direction, not a standing invitation, and the next
+increase needs its own reason. The bound is 100 entries plus the one the growth fixture
+appends, which is exactly the headroom that was missing.
+
+Two things were refreshed at the same time and are worth naming:
+
+- The operative bounds had drifted between the code and its decision record:
+  `docs/adr/0043-directory-partition-contract.json` still said "96 files" while the code
+  said 120. The ADR's `growth_rule` for `math` now points at `LIMITS` in the checker and
+  states the current values (101 entries / 256 reference occurrences / 120 files / 256 KiB
+  per metadata file / 8 MiB per referenced file / 32 MiB total read / 5 s). Its digest is
+  pinned by the `logic-directory-partition-contract` entry, so that pin was re-pinned.
+- The registration was then re-admitted as option 1 above: one document
+  `adva-library/yang-lu-inequality-proving-external-reference-v0.md`, one manifest entry
+  with its digest pinned, the geometry topic index, both naming documents with the two
+  digests that `logic-party-naming-layer` declares re-pinned, the counts in the two library
+  READMEs, and the two catalog test counts. The catalog check reports `CatalogConsistent`
+  at 32 entries with topic counts 10 / 9 / 18 and 32 key words.
+
+The document itself records its own admission history, so a reader of the registration does
+not have to find this note to know that it was deferred once and admitted after the bound
+was widened.
