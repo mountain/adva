@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **190 numbered
-notes, 22 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 23 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -732,6 +732,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`operator-lift-receipt-boundary-v0.md`](operator-lift-receipt-boundary-v0.md)
 - [`observer-quotient-descent-reproduction.md`](observer-quotient-descent-reproduction.md)
 - [`pairing-transport-native-boundary.md`](pairing-transport-native-boundary.md)
+- [`pascal-commutator-certificate.md`](pascal-commutator-certificate.md): exact commutator certificates for the pinned normalized Pascal equations; also corrects the independent-check and initial claims in Research 0181.
 - [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md)
 - [`sharkovsky-interval-extension.md`](sharkovsky-interval-extension.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
