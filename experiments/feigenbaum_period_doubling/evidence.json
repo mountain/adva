@@ -1,0 +1,142 @@
+{
+  "checker_sha256": "4c21fb67a98e0946c21299b94308761c053170c1629c682f5593bd4742ed0cb1",
+  "checks": {
+    "alpha_agrees_at_least_twelve_characters": true,
+    "cascade_reached_the_declared_level": true,
+    "delta_agrees_at_least_twelve_characters": true,
+    "delta_is_above_one_and_below_five": true,
+    "different_class_control_differs": true,
+    "every_bracket_straddled_a_root": true,
+    "exact_level_one_control_holds": true,
+    "universality_control_agrees_at_least_eight_characters": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/feigenbaum_period_doubling/contract.json",
+  "cost": {
+    "assertions": 68,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 21.68
+  },
+  "different_class_control": {
+    "delta_aitken": "7.2844857008722864571895235",
+    "difference_from_the_logistic_delta": "2.6152840917695551386546906",
+    "levels_completed": 8,
+    "literature_value_claimed": false,
+    "map": "f_a(x) = a - x^4, critical point 0",
+    "stop_notes": []
+  },
+  "exact_level_one_control": {
+    "absolute_gap": "5.920E-63",
+    "closed_form": "1 + sqrt(5)",
+    "closed_form_decimal": "3.2360679774997896964091736687312762354406",
+    "computed_r_1": "3.2360679774997896964091736687312762354406",
+    "gap_below_declared_tolerance": true,
+    "polynomial": "r^3 - 4 r^2 + 8",
+    "polynomial_identity_holds_exactly": true,
+    "polynomial_value_at_closed_form_as_pair_in_Q_sqrt5": [
+      0,
+      0
+    ],
+    "superstable_condition_residual": "2.045E-63"
+  },
+  "honesty": {
+    "aitken_is_an_accelerator_not_part_of_the_definition": true,
+    "algebraic_status_claimed": false,
+    "bracket_scan_may_skip_a_root": "checked by requiring a sign change inside each bracket, and recorded per level",
+    "digits_beyond_the_counted_agreement_claimed": false,
+    "published_digits_are_a_target_not_a_derivation": true
+  },
+  "precision": {
+    "decimal_precision": 90,
+    "max_level": 16,
+    "reported_values_use_binary_floating_point": false
+  },
+  "primary": {
+    "alpha_agreement_characters": 14,
+    "alpha_agreement_string": "2.5029078750959265421192101680675503235519",
+    "alpha_aitken": "2.5029078750959265421192102",
+    "alpha_last": "2.5029078751443513664271859",
+    "alpha_per_level": [
+      "2.6547448168356179757747004",
+      "2.5318376593375099668598757",
+      "2.5087181990346510327621419",
+      "2.5041127891949625307568732",
+      "2.5031611257037701892345166",
+      "2.5029611884088391458724303",
+      "2.5029191744880978244604906",
+      "2.5029102724776441224974811",
+      "2.5029083854105328604226233",
+      "2.5029079838303855900784904",
+      "2.5029078983016372237090568",
+      "2.5029078800518664679784157",
+      "2.5029078761551919765648497",
+      "2.5029078753224099687944123",
+      "2.5029078751443513664271859"
+    ],
+    "cascade_parameters": [
+      "2.000000000000000000000000000000",
+      "3.236067977499789696409173668731",
+      "3.498561699327701519998945381945",
+      "3.554640862768824865366081851948",
+      "3.566667379856268513972631157455",
+      "3.569243531637110337808249510913",
+      "3.569795293749944620515352529607",
+      "3.569913465422348514840973519668",
+      "3.569938774233305487793446067563",
+      "3.569944194608064933243633343872",
+      "3.569945355486468580892802382308",
+      "3.569945604111078438134117261382",
+      "3.569945657358856499729607614568",
+      "3.569945668762899968347097669809",
+      "3.569945671205296854528914094092",
+      "3.569945671728383474205069019210",
+      "3.569945671840412609691834470087"
+    ],
+    "delta_agreement_characters": 14,
+    "delta_agreement_string": "4.6692016091027313185348329827192567502888",
+    "delta_aitken": "4.6692016091027313185348330",
+    "delta_last": "4.6692016090577589360884198",
+    "delta_per_level": [
+      "4.7089430135405033131765483",
+      "4.6807709980106953816308507",
+      "4.6629596111141025840102402",
+      "4.6684039259184002378217398",
+      "4.6689537409676227810022570",
+      "4.6691571813288434823178490",
+      "4.6691910024850961508886385",
+      "4.6691994705477257746860464",
+      "4.6692011346010422354102677",
+      "4.6692015095135523273469839",
+      "4.6692015875223855075747034",
+      "4.6692016045121851859714946",
+      "4.6692016081159352225771651",
+      "4.6692016088920690973749021",
+      "4.6692016090577589360884198"
+    ],
+    "levels_completed": 16,
+    "map": "f_r(x) = r x (1 - x), critical point 1/2",
+    "stop_notes": []
+  },
+  "published_source": {
+    "alpha_prefix": "2.502907875095892822283902873218215786381271376727149977336192056779235463179590206",
+    "b_file_sha256": {
+      "A006890": "eb69c6ed0b897082e9ca181a5c1618f51b7bc802864107fcdcd84568c0fd04ac",
+      "A006891": "5a5256d4ec4e478604382c6363663dcdd22c8516edc8ec3f17c1880d4bdfb113"
+    },
+    "bytes_retained_here": false,
+    "citation": "OEIS A006890 and A006891, DATA field and b-file, fetched 2026-09-13",
+    "delta_prefix": "4.669201609102990671853203820466201617258185577475768632745651343004134330211314737"
+  },
+  "schema": "adva.external.feigenbaum-period-doubling.v0",
+  "status": "ExternalExactPass",
+  "universality_control": {
+    "agreement_with_the_logistic_delta_characters": 9,
+    "alpha_aitken": "2.5029078759237641822315880",
+    "delta_aitken": "4.6692016113522014047732298",
+    "levels_completed": 10,
+    "map": "f_r(x) = r sin(pi x), critical point 1/2",
+    "stop_notes": []
+  },
+  "version": 0
+}

@@ -1,0 +1,56 @@
+{
+  "schema": "adva.research.feigenbaum-period-doubling-contract.v0",
+  "version": 0,
+  "name": "feigenbaum-period-doubling-calibration",
+  "base_commit": "0ae7932",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can the two Feigenbaum constants be recomputed from their definition inside this repository, by tracking the period-doubling cascade of an interval map at declared precision, and how many published digits does the result reproduce?",
+  "level": "External high-precision numerical calibration with declared precision and declared control maps; no stable semantic operation, no native admission, no Arakelov, metric or mirror construction",
+  "domain": "One-parameter families of interval maps with a single critical point: the logistic map f_r(x) = r x (1 - x) on the critical point 1/2, the sine map f_r(x) = r sin(pi x) on 1/2, and the quartic map f_a(x) = a - x^4 on 0. A parameter is superstable at level k when the critical point lies on a cycle of period 2^k. Decimal arithmetic at 90 significant digits; no binary floating point is used for any reported value.",
+  "objects": {
+    "primary_map": "logistic",
+    "universality_control_map": "sine",
+    "different_class_control_map": "quartic",
+    "max_level": 16,
+    "decimal_precision": 90,
+    "bracket_scan_points": 80,
+    "bisection_steps": 200,
+    "published_delta_prefix": "4.669201609102990671853203820466201617258185577475768632745651343004134330211314737",
+    "published_alpha_prefix": "2.502907875095892822283902873218215786381271376727149977336192056779235463179590206",
+    "published_source": "OEIS A006890 and A006891, DATA field and b-file, fetched 2026-09-13",
+    "published_b_file_sha256": {
+      "A006890": "eb69c6ed0b897082e9ca181a5c1618f51b7bc802864107fcdcd84568c0fd04ac",
+      "A006891": "5a5256d4ec4e478604382c6363663dcdd22c8516edc8ec3f17c1880d4bdfb113"
+    },
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every cascade level k from 1 to max_level, for the primary map and both control maps",
+    "Every bracketing scan point and every bisection step of every level",
+    "Every reported decimal of delta and alpha, against the recorded published prefix"
+  ],
+  "acceptance": [
+    "The level-1 superstable parameter of the logistic map is checked against its closed form 1 + sqrt(5), both numerically and by the exact polynomial identity r^3 - 4 r^2 + 8 = 0 in Q(sqrt 5)",
+    "Every level's bracket is found by a declared scan and is checked to contain a sign change of the superstable function, so that a skipped root is visible rather than silent",
+    "The convergence ratios delta_k and alpha_k are reported per level, and the extrapolated values are compared with the recorded published prefixes by counting agreeing leading characters",
+    "The declared success condition is at least twelve agreeing leading characters for both delta and alpha, a threshold fixed before the run",
+    "The universality control, the sine map, must reproduce the logistic delta to at least eight leading characters",
+    "The different-class control, the quartic map, must give a delta differing from the logistic delta by more than 0.1, and its value is reported without any claim about its literature value"
+  ],
+  "protected": [
+    "The published digits are a comparison target, not a derivation: they are recorded with their source and fetch date, and their bytes are not retained in this repository",
+    "Aitken extrapolation is an accelerator applied to the observed ratios; it is not part of the definition of either constant, and the digits beyond the counted agreement are not claimed",
+    "Nothing about the algebraic or irrational status of either constant is claimed: the sources state that it is not known",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced",
+    "No native Rust witness, library admission, claims.toml entry beyond the registered bounded experiment, or Seal follows from this calibration"
+  ],
+  "budget": {
+    "wall_seconds": 600,
+    "cpu_seconds": 560,
+    "memory_bytes": 1073741824,
+    "max_assertions": 2000000,
+    "output_bytes": 8388608
+  },
+  "residual": "This reproduces leading digits of two constants by definition-level iteration of declared maps, and it reports how many characters agree with one published source. It establishes nothing about the constants beyond those digits, nothing about their arithmetic nature, and nothing about the many other universality classes. The extraction uses an accelerated sequence, so the result is a calibration against a source rather than an independent proof of the published digits; a rigorous digit-by-digit computation would solve the Feigenbaum-Cvitanovic fixed point in a function space with verified error bounds, which is not done here."
+}
