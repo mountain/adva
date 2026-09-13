@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **183 numbered
-notes, 21 named notes and 24 supporting directories**. Nothing here is a stable
+notes, 22 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -708,6 +708,7 @@ Every file in this directory, so that no note is reachable only through a summar
 ### Named notes
 
 - [`PR-0152-0158-integration.md`](PR-0152-0158-integration.md)
+- [`absurdity-emptiness-record-freeze.md`](absurdity-emptiness-record-freeze.md)
 - [`alternating-group-observer-expansion.md`](alternating-group-observer-expansion.md)
 - [`borromean-boundary-word-correction.md`](borromean-boundary-word-correction.md)
 - [`borromean-independent-longitudes.md`](borromean-independent-longitudes.md)
