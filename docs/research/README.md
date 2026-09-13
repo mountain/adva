@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **185 numbered
+This directory holds the research record of the repository: **186 numbered
 notes, 22 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -706,6 +706,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0174-absurdity-emptiness-counterexample.md`](0174-absurdity-emptiness-counterexample.md)
 - [`0175-dodecahedral-hamiltonicity.md`](0175-dodecahedral-hamiltonicity.md)
 - [`0176-feigenbaum-period-doubling-calibration.md`](0176-feigenbaum-period-doubling-calibration.md)
+- [`0177-feigenbaum-fixed-point-collocation.md`](0177-feigenbaum-fixed-point-collocation.md)
 
 ### Named notes
 

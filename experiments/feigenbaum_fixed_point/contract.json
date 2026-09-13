@@ -1,0 +1,61 @@
+{
+  "schema": "adva.research.feigenbaum-fixed-point-contract.v0",
+  "version": 0,
+  "name": "feigenbaum-fixed-point-collocation",
+  "base_commit": "9028e2a",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can the Feigenbaum constants be obtained by solving the Feigenbaum-Cvitanovic fixed point of the period-doubling operator directly, so that the digits no longer come from an accelerated cascade, and how many published digits does a declared truncation reproduce?",
+  "level": "External high-precision numerical calibration of a functional equation by truncated-series collocation and Newton iteration; no verified error bounds yet, no stable semantic operation, no native admission",
+  "domain": "Even functions g(x) = G(x^2) with G(0) = 1, solving G = T[G] where T[G](y) = A G((G(y/A^2))^2) and A = 1/G(1); this is g(x) = -alpha g(g(x/alpha)) with alpha = -1/g(1) = 2.5029... The linearised operator, restricted to the normalised subspace g(0) = 1, has delta = 4.6692... as its dominant eigenvalue. Decimal arithmetic at 70 significant digits; no binary floating point is used for any reported value.",
+  "objects": {
+    "truncation_degrees": [
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ],
+    "decimal_precision": 70,
+    "newton_iterations_max": 80,
+    "power_iterations_max": 400,
+    "finite_difference_exponent": -35,
+    "published_delta_prefix": "4.669201609102990671853203820466201617258185577475768632745651343004134330211314737",
+    "published_alpha_prefix": "2.502907875095892822283902873218215786381271376727149977336192056779235463179590206",
+    "published_reciprocal_alpha_prefix": "0.39953528052313448985758046863369371943354428046695272751707304491243",
+    "published_source": "OEIS A006890, A006891 and A306963, fetched 2026-09-13; b-file digests recorded in experiments/feigenbaum_period_doubling/contract.json",
+    "sibling_contract": "experiments/feigenbaum_period_doubling/contract.json",
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every truncation degree in the declared list",
+    "Every Newton iteration and every finite-difference column of the Jacobian at every degree",
+    "Every reported decimal of delta, alpha and g(1) against the recorded published prefixes"
+  ],
+  "acceptance": [
+    "The Newton iteration converges at every declared degree, and the achieved algebraic residual of the fixed-point equation is reported",
+    "The a posteriori truncation residual, the largest coefficient of the fixed-point equation beyond the truncation degree, decreases with the degree and is reported per degree",
+    "The number of agreeing leading characters with the published delta and alpha grows with the degree, and at the largest declared degree reaches at least twenty-five characters for both",
+    "The normalisation is checked internally: g(1) equals -1/alpha, and the reported 1/alpha is compared with the recorded published reciprocal",
+    "The dominant eigenvalue is taken from the linearisation restricted to the normalised subspace; the unrestricted linearisation is computed as a control and its different dominant eigenvalue is reported, so that the spurious direction is visible rather than silently excluded",
+    "No extrapolation or acceleration of any kind is applied to the reported digits"
+  ],
+  "protected": [
+    "The earlier cascade contract and evidence (experiments/feigenbaum_period_doubling) are frozen and are not rewritten; this round may cite them",
+    "The published digits are a comparison target with their source and fetch date recorded; their bytes are not retained here",
+    "No verified error bound is claimed: the truncation residual is a numerical indicator, not a proved enclosure",
+    "Nothing is claimed about whether either constant is algebraic or irrational",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced",
+    "No native Rust witness, library admission or Seal follows from this calibration"
+  ],
+  "budget": {
+    "wall_seconds": 900,
+    "cpu_seconds": 850,
+    "memory_bytes": 1073741824,
+    "max_assertions": 2000000,
+    "output_bytes": 8388608
+  },
+  "residual": "This solves one functional equation numerically at a declared truncation and reports how many published digits it reproduces without acceleration. It is not a rigorous computation: a proved enclosure would need interval or ball arithmetic and a Newton-Kantorovich type bound, which is the next step and is not done here. The comparison target is one published source, whose bytes are not retained. Nothing is claimed about the algebraic nature of the constants, about other universality classes, or about the operator's full spectrum beyond the dominant eigenvalue that is reported."
+}
