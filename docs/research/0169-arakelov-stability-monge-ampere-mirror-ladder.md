@@ -398,3 +398,81 @@ model could not satisfy.
   an extension class is the right invariant in a category whose pieces themselves
   deform. That is now the next question rather than this one.
 - No metric, Arakelov, Monge–Ampère or mirror content, exactly as in section 5.
+
+## 9. Where the walls are, and what the backward fibre really is
+
+Section 6 named two further steps and left both open. One bounded run takes them
+up: [`experiments/hns_wall_localization/`](../../experiments/hns_wall_localization/),
+under the contract frozen in that directory.
+
+**The interface is the frozen model, re-run.** This round imports the sibling
+model rather than reimplementing it and reproduces its declared counts at run
+time: 38 objects, 429 filtrations, 130 distinct graded data per field, 72
+colliding graded data, with `experiments/hns_object_forgetting/evidence.json`
+unchanged at `09280cf0…`.
+
+**The wall set is one line.** For this model's slope the exact identity is
+
+\[
+\mu_e(\theta) = \mu_d(\theta) \iff (e_1 d_2 - e_2 d_1)(\theta_1 - \theta_2) = 0 .
+\]
+
+Checked against the exact Fractions for every admissible dimension-vector pair at
+all seventeen parameters — the declared eleven plus six off-grid — it has **0
+mismatches**. So a genuine wall exists only at `theta_1 = theta_2`: the primitive
+wall directions are exactly `(1, -1)` and `(-1, 1)`, and the rest are
+*identically tied*, 7 pairs whose slopes agree at every parameter against 59
+genuine wall pairs. **This model's stability parameter space has two chambers and
+one wall.**
+
+**Section 4's chamber reading is refuted, and the residual is larger than it
+said.** The nine groups section 3 reports are not chambers: the graded data
+records slopes as exact rationals, and those move continuously inside a cell.
+Three claims are separated and decided:
+
+| Claim | Outcome |
+|---|---|
+| a cell determines the filtration type | holds |
+| the graded data is constant on a cell | **refuted**: 2080 of the 5168 class-parameter pairs are two parameters in one cell with different graded data |
+| the fibre description: the key is equal exactly when the filtration type is equal and `theta - theta'` pairs to zero with every piece dimension | holds, 0 mismatches |
+
+The simplest witness is over `F_2`: the class `(0,1,0)` at `theta = (1,-1)` and at
+`theta = (1,0)` lies in the same cell, with graded data `[[(0,1), -1]]` and
+`[[(0,1), 0]]`. What the backward map forgets is therefore **not only which
+chamber one was in**; inside one chamber it still forgets the slope values, and
+the fibre is the cell intersected with the level set of the piece slopes. A fibre
+can even cross the wall: 92 pairs of parameters in different cells share one
+graded data, and every one of them is an object whose filtration is trivial at
+both parameters, where there is no order for the wall to change.
+
+**Seam S1 is refused, with reasons.** Four natural constructions were attempted
+and none reached the R2 criterion as a canonical polytope: the half-plane
+intersection of the wall normals is an unbounded strip, since two opposite
+normals do not positively span the plane; the hull of the wall normals is a
+segment and not full dimensional; the weight polytope `conv(d_1 - d_2, d_1 + d_2)`
+has the origin outside; and the hull of the declared grid parameters is decided —
+it **fails** the criterion with the nonintegral pairing `1/5` — but is refused as
+non-canonical, the grid being a declared finite sample rather than a consequence
+of the stability structure. The criterion itself was validated on five fixtures
+before it was applied: the square, the reflexive triangle, twice the square and
+the halves triangle pass, the halves triangle passing although one of its
+vertices is not integral, its witness lattice being the Z-span of `(1,0)`, `(0,1)`
+and `(-1/2,-1/2)`, so the criterion is not the integrality of the vertices; and
+the thirds triangle fails with the pairing `-2/3`.
+
+**What section 9 does not establish.** The single wall is a property of *this*
+slope convention on a rank-two dimension-vector space: with two parameters a wall
+is a line, so two half-planes are all the chambers there can be. A quiver with
+more vertices has a higher-dimensional parameter space where walls are genuine
+hyperplanes, and nothing here bounds that case. The statements are over `F_2` and
+`F_3`, total dimension at most four, at the declared parameters. The refusal
+concerns four constructions, not the seam: another justified construction could
+still exist.
+
+**Two accounting errors were caught by the interface check and are recorded.**
+Reproducing the sibling's declared counts first disagreed with them — 440
+filtrations against 429, and 36 colliding graded data against 72 — because the
+sibling's own regression block re-runs one injective class over the sweep, and
+because its collision count is per field while the re-run had merged the fields.
+Neither disagreement was adjusted away: matching them forced the accounting to be
+exact, and the matched counts are what the interface check now asserts.

@@ -1,0 +1,123 @@
+{
+  "schema": "adva.research.hns-wall-localization-contract.v0",
+  "version": 0,
+  "name": "hns-wall-localization-and-the-s1-candidate",
+  "base_commit": "0bed4e8",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "For the declared finite A2 stability model, what is the exact set of stability walls, is the graded data constant on the cells of that arrangement, and does the resulting wall fan admit the canonical centered polygon that the R2 minimal-lattice lemma consumes?",
+  "level": "External exact rational and finite-field linear algebra; no stable semantic operation, no native admission, no Arakelov, metric, Monge-Ampere or mirror construction",
+  "domain": "A2 = (1 -> 2) representations over F_2 and F_3 with total dimension at most four, isomorphism classes (dim V1, dim V2, rank of the arrow), slopes mu_d(theta) = (theta1*d1 + theta2*d2)/(d1+d2) as exact rationals, and the declared eleven-parameter sweep of the three frozen sibling contracts",
+  "objects": {
+    "fields": [
+      2,
+      3
+    ],
+    "max_ambient_dim": 3,
+    "max_total_dim": 4,
+    "theta_sweep": [
+      [
+        1,
+        -1
+      ],
+      [
+        2,
+        -1
+      ],
+      [
+        3,
+        -1
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        -1,
+        1
+      ],
+      [
+        -1,
+        2
+      ],
+      [
+        -2,
+        1
+      ],
+      [
+        -3,
+        1
+      ]
+    ],
+    "extra_off_grid_parameters": [
+      [
+        5,
+        -3
+      ],
+      [
+        -4,
+        6
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        -1,
+        -5
+      ],
+      [
+        0,
+        7
+      ],
+      [
+        9,
+        -11
+      ]
+    ],
+    "max_assertions": 2000000
+  },
+  "quantifiers": [
+    "Every ordered pair of admissible dimension vectors (d, e) with e componentwise at most d, over the declared range",
+    "Every pair of subobjects that actually arises in the model, at every declared parameter and every declared off-grid parameter",
+    "Every isomorphism class, at every declared parameter, in both fields",
+    "Every pair of declared parameters, for the fibre classification"
+  ],
+  "acceptance": [
+    "Every slope equality between two admissible dimension vectors is decided exactly and classified as either identically true or a genuine wall, and the identification is checked against the exact Fractions at every declared parameter and every off-grid parameter",
+    "The set of primitive integer wall directions is computed exactly and reported as a set, not assumed",
+    "The claim that the graded data is constant on each cell of the arrangement is tested: a pair of parameters in one cell with different graded data is exhibited as a refuting witness, or the claim is recorded as an exhaustive positive over the declared family",
+    "The converse is tested as a control: a pair of parameters in different cells sharing one graded data is exhibited, or recorded as an exhaustive negative",
+    "The fibre of the graded-data map is classified against two candidate explanations, the cell and the slope-level set, and one of them is identified as the true one by a witness rather than by prose",
+    "The canonical centered polygon built from the primitive wall normals is constructed and either handed to the R2 minimal-lattice lemma, whose verdict and witness are reported, or refused at the interface with the failed hypothesis named",
+    "At least two further natural polygon constructions from the same data are attempted and each is either decided by the lemma or refused with its reason"
+  ],
+  "protected": [
+    "The three frozen sibling contracts (hns_stability_chamber_roundtrip, hns_object_forgetting, hns_extension_residual) are not rewritten; this round may cite their evidence by digest and must reproduce their counts if it imports their model",
+    "The R2 gate record (docs/research/reflexive-lattice-gate.md and its evidence) is cited, never re-pinned, reinterpreted or extended",
+    "No claim that the finite A2 model is the stability theory of vector bundles, Higgs bundles or arithmetic surfaces",
+    "No Arakelov, Green's function, Monge-Ampere, mirror symmetry or Calabi-Yau construction is introduced",
+    "The single-wall outcome, if it holds, is a property of this slope convention on a rank-two dimension-vector space and must be reported as such, not as a fact about stability theory",
+    "If section 4 of Research 0169 is refuted in its chamber reading, the earlier wording stays visible: the correction is appended as a new section and the original text is not deleted"
+  ],
+  "budget": {
+    "wall_seconds": 240,
+    "cpu_seconds": 200,
+    "memory_bytes": 536870912,
+    "max_assertions": 2000000,
+    "output_bytes": 8388608
+  },
+  "residual": "This decides three things inside one finite model: the exact wall set of a declared slope convention, whether the graded-data fibres are cells or level sets, and whether the wall fan can reach R2's criterion. It decides nothing about characteristic zero, about quivers with more than two vertices where the stability space is higher-dimensional and walls are genuine hyperplanes, about sheaves, or about metric existence. A refusal at the S1 interface is a recorded result, not a failure: it says the first natural constructions do not produce the polytope the criterion consumes."
+}
