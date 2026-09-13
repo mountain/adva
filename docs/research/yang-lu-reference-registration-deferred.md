@@ -91,3 +91,24 @@ Two things were refreshed at the same time and are worth naming:
 The document itself records its own admission history, so a reader of the registration does
 not have to find this note to know that it was deferred once and admitted after the bound
 was widened.
+
+## Qualification of the recorded reason, 2026-09-13
+
+Immediately after the widening, the direction said of that reason itself:
+
+> 刚才我陈述不严密可能被我搞坏了 … 最不凑巧的是，我刚才做的错误陈述，引发了一个扰动。
+
+So the wording quoted in the Resolution above is the direction's own, and its author has
+since called it imprecise. Two things are kept apart here on purpose:
+
+- `LIMITS["entries"] = 101` **stands as a decision**. It is a resource bound the direction
+  asked for, and its correctness does not depend on how the reason was phrased.
+- The **reason recorded** for it is a quotation of a statement its author has called
+  imprecise, and no corrected wording has been given. This note does not invent one:
+  rewriting a recorded reason on a guess would be a second perturbation of the same record,
+  which is exactly what this repository's discipline forbids.
+
+What is recorded is the qualification itself, in the author's words, next to the quotation
+it qualifies, so a reader sees both. The `LIMITS` comment carries a one-line pointer to
+this section. When corrected wording arrives it is appended here and in that comment; the
+quotation is not deleted either way.
