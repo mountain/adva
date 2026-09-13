@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **189 numbered
+This directory holds the research record of the repository: **190 numbered
 notes, 22 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -710,6 +710,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0178-rigorous-enclosures-and-two-barriers.md`](0178-rigorous-enclosures-and-two-barriers.md)
 - [`0179-kantorovich-preflight.md`](0179-kantorovich-preflight.md)
 - [`0180-inverse-norm-obstruction.md`](0180-inverse-norm-obstruction.md)
+- [`0181-wu-elimination-on-plane-incidence.md`](0181-wu-elimination-on-plane-incidence.md)
 
 ### Named notes
 
