@@ -1,0 +1,17 @@
+{
+  "schema": "adva.external.zot-prefix-machine.comparison-contract.v0",
+  "date": "2026-09-13",
+  "reason": "The regression wrapper compared a fresh object with a stored object using JSON.stringify; storage reorders object keys. Retain that false-negative result. Recheck existing records with order-insensitive object comparison; arrays remain ordered. No evaluator/search replay.",
+  "bounds": {
+    "maxVisitedValues": 500000,
+    "maxElapsedMs": 5000,
+    "maxRetainedAsciiBytes": 20000,
+    "maxRuns": 1
+  },
+  "checks": [
+    "all three ordered row arrays, probability records and deterministic work counters match",
+    "object-key order control accepted",
+    "altered cost and swapped row order rejected"
+  ],
+  "authorship": "ChatGPT (OpenAI), authorized mountain account proxy"
+}

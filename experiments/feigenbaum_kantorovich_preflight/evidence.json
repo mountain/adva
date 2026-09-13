@@ -1,0 +1,123 @@
+{
+  "checker_sha256": "3df8d3869b71d743da37c3dcef1caa6c38f233d5425e249b1ea512d30f93825b",
+  "checks": {
+    "a_perturbed_candidate_has_a_larger_defect": true,
+    "a_scaled_candidate_fails_the_hypothesis": true,
+    "no_enclosure_is_claimed": true,
+    "the_candidate_is_a_fixed_point_to_the_defect_size": true,
+    "the_defect_is_exact_rational": true,
+    "the_disk_mapping_hypothesis_holds": true,
+    "the_truncated_inverse_is_verified": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "coefficient_decay": {
+    "how_rho_was_chosen": "a ten-term truncation does not locate the convergence radius, so rho is declared at 1/32; the first run used 1/4 and the hypothesis failed there, and both the choice and the failure are recorded",
+    "ratio_test_locates_the_radius": false,
+    "ratios_of_successive_coefficients": [
+      "0.0686",
+      "0.2548",
+      "0.1321",
+      "0.0231",
+      "0.3097",
+      "0.1009",
+      "0.0387",
+      "0.2943",
+      "0.0192"
+    ],
+    "why_it_matters": "rho has to lie inside the convergence radius, otherwise the weighted norm is that of a truncation rather than of a function"
+  },
+  "contract": "experiments/feigenbaum_kantorovich_preflight/contract.json",
+  "controls": {
+    "perturbed_candidate_has_larger_defect": {
+      "eta": "1.586828E-07",
+      "larger_than_the_candidate": true,
+      "perturbation": "a_1 increased by 1e-6"
+    },
+    "scaled_candidate_fails_the_disk_mapping": {
+      "fails": true,
+      "scaling": "all coefficients except a_0 multiplied by ten",
+      "weighted_norm": "1.478417E+00"
+    }
+  },
+  "cost": {
+    "assertions": 2,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 15.737
+  },
+  "defect": {
+    "definition": "d = x0 - T[x0], computed exactly because T of a polynomial is a polynomial",
+    "degree_used": 60,
+    "eta_exact_numerator_bits": 13759,
+    "highest_nonzero_degree": 60,
+    "nonzero_coefficients": 60,
+    "note": "this is the truncation defect of the frozen polynomial, and it is exact, not estimated",
+    "weighted_norm_eta": "6.288996E-27"
+  },
+  "disk_mapping_hypothesis": {
+    "declared_image_radius": "6/5",
+    "holds": true,
+    "weighted_norm_of_x0": "1.0478417080",
+    "why_it_matters": "composition bounds need the outer function to be defined and bounded on the image of the inner one"
+  },
+  "exact_candidate": {
+    "alpha_candidate": "2.50290787306768480747",
+    "coefficients_a1_a2_a3": [
+      "-1527632994532782053265383",
+      "52407593133974423728144657",
+      "16691051823457594084097385"
+    ],
+    "degree": 10,
+    "digits_frozen": 30
+  },
+  "precision": {
+    "acceleration_applied": false,
+    "binary_floating_point_in_reported_bounds": false,
+    "decimal_precision": 70
+  },
+  "preflight_obstruction": {
+    "conclusion": "the trial is not launched: with the tail bound on the inverse missing, no Kantorovich radius can be computed, so no enclosure of alpha or delta follows and none is claimed",
+    "what_a_kantorovich_test_needs": [
+      "a rigorous bound B on ||(I - DT(x0))^-1|| in the declared space",
+      "a rigorous bound K on the second derivative of the operator on the ball",
+      "the defect norm eta, which this round supplies exactly"
+    ],
+    "what_is_missing": [
+      "the tail bound on the inverse: the truncated inverse bound says nothing about the high-degree directions",
+      "a rigorous bound on the second derivative of the composition operator on the ball",
+      "a conversion from the truncated coefficient matrix norm used here to the weighted norm of the space"
+    ],
+    "what_this_round_supplies": [
+      "eta exactly, as a rational weighted norm of an exact polynomial defect",
+      "the disk-mapping hypothesis, verified from the coefficients",
+      "a verified inverse bound for the truncated linearisation only"
+    ]
+  },
+  "schema": "adva.external.feigenbaum-kantorovich-preflight.v0",
+  "space": {
+    "composition_licence": "if ||G||_rho <= rho_image then G maps the disk of radius rho into the disk of radius rho_image, which is what makes the composition bounds usable",
+    "norm": "weighted l1: ||G||_rho = sum |a_j| rho^j",
+    "objects": "even power series G(y) = sum a_j y^j with a_0 = 1, y = x^2",
+    "rho": "1/32",
+    "rho_image": "6/5"
+  },
+  "status": "ExternalExactPass",
+  "truncated_inverse": {
+    "approximate_inverse_infinity_norm": "1.503040E+03",
+    "inverse_bound": "1.503040E+03",
+    "matrix_size": 7,
+    "norm_mismatch": "this bound is the infinity norm of the truncated coefficient matrix, not the weighted norm of the space; connecting the two is part of what a full proof needs and is not done here",
+    "residual_infinity_norm": "0.000000E+00",
+    "truncation_degree": 6,
+    "verified": true,
+    "why_the_residual_test_is_enough": "if ||I - M X|| < 1 in the operator norm then X is invertible and ||M^-1|| <= ||X|| / (1 - ||I - M X||)"
+  },
+  "version": 0,
+  "what_is_not_claimed": {
+    "enclosure_of_alpha": false,
+    "enclosure_of_delta": false,
+    "existence_or_uniqueness_of_the_fixed_point": false,
+    "next_step": "derive the tail bound on the inverse and the second-derivative bound, then run the Kantorovich test",
+    "the_truncated_inverse_bound_is_not_the_full_inverse_bound": true
+  }
+}

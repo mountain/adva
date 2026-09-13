@@ -1,0 +1,56 @@
+{
+  "schema": "adva.research.dual-facility-leak-wall-contract.v0",
+  "version": 0,
+  "name": "dual-facility-leak-wall",
+  "base_commit": "c041c1f",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "A flow moves along the order through two dual three-holed facilities joined by one middle segment whose two ends are truncated. Which openings have to be sealed, and what inequality decides whether the flow stays in? Where is the critical point?",
+  "level": "External exact rational arithmetic over Q: a declared eight-opening network, max-flow and min-cut computed independently, exhaustive sealing enumeration, and a wall computed as a piecewise function of the demand",
+  "domain": "The reading of the description recorded below, made explicit so that it can be corrected: a source inside the first facility, that facility's three holes, a middle segment with a truncated end at each of its two ends, the second facility built as the order reversal of the first and entered from the segment, and that facility's three holes. Flow moves along the order; an opening leaks if the flow can reach it; containment means no route of capacity at least the demand survives.",
+  "objects": {
+    "the_reading": "This is the agent's reading of a deliberately loose description, declared as such. Everything computed here is conditional on it, and the run reports how the answer moves under the second reading in which the two truncated ends are sealed rather than open.",
+    "network": "Eight opening edges into the sink: the first facility's three holes from the source, the segment's two truncated ends, and the dual facility's three holes from the segment's far side; plus the channel into the segment and the segment itself.",
+    "escape_condition": "The flow escapes a sealing plan exactly when the maximum flow from the source to the sink is at least the demand, which by max-flow min-cut duality is exactly when some cut has capacity at least the demand.",
+    "the_wall": "For each demand, the cheapest set of openings whose sealing contains it. The wall is that cost as a function of the demand, and the discovered inequality is its inverse: containment within a budget is exactly a demand bound.",
+    "the_critical_point": "The demands at which the cheapest sealing set changes, that is where the bottleneck moves from the segment and its two truncated ends to the facilities' holes.",
+    "order_view": "On the declared poset, the leak set is the upward closure of the openings and its boundary is computed, so the structural statement about which elements the order exposes can be checked rather than asserted.",
+    "capacities": {"holes_first_facility": ["3", "2", "1"], "channel_into_segment": "12", "truncated_end_near": "1", "segment": "3", "truncated_end_far": "1", "holes_dual_facility": ["4", "2", "1"]},
+    "sealing_costs": {"hole": "2", "truncated_end": "1", "segment": "4", "channel_into_segment": "6"},
+    "demand_grid": "half-integers from 1 to 24",
+    "max_assertions": 200000
+  },
+  "quantifiers": [
+    "Every sealing subset of the eight openings, for every demand on the declared grid, with its maximum flow computed exactly",
+    "Every one of those maximum flows cross-checked against an independently enumerated minimum cut",
+    "The wall and the cheapest sealing set at every grid demand, and every demand at which the cheapest set changes",
+    "The same computation under the second reading, with the two truncated ends sealed rather than open",
+    "The perturbed network, and an explicit demand and escaping route where the unperturbed wall fails to contain it"
+  ],
+  "acceptance": [
+    "Max-flow and min-cut agree exactly at every sealing plan and every demand evaluated, so the escape condition rests on duality rather than on one algorithm",
+    "No plan is reported as containing a demand unless no route of that capacity survives, and the cheapest plan is cheapest among all 256 subsets rather than among the first found",
+    "The wall is computed for every demand on the declared grid, and every demand at which the cheapest sealing set changes is reported as a critical point",
+    "The discovered inequality is stated in the inverse direction as well: the largest demand containable within a budget, computed from the same enumeration",
+    "Under the second reading, in which the two truncated ends are sealed by construction, the wall is computed again and the difference is reported rather than assumed",
+    "In the perturbed network, at least one demand is exhibited at which the unperturbed cheapest plan no longer contains the flow, together with an exact escaping route, so a stale containment plan is caught rather than trusted",
+    "The structural claim about which elements of the poset the order exposes next to the segment is computed from the upward closure of the openings",
+    "A demand that no budget can contain is reported as such, and the full-open escape route is retained as its witness"
+  ],
+  "protected": [
+    "The Feigenbaum rounds 0176 to 0180, the Wu rounds 0181 and 0182, the finite-example round 0183, the area-method round 0184 and the difference-substitution round 0185 are frozen and are not rewritten",
+    "This is external evidence: no native certificate, no geometry catalog admission, and the Pascal-rooted growth obligation stays Open",
+    "The structure computed on is the agent's declared reading of a loose description, not a claim about what the direction meant; the reading is stated in full so that it can be corrected, and the answer is reported as conditional on it",
+    "Nothing here is claimed about Alexandrov topology beyond the order-theoretic computation that is actually run, and no native operation, tensor product or pullback is introduced",
+    "The demand grid is finite and the sealing search is exhaustive over a declared eight-opening family; nothing is claimed about larger networks or about the wall's shape outside the grid",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 600,
+    "cpu_seconds": 560,
+    "memory_bytes": 4294967296,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This computes, for one declared reading of the description, the cheapest sealing plan and the wall as a function of the demand, with max-flow and min-cut cross-checked and the sealing search exhaustive over eight openings. It is not a claim about the intended structure: a different reading of the two truncated ends, of the duality, or of what counts as a leak moves the wall, and one such alternative reading is computed and reported. Nothing is claimed about larger instances, about continuous capacities, or about the repository's own semantic objects."
+}

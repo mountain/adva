@@ -1,0 +1,49 @@
+{
+  "schema": "adva.research.feigenbaum-rigorous-enclosures-contract.v0",
+  "version": 0,
+  "name": "feigenbaum-rigorous-enclosures",
+  "base_commit": "3d74651",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Which period-doubling thresholds can be rigorously bracketed by interval evaluation of the superstable condition, and where does that direct route stop?",
+  "level": "External exact rational interval arithmetic with outward rounding; a certified sign change plus the intermediate value theorem gives existence of a root; no floating point in any reported value and no enclosure of the Feigenbaum constants is claimed",
+  "domain": "The logistic map f_r(x) = r x (1 - x) on r in [0,4], the superstable condition h_k(r) = f_r^(2^k)(1/2) - 1/2 = 0, exact rational interval arithmetic rounded outward to a declared decimal grid, and the period-doubling thresholds r_k for k from 1 to a declared maximum level",
+  "objects": {
+    "grid_exponent": -20,
+    "control_grid_exponent": -6,
+    "levels": [1, 2, 3, 4, 5, 6, 7, 8],
+    "initial_bracket_half_width": "1e-3",
+    "max_bisections": 60,
+    "width_cap": "1.0",
+    "sibling_evidence": "experiments/feigenbaum_period_doubling/evidence.json",
+    "max_assertions": 200000
+  },
+  "quantifiers": [
+    "Every level in the declared list, with the endpoint signs evaluated in interval arithmetic",
+    "Every bisection step until the midpoint sign stops being definite",
+    "Every reported bracket endpoint compared exactly against the closed form 1 + sqrt5 at level one"
+  ],
+  "acceptance": [
+    "The interval arithmetic is self-tested: a product of intervals encloses the exact product, and outward rounding widens rather than narrows",
+    "A level is certified only when the interval evaluations at the two bracket endpoints have strictly opposite signs, so the existence of a root follows from the intermediate value theorem",
+    "Every certified bracket at level one contains the exact closed form 1 + sqrt(5), checked by exact integer comparison rather than by decimals",
+    "The level at which certification stops is reported with its reason, and a coarser grid is run as a control so that the number of certified levels is seen to depend on the declared precision",
+    "The interval width amplification per iteration is measured and reported, and the run never lets a width grow past the declared cap",
+    "Enclosures of the ratios delta_k for the levels whose thresholds are certified are reported, and no enclosure of delta or alpha themselves is claimed"
+  ],
+  "protected": [
+    "The three earlier Feigenbaum rounds are frozen and are not rewritten; this round reads one of them as its starting bracket and says so",
+    "Existence of a root in a certified bracket does not identify it as the cascade threshold of that level, and uniqueness is not claimed",
+    "No enclosure of the Feigenbaum constants is claimed, and the reason the direct route cannot supply one is stated",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced",
+    "No native Rust witness, library admission or Seal follows from this calibration"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 280,
+    "memory_bytes": 536870912,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This certifies brackets for the low levels only and measures why the direct route stops. It is not a rigorous enclosure of the Feigenbaum constants: the thresholds are rigorously bracketed, but the limit of their ratios is not, and no bound on the distance to that limit is available here. Turning this into a proved enclosure of the constants needs the period-doubling operator in a function space with a Newton-Kantorovich bound, which is the next step and is not attempted here."
+}

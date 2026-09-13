@@ -1,0 +1,54 @@
+{
+  "schema": "adva.research.feigenbaum-kantorovich-preflight-contract.v0",
+  "version": 0,
+  "name": "feigenbaum-kantorovich-preflight",
+  "base_commit": "b2ce73a",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else, and it is written as a preflight because one required bound is not available",
+  "question": "Which of the quantities a Newton-Kantorovich test needs for the Feigenbaum fixed point can be computed rigorously here, and which are still missing?",
+  "level": "External exact rational algebra on a frozen candidate: an exact polynomial defect, an exact weighted norm, a verified inverse bound for a truncated linearisation, and an explicit preflight obstruction for the infinite-dimensional conclusion",
+  "domain": "Even power series G(y) = sum a_j y^j with a_0 = 1 solving G = T[G] for T[G](y) = A G((G(y/A^2))^2), A = 1/G(1); the weighted l1 norm ||G||_rho = sum |a_j| rho^j with a declared rho; a candidate frozen as an exact rational vector; the linearisation computed analytically, not by differencing",
+  "objects": {
+    "fixed_point_degree": 10,
+    "defect_degree": 60,
+    "linearisation_degree": 6,
+    "exact_digits": 30,
+    "decimal_precision": 70,
+    "rho": "1/32",
+    "rho_image": "6/5",
+    "finite_difference_exponent": -35,
+    "newton_iterations_max": 80,
+    "max_assertions": 200000,
+    "degree_note": "the exact rational composition is the cost driver; these degrees keep the run inside its budget and the defect it measures is the truncation defect at that degree",
+    "rho_note": "rho must lie inside the convergence radius of the series; with rho = 1/4 the weighted norm of the candidate exceeds any reasonable image radius and the hypothesis fails, which the first run showed and which is recorded rather than hidden"
+  },
+  "quantifiers": [
+    "Every coefficient of the exact defect polynomial up to the declared defect degree",
+    "Every entry of the truncated linearisation matrix, computed analytically",
+    "Every reported bound compared against the exact rational value it bounds"
+  ],
+  "acceptance": [
+    "The candidate is frozen as an exact rational vector and the defect d = x0 - T[x0] is computed exactly as a rational polynomial, because composing polynomials gives a polynomial",
+    "The weighted norm of the defect is exact, and it is reported with its exact numerator size rather than as a decimal alone",
+    "The disk-mapping hypothesis that licenses composition bounds is checked from the coefficients and shown to hold for the candidate and to fail for a scaled copy",
+    "A truncated linearisation is assembled analytically in exact rationals and its inverse is verified by the residual criterion ||I - M X|| < 1, which then bounds ||M^-1||",
+    "A perturbed candidate is shown to have a larger defect, so the defect check is not vacuous",
+    "The missing bounds are enumerated, and no enclosure of alpha or delta is claimed, because the tail bound on the inverse is absent"
+  ],
+  "protected": [
+    "The four earlier Feigenbaum rounds are frozen and are not rewritten",
+    "The truncated inverse bound is not presented as the inverse bound of the full operator",
+    "No existence or uniqueness of the fixed point is claimed",
+    "The exact defect of a truncated polynomial is not presented as the defect of an exact solution",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced",
+    "No native Rust witness, library admission or Seal follows from this calibration"
+  ],
+  "budget": {
+    "wall_seconds": 600,
+    "cpu_seconds": 560,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This supplies the defect exactly, the disk-mapping hypothesis and a verified inverse bound for a truncation, and it names the two bounds a Kantorovich test still needs: the tail bound on the inverse of the linearised operator and a bound on its second derivative. The trial is therefore not launched, and no enclosure of alpha or delta follows. The candidate is a frozen rational approximation, so its defect is the defect of that approximation and not of an exact solution."
+}

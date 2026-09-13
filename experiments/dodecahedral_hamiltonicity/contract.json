@@ -1,0 +1,94 @@
+{
+  "schema": "adva.dodecahedral-hamiltonicity.contract.research",
+  "version": 0,
+  "name": "dodecahedral-graph-hamiltonicity-and-a-declared-icosian-analogue",
+  "status": "frozen",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "agreed_with": "Mingli Yuan, 2026-09-13; approved as presented, six parts unchanged",
+
+  "question_and_level": {
+    "question": "For the dodecahedral graph G (20 vertices, 30 edges) obtained from two independent constructions, how many Hamiltonian cycles exist under the declared equivalences, how many satisfy a declared Icosian-style local rule, and do the declared controls show the checker is not vacuous?",
+    "requested_conclusion": "exact finite counts with witnesses, plus the control outcomes",
+    "witness_that_resolves_it": "an exact enumeration certificate (counts and the complete cycle list within the declared budget), or an exhaustion report",
+    "counterexample_that_resolves_it": "an explicit cycle that the declared conventions require to be counted and that is missing, or one counted that violates them",
+    "level": "computation-level finite exact arithmetic in Z[phi], phi^2 = phi + 1",
+    "non_goals": [
+      "no claim about the historical rule of Hamilton's Icosian game, which is not sourced here",
+      "no claim linking Hamiltonicity to the hyperbolic compactification of Research 0072: there is no interface justification, so that part is retained as a preflight obstruction and is not executed",
+      "no claim about icosahedral symmetry groups beyond the checks declared here"
+    ]
+  },
+
+  "imported_knowledge": {
+    "constructions": {
+      "G1": "the standard dodecahedron coordinates in Z[phi]: (+-1,+-1,+-1), (0,+-1/phi,+-phi), (+-1/phi,+-phi,0), (+-phi,0,+-1/phi); adjacency is the minimal squared distance computed exactly",
+      "G2": "the dual of the twelve-vertex icosahedron already checked by the golden-ratio calibration: reuse its vertex set, its (p+q*sqrt5)/2 encoding and its 20 faces; adjacency is a shared icosahedron edge"
+    },
+    "imported_facts": [
+      "the dodecahedral graph is the 1-skeleton of the regular dodecahedron: 3-regular, planar, 20 vertices, 30 edges, 12 pentagonal faces",
+      "the Petersen graph is not Hamiltonian (classical; used as a negative control and compared after the run)",
+      "for K4 and C_n the counts follow from (n-1)!/2 and from the single cyclic order respectively (derived, not imported)"
+    ],
+    "explicit_non_import": "the number of Hamiltonian cycles of the dodecahedral graph is not imported and not presupposed: it is the output of the run. Any later comparison with literature is made after the run and a mismatch is retained as a residual.",
+    "interface_justification": "both constructions live in the same exact field and reuse the repository's existing encoding; the required equality is graph isomorphism under an exhibited explicit bijection, which is a finite exact check and imports no physical or hyperbolic interpretation"
+  },
+
+  "interface": {
+    "translated": "icosahedron vertices and faces (existing calibration) to the dual 20-vertex graph; standard dodecahedron coordinates to the same graph",
+    "required_equality": "an explicit vertex bijection preserving adjacency, checked exactly, with no numerical tolerance",
+    "retained": "exact field arithmetic with no floating point on the mathematics; each construction's vertex indexing; the face sets; the cycle lists in each indexing",
+    "forgotten": "the embedding in R^3 (positions determine adjacency only) and any geometric meaning of the cycles",
+    "justification": "the equality required is finite and exact; no physical or hyperbolic interpretation is imported"
+  },
+
+  "protected_obligations": [
+    "Rust remains the sole semantic authority: no native type, no ProgramTerm, no Seal is introduced",
+    "no docs/claims.toml entry; at most a bounded external calibration record",
+    "the hyperbolic-compactification results (Research 0072: ordinary compactification does not raise dimension, H-bar^2 = H^2 union S^1_infinity = D^2) must not be contradicted, extended or reinterpreted here, and must not be cited as support",
+    "the executed rows of the golden-ratio calibration stay as they are: they may be cited, not re-pinned or reinterpreted",
+    "graph Hamiltonicity and the physical Hamiltonian of Research 0106 must be kept apart in the artifact's vocabulary"
+  ],
+
+  "acceptance_and_verification": {
+    "candidate_family_fixed_before_search": {
+      "G1": "standard dodecahedron graph, 20 vertices",
+      "G2": "dual of the repository's icosahedron, 20 vertices",
+      "controls": ["C3", "C5", "K4", "cube Q3", "Petersen", "cut-vertex bowtie", "Herschel (see deviation note)"]
+    },
+    "checker": "one deterministic Python program, experiments/dodecahedral_hamiltonicity/checker.py; external oracle, not native authority; no randomness",
+    "declared_equivalences": {
+      "oriented_rooted_at_fixed_vertex": "cycles reported as sequences from a fixed start vertex with a direction",
+      "undirected_unrooted": "oriented rooted cycles modulo the 2n rotations and reversals, canonicalised"
+    },
+    "declared_icosian_style_rule": "this repository's own declared analogue, explicitly not the historical rule: a cycle satisfies the rule when some five of its consecutive vertices are exactly the five vertices of one pentagonal face",
+    "expectation_sources": {
+      "derived": ["C_n has one undirected Hamiltonian cycle", "K4 has (4-1)!/2 = 3", "a graph with a cut vertex has none"],
+      "imported_and_compared_after": ["Petersen is not Hamiltonian"],
+      "computed_and_cross_checked": ["cube Q3, by depth-first enumeration and by an independent bitmask dynamic program"]
+    },
+    "cross_checks": [
+      "G1 and G2 must give identical counts",
+      "oriented rooted must equal twice undirected at every step",
+      "the isomorphism witness must be exhibited and verified",
+      "the twelve per-face counts must be equal"
+    ],
+    "success_condition": "all counts computed, G1 = G2, the isomorphism verified, and every control matching its declared source",
+    "unresolved_outcome": "budget exhaustion reports Unknown with the retained partial counts; a checker that reports zero for everything fails the positive controls and one that reports nonzero for everything fails Petersen and the cut-vertex control"
+  },
+
+  "resources_and_exit": {
+    "wall_seconds": 60,
+    "search_nodes": 20000000,
+    "retained_artifact_bytes": 1048576,
+    "subprocesses": 1,
+    "continuation": "none; a second run needs a new contract; no fuel reset and no scope widening",
+    "exit_conditions": [
+      "success",
+      "budget exhaustion, reported as Unknown with the residual",
+      "interface failure (the two constructions are not isomorphic), reported as a stop with no search"
+    ]
+  },
+
+  "deviation_note": "The Herschel graph was named as a control in the approved contract. Its edge list was not sourced during the run, so it is not used; a derivable cut-vertex control takes its place and the deviation is retained in the evidence and the note rather than silently repaired."
+}
