@@ -1,0 +1,22 @@
+{
+  "schema": "adva.external.pascal-commutator-contract.v0",
+  "date": "2026-09-13",
+  "base_commit": "60cb94780f6ac95aa6badcf6b74fa19172d957b2",
+  "question": "Which parameter commutations make the 27 pinned normalized Pascal equations vanish, and can every use be independently replayed?",
+  "level": "External exact algebra over the free associative integer algebra on d,e,f; conditional interpretation in unital associative rings.",
+  "inputs": {
+    "library_commit": "9261194ba13a256fc1b761d7ffc25cd3d025224d",
+    "pascal-task.adva": "60d3ca374486239afb82bbe31d821a4d0c02ef947ccf62557753e85137087a5d",
+    "pascal-witness.adva": "f20338add39c292db6bac482a2c9265353d6a5a1a5189cc2823398ddc29fe448"
+  },
+  "interface": "Lift each supplied coordinate expression literally; incidence uses line coefficients on the left. Integer coefficients are central. Associativity, distributivity, additive cancellation and unity are imported ring laws. Only an explicitly allowed parameter pair may be commuted. The separately displayed scalar residual is an auxiliary expression, not the same literal lift as left-coefficient incidence.",
+  "candidate_family": "The fixed 27 geometric equations and one auxiliary displayed residual; deterministic adjacent-inversion decomposition with order d<e<f. No search or continuation.",
+  "certificate_identity": "P = sum c*u*(a*b-b*a)*v as an exact identity before imposing pair commutativity; retained raw P is recomputed from the pinned source.",
+  "acceptance": "A separately implemented checker reconstructs all 28 expressions and verifies the identity coefficient by coefficient without sorting words, with exact source pins and complete equation coverage. Each of the three pair assumptions has its own required commutator equation.",
+  "negative_controls": ["deleted summand", "sign change", "forged variable", "omitted equation", "duplicate equation", "wrong source pin", "Boolean coefficient", "each of the three missing pair assumptions", "distinct literal lifts", "noncommuting affine add/scale matrices"],
+  "protected": ["All original task/witness bytes, source identities and histories remain distinct", "No native Q4 filling, M6 coherence, geometry admission, Seal, or Wu algorithm correctness follows", "No general-conic transport or noncommutative conic geometry is asserted", "Research 0181 is audited separately, not silently used as independent authority"],
+  "budget": {"children": 3, "wall_seconds_per_child": 30, "wall_seconds_total": 120, "cpu_seconds_per_child": 10, "address_space_bytes_per_child": 268435456, "output_bytes_per_child": 262144, "total_retained_bytes": 1048576, "certificate_equations": 28, "summands_per_equation": 128, "word_length": 16, "coefficient_abs": 1000000},
+  "enforcement": "run.py requires POSIX resource limits, supervises three sequential children, enforces wall deadlines and output-file limits, and never retries. Source and certificate sizes are bounded before parsing. Missing enforcement or exhausted resources returns scoped Unknown.",
+  "exit": "One generated certificate, one independent replay and one negative-control run. Stop on rejection, missing pins, resource limit or successful completion; no automatic restart.",
+  "authorship": "Authored by ChatGPT (OpenAI); submitted through Mingli Yuan's GitHub account as an authorized proxy. Account use is not review or endorsement."
+}
