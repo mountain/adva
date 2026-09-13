@@ -1,0 +1,40 @@
+{
+  "schema": "adva.external.zot-prefix-machine.regression-contract.v0",
+  "date": "2026-09-13",
+  "reason": "The first run tested a serialized continuation but retained only its arena node count. Retain the actual arena so the checkpoint is directly replayable; confirm exact deterministic results are unchanged. This is a declared artifact-completeness correction, not a larger search.",
+  "priorTree": "9be0b6a5ef749abe141d24223222ec4871449957",
+  "bounds": {
+    "maxArenaNodes": 100000,
+    "maxCacheEntries": 32768,
+    "maxContinuations": 0,
+    "maxElapsedMs": 20000,
+    "maxOracleEntries": 4000000,
+    "maxOutputItems": 64,
+    "maxPayloadLength": 9,
+    "maxRetainedAsciiBytes": 2000000,
+    "maxRuns": 1,
+    "maxStackFrames": 4096,
+    "maxTransitions": 8000000,
+    "oracleEntriesPerProgram": 50000,
+    "perProgramSteps": 4096,
+    "timeCuts": [
+      16,
+      64,
+      256,
+      1024,
+      4096
+    ]
+  },
+  "changesAllowed": [
+    "retain checkpoint.nodes alongside checkpoint.state"
+  ],
+  "checks": [
+    "one replay of the same finite Zot family",
+    "compare all three deterministic row ledgers, probabilities and actual transition counts against attempt 1",
+    "restore retained checkpoint and compare completion to direct Pr(K) with the same 256-step total bound"
+  ],
+  "maxRuns": 1,
+  "maxContinuations": 0,
+  "stop": "first discrepancy or bound; preserve prior result",
+  "authorship": "ChatGPT (OpenAI), via Mingli Yuan account as authorized proxy"
+}

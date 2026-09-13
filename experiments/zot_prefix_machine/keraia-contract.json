@@ -1,0 +1,42 @@
+{
+  "schema": "adva.external.keraia-input-boundary.contract.v0",
+  "date": "2026-09-13",
+  "attempt": 1,
+  "question": "Check the prefix-Keraia syntax/read boundary and exact program-description tail independently of evaluator implementation; does merging open-slot counts preserve syntax mass without authorizing semantic sharing?",
+  "level": "External finite parser and counting calibration, not Keraia evaluator or native Q4",
+  "source": "Michael Stay, Very simple Chaitin machines for concrete AIT, arXiv:cs/0508056, sections 8-9 and Appendix B",
+  "interface": "First full binary preorder tree is program; remaining bits are data. A read underflow is an extendable input frontier. Overflow is decided only after execution returns with unread data. Tree open-slot counts classify syntax only; they forget application structure.",
+  "protected": [
+    "preserve program/data split",
+    "never prune all descendants of an underflow prefix",
+    "exact integer path multiplicity",
+    "do not merge execution states by syntax count",
+    "preserve read order and consumed cursor"
+  ],
+  "checks": [
+    "independent linear and recursive parser on every binary string through length 15",
+    "DP completion counts against Catalan binomial formula through depth 63",
+    "paper's 17-bit program plus one input bit splits at 17",
+    "two-read underflow becomes halt after extension",
+    "ordered labeled reads change labeled outputs when swapped"
+  ],
+  "bounds": {
+    "maxExhaustiveLength": 15,
+    "maxDPDepth": 63,
+    "maxOperations": 5000000,
+    "maxElapsedMs": 10000,
+    "maxLiveDPStates": 65,
+    "maxRetainedAsciiBytes": 100000,
+    "maxRuns": 1,
+    "maxContinuations": 0
+  },
+  "enforcement": "Shared operation counter and Date.now checks in each parser/DP/read step. Exhaustive family 65535 strings, recursion depth at most 15, BigInt widths bounded by depth 63 and finite binomial factors. DP frontier at most 65 entries. Fixed finite checkpoint capped at 100000 ASCII bytes. No OS RSS measurement or subprocess.",
+  "acceptance": "All finite checks complete or retain failure/Unknown, no retries.",
+  "residuals": [
+    "No implementation of Interpret, alpha/beta reduction or evaluation strategy equivalence",
+    "No universal Chaitin machine verified by this parser alone",
+    "No runtime tail certificate",
+    "No Q4 equation or native Seal"
+  ],
+  "authorship": "ChatGPT (OpenAI), via Mingli Yuan account as authorized proxy; no endorsement or review implied."
+}
