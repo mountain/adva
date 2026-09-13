@@ -1,0 +1,64 @@
+{
+  "schema": "adva.research.zhang-finite-example-contract.v0",
+  "version": 0,
+  "name": "zhang-finite-example",
+  "base_commit": "215d652",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can the finite-example criterion certify a plane-geometry identity by evaluation only, with no expansion of the conclusion, and where does its a priori degree bound come from?",
+  "level": "External exact rational and directed-rounding evaluation over Q: every point of a declared grid, degree bounds propagated from the construction, a randomized check of the criterion itself, and falsified and sharpness controls",
+  "domain": "Plane incidence statements already carried by this repository's Wu rounds: Pappus, Pascal for a parabola, a hyperbola and a circle, the Ceva conclusion with and without its hypothesis, and one deliberately mis-paired Pascal companion. Parameters are the free points of a parametrised configuration; the conclusion is a homogeneous 3x3 determinant of cross products of lines.",
+  "objects": {
+    "criterion": "A polynomial C in n free parameters with degree at most d_i in parameter i is identically zero if and only if it vanishes at every point of a grid with d_i + 1 distinct values in coordinate i, for every i. The forward implication is the certificate; the converse is what fixes the grid size.",
+    "arithmetic_modes": "One formula, three arithmetics: Fraction (the certificate), Decimal with directed rounding (a numerical pass with enclosures), and degree vectors only (the a priori bound).",
+    "statements": {
+      "pappus": "A, B, C on the x axis and a, b, c on the y axis, hexagon A, b, C, a, B, c; the three intersections of opposite sides are collinear. Six parameters.",
+      "parabola_pascal": "Six points (t, t^2, 1) in hexagon order; the three intersections of opposite sides are collinear. Six parameters.",
+      "hyperbola_pascal": "Six points represented by (t^2, 1, t), which is the affine point (t, 1/t) scaled by t; the same Pascal conclusion. Six parameters.",
+      "circle_pascal": "Six points (1 - t^2, 2t, 1 + t^2) on the unit circle; the same Pascal conclusion. Six parameters.",
+      "ceva_conclusion": "The Ceva collinearity conclusion as a polynomial in (t, e, f) with no hypothesis imposed. Three parameters, a priori bound 1 in each.",
+      "ceva_chart": "The Ceva hypothesis solved for f, substituted into the conclusion, with the chart denominator cleared. Two parameters, a priori bound 2 in each.",
+      "wrong_pairing": "The parabola Pascal conclusion with one side pairing exchanged; it is not an identity, so the criterion must fail on it and produce a witness."
+    },
+    "degree_bound": "Propagated from the construction: multiplication adds degree vectors, addition takes their componentwise maximum, and constants have the zero vector. No expansion of the conclusion is performed to obtain any bound.",
+    "grids": "A declared integer grid with values 1..d_i+1 in coordinate i, and a declared random rational grid from a recorded seed with distinct nonzero values, filtered so that no two circle parameters are antipodal.",
+    "random_seed": 20260913,
+    "max_assertions": 200000
+  },
+  "quantifiers": [
+    "Every grid cell of every declared statement, evaluated in exact rational arithmetic, with the count and the number of nonzero values recorded",
+    "Every declared statement's a priori degree vector, its grid size, and its two independent grids",
+    "The interval pass over a declared subset of the rational grid, in Decimal with directed rounding at a declared precision",
+    "Degenerate parameter tuples, including coincident points and repeated parameters",
+    "The randomized criterion check and the sharpness witnesses"
+  ],
+  "acceptance": [
+    "The a priori degree vector of each statement is computed from the construction alone, and the grid size is the product of (d_i + 1)",
+    "Pappus, the parabola, the hyperbola and the circle Pascal identities vanish at every cell of both grids, so each is certified by the criterion without any expansion of the conclusion",
+    "The Ceva chart identity vanishes at every cell of both grids, so the hypothesis is handled by parametrising the hypothesis variety rather than by a symbolic remainder",
+    "The deliberately mis-paired Pascal is not certified: at least one grid cell is nonzero, and the first witness is reported with its exact value",
+    "The Ceva conclusion without its hypothesis is not certified, which shows that the hypothesis is required and that the criterion is not vacuous",
+    "The criterion itself is checked on random polynomials: one of degree at most d_i vanishing on the grid is the zero polynomial, and a nonzero one has a nonzero grid value",
+    "The grid size cannot be reduced: for every declared statement a nonzero polynomial of degree at most d_i vanishes on a grid one value short in that coordinate",
+    "The interval pass encloses zero at every sampled cell for the certified identities, and excludes zero at the reported witness of the mis-paired statement",
+    "The chart denominator of the Ceva parametrisation is the same polynomial as the non-degeneracy initial recorded by the Wu round, checked by the criterion itself with the recorded bound",
+    "Degenerate parameter tuples give exactly zero, and that is recorded as a statement about the polynomial and not about the geometry of a degenerate figure",
+    "Every certified identity is independently confirmed by exact symbolic expansion when the external library is present, and the library's absence is reported rather than assumed"
+  ],
+  "protected": [
+    "The Wu rounds 0181 and 0182 and the Feigenbaum rounds 0176 to 0180 are frozen and are not rewritten; their costs are read from their retained evidence and are not re-run here",
+    "This is external evidence: no native certificate, no geometry catalog admission, and the Pascal-rooted growth obligation stays Open",
+    "A grid certificate is a statement about one polynomial expression and its declared degree bound; it is not a proof about a degenerate geometric figure, and it is not a native Adva judgment",
+    "The criterion certifies identities, not statements with hypotheses: the Ceva hypothesis is handled by a parametrisation whose chart misses the locus where the denominator vanishes, and that locus is recorded",
+    "The published sources for the method are cited but are not re-derived: this run tests the criterion, not the source's own a priori bound theory",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 900,
+    "cpu_seconds": 850,
+    "memory_bytes": 4294967296,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This certifies several plane incidence identities, and fails to certify two named non-identities, by evaluation at finitely many exact rational configurations with degree bounds propagated from the construction. It does not supply the theory that makes such bounds tight for a general statement class, it does not certify any statement whose hypothesis is not parametrised, and the parametrisation it does use covers only the chart where its denominator is nonzero."
+}
