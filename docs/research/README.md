@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **182 numbered
+This directory holds the research record of the repository: **183 numbered
 notes, 21 named notes and 24 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -703,6 +703,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md`](0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md)
 - [`0172-the-i-minus-e-integrality-conjecture.md`](0172-the-i-minus-e-integrality-conjecture.md)
 - [`0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md`](0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md)
+- [`0174-absurdity-emptiness-counterexample.md`](0174-absurdity-emptiness-counterexample.md)
 
 ### Named notes
 
