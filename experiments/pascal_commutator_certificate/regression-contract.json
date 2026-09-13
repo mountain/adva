@@ -1,0 +1,15 @@
+{
+  "schema": "adva.external.pascal-commutator-regression.v0",
+  "purpose": "One integration replay of the completed fixed family, actual source-byte tampering, and immutable evidence/code/claim binding; not a renewed search.",
+  "source_contract": "contract.json",
+  "command": "timeout 140s python -m unittest discover -s tests/python -p test_pascal_commutator_certificate.py -v",
+  "outer_wall_seconds": 140,
+  "nested_replay_wall_seconds_including_checkpoint": 125,
+  "nested_children": 3,
+  "retries": 0,
+  "source_mutations": 1,
+  "source_mutation": "Append one newline to a temporary copy; unchanged declared hashes must not validate changed actual bytes.",
+  "preservation": "Replay into a new temporary directory, compare deterministic outputs byte for byte, and confirm retained evidence is unchanged. Never update evidence to make the test pass.",
+  "unavailable": "Replay and source-mutation tests explicitly skip if the git submodule is absent; code/evidence/claim integrity still runs. Skips are not a successful proof replay.",
+  "exit": "Stop after the three tests or the enforced outer deadline, retaining the test output. Do not retry automatically."
+}

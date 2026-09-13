@@ -1,0 +1,49 @@
+{
+  "schema": "adva.research.wu-elimination-general-conic-contract.v0",
+  "version": 0,
+  "name": "wu-elimination-general-conic",
+  "base_commit": "60cb947",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Does Wu's elimination method prove Pascal's theorem for a general conic, not only for a parabola, and what does that cost?",
+  "level": "External exact symbolic computation over Q: one conic-condition hypothesis, one collinearity conclusion, one pseudo-remainder, with falsified and vacuity controls and random exact instances",
+  "domain": "Six points of the projective plane with coordinates, the hypothesis that they lie on one conic as a single determinant, the Pascal conclusion that the three intersections of opposite sides are collinear, and the pseudo-remainder of the conclusion with respect to the hypothesis in the variable y6",
+  "objects": {
+    "hypothesis": "the 6x6 determinant of the conic monomial matrix [x_i^2, x_i y_i, y_i^2, x_i, y_i, 1], which vanishes exactly when the six points lie on one conic",
+    "conclusion": "the determinant of the three cross products of opposite sides",
+    "main_variable": "y6",
+    "determinant_method": "berkowitz",
+    "random_instances": 3,
+    "random_seed": 20260913,
+    "small_determinant_comparison_size": 5,
+    "max_assertions": 100000,
+    "determinant_method_note": "division free, so no fractions are introduced during the determinant"
+  },
+  "quantifiers": [
+    "The hypothesis and the conclusion as expanded polynomials, with their term counts recorded",
+    "The pseudo-remainder of the conclusion with respect to the hypothesis, and of the falsified conclusion",
+    "Every random exact instance, substituted and checked"
+  ],
+  "acceptance": [
+    "The hypothesis built by a division-free determinant is the same polynomial as the one built by the default method, checked on a small instance so the comparison is affordable",
+    "The conclusion pseudo-reduces to exactly zero modulo the hypothesis in y6, which is Wu's certificate that the theorem holds on the hypothesis variety wherever the leading coefficient does not vanish",
+    "The falsified pairing does not reduce to zero, so the reduction is not vacuous",
+    "The conclusion is not identically zero, so the theorem needs its hypothesis",
+    "Random exact rational instances with a random rational conic and random rational parameters give a collinearity determinant of exactly zero",
+    "The non-degeneracy condition is recorded as the leading coefficient of the hypothesis in the main variable, and the certificate is described as pseudo-divisibility rather than ideal membership"
+  ],
+  "protected": [
+    "The seventh and eighth Feigenbaum rounds and the Wu round on plane incidence are frozen and are not rewritten",
+    "This is external evidence: no native certificate, no geometry catalog admission, and the Pascal-rooted growth obligation stays Open",
+    "A proof on the hypothesis variety minus the leading-coefficient divisor is not a proof without non-degeneracy conditions",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 900,
+    "cpu_seconds": 850,
+    "memory_bytes": 4294967296,
+    "max_assertions": 100000,
+    "output_bytes": 4194304
+  },
+  "residual": "This proves one projective incidence statement for a general conic, as a polynomial formulation with recorded non-degeneracy conditions, by an external symbolic computation. It is not a native certificate, and it says nothing about the repository's own geometry line beyond touching the same theorem. The parametrised route to the same statement was tried during reconnaissance and is recorded separately rather than re-run here, because its symbolic expansion costs minutes."
+}

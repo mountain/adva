@@ -1,0 +1,414 @@
+{
+  "checker_sha256": "f06f5440ecd20724acb45b2d494198effe5d233570a0341deb217209e46c9559",
+  "checks": {
+    "both_methods_agree_everywhere": true,
+    "every_falsified_statement_does_not": true,
+    "every_true_statement_reduces_to_zero": true,
+    "groebner_confirms_the_falsified_ones_are_outside": true,
+    "non_degeneracy_conditions_are_recorded": true,
+    "random_instances_are_zero_for_true_statements": true,
+    "the_tooling_is_declared": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/wu_elimination_geometry/contract.json",
+  "cost": {
+    "assertions": 0,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 5.979
+  },
+  "method": {
+    "name": "Wu's elimination method (characteristic chain by pseudo-division)",
+    "not_implemented": "full zero-decomposition into irreducible components; the chain here is the basic pseudo-division chain",
+    "ordering": "the x coordinates first, then the y coordinates, as declared per theorem",
+    "zero_remainder_means": "the conclusion vanishes on the zero set of the hypotheses wherever the initials of the chain do not vanish"
+  },
+  "results": [
+    {
+      "chain": [
+        {
+          "main_variable": "t",
+          "polynomial": "-2*e*f*t + e*f + e*t - e + f*t"
+        }
+      ],
+      "chain_initials_non_degeneracy_conditions": [
+        "-2"
+      ],
+      "conclusion_terms": 5,
+      "declared_true": true,
+      "groebner_membership": true,
+      "hypothesis_count": 1,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [
+        {
+          "main_variable": "t",
+          "remainder_is_zero": true,
+          "remainder_terms": 0,
+          "terms_before": 5
+        }
+      ],
+      "random_instances": [],
+      "remainder_is_zero": true,
+      "statement": "ceva"
+    },
+    {
+      "chain": [
+        {
+          "main_variable": "t",
+          "polynomial": "-2*e*f*t + e*f + e*t - e + f*t + 1"
+        }
+      ],
+      "chain_initials_non_degeneracy_conditions": [
+        "-2"
+      ],
+      "conclusion_terms": 5,
+      "declared_true": false,
+      "groebner_membership": false,
+      "hypothesis_count": 1,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [
+        {
+          "main_variable": "t",
+          "remainder_is_zero": false,
+          "remainder_terms": 3,
+          "terms_before": 5
+        }
+      ],
+      "random_instances": [],
+      "remainder_is_zero": false,
+      "statement": "ceva_falsified"
+    },
+    {
+      "chain": [],
+      "chain_initials_non_degeneracy_conditions": [],
+      "conclusion_terms": 0,
+      "declared_true": true,
+      "groebner_membership": true,
+      "hypothesis_count": 0,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [],
+      "random_instances": [
+        {
+          "is_zero": true,
+          "substitution": {
+            "p1x": "2",
+            "p2x": "4",
+            "p3x": "4",
+            "q1x": "6",
+            "q2x": "7",
+            "q3x": "7"
+          },
+          "value": "0"
+        },
+        {
+          "is_zero": true,
+          "substitution": {
+            "p1x": "6",
+            "p2x": "1",
+            "p3x": "6",
+            "q1x": "7",
+            "q2x": "4",
+            "q3x": "9"
+          },
+          "value": "0"
+        },
+        {
+          "is_zero": true,
+          "substitution": {
+            "p1x": "3",
+            "p2x": "3",
+            "p3x": "1",
+            "q1x": "8",
+            "q2x": "8",
+            "q3x": "3"
+          },
+          "value": "0"
+        }
+      ],
+      "remainder_is_zero": true,
+      "statement": "pappus"
+    },
+    {
+      "chain": [],
+      "chain_initials_non_degeneracy_conditions": [],
+      "conclusion_terms": 16,
+      "declared_true": false,
+      "groebner_membership": false,
+      "hypothesis_count": 0,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [],
+      "random_instances": [],
+      "remainder_is_zero": false,
+      "statement": "pappus_falsified"
+    },
+    {
+      "chain": [
+        {
+          "main_variable": "x1",
+          "polynomial": "-x1**2 + y1"
+        },
+        {
+          "main_variable": "x2",
+          "polynomial": "-x2**2 + y2"
+        },
+        {
+          "main_variable": "x3",
+          "polynomial": "-x3**2 + y3"
+        },
+        {
+          "main_variable": "x4",
+          "polynomial": "-x4**2 + y4"
+        },
+        {
+          "main_variable": "x5",
+          "polynomial": "-x5**2 + y5"
+        },
+        {
+          "main_variable": "x6",
+          "polynomial": "-x6**2 + y6"
+        }
+      ],
+      "chain_initials_non_degeneracy_conditions": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ],
+      "conclusion_terms": 720,
+      "declared_true": true,
+      "groebner_membership": true,
+      "hypothesis_count": 6,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [
+        {
+          "main_variable": "x1",
+          "remainder_is_zero": false,
+          "remainder_terms": 720,
+          "terms_before": 720
+        },
+        {
+          "main_variable": "x2",
+          "remainder_is_zero": false,
+          "remainder_terms": 672,
+          "terms_before": 720
+        },
+        {
+          "main_variable": "x3",
+          "remainder_is_zero": false,
+          "remainder_terms": 576,
+          "terms_before": 672
+        },
+        {
+          "main_variable": "x4",
+          "remainder_is_zero": false,
+          "remainder_terms": 432,
+          "terms_before": 576
+        },
+        {
+          "main_variable": "x5",
+          "remainder_is_zero": false,
+          "remainder_terms": 240,
+          "terms_before": 432
+        },
+        {
+          "main_variable": "x6",
+          "remainder_is_zero": true,
+          "remainder_terms": 0,
+          "terms_before": 240
+        }
+      ],
+      "random_instances": [
+        {
+          "is_zero": true,
+          "substitution": {
+            "x1": "7/4",
+            "x2": "7",
+            "x3": "5",
+            "x4": "5/3",
+            "x5": "9/2",
+            "x6": "4",
+            "y1": "49/16",
+            "y2": "49",
+            "y3": "25",
+            "y4": "25/9",
+            "y5": "81/4",
+            "y6": "16"
+          },
+          "value": "0"
+        },
+        {
+          "is_zero": true,
+          "substitution": {
+            "x1": "9/5",
+            "x2": "1/3",
+            "x3": "3/2",
+            "x4": "2",
+            "x5": "6",
+            "x6": "9/2",
+            "y1": "81/25",
+            "y2": "1/9",
+            "y3": "9/4",
+            "y4": "4",
+            "y5": "36",
+            "y6": "81/4"
+          },
+          "value": "0"
+        },
+        {
+          "is_zero": true,
+          "substitution": {
+            "x1": "5",
+            "x2": "2",
+            "x3": "1",
+            "x4": "1/5",
+            "x5": "4/3",
+            "x6": "2",
+            "y1": "25",
+            "y2": "4",
+            "y3": "1",
+            "y4": "1/25",
+            "y5": "16/9",
+            "y6": "4"
+          },
+          "value": "0"
+        }
+      ],
+      "remainder_is_zero": true,
+      "statement": "pascal_on_a_parabola"
+    },
+    {
+      "chain": [
+        {
+          "main_variable": "x1",
+          "polynomial": "-x1**2 + y1"
+        },
+        {
+          "main_variable": "x2",
+          "polynomial": "-x2**2 + y2"
+        },
+        {
+          "main_variable": "x3",
+          "polynomial": "-x3**2 + y3"
+        },
+        {
+          "main_variable": "x4",
+          "polynomial": "-x4**2 + y4"
+        },
+        {
+          "main_variable": "x5",
+          "polynomial": "-x5**2 + y5"
+        },
+        {
+          "main_variable": "x6",
+          "polynomial": "-x6**2 + y6"
+        }
+      ],
+      "chain_initials_non_degeneracy_conditions": [
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1",
+        "-1"
+      ],
+      "conclusion_terms": 792,
+      "declared_true": false,
+      "groebner_membership": false,
+      "hypothesis_count": 6,
+      "methods_agree": true,
+      "pseudo_reduction_steps": [
+        {
+          "main_variable": "x1",
+          "remainder_is_zero": false,
+          "remainder_terms": 792,
+          "terms_before": 792
+        },
+        {
+          "main_variable": "x2",
+          "remainder_is_zero": false,
+          "remainder_terms": 736,
+          "terms_before": 792
+        },
+        {
+          "main_variable": "x3",
+          "remainder_is_zero": false,
+          "remainder_terms": 624,
+          "terms_before": 736
+        },
+        {
+          "main_variable": "x4",
+          "remainder_is_zero": false,
+          "remainder_terms": 456,
+          "terms_before": 624
+        },
+        {
+          "main_variable": "x5",
+          "remainder_is_zero": false,
+          "remainder_terms": 456,
+          "terms_before": 456
+        },
+        {
+          "main_variable": "x6",
+          "remainder_is_zero": false,
+          "remainder_terms": 360,
+          "terms_before": 456
+        }
+      ],
+      "random_instances": [],
+      "remainder_is_zero": false,
+      "statement": "pascal_on_a_parabola_falsified"
+    }
+  ],
+  "schema": "adva.external.wu-elimination-geometry.v0",
+  "status": "ExternalExactPass",
+  "summary": {
+    "cross_checks_agreeing": [
+      "ceva",
+      "ceva_falsified",
+      "pappus",
+      "pappus_falsified",
+      "pascal_on_a_parabola",
+      "pascal_on_a_parabola_falsified"
+    ],
+    "falsified_statements_not_proved": [
+      "ceva_falsified",
+      "pappus_falsified",
+      "pascal_on_a_parabola_falsified"
+    ],
+    "nonzero_remainders": 3,
+    "true_statements_proved_by_a_zero_remainder": [
+      "ceva",
+      "pappus",
+      "pascal_on_a_parabola"
+    ],
+    "zero_remainders": 3
+  },
+  "tooling": {
+    "available": true,
+    "external_oracle_not_native_authority": true,
+    "groebner_cross_check_used": true,
+    "polynomial_library": "sympy",
+    "pseudo_remainder_used": true,
+    "version": "1.14.0"
+  },
+  "version": 0,
+  "what_is_not_claimed": {
+    "feigenbaum_enclosure": false,
+    "general_conic_pascal": false,
+    "geometry_catalog_admission": false,
+    "native_certificate": false,
+    "proof_of_a_prose_geometric_statement_without_its_polynomial_formulation": false
+  },
+  "wu_method_reach_and_limits": {
+    "pascal_for_a_general_conic": "not done here: the hypothesis that six points lie on one conic is a single sextic determinant, not a chain, so the classical proof needs a parametrisation or a full triangularisation with irreducible components",
+    "pascal_for_a_parabola": "done, since the parabola condition is already a triangular chain",
+    "relation_to_the_repository": [
+      "the repository's pinned geometry root is a Pascal presentation, and this is external evidence touching the same theorem",
+      "it is not a native import and not a derivation certificate, so the Pascal-rooted growth obligation stays Open",
+      "the method does not apply to the Feigenbaum fixed point, which is a functional equation rather than a polynomial system; a truncated polynomial system could be triangularised, but a chain gives zero-decomposition, not root isolation, so it would not replace the enclosures of the earlier rounds"
+    ],
+    "what_it_decides": "polynomial statements with a hypothesis system that pseudo-divides into a chain, under the recorded initials"
+  }
+}

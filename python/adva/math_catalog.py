@@ -59,7 +59,19 @@ STATUSES = frozenset(
 )
 UNCHECKED_STATUSES = frozenset({"proposed-document", "research-hypothesis"})
 LIMITS = {
-    "entries": 32,
+    # Raised from 32 to 101 on 2026-09-13, by the direction, with its own reason
+    # recorded verbatim: "我设立 100 条，必须让小朋友跑出来". The catalog had
+    # reached 32 of 32 with two external-reference registrations in one session,
+    # which left no headroom for the growth fixture that keeps catalog growth and
+    # its naming layer in step: that fixture copies the real catalog, appends one
+    # entry, and requires the copy to stay consistent. The bound is therefore 100
+    # entries plus the one the fixture adds. This is a recorded widening of a
+    # declared bound asked for by the direction and not a standing invitation: the
+    # next increase needs its own reason. The direction later called that quoted
+    # statement imprecise and has not given corrected wording; the bound stands as
+    # the decision, and the qualification is recorded, verbatim and un-guessed, in
+    # docs/research/yang-lu-reference-registration-deferred.md.
+    "entries": 101,
     "references": 256,
     # Raised from 96 to 120 on 2026-09-11, by the direction, to admit the
     # period-three external calibration. The bound had reached 95 of 96 with the

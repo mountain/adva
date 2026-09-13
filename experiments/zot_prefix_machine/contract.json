@@ -1,0 +1,66 @@
+{
+  "schema": "adva.external.zot-prefix-machine.contract.v0",
+  "date": "2026-09-13",
+  "attempt": 1,
+  "question": "For all 1023 binary Zot payloads of length 0..9, do explicit CBV execution, literal-prefix reuse and exact-closure memoization agree on outputs, failures, and semantic cost while retaining every framed program's weight?",
+  "level": "External finite implementation experiment; no native Adva identities or Q4 cells.",
+  "sources": {
+    "adva": "215d652a10a090cd369cc184617b8f15d21e4814",
+    "zot": "2317e468551c4393fa1b6c9ec4d343a961c14770",
+    "zotSourceBlob": "43fcf74c885fd3abc90a2c8e5f88e177952ecbcf"
+  },
+  "encoding": "E(w)=1^|w| 0 w; strict binary and exact frame consumption. One code has mass 2^-(2|w|+1).",
+  "machine": "Pinned Zot left-to-right JavaScript call-by-value body, defunctionalized. Accept only normal host return with binary output items. Type error or returned non-bit output is rejected by this NEW observation wrapper. Abstract partial machine loops on rejection. Resource exhaustion is Unknown.",
+  "cost": "One explicit CEK transition, including each boundary's Done transition. Prefix parsing, phase changes, prebuilt K^6 I, interning and cache lookup are outside semantic time; measured wall time includes them. Cache hits debit original transition cost.",
+  "interface": "Exact immutable closure syntax including all captured values; no algebraic rewrite, effect reordering or native source identification. Each source code remains a separate weighted ledger row.",
+  "protected": [
+    "strict framing and prefix-free domain",
+    "CBV evaluation and output order",
+    "full closure environments",
+    "per-program step debit",
+    "every code's exact dyadic mass",
+    "Unknown is not nonhalting",
+    "Rust sole native authority; Pascal obligation Open"
+  ],
+  "checks": [
+    "all three modes row-for-row and cost agreement",
+    "independent pinned higher-order source-body oracle for all 1023 words, with entry fuel",
+    "frame antichain, Kraft sum and tail",
+    "serialized mid-step continuation",
+    "unsafe adjacent-bit swap counterexample",
+    "capture-erasing key collision",
+    "lost mass and altered output/cost tampering rejected",
+    "cached result cannot bypass time budget"
+  ],
+  "bounds": {
+    "maxPayloadLength": 9,
+    "perProgramSteps": 4096,
+    "timeCuts": [
+      16,
+      64,
+      256,
+      1024,
+      4096
+    ],
+    "maxTransitions": 8000000,
+    "maxOracleEntries": 4000000,
+    "oracleEntriesPerProgram": 50000,
+    "maxArenaNodes": 100000,
+    "maxStackFrames": 4096,
+    "maxOutputItems": 64,
+    "maxCacheEntries": 32768,
+    "maxRuns": 1,
+    "maxContinuations": 0,
+    "maxElapsedMs": 20000,
+    "maxRetainedAsciiBytes": 2000000
+  },
+  "enforcement": "Every CEK step and reference function entry consumes shared campaign fuel and checks Date.now deadline. Arena, stack, output and cache have numeric logical size caps. No OS RSS supervisor is available: this contract bounds retained logical structures, not total V8 process memory. No external process is launched. Fixed finite loops for ledger checking/checkpointing check deadline. Crossing a global cap stops the campaign and retains partial evidence; no retry.",
+  "acceptance": "Complete declared family with all required checks, or retain InvalidEvidence/Unknown. Performance benefit is reported separately and need not be positive.",
+  "residuals": [
+    "No optimal prefix-universal-machine theorem or Chaitin randomness claim for this length wrapper",
+    "No Q4-specific reduction implemented",
+    "No computable general runtime-tail bound",
+    "Node CLI, QuickJS runtime and full repository tests unavailable on failed terminal host"
+  ],
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as authorized proxy; not human review or endorsement."
+}

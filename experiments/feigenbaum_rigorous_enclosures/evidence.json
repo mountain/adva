@@ -1,0 +1,289 @@
+{
+  "arithmetic": {
+    "binary_floating_point_in_reported_endpoints": false,
+    "grid": "1e-20",
+    "kind": "exact rational interval arithmetic with outward rounding to a decimal grid",
+    "width_cap": "1.0"
+  },
+  "arithmetic_self_tests": {
+    "grid": "1e-20",
+    "outward_rounding_widens": true,
+    "product_encloses_the_exact_value": true
+  },
+  "certification_summary": {
+    "first_failure": {
+      "certified": false,
+      "level": 6,
+      "reason": "the enclosure reached the width cap before any sign was decided"
+    },
+    "highest_certified_level": 5,
+    "levels_certified": [
+      1,
+      2,
+      3,
+      4,
+      5
+    ]
+  },
+  "checker_sha256": "ac77f262b6f66c21020395cbca3db2c2ff782777a56c2ee94398a01f61eceaf9",
+  "checks": {
+    "arithmetic_self_tests_pass": true,
+    "certification_stops_at_a_reported_level": true,
+    "coarser_grid_certifies_no_more_levels": true,
+    "every_certified_level_has_strictly_opposite_endpoint_signs": true,
+    "exact_rational_barrier_is_measured": true,
+    "level_one_bracket_contains_the_closed_form": true,
+    "no_constant_enclosure_is_claimed": true,
+    "width_amplification_is_measured": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/feigenbaum_rigorous_enclosures/contract.json",
+  "control_coarser_grid": {
+    "grid": "1e-6",
+    "levels": [
+      {
+        "certified": true,
+        "level": 1
+      },
+      {
+        "certified": true,
+        "level": 2
+      },
+      {
+        "certified": false,
+        "level": 3
+      },
+      {
+        "certified": false,
+        "level": 4
+      },
+      {
+        "certified": false,
+        "level": 5
+      },
+      {
+        "certified": false,
+        "level": 6
+      },
+      {
+        "certified": false,
+        "level": 7
+      },
+      {
+        "certified": false,
+        "level": 8
+      }
+    ],
+    "levels_certified": [
+      1,
+      2
+    ]
+  },
+  "cost": {
+    "assertions": 3,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 0.117
+  },
+  "delta_ratio_enclosures": [
+    {
+      "enclosure": [
+        "4.680770998011",
+        "4.680770998011"
+      ],
+      "level": 3,
+      "width": "8.715E-15"
+    },
+    {
+      "enclosure": [
+        "4.662959610753",
+        "4.662959611362"
+      ],
+      "level": 4,
+      "width": "6.093E-10"
+    },
+    {
+      "enclosure": [
+        "4.255439203799",
+        "5.263422417322"
+      ],
+      "level": 5,
+      "width": "1.008E+00"
+    }
+  ],
+  "exact_rational_route": {
+    "denominator_growth": [
+      {
+        "denominator_bits": 102,
+        "step": 1
+      },
+      {
+        "denominator_bits": 303,
+        "step": 2
+      },
+      {
+        "denominator_bits": 706,
+        "step": 3
+      },
+      {
+        "denominator_bits": 1511,
+        "step": 4
+      },
+      {
+        "denominator_bits": 3122,
+        "step": 5
+      },
+      {
+        "denominator_bits": 6343,
+        "step": 6
+      },
+      {
+        "denominator_bits": 12785,
+        "step": 7
+      },
+      {
+        "denominator_bits": 25669,
+        "step": 8
+      }
+    ],
+    "reachable_levels_measured": [
+      {
+        "denominator_bits_after_the_iteration": 303,
+        "iterations": 2,
+        "level": 1,
+        "numerator_bits_after_the_iteration": 302
+      },
+      {
+        "denominator_bits_after_the_iteration": 1477,
+        "iterations": 4,
+        "level": 2,
+        "numerator_bits_after_the_iteration": 1476
+      },
+      {
+        "denominator_bits_after_the_iteration": 25159,
+        "iterations": 8,
+        "level": 3,
+        "numerator_bits_after_the_iteration": 25158
+      }
+    ],
+    "why_it_stops": "with exact rationals the denominator roughly squares at every iteration, so the reachable number of iterations is bounded by integer size"
+  },
+  "levels": [
+    {
+      "bisections_used": 60,
+      "centre": "3.2360679774997898050514777",
+      "certified": true,
+      "contains_the_exact_closed_form_1_plus_sqrt5": true,
+      "endpoint_signs": [
+        1,
+        -1
+      ],
+      "hi": "108584422898394223389912842640548693917/33554432000000000000000000000000000000",
+      "level": 1,
+      "lo": "7116188739069163823392456959647738218216387/2199023255552000000000000000000000000000000",
+      "stop_reason": "the declared bisection budget was used",
+      "width": "3.133E-19"
+    },
+    {
+      "bisections_used": 60,
+      "centre": "3.4985616993277015573937661",
+      "certified": true,
+      "endpoint_signs": [
+        -1,
+        1
+      ],
+      "hi": "5869612531894790319945178763894142137/1677721600000000000000000000000000000",
+      "level": 2,
+      "lo": "393903029135623145726649811322530477053647993/112589990684262400000000000000000000000000000",
+      "stop_reason": "the declared bisection budget was used",
+      "width": "1.448E-18"
+    },
+    {
+      "bisections_used": 55,
+      "centre": "3.5546408627688248493825540",
+      "certified": true,
+      "endpoint_signs": [
+        1,
+        -1
+      ],
+      "hi": "465913887164835420203843677422356381/131072000000000000000000000000000000",
+      "level": 3,
+      "lo": "250135613515650279157756254061893006361937796625867159756972171/70368744177664000000000000000000000000000000000000000000000000",
+      "stop_reason": "the midpoint sign stopped being definite",
+      "width": "1.026E-16"
+    },
+    {
+      "bisections_used": 33,
+      "centre": "3.5666673798564141328881760",
+      "certified": true,
+      "endpoint_signs": [
+        -1,
+        1
+      ],
+      "hi": "5706667807771519738475594617553/1600000000000000000000000000000",
+      "level": 4,
+      "lo": "1460906958788865387259194360765443/409600000000000000000000000000000",
+      "stop_reason": "the midpoint sign stopped being definite",
+      "width": "1.571E-12"
+    },
+    {
+      "bisections_used": 7,
+      "centre": "3.5692229174512353218062799",
+      "certified": true,
+      "endpoint_signs": [
+        1,
+        -1
+      ],
+      "hi": "3569493531637110337808249510913/1000000000000000000000000000000",
+      "level": 5,
+      "lo": "3568952303265360337808249510913/1000000000000000000000000000000",
+      "stop_reason": "the midpoint sign stopped being definite",
+      "width": "5.412E-04"
+    },
+    {
+      "certified": false,
+      "level": 6,
+      "reason": "the enclosure reached the width cap before any sign was decided"
+    },
+    {
+      "certified": false,
+      "level": 7,
+      "reason": "the enclosure reached the width cap before any sign was decided"
+    },
+    {
+      "certified": false,
+      "level": 8,
+      "reason": "the enclosure reached the width cap before any sign was decided"
+    }
+  ],
+  "schema": "adva.external.feigenbaum-rigorous-enclosures.v0",
+  "starting_brackets": {
+    "note": "the numerically computed thresholds of the earlier round are used only as bracket centres",
+    "sibling_evidence_sha256": "43fd5a3dd7f49b711a42ffe527919645ab9a67f6ab7100110958eff4829aa1de",
+    "source": "experiments/feigenbaum_period_doubling/evidence.json"
+  },
+  "status": "ExternalExactPass",
+  "version": 0,
+  "what_is_not_claimed": {
+    "enclosure_of_alpha": false,
+    "enclosure_of_delta": false,
+    "identification_of_the_certified_root_with_the_cascade_threshold": "numerical structure only, not proved here",
+    "next_step": "the period-doubling operator in a function space with a Newton-Kantorovich bound",
+    "reason": "the thresholds are bracketed for the low levels, but the limit of their ratios is not, and no bound on the distance to that limit is available on this route",
+    "uniqueness_of_the_root_in_a_certified_bracket": false
+  },
+  "width_amplification_per_iteration": {
+    "mean_factor": "3.6314",
+    "samples": [
+      "3.9544",
+      "3.7979",
+      "3.6119",
+      "3.5881",
+      "3.5721",
+      "3.5713",
+      "3.5702",
+      "3.5701"
+    ],
+    "why_it_stops": "the enclosure widens by this factor at every one of the 2^level iterations, so beyond a few levels it saturates and no sign can be certified"
+  }
+}

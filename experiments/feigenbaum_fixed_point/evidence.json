@@ -1,0 +1,214 @@
+{
+  "checker_sha256": "23d22f46960d12bfbeb5f9682c3adcb82dd7391b751bfc15800d4a1e270724b6",
+  "checks": {
+    "agreement_grows_with_the_degree": true,
+    "alpha_agrees_at_least_twenty_five_characters": true,
+    "delta_agrees_at_least_twenty_five_characters": true,
+    "newton_converged_at_every_degree": true,
+    "published_targets_are_mutually_consistent": true,
+    "reciprocal_relation_holds": true,
+    "truncation_residual_decreases_with_the_degree": true,
+    "unnormalised_operator_control_differs": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/feigenbaum_fixed_point/contract.json",
+  "cost": {
+    "assertions": 7,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 2.364
+  },
+  "equation": {
+    "delta": "dominant eigenvalue of the linearised operator, restricted to the normalised subspace g(0) = 1",
+    "implemented": "G(y) = A G((G(y/A^2))^2) with A = 1/G(1)",
+    "in_the_x_variable": "g(x) = -alpha g(g(x/alpha)) with alpha = -1/g(1)",
+    "normalisation": "g(0) = 1, g even; alpha is then fixed by g(1)"
+  },
+  "honesty": {
+    "algebraic_status_claimed": false,
+    "digits_beyond_the_counted_agreement_claimed": false,
+    "no_acceleration_used": true,
+    "published_digits_are_a_target_not_a_derivation": true,
+    "truncation_residual_is_a_numerical_indicator": true,
+    "verified_error_bound_claimed": false
+  },
+  "precision": {
+    "acceleration_applied": false,
+    "binary_floating_point_in_reported_values": false,
+    "decimal_precision": 70
+  },
+  "published_source": {
+    "alpha_prefix": "2.502907875095892822283902873218215786381271376727149977336192056779235463179590206",
+    "bytes_retained_here": false,
+    "citation": "OEIS A006890, A006891 and A306963, fetched 2026-09-13; b-file digests recorded in experiments/feigenbaum_period_doubling/contract.json",
+    "delta_prefix": "4.669201609102990671853203820466201617258185577475768632745651343004134330211314737",
+    "reciprocal_alpha_prefix": "0.39953528052313448985758046863369371943354428046695272751707304491243"
+  },
+  "published_target_consistency": {
+    "agreement_characters": 47,
+    "note": "the alpha and reciprocal targets are checked against each other, so a mis-transcribed digit in either is caught here rather than compared against the computation",
+    "reciprocal_of_the_alpha_prefix": "0.399535280523134489857580468633693719433544280",
+    "recorded_reciprocal_prefix": "0.39953528052313448985758046863369371943354428046695272751707304491243"
+  },
+  "schema": "adva.external.feigenbaum-fixed-point.v0",
+  "sibling": {
+    "contract": "experiments/feigenbaum_period_doubling/contract.json",
+    "note": "the earlier cascade round reached 14 agreeing characters with an accelerator; this round reaches more without one"
+  },
+  "status": "ExternalExactPass",
+  "table": [
+    {
+      "alpha": "2.50290802909352182447814252788034475",
+      "alpha_agreement_characters": 7,
+      "alpha_agreement_string": "2.502908029093521824478142527880344747230734780",
+      "coefficients_a1_a2_a3": [
+        "-1.527633163506418303862613648905",
+        "0.104815727992784777211993575250",
+        "0.026705029446675331559035296901"
+      ],
+      "degree": 8,
+      "delta": "4.66920268487987740765382352721437221",
+      "delta_agreement_characters": 7,
+      "delta_agreement_string": "4.669202684879877407653823527214372212295842124",
+      "g_1": "-0.39953525594073466209695908137096208",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.25E-66",
+      "reciprocal_agreement_characters": 9,
+      "reciprocal_agreement_string": "0.399535255940734662096959081370962082755929778",
+      "truncation_residual_beyond_the_degree": "1.85E-8"
+    },
+    {
+      "alpha": "2.50290787510302893453763742819334259",
+      "alpha_agreement_characters": 11,
+      "alpha_agreement_string": "2.502907875103028934537637428193342587167589498",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997045851980562561170263",
+        "0.104815194821581362114822116761",
+        "0.026705670468366729229309218277"
+      ],
+      "degree": 12,
+      "delta": "4.66920160917392663840078171383824604",
+      "delta_agreement_characters": 12,
+      "delta_agreement_string": "4.669201609173926638400781713838246040290468029",
+      "g_1": "-0.39953528052199536338812419672650863",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.21E-66",
+      "reciprocal_agreement_characters": 13,
+      "reciprocal_agreement_string": "0.399535280521995363388124196726508628029664838",
+      "truncation_residual_beyond_the_degree": "9.99E-13"
+    },
+    {
+      "alpha": "2.50290787509588927084390752170008900",
+      "alpha_agreement_characters": 15,
+      "alpha_agreement_string": "2.502907875095889270843907521700089004020245479",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997036295833952581905945",
+        "0.104815194787280221445443132320",
+        "0.026705670525247219916854908803"
+      ],
+      "degree": 16,
+      "delta": "4.66920160910296159825996752088213310",
+      "delta_agreement_characters": 15,
+      "delta_agreement_string": "4.669201609102961598259967520882133101073535376",
+      "g_1": "-0.39953528052313505676840803933985786",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.22E-66",
+      "reciprocal_agreement_characters": 16,
+      "reciprocal_agreement_string": "0.399535280523135056768408039339857863736817418",
+      "truncation_residual_beyond_the_degree": "2.33E-16"
+    },
+    {
+      "alpha": "2.50290787509589282228237081619611082",
+      "alpha_agreement_characters": 22,
+      "alpha_agreement_string": "2.502907875095892822282370816196110819831093555",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997036301454034774440754",
+        "0.104815194787303733220253436121",
+        "0.026705670525193353976344366296"
+      ],
+      "degree": 20,
+      "delta": "4.66920160910299067166084276631872647",
+      "delta_agreement_characters": 20,
+      "delta_agreement_string": "4.669201609102990671660842766318726469223659827",
+      "g_1": "-0.39953528052313448985782502850670970",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.22E-66",
+      "reciprocal_agreement_characters": 23,
+      "reciprocal_agreement_string": "0.399535280523134489857825028506709698630248440",
+      "truncation_residual_beyond_the_degree": "2.47E-21"
+    },
+    {
+      "alpha": "2.50290787509589282228393470190000151",
+      "alpha_agreement_characters": 24,
+      "alpha_agreement_string": "2.502907875095892822283934701900001510246886385",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997036301454035951192111",
+        "0.104815194787303733217058469385",
+        "0.026705670525193354031579228745"
+      ],
+      "degree": 24,
+      "delta": "4.66920160910299067185348512133381495",
+      "delta_agreement_characters": 23,
+      "delta_agreement_string": "4.669201609102990671853485121333814949832331465",
+      "g_1": "-0.39953528052313448985757538787086083",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.24E-66",
+      "reciprocal_agreement_characters": 24,
+      "reciprocal_agreement_string": "0.399535280523134489857575387870860827089405331",
+      "truncation_residual_beyond_the_degree": "1.39E-24"
+    },
+    {
+      "alpha": "2.50290787509589282228390287419464187",
+      "alpha_agreement_characters": 28,
+      "alpha_agreement_string": "2.502907875095892822283902874194641872791150677",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997036301454035890312144",
+        "0.104815194787303733216742624952",
+        "0.026705670525193354032652051522"
+      ],
+      "degree": 28,
+      "delta": "4.66920160910299067185320383120570925",
+      "delta_agreement_characters": 27,
+      "delta_agreement_string": "4.669201609102990671853203831205709247841485620",
+      "g_1": "-0.39953528052313448985758046847782835",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.22E-66",
+      "reciprocal_agreement_characters": 29,
+      "reciprocal_agreement_string": "0.399535280523134489857580468477828346110952008",
+      "truncation_residual_beyond_the_degree": "5.31E-29"
+    },
+    {
+      "alpha": "2.50290787509589282228390287321795506",
+      "alpha_agreement_characters": 31,
+      "alpha_agreement_string": "2.502907875095892822283902873217955056918971288",
+      "coefficients_a1_a2_a3": [
+        "-1.527632997036301454035890310160",
+        "0.104815194787303733216742613797",
+        "0.026705670525193354032652094959"
+      ],
+      "degree": 32,
+      "delta": "4.66920160910299067185320382046381037",
+      "delta_agreement_characters": 31,
+      "delta_agreement_string": "4.669201609102990671853203820463810373935030482",
+      "g_1": "-0.39953528052313448985758046863373534",
+      "g_1_times_alpha": "-1.000000000000000000000000000000",
+      "newton_iterations": 6,
+      "newton_residual": "2.17E-66",
+      "reciprocal_agreement_characters": 32,
+      "reciprocal_agreement_string": "0.399535280523134489857580468633735339270973064",
+      "truncation_residual_beyond_the_degree": "8.24E-33"
+    }
+  ],
+  "unnormalised_operator_control": {
+    "differs_from_delta": true,
+    "dominant_eigenvalue": "6.2645478312170374251099074",
+    "why": "the operator before normalisation does not preserve g(0) = 1, so its linearisation carries an extra direction whose eigenvalue is not delta; this is the mistake that the first version of this round made, and it is kept as a control"
+  },
+  "version": 0
+}

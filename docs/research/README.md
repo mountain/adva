@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **182 numbered
-notes, 22 named notes and 25 supporting directories**. Nothing here is a stable
+This directory holds the research record of the repository: **195 numbered
+notes, 28 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -703,12 +703,28 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md`](0171-density-wave-marginal-wall-and-the-nonlocality-of-self-gravity.md)
 - [`0172-the-i-minus-e-integrality-conjecture.md`](0172-the-i-minus-e-integrality-conjecture.md)
 - [`0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md`](0173-mirrors-that-never-close-and-a-question-to-a-waking-ai.md)
+- [`0174-absurdity-emptiness-counterexample.md`](0174-absurdity-emptiness-counterexample.md)
+- [`0175-dodecahedral-hamiltonicity.md`](0175-dodecahedral-hamiltonicity.md)
+- [`0176-feigenbaum-period-doubling-calibration.md`](0176-feigenbaum-period-doubling-calibration.md)
+- [`0177-feigenbaum-fixed-point-collocation.md`](0177-feigenbaum-fixed-point-collocation.md)
+- [`0178-rigorous-enclosures-and-two-barriers.md`](0178-rigorous-enclosures-and-two-barriers.md)
+- [`0179-kantorovich-preflight.md`](0179-kantorovich-preflight.md)
+- [`0180-inverse-norm-obstruction.md`](0180-inverse-norm-obstruction.md)
+- [`0181-wu-elimination-on-plane-incidence.md`](0181-wu-elimination-on-plane-incidence.md)
+- [`0182-wu-elimination-general-conic.md`](0182-wu-elimination-general-conic.md)
+- [`0183-zhang-finite-example-verification.md`](0183-zhang-finite-example-verification.md)
+- [`0184-area-method-readable-proofs.md`](0184-area-method-readable-proofs.md)
+- [`0185-yang-difference-substitution-inequalities.md`](0185-yang-difference-substitution-inequalities.md)
+- [`0186-dual-facility-leak-wall.md`](0186-dual-facility-leak-wall.md)
 
 ### Named notes
+
+- [`mobius-transport-composition-boundary.md`](mobius-transport-composition-boundary.md)
 
 - [`mobius-transport-receipt-boundary.md`](mobius-transport-receipt-boundary.md)
 
 - [`PR-0152-0158-integration.md`](PR-0152-0158-integration.md)
+- [`absurdity-emptiness-record-freeze.md`](absurdity-emptiness-record-freeze.md)
 - [`alternating-group-observer-expansion.md`](alternating-group-observer-expansion.md)
 - [`borromean-boundary-word-correction.md`](borromean-boundary-word-correction.md)
 - [`borromean-independent-longitudes.md`](borromean-independent-longitudes.md)
@@ -725,10 +741,13 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`operator-lift-receipt-boundary-v0.md`](operator-lift-receipt-boundary-v0.md)
 - [`observer-quotient-descent-reproduction.md`](observer-quotient-descent-reproduction.md)
 - [`pairing-transport-native-boundary.md`](pairing-transport-native-boundary.md)
+- [`pascal-commutator-certificate.md`](pascal-commutator-certificate.md): exact commutator certificates for the pinned normalized Pascal equations; also corrects the independent-check and initial claims in Research 0181.
 - [`reflexive-lattice-gate.md`](reflexive-lattice-gate.md)
 - [`sharkovsky-interval-extension.md`](sharkovsky-interval-extension.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
 - [`triadic-period-bridge-correction.md`](triadic-period-bridge-correction.md)
+
+- [zot-prefix-machine-weighted-sharing.md](zot-prefix-machine-weighted-sharing.md): explicit Zot evaluation, exact weighted reuse, and prefix-Keraia syntax/input boundaries.
 
 ### Supporting directories
 
@@ -757,5 +776,5 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0165-evidence/`](0165-evidence/)
 - [`0167-evidence/`](0167-evidence/)
 
-*Complete listing as of 2026-09-12. The counts are stated once, in the header above;
+*Complete listing as of 2026-09-11. The counts are stated once, in the header above;
 they were previously duplicated here and the two copies drifted apart.*
