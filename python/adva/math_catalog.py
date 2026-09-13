@@ -67,7 +67,10 @@ LIMITS = {
     # entry, and requires the copy to stay consistent. The bound is therefore 100
     # entries plus the one the fixture adds. This is a recorded widening of a
     # declared bound asked for by the direction and not a standing invitation: the
-    # next increase needs its own reason.
+    # next increase needs its own reason. The direction later called that quoted
+    # statement imprecise and has not given corrected wording; the bound stands as
+    # the decision, and the qualification is recorded, verbatim and un-guessed, in
+    # docs/research/yang-lu-reference-registration-deferred.md.
     "entries": 101,
     "references": 256,
     # Raised from 96 to 120 on 2026-09-11, by the direction, to admit the
