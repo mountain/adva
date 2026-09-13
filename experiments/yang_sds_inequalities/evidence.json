@@ -1,0 +1,701 @@
+{
+  "certificate_method": {
+    "published_method_not_read": "the reference chapter 'Successive Difference Substitution' in Xia and Yang's book (DOI 10.1142/9789814759120_0010) was not read, so this is a sound subset of the idea rather than a reproduction of the algorithm",
+    "substitution": "the j-th smallest variable becomes the sum of the first j+1 difference variables",
+    "why_incomplete": "coefficient positivity after one substitution is a sufficient condition only; a statement no ordering certifies is Unknown",
+    "why_sound": "on the ordered cone that substitution is exactly the change to nonnegative difference variables, so nonnegative coefficients give nonnegativity there; every nonnegative point sorts into some ordering, so taking all n! orderings gives the whole orthant"
+  },
+  "checker_sha256": "dd8a2719d1210d50bc76e03e9c634d9f2757d601ceeca2aa80a67e0f656d331c",
+  "checks": {
+    "a_geometric_inequality_is_reached": true,
+    "cost_is_measured": true,
+    "every_certificate_survives_the_soundness_audit": true,
+    "every_statement_declared_true_survives_the_witness_search": true,
+    "naive_iteration_is_measured_not_assumed": true,
+    "the_classical_inequalities_are_certified": true,
+    "the_false_companion_is_refuted_on_an_explicit_point": true,
+    "the_mis_written_schur_statement_is_recorded": true,
+    "the_motzkin_polynomial_is_certified": true,
+    "the_repository_inequality_is_measured_and_its_identity_verified": true,
+    "the_substitution_is_an_identity": true,
+    "the_tooling_is_declared": true,
+    "the_two_certificate_kinds_are_distinguished": true,
+    "unknown_is_distinguished_from_false": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/yang_sds_inequalities/contract.json",
+  "cost": {
+    "assertions": 132,
+    "note": "the wall time is measured and is not part of any retained claim",
+    "orderings_evaluated": 84,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 2.427
+  },
+  "naive_iteration": {
+    "conclusion": "applying the substitution again proves nonnegativity only on the sub-cone where the differences are themselves ordered, which is strictly smaller, so naive iteration does not strengthen the certificate",
+    "counterexample": {
+      "differences": [
+        "0",
+        "2",
+        "1"
+      ],
+      "differences_are_ordered": false,
+      "point": [
+        "0",
+        "2",
+        "3"
+      ],
+      "point_is_in_the_ordered_cone": true
+    },
+    "ordered_cone_definition": "0 <= x_1 <= x_2 <= ... <= x_n",
+    "second_substitution_needs": "the difference variables themselves to be ordered",
+    "what_is_measured": "whether substituting twice certifies the same statement on the same cone"
+  },
+  "ordered_certificates": {
+    "schur_t1": {
+      "conditions_on_the_ordered_cone": [
+        "x - y >= 0",
+        "x + y - z >= 0",
+        "z >= 0",
+        "x - z >= 0",
+        "y - z >= 0"
+      ],
+      "identity": "sum_cyc x(x-y)(x-z) = (x-y)^2 (x+y-z) + z(x-z)(y-z)",
+      "identity_verified_exactly": true,
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "what_this_shows": "Schur's inequality has both kinds of certificate: the ordered one here, which a reader can check by the sign of five factors, and the substitution one. The marginal-wall inequality has only the first kind, which is why the two kinds are kept apart"
+    }
+  },
+  "outcomes": {
+    "amgm3": "Certified",
+    "amgm4": "Certified",
+    "false_companion_power_mean": "Unknown",
+    "marginal_wall_discriminant": "Unknown",
+    "motzkin": "Certified",
+    "nesbitt": "Certified",
+    "schur_t1": "Certified",
+    "weitzenbock": "Certified"
+  },
+  "schema": "adva.external.yang-sds-inequalities.v0",
+  "statements": {
+    "amgm3": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 7,
+        "orderings": 6,
+        "orderings_certifying": 6,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 7
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 7
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 7
+          }
+        ]
+      },
+      "claim": "x^3+y^3+z^3 >= 3xyz",
+      "degree": 3,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 2,
+      "note": "the polynomial form of AM-GM for three terms",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 4,
+      "variables": 3,
+      "witness_if_any": null
+    },
+    "amgm4": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 31,
+        "orderings": 24,
+        "orderings_certifying": 24,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "terms": 31
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ],
+            "terms": 31
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ],
+            "terms": 31
+          }
+        ]
+      },
+      "claim": "a^4+b^4+c^4+d^4 >= 4abcd",
+      "degree": 4,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 3,
+      "note": "the four-variable case, which exercises all 24 orderings",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 5,
+      "variables": 4,
+      "witness_if_any": null
+    },
+    "false_companion_power_mean": {
+      "certificate": {
+        "first_failing_order": [
+          0,
+          1,
+          2
+        ],
+        "largest_image_terms": 10,
+        "orderings": 6,
+        "orderings_certifying": 0,
+        "outcome": "Unknown",
+        "records_head": [
+          {
+            "certified": false,
+            "most_negative": "-2",
+            "negative_coefficients": 3,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 10
+          },
+          {
+            "certified": false,
+            "most_negative": "-2",
+            "negative_coefficients": 3,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 10
+          },
+          {
+            "certified": false,
+            "most_negative": "-2",
+            "negative_coefficients": 3,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 10
+          }
+        ]
+      },
+      "claim": "x^3+y^3+z^3 >= 4xyz (deliberately false)",
+      "degree": 3,
+      "expected_true": false,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 3,
+      "note": "fails at x=y=z=1, where the value is -1",
+      "outcome": "Unknown",
+      "soundness_audit": {
+        "examples": [
+          {
+            "point": [
+              "29/5",
+              "5",
+              "19/3"
+            ],
+            "value": "-541747/3375"
+          },
+          {
+            "point": [
+              "2",
+              "20/7",
+              "7/2"
+            ],
+            "value": "-15919/2744"
+          },
+          {
+            "point": [
+              "35/4",
+              "38/5",
+              "39/5"
+            ],
+            "value": "-3930801/8000"
+          }
+        ],
+        "negative_points": 22,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 4,
+      "variables": 3,
+      "witness": {
+        "point": [
+          "3/2",
+          "11/4",
+          "7/3"
+        ],
+        "value": "-2807/1728"
+      },
+      "witness_if_any": {
+        "point": [
+          "3/2",
+          "11/4",
+          "7/3"
+        ],
+        "value": "-2807/1728"
+      }
+    },
+    "marginal_wall_discriminant": {
+      "certificate": {
+        "first_failing_order": [
+          0,
+          1,
+          2,
+          3
+        ],
+        "largest_image_terms": 50,
+        "orderings": 24,
+        "orderings_certifying": 0,
+        "outcome": "Unknown",
+        "records_head": [
+          {
+            "certified": false,
+            "most_negative": "-4",
+            "negative_coefficients": 5,
+            "order": [
+              0,
+              1,
+              2,
+              3
+            ],
+            "terms": 16
+          },
+          {
+            "certified": false,
+            "most_negative": "-4",
+            "negative_coefficients": 7,
+            "order": [
+              0,
+              1,
+              3,
+              2
+            ],
+            "terms": 21
+          },
+          {
+            "certified": false,
+            "most_negative": "-4",
+            "negative_coefficients": 5,
+            "order": [
+              0,
+              2,
+              1,
+              3
+            ],
+            "terms": 15
+          }
+        ]
+      },
+      "claim": "cs^2 k^2 - (2 cs kappa - s) k + kappa^2 >= 0 for cs,kappa,k,s >= 0, with g = 2 cs kappa - s",
+      "degree": 4,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 2,
+      "note": "the discriminant inequality of the repository's marginal-wall round; equality of the two forms is checked exactly",
+      "outcome": "Unknown",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 4,
+      "variables": 4,
+      "witness_if_any": null
+    },
+    "motzkin": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 22,
+        "orderings": 6,
+        "orderings_certifying": 6,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 18
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 22
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 22
+          }
+        ]
+      },
+      "claim": "x^4y^2+y^4z^2+z^4x^2 >= 3x^2y^2z^2",
+      "degree": 6,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 2,
+      "note": "the Motzkin polynomial: nonnegative, and not a sum of squares of polynomials",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 4,
+      "variables": 3,
+      "witness_if_any": null
+    },
+    "nesbitt": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 7,
+        "orderings": 6,
+        "orderings_certifying": 6,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 7
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 7
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 7
+          }
+        ]
+      },
+      "claim": "sum x/(y+z) >= 3/2, cleared of denominators",
+      "degree": 3,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 2,
+      "note": "multiplied by 2(x+y)(y+z)(z+x), which is positive on the open orthant",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 9,
+      "variables": 3,
+      "witness_if_any": null
+    },
+    "schur_t1": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 5,
+        "orderings": 6,
+        "orderings_certifying": 6,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 5
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 5
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 5
+          }
+        ]
+      },
+      "claim": "Schur t=1: sum_cyc x(x-y)(x-z) >= 0, that is x^3+y^3+z^3+3xyz >= sum_sym x^2 y",
+      "degree": 3,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 2,
+      "note": "a classical symmetric inequality on the orthant; the first version of this statement was mis-written as x^3+y^3+z^3+xyz >= xy(x+y)+yz(y+z)+zx(z+x), which is FALSE at (1,1,1), and the corrected form is used here",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "statement_error": {
+        "corrected_to": "sum_cyc x(x-y)(x-z) >= 0, that is x^3+y^3+z^3+3xyz >= sum_sym x^2 y",
+        "what_was_written": "x^3+y^3+z^3+xyz >= xy(x+y)+yz(y+z)+zx(z+x), which is false at (1,1,1) with value -2",
+        "why_it_matters": "a sampling soundness audit did not catch it, because random orthant points essentially never have three equal coordinates; the corrected statement and the witness search are the response"
+      },
+      "terms": 10,
+      "variables": 3,
+      "witness_if_any": null
+    },
+    "weitzenbock": {
+      "certificate": {
+        "first_failing_order": null,
+        "largest_image_terms": 12,
+        "orderings": 6,
+        "orderings_certifying": 6,
+        "outcome": "Certified",
+        "records_head": [
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              1,
+              2
+            ],
+            "terms": 12
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              0,
+              2,
+              1
+            ],
+            "terms": 12
+          },
+          {
+            "certified": true,
+            "most_negative": null,
+            "negative_coefficients": 0,
+            "order": [
+              1,
+              0,
+              2
+            ],
+            "terms": 12
+          }
+        ]
+      },
+      "claim": "(a^2+b^2+c^2)^2 >= 3(a+b+c)(-a+b+c)(a-b+c)(a+b-c), which is 48 times the squared area",
+      "degree": 4,
+      "expected_true": true,
+      "identity_audit": {
+        "checked": 12,
+        "trials": 12
+      },
+      "max_coefficient_bits": 6,
+      "note": "sides written as y+z, z+x, x+y, which turns the triangle condition into x,y,z >= 0",
+      "outcome": "Certified",
+      "soundness_audit": {
+        "examples": [],
+        "negative_points": 0,
+        "points": 200,
+        "trials": 200
+      },
+      "terms": 15,
+      "variables": 3,
+      "witness_if_any": null
+    }
+  },
+  "status": "ExternalExactPass",
+  "sum_of_squares_identity": {
+    "identity_verified_exactly": true,
+    "sos_form": "cs^2 k^2 - (2 cs kappa - s) k + kappa^2 = (cs k - kappa)^2 + s k",
+    "sos_soundness_audit": {
+      "examples": [],
+      "negative_points": 0,
+      "points": 200,
+      "trials": 200
+    },
+    "what_this_shows": "the repository's marginal-wall inequality has an exact sum-of-squares certificate even though the difference substitution does not certify it within one round"
+  },
+  "surprises_kept": {
+    "motzkin_is_certified": {
+      "expected": "Unknown, because the Motzkin polynomial is the classical example of a nonnegative polynomial that is not a sum of squares",
+      "kept": "cited as a finding about what this certificate reaches; the classical non-sum-of-squares fact is cited and not verified in this run",
+      "measured": "Certified by all six orderings, with an eighteen-term difference image whose coefficients are all nonnegative"
+    },
+    "the_repository_inequality_is_not_certified_by_this_route": {
+      "expected": "either outcome, recorded as a measurement by the contract",
+      "kept": "the two certificates are different objects and the note keeps them apart",
+      "measured": "Unknown, with five negative coefficients in its difference image, while its sum-of-squares identity is exactly verified"
+    },
+    "the_schur_statement_was_mis_written_first": {
+      "expected": "a certificate, because Schur's inequality is the standard textbook case",
+      "how_it_was_found": "by evaluating the written statement at the symmetric point while preparing the ordered certificate, not by the sampling audit, which had passed because random orthant points essentially never have equal coordinates",
+      "kept": "the mis-written statement, its false value at (1,1,1) and the fact that a sampling audit missed it are all retained; the run now searches a witness for every statement declared true, which is the check that would have caught it",
+      "measured_after_correction": "Certified by all six orderings",
+      "measured_first": "Unknown, because the statement had been written as x^3+y^3+z^3+xyz >= xy(x+y)+yz(y+z)+zx(z+x), which is FALSE: its value at (1,1,1) is -2"
+    }
+  },
+  "tooling": {
+    "arithmetic": "fractions.Fraction on sparse multivariate polynomials; no float in any certificate",
+    "external_library": "none",
+    "external_oracle_not_native_authority": true,
+    "python": "3.14.6"
+  },
+  "version": 0,
+  "what_is_not_claimed": [
+    "This is an external exact computation, not a native certificate, and it admits nothing into any catalog",
+    "The published successive-difference-substitution algorithm was not read and is not reproduced; the reference is a chapter title and a DOI",
+    "A statement the certificate does not reach is Unknown, never false; the Motzkin polynomial is the concrete case here",
+    "The certificate is sound but incomplete, and its incompleteness is measured rather than bounded",
+    "The sum-of-squares identity is verified exactly, but it is an alternative certificate and not a product of the substitution",
+    "The classical fact that the Motzkin polynomial is not a sum of squares of polynomials is cited and not verified here, so the reach beyond the sum-of-squares cone rests on a cited premise",
+    "The soundness audit samples exact orthant points; it is evidence for the certificate, not a proof of it",
+    "Nothing here is claimed about non-polynomial inequalities, about inequalities outside an orthant, or about the published method's completeness",
+    "Nothing about Feigenbaum, Arakelov, mirror symmetry, the density-wave line beyond the one identity, or the repository's geometry growth line follows from this run"
+  ]
+}
