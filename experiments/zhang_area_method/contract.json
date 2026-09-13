@@ -1,0 +1,97 @@
+{
+  "schema": "adva.research.zhang-area-method-contract.v0",
+  "version": 0,
+  "name": "zhang-area-method",
+  "base_commit": "215d652",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can a small kernel of Chou-Gao-Zhang's area method (point elimination, the method behind Zhang Jingzhong's readable machine-generated geometry proofs) be implemented additively over exact rational arithmetic in this repository, does it retain a readable elimination trace that an independent replay re-verifies step by step, and where exactly does it stop?",
+  "level": "External exact symbolic computation over Q. Points are affine coordinate pairs over sparse integer polynomials in the free points' coordinates; the three quantities are the doubled signed area S, the signed ratio R of two parallel oriented segments, and the Pythagoras difference Py. Elimination is a sequence of explicitly named rewrite lemmas, each verified exactly as a polynomial identity, then re-verified on seeded random exact rational instances, then replayed against the recorded trace strings. No native admission, no Rust witness, no geometry catalog successor.",
+  "domain": "Constructive plane statements: a sequence of constructions of new points from earlier points, with a goal that is an equality of two arithmetic expressions over the three quantities. The hypotheses are exactly the constructions; there are no non-constructive side conditions except the parallelism and non-degeneracy conditions that each elimination lemma records.",
+  "objects": {
+    "constructions_implemented": [
+      "on_line_d (P = Q + r*(R-Q) with r an exact rational parameter)",
+      "is_midpoint (the r = 1/2 instance, kept as its own named lemma)",
+      "inter_ll (P = line(A,B) cap line(C,D) by cross products)",
+      "affine_comb (P = sum r_i Q_i with sum r_i = 1, the general affine combination)"
+    ],
+    "constructions_not_implemented": [
+      "on_line (P on line QR with an unspecified parameter)",
+      "on_parallel",
+      "on_parallel_d",
+      "on_inter_line_parallel",
+      "on_inter_parallel_parallel",
+      "on_perp",
+      "on_perp_d",
+      "on_inter_line_perp",
+      "is_circumcenter",
+      "is_orthocenter",
+      "is_centroid"
+    ],
+    "quantities": [
+      "S(A,B,C) = det of the three homogeneous triples (x,y,1), i.e. TWICE the signed area; doubling is chosen so that every lemma keeps integer coefficients and no 1/2 is introduced by the geometry itself",
+      "R(A,B,C,D) = the signed lambda with B - A = lambda*(D - C); it is the ratio of oriented distances AB/CD exactly when AB is parallel to CD, and the parallelism is verified exactly as a side condition wherever R is used in a goal",
+      "Py(A,B,C) = AB^2 + BC^2 - CA^2, the Pythagoras difference"
+    ],
+    "statements": [
+      "medians_concurrent",
+      "centroid_ratio_2_1",
+      "ceva_rational",
+      "menelaus",
+      "apollonius_pyth",
+      "parallelogram_opposite_sides"
+    ],
+    "falsified_companions": [
+      "centroid_ratio_3_1",
+      "ceva_rational_wrong_parameter"
+    ],
+    "statements_not_run": [
+      "pappus"
+    ],
+    "random_instances_per_lemma": 40,
+    "random_instances_per_statement": 12,
+    "random_seed": 20260913,
+    "max_elimination_steps_per_point": 60,
+    "exact_arithmetic_only": true,
+    "floats_in_certified_steps": 0,
+    "max_assertions": 20000
+  },
+  "quantifiers": [
+    "Every implemented elimination lemma, verified as a polynomial identity over the free points' coordinates and re-checked on the recorded number of seeded random exact rational instances",
+    "Every retained proof, replayed step by step from the recorded before/after expression strings",
+    "Every retained proof step, additionally re-verified semantically by evaluating the recorded before-subterm and after-subterm in the actual configuration and comparing them as exact rational functions",
+    "Every statement and every falsified companion, evaluated on the recorded number of seeded random exact rational instances without using the elimination code at all",
+    "Every deliberately broken variant, checked against the same verification and replay machinery"
+  ],
+  "acceptance": [
+    "Each implemented elimination lemma carries a human-readable name and geometric statement, and its two sides are compared as rational functions of the free points' coordinates by exact polynomial identity, not by sampling",
+    "Each lemma is additionally checked on the recorded number of seeded random exact rational instances, and the count and the number of matches are recorded",
+    "Every retained proof is a sequence of recorded steps, each naming the lemma, the eliminated point, the position of the rewritten subterm, and the expression before and after; the trace is serialized to JSON and re-parsed before replay, so replay does not read in-memory structures",
+    "The replay re-derives every step's right-hand side from the lemma definition and compares the reprinted result with the recorded after-expression string; the replay verdict is recorded",
+    "Every step is also checked semantically: the recorded before-subterm and after-subterm strings are parsed, evaluated exactly in the actual configuration, and compared as rational functions, independently of the rewriting code",
+    "The retained proofs close: the three medians concurrent, the centroid ratio 2:1, the rational Ceva configuration, the Menelaus configuration, the Apollonius identity for a median, and the parallelogram ratio; otherwise the run records Unknown with the exact reason",
+    "The falsified companions are NOT proved, and each is separately refuted on an explicit exact rational instance in which the recorded non-degeneracy conditions hold",
+    "A goal that does not close is reported as Unknown with a reason and is never reported as disproved; the kernel has no 'disproved' outcome at all",
+    "Deliberately broken variants (a lemma with a wrong sign, and a wrong affine coefficient in the midpoint lemma) are detected, and the record says which check caught each one; a broken variant that is NOT detected is recorded as an undetected control rather than dropped",
+    "No float is used in any certified step; all arithmetic is Fraction over sparse integer polynomials, and the run reports whether any float appears",
+    "sympy is imported defensively, its presence and version are reported, and it is used for no certified step",
+    "The assertion count is within the contract's max_assertions and the wall time within wall_seconds",
+    "The evidence body excluding the single cost block is byte-identical between two consecutive runs of the same checker"
+  ],
+  "protected": [
+    "The Wu elimination rounds, the HNS round and the Feigenbaum rounds are frozen and are not rewritten",
+    "This is external evidence only: no native certificate, no geometry catalog admission, no Rust witness, no claims.toml entry",
+    "The repository's Pascal-rooted geometry growth obligation stays Open; nothing here imports, extends or discharges it",
+    "A closed goal is closed for the declared constructive formulation under the recorded non-degeneracy conditions, not for a bare geometric statement in prose",
+    "The area method as implemented here is a declared subset; the absence of a construction is recorded as Unknown: construction not implemented and never as a negative result",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 300,
+    "memory_bytes": 1073741824,
+    "max_assertions": 20000,
+    "output_bytes": 4194304
+  },
+  "residual": "This implements four constructions and six lemmas of the area method, closes six small constructive statements and records two falsified companions, with a replayable trace and exact per-step verification. It does not implement the constructions that need points at infinity or perpendicularity (on_parallel, on_perp and their relatives, is_circumcenter, is_orthocenter, is_centroid as a constructor), so Pappus, most perpendicular statements and any statement whose goal is a Pythagoras difference with the eliminated point strictly in the middle argument are outside this kernel and are reported as Unknown rather than as failures. It proves nothing about the Wu rounds or the geometry growth obligation, and nothing here is a native certificate."
+}
