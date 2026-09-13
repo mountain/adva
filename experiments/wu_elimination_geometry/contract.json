@@ -1,0 +1,48 @@
+{
+  "schema": "adva.research.wu-elimination-geometry-contract.v0",
+  "version": 0,
+  "name": "wu-elimination-geometry",
+  "base_commit": "3edbec0",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can Wu's elimination method decide a polynomial geometry statement in this repository's setting, does it produce a certificate this repository can check, and where does it fail to reach?",
+  "level": "External exact symbolic computation over Q by pseudo-division and characteristic chains, cross-checked by Groebner bases; no native admission, no Rust witness, no geometry catalog successor",
+  "domain": "Plane incidence statements written as polynomial systems in exact rational arithmetic: Ceva's theorem as a control with a known proof shape, Pappus' theorem as the degenerate Pascal configuration, and Pascal's theorem for six points on the parabola y = x^2, each with a deliberately falsified companion that must not reduce to zero",
+  "objects": {
+    "theorems": ["ceva", "pappus", "pascal_on_a_parabola"],
+    "falsified_companions": ["ceva_falsified", "pappus_falsified", "pascal_on_a_parabola_falsified"],
+    "variable_order": "the x coordinates first, then the y coordinates, as declared per theorem",
+    "random_instances_per_theorem": 3,
+    "random_seed": 20260913,
+    "exact_arithmetic_only": true,
+    "max_assertions": 100000
+  },
+  "quantifiers": [
+    "Every declared theorem and every falsified companion",
+    "Every polynomial of every hypothesis chain, with the pseudo-remainders recorded",
+    "Every random exact instance, substituted and checked"
+  ],
+  "acceptance": [
+    "A characteristic chain is computed for each hypothesis system by pseudo-division, not assumed, and the initials of the chain are recorded as the non-degeneracy conditions the conclusion depends on",
+    "The conclusion of each true statement reduces to exactly zero modulo its chain, and the reduction is verified again by an independent Groebner basis computation of the same conclusion modulo the same hypotheses",
+    "Each falsified companion does not reduce to zero, and the Groebner cross-check agrees that it is not in the ideal, so the reduction is not a machine that answers zero to everything",
+    "Random exact rational instances are substituted into each true statement and checked, so that the algebraic certificate is accompanied by concrete evaluations",
+    "The limits are recorded: the method applies to polynomial statements only, the general conic hypothesis for Pascal is not a chain and was not triangularised in this round, and no native certificate follows",
+    "The external library used for polynomial arithmetic is declared, and the run reports whether it is available"
+  ],
+  "protected": [
+    "The six earlier Feigenbaum rounds and the HNS round are frozen and are not rewritten",
+    "The repository's Pascal-rooted geometry growth obligation stays Open: this is external evidence and is not a native import or a derivation certificate",
+    "No geometry catalog entry, no native operation, no Seal and no claims.toml entry beyond this bounded experiment follows",
+    "A theorem proved here is proved for the declared polynomial formulation under the recorded non-degeneracy conditions, not for a bare geometric statement in prose",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 900,
+    "cpu_seconds": 850,
+    "memory_bytes": 2147483648,
+    "max_assertions": 100000,
+    "output_bytes": 4194304
+  },
+  "residual": "This decides three polynomial incidence statements under recorded non-degeneracy conditions and cross-checks them by an independent elimination method. It does not treat the general conic case, whose hypothesis is a single sextic rather than a chain, and it does not touch any functional equation, so it says nothing about the Feigenbaum fixed point beyond the fact that a truncated polynomial system could in principle be triangularised. Nothing here is a native certificate, and the geometry growth obligation remains Open."
+}
