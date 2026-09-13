@@ -1,0 +1,55 @@
+{
+  "schema": "adva.research.yang-sds-inequalities-contract.v0",
+  "version": 0,
+  "name": "yang-sds-inequalities",
+  "base_commit": "895376c",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Does the difference-substitution certificate -- write x_i as the sum of the first i difference variables, and certify by the sign of the coefficients -- prove polynomial inequalities on the positive orthant, where does that certificate stop, and does it reach an inequality this repository already recorded?",
+  "level": "External exact rational arithmetic over Q: sparse multivariate polynomials, all n! orderings of the difference substitution, coefficient-sign certificates, exact random instances on the orthant, and falsified, incompleteness and soundness-audit controls",
+  "domain": "Polynomial inequalities on the nonnegative orthant with rational coefficients, including Schur's inequality, the arithmetic-geometric mean form, Nesbitt's inequality cleared of denominators, Weitzenbock's inequality in the Heron polynomial form under the classical side substitution, the discriminant inequality that this repository's marginal-wall round recorded, a deliberately false companion, and the Motzkin polynomial.",
+  "objects": {
+    "substitution": "For an ordering of the variables, the smallest is replaced by the first difference variable and each next variable by the sum of the difference variables up to it. Under it, nonnegative coefficients give nonnegativity on the ordered cone; sorting an arbitrary orthant point shows the certificate over all n! orderings gives nonnegativity on the whole orthant.",
+    "certificate": "A statement is certified when, for every one of the n! orderings, the substituted polynomial has every coefficient nonnegative.",
+    "unknown": "A statement that no ordering certifies is Unknown. It is never reported as false.",
+    "refutation": "A false companion is refuted separately, by an explicit exact rational orthant point where the polynomial is negative, and that refutation is a control and not a certificate outcome.",
+    "rounds": "The published method iterates the substitution. This round implements the single substitution over all orderings and measures what naive iteration would and would not cover.",
+    "random_seed": 20260913,
+    "max_assertions": 200000
+  },
+  "quantifiers": [
+    "Every declared statement, with its certified or Unknown outcome and the ordering that decided it",
+    "The exact substitution identity at random exact rational points, checked as an identity rather than sampled for truth",
+    "Every certified statement evaluated on many exact orthant points, as a soundness audit",
+    "The false companion's explicit witness and the value there",
+    "Term counts and coefficient sizes before and after substitution"
+  ],
+  "acceptance": [
+    "The difference substitution is checked as an identity: for every declared statement and every ordering, the substituted polynomial evaluated at the differences equals the original at the point",
+    "Schur's inequality, the arithmetic-geometric mean form in three and four variables, Nesbitt's inequality cleared of denominators and Weitzenbock's inequality in the Heron polynomial form are certified by coefficient positivity after the substitution",
+    "Schur's inequality in its correct t=1 form is certified, and the mis-written form used in the first version of this statement, together with the false value -2 it takes at (1,1,1) and the fact that a sampling audit missed it, is retained in the evidence",
+    "The discriminant inequality recorded by this repository's marginal-wall round is tested: its sum-of-squares identity is verified exactly rather than asserted, and whether the substitution certifies it is recorded as a measured outcome",
+    "The deliberately false companion is not certified, is refuted on an explicit exact orthant point, and its witness is reported with the negative value",
+    "The Motzkin polynomial IS certified by the substitution, which is recorded as a finding because it is classically not a sum of squares of polynomials, so the certificate reaches beyond the sum-of-squares cone; that classical fact is cited and not verified here",
+    "Every certified statement passes the soundness audit on many random exact orthant points",
+    "Naive iteration of the substitution is measured and reported as covering a strictly smaller region, with an explicit exact point showing why",
+    "Term counts, coefficient sizes and the number of orderings actually needed are recorded as measured cost",
+    "A statement the certificate does not reach is distinguished from a false statement: the repository's marginal-wall discriminant is Unknown while its exact sum-of-squares identity is verified, and the deliberately false companion is Unknown while being refuted on an explicit point"
+  ],
+  "protected": [
+    "The Feigenbaum rounds 0176 to 0180, the Wu rounds 0181 and 0182, the finite-example round 0183 and the area-method round 0184 are frozen and are not rewritten",
+    "This is external evidence: no native certificate, no geometry catalog admission, and the Pascal-rooted growth obligation stays Open",
+    "The published method was not read: the chapter title and DOI of the reference are recorded, the algorithm in it is not reproduced, and nothing here is claimed about the published method's completeness",
+    "A certificate is a coefficient-sign proof for one polynomial; a failure to certify is Unknown and never a counterexample",
+    "The single-substitution certificate is sound but incomplete, and its incompleteness is measured rather than hidden",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 600,
+    "cpu_seconds": 560,
+    "memory_bytes": 4294967296,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This certifies several polynomial inequalities on the orthant, including one this repository recorded, by coefficient positivity after a single difference substitution taken over all orderings; it refutes one false companion on an explicit point and reports the Motzkin polynomial as Unknown. It does not reproduce the published successive-difference-substitution algorithm, does not decide the general problem, and says nothing about inequalities that are not polynomial or not stated on an orthant."
+}
