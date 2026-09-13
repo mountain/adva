@@ -1,0 +1,612 @@
+{
+  "checker_sha256": "4196e6170510c21c6f819adbcd0ba3926b711100e164256ebf2f42ab8cb72f28",
+  "checks": {
+    "max_flow_equals_min_cut_on_every_plan": true,
+    "no_cheaper_plan_contains_the_flow": true,
+    "no_containing_plan_leaves_a_route": true,
+    "the_capacity_change_alone_does_not_break_a_cut_sealing_plan": true,
+    "the_cheapest_plan_is_the_cheapest_among_all_containing_plans": true,
+    "the_key_point_family_is_computed": true,
+    "the_perturbation_breaks_the_stale_plan": true,
+    "the_second_reading_is_computed": true,
+    "the_structural_facts_are_computed": true,
+    "the_weaker_reading_is_reported_beside_it": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "containment_criterion": {
+    "strong_reading": "the residual escape capacity must be zero, so nothing leaves along the order",
+    "weaker_reading": "the leaks cannot carry away the whole flow, so the residual capacity is below the demand",
+    "why_both_are_reported": "the two answer different questions and their walls move in different directions; the strong reading is the one that matches keeping the flow in"
+  },
+  "contract": "experiments/dual_facility_leak_wall/contract.json",
+  "cost": {
+    "assertions": 2523,
+    "family_points": 12,
+    "plans_per_network": 1024,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 0.298
+  },
+  "network": {
+    "capacities": {
+      "channel": "12",
+      "hole_D1": "4",
+      "hole_D2": "2",
+      "hole_D3": "1",
+      "hole_F1": "3",
+      "hole_F2": "2",
+      "hole_F3": "1",
+      "opening_far": "1",
+      "opening_near": "1",
+      "segment": "3"
+    },
+    "carriers": [
+      "channel",
+      "segment"
+    ],
+    "openings": [
+      "hole_F1",
+      "hole_F2",
+      "hole_F3",
+      "opening_near",
+      "opening_far",
+      "hole_D1",
+      "hole_D2",
+      "hole_D3"
+    ],
+    "sealing_costs": {
+      "channel": "6",
+      "hole_D1": "2",
+      "hole_D2": "2",
+      "hole_D3": "2",
+      "hole_F1": "2",
+      "hole_F2": "2",
+      "hole_F3": "2",
+      "opening_far": "1",
+      "opening_near": "1",
+      "segment": "4"
+    }
+  },
+  "perturbation": {
+    "negative_control": {
+      "finding": "a capacity increase alone does not break a plan that seals a cut, so the perturbation that matters here is a change in the structure, not in a number",
+      "residual_flow": "0",
+      "what_changed": "the segment capacity moved from 3 to 5"
+    },
+    "stale_plan": {
+      "escapes": true,
+      "its_cost": "10",
+      "plan_from_the_reading_with_the_ends_sealed": [
+        "hole_F1",
+        "hole_F2",
+        "hole_F3",
+        "segment"
+      ],
+      "residual_flow_in_the_reading_with_the_ends_open": "1"
+    },
+    "what_changed": "the assumption about which openings exist: the plan computed with the two truncated ends taken as sealed by construction is evaluated where they are open",
+    "why_it_matters": "a containment plan that held under the stated assumption lets the flow out once the assumption is wrong, and the run exhibits the surviving residual flow instead of trusting the stale plan; this is the shape of a perturbation caused by an imprecise statement rather than by a changed number"
+  },
+  "reading_two_ends_sealed": {
+    "difference_from_reading_one_in_cost": "-1",
+    "key_point": {
+      "cheapest_cost": "10",
+      "sealed": [
+        "hole_F1",
+        "hole_F2",
+        "hole_F3",
+        "segment"
+      ]
+    }
+  },
+  "schema": "adva.external.dual-facility-leak-wall.v0",
+  "status": "ExternalExactPass",
+  "strong_reading": {
+    "all_containing_plans_of_minimum_cost": [
+      [
+        "hole_F1",
+        "hole_F2",
+        "hole_F3",
+        "opening_near",
+        "segment"
+      ]
+    ],
+    "containing_plans": 81,
+    "key_point": {
+      "cheapest_cost": "11",
+      "sealed": [
+        "hole_F1",
+        "hole_F2",
+        "hole_F3",
+        "opening_near",
+        "segment"
+      ]
+    },
+    "key_point_family": [
+      {
+        "cheapest_cost": "8",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "segment_sealing_cost": "1"
+      },
+      {
+        "cheapest_cost": "9",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "segment_sealing_cost": "2"
+      },
+      {
+        "cheapest_cost": "10",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "segment_sealing_cost": "3"
+      },
+      {
+        "cheapest_cost": "11",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "segment_sealing_cost": "4"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "5"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "6"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "7"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "8"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "9"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "10"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "11"
+      },
+      {
+        "cheapest_cost": "12",
+        "cheapest_sealed": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ],
+        "segment_sealing_cost": "12"
+      }
+    ],
+    "plans_examined": 1024,
+    "switches": [
+      {
+        "cheapest_cost": "12",
+        "from": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "segment_sealing_cost": "5",
+        "to": [
+          "channel",
+          "hole_F1",
+          "hole_F2",
+          "hole_F3"
+        ]
+      }
+    ]
+  },
+  "structural": {
+    "alexandrov_note": "the order used here is the reachability order of the declared network, and no separate topological construction beyond the cut computation is run: the phrase Alexandrov topology is the direction's and this run does not formalise it",
+    "openings_inside_a_facility": [
+      "hole_F1",
+      "hole_F2",
+      "hole_F3",
+      "hole_D1",
+      "hole_D2",
+      "hole_D3"
+    ],
+    "openings_on_the_segment": [
+      "opening_near",
+      "opening_far"
+    ],
+    "reading": "in the declared reading the two truncated ends are the only openings whose tail is an endpoint of the segment itself, so they are the only leaks the order exposes without the flow having to cross a facility"
+  },
+  "the_reading": "This is the agent's reading of a deliberately loose description, declared as such. Everything computed here is conditional on it, and the run reports how the answer moves under the second reading in which the two truncated ends are sealed rather than open.",
+  "tooling": {
+    "arithmetic": "fractions.Fraction throughout; no float in any computed quantity",
+    "external_library": "none",
+    "external_oracle_not_native_authority": true,
+    "python": "3.14.6"
+  },
+  "version": 0,
+  "weaker_reading": {
+    "demand_grid": "half-integers 1 to 24",
+    "rows": [
+      {
+        "cheapest_cost": "11",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near",
+          "segment"
+        ],
+        "demand": "1"
+      },
+      {
+        "cheapest_cost": "9",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "opening_near",
+          "segment"
+        ],
+        "demand": "3/2"
+      },
+      {
+        "cheapest_cost": "9",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "opening_near",
+          "segment"
+        ],
+        "demand": "2"
+      },
+      {
+        "cheapest_cost": "8",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "segment"
+        ],
+        "demand": "5/2"
+      },
+      {
+        "cheapest_cost": "8",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "segment"
+        ],
+        "demand": "3"
+      },
+      {
+        "cheapest_cost": "7",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near"
+        ],
+        "demand": "7/2"
+      },
+      {
+        "cheapest_cost": "7",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "hole_F3",
+          "opening_near"
+        ],
+        "demand": "4"
+      },
+      {
+        "cheapest_cost": "5",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "opening_near"
+        ],
+        "demand": "9/2"
+      },
+      {
+        "cheapest_cost": "5",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2",
+          "opening_near"
+        ],
+        "demand": "5"
+      },
+      {
+        "cheapest_cost": "4",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2"
+        ],
+        "demand": "11/2"
+      },
+      {
+        "cheapest_cost": "4",
+        "cheapest_sealed": [
+          "hole_F1",
+          "hole_F2"
+        ],
+        "demand": "6"
+      },
+      {
+        "cheapest_cost": "3",
+        "cheapest_sealed": [
+          "hole_F1",
+          "opening_near"
+        ],
+        "demand": "13/2"
+      },
+      {
+        "cheapest_cost": "3",
+        "cheapest_sealed": [
+          "hole_F1",
+          "opening_near"
+        ],
+        "demand": "7"
+      },
+      {
+        "cheapest_cost": "2",
+        "cheapest_sealed": [
+          "hole_F1"
+        ],
+        "demand": "15/2"
+      },
+      {
+        "cheapest_cost": "2",
+        "cheapest_sealed": [
+          "hole_F1"
+        ],
+        "demand": "8"
+      },
+      {
+        "cheapest_cost": "2",
+        "cheapest_sealed": [
+          "hole_F1"
+        ],
+        "demand": "17/2"
+      },
+      {
+        "cheapest_cost": "2",
+        "cheapest_sealed": [
+          "hole_F1"
+        ],
+        "demand": "9"
+      },
+      {
+        "cheapest_cost": "1",
+        "cheapest_sealed": [
+          "opening_near"
+        ],
+        "demand": "19/2"
+      },
+      {
+        "cheapest_cost": "1",
+        "cheapest_sealed": [
+          "opening_near"
+        ],
+        "demand": "10"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "21/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "11"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "23/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "12"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "25/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "13"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "27/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "14"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "29/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "15"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "31/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "16"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "33/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "17"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "35/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "18"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "37/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "19"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "39/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "20"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "41/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "21"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "43/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "22"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "45/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "23"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "47/2"
+      },
+      {
+        "cheapest_cost": "0",
+        "cheapest_sealed": [],
+        "demand": "24"
+      }
+    ]
+  },
+  "what_is_not_claimed": [
+    "This is an external exact computation, not a native certificate, and it admits nothing into any catalog",
+    "The structure computed on is the agent's declared reading of a loose description; a different reading moves the key point, and one alternative reading is computed and reported",
+    "Containment is defined twice, strongly and weakly, and both definitions are stated; neither is claimed to be what the direction meant",
+    "Max-flow min-cut duality is verified here at every sealing plan rather than invoked as authority",
+    "Alexandrov topology is the direction's phrase; this run uses the reachability order of the declared network and formalises no topological structure",
+    "The search is exhaustive over ten declared edges with rational capacities; nothing is claimed about larger networks or continuous capacities",
+    "No physical flow, mass, time or dynamics is modelled; the flow is a max-flow quantity on a declared network",
+    "Nothing about Feigenbaum, Arakelov, mirror symmetry, the density-wave line, or the repository's geometry growth line follows from this run"
+  ]
+}
