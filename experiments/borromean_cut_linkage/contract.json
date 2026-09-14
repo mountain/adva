@@ -1,0 +1,52 @@
+{
+  "schema": "adva.research.borromean-cut-linkage-contract.v0",
+  "version": 0,
+  "name": "borromean-cut-linkage",
+  "base_commit": "35701f6",
+  "frozen_on": "2026-09-13",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "On the golden rectangles this repository already retains, and on a concentric-squares companion, if one ring is cut are the remaining two still inseparable? And what exactly separates pairwise linking from triple linking when something is cut?",
+  "level": "External exact arithmetic in Q(sqrt 5): linking numbers recomputed by a second and independent method, separation tests attempted, and a linked-pair control built from scratch; the imported theorem is kept apart from everything computed here",
+  "domain": "Three axis-aligned filled rectangles declared literally in the retained golden-ratio calibration, read by a restricted AST decoder without executing the historical module; a companion configuration of concentric orthogonal squares; a Hopf-style linked pair and a split pair built here as controls; and the cut of one component in each.",
+  "objects": {
+    "self_computed": "Everything this run computes: the rectangle outlines from the retained literals, the pairwise linking numbers by the intersection of one outline with the other's spanning rectangle, the sign of the triple intersection, the cut analysis for each of the three choices of cut component, and the controls.",
+    "imported": "Three statements taken from elsewhere and not verified here: Mellor and Melvin's theorem that the triple intersection number of Seifert surfaces computes Milnor's invariant modulo the gcd of the pairwise linking numbers, together with the recorded fact that a raw triple-point count is insufficient, which the retained squares companion already demonstrates; the elementary fact that a nonzero linking number means the two-component link is not split; and the classical fact that cutting any component of the standard Borromean rings leaves the other two unlinked.",
+    "cut": "Cutting a component replaces a closed curve by an arc. The remaining two components are unchanged, so their linking number is unchanged by construction, and this is checked rather than assumed.",
+    "inseparability": "The question asked is whether the remaining two components are split. The only invariant of that pair computed here is its linking number, which is necessary but not sufficient for splitting: it decides inseparability when nonzero and decides nothing when zero.",
+    "why_unknown_is_expected": "If the surviving pair's linking number is zero, this run cannot decide whether the pair is split, and it must report Unknown rather than a guess. What it can still do is show exactly why the triple linking cannot help: Milnor's invariant is defined for a three-component link, so the cut does not merely hide it, it removes its domain.",
+    "max_assertions": 200000
+  },
+  "quantifiers": [
+    "Every pair of the three retained rectangles, with its linking number computed from both sides",
+    "Every one of the three choices of cut component, with the surviving pair's linking number and every separation test attempted",
+    "The triple intersection point and its sign, compared with the retained value",
+    "The linked-pair control and the split control, each decided",
+    "The retained squares companion, quoted with its recorded values and marked as retained rather than recomputed"
+  ],
+  "acceptance": [
+    "The rectangle literals are read by a restricted AST decoder from the retained calibration and the historical module is not executed, with the source digest recorded",
+    "The pairwise linking numbers are recomputed by a method independent of the retained projection-crossing count, and any disagreement with the retained values is reported rather than smoothed",
+    "The triple intersection is recomputed, its sign recorded, and compared with the retained signed sum",
+    "For each of the three cut choices, the surviving pair's linking number is computed and the run states whether that decides inseparability, reporting Unknown when it does not",
+    "Separation tests are attempted and each is reported as decisive or inconclusive, with the reason",
+    "The linked-pair control has a nonzero linking number and is decided by the elementary imported fact; the split control is decided by an exhibited separating plane",
+    "Imported statements and computed statements are recorded in separate sections, and no imported statement is presented as verified here",
+    "The run reports what would decide the undecided cases, and does not claim it"
+  ],
+  "protected": [
+    "The golden-ratio round, the Borromean surface and longitude audits, notes 0181 to 0186 and all their evidence are frozen and are not rewritten; the retained values are quoted and compared, never modified",
+    "This is external evidence: no native certificate, no geometry catalog admission, and the Pascal-rooted growth obligation stays Open",
+    "No isotopy between the retained configuration and the standard Borromean rings is computed, so the classical Brunnian statement is quoted and explicitly not transferred",
+    "Unknown is the honest outcome wherever the computed invariant cannot decide, and it is never reported as separable or inseparable",
+    "No native operation, tensor product, pullback or Seal is introduced, and nothing about Alexandrov topology is formalised",
+    "No metric, Arakelov, Monge-Ampere, mirror or Calabi-Yau content is introduced"
+  ],
+  "budget": {
+    "wall_seconds": 600,
+    "cpu_seconds": 560,
+    "memory_bytes": 4294967296,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This recomputes the pairwise linking numbers and the triple-intersection sign for a configuration this repository already retains, decides one linked-pair control and one split control, and reports honestly that cutting a component leaves the surviving pair's linking number at zero, so the question of whether those two rings come apart is left Unknown with the reason. It does not compute the Alexander polynomial, does not decide splitness, and does not transfer the classical Brunnian statement to this configuration for want of an isotopy."
+}
