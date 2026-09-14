@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **196 numbered
-notes, 26 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 28 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -719,6 +719,10 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0187-cut-linkage-after-cutting.md`](0187-cut-linkage-after-cutting.md)
 
 ### Named notes
+
+- [`mobius-transport-composition-boundary.md`](mobius-transport-composition-boundary.md)
+
+- [`mobius-transport-receipt-boundary.md`](mobius-transport-receipt-boundary.md)
 
 - [`PR-0152-0158-integration.md`](PR-0152-0158-integration.md)
 - [`absurdity-emptiness-record-freeze.md`](absurdity-emptiness-record-freeze.md)
