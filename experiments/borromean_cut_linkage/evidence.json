@@ -1,0 +1,376 @@
+{
+  "checker_sha256": "b77440c0c5e5ad19e6c02020e6e8688a0e6983d1ef366e2283354c8e0996df54",
+  "checks": {
+    "cutting_the_bystander_leaves_the_pair_linked": true,
+    "each_separation_test_carries_a_verdict": true,
+    "every_cut_carries_an_outcome": true,
+    "every_cut_choice_is_analysed": true,
+    "imported_and_computed_are_separated": true,
+    "the_bystander_is_unlinked": true,
+    "the_linked_control_is_decided": true,
+    "the_pairwise_linking_numbers_are_recomputed_independently": true,
+    "the_rational_ratio_companion_agrees": true,
+    "the_retained_literals_are_read_without_executing_the_module": true,
+    "the_split_control_is_decided": true,
+    "the_three_filled_rectangles_meet_at_one_point": true,
+    "the_triple_intersection_is_recomputed": true,
+    "the_two_directions_of_each_linking_number_agree": true,
+    "within_assertion_budget": true,
+    "within_time_budget": true
+  },
+  "contract": "experiments/borromean_cut_linkage/contract.json",
+  "controls_built_here": {
+    "bystander": {
+      "construction": "a small square far away, unlinked from both members of the linked pair",
+      "linking_to_the_pair": [
+        0,
+        0
+      ],
+      "outcome": "cutting this third component changes nothing about the pair's linkage"
+    },
+    "hopf_style_linked_pair": {
+      "construction": "one filled square of half-width 2 in z = 0, and one rectangle centred at y = 3/2 with half-extents 3/2 and 1 in x = 0, chosen so that exactly one of its outline crossings of the first disk falls inside it",
+      "crossings_inside_the_disk": [
+        {
+          "point": [
+            "0+0*sqrt5",
+            "0+0*sqrt5",
+            "0+0*sqrt5"
+          ]
+        }
+      ],
+      "linking_one_way": -1,
+      "linking_the_other_way": -1,
+      "outcome": "the pair is linked, and a nonzero linking number decides it, so this pair stays inseparable even after a third component is cut away"
+    },
+    "rational_ratio_companion": {
+      "construction": "the same three slabs with 3/2 in place of the golden ratio",
+      "outcome": "the same conclusion, so what unlinks this family is the ratio exceeding one, not the golden ratio in particular; this matches the retained round's own caution that a unit invariant here is not evidence of uniqueness of the golden ratio",
+      "pairwise_linking": {
+        "x0|y0": 0,
+        "z0|x0": 0,
+        "z0|y0": 0
+      },
+      "triple_intersection_sign": 1
+    },
+    "retained_squares_companion": {
+      "retained_values": "pairwise linking zero, boundary term m = 1, triple points t = 1, mu = 0",
+      "what_it_is": "the concentric orthogonal squares of the retained surface audit, quoted and not recomputed",
+      "why_it_matters": "the same raw triple-point count as the golden rectangles with no triple linking, which is the imported point that a count is not an invariant"
+    },
+    "split_pair": {
+      "construction": "two parallel squares in z = 0 and z = 10",
+      "linking": 0,
+      "outcome": "separable, decided by an exhibited separating plane rather than by the linking number",
+      "separation_tests": [
+        {
+          "decisive": true,
+          "reason": "disjoint bounding boxes separate the components; overlapping ones decide nothing",
+          "test": "axis_aligned_bounding_boxes_disjoint",
+          "verdict": "separable"
+        },
+        {
+          "decisive": true,
+          "planes": [
+            2
+          ],
+          "reason": "a separating plane is a sufficient witness for splitting, and finding none decides nothing",
+          "test": "axis_aligned_separating_plane",
+          "verdict": "separable"
+        },
+        {
+          "decisive": false,
+          "reason": "split components may still be separated by a sphere rather than a plane, so meeting spanning surfaces proves nothing either way",
+          "test": "spanning_rectangles_meet",
+          "they_meet": false,
+          "verdict": "inconclusive"
+        }
+      ]
+    }
+  },
+  "cost": {
+    "assertions": 21,
+    "subprocesses": 0,
+    "wall_seconds_before_serialization": 0.014
+  },
+  "imported_not_verified_here": [
+    {
+      "source": "A geometric interpretation of Milnor's triple linking numbers, AGT 3 (2003) 557-568, arXiv:math/0110001",
+      "statement": "Mellor and Melvin: the triple intersection number of Seifert surfaces computes Milnor's triple linking invariant modulo the gcd of the pairwise linking numbers",
+      "used_for": "why a raw triple-point count is insufficient, and what m - t means"
+    },
+    {
+      "source": "elementary; used only in that direction",
+      "statement": "a nonzero linking number means the two-component link is not split"
+    },
+    {
+      "source": "classical; NOT transferred to the retained configuration, because no isotopy to the standard Borromean rings is computed here",
+      "statement": "cutting any one component of the standard Borromean rings leaves the other two unlinked, so the classical configuration does not survive a cut"
+    }
+  ],
+  "schema": "adva.external.borromean-cut-linkage.v0",
+  "self_computed": {
+    "cuts": {
+      "x0": {
+        "linking_number_decides_inseparability": false,
+        "milnor_invariant_after_the_cut": "undefined: the triple linking invariant is defined for a three-component link, and the cut leaves two components and an arc",
+        "outcome": "Unknown",
+        "reason": "the surviving pair's linking number is zero and no separating witness was found, so the computed invariant cannot decide whether the two rings come apart",
+        "separation_decided": false,
+        "separation_tests": [
+          {
+            "decisive": false,
+            "reason": "disjoint bounding boxes separate the components; overlapping ones decide nothing",
+            "test": "axis_aligned_bounding_boxes_disjoint",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "planes": [],
+            "reason": "a separating plane is a sufficient witness for splitting, and finding none decides nothing",
+            "test": "axis_aligned_separating_plane",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "reason": "split components may still be separated by a sphere rather than a plane, so meeting spanning surfaces proves nothing either way",
+            "test": "spanning_rectangles_meet",
+            "they_meet": false,
+            "verdict": "inconclusive"
+          }
+        ],
+        "surviving_linking_number": 0,
+        "surviving_pair": [
+          "z0",
+          "y0"
+        ],
+        "why_the_cut_cannot_change_the_linking_number": "the computation uses only the surviving two components, so removing the third cannot change it; this is a property of the computation and is recorded as such rather than as a theorem"
+      },
+      "y0": {
+        "linking_number_decides_inseparability": false,
+        "milnor_invariant_after_the_cut": "undefined: the triple linking invariant is defined for a three-component link, and the cut leaves two components and an arc",
+        "outcome": "Unknown",
+        "reason": "the surviving pair's linking number is zero and no separating witness was found, so the computed invariant cannot decide whether the two rings come apart",
+        "separation_decided": false,
+        "separation_tests": [
+          {
+            "decisive": false,
+            "reason": "disjoint bounding boxes separate the components; overlapping ones decide nothing",
+            "test": "axis_aligned_bounding_boxes_disjoint",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "planes": [],
+            "reason": "a separating plane is a sufficient witness for splitting, and finding none decides nothing",
+            "test": "axis_aligned_separating_plane",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "reason": "split components may still be separated by a sphere rather than a plane, so meeting spanning surfaces proves nothing either way",
+            "test": "spanning_rectangles_meet",
+            "they_meet": false,
+            "verdict": "inconclusive"
+          }
+        ],
+        "surviving_linking_number": 0,
+        "surviving_pair": [
+          "z0",
+          "x0"
+        ],
+        "why_the_cut_cannot_change_the_linking_number": "the computation uses only the surviving two components, so removing the third cannot change it; this is a property of the computation and is recorded as such rather than as a theorem"
+      },
+      "z0": {
+        "linking_number_decides_inseparability": false,
+        "milnor_invariant_after_the_cut": "undefined: the triple linking invariant is defined for a three-component link, and the cut leaves two components and an arc",
+        "outcome": "Unknown",
+        "reason": "the surviving pair's linking number is zero and no separating witness was found, so the computed invariant cannot decide whether the two rings come apart",
+        "separation_decided": false,
+        "separation_tests": [
+          {
+            "decisive": false,
+            "reason": "disjoint bounding boxes separate the components; overlapping ones decide nothing",
+            "test": "axis_aligned_bounding_boxes_disjoint",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "planes": [],
+            "reason": "a separating plane is a sufficient witness for splitting, and finding none decides nothing",
+            "test": "axis_aligned_separating_plane",
+            "verdict": "inconclusive"
+          },
+          {
+            "decisive": false,
+            "reason": "split components may still be separated by a sphere rather than a plane, so meeting spanning surfaces proves nothing either way",
+            "test": "spanning_rectangles_meet",
+            "they_meet": false,
+            "verdict": "inconclusive"
+          }
+        ],
+        "surviving_linking_number": 0,
+        "surviving_pair": [
+          "x0",
+          "y0"
+        ],
+        "why_the_cut_cannot_change_the_linking_number": "the computation uses only the surviving two components, so removing the third cannot change it; this is a property of the computation and is recorded as such rather than as a theorem"
+      }
+    },
+    "linking_numbers": {
+      "x0|y0": {
+        "computed": 0,
+        "computed_reverse": 0,
+        "crossings_inside_a_surface": [],
+        "retained_projection_crossings": {
+          "backward_crossings": 0,
+          "backward_sum": 0,
+          "forward_crossings": 2,
+          "forward_sum": 0
+        },
+        "they_agree": true
+      },
+      "z0|x0": {
+        "computed": 0,
+        "computed_reverse": 0,
+        "crossings_inside_a_surface": [],
+        "retained_projection_crossings": {
+          "backward_crossings": 0,
+          "backward_sum": 0,
+          "forward_crossings": 2,
+          "forward_sum": 0
+        },
+        "they_agree": true
+      },
+      "z0|y0": {
+        "computed": 0,
+        "computed_reverse": 0,
+        "crossings_inside_a_surface": [
+          {
+            "point": [
+              "-1+0*sqrt5",
+              "0+0*sqrt5",
+              "0+0*sqrt5"
+            ]
+          },
+          {
+            "point": [
+              "1+0*sqrt5",
+              "0+0*sqrt5",
+              "0+0*sqrt5"
+            ]
+          }
+        ],
+        "retained_projection_crossings": {
+          "backward_crossings": 2,
+          "backward_sum": 0,
+          "forward_crossings": 0,
+          "forward_sum": 0
+        },
+        "they_agree": true
+      }
+    },
+    "method": "the pairwise linking number as the algebraic intersection of one outline with the other component's spanning rectangle, which is independent of the retained projection-crossing count",
+    "rectangles": {
+      "x0": {
+        "center": [
+          "0+0*sqrt5",
+          "0+0*sqrt5",
+          "0+0*sqrt5"
+        ],
+        "extents": {
+          "1": "1+0*sqrt5",
+          "2": "1/2+1/2*sqrt5"
+        },
+        "fixed": 0,
+        "value": "0+0*sqrt5"
+      },
+      "y0": {
+        "center": [
+          "0+0*sqrt5",
+          "0+0*sqrt5",
+          "0+0*sqrt5"
+        ],
+        "extents": {
+          "0": "1/2+1/2*sqrt5",
+          "2": "1+0*sqrt5"
+        },
+        "fixed": 1,
+        "value": "0+0*sqrt5"
+      },
+      "z0": {
+        "center": [
+          "0+0*sqrt5",
+          "0+0*sqrt5",
+          "0+0*sqrt5"
+        ],
+        "extents": {
+          "0": "1+0*sqrt5",
+          "1": "1/2+1/2*sqrt5"
+        },
+        "fixed": 2,
+        "value": "0+0*sqrt5"
+      }
+    },
+    "source": {
+      "how": "the literal rectangles assignment decoded by a restricted AST decoder; the module is never executed",
+      "path": "experiments/golden_ratio/calibration.py",
+      "sha256": "5cfb50457f508cd14a9551de1eba8441c5a0c1a3814f398264c70418c2ebe543"
+    },
+    "triple_intersection": {
+      "common_point": "the origin, interior to all three filled rectangles",
+      "cyclic_orders_share_one_sign": true,
+      "cyclic_sign": 1,
+      "retained_recorded": {
+        "x0,y0,z0": {
+          "points": 1,
+          "signed_sum": 1
+        },
+        "y0,z0,x0": {
+          "points": 1,
+          "signed_sum": 1
+        },
+        "z0,x0,y0": {
+          "points": 1,
+          "signed_sum": 1
+        }
+      },
+      "signed_sums_by_order": {
+        "x0,y0,z0": 1,
+        "x0,z0,y0": -1,
+        "y0,x0,z0": -1,
+        "y0,z0,x0": 1,
+        "z0,x0,y0": 1,
+        "z0,y0,x0": -1
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "the_contrast": {
+    "consequence": "in the retained configuration every choice of cut leaves a surviving pair whose linking number is zero, so this run cannot decide whether those two rings come apart, and it reports Unknown rather than a guess",
+    "pairwise_linking_under_a_cut": "survives and decides: it is an invariant of the surviving pair, it is recomputed here after each cut, and a nonzero value proves the pair is not split",
+    "triple_linking_under_a_cut": "does not survive as a computation: the invariant is defined for a three-component link, so the cut does not hide it but removes its domain, and the surviving pair's linking number is zero in the retained configuration, so nothing computed here replaces it"
+  },
+  "tooling": {
+    "arithmetic": "exact a + b*sqrt(5) with rational a and b; no float in any computed quantity",
+    "external_library": "none",
+    "external_oracle_not_native_authority": true,
+    "python": "3.14.6"
+  },
+  "version": 0,
+  "what_is_not_claimed": [
+    "This is an external exact computation, not a native certificate, and it admits nothing into any catalog",
+    "No isotopy to the standard Borromean rings is computed, so the classical Brunnian statement is quoted and not transferred",
+    "Whether the surviving two components of the retained configuration come apart is Unknown here and is not reported as separable or inseparable",
+    "The linking number is necessary but not sufficient for splitting: a zero value decides nothing, which is stated wherever it occurs",
+    "Milnor's invariant is quoted through the imported theorem and is not computed from a link complement here",
+    "The retained squares companion is quoted with its recorded values and is not recomputed in this run",
+    "The controls are built here for contrast and are not claims about the retained configuration",
+    "Nothing about Feigenbaum, Arakelov, mirror symmetry, the density-wave line or the repository's geometry growth line follows from this run"
+  ],
+  "what_would_decide_the_unknown": [
+    "the Alexander or Conway polynomial of the surviving two-component sublink from a diagram, since a nonzero polynomial proves non-splitting",
+    "an explicit splitting sphere, or an isotopy that separates the two components",
+    "an isotopy from the retained configuration to the standard Borromean rings, which would let the classical Brunnian statement transfer; not computed here"
+  ]
+}
