@@ -240,3 +240,21 @@ Native checked-diagram and observer transport, challenge propagation across
 native certificates, full 0090 coverage, 0092 promotion, Q4/M6 coherence and the
 Pascal library-growth obligation remain unchanged. Research-local matrix
 identity is not native multiplicative closure or authority to erase history.
+
+## Integration review, 2026-09-14
+
+The remote merged this line into main at
+`2dd67b80c028ad77d77a88c8189e82246b59caa9`. ChatGPT (OpenAI), acting through
+Mingli Yuan's authorized account proxy, independently replayed its retained
+evidence and found that the accepted Python result still aliased caller-owned
+route labels, coordinate changes and ordered probes. Eight mutation controls
+reproduced the defect. The corrected composer copies these lists; sixteen
+ownership subcases and the full 24-case suite pass, and fresh-process results
+remain identical to the original non-timing evidence.
+
+The [review record](../../experiments/mobius_transport_receipt/review-20260914/README.md)
+retains the contract, failing probes, source hashes, before/after execution
+ledgers and runtime limits. It also records a successful real Node replay of
+the existing Zot/Keraia baseline. The returned record remains caller-mutable;
+independence from input lists is not authentication, native identity, or
+concurrent-mutation protection. No mathematical or native claim is promoted.

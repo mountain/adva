@@ -1,0 +1,16 @@
+{
+  "schema": "adva.external.mobius-integration-review.v0",
+  "date": "2026-09-14",
+  "inspected_main": "2dd67b80c028ad77d77a88c8189e82246b59caa9",
+  "question": "Reproduce the merged receiver/composition evidence, check that accepted records survive later mutation of caller-owned inputs, and execute the previously unavailable real Node Zot/Keraia replay.",
+  "level": "External integration review; no new mathematical search or native authority",
+  "imports": ["The pinned receiver and composition contracts and their retained evidence", "The existing Zot/Keraia finite contracts, unchanged"],
+  "interface": "Composition consumes independently selected contexts and records route provenance. An accepted result must retain the validated values independently of subsequent mutation of its caller's lists. This is value snapshot ownership, not native history identity.",
+  "protected": ["All existing non-timing receipt and composition results", "Input weights and semantic time debit", "Historical evidence and failed probes remain intact", "No native Q4, M6, Keraia evaluator, Seal or library change"],
+  "before": ["One receiver calibration", "One composition supervisor with its declared two children", "One Node invocation of the unchanged Zot and Keraia campaigns", "One eight-case mutable-input probe"],
+  "conditional_correction": "If the probe exposes aliases, copy only the returned probe/history lists; run one focused standard-library unittest process and one fresh two-child composition replay. No automatic retries or family expansion.",
+  "limits": {"wall_seconds_per_phase": 120, "cpu_seconds_per_phase": 100, "python_address_space_mib": 512, "node_old_space_mib": 256, "file_bytes": 16777216, "receiver_seconds": 15, "composition_supervisor_seconds": 35, "node_seconds": 35, "probe_seconds": 15, "probe_work_units": 100000, "max_corrections": 1},
+  "enforcement": "Outer timeout and prlimit for each phase, subprocess timeouts for commands, existing inner work counters, address-space limits for Python children, Node old-space cap. Node total RSS is not capped by its old-space setting. Every invocation is recorded. Each output directory must be new.",
+  "acceptance": "Exact non-timing replay comparison; mutable-input controls either pass initially or fail visibly and pass after the one declared correction; unexpected failures stop the phase. No claim of full repository CI.",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as authorized proxy; no endorsement or review by the account owner implied."
+}
