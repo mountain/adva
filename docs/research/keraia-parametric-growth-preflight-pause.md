@@ -13,18 +13,18 @@ review, endorsement or correctness.
 The preceding Keraia run certifies exact complete-frame cycles, but deliberately
 leaves
 
-[
-  D_3D_3,qquad D_3=\lambda x.((x x)x),
-]
+\[
+  D_3D_3,\qquad D_3=\lambda x.((x x)x),
+\]
 
 as `UnknownFuel`: its head repeats while its ordered argument stack grows.
 The frozen question was whether a receiver-selected natural-number template
 
-[
+\[
   F_r(n)=(P_r,D_r^n,c)
-  quad\longmapstoquad
+  \quad\longmapsto\quad
   F_r(n+r-2)
-]
+\]
 
 could check the concrete (r=3) premise and reuse the same rule at (r=4).
 The intended certificate must check a finite, positive-length pure macro with
