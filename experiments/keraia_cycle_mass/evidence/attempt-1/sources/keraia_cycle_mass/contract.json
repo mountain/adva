@@ -1,0 +1,25 @@
+{
+  "schema": "adva.external.keraia-cycle-mass.contract.v0",
+  "base": "0ce30649d9343ace0085f79ed75d0198f947b1d0",
+  "date": "2026-09-14",
+  "question": "Can exact input-free cycles supply checked nonhalting cylinders and a strict upper mass bound, while multi-read and delayed-return continuations preserve ordered input, original cost and weights?",
+  "level": "External finite calibration in the existing keraia.appendix-b.cbn-whnf.read.v0 profile; no native Adva or optimal-universality claim",
+  "imports": ["The pinned previous tree/de Bruijn machine and string/named substitution oracle", "Fair independent input bits and cylinder measure 2^(-length)", "Deterministic exact-state recurrence without input yields a conditional unbounded divergence proof; the finite checker verifies all premises"],
+  "interface": "Receiver selects source and search allowance. A candidate contains the exact initial frame and an ordered one-step trace to a repeated full frame. Control, ordered stack, cursor, profile and cost convention are retained. The receiver independently compiles with string marking and replays beta steps by named capture-avoiding substitution. Only a positive-length cycle containing no read or return, ending after all supplied bits are consumed, certifies an entire suffix cylinder. Semantic fuel bounds discovery, not the unbounded claim's state equality.",
+  "family": {
+    "all_binary_strings_through_length": 15,
+    "exhaustive_fuel": 128,
+    "sequence_read_counts": [2, 3],
+    "identity_delay_counts": [0, 4, 12],
+    "fixture_fuel_cuts": [2, 8, 32, 128],
+    "sequence_data": "Every binary data suffix through read_count+1 bits, including empty, underflow and overflow",
+    "cycle_controls": ["(lambda x.x x)(lambda x.x x)", "One read selecting this loop or I", "(lambda x.(x x) x)(lambda x.(x x) x): growing stack is not an exact cycle", "K I applied to the loop: discarded loop is not forced", "K applied to the loop: returned lambda is not reduced underneath"],
+    "negative_receipts": ["source", "profile", "cost convention", "Boolean cycle index", "zero or out-of-range cycle", "initial frame", "endpoint control", "stack", "cursor", "float cursor", "false cycle through a read", "returning state repeated syntactically", "wrong search allowance"]
+  },
+  "checks": ["Both compilers agree on every distinct description and fixture", "Direct and independent oracle status/read/output agree for all 65535 words at fuel 128", "Prefix traversal matches the exhaustive accepted-code ledger", "Accepted, certified divergent and unresolved cylinders form an exact disjoint Kraft partition", "All supplied cycle edges pass an independent named-term receiver", "Both branches of the one-read selector partition its input cylinder, with one accepting and one certified divergent", "Every sequence fixture preserves full direct/cache/resumed records at each original fuel cut; successful full-length data consume exactly the requested number of bits", "Wrongly typed or changed cycle evidence is refused; repeated head alone and hidden/discarded loops do not authorize divergence", "One fresh process reproduces deterministic evidence including work counters"],
+  "protected": ["UnknownFuel and NeedInput remain unresolved without a certificate", "No arbitrary full-normalization, optimal-machine Omega, native Q4/M6, ACS commutativization, library admission or Seal", "No source-weight merging, read reordering, timer renewal or arbitrary mid-step checkpoint claim", "Exact-state cycle certificates are sufficient and incomplete; a growing-state loop may remain Unknown"],
+  "limits": {"max_code_bits": 255, "max_term_nodes": 4096, "max_stack": 256, "max_semantic_steps": 128, "oracle_reductions": 512, "max_cache_entries": 8192, "max_host_work": 20000000, "max_output_bytes": 16777216, "wall_seconds": 45, "cpu_seconds": 40, "address_space_mib": 512, "primary_runs": 1, "fresh_replays_after_success": 1, "maximum_necessary_corrections": 2},
+  "enforcement": "Shared counted-work/deadline guard includes compilation, enumeration, oracle, candidate discovery and independent certificate checking. Linux prlimit caps child CPU, memory and output; subprocess timeout caps wall time. Outer invocation has 100 wall seconds and 95 CPU seconds, including output and replay comparison. Freeze source bytes before running. Preserve any failure and require a separately written finite correction before retrying; no automatic widening.",
+  "exit": "Completed fixed family, mismatch, invalid certificate, resource limit or implementation failure, retaining the exact unresolved frontier and attempt sources. No automatic subsequent search.",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's account as authorized proxy, not human authorship, review or endorsement."
+}

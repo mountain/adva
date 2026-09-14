@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **196 numbered
-notes, 29 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -750,6 +750,7 @@ Every file in this directory, so that no note is reachable only through a summar
 
 - [zot-prefix-machine-weighted-sharing.md](zot-prefix-machine-weighted-sharing.md): explicit Zot evaluation, exact weighted reuse, and prefix-Keraia syntax/input boundaries.
 - [keraia-read-boundary-and-weighted-prefix-search.md](keraia-read-boundary-and-weighted-prefix-search.md): resumable weak-head reads, checked segment reuse, exact code weights and retained type-boundary failures.
+- [keraia-cycle-certificates-and-halting-mass-bounds.md](keraia-cycle-certificates-and-halting-mass-bounds.md): independent cycle receivers exclude a nonhalting cylinder, with multi-read continuations and an exact conditional one-half experiment.
 
 ### Supporting directories
 
