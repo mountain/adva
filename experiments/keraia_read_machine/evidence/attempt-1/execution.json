@@ -1,0 +1,59 @@
+{
+  "status": "Passed",
+  "source_sha256": {
+    "calibrate.py": "8f374438b979f2480e3333dcd25ef76080d97a976f21352a2a8543474cea30a7",
+    "machine.py": "5c8546a790d4811011d0728050ba2dc9a959992c57fe5c5126c458d4d339ebd6",
+    "oracle.py": "18ba3afe5d30e9013c0167e29bb0277a0a427ce986c3f23fe5962fbba4d42f6c",
+    "supervise.py": "aea2a46538a21354a187b4ecd91acc4ff7b4f237793ff116090b7624559df77f",
+    "syntax.py": "e5a2e47ea18c46fb9de4e8e54cdcbbbeb06e9f6cd409f13505121e5c8b40dc1a",
+    "contract.json": "dcdcb5fb0da1be26fdf37954408373693b88a84ffa8c93e8dddf968402ef4272"
+  },
+  "runs": [
+    {
+      "name": "primary",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_read_machine/calibrate.py",
+        "--output",
+        "experiments/keraia_read_machine/evidence/attempt-1/primary.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.4151499080007852,
+      "result_status": "Passed",
+      "evidence_sha256": "73fe7c62b587084f9e1699cb3d4dffd8c397349b853a4d022b7ff18d1cc08068"
+    },
+    {
+      "name": "fresh-replay",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_read_machine/calibrate.py",
+        "--output",
+        "experiments/keraia_read_machine/evidence/attempt-1/fresh-replay.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.4157118779994562,
+      "result_status": "Passed",
+      "evidence_sha256": "92abb3797ce4ac88b1be98f4be6f6e3623382ef50cd75e80c0237591dd4b76bf"
+    }
+  ],
+  "outer_limits": {
+    "wall_seconds": 100,
+    "cpu_seconds": 95,
+    "address_space_mib": 512
+  },
+  "deterministic_replay_equal": true
+}

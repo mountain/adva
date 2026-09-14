@@ -1,0 +1,10 @@
+{
+  "schema": "adva.external.keraia-read-machine.continuation.v0",
+  "reason": "Post-run review found Python equality identifies True with 1 and integer-valued floats with integers. Checkpoint and receipt equality must preserve declared field types. Attempt-1 remains retained, including its narrower passing controls and exact source bytes.",
+  "preflight": {"cases": ["checkpoint steps true versus integer 1", "checkpoint cursor 5.0 versus integer 5", "receipt end cursor true versus integer 1", "receipt end variable index 0.0 versus integer 0"], "max_host_work": 20000, "wall_seconds": 5, "cpu_seconds": 4, "address_space_mib": 256, "runs": 1, "output_bytes": 65536},
+  "correction": "Require recursively type-preserving receipt equality and canonical JSON equality for checkpoint fields. Add the same four refusal controls to the calibration.",
+  "validation": "One corrected primary campaign and one fresh replay only after success, with unchanged binary family, fixtures, time cuts and per-process limits from contract.json; no longer-code search.",
+  "corrections_used": 1,
+  "corrections_remaining": 1,
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's account as authorized proxy, not human review or endorsement."
+}

@@ -1,0 +1,60 @@
+{
+  "status": "Passed",
+  "source_sha256": {
+    "calibrate.py": "76989d059bd4feae3ab2d50d0dbf763c5268ff9df3745bf054b6cd641b1ddc42",
+    "machine.py": "2931a7340c0dc4445c45724eb66ba2e5c52cb01d53efdf98c8ea9d803d2e2ccb",
+    "oracle.py": "18ba3afe5d30e9013c0167e29bb0277a0a427ce986c3f23fe5962fbba4d42f6c",
+    "supervise.py": "c5e79ccd10f92a706cd02ea8feb462d05fe2d895b5ff1b5c6394c1f91fc46528",
+    "syntax.py": "e5a2e47ea18c46fb9de4e8e54cdcbbbeb06e9f6cd409f13505121e5c8b40dc1a",
+    "contract.json": "fde07400ad7a1f4fdad497ef14baac92e9f106ffecdd9c2a97f021e9d978b213",
+    "correction-1.json": "6e144bd26b86f4d7a41cd2ad9e26262f5dbe8c2d7431553053f6f45af5fce9b3"
+  },
+  "runs": [
+    {
+      "name": "primary",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_read_machine/calibrate.py",
+        "--output",
+        "experiments/keraia_read_machine/evidence/attempt-2/primary.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.4155274400000053,
+      "result_status": "Passed",
+      "evidence_sha256": "c6f00abf229f19bba6446da88f847bede27703d8eda79d5034ded948a5aefe43"
+    },
+    {
+      "name": "fresh-replay",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_read_machine/calibrate.py",
+        "--output",
+        "experiments/keraia_read_machine/evidence/attempt-2/fresh-replay.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 0.41519436900034634,
+      "result_status": "Passed",
+      "evidence_sha256": "1bdd2c2459f69d6d36a4cc8c34019154253e27268cbfe7725f33ef14cd22aefa"
+    }
+  ],
+  "outer_limits": {
+    "wall_seconds": 100,
+    "cpu_seconds": 95,
+    "address_space_mib": 512
+  },
+  "deterministic_replay_equal": true
+}
