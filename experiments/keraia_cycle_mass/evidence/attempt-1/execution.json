@@ -1,0 +1,61 @@
+{
+  "status": "Passed",
+  "source_sha256": {
+    "keraia_cycle_mass/calibrate.py": "c4ccdd522f4d0bc5cdbaa5b12a92be5867449fdf45994b72db3777e61ca45b9d",
+    "keraia_cycle_mass/cycles.py": "a563f4508b874610838da1df2116b82d6035e460dd0eb6d3596fdc2cd1eb6c9a",
+    "keraia_cycle_mass/supervise.py": "1ef8524c307ae3c13df7ee1acd6712ee275601a0c2f86bd3e27b848212dfd80c",
+    "keraia_cycle_mass/support.py": "d9fa6cedd39f6c76558a6f0dff11849170e8241c8a97df4cf55b2afd33cf877b",
+    "keraia_cycle_mass/contract.json": "4523cf5f6603df918e6c50d7b9de981b10068466468799511665b4fb8543fe2e",
+    "keraia_read_machine/syntax.py": "e5a2e47ea18c46fb9de4e8e54cdcbbbeb06e9f6cd409f13505121e5c8b40dc1a",
+    "keraia_read_machine/machine.py": "2931a7340c0dc4445c45724eb66ba2e5c52cb01d53efdf98c8ea9d803d2e2ccb",
+    "keraia_read_machine/oracle.py": "18ba3afe5d30e9013c0167e29bb0277a0a427ce986c3f23fe5962fbba4d42f6c"
+  },
+  "runs": [
+    {
+      "name": "primary",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_cycle_mass/calibrate.py",
+        "--output",
+        "experiments/keraia_cycle_mass/evidence/attempt-1/primary.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.9219825369991668,
+      "result_status": "Passed",
+      "evidence_sha256": "43fcf416a81dee59613f108d0188177a6345f13502141404b17b1b3cab0b94c0"
+    },
+    {
+      "name": "fresh-replay",
+      "command": [
+        "prlimit",
+        "--as=536870912",
+        "--cpu=40",
+        "--fsize=16777216",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-B",
+        "-S",
+        "/workspace/scratch/bc976ece674c/adva/experiments/keraia_cycle_mass/calibrate.py",
+        "--output",
+        "experiments/keraia_cycle_mass/evidence/attempt-1/fresh-replay.json"
+      ],
+      "returncode": 0,
+      "elapsed_seconds": 2.972913792000327,
+      "result_status": "Passed",
+      "evidence_sha256": "3cebf84b5b610edbc8f5881df13c256ae069c9e1c990669327d007ab2f274220"
+    }
+  ],
+  "outer_limits": {
+    "wall_seconds": 100,
+    "cpu_seconds": 95,
+    "address_space_mib": 512
+  },
+  "deterministic_replay_equal": true
+}
