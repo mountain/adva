@@ -1,0 +1,42 @@
+{
+  "schema": "adva.external.keraia-parametric-frame-recurrence.contract.v0",
+  "base": "3f81373ef9766a5ca0e9df3b9bed4bb6b6e493ac",
+  "date": "2026-09-14",
+  "question": "Can a receiver-selected affine stack template certify a concrete growing-state Keraia branch that exact full-frame recurrence leaves Unknown, and can the same checker certify one fresh arity without accepting head-only or malformed growth claims?",
+  "level": "External finite certificate-premise calibration in keraia.appendix-b.cbn-whnf.read.v0; no native Adva, Q4, M6, Omega-convergence or optimal-universality claim",
+  "objects": {
+    "domain": "Closed de Bruijn Keraia terms under call-by-name weak-head evaluation",
+    "sources": ["D3 D3, where D3=lambda x.((x x) x)", "D4 D4, where D4=lambda x.(((x x) x) x)"],
+    "template": "F_r(n)=(P_r, stack D_r repeated n, cursor at the end of the complete program prefix)",
+    "macro": "r receiver-checked pure steps map F_r(n) to F_r(n+r-2)",
+    "quantifier": "For every natural n >= 0, conditional on the checked symbolic stack-tail rule",
+    "arithmetic": "Natural stack multiplicity and exact positive integer delta; Boolean and float values are not integers",
+    "candidate_grammar": "One stem, one pure macro, one repeated closed stack atom and one affine multiplicity update"
+  },
+  "acceptance": [
+    "The receiver independently compiles the source using the existing named/string compiler and reconstructs the initial frame",
+    "The supplied finite stem reaches F_r(0), consuming no input",
+    "A symbolic receiver checks every macro action with an opaque ordered tail and proves the tail is unchanged",
+    "The macro has positive length, contains no read or return, preserves control/cursor/profile/cost and increases only the declared repeated stack suffix by a positive delta",
+    "Concrete machine replay agrees at n=0,1,2 and at n=5 as a fresh reuse probe",
+    "The old exact-cycle proposer remains UnknownFuel for both positive-growth instances",
+    "Changed source, head, atom, cursor, action, delta, tail direction, arity, profile or cost is refused"
+  ],
+  "limits": {
+    "search_candidates": 0,
+    "max_host_work": 100000,
+    "max_semantic_steps": 128,
+    "max_term_nodes": 4096,
+    "max_stack": 256,
+    "max_code_bits": 255,
+    "wall_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_mib": 256,
+    "max_output_bytes": 1048576,
+    "primary_runs": 1,
+    "fresh_replays_after_success": 1,
+    "maximum_necessary_corrections": 1
+  },
+  "exit": "Finish the two fixed instances and negative controls, or stop on mismatch, invalid certificate, resource limit or implementation failure. Preserve Unknown for any branch not matching the template. Do not widen or rerun automatically.",
+  "authorship": "ChatGPT (OpenAI), submitted through Mingli Yuan's account as authorized proxy, not human authorship, review, endorsement or a correctness claim."
+}
