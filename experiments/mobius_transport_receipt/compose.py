@@ -24,7 +24,8 @@ def frame(context, receipt=None):
         'alphabet': list(C.LETTERS),
         'generators': [normalize(m, p) for m in
                        (receipt['target_matrices'][:2] if target else context['generators'])],
-        'ordered_probes': receipt['target_probes'] if target else context['probes'],
+        # A returned frame must retain the checked values if its caller reuses inputs.
+        'ordered_probes': list(receipt['target_probes'] if target else context['probes']),
         'predicate_set': sorted(receipt['target_predicate'] if target else context['predicate'], key=xs.index),
     }
 
@@ -68,8 +69,8 @@ def compose(receipts, expected, route_ids, fuel=None):
                 C.require(staged_value == final_value == direct_value, 'InternalCovarianceMismatch')
                 squares.append([label, x, staged_value])
         return {'status': 'AcceptedComposition', 'intermediate_frame': left,
-                'history': {'route_ids': route_ids, 'scopes': [a['source_scope'], a['target_scope'], b['target_scope']],
-                            'coordinate_changes': [a['H'], b['H']]},
+                'history': {'route_ids': list(route_ids), 'scopes': [a['source_scope'], a['target_scope'], b['target_scope']],
+                            'coordinate_changes': [list(a['H']), list(b['H'])]},
                 'direct_context': direct_context, 'direct_receipt': direct,
                 'point_squares': squares, 'native_admission': False}
     except C.Refusal as err:

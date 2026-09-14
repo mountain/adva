@@ -253,3 +253,16 @@ M6 coherence, geometry descendant, native Seal, universal Keraia evaluator,
 or ACS/renormalization theorem is admitted. The Pascal obligation stays Open.
 
 Integration refreshed onto main at 8a30d7d7d1c085651c200a9df63f06fd01d8912f after the Zhang finite-example work and catalog update landed. Their note, claims, tests and library pointer are preserved; the Zot/Keraia run inputs stay at their original pins.
+
+## Real Node replay, 2026-09-14
+
+The [Möbius integration review](../../experiments/mobius_transport_receipt/review-20260914/README.md)
+executed the unchanged replay CLI with Node v24.19.0 under a separate finite
+review contract. Both campaigns completed: all 38 Zot checks and 146
+Keraia-boundary checks passed. All 1023 per-code ledgers, probability tables,
+syntax counts and read controls match the retained V8 result. Raw output is
+preserved in that review's `before/node.stdout`, with source hashes and the
+invocation ledger. This closes the real-Node gap recorded above, while
+QuickJS, full repository validation and the Keraia evaluator remain unrun or
+unimplemented as stated. Authored by ChatGPT (OpenAI), submitted through
+Mingli Yuan's account as authorized proxy; no human review is implied.
