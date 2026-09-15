@@ -801,3 +801,22 @@ refuted, split, completed, or deliberately deferred.
 - Brandon M. Williams and Saverio Perugini,
   [Revisiting the Futamura Projections: A Diagrammatic Approach](https://arxiv.org/abs/1611.09906),
   an overview of the three projections and their program relationships.
+
+## 12. Bounded interpreter research decision, 2026-09-15
+
+Mingli selected the minimal native interpreter route identified by Research
+0137. The separately versioned
+[data-machine research profile](adr/bounded-data-machine-research.md) supplies
+finite tagged data and bounded control in Rust, while the arithmetic interpreter
+is written as an Adva program over those generic instructions. The
+[executed calibration](research/bounded-native-data-interpreter.md) checks 129
+object programs, exact arithmetic, state replay and budget-preserving suspension.
+
+This is a direct unspecialized language pressure test. It does not declare Track
+A specialization complete, derive execution from observer equality, or promote
+the new data/control objects into PSC0. The need for a stronger execution carrier
+is recorded explicitly: existing read-only triadic transitions are insufficient.
+Native sharing/graft correspondence and stable promotion remain separate gates.
+Self interpretation additionally requires an admitted representation and correct
+interpretation of this machine's own instruction grammar, with its overhead and
+residual state recorded. No earlier mass bound supplies that missing result.

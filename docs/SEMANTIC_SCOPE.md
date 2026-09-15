@@ -1,5 +1,20 @@
 # Semantic scope: PSC0 bootstrap
 
+## Separate bounded data-machine research profile
+
+The Rust research companion now provides a separate finite typed data-machine
+schema and `adva data-run`. It admits exact signed 64-bit integers, Booleans,
+bounded tagged tree values and stacks, with explicit instruction control and
+native replay before continuation. One program written in this research language
+interprets a finite arithmetic object grammar. Its types, instruction indices,
+state digests and replay certificates do not extend PSC0, allocate SourceId or
+OccurrenceId, or supply native diagram/graft correspondence. Stable recursion,
+feedback, program identity and interpreter promotion remain excluded. See
+[the ADR](adr/bounded-data-machine-research.md) and
+[the finite report](research/bounded-native-data-interpreter.md).
+
+## Stable core scope
+
 This repository begins with a finite, binder-free, linear core inspired by the
 Typed Sharing Diagram Calculus. `PSC0` is an engineering scope label, not a
 claim that the surrounding calculus has been completely presented.
