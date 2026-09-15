@@ -1,0 +1,264 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "capacity-index-step",
+    "registers": [
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "count",
+        "kind": "integer"
+      },
+      {
+        "name": "one",
+        "kind": "integer"
+      },
+      {
+        "name": "counter",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "as_integer",
+        "src": 0,
+        "dst": 1
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 1
+      },
+      {
+        "op": "constant",
+        "dst": 3,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 3,
+        "right": 1,
+        "dst": 4
+      },
+      {
+        "op": "branch",
+        "condition": 4,
+        "yes": 8,
+        "no": 6
+      },
+      {
+        "op": "add",
+        "left": 3,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "box_integer",
+        "src": 1,
+        "dst": 5
+      },
+      {
+        "op": "return",
+        "src": 5
+      }
+    ]
+  },
+  "input": {
+    "kind": "integer",
+    "value": 4
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 10,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 4
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 4
+      },
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      {
+        "kind": "integer",
+        "value": 4
+      },
+      {
+        "kind": "boolean",
+        "value": true
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 4
+        }
+      }
+    ],
+    "spent": 24,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 4
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "9287dfd209033f844134b146cd028b9b82eb3e0e2be3e0d3ad1de3ac72c4fc9f"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "39fd6ce1acda06bcef98fe63fa509ab80323208f7c8a4c65c59c30986f047521"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "102f78337cd733409045faad2c675cc6be388d119b66bd7dbe4c0ac43a72f3bf"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "aedd4d29900b63d0a0dcce4d0ca59e03600e588d722e1743fd000437fc044a8c"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "a45156534933369261057655407a82c3419a8ebab8944180fcd22337262b2013"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "e98247c7510cbaf7091bc4f6b57e24edfbe9717e67f4f2153d50571b179cc667"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "7339c1d7944447b007b4cbc3cf3080224df8ae69c9a50fc84a008346616e5249"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "b03e0780d37bb3507902e1ab2522385cda11067f539c1764a347c4b72d54ef00"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "8072557f965ae6898581bef0da1ad8fa77fd5473f56552eea24d4a40a3b5ac0d"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "6b60f426bd2b181b40e9f7685b6c9e8657c93eb9c419077b92bfe0d2a218e4bf"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "5af0dfef78c045e94eb040e507fe7eb34390b16f4c464ffdcde0a683a52b82a9"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "2bca74b4b0065c17f18c19c1c5fa119cfa354cdcc94027854e267ec53b7a84b2"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "48fde849ea1baa96c8acaa528a48a2d0a1c1842721c7e3497819da452d7a036d"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "a93a539d0931cbd9006f9bfe55a25ae1667c1cbc6d410692dafe7b4d119768aa"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "5779d4b893264d8bfe92ee21d0bfbb35b9601afb991c460352bbef4269a8457b"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "f9e97c813806a970bbb9dad2b2330ae8ec84f20fa78bc7fccba4af0660f608e9"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "8d06edb035e7cc521f31b78af6e43bc13e9b194e39a3d94d65f3d96cef4d2f57"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "8fffe8c72a6a50b791fca5b6e3e1f92f568c33595f17094e68e52a45a8a326fb"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "eeb53958e4a3206466b9bbfaaad16375c25d9b4ff9a6bf22e387df8e39808e6b"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "3ecb0f8c13e3552653d086b374d817cc9cabf8b25bd266edd25c83412f208bb0"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "0f94d4ad723ac426bb166ebd4afee6173c4f2bce2de094e5d6fb8d7017b76473"
+    },
+    {
+      "pc": 5,
+      "next_pc": 8,
+      "state_digest": "e4cfe3bf496be587dbee40a50be9c32987d1f725eeb2a12fb52a48fa13b5bf39"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "c4ff3cab9016f8426673bb3271e9e11902f6c4422bf19485932a36cbd053e354"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "d4a43af2ce596fcf4afab1352af5f3c0de31b512eebe96e4989c488ca6c582f5"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 24,
+      "replayed": 0
+    }
+  ]
+}

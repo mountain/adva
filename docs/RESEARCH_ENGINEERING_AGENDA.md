@@ -820,3 +820,28 @@ Native sharing/graft correspondence and stable promotion remain separate gates.
 Self interpretation additionally requires an admitted representation and correct
 interpretation of this machine's own instruction grammar, with its overhead and
 residual state recorded. No earlier mass bound supplies that missing result.
+
+## 13. Self-interpretation capacity preflight, 2026-09-16
+
+Section 12 named the prerequisite for self interpretation: an admitted
+representation of this machine's own instruction grammar and its recorded
+overhead. The
+[bounded capacity preflight](research/self-interpretation-capacity-preflight.md)
+measures that prerequisite inside the bounds the profile already declares, without
+changing the machine, adding an operation or widening a limit.
+
+Result: an inspectable encoding of the unchanged 51-instruction object interpreter
+needs 169 data nodes against 127, and the only encoding that fits the node bound —
+packing each instruction's operands into one integer — cannot be unpacked, because
+the 19-variant vocabulary has no division, modulo or bit operation. The bound is
+located from both sides by execution: a 127-node input is admitted and a 128-node
+input is refused before running. A 17-case opcode dispatch ladder costs 90 of the
+128 instructions and 3 native steps per ladder position, one data-driven index step
+costs 4 native steps, and a static 16-case index ladder costs 85 instructions.
+
+Consequence for the open choice: the checked-translation route does not by itself
+move any of these three bounds, while a separately scoped extension must name which
+bound moves — data nodes or an unpacking operation, program instructions, and
+lifetime fuel — and record the overhead, as section 12 already requires. The
+preflight is a capacity measurement and not an impossibility result; it counted two
+encoding schemes, searched for no third, and wrote no interpreter.

@@ -1,0 +1,82 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "capacity-index-step",
+  "registers": [
+    {
+      "name": "item",
+      "kind": "data"
+    },
+    {
+      "name": "count",
+      "kind": "integer"
+    },
+    {
+      "name": "one",
+      "kind": "integer"
+    },
+    {
+      "name": "counter",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "boxed",
+      "kind": "data"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 0
+    },
+    {
+      "op": "as_integer",
+      "src": 0,
+      "dst": 1
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 3,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 3,
+      "right": 1,
+      "dst": 4
+    },
+    {
+      "op": "branch",
+      "condition": 4,
+      "yes": 8,
+      "no": 6
+    },
+    {
+      "op": "add",
+      "left": 3,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "jump",
+      "target": 4
+    },
+    {
+      "op": "box_integer",
+      "src": 1,
+      "dst": 5
+    },
+    {
+      "op": "return",
+      "src": 5
+    }
+  ]
+}

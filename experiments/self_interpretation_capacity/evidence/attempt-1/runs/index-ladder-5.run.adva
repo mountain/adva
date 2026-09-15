@@ -1,0 +1,653 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "capacity-index-16",
+    "registers": [
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "tag",
+        "kind": "integer"
+      },
+      {
+        "name": "probe",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "result",
+        "kind": "integer"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "as_integer",
+        "src": 0,
+        "dst": 1
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 5,
+        "no": 7
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 200
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 10,
+        "no": 12
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 201
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 2
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 15,
+        "no": 17
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 202
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 3
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 20,
+        "no": 22
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 203
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 4
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 25,
+        "no": 27
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 204
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 5
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 30,
+        "no": 32
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 205
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 6
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 35,
+        "no": 37
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 206
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 7
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 40,
+        "no": 42
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 207
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 8
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 45,
+        "no": 47
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 208
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 9
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 50,
+        "no": 52
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 209
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 10
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 55,
+        "no": 57
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 210
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 11
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 60,
+        "no": 62
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 211
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 12
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 65,
+        "no": 67
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 212
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 13
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 70,
+        "no": 72
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 213
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 14
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 75,
+        "no": 77
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 214
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 15
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 80,
+        "no": 82
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 215
+      },
+      {
+        "op": "jump",
+        "target": 83
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": -1
+      },
+      {
+        "op": "box_integer",
+        "src": 4,
+        "dst": 5
+      },
+      {
+        "op": "return",
+        "src": 5
+      }
+    ]
+  },
+  "input": {
+    "kind": "integer",
+    "value": 5
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 85,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 5
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 5
+      },
+      {
+        "kind": "integer",
+        "value": 5
+      },
+      {
+        "kind": "boolean",
+        "value": true
+      },
+      {
+        "kind": "integer",
+        "value": 205
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 205
+        }
+      }
+    ],
+    "spent": 24,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 205
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "be531a8f9b1b232c619dbedb143c2727453a7ad7f54dd4691ee003c8c18e5b15"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "31d7af5e29e4a81e7c5ef3f579f575d1325c0154fb5e7c6629d06ed4f3914074"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "9691ba07415cae99ff73e7469eef441625e028ba0ac0c93717e0d52ab0ba0354"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "67cc6d7ed95b10eb59d6779b943bc014367f3bd0cbf783c818a4db75bcb86c60"
+    },
+    {
+      "pc": 4,
+      "next_pc": 7,
+      "state_digest": "5a87dcf3f3065aacbb973a94c3d49cb1ed273cd9de31bc9068cb203c6dd78983"
+    },
+    {
+      "pc": 7,
+      "next_pc": 8,
+      "state_digest": "c41dd9492d75714e13b2282904a734744c97ad0abe8d8c14c7e043683bca33bf"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "21233faa342047929dd752b56bb14c94c34a9b9ed1576c941568d2a45a0113d5"
+    },
+    {
+      "pc": 9,
+      "next_pc": 12,
+      "state_digest": "4b6ab30d38baa00d117f471fae2fc0cbbf45d98bf9b0b4c8f972e99592127bcd"
+    },
+    {
+      "pc": 12,
+      "next_pc": 13,
+      "state_digest": "0afe99b17f4dff98d5b64eb8444db3e4cd2ada5d71ab0b3796bb965f90bf0f43"
+    },
+    {
+      "pc": 13,
+      "next_pc": 14,
+      "state_digest": "37bce9f8c4d3b4e1c42a4dd0d2d03ca728d3e36457598db7a944f58e1b095797"
+    },
+    {
+      "pc": 14,
+      "next_pc": 17,
+      "state_digest": "e29a8252baf5b4eb43c96427cb4a0ff208250d356950613fccf0f464ccfd5525"
+    },
+    {
+      "pc": 17,
+      "next_pc": 18,
+      "state_digest": "6bc148197ba10011dabf579b23b251d54769cc13ebf7cac6d2ecce473e82e49a"
+    },
+    {
+      "pc": 18,
+      "next_pc": 19,
+      "state_digest": "a22f3c7e00ca7b069a6b5a97701a52015df6ae4c149e6b14eaa346a27a84b31c"
+    },
+    {
+      "pc": 19,
+      "next_pc": 22,
+      "state_digest": "6e74c04fd6f493ca2f24b86cbe053dc87ab86e06ae0ae9ebb5dd42aa375d383f"
+    },
+    {
+      "pc": 22,
+      "next_pc": 23,
+      "state_digest": "e2be54ff83c045c51af6db29149342e1ecda90692017cc187abce066467a4673"
+    },
+    {
+      "pc": 23,
+      "next_pc": 24,
+      "state_digest": "12fec52e01f166cb4019d34730c84e763072e1280801b471f9e5fc90a270787f"
+    },
+    {
+      "pc": 24,
+      "next_pc": 27,
+      "state_digest": "e75398f821c4567b3cb4cae867f5ae02ae06378e7cbe528c5bb429d7b6ce6a9c"
+    },
+    {
+      "pc": 27,
+      "next_pc": 28,
+      "state_digest": "5e374c2c2500f9748811f2e285cbb858cb7fe9e211c57d9294d5e1d517aec0d6"
+    },
+    {
+      "pc": 28,
+      "next_pc": 29,
+      "state_digest": "fa74deb45f450d7d1b35be54f72acf9899742fba04f3fb2a538c4c82e9882876"
+    },
+    {
+      "pc": 29,
+      "next_pc": 30,
+      "state_digest": "473dae451badeb7d45dae4b48db6808b2939f68eb45dddbc03666efba5e59975"
+    },
+    {
+      "pc": 30,
+      "next_pc": 31,
+      "state_digest": "b2e3976c3f14d42e57731a0684aabbc9737fc590507b4d2877c64db6ff6cfd1e"
+    },
+    {
+      "pc": 31,
+      "next_pc": 83,
+      "state_digest": "62b42dca39d00ff964e138a9d236281e3416157c6d67c8ee59061d045f22237b"
+    },
+    {
+      "pc": 83,
+      "next_pc": 84,
+      "state_digest": "916788e1bccb169024b2329f129ae1c40f568d2f4767f62ad8e4db24ddd0e322"
+    },
+    {
+      "pc": 84,
+      "next_pc": 85,
+      "state_digest": "af0d229b9841ab4b05e89b1aa22aa11f2b36d8e4d08aa421c029c3e04f9ea1e3"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 24,
+      "replayed": 0
+    }
+  ]
+}

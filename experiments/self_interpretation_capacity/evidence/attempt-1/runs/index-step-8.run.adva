@@ -1,0 +1,344 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "capacity-index-step",
+    "registers": [
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "count",
+        "kind": "integer"
+      },
+      {
+        "name": "one",
+        "kind": "integer"
+      },
+      {
+        "name": "counter",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "as_integer",
+        "src": 0,
+        "dst": 1
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 1
+      },
+      {
+        "op": "constant",
+        "dst": 3,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 3,
+        "right": 1,
+        "dst": 4
+      },
+      {
+        "op": "branch",
+        "condition": 4,
+        "yes": 8,
+        "no": 6
+      },
+      {
+        "op": "add",
+        "left": 3,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "box_integer",
+        "src": 1,
+        "dst": 5
+      },
+      {
+        "op": "return",
+        "src": 5
+      }
+    ]
+  },
+  "input": {
+    "kind": "integer",
+    "value": 8
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 10,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 8
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 8
+      },
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      {
+        "kind": "integer",
+        "value": 8
+      },
+      {
+        "kind": "boolean",
+        "value": true
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 8
+        }
+      }
+    ],
+    "spent": 40,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 8
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "7ecb79970c586a54c55930a704dbb010c9d004d7e3a1c2ca619cc25bf7f800ae"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "073c18928eff3f08e37c19cb44c968519b6277d42bd3f0d5d3fb0b5d1d430862"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "e1ffa4c06a5b29a307060513130585815075608902b88eb809daa7e3d7cc0ce0"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "dbed9c522b11075759adedd500e2f05babec699bd52355bb107654defe723eeb"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "a2b272e66afed5782f67f906d158e5e0bf083eb79a14119b3ee6fc2bb8ecee1e"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "2cbed8130dc5d8f91bdd430467c3591bc09ebc60ffe17bffcbe3b59084ffb590"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "5896290f3391376799ac64d4067cea6f63a7c14949aad2af4934233af4dbbcdd"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "ecc27b649bb8bb44eaa82982c3d01fe8d8585a410ac00143d580b741281925c6"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "185181bbd226b98c07d3d375a2bd902b40e8c1fbb908f828732b73abf161b131"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "eb3d6177e50159da714032c4388a743e38a4586f266a209e139d1ae1f1918b7f"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "c08c2048087e926a27f29a0721b8ca6a21601cf9fd4931988eb81657c97cbc0c"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "8aec2b6b05007f4c616bc5a47b02c62dce6b3b12c64c52e2fb5b46af930c3984"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "5749fd4f142e174032cc678184b211020bf2c9cfc1b9763132240929c6d0af53"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "8578a806bb147e6ba462598daf57e76489d69c2dc748d2912037f22f731b9a10"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "582f1a84ae1d1b2731f7f4af2ee76a3528452ac898d3653f009b0747717cafe4"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "490b1af5e733f90534a0ba0a7a192db9b36857e1d66e9320967fb24d1cd6bc49"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "03ff8a97d8548cf02ad0b3d8edb5cbe941a6acf6b409913643efd5d298150611"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "b30c46769d2241e59758bf5fbd7872d7f0ce92e00790bdf9f75c025564f58738"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "0fa4e8beab246a8c9aef3db0b4cefd59485018be1b9722258b0dac2880597542"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "fcfe2082b7d6d4ece0386fa920ba621e90e9c76f8b6697189d2405829ea51fb2"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "b8ebeb5504dd41d52ade8d72e38051ffa71f10036eeaad487376f558721f7bcc"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "e7e2d68373fac6f953d4a7cb811efacb1d237c3287aeae51afd9676a8370d421"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "a705c693a148cd959bfaa2c893d0137368f97da69ddbdfca8866f0dbefa2e5e2"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "859c7a09f5f4f691812efb1f74f99e5f1c30800c1380ccedb82991172cc2e077"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "2cd60203764daf7d3ae76ca35976ce4171dc1c43a01b3f1d0bba739e85964f2b"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "a1de5fb682dbe04a5df5d8c96b3340613a0ce6363d580e3b62538fe653ddd0a0"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "bc2691eae9f7123a46d6351ac47550585933583ce5cf9bc8b0d14a94649b17a9"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "1f8f9b6bf1c736422c3d7f788b594a748a2e9d20e0117c584944e050863e6787"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "11c4e0fa59d9c3402bf162ffbff18fc25b6a2440316292faed392dd0b1dfce49"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "e3687f32d1584b235b59c97b8134d6d6016d99c123afaad06f3a72f580dc17f6"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "de46d9194dd6f5e4b9159dc9c7b59ee42eca13a591e5460ab0db354734ed2ad0"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "96191179a215983bf475298daf3421385f7cd8f4cc05c9729b09845eddcb8452"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "9df02c2e21abf0a4358ed020d50fad17eac023b7690bc2ed8d7fddefed35c6c5"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "8c302b658fbeeeddfba86f7f1df2162d0e80b376c45ff7c292cbb64f0de86f18"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "809c8ebbb8291d66e5d8c47210a8f92784763001c70ec6519156b371fe8b6d7a"
+    },
+    {
+      "pc": 7,
+      "next_pc": 4,
+      "state_digest": "6951706a7bc37a55878f4ceb24d474b52ae6c1229564fde48be9df43a90f6daa"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "0fb95e22af21acf9dc607bb243c99338106b66bc0a01be5db132b2fef6e13f2b"
+    },
+    {
+      "pc": 5,
+      "next_pc": 8,
+      "state_digest": "441c4628d63c8cf56dc1443bcb7cceaaa850bc4671b6872a308224134a8e593c"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "f4a318f9a94efbd843ffb9a4d5729dab6eda0f88c36cb2e826f7ca3a3df1f270"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "97aed4643ad740e75d28eb12ce8ad70f20493a477178d12e65ab47be2b3ac51e"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 40,
+      "replayed": 0
+    }
+  ]
+}

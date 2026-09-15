@@ -1,0 +1,11 @@
+adva: data capacity exceeded
+usage:
+  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]
+  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]
+  adva run <program.adva> --output <result.adva> [--print]
+  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]
+  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
+  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]
+  adva frontier <calibration.adva> --output <frontier.adva> [--print]
+  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]
+  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]

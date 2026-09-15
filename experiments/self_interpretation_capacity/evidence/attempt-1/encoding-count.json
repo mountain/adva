@@ -1,0 +1,42 @@
+{
+  "instructions": 51,
+  "direct": {
+    "scheme": "one node per instruction, one node spine of groups, one integer leaf per numeric operand",
+    "nodes": 169,
+    "depth": 4,
+    "group_nodes": 7,
+    "instruction_nodes": 51,
+    "operand_leaves": 110,
+    "per_op": {
+      "add": 1,
+      "as_integer": 4,
+      "box_integer": 2,
+      "branch": 7,
+      "clear": 2,
+      "constant": 5,
+      "equal": 5,
+      "field": 3,
+      "input": 1,
+      "is_empty": 2,
+      "jump": 4,
+      "multiply": 1,
+      "pop": 4,
+      "push": 6,
+      "reject": 2,
+      "return": 1,
+      "tag": 1
+    },
+    "instructions_with_text_operands": 2,
+    "within_node_bound": false,
+    "within_depth_bound": true
+  },
+  "packed": {
+    "scheme": "one node per instruction with all numeric operands packed into one integer leaf",
+    "nodes": 110,
+    "depth": 4,
+    "decodable_in_language": false,
+    "why_not": "unpacking base-N operands needs integer division, modulo or a bit operation; the declared vocabulary has add, multiply, equal and comparison-free control only",
+    "within_node_bound": true,
+    "within_depth_bound": true
+  }
+}

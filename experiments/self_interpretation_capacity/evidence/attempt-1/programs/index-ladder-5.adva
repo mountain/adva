@@ -1,0 +1,471 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "capacity-index-16",
+  "registers": [
+    {
+      "name": "item",
+      "kind": "data"
+    },
+    {
+      "name": "tag",
+      "kind": "integer"
+    },
+    {
+      "name": "probe",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "result",
+      "kind": "integer"
+    },
+    {
+      "name": "boxed",
+      "kind": "data"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 0
+    },
+    {
+      "op": "as_integer",
+      "src": 0,
+      "dst": 1
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 5,
+      "no": 7
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 200
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 10,
+      "no": 12
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 201
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 2
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 15,
+      "no": 17
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 202
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 3
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 20,
+      "no": 22
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 203
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 4
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 25,
+      "no": 27
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 204
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 5
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 30,
+      "no": 32
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 205
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 6
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 35,
+      "no": 37
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 206
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 7
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 40,
+      "no": 42
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 207
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 8
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 45,
+      "no": 47
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 208
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 9
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 50,
+      "no": 52
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 209
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 10
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 55,
+      "no": 57
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 210
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 11
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 60,
+      "no": 62
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 211
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 12
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 65,
+      "no": 67
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 212
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 13
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 70,
+      "no": 72
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 213
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 14
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 75,
+      "no": 77
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 214
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 2,
+      "value": 15
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 2,
+      "dst": 3
+    },
+    {
+      "op": "branch",
+      "condition": 3,
+      "yes": 80,
+      "no": 82
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": 215
+    },
+    {
+      "op": "jump",
+      "target": 83
+    },
+    {
+      "op": "constant",
+      "dst": 4,
+      "value": -1
+    },
+    {
+      "op": "box_integer",
+      "src": 4,
+      "dst": 5
+    },
+    {
+      "op": "return",
+      "src": 5
+    }
+  ]
+}

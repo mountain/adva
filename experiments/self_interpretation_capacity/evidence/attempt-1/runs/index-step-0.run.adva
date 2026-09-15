@@ -1,0 +1,184 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "capacity-index-step",
+    "registers": [
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "count",
+        "kind": "integer"
+      },
+      {
+        "name": "one",
+        "kind": "integer"
+      },
+      {
+        "name": "counter",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "as_integer",
+        "src": 0,
+        "dst": 1
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 1
+      },
+      {
+        "op": "constant",
+        "dst": 3,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 3,
+        "right": 1,
+        "dst": 4
+      },
+      {
+        "op": "branch",
+        "condition": 4,
+        "yes": 8,
+        "no": 6
+      },
+      {
+        "op": "add",
+        "left": 3,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "box_integer",
+        "src": 1,
+        "dst": 5
+      },
+      {
+        "op": "return",
+        "src": 5
+      }
+    ]
+  },
+  "input": {
+    "kind": "integer",
+    "value": 0
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 10,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 0
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 0
+      },
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      {
+        "kind": "integer",
+        "value": 0
+      },
+      {
+        "kind": "boolean",
+        "value": true
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 0
+        }
+      }
+    ],
+    "spent": 8,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 0
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "a42f42d835ea71aacefd9f5e55b688ad94bcd400d3a4415a2a3d5d514fb31728"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "ad91a2e9c04510c5abad4c6dccbb62b57d4f0749659a48bfb51d5d1cdd316f74"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "e2601cf44c8487afc4417ef8261c475f3726a6cd09c09aaa2630e234753f075a"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "31675c6b2b17d6324f3d8a449fc2f38cd5639f18342f29b1a039f30942ec13a8"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "89eb8d146907d5fddc3a0a465bd479ebb88b1bdcf5ad73cf4cb1ead63c30c5e9"
+    },
+    {
+      "pc": 5,
+      "next_pc": 8,
+      "state_digest": "d899c02bba0c44f3c666746c92f9d1fbc1db3aeaf41ea05341571a559ef70a04"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "ac40323c3185a2944db9f1f4be7b325ac020ac748ad715e4683ec0057bf35849"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "e65d2dd2b98a8bcfe5b3b51abe027a0d17de098336911870384a95b4abaa2337"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 8,
+      "replayed": 0
+    }
+  ]
+}

@@ -1,0 +1,929 @@
+{
+  "schema": "adva.self-interpretation-capacity.result.v0",
+  "limits": {
+    "program_instructions": 128,
+    "registers": 16,
+    "data_nodes": 127,
+    "data_depth": 12,
+    "node_arity": 8,
+    "stack_items": 256,
+    "state_nodes": 8192,
+    "lifetime_fuel": 2048,
+    "program_bytes": 32768
+  },
+  "object_program": "programs/bounded-interpreter/interpreter.adva",
+  "launches": 12,
+  "counting": {
+    "instructions": 51,
+    "direct": {
+      "scheme": "one node per instruction, one node spine of groups, one integer leaf per numeric operand",
+      "nodes": 169,
+      "depth": 4,
+      "group_nodes": 7,
+      "instruction_nodes": 51,
+      "operand_leaves": 110,
+      "per_op": {
+        "add": 1,
+        "as_integer": 4,
+        "box_integer": 2,
+        "branch": 7,
+        "clear": 2,
+        "constant": 5,
+        "equal": 5,
+        "field": 3,
+        "input": 1,
+        "is_empty": 2,
+        "jump": 4,
+        "multiply": 1,
+        "pop": 4,
+        "push": 6,
+        "reject": 2,
+        "return": 1,
+        "tag": 1
+      },
+      "instructions_with_text_operands": 2,
+      "within_node_bound": false,
+      "within_depth_bound": true
+    },
+    "packed": {
+      "scheme": "one node per instruction with all numeric operands packed into one integer leaf",
+      "nodes": 110,
+      "depth": 4,
+      "decodable_in_language": false,
+      "why_not": "unpacking base-N operands needs integer division, modulo or a bit operation; the declared vocabulary has add, multiply, equal and comparison-free control only",
+      "within_node_bound": true,
+      "within_depth_bound": true
+    }
+  },
+  "program_lengths": {
+    "object_interpreter": 51,
+    "dispatch_ladder_17": 90,
+    "index_step_loop": 10,
+    "static_index_ladder_16": 85
+  },
+  "cases": [
+    {
+      "name": "input-127-nodes",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/input-127-nodes.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 2,
+      "returned_value": {
+        "kind": "node",
+        "tag": 0,
+        "fields": [
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": [
+                                  {
+                                    "kind": "node",
+                                    "tag": 0,
+                                    "fields": []
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": [
+                              {
+                                "kind": "node",
+                                "tag": 0,
+                                "fields": []
+                              }
+                            ]
+                          },
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": [
+                          {
+                            "kind": "node",
+                            "tag": 0,
+                            "fields": []
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": [
+                      {
+                        "kind": "node",
+                        "tag": 0,
+                        "fields": []
+                      }
+                    ]
+                  },
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": [
+                  {
+                    "kind": "node",
+                    "tag": 0,
+                    "fields": []
+                  }
+                ]
+              },
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "node",
+                "tag": 0,
+                "fields": []
+              }
+            ]
+          }
+        ]
+      },
+      "input_nodes": 127,
+      "expected": "accepted"
+    },
+    {
+      "name": "input-128-nodes",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "adva: data capacity exceeded",
+      "expected": "data capacity exceeded"
+    },
+    {
+      "name": "input-depth-13",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "adva: data capacity exceeded",
+      "expected": "data capacity exceeded"
+    },
+    {
+      "name": "input-arity-9",
+      "exit_code": 2,
+      "stdout": "",
+      "stderr": "adva: node arity exceeds 8",
+      "expected": "node arity exceeds 8"
+    },
+    {
+      "name": "dispatch-tag-0",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/dispatch-tag-0.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 9,
+      "returned_value": {
+        "kind": "integer",
+        "value": 100
+      },
+      "input_nodes": 1,
+      "expected": "returned 100",
+      "expected_value": 100
+    },
+    {
+      "name": "dispatch-tag-8",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/dispatch-tag-8.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 33,
+      "returned_value": {
+        "kind": "integer",
+        "value": 108
+      },
+      "input_nodes": 1,
+      "expected": "returned 108",
+      "expected_value": 108
+    },
+    {
+      "name": "dispatch-tag-16",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/dispatch-tag-16.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 57,
+      "returned_value": {
+        "kind": "integer",
+        "value": 116
+      },
+      "input_nodes": 1,
+      "expected": "returned 116",
+      "expected_value": 116
+    },
+    {
+      "name": "dispatch-tag-unmatched",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/dispatch-tag-unmatched.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 56,
+      "returned_value": {
+        "kind": "integer",
+        "value": 999
+      },
+      "input_nodes": 1,
+      "expected": "returned 999",
+      "expected_value": 999
+    },
+    {
+      "name": "index-step-0",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/index-step-0.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 8,
+      "returned_value": {
+        "kind": "integer",
+        "value": 0
+      },
+      "input_nodes": 1,
+      "expected": "returned 0",
+      "expected_value": 0
+    },
+    {
+      "name": "index-step-4",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/index-step-4.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 24,
+      "returned_value": {
+        "kind": "integer",
+        "value": 4
+      },
+      "input_nodes": 1,
+      "expected": "returned 4",
+      "expected_value": 4
+    },
+    {
+      "name": "index-step-8",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/index-step-8.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 40,
+      "returned_value": {
+        "kind": "integer",
+        "value": 8
+      },
+      "input_nodes": 1,
+      "expected": "returned 8",
+      "expected_value": 8
+    },
+    {
+      "name": "index-ladder-5",
+      "exit_code": 0,
+      "stdout": "status=Returned; output=experiments/self_interpretation_capacity/evidence/attempt-1/runs/index-ladder-5.run.adva",
+      "stderr": "",
+      "status": "Returned",
+      "steps": 24,
+      "returned_value": {
+        "kind": "integer",
+        "value": 205
+      },
+      "input_nodes": 1,
+      "expected": "returned 205",
+      "expected_value": 205
+    }
+  ],
+  "index_step_counts": {
+    "0": 8,
+    "4": 24,
+    "8": 40
+  },
+  "dispatch_step_counts": {
+    "dispatch-tag-0": 9,
+    "dispatch-tag-8": 33,
+    "dispatch-tag-16": 57,
+    "dispatch-tag-unmatched": 56
+  },
+  "failures": [],
+  "verdict": "Passed"
+}

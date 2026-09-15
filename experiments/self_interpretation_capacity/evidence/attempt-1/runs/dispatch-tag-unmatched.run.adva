@@ -1,0 +1,839 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "capacity-dispatch-17",
+    "registers": [
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "tag",
+        "kind": "integer"
+      },
+      {
+        "name": "probe",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "result",
+        "kind": "integer"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "as_integer",
+        "src": 0,
+        "dst": 1
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 5,
+        "no": 7
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 100
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 10,
+        "no": 12
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 101
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 2
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 15,
+        "no": 17
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 102
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 3
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 20,
+        "no": 22
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 103
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 4
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 25,
+        "no": 27
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 104
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 5
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 30,
+        "no": 32
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 105
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 6
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 35,
+        "no": 37
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 106
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 7
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 40,
+        "no": 42
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 107
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 8
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 45,
+        "no": 47
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 108
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 9
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 50,
+        "no": 52
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 109
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 10
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 55,
+        "no": 57
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 110
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 11
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 60,
+        "no": 62
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 111
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 12
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 65,
+        "no": 67
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 112
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 13
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 70,
+        "no": 72
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 113
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 14
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 75,
+        "no": 77
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 114
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 15
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 80,
+        "no": 82
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 115
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 2,
+        "value": 16
+      },
+      {
+        "op": "equal",
+        "left": 1,
+        "right": 2,
+        "dst": 3
+      },
+      {
+        "op": "branch",
+        "condition": 3,
+        "yes": 85,
+        "no": 87
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 116
+      },
+      {
+        "op": "jump",
+        "target": 88
+      },
+      {
+        "op": "constant",
+        "dst": 4,
+        "value": 999
+      },
+      {
+        "op": "box_integer",
+        "src": 4,
+        "dst": 5
+      },
+      {
+        "op": "return",
+        "src": 5
+      }
+    ]
+  },
+  "input": {
+    "kind": "integer",
+    "value": 99
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 90,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 99
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 99
+      },
+      {
+        "kind": "integer",
+        "value": 16
+      },
+      {
+        "kind": "boolean",
+        "value": false
+      },
+      {
+        "kind": "integer",
+        "value": 999
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 999
+        }
+      }
+    ],
+    "spent": 56,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 999
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "f11ed844404b9987739c8c8e85abf8a282a3e3daa2ec535fd09d0db3902d494c"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "1cabc1edac3a6cbf8a3bfccf5aeba3e8a2cb179a60c980322c8b403781847ecf"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "c95b47f8b12d3833b918039cd5f026970c5fed314ac54e9bb2561d671c8588dc"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "03fbfc6ca0aec058e039d726cd657e0d843b6cf7b32f29b378890e65a7729936"
+    },
+    {
+      "pc": 4,
+      "next_pc": 7,
+      "state_digest": "2157de43c745f4ab4d6b4c05896be204b2c60802c9baee686a0034f8d17072c9"
+    },
+    {
+      "pc": 7,
+      "next_pc": 8,
+      "state_digest": "cc53e80d020b6cce8e373727ea86ef53a99964b777e486c90945b4e53bdd32cf"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "9f07fe8c5b98d51b8966ffa30aaa03eb0b2db45823b19e2273fe7d2738ebbf38"
+    },
+    {
+      "pc": 9,
+      "next_pc": 12,
+      "state_digest": "997394c9895d951a768d9551f56895ce48290240e98b69a656104378317e3c92"
+    },
+    {
+      "pc": 12,
+      "next_pc": 13,
+      "state_digest": "a55a49264b84dca7df81439259a485e5622d85243025b8496917b3d5bfdf6dfc"
+    },
+    {
+      "pc": 13,
+      "next_pc": 14,
+      "state_digest": "aca64ec7e5812871235c445c924a5429d3a3a96affb24057279cc19c52d286f7"
+    },
+    {
+      "pc": 14,
+      "next_pc": 17,
+      "state_digest": "aa8605a15d821de55b0ac44898b0c84cfb785374b794f3543e8d23de01024981"
+    },
+    {
+      "pc": 17,
+      "next_pc": 18,
+      "state_digest": "44f3415f5f3b15d49b7ba4d9f8cbce893cff9df96d4ad587f4c302f18075be70"
+    },
+    {
+      "pc": 18,
+      "next_pc": 19,
+      "state_digest": "4b53d65061d67b7d59dbc23a3df0e22f3144f879409bfbdeefa66e8d599bc054"
+    },
+    {
+      "pc": 19,
+      "next_pc": 22,
+      "state_digest": "1baeea0a02d3ea36a84621cad5cb7ee0d1faa67a168350db79e4cd6acbb08e56"
+    },
+    {
+      "pc": 22,
+      "next_pc": 23,
+      "state_digest": "18ecae8d8ca50d4cfd931787dc3650c868ce3e11fe9d1463f76f9c6e14f15b93"
+    },
+    {
+      "pc": 23,
+      "next_pc": 24,
+      "state_digest": "1e577e87b798f25b49566967cf2b694973f030ae988f855a892a2d8483c2db4d"
+    },
+    {
+      "pc": 24,
+      "next_pc": 27,
+      "state_digest": "700562a9d2997d1f11f3e3987e58a116a0a59ad3d90e66aaeb9f5969d7ec84c9"
+    },
+    {
+      "pc": 27,
+      "next_pc": 28,
+      "state_digest": "48d1039d3e4e4b28a5f93fa0317eae5c53bc957a2c6d54305774971da21d75b7"
+    },
+    {
+      "pc": 28,
+      "next_pc": 29,
+      "state_digest": "9eba12be81800f1cb62a1a4f52b3139dc8fa12d069b914c36473ec709c842db4"
+    },
+    {
+      "pc": 29,
+      "next_pc": 32,
+      "state_digest": "d72e46649df3a7e798c1184700baa2e80529e3fe945353a641f08ee8452ce523"
+    },
+    {
+      "pc": 32,
+      "next_pc": 33,
+      "state_digest": "e75e6dbf874e4ef366b73e708781339638bec4e229303cf1dd224603d7217e99"
+    },
+    {
+      "pc": 33,
+      "next_pc": 34,
+      "state_digest": "7d2dba246ffe521367af33173a59a4b44f635e7229084754db3a6921fb22f1fc"
+    },
+    {
+      "pc": 34,
+      "next_pc": 37,
+      "state_digest": "cffa0e2538754b1148e643249b57c98fd62fb5d747d21fa1b9eeb02df788bede"
+    },
+    {
+      "pc": 37,
+      "next_pc": 38,
+      "state_digest": "99582e23f64e3fff8065ea7f220dc09d42c375ed720c78c93bfebf16dd01b868"
+    },
+    {
+      "pc": 38,
+      "next_pc": 39,
+      "state_digest": "45cf3841df2ec458fa06c5d673d47bd517591ca7158b5a074bec042c505df55d"
+    },
+    {
+      "pc": 39,
+      "next_pc": 42,
+      "state_digest": "3d1e007323543a68fb13da2f81ec3f1b29b53fc7db718cdfa8704113e69558f8"
+    },
+    {
+      "pc": 42,
+      "next_pc": 43,
+      "state_digest": "6d424e0d7a9c1630279a72ae3be89d738e8e97911e248055f52f3ec4b7a844f5"
+    },
+    {
+      "pc": 43,
+      "next_pc": 44,
+      "state_digest": "65b80a2520086b1cc3407945c593e6127ed436067116aa2d0f76431bb15dee90"
+    },
+    {
+      "pc": 44,
+      "next_pc": 47,
+      "state_digest": "d28e82c526967f1b434c064d0cbee0960292e95690e2b14619ea72792a8a71e4"
+    },
+    {
+      "pc": 47,
+      "next_pc": 48,
+      "state_digest": "cd884d3da67f9917e53e12b3bec38a58b4608f95e2b651dee84935ec579f463a"
+    },
+    {
+      "pc": 48,
+      "next_pc": 49,
+      "state_digest": "f2cb6fb45f127f3b82c7bbf1d56abf4e3471d84a0f7d0b4668aebe81c9167def"
+    },
+    {
+      "pc": 49,
+      "next_pc": 52,
+      "state_digest": "3e852d341966ed9d91780f4966acca27708a03649c1e505c7d9ce66673ba6c63"
+    },
+    {
+      "pc": 52,
+      "next_pc": 53,
+      "state_digest": "076d8b71bc534193fa1f2d5e741ddaea17ddfc155e431f35e35b33b572514aba"
+    },
+    {
+      "pc": 53,
+      "next_pc": 54,
+      "state_digest": "2a9e37996259de7b1b70415a6aff92452c8f7b787421aaa677a87ec9dff0a831"
+    },
+    {
+      "pc": 54,
+      "next_pc": 57,
+      "state_digest": "de91b94d10b3de22d0cf6ba8fdc2289878731945ae5424d17abf0edf50a37cd5"
+    },
+    {
+      "pc": 57,
+      "next_pc": 58,
+      "state_digest": "3c2525a453c3c7a4231f7c08201a78f0b13f50958b4a1b2ef074c1fc35b7d5a8"
+    },
+    {
+      "pc": 58,
+      "next_pc": 59,
+      "state_digest": "8d984750668f479e6df899216789807598b1bdcb70451b58cc5b3b4fad77f9ce"
+    },
+    {
+      "pc": 59,
+      "next_pc": 62,
+      "state_digest": "c9db01480188af328a73b76e48ed9e6cc09ded73cfe43a5e30cda98d69fd8daf"
+    },
+    {
+      "pc": 62,
+      "next_pc": 63,
+      "state_digest": "ce831ebabeb13035c54b1bdc240c7072a6d6df34c3a164f4dbdb458aafcd722b"
+    },
+    {
+      "pc": 63,
+      "next_pc": 64,
+      "state_digest": "520c440232a2b1ad0756a2d5b5fba846b95952bb6ee53a46a5e89cf63ee49054"
+    },
+    {
+      "pc": 64,
+      "next_pc": 67,
+      "state_digest": "727df5b222fb58ba48f5669d859812304cdba33c0fe1a70a9078db9d0b838938"
+    },
+    {
+      "pc": 67,
+      "next_pc": 68,
+      "state_digest": "43797a5b4a99875b79483c855e5ba73515ca7dfeb1e79e9d987491d9ad393a04"
+    },
+    {
+      "pc": 68,
+      "next_pc": 69,
+      "state_digest": "5ccb4aa0c9faff0a44dcbd5b1a60760ab5d20dadd0aa95775ffa552b1ee9da67"
+    },
+    {
+      "pc": 69,
+      "next_pc": 72,
+      "state_digest": "63d5b29beca1a8464c8eb36d3086dedead21d061262e1b2086e9fcd92ccd6325"
+    },
+    {
+      "pc": 72,
+      "next_pc": 73,
+      "state_digest": "2f0b1bbb366b8c27f5d4ffb369d6e126feebd72d5cb1a8a139011f24fdfb927f"
+    },
+    {
+      "pc": 73,
+      "next_pc": 74,
+      "state_digest": "5765f73f36510b7b0367103d5897ed831da4fc35595c1f5c9c7ff4f67c449e63"
+    },
+    {
+      "pc": 74,
+      "next_pc": 77,
+      "state_digest": "ca575af911d751869fed3b6524cb1ad1987422d71b330e08c9739444b98020f1"
+    },
+    {
+      "pc": 77,
+      "next_pc": 78,
+      "state_digest": "50c0da3df9ef3a328301ba78a6094ff299b9a4a728892ab21ab720e245cd098c"
+    },
+    {
+      "pc": 78,
+      "next_pc": 79,
+      "state_digest": "9e816dca1727efffcd950f8361c414cd1f55725f938cce4e0592bc5ebd9a21ed"
+    },
+    {
+      "pc": 79,
+      "next_pc": 82,
+      "state_digest": "9cbbc253893154d069eb2217b9215edbc9aa5b957c971475887e03de6811a744"
+    },
+    {
+      "pc": 82,
+      "next_pc": 83,
+      "state_digest": "eb08385821bd2149ec8afa6f181efdc97f18e3f303764f6c79353c3bf2b0b509"
+    },
+    {
+      "pc": 83,
+      "next_pc": 84,
+      "state_digest": "1fe487024551833225f433e00fc7a5afbac273e87d8d63a9b9490a814f4b98dd"
+    },
+    {
+      "pc": 84,
+      "next_pc": 87,
+      "state_digest": "622d9e73e51d5caf586788ce5eac04a2bd2ffc5ed89cec323349492ff3422642"
+    },
+    {
+      "pc": 87,
+      "next_pc": 88,
+      "state_digest": "998274211ccc654daca13ab9e7ebfc20d0f134a5464c48a1ffe82c6fe61143ab"
+    },
+    {
+      "pc": 88,
+      "next_pc": 89,
+      "state_digest": "a8bb6768a5bc83b21d82798fee049f6836880ac2183aec9f222b874b6d468aa5"
+    },
+    {
+      "pc": 89,
+      "next_pc": 90,
+      "state_digest": "48a21a9171773f2e9dfd16fd8b22c931341961982e30619936575badec95a2ba"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 56,
+      "replayed": 0
+    }
+  ]
+}

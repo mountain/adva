@@ -1,0 +1,54 @@
+{
+  "schema": "adva.self-interpretation-capacity.contract.v0",
+  "base": "9c3be81f11e22162af0ac1637188688778363a13",
+  "question": "Within the already declared research data-machine bounds, can this profile hold an inspectable representation of its own instruction grammar and dispatch over it, or is the attempt stopped by a declared program, data or fuel bound before any interpretation theorem is at issue?",
+  "level": "Bounded capability measurement of an existing research profile: deterministic counting of a representation plus executed boundary and cost cases. No new semantics, no Rust change, no PSC0 promotion, no self-interpreter, no claim that self interpretation is impossible.",
+  "imports": [
+    "The declared bounds are read from crates/adva-witness/src/data_machine.rs: program 128 instructions, 16 registers, data 127 nodes, depth 12, node arity 8, stack 256 items, state 8192 nodes, lifetime fuel 2048, program and input 32768 bytes, report 2097152 bytes",
+    "The representation target is the 51-instruction arithmetic interpreter at programs/bounded-interpreter/interpreter.adva, unchanged",
+    "docs/research/bounded-native-data-interpreter.md records that the missing self-interpretation step needs an admitted representation of this machine's own instruction grammar, with its instruction and execution costs recorded",
+    "docs/research/0137-self-interpretation-boundary.md requires finite program data, structural inspection and bounded control before an interpreter can be written in the language it interprets",
+    "The arithmetic object grammar is not the instruction grammar; representing the latter says nothing about whether an interpreter for it can be written"
+  ],
+  "interface": "The counting function reads the object program's JSON bytes and applies one declared encoding scheme; it is arithmetic on declared bounds, not an execution. Every executed case goes through the unchanged `adva data-run` entry with a declared fuel and quantum, and every refusal is retained with its stderr.",
+  "protected": [
+    "No change to the machine, its profile bytes or its declared bounds; no new instruction and no widened limit",
+    "Every executed case uses the unchanged CLI and an unchanged profile digest",
+    "Node indices, instruction indices and case counts are research coordinates, not native SourceId, OccurrenceId or program identity",
+    "A capacity measurement is not a self-interpretation result, a universality result, a non-existence theorem or a promotion decision",
+    "Refusals and failed expectations are retained, never repaired silently"
+  ],
+  "cases": {
+    "counting": [
+      "direct encoding: one node per instruction whose fields are its numeric operands as integer leaves, grouped under one spine, depth 4",
+      "packed encoding: one node per instruction with all its numeric operands packed into one integer leaf, which is the only scheme that fits the node bound"
+    ],
+    "executed": [
+      "input with exactly 127 nodes is admitted",
+      "input with 128 nodes is refused",
+      "input whose depth exceeds 12 is refused",
+      "input with a node of arity 9 is refused",
+      "a 17-case opcode dispatch ladder is admitted and returns the declared value for its first, middle, last and unmatched tags",
+      "one data-driven index iteration is charged per step, measured at three workloads",
+      "a 16-case static index ladder is admitted and measures the program-size alternative to the data-driven loop"
+    ]
+  },
+  "checker": "experiments/self_interpretation_capacity/check.py",
+  "success": "Every declared case matches its expected outcome, and the counting function reports the exact node totals of both encoding schemes against the declared bound.",
+  "negative_controls": [
+    "The 128-node input and the arity-9 input must be refused, so that an accepted 127-node input is evidence of the bound's exact location rather than of lax admission",
+    "The dispatcher must return the declared distinct value for each tag and a declared fallback for an unmatched tag, so that it cannot pass by returning one constant",
+    "Each executed case records exit code, status, stderr and native step count, so a refusal cannot be reported as an acceptance"
+  ],
+  "resources": {
+    "max_cli_launches": 24,
+    "fuel_per_run": 2048,
+    "quantum_per_run": 2048,
+    "wall_seconds_per_invocation": 20,
+    "wall_seconds_total": 120,
+    "max_full_attempts_under_this_contract": 1,
+    "output_directory": "experiments/self_interpretation_capacity/evidence/attempt-1"
+  },
+  "exit": "Stop at the first mismatch, refusal outside the declared list, or resource limit; retain the failure and publish no positive claim from this attempt. Resource exhaustion is Unknown, not disproof.",
+  "limits": "This preflight measures representation capacity and instruction or step costs inside one declared profile. It does not establish or refute self interpretation, does not decide between the two next dependencies recorded in the interpreter report, and does not transfer any Keraia mass, universality or provenance result."
+}
