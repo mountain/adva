@@ -1,0 +1,363 @@
+{
+  "base": "20ff8a77ab45aa8388ee1058cad21faaeb07d16f",
+  "checks": [
+    "both Gold pairs share an early positive trace and separate at the declared later stage",
+    "missing coverage blocks object closure; complete finite tell-tales close the two distinct objects",
+    "the three-bit family reuses the same receiver without changing its implementation",
+    "eleven typed, context, coverage and false-negative mutations are refused"
+  ],
+  "cost": {
+    "assertions": 25,
+    "host_work_units": 438,
+    "peak_rss_kib": 11008,
+    "search_candidates": 0
+  },
+  "deterministic_sha256": "dbe40a0b441026b6a49569d166676c8009d2ae818f96cda3844ac2d0af947f3d",
+  "failures": [],
+  "families": [
+    {
+      "closed_M0": {
+        "accepted": [
+          "00"
+        ],
+        "coverage_sha256": "46afa2bc9165747be8470b3d77370e107d19a6e24c77187aa6a6ff0be918f53c",
+        "history_sha256": "72da71fb975297f687eb02ea634dd0a01e1906abca7bf7ba1b1b3265aee7db3f",
+        "machine": "two-bit Gold pair/M0",
+        "negative_certified": [
+          "01",
+          "10",
+          "11"
+        ],
+        "outcome": "ObjectClosed",
+        "positive_observed": [
+          "00"
+        ],
+        "stage": 1,
+        "universe": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "width": 2
+      },
+      "closed_M1": {
+        "accepted": [
+          "00",
+          "10"
+        ],
+        "coverage_sha256": "5a0d2a932fd9a3e41c7fcdc261151e7630f27fae588db605fb3a02c92dc211bf",
+        "history_sha256": "90be8b9e9354c38a21006fe498d12ccab73fd4226a0aac93bee2b8a8d3b2c316",
+        "machine": "two-bit Gold pair/M1",
+        "negative_certified": [
+          "01",
+          "11"
+        ],
+        "outcome": "ObjectClosed",
+        "positive_observed": [
+          "00"
+        ],
+        "stage": 1,
+        "universe": [
+          "00",
+          "01",
+          "10",
+          "11"
+        ],
+        "width": 2
+      },
+      "common_positive_trace": {
+        "events": [
+          {
+            "first_stage": 1,
+            "program": "00"
+          }
+        ],
+        "stage": 1
+      },
+      "counterexample": {
+        "first_stage": 5,
+        "program": "10"
+      },
+      "early_stage": 1,
+      "guarded_M0": {
+        "history_sha256": "72da71fb975297f687eb02ea634dd0a01e1906abca7bf7ba1b1b3265aee7db3f",
+        "outcome": "CertificateObstruction",
+        "positive": [
+          "00"
+        ],
+        "reason": "complete finite coverage is missing",
+        "stage": 1,
+        "unresolved": [
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "guarded_M1": {
+        "history_sha256": "90be8b9e9354c38a21006fe498d12ccab73fd4226a0aac93bee2b8a8d3b2c316",
+        "outcome": "CertificateObstruction",
+        "positive": [
+          "00"
+        ],
+        "reason": "complete finite coverage is missing",
+        "stage": 1,
+        "unresolved": [
+          "01",
+          "10",
+          "11"
+        ]
+      },
+      "late_M0": {
+        "events": [
+          {
+            "first_stage": 1,
+            "program": "00"
+          }
+        ],
+        "machine": "two-bit Gold pair/M0",
+        "schema": "adva.external.finite-positive-observation.v0",
+        "stage": 5,
+        "width": 2
+      },
+      "late_M1": {
+        "events": [
+          {
+            "first_stage": 1,
+            "program": "00"
+          },
+          {
+            "first_stage": 5,
+            "program": "10"
+          }
+        ],
+        "machine": "two-bit Gold pair/M1",
+        "schema": "adva.external.finite-positive-observation.v0",
+        "stage": 5,
+        "width": 2
+      },
+      "late_stage": 5,
+      "name": "two-bit Gold pair",
+      "trace_only_guess": {
+        "guessed_domain": [
+          "00"
+        ],
+        "rule": "unsafe-positive-trace-is-complete"
+      },
+      "width": 2
+    },
+    {
+      "closed_M0": {
+        "accepted": [
+          "000"
+        ],
+        "coverage_sha256": "9d80154a54c95d028bda503891bf14ae46f418a25170fec6a5fb6ffa874809ee",
+        "history_sha256": "38499342bb93497138a7f4690b489a750b331f6ae40058473a8d92600f2f29ea",
+        "machine": "three-bit fresh reuse/M0",
+        "negative_certified": [
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "outcome": "ObjectClosed",
+        "positive_observed": [
+          "000"
+        ],
+        "stage": 2,
+        "universe": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "width": 3
+      },
+      "closed_M1": {
+        "accepted": [
+          "000",
+          "110"
+        ],
+        "coverage_sha256": "a2dee608c5a1e41a193d288d77c2297113a89972c9eacec153ffc249510e0837",
+        "history_sha256": "7461b6613b530eae2ee0a9078509b3475f29d1621157ba0133197d17a5fc00bb",
+        "machine": "three-bit fresh reuse/M1",
+        "negative_certified": [
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "111"
+        ],
+        "outcome": "ObjectClosed",
+        "positive_observed": [
+          "000"
+        ],
+        "stage": 2,
+        "universe": [
+          "000",
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "width": 3
+      },
+      "common_positive_trace": {
+        "events": [
+          {
+            "first_stage": 2,
+            "program": "000"
+          }
+        ],
+        "stage": 2
+      },
+      "counterexample": {
+        "first_stage": 7,
+        "program": "110"
+      },
+      "early_stage": 2,
+      "guarded_M0": {
+        "history_sha256": "38499342bb93497138a7f4690b489a750b331f6ae40058473a8d92600f2f29ea",
+        "outcome": "CertificateObstruction",
+        "positive": [
+          "000"
+        ],
+        "reason": "complete finite coverage is missing",
+        "stage": 2,
+        "unresolved": [
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "guarded_M1": {
+        "history_sha256": "7461b6613b530eae2ee0a9078509b3475f29d1621157ba0133197d17a5fc00bb",
+        "outcome": "CertificateObstruction",
+        "positive": [
+          "000"
+        ],
+        "reason": "complete finite coverage is missing",
+        "stage": 2,
+        "unresolved": [
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ]
+      },
+      "late_M0": {
+        "events": [
+          {
+            "first_stage": 2,
+            "program": "000"
+          }
+        ],
+        "machine": "three-bit fresh reuse/M0",
+        "schema": "adva.external.finite-positive-observation.v0",
+        "stage": 7,
+        "width": 3
+      },
+      "late_M1": {
+        "events": [
+          {
+            "first_stage": 2,
+            "program": "000"
+          },
+          {
+            "first_stage": 7,
+            "program": "110"
+          }
+        ],
+        "machine": "three-bit fresh reuse/M1",
+        "schema": "adva.external.finite-positive-observation.v0",
+        "stage": 7,
+        "width": 3
+      },
+      "late_stage": 7,
+      "name": "three-bit fresh reuse",
+      "trace_only_guess": {
+        "guessed_domain": [
+          "000"
+        ],
+        "rule": "unsafe-positive-trace-is-complete"
+      },
+      "width": 3
+    }
+  ],
+  "negative_controls": [
+    {
+      "name": "boolean_stage",
+      "outcome": "InvalidEvidence"
+    },
+    {
+      "name": "float_stage",
+      "outcome": "InvalidEvidence"
+    },
+    {
+      "name": "changed_machine",
+      "outcome": "InvalidEvidence"
+    },
+    {
+      "name": "changed_event",
+      "outcome": "InvalidEvidence"
+    },
+    {
+      "name": "missing_event",
+      "outcome": "InvalidEvidence"
+    },
+    {
+      "name": "changed_coverage_machine",
+      "outcome": "InvalidCoverage"
+    },
+    {
+      "name": "missing_universe_member",
+      "outcome": "InvalidCoverage"
+    },
+    {
+      "name": "false_negative",
+      "outcome": "InvalidCoverage"
+    },
+    {
+      "name": "overlap",
+      "outcome": "InvalidCoverage"
+    },
+    {
+      "name": "wrong_schedule_binding",
+      "outcome": "InvalidCoverage"
+    },
+    {
+      "name": "wrong_proof_kind",
+      "outcome": "InvalidCoverage"
+    }
+  ],
+  "result": {
+    "guarded_with_complete_finite_coverage": "ObjectClosed",
+    "guarded_without_coverage": "CertificateObstruction",
+    "residual": "The experiment is finite and receiver-selected. It does not show that unrestricted language domains have finite tell-tales, and timeout remains unresolved.",
+    "unsafe_rule": "Counterexample",
+    "verdict": "Passed"
+  },
+  "schema": "adva.external.gold-twin-close.evidence.v0",
+  "status": "Passed",
+  "timings": {
+    "inside_seconds": 0.0005227700021350756
+  }
+}

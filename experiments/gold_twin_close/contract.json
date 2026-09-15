@@ -1,0 +1,53 @@
+{
+  "schema": "adva.external.gold-twin-close.contract.v0",
+  "date": "2026-09-15",
+  "base": "20ff8a77ab45aa8388ee1058cad21faaeb07d16f",
+  "question": "Can two finite machines with identical observed positive traces force refusal of object closure until a complete finite coverage certificate is supplied, while a later delayed witness falsifies the unsafe trace-only close?",
+  "level": "Research-local exact finite prefix carrier extending one uncompleted Research 0090 control; no native Rust judgment, Keraia mass transfer, M6 filler or universality claim",
+  "objects": {
+    "program_domains": ["all binary words of width 2", "fresh reuse: all binary words of width 3"],
+    "machine": "receiver-selected map from accepted program to first reveal stage",
+    "observation": "ordered positive events visible through an exact nonnegative integer stage",
+    "negative_information": "only a complete receiver-selected finite coverage certificate may classify an unobserved program as rejected",
+    "outcomes": ["LimitProgress", "CertificateObstruction", "ObjectClosed", "Counterexample"]
+  },
+  "families": [
+    {
+      "name": "two-bit Gold pair",
+      "stage": 1,
+      "late_stage": 5,
+      "M0": {"00": 1},
+      "M1": {"00": 1, "10": 5}
+    },
+    {
+      "name": "three-bit fresh reuse",
+      "stage": 2,
+      "late_stage": 7,
+      "M0": {"000": 2},
+      "M1": {"000": 2, "110": 7}
+    }
+  ],
+  "acceptance": [
+    "At the early stage each pair has byte-identical positive traces",
+    "Any deterministic trace-only rule therefore returns the same proposal for both machines",
+    "The unsafe proposal is replayably falsified by the delayed positive event",
+    "The guarded receiver returns CertificateObstruction without complete coverage and never converts timeout into a negative certificate",
+    "A complete finite tell-tale certificate permits ObjectClosed and preserves positives, negatives, universe, stage and history",
+    "At the late stage the two histories and lower accepted counts diverge",
+    "Malformed, incomplete, context-changed and Boolean/float-substituted receipts are refused",
+    "A fresh process reproduces all deterministic evidence"
+  ],
+  "limits": {
+    "search_candidates": 0,
+    "max_host_work": 100000,
+    "wall_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_mib": 256,
+    "max_output_bytes": 1048576,
+    "primary_runs": 1,
+    "fresh_replays_after_success": 1,
+    "maximum_necessary_corrections": 1
+  },
+  "exit": "Finish the two fixed pairs and controls, or stop on mismatch, invalid certificate, resource exhaustion or implementation failure. No automatic widening or retry.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's account as authorized proxy; not his authorship, review, endorsement or a correctness claim."
+}
