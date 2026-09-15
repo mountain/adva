@@ -1,0 +1,1177 @@
+{
+  "checked_at": "2026-09-15T15:14:23.030331+00:00",
+  "contract": {
+    "max_cases_per_probe": 32,
+    "max_source_bytes": 1048576,
+    "probes": [
+      "exp-cross-zero",
+      "constant-inverse",
+      "segmented-execution"
+    ],
+    "repeats": 2,
+    "retained_bytes": 8388608,
+    "schema": "adva.defect-discovery.contract.v1",
+    "total_wall_seconds": 75,
+    "worker_address_bytes": 536870912,
+    "worker_cpu_seconds": 5,
+    "worker_file_bytes": 1048576,
+    "worker_wall_seconds": 10
+  },
+  "declared_source_commit": "2df905c63e34cd4a607ecc58409b9cda3f15bc34",
+  "elapsed_seconds": 0.785802,
+  "environment": {
+    "executable": "/opt/hostedtoolcache/Python/3.11.16/x64/bin/python",
+    "implementation": "CPython",
+    "libc": [
+      "glibc",
+      "2.39"
+    ],
+    "machine": "x86_64",
+    "platform": "Linux-6.17.0-1022-azure-x86_64-with-glibc2.39",
+    "python": "3.11.16 (main, Aug 13 2026, 02:46:14) [GCC 13.3.0]"
+  },
+  "probes": [
+    {
+      "id": "exp-cross-zero",
+      "impact": "Only the declared finite relation and mutations were checked",
+      "next_step": "Retain bounded coverage; extend only under a new finite contract",
+      "open_obligations": "Retained experiment consumers, deployment, concurrent calls, independent interpreter/compiler/hardware, and upstream applicability remain unverified",
+      "owner": "Adva research helper; upstream ownership not established",
+      "replays": [
+        {
+          "elapsed_seconds": 0.064215,
+          "exit_code": 0,
+          "process_id": 2064,
+          "result": {
+            "cases": [
+              {
+                "actual": [
+                  "1",
+                  "1"
+                ],
+                "expected": [
+                  "1",
+                  "1"
+                ],
+                "inputs": [
+                  "0",
+                  "0"
+                ],
+                "name": "zero-control",
+                "verdict": "Pass"
+              },
+              {
+                "actual": [
+                  "91969860292860580031045099384959652913556291/250000000000000000000000000000000000000000000",
+                  "1359140914229522623116063096221826380556539287/500000000000000000000000000000000000000000000"
+                ],
+                "expected": "lo < 1/2 and hi > 2 (necessary enclosure conditions)",
+                "inputs": [
+                  "-1",
+                  "1"
+                ],
+                "name": "cross-zero",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "CPython integer/Fraction arithmetic and host hardware remain shared",
+            "invariant": "exp([-1,1]) encloses exp(-1) and exp(1)",
+            "oracle": "Exact series fact exp(1) > 1+1=2; exp(-1)=1/exp(1)",
+            "scope": "Helper accepts crossing-zero intervals; retained branch experiment not rerun"
+          },
+          "result_sha256": "60666a17e92e312e80dfa87ba394d45ed9c66e8c5190fc7f0b2ecb87ec185663",
+          "stderr": "",
+          "timed_out": false
+        },
+        {
+          "elapsed_seconds": 0.064139,
+          "exit_code": 0,
+          "process_id": 2065,
+          "result": {
+            "cases": [
+              {
+                "actual": [
+                  "1",
+                  "1"
+                ],
+                "expected": [
+                  "1",
+                  "1"
+                ],
+                "inputs": [
+                  "0",
+                  "0"
+                ],
+                "name": "zero-control",
+                "verdict": "Pass"
+              },
+              {
+                "actual": [
+                  "91969860292860580031045099384959652913556291/250000000000000000000000000000000000000000000",
+                  "1359140914229522623116063096221826380556539287/500000000000000000000000000000000000000000000"
+                ],
+                "expected": "lo < 1/2 and hi > 2 (necessary enclosure conditions)",
+                "inputs": [
+                  "-1",
+                  "1"
+                ],
+                "name": "cross-zero",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "CPython integer/Fraction arithmetic and host hardware remain shared",
+            "invariant": "exp([-1,1]) encloses exp(-1) and exp(1)",
+            "oracle": "Exact series fact exp(1) > 1+1=2; exp(-1)=1/exp(1)",
+            "scope": "Helper accepts crossing-zero intervals; retained branch experiment not rerun"
+          },
+          "result_sha256": "60666a17e92e312e80dfa87ba394d45ed9c66e8c5190fc7f0b2ecb87ec185663",
+          "stderr": "",
+          "timed_out": false
+        }
+      ],
+      "severity": "NoDemonstratedImpact",
+      "state": "BoundedPass",
+      "upstream_state": "NotEligible"
+    },
+    {
+      "id": "constant-inverse",
+      "impact": "Only the declared finite relation and mutations were checked",
+      "next_step": "Retain bounded coverage; extend only under a new finite contract",
+      "open_obligations": "Retained experiment consumers, deployment, concurrent calls, independent interpreter/compiler/hardware, and upstream applicability remain unverified",
+      "owner": "Adva research helper; upstream ownership not established",
+      "replays": [
+        {
+          "elapsed_seconds": 0.064092,
+          "exit_code": 0,
+          "process_id": 2066,
+          "result": {
+            "cases": [
+              {
+                "actual": {
+                  "0,0": "1"
+                },
+                "expected": {
+                  "0,0": "1"
+                },
+                "inputs": {
+                  "constant": "1",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-1-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1"
+                },
+                "expected": {
+                  "0,0": "1"
+                },
+                "inputs": {
+                  "constant": "1",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-1-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "-1"
+                },
+                "expected": {
+                  "0,0": "-1"
+                },
+                "inputs": {
+                  "constant": "-1",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant--1-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "-1"
+                },
+                "expected": {
+                  "0,0": "-1"
+                },
+                "inputs": {
+                  "constant": "-1",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant--1-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/2"
+                },
+                "expected": {
+                  "0,0": "1/2"
+                },
+                "inputs": {
+                  "constant": "2",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-2-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/2"
+                },
+                "expected": {
+                  "0,0": "1/2"
+                },
+                "inputs": {
+                  "constant": "2",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-2-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/3"
+                },
+                "expected": {
+                  "0,0": "1/3"
+                },
+                "inputs": {
+                  "constant": "3",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-3-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/3"
+                },
+                "expected": {
+                  "0,0": "1/3"
+                },
+                "inputs": {
+                  "constant": "3",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-3-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "2"
+                },
+                "expected": {
+                  "0,0": "2"
+                },
+                "inputs": {
+                  "constant": "1/2",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-1/2-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "2"
+                },
+                "expected": {
+                  "0,0": "2"
+                },
+                "inputs": {
+                  "constant": "1/2",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-1/2-order-2",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "CPython/Fraction shared; expected result does not call MPoly arithmetic",
+            "invariant": "Constant polynomial c times its truncated inverse equals one",
+            "oracle": "Exact reciprocal of a nonzero rational constant; no polynomial inversion oracle",
+            "scope": "Helper-level domain extension; frozen x^2+1 experiment is not refuted"
+          },
+          "result_sha256": "be562177353321ec14fb61e2464cc4bdbd3e8dddfe4852dd03f8db833a1a4041",
+          "stderr": "",
+          "timed_out": false
+        },
+        {
+          "elapsed_seconds": 0.064105,
+          "exit_code": 0,
+          "process_id": 2067,
+          "result": {
+            "cases": [
+              {
+                "actual": {
+                  "0,0": "1"
+                },
+                "expected": {
+                  "0,0": "1"
+                },
+                "inputs": {
+                  "constant": "1",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-1-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1"
+                },
+                "expected": {
+                  "0,0": "1"
+                },
+                "inputs": {
+                  "constant": "1",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-1-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "-1"
+                },
+                "expected": {
+                  "0,0": "-1"
+                },
+                "inputs": {
+                  "constant": "-1",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant--1-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "-1"
+                },
+                "expected": {
+                  "0,0": "-1"
+                },
+                "inputs": {
+                  "constant": "-1",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant--1-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/2"
+                },
+                "expected": {
+                  "0,0": "1/2"
+                },
+                "inputs": {
+                  "constant": "2",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-2-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/2"
+                },
+                "expected": {
+                  "0,0": "1/2"
+                },
+                "inputs": {
+                  "constant": "2",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-2-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/3"
+                },
+                "expected": {
+                  "0,0": "1/3"
+                },
+                "inputs": {
+                  "constant": "3",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-3-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "1/3"
+                },
+                "expected": {
+                  "0,0": "1/3"
+                },
+                "inputs": {
+                  "constant": "3",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-3-order-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "2"
+                },
+                "expected": {
+                  "0,0": "2"
+                },
+                "inputs": {
+                  "constant": "1/2",
+                  "nvars": 2,
+                  "order": 1
+                },
+                "name": "constant-1/2-order-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "0,0": "2"
+                },
+                "expected": {
+                  "0,0": "2"
+                },
+                "inputs": {
+                  "constant": "1/2",
+                  "nvars": 2,
+                  "order": 2
+                },
+                "name": "constant-1/2-order-2",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "CPython/Fraction shared; expected result does not call MPoly arithmetic",
+            "invariant": "Constant polynomial c times its truncated inverse equals one",
+            "oracle": "Exact reciprocal of a nonzero rational constant; no polynomial inversion oracle",
+            "scope": "Helper-level domain extension; frozen x^2+1 experiment is not refuted"
+          },
+          "result_sha256": "be562177353321ec14fb61e2464cc4bdbd3e8dddfe4852dd03f8db833a1a4041",
+          "stderr": "",
+          "timed_out": false
+        }
+      ],
+      "severity": "NoDemonstratedImpact",
+      "state": "BoundedPass",
+      "upstream_state": "NotEligible"
+    },
+    {
+      "id": "segmented-execution",
+      "impact": "Only the declared finite relation and mutations were checked",
+      "next_step": "Retain bounded coverage; extend only under a new finite contract",
+      "open_obligations": "Retained experiment consumers, deployment, concurrent calls, independent interpreter/compiler/hardware, and upstream applicability remain unverified",
+      "owner": "Adva research helper; upstream ownership not established",
+      "replays": [
+        {
+          "elapsed_seconds": 0.064128,
+          "exit_code": 0,
+          "process_id": 2068,
+          "result": {
+            "cases": [
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 0
+                },
+                "name": "segment-0-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 0
+                },
+                "name": "segment-0-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 0
+                },
+                "name": "segment-0-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 0
+                },
+                "name": "segment-0-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 0
+                },
+                "name": "valid-receipt-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "steps"
+                },
+                "name": "forged-0-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "cursor"
+                },
+                "name": "forged-0-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "profile"
+                },
+                "name": "forged-0-profile",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 1
+                },
+                "name": "segment-1-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 1
+                },
+                "name": "segment-1-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 1
+                },
+                "name": "segment-1-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 1
+                },
+                "name": "segment-1-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 1
+                },
+                "name": "valid-receipt-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "steps"
+                },
+                "name": "forged-1-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "cursor"
+                },
+                "name": "forged-1-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "profile"
+                },
+                "name": "forged-1-profile",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 2
+                },
+                "name": "segment-2-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 2
+                },
+                "name": "segment-2-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 2
+                },
+                "name": "segment-2-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 2
+                },
+                "name": "segment-2-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 2
+                },
+                "name": "valid-receipt-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "steps"
+                },
+                "name": "forged-2-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "cursor"
+                },
+                "name": "forged-2-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "profile"
+                },
+                "name": "forged-2-profile",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "Both segments and receipt replay share pure_segment; correlated semantic errors escape",
+            "invariant": "Fuel segmentation preserves endpoint and charged steps; forged receipts rejected",
+            "oracle": "Metamorphic relation and explicit receipt field mutations",
+            "scope": "Three finite closed terms, four cuts each; no prefix search or native Rust certificate"
+          },
+          "result_sha256": "d7c7c95f5e81a47c155d95c833ffc85288c8ecf00f6db9f83c1f6d4e0b6324bd",
+          "stderr": "",
+          "timed_out": false
+        },
+        {
+          "elapsed_seconds": 0.064105,
+          "exit_code": 0,
+          "process_id": 2069,
+          "result": {
+            "cases": [
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 0
+                },
+                "name": "segment-0-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 0
+                },
+                "name": "segment-0-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 0
+                },
+                "name": "segment-0-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 1,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 0
+                },
+                "name": "segment-0-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 0
+                },
+                "name": "valid-receipt-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "steps"
+                },
+                "name": "forged-0-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "cursor"
+                },
+                "name": "forged-0-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 0,
+                  "mutation": "profile"
+                },
+                "name": "forged-0-profile",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 1
+                },
+                "name": "segment-1-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 1
+                },
+                "name": "segment-1-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 1
+                },
+                "name": "segment-1-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 3,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 1
+                },
+                "name": "segment-1-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 1
+                },
+                "name": "valid-receipt-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "steps"
+                },
+                "name": "forged-1-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "cursor"
+                },
+                "name": "forged-1-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 1,
+                  "mutation": "profile"
+                },
+                "name": "forged-1-profile",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 0,
+                  "depth": 2
+                },
+                "name": "segment-2-0",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 1,
+                  "depth": 2
+                },
+                "name": "segment-2-1",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 2,
+                  "depth": 2
+                },
+                "name": "segment-2-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": {
+                  "same_frame": true,
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "expected": {
+                  "steps": 5,
+                  "stop": "Halt"
+                },
+                "inputs": {
+                  "cut": 3,
+                  "depth": 2
+                },
+                "name": "segment-2-3",
+                "verdict": "Pass"
+              },
+              {
+                "actual": true,
+                "expected": true,
+                "inputs": {
+                  "depth": 2
+                },
+                "name": "valid-receipt-2",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "steps"
+                },
+                "name": "forged-2-steps",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "cursor"
+                },
+                "name": "forged-2-cursor",
+                "verdict": "Pass"
+              },
+              {
+                "actual": false,
+                "expected": false,
+                "inputs": {
+                  "depth": 2,
+                  "mutation": "profile"
+                },
+                "name": "forged-2-profile",
+                "verdict": "Pass"
+              }
+            ],
+            "common_mode": "Both segments and receipt replay share pure_segment; correlated semantic errors escape",
+            "invariant": "Fuel segmentation preserves endpoint and charged steps; forged receipts rejected",
+            "oracle": "Metamorphic relation and explicit receipt field mutations",
+            "scope": "Three finite closed terms, four cuts each; no prefix search or native Rust certificate"
+          },
+          "result_sha256": "d7c7c95f5e81a47c155d95c833ffc85288c8ecf00f6db9f83c1f6d4e0b6324bd",
+          "stderr": "",
+          "timed_out": false
+        }
+      ],
+      "severity": "NoDemonstratedImpact",
+      "state": "BoundedPass",
+      "upstream_state": "NotEligible"
+    }
+  ],
+  "schema": "adva.defect-discovery.report.v1",
+  "source_identity": "DeclaredCommitWithRetainedFileHashes",
+  "source_sha256": {
+    "experiments/aeg_core_shell_multivariate/calibration.py": "1653f67163430d7c4c498b0734f6e9b651ca5b0cea99fc9065769a8ccbb610c5",
+    "experiments/integer_power_absurdity/calibration.py": "8c8cb743102177bb7f4cc56f0791bef165855fd689745796e793a5f4fe2bbd95",
+    "experiments/keraia_read_machine/machine.py": "2931a7340c0dc4445c45724eb66ba2e5c52cb01d53efdf98c8ea9d803d2e2ccb",
+    "experiments/keraia_read_machine/syntax.py": "e5a2e47ea18c46fb9de4e8e54cdcbbbeb06e9f6cd409f13505121e5c8b40dc1a",
+    "scripts/defect_discovery/probes.py": "6cbc75bea647ab6c5ac6c59a126784318295734e877383b940d1a73189190069",
+    "scripts/defect_discovery/run.py": "7c5ebe27521eaaf66c298b10f7ba337bbd8915ff04eed4b340d392fba7791ab5"
+  }
+}
