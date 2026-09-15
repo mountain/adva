@@ -1,10 +1,10 @@
 {
-  "experiments_scanned": 75,
+  "experiments_scanned": 76,
   "verdicts": {
     "no-numeric-constructs": 2,
     "exact-only": 7,
     "imprecision-can-decide": 38,
-    "imprecision-in-illustration-only": 28
+    "imprecision-in-illustration-only": 29
   },
   "claims_declaring_float_free_acceptance": {
     "total": 10,
@@ -900,6 +900,21 @@
         }
       ],
       "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "joined_chain_cost",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 1,
+        "host": 4,
+        "drift": 0
+      },
+      "rows": 6,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
     },
     {
       "experiment": "judgment_distinction",
