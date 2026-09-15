@@ -1,10 +1,10 @@
 {
-  "experiments_scanned": 71,
+  "experiments_scanned": 72,
   "verdicts": {
     "no-numeric-constructs": 2,
     "exact-only": 7,
     "imprecision-can-decide": 37,
-    "imprecision-in-illustration-only": 25
+    "imprecision-in-illustration-only": 26
   },
   "claims_declaring_float_free_acceptance": {
     "total": 10,
@@ -1311,6 +1311,21 @@
       "rows": 0,
       "deciding_lines": [],
       "verdict": "no-numeric-constructs"
+    },
+    {
+      "experiment": "read_boundary_mass_halves",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 1,
+        "host": 2,
+        "drift": 0
+      },
+      "rows": 4,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
     },
     {
       "experiment": "reflexive_lattice_gate",
