@@ -1,0 +1,43 @@
+{
+  "schema": "adva.research.read-boundary-mass-halves-contract.v0",
+  "version": 0,
+  "name": "read-boundary-mass-halves",
+  "base_commit": "57f11c8",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "At a read boundary the probability mass is said to split half and half: one half resolved and one half remaining. Which partition is that, is it exact, and what does an allocation of a shared step allowance do to the two halves?",
+  "level": "External exact rational arithmetic over Q: the declared self-delimiting wrapper family, its layer masses, the resolved and remaining identities, a budget-to-remaining-mass map under a declared cost model, and an exhaustive allocation comparison",
+  "domain": "The wrapper family E(w) = 1^|w| 0 w that the Zot weighted-sharing calibration declares, the raw first-bit cylinders of the plain binary space, and a declared cost model in which one code bit costs one time step and a word's allowance is shared across the boundaries it is evaluated at; nothing about a Go position, a Q4 filler value, or a CEK transition is computed here",
+  "objects": {
+    "the_direction_hypothesis": "The direction's intuition, recorded verbatim so that it can be tested rather than paraphrased: 杨路论文和 Q_4 结合的时候，涉及时空资源的分配，当时给得似乎剩余概率质量（权重）是 0.5 和 0.5。 This contract tests the two numbers and the allocation question, not the join with Yang Lu's method.",
+    "wrapper_family": "E(w) = 1^|w| 0 w, so the code of a length-n word has 2n+1 bits and measure 2^-(2n+1); the family is prefix-free because two words of different length disagree at the shorter delimiter.",
+    "layer_mass": "The length-n layer is 2^n words of measure 2^-(2n+1), so the layer has mass 2^-(n+1) and every layer beyond N has mass 2^-(N+1). The calibration verifies this claim rather than quoting it.",
+    "resolved_and_remaining": "At a depth cut N the resolved mass is the sum of the layer masses up to N and the remaining mass is the tail beyond it; their sum is one.",
+    "first_bit_partition": "The plain binary space splits into the two cylinders of words beginning with zero and with one, each of mass one half. This is a partition of the space; the resolved and remaining partition is not the same object even when the two numbers agree.",
+    "declared_cost_model": "One code bit costs one time step, a boundary costs one space unit, and a word shares its declared allowance across every boundary at which it is evaluated. This is a declared model and not the measured CEK transition count of the retained calibration.",
+    "allocation": "A total allowance A split across two boundaries as (a1, a2) with a1 + a2 <= A; each boundary resolves the layers its share pays for, and the resolved mass is the sum.",
+    "multiplicity_hazard": "A quotient that counts one representative erases the other cylinder's mass; the defect is exactly the erased mass, which is why a representative's weight cannot replace its fibre's mass."
+  },
+  "imported_assumptions": [
+    "The wrapper family and its layer masses are read from docs/research/zot-prefix-machine-weighted-sharing.md; this run recomputes them exactly instead of accepting the prose",
+    "The two first-bit cylinders and the conditional halting probability of one half are read from the retained Keraia prefix search; only their masses are recomputed here",
+    "The Q4 and M6 relation shapes named in Research 0105 are the direction's vocabulary for a Go search quotient; this run declares its own identification and computes no Go value and no filler"
+  ],
+  "protected": [
+    "The committed records are read, never rewritten: the Zot weighted-sharing note, the Keraia mass bounds, Research 0105, and the terminology registration",
+    "No claim that Yang Lu's successive difference substitution certifies anything here; the quantities computed are exact rationals and no cone certificate is used or refuted",
+    "No claim that the direction's intuition is correct or incorrect as a whole: only the two numbers and the allocation question are tested"
+  ],
+  "budget": {
+    "wall_seconds": 60,
+    "cpu_seconds": 45,
+    "memory_bytes": 134217728,
+    "max_assertions": 50000,
+    "output_bytes": 1048576
+  },
+  "residual": [
+    "The cost model is declared, not measured: the retained calibration's CEK transitions are not reproduced",
+    "The join with Yang Lu's method is not tested; what is tested is a partition and an allocation",
+    "Whether the direction's 0.5 and 0.5 came from this boundary, from the allocation fixed point, or from a third place is not decided here"
+  ]
+}
