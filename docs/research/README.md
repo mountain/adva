@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **212 numbered
-notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 31 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -797,3 +797,5 @@ Every file in this directory, so that no note is reachable only through a summar
 
 *Complete listing as of 2026-09-11. The counts are stated once, in the header above;
 they were previously duplicated here and the two copies drifted apart.*
+
+- [keraia-growth-invariants-and-mass-ablation.md](keraia-growth-invariants-and-mass-ablation.md): received protected-stack invariants add 13 nonhalting cylinders at depth 19, excluding 19/524288 at the same cut; depth 15 gains zero.
