@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **204 numbered
+This directory holds the research record of the repository: **205 numbered
 notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -725,6 +725,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0193-the-optimal-shares-and-the-price-of-a-level.md`](0193-the-optimal-shares-and-the-price-of-a-level.md)
 - [`0194-the-measured-key-and-certificate-cost.md`](0194-the-measured-key-and-certificate-cost.md)
 - [`0195-the-join-measured.md`](0195-the-join-measured.md)
+- [`0196-the-protocol-as-a-checkable-declaration.md`](0196-the-protocol-as-a-checkable-declaration.md)
 
 ### Named notes
 

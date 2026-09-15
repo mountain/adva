@@ -1,8 +1,8 @@
 {
-  "experiments_scanned": 76,
+  "experiments_scanned": 77,
   "verdicts": {
     "no-numeric-constructs": 2,
-    "exact-only": 7,
+    "exact-only": 8,
     "imprecision-can-decide": 38,
     "imprecision-in-illustration-only": 29
   },
@@ -1326,6 +1326,21 @@
       "rows": 12,
       "deciding_lines": [],
       "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "protocol_declaration",
+      "sources": [
+        "checker.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
     },
     {
       "experiment": "quine_relay",
