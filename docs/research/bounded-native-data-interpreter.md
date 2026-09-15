@@ -121,8 +121,9 @@ that result is not a nontermination certificate.
 ## Costs, failures and reproduction
 
 The primary process took approximately **2.94 s**, including **1.36 s** in native
-subprocess calls. The fresh process took **3.08 s**. Source freezing, both
-processes and archive verification took **6.81 s** in the supervisor. Parent
+subprocess calls. The fresh process took **3.08 s**. Both processes and archive verification took **6.81 s** in the supervisor.
+The source snapshot was copied before that timer started; its setup cost is
+covered by the outer resource guard but not by the 6.81 s observation. Parent
 peak RSS was 96,624 KiB; maximum observed child RSS was 14,416 KiB in the primary.
 These are separate process observations, not an asserted aggregate memory peak.
 
