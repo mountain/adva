@@ -1,0 +1,401 @@
+{
+  "canonicalisation": [
+    {
+      "family_member": 0,
+      "idempotent": true,
+      "left_before": "(2)/(2x)",
+      "left_canonical": "(1)/(1x)",
+      "literally_equal_after": true,
+      "literally_equal_before": false,
+      "normalisation_convention": "cancel the common factor, then make the denominator monic",
+      "right_before": "(4x)/(4x^2)",
+      "right_canonical": "(1)/(1x)",
+      "value_preserved": true
+    },
+    {
+      "family_member": 1,
+      "idempotent": true,
+      "left_before": "(5)/(1x^2 + 1x)",
+      "left_canonical": "(5)/(1x^2 + 1x)",
+      "literally_equal_after": true,
+      "literally_equal_before": false,
+      "normalisation_convention": "cancel the common factor, then make the denominator monic",
+      "right_before": "(5x^2 + 5x)/(1x^4 + 2x^3 + 1x^2)",
+      "right_canonical": "(5)/(1x^2 + 1x)",
+      "value_preserved": true
+    },
+    {
+      "family_member": 2,
+      "idempotent": true,
+      "left_before": "(1x^2 + 1x + 2)/(2x + 1)",
+      "left_canonical": "(1/2x^2 + 1/2x + 1)/(1x + 1/2)",
+      "literally_equal_after": true,
+      "literally_equal_before": false,
+      "normalisation_convention": "cancel the common factor, then make the denominator monic",
+      "right_before": "(2x^3 + 3x^2 + 5x + 2)/(4x^2 + 4x + 1)",
+      "right_canonical": "(1/2x^2 + 1/2x + 1)/(1x + 1/2)",
+      "value_preserved": true
+    }
+  ],
+  "counts": {
+    "assertions": 705,
+    "frozen_shells": 6,
+    "polynomial_multiplications": 869,
+    "sample_evaluations": 114
+  },
+  "findings": [
+    "the projective pair inverts by swap, and the two routes agree exactly by cross multiplication and at every declared sample point",
+    "core plus shell equals the whole expression exactly, at every declared budget, and a frozen shell is retained with its reason instead of being rounded",
+    "one shared truncation preserves the identity, so the proposal's claim that truncation by itself tears distributivity does not hold in this fragment",
+    "per-branch truncation at different points breaks the identity exactly on the members whose outer terms differ, and not on the member whose outer terms are equal, so the pollution needs both a per-branch truncation and distinct outer terms",
+    "what truncation breaks is identifiability: the carried shell stops equalling the exact residual, and the leak is that residual times the outer factor",
+    "the pair decides value, not structure: the two routes agree in value while their literal representatives differ, so a reduction rule would be needed for object equality",
+    "with canonicalisation by exact greatest-common-divisor cancellation the two routes become literally equal, the reduction is value preserving and idempotent, and the canonical form is a complete invariant of value equality",
+    "the shell participates: its content reaches canonical form and compares equal, while object identity additionally requires the tree and the provenance, so the same content frozen for two different reasons is the same content and not the same object"
+  ],
+  "frozen_shells": [
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x + 1)/(1)",
+      "family_member": 0,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x + -1)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x + -1)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    },
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x^2)/(1)",
+      "family_member": 1,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    },
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x + 1)/(1)",
+      "family_member": 2,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    }
+  ],
+  "identifiability": [
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x + 1)/(1)",
+      "family_member": 0,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x + -1)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x + -1)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    },
+    {
+      "budget": 2,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(2x)/(1)",
+      "family_member": 0,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    },
+    {
+      "budget": 3,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(2x)/(1)",
+      "family_member": 0,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    },
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x^2)/(1)",
+      "family_member": 1,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    },
+    {
+      "budget": 2,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x^2 + 1x)/(1)",
+      "family_member": 1,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    },
+    {
+      "budget": 3,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x^2 + 1x)/(1)",
+      "family_member": 1,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    },
+    {
+      "budget": 1,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(1x + 1)/(1)",
+      "family_member": 2,
+      "reason": "budget exhausted before resolving the second denominator term",
+      "shell_denotation": "(1x)/(1)",
+      "shell_empty": false,
+      "shell_expression": "term((1x)/(1))",
+      "verdict": "UnknownWithRetainedShell"
+    },
+    {
+      "budget": 2,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(2x + 1)/(1)",
+      "family_member": 2,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    },
+    {
+      "budget": 3,
+      "carrier_denotes_the_whole_expression": true,
+      "core": "(2x + 1)/(1)",
+      "family_member": 2,
+      "shell_empty": true,
+      "verdict": "Resolved"
+    }
+  ],
+  "native_status": "NotRun",
+  "provenance_controls": [
+    {
+      "case": "same content, different reason",
+      "content_equal": true,
+      "object_equal": false,
+      "object_equality_expected": false,
+      "provenance_differs": true,
+      "reading": "content alone would call them equal; the tree and the provenance are what keep them apart"
+    },
+    {
+      "case": "same content and reason, different budget",
+      "content_equal": true,
+      "object_equal": false,
+      "object_equality_expected": false,
+      "provenance_differs": true,
+      "reading": "content alone would call them equal; the tree and the provenance are what keep them apart"
+    },
+    {
+      "case": "same content, same reason and same budget",
+      "content_equal": true,
+      "object_equal": true,
+      "object_equality_expected": true,
+      "provenance_differs": false,
+      "reading": "with the tree and the provenance also equal, the two shells are the same object, so provenance is load bearing in both directions"
+    }
+  ],
+  "refusals": [
+    {
+      "case": "zero denominator",
+      "message": "ZeroDenominatorRefused",
+      "refused": true
+    },
+    {
+      "case": "inversion of zero",
+      "message": "InversionOfZeroRefused",
+      "refused": true
+    },
+    {
+      "case": "shell whose tree misses its denotation",
+      "message": "TheShellTreeDoesNotDenoteItsCarriedValue",
+      "refused": true
+    }
+  ],
+  "routes": [
+    {
+      "denominator": "(2x)/(1)",
+      "family_member": 0,
+      "left_route": "(2)/(2x)",
+      "outer": "(2)/(1)",
+      "representatives_literally_equal": false,
+      "right_route": "(4x)/(4x^2)",
+      "sample_points_agree": 5,
+      "values_equal_exactly": true
+    },
+    {
+      "denominator": "(1x^2 + 1x)/(1)",
+      "family_member": 1,
+      "left_route": "(5)/(1x^2 + 1x)",
+      "outer": "(5)/(1)",
+      "representatives_literally_equal": false,
+      "right_route": "(5x^2 + 5x)/(1x^4 + 2x^3 + 1x^2)",
+      "sample_points_agree": 5,
+      "values_equal_exactly": true
+    },
+    {
+      "denominator": "(2x + 1)/(1)",
+      "family_member": 2,
+      "left_route": "(1x^2 + 1x + 2)/(2x + 1)",
+      "outer": "(1x^2 + 1x + 2)/(1)",
+      "representatives_literally_equal": false,
+      "right_route": "(2x^3 + 3x^2 + 5x + 2)/(4x^2 + 4x + 1)",
+      "sample_points_agree": 5,
+      "values_equal_exactly": true
+    }
+  ],
+  "shell_form": "symbolically unexpanded expression, tied to its exact denotation at construction",
+  "shell_participation": [
+    {
+      "content_equal": true,
+      "family_member": 0,
+      "object_equal": false,
+      "provenance_differs": true,
+      "reading": "content is canonical and equal, while object identity additionally requires the tree and the provenance",
+      "shell_canonical_denotation": "(1x + -1)/(1)"
+    },
+    {
+      "content_equal": true,
+      "family_member": 1,
+      "object_equal": false,
+      "provenance_differs": true,
+      "reading": "content is canonical and equal, while object identity additionally requires the tree and the provenance",
+      "shell_canonical_denotation": "(1x)/(1)"
+    },
+    {
+      "content_equal": true,
+      "family_member": 2,
+      "object_equal": false,
+      "provenance_differs": true,
+      "reading": "content is canonical and equal, while object identity additionally requires the tree and the provenance",
+      "shell_canonical_denotation": "(1x)/(1)"
+    }
+  ],
+  "status": "ExternalExactPass",
+  "structural_cost_of_the_pair": [
+    {
+      "family_member": 0,
+      "left_pair": "(2)/(2x)",
+      "literal_pair_equality": false,
+      "reading": "the pair presentation decides value, not structure: a reduction rule would be needed before two carriers could be compared as objects rather than as values",
+      "right_pair": "(4x)/(4x^2)",
+      "value_equality": true
+    },
+    {
+      "family_member": 1,
+      "left_pair": "(5)/(1x^2 + 1x)",
+      "literal_pair_equality": false,
+      "reading": "the pair presentation decides value, not structure: a reduction rule would be needed before two carriers could be compared as objects rather than as values",
+      "right_pair": "(5x^2 + 5x)/(1x^4 + 2x^3 + 1x^2)",
+      "value_equality": true
+    },
+    {
+      "family_member": 2,
+      "left_pair": "(1x^2 + 1x + 2)/(2x + 1)",
+      "literal_pair_equality": false,
+      "reading": "the pair presentation decides value, not structure: a reduction rule would be needed before two carriers could be compared as objects rather than as values",
+      "right_pair": "(2x^3 + 3x^2 + 5x + 2)/(4x^2 + 4x + 1)",
+      "value_equality": true
+    }
+  ],
+  "supersession": {
+    "predecessor_evidence": "experiments/aeg_core_shell_symbolic/evidence.json",
+    "predecessor_evidence_sha256": "5c2e1d118f32476d4e43e938b3e5a5e9cb18e7b46be1e5c8045fa5a3a766f8b6",
+    "predecessor_evidence_status": "Unchanged",
+    "sha256": "0a890b5b583944c1dcce2ae413722595809f99e718130276238a7230112ee109",
+    "status": "Unchanged",
+    "superseded_contract": "experiments/aeg_core_shell_symbolic/contract.json"
+  },
+  "truncation_controls": [
+    {
+      "carried_shell_equals_the_exact_residual": false,
+      "exact_residual": "(1x^2 + -1x + 1)/(2x)",
+      "identity_holds": true,
+      "kind": "one shared truncation on both routes",
+      "point": "1",
+      "reading": "a truncated inverse is still a single value, so the identity cannot fail this way; this contradicts the reading that truncation by itself breaks distributivity",
+      "the_dropped_term_is_nonzero": true,
+      "truncated_inverse": "(-1/2x + 1/2)/(1)"
+    },
+    {
+      "difference_equals_outer_difference_times_linearisation_difference": true,
+      "exact_difference": "0",
+      "identity_breaks": false,
+      "kind": "per-branch truncation at different points",
+      "linearisation_difference": "(-3/8x + 1/4)/(1)",
+      "outer_terms_are_equal": true,
+      "points": [
+        "1",
+        "2"
+      ],
+      "reading": "the difference is the difference of the two linearisation errors carried by the outer terms: this is the pollution the proposal describes, and it needs per-branch truncation"
+    },
+    {
+      "kind": "the residual multiplied by the outer factor",
+      "leaked": "(2x^2 + -2x + 2)/(2x)",
+      "reading": "with a truncated shell the carried object no longer equals this residual, so after multiplication it is not identifiable as a denominator residual",
+      "residual": "(1x^2 + -1x + 1)/(2x)"
+    },
+    {
+      "carried_shell_equals_the_exact_residual": false,
+      "exact_residual": "(3/4x^3 + 1/4x^2 + -1/2x + 1)/(1x^2 + 1x)",
+      "identity_holds": true,
+      "kind": "one shared truncation on both routes",
+      "point": "1",
+      "reading": "a truncated inverse is still a single value, so the identity cannot fail this way; this contradicts the reading that truncation by itself breaks distributivity",
+      "the_dropped_term_is_nonzero": true,
+      "truncated_inverse": "(-3/4x + 1/2)/(1)"
+    },
+    {
+      "difference_equals_outer_difference_times_linearisation_difference": true,
+      "exact_difference": "(11/18x + -1/3)/(1)",
+      "identity_breaks": true,
+      "kind": "per-branch truncation at different points",
+      "linearisation_difference": "(-11/18x + 1/3)/(1)",
+      "outer_terms_are_equal": false,
+      "points": [
+        "1",
+        "2"
+      ],
+      "reading": "the difference is the difference of the two linearisation errors carried by the outer terms: this is the pollution the proposal describes, and it needs per-branch truncation"
+    },
+    {
+      "kind": "the residual multiplied by the outer factor",
+      "leaked": "(15/4x^3 + 5/4x^2 + -5/2x + 5)/(1x^2 + 1x)",
+      "reading": "with a truncated shell the carried object no longer equals this residual, so after multiplication it is not identifiable as a denominator residual",
+      "residual": "(3/4x^3 + 1/4x^2 + -1/2x + 1)/(1x^2 + 1x)"
+    },
+    {
+      "carried_shell_equals_the_exact_residual": false,
+      "exact_residual": "(4/9x^2 + -4/9x + 2/3)/(2x + 1)",
+      "identity_holds": true,
+      "kind": "one shared truncation on both routes",
+      "point": "1",
+      "reading": "a truncated inverse is still a single value, so the identity cannot fail this way; this contradicts the reading that truncation by itself breaks distributivity",
+      "the_dropped_term_is_nonzero": true,
+      "truncated_inverse": "(-2/9x + 1/3)/(1)"
+    },
+    {
+      "difference_equals_outer_difference_times_linearisation_difference": true,
+      "exact_difference": "(32/225x^3 + -62/225x^2 + -34/225x + 4/15)/(1)",
+      "identity_breaks": true,
+      "kind": "per-branch truncation at different points",
+      "linearisation_difference": "(-32/225x + 2/15)/(1)",
+      "outer_terms_are_equal": false,
+      "points": [
+        "1",
+        "2"
+      ],
+      "reading": "the difference is the difference of the two linearisation errors carried by the outer terms: this is the pollution the proposal describes, and it needs per-branch truncation"
+    },
+    {
+      "kind": "the residual multiplied by the outer factor",
+      "leaked": "(4/9x^4 + 10/9x^2 + -2/9x + 4/3)/(2x + 1)",
+      "reading": "with a truncated shell the carried object no longer equals this residual, so after multiplication it is not identifiable as a denominator residual",
+      "residual": "(4/9x^2 + -4/9x + 2/3)/(2x + 1)"
+    }
+  ]
+}

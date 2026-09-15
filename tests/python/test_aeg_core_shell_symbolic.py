@@ -1,123 +1,135 @@
-"""The core-plus-shell carrier must stay exact, and truncation must fail identifiably.
+"""The core-plus-shell carrier: frozen record, successor, and the reduction rule.
 
-Research 0189 records the first rung: with the shell form fixed to a symbolically
-unexpanded expression, distributivity becomes a checkable identity and truncation
-is shown to break identifiability rather than distributivity. This test holds the
-result in place, including the correction to the proposal, which is the part most
-likely to be quietly softened.
+Research 0189 records the first rung and then its successor. The version-zero
+contract and evidence are a frozen record of the run that found the structural gap;
+the version-one successor adds exact canonicalisation and closes it. This test holds
+both in place, because the tempting repairs here are the quiet ones: emit the new
+sections under the old contract until the frozen record no longer reproduces, or
+drop the provenance so that two shells look alike.
 """
 
+import hashlib
 import json
+import shutil
 import subprocess
 import sys
 import tomllib
-from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/aeg_core_shell_symbolic"
 CHECKER = HERE / "calibration.py"
-EVIDENCE = HERE / "evidence.json"
+FROZEN_CONTRACT = HERE / "contract.json"
+FROZEN_EVIDENCE = HERE / "evidence.json"
+ACTIVE_CONTRACT = HERE / "contract-v1.json"
+ACTIVE_EVIDENCE = HERE / "evidence-v1.json"
 NOTE = ROOT / "docs/research/0189-core-shell-and-symbolically-unexpanded-shell.md"
-SCANNER = ROOT / "scripts/float_aperture_scan.py"
 
 
 def load(path):
     return json.loads(Path(path).read_text(encoding="utf-8"))
 
 
-def controls(kind):
-    return [r for r in load(EVIDENCE)["truncation_controls"] if r["kind"].startswith(kind)]
+def run(checker=CHECKER, contract=None, output=None, cwd=ROOT):
+    argv = [sys.executable, str(checker)]
+    if contract:
+        argv += ["--contract", str(contract)]
+    if output:
+        argv += [str(output)]
+    return subprocess.run(argv, capture_output=True, text=True, timeout=300, check=False, cwd=cwd)
 
 
-def test_the_two_routes_agree_exactly_and_at_sample_points():
-    report = load(EVIDENCE)
-    assert report["status"] == "ExternalExactPass"
-    assert report["native_status"] == "NotRun"
-    assert "symbolically unexpanded" in report["shell_form"]
-    assert report["routes"], "the routes must be retained"
-    for route in report["routes"]:
-        assert route["values_equal_exactly"] is True
-        assert route["sample_points_agree"] >= 5
-    assert any(route["representatives_literally_equal"] is False for route in report["routes"]), (
-        "the pair decides value, not structure, and at least one route must show it")
-
-
-def test_core_plus_shell_equals_the_whole_expression():
-    identifiability = load(EVIDENCE)["identifiability"]
-    assert identifiability
-    assert all(r["carrier_denotes_the_whole_expression"] for r in identifiability)
-    resolved = [r for r in identifiability if r["shell_empty"]]
-    frozen = [r for r in identifiability if not r["shell_empty"]]
-    assert resolved and frozen, "both the resolved and the frozen case must be exercised"
-    for row in frozen:
-        assert row["verdict"] == "UnknownWithRetainedShell"
-        assert row["reason"] and row["shell_expression"] and row["shell_denotation"]
-
-
-def test_a_shared_truncation_does_not_break_the_identity():
-    shared = controls("one shared truncation")
-    assert shared, "the shared-truncation control must be retained"
-    for row in shared:
-        assert row["identity_holds"] is True, (
-            "the proposal's claim that truncation alone tears distributivity is refuted here")
-        assert row["carried_shell_equals_the_exact_residual"] is False
-        assert row["exact_residual"]
-
-
-def test_per_branch_truncation_breaks_it_and_the_difference_is_an_identity():
-    branch = controls("per-branch truncation")
-    assert branch
-    broken = [r for r in branch if r["identity_breaks"]]
-    unbroken = [r for r in branch if not r["identity_breaks"]]
-    assert broken and unbroken, "the control must fire on some members and not others"
-    for row in unbroken:
-        assert row["outer_terms_are_equal"] is True
-    for row in broken:
-        assert row["outer_terms_are_equal"] is False
-        assert row["exact_difference"] != "0"
-        assert row["difference_equals_outer_difference_times_linearisation_difference"] is True
-        assert row["linearisation_difference"]
-
-
-def test_the_leak_is_the_residual_times_the_outer_factor():
-    leak = controls("the residual multiplied by the outer factor")
-    assert leak
-    for row in leak:
-        assert row["residual"] and row["leaked"] and row["leaked"] != row["residual"]
-
-
-def test_the_new_carrier_introduces_none_of_the_listed_apertures(tmp_path):
-    """The contract promises the scanner classifies this checker exact-only."""
-    out = tmp_path / "scan.json"
-    completed = subprocess.run([sys.executable, str(SCANNER), "--json", str(out)],
-                               capture_output=True, text=True, timeout=300, check=False,
-                               cwd=ROOT)
+def test_the_frozen_contract_still_reproduces_its_own_evidence(tmp_path):
+    """The version-zero record must stay reproducible, not merely retained."""
+    fresh = tmp_path / "v0.json"
+    completed = run(contract=FROZEN_CONTRACT, output=fresh)
     assert completed.returncode == 0, completed.stderr
-    report = json.loads(out.read_text(encoding="utf-8"))
-    entry = [e for e in report["experiments"] if e["experiment"] == HERE.name]
-    assert len(entry) == 1, "the scanner must see this experiment"
-    counts = entry[0]["counts"]
-    assert counts["binary64"] == 0 and counts["host"] == 0 and counts["drift"] == 0, counts
-    assert entry[0]["verdict"] == "exact-only", entry[0]["verdict"]
+    assert load(fresh) == load(FROZEN_EVIDENCE), (
+        "the frozen evidence no longer follows from its own contract")
 
 
-def test_the_note_keeps_the_correction_and_the_registry_agrees():
+def test_the_successor_verifies_the_predecessor_by_digest():
+    supersession = load(ACTIVE_EVIDENCE)["supersession"]
+    assert supersession["status"] == "Unchanged"
+    assert supersession["sha256"] == hashlib.sha256(FROZEN_CONTRACT.read_bytes()).hexdigest()
+    assert supersession["predecessor_evidence_sha256"] == hashlib.sha256(
+        FROZEN_EVIDENCE.read_bytes()).hexdigest()
+
+
+def test_editing_the_frozen_record_would_fail_the_successor(tmp_path):
+    """The digest pin must be load bearing, not decorative."""
+    work = tmp_path / "work"
+    (work / "experiments").mkdir(parents=True)
+    shutil.copytree(HERE, work / "experiments/aeg_core_shell_symbolic")
+    copy = work / "experiments/aeg_core_shell_symbolic"
+    contract = copy / "contract.json"
+    contract.write_text(contract.read_text(encoding="utf-8") + "\n", encoding="utf-8")
+    completed = run(checker=copy / "calibration.py", contract=copy / "contract-v1.json",
+                    output=tmp_path / "out.json")
+    assert completed.returncode != 0, "an edited predecessor must fail the successor"
+    assert "TheSupersededContractWasEdited" in completed.stderr
+
+
+def test_canonicalisation_closes_the_gap_the_first_run_recorded():
+    frozen = load(FROZEN_EVIDENCE)["structural_cost_of_the_pair"]
+    assert frozen and all(row["literal_pair_equality"] is False for row in frozen), (
+        "the frozen run must still record the gap it found")
+    active = load(ACTIVE_EVIDENCE)["canonicalisation"]
+    assert active
+    for row in active:
+        assert row["literally_equal_before"] is False
+        assert row["literally_equal_after"] is True
+        assert row["value_preserved"] is True and row["idempotent"] is True
+        assert row["left_canonical"] == row["right_canonical"]
+        assert row["normalisation_convention"]
+
+
+def test_the_shell_participates_and_provenance_stays_load_bearing():
+    participation = load(ACTIVE_EVIDENCE)["shell_participation"]
+    assert participation
+    for row in participation:
+        assert row["content_equal"] is True, "shell content must reach a shared canonical form"
+        assert row["object_equal"] is False, (
+            "object identity must additionally require the provenance")
+        assert row["provenance_differs"] is True
+    controls = load(ACTIVE_EVIDENCE)["provenance_controls"]
+    assert len(controls) >= 3
+    assert any(row["object_equal"] is False for row in controls)
+    assert any(row["object_equal"] is True for row in controls), (
+        "provenance must be load bearing in both directions")
+    for row in controls:
+        assert row["content_equal"] is True
+        assert row["object_equal"] == row["object_equality_expected"]
+
+
+def test_the_first_rung_findings_survive_in_the_successor():
+    report = load(ACTIVE_EVIDENCE)
+    findings = " | ".join(report["findings"])
+    assert "one shared truncation preserves the identity" in findings
+    assert "the pollution needs both a per-branch truncation and distinct outer terms" in findings
+    assert "identifiability" in findings
+    shared = [r for r in report["truncation_controls"]
+              if r["kind"].startswith("one shared truncation")]
+    assert shared and all(r["identity_holds"] for r in shared)
+
+
+def test_a_fresh_run_reproduces_the_active_evidence(tmp_path):
+    fresh = tmp_path / "fresh.json"
+    completed = run(output=fresh)
+    assert completed.returncode == 0, completed.stderr
+    assert load(fresh) == load(ACTIVE_EVIDENCE)
+
+
+def test_the_note_records_the_closure_and_the_registry_agrees():
     note = NOTE.read_text(encoding="utf-8")
-    assert "反证" in note, "the correction to the proposal must stay in the note"
-    assert "可识别性" in note
+    assert "典范化" in note and "来源" in note
     claims = tomllib.loads((ROOT / "docs/claims.toml").read_text(encoding="utf-8"))["claim"]
     match = [c for c in claims
-             if c["claim_id"] == "adva.bounded-experiment.aeg-core-shell-symbolic.v0"]
+             if c["claim_id"] == "adva.bounded-experiment.aeg-core-shell-canonical.v0"]
     assert len(match) == 1
     forbidden = " | ".join(match[0]["forbidden_conflations"])
-    assert "One shared truncation with a torn distributive identity" in forbidden
-    assert "A refusal to round with a claim that nothing was lost" in forbidden
-
-
-def test_a_fresh_run_reproduces_the_retained_evidence(tmp_path):
-    output = tmp_path / "fresh.json"
-    completed = subprocess.run([sys.executable, str(CHECKER), str(output)],
-                               capture_output=True, text=True, timeout=300, check=False)
-    assert completed.returncode == 0, completed.stderr
-    assert load(output) == load(EVIDENCE)
+    assert "A shared canonical form with a shared object identity" in forbidden
+    assert "A canonical shell with a discarded provenance" in forbidden
+    earlier = [c for c in claims
+               if c["claim_id"] == "adva.bounded-experiment.aeg-core-shell-symbolic.v0"]
+    assert len(earlier) == 1, "the first rung keeps its own claim"

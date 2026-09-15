@@ -18,12 +18,14 @@ Nothing here uses floating point. Rational functions are compared by cross
 multiplying exact polynomial representatives, and the sample-point checks are exact
 rational equalities at declared points.
 """
+import hashlib
 import json
 import pathlib
 import sys
 from fractions import Fraction as Fr
 
 HERE = pathlib.Path(__file__).resolve().parent
+supersession = None
 COUNTS = {"assertions": 0, "polynomial_multiplications": 0, "sample_evaluations": 0,
           "frozen_shells": 0}
 LIMITS = {}
@@ -97,6 +99,12 @@ class Poly:
                 out[e1 + e2] = out.get(e1 + e2, Fr(0)) + c1 * c2
         return Poly([(coefficient, exponent) for exponent, coefficient in out.items()])
 
+    def degree(self):
+        return max(self.terms) if self.terms else -1
+
+    def scale(self, factor):
+        return Poly([(c * Fr(factor), e) for e, c in self.terms.items()])
+
     def derivative(self):
         return Poly([(c * e, e - 1) for e, c in self.terms.items() if e > 0])
 
@@ -112,6 +120,27 @@ class Poly:
             return "0"
         return " + ".join("%s%s" % (self.terms[e], "" if e == 0 else ("x" if e == 1 else "x^%d" % e))
                           for e in sorted(self.terms, reverse=True))
+
+
+def poly_divmod(a, b):
+    """Exact division with remainder over Q[x]."""
+    check(not b.is_zero(), "PolynomialDivisionByZeroRefused")
+    quotient, remainder = Poly.zero(), a
+    while not remainder.is_zero() and remainder.degree() >= b.degree():
+        shift = remainder.degree() - b.degree()
+        factor = remainder.terms[remainder.degree()] / b.terms[b.degree()]
+        term = Poly([(factor, shift)])
+        quotient = quotient + term
+        remainder = remainder - term * b
+    return quotient, remainder
+
+
+def poly_gcd(a, b):
+    """Greatest common divisor over Q[x] by the Euclidean algorithm, exactly."""
+    while not b.is_zero():
+        _, remainder = poly_divmod(a, b)
+        a, b = b, remainder
+    return a
 
 
 class RF:
@@ -150,6 +179,19 @@ class RF:
         """Literal pair equality, which is strictly stronger than equality of value."""
         return self.num == other.num and self.den == other.den
 
+    def canonical(self):
+        """Exact lowest terms: cancel the common factor, then make the denominator monic."""
+        if self.num.is_zero():
+            return RF(Poly.zero())
+        factor = poly_gcd(self.num, self.den)
+        num, _ = poly_divmod(self.num, factor)
+        den, _ = poly_divmod(self.den, factor)
+        scale = 1 / den.terms[max(den.terms)]
+        return RF(num.scale(scale), den.scale(scale))
+
+    def is_canonical(self):
+        return self.same_representative(self.canonical())
+
     def at(self, point):
         denominator = self.den.at(point)
         check(denominator != 0, "SamplePointHitsAPole")
@@ -176,12 +218,28 @@ class Shell:
         expression_value = expression.denotation()
         check(expression_value == denotation, "TheShellTreeDoesNotDenoteItsCarriedValue")
         self.expression = expression
-        self.denotation = denotation
         self.reason = reason
         self.budget = budget
+        self.denotation = denotation
+
+    def canonical_denotation(self):
+        """The shell's content reduced to lowest terms, on demand.
+
+        Canonicalisation is a declared step of the successor contract rather than
+        something the shell does at construction, so the frozen version-zero run keeps
+        exactly the behaviour and the counters it was recorded with.
+        """
+        return self.denotation.canonical()
 
     def show(self):
         return self.expression.show(0)
+
+    def content_key(self):
+        reduced = self.canonical_denotation()
+        return (reduced.num.show(), reduced.den.show())
+
+    def object_key(self):
+        return self.content_key() + (self.expression.show(0), self.reason, self.budget)
 
 
 class Node:
@@ -257,6 +315,20 @@ class Carrier:
     def shell_is_empty(self):
         return self.shell is None
 
+    def content_key(self):
+        core = (self.core.canonical().num.show(), self.core.canonical().den.show())
+        return core + (("shell",) + self.shell.content_key() if self.shell else ("no-shell",))
+
+    def object_key(self):
+        core = (self.core.canonical().num.show(), self.core.canonical().den.show())
+        return core + (("shell",) + self.shell.object_key() if self.shell else ("no-shell",))
+
+    def content_equal(self, other):
+        return self.content_key() == other.content_key()
+
+    def same_object(self, other):
+        return self.object_key() == other.object_key()
+
     def show(self):
         left = self.core.show()
         return left if self.shell is None else "%s + shell(%s)" % (left, self.shell.show())
@@ -296,9 +368,16 @@ def rname(rf):
 
 
 def run(contract):
+    """Run the scope the contract declares.
+
+    The version-zero contract and its evidence are a frozen record, so the extended
+    checks run only when the contract declares version one or later.
+    """
+    extended = contract.get("version", 0) >= 1
     o = contract["objects"]
     points = [Fr(p[0], p[1]) for p in o["sample_points"]]
     routes, identifiability, truncation, frozen, structural = [], [], [], [], []
+    canonicalisation, shell_participation, provenance_controls = [], [], []
 
     for index, entry in enumerate(o["family"]):
         a1 = RF(Poly([(c, e) for c, e in entry["A1"]]))
@@ -356,6 +435,40 @@ def run(contract):
                                       "reduction rule would be needed before two carriers could be "
                                       "compared as objects rather than as values"})
 
+        if extended:
+            cl, cr = left.canonical(), right.canonical()
+            check(cl == left and cr == right, "CanonicalisationChangedTheValue")
+            check(cl.is_canonical() and cr.is_canonical(), "CanonicalFormIsNotAFixedPoint")
+            check(cl.same_representative(cr), "CanonicalFormsAreNotLiterallyEqual")
+            check(cl.same_representative(cr) == (left == right),
+                  "CanonicalFormIsNotACompleteInvariant")
+            canonicalisation.append({
+                "family_member": index,
+                "left_before": left.show(), "right_before": right.show(),
+                "left_canonical": cl.show(), "right_canonical": cr.show(),
+                "literally_equal_before": left.same_representative(right),
+                "literally_equal_after": True, "value_preserved": True, "idempotent": True,
+                "normalisation_convention": "cancel the common factor, then make the denominator monic"})
+            shell_one = Shell(VariableTerm(c), c,
+                              "budget exhausted before resolving the second denominator term", 1)
+            shell_two = Shell(VariableTerm(c), c,
+                              "two branch inverses froze the same term separately", 1)
+            check(shell_one.canonical_denotation() == shell_one.denotation,
+                  "CanonicalisingTheShellChangedItsValue")
+            carrier_one = Carrier(outer.canonical(), shell_one)
+            carrier_two = Carrier(outer.canonical(), shell_two)
+            content_same = carrier_one.content_equal(carrier_two)
+            object_same = carrier_one.same_object(carrier_two)
+            check(content_same, "ShellContentDidNotReachCanonicalForm")
+            check(not object_same, "TheProvenanceDidNotSeparateContentFromObjectIdentity")
+            shell_participation.append({
+                "family_member": index,
+                "shell_canonical_denotation": shell_one.denotation.show(),
+                "content_equal": content_same, "object_equal": object_same,
+                "provenance_differs": shell_one.reason != shell_two.reason,
+                "reading": "content is canonical and equal, while object identity additionally "
+                           "requires the tree and the provenance"})
+
         # (5) truncation control one: one shared truncation is still a value
         at = Fr(o["linearisation_points"][0][0], o["linearisation_points"][0][1])
         truncated, _ = linearise(s, at)
@@ -408,6 +521,27 @@ def run(contract):
                                       "this residual, so after multiplication it is not "
                                       "identifiable as a denominator residual"})
 
+    if extended:
+        reference = RF(Poly([(c, e) for c, e in o["family"][0]["C"]]))
+        for case in o.get("provenance_cases", []):
+            left_shell = Shell(VariableTerm(reference), reference,
+                               case["left"]["reason"], case["left"]["budget"])
+            right_shell = Shell(VariableTerm(reference), reference,
+                                case["right"]["reason"], case["right"]["budget"])
+            content = left_shell.content_key() == right_shell.content_key()
+            identity = left_shell.object_key() == right_shell.object_key()
+            expected = case.get("object_equal", False)
+            check(content, "TheProvenanceControlIsNotContentEqualToBeginWith")
+            check(identity == expected, "TheProvenanceControlContradictsItsDeclaredExpectation")
+            provenance_controls.append({
+                "case": case["label"], "content_equal": content, "object_equal": identity,
+                "object_equality_expected": expected,
+                "provenance_differs": (left_shell.object_key()[2:] != right_shell.object_key()[2:]),
+                "reading": ("content alone would call them equal; the tree and the provenance are what "
+                            "keep them apart" if not expected else
+                            "with the tree and the provenance also equal, the two shells are the same "
+                            "object, so provenance is load bearing in both directions")})
+
     refusals = []
     for case, action in (("zero denominator", lambda: RF(Poly.zero(), Poly.zero())),
                          ("inversion of zero", lambda: RF(Poly.zero()).inverse()),
@@ -444,8 +578,19 @@ def run(contract):
             "exact residual, and the leak is that residual times the outer factor",
             "the pair decides value, not structure: the two routes agree in value while their "
             "literal representatives differ, so a reduction rule would be needed for object "
-            "equality"],
+            "equality"] +
+            (["with canonicalisation by exact greatest-common-divisor cancellation the two routes "
+              "become literally equal, the reduction is value preserving and idempotent, and the "
+              "canonical form is a complete invariant of value equality",
+              "the shell participates: its content reaches canonical form and compares equal, while "
+              "object identity additionally requires the tree and the provenance, so the same content "
+              "frozen for two different reasons is the same content and not the same object"]
+             if extended else []),
         "counts": dict(COUNTS),
+        **({"canonicalisation": canonicalisation,
+            "shell_participation": shell_participation,
+            "provenance_controls": provenance_controls,
+            "supersession": supersession} if extended else {}),
     })
 
 
@@ -459,19 +604,54 @@ def linearise(reference, at):
     return RF.constant(f.at(at)) + RF.constant(slope_at) * RF(Poly([(1, 1)])), (f.at(at), slope_at)
 
 
+def verify_supersession(contract):
+    """A successor verifies the predecessor's bytes rather than trusting them."""
+    spec = contract.get("supersedes")
+    if not spec:
+        return None
+    root = HERE.parent.parent
+    digest = hashlib.sha256((root / spec["path"]).read_bytes()).hexdigest()
+    check(digest == spec["sha256"], "TheSupersededContractWasEdited")
+    record = {"superseded_contract": spec["path"], "sha256": digest, "status": "Unchanged"}
+    predecessor = spec.get("predecessor_evidence")
+    if predecessor:
+        evidence_path = root / predecessor["path"]
+        evidence_digest = hashlib.sha256(evidence_path.read_bytes()).hexdigest()
+        check(evidence_digest == predecessor["sha256"], "ThePredecessorEvidenceWasEdited")
+        record.update({"predecessor_evidence": predecessor["path"],
+                       "predecessor_evidence_sha256": evidence_digest,
+                       "predecessor_evidence_status": "Unchanged"})
+    return record
+
+
 def main():
-    contract = json.loads((HERE / "contract.json").read_text())
+    argv = sys.argv[1:]
+    contract_path = HERE / "contract-v1.json"
+    if "--contract" in argv:
+        index = argv.index("--contract")
+        contract_path = pathlib.Path(argv[index + 1])
+        del argv[index:index + 2]
+    contract = json.loads(contract_path.read_text())
     LIMITS.update(contract["budget"])
+    global supersession
+    supersession = verify_supersession(contract)
     report = run(contract)
-    out = pathlib.Path(sys.argv[1]) if len(sys.argv) > 1 else HERE / "evidence.json"
+    if contract.get("version", 0) >= 1:
+        default_out = HERE / "evidence-v1.json"
+    else:
+        default_out = HERE / "evidence.json"
+    out = pathlib.Path(argv[0]) if argv else default_out
     out.write_text(json.dumps(report, indent=2, sort_keys=True, ensure_ascii=False) + "\n",
                    encoding="utf-8")
     print(json.dumps({k: report[k] for k in ("status", "counts")}, indent=1))
+    if report.get("supersession"):
+        print("successor check:", json.dumps(report["supersession"], ensure_ascii=False)[:200])
     for finding in report["findings"]:
         print(" *", finding)
-    print("\n冻结的壳（示例）:", json.dumps(report["frozen_shells"][:1], ensure_ascii=False)[:300])
-    print("截断控制（第二条）:", json.dumps(
-        report["truncation_controls"][1], ensure_ascii=False)[:300])
+    for control in report["truncation_controls"][:1]:
+        print(" -", control["kind"])
+    if report.get("canonicalisation"):
+        print(" canonical:", json.dumps(report["canonicalisation"][0], ensure_ascii=False)[:260])
 
 
 if __name__ == "__main__":
