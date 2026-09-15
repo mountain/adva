@@ -1,5 +1,15 @@
 # Architecture
 
+The bounded research data machine in
+[its ADR](adr/bounded-data-machine-research.md) adds a separate typed register/tree
+execution carrier owned by Rust. The `adva data-run` entry validates program,
+input and budget; continuation replays the complete checkpoint against those
+independently supplied inputs. `programs/bounded-interpreter/interpreter.adva`
+contains the arithmetic object-language interpreter. No host evaluator callback
+or Python execution dependency implements its tag dispatch. The new carrier has
+no PSC0 source/occurrence allocation or diagram certificate; a correspondence
+with the stable sharing/graft carrier remains open.
+
 Research 0152 uses `python/adva/adva.py` as the outer CLI, with a bounded
 `verifier_search` supervisor. Its new Rust example owns arithmetic syntax,
 rewrite positions, residuals and witness checks; Python copies Rust-produced

@@ -69,6 +69,12 @@ current private license.
 
 ## A first program
 
+For the separate research language that represents programs as finite data, see
+the [bounded native interpreter](programs/bounded-interpreter/README.md). Its
+`adva data-run` entry runs a 51-instruction Adva arithmetic interpreter with exact
+integers and checked suspension. This profile does not extend the stable PSC0
+language used below or establish self interpretation.
+
 ```lisp
 (module arithmetic
   (export shared-double square)

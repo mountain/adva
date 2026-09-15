@@ -1,0 +1,57 @@
+{
+  "schema": "adva.bounded-native-interpreter.contract.v0",
+  "base": "cf14815eb6fb58ef82328fe903a53e4ceb3ba197",
+  "question": "Can one unchanged Adva research data-machine program interpret multiple exact arithmetic trees, with independently replayed execution and budget-preserving suspension?",
+  "level": "Research-only language implementation; not PSC0 promotion or self interpretation",
+  "imports": [
+    "Rust remains the sole native semantic authority (ADR 0001)",
+    "Research 0137 identifies finite code data, structural inspection and bounded control as missing interfaces",
+    "Signed 64-bit checked integer operations are the declared exact scalar domain; overflow is rejection",
+    "The new register/tree machine has separate versioned semantics and no native SourceId/OccurrenceId allocation"
+  ],
+  "interface": "Adva bytecode specifies object-language tag dispatch, explicit work/value stacks and arithmetic selection. Rust supplies generic typed data/stack/integer/control instructions. A separate Python instruction interpreter and a direct arithmetic-tree oracle check the results.",
+  "protected": [
+    "Program, input, instruction profile and lifetime fuel remain fixed across continuation",
+    "A checkpoint is accepted only after complete native replay against independently supplied context",
+    "All fetched instructions, including a failing instruction, consume one lifetime fuel unit",
+    "Quantum suspension, lifetime exhaustion, semantic rejection and successful return remain distinct",
+    "Every instruction location and complete state digest remain in the replayable trace",
+    "No f64 oracle, hidden object-language evaluator, automatic fuel refill or borrowed PSC0 certificate"
+  ],
+  "family": {
+    "literal_values": [-1, 0, 1],
+    "forms": ["literal", "binary op over two literals", "binary op over a literal and a binary literal expression"],
+    "operations": ["add", "multiply"],
+    "expected_regular_cases": 129,
+    "extra_controls": ["exact integer above 2^53", "positive and negative overflow", "unknown tag", "wrong arity", "wrong literal type", "zero fuel", "infinite bytecode loop", "quantum resume", "resume after fuel exhaustion", "changed program/input/fuel/checkpoint/trace/profile refusal", "generic node construction", "program arithmetic mutation", "static type/jump/schema errors", "no-clobber output"]
+  },
+  "machine_limits": {
+    "program_bytes": 32768,
+    "input_bytes": 32768,
+    "checkpoint_bytes": 2097152,
+    "report_bytes": 2097152,
+    "instructions": 128,
+    "registers": 16,
+    "data_nodes": 127,
+    "data_depth": 12,
+    "node_fields": 8,
+    "stack_items": 256,
+    "state_nodes": 8192,
+    "continuation_segments": 16,
+    "lifetime_instruction_fuel": 2048
+  },
+  "campaign_limits": {
+    "primary_processes": 1,
+    "fresh_processes": 1,
+    "max_native_launches_per_process": 192,
+    "max_reference_steps_per_process": 400000,
+    "wall_seconds_per_process": 120,
+    "cpu_seconds_per_process": 110,
+    "address_space_bytes": 805306368,
+    "artifact_bytes_per_process": 25165824,
+    "max_full_attempts_under_this_contract": 1
+  },
+  "preflight": "Rust unit and CLI engineering controls, at most 60 seconds per invocation and four invocations before a revised engineering decision. Compilation/formatting are separate finite build gates. Preserve failures; no failed full campaign is silently restarted.",
+  "exit": "Stop on first full-campaign mismatch, refusal-control failure, resource limit or publication failure. Retain the failure and do not publish a positive claim. Success requires all declared cases and two matching fresh-process results.",
+  "limits": "No self interpreter, universality, specializer, Q4/M6 execution, native diagram correspondence, optimal-machine Omega or speedup claim. CI regressions are separate finite checks, not new research searches."
+}
