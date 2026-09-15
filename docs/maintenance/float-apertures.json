@@ -1,0 +1,1604 @@
+{
+  "experiments_scanned": 69,
+  "verdicts": {
+    "no-numeric-constructs": 2,
+    "imprecision-can-decide": 37,
+    "imprecision-in-illustration-only": 25,
+    "exact-only": 5
+  },
+  "claims_declaring_float_free_acceptance": {
+    "total": 7,
+    "hold": 6,
+    "details": [
+      {
+        "claim_id": "adva.bounded-experiment.li-yorke-period-three-matrix.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.hns-stability-chamber-roundtrip.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.hns-object-forgetting.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.hns-extension-residual.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.hns-wall-localization.v0",
+        "holds": false,
+        "offending": [
+          {
+            "file": "experiments/hns_wall_localization/calibration.py",
+            "line": 527,
+            "text": "\"within_time_budget\": (time.monotonic() - started) <= contract[\"budget\"][\"wall_seconds\"],",
+            "class": "host"
+          }
+        ]
+      },
+      {
+        "claim_id": "adva.bounded-experiment.density-wave-marginal-wall.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.exact.tetrahedral-mirror-layers-never-close.v0",
+        "holds": true,
+        "offending": []
+      }
+    ]
+  },
+  "experiments": [
+    {
+      "experiment": "advance_symbol_surface",
+      "sources": [
+        "verify_evidence.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 0,
+      "deciding_lines": [],
+      "verdict": "no-numeric-constructs"
+    },
+    {
+      "experiment": "alternating_observer",
+      "sources": [
+        "replay.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 16,
+        "drift": 1
+      },
+      "rows": 17,
+      "deciding_lines": [
+        {
+          "file": "replay.py",
+          "line": 25,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.used >= self.cap or time.monotonic() >= self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "borromean_cut_linkage",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 1,
+        "host": 2,
+        "drift": 1
+      },
+      "rows": 6,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "borromean_longitude_audit",
+      "sources": [
+        "check.py",
+        "run_session.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 10,
+        "drift": 0
+      },
+      "rows": 10,
+      "deciding_lines": [
+        {
+          "file": "check.py",
+          "line": 36,
+          "classes": [
+            "host"
+          ],
+          "text": "time.monotonic()-self.start > self.rules['mathematical_phase_seconds']):"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "borromean_surface_audit",
+      "sources": [
+        "check.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 5,
+        "drift": 0
+      },
+      "rows": 6,
+      "deciding_lines": [
+        {
+          "file": "check.py",
+          "line": 39,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.work > self.rules['max_work_units'] or time.monotonic() - self.start >= 5:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "boundary_research",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 4,
+        "host": 14,
+        "drift": 0
+      },
+      "rows": 18,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "bounded_observation_exchange",
+      "sources": [
+        "calibrate.py",
+        "check_exchange.py",
+        "check_exchange_chain.py",
+        "joint_observation.py",
+        "review_reply02.py",
+        "review_reply03.py",
+        "review_reply04.py",
+        "review_reply05.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 6,
+        "host": 15,
+        "drift": 3
+      },
+      "rows": 24,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "catalog_key_words",
+      "sources": [
+        "run_evidence.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 16,
+        "drift": 0
+      },
+      "rows": 16,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "cube_root_polar",
+      "sources": [
+        "replay.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 11,
+        "drift": 1
+      },
+      "rows": 13,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "density_wave_marginal_wall",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 0,
+        "drift": 1
+      },
+      "rows": 3,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "disclosure_binding",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 20,
+        "drift": 0
+      },
+      "rows": 20,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 43,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() > self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "dodecahedral_hamiltonicity",
+      "sources": [
+        "checker.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 4,
+        "drift": 2
+      },
+      "rows": 6,
+      "deciding_lines": [
+        {
+          "file": "checker.py",
+          "line": 677,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= BUDGET_SECONDS,"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "dual_facility_leak_wall",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 2,
+        "host": 2,
+        "drift": 0
+      },
+      "rows": 6,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "enclosing_circles",
+      "sources": [
+        "enclosing_circles.py"
+      ],
+      "counts": {
+        "binary64": 4,
+        "intmath": 0,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 4,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "evidence_stutter",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 3,
+        "drift": 1
+      },
+      "rows": 4,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "faithful_switch",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 3,
+        "host": 4,
+        "drift": 1
+      },
+      "rows": 8,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 25,
+          "classes": [
+            "host"
+          ],
+          "text": "if UNITS > LIMIT or time.monotonic() > DEADLINE:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "feigenbaum_fixed_point",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 33,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 36,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 316,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "feigenbaum_inverse_norm_obstruction",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 14,
+        "intmath": 3,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 19,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 158,
+          "classes": [
+            "binary64"
+          ],
+          "text": "\"no_contraction\": all(float(row[\"weighted_norm_of_the_image\"]) > 0.1 for row in rows[-3:])"
+        },
+        {
+          "file": "calibration.py",
+          "line": 159,
+          "classes": [
+            "binary64"
+          ],
+          "text": "\"grows_with_the_degree\": float(rows[-1][\"weighted_norm_of_the_image\"]) > float(rows[0][\"we"
+        },
+        {
+          "file": "calibration.py",
+          "line": 209,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "feigenbaum_kantorovich_preflight",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 12,
+        "intmath": 17,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 31,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 297,
+          "classes": [
+            "binary64"
+          ],
+          "text": "\"inverse_bound\": None if row_sum >= 1 else f\"{float(x_norm / (1 - row_sum)):.6E}\","
+        },
+        {
+          "file": "calibration.py",
+          "line": 353,
+          "classes": [
+            "binary64"
+          ],
+          "text": "check(float(eta) < 1e-8, \"the frozen candidate must satisfy the equation to the defect siz"
+        },
+        {
+          "file": "calibration.py",
+          "line": 357,
+          "classes": [
+            "binary64"
+          ],
+          "text": "\"the_candidate_is_a_fixed_point_to_the_defect_size\": float(eta) < 1e-8,"
+        },
+        {
+          "file": "calibration.py",
+          "line": 365,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "feigenbaum_period_doubling",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 4,
+        "intmath": 17,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 23,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 304,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "feigenbaum_rigorous_enclosures",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 6,
+        "intmath": 1,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 9,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 357,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "finite_learner",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 0,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 8,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 29,
+          "classes": [
+            "host"
+          ],
+          "text": "if sum(WORK.values()) > 50000 or time.monotonic() > DEADLINE:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "finite_split",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 12,
+        "drift": 0
+      },
+      "rows": 12,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "frame_covariance",
+      "sources": [
+        "run.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 16,
+        "drift": 0
+      },
+      "rows": 17,
+      "deciding_lines": [
+        {
+          "file": "run.py",
+          "line": 20,
+          "classes": [
+            "host"
+          ],
+          "text": "if CHECKS > 100000 or time.perf_counter() - START > 9:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "frame_triad",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 4,
+        "drift": 0
+      },
+      "rows": 4,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 21,
+          "classes": [
+            "host"
+          ],
+          "text": "if UNITS > LIMIT or time.monotonic() > DEADLINE:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "goal_exploration",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 7,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 34,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.metadata > 20000 or time.monotonic() > self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "golden_ratio",
+      "sources": [
+        "calibration.py",
+        "complement.py",
+        "magnus.py",
+        "run_queue.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 46,
+        "host": 14,
+        "drift": 2
+      },
+      "rows": 62,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 88,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - self.started > BUDGET[\"max_seconds\"]:"
+        },
+        {
+          "file": "complement.py",
+          "line": 56,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - self.started > BUDGET[\"max_seconds\"]:"
+        },
+        {
+          "file": "magnus.py",
+          "line": 46,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - self.started > BUDGET[\"max_seconds\"]:"
+        },
+        {
+          "file": "run_queue.py",
+          "line": 93,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - started > BUDGET[\"max_seconds\"]:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "golden_ratio_operator_lift",
+      "sources": [
+        "check_adapter.py",
+        "check_receipts.py",
+        "receipt.py",
+        "replay.py",
+        "replay_main.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 28,
+        "drift": 1
+      },
+      "rows": 31,
+      "deciding_lines": [
+        {
+          "file": "check_adapter.py",
+          "line": 96,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter()-start > 15:"
+        },
+        {
+          "file": "check_receipts.py",
+          "line": 101,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter()-beginning > 12:"
+        },
+        {
+          "file": "replay.py",
+          "line": 21,
+          "classes": [
+            "host"
+          ],
+          "text": "if work > 20000 or time.perf_counter() - started > 9:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "hns_extension_residual",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 0,
+        "drift": 2
+      },
+      "rows": 4,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "hns_object_forgetting",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 0,
+        "drift": 2
+      },
+      "rows": 4,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "hns_stability_chamber_roundtrip",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 0,
+        "drift": 4
+      },
+      "rows": 6,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "hns_wall_localization",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 3,
+        "host": 3,
+        "drift": 2
+      },
+      "rows": 8,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 527,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= contract[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "integer_power_absurdity",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 5,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 6,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "interpretation_obligation",
+      "sources": [
+        "calibration.py",
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 30,
+        "drift": 0
+      },
+      "rows": 30,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 223,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() >= deadline:"
+        },
+        {
+          "file": "calibration.py",
+          "line": 237,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() >= deadline:"
+        },
+        {
+          "file": "calibration.py",
+          "line": 223,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() >= deadline:"
+        },
+        {
+          "file": "calibration.py",
+          "line": 237,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() >= deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "judgment_distinction",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 3,
+        "intmath": 6,
+        "host": 16,
+        "drift": 0
+      },
+      "rows": 25,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "keraia_cycle_mass",
+      "sources": [
+        "calibrate.py",
+        "cycles.py",
+        "supervise.py",
+        "support.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 7,
+        "host": 9,
+        "drift": 1
+      },
+      "rows": 18,
+      "deciding_lines": [
+        {
+          "file": "calibrate.py",
+          "line": 195,
+          "classes": [
+            "binary64"
+          ],
+          "text": "elif name == \"float_cursor\": wrong[\"frames\"][-1][\"cursor\"] = float(wrong[\"frames\"][-1][\"cu"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "keraia_read_machine",
+      "sources": [
+        "calibrate.py",
+        "machine.py",
+        "oracle.py",
+        "supervise.py",
+        "syntax.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 6,
+        "host": 13,
+        "drift": 1
+      },
+      "rows": 20,
+      "deciding_lines": [
+        {
+          "file": "syntax.py",
+          "line": 22,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.work > self.limits[\"max_host_work\"] or time.monotonic() - self.start > self.limits"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "knowledge_boundary",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 17,
+        "drift": 0
+      },
+      "rows": 17,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "knowledge_geometry",
+      "sources": [
+        "acceleration_direction.py",
+        "gradient.py",
+        "interface_witness.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 0,
+        "host": 12,
+        "drift": 1
+      },
+      "rows": 15,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "labs-search",
+      "sources": [
+        "verify.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 0,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "lattice_polar",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 12,
+        "drift": 1
+      },
+      "rows": 14,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 25,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.monotonic() - self.start > self.budget['max_seconds']:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "li_yorke_period_three",
+      "sources": [
+        "replay.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 10,
+        "drift": 1
+      },
+      "rows": 12,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "mirror_reflections",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "mobius_conjugacy_transport",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 9,
+        "drift": 2
+      },
+      "rows": 11,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 34,
+          "classes": [
+            "host"
+          ],
+          "text": "if amount < 0 or self.used + amount > self.cap or time.monotonic() >= self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "mobius_transport_receipt",
+      "sources": [
+        "check.py",
+        "compose.py",
+        "run_composition.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 31,
+        "drift": 1
+      },
+      "rows": 32,
+      "deciding_lines": [
+        {
+          "file": "check.py",
+          "line": 24,
+          "classes": [
+            "host"
+          ],
+          "text": "if UNITS > CAP or time.perf_counter() - START > 15:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "numeric_boundary_audit",
+      "sources": [
+        "audit.py"
+      ],
+      "counts": {
+        "binary64": 3,
+        "intmath": 4,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 14,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "pairing_transport",
+      "sources": [
+        "replay-before-cutwire-fix.py",
+        "replay.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 4,
+        "host": 30,
+        "drift": 0
+      },
+      "rows": 34,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "pascal_commutator_certificate",
+      "sources": [
+        "check.py",
+        "generate.py",
+        "run.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 7,
+        "drift": 2
+      },
+      "rows": 9,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "path_bound_interpretation",
+      "sources": [
+        "run.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 18,
+        "drift": 0
+      },
+      "rows": 19,
+      "deciding_lines": [
+        {
+          "file": "run.py",
+          "line": 137,
+          "classes": [
+            "host"
+          ],
+          "text": "or time.perf_counter() - start > 30):"
+        },
+        {
+          "file": "run.py",
+          "line": 216,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - start > 30:"
+        },
+        {
+          "file": "run.py",
+          "line": 238,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - start > 30:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "phase_runner",
+      "sources": [
+        "run_six.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 14,
+        "drift": 0
+      },
+      "rows": 14,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "prefix_frontier",
+      "sources": [
+        "coverage_gate.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 2,
+        "host": 8,
+        "drift": 0
+      },
+      "rows": 10,
+      "deciding_lines": [
+        {
+          "file": "coverage_gate.py",
+          "line": 46,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.remaining <= 0 or time.monotonic() >= self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "prime_universe",
+      "sources": [
+        "finite_witness.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 4,
+        "host": 12,
+        "drift": 0
+      },
+      "rows": 16,
+      "deciding_lines": [
+        {
+          "file": "finite_witness.py",
+          "line": 29,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter_ns() - self.started >= 5_000_000_000:"
+        },
+        {
+          "file": "finite_witness.py",
+          "line": 76,
+          "classes": [
+            "host"
+          ],
+          "text": "if len(witness[\"search_trace\"]) >= fuel or time.perf_counter_ns() - started >= 1_000_000_0"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "private_merge",
+      "sources": [
+        "calibration.py",
+        "merge.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 12,
+        "drift": 0
+      },
+      "rows": 12,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "quine_relay",
+      "sources": [
+        "verify_evidence.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 0,
+      "deciding_lines": [],
+      "verdict": "no-numeric-constructs"
+    },
+    {
+      "experiment": "reflexive_lattice_gate",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 30,
+        "host": 11,
+        "drift": 2
+      },
+      "rows": 43,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 57,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.triples > self.max_triples or time.monotonic() >= self.deadline:"
+        },
+        {
+          "file": "calibration.py",
+          "line": 62,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.checks > self.max_checks or time.monotonic() >= self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "representation_residual",
+      "sources": [
+        "diagnose.py",
+        "run.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 17,
+        "host": 6,
+        "drift": 0
+      },
+      "rows": 24,
+      "deciding_lines": [
+        {
+          "file": "diagnose.py",
+          "line": 74,
+          "classes": [
+            "host"
+          ],
+          "text": "assert time.perf_counter_ns() - started < 5_000_000_000"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "resource_frame",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 7,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 39,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.rows > 2000 or time.perf_counter_ns() - self.start > 5_000_000_000:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "revise_cycle",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 7,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 39,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter_ns() - self.start > 5_000_000_000:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "sharkovsky_interval_extension",
+      "sources": [
+        "check.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 9,
+        "drift": 0
+      },
+      "rows": 10,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "structural_adjustment",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 7,
+        "drift": 0
+      },
+      "rows": 7,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 36,
+          "classes": [
+            "host"
+          ],
+          "text": "if self.metadata > 20000 or time.monotonic() > self.deadline:"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "surface_exploration",
+      "sources": [
+        "run.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 15,
+        "drift": 0
+      },
+      "rows": 16,
+      "deciding_lines": [
+        {
+          "file": "run.py",
+          "line": 160,
+          "classes": [
+            "host"
+          ],
+          "text": "if time.perf_counter() - started > limit[\"max_seconds\"]:"
+        },
+        {
+          "file": "run.py",
+          "line": 273,
+          "classes": [
+            "host"
+          ],
+          "text": "require(time.perf_counter() - started <= limit[\"max_seconds\"], \"Unknown: final deadline\")"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "symbol_surface",
+      "sources": [
+        "construct_records.py",
+        "inspect_representation.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 3,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "symbol_surface_peer_audit",
+      "sources": [
+        "audit.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 0,
+        "host": 3,
+        "drift": 0
+      },
+      "rows": 3,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "triadic_period_bridge",
+      "sources": [
+        "check.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 9,
+        "drift": 0
+      },
+      "rows": 10,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "wu_elimination_general_conic",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 5,
+        "intmath": 0,
+        "host": 11,
+        "drift": 1
+      },
+      "rows": 15,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 217,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "wu_elimination_geometry",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 1,
+        "intmath": 1,
+        "host": 3,
+        "drift": 1
+      },
+      "rows": 5,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 358,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": (time.monotonic() - started) <= CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "yang_sds_inequalities",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 2,
+        "host": 3,
+        "drift": 1
+      },
+      "rows": 8,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 459,
+          "classes": [
+            "host"
+          ],
+          "text": "\"within_time_budget\": time.time() - started < CONTRACT[\"budget\"][\"wall_seconds\"],"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "zhang_area_method",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 42,
+        "host": 3,
+        "drift": 3
+      },
+      "rows": 49,
+      "deciding_lines": [
+        {
+          "file": "calibration.py",
+          "line": 1624,
+          "classes": [
+            "binary64"
+          ],
+          "text": "\"within_time_budget\": elapsed <= float(BUDGET[\"wall_seconds\"]),"
+        }
+      ],
+      "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "zhang_finite_example",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 2,
+        "intmath": 12,
+        "host": 2,
+        "drift": 3
+      },
+      "rows": 19,
+      "deciding_lines": [],
+      "verdict": "imprecision-in-illustration-only"
+    }
+  ]
+}
