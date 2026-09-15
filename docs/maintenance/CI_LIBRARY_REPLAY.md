@@ -29,3 +29,17 @@ assessment. Current workspace, numeric and other CI checks stay on current code.
 Local preparation, exact source comparisons, both snapshot SHA-256 checks, and
 Python syntax checks passed. BLAKE3 recomputation confirmed both revisions above.
 Rust execution requires the CI toolchain; its result is reported by CI.
+
+## Follow-up checks and corrections
+
+The first isolated replay preparation omitted the labs-search workspace member;
+CI caught the missing Cargo.toml before any test ran. The archive now includes
+that member, and preparation checks every declared workspace member manifest.
+The repeated local preparation passed.
+
+The Python CI failures dropped to one after checkout was fixed: golden-ratio
+replay required Linux's successful address-space limit installation to equal
+a retained macOS refusal. The test now separately validates complete, disjoint
+installed/refused limit records and each installed value against the budget,
+then compares mathematical evidence independently of those host observations.
+The old report is unchanged. All 11 golden-ratio tests pass locally.

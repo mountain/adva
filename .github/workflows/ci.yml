@@ -31,7 +31,7 @@ jobs:
       - name: Test frozen library stability research boundary
         run: timeout 180s cargo test -p adva-witness --example library_stability
       - name: Test library-driven proposal feedback and ablations
-        run: timeout 420s python3 scripts/check_frozen_library_ci.py target/frozen-library-ci
+        run: timeout 420s python3 scripts/check_frozen_library_ci.py "$RUNNER_TEMP/adva-frozen-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
       - name: Test scoped three-verifier arithmetic proof export
         run: timeout 180s cargo test --locked -p adva-witness --example verifier_search
       - name: Test frozen-verifier policy campaign boundaries

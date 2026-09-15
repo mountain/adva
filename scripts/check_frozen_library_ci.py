@@ -11,6 +11,7 @@ from pathlib import Path
 import shutil
 import subprocess
 import tarfile
+import tomllib
 
 ROOT = Path(__file__).resolve().parents[1]
 REVISION = "caabb28b95bb7484680b8d0039fd5a571de421d6"
@@ -33,11 +34,16 @@ def prepare(destination):
             raise ValueError("live source differs from frozen replay: " + name)
     archive = destination / "source.tar"
     subprocess.run(["git", "archive", "--format=tar", "--output", str(archive), REVISION,
-                    "Cargo.toml", "Cargo.lock", "crates"], cwd=ROOT, check=True, timeout=30)
+                    "Cargo.toml", "Cargo.lock", "crates", "experiments/labs-search"],
+                   cwd=ROOT, check=True, timeout=30)
     source = destination / "source"
     source.mkdir()
     with tarfile.open(archive) as bundle:
         bundle.extractall(source, filter="data")
+    workspace = tomllib.loads((source / "Cargo.toml").read_text())["workspace"]
+    for member in workspace["members"]:
+        if not (source / member / "Cargo.toml").is_file():
+            raise ValueError("missing frozen workspace member: " + member)
     library = source / "adva-library/stability"
     library.mkdir(parents=True)
     for name, digest in SNAPSHOTS.items():

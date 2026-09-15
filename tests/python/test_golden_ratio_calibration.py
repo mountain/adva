@@ -122,8 +122,18 @@ def test_fresh_run_reproduces_the_retained_evidence(tmp_path):
     assert completed.returncode == 0, completed.stderr
     fresh = load(output)
     retained = load(EVIDENCE)
-    fresh.pop("cost")
-    retained.pop("cost")
+    for report in (fresh, retained):
+        # Limit installation is a host observation. Linux can install RLIMIT_AS
+        # where the retained macOS run reported a refusal; validate both records
+        # rather than requiring the same operating-system outcome.
+        limits = report.pop("limits")
+        installed, refused = limits["installed"], limits["refused"]
+        assert set(installed) | set(refused) == {"cpu_seconds", "address_space_bytes"}
+        assert set(installed).isdisjoint(refused)
+        for key, value in installed.items():
+            assert type(value) is int and value == report["budget"][key]
+        assert all(isinstance(reason, str) and reason for reason in refused.values())
+        report.pop("cost")
     assert fresh == retained
 
 
