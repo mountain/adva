@@ -1,0 +1,42 @@
+{
+  "schema": "adva.research.declared-bridge-contract.v0",
+  "version": 0,
+  "name": "declared-bridge",
+  "base_commit": "051e77c",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The two mass accounts differ at the same depth by exactly twice 6689. Is that factor an atom-measure ratio between the two spaces, is it depth independent, and does declaring the two spaces let one row carry both the mass and the cost end to end?",
+  "level": "External exact rational arithmetic over Q: the two spaces' atom measures compared at every declared depth, the earlier factor decomposed, and one end-to-end row assembled from the retained partition and the measured cost",
+  "domain": "The wrapper family of Research 0191 with its layer masses, the Keraia depth-15 partition of the cycle-certificate calibration, the measured link price of Research 0195 and the ledger of Research 0198; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_two_spaces": "The Keraia family is a prefix-free cylinder space in which a depth-d cylinder has measure 2^-d and there are 2^d of them; the wrapper family's layer structure leaves a tail of measure 2^-(d+1) beyond a cut at d. Both are probability spaces and they are not the same one.",
+    "the_bridge_constant": "The ratio between the two atom measures at the same depth. It is computed at every declared depth rather than at one, because a conversion that held at fifteen and nowhere else would be a coincidence rather than a bridge.",
+    "the_declaration": "What has to be declared for the accounts to be compared: that one protocol level corresponds to one depth step, and which depths carry a retained partition. Both are declarations and neither is measured.",
+    "the_one_row": "One row carrying both currencies end to end: the mass account of the retained partition at its depth and the cost of reaching that depth from the ledger, with the bridge constant that relates the two spaces' atoms.",
+    "the_refused_reading": "The tempting reading is that more levels resolve more of the retained family. The levels decide reachability of a depth; what remains unresolved at that depth is a property of the cylinder family, and the run refuses to let one stand for the other."
+  },
+  "imported_assumptions": [
+    "The wrapper layer masses and the tail identity come from Research 0191 and are recomputed rather than quoted",
+    "The retained partition comes from the Keraia cycle-certificate calibration and is re-verified arithmetically",
+    "The measured link price and the declared conversion come from Research 0195 and 0198",
+    "The correspondence between a protocol level and a depth step is declared, not measured, and the run says so wherever the row is reported"
+  ],
+  "protected": [
+    "No retained evidence or declaration is modified",
+    "No mass is moved between the spaces without the declared correspondence and the atom ratio being named",
+    "No claim that the protocol resolves the retained family's unresolved mass, which is a property of the family"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152,
+    "declared_depths": 21
+  },
+  "residual": [
+    "The correspondence between levels and depth steps is declared and not measured",
+    "Only one depth carries a retained partition, so the end-to-end row exists only there",
+    "The key half is still unmeasured, so the cost column covers certificate work only"
+  ]
+}
