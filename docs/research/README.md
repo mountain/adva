@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **211 numbered
+This directory holds the research record of the repository: **212 numbered
 notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -732,6 +732,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0200-the-depth-curve-from-retained-evidence.md`](0200-the-depth-curve-from-retained-evidence.md)
 - [`0201-two-curves-on-one-cost-axis.md`](0201-two-curves-on-one-cost-axis.md)
 - [`0202-does-a-step-close-more-than-it-opens.md`](0202-does-a-step-close-more-than-it-opens.md)
+- [`0203-allocating-the-three-currencies.md`](0203-allocating-the-three-currencies.md)
 
 ### Named notes
 
