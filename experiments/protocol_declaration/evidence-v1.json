@@ -1,0 +1,141 @@
+{
+  "authority": "research-only; the declaration is checked and authorizes nothing",
+  "budget_steps": 1000,
+  "clauses": [
+    {
+      "clause": "the allocation closes exactly in whole steps",
+      "detail": {
+        "budget": 1000,
+        "closes": true,
+        "reserve_steps": 10,
+        "side_steps": [
+          330,
+          330,
+          330
+        ]
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the declared side split is the leveling one for the declared pool",
+      "detail": {
+        "equal_shares_reach_equal_depths": true,
+        "exhaustive_resolved": "3/4",
+        "leveling_depths": [
+          1,
+          1,
+          1
+        ],
+        "leveling_resolved": "3/4",
+        "pool_steps": 990,
+        "steps_left_unspent": 978
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the declared reserve is the one an independent exhaustive scan finds optimal",
+      "detail": {
+        "declared_reserve_steps": 225,
+        "derivation_and_scan_agree": true,
+        "historical_direction_value": "1/100",
+        "historical_gap_in_remaining_mass": "33554431/134217728",
+        "historical_levels_bought": 1,
+        "historical_steps": 10,
+        "levels_bought": 26,
+        "method": "the declaration's crossing rule",
+        "operative_value": "derived",
+        "reserve_fraction": "9/40",
+        "resolved": "134217727/134217728",
+        "scan_reserve_steps": 225,
+        "what_would_make_it_pass": "a declared value equal to the scanned optimum, or a link price low enough that the historical fraction is the scanned optimum"
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the key half is measured or carries a surcharge or a bound",
+      "detail": {
+        "declared": "unmeasured",
+        "obligation": "keep saying unmeasured until a measurement exists, or state a surcharge or a bound; calling it measured without a measurement would price the unknown at zero",
+        "reason": "key-issue returns Unknown on this host because the ed25519 backend is missing, so no signature is produced or verified"
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the rollback trigger names the retained verdict field",
+      "detail": {
+        "retained_field": "tamper-check anchor.prev_anchor_match",
+        "trigger": "the retained tool's own verdict field for the join"
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "a joined link raises the ceiling by one and resolving the layer halves the remaining mass",
+      "detail": {
+        "layer_masses": [
+          "1/2",
+          "3/4",
+          "7/8",
+          "15/16",
+          "31/32"
+        ],
+        "remaining": [
+          "1/2",
+          "1/4",
+          "1/8",
+          "1/16",
+          "1/32"
+        ]
+      },
+      "verdict": "pass"
+    }
+  ],
+  "clauses_failed": 0,
+  "clauses_passed": 6,
+  "counts": {
+    "checks": 23,
+    "clauses_checked": 6,
+    "declarations_checked": 2,
+    "subprocesses": 1
+  },
+  "declaration": {
+    "path": "protocol-v1.json",
+    "sha256": "e873df15472ae4777c5d6816d11d3bfdb9fd457c9032fcdeb7a54b6f9315edd4",
+    "version": 1
+  },
+  "findings": [
+    "the successor declaration derives the reserve instead of fixing it, and the clause is non-vacuous because an independent exhaustive scan over every whole-step reserve has to return the same value",
+    "the successor passes every clause while the frozen version zero declaration still fails exactly one, so the check discriminates between two declarations rather than passing whatever it is given",
+    "the direction's one per cent is kept as a historical value with its measured comparison recorded rather than deleted, so the earlier failing check stays readable",
+    "the frozen version zero declaration and its evidence are verified by digest and the version zero check reproduces byte for byte, so the record of the failing check is intact",
+    "the key half remains an obligation rather than a measurement, and no clause was relaxed to make the successor pass"
+  ],
+  "historical_direction_value": {
+    "gap_in_remaining_mass_against_the_derived_reserve": "33554431/134217728",
+    "levels_bought": 1,
+    "status": "retained for comparison, no longer operative",
+    "steps_at_this_budget": 10,
+    "value": "1/100"
+  },
+  "native_status": "NotRun",
+  "non_claims": [
+    "the successor does not argue optimality: it requires the declared reserve to equal the scanned optimum under the declared link cost, which is a statement about that model",
+    "the link price still enters through a declared conversion from measured bytes to layer steps",
+    "the key half is still unmeasured, so the protocol remains certificate-priced",
+    "no retained record, anchor, credential or key is read as authority, and no native change is made",
+    "the triadic tension recorded in Research 0192 remains unresolved"
+  ],
+  "schema": "adva.research.traversal-protocol-check-evidence.v1",
+  "status": "ProtocolChecked",
+  "supersession": {
+    "evidence_matches_the_pin": true,
+    "evidence_sha256": "46a8bb898114646243faa078dfca126774316eeb96d9262284bccdb738d4a651",
+    "protocol_matches_the_pin": true,
+    "protocol_sha256": "82fc4e5d00ad703b8c149a09093905d94221fedc48e57e6e905d739b1548d9c3"
+  },
+  "the_check_discriminates": {
+    "same_code_two_declarations": true,
+    "version_one_failing_clauses": 0,
+    "version_zero_failing_clause": "the declared reserve is the one an independent exhaustive scan finds optimal"
+  },
+  "version_zero_clauses_failed": 1
+}
