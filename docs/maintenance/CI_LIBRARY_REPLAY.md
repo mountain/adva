@@ -43,3 +43,11 @@ a retained macOS refusal. The test now separately validates complete, disjoint
 installed/refused limit records and each installed value against the budget,
 then compares mathematical evidence independently of those host observations.
 The old report is unchanged. All 11 golden-ratio tests pass locally.
+
+CI run 34977846731 then passed the live stale-fingerprint refusal but exposed
+another archive omission during historical compilation: the example embeds
+research note 0151 with include_bytes!. Frozen docs and programs now accompany
+the source archive. Preparation also checks literal include_bytes!/include_str!
+paths in the dependency sources and selected example, so this class of missing
+compile-time input is detected without a Rust compiler. These inputs come from
+the same pinned commit; current documents do not reinterpret the old experiment.
