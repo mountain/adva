@@ -3,6 +3,12 @@
 This directory retains the first implementation of
 [the frozen discovery workflow](../DEFECT_DISCOVERY.md).
 
+Runs `20260915-run-001` and `20260915-run-002` executed the contract before the
+two helper defects were repaired and are retained unchanged. `20260915-run-003`
+is the same contract under the enforced resource profile after the repair; its
+record is in [the fix record](#2026-09-15-fix-record-for-the-two-helper-defects)
+below.
+
 ## 2026-09-15 execution and correction record
 
 Source baseline: `20ff8a77ab45aa8388ee1058cad21faaeb07d16f`.
@@ -123,6 +129,16 @@ defect, and both frozen-replay tests still pass unchanged.
   probe families were run directly, without the enforced resource profile of
   `run.py`, on CPython 3.14.6/macOS: 1 + 8 = 9 violations before, 0 violations
   after, with the same 36 cases (2 + 10 + 24).
+- `20260915-run-003` is the same contract under the real enforced resource
+  profile: the manual **Bounded defect discovery** workflow on ubuntu-latest,
+  CPython 3.11.16, glibc 2.39, x86_64, declaring source `2df905c`. All three
+  families report `BoundedPass` with 0 violations, the workflow step is green
+  rather than the red that a finding produces by design, and `verify.py` accepts
+  the retained copy as
+  `IntegrityCheckedNotCorrectnessCertified`. Its executed source snapshots are
+  byte-identical to the committed files, including the two repaired helpers.
+  This is the first run of that workflow against real code; the earlier statement
+  that GitHub Actions execution was untested described the state at run 002.
 - Four regression tests were added, two per helper. All four fail against the
   pre-fix helpers and all four pass against the repaired ones, which is the
   property that makes them regressions rather than decoration. The exponential
@@ -141,10 +157,10 @@ defect, and both frozen-replay tests still pass unchanged.
 
 ### What was not executed
 
-- The enforced-resource-profile runner was not run locally: `run.py --worker`
-  refuses a non-Linux host, and this repair was prepared on macOS. A run 003
-  artifact with the real ceilings requires a Linux host or the manual
-  **Bounded defect discovery** workflow.
+- A `BoundedPass` is not a proof of correctness. It says these three input
+  families passed this checker twice, and run 003's own report says exactly that.
+  The declared finite contract did not change: the same inputs, the same oracles,
+  the same ceilings. No search was widened to make the step green.
 - Neither helper was checked against a native Rust certificate, a deployed
   binary, an alternative interpreter, or concurrent callers. The exposure of any
   retained certificate to the crossing-zero branch remains unestablished, exactly
