@@ -1,0 +1,42 @@
+{
+  "schema": "adva.research.joined-chain-cost-contract.v0",
+  "version": 0,
+  "name": "joined-chain-cost",
+  "base_commit": "876510d",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Research 0194 measured the anchor-to-anchor link as not established. With the anchors written where the retained code looks for them, does the link join, what is its verdict, and what does a joined link cost per level?",
+  "level": "External measurement over the retained lineage commands on a scratch copy, with the join verified by the retained tool and the costs in its own units and bytes, followed by the exact optimal-reserve computation on the measured growth",
+  "domain": "The retained arithmetic lineage root of Research 0158 and the lineage-update and tamper-check commands of Research 0156, with anchors written into the directory the retained code scans; nothing about the credential contract's authority, no retained anchor is written, and the key half remains unmeasured",
+  "objects": {
+    "the_correction": "Research 0194 concluded that this tool path does not establish the anchor-to-anchor link. That conclusion is withdrawn: the retained update scans root/lineage/anchors for the previous anchor, and Research 0194 wrote its anchors one directory higher, so the predecessor was never found. The corrected procedure writes them where the code looks.",
+    "the_join": "The retained rule is that the new anchor's prev_anchor_sha256 equals the previous anchor's self_sha256, and tamper-check answers prev_anchor_match. With the corrected procedure both are measured rather than expected.",
+    "the_measured_growth": "The anchor carries its sequence number, so its size is expected to step with the digit count; the update and verify costs are expected to include reading the predecessor. All three are measured per level instead of assumed.",
+    "the_reserve": "With the measured per-link cost in place, the optimal reserve is recomputed under a declared conversion from measured work to layer steps, replacing the constant, linear and doubling shapes that the two earlier rounds had to declare."
+  },
+  "imported_assumptions": [
+    "The retained lineage root is read-only input copied to a scratch directory, and the copy is discarded",
+    "The join rule and the anchor hash are read from the retained implementation (python/adva/lineage.py, anchor_hash and the update path that scans lineage/anchors) rather than guessed",
+    "Wall times are host quantities, recorded and excluded from the byte comparison of successive runs",
+    "The conversion from measured work to layer steps remains declared, and the key half remains unmeasured because the ed25519 backend is missing"
+  ],
+  "protected": [
+    "No retained anchor, credential, key or lineage record is modified or written",
+    "Research 0194's retained evidence stays as it is: it is the frozen record of a procedure that wrote anchors one directory too high, and the correction is appended rather than the record rewritten",
+    "No claim that the earlier round's cost shapes were wrong in general: they were declared, and a measurement replaces a declaration rather than refuting it"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 240,
+    "memory_bytes": 536870912,
+    "max_assertions": 100000,
+    "output_bytes": 4194304,
+    "subprocesses": 64,
+    "declared_link_count": 12
+  },
+  "residual": [
+    "The key half is still unmeasured, so a joined link is still a certificate-only cost",
+    "The conversion to layer steps is still declared",
+    "One package and one retained root are exercised"
+  ]
+}
