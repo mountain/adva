@@ -68,3 +68,31 @@ Status: bounded exact experiment, research-only. Evidence:
 - 代价列经过**声明的换算**（8 层步/实测单位），**密钥一半仍未测**；
 - "**层 ↔ 深度**"的对应仍是**声明**（0199 §5）；
 - **没有**计算 Ω 的值、**没有**主张可计算性；**三侧张力**照旧未化解（0192 §8）。
+
+
+## Correction — 2026-09-15: named uncertainty is still uncertainty
+
+Authored by ChatGPT (OpenAI), through Mingli Yuan's account as authorized proxy;
+this attribution does not imply his authorship, review or endorsement.
+
+The v0 table's depth-15 `undecided = 1/32768` is not the unresolved halting mass.
+The implementation added accepted mass to *named but unresolved* frontier mass
+and called the result `decided_mass`. Its complement is the certified nonhalting
+mass at that cut. The v0 classification must not be used as a halting-uncertainty
+curve. The corrected definition is accepted + certified nonhalting = decided;
+the remaining mass is unresolved, whether already named or not.
+
+At depth 15: accepted = 26078/32768; certified nonhalting = 1/32768;
+decided = 26079/32768; unresolved = 6689/32768. Interval width equals unresolved
+mass at every depth. Reaching the last retained depth is not evidence of
+asymptotic saturation; the cost column remains a declared model.
+
+Current entry: `experiments/depth_curve/calibration.py`, `contract-v1.json`,
+and `evidence-v1.json`. The original contract and evidence are unchanged;
+`calibration-v0.py` replays their historical bytes. Research 0201's frozen
+comparison keeps reading v0 acceptance/cost fields, which this correction does
+not change. New halting-uncertainty consumers must use v1.
+
+Validation: 13 targeted tests pass, including fresh-process reproduction of both
+versions and rejection of the original incorrect partition. This correction does
+not rerun the interpreter or produce new nonhalting evidence.

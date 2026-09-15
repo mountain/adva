@@ -25,7 +25,7 @@ def load(path):
 
 
 def replay(tmp_path):
-    completed = subprocess.run([sys.executable, str(EXPERIMENT / "calibration.py"),
+    completed = subprocess.run([sys.executable, str(EXPERIMENT / "calibration-v0.py"),
                                 str(tmp_path / "fresh.json")],
                                cwd=ROOT, capture_output=True, text=True, timeout=900,
                                check=False)
