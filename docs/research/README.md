@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **212 numbered
-notes, 32 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 33 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -753,6 +753,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`golden-ratio-receipts-and-source-boundaries.md`](golden-ratio-receipts-and-source-boundaries.md)
 - [`golden-ratio-receiving-review.md`](golden-ratio-receiving-review.md)
 - [`lattice-polar-and-mirror-boundary.md`](lattice-polar-and-mirror-boundary.md)
+- [`leak-wall-reading-correction-lines-and-rings.md`](leak-wall-reading-correction-lines-and-rings.md): reading correction, no executable claim: Research 0186's flow-network reading of the leak wall is withdrawn in favour of the language of lines, links and cutting.
 - [`operator-check-python-adapter-v0.md`](operator-check-python-adapter-v0.md)
 - [`operator-lift-main-integration-v1.md`](operator-lift-main-integration-v1.md)
 - [`operator-lift-receipt-boundary-v0.md`](operator-lift-receipt-boundary-v0.md)
@@ -763,11 +764,13 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`sharkovsky-interval-extension.md`](sharkovsky-interval-extension.md)
 - [`simplex-contraction-pascal-calabi-reduction.md`](simplex-contraction-pascal-calabi-reduction.md)
 - [`triadic-period-bridge-correction.md`](triadic-period-bridge-correction.md)
+- [`yang-lu-reference-registration-deferred.md`](yang-lu-reference-registration-deferred.md): process record, no executable claim: the external-reference registration was deferred at the catalog entries bound and admitted after the direction widened it to 101, with the recorded reason quoted and qualified.
 
 - [zot-prefix-machine-weighted-sharing.md](zot-prefix-machine-weighted-sharing.md): explicit Zot evaluation, exact weighted reuse, and prefix-Keraia syntax/input boundaries.
 - [keraia-read-boundary-and-weighted-prefix-search.md](keraia-read-boundary-and-weighted-prefix-search.md): resumable weak-head reads, checked segment reuse, exact code weights and retained type-boundary failures.
 - [keraia-cycle-certificates-and-halting-mass-bounds.md](keraia-cycle-certificates-and-halting-mass-bounds.md): independent cycle receivers exclude a nonhalting cylinder, with multi-read continuations and an exact conditional one-half experiment.
 - [bounded-native-data-interpreter.md](bounded-native-data-interpreter.md): a Rust-owned research data machine runs an Adva arithmetic interpreter over 129 object programs, with exact state reception and budget-preserving continuation.
+- [bounded-interpreter-cross-host-replay.md](bounded-interpreter-cross-host-replay.md): a second host re-receives 300 retained checkpoints from their own bytes, reproduces the recorded profile digest and a byte-identical continuation; no new claim and no new campaign.
 
 ### Supporting directories
 
@@ -795,8 +798,9 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0164-evidence/`](0164-evidence/)
 - [`0165-evidence/`](0165-evidence/)
 - [`0167-evidence/`](0167-evidence/)
+- [`0168-evidence/`](0168-evidence/)
 
-*Complete listing as of 2026-09-11. The counts are stated once, in the header above;
+*Complete listing as of 2026-09-16. The counts are stated once, in the header above;
 they were previously duplicated here and the two copies drifted apart.*
 
 - [keraia-growth-invariants-and-mass-ablation.md](keraia-growth-invariants-and-mass-ablation.md): received protected-stack invariants add 13 nonhalting cylinders at depth 19, excluding 19/524288 at the same cut; depth 15 gains zero.
