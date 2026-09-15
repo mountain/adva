@@ -1,0 +1,240 @@
+{
+  "schema": "adva.research.aeg-core-shell-symbolic-contract.v1",
+  "base_commit": "86006cb7e735551ca7e7a0f1da87029d57954796",
+  "question": "With the first shell form fixed to a symbolically unexpanded expression, does the core-plus-shell carrier preserve the distributive identity exactly, is the carried shell identical to the exact residual, and what exactly breaks when the shell is truncated instead? The proposal under test claims that truncating the denominator tears the algebraic dependency and pollutes distributivity; this experiment tries to reproduce that failure and to say which reading of it survives. The successor adds the missing clause: with the pair canonicalised by exact greatest-common-divisor cancellation and normalisation, is canonical form a complete invariant of value equality, and does the shell participate in that canonicalisation without losing its provenance?",
+  "level": "External exact rational-function arithmetic over Q(x) with canonical comparison by cross-multiplication, plus a declared finite family and a finite sample-point certificate. No floating point anywhere, no native change, no Posit, no precision or convergence claim. The successor adds exact polynomial greatest-common-divisor cancellation over Q[x], an idempotence and value-preservation check, and a provenance control, and it verifies the predecessor's digest at run time.",
+  "domain": "A declared family of rational functions in one variable over Q, the projective pair presentation [N:D], two rewrite routes for A*(B+C)^-1 (factor the outer sum against one inverse, or distribute the outer sum over two inverses), a declared budget of common-denominator steps, and a symbolically unexpanded shell.",
+  "imported_assumptions": [
+    "The projective pair [N:D] with inversion by swap is the presentation the terminology registration names as [< >]",
+    "Two rational functions are declared equal exactly when cross-multiplication of their representatives is the zero polynomial; no tolerance, no epsilon and no sampling is used to decide equality",
+    "The sample-point certificate is a finite additional check, not a proof of identity for the general case",
+    "A shell is either empty or an unexpanded expression object; it is never compared as a number",
+    "Budget exhaustion freezes the unexpanded remainder as the shell and the verdict for that step is Unknown"
+  ],
+  "quantifiers": [
+    "Every member of the declared family, over every declared budget",
+    "Both rewrite routes at every declared sample point",
+    "Every declared truncation control, including the same-truncation case and the per-branch-different-point case",
+    "Every declared family member, for the canonicalisation's idempotence, its value preservation, and the equivalence between literal pair equality and cross-multiplication equality",
+    "Every declared provenance case, including two shells with the same content and different reasons"
+  ],
+  "acceptance": [
+    "The projective pair inverts by swap and inverting twice returns a pair with the same value",
+    "The two routes agree exactly, by cross-multiplication, for every member of the declared family and at every declared budget",
+    "The same agreement is confirmed independently at every declared sample point, by exact rational equality",
+    "With a symbolically unexpanded shell, the carried shell equals the exact residual, as rational functions, exactly",
+    "Same-truncation on both routes is found to preserve the identity; the experiment records that this contradicts one reading of the proposal and states which reading survives",
+    "Per-branch truncation at different points breaks the identity, and the exact difference is exhibited as the difference of the two linearisation errors",
+    "A truncated shell fails identifiability, and the leak after multiplication by the outer factor is exhibited exactly rather than described",
+    "Under a declared budget of one common-denominator step, the second step is frozen as a shell and the verdict is Unknown with the shell retained and inspectable",
+    "Inversion of a zero denominator is refused, and no acceptance comparison reads a shell as a number",
+    "Canonicalisation by exact greatest-common-divisor cancellation is value preserving and idempotent for every declared member",
+    "After canonicalisation, the two routes produce literally equal carriers, closing the gap the version-zero run recorded",
+    "Canonical form is a complete invariant: for every declared member, literal equality of canonical pairs holds exactly when cross-multiplication equality holds",
+    "The shell participates in canonicalisation: its denotation is reduced to canonical form, and equality of shells compares the canonical pair together with the tree and the provenance",
+    "The frozen version-zero contract and its evidence are verified by digest at run time and are not modified",
+    "The shell participates in canonicalisation: its content is reduced on demand to canonical form, equality of content compares the canonical pairs, and equality of objects additionally compares the tree and the provenance",
+    "Provenance is load bearing in both directions: two shells with the same content and different reasons or budgets are content equal and not object equal, while two shells agreeing in content, reason and budget are object equal as well"
+  ],
+  "protected": [
+    "The terminology registration and the float aperture inventory are read, never rewritten",
+    "No claim that the proposal is correct as written: one reading of its central mechanism is refuted here and that refutation is the result",
+    "No claim about performance, precision, convergence or native semantics",
+    "No Posit, Unum or information-theoretic scheduling is introduced",
+    "No native Rust change, no library admission, no Seal",
+    "The version-zero contract and evidence are frozen records and are never rewritten by this successor"
+  ],
+  "objects": {
+    "family": [
+      {
+        "A1": [
+          [
+            1,
+            0
+          ]
+        ],
+        "A2": [
+          [
+            1,
+            0
+          ]
+        ],
+        "B": [
+          [
+            1,
+            1
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "C": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            0
+          ]
+        ]
+      },
+      {
+        "A1": [
+          [
+            2,
+            0
+          ]
+        ],
+        "A2": [
+          [
+            3,
+            0
+          ]
+        ],
+        "B": [
+          [
+            1,
+            2
+          ]
+        ],
+        "C": [
+          [
+            1,
+            1
+          ]
+        ]
+      },
+      {
+        "A1": [
+          [
+            1,
+            1
+          ],
+          [
+            2,
+            0
+          ]
+        ],
+        "A2": [
+          [
+            1,
+            2
+          ]
+        ],
+        "B": [
+          [
+            1,
+            0
+          ],
+          [
+            1,
+            1
+          ]
+        ],
+        "C": [
+          [
+            1,
+            1
+          ]
+        ]
+      }
+    ],
+    "sample_points": [
+      [
+        3,
+        1
+      ],
+      [
+        5,
+        1
+      ],
+      [
+        7,
+        2
+      ],
+      [
+        -3,
+        1
+      ],
+      [
+        -5,
+        2
+      ]
+    ],
+    "budgets": [
+      1,
+      2,
+      3
+    ],
+    "linearisation_points": [
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "note_on_family": "each polynomial is a list of [coefficient, exponent] terms over Q; the family is declared, finite and frozen",
+    "family_note": "family[0]: A1 = A2 = 1 so the two outer terms are equal and the per-branch control cannot fire there; family[1] has distinct outer terms; family[2] has outer terms that are non-constant. The first draft of this contract encoded C for family[0] as x^-1 + 1 while the intent was x - 1; the encoding was corrected before any evidence was committed.",
+    "provenance_cases": [
+      {
+        "label": "same content, different reason",
+        "object_equal": false,
+        "left": {
+          "reason": "budget exhausted before resolving the second denominator term",
+          "budget": 1
+        },
+        "right": {
+          "reason": "refused because the denominator term is not in the declared domain",
+          "budget": 1
+        }
+      },
+      {
+        "label": "same content and reason, different budget",
+        "object_equal": false,
+        "left": {
+          "reason": "budget exhausted before resolving the second denominator term",
+          "budget": 1
+        },
+        "right": {
+          "reason": "budget exhausted before resolving the second denominator term",
+          "budget": 2
+        }
+      },
+      {
+        "label": "same content, same reason and same budget",
+        "object_equal": true,
+        "left": {
+          "reason": "budget exhausted before resolving the second denominator term",
+          "budget": 1
+        },
+        "right": {
+          "reason": "budget exhausted before resolving the second denominator term",
+          "budget": 1
+        }
+      }
+    ]
+  },
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 100,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": "This decides three things inside a one-variable rational-function fragment: that the pair presentation and a symbolically unexpanded shell preserve the distributive identity exactly, that a truncated shell fails identifiability, and that one reading of the proposal's pollution claim is wrong while the other survives. It does not decide the multi-variable case, anything about ideals under division, the degree budget for a real carrier, the terminal collapse condition, or whether any of this reaches the native boundary. The successor closes the literal-equality gap inside this one-variable fragment. Canonicalisation needs a greatest-common-divisor algorithm and a monomial order as soon as there is more than one variable, so the multi-variable case remains open, and with it the entire question of which reduction rule a real carrier would declare. Whether canonicalising the shell can ever hide a distinction a reader needed is answered here only for the three declared provenance cases.",
+  "version": 1,
+  "supersedes": {
+    "path": "experiments/aeg_core_shell_symbolic/contract.json",
+    "sha256": "0a890b5b583944c1dcce2ae413722595809f99e718130276238a7230112ee109",
+    "note": "The version-zero contract and its evidence are retained byte for byte as the record of the run that found the structural gap: the two routes agreed in value while their literal representatives differed, and no reduction rule existed. This successor adds that rule and closes the gap. It changes nothing in the declared family, the sample points, the linearisation points or the budgets, so the earlier findings stay reproducible from the frozen contract and its own evidence.",
+    "predecessor_evidence": {
+      "path": "experiments/aeg_core_shell_symbolic/evidence.json",
+      "sha256": "5c2e1d118f32476d4e43e938b3e5a5e9cb18e7b46be1e5c8045fa5a3a766f8b6"
+    }
+  }
+}
