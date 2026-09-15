@@ -148,6 +148,34 @@ for a separately bounded reproduction into a new directory. The immutable
 evidence is under `experiments/bounded_native_interpreter/evidence/attempt-1`.
 Regression tests receive those saved traces instead of starting another search.
 
+## Integration failure and contract successor
+
+The first published implementation, `c0d94bd`, passed the complete Rust CI job
+and the arithmetic vocabulary workflow. Its Python 3.11, 3.12 and 3.13 jobs each
+reported **1 failed, 2,733 passed, 1 skipped** in
+[CI run 34990388176](https://github.com/mountain/adva/actions/runs/34990388176).
+The new interpreter checks passed. The failure was
+`test_the_base_commit_boundary_holds_at_this_commit`: the existing symbol-surface
+advance contract v3 forbids any Rust change after its declared base `09d073a`.
+The added machine therefore correctly failed that boundary. The pre-publication
+local Python selection had omitted this integration test; that was a missed gate.
+
+The correction preserves v0-v3 verbatim and adds
+`experiments/advance_symbol_surface/contract-v4.json`, binding v3's digest and
+moving the Rust base to `c0d94bd`. Only version, date, base and successor metadata
+change. Every input pin, library boundary, control, authorization text and
+execution limit stays identical. The native boundary check is not relaxed.
+The profile selects v4 and records that same contract in its reports. This
+maintenance update does not rerun the symbol-surface advance or the interpreter
+campaign, and does not refill any earlier run's fuel.
+
+The local corrective test command first failed collection because the Adva
+package was not installed; adding the source path then exposed the missing
+native extension. Building the existing `adva-python` target and loading that
+artifact resolved the local test setup. These collection failures did not execute
+a research trial. All 24 corrective tests passed, covering contract-chain, surface-boundary,
+saved-interpreter reception and research-index checks.
+
 ## What the result supports and what remains
 
 The implementation supports the proposed first milestone: a program written in

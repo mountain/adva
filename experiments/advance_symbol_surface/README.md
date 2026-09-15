@@ -15,9 +15,9 @@ native load calls, eight controls, finite limits and exit conditions before
 execution. The original `byte-observer-v0` profile remains unchanged.
 
 **Contracts, and what a frozen replay would now do.** The active contract is
-[contract-v2.json](contract-v2.json). Each successor names the digest of the one
+[contract-v4.json](contract-v4.json). Each successor names the digest of the one
 it supersedes, so the chain is `contract.json` (v0) <- `contract-v1.json` <-
-`contract-v2.json` <- `contract-v3.json`, and a run verifies that digest rather than
+`contract-v2.json` <- `contract-v3.json` <- `contract-v4.json`, and a run verifies that digest rather than
 trusting the file:
 editing a superseded contract afterwards is a failure, not a silent
 reinterpretation. v1 moved two inputs — the symbol-surface README pin, after the
@@ -27,7 +27,11 @@ again and nothing else, because the profile requires that nothing under
 extension-module link fix changed all three. v3 moves the base commit a third
 time for the same reason and no other: the merged symbol-surface native-load
 gate adds a Rust integration test under `crates/adva-witness/tests/`, which is
-inside the boundary the profile pins. No input pin moves at any step. The run-01 evidence below keeps the
+inside the boundary the profile pins. v4 moves the Rust base to `c0d94bd` after
+the separately versioned bounded data interpreter was added. Its input pins,
+library boundary, controls, authorization text and execution limits are exactly
+v3's; this maintenance update does not execute another advance or renew any
+run's fuel. The strict Rust-diff check remains unchanged. The run-01 evidence below keeps the
 frozen version-zero contract and its original digests as the record of what that
 run actually executed, so a literal replay of run-01 now fails on the README pin
 **by design rather than by drift**: an input changed after that run. Use the active

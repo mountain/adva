@@ -18,7 +18,8 @@ import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 DIR = ROOT / "experiments/advance_symbol_surface"
-ACTIVE = DIR / "contract-v3.json"
+ACTIVE = DIR / "contract-v4.json"
+V3 = DIR / "contract-v3.json"
 V2 = DIR / "contract-v2.json"
 V1 = DIR / "contract-v1.json"
 FROZEN = DIR / "contract.json"
@@ -31,7 +32,7 @@ def load(path):
 
 def test_the_chain_supersedes_by_digest_from_v0_through_the_active_contract():
     """Each contract names the digest of the one before it, so none can be edited."""
-    chain = [ACTIVE, V2, V1, FROZEN]
+    chain = [ACTIVE, V3, V2, V1, FROZEN]
     for path in chain:
         assert path.exists(), path.name
     for newer, older in zip(chain, chain[1:]):
@@ -41,7 +42,8 @@ def test_the_chain_supersedes_by_digest_from_v0_through_the_active_contract():
         assert supersedes["path"] == f"experiments/advance_symbol_surface/{older.name}"
         assert supersedes["sha256"] == hashlib.sha256(older.read_bytes()).hexdigest()
         assert supersedes["note"].strip()
-    assert load(ACTIVE)["version"] == 3
+    assert load(ACTIVE)["version"] == 4
+    assert load(V3)["version"] == 3
     assert load(V2)["version"] == 2
     assert load(V1)["version"] == 1
     assert load(FROZEN)["version"] == 0
@@ -59,9 +61,13 @@ def test_the_frozen_contract_still_describes_the_first_run():
 
 
 def test_the_successors_only_moved_the_base_and_not_the_pins():
-    """v2 and v3 exist because the Rust boundary moved, not because an input changed."""
+    """Successors v2-v4 keep the inputs; v4 also preserves every execution limit."""
     assert load(V2)["pins"] == load(V1)["pins"]
-    assert load(ACTIVE)["pins"] == load(V2)["pins"]
+    assert load(V3)["pins"] == load(V2)["pins"]
+    changed_metadata = {"version", "date", "base_commit", "supersedes"}
+    assert {k: v for k, v in load(ACTIVE).items() if k not in changed_metadata} == {
+        k: v for k, v in load(V3).items() if k not in changed_metadata
+    }
 
 
 def test_every_pin_in_the_active_contract_matches_the_live_file():
@@ -77,7 +83,7 @@ def test_every_pin_in_the_active_contract_matches_the_live_file():
 
 def test_the_module_uses_the_successor_and_verifies_the_frozen_digest():
     source = MODULE.read_text(encoding="utf-8")
-    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v3.json"' in source
+    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v4.json"' in source
     # The chain check is generic: it hashes whatever the contract names, so a new
     # successor does not require editing the module.
     assert 'contract.get("version", 0) < 1 or "supersedes" not in contract' in source
