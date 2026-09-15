@@ -1,0 +1,41 @@
+{
+  "schema": "adva.research.traversal-allocation-optimal-contract.v0",
+  "version": 0,
+  "name": "traversal-allocation-optimal",
+  "base_commit": "302a5a4",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The direction's protocol uses an equal split for the three sides and one hundredth for the reserve, and leaves optimality to be argued. Under a declared cost model, which split of the sides' steps resolves the most mass, which reserve fraction is optimal, and is one hundredth it?",
+  "level": "External exact rational arithmetic over Q: an exhaustive search over side depths and a scan over reserve fractions, with the fairness comparison and the optimality gap both recorded",
+  "domain": "Three sides each carrying one third of the space, the retained wrapper family's layer costs of two steps per layer with a cumulative cost of (d+1)^2 to depth d, a step pool split among the sides, a reserve that pays cumulative join costs, and five declared join cost models; nothing about Omega's value, the triadic policy's semantics, or a measured key and certificate cost",
+  "objects": {
+    "the_direction_allocation": "The direction's hundredths, retained from Research 0192: 33/100 to each side and 1/100 to the reserve. This run asks whether that split is optimal under declared models, which is the half of the direction's open question that can be answered by computation.",
+    "the_side": "Three sides, each carrying one third of the mass. A side given a steps reaches the depth d with (d+1)^2 <= a, because the retained layer n costs 2n+1 steps and the layers telescope to a square, and it resolves (1/3)(1 - 2^-(d+1)) of the space.",
+    "the_depth_ceiling": "A traversal that has joined k links may go no deeper than k, so a side's effective depth is the smaller of what its steps pay for and the level the reserve has bought. The reserve therefore buys the right to go deeper while the sides do the work.",
+    "the_reserve": "The reserve pays the cumulative join cost, so k is the largest level whose cumulative cost fits inside the reserve. Five models are declared: a constant cost, a linear cost, a doubling cost, and two variants.",
+    "optimality": "For a fixed step pool and depth ceiling the best split is found by exhaustive search over side depths, and the optimal reserve fraction is found by scanning the declared hundredths. Both are reported next to the fair allocation, with the gap between them.",
+    "the_waste": "Resolving mass happens in whole layers, so steps that do not complete a layer resolve nothing; the run reports how many steps the optimal allocation leaves unspent rather than hiding them in a remainder."
+  },
+  "imported_assumptions": [
+    "The layer costs and masses are read from the read-boundary-mass-halves calibration and recomputed here",
+    "The hundredths allocation, the reserve's job and the rule that the reserve is carved out before the sides start are read from the traversal-allocation-and-reserve calibration",
+    "The join cost models are declared rather than measured, so the optimal reserve is optimal for the model and not for a machine"
+  ],
+  "protected": [
+    "No claim that the direction's allocation is or is not optimal in general: what is computed is optimality for the declared models",
+    "No measured key or certificate cost is used; that is the named follow-on step and not this run",
+    "No retained record, anchor, key or credential is read as authority or rewritten"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152
+  },
+  "residual": [
+    "The join cost and the layer cost are both declared, so the optimal reserve follows from them",
+    "The equality of the optimal side depths is reported as a measured regularity over the declared grid and not as a theorem",
+    "The three-sides reading is carried over from Research 0192 with its tension unresolved"
+  ]
+}

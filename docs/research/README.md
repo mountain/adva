@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **201 numbered
+This directory holds the research record of the repository: **202 numbered
 notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -722,6 +722,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0190-the-multivariate-rung-of-the-historical-method.md`](0190-the-multivariate-rung-of-the-historical-method.md)
 - [`0191-the-read-boundary-splits-the-mass-in-half.md`](0191-the-read-boundary-splits-the-mass-in-half.md)
 - [`0192-the-traversal-allocation-and-its-reserve.md`](0192-the-traversal-allocation-and-its-reserve.md)
+- [`0193-the-optimal-shares-and-the-price-of-a-level.md`](0193-the-optimal-shares-and-the-price-of-a-level.md)
 
 ### Named notes
 

@@ -1,0 +1,3283 @@
+{
+  "arithmetic": {
+    "cost_to_depth_d": "(d+1)^2 steps",
+    "depth_for_a_steps": "the deepest d with (d+1)^2 <= a",
+    "layer_n_cost": "2n+1 steps",
+    "mass_one_side_resolves": "(1/3)(1 - 2^-(d+1))",
+    "the_ceiling": "a traversal that joined k links may go no deeper than k"
+  },
+  "authority": "research-only, external exact arithmetic, no native admission",
+  "counts": {
+    "assertions": 476,
+    "budgets": 3,
+    "join_models": 5,
+    "scanned_fractions_per_case": 31,
+    "wall_seconds_before_serialization": 0.914
+  },
+  "findings": [
+    "the layer costs telescope to a square, so the step cost of a depth is (d+1)^2 and the depth a pool pays for is a square root, which bounds the depth ceiling by the pool and keeps the whole optimisation small",
+    "the exhaustive search over side depths is affordable only on a declared small grid, so the scan uses the leveling rule and the run compares the two on that grid rather than letting the fast rule stand alone",
+    "inside a fixed pool and ceiling the best split is the most level one the pool can afford: the greedy rule that always raises the shallowest side matches the exhaustive optimum in every declared case, and the depth spread is never more than one",
+    "the direction's equal thirds are the level case of that rule, and they are optimal exactly when the pool affords the same depth on every side: the marginal mass of a layer halves while its step cost grows, so the shallowest side has both the largest gain and the smallest cost",
+    "when the pool cannot afford the same depth everywhere the optimum is level but not equal, so equal shares are optimal for the sides only at the depths the budget actually reaches",
+    "resolving happens in whole layers, so an optimal split leaves steps unspent: those steps resolve nothing and are reported rather than hidden in a remainder",
+    "the equal-depth reading was expected to hold in every case and does not; the run records the spread instead, which is what the measurement supports",
+    "over the declared reserve fractions the best one depends entirely on the join cost model, so one hundredth is optimal for some of them and not for others, and the run reports which",
+    "the direction's reserve is compared with the scan at the same budget in both directions: sometimes it sits on a plateau where many fractions do equally well, and sometimes it does not"
+  ],
+  "inside_the_pool": [
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 9,
+      "steps_left_unspent": 6,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        1,
+        1
+      ],
+      "best_resolved": "2/3",
+      "best_spent": 9,
+      "ceiling": 1,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        0
+      ],
+      "leveling_resolved": "2/3",
+      "pool": 9,
+      "steps_left_unspent": 0,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        1,
+        1
+      ],
+      "best_resolved": "2/3",
+      "best_spent": 9,
+      "ceiling": 2,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        0
+      ],
+      "leveling_resolved": "2/3",
+      "pool": 9,
+      "steps_left_unspent": 0,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        1,
+        1
+      ],
+      "best_resolved": "2/3",
+      "best_spent": 9,
+      "ceiling": 3,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        0
+      ],
+      "leveling_resolved": "2/3",
+      "pool": 9,
+      "steps_left_unspent": 0,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        1,
+        1
+      ],
+      "best_resolved": "2/3",
+      "best_spent": 9,
+      "ceiling": 4,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        0
+      ],
+      "leveling_resolved": "2/3",
+      "pool": 9,
+      "steps_left_unspent": 0,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        1,
+        1
+      ],
+      "best_resolved": "2/3",
+      "best_spent": 9,
+      "ceiling": 6,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        0
+      ],
+      "leveling_resolved": "2/3",
+      "pool": 9,
+      "steps_left_unspent": 0,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 16,
+      "steps_left_unspent": 13,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 1,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "3/4",
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 16,
+      "steps_left_unspent": 4,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 2,
+      "depth_spread": 0,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 16,
+      "steps_left_unspent": 4,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 3,
+      "depth_spread": 0,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 16,
+      "steps_left_unspent": 4,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 4,
+      "depth_spread": 0,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 16,
+      "steps_left_unspent": 4,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 6,
+      "depth_spread": 0,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 16,
+      "steps_left_unspent": 4,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 25,
+      "steps_left_unspent": 22,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 1,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "3/4",
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 25,
+      "steps_left_unspent": 13,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        2,
+        2
+      ],
+      "best_resolved": "5/6",
+      "best_spent": 22,
+      "ceiling": 2,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        2,
+        2,
+        1
+      ],
+      "leveling_resolved": "5/6",
+      "pool": 25,
+      "steps_left_unspent": 3,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        2,
+        2
+      ],
+      "best_resolved": "5/6",
+      "best_spent": 22,
+      "ceiling": 3,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        2,
+        2,
+        1
+      ],
+      "leveling_resolved": "5/6",
+      "pool": 25,
+      "steps_left_unspent": 3,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        2,
+        2
+      ],
+      "best_resolved": "5/6",
+      "best_spent": 22,
+      "ceiling": 4,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        2,
+        2,
+        1
+      ],
+      "leveling_resolved": "5/6",
+      "pool": 25,
+      "steps_left_unspent": 3,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        2,
+        2
+      ],
+      "best_resolved": "5/6",
+      "best_spent": 22,
+      "ceiling": 6,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        2,
+        2,
+        1
+      ],
+      "leveling_resolved": "5/6",
+      "pool": 25,
+      "steps_left_unspent": 3,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 36,
+      "steps_left_unspent": 33,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 1,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "3/4",
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 36,
+      "steps_left_unspent": 24,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        2
+      ],
+      "best_resolved": "7/8",
+      "best_spent": 27,
+      "ceiling": 2,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "7/8",
+      "leveling_depths": [
+        2,
+        2,
+        2
+      ],
+      "leveling_resolved": "7/8",
+      "pool": 36,
+      "steps_left_unspent": 9,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        3
+      ],
+      "best_resolved": "43/48",
+      "best_spent": 34,
+      "ceiling": 3,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        3,
+        2,
+        2
+      ],
+      "leveling_resolved": "43/48",
+      "pool": 36,
+      "steps_left_unspent": 2,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        3
+      ],
+      "best_resolved": "43/48",
+      "best_spent": 34,
+      "ceiling": 4,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        3,
+        2,
+        2
+      ],
+      "leveling_resolved": "43/48",
+      "pool": 36,
+      "steps_left_unspent": 2,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        3
+      ],
+      "best_resolved": "43/48",
+      "best_spent": 34,
+      "ceiling": 6,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        3,
+        2,
+        2
+      ],
+      "leveling_resolved": "43/48",
+      "pool": 36,
+      "steps_left_unspent": 2,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 100,
+      "steps_left_unspent": 97,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 1,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "3/4",
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 100,
+      "steps_left_unspent": 88,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        2
+      ],
+      "best_resolved": "7/8",
+      "best_spent": 27,
+      "ceiling": 2,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "7/8",
+      "leveling_depths": [
+        2,
+        2,
+        2
+      ],
+      "leveling_resolved": "7/8",
+      "pool": 100,
+      "steps_left_unspent": 73,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        3,
+        3,
+        3
+      ],
+      "best_resolved": "15/16",
+      "best_spent": 48,
+      "ceiling": 3,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "15/16",
+      "leveling_depths": [
+        3,
+        3,
+        3
+      ],
+      "leveling_resolved": "15/16",
+      "pool": 100,
+      "steps_left_unspent": 52,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        4,
+        4,
+        4
+      ],
+      "best_resolved": "31/32",
+      "best_spent": 75,
+      "ceiling": 4,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "31/32",
+      "leveling_depths": [
+        4,
+        4,
+        4
+      ],
+      "leveling_resolved": "31/32",
+      "pool": 100,
+      "steps_left_unspent": 25,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        4,
+        5,
+        5
+      ],
+      "best_resolved": "47/48",
+      "best_spent": 97,
+      "ceiling": 6,
+      "depth_spread": 1,
+      "equal_depths_fit": false,
+      "equal_depths_resolved": null,
+      "leveling_depths": [
+        5,
+        5,
+        4
+      ],
+      "leveling_resolved": "47/48",
+      "pool": 100,
+      "steps_left_unspent": 3,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        0,
+        0,
+        0
+      ],
+      "best_resolved": "1/2",
+      "best_spent": 3,
+      "ceiling": 0,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "1/2",
+      "leveling_depths": [
+        0,
+        0,
+        0
+      ],
+      "leveling_resolved": "1/2",
+      "pool": 250,
+      "steps_left_unspent": 247,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        1,
+        1,
+        1
+      ],
+      "best_resolved": "3/4",
+      "best_spent": 12,
+      "ceiling": 1,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "3/4",
+      "leveling_depths": [
+        1,
+        1,
+        1
+      ],
+      "leveling_resolved": "3/4",
+      "pool": 250,
+      "steps_left_unspent": 238,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        2,
+        2,
+        2
+      ],
+      "best_resolved": "7/8",
+      "best_spent": 27,
+      "ceiling": 2,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "7/8",
+      "leveling_depths": [
+        2,
+        2,
+        2
+      ],
+      "leveling_resolved": "7/8",
+      "pool": 250,
+      "steps_left_unspent": 223,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        3,
+        3,
+        3
+      ],
+      "best_resolved": "15/16",
+      "best_spent": 48,
+      "ceiling": 3,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "15/16",
+      "leveling_depths": [
+        3,
+        3,
+        3
+      ],
+      "leveling_resolved": "15/16",
+      "pool": 250,
+      "steps_left_unspent": 202,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        4,
+        4,
+        4
+      ],
+      "best_resolved": "31/32",
+      "best_spent": 75,
+      "ceiling": 4,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "31/32",
+      "leveling_depths": [
+        4,
+        4,
+        4
+      ],
+      "leveling_resolved": "31/32",
+      "pool": 250,
+      "steps_left_unspent": 175,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    },
+    {
+      "best_depths": [
+        6,
+        6,
+        6
+      ],
+      "best_resolved": "127/128",
+      "best_spent": 147,
+      "ceiling": 6,
+      "depth_spread": 0,
+      "equal_depths_fit": true,
+      "equal_depths_resolved": "127/128",
+      "leveling_depths": [
+        6,
+        6,
+        6
+      ],
+      "leveling_resolved": "127/128",
+      "pool": 250,
+      "steps_left_unspent": 103,
+      "the_greedy_leveling_matches_the_exhaustive_best": true
+    }
+  ],
+  "native_status": "NotRun",
+  "non_claims": [
+    "no claim that the direction's allocation is optimal or not in general: what is computed is optimality for the declared layer cost and the declared join cost models",
+    "the equality of the optimal side depths is a measured regularity over the declared grid and not a theorem",
+    "no measured key or certificate cost is used, so the optimal reserve is optimal for a model rather than for a machine",
+    "the three-sides reading is carried over from Research 0192, and its tension with the retained triadic policy that forbids reading the three as independent computers remains unresolved",
+    "nothing here computes Omega, decides computability, or touches the three-computation system"
+  ],
+  "question": "The direction's protocol uses an equal split for the three sides and one hundredth for the reserve, and leaves optimality to be argued. Under a declared cost model, which split of the sides' steps resolves the most mass, which reserve fraction is optimal, and is one hundredth it?",
+  "refusals": [
+    {
+      "case": "a pool of zero claimed to pay for the first layer",
+      "message": "AZeroPoolPaidForALayer",
+      "refused": true
+    },
+    {
+      "case": "the equal split claimed to beat the exhaustive best",
+      "message": "TheFairAllocationBeatTheOptimum",
+      "refused": true
+    },
+    {
+      "case": "a reserve fraction of one half claimed to be inside the scan",
+      "message": "TheScanRangeMoved",
+      "refused": true
+    }
+  ],
+  "reserve_scan": [
+    {
+      "budget": 100,
+      "direction_levels_bought": 1,
+      "direction_remaining": "1/4",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 1,
+      "direction_resolved": "3/4",
+      "gap_in_remaining_mass": "43/192",
+      "join_cost": "constant one step",
+      "optimal_levels_bought": 5,
+      "optimal_reserve_fraction": "1/20",
+      "optimal_reserve_steps": 5,
+      "optimal_resolved": "187/192",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 100,
+      "direction_levels_bought": 0,
+      "direction_remaining": "1/2",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 1,
+      "direction_resolved": "1/2",
+      "gap_in_remaining_mass": "7/16",
+      "join_cost": "constant ten steps",
+      "optimal_levels_bought": 3,
+      "optimal_reserve_fraction": "3/10",
+      "optimal_reserve_steps": 30,
+      "optimal_resolved": "15/16",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 100,
+      "direction_levels_bought": 1,
+      "direction_remaining": "1/4",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 1,
+      "direction_resolved": "3/4",
+      "gap_in_remaining_mass": "7/32",
+      "join_cost": "linear one per level",
+      "optimal_levels_bought": 4,
+      "optimal_reserve_fraction": "1/10",
+      "optimal_reserve_steps": 10,
+      "optimal_resolved": "31/32",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 100,
+      "direction_levels_bought": 0,
+      "direction_remaining": "1/2",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 1,
+      "direction_resolved": "1/2",
+      "gap_in_remaining_mass": "3/8",
+      "join_cost": "linear ten plus one per level",
+      "optimal_levels_bought": 2,
+      "optimal_reserve_fraction": "23/100",
+      "optimal_reserve_steps": 23,
+      "optimal_resolved": "7/8",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 100,
+      "direction_levels_bought": 0,
+      "direction_remaining": "1/2",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 1,
+      "direction_resolved": "1/2",
+      "gap_in_remaining_mass": "11/24",
+      "join_cost": "doubling per level",
+      "optimal_levels_bought": 4,
+      "optimal_reserve_fraction": "3/10",
+      "optimal_reserve_steps": 30,
+      "optimal_resolved": "23/24",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 1000,
+      "direction_levels_bought": 10,
+      "direction_remaining": "1/2048",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 10,
+      "direction_resolved": "2047/2048",
+      "gap_in_remaining_mass": "127/262144",
+      "join_cost": "constant one step",
+      "optimal_levels_bought": 20,
+      "optimal_reserve_fraction": "1/50",
+      "optimal_reserve_steps": 20,
+      "optimal_resolved": "262143/262144",
+      "table": [
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "0",
+          "reserve_steps": 0,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 997
+        },
+        {
+          "best_depths": [
+            10,
+            10,
+            10
+          ],
+          "best_resolved": "2047/2048",
+          "levels_bought": 10,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/100",
+          "reserve_steps": 10,
+          "reserve_steps_committed": 10,
+          "steps_left_unspent": 627
+        },
+        {
+          "best_depths": [
+            17,
+            17,
+            17
+          ],
+          "best_resolved": "262143/262144",
+          "levels_bought": 20,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/50",
+          "reserve_steps": 20,
+          "reserve_steps_committed": 20,
+          "steps_left_unspent": 8
+        },
+        {
+          "best_depths": [
+            17,
+            17,
+            16
+          ],
+          "best_resolved": "196607/196608",
+          "levels_bought": 30,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/100",
+          "reserve_steps": 30,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 33
+        },
+        {
+          "best_depths": [
+            17,
+            17,
+            16
+          ],
+          "best_resolved": "196607/196608",
+          "levels_bought": 40,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/25",
+          "reserve_steps": 40,
+          "reserve_steps_committed": 40,
+          "steps_left_unspent": 23
+        },
+        {
+          "best_depths": [
+            17,
+            17,
+            16
+          ],
+          "best_resolved": "196607/196608",
+          "levels_bought": 50,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/20",
+          "reserve_steps": 50,
+          "reserve_steps_committed": 50,
+          "steps_left_unspent": 13
+        },
+        {
+          "best_depths": [
+            17,
+            17,
+            16
+          ],
+          "best_resolved": "196607/196608",
+          "levels_bought": 60,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/50",
+          "reserve_steps": 60,
+          "reserve_steps_committed": 60,
+          "steps_left_unspent": 3
+        },
+        {
+          "best_depths": [
+            17,
+            16,
+            16
+          ],
+          "best_resolved": "786427/786432",
+          "levels_bought": 70,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/100",
+          "reserve_steps": 70,
+          "reserve_steps_committed": 70,
+          "steps_left_unspent": 28
+        },
+        {
+          "best_depths": [
+            17,
+            16,
+            16
+          ],
+          "best_resolved": "786427/786432",
+          "levels_bought": 80,
+          "optimiser": "leveling",
+          "reserve_fraction": "2/25",
+          "reserve_steps": 80,
+          "reserve_steps_committed": 80,
+          "steps_left_unspent": 18
+        },
+        {
+          "best_depths": [
+            17,
+            16,
+            16
+          ],
+          "best_resolved": "786427/786432",
+          "levels_bought": 90,
+          "optimiser": "leveling",
+          "reserve_fraction": "9/100",
+          "reserve_steps": 90,
+          "reserve_steps_committed": 90,
+          "steps_left_unspent": 8
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            16
+          ],
+          "best_resolved": "131071/131072",
+          "levels_bought": 100,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/10",
+          "reserve_steps": 100,
+          "reserve_steps_committed": 100,
+          "steps_left_unspent": 33
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            16
+          ],
+          "best_resolved": "131071/131072",
+          "levels_bought": 110,
+          "optimiser": "leveling",
+          "reserve_fraction": "11/100",
+          "reserve_steps": 110,
+          "reserve_steps_committed": 110,
+          "steps_left_unspent": 23
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            16
+          ],
+          "best_resolved": "131071/131072",
+          "levels_bought": 120,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/25",
+          "reserve_steps": 120,
+          "reserve_steps_committed": 120,
+          "steps_left_unspent": 13
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            16
+          ],
+          "best_resolved": "131071/131072",
+          "levels_bought": 130,
+          "optimiser": "leveling",
+          "reserve_fraction": "13/100",
+          "reserve_steps": 130,
+          "reserve_steps_committed": 130,
+          "steps_left_unspent": 3
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 140,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/50",
+          "reserve_steps": 140,
+          "reserve_steps_committed": 140,
+          "steps_left_unspent": 26
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 150,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/20",
+          "reserve_steps": 150,
+          "reserve_steps_committed": 150,
+          "steps_left_unspent": 16
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 160,
+          "optimiser": "leveling",
+          "reserve_fraction": "4/25",
+          "reserve_steps": 160,
+          "reserve_steps_committed": 160,
+          "steps_left_unspent": 6
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 170,
+          "optimiser": "leveling",
+          "reserve_fraction": "17/100",
+          "reserve_steps": 170,
+          "reserve_steps_committed": 170,
+          "steps_left_unspent": 29
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 180,
+          "optimiser": "leveling",
+          "reserve_fraction": "9/50",
+          "reserve_steps": 180,
+          "reserve_steps_committed": 180,
+          "steps_left_unspent": 19
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 190,
+          "optimiser": "leveling",
+          "reserve_fraction": "19/100",
+          "reserve_steps": 190,
+          "reserve_steps_committed": 190,
+          "steps_left_unspent": 9
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 200,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/5",
+          "reserve_steps": 200,
+          "reserve_steps_committed": 200,
+          "steps_left_unspent": 32
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 210,
+          "optimiser": "leveling",
+          "reserve_fraction": "21/100",
+          "reserve_steps": 210,
+          "reserve_steps_committed": 210,
+          "steps_left_unspent": 22
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 220,
+          "optimiser": "leveling",
+          "reserve_fraction": "11/50",
+          "reserve_steps": 220,
+          "reserve_steps_committed": 220,
+          "steps_left_unspent": 12
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 230,
+          "optimiser": "leveling",
+          "reserve_fraction": "23/100",
+          "reserve_steps": 230,
+          "reserve_steps_committed": 230,
+          "steps_left_unspent": 2
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 240,
+          "optimiser": "leveling",
+          "reserve_fraction": "6/25",
+          "reserve_steps": 240,
+          "reserve_steps_committed": 240,
+          "steps_left_unspent": 23
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 250,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/4",
+          "reserve_steps": 250,
+          "reserve_steps_committed": 250,
+          "steps_left_unspent": 13
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 260,
+          "optimiser": "leveling",
+          "reserve_fraction": "13/50",
+          "reserve_steps": 260,
+          "reserve_steps_committed": 260,
+          "steps_left_unspent": 3
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 270,
+          "optimiser": "leveling",
+          "reserve_fraction": "27/100",
+          "reserve_steps": 270,
+          "reserve_steps_committed": 270,
+          "steps_left_unspent": 24
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 280,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/25",
+          "reserve_steps": 280,
+          "reserve_steps_committed": 280,
+          "steps_left_unspent": 14
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 290,
+          "optimiser": "leveling",
+          "reserve_fraction": "29/100",
+          "reserve_steps": 290,
+          "reserve_steps_committed": 290,
+          "steps_left_unspent": 4
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 300,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/10",
+          "reserve_steps": 300,
+          "reserve_steps_committed": 300,
+          "steps_left_unspent": 25
+        }
+      ],
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 1000,
+      "direction_levels_bought": 1,
+      "direction_remaining": "1/4",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 10,
+      "direction_resolved": "3/4",
+      "gap_in_remaining_mass": "24575/98304",
+      "join_cost": "constant ten steps",
+      "optimal_levels_bought": 16,
+      "optimal_reserve_fraction": "4/25",
+      "optimal_reserve_steps": 160,
+      "optimal_resolved": "98303/98304",
+      "table": [
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "0",
+          "reserve_steps": 0,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 997
+        },
+        {
+          "best_depths": [
+            1,
+            1,
+            1
+          ],
+          "best_resolved": "3/4",
+          "levels_bought": 1,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/100",
+          "reserve_steps": 10,
+          "reserve_steps_committed": 10,
+          "steps_left_unspent": 978
+        },
+        {
+          "best_depths": [
+            2,
+            2,
+            2
+          ],
+          "best_resolved": "7/8",
+          "levels_bought": 2,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/50",
+          "reserve_steps": 20,
+          "reserve_steps_committed": 20,
+          "steps_left_unspent": 953
+        },
+        {
+          "best_depths": [
+            3,
+            3,
+            3
+          ],
+          "best_resolved": "15/16",
+          "levels_bought": 3,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/100",
+          "reserve_steps": 30,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 922
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/25",
+          "reserve_steps": 40,
+          "reserve_steps_committed": 40,
+          "steps_left_unspent": 885
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/20",
+          "reserve_steps": 50,
+          "reserve_steps_committed": 50,
+          "steps_left_unspent": 842
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/50",
+          "reserve_steps": 60,
+          "reserve_steps_committed": 60,
+          "steps_left_unspent": 793
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/100",
+          "reserve_steps": 70,
+          "reserve_steps_committed": 70,
+          "steps_left_unspent": 738
+        },
+        {
+          "best_depths": [
+            8,
+            8,
+            8
+          ],
+          "best_resolved": "511/512",
+          "levels_bought": 8,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "2/25",
+          "reserve_steps": 80,
+          "reserve_steps_committed": 80,
+          "steps_left_unspent": 677
+        },
+        {
+          "best_depths": [
+            9,
+            9,
+            9
+          ],
+          "best_resolved": "1023/1024",
+          "levels_bought": 9,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/100",
+          "reserve_steps": 90,
+          "reserve_steps_committed": 90,
+          "steps_left_unspent": 610
+        },
+        {
+          "best_depths": [
+            10,
+            10,
+            10
+          ],
+          "best_resolved": "2047/2048",
+          "levels_bought": 10,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/10",
+          "reserve_steps": 100,
+          "reserve_steps_committed": 100,
+          "steps_left_unspent": 537
+        },
+        {
+          "best_depths": [
+            11,
+            11,
+            11
+          ],
+          "best_resolved": "4095/4096",
+          "levels_bought": 11,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/100",
+          "reserve_steps": 110,
+          "reserve_steps_committed": 110,
+          "steps_left_unspent": 458
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/25",
+          "reserve_steps": 120,
+          "reserve_steps_committed": 120,
+          "steps_left_unspent": 373
+        },
+        {
+          "best_depths": [
+            13,
+            13,
+            13
+          ],
+          "best_resolved": "16383/16384",
+          "levels_bought": 13,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "13/100",
+          "reserve_steps": 130,
+          "reserve_steps_committed": 130,
+          "steps_left_unspent": 282
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 14,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/50",
+          "reserve_steps": 140,
+          "reserve_steps_committed": 140,
+          "steps_left_unspent": 185
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/20",
+          "reserve_steps": 150,
+          "reserve_steps_committed": 150,
+          "steps_left_unspent": 82
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 16,
+          "optimiser": "leveling",
+          "reserve_fraction": "4/25",
+          "reserve_steps": 160,
+          "reserve_steps_committed": 160,
+          "steps_left_unspent": 6
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 17,
+          "optimiser": "leveling",
+          "reserve_fraction": "17/100",
+          "reserve_steps": 170,
+          "reserve_steps_committed": 170,
+          "steps_left_unspent": 29
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 18,
+          "optimiser": "leveling",
+          "reserve_fraction": "9/50",
+          "reserve_steps": 180,
+          "reserve_steps_committed": 180,
+          "steps_left_unspent": 19
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 19,
+          "optimiser": "leveling",
+          "reserve_fraction": "19/100",
+          "reserve_steps": 190,
+          "reserve_steps_committed": 190,
+          "steps_left_unspent": 9
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 20,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/5",
+          "reserve_steps": 200,
+          "reserve_steps_committed": 200,
+          "steps_left_unspent": 32
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 21,
+          "optimiser": "leveling",
+          "reserve_fraction": "21/100",
+          "reserve_steps": 210,
+          "reserve_steps_committed": 210,
+          "steps_left_unspent": 22
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 22,
+          "optimiser": "leveling",
+          "reserve_fraction": "11/50",
+          "reserve_steps": 220,
+          "reserve_steps_committed": 220,
+          "steps_left_unspent": 12
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 23,
+          "optimiser": "leveling",
+          "reserve_fraction": "23/100",
+          "reserve_steps": 230,
+          "reserve_steps_committed": 230,
+          "steps_left_unspent": 2
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 24,
+          "optimiser": "leveling",
+          "reserve_fraction": "6/25",
+          "reserve_steps": 240,
+          "reserve_steps_committed": 240,
+          "steps_left_unspent": 23
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 25,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/4",
+          "reserve_steps": 250,
+          "reserve_steps_committed": 250,
+          "steps_left_unspent": 13
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 26,
+          "optimiser": "leveling",
+          "reserve_fraction": "13/50",
+          "reserve_steps": 260,
+          "reserve_steps_committed": 260,
+          "steps_left_unspent": 3
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 27,
+          "optimiser": "leveling",
+          "reserve_fraction": "27/100",
+          "reserve_steps": 270,
+          "reserve_steps_committed": 270,
+          "steps_left_unspent": 24
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 28,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/25",
+          "reserve_steps": 280,
+          "reserve_steps_committed": 280,
+          "steps_left_unspent": 14
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 29,
+          "optimiser": "leveling",
+          "reserve_fraction": "29/100",
+          "reserve_steps": 290,
+          "reserve_steps_committed": 290,
+          "steps_left_unspent": 4
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 30,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/10",
+          "reserve_steps": 300,
+          "reserve_steps_committed": 300,
+          "steps_left_unspent": 25
+        }
+      ],
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 1000,
+      "direction_levels_bought": 4,
+      "direction_remaining": "1/32",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 10,
+      "direction_resolved": "31/32",
+      "gap_in_remaining_mass": "3071/98304",
+      "join_cost": "linear one per level",
+      "optimal_levels_bought": 16,
+      "optimal_reserve_fraction": "7/50",
+      "optimal_reserve_steps": 140,
+      "optimal_resolved": "98303/98304",
+      "table": [
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "0",
+          "reserve_steps": 0,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 997
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/100",
+          "reserve_steps": 10,
+          "reserve_steps_committed": 10,
+          "steps_left_unspent": 915
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/50",
+          "reserve_steps": 20,
+          "reserve_steps_committed": 15,
+          "steps_left_unspent": 872
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/100",
+          "reserve_steps": 30,
+          "reserve_steps_committed": 28,
+          "steps_left_unspent": 778
+        },
+        {
+          "best_depths": [
+            8,
+            8,
+            8
+          ],
+          "best_resolved": "511/512",
+          "levels_bought": 8,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/25",
+          "reserve_steps": 40,
+          "reserve_steps_committed": 36,
+          "steps_left_unspent": 717
+        },
+        {
+          "best_depths": [
+            9,
+            9,
+            9
+          ],
+          "best_resolved": "1023/1024",
+          "levels_bought": 9,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/20",
+          "reserve_steps": 50,
+          "reserve_steps_committed": 45,
+          "steps_left_unspent": 650
+        },
+        {
+          "best_depths": [
+            10,
+            10,
+            10
+          ],
+          "best_resolved": "2047/2048",
+          "levels_bought": 10,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/50",
+          "reserve_steps": 60,
+          "reserve_steps_committed": 55,
+          "steps_left_unspent": 577
+        },
+        {
+          "best_depths": [
+            11,
+            11,
+            11
+          ],
+          "best_resolved": "4095/4096",
+          "levels_bought": 11,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/100",
+          "reserve_steps": 70,
+          "reserve_steps_committed": 66,
+          "steps_left_unspent": 498
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "2/25",
+          "reserve_steps": 80,
+          "reserve_steps_committed": 78,
+          "steps_left_unspent": 413
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/100",
+          "reserve_steps": 90,
+          "reserve_steps_committed": 78,
+          "steps_left_unspent": 403
+        },
+        {
+          "best_depths": [
+            13,
+            13,
+            13
+          ],
+          "best_resolved": "16383/16384",
+          "levels_bought": 13,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/10",
+          "reserve_steps": 100,
+          "reserve_steps_committed": 91,
+          "steps_left_unspent": 312
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 14,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/100",
+          "reserve_steps": 110,
+          "reserve_steps_committed": 105,
+          "steps_left_unspent": 215
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/25",
+          "reserve_steps": 120,
+          "reserve_steps_committed": 120,
+          "steps_left_unspent": 112
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "13/100",
+          "reserve_steps": 130,
+          "reserve_steps_committed": 120,
+          "steps_left_unspent": 102
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 16,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/50",
+          "reserve_steps": 140,
+          "reserve_steps_committed": 136,
+          "steps_left_unspent": 26
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 16,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/20",
+          "reserve_steps": 150,
+          "reserve_steps_committed": 136,
+          "steps_left_unspent": 16
+        },
+        {
+          "best_depths": [
+            16,
+            16,
+            15
+          ],
+          "best_resolved": "98303/98304",
+          "levels_bought": 17,
+          "optimiser": "leveling",
+          "reserve_fraction": "4/25",
+          "reserve_steps": 160,
+          "reserve_steps_committed": 153,
+          "steps_left_unspent": 6
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 17,
+          "optimiser": "leveling",
+          "reserve_fraction": "17/100",
+          "reserve_steps": 170,
+          "reserve_steps_committed": 153,
+          "steps_left_unspent": 29
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 18,
+          "optimiser": "leveling",
+          "reserve_fraction": "9/50",
+          "reserve_steps": 180,
+          "reserve_steps_committed": 171,
+          "steps_left_unspent": 19
+        },
+        {
+          "best_depths": [
+            16,
+            15,
+            15
+          ],
+          "best_resolved": "393211/393216",
+          "levels_bought": 19,
+          "optimiser": "leveling",
+          "reserve_fraction": "19/100",
+          "reserve_steps": 190,
+          "reserve_steps_committed": 190,
+          "steps_left_unspent": 9
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 19,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/5",
+          "reserve_steps": 200,
+          "reserve_steps_committed": 190,
+          "steps_left_unspent": 32
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 20,
+          "optimiser": "leveling",
+          "reserve_fraction": "21/100",
+          "reserve_steps": 210,
+          "reserve_steps_committed": 210,
+          "steps_left_unspent": 22
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 20,
+          "optimiser": "leveling",
+          "reserve_fraction": "11/50",
+          "reserve_steps": 220,
+          "reserve_steps_committed": 210,
+          "steps_left_unspent": 12
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            15
+          ],
+          "best_resolved": "65535/65536",
+          "levels_bought": 20,
+          "optimiser": "leveling",
+          "reserve_fraction": "23/100",
+          "reserve_steps": 230,
+          "reserve_steps_committed": 210,
+          "steps_left_unspent": 2
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 21,
+          "optimiser": "leveling",
+          "reserve_fraction": "6/25",
+          "reserve_steps": 240,
+          "reserve_steps_committed": 231,
+          "steps_left_unspent": 23
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 21,
+          "optimiser": "leveling",
+          "reserve_fraction": "1/4",
+          "reserve_steps": 250,
+          "reserve_steps_committed": 231,
+          "steps_left_unspent": 13
+        },
+        {
+          "best_depths": [
+            15,
+            15,
+            14
+          ],
+          "best_resolved": "49151/49152",
+          "levels_bought": 22,
+          "optimiser": "leveling",
+          "reserve_fraction": "13/50",
+          "reserve_steps": 260,
+          "reserve_steps_committed": 253,
+          "steps_left_unspent": 3
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 22,
+          "optimiser": "leveling",
+          "reserve_fraction": "27/100",
+          "reserve_steps": 270,
+          "reserve_steps_committed": 253,
+          "steps_left_unspent": 24
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 23,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/25",
+          "reserve_steps": 280,
+          "reserve_steps_committed": 276,
+          "steps_left_unspent": 14
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 23,
+          "optimiser": "leveling",
+          "reserve_fraction": "29/100",
+          "reserve_steps": 290,
+          "reserve_steps_committed": 276,
+          "steps_left_unspent": 4
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 24,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/10",
+          "reserve_steps": 300,
+          "reserve_steps_committed": 300,
+          "steps_left_unspent": 25
+        }
+      ],
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 1000,
+      "direction_levels_bought": 0,
+      "direction_remaining": "1/2",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 10,
+      "direction_resolved": "1/2",
+      "gap_in_remaining_mass": "98299/196608",
+      "join_cost": "linear ten plus one per level",
+      "optimal_levels_bought": 15,
+      "optimal_reserve_fraction": "27/100",
+      "optimal_reserve_steps": 270,
+      "optimal_resolved": "196603/196608",
+      "table": [
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "0",
+          "reserve_steps": 0,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 997
+        },
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/100",
+          "reserve_steps": 10,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 987
+        },
+        {
+          "best_depths": [
+            1,
+            1,
+            1
+          ],
+          "best_resolved": "3/4",
+          "levels_bought": 1,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/50",
+          "reserve_steps": 20,
+          "reserve_steps_committed": 11,
+          "steps_left_unspent": 968
+        },
+        {
+          "best_depths": [
+            2,
+            2,
+            2
+          ],
+          "best_resolved": "7/8",
+          "levels_bought": 2,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/100",
+          "reserve_steps": 30,
+          "reserve_steps_committed": 23,
+          "steps_left_unspent": 943
+        },
+        {
+          "best_depths": [
+            3,
+            3,
+            3
+          ],
+          "best_resolved": "15/16",
+          "levels_bought": 3,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/25",
+          "reserve_steps": 40,
+          "reserve_steps_committed": 36,
+          "steps_left_unspent": 912
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/20",
+          "reserve_steps": 50,
+          "reserve_steps_committed": 50,
+          "steps_left_unspent": 875
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/50",
+          "reserve_steps": 60,
+          "reserve_steps_committed": 50,
+          "steps_left_unspent": 865
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/100",
+          "reserve_steps": 70,
+          "reserve_steps_committed": 65,
+          "steps_left_unspent": 822
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "2/25",
+          "reserve_steps": 80,
+          "reserve_steps_committed": 65,
+          "steps_left_unspent": 812
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/100",
+          "reserve_steps": 90,
+          "reserve_steps_committed": 81,
+          "steps_left_unspent": 763
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/10",
+          "reserve_steps": 100,
+          "reserve_steps_committed": 98,
+          "steps_left_unspent": 708
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/100",
+          "reserve_steps": 110,
+          "reserve_steps_committed": 98,
+          "steps_left_unspent": 698
+        },
+        {
+          "best_depths": [
+            8,
+            8,
+            8
+          ],
+          "best_resolved": "511/512",
+          "levels_bought": 8,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/25",
+          "reserve_steps": 120,
+          "reserve_steps_committed": 116,
+          "steps_left_unspent": 637
+        },
+        {
+          "best_depths": [
+            8,
+            8,
+            8
+          ],
+          "best_resolved": "511/512",
+          "levels_bought": 8,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "13/100",
+          "reserve_steps": 130,
+          "reserve_steps_committed": 116,
+          "steps_left_unspent": 627
+        },
+        {
+          "best_depths": [
+            9,
+            9,
+            9
+          ],
+          "best_resolved": "1023/1024",
+          "levels_bought": 9,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/50",
+          "reserve_steps": 140,
+          "reserve_steps_committed": 135,
+          "steps_left_unspent": 560
+        },
+        {
+          "best_depths": [
+            9,
+            9,
+            9
+          ],
+          "best_resolved": "1023/1024",
+          "levels_bought": 9,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/20",
+          "reserve_steps": 150,
+          "reserve_steps_committed": 135,
+          "steps_left_unspent": 550
+        },
+        {
+          "best_depths": [
+            10,
+            10,
+            10
+          ],
+          "best_resolved": "2047/2048",
+          "levels_bought": 10,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "4/25",
+          "reserve_steps": 160,
+          "reserve_steps_committed": 155,
+          "steps_left_unspent": 477
+        },
+        {
+          "best_depths": [
+            10,
+            10,
+            10
+          ],
+          "best_resolved": "2047/2048",
+          "levels_bought": 10,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "17/100",
+          "reserve_steps": 170,
+          "reserve_steps_committed": 155,
+          "steps_left_unspent": 467
+        },
+        {
+          "best_depths": [
+            11,
+            11,
+            11
+          ],
+          "best_resolved": "4095/4096",
+          "levels_bought": 11,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/50",
+          "reserve_steps": 180,
+          "reserve_steps_committed": 176,
+          "steps_left_unspent": 388
+        },
+        {
+          "best_depths": [
+            11,
+            11,
+            11
+          ],
+          "best_resolved": "4095/4096",
+          "levels_bought": 11,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "19/100",
+          "reserve_steps": 190,
+          "reserve_steps_committed": 176,
+          "steps_left_unspent": 378
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/5",
+          "reserve_steps": 200,
+          "reserve_steps_committed": 198,
+          "steps_left_unspent": 293
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "21/100",
+          "reserve_steps": 210,
+          "reserve_steps_committed": 198,
+          "steps_left_unspent": 283
+        },
+        {
+          "best_depths": [
+            12,
+            12,
+            12
+          ],
+          "best_resolved": "8191/8192",
+          "levels_bought": 12,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/50",
+          "reserve_steps": 220,
+          "reserve_steps_committed": 198,
+          "steps_left_unspent": 273
+        },
+        {
+          "best_depths": [
+            13,
+            13,
+            13
+          ],
+          "best_resolved": "16383/16384",
+          "levels_bought": 13,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "23/100",
+          "reserve_steps": 230,
+          "reserve_steps_committed": 221,
+          "steps_left_unspent": 182
+        },
+        {
+          "best_depths": [
+            13,
+            13,
+            13
+          ],
+          "best_resolved": "16383/16384",
+          "levels_bought": 13,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "6/25",
+          "reserve_steps": 240,
+          "reserve_steps_committed": 221,
+          "steps_left_unspent": 172
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 14,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/4",
+          "reserve_steps": 250,
+          "reserve_steps_committed": 245,
+          "steps_left_unspent": 75
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 14,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "13/50",
+          "reserve_steps": 260,
+          "reserve_steps_committed": 245,
+          "steps_left_unspent": 65
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "27/100",
+          "reserve_steps": 270,
+          "reserve_steps_committed": 270,
+          "steps_left_unspent": 24
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "7/25",
+          "reserve_steps": 280,
+          "reserve_steps_committed": 270,
+          "steps_left_unspent": 14
+        },
+        {
+          "best_depths": [
+            15,
+            14,
+            14
+          ],
+          "best_resolved": "196603/196608",
+          "levels_bought": 15,
+          "optimiser": "leveling",
+          "reserve_fraction": "29/100",
+          "reserve_steps": 290,
+          "reserve_steps_committed": 270,
+          "steps_left_unspent": 4
+        },
+        {
+          "best_depths": [
+            14,
+            14,
+            14
+          ],
+          "best_resolved": "32767/32768",
+          "levels_bought": 16,
+          "optimiser": "leveling",
+          "reserve_fraction": "3/10",
+          "reserve_steps": 300,
+          "reserve_steps_committed": 296,
+          "steps_left_unspent": 25
+        }
+      ],
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 1000,
+      "direction_levels_bought": 2,
+      "direction_remaining": "1/8",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 10,
+      "direction_resolved": "7/8",
+      "gap_in_remaining_mass": "31/256",
+      "join_cost": "doubling per level",
+      "optimal_levels_bought": 7,
+      "optimal_reserve_fraction": "13/50",
+      "optimal_reserve_steps": 260,
+      "optimal_resolved": "255/256",
+      "table": [
+        {
+          "best_depths": [
+            0,
+            0,
+            0
+          ],
+          "best_resolved": "1/2",
+          "levels_bought": 0,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "0",
+          "reserve_steps": 0,
+          "reserve_steps_committed": 0,
+          "steps_left_unspent": 997
+        },
+        {
+          "best_depths": [
+            2,
+            2,
+            2
+          ],
+          "best_resolved": "7/8",
+          "levels_bought": 2,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/100",
+          "reserve_steps": 10,
+          "reserve_steps_committed": 6,
+          "steps_left_unspent": 963
+        },
+        {
+          "best_depths": [
+            3,
+            3,
+            3
+          ],
+          "best_resolved": "15/16",
+          "levels_bought": 3,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/50",
+          "reserve_steps": 20,
+          "reserve_steps_committed": 14,
+          "steps_left_unspent": 932
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/100",
+          "reserve_steps": 30,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 895
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/25",
+          "reserve_steps": 40,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 885
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/20",
+          "reserve_steps": 50,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 875
+        },
+        {
+          "best_depths": [
+            4,
+            4,
+            4
+          ],
+          "best_resolved": "31/32",
+          "levels_bought": 4,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/50",
+          "reserve_steps": 60,
+          "reserve_steps_committed": 30,
+          "steps_left_unspent": 865
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/100",
+          "reserve_steps": 70,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 822
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "2/25",
+          "reserve_steps": 80,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 812
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/100",
+          "reserve_steps": 90,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 802
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/10",
+          "reserve_steps": 100,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 792
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/100",
+          "reserve_steps": 110,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 782
+        },
+        {
+          "best_depths": [
+            5,
+            5,
+            5
+          ],
+          "best_resolved": "63/64",
+          "levels_bought": 5,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/25",
+          "reserve_steps": 120,
+          "reserve_steps_committed": 62,
+          "steps_left_unspent": 772
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "13/100",
+          "reserve_steps": 130,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 723
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/50",
+          "reserve_steps": 140,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 713
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/20",
+          "reserve_steps": 150,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 703
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "4/25",
+          "reserve_steps": 160,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 693
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "17/100",
+          "reserve_steps": 170,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 683
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "9/50",
+          "reserve_steps": 180,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 673
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "19/100",
+          "reserve_steps": 190,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 663
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/5",
+          "reserve_steps": 200,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 653
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "21/100",
+          "reserve_steps": 210,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 643
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "11/50",
+          "reserve_steps": 220,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 633
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "23/100",
+          "reserve_steps": 230,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 623
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "6/25",
+          "reserve_steps": 240,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 613
+        },
+        {
+          "best_depths": [
+            6,
+            6,
+            6
+          ],
+          "best_resolved": "127/128",
+          "levels_bought": 6,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "1/4",
+          "reserve_steps": 250,
+          "reserve_steps_committed": 126,
+          "steps_left_unspent": 603
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "13/50",
+          "reserve_steps": 260,
+          "reserve_steps_committed": 254,
+          "steps_left_unspent": 548
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "27/100",
+          "reserve_steps": 270,
+          "reserve_steps_committed": 254,
+          "steps_left_unspent": 538
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "7/25",
+          "reserve_steps": 280,
+          "reserve_steps_committed": 254,
+          "steps_left_unspent": 528
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "29/100",
+          "reserve_steps": 290,
+          "reserve_steps_committed": 254,
+          "steps_left_unspent": 518
+        },
+        {
+          "best_depths": [
+            7,
+            7,
+            7
+          ],
+          "best_resolved": "255/256",
+          "levels_bought": 7,
+          "optimiser": "exhaustive",
+          "reserve_fraction": "3/10",
+          "reserve_steps": 300,
+          "reserve_steps_committed": 254,
+          "steps_left_unspent": 508
+        }
+      ],
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 10000,
+      "direction_levels_bought": 100,
+      "direction_remaining": "5/864691128455135232",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 100,
+      "direction_resolved": "864691128455135227/864691128455135232",
+      "gap_in_remaining_mass": "0",
+      "join_cost": "constant one step",
+      "optimal_levels_bought": 100,
+      "optimal_reserve_fraction": "1/100",
+      "optimal_reserve_steps": 100,
+      "optimal_resolved": "864691128455135227/864691128455135232",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": true,
+      "the_direction_reserve_is_optimal": true
+    },
+    {
+      "budget": 10000,
+      "direction_levels_bought": 10,
+      "direction_remaining": "1/2048",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 100,
+      "direction_resolved": "2047/2048",
+      "gap_in_remaining_mass": "26388279066623/54043195528445952",
+      "join_cost": "constant ten steps",
+      "optimal_levels_bought": 60,
+      "optimal_reserve_fraction": "3/50",
+      "optimal_reserve_steps": 600,
+      "optimal_resolved": "54043195528445951/54043195528445952",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 10000,
+      "direction_levels_bought": 13,
+      "direction_remaining": "1/16384",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 100,
+      "direction_resolved": "16383/16384",
+      "gap_in_remaining_mass": "549755813887/9007199254740992",
+      "join_cost": "linear one per level",
+      "optimal_levels_bought": 52,
+      "optimal_reserve_fraction": "7/50",
+      "optimal_reserve_steps": 1400,
+      "optimal_resolved": "9007199254740991/9007199254740992",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 10000,
+      "direction_levels_bought": 7,
+      "direction_remaining": "1/256",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 100,
+      "direction_resolved": "255/256",
+      "gap_in_remaining_mass": "13194139533311/3377699720527872",
+      "join_cost": "linear ten plus one per level",
+      "optimal_levels_bought": 52,
+      "optimal_reserve_fraction": "19/100",
+      "optimal_reserve_steps": 1900,
+      "optimal_resolved": "3377699720527871/3377699720527872",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    },
+    {
+      "budget": 10000,
+      "direction_levels_bought": 5,
+      "direction_remaining": "1/64",
+      "direction_reserve_fraction": "1/100",
+      "direction_reserve_steps": 100,
+      "direction_resolved": "63/64",
+      "gap_in_remaining_mass": "31/2048",
+      "join_cost": "doubling per level",
+      "optimal_levels_bought": 10,
+      "optimal_reserve_fraction": "21/100",
+      "optimal_reserve_steps": 2100,
+      "optimal_resolved": "2047/2048",
+      "table": null,
+      "the_direction_reserve_is_on_a_plateau": false,
+      "the_direction_reserve_is_optimal": false
+    }
+  ],
+  "schema": "adva.research.traversal-allocation-optimal-evidence.v0",
+  "status": "ExternalExactPass",
+  "the_direction_allocation": "The direction's hundredths, retained from Research 0192: 33/100 to each side and 1/100 to the reserve. This run asks whether that split is optimal under declared models, which is the half of the direction's open question that can be answered by computation."
+}
