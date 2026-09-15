@@ -1,0 +1,268 @@
+{
+  "allocation": {
+    "binary64": {
+      "exact_defect_of_a_third": "1/18014398509481984",
+      "exact_defect_of_the_hundredths": "-27/576460752303423488",
+      "naive_test_on_three_thirds": "1.0",
+      "naive_test_passes": true,
+      "naive_test_three_times_0.33_plus_0.01": "1.0",
+      "reading": "in binary64 the allocation closes by rounding, so the ordinary closure test passes while the parts are not exact: the defect is negative, the route over-allocates, and only exact rationals or a step count can show it"
+    },
+    "closes_in_hundredths": true,
+    "reserve": "1/100",
+    "shares": [
+      "33/100",
+      "33/100",
+      "33/100"
+    ],
+    "the_binary64_parts_are_exact": false,
+    "the_naive_binary64_closure_test_passes": true
+  },
+  "authority": "research-only, external exact arithmetic and a local sha256 chain, no native admission",
+  "counts": {
+    "assertions": 76,
+    "cost_models": 5,
+    "step_budgets": 4,
+    "traversal_levels": 8,
+    "wall_seconds_before_serialization": 0.0003
+  },
+  "findings": [
+    "the direction's allocation closes exactly in hundredths, 33+33+33+1 = 100, and in binary64 the ordinary closure test passes while the parts are not exact: the defect is negative, the route over-allocates, and a naive test cannot see it",
+    "the inexactness becomes visible only at the step level, and there it starves the reserve rather than the sides: rounding each part falls below the declared one percent at small budgets, because the reserve is the smallest share and is the one rounding eats, while the exact rule never dips below it",
+    "the reserve buys joins, so whether one hundredth is enough is a question about the declared join cost: under a constant cost it is a bounded toll, and under a cost that grows with the level it bounds how deep the traversal goes, which is the critical point and not a proof of optimality",
+    "the join is a real sha256 link of the retained lineage form, so a failed join is shown to leave the chain head and the resolved level unchanged, and the chain reproduces exactly",
+    "the level at which the traversal stops under a doubling join cost is computed twice, once by walking the chain and once from the reserve, and the two agree",
+    "a failure is free only while the reserve belongs to no side: carved out before the sides start it is untouched by a failure, and carved out of a side's share the failed attempt costs that side exactly the failed join's cost in steps",
+    "the first version of the carve comparison added a step count to a fraction and the exact rational arithmetic did not notice, because Fraction is dimensionless; the section now works in steps and declares its unit, so exactness is not the same as dimension correctness",
+    "the budget shares and the probability masses are different quantities and are kept apart: the shares fill one as work, the masses halve per level as resolved space, and the run measures the map between them rather than identifying them"
+  ],
+  "level_map": [
+    {
+      "joins": 0,
+      "remaining_mass": "1/2",
+      "resolved_mass": "1/2"
+    },
+    {
+      "joins": 1,
+      "remaining_mass": "1/4",
+      "resolved_mass": "3/4"
+    },
+    {
+      "joins": 2,
+      "remaining_mass": "1/8",
+      "resolved_mass": "7/8"
+    },
+    {
+      "joins": 3,
+      "remaining_mass": "1/16",
+      "resolved_mass": "15/16"
+    },
+    {
+      "joins": 4,
+      "remaining_mass": "1/32",
+      "resolved_mass": "31/32"
+    }
+  ],
+  "native_status": "NotRun",
+  "non_claims": [
+    "no claim of optimality for the allocation: the direction left that to be argued and this run computes the reserve's critical level instead",
+    "no claim about the value of Omega, its computability, or the three-computation system; the level accounting uses the retained wrapper family's layer masses and nothing more",
+    "no retained lineage record, anchor, credential or key is read as authority or rewritten; the chain here is this run's own and a byte link is evidence of consistency rather than authority",
+    "the triadic policy fixes three input-domain assignments and forbids reading them as three independent computers, so treating the three sides as budget holders is recorded as a tension rather than adopted",
+    "the join cost is declared rather than measured, so the critical level follows from the model and not from machine work"
+  ],
+  "quantities_kept_apart": {
+    "budget_shares": [
+      "33/100",
+      "33/100",
+      "33/100",
+      "1/100"
+    ],
+    "probability_masses_at_level_zero": [
+      "1/2",
+      "1/2"
+    ],
+    "the_two_are_different_quantities": true,
+    "why": "a share is how much work a side may spend and a mass is how much of the space is resolved; the reserve buys joins and does not carry probability"
+  },
+  "question": "The direction proposes a safe traversal protocol: allocate the spacetime-structure resource as 0.33, 0.33, 0.33 to the three sides and keep 0.01 for the key and certificate part, attempt execution, and roll back safely when the key and certificate do not join, advancing one level near Omega once they do. Is the allocation closed exactly, what does the reserve pay for, and where does it stop paying?",
+  "refusals": [
+    {
+      "case": "an allocation that closes at 0.99",
+      "message": "TheHundredthAllocationDoesNotClose",
+      "refused": true
+    },
+    {
+      "case": "the binary64 parts claimed to be exact",
+      "message": "TheHundredthsWereExpectedToBeInexactInBinary64",
+      "refused": true
+    },
+    {
+      "case": "a reserve expected to buy a level it cannot pay for",
+      "message": "TheReserveDoesNotPayForThatLevel",
+      "refused": true
+    }
+  ],
+  "reserve_carve": {
+    "carved_out_before_the_sides_start": {
+      "side_after_a_failed_join": "33",
+      "unchanged": true
+    },
+    "carved_out_of_a_side": {
+      "defect_in_steps": "2",
+      "side_after_a_failed_join": "31",
+      "unchanged": false
+    },
+    "cost_of_a_failed_join": "2",
+    "reading": "a failure is free only while the reserve belongs to no side; taking it out of a side makes the rollback cost that side its share, by exactly the cost of the failed join",
+    "reserve_pool": "1",
+    "side_pool": "33",
+    "units": "steps, at a declared budget of one hundred"
+  },
+  "reserve_critical_level": [
+    {
+      "cost_model": "constant one step",
+      "largest_level_the_reserve_pays": null,
+      "reaches_the_declared_bound": true,
+      "reading": "a constant join cost is a bounded toll and not a level bound at all, so the reserve does not limit depth",
+      "reserve_at_budget_1000": "10",
+      "unbounded": true
+    },
+    {
+      "cost_model": "constant ten steps",
+      "largest_level_the_reserve_pays": null,
+      "reaches_the_declared_bound": true,
+      "reading": "a constant join cost is a bounded toll and not a level bound at all, so the reserve does not limit depth",
+      "reserve_at_budget_1000": "10",
+      "unbounded": true
+    },
+    {
+      "cost_model": "linear, one step per level",
+      "largest_level_the_reserve_pays": 9,
+      "reaches_the_declared_bound": true,
+      "reading": "a join cost that grows with the level bounds how deep the reserve carries the traversal, and that bound is the critical point rather than a proof of optimality",
+      "reserve_at_budget_1000": "10",
+      "unbounded": false
+    },
+    {
+      "cost_model": "linear, ten plus one per level",
+      "largest_level_the_reserve_pays": 0,
+      "reaches_the_declared_bound": false,
+      "reading": "a join cost that grows with the level bounds how deep the reserve carries the traversal, and that bound is the critical point rather than a proof of optimality",
+      "reserve_at_budget_1000": "10",
+      "unbounded": false
+    },
+    {
+      "cost_model": "doubling per level",
+      "largest_level_the_reserve_pays": 3,
+      "reaches_the_declared_bound": false,
+      "reading": "a join cost that doubles per level is what turns the reserve into a bound on depth",
+      "reserve_at_budget_1000": "10",
+      "unbounded": false
+    }
+  ],
+  "schema": "adva.research.traversal-allocation-and-reserve-evidence.v0",
+  "status": "ExternalExactPass",
+  "steps": [
+    {
+      "budget": 100,
+      "exact_reserve": "1",
+      "exact_reserve_is_at_least_the_declared_percent": true,
+      "exact_share_each": "33",
+      "rounded_reserve": "1",
+      "rounded_share_each": 33,
+      "rounded_total_drift": "0",
+      "the_rounded_reserve_falls_below_the_declared_percent": false
+    },
+    {
+      "budget": 1000,
+      "exact_reserve": "10",
+      "exact_reserve_is_at_least_the_declared_percent": true,
+      "exact_share_each": "330",
+      "rounded_reserve": "10",
+      "rounded_share_each": 330,
+      "rounded_total_drift": "0",
+      "the_rounded_reserve_falls_below_the_declared_percent": false
+    },
+    {
+      "budget": 10,
+      "exact_reserve": "1",
+      "exact_reserve_is_at_least_the_declared_percent": true,
+      "exact_share_each": "3",
+      "rounded_reserve": "0",
+      "rounded_share_each": 3,
+      "rounded_total_drift": "-1",
+      "the_rounded_reserve_falls_below_the_declared_percent": true
+    },
+    {
+      "budget": 3,
+      "exact_reserve": "3",
+      "exact_reserve_is_at_least_the_declared_percent": true,
+      "exact_share_each": "0",
+      "rounded_reserve": "0",
+      "rounded_share_each": 1,
+      "rounded_total_drift": "0",
+      "the_rounded_reserve_falls_below_the_declared_percent": true
+    }
+  ],
+  "the_direction_protocol": "The direction's proposal, recorded verbatim so that it can be tested rather than paraphrased: 每侧启动前，按照 0.33, 0.33, 0.33，来分配时空构的资源，留 0.01 做成 key 和 cert 的部分，然后试图执行，如果 key 和 cert 部分接不起来，就可以安全回推。一旦接起来，我们就在三计算的 Omega 附近压缩到下一层级了。 Optimality is explicitly left to be argued by the direction, and this run does not argue it.",
+  "the_three_sides": "Three sides, declared as three shares. The retained triadic policy fixes exactly three input-domain assignments, and it states that they are not a partition into three independent computers; the allocation treats them as three budget holders, and that reading is recorded here as a tension rather than adopted silently.",
+  "traversal": {
+    "chain": [
+      {
+        "anchor": "genesis",
+        "level": 0,
+        "resolved": "0"
+      },
+      {
+        "anchor": "3ad4d526f60f1167a2b3fe4db8f528948da0ea1f5a1f23dcb6fac50095204dd9",
+        "joined": true,
+        "level": 1,
+        "resolved": "3/4"
+      },
+      {
+        "anchor": "f0401c7916378dcd25d4f072c52c38e6ef7ccdbfa52d936ef194ed30c7aeefe9",
+        "joined": true,
+        "level": 2,
+        "resolved": "7/8"
+      },
+      {
+        "anchor": "8222d14207cf1f4296c79e08595aa154cb42bd303ee28b9af316b6c5ce26d2e3",
+        "joined": true,
+        "level": 3,
+        "resolved": "15/16"
+      },
+      {
+        "anchor": "8222d14207cf1f4296c79e08595aa154cb42bd303ee28b9af316b6c5ce26d2e3",
+        "joined": false,
+        "level": 4,
+        "resolved": "15/16",
+        "why": "the reserve no longer pays for the link"
+      },
+      {
+        "anchor": "8222d14207cf1f4296c79e08595aa154cb42bd303ee28b9af316b6c5ce26d2e3",
+        "joined": false,
+        "level": 5,
+        "resolved": "15/16",
+        "why": "the reserve no longer pays for the link"
+      },
+      {
+        "anchor": "8222d14207cf1f4296c79e08595aa154cb42bd303ee28b9af316b6c5ce26d2e3",
+        "joined": false,
+        "level": 6,
+        "resolved": "15/16",
+        "why": "the reserve no longer pays for the link"
+      },
+      {
+        "anchor": "8222d14207cf1f4296c79e08595aa154cb42bd303ee28b9af316b6c5ce26d2e3",
+        "joined": false,
+        "level": 7,
+        "resolved": "15/16",
+        "why": "the reserve no longer pays for the link"
+      }
+    ],
+    "failures": 4,
+    "rollback_leaves_the_head_unchanged": true,
+    "successes": 3
+  }
+}

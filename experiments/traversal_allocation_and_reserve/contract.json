@@ -1,0 +1,43 @@
+{
+  "schema": "adva.research.traversal-allocation-and-reserve-contract.v0",
+  "version": 0,
+  "name": "traversal-allocation-and-reserve",
+  "base_commit": "1c74812",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The direction proposes a safe traversal protocol: allocate the spacetime-structure resource as 0.33, 0.33, 0.33 to the three sides and keep 0.01 for the key and certificate part, attempt execution, and roll back safely when the key and certificate do not join, advancing one level near Omega once they do. Is the allocation closed exactly, what does the reserve pay for, and where does it stop paying?",
+  "level": "External exact rational arithmetic over Q for the allocation and the reserve, with a real sha256 anchor chain for the join and the rollback; the join cost is a declared model and not a measurement",
+  "domain": "A declared three-side policy, the direction's hundredth allocation, a reserve whose only declared job is assembling and verifying the key and certificate link, an anchor chain of the retained lineage form anchor_{t+1} = H(anchor_t || checkpoint), and the layer masses of the retained wrapper family for the level accounting; nothing about the triadic observer policy's semantics, the credential contract's authority, or the value of Omega is computed",
+  "objects": {
+    "the_direction_protocol": "The direction's proposal, recorded verbatim so that it can be tested rather than paraphrased: 每侧启动前，按照 0.33, 0.33, 0.33，来分配时空构的资源，留 0.01 做成 key 和 cert 的部分，然后试图执行，如果 key 和 cert 部分接不起来，就可以安全回推。一旦接起来，我们就在三计算的 Omega 附近压缩到下一层级了。 Optimality is explicitly left to be argued by the direction, and this run does not argue it.",
+    "the_three_sides": "Three sides, declared as three shares. The retained triadic policy fixes exactly three input-domain assignments, and it states that they are not a partition into three independent computers; the allocation treats them as three budget holders, and that reading is recorded here as a tension rather than adopted silently.",
+    "the_allocation": "33/100 to each of the three sides and 1/100 to the reserve, exactly in hundredths; the closure 33+33+33+1 = 100 is the whole content of the numbers.",
+    "the_reserve": "The reserve pays for assembling and verifying one key and certificate link. Its job is declared, so whether one hundredth of a budget is enough is a question about a declared cost model rather than about the proposal's wisdom.",
+    "the_join": "The join is a real link of the retained lineage form: anchor_{t+1} = sha256(anchor_t || checkpoint_t). A byte link is evidence of consistency and not authority, and the run says so.",
+    "the_rollback": "Rollback is the anchor not advancing: after a failed join the chain head and the resolved level are unchanged. The run measures both the safe form, where the reserve is carved out before the sides start, and the unsafe form, where the reserve is taken out of one side's share.",
+    "level_and_mass": "The level accounting uses the retained wrapper family's layer masses, 2^-(n+1) for the length-n layer, so a successful join resolves one more layer. Budget shares and probability masses are different quantities and the run keeps them apart while measuring the map between them."
+  },
+  "imported_assumptions": [
+    "The Omega-type boundary, the Kraft-bounded cylinder weights and the machine dependence of Omega are read from Research 0033 and are not recomputed",
+    "The three input-domain assignments and the prohibition on reading them as three independent computers are read from the retained triadic observer policy document",
+    "The anchor chain form, the checkpoint and the anchor-signing key are read from Research 0156; this run uses its own sha256 chain and does not touch the retained anchors or keys",
+    "The layer masses are read from the read-boundary-mass-halves calibration of Research 0191 and are recomputed here rather than quoted"
+  ],
+  "protected": [
+    "No retained lineage record, anchor, credential or key is read as authority or rewritten",
+    "No claim of optimality for the allocation: the run computes where a declared reserve stops paying and leaves the optimality question where the direction put it",
+    "No claim about the value of Omega, about computability, or about the three-computation system; no Go position, Q4 filler or M6 boundary appears"
+  ],
+  "budget": {
+    "wall_seconds": 60,
+    "cpu_seconds": 45,
+    "memory_bytes": 134217728,
+    "max_assertions": 50000,
+    "output_bytes": 1048576
+  },
+  "residual": [
+    "The join cost is declared rather than measured, so the critical level is a consequence of the model and not of machine work",
+    "The triadic policy's own semantics are not computed: the three sides are budget holders in this model",
+    "Whether the direction's hundredths came from the retained dual-spectrum round, from a budget reading, or from elsewhere is not decided here"
+  ]
+}
