@@ -1,0 +1,75 @@
+{
+  "schema": "adva.external.keraia-growth-mass.contract.v0",
+  "date": "2026-09-15",
+  "base": "75fa3a9d3aa0ac762d5c28f3aecbf1fd86c96e88",
+  "question": "Can a protected-stack pumping invariant certify nonhalting cylinders missed by exact full-state cycles, and what additional unresolved mass does it exclude at the same finite cuts?",
+  "level": "External research in keraia.appendix-b.cbn-whnf.read.v0; no native identity or optimal-machine universality transfer",
+  "imports": [
+    "Unchanged de Bruijn machine and independent string-marking/named-substitution receiver from the pinned prior experiments",
+    "Deterministic weak-head stack transitions and fair-bit cylinder mass 2^(-source length)",
+    "Finite stack-locality argument: a read-free segment that never pops its initial bottom stack is independent of that protected stack"
+  ],
+  "interface": "Receiver selects source and original search fuel. Reconstruct all finite trace edges independently. A positive-length read-free segment returns to identical control/cursor while adding a nonempty stack suffix. Every intermediate bottom prefix is retained, and no beta step pops at the protected height. This finite template can repeat over the enlarged bottom, proving divergence under every input extension.",
+  "family": {
+    "prefix_depths": [
+      15,
+      19
+    ],
+    "semantic_fuel": 128,
+    "traversal": "Unchanged demanded-prefix search, branching only on missing syntax or demanded input; not direct enumeration of every overlapping binary word",
+    "comparison": "The same accepted ledger and unresolved frontier feed exact-cycle-only and exact-cycle-plus-growth classification. Every new mass is measured against the same depth and fuel.",
+    "fixtures": [
+      "growing self application",
+      "growing application over a protected reader argument",
+      "identity-delayed growth",
+      "read selecting growth or identity",
+      "discarded growing argument",
+      "returned lambda containing growth"
+    ],
+    "negative_controls": [
+      "wrong source/profile/cost/fuel",
+      "Boolean index/fuel and float cursor",
+      "altered control/stack/edge",
+      "no positive stack growth",
+      "a genuine trace that pops and rebuilds its proposed protected bottom",
+      "read in pumping segment",
+      "returned or discarded growth is not forced"
+    ],
+    "preflight": "One bounded fixture/control invocation before the full primary campaign; retain failures. At most one separately recorded necessary correction."
+  },
+  "protected": [
+    "UnknownFuel never implies divergence without a received certificate",
+    "Accepted codes, certified cycles, certified growth and unresolved frontiers form a disjoint exact Kraft partition",
+    "The source weight, ordered input, full stack, original fuel and cost profile remain explicit",
+    "Fuel bounds discovery and checks; the theorem concerns the underlying uncapped semantics, not an infinite finite-budget run",
+    "No full normalization, native Q4/M6, ACS commutativization, library admission, Seal or general halting convergence claim"
+  ],
+  "checks": [
+    "Named oracle checks every accepted code at each cut",
+    "Each divergence candidate passes the independent receiving transition kernel",
+    "Depth 15 matches the previous partition before measuring extra exclusions",
+    "Ablation retains exactly the same accepted mass and excludes only growth cylinders newly certified",
+    "All hostile and boundary fixtures are checked; one fresh process reproduces deterministic evidence"
+  ],
+  "limits": {
+    "max_code_bits": 255,
+    "max_term_nodes": 4096,
+    "max_stack": 256,
+    "max_semantic_steps": 128,
+    "oracle_reductions": 512,
+    "max_cache_entries": 8192,
+    "max_host_work": 80000000,
+    "max_output_bytes": 16777216,
+    "wall_seconds": 60,
+    "cpu_seconds": 55,
+    "address_space_mib": 512,
+    "preflight_host_work": 2000000,
+    "preflight_wall_seconds": 10,
+    "primary_runs": 1,
+    "fresh_replays_after_success": 1,
+    "maximum_necessary_corrections": 1
+  },
+  "enforcement": "Shared work/deadline guard covers compilation, traversal, oracle, candidate discovery and receipt checking. Each campaign child is also bounded by prlimit CPU/address-space/output and subprocess timeout. Outer supervisor is limited to 140 wall seconds and 130 CPU seconds; no automatic retries. Freeze exact sources before any preflight or campaign invocation. Preflight gets a separate 2-million-work/10-second cap. Compact frontier source/status ledgers are retained; no timing ratio is a speedup claim.",
+  "exit": "Completed fixed family, mismatch, invalid certificate, resource limit or implementation failure, preserving sources and failure evidence. No automatic depth increase.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's account as authorized proxy; not his authorship, review or endorsement."
+}
