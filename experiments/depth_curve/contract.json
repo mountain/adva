@@ -1,0 +1,40 @@
+{
+  "schema": "adva.research.depth-curve-contract.v0",
+  "version": 0,
+  "name": "depth-curve",
+  "base_commit": "9f7623c",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The end-to-end row of Research 0199 exists at one depth because only one partition was retained. Can the per-depth partitions be derived from the retained evidence itself, and what does the cost against the mass look like across depths?",
+  "level": "External exact rational arithmetic over retained evidence: per-cylinder reconstruction of the class masses at every depth, verified against the retained aggregates, with the measured cost attached at each depth",
+  "domain": "The retained Keraia cycle-certificate evidence with its accepted ledger and unresolved frontiers, the partition of its mass, the wrapper layer masses and the measured link price; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_reconstruction": "Each accepted cylinder carries its code and its weight exponent, and each unresolved frontier carries its program end, so the class masses at a depth cut are sums of exact dyadic weights over the cylinders at or above that depth. The reconstruction must reproduce the retained aggregate masses exactly, which is what makes it a derivation rather than a guess.",
+    "the_depth_cut": "A depth cut keeps the cylinders whose length is at most the cut, so the decided mass is what those cylinders weigh and the undecided mass is the rest of the space. At the deepest retained cut the undecided mass becomes the certified nonhalting and unresolved classes instead.",
+    "the_curve": "At each depth the decided and accepted masses are paired with the cost of reaching that depth, in reserve steps and in side steps, so the account is a curve rather than a single row.",
+    "the_saturation": "Whether the accepted mass keeps growing with depth, and at which depth it stops, is read off the curve rather than assumed."
+  },
+  "imported_assumptions": [
+    "The retained evidence is read-only input and is not modified; its digests are recorded",
+    "The class aggregates in that evidence are the reference the reconstruction has to reproduce",
+    "The cost side is the ledger of Research 0198 under its declared conversion, and the correspondence between a level and a depth step remains declared",
+    "Nothing is re-run: the semantics are not executed here, their retained outcome is used"
+  ],
+  "protected": [
+    "No retained evidence is modified or rewritten",
+    "No depth is given a mass account that the retained evidence does not support",
+    "The two accounts stay in their own units with the bridge of Research 0199 named and not merged"
+  ],
+  "budget": {
+    "wall_seconds": 180,
+    "cpu_seconds": 120,
+    "memory_bytes": 536870912,
+    "max_assertions": 200000,
+    "output_bytes": 4194304
+  },
+  "residual": [
+    "The reconstruction is limited to the cylinders the retained evidence lists",
+    "The cost side passes through a declared conversion and the key half is unmeasured",
+    "The correspondence between levels and depth steps is declared, not measured"
+  ]
+}
