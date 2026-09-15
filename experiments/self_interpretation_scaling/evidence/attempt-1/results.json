@@ -1,0 +1,214 @@
+{
+  "schema": "adva.self-interpretation-scaling.result.v0",
+  "subset_interpreter": {
+    "object_language": "input d, return s, constant v d, copy s d; two object slots",
+    "meta_program_lengths": {
+      "A1": 37,
+      "A2": 70,
+      "A3": 103,
+      "B1": 56,
+      "B2": 108,
+      "C1": 85,
+      "C2": 166
+    },
+    "declared_instruction_bound": 128,
+    "measured_body_lengths": {
+      "input": 13,
+      "return": 11,
+      "constant": 16,
+      "copy": 26
+    },
+    "placeholder_body_length": 11,
+    "block_cost_per_extra_object_instruction": 33,
+    "opcode_case_cost_per_block": 19,
+    "length_model_checks": {
+      "A1": {
+        "generated": 37,
+        "reconstructed": 37
+      },
+      "A2": {
+        "generated": 70,
+        "reconstructed": 70
+      },
+      "A3": {
+        "generated": 103,
+        "reconstructed": 103
+      },
+      "B1": {
+        "generated": 56,
+        "reconstructed": 56
+      },
+      "B2": {
+        "generated": 108,
+        "reconstructed": 108
+      },
+      "C1": {
+        "generated": 85,
+        "reconstructed": 85
+      },
+      "C2": {
+        "generated": 166,
+        "reconstructed": 166
+      },
+      "nineteen_opcode_ladder": {
+        "generated": 295,
+        "reconstructed": 295
+      }
+    },
+    "metas_over_the_bound": {
+      "C2": 166
+    }
+  },
+  "executed_steps_per_object_instruction": {
+    "A2-input-then-return-slot1": 17.5,
+    "A2-input-then-return-slot0": 14.5,
+    "A3-three-object-instructions": 14.67,
+    "B2-constant-then-return": 22.0
+  },
+  "nineteen_opcode_ladder": {
+    "generated_instructions": 295,
+    "declared_instruction_bound": 128,
+    "admitted": false,
+    "composition": "three prologue instructions, one fetch of two, nineteen dispatch cases of three, the four measured bodies, fifteen placeholder bodies charged the shortest measured body, one unsupported-opcode reject and one terminal reject",
+    "placeholder_declaration": "the fifteen unmeasured opcodes are placeholders whose bodies are the shortest measured body, so this total understates any real nineteen-opcode meta; one object instruction only, no object register file, no provenance and no object fuel"
+  },
+  "launches": 11,
+  "cases": [
+    {
+      "name": "A2-input-then-return-slot1",
+      "exit_code": 0,
+      "stderr": "",
+      "status": "Returned",
+      "steps": 35,
+      "phase_kind": "returned",
+      "phase_reason": null,
+      "returned_value": {
+        "kind": "integer",
+        "value": 7
+      },
+      "expected": "returned 7",
+      "object_instructions": 2
+    },
+    {
+      "name": "A2-input-then-return-slot0",
+      "exit_code": 0,
+      "stderr": "",
+      "status": "Returned",
+      "steps": 29,
+      "phase_kind": "returned",
+      "phase_reason": null,
+      "returned_value": {
+        "kind": "integer",
+        "value": 9
+      },
+      "expected": "returned 9",
+      "object_instructions": 2
+    },
+    {
+      "name": "A3-three-object-instructions",
+      "exit_code": 0,
+      "stderr": "",
+      "status": "Returned",
+      "steps": 44,
+      "phase_kind": "returned",
+      "phase_reason": null,
+      "returned_value": {
+        "kind": "integer",
+        "value": 4
+      },
+      "expected": "returned 4",
+      "object_instructions": 3
+    },
+    {
+      "name": "B2-constant-then-return",
+      "exit_code": 0,
+      "stderr": "",
+      "status": "Returned",
+      "steps": 44,
+      "phase_kind": "returned",
+      "phase_reason": null,
+      "returned_value": {
+        "kind": "integer",
+        "value": 5
+      },
+      "expected": "returned 5",
+      "object_instructions": 2
+    },
+    {
+      "name": "refusal-unsupported-object-opcode",
+      "exit_code": 2,
+      "stderr": "adva: data-machine execution rejected; see retained report\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "status": "Rejected",
+      "steps": 12,
+      "phase_kind": "rejected",
+      "phase_reason": "unsupported object opcode",
+      "returned_value": null,
+      "expected": "runtime refusal: unsupported object opcode",
+      "object_instructions": 0
+    },
+    {
+      "name": "refusal-fell-off-the-end",
+      "exit_code": 2,
+      "stderr": "adva: data-machine execution rejected; see retained report\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "status": "Rejected",
+      "steps": 31,
+      "phase_kind": "rejected",
+      "phase_reason": "object program fell off its end",
+      "returned_value": null,
+      "expected": "runtime refusal: object program fell off its end",
+      "object_instructions": 0
+    },
+    {
+      "name": "refusal-return-slot-out-of-range",
+      "exit_code": 2,
+      "stderr": "adva: data-machine execution rejected; see retained report\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "status": "Rejected",
+      "steps": 32,
+      "phase_kind": "rejected",
+      "phase_reason": "object return register out of range",
+      "returned_value": null,
+      "expected": "runtime refusal: object return register out of range",
+      "object_instructions": 0
+    },
+    {
+      "name": "refusal-input-slot-out-of-range",
+      "exit_code": 2,
+      "stderr": "adva: data-machine execution rejected; see retained report\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "status": "Rejected",
+      "steps": 17,
+      "phase_kind": "rejected",
+      "phase_reason": "object register index out of range",
+      "returned_value": null,
+      "expected": "runtime refusal: object register index out of range",
+      "object_instructions": 0
+    },
+    {
+      "name": "refusal-object-reads-unwritten-slot",
+      "exit_code": 2,
+      "stderr": "adva: data-machine execution rejected; see retained report\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "status": "Rejected",
+      "steps": 17,
+      "phase_kind": "rejected",
+      "phase_reason": "uninitialized register",
+      "returned_value": null,
+      "expected": "runtime refusal: uninitialized register",
+      "object_instructions": 1
+    },
+    {
+      "name": "refusal-meta-four-opcodes-166",
+      "exit_code": 2,
+      "stderr": "adva: invalid program schema or capacity\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "expected": "admission refusal: invalid program schema or capacity",
+      "object_instructions": 0
+    },
+    {
+      "name": "refusal-meta-nineteen-opcode-floor",
+      "exit_code": 2,
+      "stderr": "adva: invalid program schema or capacity\nusage:\n  adva library check --path <library-root> --epoch N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]\n  adva run <program.adva> --output <result.adva> [--print]\n  adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]\n  adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]\n  adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]\n  adva frontier <calibration.adva> --output <frontier.adva> [--print]\n  adva learn <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]\n  adva verify <subject.adva> <method.adva> <object.adva> --output <transition.adva> --frontier-output <next-frontier.adva> [--print]",
+      "expected": "admission refusal: invalid program schema or capacity",
+      "object_instructions": 0
+    }
+  ],
+  "failures": [],
+  "verdict": "Passed"
+}

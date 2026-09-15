@@ -1,0 +1,54 @@
+{
+  "schema": "adva.self-interpretation-scaling.contract.v0",
+  "base": "7e110e1",
+  "question": "What does it cost, in instructions and in native steps, to interpret a strict declared subset of this machine's own instruction grammar inside the declared profile, and what does the full instruction grammar therefore demand of the declared program bound?",
+  "level": "Bounded construction and measurement: a generated meta program that interprets object programs of a declared subset, plus generated sizes for the subsets that cannot be admitted. No new semantics, no machine change, no bound widening, no claim about the full instruction grammar's interpretation.",
+  "imports": [
+    "Declared profile bounds: 128 program instructions, 16 registers, 127 data nodes, depth 12, arity 8, lifetime fuel 2048",
+    "The instruction set is the one in crates/adva-witness/src/data_machine.rs: 19 variants, every register operand a static index, no division, modulo, bit operation or ordering comparison",
+    "experiments/self_interpretation_capacity measured that the full object program's inspectable encoding needs 169 nodes against 127, that a 17-case dispatch ladder costs 90 instructions and 3 native steps per position, and that one data-driven index iteration costs 4 native steps",
+    "docs/research/self-interpretation-capacity-preflight.md states the follow-up: which declared bound a separately scoped extension would have to move"
+  ],
+  "object_language": "A declared subset of the machine's own instruction grammar: input d, return s, constant v d and copy s d, with two object register slots and a fixed object program length, because indexed access in this profile is static and the object program is fetched by field position.",
+  "interface": "The object program and the object input are one encoded data value: a bundle node whose first field is the object program and whose second field is the object-level input value. The meta program is a program in the same language as the objects it interprets, so the object program arrives as data and no host evaluator participates.",
+  "protected": [
+    "No change to the machine, its profile bytes, its declared bounds or the frozen interpreter campaign",
+    "Every executed case uses the unchanged CLI with a declared fuel and quantum",
+    "The object program is never inspected by the generating code at run time: the meta program reads opcodes and operands from data",
+    "A subset interpretation is not an interpretation of the full instruction grammar, and a measured size is not an impossibility result",
+    "Refusals and failed expectations are retained, never repaired silently"
+  ],
+  "cases": {
+    "generated_and_measured": [
+      "two-opcode metas over one, two and three object instructions",
+      "a three-opcode meta over one and two object instructions",
+      "a four-opcode meta over one and two object instructions",
+      "a nineteen-opcode ladder over one object instruction with fifteen placeholder bodies"
+    ],
+    "executed": [
+      "four positive cases in which the meta program interprets object programs it has never seen",
+      "five declared runtime refusals: an unsupported object opcode, an object program that falls off its end, an out-of-range return slot, an out-of-range input slot, and an object read of a slot no object instruction wrote",
+      "two admission refusals: the four-opcode meta over two object instructions, and the nineteen-opcode ladder"
+    ],
+    "model_check": "the declared length model is compared with every generated program, so a model that no longer describes the generator is a failure"
+  },
+  "checker": "experiments/self_interpretation_scaling/check.py",
+  "success": "Every executed case matches its declared outcome, the length model agrees with every generated program, and the measured instruction and native-step costs are recorded.",
+  "negative_controls": [
+    "The five runtime refusals must be rejected with their exact declared reason, so a positive case cannot pass by accepting anything",
+    "The two over-bound metas must be refused at admission, so the program bound is located from below as well as above",
+    "The model check fails if the generator changes shape, so the reported costs cannot drift from the generated programs",
+    "Each case records exit code, status, retained rejection reason and native step count"
+  ],
+  "resources": {
+    "max_cli_launches": 24,
+    "fuel_per_run": 2048,
+    "quantum_per_run": 2048,
+    "wall_seconds_per_invocation": 20,
+    "wall_seconds_total": 120,
+    "max_full_attempts_under_this_contract": 1,
+    "output_directory": "experiments/self_interpretation_scaling/evidence/attempt-1"
+  },
+  "exit": "Stop at the first mismatch or resource limit; retain the failure and publish no positive claim from this attempt.",
+  "limits": "This preflight interprets a strict subset with two object slots and a fixed object length. It does not interpret the full instruction grammar, does not decide between the two next dependencies recorded in the interpreter report, and establishes no impossibility, no provenance and no promotion."
+}

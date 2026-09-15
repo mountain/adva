@@ -1,0 +1,769 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "meta-input-return-2",
+    "registers": [
+      {
+        "name": "bundle",
+        "kind": "data"
+      },
+      {
+        "name": "program",
+        "kind": "data"
+      },
+      {
+        "name": "objin",
+        "kind": "data"
+      },
+      {
+        "name": "instr",
+        "kind": "data"
+      },
+      {
+        "name": "r0",
+        "kind": "data"
+      },
+      {
+        "name": "r1",
+        "kind": "data"
+      },
+      {
+        "name": "tmp",
+        "kind": "data"
+      },
+      {
+        "name": "field_value",
+        "kind": "data"
+      },
+      {
+        "name": "opcode",
+        "kind": "integer"
+      },
+      {
+        "name": "operand",
+        "kind": "integer"
+      },
+      {
+        "name": "operand2",
+        "kind": "integer"
+      },
+      {
+        "name": "probe",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      },
+      {
+        "name": "boxed",
+        "kind": "data"
+      }
+    ],
+    "code": [
+      {
+        "op": "input",
+        "dst": 0
+      },
+      {
+        "op": "field",
+        "src": 0,
+        "arity": 2,
+        "index": 0,
+        "dst": 1
+      },
+      {
+        "op": "field",
+        "src": 0,
+        "arity": 2,
+        "index": 1,
+        "dst": 2
+      },
+      {
+        "op": "field",
+        "src": 1,
+        "arity": 2,
+        "index": 0,
+        "dst": 3
+      },
+      {
+        "op": "tag",
+        "src": 3,
+        "dst": 8
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 8,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 8,
+        "no": 21
+      },
+      {
+        "op": "field",
+        "src": 3,
+        "arity": 1,
+        "index": 0,
+        "dst": 7
+      },
+      {
+        "op": "as_integer",
+        "src": 7,
+        "dst": 9
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 13,
+        "no": 15
+      },
+      {
+        "op": "copy",
+        "src": 2,
+        "dst": 4
+      },
+      {
+        "op": "jump",
+        "target": 36
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 18,
+        "no": 20
+      },
+      {
+        "op": "copy",
+        "src": 2,
+        "dst": 5
+      },
+      {
+        "op": "jump",
+        "target": 36
+      },
+      {
+        "op": "reject",
+        "reason": "object register index out of range"
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 8,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 24,
+        "no": 35
+      },
+      {
+        "op": "field",
+        "src": 3,
+        "arity": 1,
+        "index": 0,
+        "dst": 7
+      },
+      {
+        "op": "as_integer",
+        "src": 7,
+        "dst": 9
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 29,
+        "no": 30
+      },
+      {
+        "op": "return",
+        "src": 4
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 33,
+        "no": 34
+      },
+      {
+        "op": "return",
+        "src": 5
+      },
+      {
+        "op": "reject",
+        "reason": "object return register out of range"
+      },
+      {
+        "op": "reject",
+        "reason": "unsupported object opcode"
+      },
+      {
+        "op": "field",
+        "src": 1,
+        "arity": 2,
+        "index": 1,
+        "dst": 3
+      },
+      {
+        "op": "tag",
+        "src": 3,
+        "dst": 8
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 8,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 41,
+        "no": 54
+      },
+      {
+        "op": "field",
+        "src": 3,
+        "arity": 1,
+        "index": 0,
+        "dst": 7
+      },
+      {
+        "op": "as_integer",
+        "src": 7,
+        "dst": 9
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 46,
+        "no": 48
+      },
+      {
+        "op": "copy",
+        "src": 2,
+        "dst": 4
+      },
+      {
+        "op": "jump",
+        "target": 69
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 51,
+        "no": 53
+      },
+      {
+        "op": "copy",
+        "src": 2,
+        "dst": 5
+      },
+      {
+        "op": "jump",
+        "target": 69
+      },
+      {
+        "op": "reject",
+        "reason": "object register index out of range"
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 8,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 57,
+        "no": 68
+      },
+      {
+        "op": "field",
+        "src": 3,
+        "arity": 1,
+        "index": 0,
+        "dst": 7
+      },
+      {
+        "op": "as_integer",
+        "src": 7,
+        "dst": 9
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 62,
+        "no": 63
+      },
+      {
+        "op": "return",
+        "src": 4
+      },
+      {
+        "op": "constant",
+        "dst": 11,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 9,
+        "right": 11,
+        "dst": 12
+      },
+      {
+        "op": "branch",
+        "condition": 12,
+        "yes": 66,
+        "no": 67
+      },
+      {
+        "op": "return",
+        "src": 5
+      },
+      {
+        "op": "reject",
+        "reason": "object return register out of range"
+      },
+      {
+        "op": "reject",
+        "reason": "unsupported object opcode"
+      },
+      {
+        "op": "reject",
+        "reason": "object program fell off its end"
+      }
+    ]
+  },
+  "input": {
+    "kind": "node",
+    "tag": 5,
+    "fields": [
+      {
+        "kind": "node",
+        "tag": 2,
+        "fields": [
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "integer",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 1,
+            "fields": [
+              {
+                "kind": "integer",
+                "value": 0
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "integer",
+        "value": 9
+      }
+    ]
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 63,
+    "registers": [
+      {
+        "kind": "data",
+        "value": {
+          "kind": "node",
+          "tag": 5,
+          "fields": [
+            {
+              "kind": "node",
+              "tag": 2,
+              "fields": [
+                {
+                  "kind": "node",
+                  "tag": 0,
+                  "fields": [
+                    {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  ]
+                },
+                {
+                  "kind": "node",
+                  "tag": 1,
+                  "fields": [
+                    {
+                      "kind": "integer",
+                      "value": 0
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "kind": "integer",
+              "value": 9
+            }
+          ]
+        }
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "node",
+          "tag": 2,
+          "fields": [
+            {
+              "kind": "node",
+              "tag": 0,
+              "fields": [
+                {
+                  "kind": "integer",
+                  "value": 0
+                }
+              ]
+            },
+            {
+              "kind": "node",
+              "tag": 1,
+              "fields": [
+                {
+                  "kind": "integer",
+                  "value": 0
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 9
+        }
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "node",
+          "tag": 1,
+          "fields": [
+            {
+              "kind": "integer",
+              "value": 0
+            }
+          ]
+        }
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 9
+        }
+      },
+      null,
+      null,
+      {
+        "kind": "data",
+        "value": {
+          "kind": "integer",
+          "value": 0
+        }
+      },
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      {
+        "kind": "integer",
+        "value": 0
+      },
+      null,
+      {
+        "kind": "integer",
+        "value": 0
+      },
+      {
+        "kind": "boolean",
+        "value": true
+      },
+      null
+    ],
+    "spent": 29,
+    "phase": {
+      "kind": "returned",
+      "value": {
+        "kind": "integer",
+        "value": 9
+      }
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "44986b485f2ba07eb486a7440ee7693303754ead963ff388444d2661d671178b"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "85a563de75c0a24f1e9b6a0d82e6075b4e22e357a8efd88a56d61e9cd9f5b1fc"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "65d71ffaa8130572e5a991d85a01556826cb3b36c6bf00e9563f7dfbd4fbd235"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "64721dae3898d09e9108c1f23ded2e23caed2e3044c7976b2666baaf5621d66e"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "2f7c7a0454200981031e3c3d09e068ff89916b46e2a2a7779ecee2a8a0dc78c3"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "da39e8616ac1f681983f994bd304484fdc7b8c881fea795d36595cc3859d5346"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "c157549f856d1983583d9ba0129cd1c1f2722ed5d7a0875c524be7d05a684e78"
+    },
+    {
+      "pc": 7,
+      "next_pc": 8,
+      "state_digest": "38261c4fee7a3e02706839256efa556bacc7d0b36918e5c6eefb56b06d51dd34"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "b7d8c9b706625d3bfd5fb937f413b1e20c85618096bfabc7b3e4656febb080dd"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "a46e40ed62e22350e53985122fe7a72accee508e91a7d2c52c732fbfa319d35f"
+    },
+    {
+      "pc": 10,
+      "next_pc": 11,
+      "state_digest": "743545ef52e16c1f5961fa2fd4ef74712f56819eca7705520e2fb18de4be0a0c"
+    },
+    {
+      "pc": 11,
+      "next_pc": 12,
+      "state_digest": "4725433e1eb85a5c2791bb3652b4e4fb4aba279eb493c64b29dfd195628340e5"
+    },
+    {
+      "pc": 12,
+      "next_pc": 13,
+      "state_digest": "3ee091d01b338d8d99959dfa2df848731a7a1f748484f0c06f51a34f70c33f18"
+    },
+    {
+      "pc": 13,
+      "next_pc": 14,
+      "state_digest": "70517ba6831fc0e14383ef4264ed7aa4e5db12d67e001291fa7e7892fc9fb74b"
+    },
+    {
+      "pc": 14,
+      "next_pc": 36,
+      "state_digest": "adc960265705bd967d60bea584d572ce06952f444d2cf245f4a7ea02d18373ed"
+    },
+    {
+      "pc": 36,
+      "next_pc": 37,
+      "state_digest": "f0f7af348c4e86b3268ab63eb9b1f7236015a37aa6213fc82295cce47d31f3ff"
+    },
+    {
+      "pc": 37,
+      "next_pc": 38,
+      "state_digest": "5f47768a97266705f053c12d0306e4e48e334b7239805eec0df24c2442f25403"
+    },
+    {
+      "pc": 38,
+      "next_pc": 39,
+      "state_digest": "377a25453b19114319d88032ae0e56182786992ca479a5c4a4eee04db0353da5"
+    },
+    {
+      "pc": 39,
+      "next_pc": 40,
+      "state_digest": "1ce614e1aca4956b2de7c5eb04452131b32587aa14da0794db880cefdc0e25db"
+    },
+    {
+      "pc": 40,
+      "next_pc": 54,
+      "state_digest": "a00b53f4539272aa22dc0acc18cfc06c8d8eae197f0755ec2f7c3719f15f33f7"
+    },
+    {
+      "pc": 54,
+      "next_pc": 55,
+      "state_digest": "f470b4354bd695653597de9689d0fc498063b264ac3c59df4a950a29b43c13aa"
+    },
+    {
+      "pc": 55,
+      "next_pc": 56,
+      "state_digest": "812f7a23d835f567ba151077c48ac47fc6b2fd9072940159968a05b3878b26df"
+    },
+    {
+      "pc": 56,
+      "next_pc": 57,
+      "state_digest": "f9d3d3095126f82ba92e1915206d3e73ecdb24b77da98b7928012d9661badefc"
+    },
+    {
+      "pc": 57,
+      "next_pc": 58,
+      "state_digest": "7ef254e5b0dc143a4192b547a4372d4f385cec325cef49cad9d2e5adf48d95de"
+    },
+    {
+      "pc": 58,
+      "next_pc": 59,
+      "state_digest": "55c127327ab189d3d32e363e250cc6e3819c9be85a129f14269316bb87876e70"
+    },
+    {
+      "pc": 59,
+      "next_pc": 60,
+      "state_digest": "80ef0c0821f31863bc01cf55085e11a4050690e9a2167b1a37ec80651f9d33f2"
+    },
+    {
+      "pc": 60,
+      "next_pc": 61,
+      "state_digest": "5e01e09a21b587d3666a03a0f9dd5673fb2017e9fba0502acb1c2d88c4588ed0"
+    },
+    {
+      "pc": 61,
+      "next_pc": 62,
+      "state_digest": "057f82d6a4b311e74d176c7a5aa295dbea16e414984c1380605f51ba5f2be54b"
+    },
+    {
+      "pc": 62,
+      "next_pc": 63,
+      "state_digest": "691ce2faad4ab04770ae69bbd907b1e06508cc29721f327ba38ab3270f51a6f5"
+    }
+  ],
+  "status": "Returned",
+  "segments": [
+    {
+      "start": 0,
+      "end": 29,
+      "replayed": 0
+    }
+  ]
+}

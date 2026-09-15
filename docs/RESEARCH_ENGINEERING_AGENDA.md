@@ -845,3 +845,30 @@ bound moves — data nodes or an unpacking operation, program instructions, and
 lifetime fuel — and record the overhead, as section 12 already requires. The
 preflight is a capacity measurement and not an impossibility result; it counted two
 encoding schemes, searched for no third, and wrote no interpreter.
+
+## 14. Subset self-interpretation and its measured price, 2026-09-16
+
+Section 13 priced the prerequisite for self interpretation. The
+[bounded scaling preflight](research/self-interpretation-scaling-preflight.md) goes
+one step further and executes it: a generated meta program written in the research
+data-machine language interprets object programs of a declared four-instruction
+subset of that machine's own instruction grammar, with the object program supplied
+as data. It returns 7, 9, 4 and 5 for four object programs it has never seen, and
+refuses five malformed or out-of-subset programs with their exact reason retained in
+the run report.
+
+The same attempt measures the price. An opcode body costs 11 to 26 instructions
+depending on how many object slots it must reach, one more interpreted object
+instruction costs 33 instructions, and an interpreted object instruction costs 14.5
+to 22 native steps. A three-opcode meta over two object instructions is 108
+instructions and runs; a four-opcode meta over two object instructions is 166 and a
+nineteen-opcode ladder over one object instruction is 295, and both are refused at
+admission by the declared bound of 128.
+
+Consequence for section 12's open choice: a checked translation between the carrier
+and the program/process boundary moves none of the declared bounds, while a
+separately scoped extension must move the program instruction bound by at least the
+measured factor, and either the data node bound or the operation vocabulary, and the
+lifetime fuel bound, and would still need indirect register addressing to avoid a
+stack-simulated object register file. This is a subset interpretation and a set of
+prices, not an impossibility result and not the full instruction grammar.

@@ -1,0 +1,948 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "meta-input-constant-copy-return-2",
+  "registers": [
+    {
+      "name": "bundle",
+      "kind": "data"
+    },
+    {
+      "name": "program",
+      "kind": "data"
+    },
+    {
+      "name": "objin",
+      "kind": "data"
+    },
+    {
+      "name": "instr",
+      "kind": "data"
+    },
+    {
+      "name": "r0",
+      "kind": "data"
+    },
+    {
+      "name": "r1",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "field_value",
+      "kind": "data"
+    },
+    {
+      "name": "opcode",
+      "kind": "integer"
+    },
+    {
+      "name": "operand",
+      "kind": "integer"
+    },
+    {
+      "name": "operand2",
+      "kind": "integer"
+    },
+    {
+      "name": "probe",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "boxed",
+      "kind": "data"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 0
+    },
+    {
+      "op": "field",
+      "src": 0,
+      "arity": 2,
+      "index": 0,
+      "dst": 1
+    },
+    {
+      "op": "field",
+      "src": 0,
+      "arity": 2,
+      "index": 1,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "tag",
+      "src": 3,
+      "dst": 8
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 8,
+      "no": 21
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 1,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 13,
+      "no": 15
+    },
+    {
+      "op": "copy",
+      "src": 2,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 18,
+      "no": 20
+    },
+    {
+      "op": "copy",
+      "src": 2,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 3
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 24,
+      "no": 40
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 13
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 1,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 10
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 32,
+      "no": 34
+    },
+    {
+      "op": "copy",
+      "src": 13,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 37,
+      "no": 39
+    },
+    {
+      "op": "copy",
+      "src": 13,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 4
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 43,
+      "no": 69
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 48,
+      "no": 50
+    },
+    {
+      "op": "copy",
+      "src": 4,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 56
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 53,
+      "no": 55
+    },
+    {
+      "op": "copy",
+      "src": 5,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 56
+    },
+    {
+      "op": "reject",
+      "reason": "object source register out of range"
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 1,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 10
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 61,
+      "no": 63
+    },
+    {
+      "op": "copy",
+      "src": 6,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 66,
+      "no": 68
+    },
+    {
+      "op": "copy",
+      "src": 6,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 72,
+      "no": 83
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 1,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 77,
+      "no": 78
+    },
+    {
+      "op": "return",
+      "src": 4
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 81,
+      "no": 82
+    },
+    {
+      "op": "return",
+      "src": 5
+    },
+    {
+      "op": "reject",
+      "reason": "object return register out of range"
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported object opcode"
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 1,
+      "dst": 3
+    },
+    {
+      "op": "tag",
+      "src": 3,
+      "dst": 8
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 89,
+      "no": 102
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 1,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 94,
+      "no": 96
+    },
+    {
+      "op": "copy",
+      "src": 2,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 99,
+      "no": 101
+    },
+    {
+      "op": "copy",
+      "src": 2,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 3
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 105,
+      "no": 121
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 13
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 1,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 10
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 113,
+      "no": 115
+    },
+    {
+      "op": "copy",
+      "src": 13,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 118,
+      "no": 120
+    },
+    {
+      "op": "copy",
+      "src": 13,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 4
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 124,
+      "no": 150
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 129,
+      "no": 131
+    },
+    {
+      "op": "copy",
+      "src": 4,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 137
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 134,
+      "no": 136
+    },
+    {
+      "op": "copy",
+      "src": 5,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 137
+    },
+    {
+      "op": "reject",
+      "reason": "object source register out of range"
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 2,
+      "index": 1,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 10
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 142,
+      "no": 144
+    },
+    {
+      "op": "copy",
+      "src": 6,
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 10,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 147,
+      "no": 149
+    },
+    {
+      "op": "copy",
+      "src": 6,
+      "dst": 5
+    },
+    {
+      "op": "jump",
+      "target": 165
+    },
+    {
+      "op": "reject",
+      "reason": "object register index out of range"
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 153,
+      "no": 164
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "arity": 1,
+      "index": 0,
+      "dst": 7
+    },
+    {
+      "op": "as_integer",
+      "src": 7,
+      "dst": 9
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 158,
+      "no": 159
+    },
+    {
+      "op": "return",
+      "src": 4
+    },
+    {
+      "op": "constant",
+      "dst": 11,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 11,
+      "dst": 12
+    },
+    {
+      "op": "branch",
+      "condition": 12,
+      "yes": 162,
+      "no": 163
+    },
+    {
+      "op": "return",
+      "src": 5
+    },
+    {
+      "op": "reject",
+      "reason": "object return register out of range"
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported object opcode"
+    },
+    {
+      "op": "reject",
+      "reason": "object program fell off its end"
+    }
+  ]
+}
