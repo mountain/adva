@@ -8,6 +8,7 @@ import argparse
 import hashlib
 import json
 from pathlib import Path
+import re
 import shutil
 import subprocess
 import tarfile
@@ -34,7 +35,8 @@ def prepare(destination):
             raise ValueError("live source differs from frozen replay: " + name)
     archive = destination / "source.tar"
     subprocess.run(["git", "archive", "--format=tar", "--output", str(archive), REVISION,
-                    "Cargo.toml", "Cargo.lock", "crates", "experiments/labs-search"],
+                    "Cargo.toml", "Cargo.lock", "crates", "experiments/labs-search",
+                    "docs", "programs"],
                    cwd=ROOT, check=True, timeout=30)
     source = destination / "source"
     source.mkdir()
@@ -44,6 +46,16 @@ def prepare(destination):
     for member in workspace["members"]:
         if not (source / member / "Cargo.toml").is_file():
             raise ValueError("missing frozen workspace member: " + member)
+    # Rust can embed non-Rust inputs at compile time, including the proposal
+    # experiment's own research note. Keep these at the same frozen revision.
+    compiled_sources = [source / FILES[-1]]
+    for crate in ("adva-ir", "adva-lisp", "adva-witness"):
+        compiled_sources.extend((source / "crates" / crate / "src").rglob("*.rs"))
+    for rust_source in compiled_sources:
+        for relative in re.findall(r'include_(?:bytes|str)!\(\s*"([^"]+)"',
+                                   rust_source.read_text()):
+            if not (rust_source.parent / relative).is_file():
+                raise ValueError("missing frozen embedded input: " + relative)
     library = source / "adva-library/stability"
     library.mkdir(parents=True)
     for name, digest in SNAPSHOTS.items():
