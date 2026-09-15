@@ -1,8 +1,8 @@
 {
-  "experiments_scanned": 80,
+  "experiments_scanned": 81,
   "verdicts": {
     "no-numeric-constructs": 2,
-    "exact-only": 11,
+    "exact-only": 12,
     "imprecision-can-decide": 38,
     "imprecision-in-illustration-only": 29
   },
@@ -1101,6 +1101,21 @@
       "rows": 12,
       "deciding_lines": [],
       "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "marginal_exchange",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
     },
     {
       "experiment": "measured_join_cost",

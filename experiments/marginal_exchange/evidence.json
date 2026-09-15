@@ -1,0 +1,334 @@
+{
+  "authority": "research-only exact arithmetic over retained evidence; no semantics re-run",
+  "counts": {
+    "best_layer_keraia": 1,
+    "best_layer_wrapper": 1,
+    "checks": 16,
+    "concordant_pairs": 77,
+    "discordant_pairs": 27,
+    "levels": 15,
+    "marginal_cost_first": "12",
+    "marginal_cost_last": "2031616",
+    "refusals": 3
+  },
+  "findings": [
+    "the record contains a sentence whose direction its own numbers refute: the ledger's marginal cost per unit of resolved mass rises from twelve steps to millions, while the frozen finding says it falls, and the numbers are recomputed here rather than remembered",
+    "the correction goes to the note and not to the evidence: the frozen record keeps its wording, which is the point of freezing it, and the recomputation is what carries the corrected direction",
+    "on the shared cost axis the wrapper gain per step falls strictly, because its increment halves while the cost grows, so under that objective the best layer is the first one",
+    "the Keraia acceptance per step is not monotone, so under that objective a best and a worst layer exist and are named",
+    "the two objectives both put their best layer first, which the run expected to differ and did not: the disagreement is not about where each one peaks but about how they order the later layers, which is counted exactly rather than described",
+    "the bridge converts units between the spaces and not value, so the measurements give two curves and a unit ratio while the question of when deepening stops paying needs a declared objective, which the record happens to contain two of"
+  ],
+  "inputs": {
+    "all_read_only": true,
+    "bridge": {
+      "path": "experiments/declared_bridge/evidence.json",
+      "sha256": "92377c7dcd21f9dd3b863c80205bb57bd7c7eb8a3329f25abf20367db29825c0"
+    },
+    "curve": {
+      "path": "experiments/depth_curve/evidence.json",
+      "sha256": "b0c9190cb3d9ec295cea32807079074c23bfbab3a159e995b1743b3c30d8166a"
+    },
+    "ledger": {
+      "path": "experiments/protocol_mass_ledger/evidence.json",
+      "sha256": "c97097ae3c8e7c802cd56e74c709a8e3131878b5d10b94831f2a311d0e5e63d2"
+    }
+  },
+  "marginal_cost": {
+    "first": "12",
+    "last": "2031616",
+    "reading": "the record's sentence and its own numbers point in opposite directions; the numbers are recomputed here and the sentence is corrected in the note while the frozen evidence keeps its wording",
+    "strictly_rising": true,
+    "the_frozen_finding_says_it_falls": true
+  },
+  "margins": [
+    {
+      "level": 1,
+      "reserve_spent": 8,
+      "side_spent": 3,
+      "side_steps_per_unit_gain": "12",
+      "wrapper_gain": "1/4"
+    },
+    {
+      "level": 2,
+      "reserve_spent": 8,
+      "side_spent": 5,
+      "side_steps_per_unit_gain": "40",
+      "wrapper_gain": "1/8"
+    },
+    {
+      "level": 3,
+      "reserve_spent": 8,
+      "side_spent": 7,
+      "side_steps_per_unit_gain": "112",
+      "wrapper_gain": "1/16"
+    },
+    {
+      "level": 4,
+      "reserve_spent": 8,
+      "side_spent": 9,
+      "side_steps_per_unit_gain": "288",
+      "wrapper_gain": "1/32"
+    },
+    {
+      "level": 5,
+      "reserve_spent": 8,
+      "side_spent": 11,
+      "side_steps_per_unit_gain": "704",
+      "wrapper_gain": "1/64"
+    },
+    {
+      "level": 6,
+      "reserve_spent": 8,
+      "side_spent": 13,
+      "side_steps_per_unit_gain": "1664",
+      "wrapper_gain": "1/128"
+    },
+    {
+      "level": 7,
+      "reserve_spent": 8,
+      "side_spent": 15,
+      "side_steps_per_unit_gain": "3840",
+      "wrapper_gain": "1/256"
+    },
+    {
+      "level": 8,
+      "reserve_spent": 8,
+      "side_spent": 17,
+      "side_steps_per_unit_gain": "8704",
+      "wrapper_gain": "1/512"
+    },
+    {
+      "level": 9,
+      "reserve_spent": 8,
+      "side_spent": 19,
+      "side_steps_per_unit_gain": "19456",
+      "wrapper_gain": "1/1024"
+    },
+    {
+      "level": 10,
+      "reserve_spent": 9,
+      "side_spent": 21,
+      "side_steps_per_unit_gain": "43008",
+      "wrapper_gain": "1/2048"
+    },
+    {
+      "level": 11,
+      "reserve_spent": 9,
+      "side_spent": 23,
+      "side_steps_per_unit_gain": "94208",
+      "wrapper_gain": "1/4096"
+    },
+    {
+      "level": 12,
+      "reserve_spent": 9,
+      "side_spent": 25,
+      "side_steps_per_unit_gain": "204800",
+      "wrapper_gain": "1/8192"
+    },
+    {
+      "level": 13,
+      "reserve_spent": 9,
+      "side_spent": 27,
+      "side_steps_per_unit_gain": "442368",
+      "wrapper_gain": "1/16384"
+    },
+    {
+      "level": 14,
+      "reserve_spent": 9,
+      "side_spent": 29,
+      "side_steps_per_unit_gain": "950272",
+      "wrapper_gain": "1/32768"
+    },
+    {
+      "level": 15,
+      "reserve_spent": 9,
+      "side_spent": 31,
+      "side_steps_per_unit_gain": "2031616",
+      "wrapper_gain": "1/65536"
+    }
+  ],
+  "native_status": "NotRun",
+  "non_claims": [
+    "no semantics are re-run: both gain curves rest on retained outcomes, so a mistake there would propagate and is not detectable from inside",
+    "the two objectives compared are the ones the record contains; others are not considered, and neither is claimed to be the right one",
+    "the cost axis passes through a declared conversion from measured bytes to layer steps, and the key half is unmeasured",
+    "the Keraia side covers the depths the retained evidence reaches, and the wrapper side the levels the ledger covers",
+    "nothing here computes Omega, decides computability, or touches the three-computation system, and the triadic tension recorded in Research 0192 remains unresolved"
+  ],
+  "question": "Two gain curves now sit on one cost axis: the wrapper family's resolution and the Keraia family's acceptance. Is the marginal cost per unit of gain rising or falling, which layer is best under each objective, and does the measurement determine when deepening should stop?",
+  "refusals": [
+    {
+      "case": "the marginal cost claimed to fall",
+      "message": "TheMarginalCostWasExpectedToRise",
+      "refused": true
+    },
+    {
+      "case": "the wrapper gain per step claimed to rise",
+      "message": "TheWrapperGainPerStepWasExpectedToFall",
+      "refused": true
+    },
+    {
+      "case": "a value exchange claimed to be measured",
+      "message": "TheBridgeConstantMoved",
+      "refused": true
+    }
+  ],
+  "schema": "adva.research.marginal-exchange-evidence.v0",
+  "shapes": {
+    "keraia": {
+      "best_gain_per_step": "1/22",
+      "best_layer": 1,
+      "shape": "not monotone",
+      "worst_gain_per_step": "0",
+      "worst_layer": 2
+    },
+    "orderings": {
+      "concordant_pairs": 77,
+      "discordant_pairs": 27,
+      "reading": "both objectives put their best layer first, which the run expected to differ and did not, so the disagreement is in how they order the later layers",
+      "the_two_orderings_differ": true
+    },
+    "wrapper": {
+      "best_layer": 1,
+      "shape": "strictly falling",
+      "why": "the wrapper increment halves per level while the cost grows"
+    }
+  },
+  "status": "ExternalExactPass",
+  "the_exchange": {
+    "the_criterion_is_not_free": "the level at which deepening stops paying depends on which objective is declared, so the stopping rule is a decision and not a measurement",
+    "the_objective_must_be_declared": true,
+    "the_two_objectives_in_the_record": {
+      "keraia_acceptance": "the quantity the retained family's partition reports",
+      "wrapper_resolution": "named by the protocol declaration of Research 0197, whose reserve rule maximises the resolved mass"
+    },
+    "unit_conversion": "one Keraia unit is two wrapper units, verified at every declared depth",
+    "unit_conversion_is_measured": true,
+    "value_exchange_is_measured": false,
+    "why_not": "converting units says how the two spaces' masses compare, not which of them the traversal is for; the two objectives below give different best layers, and nothing in the measurements chooses between them"
+  },
+  "the_recomputation": "The ledger's margins are recomputed from its own level table, because the record contains a sentence whose direction the numbers refute and a mismatch of that kind has to be measured rather than remembered.",
+  "two_curves": [
+    {
+      "cost_steps": 11,
+      "keraia_acceptance_gain": "1/2",
+      "keraia_gain_per_step": "1/22",
+      "level": 1,
+      "wrapper_gain": "1/4",
+      "wrapper_gain_per_step": "1/44"
+    },
+    {
+      "cost_steps": 13,
+      "keraia_acceptance_gain": "0",
+      "keraia_gain_per_step": "0",
+      "level": 2,
+      "wrapper_gain": "1/8",
+      "wrapper_gain_per_step": "1/104"
+    },
+    {
+      "cost_steps": 15,
+      "keraia_acceptance_gain": "0",
+      "keraia_gain_per_step": "0",
+      "level": 3,
+      "wrapper_gain": "1/16",
+      "wrapper_gain_per_step": "1/240"
+    },
+    {
+      "cost_steps": 17,
+      "keraia_acceptance_gain": "1/8",
+      "keraia_gain_per_step": "1/136",
+      "level": 4,
+      "wrapper_gain": "1/32",
+      "wrapper_gain_per_step": "1/544"
+    },
+    {
+      "cost_steps": 19,
+      "keraia_acceptance_gain": "1/32",
+      "keraia_gain_per_step": "1/608",
+      "level": 5,
+      "wrapper_gain": "1/64",
+      "wrapper_gain_per_step": "1/1216"
+    },
+    {
+      "cost_steps": 21,
+      "keraia_acceptance_gain": "1/32",
+      "keraia_gain_per_step": "1/672",
+      "level": 6,
+      "wrapper_gain": "1/128",
+      "wrapper_gain_per_step": "1/2688"
+    },
+    {
+      "cost_steps": 23,
+      "keraia_acceptance_gain": "3/128",
+      "keraia_gain_per_step": "3/2944",
+      "level": 7,
+      "wrapper_gain": "1/256",
+      "wrapper_gain_per_step": "1/5888"
+    },
+    {
+      "cost_steps": 25,
+      "keraia_acceptance_gain": "1/64",
+      "keraia_gain_per_step": "1/1600",
+      "level": 8,
+      "wrapper_gain": "1/512",
+      "wrapper_gain_per_step": "1/12800"
+    },
+    {
+      "cost_steps": 27,
+      "keraia_acceptance_gain": "3/256",
+      "keraia_gain_per_step": "1/2304",
+      "level": 9,
+      "wrapper_gain": "1/1024",
+      "wrapper_gain_per_step": "1/27648"
+    },
+    {
+      "cost_steps": 30,
+      "keraia_acceptance_gain": "1/64",
+      "keraia_gain_per_step": "1/1920",
+      "level": 10,
+      "wrapper_gain": "1/2048",
+      "wrapper_gain_per_step": "1/61440"
+    },
+    {
+      "cost_steps": 32,
+      "keraia_acceptance_gain": "19/2048",
+      "keraia_gain_per_step": "19/65536",
+      "level": 11,
+      "wrapper_gain": "1/4096",
+      "wrapper_gain_per_step": "1/131072"
+    },
+    {
+      "cost_steps": 34,
+      "keraia_acceptance_gain": "45/4096",
+      "keraia_gain_per_step": "45/139264",
+      "level": 12,
+      "wrapper_gain": "1/8192",
+      "wrapper_gain_per_step": "1/278528"
+    },
+    {
+      "cost_steps": 36,
+      "keraia_acceptance_gain": "29/4096",
+      "keraia_gain_per_step": "29/147456",
+      "level": 13,
+      "wrapper_gain": "1/16384",
+      "wrapper_gain_per_step": "1/589824"
+    },
+    {
+      "cost_steps": 38,
+      "keraia_acceptance_gain": "127/16384",
+      "keraia_gain_per_step": "127/622592",
+      "level": 14,
+      "wrapper_gain": "1/32768",
+      "wrapper_gain_per_step": "1/1245184"
+    },
+    {
+      "cost_steps": 40,
+      "keraia_acceptance_gain": "7/1024",
+      "keraia_gain_per_step": "7/40960",
+      "level": 15,
+      "wrapper_gain": "1/65536",
+      "wrapper_gain_per_step": "1/2621440"
+    }
+  ]
+}
