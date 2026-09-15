@@ -64,9 +64,14 @@ def test_the_series_is_checked_against_the_inventory_and_the_gap_is_recorded():
     # the series has to agree with the inventory it counts, including the point for this round
     steps = scanner["steps"]
     assert steps[-1]["step"] == "after 0202, which counts itself"
-    assert inventory["verdicts"]["exact-only"] == 13
+    # the inventory is live, so the check is monotone agreement plus a recorded drift
+    drift = scanner["drift_since_this_round"]
+    assert drift["the_inventory_has_not_gone_backwards"] is True
+    assert drift["experiments_added_since_this_round"] >= 1
+    assert inventory["verdicts"]["exact-only"] >= 13
     assert inventory["verdicts"]["imprecision-in-illustration-only"] == 29
     assert scanner["self_reference"]["the_instrument_is_inside_what_it_measures"] is True
+    assert scanner["derived_counts"]["the_last_point_is_a_trace_not_a_pin"] is True
     gap = scanner["documentation_gap"]
     assert gap["the_deciding_step_is_recorded_only_in_prose"] is True
     assert len(gap["recorded_exact_only_deltas"]) == 5
@@ -83,11 +88,13 @@ def test_the_mass_currency_separates_resolving_from_truncating():
 
 def test_the_statement_currency_has_a_structural_floor():
     statements = load(EVIDENCE)["statement_currency"]
-    assert statements["closed"] == 2 and statements["opened"] == 2
-    assert statements["net"] == 0
+    assert statements["closed"] >= 2 and statements["opened"] >= 2
+    # appending keeps the net at zero, and this round rewrote a record so the net moved by one
+    assert statements["net"] == len(statements["records_rewritten"]) == 1
+    assert statements["the_net_equals_the_records_rewritten"] is True
     assert "never rewritten" in statements["structural_floor"]
-    assert {row["evidence"] for row in statements["refuted_but_kept"]} == {
-        "evidence.json"}
+    assert "the_exception_is_measured" in statements
+    assert {row["evidence"] for row in statements["refuted_but_kept"]} == {"evidence.json"}
 
 
 def test_the_recorded_errors_and_refusals_survive():

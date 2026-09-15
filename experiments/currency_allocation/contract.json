@@ -1,0 +1,41 @@
+{
+  "schema": "adva.research.currency-allocation-contract.v0",
+  "version": 0,
+  "name": "currency-allocation",
+  "base_commit": "364427a",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The optimal-allocation rule of the shell line is to equalise the weighted marginal gain per unit of cost. Can it be applied to the three aperture currencies of the counting round, and what does it allocate?",
+  "level": "External exact rational arithmetic over retained counts and declared parameters: measured cost per closure and remaining stock per currency, a declared diminishing-returns profile, declared cross-currency weights, and an exhaustive search that the equalising rule has to match",
+  "domain": "The three currencies of Research 0202 with their measured counts, the ledger of Research 0198 for the cost side and the depth curve of Research 0200 for the mass stock; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_measured_inputs": "Each currency's base cost per closure is its rounds over its closures, counted from the line; its remaining stock is counted from the inventory, from the retained depths and from the corrections the notes carry. These are measurements, not choices.",
+    "the_declared_inputs": "The diminishing-returns profile, the cross-currency weights and the round attribution are declarations and are reported as such, because the counting round established that no measurement gives an exchange rate between currencies.",
+    "the_rule": "Allocate effort so that the weighted marginal gain per unit of cost is equal across currencies, which is the rule the shell line verified against exhaustive search for its own shape.",
+    "the_check": "The rule is not trusted because it was verified elsewhere: the run searches every allocation of a declared budget exhaustively and requires the equalising allocation to be the optimum."
+  },
+  "imported_assumptions": [
+    "The counts come from the counting round's own evidence, the inventory and the retained depths, all read only",
+    "The round attribution is a declaration written out in full so it can be contested",
+    "Diminishing returns are declared as a linear profile, the easiest closure first, and no measurement fixes that shape",
+    "No cross-currency exchange rate is invented: the weights are declared parameters and the split is reported as a function of them"
+  ],
+  "protected": [
+    "No retained artifact is modified",
+    "The three currencies are never added into one number",
+    "A currency with no remaining stock is reported as exhausted rather than given a share to look balanced"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152,
+    "declared_budget_rounds": 12
+  },
+  "residual": [
+    "The attribution of past rounds to currencies is declared",
+    "The diminishing-returns profile is declared",
+    "The weights are declared, so the absolute split is a decision while the costs and stocks are measurements"
+  ]
+}

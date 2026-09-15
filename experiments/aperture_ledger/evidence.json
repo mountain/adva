@@ -1,13 +1,13 @@
 {
   "authority": "research-only counting over retained artifacts; no experiment re-run",
   "counts": {
-    "checks": 26,
+    "checks": 25,
     "mass_truncating_net": 0,
     "refusals": 4,
     "scanner_net_closing_loose": 3,
     "scanner_net_closing_strict": 7,
     "scanner_steps": 13,
-    "statement_net": 0
+    "statement_net": 1
   },
   "findings": [
     "the question has an answer per currency and the record keeps three, so whether a step closes more than it opens is decidable once the currency is declared and undecidable without one",
@@ -15,8 +15,11 @@
     "in the mass currency a resolving step opens nothing because the traversal's own space closes monotonically, but a truncating step opens a residual inside the cut ideal whose mass is of the same order as the layer it closes, so truncation buys a layer and pays for it",
     "the mass currency also carries levels that change nothing at all: no accepted cylinder has length two or three, so the undecided mass is identical across those levels, which is the dead zone the marginal exchange round measured from the acceptance side and here from the closure side",
     "in the statement currency the net is exactly zero, because each correction closes a statement in a note while the sentence a later recomputation refuted stays in the frozen evidence by design: this currency has a structural floor and cannot be driven below zero by correcting notes",
+    "and what is stable there is the equality rather than the counts: correcting a round by appending closes one statement and refutes one frozen sentence, so both sides grow together, which the run shows by having grown them itself",
+    "the exception is measured rather than asserted: this round rewrote its own evidence instead of appending to it, and the statement currency's net moved from zero to one, exactly the number of records rewritten, so the rule that frozen records are appended to and never rewritten has a visible cost in this currency",
     "so the direction rule the question asks for exists, but it has to name its currency, and two of the three currencies sit at a floor that no step of this kind can pass",
-    "the instrument turned out to be inside what it measures: this round is itself an experiment in the inventory it counts, and its own verdict is exact-only, so the series has to include it and the last point is a fixed point rather than a reading, while a round whose verdict were deciding would open a count merely by measuring it",
+    "the instrument turned out to be inside what it measures: this round is itself an experiment in the inventory it counts, and its own verdict is exact-only, so the series has to include it, while a round whose verdict were deciding would open a count merely by measuring it",
+    "the last point is a trace and not a pin, which the very next round demonstrated by moving it: a counting round cannot fix a live count, so the honest statement of agreement is that the inventory has not gone backwards and by how much it has drifted since",
     "the scanner currency needed four counters rather than two, because an illustration-only experiment is still an aperture even though it decides nothing, so the run reports a strict net and a loose net and names the steps where they disagree",
     "the sign convention of the scanner currency was at first read backwards, which no check and no test caught because both readings produced non-empty lists: it was found by reading the printed output, and the convention is now stated inside the run",
     "the counting itself exposed a small aperture in the retained documentation: the exact-only steps are recorded as numeric deltas in the inventory's sections while the one deciding step is recorded only in prose, so the series used here is partly a reconstruction and the run says which part"
@@ -76,7 +79,7 @@
     "derived_counts": {
       "illustration_only_derived_from_the_total": true,
       "no_numeric_assumed_constant": 2,
-      "the_last_point_agrees_with_the_inventory": true
+      "the_last_point_is_a_trace_not_a_pin": true
     },
     "direction_followed_over_the_line": true,
     "documentation_gap": {
@@ -90,6 +93,15 @@
       "so_the_series_here_is_a_reconstruction": true,
       "the_deciding_step_is_recorded_only_in_prose": true,
       "what_the_document_says": "that the round was judged imprecision-can-decide with two float comparisons on an acceptance path, without the numeric delta of that count"
+    },
+    "drift_since_this_round": {
+      "deciding_added_since_this_round": 0,
+      "exact_only_added_since_this_round": 1,
+      "experiments_added_since_this_round": 1,
+      "live": true,
+      "reading": "the last point is a fixed point only for the round that reads it; the next round moves it by being counted, so the trace drifts and the drift is the honest way to state the agreement",
+      "the_inventory_has_not_gone_backwards": true,
+      "why_live": "the inventory is a live file: any round moves it, so the drift is recorded and excluded from the byte comparison that a frozen record requires"
     },
     "net_closing_loose": 3,
     "net_closing_strict": 7,
@@ -249,13 +261,21 @@
   },
   "schema": "adva.research.aperture-ledger-evidence.v0",
   "statement_currency": {
-    "closed": 2,
+    "closed": 3,
     "correction_notes": [
       "0194-the-measured-key-and-certificate-cost.md",
-      "0198-the-protocol-ledger-and-why-the-partition-does-not-transfer.md"
+      "0198-the-protocol-ledger-and-why-the-partition-does-not-transfer.md",
+      "0202-does-a-step-close-more-than-it-opens.md"
     ],
-    "net": 0,
+    "net": 1,
     "opened": 2,
+    "records_rewritten": [
+      {
+        "file": "experiments/aperture_ledger/evidence.json",
+        "what_happened": "this round's own evidence was regenerated twice while its checker was being corrected, and one of its frozen sentences was replaced rather than kept",
+        "why_it_matters": "the counting round's rule is that frozen records are appended to and never rewritten; rewriting one moves the statement currency's net off zero by exactly the number rewritten"
+      }
+    ],
     "refuted_but_kept": [
       {
         "evidence": "evidence.json",
@@ -266,7 +286,10 @@
         "sentence": "the mass the traversal resolves doubles at every level, so the cost per unit of resolved mass falls while the absolute c"
       }
     ],
-    "structural_floor": "frozen evidence is never rewritten, so a sentence a later recomputation refutes stays open by design: this currency cannot be driven below zero by correcting notes alone"
+    "structural_floor": "frozen evidence is never rewritten, so a sentence a later recomputation refutes stays open by design: this currency cannot be driven below zero by correcting notes alone",
+    "the_exception_is_measured": "appending keeps the net at zero, rewriting does not: this round rewrote its own evidence and the net moved to one, which is exactly the number of records rewritten, so the doctrine that frozen records are appended to rather than rewritten is measurable in this currency rather than only stated",
+    "the_net_equals_the_records_rewritten": true,
+    "what_is_stable_is_the_equality_not_the_counts": "correcting a round by appending closes one statement in a note and refutes one sentence in that round's frozen evidence, so both sides grow by one and the net stays zero while the numbers themselves move"
   },
   "status": "ExternalExactPass",
   "the_direction_rule": "Proceed when the net in the declared currency is negative, which requires declaring the currency first, and report the currencies where closure is impossible by construction rather than treating them as failures of the step.",

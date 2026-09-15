@@ -1,8 +1,8 @@
 {
-  "experiments_scanned": 82,
+  "experiments_scanned": 83,
   "verdicts": {
     "no-numeric-constructs": 2,
-    "exact-only": 13,
+    "exact-only": 14,
     "imprecision-can-decide": 38,
     "imprecision-in-illustration-only": 29
   },
@@ -284,6 +284,21 @@
       "rows": 13,
       "deciding_lines": [],
       "verdict": "imprecision-in-illustration-only"
+    },
+    {
+      "experiment": "currency_allocation",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 2
+      },
+      "rows": 3,
+      "deciding_lines": [],
+      "verdict": "exact-only"
     },
     {
       "experiment": "declared_bridge",
