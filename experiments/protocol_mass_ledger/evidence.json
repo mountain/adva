@@ -1,0 +1,483 @@
+{
+  "authority": "research-only exact arithmetic over retained measurements; no native admission",
+  "binding_currency_crossover_level": 4,
+  "bridge": {
+    "cost_to_reach_that_depth": {
+      "conversion_layer_steps_per_measured_unit": 8,
+      "reserve_fraction_of_the_side_cost": "63/128",
+      "reserve_steps": 126,
+      "side_steps": 256
+    },
+    "exact_factor_between_the_accounts": "13378",
+    "factor_is_two_times_6689": true,
+    "measured_bridge_exists": false,
+    "retained_unresolved_at_that_depth": "6689/32768",
+    "the_tempting_reading": "one protocol level is one unit of the retained depth",
+    "verdict": "the two mass accounts are not identified and no mass is transferred",
+    "what_a_bridge_would_have_to_declare": "how a joined link corresponds to a read of the retained family, which this run does not measure and does not invent",
+    "why_the_factor_is_exact": "the retained partition is a partition of a depth-15 binary cylinder space of 2^15 words, while the wrapper family's layer structure leaves 2^-16 of its own space at the same cut; dividing 6689/32768 by 2^-16 gives exactly twice 6689",
+    "wrapper_remaining_at_that_depth": "1/65536"
+  },
+  "counts": {
+    "checks": 101,
+    "exact_factor": "13378",
+    "levels": 21,
+    "margins": 20,
+    "refusals": 3
+  },
+  "declared_conversion_layer_steps_per_measured_unit": 8,
+  "findings": [
+    "the protocol has a complete exact ledger: each level costs a measured link price in reserve steps and a square depth cost in side steps, with the side increment growing by two each level while the measured link price stays nearly constant",
+    "which currency binds changes over the levels rather than being fixed: the reserve increment exceeds the side increment at the shallow levels and the sides exceed the reserve from the crossover onwards, so the level at which the work stops being cheap to extend is computable",
+    "the mass the traversal resolves doubles at every level, so the cost per unit of resolved mass falls while the absolute cost rises, and the two readings are reported side by side instead of one being called the cost",
+    "the retained Keraia partition re-verifies exactly: four classes whose masses sum to one, an unresolved mass of 6689/32768, and a three-way split of accepted, unresolved and certified nonhalting that also sums to one",
+    "the retained class counts are cylinder counts at mixed depths, 7198 of them, and they do not fill a word space: the run first checked them against 32768 as if they were word counts, and that wrong-quantity slip is recorded rather than repaired silently",
+    "reading one protocol level as one unit of the retained depth does not transfer: the two accounts leave unresolved masses differing by exactly twice 6689, so the identification is refused rather than assumed",
+    "what is available end to end is a cost and not a mass: reaching the retained depth costs a computable number of reserve steps and of side steps, and that pair is reported with the declaration that a bridge from links to reads does not exist"
+  ],
+  "levels": [
+    {
+      "cumulative_reserve_steps": 0,
+      "level": 0,
+      "links_joined": 0,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/2",
+      "reserve_share_of_the_depth_cost": "0",
+      "resolved_mass": "1/2",
+      "side_depth_cost_steps": 1
+    },
+    {
+      "cumulative_reserve_steps": 8,
+      "level": 1,
+      "links_joined": 1,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/4",
+      "reserve_share_of_the_depth_cost": "2",
+      "resolved_mass": "3/4",
+      "side_depth_cost_steps": 4
+    },
+    {
+      "cumulative_reserve_steps": 16,
+      "level": 2,
+      "links_joined": 2,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/8",
+      "reserve_share_of_the_depth_cost": "16/9",
+      "resolved_mass": "7/8",
+      "side_depth_cost_steps": 9
+    },
+    {
+      "cumulative_reserve_steps": 24,
+      "level": 3,
+      "links_joined": 3,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/16",
+      "reserve_share_of_the_depth_cost": "3/2",
+      "resolved_mass": "15/16",
+      "side_depth_cost_steps": 16
+    },
+    {
+      "cumulative_reserve_steps": 32,
+      "level": 4,
+      "links_joined": 4,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/32",
+      "reserve_share_of_the_depth_cost": "32/25",
+      "resolved_mass": "31/32",
+      "side_depth_cost_steps": 25
+    },
+    {
+      "cumulative_reserve_steps": 40,
+      "level": 5,
+      "links_joined": 5,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/64",
+      "reserve_share_of_the_depth_cost": "10/9",
+      "resolved_mass": "63/64",
+      "side_depth_cost_steps": 36
+    },
+    {
+      "cumulative_reserve_steps": 48,
+      "level": 6,
+      "links_joined": 6,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/128",
+      "reserve_share_of_the_depth_cost": "48/49",
+      "resolved_mass": "127/128",
+      "side_depth_cost_steps": 49
+    },
+    {
+      "cumulative_reserve_steps": 56,
+      "level": 7,
+      "links_joined": 7,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/256",
+      "reserve_share_of_the_depth_cost": "7/8",
+      "resolved_mass": "255/256",
+      "side_depth_cost_steps": 64
+    },
+    {
+      "cumulative_reserve_steps": 64,
+      "level": 8,
+      "links_joined": 8,
+      "price_of_the_next_link": 8,
+      "remaining_mass": "1/512",
+      "reserve_share_of_the_depth_cost": "64/81",
+      "resolved_mass": "511/512",
+      "side_depth_cost_steps": 81
+    },
+    {
+      "cumulative_reserve_steps": 72,
+      "level": 9,
+      "links_joined": 9,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/1024",
+      "reserve_share_of_the_depth_cost": "18/25",
+      "resolved_mass": "1023/1024",
+      "side_depth_cost_steps": 100
+    },
+    {
+      "cumulative_reserve_steps": 81,
+      "level": 10,
+      "links_joined": 10,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/2048",
+      "reserve_share_of_the_depth_cost": "81/121",
+      "resolved_mass": "2047/2048",
+      "side_depth_cost_steps": 121
+    },
+    {
+      "cumulative_reserve_steps": 90,
+      "level": 11,
+      "links_joined": 11,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/4096",
+      "reserve_share_of_the_depth_cost": "5/8",
+      "resolved_mass": "4095/4096",
+      "side_depth_cost_steps": 144
+    },
+    {
+      "cumulative_reserve_steps": 99,
+      "level": 12,
+      "links_joined": 12,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/8192",
+      "reserve_share_of_the_depth_cost": "99/169",
+      "resolved_mass": "8191/8192",
+      "side_depth_cost_steps": 169
+    },
+    {
+      "cumulative_reserve_steps": 108,
+      "level": 13,
+      "links_joined": 13,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/16384",
+      "reserve_share_of_the_depth_cost": "27/49",
+      "resolved_mass": "16383/16384",
+      "side_depth_cost_steps": 196
+    },
+    {
+      "cumulative_reserve_steps": 117,
+      "level": 14,
+      "links_joined": 14,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/32768",
+      "reserve_share_of_the_depth_cost": "13/25",
+      "resolved_mass": "32767/32768",
+      "side_depth_cost_steps": 225
+    },
+    {
+      "cumulative_reserve_steps": 126,
+      "level": 15,
+      "links_joined": 15,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/65536",
+      "reserve_share_of_the_depth_cost": "63/128",
+      "resolved_mass": "65535/65536",
+      "side_depth_cost_steps": 256
+    },
+    {
+      "cumulative_reserve_steps": 135,
+      "level": 16,
+      "links_joined": 16,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/131072",
+      "reserve_share_of_the_depth_cost": "135/289",
+      "resolved_mass": "131071/131072",
+      "side_depth_cost_steps": 289
+    },
+    {
+      "cumulative_reserve_steps": 144,
+      "level": 17,
+      "links_joined": 17,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/262144",
+      "reserve_share_of_the_depth_cost": "4/9",
+      "resolved_mass": "262143/262144",
+      "side_depth_cost_steps": 324
+    },
+    {
+      "cumulative_reserve_steps": 153,
+      "level": 18,
+      "links_joined": 18,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/524288",
+      "reserve_share_of_the_depth_cost": "153/361",
+      "resolved_mass": "524287/524288",
+      "side_depth_cost_steps": 361
+    },
+    {
+      "cumulative_reserve_steps": 162,
+      "level": 19,
+      "links_joined": 19,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/1048576",
+      "reserve_share_of_the_depth_cost": "81/200",
+      "resolved_mass": "1048575/1048576",
+      "side_depth_cost_steps": 400
+    },
+    {
+      "cumulative_reserve_steps": 171,
+      "level": 20,
+      "links_joined": 20,
+      "price_of_the_next_link": 9,
+      "remaining_mass": "1/2097152",
+      "reserve_share_of_the_depth_cost": "19/49",
+      "resolved_mass": "2097151/2097152",
+      "side_depth_cost_steps": 441
+    }
+  ],
+  "margins": [
+    {
+      "binding_currency": "reserve",
+      "level": 1,
+      "mass_gain": "1/4",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "32",
+      "side_spent": 3,
+      "side_steps_per_unit_mass": "12"
+    },
+    {
+      "binding_currency": "reserve",
+      "level": 2,
+      "mass_gain": "1/8",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "64",
+      "side_spent": 5,
+      "side_steps_per_unit_mass": "40"
+    },
+    {
+      "binding_currency": "reserve",
+      "level": 3,
+      "mass_gain": "1/16",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "128",
+      "side_spent": 7,
+      "side_steps_per_unit_mass": "112"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 4,
+      "mass_gain": "1/32",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "256",
+      "side_spent": 9,
+      "side_steps_per_unit_mass": "288"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 5,
+      "mass_gain": "1/64",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "512",
+      "side_spent": 11,
+      "side_steps_per_unit_mass": "704"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 6,
+      "mass_gain": "1/128",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "1024",
+      "side_spent": 13,
+      "side_steps_per_unit_mass": "1664"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 7,
+      "mass_gain": "1/256",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "2048",
+      "side_spent": 15,
+      "side_steps_per_unit_mass": "3840"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 8,
+      "mass_gain": "1/512",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "4096",
+      "side_spent": 17,
+      "side_steps_per_unit_mass": "8704"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 9,
+      "mass_gain": "1/1024",
+      "reserve_spent": 8,
+      "reserve_steps_per_unit_mass": "8192",
+      "side_spent": 19,
+      "side_steps_per_unit_mass": "19456"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 10,
+      "mass_gain": "1/2048",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "18432",
+      "side_spent": 21,
+      "side_steps_per_unit_mass": "43008"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 11,
+      "mass_gain": "1/4096",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "36864",
+      "side_spent": 23,
+      "side_steps_per_unit_mass": "94208"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 12,
+      "mass_gain": "1/8192",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "73728",
+      "side_spent": 25,
+      "side_steps_per_unit_mass": "204800"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 13,
+      "mass_gain": "1/16384",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "147456",
+      "side_spent": 27,
+      "side_steps_per_unit_mass": "442368"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 14,
+      "mass_gain": "1/32768",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "294912",
+      "side_spent": 29,
+      "side_steps_per_unit_mass": "950272"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 15,
+      "mass_gain": "1/65536",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "589824",
+      "side_spent": 31,
+      "side_steps_per_unit_mass": "2031616"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 16,
+      "mass_gain": "1/131072",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "1179648",
+      "side_spent": 33,
+      "side_steps_per_unit_mass": "4325376"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 17,
+      "mass_gain": "1/262144",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "2359296",
+      "side_spent": 35,
+      "side_steps_per_unit_mass": "9175040"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 18,
+      "mass_gain": "1/524288",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "4718592",
+      "side_spent": 37,
+      "side_steps_per_unit_mass": "19398656"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 19,
+      "mass_gain": "1/1048576",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "9437184",
+      "side_spent": 39,
+      "side_steps_per_unit_mass": "40894464"
+    },
+    {
+      "binding_currency": "sides",
+      "level": 20,
+      "mass_gain": "1/2097152",
+      "reserve_spent": 9,
+      "reserve_steps_per_unit_mass": "18874368",
+      "side_spent": 41,
+      "side_steps_per_unit_mass": "85983232"
+    }
+  ],
+  "native_status": "NotRun",
+  "non_claims": [
+    "the run does not produce an end-to-end mass number for the retained partition, because no measured bridge between protocol levels and the retained depth exists; it reports the exact factor by which the accounts differ instead",
+    "the link price enters through a declared conversion from measured bytes to layer steps, so the reserve column is model-relative in that dimension while the side column is not",
+    "no mass is transferred between the two spaces and neither account is presented as the other",
+    "the key half is still unmeasured, so the reserve covers certificate work only",
+    "the crossover is measured over the declared links only: it is the level where the side increment first exceeds the measured link price, and a different conversion moves it",
+    "nothing here computes Omega, decides computability, or touches the three-computation system, and the triadic tension recorded in Research 0192 remains unresolved"
+  ],
+  "question": "The protocol is now checkable. What is the end-to-end account if the traversal's levels are read against the retained halting-mass partition: how much resolution does each level buy, what does it cost in reserve and in side work, and does the retained partition transfer?",
+  "refusals": [
+    {
+      "case": "the two mass accounts claimed to be equal at the same depth",
+      "message": "TheTwoAccountsWereExpectedToDiffer",
+      "refused": true
+    },
+    {
+      "case": "an unresolved mass claimed to be the whole space",
+      "message": "TheRetainedClassesDoNotSumToOne",
+      "refused": true
+    },
+    {
+      "case": "a depth claimed to cost nothing on the side",
+      "message": "TheLayerCostsDidNotTelescope",
+      "refused": true
+    }
+  ],
+  "retained_partition": {
+    "classes": {
+      "accepted": "13039/16384",
+      "certified_nonhalting": "1/32768",
+      "incomplete_syntax": "6435/32768",
+      "pending_input": "127/16384"
+    },
+    "counts": {
+      "accepted": 508,
+      "certified_nonhalting": 1,
+      "incomplete_syntax": 6435,
+      "pending_input": 254
+    },
+    "counts_are_cylinder_counts_at_mixed_depths": true,
+    "cylinder_counts_do_not_fill_a_word_space": true,
+    "cylinder_counts_sum": 7198,
+    "depth": 15,
+    "source": "docs/research/keraia-cycle-certificates-and-halting-mass-bounds.md",
+    "unresolved_fraction": "6689/32768",
+    "unresolved_mass": "6689/32768"
+  },
+  "schema": "adva.research.protocol-mass-ledger-evidence.v0",
+  "status": "ExternalExactPass",
+  "the_ledger": "For each level: the links joined, the measured price of the next link in layer steps at a declared conversion, the cumulative reserve, the depth cost the sides must pay, the mass resolved in the wrapper family and the mass left, and the marginal cost per unit of mass."
+}

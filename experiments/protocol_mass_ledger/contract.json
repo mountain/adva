@@ -1,0 +1,41 @@
+{
+  "schema": "adva.research.protocol-mass-ledger-contract.v0",
+  "version": 0,
+  "name": "protocol-mass-ledger",
+  "base_commit": "6fa4715",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The protocol is now checkable. What is the end-to-end account if the traversal's levels are read against the retained halting-mass partition: how much resolution does each level buy, what does it cost in reserve and in side work, and does the retained partition transfer?",
+  "level": "External exact rational arithmetic over Q: a ledger of levels against the measured link price and the retained layer masses, the retained partition re-verified exactly, and an exact test of the bridge between them",
+  "domain": "The protocol declaration of Research 0197, the measured link price of Research 0195, the layer masses of Research 0191, and the retained halting-mass partition of the Keraia cycle-certificate calibration; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_ledger": "For each level: the links joined, the measured price of the next link in layer steps at a declared conversion, the cumulative reserve, the depth cost the sides must pay, the mass resolved in the wrapper family and the mass left, and the marginal cost per unit of mass.",
+    "the_retained_partition": "The Keraia depth-15 partition as retained: accepted 26078/32768, certified nonhalting 1/32768, pending input 254/32768 and incomplete syntax 6435/32768. The run re-verifies that the four classes sum to one and that the unresolved mass is 6689/32768.",
+    "the_bridge": "The tempting reading is that one protocol level is one unit of the retained depth. The run tests that reading by comparing the mass the two accounts leave unresolved at the same depth, and reports the exact factor by which they differ instead of transferring one account onto the other.",
+    "the_cost_to_reach_the_retained_depth": "Reaching the depth of the retained partition costs a computable number of reserve steps at the measured price and a computable number of side steps at the retained square depth cost, and that pair of numbers is reported because it is available even though the mass does not transfer."
+  },
+  "imported_assumptions": [
+    "The protocol declaration, its clause wording and its derived reserve are read from Research 0197 and not re-derived",
+    "The measured link price, 533 bytes for a lone link plus the digits of the level and a sixty-four byte predecessor read, is read from Research 0195",
+    "The layer masses and the square step cost of a depth are read from Research 0191",
+    "The retained partition is read from the Keraia cycle-certificate calibration and re-verified arithmetically rather than quoted"
+  ],
+  "protected": [
+    "No retained evidence, declaration or anchor is modified or rewritten",
+    "No mass is transferred between the two spaces: the run reports the exact factor by which the accounts differ and refuses the identification",
+    "No claim that the protocol computes Omega or bounds it: the ledger is a resource account under declared conversions"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152,
+    "declared_levels": 20
+  },
+  "residual": [
+    "The link price enters through a declared conversion from measured bytes to layer steps",
+    "No measured bridge between protocol levels and the retained depth exists, so the end-to-end mass number is not produced",
+    "The key half is still unmeasured, so the reserve covers certificate work only"
+  ]
+}
