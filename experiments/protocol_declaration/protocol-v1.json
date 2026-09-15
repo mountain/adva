@@ -1,0 +1,59 @@
+{
+  "schema": "adva.research.traversal-protocol-declaration.v0",
+  "version": 1,
+  "name": "safe-traversal-protocol",
+  "frozen_on": "2026-09-15",
+  "authority": "research-only: this file declares a protocol so that it can be checked; it authorizes no run of its own",
+  "direction_line": "每侧启动前，按照 0.33, 0.33, 0.33，来分配时空构的资源，留 0.01 做成 key 和 cert 的部分，然后试图执行，如果 key 和 cert 部分接不起来，就可以安全回推。一旦接起来，我们就在三计算的 Omega 附近压缩到下一层级了。",
+  "sides": {
+    "count": 3,
+    "declared_split": [
+      "33/100",
+      "33/100",
+      "33/100"
+    ],
+    "rule": "leveling",
+    "rule_statement": "the sides receive the most level depths the step pool affords; equal shares are the level case of that rule",
+    "measured_support": "0193: the leveling rule matched the exhaustive optimum in all 36 declared cases and the depth spread was never more than one"
+  },
+  "reserve": {
+    "policy": "priced",
+    "operative_value": "derived",
+    "derivation": "the smallest whole-step reserve at which the levels bought reach the depth the remaining pool affords, that is the crossing of a step-increasing level count against a decreasing square-root depth; the checker confirms it by an exhaustive scan and the two methods must return the same reserve",
+    "rounding": "the scan works in whole steps, so the derivation needs no rounding and the allocation closes exactly",
+    "direction_value_retained": "1/100",
+    "direction_value_status": "historical: the direction's original line, kept for comparison and no longer operative",
+    "measured_support": "0192 and 0193 priced the reserve from declared join costs; 0195 replaced the declared shape with the measured growth and the optimum stayed far above one per cent; 0196 showed the fixed fraction failing the check"
+  },
+  "join": {
+    "price_source": "0195 measured",
+    "measured_bytes_per_lone_link": 533,
+    "measured_bytes_formula": "533 + digits(level) - 1",
+    "measured_predecessor_read_bytes": 64,
+    "declared_conversion_layer_steps_per_measure": 8,
+    "key_half": "unmeasured",
+    "key_half_reason": "key-issue returns Unknown on this host because the ed25519 backend is missing, so no signature is produced or verified"
+  },
+  "rollback": {
+    "trigger": "the retained tool's own verdict field for the join",
+    "trigger_statement": "the traversal commits only when the retained tamper-check reports the link joined; otherwise the head does not move and the level is not resolved",
+    "measured_support": "0195: every level above the first reports prev_anchor_match true under the corrected procedure, and 0194 measured that a failed verification leaves the head unchanged and aborts before working"
+  },
+  "level_advance": {
+    "rule_statement": "a joined link raises the depth ceiling by one level, and resolving the layer halves the remaining mass",
+    "measured_support": "0191 layer masses and the (d+1)^2 step cost of a depth"
+  },
+  "checks_required": [
+    "the allocation closes exactly in whole steps",
+    "the declared side split is the leveling one for the declared pool",
+    "the declared reserve is the one an independent exhaustive scan finds optimal",
+    "the key half is measured or carries a surcharge or a bound",
+    "the rollback trigger names the retained verdict field",
+    "a joined link raises the ceiling by one and resolving the layer halves the remaining mass"
+  ],
+  "supersedes": {
+    "path": "protocol.json",
+    "sha256": "PINNED_AT_RUN_TIME_AND_CHECKED",
+    "note": "the version zero declaration carried the direction's one per cent as its operative reserve fraction; that value is retained here as a historical record and is no longer operative, because the reserve is now derived by the priced rule and verified by an independent scan"
+  }
+}
