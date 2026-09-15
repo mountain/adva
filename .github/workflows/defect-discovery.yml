@@ -1,0 +1,32 @@
+name: Bounded defect discovery
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  finite-probes:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Test evidence and submission guards
+        run: python scripts/defect_discovery/test_discovery.py
+      - name: Run frozen finite contract
+        run: python scripts/defect_discovery/run.py --source-commit "$GITHUB_SHA" --out "$RUNNER_TEMP/defect-report"
+      - name: Verify retained report integrity
+        if: always()
+        run: python scripts/defect_discovery/verify.py "$RUNNER_TEMP/defect-report"
+      - name: Retain findings and Unknown results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: defect-discovery-${{ github.sha }}
+          path: ${{ runner.temp }}/defect-report
+          if-no-files-found: warn
+          retention-days: 30
