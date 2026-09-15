@@ -1,0 +1,43 @@
+{
+  "schema": "adva.research.measured-join-cost-contract.v0",
+  "version": 0,
+  "name": "measured-join-cost",
+  "base_commit": "f653997",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "The reserve in the traversal protocol pays for one key and certificate link. What does that link actually cost, measured on the retained lineage tooling rather than declared, and how does the cost grow with the level?",
+  "level": "External measurement over the retained lineage commands run on a scratch copy of a retained root, with exact byte and unit counts and a declared host wall time, followed by the exact optimal-reserve computation of Research 0193 driven by the measured cost",
+  "domain": "The retained arithmetic lineage root of Research 0158, the lineage-update, tamper-check and key-issue commands of Research 0156, and the layer cost model of Research 0193; nothing about the credential contract's authority, no retained anchor or key is signed, and no Go position, Q4 filler or Omega value appears",
+  "objects": {
+    "the_measured_link": "One link is built by lineage-update and then verified by tamper-check, whose prev_anchor_match field is the tool's own answer to whether the new anchor joins the previous one. That is the certificate half of the join, and it is measured rather than declared.",
+    "the_key_half": "The key half is the Ed25519 anchor-signing key of Research 0156. On this host key-issue returns Unknown with the reason that the ed25519 backend is missing, so the key half is not measurable here and its cost enters as an explicit unknown parameter rather than as a hidden assumption.",
+    "the_growth": "Anchors are built at increasing global sequence numbers, so the measured cost per link as a function of the level is a measurement and not a model: whether the cost is constant, linear or growing is read off the numbers.",
+    "the_conversion": "The measured cost is in bytes, in the tool's own unit count and in a host wall time, while the sides' work is in layer steps. The conversion between them is declared as a parameter and the optimal reserve is reported as a function of it, so the one remaining modelling choice is explicit.",
+    "the_optimal_reserve": "The optimal-reserve computation of Research 0193 is rerun with the measured link cost in place of a declared join cost model, and the resulting fractions are reported beside the direction's one per cent."
+  },
+  "imported_assumptions": [
+    "The retained lineage root under docs/research/0158-evidence/run-02/main is read-only input and is copied to a scratch directory before any command runs; nothing retained is written",
+    "The commands are the retained ones and are invoked exactly as the retained notes document them, with the outer CLI under -S",
+    "The wall time reported by the tooling and measured here is a host quantity and is excluded from the byte comparison of successive runs",
+    "The layer cost model of (d+1)^2 steps and the level ceiling of Research 0193 are imported unchanged"
+  ],
+  "protected": [
+    "No retained anchor, credential, key or lineage record is modified, signed or rewritten; the scratch copy is discarded after the run",
+    "No measurement is presented as a cost in layer steps: the conversion is a declared parameter",
+    "No claim that the direction's reserve is right or wrong; the run reports where the measured cost puts the optimum"
+  ],
+  "budget": {
+    "wall_seconds": 300,
+    "cpu_seconds": 240,
+    "memory_bytes": 536870912,
+    "max_assertions": 100000,
+    "output_bytes": 4194304,
+    "subprocesses": 64,
+    "declared_link_count": 12
+  },
+  "residual": [
+    "The key half of the join is unmeasured on this host because the ed25519 backend is missing, so the measured cost is a lower bound",
+    "The conversion from measured work to layer steps is declared, so the optimal reserve remains model-relative in that one dimension",
+    "The scratch run exercises one package and the retained records of one root"
+  ]
+}
