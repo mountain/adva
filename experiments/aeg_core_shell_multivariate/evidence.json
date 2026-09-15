@@ -1,0 +1,345 @@
+{
+  "bezout": {
+    "bounded_search": {
+      "bound": 4,
+      "monomials": 14,
+      "pairs_examined": 196,
+      "searched_family": "p and q are single monomials with coefficient one",
+      "status": "bounded negative over a declared family, not the proof",
+      "witnesses_found": 0
+    },
+    "claim": "no polynomials p and q satisfy p*x + q*y = 1",
+    "consequence": "Q[x,y] is not a Bezout domain, so an extended-Euclidean inversion cannot be transferred from Z or Q[x] to two variables; the historical method's 求一 step has no target object here",
+    "proof": "evaluate at the origin: every monomial of p*x and of q*y vanishes there, so the left side is 0 while the right side is 1"
+  },
+  "composed_measurement": [
+    {
+      "content_equal": false,
+      "content_inequality_is_detectable": true,
+      "cost": {
+        "exact_pair_monomials": 3,
+        "truncated_monomials": 2
+      },
+      "exact_content": "1/(1x^2 + 1)",
+      "object_difference": "the truncated carrier carries a truncation provenance, the exact one carries an unexpanded remainder",
+      "object_equal": false,
+      "order": 1,
+      "reading": "the truncated route is the cheap one and its loss is exactly the residual inside the declared ideal: non-zero, hence visible, hence usable with a label and never mistakable for the exact carrier",
+      "truncated_content": "-1x^2 + 1"
+    },
+    {
+      "content_equal": false,
+      "content_inequality_is_detectable": true,
+      "cost": {
+        "exact_pair_monomials": 3,
+        "truncated_monomials": 3
+      },
+      "exact_content": "1/(1x^2 + 1)",
+      "object_difference": "the truncated carrier carries a truncation provenance, the exact one carries an unexpanded remainder",
+      "object_equal": false,
+      "order": 2,
+      "reading": "the truncated route is the cheap one and its loss is exactly the residual inside the declared ideal: non-zero, hence visible, hence usable with a label and never mistakable for the exact carrier",
+      "truncated_content": "1x^4 + -1x^2 + 1"
+    },
+    {
+      "content_equal": false,
+      "content_inequality_is_detectable": true,
+      "cost": {
+        "exact_pair_monomials": 3,
+        "truncated_monomials": 4
+      },
+      "exact_content": "1/(1x^2 + 1)",
+      "object_difference": "the truncated carrier carries a truncation provenance, the exact one carries an unexpanded remainder",
+      "object_equal": false,
+      "order": 3,
+      "reading": "the truncated route is the cheap one and its loss is exactly the residual inside the declared ideal: non-zero, hence visible, hence usable with a label and never mistakable for the exact carrier",
+      "truncated_content": "-1x^6 + 1x^4 + -1x^2 + 1"
+    }
+  ],
+  "congruence_route": {
+    "cells": [
+      {
+        "expected": "1x^4 + 1x",
+        "extra_factor": "1x^2 + 2",
+        "image": "1x^6 + 2x^4 + 1x^3 + 2x",
+        "image_exponent": 4,
+        "image_matches_the_reduced_divisor": false,
+        "prime": 5,
+        "route": "modular",
+        "status": "UnluckyImageCarriesAnExtraFactor"
+      },
+      {
+        "expected": "1x^4 + 1x",
+        "extra_factor": null,
+        "image": "1x^4 + 1x",
+        "image_exponent": 4,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 7,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x^4 + 1x",
+        "extra_factor": null,
+        "image": "1x^4 + 1x",
+        "image_exponent": 4,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 11,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x^3 + 1x",
+        "extra_factor": null,
+        "image": "1x^3 + 1x",
+        "image_exponent": 3,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 5,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x^3 + 1x",
+        "extra_factor": null,
+        "image": "1x^3 + 1x",
+        "image_exponent": 3,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 7,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x^3 + 1x",
+        "extra_factor": null,
+        "image": "1x^3 + 1x",
+        "image_exponent": 3,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 11,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x",
+        "extra_factor": null,
+        "image": "1x",
+        "image_exponent": 1,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 5,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x",
+        "extra_factor": null,
+        "image": "1x",
+        "image_exponent": 1,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 7,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "expected": "1x",
+        "extra_factor": null,
+        "image": "1x",
+        "image_exponent": 1,
+        "image_matches_the_reduced_divisor": true,
+        "prime": 11,
+        "route": "modular",
+        "status": "Recovered"
+      },
+      {
+        "extra_factor": null,
+        "image": "1x + 1",
+        "image_matches_the_specialised_divisor": true,
+        "route": "specialization",
+        "specialization_y": 1,
+        "status": "Recovered"
+      },
+      {
+        "extra_factor": null,
+        "image": "1x + 3",
+        "image_matches_the_specialised_divisor": true,
+        "route": "specialization",
+        "specialization_y": 3,
+        "status": "Recovered"
+      },
+      {
+        "extra_factor": null,
+        "image": "1x + 4",
+        "image_matches_the_specialised_divisor": true,
+        "route": "specialization",
+        "specialization_y": 4,
+        "status": "Recovered"
+      }
+    ],
+    "cells_recovered": 11,
+    "cells_unlucky": 1,
+    "image_exponents": [
+      4,
+      3,
+      1
+    ],
+    "status": "recovery is measured per cell, and every mismatch carries an exhibited extra factor"
+  },
+  "contract": {
+    "base_commit": "fe0ce00bfc74b9f280efe7f149e35822f60024a0",
+    "path": "contract.json",
+    "schema": "adva.research.aeg-core-shell-multivariate-contract.v0",
+    "sha256": "eb499df7d74afc65d021e303910857c6a7ea8e9afdc58cf1543388c17ed10426"
+  },
+  "counts": {
+    "assertions": 5409,
+    "bezout_pairs_examined": 196,
+    "kronecker_images": 100,
+    "modular_images": 108,
+    "multiplications": 524
+  },
+  "findings": [
+    "value equality between two rational functions in two variables is decided by cross multiplication, with no greatest common divisor and no monomial order on that path",
+    "Kronecker substitution decides equality soundly exactly while it is injective on the declared degree bounds; the threshold is derived from the degrees instead of being declared, and every declared exponent below it exhibits a colliding pair, so an image can make two distinct polynomials look equal",
+    "the exponent first chosen by hand for this experiment sits below the derived threshold, so calling it lucky in advance was an optimistic label rather than a measurement; the contract now declares exponents to test and lets the run place each one",
+    "at the injective base the substituted divisor is measured against the image of the true divisor on the declared pair; that agreement is a measurement on the pair, not a guarantee, so reducing to the one-variable engine does not settle the divisor problem",
+    "no polynomials p and q satisfy p*x + q*y = 1: proved by evaluating at the origin and searched over every monomial up to the declared bound with no witness found, so the historical method's inversion step has no target object in two variables",
+    "recovery through modular and specialised images is measured per cell rather than asserted; every mismatch is a strict extra factor over the divisor and that factor is exhibited, so injectivity of the substitution is not the same condition as a lucky image, and no rational reconstruction is implemented",
+    "the truncated inverse modulo the ideal of positive-degree terms exists and is exact at every declared order, and its loss is exactly the residual inside that ideal",
+    "the composed measurement the previous round left unmeasured is taken: against the exact carrier the truncated one is unequal at the content level and at the object level, and the inequality is detectable because the residual is non-zero"
+  ],
+  "kronecker": {
+    "declared_exponents_at_or_above_the_threshold": [
+      4
+    ],
+    "declared_exponents_below_the_threshold": [
+      3,
+      1
+    ],
+    "injectivity_threshold": 4,
+    "maximum_degree_in_each_variable": 3,
+    "rows": [
+      {
+        "base": 4,
+        "collision_witness": null,
+        "divisor_image_agrees": true,
+        "equality_decided_by_the_image_is_sound": true,
+        "image_of_the_difference_is_zero": false,
+        "image_of_the_true_divisor_normalised": "1x^4 + 1x",
+        "injective_on_these_degrees": true,
+        "label": "injective",
+        "maximum_degree_in_each_variable": 3,
+        "reading": "the substitution is injective here, so the image decides equality soundly, and on this pair it also returns the image of the true divisor",
+        "substituted_gcd": "1x^4 + 1x"
+      },
+      {
+        "base": 3,
+        "collision_witness": [
+          "1y^3",
+          "1x",
+          "1x^3"
+        ],
+        "divisor_image_agrees": true,
+        "equality_decided_by_the_image_is_sound": false,
+        "image_of_the_difference_is_zero": false,
+        "image_of_the_true_divisor_normalised": "1x^3 + 1x",
+        "injective_on_these_degrees": false,
+        "label": "non-injective",
+        "maximum_degree_in_each_variable": 3,
+        "reading": "the substitution is not injective, so an image can make two distinct polynomials look equal; the collision witness is exhibited",
+        "substituted_gcd": "1x^3 + 1x"
+      },
+      {
+        "base": 1,
+        "collision_witness": [
+          "1y",
+          "1x",
+          "1x"
+        ],
+        "divisor_image_agrees": true,
+        "equality_decided_by_the_image_is_sound": false,
+        "image_of_the_difference_is_zero": false,
+        "image_of_the_true_divisor_normalised": "1x",
+        "injective_on_these_degrees": false,
+        "label": "non-injective",
+        "maximum_degree_in_each_variable": 3,
+        "reading": "the substitution is not injective, so an image can make two distinct polynomials look equal; the collision witness is exhibited",
+        "substituted_gcd": "1x"
+      }
+    ]
+  },
+  "native_status": "NotRun",
+  "refusals": [
+    {
+      "case": "division by the zero polynomial",
+      "message": "DivisionByZeroPolynomialRefused",
+      "refused": true
+    },
+    {
+      "case": "negative exponent",
+      "message": "NegativeExponentRefused",
+      "refused": true
+    },
+    {
+      "case": "inverse without a constant term",
+      "message": "InverseNeedsANonzeroConstantTerm",
+      "refused": true
+    },
+    {
+      "case": "coefficient denominator vanishing modulo the prime",
+      "message": "CoefficientDenominatorVanishesModuloThePrime",
+      "refused": true
+    }
+  ],
+  "status": "ExternalExactPass",
+  "truncated_inverse": [
+    {
+      "approximation_monomials": 2,
+      "exact_denominator_monomials": 2,
+      "order": 1,
+      "residual_inside_the_ideal": true,
+      "residual_is_nonzero": true,
+      "residual_monomials": 1
+    },
+    {
+      "approximation_monomials": 3,
+      "exact_denominator_monomials": 2,
+      "order": 2,
+      "residual_inside_the_ideal": true,
+      "residual_is_nonzero": true,
+      "residual_monomials": 1
+    },
+    {
+      "approximation_monomials": 4,
+      "exact_denominator_monomials": 2,
+      "order": 3,
+      "residual_inside_the_ideal": true,
+      "residual_is_nonzero": true,
+      "residual_monomials": 1
+    }
+  ],
+  "value_equality": [
+    {
+      "cross_product_is_zero": true,
+      "left_pair": "1x^3 + 1x^2y + -1x + -1y / 1xy^2 + 2x + 1y^3 + 2y",
+      "scale": "1x^2 + -1",
+      "uses_gcd": false,
+      "uses_monomial_order": false
+    },
+    {
+      "cross_product_is_zero": true,
+      "left_pair": "1x^3 + 1x^2y + -1x + -1y / 1xy^2 + 2x + 1y^3 + 2y",
+      "scale": "1y^2 + 2",
+      "uses_gcd": false,
+      "uses_monomial_order": false
+    },
+    {
+      "cross_product_is_zero": true,
+      "left_pair": "1x^3 + 1x^2y + -1x + -1y / 1xy^2 + 2x + 1y^3 + 2y",
+      "scale": "1x + 1y",
+      "uses_gcd": false,
+      "uses_monomial_order": false
+    }
+  ],
+  "variables": [
+    "x",
+    "y"
+  ]
+}

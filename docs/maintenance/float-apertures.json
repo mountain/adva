@@ -1,14 +1,14 @@
 {
-  "experiments_scanned": 69,
+  "experiments_scanned": 71,
   "verdicts": {
     "no-numeric-constructs": 2,
+    "exact-only": 7,
     "imprecision-can-decide": 37,
-    "imprecision-in-illustration-only": 25,
-    "exact-only": 5
+    "imprecision-in-illustration-only": 25
   },
   "claims_declaring_float_free_acceptance": {
-    "total": 7,
-    "hold": 6,
+    "total": 10,
+    "hold": 9,
     "details": [
       {
         "claim_id": "adva.bounded-experiment.li-yorke-period-three-matrix.v0",
@@ -51,6 +51,21 @@
         "claim_id": "adva.exact.tetrahedral-mirror-layers-never-close.v0",
         "holds": true,
         "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.aeg-core-shell-symbolic.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.aeg-core-shell-canonical.v0",
+        "holds": true,
+        "offending": []
+      },
+      {
+        "claim_id": "adva.bounded-experiment.aeg-core-shell-multivariate.v0",
+        "holds": true,
+        "offending": []
       }
     ]
   },
@@ -69,6 +84,36 @@
       "rows": 0,
       "deciding_lines": [],
       "verdict": "no-numeric-constructs"
+    },
+    {
+      "experiment": "aeg_core_shell_multivariate",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
+    },
+    {
+      "experiment": "aeg_core_shell_symbolic",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
     },
     {
       "experiment": "alternating_observer",
