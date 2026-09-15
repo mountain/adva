@@ -1,0 +1,41 @@
+{
+  "schema": "adva.research.marginal-exchange-contract.v0",
+  "version": 0,
+  "name": "marginal-exchange",
+  "base_commit": "0168301",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Two gain curves now sit on one cost axis: the wrapper family's resolution and the Keraia family's acceptance. Is the marginal cost per unit of gain rising or falling, which layer is best under each objective, and does the measurement determine when deepening should stop?",
+  "level": "External exact rational arithmetic over two retained evidence files: recomputed margins, both gain sequences on the shared cost axis, and a statement about what the measurements do and do not determine",
+  "domain": "The ledger of Research 0198 and the depth curve of Research 0200 with the bridge of Research 0199, the measured link price and the declared conversion; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_recomputation": "The ledger's margins are recomputed from its own level table, because the record contains a sentence whose direction the numbers refute and a mismatch of that kind has to be measured rather than remembered.",
+    "the_two_gains": "On one cost axis, each extra level buys a wrapper increment of 2^-(k+1) and a Keraia acceptance increment equal to the accepted mass of the cylinders of exactly that length, while costing the same measured link price plus the same square increment in side work.",
+    "the_shapes": "Whether each gain per step falls, rises or moves irregularly is read off the sequences, and the best and worst layers under each objective are named rather than assumed.",
+    "the_exchange": "The bridge of Research 0199 converts units between the spaces at a constant two. Whether it also converts value is a different question, and the run separates the two: a unit conversion is measured, a value exchange would have to be declared."
+  },
+  "imported_assumptions": [
+    "Both retained evidence files are read-only inputs, pinned by digest and not modified",
+    "The bridge constant is the one verified at every declared depth in Research 0199 and is not re-derived",
+    "The cost axis is the ledger's, with a declared conversion from measured bytes to layer steps",
+    "The frozen records keep their wording; corrections are appended to the notes and not written into the evidence"
+  ],
+  "protected": [
+    "No retained evidence is modified: a sentence the numbers refute stays in the frozen record and is corrected in the note",
+    "No value exchange between the two spaces is invented; only the unit conversion is used",
+    "No claim that either objective is the right one"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152,
+    "shared_levels": 15
+  },
+  "residual": [
+    "The objectives compared are the two the record happens to contain; others are not considered",
+    "The cost axis passes through a declared conversion and the key half is unmeasured",
+    "The Keraia side covers the depths the retained evidence reaches"
+  ]
+}
