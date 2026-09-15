@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **196 numbered
+This directory holds the research record of the repository: **197 numbered
 notes, 30 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -717,6 +717,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0185-yang-difference-substitution-inequalities.md`](0185-yang-difference-substitution-inequalities.md)
 - [`0186-dual-facility-leak-wall.md`](0186-dual-facility-leak-wall.md)
 - [`0187-cut-linkage-after-cutting.md`](0187-cut-linkage-after-cutting.md)
+- [`0188-aeg-core-shell-notation-registered-as-a-target.md`](0188-aeg-core-shell-notation-registered-as-a-target.md)
 
 ### Named notes
 

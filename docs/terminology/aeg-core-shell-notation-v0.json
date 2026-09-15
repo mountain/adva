@@ -1,0 +1,375 @@
+{
+  "schema": "adva.research.aeg-core-shell-notation",
+  "version": 0,
+  "status": "Proposed",
+  "home": "adva/docs/terminology",
+  "origin": {
+    "direction": "Mingli Yuan / 苑明理 — the AEG reformulation and the five marks",
+    "formalization": "Gemini, in discussion with Mingli Yuan; recorded in the source document below",
+    "source_document": {
+      "path": "苑明理方案提议一.md",
+      "sha256": "30fde8bdb2916142dddd6f5c8c4476081feb65de53a8d2b4e3f892448877caa3",
+      "title": "算术表达式几何（AEG）与信息论驱动的区间计算重构方案",
+      "status_at_registration": "committed unchanged by this change so that the pointer resolves",
+      "note": "The source discussion is a proposal, not a check: it has no checker, no evidence file and no executed run. It is the origin of the notation and not its witness."
+    },
+    "base_commit": "4c40eb7408f05db15be6a91f0eafe0e502843a93"
+  },
+  "authority": {
+    "level": "proposed notation for a target mechanism; nothing here executes",
+    "native_admission": "NotGranted",
+    "stable_keywords_added": [],
+    "semantic_identity_allocation": false,
+    "numeric_acceptance_authority": false,
+    "library_admission": false,
+    "diagram_admission": false
+  },
+  "interpretation_boundary": "These five marks and the unit specification name structure in a target numeric-carrier design. They are not operations, not a calculus, not a precision guarantee, not an acceptance rule and not a proof. They annotate material that already has homes: the exact residual carriers in the native witness crate, and the receipt fields and kinds in the golden-ratio receipt home. Registering a mark creates no second home for residual, fuel, frame or bracket, and grants no numeric authority.",
+  "terms": [
+    {
+      "name": "closed-core",
+      "notation": "[]",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name the part of a computation that is carried exactly, with no rounding, inside a declared arithmetic domain.",
+      "input": [
+        "a declared expression fragment",
+        "an exact coefficient domain, such as rationals or the integer polynomials the native residual already carries",
+        "a declared degree or size budget for the core"
+      ],
+      "output": [
+        "core expressions",
+        "core equality verdicts",
+        "the core's own exact identity"
+      ],
+      "preconditions": [
+        "The coefficient domain is exact and declared",
+        "No unresolved shell term appears inside a core expression",
+        "Core operations are declared, and inversion is by pair swap rather than scalar division"
+      ],
+      "preserves": [
+        "Associativity and distributivity as exact identities over the core",
+        "The existing native exact carriers, which this mark annotates rather than replaces",
+        "Lineage and occurrence distinctions, which exactness must not erode"
+      ],
+      "does_not_imply": [
+        "A closed core with a native operation, a stable keyword, a semantic identity or an admission",
+        "A closed core with permission to collapse the whole computation to a value",
+        "The bracket [] with the [] of the typed-aperture presentation `{}[]()` in the hole machinery: that presentation labels three local triangular interfaces and is a different home",
+        "A closed core with a claim that the computation as a whole is exact"
+      ],
+      "witness": {
+        "state": "TargetOnly",
+        "reference": "苑明理方案提议一.md §2.2 and §5; crates/adva-witness/src/arithmetic.rs MultiplicativeResidualV0 and ThreeSideAdditiveResidualV0",
+        "description": "No core/shell machine exists. The exact half already exists natively as exact integer-polynomial residual pairs with identity 1/1, and as typed residuals that refuse cross-side scalar cancellation."
+      },
+      "refusal": [
+        "A core operation outside the declared domain: refuse, never approximate",
+        "A zero denominator in the core: refuse",
+        "A binary64 value entering the core: refuse"
+      ],
+      "replay": "Nothing executes yet, so nothing is replayed. The nearest executable precedent is the exact-arithmetic family of bounded experiments.",
+      "residual": [
+        "The shell contract that decides what leaves the core",
+        "The degree or size budget and its declared truncation rule",
+        "The connection between this mark and the existing receipt fields"
+      ]
+    },
+    {
+      "name": "open-shell",
+      "notation": "()",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name the part of a computation the declared budget did not resolve, carried explicitly instead of being rounded away.",
+      "input": [
+        "the unresolved remainder of a computation",
+        "the fuel that was available and the point at which it was exhausted",
+        "the path or step that produced the remainder"
+      ],
+      "output": [
+        "a carried shell object",
+        "shell emptiness verdicts",
+        "the shell's provenance frame"
+      ],
+      "preconditions": [
+        "A shell is produced only by declared budget exhaustion or by a declared refusal, never by a rounding rule",
+        "A shell is never summed with a core term",
+        "An acceptance condition never compares a shell numerically"
+      ],
+      "preserves": [
+        "The unresolved part in an inspectable form",
+        "The distinction between resolved and not yet resolved",
+        "Every alternative, in the sense the aperture work already requires"
+      ],
+      "does_not_imply": [
+        "An open shell with a numeric tolerance or epsilon",
+        "An open shell with a bracket over produced values in the golden-ratio receipt sense: that bracket is a numeric interval with its own discipline and its own home",
+        "The parentheses () with iota-lang's parser (), or with the () of the typed-aperture presentation",
+        "An open shell with a failure, an error, or permission to stop checking",
+        "An open shell with a claim about how close the true value is"
+      ],
+      "witness": {
+        "state": "TargetOnly",
+        "reference": "苑明理方案提议一.md §3.2 solution three and §5; docs/terminology/golden-ratio-receipt-v0.json kinds `unknown-tail` and `finite-precision-stop`",
+        "description": "No carried numeric shell exists. The receipt home already names an unknown tail and a finite-precision stop, and carries fields for fuel used and residual; the mark names the structure those fields hold."
+      },
+      "refusal": [
+        "A shell produced by rounding: refuse",
+        "A shell silently dropped: refuse",
+        "A shell compared as a number: refuse"
+      ],
+      "replay": "Nothing executes yet.",
+      "residual": [
+        "Whether the first shell form is a symbolically unexpanded term or a bounded numeric interval; the difference decides whether rounding is reintroduced",
+        "How a shell's frame is typed so that acceptance cannot read it"
+      ]
+    },
+    {
+      "name": "modal-tension",
+      "notation": "<>",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name the direction of an approximation carried together with its residual, including the reverse direction of the modal reading.",
+      "input": [
+        "a shell, together with the direction in which it was produced"
+      ],
+      "output": [
+        "a directed residual",
+        "the potential for two opposite directions to cancel at a terminal step"
+      ],
+      "preconditions": [
+        "The direction is recorded where the residual is produced",
+        "Opposite directions are never cancelled through a scalar sum"
+      ],
+      "preserves": [
+        "The native principle already enforced by the typed additive residuals: coordinates from different sides never cancel one another through a scalar sum"
+      ],
+      "does_not_imply": [
+        "A direction with an oriented interval calculus, a Kaucher implementation or a native type",
+        "The angle brackets <> with iota-lang's parser brackets, which are a syntax form of an external substrate",
+        "A direction with a claim about which side the truth lies on"
+      ],
+      "witness": {
+        "state": "ImportedClassicalExample",
+        "reference": "苑明理方案提议一.md §5; crates/adva-witness/src/trace_arithmetic.rs ThreeSideAdditiveResidualV0",
+        "description": "The closest existing realisation is native: the three-side additive residual refuses scalar cancellation across sides, which is the direction-discipline this mark names. It is exact and typed, not numeric."
+      },
+      "refusal": [
+        "A direction folded into a scalar sign: refuse",
+        "A direction inferred from a numeric comparison: refuse"
+      ],
+      "replay": "Nothing executes yet.",
+      "residual": [
+        "The relation between this mark and the existing typed residuals",
+        "Whether direction survives when a shell is frozen"
+      ]
+    },
+    {
+      "name": "projective-duality",
+      "notation": "[< >]",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name carrying a ratio as a pair, so that inversion is a swap and no scalar division is performed.",
+      "input": [
+        "numerator and denominator expressions over the declared exact domain"
+      ],
+      "output": [
+        "homogeneous pairs",
+        "inversion by swap",
+        "refusal on a zero denominator"
+      ],
+      "preconditions": [
+        "Only the pair form is claimed",
+        "The pair is exact",
+        "The zero test is decidable in the declared domain"
+      ],
+      "preserves": [
+        "The native exact after/before residual pair, whose identity is 1/1",
+        "The unit as a pair rather than as a scalar"
+      ],
+      "does_not_imply": [
+        "A pair form with an SL(2,Z) group element, or with a Mobius transformation of a general rational expression in several subexpressions: that holds for the one-variable Mobius fragment and for a single lifted ratio, and not in general",
+        "A projective lift with the removal of truncation: composing further forces a common denominator, so the decision relocates to a declared degree or ideal truncation, which the source document itself notes cannot be an ideal once division is present",
+        "The notation [< >] with a lattice, a polarity, a mirror or a Calabi-Yau construction: those have their own home in the geometry-boundaries terms and must not be conflated",
+        "A pair form with a value: the pair is an expression, and no collapse follows from it"
+      ],
+      "witness": {
+        "state": "ExecutedExternalFiniteEvidence",
+        "reference": "crates/adva-witness/src/arithmetic.rs MultiplicativeResidualV0 (`after / before` as two exact PolynomialV0 with BigInt coefficients, identity 1/1)",
+        "description": "An exact symbolic realisation already exists natively and is tested; it carries no budget and no shell, which is exactly what the notation still lacks."
+      },
+      "refusal": [
+        "Scalar division inside the core: refuse",
+        "A zero denominator: refuse",
+        "Exceeding the degree budget without declaring a shell: refuse"
+      ],
+      "replay": "python3 -m pytest tests/python -k arithmetic, and the witness crate tests; both cover the existing exact pair and neither covers a shell.",
+      "residual": [
+        "The degree or ideal budget, and whether truncation is declared by degree rather than by an ideal",
+        "Whether the pair view survives superposition of two ratios"
+      ]
+    },
+    {
+      "name": "centripetal-balance",
+      "notation": "(> <)",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name the terminal step at which carried shells are emptied and the computation collapses, or does not.",
+      "input": [
+        "cores, shells and directions"
+      ],
+      "output": [
+        "a collapse with empty shells, or Unknown with the shells retained"
+      ],
+      "preconditions": [
+        "Collapse only when the shells are empty",
+        "Exhaustion never collapses"
+      ],
+      "preserves": [
+        "Everything carried up to that point; no silent convergence"
+      ],
+      "does_not_imply": [
+        "A terminal collapse with a limit that always converges: the source document's limit expression is prose in the clothing of a limit and needs a finite form first",
+        "A collapse with permission to drop a non-empty shell",
+        "This parentheses pair with any existing notation",
+        "A collapse with a proof of correctness"
+      ],
+      "witness": {
+        "state": "TargetOnly",
+        "reference": "苑明理方案提议一.md §5 dynamics convergence condition; docs/maintenance/FLOAT_APERTURES.md",
+        "description": "No terminal reduction exists. The repository's existing rule that exhaustion produces Unknown is the shape this mark must obey rather than a mechanism it may replace."
+      },
+      "refusal": [
+        "Collapsing while a shell is non-empty: refuse",
+        "Reporting a value at exhaustion: refuse"
+      ],
+      "replay": "Nothing executes yet.",
+      "residual": [
+        "The finite form of the convergence condition, including what happens at exhaustion",
+        "Whether a refusal counts as a shell"
+      ]
+    },
+    {
+      "name": "unit-specification",
+      "notation": "1 = (> <) [< >] < [] () >",
+      "profile": "aeg-core-shell-notation.v0",
+      "status": "Proposed",
+      "effect": "Name the target specification diagram for the unit as a balanced configuration of the five marks.",
+      "input": [
+        "the five marks",
+        "a declared diagram grammar"
+      ],
+      "output": [
+        "a specification to be validated, not an equation"
+      ],
+      "preconditions": [
+        "It is stated as a target specification, not as an identity",
+        "If it is ever to carry authority it must become a validated diagram at the Rust boundary rather than a formula in prose"
+      ],
+      "preserves": [
+        "Nothing by itself"
+      ],
+      "does_not_imply": [
+        "An equation or a proven identity",
+        "A definition of the number one",
+        "A native diagram, a certificate, an admission or a Seal",
+        "The interpretation that the unit is not a dead scalar: that is a reading offered by the source document, not a result, and it is not asserted here"
+      ],
+      "witness": {
+        "state": "TargetOnly",
+        "reference": "苑明理方案提议一.md §5",
+        "description": "A compact target formula. Nothing in this repository renders, validates or checks it."
+      },
+      "refusal": [
+        "Citing the formula as evidence: refuse",
+        "Treating it as a proof: refuse",
+        "Presenting it as a native diagram: refuse"
+      ],
+      "replay": "Nothing executes yet.",
+      "residual": [
+        "A diagram grammar",
+        "A rendering",
+        "A validation at the native boundary, which is the only thing that would let it carry authority"
+      ]
+    }
+  ],
+  "overload_declarations": [
+    {
+      "marks": [
+        "[]",
+        "()",
+        "<>"
+      ],
+      "existing_use": "the typed-aperture presentation `{}[]()` in the hole machinery, documented in docs/SEMANTIC_SCOPE.md, where the three bracket kinds present three local triangular interfaces",
+      "disposition": "different home, same glyphs; neither reading may be substituted for the other, and the aperture reading keeps its own note 0079"
+    },
+    {
+      "marks": [
+        "<>",
+        "()",
+        "[]"
+      ],
+      "existing_use": "the iota-lang Parser accepts `<>`/`()`/`[]` with uppercase constants, as recorded in the 0167 iota-lang reconnection audit",
+      "disposition": "syntax of an external substrate, not a reading of this notation"
+    },
+    {
+      "marks": [
+        "()",
+        "[< >]"
+      ],
+      "existing_use": "the word bracket in docs/terminology/golden-ratio-receipt-v0.json is load-bearing for intervals over produced values, and a seeded bracket may not be reported as tail coverage",
+      "disposition": "the shell mark is not a numeric bracket; if the shell ever becomes a bounded interval it inherits that discipline rather than inventing a parallel one"
+    }
+  ],
+  "related_homes": [
+    {
+      "home": "crates/adva-witness/src/arithmetic.rs",
+      "carries": "exact multiplicative residual as an after/before pair of exact integer polynomials, identity 1/1"
+    },
+    {
+      "home": "crates/adva-witness/src/trace_arithmetic.rs",
+      "carries": "typed additive residuals that refuse cross-side scalar cancellation"
+    },
+    {
+      "home": "crates/adva-witness/src/closure_transport.rs",
+      "carries": "rejection residuals, and a frozen distributivity identity that must be transported"
+    },
+    {
+      "home": "docs/terminology/golden-ratio-receipt-v0.json",
+      "carries": "receipt fields including fuel_used, frame, residual and claim_scope, and the kinds unknown-tail and finite-precision-stop"
+    },
+    {
+      "home": "docs/research/0079-typed-hole-open-close-calibration-v0.md",
+      "carries": "the typed aperture reading of open and close over a finite observed filling fibre"
+    },
+    {
+      "home": "docs/maintenance/FLOAT_APERTURES.md",
+      "carries": "the list of places where imprecision and host nondeterminism enter, and of the shapes the visible openings take"
+    }
+  ],
+  "proposed_call_order": [
+    "state the expression fragment and its exact coefficient domain",
+    "state the degree or size budget for the core, and the rule that decides truncation",
+    "carry what the budget did not resolve as the declared shell, with its frame",
+    "record the direction with the shell",
+    "compare cores and shell emptiness, never values, and never a host quantity",
+    "on exhaustion, freeze the shell and return Unknown with the shell retained; never collapse"
+  ],
+  "gates": {
+    "coverage_gated_close": "May close only the declared fragment; cannot discharge the shell contract",
+    "free": "NotGranted",
+    "Seal": "NotIssued",
+    "native_admission": "NotGranted",
+    "acceptance_authority": "None: no rule here may read a mark as a verdict",
+    "numeric_guarantee": "None: a mark is a name, not a bound"
+  },
+  "report": "docs/research/0188-aeg-core-shell-notation-registered-as-a-target.md",
+  "residual": [
+    "No executable core/shell machine, and therefore no evidence: every witness above is TargetOnly or an annotated existing artefact",
+    "The shell's first form is undecided: symbolically unexpanded, or a bounded numeric interval",
+    "The degree or ideal budget and its truncation rule are undecided",
+    "The finite form of the terminal convergence condition is undecided",
+    "The unit specification has no grammar, rendering or validation",
+    "Whether any of this reaches the native boundary is undecided, and nothing here authorizes it"
+  ]
+}
