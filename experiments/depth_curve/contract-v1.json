@@ -1,0 +1,22 @@
+{
+  "schema": "adva.research.depth-curve-contract.v1",
+  "date": "2026-09-15",
+  "base": "6cf8d083fb453afce6f8b5ddbdaa0550ff284f1c",
+  "question": "Correct halt/nonhalt/unresolved accounting at every retained depth without rerunning semantics or rewriting frozen evidence.",
+  "inputs": {
+    "contract.json": "d2c789e5c4fc9a183b7fcfd2932b74ac6be7db5d673451e7a27ae4873173fa97",
+    "evidence.json": "b0c9190cb3d9ec295cea32807079074c23bfbab3a159e995b1743b3c30d8166a",
+    "calibration-v0.py": "564f960a05e4f698adcb04af04cc9e89c3031c4d59456ced42d689803ec8ea45"
+  },
+  "retained_sha256": "43fcf416a81dee59613f108d0188177a6345f13502141404b17b1b3cab0b94c0",
+  "definition": "decided = accepted + certified_nonhalting; unresolved = 1 - decided, including named pending-input and incomplete-syntax frontiers.",
+  "limits": {
+    "wall_seconds": 30,
+    "address_space_mib": 512,
+    "output_bytes": 4194304,
+    "primary_runs": 1,
+    "fresh_replays": 1
+  },
+  "exit": "Exact partition and regressions pass, or stop with failure. No semantic search.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan as authorized account proxy; no human review or endorsement implied."
+}

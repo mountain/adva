@@ -729,7 +729,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0197-the-protocol-without-a-magic-number.md`](0197-the-protocol-without-a-magic-number.md)
 - [`0198-the-protocol-ledger-and-why-the-partition-does-not-transfer.md`](0198-the-protocol-ledger-and-why-the-partition-does-not-transfer.md)
 - [`0199-declaring-the-two-spaces.md`](0199-declaring-the-two-spaces.md)
-- [`0200-the-depth-curve-from-retained-evidence.md`](0200-the-depth-curve-from-retained-evidence.md)
+- [`0200-the-depth-curve-from-retained-evidence.md`](0200-the-depth-curve-from-retained-evidence.md) — see the 2026-09-15 correction: current halting uncertainty is in `depth_curve/evidence-v1.json`; v0 remains historical.
 - [`0201-two-curves-on-one-cost-axis.md`](0201-two-curves-on-one-cost-axis.md)
 - [`0202-does-a-step-close-more-than-it-opens.md`](0202-does-a-step-close-more-than-it-opens.md)
 - [`0203-allocating-the-three-currencies.md`](0203-allocating-the-three-currencies.md)
