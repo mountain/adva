@@ -154,6 +154,11 @@ defect, and both frozen-replay tests still pass unchanged.
   reproduce on the unmodified baseline, so they are pre-existing and
   environmental (a `preexec_fn` failure under the local macOS process model, and a
   frozen-output replay test), not effects of this repair.
+- The Linux CI workflow `pytest` job passed on `2df905c`, the commit carrying the
+  repair and the four new tests, across its Python 3.11, 3.12 and 3.13 matrix with
+  the Rust toolchain and recursive submodules. That is the independent
+  confirmation that the 11 local failures above are properties of the macOS host
+  rather than of this change, and that the new tests are not version-specific.
 
 ### What was not executed
 
