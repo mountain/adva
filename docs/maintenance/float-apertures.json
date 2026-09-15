@@ -1,8 +1,8 @@
 {
-  "experiments_scanned": 81,
+  "experiments_scanned": 82,
   "verdicts": {
     "no-numeric-constructs": 2,
-    "exact-only": 12,
+    "exact-only": 13,
     "imprecision-can-decide": 38,
     "imprecision-in-illustration-only": 29
   },
@@ -138,6 +138,21 @@
         }
       ],
       "verdict": "imprecision-can-decide"
+    },
+    {
+      "experiment": "aperture_ledger",
+      "sources": [
+        "calibration.py"
+      ],
+      "counts": {
+        "binary64": 0,
+        "intmath": 1,
+        "host": 0,
+        "drift": 0
+      },
+      "rows": 1,
+      "deciding_lines": [],
+      "verdict": "exact-only"
     },
     {
       "experiment": "borromean_cut_linkage",

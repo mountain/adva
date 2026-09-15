@@ -1,0 +1,41 @@
+{
+  "schema": "adva.research.aperture-ledger-contract.v0",
+  "version": 0,
+  "name": "aperture-ledger",
+  "base_commit": "bbb423d",
+  "frozen_on": "2026-09-15",
+  "authority": "Research 0129 section 3; this contract authorizes one bounded run and nothing else",
+  "question": "Can a step be judged by whether it closes more apertures than it opens, and can the direction then be followed step by step? The question is answered per currency, because the record already counts apertures in three different ways.",
+  "level": "External exact counting over retained artifacts: the scanner's recorded verdict series, the mass accounts of the shell and depth rounds, and the correction and refutation statements the notes and frozen evidence carry",
+  "domain": "The float aperture inventory and its rescan history, the shell and depth experiments, and the notes and claims of the line; nothing about Omega's value, its computability, the three-computation system, or any Go position",
+  "objects": {
+    "the_three_currencies": "Apertures are counted in the record as scanner verdicts over experiments, as mass left unresolved, and as statements the record carries while they are wrong. The three are counted separately because a step can close in one and open in another.",
+    "the_scanner_currency": "Each rescan of the inventory records how many experiments are exact-only and how many have a deciding line on a float or host construct, so a step's net in this currency is the change in those two counts.",
+    "the_mass_currency": "The traversal's own space closes monotonically, so resolving a layer opens nothing there; a truncating step instead opens a residual whose mass is of the same order as the layer it closes, which the shell round measured exactly.",
+    "the_statement_currency": "A correction appended to a note closes a statement, and a sentence refuted by a later recomputation but kept in frozen evidence stays open by design, so this currency has a structural floor that is not zero.",
+    "the_direction_rule": "Proceed when the net in the declared currency is negative, which requires declaring the currency first, and report the currencies where closure is impossible by construction rather than treating them as failures of the step."
+  },
+  "imported_assumptions": [
+    "The rescan history is read from the aperture inventory's own sections and its final point is checked against the inventory's machine-readable file",
+    "The mass accounts are read from the shell round and the depth curve and are not re-derived",
+    "The statement counts come from scanning the notes and the frozen evidence in this repository, not from memory",
+    "No experiment is re-run and nothing retained is modified"
+  ],
+  "protected": [
+    "No retained inventory, evidence or note is modified",
+    "The three currencies are never added together into one number",
+    "A currency with a structural floor is reported as such and not counted as a failure"
+  ],
+  "budget": {
+    "wall_seconds": 120,
+    "cpu_seconds": 90,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 2097152
+  },
+  "residual": [
+    "The scanner currency counts text-level verdicts and not real uncertainty",
+    "The statement currency counts corrections and refutations, which is a narrow reading of what a wrong statement is",
+    "The mass currency covers the spaces this line worked in"
+  ]
+}
