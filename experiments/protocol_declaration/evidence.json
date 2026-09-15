@@ -1,0 +1,137 @@
+{
+  "authority": "research-only; the protocol is a declaration and this checker authorizes nothing",
+  "budget_steps": 1000,
+  "clauses": [
+    {
+      "clause": "the allocation closes exactly in whole steps",
+      "detail": {
+        "budget": 1000,
+        "closes": true,
+        "declared_reserve_fraction": "1/100",
+        "reserve_fraction_at_whole_steps": "1/100",
+        "reserve_steps": 10,
+        "side_steps": [
+          330,
+          330,
+          330
+        ]
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the declared side split is the leveling one for the declared pool",
+      "detail": {
+        "declared_split": [
+          "33/100",
+          "33/100",
+          "33/100"
+        ],
+        "equal_shares_reach_equal_depths": true,
+        "exhaustive_best": [
+          17,
+          17,
+          17
+        ],
+        "exhaustive_resolved": "262143/262144",
+        "leveling_depths": [
+          17,
+          17,
+          17
+        ],
+        "leveling_resolved": "262143/262144",
+        "pool_steps": 990,
+        "steps_left_unspent": 18,
+        "steps_spent": 972
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the declared reserve is the priced one for the declared link cost, or the declaration states the gap",
+      "detail": {
+        "conversion_layer_steps_per_measure": 8,
+        "declared_levels_bought": 1,
+        "declared_reserve_fraction": "1/100",
+        "declared_reserve_steps": "10",
+        "declared_resolved": "3/4",
+        "gap_in_remaining_mass": "33554431/134217728",
+        "priced_levels_bought": 26,
+        "priced_reserve_fraction": "9/40",
+        "priced_reserve_steps": 225,
+        "priced_resolved": "134217727/134217728",
+        "what_would_make_it_pass": "a link price low enough that one per cent is the priced reserve, or a declared fraction equal to the priced one"
+      },
+      "verdict": "fail"
+    },
+    {
+      "clause": "the key half is measured or carries a surcharge or a bound",
+      "detail": {
+        "declared": "unmeasured",
+        "measured_on_this_host": false,
+        "obligation": "the declaration must keep saying unmeasured until a measurement exists, or state a surcharge or a bound",
+        "reason": "key-issue returns Unknown on this host because the ed25519 backend is missing, so no signature is produced or verified"
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "the rollback trigger names the retained verdict field",
+      "detail": {
+        "measured_support": "0195: every level above the first reports prev_anchor_match true under the corrected procedure, and 0194 measured that a failed verification leaves the head unchanged and aborts before working",
+        "retained_field": "tamper-check anchor.prev_anchor_match",
+        "trigger": "the retained tool's own verdict field for the join"
+      },
+      "verdict": "pass"
+    },
+    {
+      "clause": "a joined link raises the ceiling by one and resolving the layer halves the remaining mass",
+      "detail": {
+        "layer_masses": [
+          "1/2",
+          "3/4",
+          "7/8",
+          "15/16",
+          "31/32"
+        ],
+        "remaining": [
+          "1/2",
+          "1/4",
+          "1/8",
+          "1/16",
+          "1/32"
+        ],
+        "support": "0191 layer masses and the (d+1)^2 step cost of a depth"
+      },
+      "verdict": "pass"
+    }
+  ],
+  "clauses_failed": 1,
+  "clauses_passed": 5,
+  "counts": {
+    "checks": 5,
+    "clauses": 6,
+    "failed": 1,
+    "passed": 5
+  },
+  "direction_line": "每侧启动前，按照 0.33, 0.33, 0.33，来分配时空构的资源，留 0.01 做成 key 和 cert 的部分，然后试图执行，如果 key 和 cert 部分接不起来，就可以安全回推。一旦接起来，我们就在三计算的 Omega 附近压缩到下一层级了。",
+  "findings": [
+    "the direction's protocol is now a declaration a checker can read, and each clause carries a verdict with the numbers behind it rather than an opinion",
+    "the sides clause passes: the declared equal thirds are the leveling case, the leveling rule reproduces the exhaustive optimum on the declared pool, and equal shares reach equal depths there",
+    "the reserve clause fails at the declared conversion: the priced reserve is far above one per cent, so the direction's own number contradicts the measured price of a link",
+    "the key half clause passes only while the declaration says unmeasured, which is an obligation rather than a comfort: calling it measured without a measurement would price the unknown at zero",
+    "the rollback clause passes because it names the retained verdict field, and the level advance clause passes from the retained layer masses"
+  ],
+  "native_status": "NotRun",
+  "non_claims": [
+    "the checker does not argue optimality and does not decide the protocol: it reports where the declared clauses contradict the measurements",
+    "the link price enters through a declared conversion from measured bytes to layer steps, so the failing reserve clause fails at that conversion and the passing ones do not depend on it",
+    "the key half is still unmeasured, so the protocol remains certificate-priced",
+    "no retained record, anchor, credential or key is read as authority; no native change is made",
+    "the triadic tension recorded in Research 0192 remains unresolved: the sides are budget holders in this declaration"
+  ],
+  "protocol": {
+    "name": "safe-traversal-protocol",
+    "schema": "adva.research.traversal-protocol-declaration.v0",
+    "version": 0
+  },
+  "schema": "adva.research.traversal-protocol-check-evidence.v0",
+  "status": "ProtocolContradictsTheMeasurements"
+}
