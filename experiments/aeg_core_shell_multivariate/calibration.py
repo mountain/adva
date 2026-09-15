@@ -270,7 +270,11 @@ def truncated_inverse(denominator, order):
     one = MPoly.constant(1, nvars)
     g = unit - one
     if g.is_zero():
-        return one
+        # The denominator is the constant polynomial `constant` itself, so the
+        # series has one term and the loop below would leave `total = one`. The
+        # final scaling is still owed: the inverse of `constant` is 1/constant,
+        # which is `one` only when constant is one.
+        return one.scale(1 / constant)
     total, power = one, one
     for step in range(order):
         power = power * g

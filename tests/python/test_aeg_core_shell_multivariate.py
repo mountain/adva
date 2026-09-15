@@ -10,10 +10,12 @@ and it holds the frozen contract to its own record.
 """
 
 import hashlib
+import importlib.util
 import json
 import re
 import subprocess
 import sys
+from fractions import Fraction
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -191,3 +193,53 @@ def test_the_note_records_the_rung_and_the_index_agrees():
     assert "ézout" in text or "Bezout" in text, "the negative result is not stated"
     assert "NotRun" in text, "the native status must be stated"
     assert "0190" in text
+
+
+# ------------------------------------------------------ the truncated inverse helper
+
+def checker_module():
+    """Import the checker to call a helper directly, as the discovery probes do."""
+    spec = importlib.util.spec_from_file_location("multivariate_inverse", CHECKER)
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[spec.name] = module
+    spec.loader.exec_module(module)
+    module.LIMITS["max_assertions"] = 100000
+    return module
+
+
+def test_the_truncated_inverse_of_a_constant_scales_by_that_constant():
+    """c times its truncated inverse must be exactly one for every nonzero c.
+
+    A pure constant has no positive-degree terms, so nothing is truncated and the
+    product is exactly one. The early exit taken when the normalized remainder is
+    zero returned the unit monomial and dropped the normalization it had just
+    applied, giving one instead of 1/c for every c other than one.
+    """
+    module = checker_module()
+    one = module.MPoly.constant(1, 2)
+    for c in (Fraction(1), Fraction(-1), Fraction(2), Fraction(3), Fraction(1, 2)):
+        for order in (1, 2):
+            constant = module.MPoly.constant(c, 2)
+            approximation = module.truncated_inverse(constant, order)
+            assert approximation * constant == one, (c, order)
+            assert approximation.terms == {(0, 0): 1 / c}, (c, order)
+
+
+def test_the_inverse_keeps_its_scaling_on_both_sides_of_the_early_exit():
+    """The zero-remainder shortcut and the series must agree where both apply.
+
+    `one + x^2` has a nonzero remainder, so it takes the loop; adding the
+    remainder to the constant term moves the same denominator onto the early
+    exit. Both routes describe the same normalization and must not disagree.
+    """
+    module = checker_module()
+    one = module.MPoly.constant(1, 2)
+    x = module.MPoly.variable(0, 2)
+    series_route = module.truncated_inverse(one + x, 1)
+    assert series_route.terms == {(0, 0): 1, (1, 0): -1}
+    for c in (Fraction(-1), Fraction(2), Fraction(3), Fraction(1, 2)):
+        shortcut = module.truncated_inverse(module.MPoly.constant(c, 2), 2)
+        assert shortcut * module.MPoly.constant(c, 2) == one
+    # the frozen experiment's denominator still resolves through the series
+    frozen = module.truncated_inverse(x * x + module.MPoly.constant(1, 2), 3)
+    assert frozen * (x * x + module.MPoly.constant(1, 2)) - one != module.MPoly.zero(2)

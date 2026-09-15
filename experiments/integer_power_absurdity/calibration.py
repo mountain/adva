@@ -184,8 +184,13 @@ def exp_interval(x, terms):
         return Interval(exp_reduced(x.lo, terms).lo, exp_reduced(x.hi, terms).hi)
     if x.hi <= 0:
         return Interval(1, 1) / exp_interval(-x, terms)
-    return Interval(exp_reduced(Fr(0), terms).lo,
-                    exp_reduced(x.hi, terms).hi)
+    # Crossing zero: exp is increasing, so the ends still suffice, but the lower
+    # end is exp(x.lo) with x.lo < 0 and, unlike the two branches above, it is
+    # strictly below one. Handing each end to the matching one-sided branch keeps
+    # exp_reduced on the non-negative arguments it requires; negating the whole
+    # crossing-zero interval instead would recurse into this same branch forever.
+    return Interval(exp_interval(Interval(x.lo, Fr(0)), terms).lo,
+                    exp_interval(Interval(Fr(0), x.hi), terms).hi)
 
 
 def ln2_enclose(terms):

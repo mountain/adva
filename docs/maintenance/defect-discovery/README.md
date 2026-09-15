@@ -46,8 +46,10 @@ the GitHub file identities at the baseline:
 Run 002 completed in 0.441 seconds with the same nine violating cases and 27
 passing cases per replay (36 total cases, each replayed twice). Exact main-source
 blob identities now match, both report hashes and all retained source SHA-256
-hashes validate, and no worker bytecode cache was created. The runner still exits
-1 because the two helper defects are unfixed. The target helpers were not edited.
+hashes validate, and no worker bytecode cache was created. At the end of run 002
+the runner exited 1 because the two helper defects were then unfixed and the
+target helpers had not been edited. Both were subsequently fixed; see
+[the fix record](#2026-09-15-fix-record-for-the-two-helper-defects) below.
 
 The engineering control suite covers oracle mutants, Unknown vs pass, resource
 installation failure, report integrity, duplicate replay identity, local/security
@@ -78,6 +80,84 @@ successful real GitHub submission and GitHub Actions execution remain untested.
 The report transport's checks are structural; an agent still has to establish
 attribution and inspect the public payload. No claim of full repository, native
 Rust, deployment, FFI, or alternative-interpreter acceptance is made.
+
+## 2026-09-15 fix record for the two helper defects
+
+Runs 001 and 002 are retained above unchanged as the executed history. This
+section records the repair that followed them. Nothing here rewrites those runs,
+and neither report was regenerated.
+
+Both defects named in run 002 were confirmed Adva-owned and fixed in place, in
+the same files the probes execute:
+
+| Helper | File | Defect | Repair |
+| --- | --- | --- | --- |
+| `exp_interval` | `experiments/integer_power_absurdity/calibration.py` | the crossing-zero branch returned `exp(0)=1` as its lower bound | each end is handed to the matching one-sided branch, so the lower bound is `exp(x.lo)` |
+| `truncated_inverse` | `experiments/aeg_core_shell_multivariate/calibration.py` | the zero-remainder early exit returned `one` and dropped the normalization just applied | it returns `one.scale(1 / constant)` |
+
+The exponential repair deliberately does not negate the crossing-zero interval:
+`Interval(-x)` maps a crossing-zero interval onto another crossing-zero interval,
+so that route recurses into the same branch forever. Sending `[x.lo, 0]` to the
+non-positive branch and `[0, x.hi]` to the non-negative branch keeps `exp_reduced`
+on the non-negative arguments it requires.
+
+### The repair is evidence-neutral for the retained experiments
+
+The frozen experiments were not re-interpreted, and this was established rather
+than assumed, by instrumenting each helper and counting its actual call sites in
+the frozen runs:
+
+- `exp_interval`: 29 calls. Zero of them crossed zero, so the repaired branch was
+  never taken by the retained experiments.
+- `truncated_inverse`: 4 calls. The three series calls have constant term 1 and
+  remainder `g = x^2`, which is non-zero, so they take the loop; the fourth is the
+  refusal control, which has no constant term and is rejected before either path.
+  The early exit was never reached.
+
+The retained `evidence.json` files therefore cannot have depended on either
+defect, and both frozen-replay tests still pass unchanged.
+
+### Checks executed
+
+- Both defects were reproduced before the fix and are gone after it. The three
+  probe families were run directly, without the enforced resource profile of
+  `run.py`, on CPython 3.14.6/macOS: 1 + 8 = 9 violations before, 0 violations
+  after, with the same 36 cases (2 + 10 + 24).
+- Four regression tests were added, two per helper. All four fail against the
+  pre-fix helpers and all four pass against the repaired ones, which is the
+  property that makes them regressions rather than decoration. The exponential
+  test uses an independent rigorous oracle — the direct series with an explicit
+  remainder bound, no argument halving and squaring, no outward grid, no interval
+  type — and requires the returned interval to contain `exp` at both ends, which
+  is necessary and sufficient for an increasing function. Loose rational bounds
+  such as `exp(-1) < 1/2` are only necessary and cannot carry this test.
+- `tests/python/test_integer_power_absurdity.py` and
+  `tests/python/test_aeg_core_shell_multivariate.py`: 21 passed.
+- `scripts/defect_discovery/test_discovery.py`: 14 passed.
+- Whole `pytest` suite: 2722 passed, 11 failed, 1 skipped. The same 11 failures
+  reproduce on the unmodified baseline, so they are pre-existing and
+  environmental (a `preexec_fn` failure under the local macOS process model, and a
+  frozen-output replay test), not effects of this repair.
+
+### What was not executed
+
+- The enforced-resource-profile runner was not run locally: `run.py --worker`
+  refuses a non-Linux host, and this repair was prepared on macOS. A run 003
+  artifact with the real ceilings requires a Linux host or the manual
+  **Bounded defect discovery** workflow.
+- Neither helper was checked against a native Rust certificate, a deployed
+  binary, an alternative interpreter, or concurrent callers. The exposure of any
+  retained certificate to the crossing-zero branch remains unestablished, exactly
+  as run 002 recorded it.
+- No upstream issue was filed, before or after the fix. The finding was Adva-owned
+  throughout, and neither witness ever established an upstream contract
+  violation. There is no security grade to assign: the disclosure path is
+  `PublicNonSecurity` by construction and the transport refuses a
+  security-sensitive finding outright.
+
+Repair prepared by deepseek-v4-flash-vision-exp (DeepSeek Harness), submitted
+through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
+endorsement, review, or a correctness claim.
 
 Authored by ChatGPT (OpenAI), through Mingli Yuan's account as an authorized proxy;
 account use is not endorsement, review, or a correctness claim.
