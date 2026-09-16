@@ -129,6 +129,18 @@ one use and lower after two uses, including compilation. This is a finite reuse
 result, with host-side program loading; it does not establish a general
 specializer or a wall-clock speedup.
 
+### A compiler that compiles itself
+
+The [structured self compiler](experiments/bounded_self_compiler/README.md)
+compiles its own Adva source through two native generations with equal target
+bytes, independent block checks and execution controls. It uses the separately
+bounded `adva data-run-v1` research profile. The
+[report](docs/research/bounded-self-compiler-and-futamura.md) connects this bootstrap
+to the existing static and dynamic first-projection calibrations and states the
+remaining interpreter, `mix` and self-application contracts. This establishes
+self compilation for the declared subset; a general specializer and the second
+and third Futamura projections remain open.
+
 ### A collaboration record, without building Rust
 
 With Python 3.11 or later:

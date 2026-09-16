@@ -961,3 +961,31 @@ machine cannot avoid. Self-hosting therefore needs either a larger instruction b
 a data-driven dispatch the language cannot express today, and the slot bank is the one
 term an extension does not have to buy. This is a price list for the separately scoped
 extension of sections 12 to 16, not a prohibition, and it promotes nothing.
+
+## 18. Bounded self compiler and integration with the v0 calibrations, 2026-09-16
+
+Mingli requested a compiler capable of compiling itself and an explicit use of
+the complete Futamura theory. The [bounded structured compiler report](research/bounded-self-compiler-and-futamura.md)
+records the executed `C0(S) -> C1`, `C1(S) -> C2`, `C2(S) -> C3` chain: canonical
+stage equality, independent block receiving, ten execution fixtures, mutations,
+and original-fuel continuation passed in the successor finite experiment. Its
+first full attempt failed in the mutation harness and remains retained.
+
+This supplies a self-compiling **research subset**, under the separate
+[v1 machine and compiler ADR](adr/bounded-self-compiler-research.md). It does not
+supply a complete Adva interpreter or general specializer. Sections 15 and 16
+retain the existing first-projection-style static and dynamic observations on
+v0. A general `mix` execution and the second and third projections remain Open. The
+report spells out their types, static/dynamic inputs, code and result observers,
+correspondence obligations and self-application requirements. The next concrete
+dependency is an Adva interpreter for this same structured subset, followed by a
+bounded `mix` that can ultimately accept its own implementation. A manually
+written self compiler is not the second projection; Rust execution, external
+seed/codec and external research receiving remain explicit imports.
+
+The size curve in section 17 prices its declared v0 lowering design, not a
+universal minimum for compilers. Its refusals and evidence remain unchanged.
+The v1 compiler takes the separately scoped extension route: 257 instructions,
+35 registers, generic dynamic field access and stack packing, and 34,135 native
+steps per self compilation. This does not make its source grammar identical to
+the v0 object language or discharge the missing specializer/loader boundaries.

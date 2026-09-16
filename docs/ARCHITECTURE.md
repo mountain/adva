@@ -482,3 +482,14 @@ reusing their recipes. Unknown/Open records are diagnostic, not knowledge
 admission. This journal does not change the old epoch loader or its checker
 fingerprint. Newest-recipe ablation and ordinary macro expansion calibrate
 bounded feedback without claiming native program or language formation.
+
+## Structured compiler bootstrap research boundary
+
+`data_machine_v1` supplies a separately versioned finite target for the
+[structured self compiler](research/bounded-self-compiler-and-futamura.md).
+Generic Rust instructions execute Adva source traversal, block-size calculation
+and target construction. Python supplies an external seed, representation codec
+and independent structural receiver; Rust admits and executes the resulting
+typed targets. The original `data_machine` v0 module remains frozen. Neither
+version allocates native diagram identities or extends stable PSC0. The compiler
+has a separate research correspondence receipt, not a native `GraftTrace`.

@@ -1,0 +1,91 @@
+{
+  "schema": "adva.bounded-self-compiler.contract.v1",
+  "base": "9c3be81f11e22162af0ac1637188688778363a13",
+  "question": "Can a structured Adva research compiler compile its own source, producing semantically checked executable successors?",
+  "level": "Bounded research language bootstrap; no stable PSC0 promotion or completed Futamura self-application",
+  "imports": [
+    "Rust-owned separately versioned data-machine v1; v0 source and checkpoint profile remain frozen",
+    "Python seed and data codec are explicit bootstrap imports",
+    "Structured source uses the same generic primitives as its target, adding Seq, If and While; no native compile opcode"
+  ],
+  "protected": [
+    "All code-generation control runs as Adva instructions after the seed",
+    "Compiler source is an ordinary accepted object program",
+    "Every target is statically admitted by Rust before running",
+    "Independent recursive block correspondence checks all source leaves and generated branch/jump targets",
+    "Terminal data/rejection and ordered primitive events are the observer; fuel and control history are separately reported",
+    "Checkpoint reception replays all prior steps with independently supplied program, input and original lifetime fuel",
+    "No copying a prebuilt compiler as output; mutations must be observable and rejected by correspondence",
+    "No native SourceId, OccurrenceId or GraftTrace claim"
+  ],
+  "checker": "Separate structural block receiver, direct structured-source execution oracle, native full replay, stage equality and negative mutations",
+  "family": {
+    "bootstrap": [
+      "C0(S)=C1",
+      "C1(S)=C2",
+      "C2(S)=C3",
+      "C1=C2=C3 canonical program bytes"
+    ],
+    "fixtures": [
+      "literal",
+      "exact-large",
+      "if-true",
+      "if-false",
+      "while-zero",
+      "while-five",
+      "nested-control",
+      "data-fields",
+      "overflow",
+      "bad-dynamic-field"
+    ],
+    "controls": [
+      "zero fuel",
+      "loop fuel exhausted",
+      "17-step resume and native check",
+      "changed fuel/input/trace refusal",
+      "malformed source",
+      "compiler source mutation",
+      "target control mutation",
+      "static type refusal",
+      "output no-clobber"
+    ]
+  },
+  "machine_limits": {
+    "instructions": 2048,
+    "registers": 64,
+    "data_nodes": 16384,
+    "data_depth": 48,
+    "node_fields": 2048,
+    "stack_items": 4096,
+    "state_nodes": 131072,
+    "program_bytes": 524288,
+    "input_bytes": 524288,
+    "report_bytes": 67108864,
+    "continuation_segments": 16,
+    "lifetime_instruction_fuel": 200000
+  },
+  "campaign_limits": {
+    "primary_processes": 1,
+    "fresh_processes": 1,
+    "max_native_launches_per_process": 48,
+    "max_reference_steps_per_process": 2000000,
+    "wall_seconds_per_process": 600,
+    "cpu_seconds_per_process": 540,
+    "address_space_bytes": 1073741824,
+    "artifact_bytes_per_process": 268435456,
+    "max_full_attempts_under_this_contract": 1
+  },
+  "preflight": "One additional mutation-control preflight, 180 wall seconds / 160 CPU seconds / 1 GiB / 96 MiB. Prior four v0 preflights remain historical. No additional full attempt under this v1 beyond its single declared primary/fresh pair.",
+  "exit": "Stop on first mismatch or resource limit; retain failure and classify incomplete evidence as Unknown. A revised finite contract is required before another full attempt.",
+  "residual": [
+    "Not a compiler for all Adva or PSC0",
+    "Not an Adva-written general specializer",
+    "No second or third Futamura projection yet",
+    "No Turing-universality, speedup, native cell or Seal claim"
+  ],
+  "supersedes": {
+    "path": "experiments/bounded_self_compiler/contract.json",
+    "sha256": "4bac755ce9f6670e2f81c2445ce17aceece7a8d78ea262e57181fb3388fc9e9f",
+    "reason": "Full v0 attempt-1 stopped after 34 native calls: mutation visitor incorrectly received the module envelope instead of its body, raising KeyError before the remaining controls. Retain the failed attempt and fix only the visitor entry; compiler, VM, family and all full-run limits remain unchanged."
+  }
+}

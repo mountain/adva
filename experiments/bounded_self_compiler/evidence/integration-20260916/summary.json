@@ -1,0 +1,80 @@
+{
+  "schema": "adva.structured-self-compiler.integration-receiving.v0",
+  "date": "2026-09-16",
+  "base_main": "4027933725c00ac81643e80e96dc59d5a2bb599a",
+  "compiler_commit": "1baba8356c7912d4ee28a4bcca87942c5f8a4085",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan account as authorized proxy; not endorsement or independent review",
+  "status": "LocalChecksPassed",
+  "restored_files_verified_against_prepared_blob_inventory": 128,
+  "rust": {
+    "workspace_passed": 260,
+    "failed": 0,
+    "toolchain": "1.98.1",
+    "formatting": "Passed",
+    "clippy_all_targets_all_features_deny_warnings": "Passed"
+  },
+  "python": {
+    "summary": "2757 passed, 26 subtests passed in 413.14s (0:06:53)",
+    "source": "local python/ via PYTHONPATH, with locally rebuilt adva-python extension"
+  },
+  "native_receiving": {
+    "verified_steps": 68270,
+    "wall_seconds": 18.796150892998412,
+    "binary_sha256": "ff7d1889b140bd675376285e103991711f26b7c4e9fc4769538d18ddbddf4c77",
+    "profile": "e9a700a7ca68f73587b18be1230f908e358a7d30f0a3f7d62397493b378b5797"
+  },
+  "active_contract": "experiments/advance_symbol_surface/contract-v5.json",
+  "contract_successor": "Only version/date/base/supersedes changed; every other v4 field preserved",
+  "commands": [
+    "cargo +1.98.1 fmt --check",
+    "cargo +1.98.1 clippy --locked --workspace --all-targets --all-features -- -D warnings",
+    "timeout 180s cargo +1.98.1 test --locked --workspace",
+    "timeout 180s cargo +1.98.1 build --locked --release -p adva-witness --bin adva",
+    "timeout 180s cargo +1.98.1 build --locked -p adva-python",
+    "timeout 180s python -B experiments/bounded_self_compiler/native_receive.py --binary <rebuilt-release-adva> --output <fresh-receiving-directory>",
+    "PYTHONPATH=python timeout 600s python -m pytest -q"
+  ],
+  "setup_failures": [
+    "Nonexistent index test path: no tests collected",
+    "31 passed, 2 failed before submodule checkout and contract successor",
+    "SSH submodule transport unavailable; exact pinned submodule received over HTTPS",
+    "Editable install: incomplete command path, then missing maturin backend; direct cargo build used"
+  ],
+  "known_whitespace": "Two historical rust-toolchain.toml snapshots retain original blank EOF lines",
+  "remote_ci": "Not yet run at this local pre-publication record",
+  "residual": [
+    "No new full research campaign",
+    "Bounded structured subset only",
+    "Existing v0 first-projection-style static/dynamic observations retained; general mix and second/third projections remain Open",
+    "No native GraftTrace correspondence or speedup claim"
+  ],
+  "files_sha256": {
+    "clippy.log": "fbcfc42a5183e7c516021be4acbfb111e3c5cbdb03c11c356c7ab53d83e6b7ac",
+    "native-reception-cost.json": "587b4e335d8864501743413ec2e38f70ace465b5e686f23edbbe9e1b46993269",
+    "python-suite.log": "2a72833bb0648be977118529c709c5870b2a61b1f4a713cb0ceb7588081d475e",
+    "rust-workspace-tests.log": "38021d8afcf2b18053c489368d52331350d71bc2faff8f6c5f1c4c407fd97056",
+    "native-reception.log": "eed04d9070bc92e5d71695287e5f947da44795ebc837f51fe009cf8bd6c9f2d5",
+    "merged-receiving.xml": "310f0b12e645a8bfa5d740c455f923330c287731f5186118b91dbf58940c0a4f"
+  },
+  "integrated_main": "cb84d211207be00ef4bd614b978dcb52e7343a41",
+  "check_scope": "Full Rust/Python/native checks precede the five incoming main commits; their merged receiving checks are recorded separately.",
+  "merged_receiving": {
+    "summary": "51 passed in 2.11s",
+    "junit_tests": 51,
+    "junit_failures": 0,
+    "junit_errors": 0,
+    "scope": [
+      "bounded self compiler",
+      "advance surface contract chain",
+      "research index",
+      "static first projection",
+      "dynamic residual",
+      "compiler size curve",
+      "problem workflow tooling"
+    ],
+    "command": "PYTHONPATH=python timeout 180s python -m pytest -q tests/python/test_bounded_self_compiler.py tests/python/test_advance_surface_contract_chain.py tests/python/test_research_index_consistency.py tests/python/test_futamura_first_projection.py tests/python/test_futamura_dynamic_residual.py tests/python/test_compiler_size_curve.py tests/python/test_tooling_workflow.py --junitxml=<receiving-record>",
+    "rust_source": "Identical to the tested compiler commit",
+    "unique_claims": 171,
+    "named_research_notes": 39
+  }
+}

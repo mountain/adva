@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **213 numbered
-notes, 38 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 39 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -810,3 +810,5 @@ Every file in this directory, so that no note is reachable only through a summar
 they were previously duplicated here and the two copies drifted apart.*
 
 - [keraia-growth-invariants-and-mass-ablation.md](keraia-growth-invariants-and-mass-ablation.md): received protected-stack invariants add 13 nonhalting cylinders at depth 19, excluding 19/524288 at the same cut; depth 15 gains zero.
+
+- [bounded-self-compiler-and-futamura.md](bounded-self-compiler-and-futamura.md): a structured Adva research compiler compiles its own source, with stage, block and execution receiving; the three Futamura projections retain explicit implementation obligations.

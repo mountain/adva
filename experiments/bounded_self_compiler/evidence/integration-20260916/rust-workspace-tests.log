@@ -1,0 +1,526 @@
+   Compiling pyo3-ffi v0.29.2
+   Compiling adva-python v0.1.0 (/workspace/scratch/075e8b41b8d7/adva/crates/adva-python)
+   Compiling adva-labs-search v0.1.0 (/workspace/scratch/075e8b41b8d7/adva/experiments/labs-search)
+   Compiling adva-witness v0.1.0 (/workspace/scratch/075e8b41b8d7/adva/crates/adva-witness)
+   Compiling pyo3 v0.29.2
+   Compiling adva-lisp v0.1.0 (/workspace/scratch/075e8b41b8d7/adva/crates/adva-lisp)
+   Compiling adva-ir v0.1.0 (/workspace/scratch/075e8b41b8d7/adva/crates/adva-ir)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 19.16s
+     Running unittests src/lib.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_ir-45ded183b3536940)
+
+running 3 tests
+test term::tests::frontier_newtypes_preserve_the_version_one_json_shape ... ok
+test term::tests::rational_is_normalized ... ok
+test term::tests::signature_keeps_domain_and_codomain_orientations ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/numeric_json.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/numeric_json-1b8afe2012976070)
+
+running 2 tests
+test json_decodes_the_k28_input_without_changing_its_bits ... ok
+test finite_json_numbers_round_trip_bit_for_bit ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/numeric_rounding.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/numeric_rounding-311ed13900bfec8c)
+
+running 2 tests
+test full_signed_range_and_zero_do_not_overflow ... ok
+test exact_ratios_round_once_at_unit_boundaries_and_ties ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_labs_search-516b014c448664ac)
+
+running 9 tests
+test tests::exact_energy_matches_known_sequence ... ok
+test tests::labs_symmetry_orbit_preserves_energy ... ok
+test tests::each_program_returns_an_exact_candidate ... ok
+test tests::incremental_flip_matches_full_recomputation ... ok
+test tests::ablation_can_run_each_program_in_isolation ... ok
+test tests::parallel_report_has_an_independently_verifiable_best_witness ... ok
+test tests::exhaustive_small_optima_match_reference_values ... ok
+test tests::checkpoint_round_trip_preserves_a_deterministic_run ... ok
+test tests::bounded_triadic_search_reaches_the_length_eleven_optimum ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.27s
+
+     Running unittests src/main.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_labs_search-816c3ab49f57395d)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_lisp-9667b5c2dacdcf0f)
+
+running 6 tests
+test operation::tests::builtin_keys_and_surface_forms_are_unique ... ok
+test operation::tests::log_v2_divides_before_an_avoidable_reciprocal_overflow ... ok
+test operation::tests::log_v2_preserves_domain_refusal_and_does_not_clamp_true_overflow ... ok
+test parser::tests::module_round_trip_preserves_explicit_calls ... ok
+test parser::tests::bare_symbols_are_not_host_values ... ok
+test module::tests::cyclic_imports_are_rejected ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/diagram_validation.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/diagram_validation-a5c1b865aee3625d)
+
+running 6 tests
+test copy_history_cannot_change_source_or_occurrence_path ... ok
+test evaluator_cannot_bypass_diagram_integrity_check ... ok
+test wires_must_reference_preceding_canonical_producers ... ok
+test semantic_import_rejects_implicit_aliasing_even_when_json_decodes ... ok
+test unchecked_rewrite_traces_fail_closed ... ok
+test compiled_and_round_tripped_diagrams_receive_the_same_checked_certificate ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/frontier.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/frontier-ee1ab9a855773bce)
+
+running 3 tests
+test frontier_is_the_only_pre_release_boundary_spelling ... ok
+test frontier_does_not_authorize_implicit_aliasing ... ok
+test frontier_preserves_order_without_creating_source_sharing ... ok
+
+test result: ok. 3 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/graft_trace.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/graft_trace-58c9b212f14943c7)
+
+running 2 tests
+test argument_regions_retain_events_that_bind_no_hole ... ok
+test compiler_emits_deterministic_nested_two_hole_graft_frames ... ok
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/kernel.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/kernel-09370c77d4af6ba9)
+
+running 10 tests
+test implicit_aliasing_is_rejected ... ok
+test k1_copy_has_distinct_occurrences_with_one_explicit_source ... ok
+test calculus_uses_the_same_checked_operation_graph ... ok
+test k2_value_observation_does_not_collapse_source_or_history_observation ... ok
+test host_allocation_addresses_do_not_change_semantics ... ok
+test module_calls_are_typed_and_remain_in_history ... ok
+test observations_are_typed_variants_not_authority_to_rewrite ... ok
+test serialization_rejects_an_unknown_diagram_version ... ok
+test serialization_round_trip_preserves_paths_partition_and_boundary ... ok
+test independent_equal_inputs_never_merge_sources ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/numeric_boundary.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/numeric_boundary-5b7a9a15e0cc89cc)
+
+running 6 tests
+test literals_select_constant_v2_and_stored_terms_keep_legacy_rounding ... ok
+test finite_boundary_refuses_special_inputs_values_and_derivatives ... ok
+test stored_log_versions_replay_without_reinterpretation ... ok
+test ordinary_log_gradient_agrees_between_versions ... ok
+test log_v2_handles_subnormal_compositions_and_an_independent_scale ... ok
+test nonfinite_results_cannot_turn_into_json_null ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/observer_quotient_descent.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/observer_quotient_descent-405075e177cfa636)
+
+running 7 tests
+test a_surjection_is_not_enough_and_the_failing_pair_is_retained ... ok
+test the_published_quotient_fixtures_reproduce_in_rust ... ok
+test the_observer_role_label_descends_across_one_checked_causal_step ... ok
+test a_residual_on_the_observation_side_is_retained_for_a_non_empty_cut ... ok
+test the_cut_reading_does_not_descend_because_copy_changes_its_size ... ok
+test the_role_set_descends_while_the_role_counts_do_not ... ok
+test composition_is_satisfied_but_this_fixture_cannot_test_it ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/operation_registry.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/operation_registry-4ad17af698657c4b)
+
+running 5 tests
+test structural_lineage_rules_are_explicit_registry_data ... ok
+test registry_rejects_unregistered_parameters_during_lowering ... ok
+test evaluator_rechecks_registered_cell_boundaries ... ok
+test constants_are_registered_but_not_surface_operation_forms ... ok
+test every_surface_operation_uses_one_registered_semantic_declaration ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/process.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/process-ecc2bdea15c44183)
+
+running 19 tests
+test explicit_copy_preserves_parent_and_distinct_child_occurrences ... ok
+test causal_cuts_are_derived_from_the_checked_operation_dag ... ok
+test a_cut_cannot_contain_an_event_without_its_causal_past ... ok
+test adjacent_composition_retains_hidden_constant_and_discard_history ... ok
+test equal_frontiers_do_not_erase_internal_constant_and_discard ... ok
+test graft_linked_slice_composition_rederives_outer_intersections ... ok
+test identity_slice_retains_the_same_through_wire ... ok
+test one_causal_step_records_frontier_replacement_without_evaluation ... ok
+test slice_links_exact_nonempty_graft_frame_regions ... ok
+test identity_slices_are_left_and_right_units ... ok
+test slice_requires_nested_causal_pasts ... ok
+test triadic_policy_rejects_missing_or_repeated_roles ... ok
+test independent_schedules_keep_distinct_paths_but_share_the_exact_outer_slice ... ok
+test triadic_transition_reads_opposite_pairs_without_relabeling_occurrences ... ok
+test adjacent_triadic_transitions_compose_slice_and_lineage_relations_exactly ... ok
+test three_nonempty_slice_composition_is_exact_and_associative ... ok
+test triadic_transition_retains_source_free_wires_outside_all_three_views ... ok
+test zero_event_call_frame_has_no_canonical_slice_intersection ... ok
+test independent_diamond_exhausts_nested_slice_composition_laws ... ok
+
+test result: ok. 19 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.11s
+
+     Running unittests src/lib.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/_native-2c04cfdcc0b48593)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/lib.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_witness-35dec50da30b4ca0)
+
+running 21 tests
+test free_roundtrip::tests::unrelated_ratios_do_not_authorize_reverse_endpoints ... ok
+test free_roundtrip::tests::additive_formation_does_not_seal_forward_transport ... ok
+test free_roundtrip::tests::replay_rejects_modified_history_and_schema ... ok
+test native_run::tests::native_run_checks_fuel_and_depth_before_compilation ... ok
+test free_roundtrip::tests::reverse_retains_zero_fault_and_remaining_fuel ... ok
+test free_roundtrip::tests::second_environment_reuses_fixed_method ... ok
+test native_run::tests::native_input_and_report_preserve_k28_binary64_values ... ok
+test free_roundtrip::tests::cumulative_stage_fuel_cannot_reset ... ok
+test free_roundtrip::tests::six_steps_produce_only_local_evidence ... ok
+test prime_certificate::tests::boolean_numeric_fields_and_unknown_fields_fail_decoding ... ok
+test native_run::tests::native_run_refuses_call_and_copy_expansion_before_compile ... ok
+test native_run::tests::native_run_rejects_linearity_and_wrong_input_names ... ok
+test prime_certificate::tests::composite_successor_has_a_valid_outside_prime ... ok
+test prime_certificate::tests::forged_factor_and_composite_claims_are_refused ... ok
+test native_run::tests::native_run_preserves_histories_even_when_values_agree ... ok
+test native_run::tests::native_run_refuses_unsupported_envelopes_and_nonreal_boundaries ... ok
+test prime_certificate::tests::main_certificate_checks_all_divisors_and_limits_authority ... ok
+test prime_certificate::tests::outside_prime_can_be_smaller_and_empty_input_is_valid ... ok
+test prime_certificate::tests::zero_and_partial_fuel_retain_unknown_without_authority ... ok
+test native_run::tests::native_run_refuses_nonfinite_outputs_and_log_domain_failures ... ok
+test native_run::tests::native_run_computes_and_reuses_a_checked_diagram ... ok
+
+test result: ok. 21 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/adva.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva-eb38f8127bb44525)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running unittests src/bin/adva-prime-verify.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/adva_prime_verify-2040f0fa85cc2bf5)
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/closure_transport.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/closure_transport-ff7da92a6e74cc31)
+
+running 10 tests
+test frozen_method_rejects_semantic_drift ... ok
+test committed_input_carriers_match_the_frozen_first_experiment ... ok
+test distributivity_produces_a_replayable_two_node_closure_certificate ... ok
+test arithmetic_adversary_is_named_separation_and_carries_a_counterexample ... ok
+test a_challenge_reopens_the_dependency_cone_without_erasing_certificates ... ok
+test direct_and_staged_transport_share_a_result_but_not_a_history ... ok
+test typed_negative_controls_reject_polynomial_import_into_m6_obligations ... ok
+test post_hoc_acceptance_of_a_negative_control_is_rejected ... ok
+test committed_first_transport_outputs_replay_exactly ... ok
+test transition_and_reopened_frontier_round_trip_as_adva_files ... ok
+
+test result: ok. 10 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/data_machine.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/data_machine-210de9f0a159575d)
+
+running 12 tests
+test failed_instruction_is_charged_and_has_no_partial_data_writes ... ok
+test bounded_loop_and_zero_fuel_remain_unknown_not_nonhalting_proofs ... ok
+test invalid_shapes_cannot_cross_the_serde_integer_boundary ... ok
+test checkpoints_require_independent_context_and_every_original_edge ... ok
+test generic_construction_and_copy_do_not_call_the_arithmetic_interpreter ... ok
+test static_types_targets_and_all_bytecode_branches_are_validated_before_running ... ok
+test return_on_last_unit_of_fuel_is_success ... ok
+test changing_adva_arithmetic_changes_execution ... ok
+test malformed_object_inputs_and_overflow_reject_with_checked_traces ... ok
+test one_program_interprets_distinct_trees_and_exact_large_integers ... ok
+test suspension_replays_and_preserves_full_trace_and_lifetime_fuel ... ok
+test stack_capacity_rejects_and_continuation_count_is_finite ... ok
+
+test result: ok. 12 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.14s
+
+     Running tests/data_machine_cli.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/data_machine_cli-e19afdc8b7ad78a8)
+
+running 4 tests
+test actual_cli_rejects_duplicate_options_and_oversized_input ... ok
+test actual_cli_rejects_mutated_state_and_boolean_integer ... ok
+test actual_cli_resumes_without_changing_original_budget ... ok
+test actual_cli_runs_checks_and_refuses_overwrite ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/data_machine_v1.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/data_machine_v1-1bf6ede351b43ed2)
+
+running 4 tests
+test new_operations_validate_all_register_types_before_zero_fuel_execution ... ok
+test expanded_profile_remains_finite_and_distinct_from_v0 ... ok
+test generic_dynamic_fields_pack_and_lengths_preserve_order_without_consumption ... ok
+test invalid_dynamic_access_rolls_back_and_charges_the_failing_instruction ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/first_reveal.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/first_reveal-7b845c964003aa07)
+
+running 6 tests
+test first_program_forms_the_named_m6_boundary_and_retains_its_question ... ok
+test injected_names_cover_two_oppositely_oriented_domain_cycles ... ok
+test committed_first_witness_replays_the_first_run_exactly ... ok
+test finite_fuel_publishes_a_suspended_witness_instead_of_claiming_failure ... ok
+test a_reveal_witness_round_trips_as_a_checked_adva_file ... ok
+test malformed_or_frame_collapsing_name_injection_is_rejected ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/hypothesis_formation.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/hypothesis_formation-e46f949a02c55a1b)
+
+running 5 tests
+test committed_inputs_match_the_frozen_hypothesis_formation_program ... ok
+test the_shortest_found_linear_path_is_four_xors_in_the_frozen_model ... ok
+test fuel_suspension_retains_the_same_crossing_and_cursor ... ok
+test contract_and_witness_tampering_are_rejected ... ok
+test six_runs_find_five_witnesses_and_form_search_as_a_verb ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.49s
+
+     Running tests/inquiry_interface.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/inquiry_interface-f423fca901c5d74c)
+
+running 11 tests
+test custody_separates_reality_grounding_from_damage_resistance ... ok
+test arithmetic_questions_become_five_open_typed_obligations ... ok
+test candidate_identity_does_not_depend_on_its_local_name ... ok
+test a_transition_rejects_post_hoc_randomness_edits ... ok
+test question_coordinates_cannot_be_renamed_at_the_interface ... ok
+test a_continuation_rejects_resource_replay_and_algorithm_drift ... ok
+test one_learning_edge_preserves_the_interface_and_all_open_questions ... ok
+test second_learning_edge_introduces_only_custody_and_closes_nothing ... ok
+test committed_first_inquiry_outputs_replay_exactly ... ok
+test committed_second_inquiry_outputs_replay_exactly ... ok
+test frontier_and_transition_round_trip_as_checked_adva_files ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.04s
+
+     Running tests/library_checkpoint.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/library_checkpoint-96d480173a2d39c4)
+
+running 9 tests
+test serialized_parent_cannot_redirect_loader_and_symlink_inputs_are_refused ... ok
+test exhausted_shared_account_never_grants_a_second_run_or_write ... ok
+test file_expression_and_observation_caps_precede_admission ... ok
+test open_and_model_gap_proposals_cannot_be_published ... ok
+test publication_reload_rebuilds_existing_native_witness_and_retains_zero_guards ... ok
+test no_clobber_and_partial_files_do_not_become_valid_snapshots ... ok
+test next_epoch_opens_then_closes_without_changing_old_bytes_or_word ... ok
+test tampered_inputs_readings_witnesses_and_method_fail_native_reload ... ok
+test stale_parent_and_deleted_prefix_are_refused ... ok
+
+test result: ok. 9 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/library_cli.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/library_cli-9d07267735c18a17)
+
+running 5 tests
+test missing_epoch_keeps_a_rejection_report ... ok
+test forged_snapshot_and_unrecognized_schema_are_not_admitted ... ok
+test outputs_are_fresh_outside_library_and_options_are_unambiguous ... ok
+test exact_reuse_relocates_and_keeps_snapshot ... ok
+test guard_scope_digest_and_fuel_remain_distinct ... ok
+
+test result: ok. 5 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.02s
+
+     Running tests/magic_square.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/magic_square-9c8f768fe94a76a2)
+
+running 11 tests
+test malformed_frontier_and_method_drift_are_rejected ... ok
+test committed_inputs_match_the_frozen_experiment ... ok
+test arithmetic_separation_preserves_the_value_multiset_but_breaks_incidence ... ok
+test a_known_control_closes_without_becoming_the_search_answer ... ok
+test one_closure_unfolds_into_a_checked_interacting_family ... ok
+test search_finds_a_maximally_unfolding_exact_closure ... ok
+test transition_tampering_is_rejected ... ok
+test two_fill_orders_share_an_endpoint_without_sharing_history ... ok
+test fuel_exhaustion_can_be_resumed_to_the_same_content ... ok
+test transition_and_frontier_round_trip_as_adva_files ... ok
+test committed_first_outputs_replay_byte_for_byte ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 3.49s
+
+     Running tests/mechanism_frontier.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/mechanism_frontier-56902c869427e673)
+
+running 11 tests
+test learning_rejects_implicit_contraction_and_frontier_collision ... ok
+test frontier_coordinates_are_canonical_and_cannot_change_role_by_aliasing ... ok
+test computation_requires_closed_subject_and_object_but_retains_method_interface ... ok
+test learning_requires_an_open_subject_and_an_actual_target ... ok
+test mechanism_forms_round_trip_without_promoting_contextual_carrier_kinds ... ok
+test learning_returns_a_partial_fill_plan_and_retains_new_subholes ... ok
+test nine_words_are_three_input_nouns_three_edge_verbs_and_three_output_nouns ... ok
+test output_persistence_uses_three_labels_without_changing_carrier_kind ... ok
+test verification_rejects_an_undeclared_or_simultaneously_discharged_open_site ... ok
+test verification_requires_explicit_discharge_for_a_declared_but_absent_site ... ok
+test verification_accepts_an_exact_open_context_as_conditional ... ok
+
+test result: ok. 11 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/native_run_cli.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/native_run_cli-a3c43b858a9f44d5)
+
+running 7 tests
+test an_existing_output_is_preserved ... ok
+test using_the_input_as_output_preserves_the_program ... ok
+test an_unknown_program_schema_is_rejected_with_a_report ... ok
+test insufficient_fuel_is_rejected_with_a_report ... ok
+test implicit_input_reuse_is_rejected_with_a_report ... ok
+test run_executes_the_checked_native_program ... ok
+test the_same_program_runs_with_a_fresh_input_instance ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/persistence.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/persistence-14f0d0225f7c1d2a)
+
+running 7 tests
+test file_boundary_refuses_non_adva_paths_without_creating_them ... ok
+test a_recorded_output_triple_can_be_reused_by_a_later_ready_frame ... ok
+test graph_validation_rejects_unknown_repeated_and_partial_boundary_references ... ok
+test learning_replacement_is_resolved_from_the_same_neutral_carrier_table ... ok
+test decoding_rejects_wrong_versions_empty_keys_and_noncanonical_tables ... ok
+test document_round_trip_keeps_carriers_neutral_and_mechanisms_on_frames ... ok
+test file_save_is_atomic_replace_and_load_selects_a_checked_entrypoint ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/problem_value.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/problem_value-3759168347c70542)
+
+running 6 tests
+test committed_inputs_match_the_two_frozen_programs ... ok
+test problem_formation_turns_a_real_gap_and_external_directions_into_a_problem ... ok
+test value_seeking_finds_and_fixes_the_minimum_admitted_policy ... ok
+test problem_and_value_witness_tampering_are_rejected ... ok
+test insufficient_cost_budget_exhausts_the_declared_space_without_a_witness ... ok
+test value_search_suspends_and_resumes_at_the_same_candidate ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/relation_cells.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/relation_cells-1778ac15742e08a3)
+
+running 13 tests
+test a_group_shadow_cannot_be_silently_moved_between_q4_and_m6 ... ok
+test an_open_boundary_retains_a_residual_and_cannot_transport ... ok
+test empty_generator_labels_are_rejected_at_the_constructor ... ok
+test m6_forms_aba_bab_with_an_independent_profile ... ok
+test malformed_relation_words_are_rejected_without_quotienting_history ... ok
+test q4_and_m6_have_distinct_checked_process_profiles ... ok
+test q4_forms_ab_ba_without_erasing_either_history ... ok
+test frame_paths_reject_empty_unknown_and_invalid_documents ... ok
+test frame_paths_reject_reuse_ready_outputs_and_broken_handoffs ... ok
+test q4_is_derived_from_frame_mechanisms_and_explicit_three_port_handoffs ... ok
+test m6_is_derived_from_six_distinct_frame_occurrences ... ok
+test serialized_profiles_are_rechecked_after_decoding ... ok
+test relation_paths_require_exact_common_labelled_endpoints ... ok
+
+test result: ok. 13 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/reusable_witness.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/reusable_witness-7ce3effd6563c7a7)
+
+running 15 tests
+test exact_polynomial_normalization_proves_distributivity_ratio_one ... ok
+test corrected_six_seed_registry_is_balanced ... ok
+test dependency_cycles_are_rejected_before_evaluation ... ok
+test graft_root_must_remain_linked_to_its_compiled_diagram ... ok
+test graft_instantiation_rejects_nontriadic_and_unknown_frames ... ok
+test explicit_copy_may_bind_distinct_occurrences_of_one_source ... ok
+test original_typo_and_erased_unit_multiplicity_are_rejected ... ok
+test nonzero_relative_boundary_cannot_form_or_enter_composition ... ok
+test template_result_must_be_linear_in_its_three_declared_holes ... ok
+test intermediate_zero_faults_even_when_the_outer_result_would_be_nonzero ... ok
+test nonunit_transport_cannot_execute_or_be_sealed ... ok
+test certified_graft_frame_derives_bindings_and_retains_provenance ... ok
+test one_occurrence_cannot_fill_two_holes_implicitly ... ok
+test merged_graft_lineage_requires_an_explicit_future_policy ... ok
+test template_artifact_is_reused_but_instances_and_occurrences_are_fresh ... ok
+
+test result: ok. 15 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/symbol_surface_load.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/symbol_surface_load-09b34ec700c3a282)
+
+running 4 tests
+test omitting_a_declared_site_does_not_close_the_envelope ... ok
+test a_partial_recorded_output_is_rejected ... ok
+test loading_does_not_resolve_or_authenticate_payload_keys ... ok
+test load_keeps_the_nine_sites_conditional_and_outputs_absent ... ok
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/trace_arithmetic.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/trace_arithmetic-bb3fc28d1375a41c)
+
+running 6 tests
+test an_arithmetic_projection_collision_does_not_identify_ordered_traces ... ok
+test naive_commutative_m6_holonomy_does_not_normalize_to_one ... ok
+test first_reveal_has_matched_time_and_space_but_divergent_construction ... ok
+test committed_first_calibration_replays_the_arithmetic_run_exactly ... ok
+test calibration_round_trips_as_a_checked_adva_file ... ok
+test calibration_rejects_suspension_and_tampered_derived_fields ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+     Running tests/trace_projection.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/trace_projection-68de1cc857636da7)
+
+running 7 tests
+test count_rule_checks_zero_and_the_exact_u32_port_boundary_without_allocation ... ok
+test count_rule_reuses_checked_one_two_and_three_frame_paths ... ok
+test temporal_checker_rejects_missing_handoffs_and_forged_counts ... ok
+test pair_certifies_counts_and_refutes_recovery_without_closing_the_source ... ok
+test pair_reuses_a_fresh_checked_document_with_exchanged_mechanisms ... ok
+test pair_checker_rejects_forged_negative_evidence_method_and_source_binding ... ok
+test pair_round_trip_rechecks_schema_and_every_derived_field ... ok
+
+test result: ok. 7 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.01s
+
+     Running tests/verification_boundary.rs (/workspace/scratch/530db4618454/adva/target/debug/deps/verification_boundary-7df0fe455ae216bb)
+
+running 6 tests
+test verification_layer_does_not_rewrite_the_inquiry_frontier ... ok
+test digest_only_discharge_is_recorded_and_refused ... ok
+test post_hoc_closure_edit_is_rejected ... ok
+test first_verification_edge_refines_five_roots_into_eight_typed_leaves ... ok
+test verification_transition_and_frontier_round_trip_as_adva_files ... ok
+test committed_first_verification_outputs_replay_exactly ... ok
+
+test result: ok. 6 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.05s
+
+   Doc-tests adva_ir
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests adva_labs_search
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests adva_lisp
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests _native
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
+   Doc-tests adva_witness
+
+running 0 tests
+
+test result: ok. 0 passed; 0 failed; 0 ignored; 0 measured; 0 filtered out; finished in 0.00s
+
