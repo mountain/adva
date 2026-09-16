@@ -50,3 +50,27 @@ still refuse; the map does not waive their contracts or authorize a new trial.
 After correction, use a fresh clone. Do not merge a pre-correction branch or
 run acquisition commands copied from historical receipts without consulting
 the correction map and the active dependency lock.
+
+## Completed writable-history correction
+
+After Mingli explicitly released the force-push prohibition for this correction,
+[the atomic history job](https://github.com/mountain/adva/actions/runs/35098998296)
+completed. A fresh clone confirmed all 184 writable branch refs against the
+published mapping and found zero reachable identified withdrawn blob objects.
+The 1,146 changed commits were checked for original author/committer identity
+and dates, message bytes, parent topology, and every unaffected file byte/mode.
+The packed fresh-clone history measured 49.99 MiB; GitHub's repository-size
+counter and retained PR objects may differ.
+
+The fixed clean machine/library dependency remains unchanged. Complete Rust and
+Python 3.11/3.12/3.13 matrices passed on the withdrawal implementation before
+history publication; the final clone separately rechecks mapped source
+references, dependency/receipt boundaries, and known-content history. Four
+full-input golden-ratio checks remain explicitly unavailable without lawful
+external inputs. The optional ed25519 test also skips when its backend is absent.
+
+The one-time publishing workflow is removed after completion. The ongoing
+publication check has read-only permission and scans reachable branch history.
+Ruleset 22887616 must have **Block force pushes** restored after this maintenance
+window; its deletion protection remained active throughout. Existing PR refs,
+cached old objects and third-party clones remain outside this result.
