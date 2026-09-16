@@ -13,6 +13,13 @@ constructions, executable research programs, experiments and retained evidence.
 including bounded Adva-written compiler/specializer work and machine conformance.
 The eventual organization of `adva-library` remains open.
 
+The [formal communication vocabulary](COMMUNICATION_FRAMEWORK.md) now governs
+the design of content exchange and migration: receiving contracts, provenance,
+dependency continuity and recorded outcomes must precede acceptance for a new
+use. The general native exchange operation remains unimplemented; host file
+operations cannot substitute for it. Its fixed documentation reference is
+separate from the executable consumer lock below.
+
 This supports exploration in an endlessly open universe. A finite successful
 check retains its assumptions and unresolved questions. It does not close the
 research programme or promote proposed arithmetic hypotheses to established truth.

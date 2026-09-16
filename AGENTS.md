@@ -12,6 +12,19 @@ existing CI until each consumer has a checked replacement. A repository split
 does not grant native authority or complete the library import contract.
 Maintain shared documentation in English first for international collaboration.
 
+## Formal communication vocabulary and content migration
+
+Read `docs/COMMUNICATION_FRAMEWORK.md` and its fixed machine specification
+before designing content exchange or knowledge/library migration. `communicate`,
+`send`, `receive`, `acknowledge` and `accept` are adopted framework words;
+their general native implementation remains open. Retain versioned receiving
+contracts, source/dependency/evidence chains, receiver outcomes and permitted
+continuations. Direct host copying, moving, renaming or Git synchronization
+cannot substitute for an Adva content exchange. Implement a missing receiving
+profile before migrating content. Specification and code authoring remain
+engineering work and must not be reported as an executed exchange. Adoption of
+these documentation references does not upgrade the executable dependency lock.
+
 ## Unknown adoption
 
 The project adopts [Unknown v0.3](Unknown-LICENSE-v0.3.md): public domain with
