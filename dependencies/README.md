@@ -4,8 +4,8 @@ Authored by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy;
 not his technical review or correctness guarantee.
 
 `adva-machine.lock.json` starts the knowledge repository's external toolchain
-consumer route. It pins machine `0c1e972d6b2b955b0a5361f755cf2560ce44a248` and
-library `4a53db6493389e046bd7293be9e3ae335ea2e9c7`. It does not require either
+consumer route. It pins machine `e62d88dcc83fc4967260866518029942b9631b71` and
+library `73a6af4ac4ed8225366d3c16794e309cff15f51d`. It does not require either
 repository's current `main` to stay at that revision. See the
 [boundary decision and reproduction commands](../docs/KNOWLEDGE_MACHINE_BOUNDARY.md).
 
@@ -86,3 +86,20 @@ and returned/rejected/suspended data-machine executions with fresh Rust replay.
 The three data-machine cases retain 172 executed and separately replayed steps;
 all ten native calls are accounted for. The checker itself is unchanged.
 The complete successor run is retained alongside, not in place of, its predecessors.
+
+## Publication withdrawal successor
+
+The active pins now use publication-clean history. The machine successor is
+retained on `maintenance/publication-clean-consumer-20260916`; it preserves the
+implementation previously pinned at `0c1e972d6b2b955b0a5361f755cf2560ce44a248`.
+Its Cargo inputs, Rust/Python sources, specification, programs and experiment
+sources are byte-identical. Its new library lock preserves its predecessor,
+and the knowledge lock likewise preserves the complete prior lock and receipt
+chain. Historical evidence is not relabelled as a run of the new commit.
+
+An exact-tree local rehearsal rebuilt this successor and passed the library
+arithmetic observer plus Returned, Rejected and Suspended native replay cases.
+The final public pins are independently checked by the dependency-continuity
+workflow. The main branch of the machine remains free to advance independently.
+The eight removed golden-ratio inputs are outside this native execution chain;
+full historical calibration with those inputs remains unavailable publicly.

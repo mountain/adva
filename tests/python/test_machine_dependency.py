@@ -109,7 +109,17 @@ def test_retained_run_binds_inputs_history_and_native_replay(run):
     assert report["knowledge"]["checker_sha256"] == CHECK.sha(evidence / "checker.py")
     if run == "continuity-03":
         assert CHECK.sha(ROOT / "scripts/check_machine_dependency.py") == CHECK.sha(evidence / "checker.py")
-        assert CHECK.sha(CHECK.LOCK) == CHECK.sha(evidence / "dependency.lock.json")
+        # A successor must retain this exact receipt lock in its predecessor chain.
+        active = CHECK.read(CHECK.LOCK)
+        expected = CHECK.sha(evidence / "dependency.lock.json")
+        seen = {CHECK.sha(CHECK.LOCK)}
+        while "previous_lock" in active:
+            prior = ROOT / active["previous_lock"]["path"]
+            actual = CHECK.sha(prior)
+            assert actual == active["previous_lock"]["sha256"] and actual not in seen
+            seen.add(actual)
+            active = CHECK.read(prior)
+        assert expected in seen
     assert report["knowledge"]["lock_sha256"] == CHECK.sha(evidence / "dependency.lock.json")
     assert report["dependencies"]["machine_revision"] == lock["machine"]["revision"]
     assert report["dependencies"]["library_revision"] == lock["library"]["revision"]
