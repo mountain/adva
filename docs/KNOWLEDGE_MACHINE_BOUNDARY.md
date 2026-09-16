@@ -20,6 +20,12 @@ use. The general native exchange operation remains unimplemented; host file
 operations cannot substitute for it. Its fixed documentation reference is
 separate from the executable consumer lock below.
 
+The [first bounded documentary exchange](../knowledge/exchanges/party-naming-layer-2026-09-16-v1/README.md)
+now provides an executed Rust receiving route for one original library entry.
+Its independently pinned checker grants documentary reference use and retains
+the source home. This establishes a first receiving step; source retirement
+and migration of executable consumers still need their own continuity checks.
+
 This supports exploration in an endlessly open universe. A finite successful
 check retains its assumptions and unresolved questions. It does not close the
 research programme or promote proposed arithmetic hypotheses to established truth.

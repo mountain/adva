@@ -8,6 +8,10 @@ The [dependency continuity plan](docs/KNOWLEDGE_MACHINE_BOUNDARY.md) and its
 external execution route. Existing implementation paths and historical evidence
 remain available while consumers migrate. English documentation is primary.
 
+The first [checked library exchange](knowledge/exchanges/party-naming-layer-2026-09-16-v1/README.md)
+has received an original naming entry through the Rust communication profile,
+with its publication review, source home, obligations and receiver receipt retained.
+
 **How can a finite observer construct, check, and extend arithmetic knowledge?**
 
 [中文入口](README.zh-CN.md) · [Run an example](#run-an-example) ·
