@@ -1,0 +1,63 @@
+{
+  "schema": "adva.external.failure-kind-boundary.contract.v0",
+  "base": "c3081ab7efe65ed064535e8d9bf79ae3dc65238e",
+  "question": "Can a receiver distinguish verifier implementation failure from a semantic counterexample while preserving the unresolved object, observation history and coverage gap?",
+  "level": "Research-local exact finite control continuing Research 0090 and Research 0204; no native Rust judgment, stable operation, Keraia mass transfer, M6 filler or universality claim",
+  "arithmetic_domain": "binary words of one fixed width, exact nonnegative integer stages and canonical JSON digests",
+  "families": [
+    {
+      "name": "two-bit continuation",
+      "width": 2,
+      "early_stage": 1,
+      "machine": {"00": 1, "10": 5},
+      "proposal": ["00"],
+      "delayed_witness": {"program": "10", "stage": 5}
+    },
+    {
+      "name": "three-bit fresh reuse",
+      "width": 3,
+      "early_stage": 2,
+      "machine": {"000": 2, "110": 7},
+      "proposal": ["000"],
+      "delayed_witness": {"program": "110", "stage": 7}
+    }
+  ],
+  "producer_receipts": [
+    "verified semantic-candidate receipt naming one delayed event",
+    "implementation-failure receipt naming phase and bounded failure code but no semantic conclusion"
+  ],
+  "receiver_outcomes": [
+    "Counterexample",
+    "ImplementationFailure",
+    "InvalidEvidence"
+  ],
+  "protected_invariants": [
+    "object snapshot digest is unchanged",
+    "early observation history and its digest are unchanged",
+    "unresolved program set and its digest are unchanged",
+    "implementation failure creates no accepted or rejected semantic fact",
+    "Counterexample requires an independently checked event from the same bound machine and outside the proposal"
+  ],
+  "acceptance": [
+    "Each family produces Counterexample only from its valid delayed witness",
+    "Three implementation failures per family return ImplementationFailure without changing any protected invariant",
+    "A repaired continuation can later accept the valid witness from the exact same preserved snapshot",
+    "Malformed, relabelled, context-swapped, fabricated and state-mutating receipts are rejected",
+    "The width-three family reuses the relation on a fresh instance",
+    "A fresh process reproduces deterministic evidence"
+  ],
+  "limits": {
+    "search_candidates": 0,
+    "max_host_work": 100000,
+    "wall_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_mib": 256,
+    "max_output_bytes": 1048576,
+    "primary_runs": 1,
+    "fresh_replays_after_success": 1,
+    "maximum_necessary_corrections": 1
+  },
+  "exit": "Finish both fixed families and controls, or stop on assertion mismatch, malformed evidence, resource exhaustion or host implementation failure. Do not widen or retry automatically.",
+  "publication_basis": "Project-original code, prose, fixtures and generated evidence contributed under Unknown v0.3; no external content is incorporated.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's account as authorized proxy; not his authorship, review, endorsement or a correctness claim."
+}

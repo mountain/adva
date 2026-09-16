@@ -1,0 +1,420 @@
+{
+  "assertions": 48,
+  "base": "c3081ab7efe65ed064535e8d9bf79ae3dc65238e",
+  "families": [
+    {
+      "assertions": 24,
+      "controls": [
+        {
+          "name": "failure_relabelled_counterexample",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedCandidate"
+        },
+        {
+          "name": "failure_with_semantic_conclusion",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        },
+        {
+          "name": "failure_with_candidate",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        },
+        {
+          "name": "fabricated_event",
+          "outcome": "InvalidEvidence",
+          "reason": "EventNotInBoundMachine"
+        },
+        {
+          "name": "already_visible_event",
+          "outcome": "InvalidEvidence",
+          "reason": "NotDelayed"
+        },
+        {
+          "name": "changed_object",
+          "outcome": "InvalidEvidence",
+          "reason": "ObjectBindingMismatch"
+        },
+        {
+          "name": "changed_history",
+          "outcome": "InvalidEvidence",
+          "reason": "HistoryBindingMismatch"
+        },
+        {
+          "name": "changed_unresolved",
+          "outcome": "InvalidEvidence",
+          "reason": "UnresolvedBindingMismatch"
+        },
+        {
+          "name": "boolean_stage",
+          "outcome": "InvalidEvidence",
+          "reason": "InvalidCandidateStage"
+        },
+        {
+          "name": "unknown_failure_code",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        }
+      ],
+      "counterexample": {
+        "outcome": "Counterexample",
+        "preserved": {
+          "history": [
+            {
+              "program": "00",
+              "stage": 1
+            }
+          ],
+          "history_digest": "c382aef8dd11be8e6602cc1b9271a42fc7aebeb49f6581346803baedff2d7eda",
+          "object_digest": "48e9b50170dbd980f62b8e59bf642056de82df0b3eacca559c539b5780967b37",
+          "unresolved": [
+            "01",
+            "10",
+            "11"
+          ],
+          "unresolved_digest": "236c6d1df71abb40e52140371d9be3825c7f14433b5595dc6329adaacdd39204"
+        },
+        "refutes": {
+          "claimed_complete_domain": [
+            "00"
+          ]
+        },
+        "semantic_delta": {
+          "accepted": [
+            "10"
+          ],
+          "rejected": []
+        },
+        "witness": {
+          "program": "10",
+          "stage": 5
+        }
+      },
+      "family": "two-bit continuation",
+      "implementation_failures": [
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "00",
+                "stage": 1
+              }
+            ],
+            "history_digest": "c382aef8dd11be8e6602cc1b9271a42fc7aebeb49f6581346803baedff2d7eda",
+            "object_digest": "48e9b50170dbd980f62b8e59bf642056de82df0b3eacca559c539b5780967b37",
+            "unresolved": [
+              "01",
+              "10",
+              "11"
+            ],
+            "unresolved_digest": "236c6d1df71abb40e52140371d9be3825c7f14433b5595dc6329adaacdd39204"
+          },
+          "reason": "InterfaceUnavailable",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        },
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "00",
+                "stage": 1
+              }
+            ],
+            "history_digest": "c382aef8dd11be8e6602cc1b9271a42fc7aebeb49f6581346803baedff2d7eda",
+            "object_digest": "48e9b50170dbd980f62b8e59bf642056de82df0b3eacca559c539b5780967b37",
+            "unresolved": [
+              "01",
+              "10",
+              "11"
+            ],
+            "unresolved_digest": "236c6d1df71abb40e52140371d9be3825c7f14433b5595dc6329adaacdd39204"
+          },
+          "reason": "BudgetExceeded",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        },
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "00",
+                "stage": 1
+              }
+            ],
+            "history_digest": "c382aef8dd11be8e6602cc1b9271a42fc7aebeb49f6581346803baedff2d7eda",
+            "object_digest": "48e9b50170dbd980f62b8e59bf642056de82df0b3eacca559c539b5780967b37",
+            "unresolved": [
+              "01",
+              "10",
+              "11"
+            ],
+            "unresolved_digest": "236c6d1df71abb40e52140371d9be3825c7f14433b5595dc6329adaacdd39204"
+          },
+          "reason": "InternalError",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        }
+      ],
+      "snapshot": {
+        "history": [
+          {
+            "program": "00",
+            "stage": 1
+          }
+        ],
+        "history_digest": "c382aef8dd11be8e6602cc1b9271a42fc7aebeb49f6581346803baedff2d7eda",
+        "object": {
+          "early_stage": 1,
+          "family": "two-bit continuation",
+          "machine": {
+            "00": 1,
+            "10": 5
+          },
+          "proposal": [
+            "00"
+          ],
+          "width": 2
+        },
+        "object_digest": "48e9b50170dbd980f62b8e59bf642056de82df0b3eacca559c539b5780967b37",
+        "unresolved": [
+          "01",
+          "10",
+          "11"
+        ],
+        "unresolved_digest": "236c6d1df71abb40e52140371d9be3825c7f14433b5595dc6329adaacdd39204"
+      }
+    },
+    {
+      "assertions": 24,
+      "controls": [
+        {
+          "name": "failure_relabelled_counterexample",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedCandidate"
+        },
+        {
+          "name": "failure_with_semantic_conclusion",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        },
+        {
+          "name": "failure_with_candidate",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        },
+        {
+          "name": "fabricated_event",
+          "outcome": "InvalidEvidence",
+          "reason": "EventNotInBoundMachine"
+        },
+        {
+          "name": "already_visible_event",
+          "outcome": "InvalidEvidence",
+          "reason": "NotDelayed"
+        },
+        {
+          "name": "changed_object",
+          "outcome": "InvalidEvidence",
+          "reason": "ObjectBindingMismatch"
+        },
+        {
+          "name": "changed_history",
+          "outcome": "InvalidEvidence",
+          "reason": "HistoryBindingMismatch"
+        },
+        {
+          "name": "changed_unresolved",
+          "outcome": "InvalidEvidence",
+          "reason": "UnresolvedBindingMismatch"
+        },
+        {
+          "name": "boolean_stage",
+          "outcome": "InvalidEvidence",
+          "reason": "InvalidCandidateStage"
+        },
+        {
+          "name": "unknown_failure_code",
+          "outcome": "InvalidEvidence",
+          "reason": "MalformedImplementationFailure"
+        }
+      ],
+      "counterexample": {
+        "outcome": "Counterexample",
+        "preserved": {
+          "history": [
+            {
+              "program": "000",
+              "stage": 2
+            }
+          ],
+          "history_digest": "722713ed147ef48046506ccfa0bc407a08286d512bff859d394aa6e9dcb855d0",
+          "object_digest": "c31241e675cc5d8eb71a0094a92340628bd6d32bcc8aba591e22de2f48070163",
+          "unresolved": [
+            "001",
+            "010",
+            "011",
+            "100",
+            "101",
+            "110",
+            "111"
+          ],
+          "unresolved_digest": "fb52dc3aae604a0e02d458be49a5f7d9a391dffe0ba93219671a450ce5332833"
+        },
+        "refutes": {
+          "claimed_complete_domain": [
+            "000"
+          ]
+        },
+        "semantic_delta": {
+          "accepted": [
+            "110"
+          ],
+          "rejected": []
+        },
+        "witness": {
+          "program": "110",
+          "stage": 7
+        }
+      },
+      "family": "three-bit fresh reuse",
+      "implementation_failures": [
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "000",
+                "stage": 2
+              }
+            ],
+            "history_digest": "722713ed147ef48046506ccfa0bc407a08286d512bff859d394aa6e9dcb855d0",
+            "object_digest": "c31241e675cc5d8eb71a0094a92340628bd6d32bcc8aba591e22de2f48070163",
+            "unresolved": [
+              "001",
+              "010",
+              "011",
+              "100",
+              "101",
+              "110",
+              "111"
+            ],
+            "unresolved_digest": "fb52dc3aae604a0e02d458be49a5f7d9a391dffe0ba93219671a450ce5332833"
+          },
+          "reason": "InterfaceUnavailable",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        },
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "000",
+                "stage": 2
+              }
+            ],
+            "history_digest": "722713ed147ef48046506ccfa0bc407a08286d512bff859d394aa6e9dcb855d0",
+            "object_digest": "c31241e675cc5d8eb71a0094a92340628bd6d32bcc8aba591e22de2f48070163",
+            "unresolved": [
+              "001",
+              "010",
+              "011",
+              "100",
+              "101",
+              "110",
+              "111"
+            ],
+            "unresolved_digest": "fb52dc3aae604a0e02d458be49a5f7d9a391dffe0ba93219671a450ce5332833"
+          },
+          "reason": "BudgetExceeded",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        },
+        {
+          "outcome": "ImplementationFailure",
+          "preserved": {
+            "history": [
+              {
+                "program": "000",
+                "stage": 2
+              }
+            ],
+            "history_digest": "722713ed147ef48046506ccfa0bc407a08286d512bff859d394aa6e9dcb855d0",
+            "object_digest": "c31241e675cc5d8eb71a0094a92340628bd6d32bcc8aba591e22de2f48070163",
+            "unresolved": [
+              "001",
+              "010",
+              "011",
+              "100",
+              "101",
+              "110",
+              "111"
+            ],
+            "unresolved_digest": "fb52dc3aae604a0e02d458be49a5f7d9a391dffe0ba93219671a450ce5332833"
+          },
+          "reason": "InternalError",
+          "semantic_delta": {
+            "accepted": [],
+            "rejected": []
+          }
+        }
+      ],
+      "snapshot": {
+        "history": [
+          {
+            "program": "000",
+            "stage": 2
+          }
+        ],
+        "history_digest": "722713ed147ef48046506ccfa0bc407a08286d512bff859d394aa6e9dcb855d0",
+        "object": {
+          "early_stage": 2,
+          "family": "three-bit fresh reuse",
+          "machine": {
+            "000": 2,
+            "110": 7
+          },
+          "proposal": [
+            "000"
+          ],
+          "width": 3
+        },
+        "object_digest": "c31241e675cc5d8eb71a0094a92340628bd6d32bcc8aba591e22de2f48070163",
+        "unresolved": [
+          "001",
+          "010",
+          "011",
+          "100",
+          "101",
+          "110",
+          "111"
+        ],
+        "unresolved_digest": "fb52dc3aae604a0e02d458be49a5f7d9a391dffe0ba93219671a450ce5332833"
+      }
+    }
+  ],
+  "family_count": 2,
+  "host_work_units": 342,
+  "implementation_failure_cases": 6,
+  "negative_controls": 20,
+  "new_vocabulary": [],
+  "residual": "This finite receiver does not prove that arbitrary implementation failures are detectable or that unrestricted languages have decidable semantic counterexamples.",
+  "result": "ImplementationFailureSeparatedFromCounterexample",
+  "schema": "adva.external.failure-kind-boundary.evidence.v0",
+  "semantic_counterexamples": 2,
+  "status": "Passed"
+}
