@@ -1,0 +1,485 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "arithmetic-tree-interpreter",
+    "registers": [
+      {
+        "name": "work",
+        "kind": "stack"
+      },
+      {
+        "name": "values",
+        "kind": "stack"
+      },
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "left_tree",
+        "kind": "data"
+      },
+      {
+        "name": "right_tree",
+        "kind": "data"
+      },
+      {
+        "name": "temp",
+        "kind": "data"
+      },
+      {
+        "name": "tag",
+        "kind": "integer"
+      },
+      {
+        "name": "constant",
+        "kind": "integer"
+      },
+      {
+        "name": "left",
+        "kind": "integer"
+      },
+      {
+        "name": "right",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      }
+    ],
+    "code": [
+      {
+        "op": "clear",
+        "stack": 0
+      },
+      {
+        "op": "clear",
+        "stack": 1
+      },
+      {
+        "op": "input",
+        "dst": 2
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 2
+      },
+      {
+        "op": "is_empty",
+        "stack": 0,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 45,
+        "no": 6
+      },
+      {
+        "op": "pop",
+        "stack": 0,
+        "dst": 2
+      },
+      {
+        "op": "tag",
+        "src": 2,
+        "dst": 6
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": -1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 31,
+        "no": 11
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 27,
+        "no": 14
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 20,
+        "no": 17
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 2
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 20,
+        "no": 49
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 2,
+        "index": 0,
+        "dst": 3
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 2,
+        "index": 1,
+        "dst": 4
+      },
+      {
+        "op": "box_integer",
+        "src": 6,
+        "dst": 5
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 5
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 4
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 3
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 1,
+        "index": 0,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 8
+      },
+      {
+        "op": "push",
+        "stack": 1,
+        "src": 5
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "as_integer",
+        "src": 2,
+        "dst": 6
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 9
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 8
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 39,
+        "no": 41
+      },
+      {
+        "op": "add",
+        "left": 8,
+        "right": 9,
+        "dst": 8
+      },
+      {
+        "op": "jump",
+        "target": 42
+      },
+      {
+        "op": "multiply",
+        "left": 8,
+        "right": 9,
+        "dst": 8
+      },
+      {
+        "op": "box_integer",
+        "src": 8,
+        "dst": 5
+      },
+      {
+        "op": "push",
+        "stack": 1,
+        "src": 5
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "is_empty",
+        "stack": 1,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 48,
+        "no": 50
+      },
+      {
+        "op": "return",
+        "src": 5
+      },
+      {
+        "op": "reject",
+        "reason": "unsupported object tag"
+      },
+      {
+        "op": "reject",
+        "reason": "object value stack not singleton"
+      }
+    ]
+  },
+  "input": {
+    "kind": "node",
+    "tag": 99,
+    "fields": []
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 49,
+    "registers": [
+      {
+        "kind": "stack",
+        "items": []
+      },
+      {
+        "kind": "stack",
+        "items": []
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "node",
+          "tag": 99,
+          "fields": []
+        }
+      },
+      null,
+      null,
+      null,
+      {
+        "kind": "integer",
+        "value": 99
+      },
+      {
+        "kind": "integer",
+        "value": 2
+      },
+      null,
+      null,
+      {
+        "kind": "boolean",
+        "value": false
+      }
+    ],
+    "spent": 21,
+    "phase": {
+      "kind": "rejected",
+      "reason": "unsupported object tag"
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "da1cf0273e58feaabd1df69357b8eb251e9884d76903e86896919c8c2460a2dd"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "6ed9974ff10c2fff6d8742c43b16f16bfdc5c7c5b2fca460dd0b34495f612840"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "805260d21d4ba2d8b152e056fa3182a4f77ab285dc882fa1c8c39e0d59290b31"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "e3ca02695cb5f2b4fdaec8cb1f62c532e1a153f40c9bf47692a16a0ebddbdd18"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "fd170d59681bedbe0499d00a046f072ef4df9d93b1a12a2969d24d4b47182fb5"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "e6f6d9f25e2ae7bc9da9815b0f99531d2d4c0a53d9cd7ae53f0bd23897af18d1"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "1c816125ff41db52d82c3255d866468a9d2dfd0a4369a6df6802e6ddb1e711b9"
+    },
+    {
+      "pc": 7,
+      "next_pc": 8,
+      "state_digest": "0af37f8fa2396e94645c35de0f15ffbd14e2825611a8b377710c821dbf278aeb"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "313a099aee552e7f5a8354dee058e83d251381431edc3ab2048ea4136a1e9542"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "577428a69dc843f9ff4a532418f3367175662a15ad1e8f58ae616662d4431d1f"
+    },
+    {
+      "pc": 10,
+      "next_pc": 11,
+      "state_digest": "0a5daad955a15a0e3acc1caaa52ac69cd7dc5d4dbc2b3b54289d2450c3bfb7b9"
+    },
+    {
+      "pc": 11,
+      "next_pc": 12,
+      "state_digest": "823a47e224a09ea949460f63ac77f357760542908f41a060755f9cb80f19245b"
+    },
+    {
+      "pc": 12,
+      "next_pc": 13,
+      "state_digest": "53ebebed28e7c14a998b2560f955776353ba57146559ccd7e5f74ca89d0376ab"
+    },
+    {
+      "pc": 13,
+      "next_pc": 14,
+      "state_digest": "78f11d8abdb205010243070c19ea183e1bba0f349142d7a4736b7ea42dcd5b46"
+    },
+    {
+      "pc": 14,
+      "next_pc": 15,
+      "state_digest": "fb76746607cc1938f6cc27b1e73f2f82f35965d982930b26faf138cba4e10abe"
+    },
+    {
+      "pc": 15,
+      "next_pc": 16,
+      "state_digest": "3465d392dd8c4aaf30645360ba86d91cd97b17002aaca18797bb62ee5c2220cb"
+    },
+    {
+      "pc": 16,
+      "next_pc": 17,
+      "state_digest": "892c9434a11a9bdaaeafc7b1342aa67ef0fb1e0ca16bdbc61397f9f4ed1ea9c7"
+    },
+    {
+      "pc": 17,
+      "next_pc": 18,
+      "state_digest": "8cc70ef6b2c911ff84d3be562276bba8a31f3d2182632868fd1bca9c3c4f1102"
+    },
+    {
+      "pc": 18,
+      "next_pc": 19,
+      "state_digest": "acafcb41c86ed82a44a22a2d7dae0bbe1350e379c8a602c328b22a1181a9eab3"
+    },
+    {
+      "pc": 19,
+      "next_pc": 49,
+      "state_digest": "0e124a2e9e14d6d92994b3e0822311d949048c7bc29b03f7c9e1fbdd485c8be3"
+    },
+    {
+      "pc": 49,
+      "next_pc": 49,
+      "state_digest": "492b4704ad3df15b4ac7c4f6209c088ce4e018948881d150576b791ba1b8f507"
+    }
+  ],
+  "status": "Rejected",
+  "segments": [
+    {
+      "start": 0,
+      "end": 21,
+      "replayed": 0
+    }
+  ]
+}

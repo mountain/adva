@@ -1,5 +1,13 @@
 # Adva
 
+This repository is evolving toward knowledge and executable research, using
+the specification and toolchains maintained in
+[`adva-machine`](https://github.com/mountain/adva-machine).
+The [dependency continuity plan](docs/KNOWLEDGE_MACHINE_BOUNDARY.md) and its
+[fixed machine version](dependencies/adva-machine.lock.json) define the first
+external execution route. Existing implementation paths and historical evidence
+remain available while consumers migrate. English documentation is primary.
+
 **How can a finite observer construct, check, and extend arithmetic knowledge?**
 
 [中文入口](README.zh-CN.md) · [Run an example](#run-an-example) ·

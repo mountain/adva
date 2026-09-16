@@ -1,0 +1,37 @@
+name: Machine dependency continuity
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  external-machine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - uses: dtolnay/rust-toolchain@stable
+      - name: Install the external adapter dependency and test runner
+        run: python -m pip install blake3==1.0.9 pytest
+      - name: Check dependency refusal and observation boundaries
+        run: python -m pytest -q tests/python/test_machine_dependency.py
+      - name: Fetch, build and receive the pinned external machine
+        run: python scripts/check_machine_dependency.py --output "$RUNNER_TEMP/machine-dependency"
+      - name: Retain checks, inputs, traces, refusals and build provenance
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: machine-dependency-continuity
+          path: ${{ runner.temp }}/machine-dependency/evidence/
+          if-no-files-found: warn
+          retention-days: 30

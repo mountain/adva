@@ -1,5 +1,17 @@
 # Agent instructions
 
+## Knowledge repository and dependency continuity
+
+Mingli Yuan's direction, 2026-09-16: `adva` evolves toward knowledge and
+executable research; `mountain/adva-machine` owns specifications and toolchain
+development. Dependency chains must not be broken. Read
+`docs/KNOWLEDGE_MACHINE_BOUNDARY.md` before repository-boundary work. Use the
+fixed `dependencies/adva-machine.lock.json` for its external consumer check.
+Preserve inherited source paths, frozen evidence, semantic fingerprints and
+existing CI until each consumer has a checked replacement. A repository split
+does not grant native authority or complete the library import contract.
+Maintain shared documentation in English first for international collaboration.
+
 ## Unknown adoption
 
 The project adopts [Unknown v0.2](Unknown-LICENSE-v0.2.md): public domain with

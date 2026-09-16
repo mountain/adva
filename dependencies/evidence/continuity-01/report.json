@@ -1,0 +1,260 @@
+{
+  "schema": "adva.knowledge.dependency-continuity.v0",
+  "status": "Passed",
+  "scope": "two existing arithmetic fixtures; no general migration or new theorem",
+  "commands": [
+    {
+      "label": "git-init",
+      "argv": [
+        "git",
+        "init",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.010561158000200521
+    },
+    {
+      "label": "git-fetch",
+      "argv": [
+        "git",
+        "fetch",
+        "--depth=1",
+        "https://github.com/mountain/adva-machine.git",
+        "8a34d8053e0b5cdb6b29e5677acdac2e8af7df52"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 180,
+      "returncode": 0,
+      "wall_seconds": 3.4786772250008653
+    },
+    {
+      "label": "git-checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 1.4708423910014972
+    },
+    {
+      "label": "library-fetch",
+      "argv": [
+        "git",
+        "submodule",
+        "update",
+        "--init",
+        "--depth=1",
+        "--",
+        "adva-library"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 180,
+      "returncode": 0,
+      "wall_seconds": 0.7199379200028488
+    },
+    {
+      "label": "rust-version",
+      "argv": [
+        "rustc",
+        "-Vv"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.06495866000113892
+    },
+    {
+      "label": "cargo-version",
+      "argv": [
+        "cargo",
+        "-V"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.0648107050001272
+    },
+    {
+      "label": "python-version",
+      "argv": [
+        "/home/ubuntu/adva-performance/.venv/bin/python",
+        "--version"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.008496918002492748
+    },
+    {
+      "label": "build",
+      "argv": [
+        "cargo",
+        "build",
+        "--locked",
+        "--release",
+        "-p",
+        "adva-witness",
+        "--bin",
+        "adva",
+        "--target-dir",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 600,
+      "returncode": 0,
+      "wall_seconds": 154.6634811770018
+    },
+    {
+      "label": "doctor",
+      "argv": [
+        "/home/ubuntu/adva-performance/.venv/bin/python",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine/adva-machine",
+        "doctor",
+        "--binary",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build/release/adva",
+        "--library",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine/adva-library"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.1147453020021203
+    },
+    {
+      "label": "library-arithmetic",
+      "argv": [
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build/release/adva",
+        "run",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/inputs/library-arithmetic.adva",
+        "--output",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/library-arithmetic-result.adva"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.00816080500226235
+    },
+    {
+      "label": "returned",
+      "argv": [
+        "/home/ubuntu/adva-performance/.venv/bin/python",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine/adva-machine",
+        "run",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/inputs/returned.request.json",
+        "--engine",
+        "rust",
+        "--binary",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build/release/adva",
+        "--output",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/returned"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.1654485810031474
+    },
+    {
+      "label": "rejected",
+      "argv": [
+        "/home/ubuntu/adva-performance/.venv/bin/python",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine/adva-machine",
+        "run",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/inputs/rejected.request.json",
+        "--engine",
+        "rust",
+        "--binary",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build/release/adva",
+        "--output",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/rejected"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 2,
+      "wall_seconds": 0.16564292100156308
+    },
+    {
+      "label": "suspended",
+      "argv": [
+        "/home/ubuntu/adva-performance/.venv/bin/python",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine/adva-machine",
+        "run",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/inputs/suspended.request.json",
+        "--engine",
+        "rust",
+        "--binary",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/build/release/adva",
+        "--output",
+        "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/evidence/suspended"
+      ],
+      "cwd": "/home/ubuntu/adva-performance/target/machine-dependency-clean-01/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.16507252299925312
+    }
+  ],
+  "checks": [
+    {
+      "name": "library-arithmetic-history",
+      "status": "Passed",
+      "observer": "all report fields except phase_seconds, compared with retained Research 0140 evidence"
+    },
+    {
+      "name": "returned",
+      "status": "Passed",
+      "returncode": 0,
+      "outcome": {
+        "kind": "Returned",
+        "value": {
+          "kind": "integer",
+          "value": 14
+        }
+      },
+      "verification": "NativeReplayPassed",
+      "steps": 134
+    },
+    {
+      "name": "rejected",
+      "status": "Passed",
+      "returncode": 2,
+      "outcome": {
+        "kind": "Rejected",
+        "stage": "execution",
+        "reason": "unsupported object tag"
+      },
+      "verification": "NativeReplayPassed",
+      "steps": 21
+    },
+    {
+      "name": "suspended",
+      "status": "Passed",
+      "returncode": 0,
+      "outcome": {
+        "kind": "Unknown",
+        "reason": "Suspended"
+      },
+      "verification": "NativeReplayPassed",
+      "steps": 17
+    }
+  ],
+  "knowledge": {
+    "base_commit": "84b6c299f6ac55bfdb76919729b98849a7a5c40b",
+    "checker_sha256": "68ddb1999bfac6f38de5385f503c261b95e1efddedddc6c4cf864e145947e0ca",
+    "lock_sha256": "02d8dbbd57b4da994d0905b927e048102a79cdca32363838d8904812ff455a4b"
+  },
+  "dependencies": {
+    "machine_revision": "8a34d8053e0b5cdb6b29e5677acdac2e8af7df52",
+    "library_revision": "f652709c5dd2aecc7ed319e54452df1d4f4881d1"
+  },
+  "build": {
+    "binary_sha256": "d674b3cebcaf9e23ba273a9fb8a702cf8ef5d3327a45521d630110146382e77a",
+    "source_revision": "8a34d8053e0b5cdb6b29e5677acdac2e8af7df52",
+    "cargo_lock_sha256": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9",
+    "provenance": "locally built from checked checkout; not an authenticated build attestation"
+  }
+}

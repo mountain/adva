@@ -1,0 +1,538 @@
+{
+  "schema": "adva.data-machine.run.research.v0",
+  "profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "program": {
+    "schema": "adva.data-machine.program.research.v0",
+    "name": "arithmetic-tree-interpreter",
+    "registers": [
+      {
+        "name": "work",
+        "kind": "stack"
+      },
+      {
+        "name": "values",
+        "kind": "stack"
+      },
+      {
+        "name": "item",
+        "kind": "data"
+      },
+      {
+        "name": "left_tree",
+        "kind": "data"
+      },
+      {
+        "name": "right_tree",
+        "kind": "data"
+      },
+      {
+        "name": "temp",
+        "kind": "data"
+      },
+      {
+        "name": "tag",
+        "kind": "integer"
+      },
+      {
+        "name": "constant",
+        "kind": "integer"
+      },
+      {
+        "name": "left",
+        "kind": "integer"
+      },
+      {
+        "name": "right",
+        "kind": "integer"
+      },
+      {
+        "name": "test",
+        "kind": "boolean"
+      }
+    ],
+    "code": [
+      {
+        "op": "clear",
+        "stack": 0
+      },
+      {
+        "op": "clear",
+        "stack": 1
+      },
+      {
+        "op": "input",
+        "dst": 2
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 2
+      },
+      {
+        "op": "is_empty",
+        "stack": 0,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 45,
+        "no": 6
+      },
+      {
+        "op": "pop",
+        "stack": 0,
+        "dst": 2
+      },
+      {
+        "op": "tag",
+        "src": 2,
+        "dst": 6
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": -1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 31,
+        "no": 11
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 0
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 27,
+        "no": 14
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 20,
+        "no": 17
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 2
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 20,
+        "no": 49
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 2,
+        "index": 0,
+        "dst": 3
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 2,
+        "index": 1,
+        "dst": 4
+      },
+      {
+        "op": "box_integer",
+        "src": 6,
+        "dst": 5
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 5
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 4
+      },
+      {
+        "op": "push",
+        "stack": 0,
+        "src": 3
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "field",
+        "src": 2,
+        "arity": 1,
+        "index": 0,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 8
+      },
+      {
+        "op": "push",
+        "stack": 1,
+        "src": 5
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "as_integer",
+        "src": 2,
+        "dst": 6
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 9
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "as_integer",
+        "src": 5,
+        "dst": 8
+      },
+      {
+        "op": "constant",
+        "dst": 7,
+        "value": 1
+      },
+      {
+        "op": "equal",
+        "left": 6,
+        "right": 7,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 39,
+        "no": 41
+      },
+      {
+        "op": "add",
+        "left": 8,
+        "right": 9,
+        "dst": 8
+      },
+      {
+        "op": "jump",
+        "target": 42
+      },
+      {
+        "op": "multiply",
+        "left": 8,
+        "right": 9,
+        "dst": 8
+      },
+      {
+        "op": "box_integer",
+        "src": 8,
+        "dst": 5
+      },
+      {
+        "op": "push",
+        "stack": 1,
+        "src": 5
+      },
+      {
+        "op": "jump",
+        "target": 4
+      },
+      {
+        "op": "pop",
+        "stack": 1,
+        "dst": 5
+      },
+      {
+        "op": "is_empty",
+        "stack": 1,
+        "dst": 10
+      },
+      {
+        "op": "branch",
+        "condition": 10,
+        "yes": 48,
+        "no": 50
+      },
+      {
+        "op": "return",
+        "src": 5
+      },
+      {
+        "op": "reject",
+        "reason": "unsupported object tag"
+      },
+      {
+        "op": "reject",
+        "reason": "object value stack not singleton"
+      }
+    ]
+  },
+  "input": {
+    "kind": "node",
+    "tag": 1,
+    "fields": [
+      {
+        "kind": "node",
+        "tag": 0,
+        "fields": [
+          {
+            "kind": "integer",
+            "value": 2
+          }
+        ]
+      },
+      {
+        "kind": "node",
+        "tag": 2,
+        "fields": [
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "integer",
+                "value": 3
+              }
+            ]
+          },
+          {
+            "kind": "node",
+            "tag": 0,
+            "fields": [
+              {
+                "kind": "integer",
+                "value": 4
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "fuel": 2048,
+  "state": {
+    "pc": 20,
+    "registers": [
+      {
+        "kind": "stack",
+        "items": []
+      },
+      {
+        "kind": "stack",
+        "items": []
+      },
+      {
+        "kind": "data",
+        "value": {
+          "kind": "node",
+          "tag": 1,
+          "fields": [
+            {
+              "kind": "node",
+              "tag": 0,
+              "fields": [
+                {
+                  "kind": "integer",
+                  "value": 2
+                }
+              ]
+            },
+            {
+              "kind": "node",
+              "tag": 2,
+              "fields": [
+                {
+                  "kind": "node",
+                  "tag": 0,
+                  "fields": [
+                    {
+                      "kind": "integer",
+                      "value": 3
+                    }
+                  ]
+                },
+                {
+                  "kind": "node",
+                  "tag": 0,
+                  "fields": [
+                    {
+                      "kind": "integer",
+                      "value": 4
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      null,
+      null,
+      null,
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      {
+        "kind": "integer",
+        "value": 1
+      },
+      null,
+      null,
+      {
+        "kind": "boolean",
+        "value": true
+      }
+    ],
+    "spent": 17,
+    "phase": {
+      "kind": "running"
+    }
+  },
+  "trace": [
+    {
+      "pc": 0,
+      "next_pc": 1,
+      "state_digest": "da1cf0273e58feaabd1df69357b8eb251e9884d76903e86896919c8c2460a2dd"
+    },
+    {
+      "pc": 1,
+      "next_pc": 2,
+      "state_digest": "6ed9974ff10c2fff6d8742c43b16f16bfdc5c7c5b2fca460dd0b34495f612840"
+    },
+    {
+      "pc": 2,
+      "next_pc": 3,
+      "state_digest": "271b0ee47e12753e4a10d41814d07d35cb5f07592d31543c808519ac3a90c451"
+    },
+    {
+      "pc": 3,
+      "next_pc": 4,
+      "state_digest": "a9e1aa661e8499f6db30191f86cca8ea97f920eafb39a49a016dafc0b7be7f16"
+    },
+    {
+      "pc": 4,
+      "next_pc": 5,
+      "state_digest": "ee4dbc2a125a832693b66996483c9d7fee6c8a6600bf6eac27102ef6b471bcb2"
+    },
+    {
+      "pc": 5,
+      "next_pc": 6,
+      "state_digest": "2736ab72ff2ff4f21a94b89e094ca0469b0fd5d2d36d90075158c2042ccd415a"
+    },
+    {
+      "pc": 6,
+      "next_pc": 7,
+      "state_digest": "b4b7ae443a6aa453d0458461ec57195dccb171dc184f4b2f299adc9e5d65ea55"
+    },
+    {
+      "pc": 7,
+      "next_pc": 8,
+      "state_digest": "57b96b4536848701261e5364e792874d00a8aa1a38f2ea96ac890589e6f01cb8"
+    },
+    {
+      "pc": 8,
+      "next_pc": 9,
+      "state_digest": "88ac1618562a25a32388ca1d9f201287b2507be286d9f5e58598bda3cfe911f7"
+    },
+    {
+      "pc": 9,
+      "next_pc": 10,
+      "state_digest": "3e9bd919309bebd73d485cec373c977cb85e1dd4e54adcd44ba65d7dbdef2355"
+    },
+    {
+      "pc": 10,
+      "next_pc": 11,
+      "state_digest": "d5c7117525abddd6f174991b033013fad43ccee79cedec398a5ef8873af6f546"
+    },
+    {
+      "pc": 11,
+      "next_pc": 12,
+      "state_digest": "425b6a9665dfd115ca9ade3c12bd6a42b49a8ba49515b4e8e6bba9f86c1256ca"
+    },
+    {
+      "pc": 12,
+      "next_pc": 13,
+      "state_digest": "818084f6faf8388585b575e64762c1dc1e02d89941789f2c9ee983850091a69f"
+    },
+    {
+      "pc": 13,
+      "next_pc": 14,
+      "state_digest": "b7c48506c4cf7c5ec3e215c3c91e3a30556011b929edaed0d1a629e1f10b1fbb"
+    },
+    {
+      "pc": 14,
+      "next_pc": 15,
+      "state_digest": "716569fa46dc3fe3311eba777c32485efce285a4cbe8364b8c5814545ac01484"
+    },
+    {
+      "pc": 15,
+      "next_pc": 16,
+      "state_digest": "20190fc9d3ad9a4774eddb1a910b0f7960e6d0da3588e0711757f7d0a43c4e24"
+    },
+    {
+      "pc": 16,
+      "next_pc": 20,
+      "state_digest": "36dd3d32064faa0abc1a86fc30ab5cf8ad02cf2dfddeb100ca6229e8bde83b42"
+    }
+  ],
+  "status": "Suspended",
+  "segments": [
+    {
+      "start": 0,
+      "end": 17,
+      "replayed": 0
+    }
+  ]
+}
