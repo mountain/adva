@@ -114,6 +114,13 @@ MiB), and supervisor RSS was 10,112 KiB. These are process high-water marks, not
 incremental memory. Reading, authoring, source retrieval, network and repository
 integration time are not measured.
 
+Search cost is exactly zero candidates. Construction, receiver validation and
+JSON serialization occur inside each child process but were not timed
+independently; only their combined wall/CPU and counted-work totals above are
+available. The width-three reuse likewise shares that run and has no separate
+wall or memory measurement. The retained evidence exposes each result count but
+does not justify allocating the aggregate time among those phases.
+
 Python byte compilation, JSON parsing, TOML parsing, deterministic replay and
 the staged whitespace check passed. The identified-withdrawal scanner checked
 4,389 staged-tree blobs, 9,192 expanded members and 377,120,743 bytes and found
