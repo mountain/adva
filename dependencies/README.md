@@ -4,8 +4,8 @@ Authored by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy;
 not his technical review or correctness guarantee.
 
 `adva-machine.lock.json` starts the knowledge repository's external toolchain
-consumer route. It pins machine `8a34d8053e0b5cdb6b29e5677acdac2e8af7df52` and
-library `f652709c5dd2aecc7ed319e54452df1d4f4881d1`. It does not require either
+consumer route. It pins machine `0c1e972d6b2b955b0a5361f755cf2560ce44a248` and
+library `4a53db6493389e046bd7293be9e3ae335ea2e9c7`. It does not require either
 repository's current `main` to stay at that revision. See the
 [boundary decision and reproduction commands](../docs/KNOWLEDGE_MACHINE_BOUNDARY.md).
 
@@ -68,3 +68,13 @@ A successor run, `continuity-02`, checks the corrected acquisition path with
 Its [report](evidence/continuity-02/report.json) passed all four checks after a
 155.72-second fresh build. The expanded regression selection passed 675 tests,
 including both successful runs and the preserved failed acquisition.
+
+## Unknown v0.3 dependency successor
+
+The current lock advances the machine and library together for Unknown v0.3.
+Its `previous_lock` records the exact earlier lock and digest under `locks/`.
+The original two successful runs and failed CI receipt remain bound to that
+earlier machine/library pair. The native source profiles, knowledge inputs,
+historical comparison artifact and finite execution budgets are unchanged.
+The license revision's voluntary commitments do not retroactively change the
+meaning or permissions of earlier artifacts.

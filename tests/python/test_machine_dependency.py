@@ -81,6 +81,20 @@ def test_retained_inputs_still_match_the_dependency_lock():
     CHECK.pins(ROOT, CHECK.read(CHECK.LOCK)["knowledge_inputs"])
 
 
+def test_successor_lock_preserves_the_original_receipt_bindings():
+    lock = CHECK.read(CHECK.LOCK)
+    seen = {CHECK.sha(CHECK.LOCK)}
+    while "previous_lock" in lock:
+        previous = lock["previous_lock"]
+        path = ROOT / previous["path"]
+        digest = CHECK.sha(path)
+        assert digest == previous["sha256"] and digest not in seen
+        seen.add(digest)
+        lock = CHECK.read(path)
+    for run in ("continuity-01", "continuity-02", "ci-01-failed"):
+        assert CHECK.sha(ROOT / "dependencies/evidence" / run / "dependency.lock.json") in seen
+
+
 @pytest.mark.parametrize("run", ("continuity-01", "continuity-02"))
 def test_retained_run_binds_inputs_history_and_native_replay(run):
     evidence = ROOT / "dependencies/evidence" / run

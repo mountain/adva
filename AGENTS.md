@@ -14,7 +14,7 @@ Maintain shared documentation in English first for international collaboration.
 
 ## Unknown adoption
 
-The project adopts [Unknown v0.2](Unknown-LICENSE-v0.2.md): public domain with
+The project adopts [Unknown v0.3](Unknown-LICENSE-v0.3.md): public domain with
 a voluntary philosophical statement. Use [LICENSING.md](LICENSING.md) for scope.
 Contribution and attribution practices below govern this project's workflow;
 they do not add copyright conditions on downstream use. Preserve separately
