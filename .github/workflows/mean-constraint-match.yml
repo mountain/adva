@@ -1,0 +1,30 @@
+name: Mean constraint match
+on:
+  pull_request:
+    paths:
+      - 'programs/mean-constraint-match/**'
+      - '.github/workflows/mean-constraint-match.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'programs/mean-constraint-match/**'
+      - '.github/workflows/mean-constraint-match.yml'
+permissions:
+  contents: read
+jobs:
+  native-calibration:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - name: Build inherited v0 runner
+        run: timeout 600s cargo build --locked -p adva-witness --bin adva
+      - name: Run and independently replay bounded program
+        run: timeout 120s python3 programs/mean-constraint-match/check.py --binary target/debug/adva --output "$RUNNER_TEMP/mean-match-evidence"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: mean-constraint-match-evidence
+          path: ${{ runner.temp }}/mean-match-evidence

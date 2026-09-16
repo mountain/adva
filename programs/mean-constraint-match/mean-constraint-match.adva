@@ -1,0 +1,654 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "mean-constraint-match",
+  "registers": [
+    {
+      "name": "n",
+      "kind": "integer"
+    },
+    {
+      "name": "k",
+      "kind": "integer"
+    },
+    {
+      "name": "a",
+      "kind": "integer"
+    },
+    {
+      "name": "b",
+      "kind": "integer"
+    },
+    {
+      "name": "sum",
+      "kind": "integer"
+    },
+    {
+      "name": "num",
+      "kind": "integer"
+    },
+    {
+      "name": "counter",
+      "kind": "integer"
+    },
+    {
+      "name": "one",
+      "kind": "integer"
+    },
+    {
+      "name": "maximum",
+      "kind": "integer"
+    },
+    {
+      "name": "den",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "input",
+      "kind": "data"
+    },
+    {
+      "name": "temp",
+      "kind": "data"
+    },
+    {
+      "name": "mean",
+      "kind": "data"
+    },
+    {
+      "name": "variance",
+      "kind": "data"
+    },
+    {
+      "name": "result",
+      "kind": "data"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 11
+    },
+    {
+      "op": "tag",
+      "src": 11,
+      "dst": 5
+    },
+    {
+      "op": "constant",
+      "dst": 7,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 5,
+      "right": 7,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 5,
+      "no": 102
+    },
+    {
+      "op": "field",
+      "src": 11,
+      "arity": 4,
+      "index": 0,
+      "dst": 12
+    },
+    {
+      "op": "as_integer",
+      "src": 12,
+      "dst": 0
+    },
+    {
+      "op": "field",
+      "src": 11,
+      "arity": 4,
+      "index": 1,
+      "dst": 12
+    },
+    {
+      "op": "as_integer",
+      "src": 12,
+      "dst": 1
+    },
+    {
+      "op": "field",
+      "src": 11,
+      "arity": 4,
+      "index": 2,
+      "dst": 12
+    },
+    {
+      "op": "as_integer",
+      "src": 12,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 11,
+      "arity": 4,
+      "index": 3,
+      "dst": 12
+    },
+    {
+      "op": "as_integer",
+      "src": 12,
+      "dst": 3
+    },
+    {
+      "op": "constant",
+      "dst": 7,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 6
+    },
+    {
+      "op": "equal",
+      "left": 0,
+      "right": 6,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 22,
+      "no": 18
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 20
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 16
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 6
+    },
+    {
+      "op": "equal",
+      "left": 1,
+      "right": 6,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 30,
+      "no": 26
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 28
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 24
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 8
+    },
+    {
+      "op": "equal",
+      "left": 2,
+      "right": 6,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 38,
+      "no": 34
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 36
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 32
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 8
+    },
+    {
+      "op": "equal",
+      "left": 3,
+      "right": 6,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 46,
+      "no": 42
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 44
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 40
+    },
+    {
+      "op": "copy",
+      "src": 1,
+      "dst": 6
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 6
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 0,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 54,
+      "no": 50
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 52
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 48
+    },
+    {
+      "op": "copy",
+      "src": 2,
+      "dst": 6
+    },
+    {
+      "op": "constant",
+      "dst": 8,
+      "value": 8
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 3,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 62,
+      "no": 58
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 102,
+      "no": 60
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "jump",
+      "target": 56
+    },
+    {
+      "op": "add",
+      "left": 2,
+      "right": 3,
+      "dst": 4
+    },
+    {
+      "op": "multiply",
+      "left": 0,
+      "right": 2,
+      "dst": 5
+    },
+    {
+      "op": "multiply",
+      "left": 1,
+      "right": 4,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 5,
+      "dst": 12
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 15
+    },
+    {
+      "op": "node",
+      "tag": 1,
+      "fields": [
+        12,
+        15
+      ],
+      "dst": 13
+    },
+    {
+      "op": "equal",
+      "left": 5,
+      "right": 9,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 70,
+      "no": 72
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "jump",
+      "target": 73
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 0
+    },
+    {
+      "op": "box_integer",
+      "src": 6,
+      "dst": 11
+    },
+    {
+      "op": "multiply",
+      "left": 5,
+      "right": 3,
+      "dst": 5
+    },
+    {
+      "op": "multiply",
+      "left": 9,
+      "right": 9,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 5,
+      "dst": 12
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 15
+    },
+    {
+      "op": "node",
+      "tag": 2,
+      "fields": [
+        12,
+        15
+      ],
+      "dst": 14
+    },
+    {
+      "op": "equal",
+      "left": 0,
+      "right": 1,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 81,
+      "no": 83
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 1
+    },
+    {
+      "op": "jump",
+      "target": 84
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 0
+    },
+    {
+      "op": "box_integer",
+      "src": 6,
+      "dst": 12
+    },
+    {
+      "op": "node",
+      "tag": 4,
+      "fields": [
+        11,
+        12
+      ],
+      "dst": 15
+    },
+    {
+      "op": "constant",
+      "dst": 5,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 9,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 6,
+      "value": 0
+    },
+    {
+      "op": "multiply",
+      "left": 5,
+      "right": 2,
+      "dst": 5
+    },
+    {
+      "op": "multiply",
+      "left": 9,
+      "right": 4,
+      "dst": 9
+    },
+    {
+      "op": "add",
+      "left": 6,
+      "right": 7,
+      "dst": 6
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 0,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 94,
+      "no": 89
+    },
+    {
+      "op": "equal",
+      "left": 0,
+      "right": 1,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 96,
+      "no": 97
+    },
+    {
+      "op": "constant",
+      "dst": 5,
+      "value": 0
+    },
+    {
+      "op": "box_integer",
+      "src": 5,
+      "dst": 11
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 12
+    },
+    {
+      "op": "node",
+      "tag": 3,
+      "fields": [
+        15,
+        11,
+        12
+      ],
+      "dst": 15
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        13,
+        14,
+        15
+      ],
+      "dst": 15
+    },
+    {
+      "op": "return",
+      "src": 15
+    },
+    {
+      "op": "reject",
+      "reason": "outside mean-constraint-match finite domain"
+    }
+  ]
+}
