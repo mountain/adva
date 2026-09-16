@@ -91,11 +91,11 @@ def test_successor_lock_preserves_the_original_receipt_bindings():
         assert digest == previous["sha256"] and digest not in seen
         seen.add(digest)
         lock = CHECK.read(path)
-    for run in ("continuity-01", "continuity-02", "ci-01-failed"):
+    for run in ("continuity-01", "continuity-02", "ci-01-failed", "continuity-03"):
         assert CHECK.sha(ROOT / "dependencies/evidence" / run / "dependency.lock.json") in seen
 
 
-@pytest.mark.parametrize("run", ("continuity-01", "continuity-02"))
+@pytest.mark.parametrize("run", ("continuity-01", "continuity-02", "continuity-03"))
 def test_retained_run_binds_inputs_history_and_native_replay(run):
     evidence = ROOT / "dependencies/evidence" / run
     manifest = CHECK.read(evidence / "manifest.json")
@@ -107,8 +107,9 @@ def test_retained_run_binds_inputs_history_and_native_replay(run):
     report = CHECK.read(evidence / "report.json")
     lock = CHECK.read(evidence / "dependency.lock.json")
     assert report["knowledge"]["checker_sha256"] == CHECK.sha(evidence / "checker.py")
-    if run == "continuity-02":
+    if run == "continuity-03":
         assert CHECK.sha(ROOT / "scripts/check_machine_dependency.py") == CHECK.sha(evidence / "checker.py")
+        assert CHECK.sha(CHECK.LOCK) == CHECK.sha(evidence / "dependency.lock.json")
     assert report["knowledge"]["lock_sha256"] == CHECK.sha(evidence / "dependency.lock.json")
     assert report["dependencies"]["machine_revision"] == lock["machine"]["revision"]
     assert report["dependencies"]["library_revision"] == lock["library"]["revision"]

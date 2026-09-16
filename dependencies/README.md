@@ -78,3 +78,11 @@ earlier machine/library pair. The native source profiles, knowledge inputs,
 historical comparison artifact and finite execution budgets are unchanged.
 The license revision's voluntary commitments do not retroactively change the
 meaning or permissions of earlier artifacts.
+
+The [continuity-03 report](evidence/continuity-03/report.json) receives this new
+pair after a fresh public HTTPS checkout and a 158.47-second release build,
+with SSH disabled. All four checks passed: the complete historical PSC0 observer
+and returned/rejected/suspended data-machine executions with fresh Rust replay.
+The three data-machine cases retain 172 executed and separately replayed steps;
+all ten native calls are accounted for. The checker itself is unchanged.
+The complete successor run is retained alongside, not in place of, its predecessors.
