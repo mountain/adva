@@ -429,3 +429,15 @@ self interpretation of all machine constructs, universality, specialization,
 second/third Futamura projection, native source/occurrence correspondence or
 speedup. Full primitive observations and terminal results are checked in the
 finite fixture family; source and target instruction fuel are not equated.
+
+The later [bounded mix experiment](research/bounded-mix-and-three-projections.md)
+separately checks conservative input binding and self-application. It retains
+every original instruction except input replacement and branch relocation;
+static computation and interpreter dispatch remain in the residual. Code-producing
+equalities are checked for two small object interpreters and five static programs,
+with exact returned data and rejection reasons when both runs fit their bounds.
+Different fuel or capacity outcomes remain outside that correspondence.
+Its v2 machine is a separate capacity profile, not an in-place change to v1.
+These finite binding instances do not establish a general optimizing `mix`, a
+complete Adva self interpreter, interpreter elimination, speedup, unrestricted
+projection laws or stable native transformation certificates.

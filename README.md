@@ -138,8 +138,15 @@ bounded `adva data-run-v1` research profile. The
 [report](docs/research/bounded-self-compiler-and-futamura.md) connects this bootstrap
 to the existing static and dynamic first-projection calibrations and states the
 remaining interpreter, `mix` and self-application contracts. This establishes
-self compilation for the declared subset; a general specializer and the second
-and third Futamura projections remain open.
+self compilation for the declared subset.
+
+The subsequent [bounded mix experiment](experiments/bounded_mix/README.md)
+implements input binding in ordinary Adva instructions and checks actual emitted
+code across the three projection equations. Its separate `data-run-v2` research
+profile preserves v1 and raises only instruction and node-arity capacities.
+This conservative baseline retains interpreter execution; a general optimizing
+specializer, interpreter elimination and unrestricted projection claims remain
+open. See the [results and limits](docs/research/bounded-mix-and-three-projections.md).
 
 ### A collaboration record, without building Rust
 

@@ -493,3 +493,18 @@ and independent structural receiver; Rust admits and executes the resulting
 typed targets. The original `data_machine` v0 module remains frozen. Neither
 version allocates native diagram identities or extends stable PSC0. The compiler
 has a separate research correspondence receipt, not a native `GraftTrace`.
+
+The [bounded input-binding mix](research/bounded-mix-and-three-projections.md)
+uses the same generic instruction grammar to construct a static literal prefix,
+bind input and relocate the unchanged source body. Its own implementation is
+ordinary structured Adva source compiled by the received self compiler. No Rust
+instruction or host callback performs specialization. External Python receives
+the complete syntactic correspondence; Rust admits, executes and replays targets.
+
+`data_machine_v2` is a separate capacity successor: version/profile markers and
+the instruction-count and node/field-arity limits change from 2,048 to 4,096.
+All 23 operations and other resource bounds retain v1 semantics. The unchanged
+v0/v1 sources retain their historical profiles and evidence. V2 cannot receive a
+v1 checkpoint. The [ADR](adr/bounded-mix-self-application.md) records the actual
+v1 capacity obstruction and the revised finite contract. This research boundary
+does not add a stable transformation certificate or native diagram identities.

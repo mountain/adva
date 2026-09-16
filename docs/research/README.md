@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **213 numbered
-notes, 40 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 41 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -813,3 +813,4 @@ they were previously duplicated here and the two copies drifted apart.*
 
 - [bounded-self-compiler-and-futamura.md](bounded-self-compiler-and-futamura.md): a structured Adva research compiler compiles its own source, with stage, block and execution receiving; the three Futamura projections retain explicit implementation obligations.
 - [execution-performance-comparison.md](execution-performance-comparison.md): 78 checked cases separate Rust direct execution, dynamic residuals, interpretation overhead and byte-identical self-compiler stages.
+- [bounded-mix-and-three-projections.md](bounded-mix-and-three-projections.md): ordinary Adva input-binding mix self-applies to emit residuals, compilers and a compiler generator; two object interpreters exercise the finite code-producing equations, with the v1 capacity refusal retained and optimizing specialization still open.

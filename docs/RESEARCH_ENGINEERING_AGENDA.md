@@ -989,3 +989,23 @@ The v1 compiler takes the separately scoped extension route: 257 instructions,
 35 registers, generic dynamic field access and stack packing, and 34,135 native
 steps per self compilation. This does not make its source grammar identical to
 the v0 object language or discharge the missing specializer/loader boundaries.
+
+## 19. Conservative mix self-application baseline, 2026-09-16
+
+The [bounded mix report](research/bounded-mix-and-three-projections.md) follows
+section 18 with a program-independent **input-binding** specializer in ordinary
+Adva source. Its 238-instruction implementation constructs static data, replaces
+input reads and relocates branches while retaining the complete original body.
+This establishes a finite baseline for the code-producing equations before
+attempting static evaluation or interpreter elimination. Those optimizations
+still require their own binding-time analysis and correctness boundaries.
+
+The original v1 trial retained its third-generation node-arity refusal. The
+separately contracted v2 continuation changes only instruction and node-arity
+capacity, preserving the old profile, primitive semantics and fuel. The check
+distinguishes residuals, compilers and an actually emitted compiler generator;
+the object family contains two different interpreters and five static programs.
+Full self interpretation remains a dependency for specializing an interpreter of
+the entire structured subset. Input binding can be checked without that missing
+interpreter because it preserves the admitted body rather than evaluating it.
+No earlier bootstrap result is retroactively promoted to a projection result.

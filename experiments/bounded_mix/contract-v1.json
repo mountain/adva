@@ -1,0 +1,58 @@
+{
+  "schema": "adva.bounded-mix.contract.v1",
+  "question": "Can the received conservative mix execute all three finite code-producing projection equations in a separately versioned 4096-instruction/arity profile?",
+  "level": "Research input-binding specializer; no constant propagation or interpreter elimination is claimed.",
+  "imports": [
+    "Frozen Rust data-machine v1 admission/execution/replay",
+    "Structured self compiler and external seed",
+    "Existing pure instruction/module wire codec",
+    "External structural receiver and host loader; no host specialization during native runs"
+  ],
+  "interface": "q takes node tag 42 with [static, dynamic]. mix takes node tag 42 with [encoded q, static], and returns encoded residual expecting dynamic alone. Source and residual use the same v1 instruction grammar. Target/source equality is a correspondence over a literal prefix and relocated body, not a native semantic identity.",
+  "protected": [
+    "Preserve every original instruction except explicit input binding and jump relocation",
+    "Preserve exact terminal data and rejection reasons when both executions fit their respective bounds",
+    "Dynamic branches, loops, checked overflow and uninitialized-register refusal remain live",
+    "Capacity/fuel exhaustion is Unknown, never success or divergence",
+    "No additional primitives or hidden evaluator/compile callbacks; frozen v0/v1 sources remain byte identical. V2 changes only version markers and program/arity capacity.",
+    "Keep general optimizing mix and unrestricted projection claims Open"
+  ],
+  "source_boundary": {
+    "maximum_registers": 48,
+    "reserved_register_prefix": "mix_",
+    "static_literal_maximum_depth": 11,
+    "additional_registers": 16,
+    "machine_profile": "separate v2; only program length and node/field arity rise to 4096"
+  },
+  "family": [
+    "Native mix(mix,mix), admission and full replay",
+    "Compiler generator applied to both affine and tagged interpreters; equality with direct mix(mix,I)",
+    "Five static programs; compiler/direct mix residual code equality; terminal/rejection checks against both interpreters",
+    "Changed mix source, changed interpreter and static source, wrong checkpoint profile/input/fuel, zero fuel and old/new capacity refusals"
+  ],
+  "preflight": {
+    "note": "Uses the already received mix body from the completed six-call v1 preflight; no automatic repetition."
+  },
+  "campaign": {
+    "attempts": 1,
+    "native_calls": 48,
+    "wall_seconds": 1200,
+    "aggregate_cpu_seconds": 1080,
+    "address_space_bytes": 1073741824,
+    "artifact_bytes": 268435456,
+    "lifetime_instructions_per_run": 200000,
+    "automatic_retries": 0
+  },
+  "checking": "Receive complete prefix construction and every body instruction/target against source and static data; Rust admits and runs all executable artifacts. Receive code-producing equations by canonical target equality, and terminal equations by declared observations. Retain raw reports and all failures.",
+  "exit": "Completed finite family, a checker mismatch, or declared resource limit. A capacity obstruction is measured and retained; no automatic profile widening.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's authorized GitHub account proxy; not his authorship, review or correctness guarantee.",
+  "supersedes": {
+    "path": "experiments/bounded_mix/contract.json",
+    "sha256": "4803c318348c98d033a3284c217878ebaef3790386a4536ee3e61e1c14d3c5db",
+    "reason": "Retain the completed v1 capacity refusal. One separately scoped v2 run; no prior fuel is renewed."
+  },
+  "capacity_evidence": {
+    "path": "experiments/bounded_mix/evidence/v1-attempt-01/third-capacity-obstruction.json",
+    "sha256": "cce12e45ec0932e066a12171c443199afcdc93562298c2da5b5a297b5ffd134d"
+  }
+}

@@ -1,0 +1,2189 @@
+{
+  "schema": "adva.structured.program.research.v0",
+  "name": "bounded-input-binding-mix",
+  "registers": [
+    {
+      "name": "work",
+      "kind": "stack"
+    },
+    {
+      "name": "output",
+      "kind": "stack"
+    },
+    {
+      "name": "declarations",
+      "kind": "stack"
+    },
+    {
+      "name": "bundle",
+      "kind": "data"
+    },
+    {
+      "name": "q",
+      "kind": "data"
+    },
+    {
+      "name": "name",
+      "kind": "data"
+    },
+    {
+      "name": "decls",
+      "kind": "data"
+    },
+    {
+      "name": "code",
+      "kind": "data"
+    },
+    {
+      "name": "static",
+      "kind": "data"
+    },
+    {
+      "name": "frame",
+      "kind": "data"
+    },
+    {
+      "name": "item",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "a",
+      "kind": "data"
+    },
+    {
+      "name": "b",
+      "kind": "data"
+    },
+    {
+      "name": "c",
+      "kind": "data"
+    },
+    {
+      "name": "child",
+      "kind": "data"
+    },
+    {
+      "name": "depth_box",
+      "kind": "data"
+    },
+    {
+      "name": "parent_box",
+      "kind": "data"
+    },
+    {
+      "name": "child_box",
+      "kind": "data"
+    },
+    {
+      "name": "dyn_box",
+      "kind": "data"
+    },
+    {
+      "name": "bound_box",
+      "kind": "data"
+    },
+    {
+      "name": "int_box",
+      "kind": "data"
+    },
+    {
+      "name": "data_box",
+      "kind": "data"
+    },
+    {
+      "name": "text",
+      "kind": "data"
+    },
+    {
+      "name": "empty",
+      "kind": "data"
+    },
+    {
+      "name": "zero",
+      "kind": "integer"
+    },
+    {
+      "name": "one",
+      "kind": "integer"
+    },
+    {
+      "name": "minus",
+      "kind": "integer"
+    },
+    {
+      "name": "nregs",
+      "kind": "integer"
+    },
+    {
+      "name": "base",
+      "kind": "integer"
+    },
+    {
+      "name": "depth",
+      "kind": "integer"
+    },
+    {
+      "name": "child_depth",
+      "kind": "integer"
+    },
+    {
+      "name": "tag",
+      "kind": "integer"
+    },
+    {
+      "name": "index",
+      "kind": "integer"
+    },
+    {
+      "name": "length",
+      "kind": "integer"
+    },
+    {
+      "name": "offset",
+      "kind": "integer"
+    },
+    {
+      "name": "number",
+      "kind": "integer"
+    },
+    {
+      "name": "probe",
+      "kind": "integer"
+    },
+    {
+      "name": "flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "more",
+      "kind": "boolean"
+    }
+  ],
+  "body": {
+    "kind": "seq",
+    "items": [
+      {
+        "kind": "seq",
+        "items": [
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 25,
+              "value": 0
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 26,
+              "value": 1
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 27,
+              "value": -1
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "input",
+              "dst": 3
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "tag",
+                  "src": 3,
+                  "dst": 32
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "constant",
+                  "dst": 37,
+                  "value": 42
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "equal",
+                  "left": 32,
+                  "right": 37,
+                  "dst": 39
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 39,
+                "yes": {
+                  "kind": "seq",
+                  "items": []
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "reject",
+                    "reason": "mix input tag"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "field",
+              "src": 3,
+              "index": 0,
+              "dst": 4,
+              "arity": 2
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "field",
+              "src": 3,
+              "index": 1,
+              "dst": 8,
+              "arity": 2
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "tag",
+                  "src": 4,
+                  "dst": 32
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "constant",
+                  "dst": 37,
+                  "value": 241
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "equal",
+                  "left": 32,
+                  "right": 37,
+                  "dst": 39
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 39,
+                "yes": {
+                  "kind": "seq",
+                  "items": []
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "reject",
+                    "reason": "mix input tag"
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "field",
+              "src": 4,
+              "index": 0,
+              "dst": 5,
+              "arity": 3
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "field",
+              "src": 4,
+              "index": 1,
+              "dst": 6,
+              "arity": 3
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "field",
+              "src": 4,
+              "index": 2,
+              "dst": 7,
+              "arity": 3
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "length",
+              "src": 6,
+              "dst": 28
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 33,
+              "value": 0
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "clear",
+              "stack": 0
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "equal",
+                  "left": 33,
+                  "right": 28,
+                  "dst": 38
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 38,
+                "yes": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 26,
+                    "dst": 38
+                  }
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 25,
+                    "dst": 38
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "while",
+            "condition": 38,
+            "body": {
+              "kind": "seq",
+              "items": [
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "field_dynamic",
+                    "src": 6,
+                    "index": 33,
+                    "dst": 11
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "push",
+                    "stack": 0,
+                    "src": 11
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "add",
+                    "left": 33,
+                    "right": 26,
+                    "dst": 33
+                  }
+                },
+                {
+                  "kind": "seq",
+                  "items": [
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "equal",
+                        "left": 33,
+                        "right": 28,
+                        "dst": 38
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "condition": 38,
+                      "yes": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 26,
+                          "dst": 38
+                        }
+                      },
+                      "no": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 25,
+                          "dst": 38
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 36,
+              "value": 109
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 19
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 36,
+              "value": 105
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 20
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 36,
+              "value": 120
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 21
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 36,
+              "value": 95
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 22
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 33,
+              "value": 0
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 34,
+              "value": 16
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "equal",
+                  "left": 33,
+                  "right": 34,
+                  "dst": 38
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 38,
+                "yes": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 26,
+                    "dst": 38
+                  }
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 25,
+                    "dst": 38
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "while",
+            "condition": 38,
+            "body": {
+              "kind": "seq",
+              "items": [
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "constant",
+                    "dst": 36,
+                    "value": 65
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "add",
+                    "left": 36,
+                    "right": 33,
+                    "dst": 36
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "box_integer",
+                    "src": 36,
+                    "dst": 12
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "node",
+                    "tag": 255,
+                    "fields": [
+                      19,
+                      20,
+                      21,
+                      22,
+                      12
+                    ],
+                    "dst": 23
+                  }
+                },
+                {
+                  "kind": "seq",
+                  "items": [
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "constant",
+                        "dst": 37,
+                        "value": 0
+                      }
+                    },
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "equal",
+                        "left": 33,
+                        "right": 37,
+                        "dst": 39
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "condition": 39,
+                      "yes": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "node",
+                          "tag": 2,
+                          "fields": [
+                            23
+                          ],
+                          "dst": 11
+                        }
+                      },
+                      "no": {
+                        "kind": "seq",
+                        "items": [
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "constant",
+                              "dst": 37,
+                              "value": 1
+                            }
+                          },
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "equal",
+                              "left": 33,
+                              "right": 37,
+                              "dst": 39
+                            }
+                          },
+                          {
+                            "kind": "if",
+                            "condition": 39,
+                            "yes": {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "node",
+                                "tag": 2,
+                                "fields": [
+                                  23
+                                ],
+                                "dst": 11
+                              }
+                            },
+                            "no": {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "constant",
+                                    "dst": 37,
+                                    "value": 2
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "equal",
+                                    "left": 33,
+                                    "right": 37,
+                                    "dst": 39
+                                  }
+                                },
+                                {
+                                  "kind": "if",
+                                  "condition": 39,
+                                  "yes": {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "node",
+                                      "tag": 0,
+                                      "fields": [
+                                        23
+                                      ],
+                                      "dst": 11
+                                    }
+                                  },
+                                  "no": {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "constant",
+                                          "dst": 37,
+                                          "value": 3
+                                        }
+                                      },
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "equal",
+                                          "left": 33,
+                                          "right": 37,
+                                          "dst": 39
+                                        }
+                                      },
+                                      {
+                                        "kind": "if",
+                                        "condition": 39,
+                                        "yes": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "node",
+                                            "tag": 2,
+                                            "fields": [
+                                              23
+                                            ],
+                                            "dst": 11
+                                          }
+                                        },
+                                        "no": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "node",
+                                            "tag": 3,
+                                            "fields": [
+                                              23
+                                            ],
+                                            "dst": 11
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    }
+                  ]
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "push",
+                    "stack": 0,
+                    "src": 11
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "add",
+                    "left": 33,
+                    "right": 26,
+                    "dst": 33
+                  }
+                },
+                {
+                  "kind": "seq",
+                  "items": [
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "equal",
+                        "left": 33,
+                        "right": 34,
+                        "dst": 38
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "condition": 38,
+                      "yes": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 26,
+                          "dst": 38
+                        }
+                      },
+                      "no": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 25,
+                          "dst": 38
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "pack",
+              "stack": 0,
+              "tag": 254,
+              "dst": 6
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "clear",
+              "stack": 0
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 28,
+              "dst": 19
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "add",
+              "left": 28,
+              "right": 26,
+              "dst": 36
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 20
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "add",
+              "left": 36,
+              "right": 26,
+              "dst": 36
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 21
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "add",
+              "left": 36,
+              "right": 26,
+              "dst": 36
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 22
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "add",
+              "left": 36,
+              "right": 26,
+              "dst": 29
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 29,
+              "dst": 17
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "clear",
+              "stack": 1
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "node",
+                  "tag": 0,
+                  "fields": [
+                    19
+                  ],
+                  "dst": 11
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "push",
+                  "stack": 1,
+                  "src": 11
+                }
+              }
+            ]
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "node",
+                  "tag": 3,
+                  "fields": [
+                    17
+                  ],
+                  "dst": 11
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "push",
+                  "stack": 1,
+                  "src": 11
+                }
+              }
+            ]
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 25,
+              "dst": 16
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "node",
+                  "tag": 0,
+                  "fields": [
+                    8,
+                    16
+                  ],
+                  "dst": 11
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "push",
+                  "stack": 0,
+                  "src": 11
+                }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "kind": "seq",
+        "items": [
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "is_empty",
+                  "stack": 0,
+                  "dst": 38
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 38,
+                "yes": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 26,
+                    "dst": 38
+                  }
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 25,
+                    "dst": 38
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "while",
+            "condition": 38,
+            "body": {
+              "kind": "seq",
+              "items": [
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "pop",
+                    "stack": 0,
+                    "dst": 9
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "tag",
+                    "src": 9,
+                    "dst": 32
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "field",
+                    "src": 9,
+                    "index": 0,
+                    "dst": 10,
+                    "arity": 2
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "field",
+                    "src": 9,
+                    "index": 1,
+                    "dst": 16,
+                    "arity": 2
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "as_integer",
+                    "src": 16,
+                    "dst": 30
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "add",
+                    "left": 29,
+                    "right": 30,
+                    "dst": 36
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "box_integer",
+                    "src": 36,
+                    "dst": 17
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 32,
+                    "right": 25,
+                    "dst": 39
+                  }
+                },
+                {
+                  "kind": "if",
+                  "condition": 39,
+                  "yes": {
+                    "kind": "seq",
+                    "items": [
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "tag",
+                          "src": 10,
+                          "dst": 32
+                        }
+                      },
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 32,
+                          "right": 27,
+                          "dst": 39
+                        }
+                      },
+                      {
+                        "kind": "if",
+                        "condition": 39,
+                        "yes": {
+                          "kind": "seq",
+                          "items": [
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 1,
+                                    "fields": [
+                                      21,
+                                      10
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 1,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 10,
+                                    "fields": [
+                                      21,
+                                      22
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 1,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 4,
+                                    "fields": [
+                                      17,
+                                      22
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 1,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "no": {
+                          "kind": "seq",
+                          "items": [
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "add",
+                                "left": 30,
+                                "right": 26,
+                                "dst": 31
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "constant",
+                                "dst": 37,
+                                "value": 12
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "equal",
+                                "left": 31,
+                                "right": 37,
+                                "dst": 39
+                              }
+                            },
+                            {
+                              "kind": "if",
+                              "condition": 39,
+                              "yes": {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "reject",
+                                  "reason": "mix static literal depth"
+                                }
+                              },
+                              "no": {
+                                "kind": "seq",
+                                "items": []
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "box_integer",
+                                "src": 31,
+                                "dst": 14
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "add",
+                                "left": 29,
+                                "right": 31,
+                                "dst": 36
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "box_integer",
+                                "src": 36,
+                                "dst": 18
+                              }
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 3,
+                                    "fields": [
+                                      18
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 1,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "box_integer",
+                                "src": 32,
+                                "dst": 12
+                              }
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 1,
+                                    "fields": [
+                                      12,
+                                      16
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 0,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "length",
+                                "src": 10,
+                                "dst": 33
+                              }
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "equal",
+                                    "left": 33,
+                                    "right": 25,
+                                    "dst": 40
+                                  }
+                                },
+                                {
+                                  "kind": "if",
+                                  "condition": 40,
+                                  "yes": {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "equal",
+                                      "left": 25,
+                                      "right": 26,
+                                      "dst": 40
+                                    }
+                                  },
+                                  "no": {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "equal",
+                                      "left": 25,
+                                      "right": 25,
+                                      "dst": 40
+                                    }
+                                  }
+                                }
+                              ]
+                            },
+                            {
+                              "kind": "while",
+                              "condition": 40,
+                              "body": {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "add",
+                                      "left": 33,
+                                      "right": 27,
+                                      "dst": 33
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "field_dynamic",
+                                      "src": 10,
+                                      "index": 33,
+                                      "dst": 15
+                                    }
+                                  },
+                                  {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "node",
+                                          "tag": 0,
+                                          "fields": [
+                                            15,
+                                            14
+                                          ],
+                                          "dst": 11
+                                        }
+                                      },
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "push",
+                                          "stack": 0,
+                                          "src": 11
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "equal",
+                                          "left": 33,
+                                          "right": 25,
+                                          "dst": 40
+                                        }
+                                      },
+                                      {
+                                        "kind": "if",
+                                        "condition": 40,
+                                        "yes": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 25,
+                                            "right": 26,
+                                            "dst": 40
+                                          }
+                                        },
+                                        "no": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 25,
+                                            "right": 25,
+                                            "dst": 40
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  },
+                  "no": {
+                    "kind": "seq",
+                    "items": [
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "add",
+                          "left": 30,
+                          "right": 26,
+                          "dst": 31
+                        }
+                      },
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "add",
+                          "left": 29,
+                          "right": 31,
+                          "dst": 36
+                        }
+                      },
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "box_integer",
+                          "src": 36,
+                          "dst": 18
+                        }
+                      },
+                      {
+                        "kind": "seq",
+                        "items": [
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "node",
+                              "tag": 21,
+                              "fields": [
+                                18,
+                                10,
+                                22
+                              ],
+                              "dst": 11
+                            }
+                          },
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "push",
+                              "stack": 1,
+                              "src": 11
+                            }
+                          }
+                        ]
+                      },
+                      {
+                        "kind": "seq",
+                        "items": [
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "node",
+                              "tag": 4,
+                              "fields": [
+                                17,
+                                22
+                              ],
+                              "dst": 11
+                            }
+                          },
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "push",
+                              "stack": 1,
+                              "src": 11
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                },
+                {
+                  "kind": "seq",
+                  "items": [
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "is_empty",
+                        "stack": 0,
+                        "dst": 38
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "condition": 38,
+                      "yes": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 26,
+                          "dst": 38
+                        }
+                      },
+                      "no": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 25,
+                          "dst": 38
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "kind": "seq",
+        "items": [
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 29,
+              "dst": 17
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "node",
+                  "tag": 5,
+                  "fields": [
+                    17,
+                    22
+                  ],
+                  "dst": 11
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "push",
+                  "stack": 1,
+                  "src": 11
+                }
+              }
+            ]
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 36,
+              "value": 42
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "box_integer",
+              "src": 36,
+              "dst": 12
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "node",
+              "tag": 254,
+              "fields": [
+                22,
+                19
+              ],
+              "dst": 13
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "node",
+                  "tag": 11,
+                  "fields": [
+                    12,
+                    13,
+                    20
+                  ],
+                  "dst": 11
+                }
+              },
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "push",
+                  "stack": 1,
+                  "src": 11
+                }
+              }
+            ]
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "stack_length",
+              "stack": 1,
+              "dst": 35
+            }
+          }
+        ]
+      },
+      {
+        "kind": "seq",
+        "items": [
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "length",
+              "src": 7,
+              "dst": 34
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "constant",
+              "dst": 33,
+              "value": 0
+            }
+          },
+          {
+            "kind": "seq",
+            "items": [
+              {
+                "kind": "prim",
+                "instruction": {
+                  "op": "equal",
+                  "left": 33,
+                  "right": 34,
+                  "dst": 38
+                }
+              },
+              {
+                "kind": "if",
+                "condition": 38,
+                "yes": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 26,
+                    "dst": 38
+                  }
+                },
+                "no": {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 25,
+                    "right": 25,
+                    "dst": 38
+                  }
+                }
+              }
+            ]
+          },
+          {
+            "kind": "while",
+            "condition": 38,
+            "body": {
+              "kind": "seq",
+              "items": [
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "field_dynamic",
+                    "src": 7,
+                    "index": 33,
+                    "dst": 10
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "tag",
+                    "src": 10,
+                    "dst": 32
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "equal",
+                    "left": 32,
+                    "right": 25,
+                    "dst": 39
+                  }
+                },
+                {
+                  "kind": "if",
+                  "condition": 39,
+                  "yes": {
+                    "kind": "seq",
+                    "items": [
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "field",
+                          "src": 10,
+                          "index": 0,
+                          "dst": 12,
+                          "arity": 1
+                        }
+                      },
+                      {
+                        "kind": "seq",
+                        "items": [
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "node",
+                              "tag": 2,
+                              "fields": [
+                                20,
+                                12
+                              ],
+                              "dst": 11
+                            }
+                          },
+                          {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "push",
+                              "stack": 1,
+                              "src": 11
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  },
+                  "no": {
+                    "kind": "seq",
+                    "items": [
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "constant",
+                          "dst": 37,
+                          "value": 15
+                        }
+                      },
+                      {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 32,
+                          "right": 37,
+                          "dst": 39
+                        }
+                      },
+                      {
+                        "kind": "if",
+                        "condition": 39,
+                        "yes": {
+                          "kind": "seq",
+                          "items": [
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "field",
+                                "src": 10,
+                                "index": 0,
+                                "dst": 12,
+                                "arity": 1
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "as_integer",
+                                "src": 12,
+                                "dst": 36
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "add",
+                                "left": 36,
+                                "right": 35,
+                                "dst": 36
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "box_integer",
+                                "src": 36,
+                                "dst": 12
+                              }
+                            },
+                            {
+                              "kind": "seq",
+                              "items": [
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "node",
+                                    "tag": 15,
+                                    "fields": [
+                                      12
+                                    ],
+                                    "dst": 11
+                                  }
+                                },
+                                {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "push",
+                                    "stack": 1,
+                                    "src": 11
+                                  }
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        "no": {
+                          "kind": "seq",
+                          "items": [
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "constant",
+                                "dst": 37,
+                                "value": 16
+                              }
+                            },
+                            {
+                              "kind": "prim",
+                              "instruction": {
+                                "op": "equal",
+                                "left": 32,
+                                "right": 37,
+                                "dst": 39
+                              }
+                            },
+                            {
+                              "kind": "if",
+                              "condition": 39,
+                              "yes": {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "field",
+                                      "src": 10,
+                                      "index": 0,
+                                      "dst": 12,
+                                      "arity": 3
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "field",
+                                      "src": 10,
+                                      "index": 1,
+                                      "dst": 13,
+                                      "arity": 3
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "field",
+                                      "src": 10,
+                                      "index": 2,
+                                      "dst": 14,
+                                      "arity": 3
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "as_integer",
+                                      "src": 13,
+                                      "dst": 36
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "add",
+                                      "left": 36,
+                                      "right": 35,
+                                      "dst": 36
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "box_integer",
+                                      "src": 36,
+                                      "dst": 13
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "as_integer",
+                                      "src": 14,
+                                      "dst": 36
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "add",
+                                      "left": 36,
+                                      "right": 35,
+                                      "dst": 36
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "box_integer",
+                                      "src": 36,
+                                      "dst": 14
+                                    }
+                                  },
+                                  {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "node",
+                                          "tag": 16,
+                                          "fields": [
+                                            12,
+                                            13,
+                                            14
+                                          ],
+                                          "dst": 11
+                                        }
+                                      },
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "push",
+                                          "stack": 1,
+                                          "src": 11
+                                        }
+                                      }
+                                    ]
+                                  }
+                                ]
+                              },
+                              "no": {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "push",
+                                  "stack": 1,
+                                  "src": 10
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "add",
+                    "left": 33,
+                    "right": 26,
+                    "dst": 33
+                  }
+                },
+                {
+                  "kind": "seq",
+                  "items": [
+                    {
+                      "kind": "prim",
+                      "instruction": {
+                        "op": "equal",
+                        "left": 33,
+                        "right": 34,
+                        "dst": 38
+                      }
+                    },
+                    {
+                      "kind": "if",
+                      "condition": 38,
+                      "yes": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 26,
+                          "dst": 38
+                        }
+                      },
+                      "no": {
+                        "kind": "prim",
+                        "instruction": {
+                          "op": "equal",
+                          "left": 25,
+                          "right": 25,
+                          "dst": 38
+                        }
+                      }
+                    }
+                  ]
+                }
+              ]
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "pack",
+              "stack": 1,
+              "tag": 250,
+              "dst": 11
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "node",
+              "tag": 241,
+              "fields": [
+                5,
+                6,
+                11
+              ],
+              "dst": 11
+            }
+          },
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "return",
+              "src": 11
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -34,6 +34,8 @@ mod native_run_cli;
 mod data_machine_cli;
 #[path = "support/data_machine_v1_cli.rs"]
 mod data_machine_v1_cli;
+#[path = "support/data_machine_v2_cli.rs"]
+mod data_machine_v2_cli;
 
 #[path = "support/library_cli.rs"]
 mod library_cli;
@@ -43,6 +45,7 @@ const USAGE: &str = "usage:
   adva library reuse --path <library-root> --epoch N --word N --input N --output <new-report.json> [--fuel N] [--expect-digest BLAKE3]
   adva run <program.adva> --output <result.adva> [--print]
   adva data-run-v1 <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]
+  adva data-run-v2 <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]
   adva data-run <program.adva> --input <data.json> --fuel N --quantum N --output <new-run.adva> [--resume <old-run.adva> | --check <old-run.adva>]
   adva reveal <program.adva> --output <witness.adva> [--fuel N] [--print]
   adva trace-arithmetic <reveal-witness.adva> --output <calibration.adva> [--print]
@@ -109,6 +112,7 @@ fn run() -> Result<(), Box<dyn Error>> {
         "library" => library_cli::run(arguments),
         "run" => native_run_cli::run(arguments),
         "data-run-v1" => data_machine_v1_cli::run(arguments),
+        "data-run-v2" => data_machine_v2_cli::run(arguments),
         "data-run" => data_machine_cli::run(arguments),
         "reveal" => run_reveal(parse_reveal_args(arguments)?),
         "trace-arithmetic" => run_trace_arithmetic(parse_trace_arithmetic_args(arguments)?),
