@@ -1,0 +1,432 @@
+{
+  "schema": "adva.futamura-dynamic-residual.result.v0",
+  "source_language": "input d, return s; two data slots; source programs are exactly input, input, return",
+  "compiler": {
+    "instructions": 41,
+    "registers": 12,
+    "rule": "keep the last instruction that writes the returned slot, together with the return; drop every other instruction",
+    "rejects": "a source program whose third instruction is not a return is refused by the compiler itself"
+  },
+  "interpreter": {
+    "instructions": 103,
+    "source": "self_interpretation_scaling/check.py, reused unchanged"
+  },
+  "residual_instruction_counts": [
+    1,
+    2
+  ],
+  "cases": [
+    {
+      "case": "p000",
+      "source": [
+        0,
+        0,
+        0
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 41,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 38,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p000",
+      "source": [
+        0,
+        0,
+        0
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 41,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 38,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p001",
+      "source": [
+        0,
+        0,
+        1
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Rejected",
+      "interpreted_value": null,
+      "interpreted_steps": 44,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 1,
+      "compile_steps": 36,
+      "residual_instructions": 1,
+      "source_instructions": 3
+    },
+    {
+      "case": "p001",
+      "source": [
+        0,
+        0,
+        1
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Rejected",
+      "interpreted_value": null,
+      "interpreted_steps": 44,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 1,
+      "compile_steps": 36,
+      "residual_instructions": 1,
+      "source_instructions": 3
+    },
+    {
+      "case": "p010",
+      "source": [
+        0,
+        1,
+        0
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 44,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p010",
+      "source": [
+        0,
+        1,
+        0
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 44,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p011",
+      "source": [
+        0,
+        1,
+        1
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 47,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p011",
+      "source": [
+        0,
+        1,
+        1
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 47,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p100",
+      "source": [
+        1,
+        0,
+        0
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 44,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p100",
+      "source": [
+        1,
+        0,
+        0
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 44,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p101",
+      "source": [
+        1,
+        0,
+        1
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 47,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p101",
+      "source": [
+        1,
+        0,
+        1
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 47,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 37,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p110",
+      "source": [
+        1,
+        1,
+        0
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Rejected",
+      "interpreted_value": null,
+      "interpreted_steps": 47,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 1,
+      "compile_steps": 36,
+      "residual_instructions": 1,
+      "source_instructions": 3
+    },
+    {
+      "case": "p110",
+      "source": [
+        1,
+        1,
+        0
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Rejected",
+      "interpreted_value": null,
+      "interpreted_steps": 47,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 1,
+      "compile_steps": 36,
+      "residual_instructions": 1,
+      "source_instructions": 3
+    },
+    {
+      "case": "p111",
+      "source": [
+        1,
+        1,
+        1
+      ],
+      "dynamic": 7,
+      "interpreted_status": "Returned",
+      "interpreted_value": 7,
+      "interpreted_steps": 50,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 2,
+      "compile_steps": 38,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    },
+    {
+      "case": "p111",
+      "source": [
+        1,
+        1,
+        1
+      ],
+      "dynamic": 9,
+      "interpreted_status": "Returned",
+      "interpreted_value": 9,
+      "interpreted_steps": 50,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 2,
+      "compile_steps": 38,
+      "residual_instructions": 2,
+      "source_instructions": 3
+    }
+  ],
+  "gains": [
+    {
+      "case": "p000",
+      "dynamic": 7,
+      "interpreted_steps": 41,
+      "residual_steps": 2,
+      "compile_steps": 38
+    },
+    {
+      "case": "p000",
+      "dynamic": 9,
+      "interpreted_steps": 41,
+      "residual_steps": 2,
+      "compile_steps": 38
+    },
+    {
+      "case": "p001",
+      "dynamic": 7,
+      "interpreted_steps": 44,
+      "residual_steps": 1,
+      "compile_steps": 36
+    },
+    {
+      "case": "p001",
+      "dynamic": 9,
+      "interpreted_steps": 44,
+      "residual_steps": 1,
+      "compile_steps": 36
+    },
+    {
+      "case": "p010",
+      "dynamic": 7,
+      "interpreted_steps": 44,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p010",
+      "dynamic": 9,
+      "interpreted_steps": 44,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p011",
+      "dynamic": 7,
+      "interpreted_steps": 47,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p011",
+      "dynamic": 9,
+      "interpreted_steps": 47,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p100",
+      "dynamic": 7,
+      "interpreted_steps": 44,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p100",
+      "dynamic": 9,
+      "interpreted_steps": 44,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p101",
+      "dynamic": 7,
+      "interpreted_steps": 47,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p101",
+      "dynamic": 9,
+      "interpreted_steps": 47,
+      "residual_steps": 2,
+      "compile_steps": 37
+    },
+    {
+      "case": "p110",
+      "dynamic": 7,
+      "interpreted_steps": 47,
+      "residual_steps": 1,
+      "compile_steps": 36
+    },
+    {
+      "case": "p110",
+      "dynamic": 9,
+      "interpreted_steps": 47,
+      "residual_steps": 1,
+      "compile_steps": 36
+    },
+    {
+      "case": "p111",
+      "dynamic": 7,
+      "interpreted_steps": 50,
+      "residual_steps": 2,
+      "compile_steps": 38
+    },
+    {
+      "case": "p111",
+      "dynamic": 9,
+      "interpreted_steps": 50,
+      "residual_steps": 2,
+      "compile_steps": 38
+    }
+  ],
+  "launches": 40,
+  "failures": [],
+  "verdict": "Passed",
+  "retained": {
+    "archive": "attempt.tar.gz",
+    "archive_files": 120,
+    "archive_bytes": 64093,
+    "archive_digests_verified": true,
+    "loose": "interpreter.adva, compiler.adva, results.json and residuals/"
+  }
+}

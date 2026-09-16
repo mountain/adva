@@ -1,0 +1,298 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "futamura-residual-compiler",
+  "registers": [
+    {
+      "name": "bundle",
+      "kind": "data"
+    },
+    {
+      "name": "program",
+      "kind": "data"
+    },
+    {
+      "name": "instr",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "emit_a",
+      "kind": "data"
+    },
+    {
+      "name": "emit_b",
+      "kind": "data"
+    },
+    {
+      "name": "opcode",
+      "kind": "integer"
+    },
+    {
+      "name": "operand",
+      "kind": "integer"
+    },
+    {
+      "name": "target",
+      "kind": "integer"
+    },
+    {
+      "name": "probe",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "have",
+      "kind": "boolean"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 0
+    },
+    {
+      "op": "field",
+      "src": 0,
+      "arity": 2,
+      "index": 0,
+      "dst": 1
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 3,
+      "index": 2,
+      "dst": 2
+    },
+    {
+      "op": "tag",
+      "src": 2,
+      "dst": 6
+    },
+    {
+      "op": "constant",
+      "dst": 9,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 9,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 7,
+      "no": 40
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 8
+    },
+    {
+      "op": "constant",
+      "dst": 9,
+      "value": 0
+    },
+    {
+      "op": "constant",
+      "dst": 7,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 7,
+      "dst": 11
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 3,
+      "index": 0,
+      "dst": 2
+    },
+    {
+      "op": "tag",
+      "src": 2,
+      "dst": 6
+    },
+    {
+      "op": "constant",
+      "dst": 9,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 9,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 17,
+      "no": 22
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 7
+    },
+    {
+      "op": "equal",
+      "left": 7,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 21,
+      "no": 22
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 9,
+      "dst": 11
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 3,
+      "index": 1,
+      "dst": 2
+    },
+    {
+      "op": "tag",
+      "src": 2,
+      "dst": 6
+    },
+    {
+      "op": "constant",
+      "dst": 9,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 6,
+      "right": 9,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 27,
+      "no": 32
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 7
+    },
+    {
+      "op": "equal",
+      "left": 7,
+      "right": 8,
+      "dst": 10
+    },
+    {
+      "op": "branch",
+      "condition": 10,
+      "yes": 31,
+      "no": 32
+    },
+    {
+      "op": "equal",
+      "left": 9,
+      "right": 9,
+      "dst": 11
+    },
+    {
+      "op": "box_integer",
+      "src": 8,
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 1,
+      "fields": [
+        3
+      ],
+      "dst": 5
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "branch",
+      "condition": 11,
+      "yes": 36,
+      "no": 38
+    },
+    {
+      "op": "node",
+      "tag": 2,
+      "fields": [
+        4,
+        5
+      ],
+      "dst": 3
+    },
+    {
+      "op": "return",
+      "src": 3
+    },
+    {
+      "op": "node",
+      "tag": 2,
+      "fields": [
+        5
+      ],
+      "dst": 3
+    },
+    {
+      "op": "return",
+      "src": 3
+    },
+    {
+      "op": "reject",
+      "reason": "source program is outside the handled family"
+    }
+  ]
+}

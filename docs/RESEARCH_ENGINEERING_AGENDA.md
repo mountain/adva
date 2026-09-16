@@ -906,3 +906,32 @@ scoped extension must move the program and data or vocabulary bounds and the fue
 bound; a checked translation between the carrier and the program/process boundary
 moves none of them. Nothing here promotes a specializer, and the promotion gates of
 section 1.6 that concern failure, unknown and certificates remain unsatisfied.
+
+## 16. The first projection with a live dynamic input, 2026-09-16
+
+Section 15 executed the first projection for a fully static family, where every
+residual came out as a constant because the source program was the whole input. The
+[dynamic-residual calibration](research/futamura-dynamic-residual-calibration.md) keeps
+a dynamic input alive, so the residual has to be code.
+
+A 41-instruction compiler written in the research data-machine language — 12 registers,
+11 instruction kinds — reads and writes the same declared program encoding, and its
+whole rule is one sentence: keep the last instruction that writes the returned slot,
+together with the return, and drop everything else. Over the eight source programs of
+the declared two-opcode two-slot subset, with two dynamic values each, all sixteen
+cases agree with interpretation in status *and* value: twelve return the dynamic value,
+and four stay refused because their returned slot was never written. Compilation here
+preserves failure rather than converting it into a value.
+
+Residuals are 1 or 2 instructions against 3 source instructions. Interpreted runs cost
+41 to 50 native steps for 728 in total, the compiler 36 to 38 for 592, and the
+residuals 1 to 2 for 28 — so one compile plus one residual run (620) is already cheaper
+than interpreting sixteen times (728), which is the opposite of section 15's family,
+where the compile cost dominated and two uses were needed first. Compilation's
+pay-off is a ratio between two programs, and both calibrations record their own ratio
+instead of generalising from one.
+
+Two boundaries stand as before. The emitted residual becomes an executable program
+only through a declared host instantiation step, because the machine has no loader;
+and projections two and three stay blocked by the measured 295-instruction and 169-node
+floors. Nothing here promotes a specializer or an optimiser.
