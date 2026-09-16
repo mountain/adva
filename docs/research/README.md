@@ -1,11 +1,13 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **214 numbered
-notes, 41 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 42 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
 ## How to read this directory
+
+- [Continuation binding after implementation failure](continuation-binding-after-implementation-failure.md): finite fresh-process retry with the complete receiver-selected checkpoint and failure parent retained; no native recovery claim.
 
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
