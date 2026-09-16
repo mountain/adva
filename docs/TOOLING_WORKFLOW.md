@@ -120,6 +120,19 @@ python3 experiments/bounded_observation_exchange/check_exchange_chain.py
 第一版不需要同时建设新语言、通用证明器和社区平台。只读导航与问题工作单就能先检验
 “读者能否找到能用的材料”和“接手者能否继续”这两个实际困难。
 
+### 状态（2026-09-16 加入）
+
+本节前三项已实现为可运行的工具，检查与限制见
+[首个 tooling 助手记录](maintenance/tooling-first-helpers-20260916.md)：
+
+- 第一项 只读导航：[`scripts/navigate.py`](../scripts/navigate.py)；
+- 第二项 问题工作单：[`scripts/problem_card.py`](../scripts/problem_card.py)；
+- 第三项 少量执行适配：[`scripts/run_bounded.py`](../scripts/run_bounded.py)，含交换链与
+  数据解释器样例两个声明计划。
+
+三者只用标准库、只读输入；导航不会重跑它找到的检查器，适配器只运行自身源码中声明的计划。
+本节其余内容以及第 7 节的实证问题（尚未用参与者检验）保持不变。
+
 显示结果时保留几条独立信息：材料是否接收、执行是否完成、检查是否通过、结论适用于
 哪里、还有什么未知。不要把它们压成一个绿色的“成功”。检查器成功重放了一次被拒绝的
 运行，本身就可能同时具有“记录通过检查”和“运行被拒绝”两种状态。
