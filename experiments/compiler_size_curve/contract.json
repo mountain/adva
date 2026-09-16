@@ -1,0 +1,51 @@
+{
+  "schema": "adva.compiler-size-curve.contract.v0",
+  "base": "d5b5d0c",
+  "question": "How does the instruction count of a compiler written in the research data-machine language grow with the opcode set, the source program length and the slot count of the subset it compiles, and at what point does it stop fitting the declared bound of 128 instructions?",
+  "level": "Bounded construction and measurement of one declared lowering compiler over a generated grid; no stable specializer, no optimiser, no host-language compiler change and no self-hosting claim",
+  "imports": [
+    "The declared profile bound is 128 program instructions, 16 registers, 127 data nodes, depth 12, arity 8 and lifetime fuel 2048",
+    "The subset language is the machine's own instruction language restricted to declared opcodes; the lowering puts each slot in a data register and an integer register, so one source instruction becomes one to three target instructions",
+    "Earlier measurements give the reference points: a two-opcode compiler at 41 instructions, a four-opcode meta interpreter at 166, and a nineteen-opcode ladder floor at 295",
+    "docs/research/futamura-dynamic-residual-calibration.md declares the observation policy used here, and this preflight adds an independent host-side reference implementation of the same declared semantics"
+  ],
+  "protected": [
+    "The machine is unchanged; no bound is widened and no operation is added",
+    "The compiler is generated per source shape because indexed access and register selection are static in this profile; that generation rule is part of what is measured",
+    "No optimisation is performed: the curve must price fetch, dispatch, operand extraction and lowering, not the cleverness of one pass",
+    "Unmeasured opcodes in the full-language ceiling are charged the cheapest measured lowering, so the reported 201 instructions is a lower bound",
+    "Refusals count as observations: a residual that refuses must refuse for the same reason as the reference"
+  ],
+  "cases": {
+    "generated": [
+      "opcode axis: two to five opcodes over three source instructions at two slots",
+      "length axis: two opcodes over one, two and three source instructions",
+      "slot axis: two opcodes over two source instructions at two and three slots",
+      "ceiling: a compiler for all nineteen declared opcodes over one source instruction"
+    ],
+    "executed": [
+      "every fitting shape, over its declared family of source programs and two return slots",
+      "each residual instantiated into a real program and executed directly",
+      "the ceiling compiler submitted to the unchanged CLI"
+    ]
+  },
+  "checker": "experiments/compiler_size_curve/check.py",
+  "success": "The curve is measured for every declared shape, every executed case agrees with the independent reference in status and value, and the ceiling measurement records where the full-language compiler is refused.",
+  "negative_controls": [
+    "The reference implementation is independent of both generated programs, so agreement cannot come from one evaluation path",
+    "Refused cases are included deliberately, through a declared return slot that no position writes, so a compiler that turns a refusal into a value fails",
+    "Nothing is optimised, so a shrinking residual cannot be mistaken for the measured cost",
+    "The ceiling compiler is submitted rather than assumed to be oversized"
+  ],
+  "resources": {
+    "max_cli_launches": 256,
+    "fuel_per_run": 2048,
+    "quantum_per_run": 2048,
+    "wall_seconds_per_invocation": 20,
+    "wall_seconds_total": 600,
+    "max_full_attempts_under_this_contract": 1,
+    "output_directory": "experiments/compiler_size_curve/evidence/attempt-1"
+  },
+  "exit": "Stop at the first mismatch or resource limit; retain the failure and publish no positive claim from this attempt.",
+  "limits": "The curve prices one declared lowering compiler, not compilers in general. The slot axis is free only because slot indices travel as data in this design; a compiler that remaps registers would pay there. The ceiling charges twelve opcodes a placeholder body, and the whole experiment says nothing about projections two and three beyond where the instruction bound bites."
+}

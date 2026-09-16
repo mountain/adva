@@ -935,3 +935,29 @@ Two boundaries stand as before. The emitted residual becomes an executable progr
 only through a declared host instantiation step, because the machine has no loader;
 and projections two and three stay blocked by the measured 295-instruction and 169-node
 floors. Nothing here promotes a specializer or an optimiser.
+
+## 17. The compiler size curve and the bootstrapping budget, 2026-09-16
+
+Sections 13 to 16 measured self-hosting cost as isolated points: 169 data nodes against
+127, 295 instructions for a nineteen-case ladder with placeholder bodies, 166 for a
+four-opcode meta interpreter, 41 for a two-opcode compiler. The
+[size curve](research/compiler-size-curve-and-bootstrapping-budget.md) turns them into a
+surface by generating an in-language lowering compiler for each declared source shape
+and measuring its instruction count.
+
+Result: each additional source opcode costs 45 to 63 instructions, each additional
+source instruction costs 32, and an additional slot costs nothing in code size because
+slot indices travel as data in this lowering. At three source instructions the ceiling is
+two opcodes: the third needs 146 of the declared 128. A compiler for the machine's whole
+nineteen-opcode instruction language over a single source instruction is a measured
+**201-instruction lower bound**, refused at admission, with twelve opcodes charged a
+placeholder body. For every fitting shape the whole source family was compiled, the
+residual instantiated and executed directly, and 28 of 28 cases agreed with an
+independent reference in status and value, including twelve refusals.
+
+Consequence for bootstrapping: the opcode term is the binding one, and it is binding per
+*source position*, which is what a static control-transfer and static register-operand
+machine cannot avoid. Self-hosting therefore needs either a larger instruction bound or
+a data-driven dispatch the language cannot express today, and the slot bank is the one
+term an extension does not have to buy. This is a price list for the separately scoped
+extension of sections 12 to 16, not a prohibition, and it promotes nothing.

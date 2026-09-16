@@ -1,0 +1,561 @@
+{
+  "schema": "adva.compiler-size-curve.result.v0",
+  "retained": {
+    "archive": "attempt.tar.gz",
+    "archive_files": 128,
+    "archive_bytes": 51138,
+    "archive_digests_verified": true,
+    "loose": "curve.json, ceiling-compiler.adva, compilers/, residuals/ and results.json"
+  },
+  "declared_bound": 128,
+  "curve": [
+    {
+      "axis": "opcodes",
+      "opcodes": 2,
+      "slots": 2,
+      "length": 3,
+      "compiler_instructions": 101,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "opcodes",
+      "opcodes": 3,
+      "slots": 2,
+      "length": 3,
+      "compiler_instructions": 146,
+      "within_bound": false,
+      "ops": [
+        "constant",
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "opcodes",
+      "opcodes": 4,
+      "slots": 2,
+      "length": 3,
+      "compiler_instructions": 194,
+      "within_bound": false,
+      "ops": [
+        "constant",
+        "copy",
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "opcodes",
+      "opcodes": 5,
+      "slots": 2,
+      "length": 3,
+      "compiler_instructions": 257,
+      "within_bound": false,
+      "ops": [
+        "add",
+        "constant",
+        "copy",
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "length",
+      "opcodes": 2,
+      "slots": 2,
+      "length": 1,
+      "compiler_instructions": 37,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "length",
+      "opcodes": 2,
+      "slots": 2,
+      "length": 2,
+      "compiler_instructions": 69,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "length",
+      "opcodes": 2,
+      "slots": 2,
+      "length": 3,
+      "compiler_instructions": 101,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "opcodes",
+      "opcodes": 3,
+      "slots": 2,
+      "length": 2,
+      "compiler_instructions": 99,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return",
+        "constant"
+      ]
+    },
+    {
+      "axis": "slots",
+      "opcodes": 2,
+      "slots": 2,
+      "length": 2,
+      "compiler_instructions": 69,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    },
+    {
+      "axis": "slots",
+      "opcodes": 2,
+      "slots": 3,
+      "length": 2,
+      "compiler_instructions": 69,
+      "within_bound": true,
+      "ops": [
+        "input",
+        "return"
+      ]
+    }
+  ],
+  "ceiling": {
+    "exit_code": 2,
+    "stderr": [
+      "adva: invalid program schema or capacity"
+    ],
+    "compiler_instructions": 201,
+    "declared_bound": 128,
+    "opcodes": 19,
+    "placeholders": [
+      "branch",
+      "clear",
+      "equal",
+      "field",
+      "is_empty",
+      "jump",
+      "multiply",
+      "node",
+      "pop",
+      "push",
+      "reject",
+      "tag"
+    ],
+    "placeholder_note": "opcodes with no measured lowering are charged the cheapest measured one, so this size is a lower bound"
+  },
+  "cases": [
+    {
+      "case": "c2-2s-3x-input-input-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 101,
+      "residual_instructions": 6,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 6,
+      "compile_steps": 57
+    },
+    {
+      "case": "c2-2s-3x-input-input-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 101,
+      "residual_instructions": 6,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 6,
+      "compile_steps": 57
+    },
+    {
+      "case": "c2-2s-3x-input-input-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 101,
+      "residual_instructions": 6,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 6,
+      "compile_steps": 57
+    },
+    {
+      "case": "c2-2s-3x-input-input-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 101,
+      "residual_instructions": 6,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 6,
+      "compile_steps": 57
+    },
+    {
+      "case": "c2-2s-2x-input-input-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-2s-2x-input-input-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-2s-2x-input-input-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-2s-2x-input-input-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-input-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-input-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-input-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-input-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-constant-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-constant-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-constant-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-input-constant-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c3-2s-2x-constant-input-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Returned",
+      "expected_value": 3,
+      "residual_status": "Returned",
+      "residual_value": 3,
+      "residual_steps": 3,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-input-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Returned",
+      "expected_value": 3,
+      "residual_status": "Returned",
+      "residual_value": 3,
+      "residual_steps": 3,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-input-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 2,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-input-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 2,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-constant-r0",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Returned",
+      "expected_value": 3,
+      "residual_status": "Returned",
+      "residual_value": 3,
+      "residual_steps": 3,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-constant-r0",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Returned",
+      "expected_value": 3,
+      "residual_status": "Returned",
+      "residual_value": 3,
+      "residual_steps": 3,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-constant-r1",
+      "dynamic": 7,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 2,
+      "compile_steps": 48
+    },
+    {
+      "case": "c3-2s-2x-constant-constant-r1",
+      "dynamic": 9,
+      "slots": 2,
+      "opcodes": 3,
+      "compiler_instructions": 99,
+      "residual_instructions": 3,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 2,
+      "compile_steps": 48
+    },
+    {
+      "case": "c2-3s-2x-input-input-r0",
+      "dynamic": 7,
+      "slots": 3,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 7,
+      "residual_status": "Returned",
+      "residual_value": 7,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-3s-2x-input-input-r0",
+      "dynamic": 9,
+      "slots": 3,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Returned",
+      "expected_value": 9,
+      "residual_status": "Returned",
+      "residual_value": 9,
+      "residual_steps": 4,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-3s-2x-input-input-r1",
+      "dynamic": 7,
+      "slots": 3,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    },
+    {
+      "case": "c2-3s-2x-input-input-r1",
+      "dynamic": 9,
+      "slots": 3,
+      "opcodes": 2,
+      "compiler_instructions": 69,
+      "residual_instructions": 4,
+      "expected_status": "Rejected",
+      "expected_value": null,
+      "residual_status": "Rejected",
+      "residual_value": null,
+      "residual_steps": 3,
+      "compile_steps": 41
+    }
+  ],
+  "launches": 43,
+  "failures": [],
+  "verdict": "Passed"
+}

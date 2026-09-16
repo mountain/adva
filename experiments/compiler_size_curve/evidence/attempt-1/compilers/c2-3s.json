@@ -1,0 +1,500 @@
+{
+  "schema": "adva.data-machine.program.research.v0",
+  "name": "lowering-compiler-input-return-3s-2x",
+  "registers": [
+    {
+      "name": "bundle",
+      "kind": "data"
+    },
+    {
+      "name": "program",
+      "kind": "data"
+    },
+    {
+      "name": "instr",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "acc",
+      "kind": "data"
+    },
+    {
+      "name": "b0",
+      "kind": "data"
+    },
+    {
+      "name": "b1",
+      "kind": "data"
+    },
+    {
+      "name": "b2",
+      "kind": "data"
+    },
+    {
+      "name": "opcode",
+      "kind": "integer"
+    },
+    {
+      "name": "operand",
+      "kind": "integer"
+    },
+    {
+      "name": "operand2",
+      "kind": "integer"
+    },
+    {
+      "name": "operand3",
+      "kind": "integer"
+    },
+    {
+      "name": "shift",
+      "kind": "integer"
+    },
+    {
+      "name": "probe",
+      "kind": "integer"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    }
+  ],
+  "code": [
+    {
+      "op": "input",
+      "dst": 0
+    },
+    {
+      "op": "field",
+      "src": 0,
+      "arity": 2,
+      "index": 0,
+      "dst": 1
+    },
+    {
+      "op": "constant",
+      "dst": 12,
+      "value": 3
+    },
+    {
+      "op": "node",
+      "tag": 8,
+      "fields": [],
+      "dst": 4
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 0,
+      "dst": 2
+    },
+    {
+      "op": "tag",
+      "src": 2,
+      "dst": 8
+    },
+    {
+      "op": "constant",
+      "dst": 13,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 13,
+      "dst": 14
+    },
+    {
+      "op": "branch",
+      "condition": 14,
+      "yes": 9,
+      "no": 20
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 0,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 5
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        5
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "add",
+      "left": 9,
+      "right": 12,
+      "dst": 10
+    },
+    {
+      "op": "box_integer",
+      "src": 10,
+      "dst": 6
+    },
+    {
+      "op": "node",
+      "tag": 6,
+      "fields": [
+        5,
+        6
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 36
+    },
+    {
+      "op": "constant",
+      "dst": 13,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 13,
+      "dst": 14
+    },
+    {
+      "op": "branch",
+      "condition": 14,
+      "yes": 23,
+      "no": 35
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 0,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 9
+    },
+    {
+      "op": "add",
+      "left": 9,
+      "right": 12,
+      "dst": 10
+    },
+    {
+      "op": "box_integer",
+      "src": 10,
+      "dst": 5
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 6
+    },
+    {
+      "op": "node",
+      "tag": 7,
+      "fields": [
+        5,
+        6
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 7
+    },
+    {
+      "op": "node",
+      "tag": 1,
+      "fields": [
+        7
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 36
+    },
+    {
+      "op": "reject",
+      "reason": "source instruction outside the declared subset"
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 1,
+      "dst": 2
+    },
+    {
+      "op": "tag",
+      "src": 2,
+      "dst": 8
+    },
+    {
+      "op": "constant",
+      "dst": 13,
+      "value": 0
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 13,
+      "dst": 14
+    },
+    {
+      "op": "branch",
+      "condition": 14,
+      "yes": 41,
+      "no": 52
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 1,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 5
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        5
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "add",
+      "left": 9,
+      "right": 12,
+      "dst": 10
+    },
+    {
+      "op": "box_integer",
+      "src": 10,
+      "dst": 6
+    },
+    {
+      "op": "node",
+      "tag": 6,
+      "fields": [
+        5,
+        6
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 68
+    },
+    {
+      "op": "constant",
+      "dst": 13,
+      "value": 1
+    },
+    {
+      "op": "equal",
+      "left": 8,
+      "right": 13,
+      "dst": 14
+    },
+    {
+      "op": "branch",
+      "condition": 14,
+      "yes": 55,
+      "no": 67
+    },
+    {
+      "op": "field",
+      "src": 1,
+      "arity": 2,
+      "index": 1,
+      "dst": 2
+    },
+    {
+      "op": "field",
+      "src": 2,
+      "arity": 1,
+      "index": 0,
+      "dst": 3
+    },
+    {
+      "op": "as_integer",
+      "src": 3,
+      "dst": 9
+    },
+    {
+      "op": "add",
+      "left": 9,
+      "right": 12,
+      "dst": 10
+    },
+    {
+      "op": "box_integer",
+      "src": 10,
+      "dst": 5
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 6
+    },
+    {
+      "op": "node",
+      "tag": 7,
+      "fields": [
+        5,
+        6
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "box_integer",
+      "src": 9,
+      "dst": 7
+    },
+    {
+      "op": "node",
+      "tag": 1,
+      "fields": [
+        7
+      ],
+      "dst": 3
+    },
+    {
+      "op": "node",
+      "tag": 9,
+      "fields": [
+        4,
+        3
+      ],
+      "dst": 4
+    },
+    {
+      "op": "jump",
+      "target": 68
+    },
+    {
+      "op": "reject",
+      "reason": "source instruction outside the declared subset"
+    },
+    {
+      "op": "return",
+      "src": 4
+    }
+  ]
+}
