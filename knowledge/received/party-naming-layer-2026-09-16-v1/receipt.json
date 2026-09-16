@@ -1,0 +1,101 @@
+{
+  "accepted_use": "documentary-reference",
+  "catalog_entry": {
+    "assumptions": [
+      "The rename is a documentary mapping layer over frozen original bytes; it does not claim native three-machine identification."
+    ],
+    "checker": null,
+    "domains": [
+      "logic"
+    ],
+    "evidence": [],
+    "geometry_lineage": null,
+    "home": "logic",
+    "key": "logic-party-naming-layer",
+    "materials": [
+      {
+        "path": "adva-library/names/party-naming-layer-v0.json",
+        "sha256": "0f934b7ddbfaaf57714a6b21fb95aa5deaa97e600082d63ce50331bbee5c4d97"
+      },
+      {
+        "path": "adva-library/names/catalog-key-words.json",
+        "sha256": "dfe8c2b2d200dfb8c22c7773e07774cad8ae34c7df545051e4d8b8eb147f53ad"
+      },
+      {
+        "path": "adva-library/names/catalog-key-words-v1.json",
+        "sha256": "fe2e9a9187e7cae2b950434964ee20110167a1701f8bed35d83251aaea93d493"
+      }
+    ],
+    "open_obligations": [
+      "Native three-machine identification remains Open; human acceptance of the naming layer itself is not yet recorded."
+    ],
+    "recorded_status": "proposed-document",
+    "reuse_requires": [
+      "Quote both old and new party names when referencing; math-check read-only pass only."
+    ],
+    "scope": "Maps Machine->Substrate, World->Knowledge, Human->Surface with Chinese glosses, languages and repository pairs; original Pascal bytes unchanged.",
+    "theory": {
+      "name": "Documentary renaming of the Pascal three parties (scheme A)",
+      "version": "Naming layer v0"
+    },
+    "title": "Party naming layer: Substrate / Knowledge / Surface"
+  },
+  "checker": {
+    "cargo_lock_blake3": "b7ece200175a70289c91230326b00947d3451f34e589e4ad2b9dfc61170bf1ae",
+    "implementation_blake3": "866cd49ca485d62e0adb16528f29dbceef8a5f3ded0219544fc879bfe662bb8a"
+  },
+  "context": "knowledge/received:original-naming-reference-v1",
+  "contract_blake3": "d56b733921712b3ed0482acd6652d0efbfe0f0358daf69d0bd8099c9003ad5d9",
+  "envelope_blake3": "7e09cef59e4e8e1b8f8687d83b779b4a54366cc211aaa8294c1dce9461872e0c",
+  "events": [
+    "receive",
+    "check-integrity-and-contract",
+    "accept-documentary-reference"
+  ],
+  "exchange_id": "party-naming-layer-2026-09-16-v1",
+  "files": [
+    {
+      "blake3": "d928c67840b141f1b036bb4f709f1a28ccadb219e4c84bbe766f601374bde526",
+      "bytes": 2284,
+      "destination": "materials/names/party-naming-layer-v0.json",
+      "sha256": "0f934b7ddbfaaf57714a6b21fb95aa5deaa97e600082d63ce50331bbee5c4d97",
+      "source": "names/party-naming-layer-v0.json"
+    },
+    {
+      "blake3": "1db03eae2e05199c13839a392d807a1f7e8d730a2ab024ecd4156381f447a8fc",
+      "bytes": 5283,
+      "destination": "materials/names/catalog-key-words.json",
+      "sha256": "dfe8c2b2d200dfb8c22c7773e07774cad8ae34c7df545051e4d8b8eb147f53ad",
+      "source": "names/catalog-key-words.json"
+    },
+    {
+      "blake3": "084871fbd1e351dc35cb57334edf75c4c3730a4e17f6eba0466daf493b2d4fd6",
+      "bytes": 6480,
+      "destination": "materials/names/catalog-key-words-v1.json",
+      "sha256": "fe2e9a9187e7cae2b950434964ee20110167a1701f8bed35d83251aaea93d493",
+      "source": "names/catalog-key-words-v1.json"
+    }
+  ],
+  "native_admission": "NotGranted",
+  "origin": {
+    "catalog_blake3": "164ffa159837124ac78f771e13276ee87b6fce2388c4443556dbfa6ab44db631",
+    "catalog_path": "math/manifest.json",
+    "repository": "https://github.com/mountain/adva-library",
+    "revision": "c7b34d237dbb9f9675a5692af0bd8dcf44982139"
+  },
+  "profile": "documentary-library-entry-v1",
+  "publication": "BoundReviewedRecord",
+  "publication_record_blake3": "ccd151ee6fea5ddad5aee7769c9751c0c84ae247aef999ac9a5ef215cf53fde8",
+  "receiver": "mountain/adva:knowledge-reference-store",
+  "residual": "Origin claims are pinned, not authenticated; referenced proofs and human acceptance are not checked. No source retirement or new catalog home.",
+  "resource_contract": {
+    "automatic_retries": 0,
+    "cooperative_seconds": 5,
+    "read_bytes_per_invocation": 8388608
+  },
+  "rights_determined_by_machine": false,
+  "schema": "adva.communication.receipt.v1",
+  "semantic_verification": "NotRun",
+  "sender": "mountain/adva-library:documentary-catalog",
+  "status": "AcceptedDocumentary"
+}
