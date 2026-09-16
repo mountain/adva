@@ -15,9 +15,9 @@ native load calls, eight controls, finite limits and exit conditions before
 execution. The original `byte-observer-v0` profile remains unchanged.
 
 **Contracts, and what a frozen replay would now do.** The active contract is
-[contract-v5.json](contract-v5.json). Each successor names the digest of the one
+[contract-v6.json](contract-v6.json). Each successor names the digest of the one
 it supersedes, so the chain is `contract.json` (v0) <- `contract-v1.json` <-
-`contract-v2.json` <- `contract-v3.json` <- `contract-v4.json` <- `contract-v5.json`, and a run verifies that digest rather than
+`contract-v2.json` <- `contract-v3.json` <- `contract-v4.json` <- `contract-v5.json` <- `contract-v6.json`, and a run verifies that digest rather than
 trusting the file:
 editing a superseded contract afterwards is a failure, not a silent
 reinterpretation. v1 moved two inputs — the symbol-surface README pin, after the
@@ -33,7 +33,8 @@ library boundary, controls, authorization text and execution limits are exactly
 v3's; this maintenance update does not execute another advance or renew any
 run's fuel. v5 moves the Rust base to the structured self-compiler integration
 commit, preserving v4's inputs and all non-metadata fields. It likewise starts
-no new run. The strict Rust-diff check remains unchanged. The run-01 evidence below keeps the
+no new run. v6 binds the Rust benchmark example added at `81f0e97`, preserving
+every non-metadata field of v5. The strict Rust-diff check remains unchanged. The run-01 evidence below keeps the
 frozen version-zero contract and its original digests as the record of what that
 run actually executed, so a literal replay of run-01 now fails on the README pin
 **by design rather than by drift**: an input changed after that run. Use the active

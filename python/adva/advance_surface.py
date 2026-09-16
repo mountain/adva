@@ -24,7 +24,7 @@ else:
 # of the contract it supersedes, and the run verifies that digest, so editing a
 # superseded contract afterwards is a failure rather than a silent
 # reinterpretation. The chain is v0 <- v1 <- v2 <- v3 <- v4 <- v5.
-CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v5.json"
+CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v6.json"
 # The cargo cdylib artifact is `lib_native` with the platform dynamic-library
 # extension. The profile was written for Linux, where that is `.so`; on macOS it
 # is `.dylib`, and the hard-coded name made the run stop after a successful build
