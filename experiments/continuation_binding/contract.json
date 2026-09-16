@@ -1,0 +1,16 @@
+{
+  "profile": "adva.research.continuation-binding.v0",
+  "question": "Can a later checked event continue exactly the receiver-selected failed question across fresh processes without changing its state or renewing its logical allowance?",
+  "level": "external finite Python calibration, not native communication",
+  "base": "8fdedde5d893e1242048bc6052445dbdb2c4670e",
+  "instances": [{"width": 2, "early": 1, "late": 5}, {"width": 3, "early": 2, "late": 7}],
+  "grammar": "Fixed JSON schema; exact binary words of width 2 or 3; nonnegative integer stages; one supplied delayed event; no search",
+  "trusted": "Receiver-local expected snapshot and parent failure record, generated from the declared fixture before dispatch. Canonical byte comparison and SHA256 are integrity references, not authentication or native identities.",
+  "acceptance": "Exact schemas, profile, canonical state bytes, actual parent bytes, original allowance, and independently checked delayed event must all match. Invalid inputs preserve the trusted checkpoint and add no semantic fact.",
+  "controls": ["changed object", "changed history", "changed unresolved", "wrong parent", "fuel renewal", "wrong stage", "Boolean stage", "extra field", "missing field", "non-object", "malformed JSON"],
+  "limits": {"campaign_wall_seconds": 90, "child_wall_seconds": 10, "child_cpu_seconds": 5, "child_address_space_mib": 128, "child_file_mib": 1, "wire_bytes": 65536, "receiver_cases": 24, "child_processes": 6, "search_candidates": 0, "campaigns": 1, "necessary_correction_campaigns": 1},
+  "allowance": "Four abstract attempt units initially. Controlled failure consumes one; successful retry consumes one. This is protocol accounting, not a claim about CPU or Adva fuel. No execution loop or automatic refuel exists.",
+  "preserved": ["original object", "observation history", "unresolved set", "parent failure", "unresolved native and human acceptance obligations"],
+  "residual": "No arbitrary crash recovery, durable transaction, concurrent replay ledger, cryptographic authentication, native identity or general communication conformance. Same receipt may be checked again, but the checker executes no acceptance side effect.",
+  "origin": "Project-original contribution under Unknown v0.3; ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy, not endorsement or verification by Mingli."
+}
