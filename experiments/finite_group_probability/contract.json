@@ -1,0 +1,16 @@
+{
+  "profile": "adva.research.finite-group-probability.v0",
+  "status": "Proposed finite external interpretation; no native probability operations",
+  "question": "Can additive finite probability, ordered group multiplication and density one coexist without erasing observer fibres or dependence?",
+  "base": "0185e13c87d9877614b2db03e3f73865e3e543db",
+  "instances": ["S3 permutations of 0,1,2; right operand acts first", "C4 integers modulo four; group addition written as composition"],
+  "arithmetic": "Python exact integers and Fraction; at most six group elements",
+  "reference": "Complete named carrier with uniform reference mass 1/|G|; finite event algebra is its power set",
+  "claims_to_check": ["group axioms and ordered multiplication", "density=p/reference; reference-weighted density mean equals one", "quadratic density energy equals one plus density variance", "uniformity is equivalent to energy one only on the declared complete carrier with positive reference", "S3 cycle-type observation does not induce a group; parity does", "coarse uniformity can hide fine nonuniformity", "uniform marginals do not imply independent composition", "group translations preserve quadratic energy for the uniform reference"],
+  "fixtures": "S3: p(e)=1/6, p((12))=1/2, p((123))=1/3; C4: p(0)=p(1)=1/2. Other masses zero. Independent uniform pairs and correlated inverse pairs are separate joint distributions.",
+  "controls": ["missing reference atom", "zero reference atom", "negative mass", "non-unit probability total", "incomplete group table"],
+  "limits": {"wall_seconds": 30, "work_units": 10000, "max_group_elements": 6, "search_candidates": 0, "campaigns": 1, "correction_campaigns": 1, "address_space_mib": 256},
+  "outputs": "Exact carriers, tables, reference/probability masses, observation maps, densities, energies, independent and correlated product distributions, witnesses, assertion count, measured cost and residuals",
+  "authority": "Finite mathematical calibration only; does not identify native Adva sources, histories, word identities, Close, free or physical states",
+  "origin": "Project-original code, prose and synthetic fixtures under Unknown v0.3; ChatGPT (OpenAI), through Mingli Yuan's account proxy, not endorsement or correctness guarantee"
+}
