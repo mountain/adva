@@ -1,294 +1,188 @@
 # Adva
 
-**Typed symbolic computation and program geometry.** The native engine is a
-small modular Lisp implemented in Rust. Rust owns typing, explicit sharing,
-source and occurrence identity, history, calculus, certificates, and the
-versioned intermediate representation. Python is an adapter layer for scientific
-computing and visualization.
+**How can a finite observer construct, check, and extend arithmetic knowledge?**
 
-**Status: private pre-alpha research tool.** No open-source license has been
-selected; see [`LICENSE`](LICENSE), and public licensing should be a separate,
-explicit decision.
+[中文入口](README.zh-CN.md) · [Run an example](#run-an-example) ·
+[Bring a stalled problem](#bring-a-stalled-problem) · [Development](docs/DEVELOPMENT.md)
 
-The repository implements ideas developed in `process-geometry`, but it is **not
-the theory repository**. Mathematical claims remain scoped and registered; the
-tool does not turn research targets into stable API promises.
+Adva investigates this question through typed programs, explicit construction
+histories, bounded experiments, and reusable witnesses. The practical aim is to
+make a difficult problem easier to continue: establish what a particular
+observation tells us, preserve what it leaves undecided, and find the next
+construction or observation that could make a difference.
 
-> **Rust is the sole semantic authority.** Python may adapt checked IR to SymPy,
-> NumPy, SciPy or a plot; it must not create or identify a semantic identity.
-> Removing Python does not change any Rust judgment or certificate.
+The implementation includes a Rust Lisp engine, a separately versioned bounded
+data language, a library of recorded constructions, and a substantial research
+record. **Pre-alpha research software.** The current [license](LICENSE) is
+restrictive; no permissive open-source license has been selected.
 
-## What this is, and what it is not
+## Start with one observation
 
-- **It is** a native engine for typed symbolic computation in which every
-  semantic transformation returns a result together with a certificate, and in
-  which source, occurrence and history are explicit and serializable rather than
-  derived from memory addresses, value equality or structural hashing.
-- **It is not** a theorem prover, a general-purpose language, a self-modifying
-  knowledge base, a stable public API, or evidence that the research targets it
-  records have been reached.
-- **Where no check exists, the claim is not made.** Search exhaustion produces
-  `Unknown`, never a proof of nonexistence, and a green run is a statement about
-  verification, not about progress.
+Suppose two explanations of a program are `f(x) = 2x` and `g(x) = x²`.
 
-## Run something now
+| Observation | `f(x)` | `g(x)` | What it establishes |
+|---|---:|---:|---|
+| Evaluate at `x = 2` | 4 | 4 | Both explanations fit this observation. |
+| Evaluate at `x = 3` | 6 | 9 | This observation distinguishes them. |
 
-Build the research entry point:
+Repeating the first observation does not resolve the ambiguity. A different
+observation does. Even agreement on many inputs would need a justification
+before becoming a claim about all inputs. Adva's
+[interpretation experiment](docs/research/0166-interpretation-obligation.md)
+records this distinction with explicit questions, interpretations, and checks.
 
-```bash
-cargo build --release -p adva-witness --bin adva
+Finite observation can also support a proof. For example, two polynomials over
+the rationals, each of degree at most two, are identical if they agree at three
+distinct rational points: their difference has degree at most two and cannot
+have three distinct roots unless it is zero. The **degree bound and the root
+argument** make those observations sufficient. Three arbitrary tests do not.
+The [finite-example research](docs/research/0183-zhang-finite-example-verification.md)
+develops this kind of boundary between examples and proof.
+
+Adva asks how to retain that whole relationship: the original question, the
+construction, the observer, the assumptions, the witness, and the unresolved
+remainder. A result can then be reused with its conditions attached.
+
+## What “finite observer” means here
+
+An observer has a particular interface, a language of questions, and finite
+resources. It can distinguish some constructions and leave others unresolved.
+The research goal is to make these limits operational, including the possibility
+of changing the observer or extending its language.
+
+Four distinctions guide the work:
+
+- **An observation is not the whole construction.** Equal output values do not
+  identify two programs, their sources, or their histories. The native core
+  records explicit copying and distinct occurrences.
+- **An arithmetic check needs an interpretation.** In a declared field,
+  equality can be tested by `A - B = 0`, or by `A / B = 1` when `B ≠ 0`.
+  The domain and the correspondence to the original problem still need to be
+  justified. The proposed
+  [arithmetic-universality and arithmetic-truth vocabulary](docs/research/0123-arithmetic-universality-and-hypothesized-truth.md)
+  remains a research hypothesis.
+- **A finite success has a scope.** A complete finite check, together with an
+  applicable theorem, may justify a larger conclusion. Running out of search
+  time alone leaves the question `Unknown`.
+- **A useful next step changes what can be established.** A new witness,
+  counterexample, justified interpretation, or reusable construction can do
+  this. Another run or another participant does not establish learning by itself.
+
+The larger programme connects program geometry, arithmetic, learning, and
+language formation. Its [philosophical questions](docs/philosophy/README.md),
+[ontology](ontology/README.md), and [research agenda](docs/RESEARCH_ENGINEERING_AGENDA.md)
+explain that ambition. They are also part of the project; the runtime is one
+place where those ideas must meet concrete checks.
+
+## What you can inspect today
+
+| Layer | Existing work | Boundary |
+|---|---|---|
+| Native program core | Typed finite Lisp programs; explicit sources, occurrences and history; checked diagrams, graft traces and process slices; evaluation and forward differentiation | Finite, binder-free, linear PSC0 scope. Numerical evaluation uses floating point; structural certificates are not numerical error bounds. |
+| Research data language | An arithmetic interpreter written in Adva instructions, executed by Rust; exact checked `i64` arithmetic, bounded control, suspension and replay | A separate research profile. Overflow rejects. This example interprets arithmetic trees, not its own full instruction language. |
+| Research library and experiments | Reusable witnesses, observer comparisons, closure and transport checks, retained failures and counterexamples | Each result has its own assumptions, checker, budget and residual. External checks do not confer native semantic authority. |
+| Open programme | Observer-conditioned specialization, richer language formation, arithmetic universality and geometric representations | Construction targets and hypotheses, with dependencies in the agenda. |
+
+The [claim registry](docs/claims.toml) records scoped claims and their evidence;
+the [semantic scope](docs/SEMANTIC_SCOPE.md) defines the native boundary. Rust is
+the authority for native semantic identities and judgments. Python supplies
+adapters and external research tools. Decoding JSON alone never authorizes a
+semantic object.
+
+## Run an example
+
+Clone with the library submodule:
+
+```sh
+git clone --recurse-submodules https://github.com/mountain/adva.git
+cd adva
 ```
 
-The bounded research native program entry is `adva run program.adva --output
-result.adva`. Run the first executable profile over a pinned program, into a
-**fresh** output path:
+### An interpreter that retains its execution
 
-```bash
-target/release/adva run programs/native-run/arithmetic.adva \
-  --output target/arithmetic-result.adva
+With a Rust toolchain installed, run these commands from the repository root
+in a POSIX shell:
+
+```sh
+cargo build --locked -p adva-witness --bin adva
+adva_run_dir="$(mktemp -d)"
+target/debug/adva data-run programs/bounded-interpreter/interpreter.adva \
+  --input programs/bounded-interpreter/input.json \
+  --fuel 2048 --quantum 2048 --output "$adva_run_dir/result.adva"
 ```
 
-Use a fresh output path: the profile refuses to overwrite. This first profile
-wraps the existing Rust PSC0 compiler and f64 evaluator; see
-[Research 0140](docs/research/0140-native-program-run.md) for its finite limits,
-certificates, refusals and remaining exact-arithmetic work.
+The supplied input is `2 + (3 * 4)`. The expected status is `Returned`, with
+integer result `14` after `134` instruction steps. Open the output to inspect
+the program, input, execution trace, final state and fuel accounting. Outputs
+must use fresh paths.
 
-Load and recheck an existing library snapshot through Rust:
+Then try the [suspend-and-resume example](programs/bounded-interpreter/README.md):
+stop after 17 steps, recheck the prefix, and continue without resetting the
+original lifetime fuel. Replay work is recorded separately. The
+[research report](docs/research/bounded-native-data-interpreter.md) explains
+what the retained calibration establishes and what remains open.
 
-```bash
-target/release/adva library check
-target/release/adva library reuse
+The newer [compilation calibration](docs/research/futamura-projections-in-adva-terms.md)
+also compares interpretation with emitted three-instruction constant programs for
+129 fully static arithmetic trees. Its recorded machine-step cost is higher for
+one use and lower after two uses, including compilation. This is a finite reuse
+result, with host-side program loading; it does not establish a general
+specializer or a wall-clock speedup.
+
+### A collaboration record, without building Rust
+
+With Python 3.11 or later:
+
+```sh
+python3 experiments/bounded_observation_exchange/check_exchange_chain.py
 ```
 
-For a pinned Linux source build and a relocatable native runtime, see
-[Bootstrap runtime v0](docs/BOOTSTRAP_RUNTIME_V0.md). The `library check` and
-`library reuse` commands load and recheck existing snapshots; they do not execute
-every library document and do not change the stored witness rules. The
-bootstrap source bundle includes its required library files and preserves the
-current private license.
+Expected result: `DisclosedByteChainChecked`, covering five recorded exchanges
+and four controls that reject an old reply as an answer to a new question.
+The checker compares disclosed fields and their byte bindings. It explicitly
+leaves source authenticity unverified and semantic acceptance withheld. This
+is a small, runnable example of retaining a question across handoffs; it does
+not establish the truth of the participants' statements. See the
+[exchange experiment](experiments/bounded_observation_exchange/README.md).
 
-## A first program
+## Bring a stalled problem
 
-For the separate research language that represents programs as finite data, see
-the [bounded native interpreter](programs/bounded-interpreter/README.md). Its
-`adva data-run` entry runs a 51-instruction Adva arithmetic interpreter with exact
-integers and checked suspension. This profile does not extend the stable PSC0
-language used below or establish self interpretation.
+You can start with one failed attempt, without learning the whole mathematical
+framework. Keep the original problem and bring:
 
-```lisp
-(module arithmetic
-  (export shared-double square)
+1. The result you need and the observations that would count as success.
+2. A small reproducible attempt, with its inputs, assumptions and resource limit.
+3. What passed, what failed, and the exact part that is still unresolved.
+4. One proposed next step: a different observation, a counterexample, a stronger
+   invariant, or a construction someone else could check.
 
-  (def shared-double
-    (fn ((x Real)) Real
-      (add (copy (use x)))))
+For a coding challenge, this might mean finding a test that separates two
+plausible implementations, or exposing a mismatch between the written task and
+its tests. Human and AI attempts can both contribute. The useful comparison is
+what becomes checkable, reusable, or less costly under stated conditions.
 
-  (def square
-    (fn ((x Real)) Real
-      (mul (copy (use x))))))
-```
+The [tooling work plan](docs/TOOLING_WORKFLOW.md) turns this into a proposed
+working session using existing tools. A unified problem-workbench interface is
+not implemented yet.
 
-Modules can import exported definitions:
+If you get stuck, come back with the attempt and the remaining question. If
+this approach helps you make progress, consider starring the project so you
+can find it again and follow its development.
 
-```lisp
-(module client
-  (import arithmetic shared-double)
-  (export quadruple)
+## Find your next reading
 
-  (def quadruple
-    (fn ((x Real)) Real
-      (call arithmetic/shared-double
-        (call arithmetic/shared-double (use x))))))
-```
-
-```python
-from adva import link_modules
-
-workspace = link_modules([ARITHMETIC_SOURCE, CLIENT_SOURCE])
-quadruple = workspace.function("client", "quadruple")
-
-value = quadruple.evaluate({"x": 3.0})
-value, gradient, certificate = quadruple.value_and_gradient({"x": 3.0})
-
-sympy_expression = quadruple.to_sympy()
-numpy_function = quadruple.numpy_callable()
-objective = quadruple.scipy_objective()
-```
-
-### Where the boundaries are
-
-Successful JSON decoding is **not** semantic authorization. Stored diagrams
-cross a separate checked boundary:
-
-```python
-from adva import load_program
-
-restored = load_program(quadruple.ir)
-assert restored.validation_certificate["linear_use"] == "checked"
-assert restored.compilation_certificate is None
-```
-
-`load_program` returns only a diagram accepted by the Rust validator. Numerical
-source selects `log@2` and correctly rounded `constant@2`; stored version-one
-operations remain replayable. Ordinary Python evaluation requires finite
-inputs and results and, when requested, a finite Jacobian, while Rust retains an
-explicit raw IEEE replay. See
-[ADR 0045](docs/adr/0045-rational-rounding-and-finite-numeric-boundaries.md) for
-compatibility, JSON transport, and the distinction from error bounds.
-
-The **first stable slice is binder-free inside function bodies**. Function
-parameters are typed 0-cell boundaries; module-level `def` and `call` do not
-introduce local term binders. Recursive module calls and cyclic imports are
-rejected.
-
-## What is stable, and what is research-only
-
-The scope statement is [`docs/SEMANTIC_SCOPE.md`](docs/SEMANTIC_SCOPE.md) and the
-working rules are [`AGENTS.md`](AGENTS.md). The split below follows them.
-
-**Stable kernel** — the binder-free, finite, linear core:
-
-- immutable `ProgramTerm`, `TypedFrontier` with distinct `DomainFrontier` and
-  `CodomainFrontier` orientations, module IR, and `SharedProgramDiagram`;
-- explicit `copy`, `discard`, `swap`, `id`, ordered `frontier` construction,
-  arithmetic and elementary unary operations;
-- stable serializable `SourceId`, `OccurrenceId`, `OccurrencePath`, and
-  `History`;
-- Rust module parsing, imports, exports, linking, and typed lowering;
-- compiler-emitted certified `GraftTrace` companions retaining nested call
-  frames, argument regions, ordered hole bindings, and callee-body regions;
-- a single versioned Rust operation registry shared by parsing, typed lowering,
-  lineage transport, evaluation, and forward differentiation;
-- scalar evaluation and forward differential, each with a certificate;
-- JSON IR round-trips with an explicit schema version;
-- semantic diagram import in Rust with graph, linear-use, occurrence, source,
-  history, and boundary certificates;
-- Rust-certified completed causal cuts and single-event frontier replacement,
-  derived without evaluating or rebuilding checked wire lineage;
-- exact certified `ProgramSlice` intervals retaining changed boundaries,
-  unchanged through wires, internal events, occurrences, and history;
-- exact adjacent-slice composition with identity, event-conservation, and
-  associativity certificates over one unchanged diagram;
-- a PyO3 extension and typed Python facade;
-- optional SymPy, NumPy, and SciPy adapters.
-
-**Research-only companions** — checked, bounded, and not stable API. Each names its own finite scope and its refusals:
-
-- bounded `TriadicObserverTransitionV0` companions that classify three input
-  source fibres, derive three opposite-pair cut readings, retain source-free
-  residuals, and compose occurrence ancestry exactly across adjacent slices;
-- a bounded Python research machine that packages exact triadic interfaces,
-  complete `ProgramSlice` carriers, and Rust-checked schedule traces without
-  claiming stable feedback or allocating semantic identities;
-- a research-only multi-hole through adapter that derives one typed
-  relation-valued angle form from exact graft bindings and occurrence ancestry,
-  with layered failure gates and the complete slice retained as residual;
-- a one-compilation triangular research calibration that derives all three
-  local opposite-domain angle relations while refusing undeclared
-  same-source sibling connectors and global circular closure;
-- a typed connector trichotomy that separates exact occurrence identity,
-  provenance-preserving direct-sibling comparison, and an unauthorized
-  many-to-one source quotient;
-- a bounded distributivity characteristic machine that gives learning and
-  proof readouts over one exact rational polynomial feature while retaining
-  two distinct checked process residuals;
-- a research-only typed-aperture calibration that reads existing through
-  relations as finite filling fibres, refuses implicit multivalued closure,
-  and retains close/reopen history and the complete process residual;
-- a Rust research V0 six-word witness companion with signed formation
-  ledgers, exact integer-polynomial transport, finite proof DAGs, and reusable
-  linear three-hole templates whose fresh instances bind existing semantic
-  occurrences explicitly;
-- a bounded neutral-carrier mechanism grammar that keeps
-  `subject/method/object`, `compute/verify/learn`, and
-  `history/result/evidence` distinct, rejects open compute subjects and
-  objects, accounts for conditional verification, and retains partial learning
-  fill proposals without changing the stable IR;
-- a research-only neutral `.adva` document graph with canonical carrier and
-  frame tables: mechanisms live on three-input/three-output transition edges,
-  named entry points select checked frames, and later frames reuse earlier
-  recorded carriers through explicit document-local references;
-- a first bounded `reveal.adva` program whose observer-local names cover the
-  six directed time/space/construction pairs while its checked `M6` relation
-  remains explicitly open, together with the exact witness emitted by its
-  first six-fuel run;
-
-Several of these carry a parallel external check that is not native authority.
-Three accepting verifiers are **not** a three-computation theorem, and a
-registered external calibration is not native admission.
-
-## Repository layout
-
-| Path | What lives there |
+| You want to… | Start here |
 |---|---|
-| `crates/adva-ir` | versioned IR, typed frontiers, sources, occurrences, history |
-| `crates/adva-lisp` | parser, typed lowering, module linking, operation registry, evaluation, differentiation |
-| `crates/adva-witness` | Rust-certified cuts, slices, triadic transitions, the `adva` binary, research examples |
-| `crates/adva-python` | the PyO3 extension |
-| `python/adva` | the Python facade and the outer CLIs, including `adva.py` |
-| `programs/` | `.adva` programs, including the retained byte-for-byte witnesses |
-| `experiments/` | bounded external checks, each with a frozen contract and evidence |
-| `adva-library/` | the content and library layer; a separate repository, see its own [README](adva-library/README.md) |
-| `trials/` | the AEG-side rounds, the append-only receipt ledger, and the published feed |
-| `docs/` | architecture, scope, agenda, ADRs, registered claims, and the research record |
-| `tests/python/` | the Python test suite |
+| Understand the idea in Chinese | [中文入口](README.zh-CN.md) |
+| See how finite examples can become a proof | [Finite-example verification](docs/research/0183-zhang-finite-example-verification.md) |
+| Distinguish nontermination evidence from timeout | [Finite cycle certificates](docs/research/keraia-cycle-certificates-and-halting-mass-bounds.md) |
+| Write or extend native programs | [Development guide](docs/DEVELOPMENT.md), then [AGENTS.md](AGENTS.md) |
+| Understand the programme's larger questions | [Philosophy](docs/philosophy/README.md) and [research agenda](docs/RESEARCH_ENGINEERING_AGENDA.md) |
+| Explore the library | [Library](adva-library/README.md) and [mathematical growth obligation](adva-library/math/README.md) |
+| Trace results, corrections and remaining questions | [Research index](docs/research/README.md), [claims](docs/claims.toml), and each note's later corrections |
 
-## Reading path
-
-Before changing semantic code, read, in this order:
-
-1. this file;
-2. [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md);
-3. [`docs/SEMANTIC_SCOPE.md`](docs/SEMANTIC_SCOPE.md);
-4. [`docs/PROGRAM_PROCESS_CORE.md`](docs/PROGRAM_PROCESS_CORE.md);
-5. [`docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md`](docs/TECHNICAL_REPORT_PROGRAM_PROCESS_CORE.md)
-   — the self-contained current-state report;
-6. [`docs/NEXT_PHASE_PROGRAM_SLICES.md`](docs/NEXT_PHASE_PROGRAM_SLICES.md),
-   the completed exact-slice phase;
-7. [`docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md`](docs/NEXT_PHASE_TRIADIC_OBSERVER_TRANSITIONS.md),
-   the completed bounded transition task;
-8. [`docs/claims.toml`](docs/claims.toml);
-9. the relevant ADRs under [`docs/adr/`](docs/adr/).
-
-Before proposing a new phase, also read
-[`docs/RESEARCH_ENGINEERING_AGENDA.md`](docs/RESEARCH_ENGINEERING_AGENDA.md); its
-dependency order is part of the plan. Before resuming a breakthrough search, use
-the trusted-boundary and finite-run contract in
-[Research 0129](docs/research/0129-bounded-breakthrough-trusted-boundaries.md):
-it records the unresolved language-formation question, the vocabulary status, and
-the requirement to stop without silently renewing the budget.
-
-## Development and checks
-
-```bash
-cargo fmt --check
-cargo clippy --workspace --all-targets --all-features -- -D warnings
-cargo test --workspace
-
-python -m venv .venv
-. .venv/bin/activate
-python -m pip install -e '.[test]'
-pytest
-
-python -S python/adva/adva.py math-check --key-words
-```
-
-CI runs the Rust checks, the retained bounded examples, `pytest` on Python 3.11,
-3.12 and 3.13, and the documentary catalog check. Several workflows re-run a
-retained witness and compare the generated bytes with the committed file.
-
-Two known-failing tests are recorded rather than hidden:
-`tests/python/test_phase_runner.py` has 10 failures on macOS that reproduce on a
-clean checkout, so they are a platform issue and not a regression signal.
-
-## The research record
-
-The repository's research narrative used to fill this README. It now lives in
-[`docs/research/README.md`](docs/research/README.md), which also indexes all 192
-notes and the retained evidence directories and explains what a note's status
-line lets you cite it for.
-
-Contributions to the record follow the conventions in
-[`AGENTS.md`](AGENTS.md): a bounded experiment declares its contract, its
-checker, its refusals and its residual before it runs, and reports exhaustion as
-`Unknown`.
+Historical runs retain their original profiles. In particular, some stored
+library epochs need their pinned historical receiver; see the
+[replay guidance](docs/DEVELOPMENT.md#replaying-historical-library-epochs).
+The [AI attribution policy](docs/AI_ATTRIBUTION.md) records contributions and
+checks separately from account ownership.

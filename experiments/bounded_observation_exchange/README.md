@@ -3,6 +3,14 @@
 Status: proposed external protocol experiment. Base Adva commit:
 `17fe19e283011f3c4361112f2fe25e4cdae9407e`. No native semantics change.
 
+**Current checkpoint (documentation clarification, 2026-09-16):** five replies
+are retained, including `response-05.json` and `review-05.json`.
+`python3 experiments/bounded_observation_exchange/check_exchange_chain.py`, run
+from the repository root, checks all five exchanges and four stale-reply
+controls. There is no sixth request. The earlier handoff narrative below is
+preserved as history; its statement that reply 05 is pending is superseded.
+Source binding remains unverified and semantic acceptance remains withheld.
+
 The local AEG workspace is not available to this receiver. A published reference
 to its receipts does not provide the receipt bytes or a way to reconstruct them.
 This experiment instead makes one concrete request an authorized AEG operator can
