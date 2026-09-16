@@ -75,6 +75,12 @@ the [bounded native interpreter](programs/bounded-interpreter/README.md). Its
 integers and checked suspension. This profile does not extend the stable PSC0
 language used below or establish self interpretation.
 
+The separate [structured self compiler](experiments/bounded_self_compiler/README.md)
+now compiles its own source through two native generations with equal target
+bytes and independent block/execution checks. It uses `adva data-run-v1`; the
+[report](docs/research/bounded-self-compiler-and-futamura.md) also states all three
+Futamura projection contracts and the specializer/self-application work still Open.
+
 ```lisp
 (module arithmetic
   (export shared-double square)

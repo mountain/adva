@@ -1,0 +1,1563 @@
+{
+  "schema": "adva.data-machine.program.research.v1",
+  "name": "structured-self-compiler",
+  "registers": [
+    {
+      "name": "work",
+      "kind": "stack"
+    },
+    {
+      "name": "output",
+      "kind": "stack"
+    },
+    {
+      "name": "scan",
+      "kind": "stack"
+    },
+    {
+      "name": "module",
+      "kind": "data"
+    },
+    {
+      "name": "name",
+      "kind": "data"
+    },
+    {
+      "name": "decls",
+      "kind": "data"
+    },
+    {
+      "name": "item",
+      "kind": "data"
+    },
+    {
+      "name": "a",
+      "kind": "data"
+    },
+    {
+      "name": "b",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "scan_item",
+      "kind": "data"
+    },
+    {
+      "name": "child",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_condition",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_yes",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_no",
+      "kind": "data"
+    },
+    {
+      "name": "zero",
+      "kind": "integer"
+    },
+    {
+      "name": "one",
+      "kind": "integer"
+    },
+    {
+      "name": "minus_one",
+      "kind": "integer"
+    },
+    {
+      "name": "two",
+      "kind": "integer"
+    },
+    {
+      "name": "three",
+      "kind": "integer"
+    },
+    {
+      "name": "tag",
+      "kind": "integer"
+    },
+    {
+      "name": "scan_tag",
+      "kind": "integer"
+    },
+    {
+      "name": "index",
+      "kind": "integer"
+    },
+    {
+      "name": "scan_index",
+      "kind": "integer"
+    },
+    {
+      "name": "size",
+      "kind": "integer"
+    },
+    {
+      "name": "first_size",
+      "kind": "integer"
+    },
+    {
+      "name": "pc",
+      "kind": "integer"
+    },
+    {
+      "name": "end",
+      "kind": "integer"
+    },
+    {
+      "name": "else_pc",
+      "kind": "integer"
+    },
+    {
+      "name": "flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_test",
+      "kind": "boolean"
+    },
+    {
+      "name": "iter_flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_iter_flag",
+      "kind": "boolean"
+    }
+  ],
+  "code": [
+    {
+      "op": "constant",
+      "dst": 15,
+      "value": 0
+    },
+    {
+      "op": "constant",
+      "dst": 16,
+      "value": 1
+    },
+    {
+      "op": "constant",
+      "dst": 17,
+      "value": -1
+    },
+    {
+      "op": "constant",
+      "dst": 18,
+      "value": 2
+    },
+    {
+      "op": "constant",
+      "dst": 19,
+      "value": 3
+    },
+    {
+      "op": "input",
+      "dst": 3
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "index": 0,
+      "dst": 4,
+      "arity": 3
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "index": 1,
+      "dst": 5,
+      "arity": 3
+    },
+    {
+      "op": "field",
+      "src": 3,
+      "index": 2,
+      "dst": 6,
+      "arity": 3
+    },
+    {
+      "op": "clear",
+      "stack": 0
+    },
+    {
+      "op": "clear",
+      "stack": 1
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 6
+    },
+    {
+      "op": "is_empty",
+      "stack": 0,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 14,
+      "no": 16
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 29
+    },
+    {
+      "op": "jump",
+      "target": 17
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 29
+    },
+    {
+      "op": "branch",
+      "condition": 29,
+      "yes": 18,
+      "no": 254
+    },
+    {
+      "op": "pop",
+      "stack": 0,
+      "dst": 6
+    },
+    {
+      "op": "tag",
+      "src": 6,
+      "dst": 20
+    },
+    {
+      "op": "equal",
+      "left": 20,
+      "right": 15,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 22,
+      "no": 25
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 0,
+      "dst": 9,
+      "arity": 1
+    },
+    {
+      "op": "push",
+      "stack": 1,
+      "src": 9
+    },
+    {
+      "op": "jump",
+      "target": 248
+    },
+    {
+      "op": "equal",
+      "left": 20,
+      "right": 16,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 27,
+      "no": 44
+    },
+    {
+      "op": "length",
+      "src": 6,
+      "dst": 22
+    },
+    {
+      "op": "equal",
+      "left": 22,
+      "right": 15,
+      "dst": 33
+    },
+    {
+      "op": "branch",
+      "condition": 33,
+      "yes": 30,
+      "no": 32
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 33
+    },
+    {
+      "op": "jump",
+      "target": 33
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 33
+    },
+    {
+      "op": "branch",
+      "condition": 33,
+      "yes": 34,
+      "no": 43
+    },
+    {
+      "op": "add",
+      "left": 22,
+      "right": 17,
+      "dst": 22
+    },
+    {
+      "op": "field_dynamic",
+      "src": 6,
+      "index": 22,
+      "dst": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 9
+    },
+    {
+      "op": "equal",
+      "left": 22,
+      "right": 15,
+      "dst": 33
+    },
+    {
+      "op": "branch",
+      "condition": 33,
+      "yes": 39,
+      "no": 41
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 33
+    },
+    {
+      "op": "jump",
+      "target": 42
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 33
+    },
+    {
+      "op": "jump",
+      "target": 33
+    },
+    {
+      "op": "jump",
+      "target": 248
+    },
+    {
+      "op": "equal",
+      "left": 20,
+      "right": 18,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 46,
+      "no": 174
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 0,
+      "dst": 12,
+      "arity": 3
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 1,
+      "dst": 7,
+      "arity": 3
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 2,
+      "dst": 8,
+      "arity": 3
+    },
+    {
+      "op": "constant",
+      "dst": 24,
+      "value": 0
+    },
+    {
+      "op": "clear",
+      "stack": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 7
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 54,
+      "no": 56
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 57
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "branch",
+      "condition": 31,
+      "yes": 58,
+      "no": 103
+    },
+    {
+      "op": "pop",
+      "stack": 2,
+      "dst": 10
+    },
+    {
+      "op": "tag",
+      "src": 10,
+      "dst": 21
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 15,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 62,
+      "no": 64
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 16,
+      "dst": 24
+    },
+    {
+      "op": "jump",
+      "target": 97
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 16,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 66,
+      "no": 83
+    },
+    {
+      "op": "length",
+      "src": 10,
+      "dst": 23
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 69,
+      "no": 71
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 72
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 73,
+      "no": 82
+    },
+    {
+      "op": "add",
+      "left": 23,
+      "right": 17,
+      "dst": 23
+    },
+    {
+      "op": "field_dynamic",
+      "src": 10,
+      "index": 23,
+      "dst": 11
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 78,
+      "no": 80
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 81
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 72
+    },
+    {
+      "op": "jump",
+      "target": 97
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 18,
+      "dst": 24
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 18,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 86,
+      "no": 91
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 2,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 97
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 19,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 93,
+      "no": 96
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 97
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported source tag"
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 99,
+      "no": 101
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 102
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 57
+    },
+    {
+      "op": "copy",
+      "src": 24,
+      "dst": 25
+    },
+    {
+      "op": "constant",
+      "dst": 24,
+      "value": 0
+    },
+    {
+      "op": "clear",
+      "stack": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 8
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 109,
+      "no": 111
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 112
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "branch",
+      "condition": 31,
+      "yes": 113,
+      "no": 158
+    },
+    {
+      "op": "pop",
+      "stack": 2,
+      "dst": 10
+    },
+    {
+      "op": "tag",
+      "src": 10,
+      "dst": 21
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 15,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 117,
+      "no": 119
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 16,
+      "dst": 24
+    },
+    {
+      "op": "jump",
+      "target": 152
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 16,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 121,
+      "no": 138
+    },
+    {
+      "op": "length",
+      "src": 10,
+      "dst": 23
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 124,
+      "no": 126
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 127
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 128,
+      "no": 137
+    },
+    {
+      "op": "add",
+      "left": 23,
+      "right": 17,
+      "dst": 23
+    },
+    {
+      "op": "field_dynamic",
+      "src": 10,
+      "index": 23,
+      "dst": 11
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 133,
+      "no": 135
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 136
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 127
+    },
+    {
+      "op": "jump",
+      "target": 152
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 18,
+      "dst": 24
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 18,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 141,
+      "no": 146
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 2,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 152
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 19,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 148,
+      "no": 151
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 152
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported source tag"
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 154,
+      "no": 156
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 157
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 112
+    },
+    {
+      "op": "stack_length",
+      "stack": 1,
+      "dst": 26
+    },
+    {
+      "op": "add",
+      "left": 26,
+      "right": 16,
+      "dst": 26
+    },
+    {
+      "op": "add",
+      "left": 26,
+      "right": 25,
+      "dst": 28
+    },
+    {
+      "op": "add",
+      "left": 28,
+      "right": 16,
+      "dst": 28
+    },
+    {
+      "op": "add",
+      "left": 28,
+      "right": 24,
+      "dst": 27
+    },
+    {
+      "op": "box_integer",
+      "src": 26,
+      "dst": 13
+    },
+    {
+      "op": "box_integer",
+      "src": 28,
+      "dst": 14
+    },
+    {
+      "op": "node",
+      "tag": 16,
+      "fields": [
+        12,
+        13,
+        14
+      ],
+      "dst": 9
+    },
+    {
+      "op": "push",
+      "stack": 1,
+      "src": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 8
+    },
+    {
+      "op": "box_integer",
+      "src": 27,
+      "dst": 9
+    },
+    {
+      "op": "node",
+      "tag": 15,
+      "fields": [
+        9
+      ],
+      "dst": 9
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        9
+      ],
+      "dst": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 7
+    },
+    {
+      "op": "jump",
+      "target": 248
+    },
+    {
+      "op": "equal",
+      "left": 20,
+      "right": 19,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 176,
+      "no": 247
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 0,
+      "dst": 12,
+      "arity": 2
+    },
+    {
+      "op": "field",
+      "src": 6,
+      "index": 1,
+      "dst": 7,
+      "arity": 2
+    },
+    {
+      "op": "constant",
+      "dst": 24,
+      "value": 0
+    },
+    {
+      "op": "clear",
+      "stack": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 7
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 183,
+      "no": 185
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 186
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "branch",
+      "condition": 31,
+      "yes": 187,
+      "no": 232
+    },
+    {
+      "op": "pop",
+      "stack": 2,
+      "dst": 10
+    },
+    {
+      "op": "tag",
+      "src": 10,
+      "dst": 21
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 15,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 191,
+      "no": 193
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 16,
+      "dst": 24
+    },
+    {
+      "op": "jump",
+      "target": 226
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 16,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 195,
+      "no": 212
+    },
+    {
+      "op": "length",
+      "src": 10,
+      "dst": 23
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 198,
+      "no": 200
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 201
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 202,
+      "no": 211
+    },
+    {
+      "op": "add",
+      "left": 23,
+      "right": 17,
+      "dst": 23
+    },
+    {
+      "op": "field_dynamic",
+      "src": 10,
+      "index": 23,
+      "dst": 11
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "equal",
+      "left": 23,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "branch",
+      "condition": 34,
+      "yes": 207,
+      "no": 209
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 210
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 34
+    },
+    {
+      "op": "jump",
+      "target": 201
+    },
+    {
+      "op": "jump",
+      "target": 226
+    },
+    {
+      "op": "add",
+      "left": 24,
+      "right": 18,
+      "dst": 24
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 18,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 215,
+      "no": 220
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 2,
+      "dst": 11,
+      "arity": 3
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 226
+    },
+    {
+      "op": "equal",
+      "left": 21,
+      "right": 19,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 222,
+      "no": 225
+    },
+    {
+      "op": "field",
+      "src": 10,
+      "index": 1,
+      "dst": 11,
+      "arity": 2
+    },
+    {
+      "op": "push",
+      "stack": 2,
+      "src": 11
+    },
+    {
+      "op": "jump",
+      "target": 226
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported source tag"
+    },
+    {
+      "op": "is_empty",
+      "stack": 2,
+      "dst": 32
+    },
+    {
+      "op": "branch",
+      "condition": 32,
+      "yes": 228,
+      "no": 230
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 231
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 31
+    },
+    {
+      "op": "jump",
+      "target": 186
+    },
+    {
+      "op": "stack_length",
+      "stack": 1,
+      "dst": 26
+    },
+    {
+      "op": "copy",
+      "src": 26,
+      "dst": 27
+    },
+    {
+      "op": "add",
+      "left": 26,
+      "right": 24,
+      "dst": 28
+    },
+    {
+      "op": "add",
+      "left": 28,
+      "right": 18,
+      "dst": 28
+    },
+    {
+      "op": "add",
+      "left": 26,
+      "right": 16,
+      "dst": 26
+    },
+    {
+      "op": "box_integer",
+      "src": 26,
+      "dst": 13
+    },
+    {
+      "op": "box_integer",
+      "src": 28,
+      "dst": 14
+    },
+    {
+      "op": "node",
+      "tag": 16,
+      "fields": [
+        12,
+        13,
+        14
+      ],
+      "dst": 9
+    },
+    {
+      "op": "push",
+      "stack": 1,
+      "src": 9
+    },
+    {
+      "op": "box_integer",
+      "src": 27,
+      "dst": 9
+    },
+    {
+      "op": "node",
+      "tag": 15,
+      "fields": [
+        9
+      ],
+      "dst": 9
+    },
+    {
+      "op": "node",
+      "tag": 0,
+      "fields": [
+        9
+      ],
+      "dst": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 9
+    },
+    {
+      "op": "push",
+      "stack": 0,
+      "src": 7
+    },
+    {
+      "op": "jump",
+      "target": 248
+    },
+    {
+      "op": "reject",
+      "reason": "unsupported source tag"
+    },
+    {
+      "op": "is_empty",
+      "stack": 0,
+      "dst": 30
+    },
+    {
+      "op": "branch",
+      "condition": 30,
+      "yes": 250,
+      "no": 252
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 16,
+      "dst": 29
+    },
+    {
+      "op": "jump",
+      "target": 253
+    },
+    {
+      "op": "equal",
+      "left": 15,
+      "right": 15,
+      "dst": 29
+    },
+    {
+      "op": "jump",
+      "target": 17
+    },
+    {
+      "op": "pack",
+      "stack": 1,
+      "tag": 250,
+      "dst": 9
+    },
+    {
+      "op": "node",
+      "tag": 241,
+      "fields": [
+        4,
+        5,
+        9
+      ],
+      "dst": 9
+    },
+    {
+      "op": "return",
+      "src": 9
+    }
+  ]
+}

@@ -1,0 +1,2097 @@
+{
+  "schema": "adva.structured.program.research.v0",
+  "name": "structured-self-compiler",
+  "registers": [
+    {
+      "name": "work",
+      "kind": "stack"
+    },
+    {
+      "name": "output",
+      "kind": "stack"
+    },
+    {
+      "name": "scan",
+      "kind": "stack"
+    },
+    {
+      "name": "module",
+      "kind": "data"
+    },
+    {
+      "name": "name",
+      "kind": "data"
+    },
+    {
+      "name": "decls",
+      "kind": "data"
+    },
+    {
+      "name": "item",
+      "kind": "data"
+    },
+    {
+      "name": "a",
+      "kind": "data"
+    },
+    {
+      "name": "b",
+      "kind": "data"
+    },
+    {
+      "name": "tmp",
+      "kind": "data"
+    },
+    {
+      "name": "scan_item",
+      "kind": "data"
+    },
+    {
+      "name": "child",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_condition",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_yes",
+      "kind": "data"
+    },
+    {
+      "name": "boxed_no",
+      "kind": "data"
+    },
+    {
+      "name": "zero",
+      "kind": "integer"
+    },
+    {
+      "name": "one",
+      "kind": "integer"
+    },
+    {
+      "name": "minus_one",
+      "kind": "integer"
+    },
+    {
+      "name": "two",
+      "kind": "integer"
+    },
+    {
+      "name": "three",
+      "kind": "integer"
+    },
+    {
+      "name": "tag",
+      "kind": "integer"
+    },
+    {
+      "name": "scan_tag",
+      "kind": "integer"
+    },
+    {
+      "name": "index",
+      "kind": "integer"
+    },
+    {
+      "name": "scan_index",
+      "kind": "integer"
+    },
+    {
+      "name": "size",
+      "kind": "integer"
+    },
+    {
+      "name": "first_size",
+      "kind": "integer"
+    },
+    {
+      "name": "pc",
+      "kind": "integer"
+    },
+    {
+      "name": "end",
+      "kind": "integer"
+    },
+    {
+      "name": "else_pc",
+      "kind": "integer"
+    },
+    {
+      "name": "flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "test",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_test",
+      "kind": "boolean"
+    },
+    {
+      "name": "iter_flag",
+      "kind": "boolean"
+    },
+    {
+      "name": "scan_iter_flag",
+      "kind": "boolean"
+    }
+  ],
+  "body": {
+    "kind": "seq",
+    "items": [
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "constant",
+          "dst": 15,
+          "value": 0
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "constant",
+          "dst": 16,
+          "value": 1
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "constant",
+          "dst": 17,
+          "value": -1
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "constant",
+          "dst": 18,
+          "value": 2
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "constant",
+          "dst": 19,
+          "value": 3
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "input",
+          "dst": 3
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "field",
+          "src": 3,
+          "index": 0,
+          "dst": 4,
+          "arity": 3
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "field",
+          "src": 3,
+          "index": 1,
+          "dst": 5,
+          "arity": 3
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "field",
+          "src": 3,
+          "index": 2,
+          "dst": 6,
+          "arity": 3
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "clear",
+          "stack": 0
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "clear",
+          "stack": 1
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "push",
+          "stack": 0,
+          "src": 6
+        }
+      },
+      {
+        "kind": "seq",
+        "items": [
+          {
+            "kind": "prim",
+            "instruction": {
+              "op": "is_empty",
+              "stack": 0,
+              "dst": 30
+            }
+          },
+          {
+            "kind": "if",
+            "condition": 30,
+            "yes": {
+              "kind": "prim",
+              "instruction": {
+                "op": "equal",
+                "left": 15,
+                "right": 16,
+                "dst": 29
+              }
+            },
+            "no": {
+              "kind": "prim",
+              "instruction": {
+                "op": "equal",
+                "left": 15,
+                "right": 15,
+                "dst": 29
+              }
+            }
+          }
+        ]
+      },
+      {
+        "kind": "while",
+        "condition": 29,
+        "body": {
+          "kind": "seq",
+          "items": [
+            {
+              "kind": "prim",
+              "instruction": {
+                "op": "pop",
+                "stack": 0,
+                "dst": 6
+              }
+            },
+            {
+              "kind": "prim",
+              "instruction": {
+                "op": "tag",
+                "src": 6,
+                "dst": 20
+              }
+            },
+            {
+              "kind": "prim",
+              "instruction": {
+                "op": "equal",
+                "left": 20,
+                "right": 15,
+                "dst": 30
+              }
+            },
+            {
+              "kind": "if",
+              "condition": 30,
+              "yes": {
+                "kind": "seq",
+                "items": [
+                  {
+                    "kind": "prim",
+                    "instruction": {
+                      "op": "field",
+                      "src": 6,
+                      "index": 0,
+                      "dst": 9,
+                      "arity": 1
+                    }
+                  },
+                  {
+                    "kind": "prim",
+                    "instruction": {
+                      "op": "push",
+                      "stack": 1,
+                      "src": 9
+                    }
+                  }
+                ]
+              },
+              "no": {
+                "kind": "seq",
+                "items": [
+                  {
+                    "kind": "prim",
+                    "instruction": {
+                      "op": "equal",
+                      "left": 20,
+                      "right": 16,
+                      "dst": 30
+                    }
+                  },
+                  {
+                    "kind": "if",
+                    "condition": 30,
+                    "yes": {
+                      "kind": "seq",
+                      "items": [
+                        {
+                          "kind": "prim",
+                          "instruction": {
+                            "op": "length",
+                            "src": 6,
+                            "dst": 22
+                          }
+                        },
+                        {
+                          "kind": "prim",
+                          "instruction": {
+                            "op": "equal",
+                            "left": 22,
+                            "right": 15,
+                            "dst": 33
+                          }
+                        },
+                        {
+                          "kind": "if",
+                          "condition": 33,
+                          "yes": {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "equal",
+                              "left": 15,
+                              "right": 16,
+                              "dst": 33
+                            }
+                          },
+                          "no": {
+                            "kind": "prim",
+                            "instruction": {
+                              "op": "equal",
+                              "left": 15,
+                              "right": 15,
+                              "dst": 33
+                            }
+                          }
+                        },
+                        {
+                          "kind": "while",
+                          "condition": 33,
+                          "body": {
+                            "kind": "seq",
+                            "items": [
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "add",
+                                  "left": 22,
+                                  "right": 17,
+                                  "dst": 22
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "field_dynamic",
+                                  "src": 6,
+                                  "index": 22,
+                                  "dst": 9
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "push",
+                                  "stack": 0,
+                                  "src": 9
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "equal",
+                                  "left": 22,
+                                  "right": 15,
+                                  "dst": 33
+                                }
+                              },
+                              {
+                                "kind": "if",
+                                "condition": 33,
+                                "yes": {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "equal",
+                                    "left": 15,
+                                    "right": 16,
+                                    "dst": 33
+                                  }
+                                },
+                                "no": {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "equal",
+                                    "left": 15,
+                                    "right": 15,
+                                    "dst": 33
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    },
+                    "no": {
+                      "kind": "seq",
+                      "items": [
+                        {
+                          "kind": "prim",
+                          "instruction": {
+                            "op": "equal",
+                            "left": 20,
+                            "right": 18,
+                            "dst": 30
+                          }
+                        },
+                        {
+                          "kind": "if",
+                          "condition": 30,
+                          "yes": {
+                            "kind": "seq",
+                            "items": [
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "field",
+                                  "src": 6,
+                                  "index": 0,
+                                  "dst": 12,
+                                  "arity": 3
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "field",
+                                  "src": 6,
+                                  "index": 1,
+                                  "dst": 7,
+                                  "arity": 3
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "field",
+                                  "src": 6,
+                                  "index": 2,
+                                  "dst": 8,
+                                  "arity": 3
+                                }
+                              },
+                              {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "constant",
+                                      "dst": 24,
+                                      "value": 0
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "clear",
+                                      "stack": 2
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "push",
+                                      "stack": 2,
+                                      "src": 7
+                                    }
+                                  },
+                                  {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "is_empty",
+                                          "stack": 2,
+                                          "dst": 32
+                                        }
+                                      },
+                                      {
+                                        "kind": "if",
+                                        "condition": 32,
+                                        "yes": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 15,
+                                            "right": 16,
+                                            "dst": 31
+                                          }
+                                        },
+                                        "no": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 15,
+                                            "right": 15,
+                                            "dst": 31
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "while",
+                                    "condition": 31,
+                                    "body": {
+                                      "kind": "seq",
+                                      "items": [
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "pop",
+                                            "stack": 2,
+                                            "dst": 10
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "tag",
+                                            "src": 10,
+                                            "dst": 21
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 21,
+                                            "right": 15,
+                                            "dst": 32
+                                          }
+                                        },
+                                        {
+                                          "kind": "if",
+                                          "condition": 32,
+                                          "yes": {
+                                            "kind": "prim",
+                                            "instruction": {
+                                              "op": "add",
+                                              "left": 24,
+                                              "right": 16,
+                                              "dst": 24
+                                            }
+                                          },
+                                          "no": {
+                                            "kind": "seq",
+                                            "items": [
+                                              {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 21,
+                                                  "right": 16,
+                                                  "dst": 32
+                                                }
+                                              },
+                                              {
+                                                "kind": "if",
+                                                "condition": 32,
+                                                "yes": {
+                                                  "kind": "seq",
+                                                  "items": [
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "length",
+                                                        "src": 10,
+                                                        "dst": 23
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 23,
+                                                        "right": 15,
+                                                        "dst": 34
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "if",
+                                                      "condition": 34,
+                                                      "yes": {
+                                                        "kind": "prim",
+                                                        "instruction": {
+                                                          "op": "equal",
+                                                          "left": 15,
+                                                          "right": 16,
+                                                          "dst": 34
+                                                        }
+                                                      },
+                                                      "no": {
+                                                        "kind": "prim",
+                                                        "instruction": {
+                                                          "op": "equal",
+                                                          "left": 15,
+                                                          "right": 15,
+                                                          "dst": 34
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "while",
+                                                      "condition": 34,
+                                                      "body": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "add",
+                                                              "left": 23,
+                                                              "right": 17,
+                                                              "dst": 23
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field_dynamic",
+                                                              "src": 10,
+                                                              "index": 23,
+                                                              "dst": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 23,
+                                                              "right": 15,
+                                                              "dst": 34
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 34,
+                                                            "yes": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 16,
+                                                                "dst": 34
+                                                              }
+                                                            },
+                                                            "no": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 15,
+                                                                "dst": 34
+                                                              }
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "no": {
+                                                  "kind": "seq",
+                                                  "items": [
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "add",
+                                                        "left": 24,
+                                                        "right": 18,
+                                                        "dst": 24
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 21,
+                                                        "right": 18,
+                                                        "dst": 32
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "if",
+                                                      "condition": 32,
+                                                      "yes": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field",
+                                                              "src": 10,
+                                                              "index": 1,
+                                                              "dst": 11,
+                                                              "arity": 3
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field",
+                                                              "src": 10,
+                                                              "index": 2,
+                                                              "dst": 11,
+                                                              "arity": 3
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          }
+                                                        ]
+                                                      },
+                                                      "no": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 21,
+                                                              "right": 19,
+                                                              "dst": 32
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 32,
+                                                            "yes": {
+                                                              "kind": "seq",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "field",
+                                                                    "src": 10,
+                                                                    "index": 1,
+                                                                    "dst": 11,
+                                                                    "arity": 2
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "push",
+                                                                    "stack": 2,
+                                                                    "src": 11
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            "no": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "reject",
+                                                                "reason": "unsupported source tag"
+                                                              }
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "kind": "seq",
+                                          "items": [
+                                            {
+                                              "kind": "prim",
+                                              "instruction": {
+                                                "op": "is_empty",
+                                                "stack": 2,
+                                                "dst": 32
+                                              }
+                                            },
+                                            {
+                                              "kind": "if",
+                                              "condition": 32,
+                                              "yes": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 16,
+                                                  "dst": 31
+                                                }
+                                              },
+                                              "no": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 15,
+                                                  "dst": 31
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "copy",
+                                  "src": 24,
+                                  "dst": 25
+                                }
+                              },
+                              {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "constant",
+                                      "dst": 24,
+                                      "value": 0
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "clear",
+                                      "stack": 2
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "push",
+                                      "stack": 2,
+                                      "src": 8
+                                    }
+                                  },
+                                  {
+                                    "kind": "seq",
+                                    "items": [
+                                      {
+                                        "kind": "prim",
+                                        "instruction": {
+                                          "op": "is_empty",
+                                          "stack": 2,
+                                          "dst": 32
+                                        }
+                                      },
+                                      {
+                                        "kind": "if",
+                                        "condition": 32,
+                                        "yes": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 15,
+                                            "right": 16,
+                                            "dst": 31
+                                          }
+                                        },
+                                        "no": {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 15,
+                                            "right": 15,
+                                            "dst": 31
+                                          }
+                                        }
+                                      }
+                                    ]
+                                  },
+                                  {
+                                    "kind": "while",
+                                    "condition": 31,
+                                    "body": {
+                                      "kind": "seq",
+                                      "items": [
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "pop",
+                                            "stack": 2,
+                                            "dst": 10
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "tag",
+                                            "src": 10,
+                                            "dst": 21
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "equal",
+                                            "left": 21,
+                                            "right": 15,
+                                            "dst": 32
+                                          }
+                                        },
+                                        {
+                                          "kind": "if",
+                                          "condition": 32,
+                                          "yes": {
+                                            "kind": "prim",
+                                            "instruction": {
+                                              "op": "add",
+                                              "left": 24,
+                                              "right": 16,
+                                              "dst": 24
+                                            }
+                                          },
+                                          "no": {
+                                            "kind": "seq",
+                                            "items": [
+                                              {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 21,
+                                                  "right": 16,
+                                                  "dst": 32
+                                                }
+                                              },
+                                              {
+                                                "kind": "if",
+                                                "condition": 32,
+                                                "yes": {
+                                                  "kind": "seq",
+                                                  "items": [
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "length",
+                                                        "src": 10,
+                                                        "dst": 23
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 23,
+                                                        "right": 15,
+                                                        "dst": 34
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "if",
+                                                      "condition": 34,
+                                                      "yes": {
+                                                        "kind": "prim",
+                                                        "instruction": {
+                                                          "op": "equal",
+                                                          "left": 15,
+                                                          "right": 16,
+                                                          "dst": 34
+                                                        }
+                                                      },
+                                                      "no": {
+                                                        "kind": "prim",
+                                                        "instruction": {
+                                                          "op": "equal",
+                                                          "left": 15,
+                                                          "right": 15,
+                                                          "dst": 34
+                                                        }
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "while",
+                                                      "condition": 34,
+                                                      "body": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "add",
+                                                              "left": 23,
+                                                              "right": 17,
+                                                              "dst": 23
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field_dynamic",
+                                                              "src": 10,
+                                                              "index": 23,
+                                                              "dst": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 23,
+                                                              "right": 15,
+                                                              "dst": 34
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 34,
+                                                            "yes": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 16,
+                                                                "dst": 34
+                                                              }
+                                                            },
+                                                            "no": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 15,
+                                                                "dst": 34
+                                                              }
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                },
+                                                "no": {
+                                                  "kind": "seq",
+                                                  "items": [
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "add",
+                                                        "left": 24,
+                                                        "right": 18,
+                                                        "dst": 24
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 21,
+                                                        "right": 18,
+                                                        "dst": 32
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "if",
+                                                      "condition": 32,
+                                                      "yes": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field",
+                                                              "src": 10,
+                                                              "index": 1,
+                                                              "dst": 11,
+                                                              "arity": 3
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "field",
+                                                              "src": 10,
+                                                              "index": 2,
+                                                              "dst": 11,
+                                                              "arity": 3
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "push",
+                                                              "stack": 2,
+                                                              "src": 11
+                                                            }
+                                                          }
+                                                        ]
+                                                      },
+                                                      "no": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 21,
+                                                              "right": 19,
+                                                              "dst": 32
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 32,
+                                                            "yes": {
+                                                              "kind": "seq",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "field",
+                                                                    "src": 10,
+                                                                    "index": 1,
+                                                                    "dst": 11,
+                                                                    "arity": 2
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "push",
+                                                                    "stack": 2,
+                                                                    "src": 11
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            "no": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "reject",
+                                                                "reason": "unsupported source tag"
+                                                              }
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              }
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "kind": "seq",
+                                          "items": [
+                                            {
+                                              "kind": "prim",
+                                              "instruction": {
+                                                "op": "is_empty",
+                                                "stack": 2,
+                                                "dst": 32
+                                              }
+                                            },
+                                            {
+                                              "kind": "if",
+                                              "condition": 32,
+                                              "yes": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 16,
+                                                  "dst": 31
+                                                }
+                                              },
+                                              "no": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 15,
+                                                  "dst": 31
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "stack_length",
+                                  "stack": 1,
+                                  "dst": 26
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "add",
+                                  "left": 26,
+                                  "right": 16,
+                                  "dst": 26
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "add",
+                                  "left": 26,
+                                  "right": 25,
+                                  "dst": 28
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "add",
+                                  "left": 28,
+                                  "right": 16,
+                                  "dst": 28
+                                }
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "add",
+                                  "left": 28,
+                                  "right": 24,
+                                  "dst": 27
+                                }
+                              },
+                              {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "box_integer",
+                                      "src": 26,
+                                      "dst": 13
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "box_integer",
+                                      "src": 28,
+                                      "dst": 14
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "node",
+                                      "tag": 16,
+                                      "fields": [
+                                        12,
+                                        13,
+                                        14
+                                      ],
+                                      "dst": 9
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "push",
+                                      "stack": 1,
+                                      "src": 9
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "push",
+                                  "stack": 0,
+                                  "src": 8
+                                }
+                              },
+                              {
+                                "kind": "seq",
+                                "items": [
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "box_integer",
+                                      "src": 27,
+                                      "dst": 9
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "node",
+                                      "tag": 15,
+                                      "fields": [
+                                        9
+                                      ],
+                                      "dst": 9
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "node",
+                                      "tag": 0,
+                                      "fields": [
+                                        9
+                                      ],
+                                      "dst": 9
+                                    }
+                                  },
+                                  {
+                                    "kind": "prim",
+                                    "instruction": {
+                                      "op": "push",
+                                      "stack": 0,
+                                      "src": 9
+                                    }
+                                  }
+                                ]
+                              },
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "push",
+                                  "stack": 0,
+                                  "src": 7
+                                }
+                              }
+                            ]
+                          },
+                          "no": {
+                            "kind": "seq",
+                            "items": [
+                              {
+                                "kind": "prim",
+                                "instruction": {
+                                  "op": "equal",
+                                  "left": 20,
+                                  "right": 19,
+                                  "dst": 30
+                                }
+                              },
+                              {
+                                "kind": "if",
+                                "condition": 30,
+                                "yes": {
+                                  "kind": "seq",
+                                  "items": [
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "field",
+                                        "src": 6,
+                                        "index": 0,
+                                        "dst": 12,
+                                        "arity": 2
+                                      }
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "field",
+                                        "src": 6,
+                                        "index": 1,
+                                        "dst": 7,
+                                        "arity": 2
+                                      }
+                                    },
+                                    {
+                                      "kind": "seq",
+                                      "items": [
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "constant",
+                                            "dst": 24,
+                                            "value": 0
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "clear",
+                                            "stack": 2
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "push",
+                                            "stack": 2,
+                                            "src": 7
+                                          }
+                                        },
+                                        {
+                                          "kind": "seq",
+                                          "items": [
+                                            {
+                                              "kind": "prim",
+                                              "instruction": {
+                                                "op": "is_empty",
+                                                "stack": 2,
+                                                "dst": 32
+                                              }
+                                            },
+                                            {
+                                              "kind": "if",
+                                              "condition": 32,
+                                              "yes": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 16,
+                                                  "dst": 31
+                                                }
+                                              },
+                                              "no": {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 15,
+                                                  "right": 15,
+                                                  "dst": 31
+                                                }
+                                              }
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "kind": "while",
+                                          "condition": 31,
+                                          "body": {
+                                            "kind": "seq",
+                                            "items": [
+                                              {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "pop",
+                                                  "stack": 2,
+                                                  "dst": 10
+                                                }
+                                              },
+                                              {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "tag",
+                                                  "src": 10,
+                                                  "dst": 21
+                                                }
+                                              },
+                                              {
+                                                "kind": "prim",
+                                                "instruction": {
+                                                  "op": "equal",
+                                                  "left": 21,
+                                                  "right": 15,
+                                                  "dst": 32
+                                                }
+                                              },
+                                              {
+                                                "kind": "if",
+                                                "condition": 32,
+                                                "yes": {
+                                                  "kind": "prim",
+                                                  "instruction": {
+                                                    "op": "add",
+                                                    "left": 24,
+                                                    "right": 16,
+                                                    "dst": 24
+                                                  }
+                                                },
+                                                "no": {
+                                                  "kind": "seq",
+                                                  "items": [
+                                                    {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 21,
+                                                        "right": 16,
+                                                        "dst": 32
+                                                      }
+                                                    },
+                                                    {
+                                                      "kind": "if",
+                                                      "condition": 32,
+                                                      "yes": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "length",
+                                                              "src": 10,
+                                                              "dst": 23
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 23,
+                                                              "right": 15,
+                                                              "dst": 34
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 34,
+                                                            "yes": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 16,
+                                                                "dst": 34
+                                                              }
+                                                            },
+                                                            "no": {
+                                                              "kind": "prim",
+                                                              "instruction": {
+                                                                "op": "equal",
+                                                                "left": 15,
+                                                                "right": 15,
+                                                                "dst": 34
+                                                              }
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "while",
+                                                            "condition": 34,
+                                                            "body": {
+                                                              "kind": "seq",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "add",
+                                                                    "left": 23,
+                                                                    "right": 17,
+                                                                    "dst": 23
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "field_dynamic",
+                                                                    "src": 10,
+                                                                    "index": 23,
+                                                                    "dst": 11
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "push",
+                                                                    "stack": 2,
+                                                                    "src": 11
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "equal",
+                                                                    "left": 23,
+                                                                    "right": 15,
+                                                                    "dst": 34
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "if",
+                                                                  "condition": 34,
+                                                                  "yes": {
+                                                                    "kind": "prim",
+                                                                    "instruction": {
+                                                                      "op": "equal",
+                                                                      "left": 15,
+                                                                      "right": 16,
+                                                                      "dst": 34
+                                                                    }
+                                                                  },
+                                                                  "no": {
+                                                                    "kind": "prim",
+                                                                    "instruction": {
+                                                                      "op": "equal",
+                                                                      "left": 15,
+                                                                      "right": 15,
+                                                                      "dst": 34
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        ]
+                                                      },
+                                                      "no": {
+                                                        "kind": "seq",
+                                                        "items": [
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "add",
+                                                              "left": 24,
+                                                              "right": 18,
+                                                              "dst": 24
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "prim",
+                                                            "instruction": {
+                                                              "op": "equal",
+                                                              "left": 21,
+                                                              "right": 18,
+                                                              "dst": 32
+                                                            }
+                                                          },
+                                                          {
+                                                            "kind": "if",
+                                                            "condition": 32,
+                                                            "yes": {
+                                                              "kind": "seq",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "field",
+                                                                    "src": 10,
+                                                                    "index": 1,
+                                                                    "dst": 11,
+                                                                    "arity": 3
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "push",
+                                                                    "stack": 2,
+                                                                    "src": 11
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "field",
+                                                                    "src": 10,
+                                                                    "index": 2,
+                                                                    "dst": 11,
+                                                                    "arity": 3
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "push",
+                                                                    "stack": 2,
+                                                                    "src": 11
+                                                                  }
+                                                                }
+                                                              ]
+                                                            },
+                                                            "no": {
+                                                              "kind": "seq",
+                                                              "items": [
+                                                                {
+                                                                  "kind": "prim",
+                                                                  "instruction": {
+                                                                    "op": "equal",
+                                                                    "left": 21,
+                                                                    "right": 19,
+                                                                    "dst": 32
+                                                                  }
+                                                                },
+                                                                {
+                                                                  "kind": "if",
+                                                                  "condition": 32,
+                                                                  "yes": {
+                                                                    "kind": "seq",
+                                                                    "items": [
+                                                                      {
+                                                                        "kind": "prim",
+                                                                        "instruction": {
+                                                                          "op": "field",
+                                                                          "src": 10,
+                                                                          "index": 1,
+                                                                          "dst": 11,
+                                                                          "arity": 2
+                                                                        }
+                                                                      },
+                                                                      {
+                                                                        "kind": "prim",
+                                                                        "instruction": {
+                                                                          "op": "push",
+                                                                          "stack": 2,
+                                                                          "src": 11
+                                                                        }
+                                                                      }
+                                                                    ]
+                                                                  },
+                                                                  "no": {
+                                                                    "kind": "prim",
+                                                                    "instruction": {
+                                                                      "op": "reject",
+                                                                      "reason": "unsupported source tag"
+                                                                    }
+                                                                  }
+                                                                }
+                                                              ]
+                                                            }
+                                                          }
+                                                        ]
+                                                      }
+                                                    }
+                                                  ]
+                                                }
+                                              },
+                                              {
+                                                "kind": "seq",
+                                                "items": [
+                                                  {
+                                                    "kind": "prim",
+                                                    "instruction": {
+                                                      "op": "is_empty",
+                                                      "stack": 2,
+                                                      "dst": 32
+                                                    }
+                                                  },
+                                                  {
+                                                    "kind": "if",
+                                                    "condition": 32,
+                                                    "yes": {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 15,
+                                                        "right": 16,
+                                                        "dst": 31
+                                                      }
+                                                    },
+                                                    "no": {
+                                                      "kind": "prim",
+                                                      "instruction": {
+                                                        "op": "equal",
+                                                        "left": 15,
+                                                        "right": 15,
+                                                        "dst": 31
+                                                      }
+                                                    }
+                                                  }
+                                                ]
+                                              }
+                                            ]
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "stack_length",
+                                        "stack": 1,
+                                        "dst": 26
+                                      }
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "copy",
+                                        "src": 26,
+                                        "dst": 27
+                                      }
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "add",
+                                        "left": 26,
+                                        "right": 24,
+                                        "dst": 28
+                                      }
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "add",
+                                        "left": 28,
+                                        "right": 18,
+                                        "dst": 28
+                                      }
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "add",
+                                        "left": 26,
+                                        "right": 16,
+                                        "dst": 26
+                                      }
+                                    },
+                                    {
+                                      "kind": "seq",
+                                      "items": [
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "box_integer",
+                                            "src": 26,
+                                            "dst": 13
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "box_integer",
+                                            "src": 28,
+                                            "dst": 14
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "node",
+                                            "tag": 16,
+                                            "fields": [
+                                              12,
+                                              13,
+                                              14
+                                            ],
+                                            "dst": 9
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "push",
+                                            "stack": 1,
+                                            "src": 9
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "seq",
+                                      "items": [
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "box_integer",
+                                            "src": 27,
+                                            "dst": 9
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "node",
+                                            "tag": 15,
+                                            "fields": [
+                                              9
+                                            ],
+                                            "dst": 9
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "node",
+                                            "tag": 0,
+                                            "fields": [
+                                              9
+                                            ],
+                                            "dst": 9
+                                          }
+                                        },
+                                        {
+                                          "kind": "prim",
+                                          "instruction": {
+                                            "op": "push",
+                                            "stack": 0,
+                                            "src": 9
+                                          }
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "kind": "prim",
+                                      "instruction": {
+                                        "op": "push",
+                                        "stack": 0,
+                                        "src": 7
+                                      }
+                                    }
+                                  ]
+                                },
+                                "no": {
+                                  "kind": "prim",
+                                  "instruction": {
+                                    "op": "reject",
+                                    "reason": "unsupported source tag"
+                                  }
+                                }
+                              }
+                            ]
+                          }
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            },
+            {
+              "kind": "seq",
+              "items": [
+                {
+                  "kind": "prim",
+                  "instruction": {
+                    "op": "is_empty",
+                    "stack": 0,
+                    "dst": 30
+                  }
+                },
+                {
+                  "kind": "if",
+                  "condition": 30,
+                  "yes": {
+                    "kind": "prim",
+                    "instruction": {
+                      "op": "equal",
+                      "left": 15,
+                      "right": 16,
+                      "dst": 29
+                    }
+                  },
+                  "no": {
+                    "kind": "prim",
+                    "instruction": {
+                      "op": "equal",
+                      "left": 15,
+                      "right": 15,
+                      "dst": 29
+                    }
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "pack",
+          "stack": 1,
+          "tag": 250,
+          "dst": 9
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "node",
+          "tag": 241,
+          "fields": [
+            4,
+            5,
+            9
+          ],
+          "dst": 9
+        }
+      },
+      {
+        "kind": "prim",
+        "instruction": {
+          "op": "return",
+          "src": 9
+        }
+      }
+    ]
+  }
+}

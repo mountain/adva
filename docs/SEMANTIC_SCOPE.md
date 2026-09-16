@@ -420,3 +420,12 @@ it is not WitnessProofV0::Seal. Existing finite logic and external Pascal
 fixtures can define bounded research tasks, but neither the catalog nor a
 successful fixture installs a general task-loop, stable logic, recursive
 program, certificate-bearing geometry import or automatic library growth.
+
+The [structured self-compiler experiment](research/bounded-self-compiler-and-futamura.md)
+adds only a separately versioned research target machine and compiler source.
+`C1 = C2 = C3` and the declared finite receiving controls establish a bounded
+bootstrap of that structured subset. They do not establish a stable Adva compiler,
+self interpretation of all machine constructs, universality, specialization,
+second/third Futamura projection, native source/occurrence correspondence or
+speedup. Full primitive observations and terminal results are checked in the
+finite fixture family; source and target instruction fuel are not equated.

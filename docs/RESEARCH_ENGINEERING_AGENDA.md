@@ -872,3 +872,23 @@ measured factor, and either the data node bound or the operation vocabulary, and
 lifetime fuel bound, and would still need indirect register addressing to avoid a
 stack-simulated object register file. This is a subset interpretation and a set of
 prices, not an impossibility result and not the full instruction grammar.
+
+## 15. Bounded self compiler and Futamura obligations, 2026-09-15
+
+Mingli requested a compiler capable of compiling itself and an explicit use of
+the complete Futamura theory. The [bounded structured compiler report](research/bounded-self-compiler-and-futamura.md)
+records the executed `C0(S) -> C1`, `C1(S) -> C2`, `C2(S) -> C3` chain: canonical
+stage equality, independent block receiving, ten execution fixtures, mutations,
+and original-fuel continuation passed in the successor finite experiment. Its
+first full attempt failed in the mutation harness and remains retained.
+
+This supplies a self-compiling **research subset**, under the separate
+[v1 machine and compiler ADR](adr/bounded-self-compiler-research.md). It does not
+supply a complete Adva interpreter or general specializer. Track A's first,
+second and third projections remain Open as specialization executions. The
+report spells out their types, static/dynamic inputs, code and result observers,
+correspondence obligations and self-application requirements. The next concrete
+dependency is an Adva interpreter for this same structured subset, followed by a
+bounded `mix` that can ultimately accept its own implementation. A manually
+written self compiler is not the second projection; Rust execution, external
+seed/codec and external research receiving remain explicit imports.
