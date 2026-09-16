@@ -1,0 +1,62 @@
+{
+  "schema": "adva.machine.report.v0",
+  "engine": "rust",
+  "profile": "data-machine-v0",
+  "request_sha256": "ed8f1e4a4eacd48bd3edfba9cf86818ccffe6c5c4a6c4dcf3b0947e25c98bf02",
+  "verification": {
+    "status": "NativeReplayPassed",
+    "verified_steps": 21,
+    "artifact": "run/reception.adva"
+  },
+  "binary_sha256": "d674b3cebcaf9e23ba273a9fb8a702cf8ef5d3327a45521d630110146382e77a",
+  "outcome": {
+    "kind": "Rejected",
+    "stage": "execution",
+    "reason": "unsupported object tag"
+  },
+  "native_status": "Rejected",
+  "native_profile": "6e8427f5c1872067377a06bc5830f926e8f39c13017f902ddeb58e509466d46b",
+  "execution": {
+    "artifact": "run/execution.adva",
+    "sha256": "f68e3bf76bdfcf76019e4524087d1b598128bbbee8d937ab34d3d6c290ebc447",
+    "steps": 21
+  },
+  "authority": "Rust admission and native replay; Python report is an external adapter",
+  "cost": {
+    "wall_seconds": 0.06998687099985546,
+    "cpu_seconds_including_children": 0.055598,
+    "artifact_bytes_before_report": 27623,
+    "native_calls": 3,
+    "child_calls": [
+      {
+        "label": "run/admission",
+        "native": true,
+        "status": "Exited",
+        "exit_code": 0,
+        "wall_seconds": 0.011469334000139497
+      },
+      {
+        "label": "run/execution",
+        "native": true,
+        "status": "Exited",
+        "exit_code": 2,
+        "wall_seconds": 0.011180696998053463
+      },
+      {
+        "label": "run/reception",
+        "native": true,
+        "status": "Exited",
+        "exit_code": 0,
+        "wall_seconds": 0.011283083997113863
+      }
+    ],
+    "limits": {
+      "wall_seconds": 30,
+      "cpu_seconds": 25,
+      "child_launches": 3,
+      "native_launches": 3,
+      "artifact_bytes": 134217728,
+      "address_space_per_child": 1073741824
+    }
+  }
+}

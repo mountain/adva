@@ -134,12 +134,7 @@ def check(machine, output):
                          lock["machine"]["repository"], lock["machine"]["revision"]], machine,
                          timeout=180)
             commands.run("git-checkout", ["git", "checkout", "--detach", "FETCH_HEAD"], machine)
-            # The historical .gitmodules uses SSH. Supply the locked public URL
-            # for this invocation, without editing the pinned source or relying
-            # on the caller's SSH credentials.
-            commands.run("library-fetch", ["git", "-c",
-                         "submodule.adva-library.url=" + lock["library"]["repository"],
-                         "submodule", "update", "--init",
+            commands.run("library-fetch", ["git", "submodule", "update", "--init",
                          "--depth=1", "--", "adva-library"], machine, timeout=180)
         machine = machine.resolve()
         library = receive_dependencies(machine, lock, commands)

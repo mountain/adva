@@ -1,0 +1,72 @@
+{
+  "schema": "adva.knowledge.dependency-continuity.v0",
+  "status": "Error",
+  "scope": "two existing arithmetic fixtures; no general migration or new theorem",
+  "commands": [
+    {
+      "label": "git-init",
+      "argv": [
+        "git",
+        "init",
+        "/home/runner/work/_temp/machine-dependency/dependencies/machine"
+      ],
+      "cwd": "/home/runner/work/_temp/machine-dependency",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 0.007859297999999626
+    },
+    {
+      "label": "git-fetch",
+      "argv": [
+        "git",
+        "fetch",
+        "--depth=1",
+        "https://github.com/mountain/adva-machine.git",
+        "8a34d8053e0b5cdb6b29e5677acdac2e8af7df52"
+      ],
+      "cwd": "/home/runner/work/_temp/machine-dependency/dependencies/machine",
+      "timeout_seconds": 180,
+      "returncode": 0,
+      "wall_seconds": 1.7684647439999992
+    },
+    {
+      "label": "git-checkout",
+      "argv": [
+        "git",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "cwd": "/home/runner/work/_temp/machine-dependency/dependencies/machine",
+      "timeout_seconds": 45,
+      "returncode": 0,
+      "wall_seconds": 1.6189454269999999
+    },
+    {
+      "label": "library-fetch",
+      "argv": [
+        "git",
+        "submodule",
+        "update",
+        "--init",
+        "--depth=1",
+        "--",
+        "adva-library"
+      ],
+      "cwd": "/home/runner/work/_temp/machine-dependency/dependencies/machine",
+      "timeout_seconds": 180,
+      "returncode": 1,
+      "wall_seconds": 0.5658386970000038
+    }
+  ],
+  "checks": [],
+  "knowledge": {
+    "base_commit": "6f529c290185f9844afbb0a9bebbf4acaf081b6f",
+    "checker_sha256": "68ddb1999bfac6f38de5385f503c261b95e1efddedddc6c4cf864e145947e0ca",
+    "lock_sha256": "02d8dbbd57b4da994d0905b927e048102a79cdca32363838d8904812ff455a4b"
+  },
+  "error": {
+    "type": "ValueError",
+    "message": "library-fetch failed; see retained stderr"
+  }
+}

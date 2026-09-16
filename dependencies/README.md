@@ -49,3 +49,22 @@ SHA-256 identifies retained bytes, not native semantic authority. The checker
 does not authorize a stored report by reading its `Passed` field: a new run
 builds the pinned machine and performs native execution/replay again. These
 artifacts do not update earlier research evidence or release its obligations.
+
+## Public-checkout correction
+
+The first [CI run](https://github.com/mountain/adva/actions/runs/35085965622)
+failed during library acquisition, before any build or native execution. The
+historical machine `.gitmodules` uses an SSH URL. Local SSH access had hidden
+this environmental dependency; the new hosted runner had no corresponding key.
+The complete [failed receipt](evidence/ci-01-failed/report.json), checker, lock
+and command logs are retained without rewriting the successful local run.
+
+The acquisition command now supplies the lock's public HTTPS library URL through
+Git's per-invocation submodule configuration. The machine revision, gitlink,
+library commit, specification and input byte pins are unchanged. The workflow
+disables SSH explicitly, so this route must work using public HTTPS access.
+A successor run, `continuity-02`, checks the corrected acquisition path with
+`GIT_SSH_COMMAND=false`; it retains its own checker and complete evidence.
+Its [report](evidence/continuity-02/report.json) passed all four checks after a
+155.72-second fresh build. The expanded regression selection passed 675 tests,
+including both successful runs and the preserved failed acquisition.

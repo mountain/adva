@@ -81,8 +81,9 @@ def test_retained_inputs_still_match_the_dependency_lock():
     CHECK.pins(ROOT, CHECK.read(CHECK.LOCK)["knowledge_inputs"])
 
 
-def test_retained_run_binds_inputs_history_and_native_replay():
-    evidence = ROOT / "dependencies/evidence/continuity-01"
+@pytest.mark.parametrize("run", ("continuity-01", "continuity-02"))
+def test_retained_run_binds_inputs_history_and_native_replay(run):
+    evidence = ROOT / "dependencies/evidence" / run
     manifest = CHECK.read(evidence / "manifest.json")
     assert set(manifest["files"]) == {
         p.relative_to(evidence).as_posix() for p in evidence.rglob("*")
@@ -92,7 +93,8 @@ def test_retained_run_binds_inputs_history_and_native_replay():
     report = CHECK.read(evidence / "report.json")
     lock = CHECK.read(evidence / "dependency.lock.json")
     assert report["knowledge"]["checker_sha256"] == CHECK.sha(evidence / "checker.py")
-    assert CHECK.sha(ROOT / "scripts/check_machine_dependency.py") == CHECK.sha(evidence / "checker.py")
+    if run == "continuity-02":
+        assert CHECK.sha(ROOT / "scripts/check_machine_dependency.py") == CHECK.sha(evidence / "checker.py")
     assert report["knowledge"]["lock_sha256"] == CHECK.sha(evidence / "dependency.lock.json")
     assert report["dependencies"]["machine_revision"] == lock["machine"]["revision"]
     assert report["dependencies"]["library_revision"] == lock["library"]["revision"]
@@ -113,3 +115,13 @@ def test_retained_run_binds_inputs_history_and_native_replay():
         assert receipt["verified_steps"] == raw["state"]["spent"] == len(raw["trace"]) == row["steps"]
         assert result["cost"]["native_calls"] == 3
     assert report["status"] == "Passed" and len(report["checks"]) == 4
+
+
+def test_first_ci_failure_remains_a_failed_dependency_acquisition():
+    evidence = ROOT / "dependencies/evidence/ci-01-failed"
+    CHECK.pins(evidence, CHECK.read(evidence / "manifest.json")["files"])
+    report = CHECK.read(evidence / "report.json")
+    assert report["status"] == "Error" and report["checks"] == []
+    assert report["error"]["message"] == "library-fetch failed; see retained stderr"
+    assert "Permission denied (publickey)" in (evidence / "logs/library-fetch.stderr").read_text()
+    assert not any(command["label"] == "build" for command in report["commands"])

@@ -26,6 +26,9 @@ jobs:
       - name: Check dependency refusal and observation boundaries
         run: python -m pytest -q tests/python/test_machine_dependency.py
       - name: Fetch, build and receive the pinned external machine
+        env:
+          GIT_SSH_COMMAND: "false"
+          GIT_TERMINAL_PROMPT: "0"
         run: python scripts/check_machine_dependency.py --output "$RUNNER_TEMP/machine-dependency"
       - name: Retain checks, inputs, traces, refusals and build provenance
         if: always()

@@ -105,7 +105,9 @@ python3 -m venv .venv
 An initialized knowledge-side library submodule is not needed for this route:
 the checker compares its committed gitlink, then receives the library through
 the machine's pinned submodule. Only that library is fetched, not its unrelated
-vendor submodules. To use an existing exact machine checkout, add
+vendor submodules. The fetch command overrides the historical SSH submodule URL
+with the public HTTPS URL in the lock for that invocation; it changes no pinned
+file and requires no SSH key. To use an existing exact machine checkout, add
 `--machine /absolute/path/to/adva-machine`. A later machine HEAD is refused;
 use a separate checkout at the locked commit instead of moving an active branch.
 

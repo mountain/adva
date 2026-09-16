@@ -1,0 +1,32 @@
+{
+  "schema": "adva.knowledge.machine-dependency.v0",
+  "machine": {
+    "repository": "https://github.com/mountain/adva-machine.git",
+    "revision": "8a34d8053e0b5cdb6b29e5677acdac2e8af7df52",
+    "spec_catalog_sha256": "671d8460ab2e2ce837a09e52305fa1325e54d624d1a7293a5b5cb3dae41a1b15",
+    "library_lock_sha256": "3ddccd5ffe1ce27566c1c0103fb11971a273afdcc3a85b93da65655ed07f7806"
+  },
+  "library": {
+    "repository": "https://github.com/mountain/adva-library.git",
+    "revision": "f652709c5dd2aecc7ed319e54452df1d4f4881d1",
+    "subject": "phase-runner/run-program.adva",
+    "subject_sha256": "202afe49560e453702f6ab4f3bfef6c04637691190c0505d940d5858cfc7dc8e"
+  },
+  "knowledge_inputs": {
+    "programs/native-run/arithmetic.adva": "202afe49560e453702f6ab4f3bfef6c04637691190c0505d940d5858cfc7dc8e",
+    "programs/bounded-interpreter/interpreter.adva": "e54309bfe45c64eed31c1b2b52b1eabfef92d8dce6213e1bf9db0d71e1b655b1",
+    "programs/bounded-interpreter/input.json": "2923be57b91416534bd0c2b909b2ccbee7e66313d889b569e03c95618cc0cd30",
+    "docs/research/0140-native-run-evidence/arithmetic-result.adva": "378f3e957393c9d6c981845070ef5bf2f9fd8b526e83b857ef4d8a6580fb49df"
+  },
+  "observer": {
+    "native_run": "all report fields except phase_seconds, compared with retained Research 0140 evidence",
+    "data_machine": "v0 native replay; exact returned value, rejection or suspension, and spent instructions",
+    "library_authority": "documentary pins plus explicit Rust admission of one native-run fixture; no general package import"
+  },
+  "limits": {
+    "build_seconds": 600,
+    "command_seconds": 45,
+    "case_count": 3
+  },
+  "python_requirement": "blake3==1.0.9"
+}
