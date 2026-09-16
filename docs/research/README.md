@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **213 numbered
-notes, 35 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 36 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -774,6 +774,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [bounded-interpreter-cross-host-replay.md](bounded-interpreter-cross-host-replay.md): a second host re-receives 300 retained checkpoints from their own bytes, reproduces the recorded profile digest and a byte-identical continuation; no new claim and no new campaign.
 - [self-interpretation-capacity-preflight.md](self-interpretation-capacity-preflight.md): inside the declared bounds an inspectable encoding of the machine's own instruction grammar needs 169 nodes against 127, the packed alternative cannot be unpacked, and a 17-case dispatch ladder spends 90 of 128 instructions; a capacity measurement, not an impossibility result.
 - [self-interpretation-scaling-preflight.md](self-interpretation-scaling-preflight.md): a generated meta program interprets a declared four-opcode subset of the machine's own instruction grammar and returns 7, 9, 4 and 5 for unseen object programs, while a four-opcode meta over two object instructions already needs 166 of the declared 128 instructions and is refused.
+- [futamura-projections-in-adva-terms.md](futamura-projections-in-adva-terms.md): the Futamura projections stated in this repository's terms, with the first projection executed — a compiler built from the frozen interpreter by a declared rule emits 3-instruction residuals for all 129 frozen trees, agreement checked three ways, and the compile cost recorded; projections two and three are blocked by measured bounds.
 
 ### Supporting directories
 

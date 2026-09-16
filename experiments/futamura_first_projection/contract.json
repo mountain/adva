@@ -1,0 +1,45 @@
+{
+  "schema": "adva.futamura-first-projection.contract.v0",
+  "base": "4027933",
+  "question": "Can the first Futamura-style observation be executed inside the declared research data-machine profile: a compiler, written in the same language as the interpreter it replaces, emitting a residual program for each source program of a frozen family, with residual execution agreeing with interpretation under a declared observation and with the source-to-residual correspondence and the forgotten structure retained?",
+  "level": "Bounded construction and executed calibration of one declared transformation; no stable specializer, no general partial evaluator, no host-language compiler change and no self-hosting claim",
+  "imports": [
+    "docs/RESEARCH_ENGINEERING_AGENDA.md section 1.5 step 5 and section 4 ask for exactly this calibration and name the evaluator as the interpreter of the first projection",
+    "The frozen arithmetic interpreter at programs/bounded-interpreter/interpreter.adva, 51 instructions, tags 0 literal, 1 addition, 2 multiplication, unchanged",
+    "The 129 frozen regular trees retained in experiments/bounded_native_interpreter/evidence/attempt-1/primary.tar.gz, unchanged, with a direct recursive arithmetic oracle as the independent expected value",
+    "Declared profile bounds: 128 program instructions, 16 registers, 127 data nodes, depth 12, arity 8, lifetime fuel 2048"
+  ],
+  "interface": "The compiler is built from the interpreter by a declared rule: every instruction up to the interpreter's final return is kept byte for byte, that return becomes a jump into an appended emission epilogue, and the epilogue folds the completed value into residual program data. The residual encoding R is declared: a program node with tag 7 whose fields are instruction nodes, tag 0 constant value dst, tag 2 box_integer src dst, tag 1 return src, instantiated by the checker because this profile has no loader instruction.",
+  "observation": "The returned integer value and the run status. The execution trace is deliberately not compared: compilation is expected to change it, and treating trace equality as the correctness condition would forbid specialization.",
+  "protected": [
+    "The interpreter and the machine are unchanged; no bound is widened and no new operation is added",
+    "The source-to-residual correspondence is explicit: the compiler's relation to the interpreter is checked instruction by instruction, and every emitted residual is retained",
+    "The forgotten structure is named: tree shape, literals and evaluation order do not survive into the residual",
+    "The compile cost is recorded beside the residual cost, so a one-shot compile is not presented as a free gain",
+    "Equality is checked over the whole declared family of 129 trees and against an independent oracle, not on a few values"
+  ],
+  "cases": [
+    "129 frozen the-family trees, each interpreted, each compiled, and each compiled residual instantiated and executed directly",
+    "the interpreter body of the compiler is compared with the frozen interpreter instruction by instruction",
+    "one interpreted run is compared byte for byte with the frozen campaign's own retained run artifact"
+  ],
+  "checker": "experiments/futamura_first_projection/check.py",
+  "success": "For every one of the 129 trees the interpreted value, the directly executed residual value and the independent oracle agree; the compiler is the interpreter plus the declared epilogue; and every cost and residual is retained.",
+  "negative_controls": [
+    "The independent recursive oracle is a third implementation, so equal values cannot come from one shared evaluation path",
+    "A residual is executed directly as an instantiated program, never through the interpreter, so the residual's own semantics is what is measured",
+    "The compile cost is summed with the residual cost, so the classical one-shot compile penalty is visible rather than hidden",
+    "Any disagreement in any of the 129 cases fails the attempt"
+  ],
+  "resources": {
+    "max_cli_launches": 512,
+    "fuel_per_run": 2048,
+    "quantum_per_run": 2048,
+    "wall_seconds_per_invocation": 20,
+    "wall_seconds_total": 600,
+    "max_full_attempts_under_this_contract": 1,
+    "output_directory": "experiments/futamura_first_projection/evidence/attempt-1"
+  },
+  "exit": "Stop at the first mismatch or resource limit; retain the failure and publish no positive claim from this attempt.",
+  "limits": "This is the first projection for a fully static source family: the source program is the whole input, so no dynamic input survives and every residual is a constant. Projections two and three need the compiler to be a program in the language it specializes, which the declared bounds do not admit; that is measured, not assumed. Nothing here is a stable specializer, a general partial evaluator, a speedup claim for real hardware, or a self-hosting compiler."
+}

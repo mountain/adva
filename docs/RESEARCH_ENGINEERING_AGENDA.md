@@ -872,3 +872,37 @@ measured factor, and either the data node bound or the operation vocabulary, and
 lifetime fuel bound, and would still need indirect register addressing to avoid a
 stack-simulated object register file. This is a subset interpretation and a set of
 prices, not an impossibility result and not the full instruction grammar.
+
+## 15. The first Futamura-style observation, executed, 2026-09-16
+
+Section 1.1 kept the Futamura projections as a conceptual calibration and stated
+what a real formulation would need: exact program identities, observation policies,
+residuals and certificates. Section 1.5 step 5 and section 4's staged plan asked for
+one fixed static expression to be compiled into an ordinary Adva program, with
+residual execution agreeing under a declared observer.
+
+That calibration is now executed for the arithmetic track and recorded in
+[the Futamura note](research/futamura-projections-in-adva-terms.md). A compiler built
+from the unchanged 51-instruction arithmetic interpreter by a declared, checked rule —
+its 50 other instructions byte for byte, its final `return` replaced by a jump into an
+appended 11-instruction emission epilogue — compiles all 129 frozen regular trees.
+Every emitted residual is a 3-instruction program, and for all 129 trees the
+interpreted value, the directly executed residual value and an independent recursive
+oracle agree. The interpreted half reproduces the frozen campaign's own bytes and its
+recorded 15966 steps.
+
+The accounting is part of the result rather than an afterthought: compile runs cost
+35 to 147 steps for 17385 in total, so one-shot compile-then-run (17772) is *worse*
+than interpreting once (15966), while two uses of a residual beat interpreting twice
+in every one of the 129 cases. Compilation here pays on reuse only.
+
+Consequence for the open choice in sections 12 to 14: projection one needs no bound
+change and is available now in this bounded form. Projections two and three need the
+specializer to be a program in the language it specializes, and three measured facts
+block that in this profile — the 169-node inspectable encoding against 127, the
+295-instruction nineteen-opcode meta against 128, and the absence of a loader
+instruction that turns emitted program data into an executable program. A separately
+scoped extension must move the program and data or vocabulary bounds and the fuel
+bound; a checked translation between the carrier and the program/process boundary
+moves none of them. Nothing here promotes a specializer, and the promotion gates of
+section 1.6 that concern failure, unknown and certificates remain unsatisfied.
