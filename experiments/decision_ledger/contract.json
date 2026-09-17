@@ -1,0 +1,25 @@
+{
+  "profile": "adva.research.decision-ledger.v0",
+  "status": "FrozenBeforeExecution",
+  "base_commit": "03c9c122e45b8420d0b5ce17533f9ee2c0298b39",
+  "question": "Can one receiver-owned finite ledger replay a checked continuation without a second abstract debit, and distinguish exits before commit from loss of the reply after commit?",
+  "level": "External original Python/SQLite experiment; not native communicate, acceptance identity or action execution.",
+  "domain": "One fixed decision-checkpoint request per local database; one accepted continuation slot; unchanged exact finite rational ancestor profiles.",
+  "quantifier": "Only two synthetic families and the fixed finite request sequences, including asymmetric reuse. No arbitrary distributed recovery theorem.",
+  "expected": "The unchanged decision-checkpoint request is receiver-selected. Initialization stores its full canonical JSON and the fingerprint of the ledger receiver and all ancestor receivers.",
+  "candidate_fields": ["profile", "transition_key", "checkpoint_receipt"],
+  "key": "Nonempty string of at most 80 characters; receiver-ledger-local coordinate, not a native identity or authentication token.",
+  "commands": {
+    "init": "Create a new exclusively named database for expected. Refuse an existing path; never overwrite or renew it. Store immutable initial allowance and matching current allowance.",
+    "submit": "Open existing database with mode=rw, bind full expected and checker fingerprint, and use BEGIN IMMEDIATE. Missing database never creates a new ledger. Same key and canonical payload returns stored deterministic result with debit_delta=0. Same key changed payload yields Conflict. Occupied slot with different key yields PausedLedgerCapacity. Empty slot invokes unchanged checkpoint checker. Only AcceptedCheckpointContinuation inserts the full payload/result and updates allowance in the same transaction. Pauses and refusals change no logical ledger state."
+  },
+  "stored_result": "Deterministic parent outcome/reason, checkpoint_retained, allowance_after and semantic_delta. Per-invocation cost, replay status and debit_delta are outside this stored result. Replay is retrieval from trusted receiver storage, not a new arithmetic check.",
+  "accounting": "The existing grant/spent/remaining triple counts abstract accepted continuation attempts only. One committed slot causes exactly one debit in this declared ledger. Actual checking, SQLite operations, replay and serialization costs are separately measured and bounded. No task action or native fuel is consumed.",
+  "transaction_assumptions": ["Receiver-owned trusted local SQLite file and unmodified schema; sequential invocations", "Python sqlite3 with isolation_level=None and explicit BEGIN IMMEDIATE/COMMIT", "journal_mode=DELETE and synchronous=FULL", "Correct SQLite/filesystem behavior; no network filesystem, hostile storage or live copying", "No external side effect beyond this database transaction", "Changing the receiver/checker fingerprint requires a separately designed migration; no silent reinterpretation"],
+  "faults": ["before_commit: actual exit 17 after result INSERT and allowance UPDATE, before COMMIT", "after_commit: actual exit 19 after COMMIT succeeds but before stdout result; stderr retains phase and work counters"],
+  "controls": ["canonical same-payload retry", "same-key conflict", "different-key capacity", "changed expected/allowance", "reinitialization refusal", "missing ledger refusal", "invalid parent arithmetic then valid retry", "history-capacity pause", "zero-allowance pause", "before-commit rollback and later first acceptance", "after-commit lost reply and stored-result replay"],
+  "limits": {"campaign_wall_seconds": 30, "child_processes": 52, "child_wall_seconds": 3, "child_cpu_seconds": 3, "child_address_space_bytes": 134217728, "wire_bytes": 196608, "parent_wire_bytes": 131072, "database_bytes": 1048576, "max_page_count": 256, "busy_timeout_seconds": 0.1, "receiver_work_units": 10000, "search_candidates": 0, "implementation_correction_replays": 1},
+  "residuals": ["No concurrent or distributed exactly-once guarantee", "No power-loss, disk-full or arbitrary crash coverage", "No cryptographic authentication or adversarial database guarantee", "No automatic ledger recreation, garbage collection, migration or capacity growth", "No native Close/free/M6, universal grammar or speedup claim", "Actual human decision benefit remains unmeasured"],
+  "author": "ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or correctness guarantee.",
+  "origin": "Original first-party code, synthetic data and generated evidence under Unknown v0.3. SQLite is used through the installed standard library; no third-party software or documentation is vendored."
+}

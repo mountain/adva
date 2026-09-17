@@ -160,3 +160,20 @@ The checker is stateless: this adds neither durable recovery nor exactly-once
 consumption. The next finite obligation is a receiver-owned transition ledger
 that distinguishes an identical replay from a conflicting repeated submission.
 No native operation, capacity increase or new vocabulary follows.
+
+## Receiver ledger continuation, 2026-09-17
+
+After PR #189 merged, the [finite ledger](../../experiments/decision_ledger/README.md)
+adds one receiver-owned SQLite slot per fixed checkpoint request. Same-key,
+same-content submissions return the stored result without another abstract
+debit; changed payloads conflict and a different key cannot bypass occupied
+capacity. Both result and debit commit in one transaction. The arithmetic
+receiving chain and its finite history limit remain unchanged.
+
+A 48-process campaign passes 328 assertions across two families, including a
+new asymmetric instance. Real process exits before commit leave an empty slot
+and the original allowance; exits after commit but before the reply retain one
+debit and allow exact result recovery. These are sequential local-storage
+witnesses, not distributed exactly-once or power-loss guarantees. No new word or
+native effect is admitted. The next finite question is simultaneous submission
+and the distinction between lock contention and invalid ledger contents.
