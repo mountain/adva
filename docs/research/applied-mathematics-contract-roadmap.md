@@ -228,3 +228,29 @@ limit. Use compatible checked four-atom interfaces with an explicit supplied
 Markov premise, or justify a separate receiving profile; do not widen a frozen
 ancestor silently. General units, affine origins and physical calibration remain
 open while this finite kernel task proceeds.
+
+## Typed kernel composition, 2026-09-17
+
+After PR #192 merged, the [finite kernel receiver](../../experiments/kernel_composition/README.md)
+advances priority 2 through three checked four-atom interfaces AB, BC and AC.
+Typed direction, complete middle prior and ordered history are receiver-bound.
+The explicit Markov extension supplies J(a,b,c)=p(a)K(a,b)L(b,c); it is not
+inferred from adjacent distributions. All original parent bounds remain fixed.
+
+Forty fresh receiving processes pass 397 assertions: five accepted compositions,
+24 evidence refusals, two dependence Unknowns and nine unsupported contexts.
+Eighteen evidence refusals pass all three local arithmetic checks. Two four-state
+models share complete adjacent laws yet have opposite endpoint dependence;
+local density energies of 1 coexist with endpoint energy 2. An unspecified
+premise remains Unknown, while a requested Markov extension rejects those
+endpoints. Unused zero-mass kernel rows remain stipulated rather than learned.
+A distinct asymmetric fixture and Chinese space IDs provide fresh reuse.
+
+This establishes a finite composition and posterior interface under supplied
+premises, not arbitrary dependence inference or general Markov-process tooling.
+The next mathematical witness is priority 3: a bounded rational Ax=b receiver
+with explicit spaces, basis and direction. Check the residual and distinguish
+unique solutions, inconsistency and affine families. Existing operator receipts
+are a starting point; matrix equality or zero residual does not alone certify
+invertibility or uniqueness. General units, native import and the separate
+ledger-holder-exit obligation remain open.

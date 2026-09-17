@@ -1,0 +1,493 @@
+{
+  "assertions": 397,
+  "calls": 40,
+  "child_peak_rss_kib": 11904,
+  "cost_scope": "Instrumented phases exclude some bookkeeping but campaign wall includes it. Final report writing, archive, research/review/network not included; case reuse costs retained; no speedup claim.",
+  "failure": null,
+  "native_authority": false,
+  "new_native_vocabulary": [],
+  "phases": {
+    "construction_seconds": 0.04823701900386368,
+    "independent_observation_seconds": 0.004231336002703756,
+    "receiving_seconds": 7.56822704998558,
+    "serialization_seconds": 0.1384905430022627
+  },
+  "profile": "adva.research.kernel-composition.v0",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "receiver_work_units": 10095,
+  "runs": [
+    {
+      "case": "primary/valid",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "AcceptedMarkovKernelComposition",
+      "reason": "all-declared-markov-composition-checks-passed",
+      "returncode": 0,
+      "wall_seconds": 0.18640463200063095,
+      "work_units": 374
+    },
+    {
+      "case": "reuse/valid",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "AcceptedMarkovKernelComposition",
+      "reason": "all-declared-markov-composition-checks-passed",
+      "returncode": 0,
+      "wall_seconds": 0.17827838100129156,
+      "work_units": 374
+    },
+    {
+      "case": "identity/valid",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "AcceptedMarkovKernelComposition",
+      "reason": "all-declared-markov-composition-checks-passed",
+      "returncode": 0,
+      "wall_seconds": 0.1806390179990558,
+      "work_units": 374
+    },
+    {
+      "case": "null-middle/valid",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "AcceptedMarkovKernelComposition",
+      "reason": "all-declared-markov-composition-checks-passed",
+      "returncode": 0,
+      "wall_seconds": 0.18239396100034355,
+      "work_units": 350
+    },
+    {
+      "case": "fair/markov",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "AcceptedMarkovKernelComposition",
+      "reason": "all-declared-markov-composition-checks-passed",
+      "returncode": 0,
+      "wall_seconds": 0.18077050000283634,
+      "work_units": 374
+    },
+    {
+      "case": "primary/wrong-middle-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:middle-prior:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18036346299777506,
+      "work_units": 371
+    },
+    {
+      "case": "primary/wrong-product-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:composed-kernel:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.23014548900027876,
+      "work_units": 372
+    },
+    {
+      "case": "primary/wrong-target-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:target-prior:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1823952630002168,
+      "work_units": 373
+    },
+    {
+      "case": "primary/changed-first-law",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AB:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.23536787500052014,
+      "work_units": 360
+    },
+    {
+      "case": "primary/changed-middle-law",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1801412309978332,
+      "work_units": 361
+    },
+    {
+      "case": "primary/renamed-middle",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.2337961630000791,
+      "work_units": 361
+    },
+    {
+      "case": "primary/reversed-product",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AC:target-marginal",
+      "returncode": 0,
+      "wall_seconds": 0.23568809399876045,
+      "work_units": 366
+    },
+    {
+      "case": "primary/erased-history",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18211892399995122,
+      "work_units": 361
+    },
+    {
+      "case": "primary/changed-request",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1809354520009947,
+      "work_units": 101
+    },
+    {
+      "case": "primary/missing-first-atom",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidEvidence",
+      "reason": "vector:length",
+      "returncode": 0,
+      "wall_seconds": 0.17971697599932668,
+      "work_units": 113
+    },
+    {
+      "case": "reuse/wrong-middle-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:middle-prior:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18394155699934345,
+      "work_units": 371
+    },
+    {
+      "case": "reuse/wrong-product-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:composed-kernel:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1927885539989802,
+      "work_units": 372
+    },
+    {
+      "case": "reuse/wrong-target-claim",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "claims:target-prior:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18322691499997745,
+      "work_units": 373
+    },
+    {
+      "case": "reuse/changed-first-law",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AB:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18160841200005962,
+      "work_units": 360
+    },
+    {
+      "case": "reuse/changed-middle-law",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.2403790520002076,
+      "work_units": 361
+    },
+    {
+      "case": "reuse/renamed-middle",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18616320499859285,
+      "work_units": 361
+    },
+    {
+      "case": "reuse/reversed-product",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AC:target-marginal",
+      "returncode": 0,
+      "wall_seconds": 0.18164129399883677,
+      "work_units": 366
+    },
+    {
+      "case": "reuse/erased-history",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "BC:requested-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18256383199695847,
+      "work_units": 361
+    },
+    {
+      "case": "reuse/changed-request",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18597195799884503,
+      "work_units": 101
+    },
+    {
+      "case": "reuse/missing-first-atom",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidEvidence",
+      "reason": "vector:length",
+      "returncode": 0,
+      "wall_seconds": 0.18431963700277265,
+      "work_units": 113
+    },
+    {
+      "case": "null-middle/invented-conditional",
+      "interface_arithmetic_checked": [
+        "AB"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "atom:zero-event",
+      "returncode": 0,
+      "wall_seconds": 0.18172916699768393,
+      "work_units": 239
+    },
+    {
+      "case": "null-middle/changed-unobserved-row",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18141594600092503,
+      "work_units": 101
+    },
+    {
+      "case": "coupling/same-unspecified",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "UnknownDependence",
+      "reason": "dependence-premise-not-selected",
+      "returncode": 0,
+      "wall_seconds": 0.18063068099945667,
+      "work_units": 373
+    },
+    {
+      "case": "coupling/same-markov",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AC:markov-extension-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1806890990010288,
+      "work_units": 374
+    },
+    {
+      "case": "coupling/opposite-unspecified",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "UnknownDependence",
+      "reason": "dependence-premise-not-selected",
+      "returncode": 0,
+      "wall_seconds": 0.1822017229969788,
+      "work_units": 373
+    },
+    {
+      "case": "coupling/opposite-markov",
+      "interface_arithmetic_checked": [
+        "AB",
+        "BC",
+        "AC"
+      ],
+      "outcome": "InvalidEvidence",
+      "reason": "AC:markov-extension-context:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18822033199830912,
+      "work_units": 374
+    },
+    {
+      "case": "context/middle-type-mismatch",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "second-kernel:source:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1839024939981755,
+      "work_units": 9
+    },
+    {
+      "case": "context/middle-prior-mismatch",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "middle:prior-binding",
+      "returncode": 0,
+      "wall_seconds": 0.18394716900002095,
+      "work_units": 32
+    },
+    {
+      "case": "context/wrong-direction",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "second-kernel:direction",
+      "returncode": 0,
+      "wall_seconds": 0.18695870299779926,
+      "work_units": 10
+    },
+    {
+      "case": "context/negative-entry",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "first-kernel:row:mass",
+      "returncode": 0,
+      "wall_seconds": 0.18199098100012634,
+      "work_units": 6
+    },
+    {
+      "case": "context/nonstochastic-row",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "first-kernel:row:mass",
+      "returncode": 0,
+      "wall_seconds": 0.17956570599926636,
+      "work_units": 6
+    },
+    {
+      "case": "context/boolean-entry",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "rational:integer-type",
+      "returncode": 0,
+      "wall_seconds": 0.18255761500040535,
+      "work_units": 5
+    },
+    {
+      "case": "context/history-capacity",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "history:length",
+      "returncode": 0,
+      "wall_seconds": 0.18167167000137852,
+      "work_units": 0
+    },
+    {
+      "case": "context/joint-denominator",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "rational:bound",
+      "returncode": 0,
+      "wall_seconds": 0.17929643000024953,
+      "work_units": 69
+    },
+    {
+      "case": "context/unsupported-assumption",
+      "interface_arithmetic_checked": [],
+      "outcome": "InvalidContext",
+      "reason": "assumption:unsupported",
+      "returncode": 0,
+      "wall_seconds": 0.18168949599930784,
+      "work_units": 0
+    }
+  ],
+  "search_candidates": 0,
+  "source_sha256": {
+    "kernel_composition/receive.py": "fc493112a7e0ba3314f2871027ffeaa697cb80913ebcf53387e2d746ea4c2e8d",
+    "kernel_composition/run.py": "73c5bdfb491ec2ed34c5d52ed6d5478eb5cb4efb7c065e6c443e521cceebfdcc",
+    "probability_receipt/receive.py": "cc62bc5c8fdd8fab97e3635554d946fce873298ec0a2f00d2d019db0d0fbfcb9",
+    "probability_receipt/run.py": "703df7ef99822e4a1dc3cb1cddbe0958cb4032c249593fc48d357c8248fb57b3"
+  },
+  "status": "Passed",
+  "supervisor_path_terms": 48,
+  "supervisor_peak_rss_kib": 14592,
+  "wall_seconds": 7.94059562899929
+}

@@ -1,0 +1,108 @@
+{
+  "profile": "adva.research.kernel-composition.v0",
+  "version": 0,
+  "frozen_before_execution": true,
+  "base_commit": "32330dbcf22847eec9f2a4e81104470bf58e2af8",
+  "question": "Can two typed finite probability kernels be composed without concealing the middle interface or an unproved dependence premise?",
+  "level": "external exact finite research; no native admission",
+  "objects": "Three distinct named two-state spaces A,B,C; prior p; row-stochastic K:A->B and L:B->C; declared second prior q; full ordered history",
+  "arithmetic": "Canonical integer rational pairs; nonnegative probabilities; no floating arithmetic; p and K,L components <=64, derived q,KL,qL components <=1024; each four-atom interface passes unchanged probability parent bounds.",
+  "quantifiers": "Elementary identities hold for every row-stochastic p,K,L; implementation evidence covers exactly the 40 declared receiver cases, not all bounded matrices or arbitrary inputs.",
+  "premise": "Markov extension is the explicit factorization J[a,b,c]=p[a]*K[a,b]*L[b,c]. Conditional-independence language is restricted to positive conditioning mass. Adjacent laws alone do not imply factorization.",
+  "candidate_syntax": {
+    "keys": [
+      "profile",
+      "request",
+      "interfaces",
+      "claims"
+    ],
+    "interfaces": [
+      "AB",
+      "BC",
+      "AC"
+    ],
+    "claims": [
+      "middle_prior",
+      "composed_kernel",
+      "target_prior"
+    ],
+    "assumptions": [
+      "markov-extension",
+      "unspecified"
+    ]
+  },
+  "request_boundary": {
+    "space": "exact id and two distinct ordered labels, each nonempty and <=80 characters; distinct role ids",
+    "kernel": "exact source and target space objects; direction target-given-source; two stochastic rows",
+    "history": "one or two entries plus exactly two declared steps, each <=80 characters",
+    "middle": "second_prior exactly pK and second source exactly first target"
+  },
+  "interface_boundary": {
+    "atom_order": "left index then right index; each carrier label is compact canonical JSON [left.id,left.label,right.id,right.label], ensure_ascii=False",
+    "reference": "four entries 1/4",
+    "scope": "complete-declared-finite-carrier",
+    "AB": "mass p[a]K[a,b], observe B, source-index observable; source history plus first step",
+    "BC": "mass q[b]L[b,c], observe B, target-index observable; source history plus both steps",
+    "AC": "mass p[a](KL)[a,c], observe C, source-index observable; source history plus both steps"
+  },
+  "receiver_order": [
+    "validate expected request and all derived parent contexts",
+    "bind exact candidate request",
+    "verify all three parent receipts locally",
+    "bind complete AB,BC; bind nonprobability AC fields and both AC marginals",
+    "check q,KL,qL claims",
+    "unspecified returns UnknownDependence with no accepted composition",
+    "markov-extension requires full derived AC context before acceptance"
+  ],
+  "zero_mass": "A kernel row at q[b]=0 is stipulated, not inferred. Altering the unused L row in the declared null fixture leaves all three interface receipts and KL identical but changes the receiver-bound request. A null conditional remains null.",
+  "campaign": {
+    "routes": 1,
+    "fresh_processes": 40,
+    "accepted": 5,
+    "invalid_evidence": 24,
+    "unknown_dependence": 2,
+    "invalid_context": 9,
+    "families": [
+      "primary",
+      "fresh-asymmetric-reuse",
+      "identity-first",
+      "null-middle",
+      "fair-Markov",
+      "same/opposite-endpoint-couplings"
+    ],
+    "ordinary_controls_per_primary_and_reuse": 10,
+    "null_controls": 2,
+    "coupling_calls": 4,
+    "context_controls": 9,
+    "host_path_terms": 48,
+    "search_candidates": 0
+  },
+  "resource_budget": {
+    "campaign_wall_seconds": 30,
+    "child_wall_seconds": 3,
+    "child_cpu_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "per_input_bytes": 32768,
+    "child_file_bytes": 262144,
+    "cumulative_parent_receiver_work_per_process": 10000,
+    "substantive_routes_max": 3,
+    "implementation_correction_replays_max": 1,
+    "no_automatic_retry": true
+  },
+  "checker": "Independent receiving process imports unchanged probability receiver; producer imports only unchanged probability producer; supervisor independently sums eight scalar path terms per success and projects each four-state non-Markov model.",
+  "preserved_obligations": [
+    "parent carrier cap six and all parent numeric/history bounds",
+    "zero conditions and rational types",
+    "ordered process history and full receiver context",
+    "no storage-holder-exit claim",
+    "no native Close/free/M6/Universal authorization"
+  ],
+  "costs": "Separate instrumented construction, receiving, serialization and path checking; per-case fresh reuse cost; Linux ru_maxrss child maximum and supervisor, not sum. Final report/archive/research/network outside measured campaign and documented.",
+  "stop_rule": "Stop on first failed assertion, process limit, work limit or time limit; retain exact files and failure. One implementation correction can be separately recorded; no scope expansion.",
+  "provenance": "Project-original code, prose and synthetic data under Unknown v0.3; existing stdlib and unchanged in-repository parent are dependencies, not new vendored material.",
+  "attribution": "ChatGPT (OpenAI), through Mingli Yuan authorized account proxy; not his review, endorsement or correctness guarantee.",
+  "preexecution_review": [
+    "Producer and receiver carrier strings both use ensure_ascii=False; existing reuse case exercises Unicode space IDs.",
+    "Unspecified is conservatively UnknownDependence, reason dependence-premise-not-selected; no general identifiability solver, and no assertion all adjacent laws are ambiguous."
+  ]
+}
