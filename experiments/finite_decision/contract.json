@@ -1,0 +1,86 @@
+{
+  "profile": "adva.research.finite-decision.v0",
+  "frozen_before_execution": "2026-09-17",
+  "question": "Can a context-bound finite probability receipt support conditional loss comparison without silently selecting a loss, discarding ties, or inventing a posterior at probability zero?",
+  "level": "external research receiver; no native semantics or real-world recommendation",
+  "scope": "Exactly two states, two observations and two actions; exact reduced rational arithmetic; complete declared finite carriers",
+  "context_fields": [
+    "question",
+    "states",
+    "observations",
+    "actions",
+    "prior",
+    "kernel",
+    "kernel_direction",
+    "loss",
+    "loss_unit",
+    "observation_cost",
+    "history",
+    "scope"
+  ],
+  "context_rules": "Each carrier has exactly two distinct nonempty strings. prior and each kernel row are nonnegative and sum to one. kernel_direction is observation-given-state. loss is state-by-action and nonnegative. observation_cost is nonnegative in loss_unit. Every rational is a canonical integer pair with absolute numerator and positive denominator at most 64; booleans are not integers. Labels have 1..80 characters; history has 1..4 labels. scope is complete-declared-finite-decision.",
+  "receipt_fields": [
+    "profile",
+    "context",
+    "probability_receipt",
+    "claims"
+  ],
+  "parent_binding": "Derive four joint atoms by state-major order: s0:o0,s0:o1,s1:o0,s1:o1. prior[s]*kernel[s][o] is probability, reference is uniform 1/4, observation labels come from the declared observation carrier, observable is state-index with unit index and values 0,0,1,1. Parent question is question + /joint and parent history is the unchanged decision history. Invoke the existing probability receiver on this derived expected context and the supplied probability receipt, never trust a sender's acceptance flag.",
+  "claim_fields": [
+    "observations",
+    "prior_risks",
+    "prior_minimizers",
+    "risk_without_observation",
+    "risk_with_observation",
+    "gross_value",
+    "net_value",
+    "acquisition_minimizers"
+  ],
+  "observation_fields": [
+    "label",
+    "mass",
+    "posterior",
+    "risks",
+    "minimizers"
+  ],
+  "meaning": "For positive observation mass, posterior is the two state probabilities and risks are the two expected losses. Keep all minimizing action labels in declared order. At zero mass, posterior, risks and minimizers are null. risk_without_observation is minimum prior risk. risk_with_observation sums mass times minimum conditional risk only over positive masses. gross_value is their difference. net_value subtracts observation_cost. acquisition_minimizers are [observe] for positive net, [skip] for negative net, [skip,observe] for zero net. This compares only fixed one-shot observe versus skip policies, allowing the observer to ignore information, with unchanged actions/loss.",
+  "quantifiers": "Receiver validates only a supplied candidate on a supplied two-by-two-by-two context. Five synthetic accepted contexts and finitely enumerated controls are evidence, not arbitrary real-world loss identification or general decision theory completeness.",
+  "budgets": {
+    "routes": 1,
+    "campaign_seconds": 30,
+    "receiver_calls": 48,
+    "child_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "child_output_bytes": 262144,
+    "input_bytes_each": 32768,
+    "work_units_per_receiver_including_parent": 10000,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1,
+    "deterministic_policies_per_valid_instance": 4
+  },
+  "planned_instances": [
+    "symmetric signal with low acquisition cost",
+    "same signal with excessive acquisition cost",
+    "same probabilities with different loss and a conditional tie",
+    "asymmetric prior and kernel as fresh reuse",
+    "impossible observation and prior tie"
+  ],
+  "controls": [
+    "changed question",
+    "recomputed changed loss",
+    "recomputed changed action roles",
+    "changed loss unit",
+    "changed kernel direction",
+    "wrong parent probability receipt",
+    "wrong posterior or fabricated zero-event posterior",
+    "missing tied minimizer",
+    "wrong net value",
+    "unsupported native free field",
+    "Boolean rational",
+    "invalid expected kernel mass"
+  ],
+  "residual": "No inference of human preferences, physical energy, unit conversion, authentic provenance, independence, group multiplication, persistent learning, native semantic identity, free, M6 closure, universality or speedup. Conditional updating is not itself learning an unknown observation model. Costs in loss units are synthetic utility costs, separate from execution resource measurements.",
+  "origin": "Original contribution under Unknown v0.3 by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or correctness guarantee. Existing project-original probability producer and receiver are explicit dependencies.",
+  "inherited_parent_bound": "The derived joint context must satisfy the unchanged probability receiver: in particular each canonical joint probability denominator and numerator is at most 1024. A decision context whose valid rational products exceed that profile is InvalidContext/unsupported-parent-profile, not a semantic counterexample.",
+  "producer_method": "Construct posterior claims independently; enumerate all four deterministic observation-to-action policies to compute the preposterior minimum, while the receiver uses the weighted per-observation minima. No policy search beyond these four declared possibilities."
+}

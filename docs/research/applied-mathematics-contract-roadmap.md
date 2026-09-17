@@ -97,3 +97,19 @@ observation, conditional update, finite decision and retained residual. Existing
 arithmetic, differentiation and solver interfaces can support it when their
 actual contracts meet. Native admission and the library's open growth obligation
 remain separate; this document changes neither.
+
+## First decision continuation, 2026-09-17
+
+The [finite decision experiment](../../experiments/finite_decision/README.md) now
+connects the existing probability receiver to a declared prior, observation
+kernel, loss and cost. Five exact contexts pass; 41 changed-evidence controls
+and two unsupported contexts are refused. The receiving chain retains complete
+tie sets and leaves zero-probability conditioning undefined. Cost can reverse
+the acquisition choice, and the same informative channel can have zero decision
+value under a different loss. This is an external finite result, not native
+probability syntax or practical validation of human preferences.
+
+The next small step returns to priority 1: transport the loss and observation
+cost through a checked positive unit scaling. Scaling both must preserve action
+and acquisition minimizers; scaling only one changes the decision problem.
+The frozen original campaign and its resource account remain unchanged.
