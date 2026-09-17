@@ -362,3 +362,51 @@ coverage. The transition mechanism in this experiment is given, not learned;
 sampling variability, computational approximation and unidentified mechanisms
 remain distinct. No native operation, library admission or acceleration is
 introduced. The separate ledger-holder-exit obligation remains open.
+
+## Reversible environment and observed-history boundary, 2026-09-17
+
+Mingli redirected the next research question to microscopic reversibility and
+kinetic irreversibility, following the Deng-Hani-Xiao Ma discussion (马骁 is the
+correct Chinese name). The [reversible-memory experiment](../../experiments/reversible_memory/README.md)
+uses an independent finite receiving profile frozen on main `e4868ef`. PR #197
+was unmerged at that freeze and merged during packaging as `c91f6ec`; its
+supplied-kernel code is not imported or reinterpreted.
+
+The new question concerns whether an explicit reversible joint dynamics
+justifies the same observed flip kernel conditional on every positive history.
+Fresh independent bits pass six steps, with a different rational-rate reuse.
+A stationary repeated-bit example passes every single-time and adjacent-pair
+check but fails the full-history condition at step two. Six even-parity bits
+agree with independent bits through five steps and fail at six; each of their
+five-coordinate marginals is exactly uniform. No gas simulation or kinetic
+limit is performed.
+
+The first campaign passes 1078 assertions in 36 fresh receiving processes,
+retaining four counterexamples and three incomplete horizons. Incomplete
+coverage does not erase a verified earlier counterexample. No new vocabulary
+or native authority is added. The next local question is a bounded approximate
+history-conditional criterion and its path-law error bound. Statistical
+identification, the roadmap confidence-coverage task, general thermodynamics
+and the separate ledger-holder-exit obligation remain open.
+
+## Three-clock calibration and retained dynamics judgments, 2026-09-17
+
+At Mingli's request, the [clock-history continuation](../../experiments/clock_history/README.md)
+connects the clock-rate/offset distinction to the retained-history discipline
+of the Deng-Hani-Xiao Ma kinetic work. It uses positive rational affine maps
+on a three-clock loop and checks the same identified finite events. The
+reversible-memory receiver is an explicit source-pinned dependency, not a
+copied or weakened receiving rule. This work remains in draft PR #198.
+
+One campaign passes 536 assertions across 32 receivers. Calibration and
+complete transport can succeed while the independent effective-kernel check
+returns Counterexample. Rate closure and one fixed event are weaker than
+full affine consistency. A new three-bit parity instance hides dependence
+for two steps and exposes it at the third. Positive chart reuse and missing
+record/false evidence controls preserve the separate obligations.
+
+This does not derive physical synchronization, a zeroth-law equivalence or a
+hard-sphere kinetic limit. A next finite question can separate approximate
+calibration error from conditional-dynamics error on a bound observation
+window. Physical equilibrium premises, statistical identification, priority 7
+confidence coverage and ledger-holder-exit remain open.

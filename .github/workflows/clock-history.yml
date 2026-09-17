@@ -1,0 +1,31 @@
+name: Clock calibration and retained observed history
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/clock_history/**'
+      - 'experiments/reversible_memory/**'
+      - '.github/workflows/clock-history.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/clock_history/**'
+      - 'experiments/reversible_memory/**'
+      - '.github/workflows/clock-history.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  clock-history:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check calibration, event coverage and full-history outcomes
+        run: timeout 35s python3 -B -S experiments/clock_history/run.py --output "$RUNNER_TEMP/clock-history"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clock-history-evidence
+          path: ${{ runner.temp }}/clock-history
