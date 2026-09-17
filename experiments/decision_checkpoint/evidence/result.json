@@ -1,0 +1,410 @@
+{
+  "assertions": 211,
+  "campaign_wall_seconds": 7.815981433999696,
+  "cost_scope": "Construction, input writes, fresh child startup and cumulative nested checks included. Reuse and checkpoint roundtrip included, not separately timed. Final report writing, archive, research and publication excluded.",
+  "metrics": [
+    {
+      "case": "symmetric/continue",
+      "checkpoint_sha256": "762e2bf7ee8c820082c1c00d43e08faddc5bc0d7abfb60633dc6a3bf5ee3fe7c",
+      "next_checked": true,
+      "outcome": "AcceptedCheckpointContinuation",
+      "prefix_checked": true,
+      "reason": "prefix-and-declared-next-step-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18899922300079197,
+      "work_units": 1299
+    },
+    {
+      "case": "symmetric/capacity",
+      "checkpoint_sha256": "9a2ccf5f5c63ec39ddab55bbef26199ac8fa8c4ede9e5ba074d61b69495ebf8a",
+      "next_checked": false,
+      "outcome": "PausedHistoryCapacity",
+      "prefix_checked": true,
+      "reason": "unchanged-four-entry-history-capacity",
+      "returncode": 0,
+      "wall_seconds": 0.18016666900075506,
+      "work_units": 923
+    },
+    {
+      "case": "symmetric/capacity-reload",
+      "checkpoint_sha256": "9a2ccf5f5c63ec39ddab55bbef26199ac8fa8c4ede9e5ba074d61b69495ebf8a",
+      "next_checked": false,
+      "outcome": "PausedHistoryCapacity",
+      "prefix_checked": true,
+      "reason": "unchanged-four-entry-history-capacity",
+      "returncode": 0,
+      "wall_seconds": 0.18091861600078118,
+      "work_units": 923
+    },
+    {
+      "case": "symmetric/no-allowance",
+      "checkpoint_sha256": "5e07ef827cce2c93afa489a0854d72629b76f2453d794fadf6b3244f673b3101",
+      "next_checked": false,
+      "outcome": "PausedAllowance",
+      "prefix_checked": true,
+      "reason": "no-declared-attempt-allowance-remains",
+      "returncode": 0,
+      "wall_seconds": 0.18521607100046822,
+      "work_units": 983
+    },
+    {
+      "case": "symmetric/execute-without-allowance",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:unexpected-next-receipt",
+      "returncode": 0,
+      "wall_seconds": 0.23222151300069527,
+      "work_units": 982
+    },
+    {
+      "case": "symmetric/delete-history",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:endpoint:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18099277100009203,
+      "work_units": 917
+    },
+    {
+      "case": "symmetric/reset-allowance",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:allowance:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18072019899955194,
+      "work_units": 919
+    },
+    {
+      "case": "symmetric/replace-pending",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:pending-step:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1844857839987526,
+      "work_units": 918
+    },
+    {
+      "case": "symmetric/replace-prefix-history",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": false,
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18476914300117642,
+      "work_units": 143
+    },
+    {
+      "case": "symmetric/false-prefix-result",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": false,
+      "reason": "net_value:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18506491399966762,
+      "work_units": 851
+    },
+    {
+      "case": "symmetric/execute-at-capacity",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:unexpected-next-receipt",
+      "returncode": 0,
+      "wall_seconds": 0.1872118129995215,
+      "work_units": 922
+    },
+    {
+      "case": "symmetric/debit-on-pause",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:allowance-preserved:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18182104700099444,
+      "work_units": 923
+    },
+    {
+      "case": "symmetric/wrong-next-source",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1821608099999139,
+      "work_units": 984
+    },
+    {
+      "case": "symmetric/false-next-result",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "net_value:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18237055499957933,
+      "work_units": 1255
+    },
+    {
+      "case": "symmetric/missing-debit",
+      "next_checked": true,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "continuation:one-attempt-debit:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.23488048000035633,
+      "work_units": 1299
+    },
+    {
+      "case": "asymmetric-reuse/continue",
+      "checkpoint_sha256": "8e5850569ac953210f72a4ebf67c4a41469abbd78c146dd2322f1a83e270b378",
+      "next_checked": true,
+      "outcome": "AcceptedCheckpointContinuation",
+      "prefix_checked": true,
+      "reason": "prefix-and-declared-next-step-checked",
+      "returncode": 0,
+      "wall_seconds": 0.24122473999887006,
+      "work_units": 1299
+    },
+    {
+      "case": "asymmetric-reuse/capacity",
+      "checkpoint_sha256": "f3e58c90b4488e6f5694fdbebe6c4915e174b2f954f0985c164eba1724e20d9a",
+      "next_checked": false,
+      "outcome": "PausedHistoryCapacity",
+      "prefix_checked": true,
+      "reason": "unchanged-four-entry-history-capacity",
+      "returncode": 0,
+      "wall_seconds": 0.23514698600047268,
+      "work_units": 923
+    },
+    {
+      "case": "asymmetric-reuse/capacity-reload",
+      "checkpoint_sha256": "f3e58c90b4488e6f5694fdbebe6c4915e174b2f954f0985c164eba1724e20d9a",
+      "next_checked": false,
+      "outcome": "PausedHistoryCapacity",
+      "prefix_checked": true,
+      "reason": "unchanged-four-entry-history-capacity",
+      "returncode": 0,
+      "wall_seconds": 0.23104314300144324,
+      "work_units": 923
+    },
+    {
+      "case": "asymmetric-reuse/no-allowance",
+      "checkpoint_sha256": "e9caafdbf62189a0b5e5ab0a806ae3a0e8c745c02c60aa473d75ab700270be3b",
+      "next_checked": false,
+      "outcome": "PausedAllowance",
+      "prefix_checked": true,
+      "reason": "no-declared-attempt-allowance-remains",
+      "returncode": 0,
+      "wall_seconds": 0.18427760700069484,
+      "work_units": 983
+    },
+    {
+      "case": "asymmetric-reuse/execute-without-allowance",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:unexpected-next-receipt",
+      "returncode": 0,
+      "wall_seconds": 0.23319770700072695,
+      "work_units": 982
+    },
+    {
+      "case": "asymmetric-reuse/delete-history",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:endpoint:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18342869500156667,
+      "work_units": 917
+    },
+    {
+      "case": "asymmetric-reuse/reset-allowance",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:allowance:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18222942399916064,
+      "work_units": 919
+    },
+    {
+      "case": "asymmetric-reuse/replace-pending",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "checkpoint:pending-step:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.23474384600012854,
+      "work_units": 918
+    },
+    {
+      "case": "asymmetric-reuse/replace-prefix-history",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": false,
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18370913500075403,
+      "work_units": 143
+    },
+    {
+      "case": "asymmetric-reuse/false-prefix-result",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": false,
+      "reason": "net_value:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18222820200026035,
+      "work_units": 851
+    },
+    {
+      "case": "asymmetric-reuse/execute-at-capacity",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:unexpected-next-receipt",
+      "returncode": 0,
+      "wall_seconds": 0.1858294779995049,
+      "work_units": 922
+    },
+    {
+      "case": "asymmetric-reuse/debit-on-pause",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "pause:allowance-preserved:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.24430748899976606,
+      "work_units": 923
+    },
+    {
+      "case": "asymmetric-reuse/wrong-next-source",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "request:binding:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18211657000028936,
+      "work_units": 984
+    },
+    {
+      "case": "asymmetric-reuse/false-next-result",
+      "next_checked": false,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "net_value:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18233744300050603,
+      "work_units": 1255
+    },
+    {
+      "case": "asymmetric-reuse/missing-debit",
+      "next_checked": true,
+      "outcome": "InvalidEvidence",
+      "prefix_checked": true,
+      "reason": "continuation:one-attempt-debit:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18148888799987617,
+      "work_units": 1299
+    },
+    {
+      "case": "context/boolean-allowance",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "allowance:integer-type",
+      "returncode": 0,
+      "wall_seconds": 0.23152040300010412,
+      "work_units": 130
+    },
+    {
+      "case": "context/negative-allowance",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "allowance:balance",
+      "returncode": 0,
+      "wall_seconds": 0.18202602600104,
+      "work_units": 130
+    },
+    {
+      "case": "context/unbalanced-allowance",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "allowance:balance",
+      "returncode": 0,
+      "wall_seconds": 0.18233259599946905,
+      "work_units": 130
+    },
+    {
+      "case": "context/zero-pending-factor",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "pending-step:positive-factor-required",
+      "returncode": 0,
+      "wall_seconds": 0.18488733199956187,
+      "work_units": 125
+    },
+    {
+      "case": "context/boolean-pending-factor",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "rational:integer-type",
+      "returncode": 0,
+      "wall_seconds": 0.1831688940001186,
+      "work_units": 125
+    },
+    {
+      "case": "context/oversized-pending-factor",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "rational:bound",
+      "returncode": 0,
+      "wall_seconds": 0.1860355469998467,
+      "work_units": 125
+    },
+    {
+      "case": "context/pending-numeric-overflow",
+      "next_checked": false,
+      "outcome": "InvalidContext",
+      "prefix_checked": false,
+      "reason": "pending-step:arithmetic-bound",
+      "returncode": 0,
+      "wall_seconds": 0.18812618599986308,
+      "work_units": 134
+    }
+  ],
+  "new_vocabulary": 0,
+  "outcome": "PassedDecisionCheckpointCampaign",
+  "peak_children_rss_kib": 13036,
+  "peak_supervisor_rss_kib": 16768,
+  "phases": {
+    "construction_seconds": 0.06601530599982652,
+    "input_serialization_seconds": 0.31561123800747737,
+    "receiving_seconds": 7.257405945007122
+  },
+  "profile": "adva.research.decision-checkpoint.v0",
+  "search_candidates": 0,
+  "source_sha256": {
+    "experiments/decision_checkpoint/contract.json": "be26344b489fbf110d2e26d9387dbea1041b87c5161128531e4932655a7f709e",
+    "experiments/decision_checkpoint/receive.py": "d7dac111df3a9273b7e2f16c80e3536c5ede3fad2a4adad437fc8c23cf085392",
+    "experiments/decision_checkpoint/run.py": "55022e8d129d050ab79329e023e0c0cabade74930a0ce48a27fd087a94783762",
+    "experiments/decision_scale/receive.py": "9eb30366076498eb645b34a5cf22ba8217c387ec63c29652e96335d677b24236",
+    "experiments/decision_scale/run.py": "1a72982780f430dc3e7156921751f179f58fcd6cc5311f18f2679cca6012d449",
+    "experiments/decision_scale_composition/receive.py": "1f49473ae220fc2336e1bf67800634022729c90a197dcb221f350a0732a7c0bd",
+    "experiments/decision_scale_composition/run.py": "d37152c4db26066d7708b6027fc8493ed5125039c73012836ec2331d3eee6647",
+    "experiments/finite_decision/receive.py": "3ed91e4cd136b83e67ba89ccf104347972f3d50c990e6e66253c98552ecb48a7",
+    "experiments/finite_decision/run.py": "f300a5cec588e31d67a308e8413eedfa6e84340752da11eb61efb3b3afb8aff2",
+    "experiments/probability_receipt/receive.py": "cc62bc5c8fdd8fab97e3635554d946fce873298ec0a2f00d2d019db0d0fbfcb9",
+    "experiments/probability_receipt/run.py": "703df7ef99822e4a1dc3cb1cddbe0958cb4032c249593fc48d357c8248fb57b3"
+  },
+  "work_units": 29381
+}

@@ -1,0 +1,27 @@
+{
+  "profile": "adva.research.decision-checkpoint.v0",
+  "status": "FrozenBeforeExecution",
+  "question": "Can a checked two-step decision prefix be reloaded without mistaking checkpoint preservation for permission to append a third step?",
+  "base_commit": "2444b1f32b20c5c5b77e8aceab5f0d0a24568acb",
+  "domain": "Exact rational two-state, two-observation, two-action finite decisions; unchanged parent probability, decision, scale and composition profiles.",
+  "quantifier": "Only the explicitly constructed finite fixtures and controls. No arbitrary recovery, general composition or native semantics claim.",
+  "expected_fields": ["prefix_request", "pending_step", "allowance"],
+  "candidate_fields": ["profile", "checkpoint", "next_receipt", "allowance_after"],
+  "checkpoint_fields": ["prefix_receipt", "endpoint", "pending_step", "allowance"],
+  "allowance_fields": ["grant", "spent", "remaining"],
+  "allowance_rules": "All true integers: 1 <= grant <= 4, 0 <= spent <= grant, remaining = grant - spent. This is abstract attempt accounting, not CPU time, native fuel or an exactly-once ledger. A verified next receipt consumes one; pause consumes none. Checking costs are measured separately.",
+  "receiving_order": [
+    "Validate receiver-selected expected prefix and pending-step syntax and numeric bounds, plus allowance. Do not hide an invalid pending step behind a capacity pause.",
+    "Recheck the complete prefix using unchanged composition receiver with cumulative ancestor work. Bind checkpoint endpoint, pending task and allowance.",
+    "If endpoint history has four entries, require null next_receipt and unchanged allowance; return PausedHistoryCapacity with full checkpoint retained.",
+    "Otherwise if remaining is zero, require null next_receipt and unchanged allowance; return PausedAllowance.",
+    "Otherwise derive third-step request from exact endpoint, check using unchanged scale receiver, bind entire next source receipt to last prefix target receipt, and verify one-unit allowance debit; return AcceptedCheckpointContinuation."
+  ],
+  "pending_step_rules": "Exactly factor, target_unit, step. Positive reduced rational factor components at most 16; nonempty labels at most 80 characters. All next loss and cost rational components at most 64. History capacity remains four, never enlarged or truncated.",
+  "families": ["symmetric decision with one or two initial history entries", "asymmetric prior/kernel/loss reuse with one or two initial history entries"],
+  "controls": ["history deletion", "allowance reset", "pending-task substitution", "equivalent numerical prefix with different history", "false parent result", "claimed step on pause", "wrong next source", "wrong next result", "incorrect debit", "no allowance", "boolean or negative allowance", "invalid pending factor", "pending arithmetic overflow"],
+  "limits": {"campaign_wall_seconds": 30, "receiver_processes": 40, "receiver_wall_seconds": 3, "receiver_cpu_seconds": 3, "receiver_address_space_bytes": 134217728, "wire_bytes": 131072, "composition_wire_bytes": 65536, "scale_wire_bytes": 32768, "cumulative_receiver_work_units": 10000, "search_candidates": 0, "implementation_correction_replays": 1},
+  "residuals": ["No durable transaction or exactly-once consumption", "No authentication or hostile-service guarantee", "No capacity increase or native fuel renewal", "No physical unit inference or actual action execution", "No native Close, free, M6 filler, universal grammar, learning or speedup"],
+  "author": "ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or correctness guarantee.",
+  "license": "Original first-party work under repository Unknown v0.3."
+}

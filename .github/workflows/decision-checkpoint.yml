@@ -1,0 +1,39 @@
+name: Decision checkpoint continuation
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/decision_checkpoint/**'
+      - 'experiments/decision_scale_composition/**'
+      - 'experiments/decision_scale/**'
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/decision-checkpoint.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/decision_checkpoint/**'
+      - 'experiments/decision_scale_composition/**'
+      - 'experiments/decision_scale/**'
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/decision-checkpoint.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  checkpoint-continuation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify prefix preservation and finite continuation permission
+        run: timeout 35s python3 -B -S experiments/decision_checkpoint/run.py --output "$RUNNER_TEMP/decision-checkpoint"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: decision-checkpoint-evidence
+          path: ${{ runner.temp }}/decision-checkpoint

@@ -128,3 +128,35 @@ This realizes one finite part of priority 1; unit compatibility remains a
 declared premise. No native operation or vocabulary is added. The next small
 obligation is receiving a two-step composition with its exact intermediate
 context and ordered history, without replacing that history by a product factor.
+
+## Two-step composition continuation, 2026-09-17
+
+Following the merge of PR #188, the [composition receiver](../../experiments/decision_scale_composition/README.md)
+checks two ordered scale contracts and their complete intermediate context.
+Six compositions pass; 28 evidence controls and four unsupported contexts are
+refused. In six controls both local steps and the final context agree with
+their declared arithmetic, but a different intermediate unit blocks composition.
+The final scalar product alone is insufficient.
+
+Two factors 8 and 4 are admitted as a bounded two-step path while an actual
+one-step request for factor 32 is refused by the unchanged factor bound.
+Conversely loss 8 with factors 16 then 1/16 is refused at intermediate 128,
+despite its final numerical return. History, intermediate bounds and the
+resource account remain explicit; no universal or native authority follows.
+The next continuation obligation is a bounded checkpoint at history capacity,
+with no erased prefix or automatic renewal of fuel.
+
+## Checkpoint boundary continuation, 2026-09-17
+
+The [checkpoint receiver](../../experiments/decision_checkpoint/README.md)
+now rechecks and retains a complete scale prefix while separating history
+capacity, abstract attempt allowance and actual checking cost. Two third-step
+continuations pass at history length four; six pauses retain their exact pending
+task, including two reloads from actual receiver output. Twenty-two evidence
+controls and seven unsupported contexts are refused. Erasing history or
+replenishing a candidate's allowance cannot turn a pause into a continuation.
+
+The checker is stateless: this adds neither durable recovery nor exactly-once
+consumption. The next finite obligation is a receiver-owned transition ledger
+that distinguishes an identical replay from a conflicting repeated submission.
+No native operation, capacity increase or new vocabulary follows.
