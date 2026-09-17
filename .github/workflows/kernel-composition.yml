@@ -1,0 +1,33 @@
+name: Typed kernel composition
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/kernel_composition/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/kernel-composition.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/kernel_composition/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/kernel-composition.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  kernel-composition:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check typed finite kernels and dependence boundaries
+        run: timeout 35s python3 -B -S experiments/kernel_composition/run.py --output "$RUNNER_TEMP/kernel-composition"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: kernel-composition-evidence
+          path: ${{ runner.temp }}/kernel-composition
