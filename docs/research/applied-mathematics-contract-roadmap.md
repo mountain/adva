@@ -197,3 +197,34 @@ The next small obligation is holder termination before releasing the transaction
 gate, with bounded contender recovery and preservation of the original question.
 This remains a future failure position; the present evidence does not establish
 arbitrary concurrency, fairness or distributed exactly-once delivery.
+
+## Return to quantity and observable mathematics, 2026-09-17
+
+PR #191 completes the declared two-process contention witness. Its holder-exit
+follow-up remains an engineering obligation; it does not block the next
+mathematical contract. We now return to priority 1 rather than indefinitely
+extend local-storage machinery.
+
+The [observable unit receiver](../../experiments/observable_unit_transport/README.md)
+directly reuses the unchanged probability receiver. Its four-unit formal registry
+checks matching Length/Time dimensions, positive derived scales and common zero
+origins. Observable means scale by a, variances by a squared, while probability,
+reference density energy and hidden residual remain unchanged. All conditional
+moments and zero-event nulls are retained. This closes the first restricted
+linear-unit witness, not a general physical dimension or measurement calculus.
+
+Five exact transports and 32 refusals pass in 37 fresh processes, including
+seconds-to-milliseconds reuse and inverse conversion from actual receiver output.
+Two zero-probability coordinate substitutions preserve every reported statistic
+but fail the explicitly stronger complete-carrier contract. The observables are
+still equal almost surely; statistical equivalence and pointwise representation
+faithfulness must remain separate.
+
+The next mathematical step is priority 2: a typed two-by-two transition-kernel
+composition with an explicit middle carrier and marginal. Existing decision
+receipts cover one kernel, not this ordered composition. A naive three-stage
+binary joint has eight atoms and exceeds the probability parent's six-atom
+limit. Use compatible checked four-atom interfaces with an explicit supplied
+Markov premise, or justify a separate receiving profile; do not widen a frozen
+ancestor silently. General units, affine origins and physical calibration remain
+open while this finite kernel task proceeds.

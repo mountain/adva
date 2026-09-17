@@ -1,0 +1,33 @@
+name: Observable unit transport
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/observable_unit_transport/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/observable-unit-transport.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/observable_unit_transport/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/observable-unit-transport.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  observable-unit-transport:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check exact finite observable conversion and refusals
+        run: timeout 35s python3 -B -S experiments/observable_unit_transport/run.py --output "$RUNNER_TEMP/observable-unit-transport"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: observable-unit-transport-evidence
+          path: ${{ runner.temp }}/observable-unit-transport
