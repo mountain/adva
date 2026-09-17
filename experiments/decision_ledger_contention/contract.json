@@ -1,0 +1,32 @@
+{
+  "profile": "adva.research.decision-ledger-contention.v0",
+  "status": "FrozenBeforeExecution",
+  "base_commit": "f8341c815dc43e70fecb1749701141a72669d610",
+  "question": "Can two overlapping submissions to one finite receiver ledger preserve one debit while classifying pre-transaction SQLite BUSY separately from invalid ledger contents?",
+  "scope": "One fixed checkpoint question, one accepted slot, two trusted local processes and at most one explicit contender retry after holder termination per episode.",
+  "domain": "Unchanged exact rational checkpoint and arithmetic profiles; original ledger storage engine reused under a new explicit profile and adapter fingerprint.",
+  "quantifier": "Eight declared scheduled episodes, one legacy control, one non-SQLite file and two directional profile refusals. No exhaustive scheduler, liveness or distributed-system claim.",
+  "profile_boundary": "New databases store the new profile and the adapter plus all six inherited receiver hashes. Old/new receivers refuse each other's databases. No ledger migration or relabeling occurs.",
+  "receiving": "Original expected/candidate schema, stored result, one-slot transaction, allowance and commit-uncertainty rules remain. Only the new outer profile and SQLite error classification change. No automatic retry or budget renewal.",
+  "sqlite_classification": {
+    "primary_5_before_transaction": "LedgerBusy. Return no authoritative allowance or stored result; do not claim caller question, candidate validity, unchanged global ledger or permission to retry without a separately bounded caller.",
+    "primary_11_or_26": "InvalidLedger; SQLite corruption or non-database indication is distinct from semantic schema/profile rejection.",
+    "other_or_busy_in_transaction": "UnknownStorage, unless the inherited commit-uncertain or cleanup path conservatively requires reconciliation. SQLITE_LOCKED(6) is not automatically retryable BUSY."
+  },
+  "diagnostics": "Retain exact sqlite_errorcode, sqlite_errorname, primary code, statement and connection transaction flag. Classify numerically, not by message text.",
+  "schedule": [
+    "Explicitly initialize the receiver-owned ledger and retain a full pre-state snapshot.",
+    "Start holder through a test-only pipe gate; signal readiness only after BEGIN IMMEDIATE succeeds and before its ledger reads or candidate checks.",
+    "Observe holder PID still alive and launch contender against the same existing file.",
+    "Contender must finish with pre-transaction BUSY before holder release. Do not read database snapshots while the holder owns its transaction.",
+    "Release holder by pipe message, await and reap it, then observe full logical state.",
+    "One explicit fresh contender retry obtains a replay, conflict, capacity pause or first commit according to the declared episode; compare complete logical rows and allowance."
+  ],
+  "episodes": ["same canonical candidate", "same key changed payload", "two keys: alpha then beta", "two keys: beta then alpha", "invalid first candidate then valid contender", "asymmetric reuse: same candidate", "asymmetric reuse: same key changed payload", "asymmetric reuse: reversed key order"],
+  "legacy_control": "Run the unchanged old receiver as contender against an old-profile holder. Record its existing InvalidLedger result on BUSY without rewriting old code, old evidence or its sequential scope.",
+  "limits": {"campaign_wall_seconds": 30, "child_processes": 40, "overlapping_children": 2, "child_wall_seconds": 3, "child_cpu_seconds": 3, "child_address_space_bytes": 134217728, "gate_ready_seconds": 1.5, "gate_wire_bytes": 4096, "wire_bytes": 196608, "database_bytes": 1048576, "busy_timeout_seconds": 0.1, "receiver_work_units": 10000, "search_candidates": 0, "implementation_correction_replays": 1},
+  "assumptions": ["Trusted local SQLite/OS and inherited DELETE/FULL transaction configuration", "Coordinator controls pipe handles and holds no database connection during overlap", "Gate waiting is inside holder's existing three-second receiver deadline", "Supervisor closes pipe handles and terminates/reaps outstanding children on failure", "No external task action beyond the local database effect"],
+  "residuals": ["No scheduler fairness, starvation, arbitrary concurrent history or distributed exactly-once result", "No power-loss or arbitrary COMMIT/IO failure coverage", "No hostile storage, authentication or automatic profile migration", "No native communicate/Close/free/M6, universality or measured acceleration", "Actual human decision benefit unmeasured"],
+  "author": "ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee.",
+  "origin": "Original adapter, harness, synthetic fixtures and generated evidence under Unknown v0.3. No external document or software incorporated."
+}
