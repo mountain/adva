@@ -128,3 +128,21 @@ were not merged into the cleaned main branches. The two documentation byte pins
 were rechecked at `6c7f651`, the current catalog check passed, and all 13 existing
 machine-dependency tests passed. These checks supplement the original adoption
 checks above; actual reception has its own native receipt and observations.
+
+## Iota interpretation frame continuation
+
+The [frame reception](../knowledge/exchanges/iota-frame-knowledge-2026-09-17-v1/README.md)
+uses the existing transport route for a successor package carrying iota, i as a
+complex structure and e through exponential coefficients. The frame binds the
+process, domain boundaries, metric, observer, clocks, resource account and
+residuals. Twelve finite charts pass 4,062 assertions after arrival at each
+receiver. The identical witness is produced by the same checker, not independent
+verifiers. The previous iota packet remains a required exact dependency.
+
+This is an actual finite interpretation comparison over rational matrices and
+retained processes. Documentary reception still records native admission
+NotGranted; the separate FrameCovarianceChecked result introduces no general
+interpretation engine or stable Frame API. The executable consumer lock remains
+unchanged. Exact profiles, archives, controls and reproduction are in the local
+receiving record. Original addition: Codex (OpenAI), Unknown v0.3, through Mingli
+Yuan's account proxy; not his review or endorsement.

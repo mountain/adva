@@ -17,6 +17,11 @@ now receives a focused iota package also delivered to adva-machine. Each side
 retains its own Rust receipt and executed comparison of terms, process cuts,
 observer clocks and three native object-language probes.
 
+The [iota frame companion](knowledge/exchanges/iota-frame-knowledge-2026-09-17-v1/README.md)
+now jointly carries iota, complex structure and exponential readings. Its
+post-arrival check preserves observations and clock groups under declared
+coordinate changes, with the same packet also checked by adva-machine.
+
 **How can a finite observer construct, check, and extend arithmetic knowledge?**
 
 [中文入口](README.zh-CN.md) · [Run an example](#run-an-example) ·
