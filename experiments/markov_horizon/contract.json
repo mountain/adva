@@ -1,0 +1,85 @@
+{
+  "profile": "adva.research.markov-horizon.v0",
+  "status": "frozen-before-execution",
+  "date": "2026-09-17",
+  "question": "Can a finite receiving contract certify mass conservation, total-variation contraction and accumulated perturbation bounds without confusing a stationary or periodic trace with global convergence?",
+  "level": "external exact rational research; applied-mathematics priority 6",
+  "mathematics": {
+    "kernel": "Fixed two-state endokernel K=[[a,1-a],[b,1-b]], all entries nonnegative with each row sum one; row laws evolve p_next=p*K.",
+    "quantifiers": "For all rational probability laws p,r, TV(pK,rK)=q TV(p,r), q=abs(a-b). This also holds over real laws. All entries of the given kernel are checked, including unvisited rows.",
+    "TV": "half the sum of absolute component differences; for normalized two-state laws equals the absolute first-coordinate difference",
+    "stationary": "The caller supplies pi and receiver checks pi*K=pi. q<1 gives strict contraction; q=1 does not certify convergence or uniqueness. Swap can have unique pi without convergence.",
+    "exact": "p_0=initial; p_{k+1}=p_k K for k from 0 to horizon-1",
+    "approximation": "Every supplied approximate law h_k must itself be a probability vector. TV(h_0,p_0)<=initial_error; TV(h_{k+1},h_k K)<=step_errors[k].",
+    "propagated": "B_0=initial_error; B_{k+1}=q B_k+step_errors[k]; TV(h_k,p_k)<=B_k.",
+    "stationary_bound": "S_k=q^k TV(p_0,pi)+B_k; TV(h_k,pi)<=S_k. The factor starts at 1 at k=0, even when q=0. Do not clamp B or S to 1.",
+    "limits": "Finite error allowances certify only the declared horizon. The homogeneous exact-map contraction argument is not an infinite noisy-process guarantee or identification of a physical transition law."
+  },
+  "request": {
+    "exact_fields": ["question", "states", "direction", "kernel", "initial", "stationary", "horizon", "initial_error", "step_errors", "tolerance", "history", "scope"],
+    "labels": "question and each of exactly two distinct states have 1..80 characters; history has 1..4 such strings and is retained in order",
+    "direction": "row",
+    "scope": "two-state-time-homogeneous-probability-dynamics",
+    "rationals": "canonical [integer numerator,positive integer denominator]; abs components <=64, no bool or float; kernel, initial and stationary are probability rows",
+    "horizon": "integer 0..6, bool excluded",
+    "error_and_tolerance": "initial_error and tolerance lie in [0,1]; step_errors has exactly horizon rational values in [0,1]"
+  },
+  "candidate": {
+    "exact_fields": ["profile", "request", "q", "trace", "claim"],
+    "binding": "profile exact and request canonical JSON identical to independently selected expected request",
+    "q": "canonical rational exactly abs(kernel[0][0]-kernel[1][0])",
+    "trace": "list of 1..horizon+1 consecutive entries beginning at 0; each exact fields index,exact,approx,error_to_exact,step_residual,propagated_bound,distance_to_stationary,stationary_bound",
+    "trace_rationals": "canonical rational components and arithmetic intermediates <=512 bits; exact/approx are two-element probability vectors (not restricted to input cap64)",
+    "trace_rules": "exact is p_k, approx is h_k; error_to_exact=TV(h_k,p_k); step_residual=null at k=0 and actual one-step residual otherwise; bounds are exactly the stated B_k,S_k; distance_to_stationary is actual TV(h_k,pi). Each row checks all fields and budgets before joining verified_prefix.",
+    "claim": "exact fields kind,regime,steps,final_bound; regime StrictContraction if q<1 else Nonexpansive; steps=len(trace)-1; final_bound=last S. If len(trace)<horizon+1 kind UnknownCoverage, even if the current bound meets tolerance. Else CertifiedTolerance iff S_horizon<=tolerance, otherwise VerifiedHorizon."
+  },
+  "receiver": {
+    "cli": "python3 -B -S receive.py --expected EXPECTED.json --candidate CANDIDATE.json",
+    "output_fields": ["profile", "outcome", "reason", "expected_request", "verified_prefix", "accepted_result", "obstruction", "native_authority", "close_authorized", "free_authorized", "work_units", "wall_seconds"],
+    "accepted_result": "null except complete valid trace and claim; then {kind,regime,steps,final_bound,actual_final_distance}",
+    "obstruction": "UnknownCoverage gives {missing_indices:[len(trace)..horizon]}; all other outcomes null",
+    "retention": "On later invalid evidence, retain only complete independently verified prefix entries; no accepted final result. Raw expected parse failure may give expected_request=null, exact bytes remain in evidence.",
+    "outcomes": ["CertifiedTolerance", "VerifiedHorizon", "UnknownCoverage", "InvalidContext", "InvalidEvidence", "UnknownBudget", "ImplementationFailure"],
+    "authority": "native_authority, close_authorized and free_authorized always false"
+  },
+  "independence": {
+    "producer": "two-component row-matrix product; TV via half L1; q via maximum pairwise row TV",
+    "receiver": "scalar affine recurrence x_next=b+(a-b)x; scalar absolute distance after probability normalization checks",
+    "point_controls": "finite independent full-row arithmetic and selected analytic trajectory values; not a proof over all laws",
+    "trusted": "Python standard library and Fraction shared; no parent implementation import or proof-kernel artifact"
+  },
+  "budget": {
+    "routes": 1,
+    "receiver_processes": 50,
+    "campaign_wall_seconds": 30,
+    "child_wall_seconds": 3,
+    "child_cpu_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "max_input_bytes_each": 32768,
+    "max_output_bytes_each": 262144,
+    "max_receiver_work": 10000,
+    "max_producer_work": 10000,
+    "max_control_work": 10000,
+    "max_total_counted_work": 100000,
+    "max_evidence_bytes": 2097152,
+    "max_search_candidates": 0,
+    "correction_replays": 1,
+    "continuation": "No automatic extension of horizon, precision, error budget, fuel or retries; retain failure before one justified correction."
+  },
+  "controls": [
+    "Strict mixing, asymmetric reuse, alternating signed deviation, identical rows q=0, horizon zero, identity, swap and already stationary starts",
+    "Identical stationary trajectories with different unused kernel rows and different global contraction factors",
+    "Initial perturbation, per-step perturbation saturating the recurrence, conservative budget larger than actual residual and unclamped bound above one",
+    "Missing future steps retain UnknownCoverage even when current tolerance is met",
+    "Refuse wrong q, mass, step, residual, initial/local budget, propagated/stationary bound, convergence regime, context and fabricated authority",
+    "Refuse malformed or nonstochastic kernel, nonstationary reference, wrong direction, horizon, error list and rational types"
+  ],
+  "protected": [
+    "Mass one, nonnegativity, both rows, state order, row direction, initial and stationary laws, exact horizon, all error budgets, tolerance and history",
+    "Trace error versus stationarity distance; actual residual versus declared conservative budget; partial trace versus complete horizon",
+    "An observed periodic or stationary trace is not a global convergence certificate or learned transition law",
+    "Previous distinct-space kernel composition profile remains unchanged; methodological reference, not imported parent",
+    "No native operation, Close/free/M6, universal grammar, physical energy, learned vocabulary or acceleration claim; ledger-holder-exit remains separate"
+  ],
+  "provenance": "Original first-party code, exposition and synthetic evidence contributed under Unknown v0.3 by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or correctness guarantee."
+}

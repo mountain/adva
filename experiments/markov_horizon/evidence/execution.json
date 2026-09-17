@@ -1,0 +1,430 @@
+{
+  "assertions": 906,
+  "cases": [
+    {
+      "case": "valid/mixing",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13411223399816663,
+      "work_units": 182
+    },
+    {
+      "case": "valid/reuse-asymmetric",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18167773900131579,
+      "work_units": 148
+    },
+    {
+      "case": "valid/alternating",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18088179899859824,
+      "work_units": 182
+    },
+    {
+      "case": "valid/equal-rows",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18360923100044602,
+      "work_units": 114
+    },
+    {
+      "case": "valid/equal-rows-zero-horizon",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18399005500032217,
+      "work_units": 46
+    },
+    {
+      "case": "valid/identity",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.17906504700295045,
+      "work_units": 182
+    },
+    {
+      "case": "valid/swap",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13027329699980328,
+      "work_units": 182
+    },
+    {
+      "case": "valid/swap-stationary",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.17899799599763355,
+      "work_units": 182
+    },
+    {
+      "case": "valid/absorbing-stationary",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18078013800186454,
+      "work_units": 182
+    },
+    {
+      "case": "valid/identity-stationary",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1907536569997319,
+      "work_units": 182
+    },
+    {
+      "case": "valid/initial-perturbation",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.19169474500085926,
+      "work_units": 148
+    },
+    {
+      "case": "valid/accumulated-noise",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18500921099985135,
+      "work_units": 182
+    },
+    {
+      "case": "valid/loose-budget",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.23463435099984054,
+      "work_units": 182
+    },
+    {
+      "case": "valid/unclamped-budget",
+      "outcome": "VerifiedHorizon",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.12968848799937405,
+      "work_units": 182
+    },
+    {
+      "case": "valid/stationary-zero-horizon",
+      "outcome": "CertifiedTolerance",
+      "reason": "complete-declared-horizon-and-error-bounds-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1862818369991146,
+      "work_units": 46
+    },
+    {
+      "case": "partial/mixing",
+      "outcome": "UnknownCoverage",
+      "reason": "declared-future-indices-unverified",
+      "returncode": 0,
+      "wall_seconds": 0.181292007000593,
+      "work_units": 83
+    },
+    {
+      "case": "partial/equal-rows",
+      "outcome": "UnknownCoverage",
+      "reason": "declared-future-indices-unverified",
+      "returncode": 0,
+      "wall_seconds": 0.1799939060001634,
+      "work_units": 81
+    },
+    {
+      "case": "evidence/wrong-factor",
+      "outcome": "InvalidEvidence",
+      "reason": "q:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1858478610010934,
+      "work_units": 24
+    },
+    {
+      "case": "evidence/wrong-exact-step",
+      "outcome": "InvalidEvidence",
+      "reason": "trace-exact:recurrence",
+      "returncode": 0,
+      "wall_seconds": 0.18328874299913878,
+      "work_units": 60
+    },
+    {
+      "case": "evidence/approx-mass",
+      "outcome": "InvalidEvidence",
+      "reason": "trace-approx:mass",
+      "returncode": 0,
+      "wall_seconds": 0.18042980300015188,
+      "work_units": 54
+    },
+    {
+      "case": "evidence/wrong-residual",
+      "outcome": "InvalidEvidence",
+      "reason": "step-residual:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1824338770020404,
+      "work_units": 68
+    },
+    {
+      "case": "evidence/understated-local-budget",
+      "outcome": "InvalidEvidence",
+      "reason": "step-error:budget-exceeded",
+      "returncode": 0,
+      "wall_seconds": 0.18405591700138757,
+      "work_units": 68
+    },
+    {
+      "case": "evidence/understated-initial-budget",
+      "outcome": "InvalidEvidence",
+      "reason": "initial-error:budget-exceeded",
+      "returncode": 0,
+      "wall_seconds": 0.1879670560010709,
+      "work_units": 34
+    },
+    {
+      "case": "evidence/wrong-propagated-bound",
+      "outcome": "InvalidEvidence",
+      "reason": "propagated-bound:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18136515900187078,
+      "work_units": 103
+    },
+    {
+      "case": "evidence/wrong-stationary-distance",
+      "outcome": "InvalidEvidence",
+      "reason": "distance-to-stationary:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1844368870006292,
+      "work_units": 108
+    },
+    {
+      "case": "evidence/wrong-stationary-bound",
+      "outcome": "InvalidEvidence",
+      "reason": "stationary-bound:mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18162857700008317,
+      "work_units": 110
+    },
+    {
+      "case": "evidence/false-tolerance",
+      "outcome": "InvalidEvidence",
+      "reason": "claim:kind-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.182235780001065,
+      "work_units": 180
+    },
+    {
+      "case": "evidence/false-contraction",
+      "outcome": "InvalidEvidence",
+      "reason": "claim:regime-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.23204705800162628,
+      "work_units": 180
+    },
+    {
+      "case": "evidence/changed-unused-row",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.18129740699805552,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-initial",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.18762512999819592,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-horizon",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1811763260011503,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-history",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.18290675100070075,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-states",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.18490609600121388,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/wrong-profile",
+      "outcome": "InvalidEvidence",
+      "reason": "profile:unsupported",
+      "returncode": 0,
+      "wall_seconds": 0.18752072100323858,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/skipped-step",
+      "outcome": "InvalidEvidence",
+      "reason": "trace-entry:index",
+      "returncode": 0,
+      "wall_seconds": 0.18388610100009828,
+      "work_units": 81
+    },
+    {
+      "case": "evidence/extra-authority",
+      "outcome": "InvalidEvidence",
+      "reason": "candidate:fields",
+      "returncode": 0,
+      "wall_seconds": 0.17830255599983502,
+      "work_units": 21
+    },
+    {
+      "case": "context/state-dimension",
+      "outcome": "InvalidContext",
+      "reason": "states:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.1812573240022175,
+      "work_units": 0
+    },
+    {
+      "case": "context/duplicate-states",
+      "outcome": "InvalidContext",
+      "reason": "states:duplicate",
+      "returncode": 0,
+      "wall_seconds": 0.18262525300087873,
+      "work_units": 0
+    },
+    {
+      "case": "context/kernel-shape",
+      "outcome": "InvalidContext",
+      "reason": "kernel:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.1901601710014802,
+      "work_units": 0
+    },
+    {
+      "case": "context/negative-kernel",
+      "outcome": "InvalidContext",
+      "reason": "kernel:row:mass",
+      "returncode": 0,
+      "wall_seconds": 0.1822672700000112,
+      "work_units": 2
+    },
+    {
+      "case": "context/row-mass",
+      "outcome": "InvalidContext",
+      "reason": "kernel:row:mass",
+      "returncode": 0,
+      "wall_seconds": 0.18304482200255734,
+      "work_units": 3
+    },
+    {
+      "case": "context/initial-mass",
+      "outcome": "InvalidContext",
+      "reason": "initial:mass",
+      "returncode": 0,
+      "wall_seconds": 0.1814436980021128,
+      "work_units": 9
+    },
+    {
+      "case": "context/nonstationary-reference",
+      "outcome": "InvalidContext",
+      "reason": "stationary:not-fixed",
+      "returncode": 0,
+      "wall_seconds": 0.18056316600268474,
+      "work_units": 15
+    },
+    {
+      "case": "context/horizon-cap",
+      "outcome": "InvalidContext",
+      "reason": "horizon:bound",
+      "returncode": 0,
+      "wall_seconds": 0.13119542200001888,
+      "work_units": 15
+    },
+    {
+      "case": "context/boolean-horizon",
+      "outcome": "InvalidContext",
+      "reason": "horizon:bound",
+      "returncode": 0,
+      "wall_seconds": 0.18273341299936874,
+      "work_units": 15
+    },
+    {
+      "case": "context/error-list-length",
+      "outcome": "InvalidContext",
+      "reason": "step-errors:length",
+      "returncode": 0,
+      "wall_seconds": 0.18371566299902042,
+      "work_units": 16
+    },
+    {
+      "case": "context/negative-error",
+      "outcome": "InvalidContext",
+      "reason": "initial-error:outside-unit-interval",
+      "returncode": 0,
+      "wall_seconds": 0.1841768439990119,
+      "work_units": 16
+    },
+    {
+      "case": "context/float-number",
+      "outcome": "InvalidContext",
+      "reason": "json:noninteger-number",
+      "returncode": 0,
+      "wall_seconds": 0.183666485001595,
+      "work_units": 0
+    },
+    {
+      "case": "context/history-cap",
+      "outcome": "InvalidContext",
+      "reason": "history:length",
+      "returncode": 0,
+      "wall_seconds": 0.2341435759990418,
+      "work_units": 21
+    },
+    {
+      "case": "context/wrong-direction",
+      "outcome": "InvalidContext",
+      "reason": "direction:unsupported",
+      "returncode": 0,
+      "wall_seconds": 0.18383109500064165,
+      "work_units": 0
+    }
+  ],
+  "child_maxrss_kib": 10496,
+  "control_work": 1620,
+  "evidence_bytes_before_summary": 352224,
+  "failure": null,
+  "limits": "Linux process high-water RSS, not aggregate memory. Reading, review, network, final archive/report costs not in campaign time.",
+  "phases": {
+    "construction_seconds": 0.01805164199322462,
+    "control_seconds": 0.0261402029900637,
+    "receiving_seconds": 9.110917746023915,
+    "serialization_seconds": 0.14385142799437745
+  },
+  "producer_work": 1385,
+  "profile": "adva.research.markov-horizon.v0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "receiver_calls": 50,
+  "receiver_work": 3820,
+  "search_candidates": 0,
+  "source_sha256": {
+    "contract.json": "54c1b12088513134a576edf0549a57bdb704c0814390dee93b43fc603441c95c",
+    "receive.py": "4d870fa594022a71306f0aa734b64f72be97a4df7ebf782021e1fe4408886102",
+    "run.py": "ddfb2c814e8c52beb9272ed460a1ca683783fa9e65a3adf9395d106f9c17f385"
+  },
+  "success": true,
+  "supervisor_maxrss_kib": 13184,
+  "wall_seconds": 9.53669922699919
+}

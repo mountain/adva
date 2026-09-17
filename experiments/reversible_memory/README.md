@@ -3,9 +3,12 @@
 Status: bounded external research, 2026-09-17. Requested by Mingli after the
 Newton/Boltzmann time-reversal discussion. Baseline main is
 `e4868eff9f46437a5e637ab7d4b713f351d2226b`. PR #197 at
-`7c827a6d24640be139daa17a43c3083173305b0b` remains an unmerged, documentary
-reference for the previous supplied-kernel horizon check. This experiment
-imports no implementation from it and preserves its original claims.
+`7c827a6d24640be139daa17a43c3083173305b0b` was an unmerged documentary
+reference when the experiment was frozen. It merged during packaging as
+`c91f6ec86a9b10d4443813039e853946614d52b8`; that main update is preserved
+in this branch. The frozen contract, source and experimental evidence are
+unchanged. This experiment imports no implementation from the earlier
+supplied-kernel horizon check and preserves its original claims.
 
 Authored by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy;
 not his authorship, review, endorsement or correctness guarantee. This is an
@@ -260,3 +263,77 @@ kept explicit? It requires a new contract and budget. General gas kinetics,
 entropy production, native interpretation and practical value for Jiamin's
 actual task remain unverified. The roadmap's separate confidence-coverage and
 ledger-holder-exit obligations remain open.
+
+## Proposed continuation: simultaneity, causal order and imaginary time
+
+Mingli subsequently asked to consider Zhao Zheng's discussion of simultaneity
+and whether imaginary time can connect this work to relativity. Indexed BNU
+publications use the name Zhao Zheng / 赵峥. The indexed installment of
+*Relativity, the Universe and Spacetime: The Nature of Time* has a section on
+conditions for transitive simultaneity:
+https://dxwl.bnu.edu.cn/CN/article/downloadArticleFile.do?attachType=PDF&id=5389 .
+The full PDF could not be retrieved in this run. This identifies a source to
+read, not a verified attribution of Mingli's imaginary-time proposal to Zhao.
+The following is our original proposed organization, not his quoted argument.
+
+Three operations require separate input and output contracts:
+
+| Operation | Structure that must be fixed | Distinction to preserve |
+| --- | --- | --- |
+| Change inertial observer | Events, units, Lorentzian metric, time orientation, clock synchronization and observation policy | Spacelike simultaneity/order may change; future causal order is preserved by an orthochronous Lorentz map |
+| Reverse microscopic dynamics | Full joint state, inverse gate sequence, retained environment and history | A reversed realization is not automatically represented by the same conditional observed kernel |
+| Continue to imaginary time | Specified operator, analytic domain, real slice, boundary conditions and normalization | Analytic continuation is neither an observer boost nor automatic physical time reversal |
+
+The existing bit gates have no positions, light cones or physical clock
+calibration. Assigning their integer step labels to a spacetime diagram would
+not prove locality, Lorentz covariance or compatibility of two observers.
+Changing a simultaneity slice can change the selected event set and available
+records. A merely relabeled record must not silently become a different
+conditioning history. Even two same-time variables of this finite model are
+not asserted to occupy causally separated physical sites.
+
+A small future arithmetic question can precede any analytic continuation.
+In 1+1 Minkowski coordinates ordered (t,x), use c=1 and v=3/5. The matrix
+
+    L = [[5/4, -3/4], [-3/4, 5/4]]
+
+has L^T diag(-1,1) L = diag(-1,1), determinant one, and inverse obtained by
+changing the two off-diagonal signs. A simultaneous event difference (0,1)
+maps to (-3/4,5/4); its squared interval remains one. A future timelike
+difference (1,0) maps to (5/4,-3/4) and stays future timelike. These are
+elementary exact identities, not a new receiver campaign. A next receiving
+profile should bind both event identities and observers, check the complete
+chosen finite event set and causal relations, and retain excluded observations
+as a coverage gap. Reusing coordinates without moving the predicates should
+be a negative control. No spacetime dynamics or continuum theorem follows.
+
+Imaginary time supplies a separate connection to equilibrium statistical
+mechanics. For a specified finite-dimensional self-adjoint Hamiltonian H,
+
+    U(t) = exp(-i t H / hbar)
+    t = -i tau_E  =>  exp(-tau_E H / hbar)
+    tau_E = hbar beta, beta = 1/(k_B T), T > 0
+    rho_beta = exp(-beta H) / Tr(exp(-beta H)).
+
+In this finite setting the matrix exponential is entire; the last expression
+is a definition of a Gibbs state, not a derivation of thermalization. At finite
+tau_E the exponential still has an algebraic inverse. Nonunitarity does not
+mean algebraic noninvertibility; nor does this operator automatically give a
+stochastic Markov kernel or a trace-preserving quantum channel. Normalizing a
+filtered state and taking infinite-time limits are additional operations.
+Imaginary time also occurs in nonrelativistic quantum theory, so it does not
+by itself establish relativity. No H or physical energy assignment is supplied
+by our XOR gate experiment.
+
+For fields and general spacetime the continuation/reconstruction conditions
+require their own proof. Wick's original abstract explicitly conditions
+analytic continuation on boundary information:
+https://journals.aps.org/pr/abstract/10.1103/PhysRev.96.1124 .
+Visser's discussion argues against an unrestricted time-coordinate substitution
+on curved spacetime: https://arxiv.org/abs/1702.05572 . These are documentary
+references, not incorporated derivations or source bytes.
+
+This continuation is Proposed and unexecuted. It neither changes the frozen
+six-step evidence nor adds a vocabulary word. Its practical question is how
+two observers can compare the same causally available evidence before using
+that evidence to license an effective evolution law.
