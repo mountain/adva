@@ -1,0 +1,188 @@
+{
+  "profile": "adva.research.linear-system.v0",
+  "version": 0,
+  "frozen_before_execution": true,
+  "base_commit": "964759167c47ff472efad491e320a29dc4fb966a",
+  "question": "Can a bounded exact receiver distinguish a unique solution, inconsistency, a complete affine family and a valid but incomplete solution description for a typed 2x2 Ax=b?",
+  "level": "External mathematical receiving experiment; independent new profile, no native semantics",
+  "objects": "A linear map between two named rational two-dimensional spaces with ordered independent bases (stored as columns), a codomain rhs, full question and history; column action.",
+  "domain_and_quantifiers": "The mathematical scalar field is Q and the solution domain is Q^2. Input/certificate bounds are finite admission limits, not a finite closed field. Complete family quantifies rational parameters by an explicit rank-nullity argument, not enumeration. Execution covers the 44 declared controls only.",
+  "input_schema": {
+    "request": [
+      "question",
+      "domain",
+      "codomain",
+      "operator",
+      "rhs",
+      "interpretation",
+      "history"
+    ],
+    "space": [
+      "id",
+      "dimension",
+      "basis"
+    ],
+    "operator": [
+      "domain",
+      "codomain",
+      "action",
+      "matrix"
+    ],
+    "rhs": [
+      "space",
+      "coordinates"
+    ],
+    "interpretation": "all-solutions-over-Q",
+    "action": "left-on-column"
+  },
+  "input_bounds": {
+    "dimension": 2,
+    "history_entries": [
+      1,
+      4
+    ],
+    "labels_characters": [
+      1,
+      80
+    ],
+    "distinct_role_space_ids": true,
+    "coefficient_rhs_and_basis_rational_component_cap": 64,
+    "certificate_rational_component_cap": 4096,
+    "canonical_pairs": true,
+    "reject_bool_float_duplicate_json_nonfinite": true
+  },
+  "candidate_schema": {
+    "outer": [
+      "profile",
+      "request",
+      "claim"
+    ],
+    "unique": [
+      "kind",
+      "solution",
+      "inverse"
+    ],
+    "inconsistent": [
+      "kind",
+      "left_witness"
+    ],
+    "affine-family": [
+      "kind",
+      "particular",
+      "kernel_basis"
+    ]
+  },
+  "proof_rules": {
+    "unique": "Ax=b and BA=AB=I give a solution and injectivity, hence uniqueness. B maps codomain to domain.",
+    "inconsistent": "y^T A=0 and y^T b=1 contradict existence of any x; y is a codomain covector. This profile normalizes a nonzero contradiction to 1.",
+    "family": "Ax0=b, each independent kernel vector maps to zero, and basis count equals 2-rank(A). Rank is independently checked by 2x2 determinant and zero entries. Then all solutions are x0+ker(A).",
+    "partial": "Fewer valid independent vectors than nullity retains verified x0/residual/missing count and returns UnknownCoverage without accepted all-solutions claim.",
+    "rank_two_family": "Refuse affine-family label for full rank in this result taxonomy; use unique with inverse."
+  },
+  "outcomes": [
+    "UniqueSolution",
+    "InconsistentSystem",
+    "AffineSolutionFamily",
+    "UnknownCoverage",
+    "InvalidEvidence",
+    "InvalidContext",
+    "UnknownBudget",
+    "ImplementationFailure"
+  ],
+  "preservation": "Expected typed question and ordered history stay bound. A raw JSON parse failure has no decoded expected_request; exact rejected bytes remain in evidence. Invalid and incomplete claims yield no accepted_claim or semantic_delta. Diagnostics can retain a checked particular solution.",
+  "cases": {
+    "fresh_receiver_processes": 44,
+    "unique": 3,
+    "inconsistent": 3,
+    "affine_family": 4,
+    "unknown_coverage": 2,
+    "invalid_evidence": 20,
+    "invalid_context": 12,
+    "primary_unique": {
+      "A": [
+        [
+          2,
+          1
+        ],
+        [
+          3,
+          2
+        ]
+      ],
+      "b": [
+        4,
+        7
+      ]
+    },
+    "primary_family": {
+      "A": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "b": [
+        3,
+        9
+      ]
+    },
+    "primary_inconsistent": {
+      "A": [
+        [
+          1,
+          2
+        ],
+        [
+          3,
+          6
+        ]
+      ],
+      "b": [
+        3,
+        10
+      ]
+    },
+    "additional": [
+      "zero matrix consistent and inconsistent",
+      "rational nonsingular coefficients",
+      "alternate noncanonical-in-the-producer family parameterization accepted",
+      "partial rank-one and rank-zero kernels"
+    ],
+    "reuse": "For all three primary kinds use P=[[1,1],[0,1]], Q=[[0,1],[1,0]], A_new=Q^-1 A P,b_new=Q^-1 b, with Chinese IDs. Independently verify x_new=P^-1 x, B_new=P^-1 B Q,y_new=Q^T y and ambient family equations."
+  },
+  "budgets": {
+    "campaign_wall_seconds": 30,
+    "receiver_process_max": 44,
+    "receiver_wall_seconds": 3,
+    "receiver_cpu_seconds": 3,
+    "receiver_AS_bytes": 134217728,
+    "wire_bytes_each": 32768,
+    "file_bytes_each": 262144,
+    "receiver_work_cap_each": 10000,
+    "producer_work_cap": 10000,
+    "aggregate_counted_work_cap": 100000,
+    "receiver_intermediate_bits": 512,
+    "search_candidates": 0,
+    "substantive_routes": 1,
+    "implementation_correction_replays_max": 1
+  },
+  "independence": "Producer uses Gaussian row elimination with a tracked left transform; receiver uses certificate equations and 2x2 rank checks without importing producer or legacy receipts. Both share Python/Fraction. Supervisor samples exact family points and checks genuine two-space chart transport; samples do not prove completeness.",
+  "protected": [
+    "Existing operator receipt requires invertible A, fixed word and rational strings; unchanged and not relabeled as an Ax=b checker.",
+    "All native source, dependency locks, library entries and ancestor evidence unchanged",
+    "No native admission, Close, free, M6, universal grammar, learning or practical benefit claim",
+    "Separate storage-holder-exit obligation remains open"
+  ],
+  "preexecution_review": [
+    "Receiver deadline callback supplied explicitly after static undefined-name finding",
+    "Raw-float context cannot produce a decoded expected object; supervisor checks retained raw evidence rather than inventing it",
+    "Use nonsymmetric matrices so transpose and left/right-null mistakes remain visible"
+  ],
+  "costs": "Report bounded receiver/producer work, phase timing and Linux process RSS separately; partial phase accounting disclosed. Report construction and receiving of fresh reuse, final archive cost; do not infer speedup. Research, review, network and CI not timed separately.",
+  "publication": "Original first-party code/prose and synthetic evidence under Unknown v0.3; no imported outside expression. Existing operator work is a methodological reference, not a new runtime or derivation parent.",
+  "attribution": "ChatGPT (OpenAI), through Mingli Yuan authorized account proxy; not his review, endorsement or correctness guarantee."
+}

@@ -1,0 +1,382 @@
+{
+  "assertions": 468,
+  "calls": 44,
+  "child_peak_rss_kib": 10624,
+  "cost_scope": "Instrumented phases omit some setup/copying; campaign wall includes bookkeeping. Final report/archive/research/review/network unmeasured separately; no speedup claim.",
+  "failure": null,
+  "native_authority": false,
+  "new_native_vocabulary": [],
+  "phases": {
+    "construction_seconds": 0.004919987994071562,
+    "independent_observation_seconds": 0.012034076997224474,
+    "receiving_seconds": 7.297160089026875,
+    "serialization_seconds": 0.0945197779838054
+  },
+  "producer_work_units": 192,
+  "profile": "adva.research.linear-system.v0",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "receiver_work_units": 1319,
+  "runs": [
+    {
+      "case": "primary/unique",
+      "outcome": "UniqueSolution",
+      "reason": "solution-and-two-sided-inverse-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1862034260011569,
+      "work_units": 59
+    },
+    {
+      "case": "reuse/unique",
+      "outcome": "UniqueSolution",
+      "reason": "solution-and-two-sided-inverse-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13595199699921068,
+      "work_units": 59
+    },
+    {
+      "case": "primary/family",
+      "outcome": "AffineSolutionFamily",
+      "reason": "particular-and-complete-independent-kernel-basis-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18427504700230202,
+      "work_units": 46
+    },
+    {
+      "case": "reuse/family",
+      "outcome": "AffineSolutionFamily",
+      "reason": "particular-and-complete-independent-kernel-basis-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18257488700328395,
+      "work_units": 46
+    },
+    {
+      "case": "primary/inconsistent",
+      "outcome": "InconsistentSystem",
+      "reason": "left-annihilator-and-unit-contradiction-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13264752699979,
+      "work_units": 32
+    },
+    {
+      "case": "reuse/inconsistent",
+      "outcome": "InconsistentSystem",
+      "reason": "left-annihilator-and-unit-contradiction-checked",
+      "returncode": 0,
+      "wall_seconds": 0.12955313500060583,
+      "work_units": 32
+    },
+    {
+      "case": "zero-family/valid",
+      "outcome": "AffineSolutionFamily",
+      "reason": "particular-and-complete-independent-kernel-basis-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13038032999975258,
+      "work_units": 57
+    },
+    {
+      "case": "zero-inconsistent/valid",
+      "outcome": "InconsistentSystem",
+      "reason": "left-annihilator-and-unit-contradiction-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1297224219997588,
+      "work_units": 32
+    },
+    {
+      "case": "rational-unique/valid",
+      "outcome": "UniqueSolution",
+      "reason": "solution-and-two-sided-inverse-checked",
+      "returncode": 0,
+      "wall_seconds": 0.23069660200053477,
+      "work_units": 59
+    },
+    {
+      "case": "family/alternate-parameterization",
+      "outcome": "AffineSolutionFamily",
+      "reason": "particular-and-complete-independent-kernel-basis-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1817928029995528,
+      "work_units": 46
+    },
+    {
+      "case": "family/partial-basis",
+      "outcome": "UnknownCoverage",
+      "reason": "verified-particular-but-incomplete-kernel-basis",
+      "returncode": 0,
+      "wall_seconds": 0.18468710199886118,
+      "work_units": 38
+    },
+    {
+      "case": "zero-family/partial-basis",
+      "outcome": "UnknownCoverage",
+      "reason": "verified-particular-but-incomplete-kernel-basis",
+      "returncode": 0,
+      "wall_seconds": 0.13084783199883532,
+      "work_units": 46
+    },
+    {
+      "case": "evidence/wrong-solution",
+      "outcome": "InvalidEvidence",
+      "reason": "solution:nonzero-residual",
+      "returncode": 0,
+      "wall_seconds": 0.1838236700023117,
+      "work_units": 35
+    },
+    {
+      "case": "evidence/wrong-inverse",
+      "outcome": "InvalidEvidence",
+      "reason": "inverse:left-product",
+      "returncode": 0,
+      "wall_seconds": 0.1809003330017731,
+      "work_units": 47
+    },
+    {
+      "case": "evidence/missing-inverse",
+      "outcome": "InvalidEvidence",
+      "reason": "unique:fields",
+      "returncode": 0,
+      "wall_seconds": 0.18034426899976097,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/singular-as-unique",
+      "outcome": "InvalidEvidence",
+      "reason": "inverse:left-product",
+      "returncode": 0,
+      "wall_seconds": 0.18115799900260754,
+      "work_units": 47
+    },
+    {
+      "case": "evidence/wrong-covector-direction",
+      "outcome": "InvalidEvidence",
+      "reason": "left-witness:not-annihilator",
+      "returncode": 0,
+      "wall_seconds": 0.18056488399815862,
+      "work_units": 32
+    },
+    {
+      "case": "evidence/zero-inconsistency-witness",
+      "outcome": "InvalidEvidence",
+      "reason": "left-witness:contradiction-not-one",
+      "returncode": 0,
+      "wall_seconds": 0.12868284200158087,
+      "work_units": 32
+    },
+    {
+      "case": "evidence/wrong-particular",
+      "outcome": "InvalidEvidence",
+      "reason": "particular:nonzero-residual",
+      "returncode": 0,
+      "wall_seconds": 0.1799128370003018,
+      "work_units": 31
+    },
+    {
+      "case": "evidence/not-a-kernel-vector",
+      "outcome": "InvalidEvidence",
+      "reason": "kernel-vector:nonzero-image",
+      "returncode": 0,
+      "wall_seconds": 0.18180895700061228,
+      "work_units": 39
+    },
+    {
+      "case": "evidence/zero-kernel-vector",
+      "outcome": "InvalidEvidence",
+      "reason": "kernel-vector:zero",
+      "returncode": 0,
+      "wall_seconds": 0.13212350300091202,
+      "work_units": 39
+    },
+    {
+      "case": "evidence/duplicate-kernel-vector",
+      "outcome": "InvalidEvidence",
+      "reason": "kernel-basis:dependent",
+      "returncode": 0,
+      "wall_seconds": 0.19197069200163241,
+      "work_units": 50
+    },
+    {
+      "case": "evidence/dependent-zero-matrix-basis",
+      "outcome": "InvalidEvidence",
+      "reason": "kernel-basis:dependent",
+      "returncode": 0,
+      "wall_seconds": 0.18373088799853576,
+      "work_units": 50
+    },
+    {
+      "case": "evidence/nonsingular-as-family",
+      "outcome": "InvalidEvidence",
+      "reason": "affine-family:full-rank-use-unique",
+      "returncode": 0,
+      "wall_seconds": 0.17969052999978885,
+      "work_units": 34
+    },
+    {
+      "case": "evidence/changed-question",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1812552939991292,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/erased-history",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.18380831600006786,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/changed-domain-basis",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1814693320011429,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/changed-codomain-basis",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.17989027300063754,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/transposed-operator",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1797773300022527,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/changed-rhs",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.12982198400277412,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/noncanonical-rational",
+      "outcome": "InvalidEvidence",
+      "reason": "rational:canonical",
+      "returncode": 0,
+      "wall_seconds": 0.18359774600321543,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/wrong-profile",
+      "outcome": "InvalidEvidence",
+      "reason": "profile:unsupported",
+      "returncode": 0,
+      "wall_seconds": 0.1294367689988576,
+      "work_units": 20
+    },
+    {
+      "case": "context/singular-domain-basis",
+      "outcome": "InvalidContext",
+      "reason": "domain:dependent-basis",
+      "returncode": 0,
+      "wall_seconds": 0.1281917460000841,
+      "work_units": 7
+    },
+    {
+      "case": "context/singular-codomain-basis",
+      "outcome": "InvalidContext",
+      "reason": "codomain:dependent-basis",
+      "returncode": 0,
+      "wall_seconds": 0.18430175500179757,
+      "work_units": 14
+    },
+    {
+      "case": "context/boolean-dimension",
+      "outcome": "InvalidContext",
+      "reason": "domain:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.18569484600084252,
+      "work_units": 0
+    },
+    {
+      "case": "context/wrong-dimension",
+      "outcome": "InvalidContext",
+      "reason": "codomain:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.1802061140006117,
+      "work_units": 7
+    },
+    {
+      "case": "context/operator-domain-mismatch",
+      "outcome": "InvalidContext",
+      "reason": "operator:domain-binding",
+      "returncode": 0,
+      "wall_seconds": 0.12927558400042471,
+      "work_units": 14
+    },
+    {
+      "case": "context/rhs-space-mismatch",
+      "outcome": "InvalidContext",
+      "reason": "rhs:space-binding",
+      "returncode": 0,
+      "wall_seconds": 0.13161360199956107,
+      "work_units": 18
+    },
+    {
+      "case": "context/wrong-action",
+      "outcome": "InvalidContext",
+      "reason": "operator:action",
+      "returncode": 0,
+      "wall_seconds": 0.18456116000015754,
+      "work_units": 14
+    },
+    {
+      "case": "context/matrix-shape",
+      "outcome": "InvalidContext",
+      "reason": "operator:matrix:rows",
+      "returncode": 0,
+      "wall_seconds": 0.12889778099997784,
+      "work_units": 14
+    },
+    {
+      "case": "context/float-entry",
+      "outcome": "InvalidContext",
+      "reason": "json:noninteger-number",
+      "returncode": 0,
+      "wall_seconds": 0.17988500100182137,
+      "work_units": 0
+    },
+    {
+      "case": "context/zero-denominator",
+      "outcome": "InvalidContext",
+      "reason": "rational:bound",
+      "returncode": 0,
+      "wall_seconds": 0.1286657960008597,
+      "work_units": 15
+    },
+    {
+      "case": "context/entry-cap",
+      "outcome": "InvalidContext",
+      "reason": "rational:bound",
+      "returncode": 0,
+      "wall_seconds": 0.18313657099861302,
+      "work_units": 19
+    },
+    {
+      "case": "context/history-capacity",
+      "outcome": "InvalidContext",
+      "reason": "history:length",
+      "returncode": 0,
+      "wall_seconds": 0.17962857500242535,
+      "work_units": 20
+    }
+  ],
+  "search_candidates": 0,
+  "source_sha256": {
+    "contract.json": "1d49b0ce1ca5d1f82a477392543833bf01f7b9e3f4e088a3d86da11d916db16c",
+    "receive.py": "0910b1c36505d7efa8258df16524fbe8f7d95155905110bee626627f9c7dd069",
+    "run.py": "c7d1e1e50861fe4f2326209f565322250b1a1e766ada3de07dcfd24dabe3a8f7"
+  },
+  "status": "Passed",
+  "supervisor_peak_rss_kib": 13056,
+  "wall_seconds": 7.591924610998831
+}

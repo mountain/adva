@@ -254,3 +254,32 @@ unique solutions, inconsistency and affine families. Existing operator receipts
 are a starting point; matrix equality or zero residual does not alone certify
 invertibility or uniqueness. General units, native import and the separate
 ledger-holder-exit obligation remain open.
+
+## Complete rational linear-system receipts, 2026-09-17
+
+After PR #193 merged, the [linear-system receiver](../../experiments/linear_system/README.md)
+advances priority 3 with explicit two-dimensional domain/codomain bases and
+column direction. The old fixed-word invertible-operator profile is unchanged;
+a new separate receiving contract admits singular A without weakening that
+ancestor. The scalar field is Q; finite wire bounds are not a closed finite field.
+
+A solution plus a checked two-sided inverse certifies uniqueness. A codomain
+covector y with y^T A=0 and y^T b=1 certifies inconsistency. A particular solution
+and exactly 2-rank(A) independent kernel directions certify a complete affine
+family. Valid but missing directions retain the particular solution and return
+UnknownCoverage, not an all-solutions claim. Alternate parameterizations are
+accepted, and actual two-space basis reuse distinguishes vector transport from
+covector transport.
+
+The first campaign passes 468 assertions in 44 fresh processes: ten complete
+classifications, two partial-family results, 20 evidence refusals and 12 context
+refusals. Exact synthetic examples cover all three classes, rank zero, rational
+coefficients, non-symmetric matrices and fresh chart reuse. No native authority,
+universality or actual human benefit is claimed.
+
+The next mathematical witness is priority 4: rational interval enclosures through
+a bounded expression, including division through a zero-containing interval as
+a refusal. Keep exact-zero proof, small residual and unresolved sign distinct;
+input interval uncertainty is not automatically a sampling probability or a
+floating-point error model. Arbitrary linear-system dimensions, formal proof
+artifacts, native import and the separate ledger-holder-exit obligation remain open.
