@@ -1,0 +1,29 @@
+name: Finite Markov dynamics and perturbation bounds
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/markov_horizon/**'
+      - '.github/workflows/markov-horizon.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/markov_horizon/**'
+      - '.github/workflows/markov-horizon.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  markov-horizon:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check finite horizons, contraction and retained error bounds
+        run: timeout 35s python3 -B -S experiments/markov_horizon/run.py --output "$RUNNER_TEMP/markov-horizon"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: markov-horizon-evidence
+          path: ${{ runner.temp }}/markov-horizon
