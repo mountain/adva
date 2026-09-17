@@ -76,6 +76,27 @@ this checker separately; it does not upgrade the executable consumer lock.
 The source catalog home, unresolved native identity and human acceptance
 obligations remain intact. General communication remains open.
 
+## Scoped application of transport/communication v2
+
+The [two-receiver iota experiment](../knowledge/exchanges/iota-process-knowledge-2026-09-17-v1/README.md)
+applies the [fixed v2 distinction](https://github.com/mountain/adva-machine/blob/efa4031cd18b315b25179d1b4967ff6bdd5060a8/spec/framework/transport-communication-v2.md):
+the existing Rust documentary crossing is transport, and the finite term/ledger
+comparison supplies separately checked interpretation work. The native command
+spelling and v1 receipts remain unchanged.
+
+Both adva and adva-machine receive exactly the same eight iota materials under
+different contracts and contexts. Each then reconstructs the declared cuts and
+runs its own identity/discard/copy probes through the pinned external machine.
+The executable consumer lock above is unchanged; this scoped trial binds its
+machine separately. Counterexamples, missing-evidence outcomes and the source's
+full-ancestry residual remain visible. One agent authored the adapters; repeated
+runs do not imply independent participants or human agreement.
+
+The source catalog belongs to adva-iota. Its `logic` home and the legacy
+profile's `adva-library/` material prefix do not register a new global library
+entry. Documentary acceptance, finite interpretation, object execution and
+physical claims retain distinct judgments. General communication remains open.
+
 ## Adoption checks
 
 The two documentation digests above were checked against the exact machine

@@ -12,6 +12,11 @@ The first [checked library exchange](knowledge/exchanges/party-naming-layer-2026
 has received an original naming entry through the Rust communication profile,
 with its publication review, source home, obligations and receiver receipt retained.
 
+The [iota exchange](knowledge/exchanges/iota-process-knowledge-2026-09-17-v1/README.md)
+now receives a focused iota package also delivered to adva-machine. Each side
+retains its own Rust receipt and executed comparison of terms, process cuts,
+observer clocks and three native object-language probes.
+
 **How can a finite observer construct, check, and extend arithmetic knowledge?**
 
 [中文入口](README.zh-CN.md) · [Run an example](#run-an-example) ·
