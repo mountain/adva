@@ -1,0 +1,29 @@
+name: Rational linear system
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/linear_system/**'
+      - '.github/workflows/linear-system.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/linear_system/**'
+      - '.github/workflows/linear-system.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  linear-system:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check complete solution classes and coordinate boundaries
+        run: timeout 35s python3 -B -S experiments/linear_system/run.py --output "$RUNNER_TEMP/linear-system"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: linear-system-evidence
+          path: ${{ runner.temp }}/linear-system
