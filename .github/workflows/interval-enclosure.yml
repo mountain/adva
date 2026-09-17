@@ -1,0 +1,29 @@
+name: Rational interval enclosure
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/interval_enclosure/**'
+      - '.github/workflows/interval-enclosure.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/interval_enclosure/**'
+      - '.github/workflows/interval-enclosure.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  interval-enclosure:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check outward rounding, dependency and zero-domain boundaries
+        run: timeout 35s python3 -B -S experiments/interval_enclosure/run.py --output "$RUNNER_TEMP/interval-enclosure"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: interval-enclosure-evidence
+          path: ${{ runner.temp }}/interval-enclosure
