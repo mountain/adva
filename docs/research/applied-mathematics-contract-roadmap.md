@@ -337,3 +337,28 @@ dynamical example with a verified contraction or conservation condition, and
 identity/periodic controls against an unsupported convergence claim. Stronger
 optimization certificates, native admission and the separate ledger-holder-exit
 obligation remain open.
+
+## Finite dynamics and perturbation propagation, 2026-09-17
+
+After PR #196 merged, the [Markov-horizon receiver](../../experiments/markov_horizon/README.md)
+advances priority 6 with a separate two-state probability endokernel profile.
+It checks mass conservation, the global total-variation factor q=abs(a-b), a
+supplied stationary reference, and every step of a declared finite horizon.
+Approximate trace error obeys B_next=q B+epsilon; distance to stationarity has
+the additional exact-transient term. Previous distinct-space kernel composition
+and its probability parent are unchanged methodological references.
+
+One campaign passes 906 assertions in 50 fresh processes: seven certified
+tolerances, eight complete horizons with larger bounds, two partial-coverage
+Unknown outcomes, 19 evidence refusals and 14 invalid contexts. A noisy example
+attains its propagated bound at every step. Identical stationary trajectories
+can have q=1 or q=1/2 because an unvisited row differs. Identity and swap retain
+their nonexpansive status, even when a particular start is stationary. Missing
+future steps remain explicit even when the current distance is zero.
+
+The next roadmap task is priority 7: a fixed finite hypothesis family and
+sampling law, enumerating possible samples to check one confidence rule's
+coverage. The transition mechanism in this experiment is given, not learned;
+sampling variability, computational approximation and unidentified mechanisms
+remain distinct. No native operation, library admission or acceleration is
+introduced. The separate ledger-holder-exit obligation remains open.
