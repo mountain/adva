@@ -145,3 +145,18 @@ despite its final numerical return. History, intermediate bounds and the
 resource account remain explicit; no universal or native authority follows.
 The next continuation obligation is a bounded checkpoint at history capacity,
 with no erased prefix or automatic renewal of fuel.
+
+## Checkpoint boundary continuation, 2026-09-17
+
+The [checkpoint receiver](../../experiments/decision_checkpoint/README.md)
+now rechecks and retains a complete scale prefix while separating history
+capacity, abstract attempt allowance and actual checking cost. Two third-step
+continuations pass at history length four; six pauses retain their exact pending
+task, including two reloads from actual receiver output. Twenty-two evidence
+controls and seven unsupported contexts are refused. Erasing history or
+replenishing a candidate's allowance cannot turn a pause into a continuation.
+
+The checker is stateless: this adds neither durable recovery nor exactly-once
+consumption. The next finite obligation is a receiver-owned transition ledger
+that distinguishes an identical replay from a conflicting repeated submission.
+No native operation, capacity increase or new vocabulary follows.
