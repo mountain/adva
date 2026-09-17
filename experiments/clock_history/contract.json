@@ -1,0 +1,69 @@
+{
+  "profile": "adva.research.clock-history.v0",
+  "status": "frozen-before-execution",
+  "frozen_at": "2026-09-17T07:07:54.071644+00:00",
+  "baseline_main": "c91f6ec86a9b10d4443813039e853946614d52b8",
+  "branch_parent": "1cdc2c1f99f6219d921374d1ae056fe7f4669910",
+  "dependency": "PR198 reversible_memory: receive.py SHA256 6a8cfe9f48b2485b1a4a2ca17199168b10005617e6dae19509d4597da0e15d7d; unchanged, explicitly imported as receiving component",
+  "question": "Does an exactly consistent three-clock calibration preserve complete finite observation records and the independently checked history-conditioned dynamics outcome, including counterexamples?",
+  "objects": "Exactly three ordered labeled clocks; oriented edges A->B,B->C,C->A; positive rational slopes and signed rational offsets; H=1..3; exactly H+1 labeled events at strictly increasing rational A times; reversible-memory context restricted to m=1..3 and same H.",
+  "arithmetic": "Q; canonical pairs [signed numerator,positive denominator], abs numerator and denominator<=4096; explicit clock intermediates <=512 bits. Existing probability profile retains its own nonnegative input rules. Fractions internal temporaries not individually metered.",
+  "expected_fields": [
+    "question",
+    "history",
+    "scope",
+    "clocks",
+    "edges",
+    "events",
+    "micro_request"
+  ],
+  "edge_fields": [
+    "rate",
+    "offset"
+  ],
+  "event_fields": [
+    "id",
+    "time"
+  ],
+  "candidate_fields": [
+    "profile",
+    "request",
+    "calibration",
+    "events",
+    "micro"
+  ],
+  "calibration_fields": [
+    "rate",
+    "offset",
+    "kind"
+  ],
+  "event_evidence_fields": [
+    "id",
+    "readings",
+    "roundtrip"
+  ],
+  "scope_literal": "finite-clock-calibration-and-observed-history",
+  "calibration": "Compose f_CA after f_BC after f_AB on t: R=a_CA*a_BC*a_AB and D=a_CA*(a_BC*b_AB+b_BC)+b_CA. ClockConsistent iff R=1 and D=0; RateConsistent iff R=1,D!=0; ClockInconsistent iff R!=1. One fixed point does not certify an identity.",
+  "event_transport": "Candidate events must be an exact consecutive prefix starting at first caller-selected event; no changed event identity, numeric same-time reinterpretation, duplicate or reorder. Readings are [t,f_AB(t),f_BC(f_AB(t))]; roundtrip=f_CA(Creading). Full calibration authorizes this finite change of record coordinates only.",
+  "dynamics": "Receive embedded reversible-memory evidence using frozen independent receiver. Its expected request is exactly caller micro_request. Complete event records correspond to full system history indices S_0..S_H. The new receiver never promotes a Counterexample to VerifiedMarkovHorizon. Source law is supplied, not learned or physically prepared.",
+  "outcomes": "VerifiedTransport may carry dynamics_outcome=Counterexample. CalibrationObstruction is distinct from UnknownCoverage, InvalidContext, InvalidEvidence, UnknownBudget and ImplementationFailure. Independent checked components and earlier counterexample are retained on later obstruction. No top-level claim override.",
+  "routes": [
+    "Positive affine triangle, rate-only and fixed-point counterexamples, conjugate chart reuse",
+    "Transport existing fresh-noise and repeated-noise histories, retaining prior counterexamples",
+    "New three-bit parity hidden-memory example plus missing record, false dynamics and binding controls"
+  ],
+  "resource_limits": {
+    "receiver_calls": 32,
+    "total_work_units": 100000,
+    "campaign_wall_seconds": 30,
+    "receiver_seconds": 3,
+    "process_address_space_bytes": 134217728,
+    "input_bytes_each": 65536,
+    "output_bytes": 262144,
+    "evidence_bytes": 2097152,
+    "search_candidates": 0,
+    "corrective_replays": 1
+  },
+  "physical_boundary": "Affine clock labels have no spacetime metric or physical synchronization signals. No claim of Zhao theorem, Boltzmann-Grad limit, relativity, thermodynamic law, Wick continuation, energy assignment, native free/Close/M6, or acceleration. Connection to Deng-Hani-Ma is disciplined treatment of complete histories, not imported proof or gas simulation.",
+  "provenance": "Original first-party contribution under Unknown v0.3. Authored by ChatGPT (OpenAI), submitted through Mingli Yuan authorized account proxy; not his authorship/review/endorsement/correctness guarantee. No external paper bytes included."
+}
