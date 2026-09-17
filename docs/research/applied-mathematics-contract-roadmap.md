@@ -177,3 +177,23 @@ debit and allow exact result recovery. These are sequential local-storage
 witnesses, not distributed exactly-once or power-loss guarantees. No new word or
 native effect is admitted. The next finite question is simultaneous submission
 and the distinction between lock contention and invalid ledger contents.
+
+## Bounded overlapping delivery, 2026-09-17
+
+Following PR #190, the [contention adapter](../../experiments/decision_ledger_contention/README.md)
+retains the unchanged arithmetic and one-slot ledger engine under a new explicit
+receiving profile. Eight two-process episodes distinguish pre-transaction SQLite
+BUSY from invalid contents. An unchanged old-profile control reports InvalidLedger
+on the same lock schedule, outside its original sequential evidence scope.
+
+After the holder terminates, a single explicit retry either returns the stored
+result, reports conflict/capacity, or commits after an invalid holder was refused.
+Complete post-quiescence SQL observations show one final debit in all nine ledgers.
+The first campaign passes 500 assertions in 39 processes; new asymmetric reuse,
+non-database bytes and both profile refusal directions are included. New and old
+ledgers are not migrated. No new native word or authority follows.
+
+The next small obligation is holder termination before releasing the transaction
+gate, with bounded contender recovery and preservation of the original question.
+This remains a future failure position; the present evidence does not establish
+arbitrary concurrency, fairness or distributed exactly-once delivery.
