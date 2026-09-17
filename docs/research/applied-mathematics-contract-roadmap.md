@@ -313,3 +313,27 @@ candidate, a separately checked lower bound and an explicit gap. Contracted
 search intervals, small residuals and matching means cannot replace an
 optimality certificate. General interval functions, dependency-aware
 interpretation, native import and the ledger-holder-exit obligation remain open.
+
+## Feasibility and quadratic optimality gaps, 2026-09-17
+
+After PR #195 merged, the [quadratic receiver](../../experiments/quadratic_gap/README.md)
+advances priority 5 for one or two rational coordinates with a symmetric PSD
+quadratic objective on a caller-bound box. It checks a feasible point/upper
+bound separately from a tangent affine lower bound and the resulting gap.
+The lower-bound identity covers the entire box; finite samples are controls.
+
+One campaign passes 603 assertions in 48 fresh processes: six exact optima,
+two epsilon guarantees, five retained positive gaps, two missing-lower Unknown
+outcomes, 20 evidence refusals and 13 invalid contexts. An active-boundary
+optimum has a nonzero gradient. A rank-one quadratic has distinct exact
+minimizers. The same actual optimum yields certificate gaps zero and 5/3 with
+different anchors, so a positive gap does not prove the point is nonoptimal.
+A shifted objective keeps the gap unchanged but is refused under the original
+question. Later invalid claims retain only already verified feasibility/bounds.
+
+No solver, automatic search, native operation, library entry or acceleration
+is introduced. The next roadmap task is priority 6: a finite-horizon discrete
+dynamical example with a verified contraction or conservation condition, and
+identity/periodic controls against an unsupported convergence claim. Stronger
+optimization certificates, native admission and the separate ledger-holder-exit
+obligation remain open.

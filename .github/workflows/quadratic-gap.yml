@@ -1,0 +1,29 @@
+name: Rational quadratic optimality gap
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/quadratic_gap/**'
+      - '.github/workflows/quadratic-gap.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/quadratic_gap/**'
+      - '.github/workflows/quadratic-gap.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  quadratic-gap:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check feasible points, global lower bounds and exact gaps
+        run: timeout 35s python3 -B -S experiments/quadratic_gap/run.py --output "$RUNNER_TEMP/quadratic-gap"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: quadratic-gap-evidence
+          path: ${{ runner.temp }}/quadratic-gap

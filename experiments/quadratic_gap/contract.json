@@ -1,0 +1,83 @@
+{
+  "profile": "adva.research.quadratic-gap.v0",
+  "status": "frozen-before-execution",
+  "date": "2026-09-17",
+  "question": "Can a finite receiver distinguish a feasible quadratic candidate, a valid global lower bound, exact optimality, epsilon optimality and an unresolved gap?",
+  "level": "external exact rational research; applied-mathematics roadmap priority 5",
+  "mathematics": {
+    "domain": "All rational x in the caller-selected closed nonempty box; bounds also hold over the real box. Input encoding limits do not make a finite field or enumerate this box.",
+    "objective": "f(x) = (x^T H x)/2 + c^T x + d; n is 1 or 2; H symmetric positive semidefinite",
+    "psd_check": "n=1: H00>=0; n=2: both diagonal entries>=0 and determinant>=0",
+    "lower_bound": "For supplied rational anchor z (not required feasible), g=Hz+c; choose b_i=l_i when g_i>=0, else u_i. L=f(z)+g^T(b-z).",
+    "justification": "f(y)=f(z)+g^T(y-z)+(y-z)^T H(y-z)/2; final term nonnegative; chosen b minimizes the affine term on the full box.",
+    "upper_gap": "Verify x in the original box and U=f(x). L<=inf_box f<=U; gap=U-L. Positive gap does not prove x is nonoptimal; zero gap does not prove uniqueness."
+  },
+  "request": {
+    "exact_fields": ["question", "axes", "H", "c", "d", "box", "tolerance", "history", "scope"],
+    "axes": "one or two distinct nonempty names; order binds vector components",
+    "H_c_d_box": "H n*n matrix, c vector n, d scalar, box n pairs [lo,hi]; all canonical rational pairs [integer numerator,positive integer denominator], abs components<=64; lo<=hi",
+    "tolerance": "canonical rational >=0 with input cap 64; absolute objective gap, not distance, relative error or physical energy",
+    "names_history": "names 1..80 characters; history list 1..4 nonempty names; retained exactly",
+    "scope": "all-rational-points-in-box"
+  },
+  "candidate": {
+    "exact_fields": ["profile", "request", "point", "upper", "lower", "claim"],
+    "binding": "profile exact; request canonical JSON identical to receiver-selected request",
+    "point": "n canonical rational coordinates, component cap 64, in the original box",
+    "upper": "exact f(point), rational components at most 512 bits",
+    "lower": "null, or exact fields anchor,gradient,corner,value; anchor n rationals cap64 (may lie outside box); gradient n rationals, corner n rationals, value L, all at most 512 bits",
+    "claim": "exact fields kind,gap. If lower null: kind UnknownLowerBound, gap null. Else gap U-L; kind ExactOptimal if gap=0; EpsilonOptimal if 0<gap<=tolerance; VerifiedGap if gap>tolerance.",
+    "order": "check expected context and PSD, request binding, feasible point and upper, lower certificate, final claim. Preserve only verified components after later failure."
+  },
+  "receiver": {
+    "cli": "python3 -B -S receive.py --expected EXPECTED.json --candidate CANDIDATE.json",
+    "output": ["profile", "outcome", "reason", "expected_request", "verified_feasible", "verified_lower", "accepted_result", "native_authority", "close_authorized", "free_authorized", "work_units", "wall_seconds"],
+    "verified_feasible": "null or {point,upper}; retained on absent or later invalid lower evidence",
+    "verified_lower": "null or {anchor,gradient,corner,value}; retained on later invalid final claim",
+    "accepted_result": "null unless complete valid certificate; then {kind,lower,upper,gap}",
+    "outcomes": ["ExactOptimal", "EpsilonOptimal", "VerifiedGap", "UnknownLowerBound", "InvalidContext", "InvalidEvidence", "UnknownBudget", "ImplementationFailure"],
+    "authority": "all native/close/free flags false; malformed expected raw bytes can give expected_request null; receipts preserve decoded request otherwise"
+  },
+  "independence": {
+    "producer": "coefficient-polynomial expansion for evaluation and differentiation; affine corner chosen by explicit endpoint comparison",
+    "receiver": "matrix bilinear evaluation, explicit principal minors and sign-based corner formula; no import of producer or old experiments",
+    "point_controls": "exact rational finite samples retained as controls, not full-box proofs",
+    "trusted": "Both sides use Python standard library/Fraction. No proof kernel or hostile service guarantee."
+  },
+  "budget": {
+    "routes": 1,
+    "max_receiver_processes": 48,
+    "campaign_wall_seconds": 30,
+    "child_wall_seconds": 3,
+    "child_cpu_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "max_input_bytes_each": 32768,
+    "max_output_bytes_each": 262144,
+    "max_integer_bits": 512,
+    "max_receiver_work": 10000,
+    "max_producer_work": 10000,
+    "max_point_work": 10000,
+    "max_total_counted_work": 100000,
+    "max_evidence_bytes": 2097152,
+    "max_search_candidates": 0,
+    "correction_replays": 1,
+    "continuation": "No automatic solver, precision refinement, new fuel or retries; preserve original failures before one justified correction."
+  },
+  "controls": [
+    "Coupled interior optimum, active-boundary optimum with nonzero gradient, rank-one tie and constant objective",
+    "Positive gap from a nonoptimal candidate and from a weak lower bound at an actually optimal point",
+    "Positive epsilon gap must not become exact equality; tolerance changes are question changes",
+    "Missing lower certificate preserves feasibility; malformed lower or final claim preserves only independently verified parts",
+    "Negative-coordinate rational reuse, outside-box anchor, signed linear objective and singleton box",
+    "Reject wrong feasibility, upper, gradient, corner, lower value, gap, optimality class, context binding and extra authority fields",
+    "Reject nonsymmetric and indefinite H, malformed rationals/dimensions/boxes/tolerances/history; input failure is not proof of infeasibility"
+  ],
+  "protected": [
+    "Original question, box, axis order, objective coefficients, tolerance and ordered history",
+    "PSD and symmetry are explicit assumptions checked before granting the lower bound",
+    "No assumption that zero gradient alone, matching means, a small simplex or epsilon residual establishes optimality",
+    "No native operation, M6 filler, universal grammar, new learned theorem, physical energy or acceleration claim",
+    "Existing receipts, library pins, native runtime and ledger-holder-exit obligation unchanged"
+  ],
+  "provenance": "Original first-party mathematical exposition, code and synthetic fixtures contributed under Unknown v0.3 by ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or guarantee. Existing roadmap, interval and linear-system research are methodological references, not runtime or derivation parents."
+}
