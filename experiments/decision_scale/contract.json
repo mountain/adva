@@ -1,0 +1,18 @@
+{
+  "profile": "adva.research.decision-scale.v0",
+  "frozen_before_execution": "2026-09-17",
+  "question": "Does a declared common positive rational change of loss scale preserve all finite decision minimizers, including ties and null events, while retaining history?",
+  "level": "external bounded transport of finite decision receipts; no native semantics",
+  "request_fields": ["source", "factor", "target_unit", "step"],
+  "request_rules": "source is a complete finite-decision.v0 context. factor is a canonical rational pair with positive numerator and denominator at most 16; target_unit and step are nonempty strings of at most 80 characters. Target is source with all losses and observation_cost multiplied by factor, loss_unit replaced by target_unit, and step appended to history. Everything else is unchanged. Both source and derived target must fit unchanged decision and probability profiles, including rational and history limits.",
+  "receipt_fields": ["profile", "request", "source_receipt", "target_receipt"],
+  "receiver_order": "Validate the trusted request and derived target domain. Bind candidate request canonically. Check source receipt against expected source. Independently check the supplied target receipt's arithmetic on its declared context, recording only self-consistency, not acceptance for requested use. Then compare its complete context with the derived requested target. Finally verify all risk quantities scale by the same factor, probabilities/posteriors and all minimizer sets remain identical, and null events remain null. Only then accept the transport.",
+  "history": "A forward and inverse transport may recover original numerical/unit data, but append two history records. No history cancellation or native identity is permitted.",
+  "unit_interpretation": "The request declares both labels to measure the same loss quantity. If source numerical losses are multiplied by factor, one target unit is 1/factor source units. Arithmetic checks do not prove a physical or economic unit correspondence or determine human preferences.",
+  "quantifiers": "A proof argument covers exact positive common scaling in the declared finite model. Executed evidence covers only the fixed cases and controls; both endpoint implementations remain bounded.",
+  "budgets": {"routes": 1, "campaign_seconds": 30, "receiver_calls": 40, "child_seconds": 3, "child_address_space_bytes": 134217728, "child_cpu_seconds": 3, "child_output_bytes": 262144, "input_bytes_each": 32768, "work_units_including_all_parents": 10000, "search_candidates": 0, "implementation_correction_replays": 1},
+  "cases": ["low-cost factor 3/2", "high-cost factor 2", "conditional tie factor 1/2", "asymmetric reuse factor 2/3", "null event factor 3/2", "acquisition tie factor 2", "inverse of low-cost factor 2/3"],
+  "controls": ["loss-only scaling", "cost-only scaling", "target history erased", "changed action roles", "changed request factor", "wrong target risk", "unsupported free field", "zero factor", "negative factor", "Boolean factor", "noncanonical factor", "target outside rational bound", "target history outside bound"],
+  "residual": "No physical unit registry, affine offsets, negative scales, state-dependent rescaling, automated preference inference, learned model, native transport, free, M6, universality or speedup. Independent endpoint arithmetic alone cannot authorize transport. Refusals retain the complete expected request and empty semantic delta.",
+  "origin": "Project-original under Unknown v0.3. ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his review or correctness guarantee. Existing project probability and decision code is an explicit dependency."
+}

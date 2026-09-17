@@ -113,3 +113,18 @@ The next small step returns to priority 1: transport the loss and observation
 cost through a checked positive unit scaling. Scaling both must preserve action
 and acquisition minimizers; scaling only one changes the decision problem.
 The frozen original campaign and its resource account remain unchanged.
+
+## Common loss-scale continuation, 2026-09-17
+
+After PR #187 was merged, the [scale receipt](../../experiments/decision_scale/README.md)
+checked a common positive scaling of every loss and the observation cost. Seven
+transports preserve probabilities, all minimizers and null events. Twenty-seven
+evidence controls and six unsupported requests are refused; ten controls have
+two arithmetically valid endpoints but fail the requested correspondence. Scaling
+only loss or only cost can reverse the observe-versus-skip choice. Forward and
+inverse transport recover numbers and unit labels while retaining two steps.
+
+This realizes one finite part of priority 1; unit compatibility remains a
+declared premise. No native operation or vocabulary is added. The next small
+obligation is receiving a two-step composition with its exact intermediate
+context and ordered history, without replacing that history by a product factor.

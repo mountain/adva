@@ -1,0 +1,35 @@
+name: Decision scale receipt
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/decision_scale/**'
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/decision-scale.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/decision_scale/**'
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/decision-scale.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  decision-scale:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify finite common-scale transport and refusals
+        run: timeout 35s python3 -B -S experiments/decision_scale/run.py --output "$RUNNER_TEMP/decision-scale"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: decision-scale-evidence
+          path: ${{ runner.temp }}/decision-scale
