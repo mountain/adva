@@ -1,0 +1,21 @@
+{
+  "profile": "adva.research.probability-receipt.v0",
+  "base": "0dbd2d8e048f2ad210eb40cf1834fdcda59604ad",
+  "question": "Can a separate fresh receiver bind exact finite probability, observation loss and conditioning to the receiver-selected question?",
+  "authority": "External research receiver; no native Adva identity or probability operation",
+  "context_fields": ["question", "carrier", "reference", "probability", "observation", "observable", "history", "scope"],
+  "context_types": "question string; carrier 1..6 unique strings; reference/probability rational pair lists; reference strictly positive and totals one; probability nonnegative and totals one; observation same-length nonempty strings; observable exactly {name:string,unit:string,values:rational pairs}; history 1..4 strings; scope literal complete-declared-finite-carrier",
+  "rational_wire": "Canonical [integer numerator, positive integer denominator], reduced, exact integers excluding bool; context abs numerator and denominator <=1024, receipt scalar abs numerator and denominator <=1000000000",
+  "receipt_fields": ["profile", "context", "claims"],
+  "claim_fields": ["density", "density_mean", "density_energy", "density_variance", "atoms", "observed_energy", "hidden_residual", "expectation", "variance", "tower_expectation", "within_variance", "between_variance"],
+  "atom_fields": ["label", "reference_mass", "probability_mass", "density", "conditional", "conditional_mean", "conditional_variance"],
+  "atom_contract": "One atom per observed label, lexicographically sorted. Conditional is a full carrier-length probability vector given that label, using probability masses rather than reference masses. At zero event probability all three conditional fields are null, never fabricated by division by zero.",
+  "identities": ["density energy = 1 + density variance", "fine energy = observed energy + hidden residual", "E[f] = sum event-mass * E[f|event]", "Var(f) = within variance + between variance"],
+  "instances": ["S3 previous hidden distribution, cycle-type observation, fixed-point-count observable", "C4 previous hidden distribution, parity observation, integer-index observable", "C4 identity-only distribution with a zero-probability odd event"],
+  "checker": "Receive expected.json and candidate.json in separate processes. Strict duplicate-key/type/schema/resource checks; exact context equality; separately implemented finite identities and conditional-table checks. Shares Python and Fraction with producer, not an independent formal proof.",
+  "controls": ["changed question", "recomputed alternative reference", "recomputed alternative observation", "recomputed alternative observable", "changed history", "erased hidden residual", "incorrect variance", "dropped density element", "unsupported global-close field", "Boolean rational numerator", "invented conditional law"],
+  "limits": {"campaign_seconds": 30, "receiver_seconds": 3, "max_child_processes": 36, "receiver_work_units": 10000, "max_wire_bytes": 32768, "child_address_space_mib": 128, "max_output_bytes_per_child": 262144, "search_candidates": 0, "correction_campaigns": 1},
+  "outcomes": "AcceptedFiniteReceipt / InvalidEvidence / InvalidContext / UnknownBudget / ImplementationFailure; never global Close or free",
+  "residual": "Receiver-selected context is trusted local input, not authenticated human intent. Source group laws are not re-proved by this probability receiver. No hostile-service isolation, native receipt import, general sampling law, infinite measure, convergence, acceleration or practical benefit is established.",
+  "origin": "Original work under Unknown v0.3; ChatGPT (OpenAI), through Mingli Yuan's account proxy; not endorsement or correctness guarantee"
+}
