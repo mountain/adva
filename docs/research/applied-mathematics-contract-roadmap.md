@@ -283,3 +283,33 @@ a refusal. Keep exact-zero proof, small residual and unresolved sign distinct;
 input interval uncertainty is not automatically a sampling probability or a
 floating-point error model. Arbitrary linear-system dimensions, formal proof
 artifacts, native import and the separate ledger-holder-exit obligation remain open.
+
+## Caller-bound rational interval enclosures, 2026-09-17
+
+After PR #194 merged, the [expression enclosure receiver](../../experiments/interval_enclosure/README.md)
+advances priority 4 with exact rational +,-,*,/ and optional outward grid
+rounding at every node, including leaves. It binds a finite expression DAG,
+variable boxes, node order, mode, grid, epsilon and history. The earlier
+Feigenbaum and Sharkovsky implementations remain separate, unchanged references.
+
+One campaign passes 641 assertions in 53 fresh processes: 20 complete enclosures,
+five retained division-domain gaps, 18 evidence refusals and ten invalid contexts.
+All nine product sign cases are checked independently from a corner-based
+producer. Four inward-rounding counterexamples exclude legal original endpoints.
+Both tiny positive and zero-containing intervals meet an epsilon magnitude bound
+without becoming ExactZero. For x in [1,2], x-x and x/x remain naturally enclosed
+by [-1,1] and [1/2,2]; refusing a shortcut under the selected trace policy does
+not deny their algebraic identities.
+
+UnknownDomain means the propagated denominator has not excluded zero. The
+well-defined expression x/(x-x+1) is one witness of dependency loss; rounding a
+strictly positive box to a coarse grid is another. A separately selected finer
+grid completes the latter case. No automatic precision increase, domain
+extension, rewrite or renewed fuel is supplied. Exact enclosure arithmetic is
+not a probability measure or a binary64 error model.
+
+The next mathematical step is priority 5: bounded optimization with a feasible
+candidate, a separately checked lower bound and an explicit gap. Contracted
+search intervals, small residuals and matching means cannot replace an
+optimality certificate. General interval functions, dependency-aware
+interpretation, native import and the ledger-holder-exit obligation remain open.

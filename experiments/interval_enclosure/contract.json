@@ -1,0 +1,167 @@
+{
+  "profile": "adva.research.interval-enclosure.v0",
+  "version": 0,
+  "frozen_before_execution": true,
+  "base_commit": "afd929ed37198bbab1c7f338aba449f83616b7cc",
+  "question": "Can a receiver verify every rational expression enclosure without silently reversing rounding, losing a zero-domain obligation, or identifying small/uncertain values with exact zero or one?",
+  "level": "External finite research protocol, no native identities or rewrites",
+  "domain": "All rational valuations in closed boxes with canonical rational endpoints. Repeated variable names or references use the same value. Natural interval evaluation forgets some dependency; it does not change this meaning. Bounds on encodings are not a finite closed field.",
+  "input_schema": {
+    "request": [
+      "question",
+      "variables",
+      "nodes",
+      "mode",
+      "grid",
+      "epsilon",
+      "history",
+      "scope"
+    ],
+    "variable": [
+      "name",
+      "interval"
+    ],
+    "var_node": [
+      "op",
+      "name"
+    ],
+    "const_node": [
+      "op",
+      "value"
+    ],
+    "binary_node": [
+      "op",
+      "left",
+      "right"
+    ],
+    "operations": [
+      "add",
+      "sub",
+      "mul",
+      "div"
+    ],
+    "scope": "all-rational-valuations-in-box"
+  },
+  "input_bounds": {
+    "variables_max": 2,
+    "nodes_range": [
+      1,
+      7
+    ],
+    "max_depth_leaf_one": 4,
+    "all_nodes_reachable_from_last": true,
+    "references": "strict integer indices of earlier nodes; no Boolean; evaluation in index order",
+    "all_variables_used": true,
+    "input_rational_components_max": 64,
+    "history_entries": [
+      1,
+      4
+    ],
+    "labels_characters": [
+      1,
+      80
+    ],
+    "epsilon": "positive rational; a magnitude bound, not an equality tolerance"
+  },
+  "rounding": {
+    "modes": [
+      "exact-rational",
+      "outward-grid"
+    ],
+    "exact_grid": null,
+    "grid_denominators": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      32,
+      64
+    ],
+    "grid_meaning": "step1/N",
+    "stages": "Every leaf and operation, including constants and input variables. raw/tight is computed from the propagated child enclosures, not a globally sharp range.",
+    "formula": "floor(N*lo)/N for lower, ceil(N*hi)/N for upper, including negative endpoints. Exact-rational mode does no rounding."
+  },
+  "candidate_schema": {
+    "outer": [
+      "profile",
+      "request",
+      "trace",
+      "result"
+    ],
+    "entry": [
+      "index",
+      "tight",
+      "enclosure"
+    ],
+    "complete_result": [
+      "kind",
+      "interval",
+      "zero_class",
+      "one_class",
+      "within_epsilon"
+    ],
+    "domain_result": [
+      "kind",
+      "node",
+      "denominator"
+    ],
+    "context_binding": "Full receiver-selected request, expression, boxes, mode, grid, epsilon and history"
+  },
+  "judgments": {
+    "VerifiedEnclosure": "Every exact natural-interval step and declared outward rounding matches; complete root enclosure is accepted.",
+    "UnknownDomain": "First propagated denominator interval contains zero; validate exact prefix and explicit obstruction, with no accepted root or semantic delta. This does not prove actual pole or inconsistency.",
+    "ExactZero": "Only singleton[0,0]. StrictPositive/StrictNegative if interval lies on one side; otherwise ZeroUndetermined.",
+    "ExactOne": "Only singleton[1,1]. ExcludesOne if1 outside interval, otherwise OneUndetermined.",
+    "within_epsilon": "The whole enclosure is inside[-epsilon,epsilon], separately from exactness.",
+    "InvalidEvidence": "Wrong request, trace, arithmetic, classifications or failure record; no mathematical refutation of a dependency-aware shortcut follows.",
+    "InvalidContext": "Unsupported/malformed expected context; raw parse failures retain bytes but no decoded expected_request."
+  },
+  "proof_basis": "Induction over finite ordered nodes. Primitive interval formulas enclose all values of each total arithmetic operation; excluding denominator zero supplies division domain. Outward rounding preserves inclusion. Parent boxes are supersets even with shared variables, so inclusion is sound but need not be sharp. This original elementary argument is not a proof-kernel artifact.",
+  "campaign": {
+    "routes": 1,
+    "fresh_processes": 53,
+    "VerifiedEnclosure": 20,
+    "UnknownDomain": 5,
+    "InvalidEvidence": 18,
+    "InvalidContext": 10,
+    "sign_products": "All nine ordered negative/crossing/positive interval sign classes; independent sign formulas versus corner producer",
+    "other_complete": "positive/negative grid reuse; negative quotient; nested +,-,*; exact zero and one; small positive and uncertain; dependency x-x and x/x; fine grid positive denominator",
+    "domain_obligations": [
+      "1/x acrosszero",
+      "0/x touchingzero",
+      "x/(x-x+1) dependency obstruction",
+      "strictly positive denominator rounded toincludezero",
+      "0*(1/x) must not mask an earlier pole"
+    ],
+    "rounding_counterexamples": "Four original endpoint witnesses show inward lower/upper rounding excludes allowed values on positive and negative boxes. Dependency shortcuts are separate policy refusals, not these unsoundness witnesses."
+  },
+  "budget": {
+    "campaign_wall_seconds": 30,
+    "processes_max": 53,
+    "receiver_wall_seconds": 3,
+    "receiver_cpu_seconds": 3,
+    "receiver_AS_bytes": 134217728,
+    "wire_bytes_each": 32768,
+    "file_bytes_each": 262144,
+    "receiver_work_each": 10000,
+    "producer_work": 10000,
+    "point_work": 10000,
+    "aggregate_counted_work": 100000,
+    "receiver_intermediate_bits": 512,
+    "search_candidates": 0,
+    "implementation_correction_replays_max": 1
+  },
+  "independence": "Producer enumerates four endpoint corners with Fraction floor/ceil. Receiver uses sign-case multiplication, reciprocal intervals and integer divmod rounding; it imports no producer or legacy campaign. A separate direct rational evaluator samples original valuation boxes. Samples expose counterexamples but do not prove universal enclosure. Python/Fraction remains shared.",
+  "costs": "Time construction, receiving, serialization, direct observations and archive separately where measured; record receiver/producer/sample counters and Linux child maximum/supervisor RSS. Some fixture/control copying appears only in total wall; research/review/network/CI not timed separately.",
+  "protected": [
+    "Earlier Feigenbaum/logistic and Sharkovsky contracts/evidence unchanged and not rerun",
+    "Native Rust, locks and library entries unchanged",
+    "Expression-node references are external syntax, not native sharing/source identities",
+    "No probability measure, statistical uncertainty or binary64 error-model claim",
+    "No automatic algebraic cancellation, native Close/free/M6 or universality claim",
+    "Ledger-holder-exit and general native arithmetic remain open"
+  ],
+  "provenance": "Original code/prose and synthetic evidence under Unknown v0.3; legacy modules are methodological references, not new imports or derivation parents.",
+  "attribution": "ChatGPT (OpenAI), through Mingli Yuan authorized account proxy; not his review, endorsement or correctness guarantee."
+}
