@@ -1,0 +1,414 @@
+{
+  "assertions": 603,
+  "cases": [
+    {
+      "case": "valid/interior",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18035680200046045,
+      "work_units": 93
+    },
+    {
+      "case": "valid/nonoptimal",
+      "outcome": "VerifiedGap",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.12772348900034558,
+      "work_units": 93
+    },
+    {
+      "case": "valid/weak-bound",
+      "outcome": "VerifiedGap",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18209089000083623,
+      "work_units": 93
+    },
+    {
+      "case": "valid/active-boundary",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18392489399775513,
+      "work_units": 93
+    },
+    {
+      "case": "valid/rank-one",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1809850629979337,
+      "work_units": 93
+    },
+    {
+      "case": "valid/rank-one-tie",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.13070356900061597,
+      "work_units": 93
+    },
+    {
+      "case": "valid/constant",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1308896030022879,
+      "work_units": 93
+    },
+    {
+      "case": "valid/reuse-negative",
+      "outcome": "VerifiedGap",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.18127058800018858,
+      "work_units": 44
+    },
+    {
+      "case": "valid/tiny-positive-gap",
+      "outcome": "EpsilonOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.17939952300002915,
+      "work_units": 44
+    },
+    {
+      "case": "valid/epsilon-boundary",
+      "outcome": "EpsilonOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.1809708420005336,
+      "work_units": 44
+    },
+    {
+      "case": "valid/signed-linear",
+      "outcome": "ExactOptimal",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.17917931799820508,
+      "work_units": 44
+    },
+    {
+      "case": "valid/singleton",
+      "outcome": "VerifiedGap",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.12938075100100832,
+      "work_units": 44
+    },
+    {
+      "case": "valid/outside-anchor",
+      "outcome": "VerifiedGap",
+      "reason": "feasible-upper-and-psd-affine-lower-gap-checked",
+      "returncode": 0,
+      "wall_seconds": 0.17847919300038484,
+      "work_units": 44
+    },
+    {
+      "case": "valid/no-lower",
+      "outcome": "UnknownLowerBound",
+      "reason": "feasible-point-checked-no-lower-certificate",
+      "returncode": 0,
+      "wall_seconds": 0.12720095500117168,
+      "work_units": 46
+    },
+    {
+      "case": "valid/constant-no-lower",
+      "outcome": "UnknownLowerBound",
+      "reason": "feasible-point-checked-no-lower-certificate",
+      "returncode": 0,
+      "wall_seconds": 0.12775676300225314,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/outside-candidate",
+      "outcome": "InvalidEvidence",
+      "reason": "point:outside-box",
+      "returncode": 0,
+      "wall_seconds": 0.1803648630011594,
+      "work_units": 26
+    },
+    {
+      "case": "evidence/upper-without-half",
+      "outcome": "InvalidEvidence",
+      "reason": "upper:objective-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18581718399946112,
+      "work_units": 46
+    },
+    {
+      "case": "evidence/wrong-gradient",
+      "outcome": "InvalidEvidence",
+      "reason": "lower:gradient-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.19157235500097158,
+      "work_units": 60
+    },
+    {
+      "case": "evidence/wrong-corner",
+      "outcome": "InvalidEvidence",
+      "reason": "lower:corner-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.12892462699892349,
+      "work_units": 64
+    },
+    {
+      "case": "evidence/wrong-lower",
+      "outcome": "InvalidEvidence",
+      "reason": "lower:value-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1289359179972962,
+      "work_units": 91
+    },
+    {
+      "case": "evidence/wrong-gap",
+      "outcome": "InvalidEvidence",
+      "reason": "claim:gap-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.1282966269973258,
+      "work_units": 93
+    },
+    {
+      "case": "evidence/false-exact",
+      "outcome": "InvalidEvidence",
+      "reason": "claim:kind-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18631643999833614,
+      "work_units": 44
+    },
+    {
+      "case": "evidence/false-epsilon",
+      "outcome": "InvalidEvidence",
+      "reason": "claim:kind-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18573571299930336,
+      "work_units": 93
+    },
+    {
+      "case": "evidence/tied-corner-policy",
+      "outcome": "InvalidEvidence",
+      "reason": "lower:corner-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.18340772100054892,
+      "work_units": 64
+    },
+    {
+      "case": "evidence/changed-H",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.13291545899846824,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-c",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.12912822699945536,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-constant",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.12867305200052215,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-box",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1290258620028908,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-axes",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.12950752600227133,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-tolerance",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1813883610011544,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-history",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1819917680004437,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/changed-question",
+      "outcome": "InvalidEvidence",
+      "reason": "request:binding",
+      "returncode": 0,
+      "wall_seconds": 0.1817831379994459,
+      "work_units": 22
+    },
+    {
+      "case": "evidence/wrong-profile",
+      "outcome": "InvalidEvidence",
+      "reason": "profile:unsupported",
+      "returncode": 0,
+      "wall_seconds": 0.12823463400127366,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/extra-authority",
+      "outcome": "InvalidEvidence",
+      "reason": "candidate:fields",
+      "returncode": 0,
+      "wall_seconds": 0.12992445900090388,
+      "work_units": 21
+    },
+    {
+      "case": "evidence/changed-anchor",
+      "outcome": "InvalidEvidence",
+      "reason": "lower:gradient-mismatch",
+      "returncode": 0,
+      "wall_seconds": 0.17873620700265747,
+      "work_units": 60
+    },
+    {
+      "case": "context/dimension-three",
+      "outcome": "InvalidContext",
+      "reason": "axes:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.1811325329981628,
+      "work_units": 0
+    },
+    {
+      "case": "context/duplicate-axes",
+      "outcome": "InvalidContext",
+      "reason": "axes:duplicate",
+      "returncode": 0,
+      "wall_seconds": 0.18645972200101824,
+      "work_units": 0
+    },
+    {
+      "case": "context/matrix-shape",
+      "outcome": "InvalidContext",
+      "reason": "H:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.1849366979986371,
+      "work_units": 0
+    },
+    {
+      "case": "context/vector-shape",
+      "outcome": "InvalidContext",
+      "reason": "c:dimension",
+      "returncode": 0,
+      "wall_seconds": 0.12937605300248833,
+      "work_units": 4
+    },
+    {
+      "case": "context/nonsymmetric",
+      "outcome": "InvalidContext",
+      "reason": "H:nonsymmetric",
+      "returncode": 0,
+      "wall_seconds": 0.12806455900135916,
+      "work_units": 9
+    },
+    {
+      "case": "context/positive-determinant-negative-diagonals",
+      "outcome": "InvalidContext",
+      "reason": "H:negative-principal-minor",
+      "returncode": 0,
+      "wall_seconds": 0.12832475599861937,
+      "work_units": 12
+    },
+    {
+      "case": "context/nonnegative-diagonals-indefinite",
+      "outcome": "InvalidContext",
+      "reason": "H:negative-determinant",
+      "returncode": 0,
+      "wall_seconds": 0.17824654300056864,
+      "work_units": 16
+    },
+    {
+      "case": "context/reversed-box",
+      "outcome": "InvalidContext",
+      "reason": "box:reversed",
+      "returncode": 0,
+      "wall_seconds": 0.17813521700009005,
+      "work_units": 20
+    },
+    {
+      "case": "context/negative-tolerance",
+      "outcome": "InvalidContext",
+      "reason": "tolerance:negative",
+      "returncode": 0,
+      "wall_seconds": 0.18640760600101203,
+      "work_units": 21
+    },
+    {
+      "case": "context/zero-denominator",
+      "outcome": "InvalidContext",
+      "reason": "rational:positive-denominator",
+      "returncode": 0,
+      "wall_seconds": 0.18727914099872578,
+      "work_units": 7
+    },
+    {
+      "case": "context/float-number",
+      "outcome": "InvalidContext",
+      "reason": "json:noninteger-number",
+      "returncode": 0,
+      "wall_seconds": 0.12971962500159862,
+      "work_units": 0
+    },
+    {
+      "case": "context/boolean-number",
+      "outcome": "InvalidContext",
+      "reason": "rational:integer-type",
+      "returncode": 0,
+      "wall_seconds": 0.12895951400059857,
+      "work_units": 7
+    },
+    {
+      "case": "context/history-capacity",
+      "outcome": "InvalidContext",
+      "reason": "history:length",
+      "returncode": 0,
+      "wall_seconds": 0.17910823700003675,
+      "work_units": 21
+    }
+  ],
+  "child_maxrss_kib": 10368,
+  "evidence_bytes_before_summary": 167991,
+  "failure": null,
+  "limits": "RSS is Linux process high water, not aggregate. Reading, review, network, final archive/report costs are not in campaign time.",
+  "phases": {
+    "construction_seconds": 0.010531769010412972,
+    "point_observation_seconds": 0.012520770000264747,
+    "receiving_seconds": 7.637142588009738,
+    "serialization_seconds": 0.10306449000563589
+  },
+  "point_work": 532,
+  "producer_work": 778,
+  "profile": "adva.research.quadratic-gap.v0",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "receiver_calls": 48,
+  "receiver_work": 1958,
+  "search_candidates": 0,
+  "source_sha256": {
+    "contract.json": "13efa73940b27a32b56faeed462a249c7fd518a2d5b578302755d132c6b98a0a",
+    "receive.py": "37cf318d0b865087b57169df05113914df768a63a5ff5465bf2636ab96495380",
+    "run.py": "2964712247ec68d56235fb1982d747b3b4ad805cf6cf85e0279958d86f11856d"
+  },
+  "success": true,
+  "supervisor_maxrss_kib": 12928,
+  "wall_seconds": 7.977450931000931
+}
