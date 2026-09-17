@@ -1,0 +1,31 @@
+name: Finite probability receipt
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/probability_receipt/**'
+      - 'experiments/finite_group_probability/evidence/attempt-1/result.json'
+      - '.github/workflows/probability-receipt.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/probability_receipt/**'
+      - 'experiments/finite_group_probability/evidence/attempt-1/result.json'
+      - '.github/workflows/probability-receipt.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finite-receipt:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check the fixed finite receipts in fresh processes
+        run: timeout 35s python3 -B -S experiments/probability_receipt/run.py --output "$RUNNER_TEMP/probability-receipt"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finite-probability-receipt-evidence
+          path: ${{ runner.temp }}/probability-receipt

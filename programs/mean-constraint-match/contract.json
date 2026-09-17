@@ -1,0 +1,14 @@
+{
+  "schema": "adva.research.mean-constraint-match.v0",
+  "base": "44c0ce377a22981628cd50cce81928e8830ca0a4",
+  "question": "Does the weighted finite subset mean equal the target k, and what variance and explicit coverage obstruction remain?",
+  "name_status": "Proposed research condition; not a new native operation",
+  "domain": "Exact integers 1<=k<=n<=6, 1<=a<=b<=8; t=a/b; all subsets of [n] have weight t^cardinality",
+  "meaning": "mean-constraint-match holds iff n*a=k*(a+b), after domain checks. Output variance is Var(J/k), not Var(J).",
+  "coverage": "The named coverage question is whether subsets of cardinality <=k exhaust ALL subsets. k=n is complete; otherwise the full-support subset is an explicit omitted witness with mass a^n/(a+b)^n. This witness mass is a lower bound on, not equal to, the entire omitted mass.",
+  "arithmetic": "Signed checked i64; domain bounds imply every intermediate <=16^6=16777216. No division, logarithms, exponential approximation, square root, floats or tolerances are used by the program.",
+  "limits": {"fuel_per_run": 2048, "wall_seconds_per_child": 30, "campaign_wall_seconds": 120, "maximum_native_calls": 32, "search_candidates": 0, "maximum_fixtures": 16, "maximum_correction_campaigns": 1},
+  "roles": "Adva instructions compute domain checks, mean comparison, variance pair and witness mass. Rust runs and replays them. Python assembles labels, supplies fixtures, supervises, and compares outputs with independent formulas; external simulation is explicitly not native execution.",
+  "residuals": ["No physical-energy interpretation", "No std target was specified; variance is observed, not matched", "Mean equality is not samplewise equality", "No ordering/history quotient for actual Adva programs is justified", "No universal search speedup, native free or M6 closure"],
+  "origin": "Project-original under Unknown v0.3; ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy. No article text, code, images or textbook material is incorporated."
+}

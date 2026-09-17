@@ -1,11 +1,13 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **214 numbered
-notes, 42 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 43 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
 ## How to read this directory
+
+- [Applied mathematics contract roadmap](applied-mathematics-contract-roadmap.md): existing capabilities and the ordered gaps after finite probability receipts; proposed obligations, not new native operations.
 
 - [Continuation binding after implementation failure](continuation-binding-after-implementation-failure.md): finite fresh-process retry with the complete receiver-selected checkpoint and failure parent retained; no native recovery claim.
 

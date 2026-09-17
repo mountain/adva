@@ -1,0 +1,33 @@
+name: Finite decision receipt
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/finite-decision.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/finite_decision/**'
+      - 'experiments/probability_receipt/receive.py'
+      - 'experiments/probability_receipt/run.py'
+      - '.github/workflows/finite-decision.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finite-decision:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Verify finite decisions against the fixed probability boundary
+        run: timeout 35s python3 -B -S experiments/finite_decision/run.py --output "$RUNNER_TEMP/finite-decision"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finite-decision-evidence
+          path: ${{ runner.temp }}/finite-decision

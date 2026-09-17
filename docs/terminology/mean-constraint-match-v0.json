@@ -1,0 +1,18 @@
+{
+  "term": "mean-constraint-match",
+  "chinese": "平均约束匹配",
+  "status": "Proposed",
+  "role": "Recognize equality between a specified weighted mean and a target scale",
+  "input": "Integers n,k,a,b; mathematical domain 1<=k<=n and 1<=a<=b, with a finite subset distribution proportional to (a/b)^cardinality",
+  "relation": "mean(J/k)=1 iff n*a=k*(a+b), after domain and positive-denominator checks",
+  "program_domain": "1<=k<=n<=6 and 1<=a<=b<=8",
+  "output": "Mean ratio, normalized variance ratio, mean-match bit, separate coverage-complete bit and omitted full-subset witness mass",
+  "witness": {"input": [3,1,1,2], "mean": [3,3], "variance": [6,9], "coverage_complete": false, "omitted_witness": [1,27]},
+  "reuse": {"input": [5,2,2,3], "mean": [10,10], "variance": [30,100], "coverage_complete": false, "omitted_witness": [32,3125]},
+  "refusal": "Reject zero/negative denominator, a>b, k>n, invalid integer types or inputs outside the executable capacity; a bare cross-product equality cannot bypass these checks",
+  "counterexample": "(3,2,2,1) satisfies the bare equality but lies outside t<=1; (3,2,1,1) is a constrained boundary optimum without mean matching",
+  "expansion": "Z(t)=(1+t)^n; t*Z'(t)/Z(t)=n*t/(1+t); d log(Z/t^k)/d log(t)=k*(mean(J/k)-1)",
+  "replay": "programs/mean-constraint-match/README.md; native adva data-run with lifetime fuel 2048 followed by --check --quantum 0",
+  "residual": "Not a physical energy, complete coverage, samplewise equality, native primitive, general optimizer certificate or native free; no std target has been specified",
+  "origin": {"authorship": "Project-original under Unknown v0.3, authored by ChatGPT (OpenAI) through Mingli Yuan's authorized account proxy; not his technical verification"}
+}
