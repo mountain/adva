@@ -1,6 +1,32 @@
 schema_version = 1
 
 [[claim]]
+claim_id = "adva.bounded-experiment.pascal-spectre-patch.v0"
+canonical_name = "A four-copy exact curved patch coexists with an unfillable-corner obstruction to plane tiling"
+code_symbol = "experiments/pascal_spectre_patch/patch.py; experiments/pascal_spectre_patch/obstruction.py"
+dimension = "external exact planar geometry and rational stereographic sphere coordinates"
+status = "bounded-experiment"
+scope = "The fixed rational Pascal-circle candidate, four congruent copies, three shared degree-five curved seams, 1378 separated control-hull pairs, 336 exact sphere samples and one strict local-angle obstruction"
+assumptions = ["Compact Jordan tiles with piecewise regular smooth boundary and positive area", "Euclidean congruence, allowing reflections for the impossibility result", "The proposed curves preserve all endpoint tangent angles", "Python Fraction arithmetic and the displayed mathematical proof are external, not native Adva authority"]
+dependencies = ["adva.bounded-experiment.rational-pascal-circles.v1"]
+proof_or_certificate = "experiments/pascal_spectre_patch/evidence/patch.json retains three proposals, the two failed sufficient hull certificates and the successful epsilon=1/100000 curve certificate. obstruction.py independently certifies that the complement of corner p4 is smaller than every tile corner and pi; TILING_OBSTRUCTION.md proves this forbids every full-plane tiling by the fixed shape, including reflections and non-edge-to-edge contacts. evidence/obstruction.json retains exact comparisons. The complete spherical adjacent-corner chord-length multisets differ. Eight executed controls and a separate proof review are retained in evidence/validation.json."
+counterexample_boundary = "Local contact is possible but no complete vertex corona or infinite tiling is obtained. The angle obstruction excludes this candidate and simple regular curve replacements preserving its corner angles, not all Pascal-circle candidates or curves with different tangents. Sphere lifting preserves gaps and is intrinsically two-dimensional; the projected copies are not all congruent. Existing four-dimensional Spectre cut-and-project results require their original tiling and substitution structure. No native Seal, Rust change, geometry catalog admission or new aperiodic monotile is established."
+forbidden_conflations = ["Whole-curve exact fit with sampled proximity", "A finite patch with a plane tiling", "Failed sufficient control-hull separation with actual curve intersection", "One candidate obstruction with impossibility of all Pascal-circle configurations", "Stereographic embedding in R3 with a cut-and-project scheme", "Rational sphere coordinates with unchanged congruence", "Existing Spectre model-set theory with a proof for an arbitrary deformed polygon", "Separate AI proof review with human or institutional verification"]
+
+[[claim]]
+claim_id = "adva.bounded-experiment.rational-pascal-circles.v1"
+canonical_name = "A learned rational simple fourteen-point polygon realizes fixed five/four-circle Pascal bindings and circle-center incidence"
+code_symbol = "experiments/pascal_circle_learning/run.py; experiments/pascal_circle_learning/check.py"
+dimension = "external rational Euclidean/projective incidence and finite numerical learning"
+status = "bounded-experiment"
+scope = "One fixed labelling, two tangent-degenerate Pascal hexagons, one red infinity point, fourteen rational affine vertices and the blue center exactly on the red circle; one bounded 48012-proposal run and one exact reconstruction check"
+assumptions = ["Q embeds in R and the projective plane", "Adjacent repeated circle points denote actual Euclidean tangents", "Python Fraction is external arithmetic, not Rust semantic authority", "An explicitly supplied external Tile seed is a fitting target; original angles and edge lengths are released"]
+dependencies = []
+proof_or_certificate = "experiments/pascal_circle_learning/evidence/candidate.json supplies the exact witness; check.py independently computes circle membership, tangents, intersections, projective collinearity, target bindings, distinctness and polygon simplicity. MATHEMATICS.md proves the rational construction and an original-shape rationality obstruction. evidence/report.json retains the finite run and residual displacement."
+counterexample_boundary = "Pascal collinearity alone is automatic and does not bind existing Tile vertices. The source fails the bindings. The learned fit has RMS displacement 1.4291391728 seed edge lengths and is not minimal. No preserved Tile angles, edge lengths, tiling, aperiodicity, continuous feasible deformation, native learn command, Rust certificate, geometry catalog admission or Seal is established."
+forbidden_conflations = ["Constructed Pascal collinearity with equality to assigned vertices", "Floating fit with exact incidence", "Rounded coordinates with rational reconstruction", "Bounded failure with nonexistence", "Rational existence with original-shape preservation", "Independent checker with human or institutional review", "External proposal/check discipline with native Adva learning"]
+
+[[claim]]
 claim_id = "adva.bounded-experiment.cube-root-polar-covariance.v0"
 canonical_name = "Cube-root conjugation intertwines polarity but is not the polar construction"
 code_symbol = "experiments/cube_root_polar/replay.py"

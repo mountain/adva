@@ -1,0 +1,57 @@
+{
+  "schema": "adva.external.pascal-circle-learning.contract.v0",
+  "base_commit": "b9d54665881ffa6877075e980f381db36a1aeaf4",
+  "question": "Can a bounded external learner deform fourteen supplied labelled seed points to a simple rational polygon whose odd labels form a five-point degenerate Pascal construction with one point at infinity, and whose even labels form a four-point degenerate Pascal construction?",
+  "level": "External exact rational geometry and bounded parameter learning; no native semantic admission or generic native learn command.",
+  "sources": {
+    "pascal_task": {"path": "adva-library/pascal-task.adva", "sha256": "60d3ca374486239afb82bbe31d821a4d0c02ef947ccf62557753e85137087a5d"},
+    "pascal_witness": {"path": "adva-library/pascal-witness.adva", "sha256": "f20338add39c292db6bac482a2c9265353d6a5a1a5189cc2823398ddc29fe448"},
+    "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+    "external_seed": "An explicit external JSON path; seed bytes and source figures are not silently downloaded, embedded, or published by this experiment.",
+    "external_reference": "https://arxiv.org/abs/2305.17743",
+    "reuse": "experiments/knowledge_geometry/acceleration_direction.py: cross and det3; Research 0131 proposal/check/judgment/update/retention discipline"
+  },
+  "roles": {
+    "red_circle_vertices": [1, 3, 5, 7, 9],
+    "red_finite_intersections": [11, 13],
+    "red_infinite_intersections": 1,
+    "blue_circle_vertices": [2, 4, 8, 12],
+    "blue_finite_intersections": [0, 6, 10]
+  },
+  "imported_assumptions": [
+    "The Euclidean rational plane embeds into the real plane and the projective plane.",
+    "Pascal incidence for a nonsingular conic has tangent limits at adjacent repeated points.",
+    "The rational parametrization ((1-t*t)/(1+t*t), 2*t/(1+t*t)) lies on the unit circle.",
+    "Floating optimization proposes only; Python Fraction arithmetic and an independently implemented checker determine acceptance."
+  ],
+  "protected": [
+    "Exactly fourteen distinct rational finite points, preserving label identity and cyclic polygon boundary order.",
+    "Specified four/five circle membership, positive circle radii, nonzero tangent/chord lines and projective intersections.",
+    "Actual intersection-to-label bindings, not merely the tautological Pascal collinearity residual.",
+    "Exactly one red infinity point, three distinct Pascal intersections per circle, and a simple polygon of nonzero area.",
+    "No tolerance, rounded coordinate, score improvement, or claimed success flag overrides exact checks."
+  ],
+  "released": [
+    "Original Tile edge lengths, angles, circle centers and radii.",
+    "The original straight-angle point 10 may leave the blue circle and bend.",
+    "Tiling, aperiodicity, rigidity, similarity to Tile, global optimality, and native Adva learning are not claimed."
+  ],
+  "objective": "Reduce squared displacement from the explicitly supplied labelled seed within a declared constructive rational family; retain topology failures and the initial role mismatch.",
+  "budget": {
+    "search_evaluations": 50000,
+    "search_wall_seconds": 180,
+    "search_cpu_seconds": 180,
+    "checker_wall_seconds": 30,
+    "total_wall_seconds": 240,
+    "address_space_bytes": 2147483648,
+    "input_bytes": 1048576,
+    "output_bytes": 8388608,
+    "parameter_denominator_limit": 10000,
+    "rational_component_bits": 4096,
+    "automatic_continuations": 0
+  },
+  "acceptance": "Independent exact checker accepts the complete reconstructed rational candidate; otherwise retain Refuted or Unknown and its reason. Search exhaustion is not nonexistence.",
+  "negative_controls": ["changed point", "changed circle", "wrong point-role binding", "collapsed vertices", "zero radius", "noncanonical or nonrational coordinate", "missing tangent handling", "zero fuel"],
+  "authority": "No stable core changes, machine/library lock updates, math catalog successor, native Pascal import, Q4/M6 certificate, or Seal.",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's authorized GitHub account proxy; account use is not his technical review or correctness guarantee."
+}
