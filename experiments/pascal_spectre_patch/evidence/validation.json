@@ -1,0 +1,38 @@
+{
+  "schema": "adva.external.pascal-spectre-validation.v0",
+  "author": "ChatGPT (OpenAI), through Mingli Yuan authorized account proxy; original contribution under Unknown v0.3",
+  "date_utc": "2026-09-18T08:43:27.645431+00:00",
+  "controls": {
+    "command": "python -m unittest discover -s tests/python -p 'test_pascal_spectre_*.py' -v",
+    "status": "Passed",
+    "tests": 8,
+    "elapsed_seconds": 0.015,
+    "cases": [
+      "candidate and reversed polygon orientation",
+      "square and equal-angle L-shape do not prove obstruction",
+      "invalid and inexact geometry rejected",
+      "Bernstein coefficients and half-turn seam identity",
+      "crossing control hulls refused and shared endpoint admitted",
+      "overlap distinguished from shared seam",
+      "exact rational sphere inverse with changed lengths",
+      "exhausted geometry fuel does not reset"
+    ]
+  },
+  "proof_review": {
+    "reviewer": "Separate ChatGPT agent spectre_projection_theory; primary ChatGPT agent also inspected source and proof. No human or institutional review claimed.",
+    "status": "No mathematical issue found",
+    "scope": [
+      "local finiteness and corner obstruction including reflections/non-edge-to-edge contacts",
+      "whole-curve control hull and graph isotopy certificate",
+      "noncongruence from complete adjacent-corner chord-length multisets"
+    ],
+    "clarification": "The sphere test proves the copies are not all mutually congruent; it need not assert pairwise noncongruence."
+  },
+  "execution_scope": "External Python Fraction geometry. No Rust semantic change, native Adva Seal, global tiling existence or aperiodicity claim.",
+  "source_sha256": {
+    "experiments/pascal_spectre_patch/patch.py": "145f72b89cf9cf82bc15fc8aabb6b0c66f715788f438c42c278aa36e2b963fc4",
+    "experiments/pascal_spectre_patch/obstruction.py": "7d782e83492d16e8cc72860860d004efec793f2ee9a614746ebd13d215065f8e",
+    "tests/python/test_pascal_spectre_patch.py": "1fa69b03d3c00d961cb51dfc4310af83498ad80f66af641d9665bf18c4aa497b",
+    "tests/python/test_pascal_spectre_obstruction.py": "28c5f6b9c038ffc7ae952b8b41a28a039548e720be5dc9916cd26e19959dfcb5"
+  }
+}

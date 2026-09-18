@@ -1,6 +1,19 @@
 schema_version = 1
 
 [[claim]]
+claim_id = "adva.bounded-experiment.pascal-spectre-patch.v0"
+canonical_name = "A four-copy exact curved patch coexists with an unfillable-corner obstruction to plane tiling"
+code_symbol = "experiments/pascal_spectre_patch/patch.py; experiments/pascal_spectre_patch/obstruction.py"
+dimension = "external exact planar geometry and rational stereographic sphere coordinates"
+status = "bounded-experiment"
+scope = "The fixed rational Pascal-circle candidate, four congruent copies, three shared degree-five curved seams, 1378 separated control-hull pairs, 336 exact sphere samples and one strict local-angle obstruction"
+assumptions = ["Compact Jordan tiles with piecewise regular smooth boundary and positive area", "Euclidean congruence, allowing reflections for the impossibility result", "The proposed curves preserve all endpoint tangent angles", "Python Fraction arithmetic and the displayed mathematical proof are external, not native Adva authority"]
+dependencies = ["adva.bounded-experiment.rational-pascal-circles.v1"]
+proof_or_certificate = "experiments/pascal_spectre_patch/evidence/patch.json retains three proposals, the two failed sufficient hull certificates and the successful epsilon=1/100000 curve certificate. obstruction.py independently certifies that the complement of corner p4 is smaller than every tile corner and pi; TILING_OBSTRUCTION.md proves this forbids every full-plane tiling by the fixed shape, including reflections and non-edge-to-edge contacts. evidence/obstruction.json retains exact comparisons. The complete spherical adjacent-corner chord-length multisets differ. Eight executed controls and a separate proof review are retained in evidence/validation.json."
+counterexample_boundary = "Local contact is possible but no complete vertex corona or infinite tiling is obtained. The angle obstruction excludes this candidate and simple regular curve replacements preserving its corner angles, not all Pascal-circle candidates or curves with different tangents. Sphere lifting preserves gaps and is intrinsically two-dimensional; the projected copies are not all congruent. Existing four-dimensional Spectre cut-and-project results require their original tiling and substitution structure. No native Seal, Rust change, geometry catalog admission or new aperiodic monotile is established."
+forbidden_conflations = ["Whole-curve exact fit with sampled proximity", "A finite patch with a plane tiling", "Failed sufficient control-hull separation with actual curve intersection", "One candidate obstruction with impossibility of all Pascal-circle configurations", "Stereographic embedding in R3 with a cut-and-project scheme", "Rational sphere coordinates with unchanged congruence", "Existing Spectre model-set theory with a proof for an arbitrary deformed polygon", "Separate AI proof review with human or institutional verification"]
+
+[[claim]]
 claim_id = "adva.bounded-experiment.rational-pascal-circles.v1"
 canonical_name = "A learned rational simple fourteen-point polygon realizes fixed five/four-circle Pascal bindings and circle-center incidence"
 code_symbol = "experiments/pascal_circle_learning/run.py; experiments/pascal_circle_learning/check.py"
