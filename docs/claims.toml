@@ -1,6 +1,19 @@
 schema_version = 1
 
 [[claim]]
+claim_id = "adva.bounded-experiment.rational-pascal-circles.v1"
+canonical_name = "A learned rational simple fourteen-point polygon realizes fixed five/four-circle Pascal bindings and circle-center incidence"
+code_symbol = "experiments/pascal_circle_learning/run.py; experiments/pascal_circle_learning/check.py"
+dimension = "external rational Euclidean/projective incidence and finite numerical learning"
+status = "bounded-experiment"
+scope = "One fixed labelling, two tangent-degenerate Pascal hexagons, one red infinity point, fourteen rational affine vertices and the blue center exactly on the red circle; one bounded 48012-proposal run and one exact reconstruction check"
+assumptions = ["Q embeds in R and the projective plane", "Adjacent repeated circle points denote actual Euclidean tangents", "Python Fraction is external arithmetic, not Rust semantic authority", "An explicitly supplied external Tile seed is a fitting target; original angles and edge lengths are released"]
+dependencies = []
+proof_or_certificate = "experiments/pascal_circle_learning/evidence/candidate.json supplies the exact witness; check.py independently computes circle membership, tangents, intersections, projective collinearity, target bindings, distinctness and polygon simplicity. MATHEMATICS.md proves the rational construction and an original-shape rationality obstruction. evidence/report.json retains the finite run and residual displacement."
+counterexample_boundary = "Pascal collinearity alone is automatic and does not bind existing Tile vertices. The source fails the bindings. The learned fit has RMS displacement 1.4291391728 seed edge lengths and is not minimal. No preserved Tile angles, edge lengths, tiling, aperiodicity, continuous feasible deformation, native learn command, Rust certificate, geometry catalog admission or Seal is established."
+forbidden_conflations = ["Constructed Pascal collinearity with equality to assigned vertices", "Floating fit with exact incidence", "Rounded coordinates with rational reconstruction", "Bounded failure with nonexistence", "Rational existence with original-shape preservation", "Independent checker with human or institutional review", "External proposal/check discipline with native Adva learning"]
+
+[[claim]]
 claim_id = "adva.bounded-experiment.cube-root-polar-covariance.v0"
 canonical_name = "Cube-root conjugation intertwines polarity but is not the polar construction"
 code_symbol = "experiments/cube_root_polar/replay.py"

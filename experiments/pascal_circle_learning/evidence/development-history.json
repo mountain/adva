@@ -1,0 +1,51 @@
+{
+  "phases": [
+    {
+      "phase": "existence-pilot",
+      "contract_sha256": "483a7f3db4b8374a709c78acfeaaa270f765ea467853a9cd2f6b9a8407373990",
+      "numerical_candidates": 737,
+      "exact_candidate_attempts": 2,
+      "total_candidate_evaluations": 739,
+      "measured_resources": {
+        "search_exit": 0,
+        "wall_seconds": 0.03842449188232422,
+        "child_cpu_seconds": 0.037482999999999995,
+        "child_peak_rss_kib": 9472,
+        "automatic_continuations": 0
+      },
+      "scope": "Earlier separate finite contract; not a complete witness for the subsequently added circle-center constraint."
+    },
+    {
+      "phase": "v0-source-fit",
+      "contract_sha256": "d54ff2dee328c62392eaf13eded9b3b1fd7a9db3e2a64474e151c483f4ff869a",
+      "numerical_candidates": 48012,
+      "exact_candidate_attempts": 1,
+      "total_candidate_evaluations": 48013,
+      "measured_resources": {
+        "search_exit": 0,
+        "wall_seconds": 0.11583256721496582,
+        "child_cpu_seconds": 0.114462,
+        "child_peak_rss_kib": 10240,
+        "automatic_continuations": 0
+      },
+      "scope": "Earlier separate finite contract; not a complete witness for the subsequently added circle-center constraint."
+    },
+    {
+      "phase": "v1-center-constrained-successor",
+      "contract_path": "experiments/pascal_circle_learning/contract_v1.json",
+      "contract_sha256": "27c79c170afffb58d342b37d573c4989b11f649735ef80e425ddac4c133d0522",
+      "numerical_candidates": 48012,
+      "exact_candidate_attempts": 1,
+      "total_candidate_evaluations": 48013,
+      "report": "report.json",
+      "scope": "Final user requirement, including blue-center-on-red-circle."
+    }
+  ],
+  "total_search_and_candidate_evaluations": 96765,
+  "regression_checks": "Additional checker replays, independent audits and unit controls are validation; their outcomes are recorded separately, not counted as search proposals.",
+  "cancelled": "The v0 packaged replay was never executed; the new user condition superseded it before its first geometry evaluation.",
+  "corrections": [
+    "The v0 exact checker had 25 checks, not 26. The added v1 center condition brings the count to 26.",
+    "The v0 result was not a solution to the completed request."
+  ]
+}
