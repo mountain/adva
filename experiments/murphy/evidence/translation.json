@@ -1,0 +1,81 @@
+{
+  "schema": "zot.iota.translation.v1",
+  "sourceWord": "0001011011",
+  "target": "value after all ten bits, before stop/printer wrapper",
+  "grammar": "i = iota; *AB = application(A,B); no implicit suffix",
+  "iotaDefinition": "iota f = f S K",
+  "method": "S/K/I bracket abstraction without eta; expand I,K,S to Iota",
+  "iotaLeaves": 412,
+  "applications": 411,
+  "characters": 823,
+  "normalForm": "(λa.(a (λb.(λc.(c (λd.(λe.(e (λf.(λg.(λh.((h (λi.(λj.(j (λk.(((((b d) f) (λl.(λm.(λn.((l n) (m n)))))) (λl.(λm.l))) (i k))))))) (g h)))))))))))))",
+  "betaNormalFormsEqual": true,
+  "fullConsumptionRoundTrip": true,
+  "returnedValueIota": "**i*i*ii**i*i*ii**i*i*ii**i*i*ii*ii",
+  "wrappedReturnIgnoresPrinter": true,
+  "countedVerificationWork": 3775,
+  "limits": {
+    "maxWork": 4000000,
+    "wallSeconds": 30
+  },
+  "limitations": [
+    "No shortest-Iota claim",
+    "Pure lambda beta equivalence, not cost preservation",
+    "No general CBV/effect equivalence theorem"
+  ],
+  "directCBVVerification": {
+    "interpreter": "independent direct call-by-value Iota evaluator",
+    "consumed": 823,
+    "constructionFunctionCalls": 2040,
+    "wrapperFunctionCalls": 8,
+    "printerInvocations": 0,
+    "K4IProbe": true
+  },
+  "structuralControls": [
+    {
+      "word": "0001011011",
+      "pre": {
+        "id": 32,
+        "steps": 115
+      },
+      "run": {
+        "word": "0001011011",
+        "code": "111111111100001011011",
+        "weightExponent": 21,
+        "status": "Accepted",
+        "items": [],
+        "cost": 125
+      }
+    },
+    {
+      "word": "01011011",
+      "pre": {
+        "id": 32,
+        "steps": 62
+      },
+      "run": {
+        "word": "01011011",
+        "code": "11111111001011011",
+        "weightExponent": 17,
+        "status": "Accepted",
+        "items": [],
+        "cost": 72
+      }
+    },
+    {
+      "word": "0001111011",
+      "pre": {
+        "id": 32,
+        "steps": 115
+      },
+      "run": {
+        "word": "0001111011",
+        "code": "111111111100001111011",
+        "weightExponent": 21,
+        "status": "Accepted",
+        "items": [],
+        "cost": 125
+      }
+    }
+  ]
+}

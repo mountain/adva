@@ -1,0 +1,26 @@
+{
+  "schema": "zot.iota.translation.v1",
+  "sourceWord": "0001011011",
+  "target": "value after all ten bits, before stop/printer wrapper",
+  "grammar": "i = iota; *AB = application(A,B); no implicit suffix",
+  "iotaDefinition": "iota f = f S K",
+  "method": "S/K/I bracket abstraction without eta; expand I,K,S to Iota",
+  "iotaLeaves": 412,
+  "applications": 411,
+  "characters": 823,
+  "normalForm": "(λa.(a (λb.(λc.(c (λd.(λe.(e (λf.(λg.(λh.((h (λi.(λj.(j (λk.(((((b d) f) (λl.(λm.(λn.((l n) (m n)))))) (λl.(λm.l))) (i k))))))) (g h)))))))))))))",
+  "betaNormalFormsEqual": true,
+  "fullConsumptionRoundTrip": true,
+  "returnedValueIota": "**i*i*ii**i*i*ii**i*i*ii**i*i*ii*ii",
+  "wrappedReturnIgnoresPrinter": true,
+  "countedVerificationWork": 3775,
+  "limits": {
+    "maxWork": 4000000,
+    "wallSeconds": 30
+  },
+  "limitations": [
+    "No shortest-Iota claim",
+    "Pure lambda beta equivalence, not cost preservation",
+    "No general CBV/effect equivalence theorem"
+  ]
+}

@@ -1,11 +1,13 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **215 numbered
-notes, 46 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 47 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
 ## How to read this directory
+
+- [murphy: self-application, conjugation and the compiler boundary](murphy-iota-conjugation.md): names Zot `0001011011`, retains its 125-transition trace, pure Iota self-application and coordinate operations, and records the unresolved string-splice and Futamura interfaces.
 
 - [Applied mathematics contract roadmap](applied-mathematics-contract-roadmap.md): existing capabilities and the ordered gaps after finite probability receipts; proposed obligations, not new native operations.
 

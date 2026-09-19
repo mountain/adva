@@ -1,0 +1,47 @@
+{
+  "schema": "iota.adjoint.reference.v1",
+  "native_runs": 0,
+  "scope": "explicit 2x2 tables of four-slot signed complex coordinates",
+  "limits": {
+    "lambda_work": 4000000,
+    "lambda_wall_seconds": 30
+  },
+  "P_on_coordinate_tuple": "(λa.(λb.(λc.(λd.(((b (λe.(λf.(f (λg.(λh.(λi.((i (λj.(λk.(k (λl.(((((a e) g) (λm.(λn.(λo.((m o) (n o)))))) (λm.(λn.m))) (j l))))))) (h i))))))))) c) d)))))",
+  "P_coordinate_endomorphism_established": false,
+  "status": "CheckedWithinDeclaredScope",
+  "programs": {
+    "transpose2": {
+      "characters": 743,
+      "sha256": "2fb242a27bc81e81f6ad97f53311ccd1802ed1f83e01a001b7f7f49e0e8d9e85"
+    },
+    "conjugate2": {
+      "characters": 3809,
+      "sha256": "6385d1bbbe0b2d510b304ae9aba1a0183e00687e3dcabc421e95eea5e4e5fe0e"
+    },
+    "adjoint2": {
+      "characters": 3791,
+      "sha256": "768b99871c83c957d6ce0cd166f318733cba24789ea4d57491bfdf93e95499da"
+    }
+  },
+  "base_result_sha256": "7cce79b0db4c51874fcd7ecbc8bbaab16755cf7d9b618a1c3e0780ba029599cd",
+  "assertions": 16,
+  "checks": [
+    "base experiment checked",
+    "input C agrees with conjugation source",
+    "transpose2 Iota compilation beta equivalence",
+    "conjugate2 Iota compilation beta equivalence",
+    "adjoint2 Iota compilation beta equivalence",
+    "transpose exchanges off-diagonal entries",
+    "transpose squared is identity",
+    "entrywise conjugation squared is identity",
+    "adjoint equals transpose after conjugation",
+    "transpose commutes with entrywise conjugation",
+    "adjoint squared is identity",
+    "adjoint output matches all sixteen formal slots",
+    "P on coordinate tuple has opaque q as result head",
+    "two Iota presentations of K are beta equal",
+    "tree mirror of canonical Iota K is I",
+    "tree mirror does not descend to beta-equivalence classes"
+  ],
+  "counted_lambda_work": 83862
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "adva.murphy.publication-result.v1",
+  "native_runs": 0,
+  "contract_sha256": "2678ac10ccbce9d57837fa5e5a3a328dde2ef452ae8cad926179e4989ea0b73f",
+  "stages": [
+    {
+      "stage": "zot",
+      "returncode": 0
+    },
+    {
+      "stage": "translation",
+      "returncode": 0
+    },
+    {
+      "stage": "cbv",
+      "returncode": 0
+    },
+    {
+      "stage": "research",
+      "returncode": 0
+    },
+    {
+      "stage": "adjoint",
+      "returncode": 0
+    },
+    {
+      "stage": "text",
+      "returncode": 0
+    }
+  ],
+  "checks": [
+    "named program digest",
+    "murphy aliases P exactly",
+    "murphy character count",
+    "all 125 Zot transition records replay exactly excluding host runtime label",
+    "fresh Zot-to-Iota translation matches named program",
+    "translation evidence matches retained projection",
+    "independent eager Iota wrapper observation",
+    "research completed",
+    "all 400 base checks and witnesses replay excluding elapsed time",
+    "PP.iota byte replay",
+    "C.iota byte replay",
+    "J.iota byte replay",
+    "N.iota byte replay",
+    "PP-trace.json byte replay",
+    "new adjoint binds new base result",
+    "old adjoint binds old base result",
+    "all 16 adjoint checks replay excluding verified timing-derived digest",
+    "transpose2.iota byte replay",
+    "conjugate2.iota byte replay",
+    "adjoint2.iota byte replay",
+    "text probe completed",
+    "four previously observed text counts",
+    "coordinate conjugation law does not extend to this character chain"
+  ],
+  "text_evidence_mode": "first retained publication capture of the already observed cases",
+  "status": "CheckedWithinDeclaredScope",
+  "wall_seconds": 31.83003881199693
+}

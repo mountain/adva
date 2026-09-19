@@ -1,0 +1,3224 @@
+{
+  "schema": "zot.trace.0001011011.v1",
+  "word": "0001011011",
+  "runtime": "v24.19.0",
+  "machineBlob": "c496b066ca33554575cd86fa0dcfd57630f91c88",
+  "referenceBlob": "43fcf74c885fd3abc90a2c8e5f88e177952ecbcf",
+  "limits": {
+    "maxTransitions": 10000,
+    "maxElapsedMs": 5000,
+    "maxArenaNodes": 10000,
+    "maxStackFrames": 1000,
+    "maxOutputItems": 64
+  },
+  "total": 125,
+  "counts": {
+    "push_arg": 38,
+    "focus_arg": 38,
+    "apply": 38,
+    "done": 11
+  },
+  "programTree": [
+    "BigLeft",
+    [
+      "Left",
+      [
+        "Right",
+        [
+          "Right",
+          [
+            "S"
+          ],
+          [
+            "One"
+          ]
+        ],
+        [
+          "Basis"
+        ]
+      ]
+    ]
+  ],
+  "returnedTree": [
+    "K1",
+    [
+      "K1",
+      [
+        "K1",
+        [
+          "K1",
+          [
+            "I"
+          ]
+        ]
+      ]
+    ]
+  ],
+  "phases": [
+    {
+      "phase": 1,
+      "prefix": "0",
+      "bit": "0",
+      "start": 1,
+      "end": 10,
+      "cost": 10,
+      "events": {
+        "push_arg": 3,
+        "focus_arg": 3,
+        "apply": 3,
+        "done": 1
+      },
+      "beforeValue": "Trivial",
+      "afterValue": "Basis",
+      "calls": [
+        {
+          "step": 3,
+          "tag": "Trivial",
+          "fn": "Trivial",
+          "arg": "Zero"
+        },
+        {
+          "step": 6,
+          "tag": "Zero",
+          "fn": "Zero",
+          "arg": "I"
+        },
+        {
+          "step": 9,
+          "tag": "I",
+          "fn": "I",
+          "arg": "Basis"
+        }
+      ]
+    },
+    {
+      "phase": 2,
+      "prefix": "00",
+      "bit": "0",
+      "start": 11,
+      "end": 23,
+      "cost": 13,
+      "events": {
+        "push_arg": 4,
+        "focus_arg": 4,
+        "apply": 4,
+        "done": 1
+      },
+      "beforeValue": "Basis",
+      "afterValue": "S2(Basis, K)",
+      "calls": [
+        {
+          "step": 13,
+          "tag": "Basis",
+          "fn": "Basis",
+          "arg": "Zero"
+        },
+        {
+          "step": 17,
+          "tag": "Zero",
+          "fn": "Zero",
+          "arg": "S"
+        },
+        {
+          "step": 20,
+          "tag": "S",
+          "fn": "S",
+          "arg": "Basis"
+        },
+        {
+          "step": 22,
+          "tag": "S1",
+          "fn": "S1(Basis)",
+          "arg": "K"
+        }
+      ]
+    },
+    {
+      "phase": 3,
+      "prefix": "000",
+      "bit": "0",
+      "start": 24,
+      "end": 63,
+      "cost": 40,
+      "events": {
+        "push_arg": 13,
+        "focus_arg": 13,
+        "apply": 13,
+        "done": 1
+      },
+      "beforeValue": "S2(Basis, K)",
+      "afterValue": "Basis",
+      "calls": [
+        {
+          "step": 26,
+          "tag": "S2",
+          "fn": "S2(Basis, K)",
+          "arg": "Zero"
+        },
+        {
+          "step": 30,
+          "tag": "Basis",
+          "fn": "Basis",
+          "arg": "Zero"
+        },
+        {
+          "step": 34,
+          "tag": "Zero",
+          "fn": "Zero",
+          "arg": "S"
+        },
+        {
+          "step": 37,
+          "tag": "S",
+          "fn": "S",
+          "arg": "Basis"
+        },
+        {
+          "step": 39,
+          "tag": "S1",
+          "fn": "S1(Basis)",
+          "arg": "K"
+        },
+        {
+          "step": 43,
+          "tag": "K",
+          "fn": "K",
+          "arg": "Zero"
+        },
+        {
+          "step": 44,
+          "tag": "S2",
+          "fn": "S2(Basis, K)",
+          "arg": "K1(Zero)"
+        },
+        {
+          "step": 48,
+          "tag": "Basis",
+          "fn": "Basis",
+          "arg": "K1(Zero)"
+        },
+        {
+          "step": 52,
+          "tag": "K1",
+          "fn": "K1(Zero)",
+          "arg": "S"
+        },
+        {
+          "step": 54,
+          "tag": "Zero",
+          "fn": "Zero",
+          "arg": "K"
+        },
+        {
+          "step": 57,
+          "tag": "K",
+          "fn": "K",
+          "arg": "Basis"
+        },
+        {
+          "step": 61,
+          "tag": "K",
+          "fn": "K",
+          "arg": "K1(Zero)"
+        },
+        {
+          "step": 62,
+          "tag": "K1",
+          "fn": "K1(Basis)",
+          "arg": "K1(K1(Zero))"
+        }
+      ]
+    },
+    {
+      "phase": 4,
+      "prefix": "0001",
+      "bit": "1",
+      "start": 64,
+      "end": 76,
+      "cost": 13,
+      "events": {
+        "push_arg": 4,
+        "focus_arg": 4,
+        "apply": 4,
+        "done": 1
+      },
+      "beforeValue": "Basis",
+      "afterValue": "K1(Left(S))",
+      "calls": [
+        {
+          "step": 66,
+          "tag": "Basis",
+          "fn": "Basis",
+          "arg": "One"
+        },
+        {
+          "step": 70,
+          "tag": "One",
+          "fn": "One",
+          "arg": "S"
+        },
+        {
+          "step": 72,
+          "tag": "BigLeft",
+          "fn": "BigLeft(S)",
+          "arg": "K"
+        },
+        {
+          "step": 75,
+          "tag": "K",
+          "fn": "K",
+          "arg": "Left(S)"
+        }
+      ]
+    },
+    {
+      "phase": 5,
+      "prefix": "00010",
+      "bit": "0",
+      "start": 77,
+      "end": 80,
+      "cost": 4,
+      "events": {
+        "push_arg": 1,
+        "focus_arg": 1,
+        "apply": 1,
+        "done": 1
+      },
+      "beforeValue": "K1(Left(S))",
+      "afterValue": "Left(S)",
+      "calls": [
+        {
+          "step": 79,
+          "tag": "K1",
+          "fn": "K1(Left(S))",
+          "arg": "Zero"
+        }
+      ]
+    },
+    {
+      "phase": 6,
+      "prefix": "000101",
+      "bit": "1",
+      "start": 81,
+      "end": 84,
+      "cost": 4,
+      "events": {
+        "push_arg": 1,
+        "focus_arg": 1,
+        "apply": 1,
+        "done": 1
+      },
+      "beforeValue": "Left(S)",
+      "afterValue": "BigRight(S, One)",
+      "calls": [
+        {
+          "step": 83,
+          "tag": "Left",
+          "fn": "Left(S)",
+          "arg": "One"
+        }
+      ]
+    },
+    {
+      "phase": 7,
+      "prefix": "0001011",
+      "bit": "1",
+      "start": 85,
+      "end": 91,
+      "cost": 7,
+      "events": {
+        "push_arg": 2,
+        "focus_arg": 2,
+        "apply": 2,
+        "done": 1
+      },
+      "beforeValue": "BigRight(S, One)",
+      "afterValue": "BigLeft(Right(S, One))",
+      "calls": [
+        {
+          "step": 87,
+          "tag": "BigRight",
+          "fn": "BigRight(S, One)",
+          "arg": "One"
+        },
+        {
+          "step": 90,
+          "tag": "One",
+          "fn": "One",
+          "arg": "Right(S, One)"
+        }
+      ]
+    },
+    {
+      "phase": 8,
+      "prefix": "00010110",
+      "bit": "0",
+      "start": 92,
+      "end": 101,
+      "cost": 10,
+      "events": {
+        "push_arg": 3,
+        "focus_arg": 3,
+        "apply": 3,
+        "done": 1
+      },
+      "beforeValue": "BigLeft(Right(S, One))",
+      "afterValue": "BigRight(Right(S, One), Basis)",
+      "calls": [
+        {
+          "step": 94,
+          "tag": "BigLeft",
+          "fn": "BigLeft(Right(S, One))",
+          "arg": "Zero"
+        },
+        {
+          "step": 97,
+          "tag": "Zero",
+          "fn": "Zero",
+          "arg": "Left(Right(S, One))"
+        },
+        {
+          "step": 100,
+          "tag": "Left",
+          "fn": "Left(Right(S, One))",
+          "arg": "Basis"
+        }
+      ]
+    },
+    {
+      "phase": 9,
+      "prefix": "000101101",
+      "bit": "1",
+      "start": 102,
+      "end": 108,
+      "cost": 7,
+      "events": {
+        "push_arg": 2,
+        "focus_arg": 2,
+        "apply": 2,
+        "done": 1
+      },
+      "beforeValue": "BigRight(Right(S, One), Basis)",
+      "afterValue": "BigLeft(Right(Right(S, One), Basis))",
+      "calls": [
+        {
+          "step": 104,
+          "tag": "BigRight",
+          "fn": "BigRight(Right(S, One), Basis)",
+          "arg": "One"
+        },
+        {
+          "step": 107,
+          "tag": "One",
+          "fn": "One",
+          "arg": "Right(Right(S, One), Basis)"
+        }
+      ]
+    },
+    {
+      "phase": 10,
+      "prefix": "0001011011",
+      "bit": "1",
+      "start": 109,
+      "end": 115,
+      "cost": 7,
+      "events": {
+        "push_arg": 2,
+        "focus_arg": 2,
+        "apply": 2,
+        "done": 1
+      },
+      "beforeValue": "BigLeft(Right(Right(S, One), Basis))",
+      "afterValue": "BigLeft(Left(Right(Right(S, One), Basis)))",
+      "calls": [
+        {
+          "step": 111,
+          "tag": "BigLeft",
+          "fn": "BigLeft(Right(Right(S, One), Basis))",
+          "arg": "One"
+        },
+        {
+          "step": 114,
+          "tag": "One",
+          "fn": "One",
+          "arg": "Left(Right(Right(S, One), Basis))"
+        }
+      ]
+    },
+    {
+      "phase": 11,
+      "prefix": "0001011011",
+      "bit": "finish",
+      "start": 116,
+      "end": 125,
+      "cost": 10,
+      "events": {
+        "push_arg": 3,
+        "focus_arg": 3,
+        "apply": 3,
+        "done": 1
+      },
+      "beforeValue": "BigLeft(Left(Right(Right(S, One), Basis)))",
+      "afterValue": "K1(K1(K1(K1(I))))",
+      "calls": [
+        {
+          "step": 119,
+          "tag": "BigLeft",
+          "fn": "BigLeft(Left(Right(Right(S, One), Basis)))",
+          "arg": "K1(K1(K1(K1(K1(K1(I))))))"
+        },
+        {
+          "step": 122,
+          "tag": "K1",
+          "fn": "K1(K1(K1(K1(K1(K1(I))))))",
+          "arg": "Left(Left(Right(Right(S, One), Basis)))"
+        },
+        {
+          "step": 124,
+          "tag": "K1",
+          "fn": "K1(K1(K1(K1(K1(I)))))",
+          "arg": "Pr"
+        }
+      ]
+    }
+  ],
+  "trace": [
+    {
+      "step": 1,
+      "phase": 1,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Trivial Zero)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Trivial",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 2,
+      "phase": 1,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Trivial",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call Trivial"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 3,
+      "phase": 1,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call Trivial"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Zero I)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 4,
+      "phase": 1,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Zero I)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg I"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 5,
+      "phase": 1,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg I"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "I",
+        "stack": [
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 6,
+      "phase": 1,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "I",
+        "stack": [
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(I Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 7,
+      "phase": 1,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(I Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "I",
+        "stack": [
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 8,
+      "phase": 1,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "I",
+        "stack": [
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "call I"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 9,
+      "phase": 1,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "call I"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 10,
+      "phase": 1,
+      "bit": "0",
+      "kind": "done",
+      "before": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 11,
+      "phase": 2,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Basis Zero)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 12,
+      "phase": 2,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 13,
+      "phase": 2,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((Zero S) K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 14,
+      "phase": 2,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "((Zero S) K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Zero S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 15,
+      "phase": 2,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Zero S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 16,
+      "phase": 2,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 17,
+      "phase": 2,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(S Basis)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 18,
+      "phase": 2,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(S Basis)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 19,
+      "phase": 2,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg K",
+          "call S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 20,
+      "phase": 2,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg K",
+          "call S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S1(Basis)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 21,
+      "phase": 2,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S1(Basis)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "call S1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 22,
+      "phase": 2,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K",
+        "stack": [
+          "call S1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S2(Basis, K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 23,
+      "phase": 2,
+      "bit": "0",
+      "kind": "done",
+      "before": {
+        "control": "S2(Basis, K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S2(Basis, K)",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 24,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(S2(Basis, K) Zero)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S2(Basis, K)",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 25,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S2(Basis, K)",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 26,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((Basis Zero) (K Zero))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 27,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "((Basis Zero) (K Zero))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Basis Zero)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 28,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Basis Zero)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg (K Zero)",
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 29,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg (K Zero)",
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg (K Zero)",
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 30,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg (K Zero)",
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((Zero S) K)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 31,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "((Zero S) K)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Zero S)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 32,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Zero S)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 33,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 34,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(S Basis)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 35,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(S Basis)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 36,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "call S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 37,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg (K Zero)",
+          "arg K",
+          "call S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S1(Basis)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 38,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S1(Basis)",
+        "stack": [
+          "arg (K Zero)",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "arg (K Zero)",
+          "call S1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 39,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K",
+        "stack": [
+          "arg (K Zero)",
+          "call S1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S2(Basis, K)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 40,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "S2(Basis, K)",
+        "stack": [
+          "arg (K Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K Zero)",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 41,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K Zero)",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "call S2(Basis, K)",
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 42,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K",
+        "stack": [
+          "call S2(Basis, K)",
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call S2(Basis, K)",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 43,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call S2(Basis, K)",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Zero)",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 44,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K1(Zero)",
+        "stack": [
+          "call S2(Basis, K)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((Basis K1(Zero)) (K K1(Zero)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 45,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "((Basis K1(Zero)) (K K1(Zero)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Basis K1(Zero))",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 46,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Basis K1(Zero))",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 47,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Zero)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 48,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K1(Zero)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((K1(Zero) S) K)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 49,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "((K1(Zero) S) K)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K1(Zero) S)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 50,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K1(Zero) S)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Zero)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 51,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K1(Zero)",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K",
+          "call K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 52,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K",
+          "call K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 53,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 54,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K Basis)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 55,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K Basis)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 56,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K",
+        "stack": [
+          "arg (K K1(Zero))",
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 57,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg (K K1(Zero))",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Basis)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 58,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K1(Basis)",
+        "stack": [
+          "arg (K K1(Zero))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K K1(Zero))",
+        "stack": [
+          "call K1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 59,
+      "phase": 3,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K K1(Zero))",
+        "stack": [
+          "call K1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "call K1(Basis)",
+          "arg K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 60,
+      "phase": 3,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K",
+        "stack": [
+          "call K1(Basis)",
+          "arg K1(Zero)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Zero)",
+        "stack": [
+          "call K1(Basis)",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 61,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K1(Zero)",
+        "stack": [
+          "call K1(Basis)",
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(Zero))",
+        "stack": [
+          "call K1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 62,
+      "phase": 3,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "K1(K1(Zero))",
+        "stack": [
+          "call K1(Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 63,
+      "phase": 3,
+      "bit": "0",
+      "kind": "done",
+      "before": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 64,
+      "phase": 4,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Basis One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 65,
+      "phase": 4,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 66,
+      "phase": 4,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "One",
+        "stack": [
+          "call Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "((One S) K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 67,
+      "phase": 4,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "((One S) K)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(One S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 68,
+      "phase": 4,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(One S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 69,
+      "phase": 4,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "One",
+        "stack": [
+          "arg K",
+          "arg S"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 70,
+      "phase": 4,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "S",
+        "stack": [
+          "arg K",
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 71,
+      "phase": 4,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigLeft(S)",
+        "stack": [
+          "arg K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "call BigLeft(S)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 72,
+      "phase": 4,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "K",
+        "stack": [
+          "call BigLeft(S)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K Left(S))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 73,
+      "phase": 4,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K Left(S))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K",
+        "stack": [
+          "arg Left(S)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 74,
+      "phase": 4,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K",
+        "stack": [
+          "arg Left(S)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(S)",
+        "stack": [
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 75,
+      "phase": 4,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "Left(S)",
+        "stack": [
+          "call K"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Left(S))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 76,
+      "phase": 4,
+      "bit": "1",
+      "kind": "done",
+      "before": {
+        "control": "K1(Left(S))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Left(S))",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 77,
+      "phase": 5,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K1(Left(S)) Zero)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(Left(S))",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 78,
+      "phase": 5,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K1(Left(S))",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call K1(Left(S))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 79,
+      "phase": 5,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call K1(Left(S))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(S)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 80,
+      "phase": 5,
+      "bit": "0",
+      "kind": "done",
+      "before": {
+        "control": "Left(S)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(S)",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 81,
+      "phase": 6,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Left(S) One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(S)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 82,
+      "phase": 6,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Left(S)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "call Left(S)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 83,
+      "phase": 6,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "One",
+        "stack": [
+          "call Left(S)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(S, One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 84,
+      "phase": 6,
+      "bit": "1",
+      "kind": "done",
+      "before": {
+        "control": "BigRight(S, One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(S, One)",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 85,
+      "phase": 7,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(BigRight(S, One) One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(S, One)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 86,
+      "phase": 7,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigRight(S, One)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "call BigRight(S, One)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 87,
+      "phase": 7,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "One",
+        "stack": [
+          "call BigRight(S, One)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(One Right(S, One))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 88,
+      "phase": 7,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(One Right(S, One))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "arg Right(S, One)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 89,
+      "phase": 7,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "One",
+        "stack": [
+          "arg Right(S, One)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Right(S, One)",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 90,
+      "phase": 7,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "Right(S, One)",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(S, One))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 91,
+      "phase": 7,
+      "bit": "1",
+      "kind": "done",
+      "before": {
+        "control": "BigLeft(Right(S, One))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(S, One))",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 92,
+      "phase": 8,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(BigLeft(Right(S, One)) Zero)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(S, One))",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 93,
+      "phase": 8,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigLeft(Right(S, One))",
+        "stack": [
+          "arg Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "call BigLeft(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 94,
+      "phase": 8,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "call BigLeft(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Zero Left(Right(S, One)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 95,
+      "phase": 8,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Zero Left(Right(S, One)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Zero",
+        "stack": [
+          "arg Left(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 96,
+      "phase": 8,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Zero",
+        "stack": [
+          "arg Left(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(Right(S, One))",
+        "stack": [
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 97,
+      "phase": 8,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Left(Right(S, One))",
+        "stack": [
+          "call Zero"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(Left(Right(S, One)) Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 98,
+      "phase": 8,
+      "bit": "0",
+      "kind": "push_arg",
+      "before": {
+        "control": "(Left(Right(S, One)) Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(Right(S, One))",
+        "stack": [
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 99,
+      "phase": 8,
+      "bit": "0",
+      "kind": "focus_arg",
+      "before": {
+        "control": "Left(Right(S, One))",
+        "stack": [
+          "arg Basis"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Basis",
+        "stack": [
+          "call Left(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 100,
+      "phase": 8,
+      "bit": "0",
+      "kind": "apply",
+      "before": {
+        "control": "Basis",
+        "stack": [
+          "call Left(Right(S, One))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(Right(S, One), Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 101,
+      "phase": 8,
+      "bit": "0",
+      "kind": "done",
+      "before": {
+        "control": "BigRight(Right(S, One), Basis)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(Right(S, One), Basis)",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 102,
+      "phase": 9,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(BigRight(Right(S, One), Basis) One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigRight(Right(S, One), Basis)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 103,
+      "phase": 9,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigRight(Right(S, One), Basis)",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "call BigRight(Right(S, One), Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 104,
+      "phase": 9,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "One",
+        "stack": [
+          "call BigRight(Right(S, One), Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(One Right(Right(S, One), Basis))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 105,
+      "phase": 9,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(One Right(Right(S, One), Basis))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "arg Right(Right(S, One), Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 106,
+      "phase": 9,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "One",
+        "stack": [
+          "arg Right(Right(S, One), Basis)"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Right(Right(S, One), Basis)",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 107,
+      "phase": 9,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "Right(Right(S, One), Basis)",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(Right(S, One), Basis))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 108,
+      "phase": 9,
+      "bit": "1",
+      "kind": "done",
+      "before": {
+        "control": "BigLeft(Right(Right(S, One), Basis))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(Right(S, One), Basis))",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 109,
+      "phase": 10,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(BigLeft(Right(Right(S, One), Basis)) One)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Right(Right(S, One), Basis))",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 110,
+      "phase": 10,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigLeft(Right(Right(S, One), Basis))",
+        "stack": [
+          "arg One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "call BigLeft(Right(Right(S, One), Basis))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 111,
+      "phase": 10,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "One",
+        "stack": [
+          "call BigLeft(Right(Right(S, One), Basis))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(One Left(Right(Right(S, One), Basis)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 112,
+      "phase": 10,
+      "bit": "1",
+      "kind": "push_arg",
+      "before": {
+        "control": "(One Left(Right(Right(S, One), Basis)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "One",
+        "stack": [
+          "arg Left(Right(Right(S, One), Basis))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 113,
+      "phase": 10,
+      "bit": "1",
+      "kind": "focus_arg",
+      "before": {
+        "control": "One",
+        "stack": [
+          "arg Left(Right(Right(S, One), Basis))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(Right(Right(S, One), Basis))",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 114,
+      "phase": 10,
+      "bit": "1",
+      "kind": "apply",
+      "before": {
+        "control": "Left(Right(Right(S, One), Basis))",
+        "stack": [
+          "call One"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Left(Right(Right(S, One), Basis)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 115,
+      "phase": 10,
+      "bit": "1",
+      "kind": "done",
+      "before": {
+        "control": "BigLeft(Left(Right(Right(S, One), Basis)))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Left(Right(Right(S, One), Basis)))",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    },
+    {
+      "step": 116,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "push_arg",
+      "before": {
+        "control": "((BigLeft(Left(Right(Right(S, One), Basis))) K1(K1(K1(K1(K1(K1(I))))))) Pr)",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(BigLeft(Left(Right(Right(S, One), Basis))) K1(K1(K1(K1(K1(K1(I)))))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 117,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "push_arg",
+      "before": {
+        "control": "(BigLeft(Left(Right(Right(S, One), Basis))) K1(K1(K1(K1(K1(K1(I)))))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "BigLeft(Left(Right(Right(S, One), Basis)))",
+        "stack": [
+          "arg Pr",
+          "arg K1(K1(K1(K1(K1(K1(I))))))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 118,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "focus_arg",
+      "before": {
+        "control": "BigLeft(Left(Right(Right(S, One), Basis)))",
+        "stack": [
+          "arg Pr",
+          "arg K1(K1(K1(K1(K1(K1(I))))))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(K1(K1(K1(K1(I))))))",
+        "stack": [
+          "arg Pr",
+          "call BigLeft(Left(Right(Right(S, One), Basis)))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 119,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "apply",
+      "before": {
+        "control": "K1(K1(K1(K1(K1(K1(I))))))",
+        "stack": [
+          "arg Pr",
+          "call BigLeft(Left(Right(Right(S, One), Basis)))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "(K1(K1(K1(K1(K1(K1(I)))))) Left(Left(Right(Right(S, One), Basis))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 120,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "push_arg",
+      "before": {
+        "control": "(K1(K1(K1(K1(K1(K1(I)))))) Left(Left(Right(Right(S, One), Basis))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(K1(K1(K1(K1(I))))))",
+        "stack": [
+          "arg Pr",
+          "arg Left(Left(Right(Right(S, One), Basis)))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 121,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K1(K1(K1(K1(K1(K1(I))))))",
+        "stack": [
+          "arg Pr",
+          "arg Left(Left(Right(Right(S, One), Basis)))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Left(Left(Right(Right(S, One), Basis)))",
+        "stack": [
+          "arg Pr",
+          "call K1(K1(K1(K1(K1(K1(I))))))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 122,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "apply",
+      "before": {
+        "control": "Left(Left(Right(Right(S, One), Basis)))",
+        "stack": [
+          "arg Pr",
+          "call K1(K1(K1(K1(K1(K1(I))))))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(K1(K1(K1(I)))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 123,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "focus_arg",
+      "before": {
+        "control": "K1(K1(K1(K1(K1(I)))))",
+        "stack": [
+          "arg Pr"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "Pr",
+        "stack": [
+          "call K1(K1(K1(K1(K1(I)))))"
+        ],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 124,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "apply",
+      "before": {
+        "control": "Pr",
+        "stack": [
+          "call K1(K1(K1(K1(K1(I)))))"
+        ],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(K1(K1(I))))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      }
+    },
+    {
+      "step": 125,
+      "phase": 11,
+      "bit": "finish",
+      "kind": "done",
+      "before": {
+        "control": "K1(K1(K1(K1(I))))",
+        "stack": [],
+        "status": "Running",
+        "output": []
+      },
+      "after": {
+        "control": "K1(K1(K1(K1(I))))",
+        "stack": [],
+        "status": "Done",
+        "output": []
+      }
+    }
+  ],
+  "checks": {
+    "originalRunOutput": "",
+    "independentApplicationSequence": [
+      "trivial",
+      "zero",
+      "I",
+      "basis",
+      "zero",
+      "S",
+      "S1",
+      "S2",
+      "basis",
+      "zero",
+      "S",
+      "S1",
+      "K",
+      "S2",
+      "basis",
+      "K1",
+      "zero",
+      "K",
+      "K",
+      "K1",
+      "basis",
+      "one",
+      "bigleft",
+      "K",
+      "K1",
+      "left",
+      "bigright",
+      "one",
+      "bigleft",
+      "zero",
+      "left",
+      "bigright",
+      "one",
+      "bigleft",
+      "one",
+      "bigleft",
+      "K1",
+      "K1"
+    ],
+    "applicationSequenceMatches": true
+  },
+  "countingScope": "CEK transitions only; excludes text parsing, arena construction, K^6 I preconstruction, host recursion and frame construction."
+}
