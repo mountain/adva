@@ -1,20 +1,50 @@
 {
-  "word": "commit-state-reconcile",
-  "version": 0,
-  "status": "Proposed",
-  "role": "Read a receiver-owned single-slot ledger after an uncertain commit observation without submitting the candidate again.",
-  "input": ["exact receiver-selected expected request", "complete canonical candidate including transition key", "existing trusted local ledger"],
-  "output": {
-    "StoredCommitted": "The validated ledger contains the exact canonical candidate and its stored checked result.",
-    "ProvenUncommittedLedger": "The validated selected ledger contains no accepted transition; this statement is local to that ledger.",
-    "UnknownCommitState": "The ledger cannot safely distinguish those cases under the selected bindings and finite checks."
-  },
-  "relation_boundary": "The relation binds the complete expected request, checker fingerprints, candidate payload, transition key, stored result and allowance. It neither verifies arithmetic anew nor changes storage.",
-  "applicability": ["trusted local SQLite rollback-journal ledger", "unchanged decision-ledger-contention profile and fingerprint chain", "quiescent read-only inspection", "database and request within declared byte limits"],
-  "witness": "experiments/commit_state_reconcile/evidence/execution.json: two empty and two exact committed cases over distinct finite families",
-  "counterexamples_and_refusals": ["changed candidate", "changed expected history", "changed checker fingerprint", "corrupt database", "missing database"],
-  "replay": "timeout 35s python3 -B -S experiments/commit_state_reconcile/run.py --output /tmp/adva-commit-reconcile-new",
-  "residuals": ["no actual interruption inside COMMIT", "no power-loss or disk-flush model", "no external-action atomicity", "no hostile replacement, authentication or distributed guarantee", "shared Python and SQLite trusted dependencies"],
-  "forbidden_conflations": ["ProvenUncommittedLedger with proof that no external action occurred", "StoredCommitted with fresh arithmetic verification", "UnknownCommitState with retry permission", "read-only reconciliation with native accept, free, Close or Seal"],
-  "origin": "Original ChatGPT-authored terminology record under Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review or correctness guarantee."
+ "word": "commit-state-reconcile",
+ "version": 0,
+ "status": "Proposed",
+ "role": "Read a receiver-owned single-slot ledger after an uncertain commit observation without submitting the candidate again.",
+ "input": [
+  "exact receiver-selected expected request",
+  "complete canonical candidate including transition key",
+  "existing trusted local ledger"
+ ],
+ "output": {
+  "StoredCommitted": "The validated ledger contains the exact canonical candidate and its stored checked result.",
+  "ProvenUncommittedLedger": "The validated selected ledger contains no accepted transition; this statement is local to that ledger.",
+  "UnknownCommitState": "The ledger cannot safely distinguish those cases under the selected bindings and finite checks."
+ },
+ "relation_boundary": "The relation binds the complete expected request, checker fingerprints, candidate payload, transition key, stored result and allowance. It neither verifies arithmetic anew nor changes storage.",
+ "applicability": [
+  "trusted local SQLite rollback-journal ledger",
+  "unchanged decision-ledger-contention profile and fingerprint chain",
+  "quiescent read-only inspection",
+  "database and request within declared byte limits"
+ ],
+ "witness": "experiments/commit_state_reconcile/evidence/execution.json: two empty and two exact committed cases over distinct finite families",
+ "counterexamples_and_refusals": [
+  "changed candidate",
+  "changed expected history",
+  "changed checker fingerprint",
+  "corrupt database",
+  "missing database"
+ ],
+ "replay": "timeout 35s python3 -B -S experiments/commit_state_reconcile/run.py --output /tmp/adva-commit-reconcile-new",
+ "residuals": [
+  "no actual interruption inside COMMIT",
+  "no power-loss or disk-flush model",
+  "no external-action atomicity",
+  "no hostile replacement, authentication or distributed guarantee",
+  "shared Python and SQLite trusted dependencies"
+ ],
+ "forbidden_conflations": [
+  "ProvenUncommittedLedger with proof that no external action occurred",
+  "StoredCommitted with fresh arithmetic verification",
+  "UnknownCommitState with retry permission",
+  "read-only reconciliation with native accept, free, Close or Seal"
+ ],
+ "origin": {
+  "authorship": "Original ChatGPT-authored terminology record under Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review or correctness guarantee.",
+  "direction": "Mingli Yuan — the commit-state question and the read-only reconciliation rule",
+  "status": "proposed terminology home; not an admission, a Seal or a stable keyword"
+ }
 }
