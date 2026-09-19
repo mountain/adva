@@ -1,0 +1,479 @@
+{
+  "assertions": 223,
+  "child_peak_rss_kib": 13824,
+  "episodes": [
+    {
+      "case": "symmetric/valid",
+      "exit_preserved_full_state": true,
+      "final_slot_count": 1,
+      "retry_outcome": "CommittedContinuation",
+      "wall_seconds": 1.0922272249954403
+    },
+    {
+      "case": "asymmetric-reuse/valid",
+      "exit_preserved_full_state": true,
+      "final_slot_count": 1,
+      "retry_outcome": "CommittedContinuation",
+      "wall_seconds": 1.0418045930055087
+    },
+    {
+      "case": "symmetric/false-arithmetic",
+      "exit_preserved_full_state": true,
+      "final_slot_count": 0,
+      "retry_outcome": "InvalidEvidence",
+      "wall_seconds": 1.093676817996311
+    },
+    {
+      "case": "asymmetric-reuse/changed-context",
+      "exit_preserved_full_state": true,
+      "final_slot_count": 0,
+      "retry_outcome": "InvalidContext",
+      "wall_seconds": 1.0255707339965738
+    }
+  ],
+  "events": [
+    {
+      "at_seconds": 0.03399519000231521,
+      "case": "symmetric/valid/init",
+      "event": "launched",
+      "pid": 6
+    },
+    {
+      "at_seconds": 0.2498758910005563,
+      "case": "symmetric/valid/init",
+      "event": "exited",
+      "pid": 6,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 0.2882673749991227,
+      "case": "symmetric/valid/holder",
+      "event": "launched",
+      "pid": 7
+    },
+    {
+      "at_seconds": 0.444137883001531,
+      "case": "symmetric/valid",
+      "event": "holder-ready",
+      "readiness": {
+        "event": "begin-immediate-acquired",
+        "pid": 7,
+        "work_units": 15
+      }
+    },
+    {
+      "at_seconds": 0.484829852997791,
+      "case": "symmetric/valid/contender",
+      "event": "launched",
+      "pid": 8
+    },
+    {
+      "at_seconds": 0.802084584000113,
+      "case": "symmetric/valid/contender",
+      "event": "exited",
+      "pid": 8,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 0.807044549001148,
+      "case": "symmetric/valid",
+      "event": "sigkill-owned-holder",
+      "pid": 7
+    },
+    {
+      "at_seconds": 0.8173538530027145,
+      "case": "symmetric/valid",
+      "event": "holder-reaped",
+      "returncode": -9
+    },
+    {
+      "at_seconds": 0.863804849999724,
+      "case": "symmetric/valid/retry",
+      "event": "launched",
+      "pid": 9
+    },
+    {
+      "at_seconds": 1.0798765549989184,
+      "case": "symmetric/valid/retry",
+      "event": "exited",
+      "pid": 9,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 1.1291979540037573,
+      "case": "asymmetric-reuse/valid/init",
+      "event": "launched",
+      "pid": 10
+    },
+    {
+      "at_seconds": 1.3449650460024714,
+      "case": "asymmetric-reuse/valid/init",
+      "event": "exited",
+      "pid": 10,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 1.3879398530043545,
+      "case": "asymmetric-reuse/valid/holder",
+      "event": "launched",
+      "pid": 11
+    },
+    {
+      "at_seconds": 1.5295131800012314,
+      "case": "asymmetric-reuse/valid",
+      "event": "holder-ready",
+      "readiness": {
+        "event": "begin-immediate-acquired",
+        "pid": 11,
+        "work_units": 15
+      }
+    },
+    {
+      "at_seconds": 1.5864904280024348,
+      "case": "asymmetric-reuse/valid/contender",
+      "event": "launched",
+      "pid": 12
+    },
+    {
+      "at_seconds": 1.8548738500030595,
+      "case": "asymmetric-reuse/valid/contender",
+      "event": "exited",
+      "pid": 12,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 1.8586351269987063,
+      "case": "asymmetric-reuse/valid",
+      "event": "sigkill-owned-holder",
+      "pid": 11
+    },
+    {
+      "at_seconds": 1.8624448710033903,
+      "case": "asymmetric-reuse/valid",
+      "event": "holder-reaped",
+      "returncode": -9
+    },
+    {
+      "at_seconds": 1.9033173889984027,
+      "case": "asymmetric-reuse/valid/retry",
+      "event": "launched",
+      "pid": 13
+    },
+    {
+      "at_seconds": 2.1201119660036056,
+      "case": "asymmetric-reuse/valid/retry",
+      "event": "exited",
+      "pid": 13,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 2.165173405999667,
+      "case": "symmetric/false-arithmetic/init",
+      "event": "launched",
+      "pid": 14
+    },
+    {
+      "at_seconds": 2.4312070649975794,
+      "case": "symmetric/false-arithmetic/init",
+      "event": "exited",
+      "pid": 14,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 2.471034050999151,
+      "case": "symmetric/false-arithmetic/holder",
+      "event": "launched",
+      "pid": 15
+    },
+    {
+      "at_seconds": 2.5958172879982158,
+      "case": "symmetric/false-arithmetic",
+      "event": "holder-ready",
+      "readiness": {
+        "event": "begin-immediate-acquired",
+        "pid": 15,
+        "work_units": 15
+      }
+    },
+    {
+      "at_seconds": 2.6326124719998916,
+      "case": "symmetric/false-arithmetic/contender",
+      "event": "launched",
+      "pid": 16
+    },
+    {
+      "at_seconds": 2.9492609170047217,
+      "case": "symmetric/false-arithmetic/contender",
+      "event": "exited",
+      "pid": 16,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 2.953363305001403,
+      "case": "symmetric/false-arithmetic",
+      "event": "sigkill-owned-holder",
+      "pid": 15
+    },
+    {
+      "at_seconds": 2.9570098949989188,
+      "case": "symmetric/false-arithmetic",
+      "event": "holder-reaped",
+      "returncode": -9
+    },
+    {
+      "at_seconds": 3.001485296001192,
+      "case": "symmetric/false-arithmetic/retry",
+      "event": "launched",
+      "pid": 17
+    },
+    {
+      "at_seconds": 3.2169958500016946,
+      "case": "symmetric/false-arithmetic/retry",
+      "event": "exited",
+      "pid": 17,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 3.263785146002192,
+      "case": "asymmetric-reuse/changed-context/init",
+      "event": "launched",
+      "pid": 18
+    },
+    {
+      "at_seconds": 3.480105688999174,
+      "case": "asymmetric-reuse/changed-context/init",
+      "event": "exited",
+      "pid": 18,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 3.5238765320027596,
+      "case": "asymmetric-reuse/changed-context/holder",
+      "event": "launched",
+      "pid": 19
+    },
+    {
+      "at_seconds": 3.677697163002449,
+      "case": "asymmetric-reuse/changed-context",
+      "event": "holder-ready",
+      "readiness": {
+        "event": "begin-immediate-acquired",
+        "pid": 19,
+        "work_units": 15
+      }
+    },
+    {
+      "at_seconds": 3.7223879140001372,
+      "case": "asymmetric-reuse/changed-context/contender",
+      "event": "launched",
+      "pid": 20
+    },
+    {
+      "at_seconds": 4.038349765003659,
+      "case": "asymmetric-reuse/changed-context/contender",
+      "event": "exited",
+      "pid": 20,
+      "returncode": 0
+    },
+    {
+      "at_seconds": 4.04311762299767,
+      "case": "asymmetric-reuse/changed-context",
+      "event": "sigkill-owned-holder",
+      "pid": 19
+    },
+    {
+      "at_seconds": 4.046891240999685,
+      "case": "asymmetric-reuse/changed-context",
+      "event": "holder-reaped",
+      "returncode": -9
+    },
+    {
+      "at_seconds": 4.085005818000354,
+      "case": "asymmetric-reuse/changed-context/retry",
+      "event": "launched",
+      "pid": 21
+    },
+    {
+      "at_seconds": 4.250828561998787,
+      "case": "asymmetric-reuse/changed-context/retry",
+      "event": "exited",
+      "pid": 21,
+      "returncode": 0
+    }
+  ],
+  "failure": null,
+  "measurement_limits": "Receiver work includes gate-reported partial holder work, not OS/supervisor operations. Child lifetimes overlap. RSS is highest process, not aggregate concurrent memory. Final result serialization and publication are outside campaign timing.",
+  "native_authority": false,
+  "new_vocabulary": [],
+  "phases": {
+    "child_lifetime_seconds_sum": 5.337456710010883,
+    "construction_seconds": 0.02322760999959428,
+    "observation_seconds": 0.06053543501184322,
+    "serialization_seconds": 0.14097456200397573
+  },
+  "processes": 16,
+  "profile": "adva.research.ledger-holder-exit.v0",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "case": "symmetric/valid/init",
+      "outcome": "InitializedLedger",
+      "pid": 6,
+      "returncode": 0,
+      "wall_seconds": 0.24357329300255515,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric/valid/holder",
+      "outcome": null,
+      "pid": 7,
+      "returncode": -9,
+      "wall_seconds": 0.5470485519981594,
+      "work_units": 15
+    },
+    {
+      "case": "symmetric/valid/contender",
+      "outcome": "LedgerBusy",
+      "pid": 8,
+      "returncode": 0,
+      "wall_seconds": 0.3461853949993383,
+      "work_units": 15
+    },
+    {
+      "case": "symmetric/valid/retry",
+      "outcome": "CommittedContinuation",
+      "pid": 9,
+      "returncode": 0,
+      "wall_seconds": 0.23982139000145253,
+      "work_units": 1338
+    },
+    {
+      "case": "asymmetric-reuse/valid/init",
+      "outcome": "InitializedLedger",
+      "pid": 10,
+      "returncode": 0,
+      "wall_seconds": 0.24345561699738028,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-reuse/valid/holder",
+      "outcome": null,
+      "pid": 11,
+      "returncode": -9,
+      "wall_seconds": 0.4925461470047594,
+      "work_units": 15
+    },
+    {
+      "case": "asymmetric-reuse/valid/contender",
+      "outcome": "LedgerBusy",
+      "pid": 12,
+      "returncode": 0,
+      "wall_seconds": 0.3054745030021877,
+      "work_units": 15
+    },
+    {
+      "case": "asymmetric-reuse/valid/retry",
+      "outcome": "CommittedContinuation",
+      "pid": 13,
+      "returncode": 0,
+      "wall_seconds": 0.23846938199858414,
+      "work_units": 1338
+    },
+    {
+      "case": "symmetric/false-arithmetic/init",
+      "outcome": "InitializedLedger",
+      "pid": 14,
+      "returncode": 0,
+      "wall_seconds": 0.28491898300126195,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric/false-arithmetic/holder",
+      "outcome": null,
+      "pid": 15,
+      "returncode": -9,
+      "wall_seconds": 0.5053227039970807,
+      "work_units": 15
+    },
+    {
+      "case": "symmetric/false-arithmetic/contender",
+      "outcome": "LedgerBusy",
+      "pid": 16,
+      "returncode": 0,
+      "wall_seconds": 0.33654459600074915,
+      "work_units": 15
+    },
+    {
+      "case": "symmetric/false-arithmetic/retry",
+      "outcome": "InvalidEvidence",
+      "pid": 17,
+      "returncode": 0,
+      "wall_seconds": 0.24020867299987003,
+      "work_units": 1292
+    },
+    {
+      "case": "asymmetric-reuse/changed-context/init",
+      "outcome": "InitializedLedger",
+      "pid": 18,
+      "returncode": 0,
+      "wall_seconds": 0.2367045830033021,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-reuse/changed-context/holder",
+      "outcome": null,
+      "pid": 19,
+      "returncode": -9,
+      "wall_seconds": 0.5499027240002761,
+      "work_units": 15
+    },
+    {
+      "case": "asymmetric-reuse/changed-context/contender",
+      "outcome": "LedgerBusy",
+      "pid": 20,
+      "returncode": 0,
+      "wall_seconds": 0.34641207200184,
+      "work_units": 15
+    },
+    {
+      "case": "asymmetric-reuse/changed-context/retry",
+      "outcome": "InvalidContext",
+      "pid": 21,
+      "returncode": 0,
+      "wall_seconds": 0.18086809600208653,
+      "work_units": 35
+    }
+  ],
+  "search_candidates": 0,
+  "source_sha256": {
+    "experiments/decision_checkpoint/contract.json": "be26344b489fbf110d2e26d9387dbea1041b87c5161128531e4932655a7f709e",
+    "experiments/decision_checkpoint/receive.py": "d7dac111df3a9273b7e2f16c80e3536c5ede3fad2a4adad437fc8c23cf085392",
+    "experiments/decision_checkpoint/run.py": "55022e8d129d050ab79329e023e0c0cabade74930a0ce48a27fd087a94783762",
+    "experiments/decision_ledger/contract.json": "ecc3327c270bd9851e4576973cdb798550b3a78e028290a83219a37770dd46cb",
+    "experiments/decision_ledger/receive.py": "66388a10f37e5497832c2ebc4a319cdecf237aa5405b0fb4c0a15404eae75f1f",
+    "experiments/decision_ledger/run.py": "60c8e011fc487e1244c1c611040d4a85c6cf6b791485ff242e9a59b26baadccc",
+    "experiments/decision_ledger_contention/contract.json": "b5aaf2eee9296625695713e2086b6738a3c90a1a217ee4295acf2dba84bae656",
+    "experiments/decision_ledger_contention/gate_worker.py": "bfbc14803dad38154b3adc41436a13431d8a9e611b989632547c81296028d92d",
+    "experiments/decision_ledger_contention/receive.py": "68b164392a082eb2f33dce574a062a89d94caac752d43b9866f3e2cb44ca8507",
+    "experiments/decision_ledger_contention/run.py": "545f29643fb19f567cfb70c4aeb4249651a179f139f494f63db5b56d309e4d49",
+    "experiments/decision_scale/contract.json": "f76ee4345685cc3e25b246dcec1c82299e32233ad71582b6bd57fdbcf5068aeb",
+    "experiments/decision_scale/receive.py": "9eb30366076498eb645b34a5cf22ba8217c387ec63c29652e96335d677b24236",
+    "experiments/decision_scale/run.py": "1a72982780f430dc3e7156921751f179f58fcd6cc5311f18f2679cca6012d449",
+    "experiments/decision_scale_composition/contract.json": "4f6debcf01ea6b0d7644f8e93d699b5c70b703c855bda62eb693f869103b0b49",
+    "experiments/decision_scale_composition/receive.py": "1f49473ae220fc2336e1bf67800634022729c90a197dcb221f350a0732a7c0bd",
+    "experiments/decision_scale_composition/run.py": "d37152c4db26066d7708b6027fc8493ed5125039c73012836ec2331d3eee6647",
+    "experiments/finite_decision/contract.json": "60c4ba6a4567cf9dded161f7712b72d6826835db092224e4f179eef5f8df79dd",
+    "experiments/finite_decision/receive.py": "3ed91e4cd136b83e67ba89ccf104347972f3d50c990e6e66253c98552ecb48a7",
+    "experiments/finite_decision/run.py": "f300a5cec588e31d67a308e8413eedfa6e84340752da11eb61efb3b3afb8aff2",
+    "experiments/ledger_holder_exit/contract.json": "458a721d7f00deebf59033f8dfbff077d971d8eedee2ab1693444950eb356ea4",
+    "experiments/ledger_holder_exit/run.py": "496181ca47887b6e2661ad2b4e877fea9984ed2539506acfff3a5350eaa699ab",
+    "experiments/probability_receipt/contract.json": "567a7ea823de5d729e9ae0e046d638571bb22744de05adfbf067ceb043c232c2",
+    "experiments/probability_receipt/receive.py": "cc62bc5c8fdd8fab97e3635554d946fce873298ec0a2f00d2d019db0d0fbfcb9",
+    "experiments/probability_receipt/run.py": "703df7ef99822e4a1dc3cb1cddbe0958cb4032c249593fc48d357c8248fb57b3"
+  },
+  "sqlite_version": "3.53.1",
+  "status": "Passed",
+  "supervisor_peak_rss_kib": 14592,
+  "wall_seconds": 4.267344887004583,
+  "work_units": 5007
+}

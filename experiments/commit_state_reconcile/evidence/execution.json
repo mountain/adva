@@ -1,0 +1,179 @@
+{
+  "assertions": 107,
+  "child_peak_rss_kib": 13696,
+  "failure": null,
+  "measurement_limits": "RSS values are category maxima, not aggregate memory. Child lifetimes include process setup and overlap no children. Research and publication are unmeasured.",
+  "native_authority": false,
+  "phases": {
+    "child_lifetime_seconds_sum": 0.844389415004116,
+    "construction_seconds": 4.772000102093443e-05,
+    "serialization_seconds": 0.035655356012284756
+  },
+  "processes": 15,
+  "profile": "adva.research.commit-state-reconcile.v0",
+  "proposed_vocabulary": [
+    "commit-state-reconcile",
+    "UnknownCommitState"
+  ],
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "runs": [
+    {
+      "case": "symmetric-empty-build/init",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.06647085300210165,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric-committed-build/init",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.06309005100047216,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric-committed-build/submit",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "outcome": "CommittedContinuation",
+      "wall_seconds": 0.07090980500288424,
+      "work_units": 1338
+    },
+    {
+      "case": "symmetric-empty/reconcile",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "outcome": "ProvenUncommittedLedger",
+      "wall_seconds": 0.06262191899804748,
+      "work_units": 22
+    },
+    {
+      "case": "symmetric-committed/reconcile",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "outcome": "StoredCommitted",
+      "wall_seconds": 0.052542052002536366,
+      "work_units": 25
+    },
+    {
+      "case": "asymmetric-empty-build/init",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.06275443400227232,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-committed-build/init",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.060303336002107244,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-committed-build/submit",
+      "ledger_sha256_after": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "ledger_sha256_before": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "outcome": "CommittedContinuation",
+      "wall_seconds": 0.06982240599973011,
+      "work_units": 1338
+    },
+    {
+      "case": "asymmetric-empty/reconcile",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "outcome": "ProvenUncommittedLedger",
+      "wall_seconds": 0.046147135999490274,
+      "work_units": 22
+    },
+    {
+      "case": "asymmetric-committed/reconcile",
+      "ledger_sha256_after": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "ledger_sha256_before": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "outcome": "StoredCommitted",
+      "wall_seconds": 0.04923491699810256,
+      "work_units": 25
+    },
+    {
+      "case": "changed-candidate/reconcile",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.048944770998787135,
+      "work_units": 25
+    },
+    {
+      "case": "changed-expected/reconcile",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.0491269279991684,
+      "work_units": 25
+    },
+    {
+      "case": "tampered-checker/reconcile",
+      "ledger_sha256_after": "a8e15ace64f6fa7676790fbcb9c54c1c444b94d799490f2ae381be8a749b3370",
+      "ledger_sha256_before": "a8e15ace64f6fa7676790fbcb9c54c1c444b94d799490f2ae381be8a749b3370",
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.0473571449983865,
+      "work_units": 21
+    },
+    {
+      "case": "corrupt-ledger/reconcile",
+      "ledger_sha256_after": "6d8677bba1637ea6945eb4fb6a7353bb9a5ac4830c892cf857dbd13a980edab8",
+      "ledger_sha256_before": "6d8677bba1637ea6945eb4fb6a7353bb9a5ac4830c892cf857dbd13a980edab8",
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.04893080200054101,
+      "work_units": 9
+    },
+    {
+      "case": "missing-ledger/reconcile",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.046132859999488574,
+      "work_units": 1
+    }
+  ],
+  "search_candidates": 0,
+  "source_sha256": {
+    "experiments/commit_state_reconcile/contract.json": "672ff796a3e91239f7d5c119f12935425ac954755109b0c8459a8d5de89bd617",
+    "experiments/commit_state_reconcile/receive.py": "c664274b6c6c3a6a09cdb54ecebde7f2e3189020d77bf3d04966f6ede195e631",
+    "experiments/commit_state_reconcile/run.py": "75f277f6f45370546e79f0dabb1380d84bd1691c14aec403a2b74dd539994d85",
+    "experiments/decision_checkpoint/contract.json": "be26344b489fbf110d2e26d9387dbea1041b87c5161128531e4932655a7f709e",
+    "experiments/decision_checkpoint/receive.py": "d7dac111df3a9273b7e2f16c80e3536c5ede3fad2a4adad437fc8c23cf085392",
+    "experiments/decision_checkpoint/run.py": "55022e8d129d050ab79329e023e0c0cabade74930a0ce48a27fd087a94783762",
+    "experiments/decision_ledger/contract.json": "ecc3327c270bd9851e4576973cdb798550b3a78e028290a83219a37770dd46cb",
+    "experiments/decision_ledger/receive.py": "66388a10f37e5497832c2ebc4a319cdecf237aa5405b0fb4c0a15404eae75f1f",
+    "experiments/decision_ledger/run.py": "60c8e011fc487e1244c1c611040d4a85c6cf6b791485ff242e9a59b26baadccc",
+    "experiments/decision_ledger_contention/contract.json": "b5aaf2eee9296625695713e2086b6738a3c90a1a217ee4295acf2dba84bae656",
+    "experiments/decision_ledger_contention/gate_worker.py": "bfbc14803dad38154b3adc41436a13431d8a9e611b989632547c81296028d92d",
+    "experiments/decision_ledger_contention/receive.py": "68b164392a082eb2f33dce574a062a89d94caac752d43b9866f3e2cb44ca8507",
+    "experiments/decision_ledger_contention/run.py": "545f29643fb19f567cfb70c4aeb4249651a179f139f494f63db5b56d309e4d49",
+    "experiments/decision_scale/contract.json": "f76ee4345685cc3e25b246dcec1c82299e32233ad71582b6bd57fdbcf5068aeb",
+    "experiments/decision_scale/receive.py": "9eb30366076498eb645b34a5cf22ba8217c387ec63c29652e96335d677b24236",
+    "experiments/decision_scale/run.py": "1a72982780f430dc3e7156921751f179f58fcd6cc5311f18f2679cca6012d449",
+    "experiments/decision_scale_composition/contract.json": "4f6debcf01ea6b0d7644f8e93d699b5c70b703c855bda62eb693f869103b0b49",
+    "experiments/decision_scale_composition/receive.py": "1f49473ae220fc2336e1bf67800634022729c90a197dcb221f350a0732a7c0bd",
+    "experiments/decision_scale_composition/run.py": "d37152c4db26066d7708b6027fc8493ed5125039c73012836ec2331d3eee6647",
+    "experiments/finite_decision/contract.json": "60c4ba6a4567cf9dded161f7712b72d6826835db092224e4f179eef5f8df79dd",
+    "experiments/finite_decision/receive.py": "3ed91e4cd136b83e67ba89ccf104347972f3d50c990e6e66253c98552ecb48a7",
+    "experiments/finite_decision/run.py": "f300a5cec588e31d67a308e8413eedfa6e84340752da11eb61efb3b3afb8aff2",
+    "experiments/ledger_holder_exit/contract.json": "458a721d7f00deebf59033f8dfbff077d971d8eedee2ab1693444950eb356ea4",
+    "experiments/ledger_holder_exit/run.py": "496181ca47887b6e2661ad2b4e877fea9984ed2539506acfff3a5350eaa699ab",
+    "experiments/ledger_postwrite_exit/contract.json": "bb2d3329f6f857b58643878793b0fa8f94688b2822270c119fa3f08532c025a8",
+    "experiments/ledger_postwrite_exit/gate_worker.py": "43dc27a2e6e0911334ca9462ed13c14a41933552193eb93e40c6c6bed7907372",
+    "experiments/ledger_postwrite_exit/run.py": "a59ac6a86595b145510c439557ec1324f8aad9bfc67d58aea83ed34a0976deb4",
+    "experiments/probability_receipt/contract.json": "567a7ea823de5d729e9ae0e046d638571bb22744de05adfbf067ceb043c232c2",
+    "experiments/probability_receipt/receive.py": "cc62bc5c8fdd8fab97e3635554d946fce873298ec0a2f00d2d019db0d0fbfcb9",
+    "experiments/probability_receipt/run.py": "703df7ef99822e4a1dc3cb1cddbe0958cb4032c249593fc48d357c8248fb57b3"
+  },
+  "sqlite_version": "3.53.1",
+  "status": "Passed",
+  "supervisor_peak_rss_kib": 15104,
+  "wall_seconds": 0.9107277630027966,
+  "work_units": 3735
+}
