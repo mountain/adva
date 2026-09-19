@@ -1,0 +1,19 @@
+{
+  "profile": "adva.research.ledger-postwrite-exit.v0",
+  "status": "FrozenBeforeExecution",
+  "base_main": "89cf06ef11f4808040440845fd5ce5bfa085eb95",
+  "dependency": "PR 199 at a5d89cd85d4ad99c67733d42172a343d870e958a, merged locally with current main before this contract",
+  "question": "While an owned holder has made both tentative application writes but has not called COMMIT, does contention remain nonsemantic and does holder exit restore the exact original logical ledger before one bounded retry?",
+  "level": "External finite SQLite schedule experiment over unchanged exact-rational receivers; not native Adva semantics or a power-loss test.",
+  "objects": "One trusted local rollback-journal SQLite ledger with one slot; two inherited finite decision families; original grant=3 spent=2 remaining=1.",
+  "types_and_domain": "Strict JSON, exact rational pairs, bounded integer allowance, four-entry history and unchanged receiver fingerprints. Additive zero and multiplicative one types and domains are not changed or inferred.",
+  "quantifiers": "Exactly four predetermined episodes: primary valid, asymmetric valid reuse, primary false arithmetic and asymmetric changed-history context. One killed holder, one live contender and one retry per episode.",
+  "candidate_grammar": "Unchanged adva.research.decision-ledger-contention.v0 envelopes produced by the existing generator. No new semantic syntax.",
+  "method": "A test-only wrapper pauses immediately before the inherited receiver executes COMMIT, after INSERT and UPDATE. The holder reports in_transaction and its own tentative row/balance. A concurrent process must return LedgerBusy. Kill and reap only the owned holder, inspect the quiescent database, then perform exactly one retry.",
+  "acceptance": "Tentative holder state has one row and allowance 3/3/0; contender has no semantic result or allowance; post-exit full logical state exactly equals pre-overlap state; valid retry independently verifies and commits one debit; false arithmetic and changed context refuse without mutation.",
+  "limits": {"campaign_wall_seconds": 30, "outer_wall_seconds": 35, "child_processes": 16, "overlapping_children": 2, "child_wall_seconds": 3, "child_cpu_seconds": 3, "child_address_space_bytes": 134217728, "child_regular_file_bytes": 2097152, "gate_ready_seconds": 1.5, "gate_wire_bytes": 4096, "receiver_work_per_call": 10000, "total_receiver_work": 100000, "database_bytes": 1048576, "candidate_wire_bytes": 196608, "search_candidates": 0, "implementation_correction_replays": 1},
+  "protected": ["Complete original question, histories, fingerprints, exact arithmetic and allowance", "No interpretation of lock release as acceptance, free, Close, Seal, M6 or renewed fuel", "No power-loss, disk-flush or distributed durability claim"],
+  "exit": "Stop after four episodes or first unexpected outcome/limit, retain failed evidence, and permit at most one implementation correction replay.",
+  "residuals": ["No exit during the COMMIT system call", "No power loss, storage failure, hostile database, external action or distributed execution", "No scheduler fairness or practical user-benefit measurement"],
+  "origin": "Original ChatGPT-authored harness, report and synthetic generated evidence under Unknown v0.3; no external content incorporated."
+}

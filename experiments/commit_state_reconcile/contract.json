@@ -1,0 +1,18 @@
+{
+  "profile": "adva.research.commit-state-reconcile.v0",
+  "status": "FrozenBeforeExecution",
+  "base_main": "e98592b7dc0c3fabba3fa897a491c78f5c55c45e",
+  "dependency": "Draft PR 199 at d5dab8b5228c7270d73e75d8f88486f460ab96a7, locally merged with current main before freezing",
+  "question": "Can a bounded read-only receiver reconcile an uncertain commit observation without resubmitting, renewing allowance or changing the original question?",
+  "objects": "One trusted local SQLite single-slot ledger, exact receiver-selected request, complete candidate envelope and unchanged receiver fingerprints.",
+  "types_and_domain": "Strict JSON; exact rational ancestor records; a bounded integer allowance; three receiving outcomes only: StoredCommitted, ProvenUncommittedLedger or UnknownCommitState.",
+  "quantifiers": "Exactly nine cases over two finite decision families: two empty, two matching committed, one changed candidate, one changed expected history, one checker tamper, one corrupt file and one missing file.",
+  "candidate_grammar": "A reconciliation request contains exactly profile, expected_request and candidate. Candidate grammar remains adva.research.decision-ledger-contention.v0.",
+  "semantics": "StoredCommitted requires exact canonical candidate/key equality with the receiver-validated stored row. ProvenUncommittedLedger means only that the selected valid ledger has no accepted transition. Every mismatch, unreadable/missing/invalid ledger or failed binding returns UnknownCommitState. No mathematical verification or retry occurs.",
+  "acceptance": "All nine expected outcomes, exact stored result recovery, exact empty-ledger allowance, zero file-byte change for every existing ledger, no parent checking, no debit, no retry authorization, and asymmetric reuse.",
+  "limits": {"campaign_wall_seconds": 30, "outer_wall_seconds": 35, "child_processes": 15, "child_wall_seconds": 3, "child_cpu_seconds": 3, "child_address_space_bytes": 134217728, "child_regular_file_bytes": 2097152, "receiver_work_per_call": 10000, "total_receiver_work": 100000, "database_bytes": 1048576, "request_bytes": 196608, "search_candidates": 0, "implementation_correction_replays": 1},
+  "protected": ["The ledger's stored request, fingerprints, history, exact candidate and allowance", "Unknown never authorizes resubmission or fresh fuel", "ProvenUncommittedLedger is local ledger state, not proof that an external action never happened", "No native operation, free, Close, Seal, M6 or universality claim"],
+  "exit": "Stop after nine cases or first unexpected outcome/limit. Retain failure evidence. At most one implementation correction replay.",
+  "residuals": ["No actual interruption inside COMMIT or power-loss model", "Read-only inspection shares Python and SQLite with the writer", "No hostile concurrent replacement, authentication, external action or distributed ledger", "No practical human-benefit measurement"],
+  "origin": "Original ChatGPT-authored code, report and synthetic generated evidence under Unknown v0.3; no external content incorporated."
+}

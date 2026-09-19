@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **215 numbered
-notes, 43 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 46 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -751,6 +751,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`absurdity-emptiness-record-freeze.md`](absurdity-emptiness-record-freeze.md)
 - [`alternating-group-observer-expansion.md`](alternating-group-observer-expansion.md)
 - [`borromean-boundary-word-correction.md`](borromean-boundary-word-correction.md)
+- [`commit-state-reconciliation-without-resubmission.md`](commit-state-reconciliation-without-resubmission.md): the three permitted outcomes for an uncertain commit state, checked read-only against the original question, the full candidate and the single-slot ledger; no resubmission and no automatic retry.
 - [`borromean-independent-longitudes.md`](borromean-independent-longitudes.md)
 - [`catalog-key-words-alignment.md`](catalog-key-words-alignment.md)
 - [`catalog-key-words-v1.md`](catalog-key-words-v1.md)
@@ -760,6 +761,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`golden-ratio-receipts-and-source-boundaries.md`](golden-ratio-receipts-and-source-boundaries.md)
 - [`golden-ratio-receiving-review.md`](golden-ratio-receiving-review.md)
 - [`lattice-polar-and-mirror-boundary.md`](lattice-polar-and-mirror-boundary.md)
+- [`ledger-holder-exit-without-new-permission.md`](ledger-holder-exit-without-new-permission.md): a holder exits after the write without asking for a new permission, and the exit is recorded rather than inferred.
+- [`ledger-postwrite-exit-before-commit.md`](ledger-postwrite-exit-before-commit.md): the post-write exit stated before the commit, with the single-slot ledger as the only retained state.
 - [`leak-wall-reading-correction-lines-and-rings.md`](leak-wall-reading-correction-lines-and-rings.md): reading correction, no executable claim: Research 0186's flow-network reading of the leak wall is withdrawn in favour of the language of lines, links and cutting.
 - [`operator-check-python-adapter-v0.md`](operator-check-python-adapter-v0.md)
 - [`operator-lift-main-integration-v1.md`](operator-lift-main-integration-v1.md)
