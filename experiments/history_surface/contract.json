@@ -1,0 +1,70 @@
+{
+  "schema": "adva.history-surface-calibration.research",
+  "version": 0,
+  "question": "Can a finite polynomial boundary record reconstruct every declared history, preserve all historical prefixes under extension, and correct a bounded symbol fault without confusing decoding with authenticity?",
+  "level": "External finite arithmetic research; post-extension compatibility, not an endogenous breakthrough trial",
+  "scope": {
+    "prime": 7,
+    "maximum_history_length": 5,
+    "surface_samples": "k+2 distinct field points: 1,2,...,k+2 modulo 7",
+    "alphabet": [0, 1, 2, 3, 4, 5, 6],
+    "toy_domain_labels": {"T": [0, 1], "X": [2, 3], "K": [4, 5, 6]},
+    "header": "Trusted codec version, prime, history length and ordered sample locations",
+    "fault_model": "At most one substituted sample, OR at most two known erasures; header intact",
+    "history_semantics": "Ordered words over the declared alphabet only; no Rust SourceId, OccurrenceId, native History or certificate",
+    "surface_geometry": "Ordered sampling sites; no physical holographic duality, locality or continuous surface metric"
+  },
+  "imported_assumptions": [
+    "Arithmetic is in the explicitly constructed prime field F_7.",
+    "A nonzero polynomial of degree below k has at most k-1 distinct roots.",
+    "All decoder guarantees are conditional on the trusted header and stated fault radius."
+  ],
+  "interface_justification": "Original evaluation and interpolation code with an elementary root-count proof; equality of toy words does not allocate or identify Adva semantic objects.",
+  "protected_obligations": [
+    "Retain chronological order, leading and trailing zero tokens and all old prefixes.",
+    "Keep boundary codewords separate from decoded words and partial observer projections.",
+    "No reduction modulo 7 of arbitrary external event identifiers.",
+    "No claimed authenticity from error correction alone.",
+    "No automatic field enlargement or fuel reset."
+  ],
+  "checker": {
+    "length_three_histories": "All 7^3 words, lexicographic order",
+    "single_faults": "Clean word and every one-site nonzero additive fault at all five sites",
+    "erasures": "Every pair of missing sites for every length-three word",
+    "extensions": "Every length-three word and all seven appended symbols",
+    "other_lengths": "Every binary word of lengths zero through five",
+    "distance_check": "Every pair of length-three codewords",
+    "negative_controls": [
+      "Two samples cannot distinguish a degree-two collision pair.",
+      "Per-domain projections can lose global order.",
+      "All-zero histories of different lengths require length metadata.",
+      "Repeated sample sites and out-of-alphabet symbols are rejected.",
+      "A sixth event is refused at the fixed one-error-correcting capacity.",
+      "Candidate budget zero returns Unknown.",
+      "Two substitutions can miscorrect to another valid history.",
+      "Two declared one-step continuation sets have different sizes but identical old-history readback."
+    ],
+    "success": "All declared checks and expected negative controls pass",
+    "failure": "Preserve last case, completed counts, digest and reason; no promotion of partial success"
+  },
+  "resources": {
+    "maximum_cases": 40000,
+    "maximum_decode_calls": 40000,
+    "maximum_candidate_subsets": 250000,
+    "candidate_budget_per_decode": 21,
+    "wall_seconds": 60,
+    "cpu_seconds": 55,
+    "address_space_bytes": 268435456,
+    "maximum_artifact_bytes": 1048576,
+    "file_size_limit_bytes": 2097152,
+    "continuations": 0,
+    "enforcement": "Fixed finite loops, explicit counters and per-decode fuel; a parent process applies timeout and POSIX CPU/address-space/file-size limits to the worker."
+  },
+  "provenance": {
+    "author": "Codex (OpenAI)",
+    "basis": "Original project code, examples and exposition contributed under Unknown v0.3",
+    "incorporated_third_party_content": [],
+    "bibliography_only": ["https://doi.org/10.1137/0108018", "https://arxiv.org/abs/1503.06237"],
+    "review": "Self-review by Codex; no independent or human verification claimed"
+  }
+}

@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **214 numbered
+This directory holds the research record of the repository: **215 numbered
 notes, 43 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -739,6 +739,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0203-allocating-the-three-currencies.md`](0203-allocating-the-three-currencies.md)
 - [`0204-gold-twin-timeout-is-not-negative.md`](0204-gold-twin-timeout-is-not-negative.md)
 - [`0205-implementation-failure-is-not-a-counterexample.md`](0205-implementation-failure-is-not-a-counterexample.md)
+- [0206 — Compatible history surfaces](0206-compatible-history-surfaces.md): finite reconstruction, compatible readback and bounded correction; [Chinese companion](../../experiments/history_surface/learning.zh.md).
 
 ### Named notes
 

@@ -1,0 +1,411 @@
+{
+  "schema": "adva.history-surface-calibration.report.v0",
+  "status": "PassedDeclaredFiniteCalibration",
+  "contract_sha256": "e2f6efca6f1909963dbbaa2edd3b1d5256968e3f87d563eb31b2649664beb4e9",
+  "source_sha256": {
+    "model.py": "03e4035be861ad9025922efc02c59b34066eb80b0b5bc3d3d553cb4f060e2619",
+    "run.py": "b5362f74f7024794291b12c69740157073b7c8565dd358125c31429a4c409419"
+  },
+  "author": "Codex (OpenAI), through Mingli Yuan's authorized account proxy",
+  "native_semantic_calls": 0,
+  "counts": {
+    "direct_encoding": 343,
+    "clean_length_three": 343,
+    "one_substitution": 10290,
+    "two_erasures": 3430,
+    "extension": 2401,
+    "incremental_sample_update": 2401,
+    "old_history_readback": 2401,
+    "minimum_distance": 1,
+    "all_binary_lengths": 63,
+    "prefix_reconstruction": 321,
+    "readback_composition": 1023,
+    "negative": 10,
+    "scope_extension": 1,
+    "rewrite_example": 1
+  },
+  "checked_cases": 23029,
+  "case_order_digest_sha256": "9329bcdb371b40cce610c371ef3a41a0ad011bbe849eee067c151169419136b0",
+  "work": {
+    "decode_calls": 23709,
+    "candidate_subsets": 44301,
+    "max_decode_calls": 40000,
+    "max_candidate_subsets": 250000
+  },
+  "elapsed_seconds": 1.3991296780004632,
+  "peak_rss_kib_linux": 23700,
+  "negative_controls": {
+    "undersampled_collision": {
+      "histories": [
+        [
+          0,
+          0,
+          0
+        ],
+        [
+          2,
+          4,
+          1
+        ]
+      ],
+      "points": [
+        1,
+        2
+      ],
+      "observations": [
+        [
+          0,
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ]
+    },
+    "lost_global_order": {
+      "histories": [
+        [
+          0,
+          2,
+          4
+        ],
+        [
+          2,
+          0,
+          4
+        ]
+      ],
+      "domain_views": [
+        {
+          "T": [
+            0
+          ],
+          "X": [
+            2
+          ],
+          "K": [
+            4
+          ]
+        },
+        {
+          "T": [
+            0
+          ],
+          "X": [
+            2
+          ],
+          "K": [
+            4
+          ]
+        }
+      ],
+      "surfaces": [
+        {
+          "k": 3,
+          "points": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "values": [
+            6,
+            6,
+            0,
+            2,
+            5
+          ],
+          "prime": 7,
+          "version": "history-surface-v0"
+        },
+        {
+          "k": 3,
+          "points": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ],
+          "values": [
+            6,
+            4,
+            3,
+            3,
+            4
+          ],
+          "prime": 7,
+          "version": "history-surface-v0"
+        }
+      ]
+    },
+    "missing_length": {
+      "histories": [
+        [
+          0
+        ],
+        [
+          0,
+          0
+        ]
+      ],
+      "same_samples_at_points_1_to_5": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    "repeated_locations": {
+      "status": "Rejected",
+      "reason": "InvalidSampleLocations"
+    },
+    "outside_alphabet": {
+      "status": "Rejected",
+      "reason": "OutsideContinuationScope"
+    },
+    "capacity": {
+      "status": "Rejected",
+      "reason": "CapacityExceeded"
+    },
+    "zero_budget": {
+      "status": "Unknown",
+      "reason": "CandidateBudget",
+      "candidates_tried": 0
+    },
+    "mixed_faults_outside_bound": {
+      "status": "Rejected",
+      "reason": "InsufficientRedundancy"
+    },
+    "two_error_miscorrection": {
+      "actual_history": [
+        0,
+        0,
+        0
+      ],
+      "received": [
+        0,
+        0,
+        2,
+        6,
+        0
+      ],
+      "substitutions_from_actual": 2,
+      "decoder": {
+        "status": "DecodedWithinRadius",
+        "history": [
+          2,
+          4,
+          1
+        ],
+        "mismatch_sites": [
+          4
+        ],
+        "erased_sites": [],
+        "candidates_tried": 1,
+        "authenticity": "NotEstablished"
+      }
+    },
+    "outside_every_radius_one_ball": {
+      "received": [
+        0,
+        0,
+        0,
+        1,
+        1
+      ],
+      "decoder": {
+        "status": "NoCodewordWithinRadius",
+        "candidates_tried": 10,
+        "scope": "this finite code, header, received word and radius"
+      }
+    }
+  },
+  "examples": {
+    "declared_scope_extension": {
+      "old_allowed_symbols": [
+        0,
+        1
+      ],
+      "new_allowed_symbols": [
+        0,
+        1,
+        2
+      ],
+      "successors": [
+        {
+          "k": 4,
+          "points": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "values": [
+            2,
+            5,
+            3,
+            3,
+            5,
+            2
+          ],
+          "prime": 7,
+          "version": "history-surface-v0"
+        },
+        {
+          "k": 4,
+          "points": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "values": [
+            3,
+            6,
+            2,
+            4,
+            4,
+            1
+          ],
+          "prime": 7,
+          "version": "history-surface-v0"
+        },
+        {
+          "k": 4,
+          "points": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "values": [
+            4,
+            0,
+            1,
+            5,
+            3,
+            0
+          ],
+          "prime": 7,
+          "version": "history-surface-v0"
+        }
+      ],
+      "scope": "Externally declared continuation sets; no endogenous discovery"
+    },
+    "surface_rewrite": {
+      "before": {
+        "k": 3,
+        "points": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "values": [
+          2,
+          5,
+          3,
+          3,
+          5
+        ],
+        "prime": 7,
+        "version": "history-surface-v0"
+      },
+      "after": {
+        "k": 4,
+        "points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "values": [
+          3,
+          6,
+          2,
+          4,
+          4,
+          1
+        ],
+        "prime": 7,
+        "version": "history-surface-v0"
+      },
+      "one_fault": {
+        "k": 4,
+        "points": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6
+        ],
+        "values": [
+          3,
+          6,
+          3,
+          4,
+          4,
+          1
+        ],
+        "prime": 7,
+        "version": "history-surface-v0"
+      },
+      "reconstruction": {
+        "status": "DecodedWithinRadius",
+        "history": [
+          1,
+          0,
+          1,
+          1
+        ],
+        "mismatch_sites": [
+          2
+        ],
+        "erased_sites": [],
+        "candidates_tried": 4,
+        "authenticity": "NotEstablished"
+      },
+      "old_prefix": {
+        "k": 3,
+        "points": [
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "values": [
+          2,
+          5,
+          3,
+          3,
+          5
+        ],
+        "prime": 7,
+        "version": "history-surface-v0"
+      }
+    }
+  },
+  "failure": null,
+  "residuals": [
+    "No endogenous breakthrough generation or native Adva history import.",
+    "Only words over seven declared toy symbols are reconstructed.",
+    "Header integrity and the fault bound are assumptions.",
+    "No physical surface geometry, locality, holographic duality or infinite fixed memory.",
+    "Correction does not authenticate the actual past; two-error control miscorrects."
+  ]
+}
