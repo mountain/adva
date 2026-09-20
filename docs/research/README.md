@@ -7,6 +7,17 @@ declares for itself.
 
 ## How to read this directory
 
+- [Calabi–Yau fifty-years study note (Chinese)](https://github.com/mountain/adva-library/blob/2e743747179b7725ff73ed7ccbf7579a97414959/yau-calabi-yau-fifty-years-reading-note-v0.md):
+  original exposition of canonical metrics, stability, mirror symmetry and
+  higher-genus functions, including Candelas enumeration, spectral limitations
+  and Higgs bundles. Its 23 source groups record reading depth and distinguish
+  theorems, conjectures and physical motivations. The sole catalog home remains
+  `geometry` in the linked library revision, as a documentary external reference.
+  The new library catalog passed its 33-entry and keyword check; this citation
+  leaves the executable library gitlink and machine dependency lock unchanged.
+  Authored by Codex (OpenAI), contributed under Unknown v0.3 through Mingli
+  Yuan's authorized account proxy; not his authorship, review or endorsement.
+
 - [murphy: self-application, conjugation and the compiler boundary](murphy-iota-conjugation.md): names Zot `0001011011`, retains its 125-transition trace, pure Iota self-application and coordinate operations, and records the unresolved string-splice and Futamura interfaces.
 
 - [Applied mathematics contract roadmap](applied-mathematics-contract-roadmap.md): existing capabilities and the ordered gaps after finite probability receipts; proposed obligations, not new native operations.
