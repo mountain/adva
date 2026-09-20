@@ -27,7 +27,10 @@ def main():
             raise RuntimeError("required process limits unavailable")
         def limits():
             resource.setrlimit(resource.RLIMIT_CPU, (budget["cpu_seconds_per_child"],) * 2)
-            resource.setrlimit(resource.RLIMIT_AS, (budget["address_space_bytes_per_child"],) * 2)
+            # RLIMIT_AS is enforced on Linux. Darwin reports the attribute but
+            # refuses the limit, which aborts the child before it starts.
+            if sys.platform == "linux":
+                resource.setrlimit(resource.RLIMIT_AS, (budget["address_space_bytes_per_child"],) * 2)
             resource.setrlimit(resource.RLIMIT_FSIZE, (budget["output_bytes_per_child"],) * 2)
             resource.setrlimit(resource.RLIMIT_CORE, (0, 0))
         jobs = [("certificate.json", ["generate.py"]),
