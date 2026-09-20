@@ -1,0 +1,67 @@
+{
+  "schema": "adva.external.trail-navigation.design-validation.v1",
+  "status": "DesignChecksPassed",
+  "date": "2026-09-20",
+  "reviewer": "Codex (OpenAI), self-review only",
+  "experiment_execution": "NotRun",
+  "native_execution": "NotRun",
+  "checked": {
+    "json_parse": true,
+    "six_cells_three_uses_two_unknown_sides": true,
+    "involutive_pairing_of_query_ids": true,
+    "document_links": true,
+    "candidate_counts": true,
+    "spectral_grid_counts": true,
+    "budget_text_alignment": true,
+    "arithmetic_fixture_equalities": 150,
+    "pairwise_nonempty_triple_empty_both_orientations": true
+  },
+  "three_way_counterexample_incidence": [
+    [
+      0,
+      1,
+      1
+    ],
+    [
+      1,
+      0,
+      1
+    ],
+    [
+      1,
+      1,
+      0
+    ]
+  ],
+  "files": [
+    {
+      "path": "experiments/trail_navigation/README.md",
+      "bytes": 3875,
+      "sha256": "b3c247e7dec4316387a4ac9215ab7bb74391e12400b03dbab1e7bd547154d9b7"
+    },
+    {
+      "path": "experiments/trail_navigation/six-experiments-design.md",
+      "bytes": 21184,
+      "sha256": "a43eb94ff74b56f79cb409679f0727c723b9365e0a1d9ff361a1454757bffd75"
+    },
+    {
+      "path": "experiments/trail_navigation/six-experiments-design.zh.md",
+      "bytes": 7508,
+      "sha256": "5a2446d8a50d2ce4199cbf37e37ae3fd7b06a1d21c425fa0aa8c31e8971914d9"
+    },
+    {
+      "path": "experiments/trail_navigation/suite-proposal.json",
+      "bytes": 9469,
+      "sha256": "3d294ea66414607565120235924e77c20ce64462e86df4ca3ce734fe6b3faf58"
+    }
+  ],
+  "authoring_corrections": [
+    "Separated symbolic events from estimated dense numerical arithmetic; reduced proposed numerical graph cap from 256 to 64; no experiment informed these choices.",
+    "Two patch applications were refused for mismatched text contexts; neither made partial file changes, and corrected patches were applied."
+  ],
+  "limits": [
+    "No search, learning, graph solver, matrix response, performance comparison or geometric correspondence executed.",
+    "Task instances, split, graph rules, numerical backend and enforceable run supervisor still require an implementation freeze.",
+    "Small algebraic fixture checks do not establish general semantic or geometric duality."
+  ]
+}

@@ -1,0 +1,308 @@
+{
+  "schema": "adva.external.trail-navigation.six-query-design.v0.2",
+  "date": "2026-09-20",
+  "status": "DesignOnly",
+  "implementation": "NotWritten",
+  "experiment_execution": "NotRun",
+  "native_execution": "NotRun",
+  "main_integration": "NotPerformed",
+  "origin": {
+    "direction": "Mingli Yuan",
+    "design_and_self_review": "Codex (OpenAI)",
+    "license": "Unknown v0.3",
+    "proxy_note": "Account use is not human authorship, review, endorsement or correctness guarantee.",
+    "external_components": "Bibliographic references only; no third-party expression, data or code incorporated."
+  },
+  "documents": {
+    "english": "six-experiments-design.md",
+    "chinese": "six-experiments-design.zh.md"
+  },
+  "prior_unexecuted_proposals": [
+    "contract.json",
+    "contract-v1.json"
+  ],
+  "repository_reference_commit": "22c500263db4a261a3a4ed20d9e0941c374475a1",
+  "relation": {
+    "name": "Fit(h,f;Gamma,Q)",
+    "meaning": "Ordered substitution satisfies the frozen target, observer, roles and required history conditions; retain a witness and residual.",
+    "converse": "Exchange row and column queries under the same Gamma and Q.",
+    "not_claimed": [
+      "native D*",
+      "inverse execution",
+      "history reversal",
+      "unique filling or abstraction",
+      "Teichmuller equivalence",
+      "circular-law theorem"
+    ]
+  },
+  "endpoints": [
+    {
+      "id": "origin",
+      "meaning": "Common generation origin of the expression chains."
+    },
+    {
+      "id": "open_relation",
+      "meaning": "Relation intersection of the original unfilled holes; observations available before solving."
+    }
+  ],
+  "carrier": {
+    "kind": "external synthetic arithmetic",
+    "field_modulus": 5,
+    "input_variables": [
+      "x",
+      "y"
+    ],
+    "input_count": 25,
+    "operators": [
+      "+",
+      "-",
+      "*"
+    ],
+    "context_binary_nodes": 2,
+    "hole_labels": [
+      "hole1",
+      "hole2",
+      "hole3"
+    ],
+    "each_hole_occurs_once": true,
+    "context_count": 108,
+    "filling_atoms": [
+      "x",
+      "y",
+      "0",
+      "1",
+      "2",
+      "x+y",
+      "x-y",
+      "x*y"
+    ],
+    "filling_arity": 3,
+    "filling_count": 512,
+    "initial_probes": [
+      [
+        0,
+        0
+      ],
+      [
+        1,
+        0
+      ],
+      [
+        0,
+        1
+      ],
+      [
+        1,
+        1
+      ],
+      [
+        2,
+        1
+      ]
+    ],
+    "oracle_visibility": "isolated, never provided to the online policies",
+    "equality_scope": "functions on F5^2 plus separately checked declared interface conditions; not program identity"
+  },
+  "experiments": [
+    {
+      "id": "E1",
+      "use": "learning",
+      "unknown": "filling",
+      "dual": "E2",
+      "given": "Development hole tasks and checked trails, then new hole tasks.",
+      "seek": "Reusable priorities over one-slot filling edits.",
+      "training_tasks": 16,
+      "held_out_tasks": 16,
+      "acceptance": "Transfer on fixed held-out tasks beyond no-reuse, including full training and persistence cost."
+    },
+    {
+      "id": "E2",
+      "use": "learning",
+      "unknown": "hole",
+      "dual": "E1",
+      "given": "Development filling examples and checked trails, then new examples with unchanged positive and negative obligations.",
+      "seek": "Reusable priorities over context operation, shape or slot-permutation edits.",
+      "training_tasks": 16,
+      "held_out_tasks": 16,
+      "acceptance": "A nonvacuous context satisfying all fixed obligations; transfer beyond no-reuse."
+    },
+    {
+      "id": "E3",
+      "use": "two_object_relation",
+      "unknown": "filling",
+      "dual": "E4",
+      "given": "Two hole contexts.",
+      "seek": "One common filling.",
+      "training_tasks": 0,
+      "held_out_tasks": 16,
+      "acceptance": "Two Fit witnesses for the identical filling under the same environment."
+    },
+    {
+      "id": "E4",
+      "use": "two_object_relation",
+      "unknown": "hole",
+      "dual": "E3",
+      "given": "Two fillings.",
+      "seek": "One common hole context.",
+      "training_tasks": 0,
+      "held_out_tasks": 16,
+      "acceptance": "Two Fit witnesses for the identical context with the target unchanged."
+    },
+    {
+      "id": "E5",
+      "use": "three_way_junction",
+      "unknown": "filling",
+      "dual": "E6",
+      "given": "Three hole contexts.",
+      "seek": "One simultaneously valid filling.",
+      "training_tasks": 0,
+      "held_out_tasks": 16,
+      "acceptance": "All three incidences and joint interface coherence; pairwise mediators alone fail."
+    },
+    {
+      "id": "E6",
+      "use": "three_way_junction",
+      "unknown": "hole",
+      "dual": "E5",
+      "given": "Three fillings.",
+      "seek": "One simultaneously valid context.",
+      "training_tasks": 0,
+      "held_out_tasks": 16,
+      "acceptance": "All three incidences and joint interface coherence; universal-context shortcuts fail."
+    }
+  ],
+  "arms": [
+    {
+      "id": "L",
+      "meaning": "Local exact narrowing plus canonical enumeration."
+    },
+    {
+      "id": "D",
+      "meaning": "Observed graph and both endpoints, with a proposed harmonic direction."
+    },
+    {
+      "id": "S",
+      "meaning": "Same graph and endpoints with the proposed regularized spectral response; equal weights on all grid points."
+    },
+    {
+      "id": "C",
+      "meaning": "Same responses; equal weights on unit-disk grid points only. A proposed disk prior, not an application theorem."
+    }
+  ],
+  "reference_baseline": "On-demand exact compatibility indexing, with construction and reuse fully charged.",
+  "contrasts": [
+    [
+      "D",
+      "L"
+    ],
+    [
+      "S",
+      "D"
+    ],
+    [
+      "C",
+      "S"
+    ]
+  ],
+  "learning_controls": [
+    "no_reuse",
+    "shuffled_training_outcomes"
+  ],
+  "spectral_proposal": {
+    "normalization": "M=(A-mean(A))/(FrobeniusNorm(A-mean(A))/sqrt(n)); zero denominator gives no direction.",
+    "adjacency_convention": "A[v,u] for an observed u-to-v edge.",
+    "grid_axis": [
+      -1,
+      -0.5,
+      0,
+      0.5,
+      1
+    ],
+    "grid_points": 25,
+    "disk_points": 13,
+    "eta": 0.25,
+    "regularized_response": "R_z=((zI-M)* (zI-M)+eta^2 I)^(-1) (zI-M)*; * is external complex adjoint.",
+    "score": "For every required constraint anchor j, average |(R_z e_origin)[v]|^2 |(R_z* e_constraint_j)[v]|^2; take minimum over j, divided by estimated next-check cost.",
+    "same_response_work_for_S_and_C": true,
+    "maximum_observed_vertices": 64,
+    "claim_scope": "Finite explicit heuristic; the expression-to-Teichmuller and circular-law bridges remain open."
+  },
+  "controls": [
+    "empty_fibre",
+    "multiple_fillings",
+    "pairwise_but_no_triple",
+    "wrong_slot_order",
+    "changed_roles",
+    "vacuous_context",
+    "zero_filling_shortcut",
+    "probe_collision_if_present",
+    "rollback_retains_knowledge_and_fuel",
+    "changed_premise_blocks_reuse",
+    "unknown_not_negative",
+    "chart_transports_metric_observer_endpoints",
+    "numerical_failure_falls_back_without_acceptance"
+  ],
+  "fairness": {
+    "canonical_proposal_every": 4,
+    "ties": "canonical order",
+    "heuristic_pruning": false,
+    "held_out_cross_query_leakage": false
+  },
+  "geometry_gate": {
+    "status": "Open",
+    "required": [
+      "Expression-to-pants boundary correspondence and admissible independent twists.",
+      "Both process endpoint observations available without the solution.",
+      "Source-bound geometric parameters, history retention and residual.",
+      "Induced operator family, normalization, size/parameter distinction and error policy.",
+      "Converse-query domains and observer/metric transport."
+    ]
+  },
+  "proposed_resources": {
+    "episode": {
+      "maximum_proposals": 2000,
+      "maximum_symbolic_units": 2000000,
+      "maximum_estimated_real_numeric_operations": 500000000,
+      "wall_seconds": 10,
+      "cpu_seconds": 8,
+      "maximum_evidence_bytes": 1048576
+    },
+    "campaign": {
+      "maximum_symbolic_units": 1000000000,
+      "maximum_estimated_real_numeric_operations": 50000000000,
+      "wall_seconds": 1800,
+      "cpu_seconds": 1200,
+      "maximum_evidence_bytes": 134217728
+    },
+    "peak_worker_memory_bytes": 805306368,
+    "checkpoint_reserve_fraction": 0.1,
+    "automatic_retries": 0,
+    "automatic_continuations": 0,
+    "enforcement": "Worker and supervisor must be implemented before execution; these are proposed limits, not active controls."
+  },
+  "signal": {
+    "minimum_improved_cases": 12,
+    "held_out_cases": 16,
+    "maximum_median_total_cpu_ratio": 0.8,
+    "no_lower_solved_fraction": true,
+    "statistical_significance_claim": false,
+    "training_cost_included": true
+  },
+  "implementation_freeze_required": [
+    "Task bytes, hashes, generator and train/test family partition.",
+    "Exact checker and negative controls.",
+    "Learner feature bins and edit ordering.",
+    "Observed-graph construction, edge weights, endpoint maps and refresh policy.",
+    "Numerical dependency versions, error policy, operation accounting and fallback.",
+    "Bounded supervisor, counters, fresh output paths and checkpoint verification."
+  ],
+  "recommended_execution_order": [
+    "E3",
+    "E4",
+    "E5",
+    "E6",
+    "E1",
+    "E2"
+  ],
+  "exit": "A later bounded run stops on witness, checked finite counterexample, failure or budget. Missing or truncated cells are retained as Unknown. This design schedules no run."
+}
