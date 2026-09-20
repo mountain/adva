@@ -1,0 +1,210 @@
+{
+  "schema": "adva.murphy-iota.renaming.v0",
+  "status": "derived publication unit; the original murphy unit is unchanged",
+  "reason": "The letter i denotes the imaginary unit in mathematics, the complex structure J in this repository's iota interpretation frame, and the identity combinator in the iota-lang case corpus. This unit spells the Iota combinator ι so the murphy programs no longer collide with those meanings.",
+  "declared_map": {
+    "from": "i",
+    "to": "ι",
+    "scope": "the Iota combinator token only; '*' (application) is unchanged",
+    "exactly_one_spelling": "a source in this unit contains ι and no i; the documentary spelling remains the one the 2026-09-19 unit and its transports use"
+  },
+  "original_unit": {
+    "path": "experiments/murphy",
+    "admission_record": "governance/publication/records/murphy-iota-2026-09-19.json",
+    "note": "the admitted unit keeps its bytes, its digests and its evidence; nothing there is renamed or reissued"
+  },
+  "files": [
+    {
+      "label": "P",
+      "original": "experiments/murphy/murphy.iota",
+      "original_bytes": 824,
+      "original_sha256": "da47f5cf6cdfb49a29e20c688dcb7ef569e758782b2722a71a5c354761f0d1bf",
+      "renamed": "murphy-iota-v0/murphy.iota",
+      "renamed_bytes": 1236,
+      "renamed_sha256": "48c0ad98cda5cc8a8d3f7008303ee903ba22c4191b132ae5620b9d9c3a9de882",
+      "characters": 823,
+      "note": "the same characters under the declared renaming; the two spellings parse to the same term"
+    },
+    {
+      "label": "PP",
+      "original": "experiments/murphy/evidence/PP.iota",
+      "original_bytes": 1648,
+      "original_sha256": "f278c189c050ce372b11a57c3ae331647bf203edf3df9e0bb242d50ebf5d4781",
+      "renamed": "murphy-iota-v0/PP.iota",
+      "renamed_bytes": 2472,
+      "renamed_sha256": "3309314bd91c17d8f28c48a082c595deb53bb190f306bb7e0ccdee23df57b1ba",
+      "characters": 1647,
+      "note": "the same characters under the declared renaming; the two spellings parse to the same term"
+    },
+    {
+      "label": "C",
+      "original": "experiments/murphy/evidence/C.iota",
+      "original_bytes": 744,
+      "original_sha256": "32c1c4e9d5dfefb89faadd4affd96129d027b96eefd97b5f20f67557ca39d9c0",
+      "renamed": "murphy-iota-v0/C.iota",
+      "renamed_bytes": 1116,
+      "renamed_sha256": "89395853cc13222bc24c934c86bc03219dacc7143be0f6a3400f807f113db448",
+      "characters": 743,
+      "note": "the same characters under the declared renaming; the two spellings parse to the same term"
+    },
+    {
+      "label": "J",
+      "original": "experiments/murphy/evidence/J.iota",
+      "original_bytes": 672,
+      "original_sha256": "14ee565f2854e396c0271a81c41a35237e787489103af39192f5a40f98ed1a99",
+      "renamed": "murphy-iota-v0/J.iota",
+      "renamed_bytes": 1008,
+      "renamed_sha256": "fc900f7f1fca3b3da279c643a91fbd50b22446d149c824481f02f5a85d407089",
+      "characters": 671,
+      "note": "the same characters under the declared renaming; the two spellings parse to the same term"
+    },
+    {
+      "label": "N",
+      "original": "experiments/murphy/evidence/N.iota",
+      "original_bytes": 726,
+      "original_sha256": "f3cbd2fbfea22e8c5af906d0173d35b30a4a1bd2c413331665ca1a8c03416ed9",
+      "renamed": "murphy-iota-v0/N.iota",
+      "renamed_bytes": 1089,
+      "renamed_sha256": "06c2d960a8f80eca511c23a83c00ae1a1ee5351eea09281cd11bf896a68dc6c2",
+      "characters": 725,
+      "note": "the same characters under the declared renaming; the two spellings parse to the same term"
+    }
+  ],
+  "preserved_relations": {
+    "note": "Every relation the original unit froze must hold identically for this unit. The frozen counts, rule histograms, node peaks and normal-form digests below are extracted from the original unit's evidence/result.json; the laws are the ones its checker compared, restated for the machine's declared coordinate application.",
+    "frozen_witnesses": {
+      "P_characters": 823,
+      "PP_characters": 1647,
+      "PP_reduction": {
+        "label": "PP",
+        "contractions": 1808,
+        "rules": {
+          "j": 822,
+          "S": 549,
+          "K": 437
+        },
+        "peak_nodes": 7627,
+        "normal_form_sha256": "8d0434eb47a6741a205db37b61bca00fb722f915e5f5a38f58e4fd7a192445fa"
+      },
+      "coordinate_reductions": {
+        "C": {
+          "contractions": 919,
+          "rules": {
+            "j": 372,
+            "S": 296,
+            "K": 250,
+            "I": 1
+          },
+          "peak_nodes": 9395,
+          "normal_form_sha256": "dc74b1b624debdd47da8eb3ab4a6db368f0ed898c68d911f69f0cf448b6e266c"
+        },
+        "J": {
+          "contractions": 831,
+          "rules": {
+            "j": 336,
+            "S": 268,
+            "K": 226,
+            "I": 1
+          },
+          "peak_nodes": 7889,
+          "normal_form_sha256": "d40812c3d9b2532e9b840b4f1ca33fe15fd5410f46d6a8593c5eb93cbea7f386"
+        },
+        "N": {
+          "contractions": 897,
+          "rules": {
+            "j": 363,
+            "S": 289,
+            "K": 244,
+            "I": 1
+          },
+          "peak_nodes": 8545,
+          "normal_form_sha256": "66c6cc711068270a16d4dbfeb691587fe2b042cfe06194ef63e494de48011fc8"
+        }
+      },
+      "coordinate_encoding": "(p-q)+i*(r-s)"
+    },
+    "coordinate_laws": [
+      {
+        "label": "C-squared-is-identity",
+        "left": [
+          "C",
+          "C"
+        ],
+        "right": [],
+        "expectation": "holds"
+      },
+      {
+        "label": "J-squared-is-N",
+        "left": [
+          "J",
+          "J"
+        ],
+        "right": [
+          "N"
+        ],
+        "expectation": "holds"
+      },
+      {
+        "label": "J-fourth-is-identity",
+        "left": [
+          "J",
+          "J",
+          "J",
+          "J"
+        ],
+        "right": [],
+        "expectation": "holds"
+      },
+      {
+        "label": "CJC-equals-NJ",
+        "left": [
+          "C",
+          "J",
+          "C"
+        ],
+        "right": [
+          "J",
+          "N"
+        ],
+        "expectation": "holds"
+      },
+      {
+        "label": "N-squared-is-identity",
+        "left": [
+          "N",
+          "N"
+        ],
+        "right": [],
+        "expectation": "holds"
+      },
+      {
+        "label": "J-squared-is-not-identity",
+        "left": [
+          "J",
+          "J"
+        ],
+        "right": [],
+        "expectation": "differs",
+        "note": "the opaque-slot witness the original unit retained"
+      },
+      {
+        "label": "C-is-not-J",
+        "left": [
+          "C"
+        ],
+        "right": [
+          "J"
+        ],
+        "expectation": "differs",
+        "note": "the original unit's separation of the two permutations"
+      }
+    ]
+  },
+  "verification": {
+    "status": "executed on the machine interface by the research-local iota substrate",
+    "profile": "spec/framework/iota-substrate-v0.md",
+    "contract": "experiments/iota-substrate/contract-murphy-renamed.json",
+    "evidence": "experiments/iota-substrate/evidence/run-04-murphy-renamed/result.json",
+    "note": "The verification reads the bytes of this unit at the pinned revision, requires them to be byte-identical to the renamed copies the machine derived from the received package, and re-checks the frozen witnesses and the coordinate laws in both spellings. It grants no native admission."
+  }
+}
