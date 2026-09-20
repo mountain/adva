@@ -1,0 +1,63 @@
+{
+  "schema": "adva.external.trail-navigation.v1",
+  "date": "2026-09-20",
+  "base_commit": "22c500263db4a261a3a4ed20d9e0941c374475a1",
+  "supersedes_unexecuted": "contract.json",
+  "reason": "Mingli clarified that a retained path network already supports global estimates, rollback and learning. The decisive problem is when a failed history may safely guide another context, not whether a supplied correct bridge can save search.",
+  "question": "After a failed subtree is checked and the active search returns to its root, can the retained failure guide a different task while refusing reuse when a required premise is absent?",
+  "level": "External finite integer constraint search. This models scoped failure learning; it does not execute native Adva search/learn or establish a new learning algorithm.",
+  "source": {
+    "id": "source",
+    "order": ["s", "x", "y", "z"],
+    "domain": [0, 1],
+    "guard": {"s": 0},
+    "equations": [["x", "y", 1], ["y", "z", 1], ["x", "z", 1]],
+    "meaning": "When s=0 all three pair sums must be one; when s=1 these guarded equations are inactive. Source search must retain the complete failed s=0 subtree before learning a forbidden prefix."
+  },
+  "receivers": [
+    {"id": "core-first", "order": ["s", "x", "y", "z", "a", "b", "c"], "equations": [["x", "y", 1], ["y", "z", 1], ["x", "z", 1]], "require_s_zero": false},
+    {"id": "context-first", "order": ["s", "a", "b", "c", "x", "y", "z"], "equations": [["x", "y", 1], ["y", "z", 1], ["x", "z", 1]], "require_s_zero": false},
+    {"id": "changed-premise", "order": ["s", "x", "y", "z"], "equations": [["x", "y", 1], ["y", "z", 1]], "require_s_zero": true}
+  ],
+  "receiver_domain": [0, 1],
+  "policies": ["record_only", "scoped", "scope_blind_control"],
+  "policies_mean": {
+    "record_only": "Persist and reload all history and the checked failure certificate, but do not use it to select/prune another task's branches.",
+    "scoped": "Recheck the source failure, then allow pruning only if the guard, variable domains and every certified premise are present in the receiver. Check every returned solution afresh.",
+    "scope_blind_control": "Deliberately omit the premise applicability check. This is an unsound negative control, never an admissible navigation policy."
+  },
+  "search": "Deterministic depth-first search, values 0 then 1; all arms use the same eager checks whenever both variables of an active equation are assigned. All attempted prefixes, rejecting reasons, backtracks, root returns, learned-certificate references and witnesses are retained. No candidate or history identity is replaced by its scalar value.",
+  "learning": "Only after the source's s=0 subtree is exhausted, independently enumerate the eight assignments to x,y,z and record a violated premise for each. Bind the certificate to the complete retained source event stream. Budget exhaustion cannot produce this certificate. This is ordinary finite nogood learning with explicit provenance and applicability.",
+  "checker": "The DFS checker uses partial assignment equations. A separate Cartesian-product oracle evaluates complete assignments and checks every reported witness, the source nogood and receiver satisfiability. One author; separate algorithms do not imply independent review.",
+  "controls": [
+    "Both sound arms must find a valid witness for all three receivers.",
+    "The scoped arm must refuse pruning the changed-premise receiver; its search events must match record_only after excluding policy metadata.",
+    "The scope-blind arm must miss the changed-premise witness, exposing why prefix equality is insufficient.",
+    "Tampering with a premise, a failure row or the retained source history is refused.",
+    "Changed variable domain blocks certificate reuse.",
+    "An Unknown source run produces no learned failure certificate.",
+    "Zero receiver search fuel returns Unknown, without a witness.",
+    "A returned witness is checked against the receiver, independently of any source certificate."
+  ],
+  "cost_model": {
+    "unit": "One prefix visit, value proposal, applicable-equation inspection, integer addition/comparison, oracle row inspection, scope/domain/guard inspection, retained event, or 64-byte serialization/hash block; categories retained separately.",
+    "checkpoint": "Prepay 4096 logical units per account for up to 256 KiB of deterministic evidence; charge full source replay, independent certificate checks and scope checks on every receiver. No refund of unused checkpoint reserve.",
+    "comparison": "Report all receiver costs and source-plus-receiver costs. Source discovery and learning are common to all arms. A reduced node count is not a speedup unless complete counted cost also falls.",
+    "limit": "Logical model, not CPU instructions. Startup, development and CI are excluded; observed supervisor time and memory are separately retained. No performance claim over a conventional constraint solver or ordinary scoped nogood learning."
+  },
+  "resources": {
+    "maximum_prefixes_per_search": 1024,
+    "maximum_units_per_account": 250000,
+    "maximum_campaign_units": 2000000,
+    "maximum_account_bytes": 262144,
+    "maximum_output_bytes": 4194304,
+    "wall_seconds": 30,
+    "cpu_seconds": 20,
+    "address_space_bytes": 268435456,
+    "primary_campaigns": 1,
+    "continuations": 0
+  },
+  "acceptance": "Preserve every gain, tie and loss under the two frozen receiver schedules. The substantive success requires correct cross-task pruning, refusal after a premise change and retained rollback history. Any cost improvement is reported only where actually observed. Failure of a control is Failed, budget exhaustion Unknown; no retuning after results.",
+  "exit": "One primary campaign, then stop. Fresh output directory; partial evidence retained on failure; no automatic restart. Deterministic replays verify the same contract and do not continue it.",
+  "origin": "Original specification, synthetic fixtures, code and prose by Codex (OpenAI), contributed under Unknown v0.3 through Mingli Yuan's authorized account proxy. Mingli supplied direction, not technical review. No third-party expression or data incorporated."
+}

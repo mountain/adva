@@ -1,0 +1,65 @@
+{
+  "schema": "adva.external.trail-navigation.v0",
+  "date": "2026-09-20",
+  "base_commit": "22c500263db4a261a3a4ed20d9e0941c374475a1",
+  "question": "Can one checked arithmetic construction change a second task's search order through a declared dependency edge, at lower fully accounted logical cost than storage alone?",
+  "level": "External Python finite arithmetic and scheduling calibration; no native search, learn, identity, library admission or communication execution.",
+  "source_goal": [1, 0, -1],
+  "source_basis": ["u^2", "u*v", "v^2"],
+  "candidate": "(a*u+b*v)*(c*u+d*v)",
+  "coefficient_alphabet": [-2, -1, 0, 1, 2],
+  "candidate_count": 625,
+  "source_order": "lexicographic",
+  "receiver_goal": [-16, 0, 0, 0, 1],
+  "receiver_basis": "ascending powers of z",
+  "dependency_edge": {"u": [0, 0, 1], "v": [4]},
+  "receiver_orders": ["lexicographic", "reverse"],
+  "policies": ["cold", "stored", "routed"],
+  "policy_rules": {
+    "cold": "Same source discovery cost; receiver uses its frozen order without reading the learned record.",
+    "stored": "Reload and independently recheck the source record; keep the receiver's frozen order.",
+    "routed": "Same reload; check the declared goal-substitution edge and put the learned coefficient tuple first, retaining all other candidates in their old order. Recheck the receiver candidate; never accept from the source receipt alone."
+  },
+  "imported_assumptions": [
+    "Exact integer polynomial arithmetic and substitution; Python integers and the implementation are in the trusted base.",
+    "The two goals and the u=z^2, v=4 interface are supplied before execution. Discovering a decomposition or a cross-domain interpretation is not tested.",
+    "All arms have the same finite grammar, target, supplied interface, checker, visit cap and work cap. Candidate tuples and ordered factor occurrences are never identified by equal values.",
+    "The navigator may read only the rechecked source record and declared edge; it cannot read target search results or use the oracle to rank unvisited candidates."
+  ],
+  "verification": {
+    "source": "Exact three-coefficient expansion, plus a separately written direct evaluator on the 3x3 grid {-1,0,1}^2. The fixed bidegree bound makes this grid sufficient.",
+    "receiver": "Exact dense polynomial operations, plus direct factor evaluation at z=-2,-1,0,1,2. All candidates have degree at most four, so agreement at five distinct integer points suffices.",
+    "record": "Persist and reload the full source visit prefix, reconstruct the first-hit claim and independently validate the winning identity. A hash is a byte pin only.",
+    "replay": "Regenerate the complete deterministic record, including unsuccessful candidates, controls, costs and source pins; reject any mismatch. Same implementation and author, not independent replication."
+  },
+  "controls": [
+    "Removed dependency edge leaves stored order unchanged.",
+    "Wrong substitution v=3 cannot prioritize a candidate for the declared target.",
+    "A changed target agreeing at z=0,1 but differing as a polynomial cannot use the edge.",
+    "A forged source candidate or deleted failed visit is refused on reload.",
+    "Zero search fuel returns Unknown without a witness.",
+    "A favorable witness-first diagnostic order exposes navigation overhead when no search is saved. This is an oracle-order control, excluded from primary comparisons."
+  ],
+  "cost_model": {
+    "unit": "One charged candidate generation, order/ledger inspection, integer coefficient addition or multiplication, coefficient comparison, or 64-byte serialization/hash block. Distinct categories are retained.",
+    "checkpoint": "Prepay 4096 units per source/receiver/control account for at most 256 KiB of its record. This conservative fixed reservation includes metadata and checkpoint work; unused reserve is not refunded.",
+    "comparison": "Report receiver costs and complete two-task costs including the identical source discovery, verification and persistence cost for every arm. Also record observer/checker and route overhead; no isolated candidate-count speedup claim.",
+    "limits": "Logical work is an explicit implementation model, not CPU instructions or wall-clock performance. Interpreter startup, development and CI are not search work; supervisor wall time is recorded separately."
+  },
+  "resources": {
+    "maximum_candidates_per_search": 625,
+    "maximum_units_per_account": 250000,
+    "maximum_campaign_units": 2000000,
+    "maximum_account_bytes": 262144,
+    "maximum_output_bytes": 4194304,
+    "maximum_record_bytes": 262144,
+    "wall_seconds": 30,
+    "cpu_seconds": 20,
+    "address_space_bytes": 268435456,
+    "primary_campaigns": 1,
+    "continuations": 0
+  },
+  "acceptance": "Report success only for each frozen receiver order where all three policies reach the exact target, routed changes the visit order and spends fewer complete logical units than both controls. Report ties or losses without retuning. Controls must pass; any mismatch is Failed, exhaustion Unknown. No general convergence, optimality or advantage over ordinary checked substitution is claimed.",
+  "exit": "Stop after the frozen arms and controls. Preserve a partial report on failure or exhaustion. Output directories must be new; never overwrite a primary run. Replays do not continue or retune it.",
+  "origin": "Original specification, code, synthetic fixtures and prose by Codex (OpenAI), contributed under Unknown v0.3 through Mingli Yuan's authorized account proxy. Mingli supplied the research direction, not technical review. No third-party content is incorporated."
+}
