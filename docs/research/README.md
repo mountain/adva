@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **219 numbered
-notes, 47 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 48 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -759,6 +759,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0210 — `constructive` 的贡献：三个假设的判定](0210-constructive-contribution-is-zero-at-measurable-resolution.md): n=82 消融无效应，零贡献在可测范围内为真；取代 0209。
 
 ### Named notes
+
+- [iota-frame-three-dimensional-grid.md](iota-frame-three-dimensional-grid.md): the existing three-event process as a six-vertex, seven-edge cubical subgraph, preserving source reductions and its frame operator, with eight controls and an explicit boundary-condition obstruction.
 
 - [`mobius-transport-composition-boundary.md`](mobius-transport-composition-boundary.md)
 
