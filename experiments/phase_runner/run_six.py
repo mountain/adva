@@ -142,8 +142,10 @@ def input_path(base, name):
 
 
 def child_limits(limits):
-    resource.setrlimit(resource.RLIMIT_AS,
-                       (limits["child_virtual_memory_kib"] * 1024,) * 2)
+    # RLIMIT_AS is Linux-only; macOS keeps FSIZE and the process-group cleanup.
+    if sys.platform == "linux":
+        resource.setrlimit(resource.RLIMIT_AS,
+                           (limits["child_virtual_memory_kib"] * 1024,) * 2)
     resource.setrlimit(resource.RLIMIT_FSIZE, (limits["output_bytes_per_file"],) * 2)
 
 
@@ -169,7 +171,11 @@ def run_transport_phase(phase, base, report_dir, backend, limits):
     if backend is None or not backend.is_absolute() or not backend.is_file() or not os.access(backend, os.X_OK):
         return empty_phase(phase["name"], "BackendUnavailable")
     # File output bounds and process-group cleanup are mandatory for execution.
-    supported = os.name == "posix" and resource is not None and hasattr(resource, "RLIMIT_AS")
+    # The file bound and the process-group cleanup are what this phase requires;
+    # the address-space bound is installed where the platform has one. Testing the
+    # constant is not enough: hasattr(resource, "RLIMIT_AS") is true on macOS while
+    # installing it raises, so the probe names the platform, not the attribute.
+    supported = os.name == "posix"
     if not supported:
         return empty_phase(phase["name"], "RequiredProcessLimitsUnavailable")
     cap = limits["output_bytes_per_file"]
@@ -258,7 +264,11 @@ def run_phase(phase, base, report_dir, backend, limits):
     if backend is None or not backend.is_absolute() or not backend.is_file() or not os.access(backend, os.X_OK):
         return empty_phase(phase["name"], "BackendUnavailable")
     # File output bounds and process-group cleanup are mandatory for execution.
-    supported = os.name == "posix" and resource is not None and hasattr(resource, "RLIMIT_AS")
+    # The file bound and the process-group cleanup are what this phase requires;
+    # the address-space bound is installed where the platform has one. Testing the
+    # constant is not enough: hasattr(resource, "RLIMIT_AS") is true on macOS while
+    # installing it raises, so the probe names the platform, not the attribute.
+    supported = os.name == "posix"
     if not supported:
         return empty_phase(phase["name"], "RequiredProcessLimitsUnavailable")
     cap = limits["output_bytes_per_file"]
