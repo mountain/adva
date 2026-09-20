@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **215 numbered
+This directory holds the research record of the repository: **219 numbered
 notes, 47 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -742,6 +742,10 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0204-gold-twin-timeout-is-not-negative.md`](0204-gold-twin-timeout-is-not-negative.md)
 - [`0205-implementation-failure-is-not-a-counterexample.md`](0205-implementation-failure-is-not-a-counterexample.md)
 - [0206 — Compatible history surfaces](0206-compatible-history-surfaces.md): finite reconstruction, compatible readback and bounded correction; [Chinese companion](../../experiments/history_surface/learning.zh.md).
+- [0207 — 可判定实验：`constructive` 的零贡献是作用退化，还是调度饥饿？](0207-constructive-starvation-and-budget-matched-control.md): 首个归因尝试；被 0208 取代。
+- [0208 — `constructive` 饥饿的机制：两道门（修正版）](0208-constructive-scheduling-two-gates-correction.md): 资格窗 × UCB 两道门；取代 0207，被 0209 取代。
+- [0209 — `constructive` 的零贡献：测量假象，而非退化](0209-constructive-zero-is-a-measurement-artifact.md): `best_updates` 不承载该程序的作用；取代 0208，被 0210 取代。
+- [0210 — `constructive` 的贡献：三个假设的判定](0210-constructive-contribution-is-zero-at-measurable-resolution.md): n=82 消融无效应，零贡献在可测范围内为真；取代 0209。
 
 ### Named notes
 
