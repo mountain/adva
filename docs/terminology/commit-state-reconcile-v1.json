@@ -1,0 +1,67 @@
+{
+  "word": "commit-state-reconcile",
+  "version": 1,
+  "status": "Proposed",
+  "predecessor": "docs/terminology/commit-state-reconcile-v0.json",
+  "role": "Classify one uncertain local commit observation from either a directly validated ledger or a receiver-pinned, builder-validated snapshot, without resubmitting the candidate.",
+  "inputs": {
+    "required": [
+      "complete receiver-selected expected request",
+      "complete candidate including transition key",
+      "one selected state carrier: trusted local ledger or canonical snapshot",
+      "for a snapshot, a receiver-selected SHA-256 pin of its exact bytes"
+    ],
+    "snapshot_bound_fields": [
+      "profile and version",
+      "source ledger SHA-256",
+      "expected request",
+      "candidate",
+      "checker fingerprints",
+      "allowance",
+      "empty or committed state",
+      "optional exact transition and stored result",
+      "builder source fingerprints"
+    ]
+  },
+  "outputs": {
+    "StoredCommitted": "The selected valid carrier binds the exact request and candidate and contains the structurally checked stored result.",
+    "ProvenUncommittedLedger": "The selected valid local ledger, or a pinned snapshot of it, contains no accepted transition; this is only a local statement.",
+    "UnknownCommitState": "The carrier is absent, unreadable, malformed, unpinned, mismatched or otherwise insufficient for either positive classification."
+  },
+  "relation_boundary": "The snapshot builder validates SQLite state; the independent snapshot receiver checks only canonical JSON, byte and body digests, complete bindings, allowance arithmetic and stored-result structure. It does not open SQLite or rerun the original mathematical checker.",
+  "applicability": [
+    "one trusted local single-slot ledger using the frozen ancestor schema",
+    "one canonical version-zero snapshot built after successful ledger validation",
+    "the receiver already possesses the intended request, candidate and snapshot byte pin",
+    "the declared finite byte, work, process and time limits hold"
+  ],
+  "witness": "The first bounded v1 campaign builds four snapshots over two distinct exact-rational decision families. Two pinned empty snapshots return ProvenUncommittedLedger and two pinned committed snapshots return StoredCommitted with the exact stored result.",
+  "counterexamples_and_refusals": [
+    "a changed candidate returns UnknownCommitState",
+    "a changed expected history returns UnknownCommitState",
+    "changed snapshot bytes under the old pin return UnknownCommitState",
+    "a malformed snapshot with its own matching pin returns UnknownCommitState",
+    "a wrong snapshot profile with its own matching pin returns UnknownCommitState",
+    "a missing snapshot returns UnknownCommitState"
+  ],
+  "expansion_or_replay": "Run the frozen campaign or invoke snapshot.py followed by receive.py in separate processes. Retain the complete request, canonical snapshot, receiver-selected byte pin, response, source ledger digest, commands and source fingerprints. Replaying this relation is not a new submission.",
+  "residuals": [
+    "the builder shares Python, SQLite and the old validator with the writer",
+    "the pin has no authentication unless obtained through a separately trusted channel",
+    "a malicious builder can produce a self-consistent false snapshot",
+    "there is no power-loss, hostile replacement, external-action or distributed exactly-once model",
+    "local ledger emptiness does not prove that no external action occurred",
+    "the profile is external research, not a native Adva operation",
+    "benefit for a real human task is unmeasured"
+  ],
+  "forbidden_conflations": [
+    "digest integrity with authentication",
+    "snapshot consistency with independent arithmetic proof",
+    "selected-ledger emptiness with global nonoccurrence",
+    "StoredCommitted with permission to repeat the action",
+    "UnknownCommitState with failure or retry permission",
+    "a Proposed word with native communicate, accept, free, Close or Seal",
+    "finite receipt checks with arithmetic universality or M6 closure"
+  ],
+  "origin": "Original ChatGPT-authored revision under Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee."
+}
