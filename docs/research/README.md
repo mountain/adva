@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **219 numbered
-notes, 49 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 50 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -772,6 +772,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`borromean-boundary-word-correction.md`](borromean-boundary-word-correction.md)
 - [`commit-state-reconciliation-without-resubmission.md`](commit-state-reconciliation-without-resubmission.md): the three permitted outcomes for an uncertain commit state, checked read-only against the original question, the full candidate and the single-slot ledger; no resubmission and no automatic retry.
 - [`commit-state-snapshot-independent-receiving.md`](commit-state-snapshot-independent-receiving.md): a versioned pinned snapshot carries the three commit-state outcomes to a separate receiver that does not open SQLite; integrity is not authentication.
+- [`commit-state-two-builder-projection-agreement.md`](commit-state-two-builder-projection-agreement.md): two implementation-distinct builders retain different provenance while agreeing byte-for-byte on one ledger projection; disagreement or copied provenance remains Unknown.
 - [`borromean-independent-longitudes.md`](borromean-independent-longitudes.md)
 - [`catalog-key-words-alignment.md`](catalog-key-words-alignment.md)
 - [`catalog-key-words-v1.md`](catalog-key-words-v1.md)

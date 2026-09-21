@@ -1,0 +1,173 @@
+{
+  "schema": "adva.research.six-relation-queries.arrangement.v0",
+  "date": "2026-09-21",
+  "status": "PreparationOnly",
+  "frozen": false,
+  "implemented": false,
+  "run_ready": false,
+  "campaign_runs": 0,
+  "scope": "External finite F5 relation-query research; no native Adva or geometric implementation",
+  "source": {
+    "available": "User-supplied Chinese design summary v0.2 dated 2026-09-20",
+    "full_protocol": {
+      "name": "six-experiments-design.md",
+      "status": "Missing",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    },
+    "original_proposal": {
+      "name": "suite-proposal.json",
+      "status": "Missing",
+      "repository": null,
+      "revision": null,
+      "sha256": null
+    }
+  },
+  "preparation_checkout_revisions": {
+    "adva": "22c500263db4a261a3a4ed20d9e0941c374475a1",
+    "adva-machine": "d42ce284d725a13e1d6e1a75fd4e46eb432f6b17",
+    "adva-library": "02118d690310e2261a2eee64f87c578f1db6d22b"
+  },
+  "checkout_revisions_are_dependency_upgrades": false,
+  "family": {
+    "field_modulus": 5,
+    "variables": ["x", "y"],
+    "context_count": 108,
+    "context_count_factors": [2, 6, 3, 3],
+    "operations": ["+", "-", "*"],
+    "holes_each_used_once": [1, 2, 3],
+    "filling_terms": ["x", "y", "0", "1", "2", "x+y", "x-y", "x*y"],
+    "ordered_filling_count": 512,
+    "screening_input_count": 5,
+    "screening_inputs": null,
+    "exact_input_count": 25,
+    "preserve_syntactic_history": true,
+    "offline_answer_table_visible_to_search": false
+  },
+  "stages": [
+    {"id": "G0", "work": "Reconcile full sources and freeze contract", "depends_on": [], "status": "Open"},
+    {"id": "G1", "work": "Implement and validate relation, independent checker and supervisor", "depends_on": ["G0"], "status": "NotImplemented"},
+    {"id": "G2", "experiments": ["E3", "E4"], "depends_on": ["G1"], "status": "NotRun"},
+    {"id": "G3", "experiments": ["E5", "E6"], "depends_on": ["G2"], "status": "NotRun"},
+    {"id": "G4", "experiments": ["E1", "E2"], "depends_on": ["G3"], "status": "NotRun"},
+    {"id": "G5", "work": "Report paired costs, failures, residuals and omissions", "depends_on": ["G4"], "status": "NotRun"}
+  ],
+  "experiments": [
+    {"id": "E3", "given": "two_contexts", "find": "one_common_filling", "queries": 16, "status": "NotRun"},
+    {"id": "E4", "given": "two_fillings", "find": "one_common_context", "queries": 16, "status": "NotRun"},
+    {"id": "E5", "given": "three_contexts", "find": "one_common_filling", "queries": 16, "status": "NotRun"},
+    {"id": "E6", "given": "three_fillings", "find": "one_common_context", "queries": 16, "status": "NotRun"},
+    {"id": "E1", "given": "checked_training_traces_and_new_context", "find": "filling_proposal_order", "training_tasks": 16, "held_out_tasks": 16, "status": "NotRun"},
+    {"id": "E2", "given": "checked_training_traces_and_new_filling", "find": "context_proposal_order", "training_tasks": 16, "held_out_tasks": 16, "status": "NotRun"}
+  ],
+  "arms": {
+    "L": "Local filtering and fixed enumeration",
+    "D": "Two ends and harmonic potential on the observed graph",
+    "S": "Same graph rules and ends, with 25 regularized matrix responses",
+    "C": "Same responses, changing only inside/outside disk weights",
+    "I": "On-demand ordinary compatibility-set index; construction charged"
+  },
+  "incremental_comparisons": [["D", "L"], ["S", "D"], ["C", "S"]],
+  "learning_controls": ["no_experience_reuse", "shuffled_training_labels"],
+  "learning_control_arm_matrix": null,
+  "fixed_order_exploration_every_proposals": 4,
+  "required_controls": [
+    "public_positive_calibrations_separate_from_navigation",
+    "empty_solution_pool",
+    "multiple_solutions_with_distinct_histories",
+    "incorrect_hole_order",
+    "changed_role_conditions",
+    "prohibited_zero_shortcut",
+    "overbroad_context",
+    "screening_agreement_but_full_domain_disagreement",
+    "history_preserved_after_failure_and_fallback",
+    "restricted_pairwise_success_without_triple_success",
+    "transpose_of_restricted_relation_including_role_predicates",
+    "offline_oracle_isolation",
+    "forced_resource_exit_preserves_partial_evidence"
+  ],
+  "round_limits": {
+    "candidate_proposals": 2000,
+    "symbolic_units": 2000000,
+    "wall_seconds": 10,
+    "cpu_seconds": 8,
+    "estimated_real_operations": 500000000
+  },
+  "series_limits": {
+    "wall_seconds": 1800,
+    "cpu_seconds": 1200,
+    "symbolic_units": 1000000000,
+    "estimated_real_operations": 50000000000,
+    "worker_memory_bytes": 805306368,
+    "evidence_bytes": 134217728,
+    "automatic_retries": 0,
+    "automatic_candidate_pool_expansions": 0,
+    "budget_reset_between_stages": false
+  },
+  "exit_reserve": {
+    "minimum_fraction": 0.1,
+    "proposed_work_cutoff_fraction": 0.9,
+    "policy_status": "AwaitingFullProtocolReconciliation"
+  },
+  "numerics": {
+    "maximum_graph_vertices": 64,
+    "responses_per_refresh": 25,
+    "predebit_real_operations_per_response": "32*n^3 + 64*n^2",
+    "one_response_at_64": 8650752,
+    "one_refresh_at_64": 216268800,
+    "two_refreshes_at_64": 432537600,
+    "operator_definition": null,
+    "response_points_and_regularizers": null,
+    "disk_weights": null,
+    "refresh_schedule": null,
+    "truncation_policy": null,
+    "error_and_fallback_policy": null,
+    "numerical_scores_authorize_acceptance": false
+  },
+  "illustrative_budget_arithmetic": {
+    "assumption": "Five arms, including a complete train/test pass per arm; additional learning controls omitted",
+    "nonlearning_rounds": 320,
+    "learning_rounds": 320,
+    "total_rounds": 640,
+    "sum_of_round_cpu_caps_seconds": 5120,
+    "sum_of_round_wall_caps_seconds": 6400,
+    "is_runtime_prediction": false,
+    "is_frozen_schedule": false
+  },
+  "reporting": {
+    "reuse_counts": [1, 4, 16],
+    "capped_cpu_for_started_unsolved_round_seconds": 8,
+    "retain_actual_cpu_and_censoring_separately": true,
+    "unstarted_round_status": "NotRun",
+    "budget_exhausted_active_round_status": "Unknown",
+    "full_pool_negative_requires_complete_checked_coverage": true,
+    "keep_frozen_roster_after_global_stop": true,
+    "performance_signal": {
+      "requires_complete_paired_block": true,
+      "queries": 16,
+      "minimum_improved_queries": 12,
+      "maximum_median_total_cpu_fraction": 0.8,
+      "success_rate_must_not_decrease": true,
+      "is_statistical_significance_test": false
+    }
+  },
+  "freeze_inputs": {
+    "task_files_and_split_sha256": null,
+    "candidate_pool_sha256": null,
+    "feature_specification_sha256": null,
+    "graph_specification_sha256": null,
+    "algorithm_specification_sha256": null,
+    "checker_sources_sha256": null,
+    "supervisor_sources_sha256": null,
+    "accounting_specification_sha256": null,
+    "arm_schedule_and_seeds_sha256": null,
+    "environment_manifest_sha256": null
+  },
+  "geometry_gate": {
+    "status": "Open",
+    "requirements": ["boundary_pairing", "three_legal_twists", "two_end_readings", "process_parameter_operator_map", "reachable_subspace_under_conjugation"],
+    "finite_graph_performance_discharges_geometry_gate": false
+  },
+  "authorship": "Codex (OpenAI), project-original under Unknown v0.3 through Mingli Yuan's authorized account proxy; no independent reviewer and no implied human technical approval."
+}

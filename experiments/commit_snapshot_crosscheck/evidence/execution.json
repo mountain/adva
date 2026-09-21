@@ -1,0 +1,239 @@
+{
+  "assertions": 171,
+  "child_peak_rss_kib": 13696,
+  "failure": null,
+  "measurement_limits": "RSS values are category maxima, not aggregate memory. Research and publication time are unmeasured.",
+  "native_authority": false,
+  "phases": {
+    "child_lifetime_seconds_sum": 1.1126941039983649,
+    "construction_seconds": 6.587000098079443e-05,
+    "independent_builder_seconds": 0.15591483700700337,
+    "inherited_builder_seconds": 0.18126172799384221,
+    "pair_receiver_seconds": 0.43661229499412,
+    "serialization_seconds": 0.05249587100115605
+  },
+  "processes": 24,
+  "profile": "adva.research.commit-snapshot-crosscheck.v0",
+  "python_version": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "revised_vocabulary": [
+    "commit-state-reconcile"
+  ],
+  "runs": [
+    {
+      "case": "symmetric-empty-fixture/init",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.05712348000088241,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric-empty-inherited/build",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.048385025998868514,
+      "work_units": 22
+    },
+    {
+      "case": "symmetric-empty-independent/build",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.041920231000403874,
+      "work_units": 31
+    },
+    {
+      "case": "symmetric-empty-pair/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "ProvenUncommittedLedger",
+      "wall_seconds": 0.04144818599888822,
+      "work_units": 47
+    },
+    {
+      "case": "symmetric-committed-fixture/init",
+      "ledger_sha256_after": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.05212865600333316,
+      "work_units": 221
+    },
+    {
+      "case": "symmetric-committed-fixture/submit",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "9b0af7a5d3c77a7a1db6798e33fa49b2fb3b79363ff2754ce42e618c987bed70",
+      "outcome": "CommittedContinuation",
+      "wall_seconds": 0.06221145000017714,
+      "work_units": 1338
+    },
+    {
+      "case": "symmetric-committed-inherited/build",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.043066586993518285,
+      "work_units": 25
+    },
+    {
+      "case": "symmetric-committed-independent/build",
+      "ledger_sha256_after": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "ledger_sha256_before": "00ca7c6a55976328090106088c640a36c3c82264d1cfe97e2d897e3c09cd9d8e",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.04024266100168461,
+      "work_units": 35
+    },
+    {
+      "case": "symmetric-committed-pair/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "StoredCommitted",
+      "wall_seconds": 0.03842761400301242,
+      "work_units": 49
+    },
+    {
+      "case": "asymmetric-empty-fixture/init",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.05304047399840783,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-empty-inherited/build",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.04225016800046433,
+      "work_units": 22
+    },
+    {
+      "case": "asymmetric-empty-independent/build",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.038636288001725916,
+      "work_units": 31
+    },
+    {
+      "case": "asymmetric-empty-pair/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "ProvenUncommittedLedger",
+      "wall_seconds": 0.037003343997639604,
+      "work_units": 47
+    },
+    {
+      "case": "asymmetric-committed-fixture/init",
+      "ledger_sha256_after": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "ledger_sha256_before": null,
+      "outcome": "InitializedLedger",
+      "wall_seconds": 0.05430677999538602,
+      "work_units": 221
+    },
+    {
+      "case": "asymmetric-committed-fixture/submit",
+      "ledger_sha256_after": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "ledger_sha256_before": "e6b32fd5343918e46387e3b4692261342d0e7f68d28174e4e7ef8cc7c95f6407",
+      "outcome": "CommittedContinuation",
+      "wall_seconds": 0.06009440400521271,
+      "work_units": 1338
+    },
+    {
+      "case": "asymmetric-committed-inherited/build",
+      "ledger_sha256_after": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "ledger_sha256_before": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.04755994700099109,
+      "work_units": 25
+    },
+    {
+      "case": "asymmetric-committed-independent/build",
+      "ledger_sha256_after": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "ledger_sha256_before": "54040573be3acc4a060e04193b93f9b2be40e2048f9ac1cf2779ee801fd5fb3d",
+      "outcome": "SnapshotCreated",
+      "wall_seconds": 0.03511565700318897,
+      "work_units": 35
+    },
+    {
+      "case": "asymmetric-committed-pair/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "StoredCommitted",
+      "wall_seconds": 0.03483336299541406,
+      "work_units": 49
+    },
+    {
+      "case": "projection-disagreement/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.039538725999591406,
+      "work_units": 37
+    },
+    {
+      "case": "same-builder-provenance/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.03551287600566866,
+      "work_units": 40
+    },
+    {
+      "case": "changed-candidate/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.07911229999444913,
+      "work_units": 38
+    },
+    {
+      "case": "changed-expected/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.05008722200000193,
+      "work_units": 38
+    },
+    {
+      "case": "wrong-right-pin/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.03932417400210397,
+      "work_units": 23
+    },
+    {
+      "case": "missing-right/receive",
+      "ledger_sha256_after": null,
+      "ledger_sha256_before": null,
+      "outcome": "UnknownCommitState",
+      "wall_seconds": 0.04132448999735061,
+      "work_units": 22
+    }
+  ],
+  "search_candidates": 0,
+  "source_sha256": {
+    "experiments/commit_snapshot_crosscheck/contract.json": "be70325a504aec6f8c6d71feec86097d2cbd5a3f11617082ee4c66305bf343f6",
+    "experiments/commit_snapshot_crosscheck/receive_pair.py": "80d07c39a40d887591c274c9a023e8f121e704f59eff54e56a94149056013d29",
+    "experiments/commit_snapshot_crosscheck/run.py": "4968a2617700a3edb88d1561d395f6bff8648a1292a01cb120ea649348d21f81",
+    "experiments/commit_snapshot_crosscheck/snapshot_independent.py": "e9eae13b4ad7fd793f752cbdd6ca16e2303a139b7cf01d0c225a0f80c8b64621",
+    "experiments/commit_snapshot_receipt/contract.json": "e9e4d5dbb2267e81229c9d66322df2eaf0c4599bd501bc13acb1e555aa741feb",
+    "experiments/commit_snapshot_receipt/receive.py": "615c6e609eaaf2aa37ac5b25275544b6b7b074e48f67c9bc0a45bea066ccc2b7",
+    "experiments/commit_snapshot_receipt/run.py": "43a770c46ccea91604f8811dd6ef0e8d2391d1257a0cecc4d304cd49a6389b04",
+    "experiments/commit_snapshot_receipt/snapshot.py": "b71231aa5dbd3f97d21d24034fa74c32d071b6959831a59a40c1ab196a642e75",
+    "experiments/commit_state_reconcile/contract.json": "672ff796a3e91239f7d5c119f12935425ac954755109b0c8459a8d5de89bd617",
+    "experiments/commit_state_reconcile/receive.py": "c664274b6c6c3a6a09cdb54ecebde7f2e3189020d77bf3d04966f6ede195e631",
+    "experiments/commit_state_reconcile/run.py": "75f277f6f45370546e79f0dabb1380d84bd1691c14aec403a2b74dd539994d85",
+    "experiments/decision_ledger/contract.json": "ecc3327c270bd9851e4576973cdb798550b3a78e028290a83219a37770dd46cb",
+    "experiments/decision_ledger/receive.py": "66388a10f37e5497832c2ebc4a319cdecf237aa5405b0fb4c0a15404eae75f1f",
+    "experiments/decision_ledger/run.py": "60c8e011fc487e1244c1c611040d4a85c6cf6b791485ff242e9a59b26baadccc",
+    "experiments/decision_ledger_contention/contract.json": "b5aaf2eee9296625695713e2086b6738a3c90a1a217ee4295acf2dba84bae656",
+    "experiments/decision_ledger_contention/receive.py": "68b164392a082eb2f33dce574a062a89d94caac752d43b9866f3e2cb44ca8507",
+    "experiments/decision_ledger_contention/run.py": "545f29643fb19f567cfb70c4aeb4249651a179f139f494f63db5b56d309e4d49"
+  },
+  "status": "Passed",
+  "supervisor_peak_rss_kib": 16380,
+  "wall_seconds": 1.217350423001335,
+  "work_units": 4176
+}
