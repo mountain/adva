@@ -1,0 +1,71 @@
+{
+  "word": "commit-state-reconcile",
+  "version": 2,
+  "status": "Proposed",
+  "predecessor": "docs/terminology/commit-state-reconcile-v1.json",
+  "role": "Classify one uncertain local commit observation without resubmission, optionally requiring agreement between two pinned snapshots derived by implementation-distinct builders.",
+  "inputs": {
+    "required": [
+      "complete receiver-selected expected request",
+      "complete candidate including transition key",
+      "either one directly validated local ledger or the declared snapshot profile",
+      "for the two-builder profile, two canonical snapshots and two receiver-selected SHA-256 byte pins"
+    ],
+    "common_projection": [
+      "source profile and source-ledger SHA-256",
+      "expected request and candidate",
+      "checker fingerprints",
+      "allowance",
+      "empty or committed state",
+      "optional exact transition and stored result"
+    ],
+    "builder_specific": [
+      "nonempty builder-source SHA-256 mapping retained outside the common projection"
+    ]
+  },
+  "outputs": {
+    "StoredCommitted": "Each selected carrier is valid; for a pair, distinct builders agree byte-for-byte on the common projection; the exact candidate and structurally checked stored result are present.",
+    "ProvenUncommittedLedger": "Each selected carrier is valid; for a pair, distinct builders agree byte-for-byte that the selected local ledger has no accepted transition. This is only a local statement.",
+    "UnknownCommitState": "Inputs are absent, invalid, unpinned, mismatched, projection-disagreeing or lack distinct builder provenance, so neither positive classification is safe."
+  },
+  "relation_boundary": "The inherited builder validates through the old engine. The second builder independently checks the frozen SQLite schema and relation without importing that engine. The pair receiver opens no ledger, validates both receipts, removes only builder_source_sha256 to form the common projection, requires exact projection-byte agreement and refuses identical builder provenance.",
+  "applicability": [
+    "one trusted local single-slot ledger using the frozen ancestor schema",
+    "two canonical version-zero snapshots built from the same ledger, request and candidate",
+    "the receiver possesses both intended byte pins through its selected context",
+    "builder-source maps are nonempty and unequal",
+    "the declared finite byte, work, process and time limits hold"
+  ],
+  "witness": "The first bounded v2 campaign derives four agreeing projections over two distinct exact-rational decision families. Two empty pairs return ProvenUncommittedLedger and two committed pairs return StoredCommitted with the exact stored result.",
+  "counterexamples_and_refusals": [
+    "a right snapshot with a different source-ledger digest and recomputed self-digest returns UnknownCommitState",
+    "using the same inherited snapshot on both sides returns UnknownCommitState because builder provenance is identical",
+    "a changed candidate returns UnknownCommitState",
+    "a changed expected history returns UnknownCommitState",
+    "a wrong right byte pin returns UnknownCommitState",
+    "a missing right snapshot returns UnknownCommitState"
+  ],
+  "expansion_or_replay": "Run the frozen campaign or invoke both builders on the same selected ledger, retain their complete canonical snapshots and byte pins, then invoke receive_pair.py. Preserve the projection digest, both source maps, response, commands and source fingerprints. Agreement is not a new submission.",
+  "residuals": [
+    "both builders share Python and SQLite",
+    "the second builder reimplements one frozen schema rather than using a different language or storage engine",
+    "common mistakes may survive agreement",
+    "byte pins and agreement provide no authentication by themselves",
+    "there is no power-loss, hostile-replacement, external-action or distributed exactly-once model",
+    "the pair receiver checks receipt consistency rather than the original arithmetic",
+    "the profile is external research, not a native Adva operation",
+    "benefit for a real human task is unmeasured"
+  ],
+  "forbidden_conflations": [
+    "full-snapshot equality with independent implementations",
+    "common-projection agreement with equal builder provenance",
+    "two agreeing implementations with mathematical truth",
+    "digest integrity with authentication",
+    "selected-ledger emptiness with global nonoccurrence",
+    "StoredCommitted with permission to repeat an action",
+    "UnknownCommitState with failure or retry permission",
+    "a Proposed word with native communicate, accept, free, Close or Seal",
+    "finite receipt agreement with arithmetic universality or M6 closure"
+  ],
+  "origin": "Original ChatGPT-authored revision under Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee."
+}

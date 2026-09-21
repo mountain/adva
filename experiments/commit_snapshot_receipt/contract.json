@@ -1,0 +1,43 @@
+{
+  "profile": "adva.research.commit-snapshot-receipt.v0",
+  "status": "FrozenBeforeExecution",
+  "base_main": "22c500263db4a261a3a4ed20d9e0941c374475a1",
+  "dependency": "Merged commit-state-reconcile result from PR 199; no open pull requests at freeze",
+  "question": "Can a versioned receipt preserve the three commit-state reconciliation outcomes so that a separate process can check them without opening SQLite?",
+  "objects": "One validated local single-slot ledger, an exact expected request, one complete candidate, one canonical JSON snapshot, and one receiver-selected SHA-256 pin of the snapshot bytes.",
+  "types_and_domain": "Strict canonical JSON, exact-rational ancestor records, bounded integer allowance, SHA-256 byte pins, and exactly StoredCommitted, ProvenUncommittedLedger, or UnknownCommitState.",
+  "quantifiers": "Exactly four valid snapshots over two finite decision families and ten receiver calls: four matching, changed candidate, changed expected history, byte tamper, malformed snapshot with its own pin, wrong profile with its own pin, and missing snapshot.",
+  "candidate_grammar": "Snapshot creation receives exactly profile, expected_request and candidate. Independent reconciliation receives those fields plus snapshot_file_sha256. Candidate grammar remains adva.research.decision-ledger-contention.v0.",
+  "semantics": "The builder may open SQLite and must first validate the selected ledger. The receiver may read only the snapshot file. StoredCommitted requires exact request/candidate bindings and a structurally consistent stored transition. ProvenUncommittedLedger requires exact bindings, null transition, and unchanged initial allowance. Every mismatch or unavailable/invalid snapshot returns UnknownCommitState. No outcome grants retry.",
+  "acceptance": "All ten expected outcomes; two substantive families; snapshot builder and receiver in separate child processes; receiver never imports sqlite3 or opens a ledger; exact committed-result recovery; exact empty allowance; no parent arithmetic replay, debit or retry; byte pins and internal body digests checked.",
+  "limits": {
+    "campaign_wall_seconds": 30,
+    "outer_wall_seconds": 35,
+    "child_processes": 20,
+    "child_wall_seconds": 3,
+    "child_cpu_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "child_regular_file_bytes": 2097152,
+    "work_per_call": 10000,
+    "total_work": 100000,
+    "database_bytes": 1048576,
+    "wire_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "protected": [
+    "The exact expected request, candidate, transition key, stored result, allowance, checker fingerprint and source-ledger digest",
+    "The independent receiver must not import sqlite3, open a ledger, rerun parent arithmetic, debit allowance or authorize retry",
+    "The byte pin is receiver-selected input; a digest traveling only with mutable content is not authentication",
+    "ProvenUncommittedLedger remains local to the selected validated ledger",
+    "No native operation, free, Close, Seal, M6 or universality claim"
+  ],
+  "exit": "Stop after the ten receiver calls or first unexpected outcome/limit. Retain failure evidence. At most one implementation correction replay.",
+  "residuals": [
+    "The snapshot builder shares Python, SQLite and the old ledger validator with the writer",
+    "No signature, hostile replacement defense, power-loss model, external action or distributed exactly-once guarantee",
+    "The independent receiver checks a receipt relation, not the original arithmetic",
+    "No practical human-benefit measurement"
+  ],
+  "origin": "Original ChatGPT-authored code, prose and synthetic evidence under Unknown v0.3; no external content incorporated."
+}

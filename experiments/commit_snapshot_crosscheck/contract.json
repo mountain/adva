@@ -1,0 +1,44 @@
+{
+  "profile": "adva.research.commit-snapshot-crosscheck.v0",
+  "status": "FrozenBeforeExecution",
+  "base_main": "c09351ef76484ad2045fe76ae4eb7a219114b196",
+  "dependency": "Open draft PR 203 at 85dd9d4b5190e1daeb64ff5c362ca0f208a65f4e plus current main; no ledger-semantic changes after the first snapshot experiment",
+  "question": "Can two implementation-distinct snapshot builders derive the same canonical ledger projection, so a receiver that opens neither SQLite ledger can preserve commit-state reconciliation only on agreement?",
+  "objects": "One trusted local single-slot ledger, exact expected request, complete candidate, two canonical snapshot files, two receiver-selected byte pins, one ledger-derived projection, and two builder-provenance records.",
+  "types_and_domain": "Strict canonical JSON; exact-rational ancestor records; bounded integer allowance; SHA-256 byte pins; a projection containing all snapshot-body fields except builder_source_sha256; and exactly StoredCommitted, ProvenUncommittedLedger, or UnknownCommitState.",
+  "quantifiers": "Four agreement cases over two finite decision families and six controls: projection disagreement, identical builder provenance, changed candidate, changed expected history, wrong right pin, and missing right snapshot.",
+  "candidate_grammar": "Both builders receive exactly profile, expected_request and candidate. The pair receiver receives those fields plus left_snapshot_sha256 and right_snapshot_sha256. Candidate grammar remains adva.research.decision-ledger-contention.v0.",
+  "semantics": "The inherited builder validates through the old engine. The new builder independently parses and checks SQLite schema, rows, canonical JSON, fingerprints, allowance and stored-result bindings without importing the inherited builder or ledger validator. The pair receiver opens neither ledger, validates both pinned snapshots, requires equal canonical ledger projections and unequal nonempty builder-source maps, then emits the ordinary three outcomes. Any disagreement or unavailable input returns UnknownCommitState and never grants retry.",
+  "acceptance": "All ten pair outcomes; two substantive families; exact projection-byte agreement for four valid pairs; distinct builder provenance; exact result/allowance recovery; disagreement and copied-builder controls rejected; pair receiver has no sqlite3 import or ledger path; no parent arithmetic replay, debit or retry.",
+  "limits": {
+    "campaign_wall_seconds": 30,
+    "outer_wall_seconds": 35,
+    "child_processes": 24,
+    "child_wall_seconds": 3,
+    "child_cpu_seconds": 3,
+    "child_address_space_bytes": 134217728,
+    "child_regular_file_bytes": 2097152,
+    "work_per_call": 10000,
+    "total_work": 100000,
+    "database_bytes": 1048576,
+    "wire_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "protected": [
+    "The exact expected request, candidate, transition key, stored result, allowance, checker fingerprints and source-ledger digest",
+    "Builder-specific provenance must not be erased merely to obtain byte equality",
+    "The pair receiver must not import sqlite3, open a ledger, rerun parent arithmetic, debit allowance or authorize retry",
+    "The two byte pins are receiver-selected inputs; digest equality is not authentication",
+    "No native operation, free, Close, Seal, M6 or universality claim"
+  ],
+  "exit": "Stop after ten pair calls or first unexpected outcome/limit. Retain failure evidence. At most one implementation correction replay.",
+  "residuals": [
+    "Both builders still share Python and SQLite",
+    "The independent builder reimplements a frozen schema rather than using a different language or storage engine",
+    "No signature, hostile replacement defense, power-loss model, external action or distributed exactly-once guarantee",
+    "Agreement can preserve a common implementation mistake and is not original arithmetic proof",
+    "No practical human-benefit measurement"
+  ],
+  "origin": "Original ChatGPT-authored code, prose and synthetic evidence under Unknown v0.3; no external content incorporated."
+}
