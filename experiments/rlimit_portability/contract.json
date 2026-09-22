@@ -1,0 +1,41 @@
+{
+  "schema": "adva.engineering.frame-covariance-portable-replay.v1",
+  "question": "Does an opt-in portable execution reproduce every mathematical field of the frozen 84-row frame covariance witness?",
+  "level": "Engineering regression only; no new research or semantic claim",
+  "inputs": {
+    "experiments/frame_covariance/run.py": "5f485fdf13f93362908a4890107f9903a529e27b4b89d9174c0cf9754c7238f4",
+    "experiments/frame_covariance/contract.json": "800aa607a5dd6de8d63d9b825f767b8706b2594abb5e8f0ff312c776407ce7fa",
+    "experiments/frame_covariance/evidence.json": "77eb953ac61f023bbbb193b823ce346cd14be9d2c948122de49ef404e28ca8f8"
+  },
+  "platforms": [
+    "linux",
+    "darwin"
+  ],
+  "budgets": {
+    "child_cpu_seconds": 8,
+    "child_alarm_seconds": 10,
+    "outer_child_timeout_seconds": 12,
+    "file_bytes": 1048576,
+    "logical_checks": 100000,
+    "attempts_per_invocation": 1,
+    "automatic_retries": 0
+  },
+  "memory": {
+    "linux": "mandatory RLIMIT_AS at most 256 MiB; inherited lower bounds preserved",
+    "darwin": "No enforced address-space ceiling. Peak RSS observation only. Fixed reviewed workload, no external candidates or arbitrary scripts. Not eligible as original bounded-research evidence."
+  },
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No legacy main entrypoint or frozen resource contract changed",
+    "No claims.toml or dependency digest refresh",
+    "No native admission or proof authority"
+  ],
+  "acceptance": "Compare status, frames, identities, all 84 rows, all controls, residual and new_native_words exactly against pinned frozen evidence. Only timings and environment metadata excluded.",
+  "residual": [
+    "Real Darwin execution remains pending until run on Darwin; mocked limit tests are not Darwin execution",
+    "No Darwin hard memory bound and no equivalence of resource contracts",
+    "Original executable and its original CLI remain Linux-bound",
+    "Original same-implementation replay is not independent mathematical verification",
+    "Parent orchestration and interpreter startup are outside child CPU/file limits; outer timeout covers child startup; no aggregate memory bound"
+  ]
+}

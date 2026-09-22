@@ -1,0 +1,1221 @@
+{
+  "counts": {
+    "historical-source": 15,
+    "linux-only-install": 3,
+    "linux-required-entry": 7,
+    "mock-only": 1,
+    "refusal-recorded": 3,
+    "unguarded-installation": 71
+  },
+  "files": [
+    {
+      "category": "historical-source",
+      "path": "experiments/advance_byte_observer/evidence/run-01/implementation-adva.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "10dcd03baa7a64ec735856380cfc721c2e1b5b3f348f2ae54b023e89b2009414",
+      "sites": [
+        {
+          "function": "_limits",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/advance_byte_observer/evidence/run-01/implementation-quine_relay.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "9701a7f28c9352a676a97b8b87ad28ccadf1775eda8c0f20a7a93403f3b66131",
+      "sites": [
+        {
+          "function": "restrictions",
+          "line": 160
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/advance_symbol_surface/evidence/run-01/implementation-adva.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "756e4f64d86ac0c42b15f625bbf8dd6010f228e9e018ef2d63ebb3c77f56a547",
+      "sites": [
+        {
+          "function": "_limits",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/advance_symbol_surface/evidence/run-01/implementation-quine_relay.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "92d69e08153c50742774885d111ffc726ed56f8de54093a59f590389149c373f",
+      "sites": [
+        {
+          "function": "restrictions",
+          "line": 162
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/alternating_observer/replay.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "92b3158d2b32192123c2155b42b180e6907e02c978b6ef2268e022aad5c5616d",
+      "sites": [
+        {
+          "function": "main",
+          "line": 84
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "experiments/borromean_longitude_audit/check.py",
+      "reason": "run rejects non-Linux with Exhausted before install",
+      "sha256": "0fa5a69aaa4ffaf441e1a6fbf935bf229191aa8a6d619b23611881e0f4507e8b",
+      "sites": [
+        {
+          "function": "main",
+          "line": 413
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "experiments/borromean_surface_audit/check.py",
+      "reason": "main rejects non-Linux; contract requires Linux",
+      "sha256": "8f83d0135950f1bf026d037fcd3e757539f19a617ee14696e6950efba778667a",
+      "sites": [
+        {
+          "function": "main",
+          "line": 438
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/boundary_research/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "215c9cc8c082547a5d4ab4475546e73a7cccbaa8169bda2b37ecbef21ad3022d",
+      "sites": [
+        {
+          "function": "main",
+          "line": 319
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_mix/runtime.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "6100228031e0166d58416c414779500b470a48bbca2b3b61f2fc337d0be815a1",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_mix/runtime_v2.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "e164d018ccc6feac46f570354933191b43d6e6fdadcb6d4468dc52a9292e5543",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 35
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_native_interpreter/campaign.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "46ef8046f95b17cb8a2ab1c77e25b806eb86a90805357e6a0d8a493dd5c11d46",
+      "sites": [
+        {
+          "function": "main",
+          "line": 219
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_native_interpreter/evidence/attempt-1/sources/experiments/bounded_native_interpreter/campaign.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "46ef8046f95b17cb8a2ab1c77e25b806eb86a90805357e6a0d8a493dd5c11d46",
+      "sites": [
+        {
+          "function": "main",
+          "line": 219
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_native_interpreter/evidence/attempt-1/sources/experiments/bounded_native_interpreter/preflight.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "cdee8349e966208829832703bafdf69f34e76b30ae1dfaf6d5218f7a0c12a2d9",
+      "sites": [
+        {
+          "function": "main",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_native_interpreter/evidence/attempt-1/sources/experiments/bounded_native_interpreter/supervise.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "f491ca550a6b2ff92f4c85aaad6b709049acd51491532f478de44b3d3fae00ee",
+      "sites": [
+        {
+          "function": "main",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_native_interpreter/preflight.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "cdee8349e966208829832703bafdf69f34e76b30ae1dfaf6d5218f7a0c12a2d9",
+      "sites": [
+        {
+          "function": "main",
+          "line": 16
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_native_interpreter/supervise.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "f491ca550a6b2ff92f4c85aaad6b709049acd51491532f478de44b3d3fae00ee",
+      "sites": [
+        {
+          "function": "main",
+          "line": 63
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_observation_exchange/joint_observation.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "06f14d472f65e60e6c39be75b187f67087541b7fca9a5eaae3d5f248aad92b29",
+      "sites": [
+        {
+          "function": "main",
+          "line": 77
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/attempt-1/sources/experiments/bounded_self_compiler/runtime.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "2d9bf924f33185d5243f0a8ce94f29d70ea688c47f980bd551be560ebde21b8c",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/attempt-1/sources/experiments/bounded_self_compiler/supervise.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "b463b3a686666e4e32b9c494216ac6ead0ec1e75ed02030ad54594016ad86edd",
+      "sites": [
+        {
+          "function": "main",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/attempt-2/sources/experiments/bounded_self_compiler/runtime.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "2d9bf924f33185d5243f0a8ce94f29d70ea688c47f980bd551be560ebde21b8c",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/attempt-2/sources/experiments/bounded_self_compiler/supervise.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "b1a2d9dd68c9dd379f7469426cf0fb6c0ba448e00a75f54bc4297c06f0ba42bd",
+      "sites": [
+        {
+          "function": "main",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/preflight-2/sources/experiments/bounded_self_compiler/runtime.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "c24ad2127189af1135a1b975ac3c48f8b6027a9b3357a764588407eebdfbe0f2",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_self_compiler/evidence/preflight-3/runtime-before-fix.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "c24ad2127189af1135a1b975ac3c48f8b6027a9b3357a764588407eebdfbe0f2",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_self_compiler/runtime.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "2d9bf924f33185d5243f0a8ce94f29d70ea688c47f980bd551be560ebde21b8c",
+      "sites": [
+        {
+          "function": "__init__",
+          "line": 32
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_self_compiler/supervise.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "b1a2d9dd68c9dd379f7469426cf0fb6c0ba448e00a75f54bc4297c06f0ba42bd",
+      "sites": [
+        {
+          "function": "main",
+          "line": 54
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/catalog_key_words/alignment/run_evidence.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "eec974298cc53f08fd18660a7c1159e30ca11e611f146e01366688706db7a1ab",
+      "sites": [
+        {
+          "function": "child_limits",
+          "line": 18
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/clock_history/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "79cd4942abc0b05f29d8dab127bee46995ec76697ffcbc68aa05aa687243a500",
+      "sites": [
+        {
+          "function": "main",
+          "line": 233
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/clock_history/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "8bb86c261f6533771c6ad96f0322e63dc62e399e85c06759dbb344d196e038c3",
+      "sites": [
+        {
+          "function": "limit_child",
+          "line": 85
+        },
+        {
+          "function": "main",
+          "line": 305
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/continuation_binding/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "d2ba49a23527f497df7e0dafe40b8685cc1235bec16106526e3f3a432344434e",
+      "sites": [
+        {
+          "function": "worker",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/cube_root_polar/replay.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "c67f56d9dfdadb03536b55e597514dccd5eaa2818de3f5ca9f96bce5a5f36764",
+      "sites": [
+        {
+          "function": "main",
+          "line": 170
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/decision_checkpoint/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "55022e8d129d050ab79329e023e0c0cabade74930a0ce48a27fd087a94783762",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/decision_ledger/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "60c8e011fc487e1244c1c611040d4a85c6cf6b791485ff242e9a59b26baadccc",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 67
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/decision_ledger_contention/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "68b164392a082eb2f33dce574a062a89d94caac752d43b9866f3e2cb44ca8507",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/decision_scale/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "1a72982780f430dc3e7156921751f179f58fcd6cc5311f18f2679cca6012d449",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 95
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/decision_scale_composition/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "d37152c4db26066d7708b6027fc8493ed5125039c73012836ec2331d3eee6647",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 99
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/disclosure_binding/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "ffcd20e9a3b9cfa8acf24a3f9ebdfb9603bb05145c3eebfd323ee57571cb0f23",
+      "sites": [
+        {
+          "function": "main",
+          "line": 203
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/evidence_stutter/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "052cf0d163094d47e4cf288e1209daf438957935a0677658ba5136e473b389bc",
+      "sites": [
+        {
+          "function": "main",
+          "line": 131
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/execution_performance/run.py",
+      "reason": "Linux scheduler affinity is an additional portability blocker; an AS guard alone is insufficient.",
+      "sha256": "8c4303e80dbd315bd773b65d039f07ded4b0e7dd694a2951a16e2fc6c0b1f448",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 118
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/failure_kind_boundary/supervise.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "8b2921c430fdc1d67c7cb4264777f379c4d6f95b72ebcbf3e3d671590d30356f",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 22
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/faithful_switch/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "4e0e3fb0df159a525b2b5768cd734bec8b2a432be6a8bd09b67be6b1a1f59d98",
+      "sites": [
+        {
+          "function": "main",
+          "line": 354
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/finite_decision/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "f300a5cec588e31d67a308e8413eedfa6e84340752da11eb61efb3b3afb8aff2",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 119
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/finite_group_probability/check.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "5321f54bad85cce2402157c6027cf653f3dc9369e692743b5ea18c840f7b10ba",
+      "sites": [
+        {
+          "function": "main",
+          "line": 198
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/finite_learner/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "701a02dcc7c504dd0a0fe380866c156c331b9aa059510dc91dba6345d52c308b",
+      "sites": [
+        {
+          "function": "bounded_runtime",
+          "line": 36
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/finite_split/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "66824a1982bc7576c0ca53aa8f3e8ec5dde1c6db329b9ff931258d8278f06187",
+      "sites": [
+        {
+          "function": "main",
+          "line": 388
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/frame_covariance/run.py",
+      "reason": "main installs AS before trial. New separate portable replay bypasses only main; source/contract/evidence unchanged.",
+      "sha256": "5f485fdf13f93362908a4890107f9903a529e27b4b89d9174c0cf9754c7238f4",
+      "sites": [
+        {
+          "function": "main",
+          "line": 192
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/frame_triad/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "068aa4dbb7c09984fbe37cc2866688107e0e3d59c1ca0675b273c75aaf1866af",
+      "sites": [
+        {
+          "function": "main",
+          "line": 295
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/goal_exploration/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "d359cb34fa9edd1e4fd47905e71a437545b04d0d48aba3a55117126b7757e15a",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 260
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/gold_twin_close/supervise.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "3d329840f443ed2c7095ce325e5989bc7a8b63a16153d79fea78efc68dfd470c",
+      "sites": [
+        {
+          "function": "apply",
+          "line": 17
+        }
+      ]
+    },
+    {
+      "category": "refusal-recorded",
+      "path": "experiments/golden_ratio/calibration.py",
+      "reason": "ValueError/OSError is caught at installation and refusal is recorded. No Darwin memory guarantee follows.",
+      "sha256": "5cfb50457f508cd14a9551de1eba8441c5a0c1a3814f398264c70418c2ebe543",
+      "sites": [
+        {
+          "function": "install_limits",
+          "line": 395
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/golden_ratio_operator_lift/check_adapter.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "6c42212796ae82371afbb997263bb962cf5c4f825202c90413de9d27a7ee719d",
+      "sites": [
+        {
+          "function": "main",
+          "line": 30
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/golden_ratio_operator_lift/check_receipts.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "009d1c4d680d995f96a375eb27e9199f16436b98e238addad6c087a4fb8700d8",
+      "sites": [
+        {
+          "function": "main",
+          "line": 126
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/golden_ratio_operator_lift/receipt.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "263fa9048e663024ffb6c6f393a2e9a1ed93208f966778c2dc33761ea10db10e",
+      "sites": [
+        {
+          "function": "main",
+          "line": 195
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/golden_ratio_operator_lift/replay.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "b75b0d4f2962fe4c9be4c4856cd65f8308727830eab1685581f849fd12dd5c35",
+      "sites": [
+        {
+          "function": "main",
+          "line": 166
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/history_surface/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "b5362f74f7024794291b12c69740157073b7c8565dd358125c31429a4c409419",
+      "sites": [
+        {
+          "function": "restrict",
+          "line": 265
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/interpretation_obligation/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "7d4c76fa1ef773cf2c2dd3d73af07b3588a8bc240e04b6e9c711a8f9852f690a",
+      "sites": [
+        {
+          "function": "main",
+          "line": 161
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/interpretation_obligation/run-01/calibration.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "7d4c76fa1ef773cf2c2dd3d73af07b3588a8bc240e04b6e9c711a8f9852f690a",
+      "sites": [
+        {
+          "function": "main",
+          "line": 161
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/interval_enclosure/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "d4a0ffd1f762ee4557d1c78a7929d540f109b10e2b2758fa041239d75ba80845",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 330
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/interval_enclosure/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "cc1a468dd7ea8fd3032fa13db2995475745486245d4da31d82e57a3fd0d3e96e",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 95
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/iota_grid_embedding/check.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "8e7944fc28830af2b8cc10300119d7268bb75115246772e474e4128763a42aee",
+      "sites": [
+        {
+          "function": "main",
+          "line": 254
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "experiments/judgment_distinction/calibration.py",
+      "reason": "main rejects non-Linux before installing limits",
+      "sha256": "2f1c1e90e3dc1ffd11c8e6d7630eed6bdf2956df7ea3492f144631c6b5d1b842",
+      "sites": [
+        {
+          "function": "main",
+          "line": 565
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/kernel_composition/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "fc493112a7e0ba3314f2871027ffeaa697cb80913ebcf53387e2d746ea4c2e8d",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 238
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/knowledge_boundary/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "0934d2a6d589ca8b48d0d7e4ac438ed3785462832e37854aa22995029d05db73",
+      "sites": [
+        {
+          "function": "main",
+          "line": 398
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/lattice_polar/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "8c40444f21791a138cfe86e14eb95666b5a2bfbe4c23f4c32e08c5dacc5f8310",
+      "sites": [
+        {
+          "function": "main",
+          "line": 205
+        }
+      ]
+    },
+    {
+      "category": "refusal-recorded",
+      "path": "experiments/li_yorke_period_three/replay.py",
+      "reason": "ValueError/OSError is caught at installation and refusal is recorded. No Darwin memory guarantee follows.",
+      "sha256": "c07258af5ecaae67d4af698ab00175793ccb452cb01be2429f15d92e5135fbf3",
+      "sites": [
+        {
+          "function": "install_limits",
+          "line": 285
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/linear_system/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "0910b1c36505d7efa8258df16524fbe8f7d95155905110bee626627f9c7dd069",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 256
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/linear_system/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "c7d1e1e50861fe4f2326209f565322250b1a1e766ada3de07dcfd24dabe3a8f7",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 81
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/markov_horizon/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "4d870fa594022a71306f0aa734b64f72be97a4df7ebf782021e1fe4408886102",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 258
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/markov_horizon/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "ddfb2c814e8c52beb9272ed460a1ca683783fa9e65a3adf9395d106f9c17f385",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 76
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/mobius_conjugacy_transport/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "f26816f0894401fd479a289aef6814f10fa86febdf17add41abd7dc47d351fa1",
+      "sites": [
+        {
+          "function": "main",
+          "line": 360
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/mobius_transport_receipt/check.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "199001c94cea700b359ce6f98e5b0b54ebc0fd8d0bb5c5a26db30f99186b0c62",
+      "sites": [
+        {
+          "function": "<module>",
+          "line": 260
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/mobius_transport_receipt/compose.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "c784c970e2f2d3b231f85514463a91c1000110a6caee80ee29f308a6178270ad",
+      "sites": [
+        {
+          "function": "<module>",
+          "line": 166
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/murphy/run.py",
+      "reason": "Only Python children install AS; outer handler reports Failed on preexec refusal. Non-Python children do not execute this AS call.",
+      "sha256": "9abd87ab645afb06901b2b45384e5360a492e9798c6b8c6e0f72c14a7b17b75a",
+      "sites": [
+        {
+          "function": "bounded",
+          "line": 51
+        }
+      ]
+    },
+    {
+      "category": "mock-only",
+      "path": "experiments/numeric_boundary_audit/audit.py",
+      "reason": "RLIMIT_AS belongs to a mock resource namespace; no real AS installation here.",
+      "sha256": "5319a3036133cce9345342648edee7456fa433eadce1f8e885ed4c04e8e107de",
+      "sites": []
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/observable_unit_transport/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "e6ffdbd317cafda3b141e10b0a1204a06afafcc743e6775d919c2b3e3e21e163",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 206
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/pairing_transport/replay-before-cutwire-fix.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "9aea2052e134b441dae8a165dc5292a773bdcbf8a7bfec13a8d8dd35fd8a1c74",
+      "sites": [
+        {
+          "function": "main",
+          "line": 193
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/pairing_transport/replay.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "30ae9ec076ab25a106ac2055a4ad7a8d1f412b85f996a25bc5edccfd2f1ce3c8",
+      "sites": [
+        {
+          "function": "main",
+          "line": 194
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/pascal_circle_learning/duality.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "834f1ec519f52791dd2d8867805c3a17addeef1c414dea0349788812f1952644",
+      "sites": [
+        {
+          "function": "main",
+          "line": 128
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/pascal_circle_learning/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "6d024fb74e36ac570974b2e8b68ad385358215450ed0867ad6d10959775a234d",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 252
+        },
+        {
+          "function": "main",
+          "line": 439
+        }
+      ]
+    },
+    {
+      "category": "linux-only-install",
+      "path": "experiments/pascal_commutator_certificate/run.py",
+      "reason": "AS installation is platform guarded. Does not imply every advertised memory bound is enforced on Darwin.",
+      "sha256": "a5e646a7da8c5b43f507a0555da71ccb99433657f6f0e3c1817326b88f3c0d82",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 33
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/pascal_spectre_patch/patch.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "145f72b89cf9cf82bc15fc8aabb6b0c66f715788f438c42c278aa36e2b963fc4",
+      "sites": [
+        {
+          "function": "main",
+          "line": 345
+        }
+      ]
+    },
+    {
+      "category": "linux-only-install",
+      "path": "experiments/phase_runner/run_six.py",
+      "reason": "AS installation is platform guarded. Does not imply every advertised memory bound is enforced on Darwin.",
+      "sha256": "e3565b6fbd6acfda15ccd38c7bed510b39ebba722e0d94795fda5b595de4338a",
+      "sites": [
+        {
+          "function": "child_limits",
+          "line": 147
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/prefix_frontier/coverage_gate.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "acea70258e5ce85524513b4593780086bf1d06f8f6224bad175131a11e2443ac",
+      "sites": [
+        {
+          "function": "enforce_limits",
+          "line": 216
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/prime_universe/finite_witness.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "742728f2cecae7cca38bf9595fd5d0ef072303444c697b66946912154d904154",
+      "sites": [
+        {
+          "function": "run",
+          "line": 182
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/private_merge/merge.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "9be0fe2e7c8717cca953c51ef38374f3d617aab086fc8aa489270750b509504a",
+      "sites": [
+        {
+          "function": "restrict_runtime",
+          "line": 228
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/probability_receipt/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "703df7ef99822e4a1dc3cb1cddbe0958cb4032c249593fc48d357c8248fb57b3",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 112
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/quadratic_gap/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "37cf318d0b865087b57169df05113914df768a63a5ff5465bf2636ab96495380",
+      "sites": [
+        {
+          "function": "constrain_process",
+          "line": 247
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/quadratic_gap/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "2964712247ec68d56235fb1982d747b3b4ad805cf6cf85e0279958d86f11856d",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 100
+        }
+      ]
+    },
+    {
+      "category": "refusal-recorded",
+      "path": "experiments/reflexive_lattice_gate/calibration.py",
+      "reason": "ValueError/OSError is caught at installation and refusal is recorded. No Darwin memory guarantee follows.",
+      "sha256": "8d20a5f01c46b83287b401df278071ab33c552dfa2b6a94d52d538cf1fd7b12b",
+      "sites": [
+        {
+          "function": "install_limits",
+          "line": 454
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/representation_residual/run.py",
+      "reason": "AS call is in the optional native-backend branch, not the pure Python portion.",
+      "sha256": "4dee944f9730b31d786c3f93574997078a55fee656266b93e7188620610dcd68",
+      "sites": [
+        {
+          "function": "native_limits",
+          "line": 233
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/resource_frame/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "80f24bee5f8c505db9d56f24e147762d317e4283f2a2184edadaf429a8efac8c",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 227
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/reversible_memory/receive.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "6a8cfe9f48b2485b1a4a2ca17199168b10005617e6dae19509d4597da0e15d7d",
+      "sites": [
+        {
+          "function": "main",
+          "line": 336
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/reversible_memory/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "d55dbcf2a394b4c34c1cc76a869d7003dea8113afe74c197c7bb512a2ec5353f",
+      "sites": [
+        {
+          "function": "limit_child",
+          "line": 84
+        },
+        {
+          "function": "main",
+          "line": 219
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/revise_cycle/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "fdd4c4fd42bf646835431034aac0dc88ca64bfd1df1fe4fca0b9549cec8065fc",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 227
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "experiments/sharkovsky_interval_extension/check.py",
+      "reason": "install rejects non-Linux with Exhausted",
+      "sha256": "71905e00d8c19cf17f3ab6b5b796f9041d6da5ed57edcc089d3cc9a103c285ad",
+      "sites": [
+        {
+          "function": "install",
+          "line": 236
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/structural_adjustment/calibration.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "cec88fccdeec78cfd92014db0f730db5c738ddf38e2a165a37398d0b21cc5dab",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 278
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "experiments/triadic_period_bridge/check.py",
+      "reason": "install rejects non-Linux with Exhausted",
+      "sha256": "f470dbaa5926eba90c58e2f0154b8d3182c280c36e91ef0ba05a5aac9096adf6",
+      "sites": [
+        {
+          "function": "install",
+          "line": 207
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "python/adva/adva.py",
+      "reason": "prime_check rejects non-Linux before Popen(_limits); the verifier-search dispatch is separate",
+      "sha256": "e0c941ba525402cd4872e367885b219f1c34b85c1ded797e89a30f40b831bc46",
+      "sites": [
+        {
+          "function": "_limits",
+          "line": 102
+        }
+      ]
+    },
+    {
+      "category": "linux-required-entry",
+      "path": "python/adva/operator_receipt.py",
+      "reason": "run rejects non-Linux before input processing and Popen(limits)",
+      "sha256": "86da1ee325a1c636890c010b7b9e1a2537338798c95abae853be0010f0fc338a",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 98
+        }
+      ]
+    },
+    {
+      "category": "linux-only-install",
+      "path": "python/adva/quine_relay.py",
+      "reason": "AS installation is platform guarded. Does not imply every advertised memory bound is enforced on Darwin.",
+      "sha256": "6ad1e190975d60a45d407be5a525bf7deea8a2ff8ef5061090da4a2f49ae35c5",
+      "sites": [
+        {
+          "function": "restrictions",
+          "line": 180
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "python/adva/verifier_search.py",
+      "reason": "Supervisor.call reaches child_limits without a platform gate. run catches SubprocessError as Blocked; dependencies may fail first. search_campaign reuses the pinned child_limits. Do not weaken or re-pin.",
+      "sha256": "388553cd6293576b5b449ecafe7fba50c2cb8bf6bc93a459a42de110febab6a3",
+      "sites": [
+        {
+          "function": "child_limits",
+          "line": 40
+        }
+      ]
+    }
+  ],
+  "schema": "adva.engineering.rlimit-as-inventory.v1",
+  "scope": "All Python source files under experiments/ and python/adva/ containing RLIMIT_AS; archives are not unpacked. One row per file, all AST reference sites listed. Static reachability review, not a Darwin execution claim."
+}

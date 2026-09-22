@@ -1,0 +1,49 @@
+{
+  "controls": 7,
+  "input_sha256": {
+    "experiments/frame_covariance/contract.json": "800aa607a5dd6de8d63d9b825f767b8706b2594abb5e8f0ff312c776407ce7fa",
+    "experiments/frame_covariance/evidence.json": "77eb953ac61f023bbbb193b823ce346cd14be9d2c948122de49ef404e28ca8f8",
+    "experiments/frame_covariance/run.py": "5f485fdf13f93362908a4890107f9903a529e27b4b89d9174c0cf9754c7238f4"
+  },
+  "limits": {
+    "RLIMIT_AS": {
+      "status": "installed",
+      "value": 268435456
+    },
+    "RLIMIT_CORE": {
+      "status": "installed",
+      "value": 0
+    },
+    "RLIMIT_CPU": {
+      "status": "installed",
+      "value": 8
+    },
+    "RLIMIT_FSIZE": {
+      "status": "installed",
+      "value": 1048576
+    }
+  },
+  "logical_checks": 1615,
+  "native_admission": "NotGranted",
+  "new_research_claim": false,
+  "original_resource_contract_claim": false,
+  "payload_equal": true,
+  "payload_sha256": "bcdb7eb4341d0d135cedfef9bf5158ad502970283e1015a588382c4ba81047ad",
+  "peak_rss_platform_units": 16380,
+  "peak_rss_unit": "KiB",
+  "platform": "linux",
+  "profile_sha256": "f583e4159570d2011dcbaa2aa94890c6d590abeef1a8e5cba8318e570f5845a3",
+  "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+  "residual": [
+    "Real Darwin execution remains pending until run on Darwin; mocked limit tests are not Darwin execution",
+    "No Darwin hard memory bound and no equivalence of resource contracts",
+    "Original executable and its original CLI remain Linux-bound",
+    "Original same-implementation replay is not independent mathematical verification",
+    "Parent orchestration and interpreter startup are outside child CPU/file limits; outer timeout covers child startup; no aggregate memory bound"
+  ],
+  "rows": 84,
+  "runner_sha256": "3cd5b4a67d75c9235ee26079ee40458c446cdcf66bd0a563855741e7cf8ae70b",
+  "schema": "adva.engineering.frame-covariance-portable-replay.v1",
+  "status": "ReproducedFinitePayload",
+  "wall_seconds_before_serialization": 0.07642823000060162
+}
