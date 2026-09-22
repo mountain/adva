@@ -4,11 +4,12 @@ Date: 2026-09-21. Status: preparation plan; **not frozen, not implemented,
 not run**. This is an arrangement of the user-supplied Chinese design summary
 v0.2 dated 2026-09-20, not a replacement for its full protocol.
 
-The referenced `six-experiments-design.md` and `suite-proposal.json` were not
-found in the local workspace or the GitHub code search performed for this
-preparation. Their repository, revision and exact bytes remain required inputs.
-In particular, this plan does not reconstruct the missing numerical algorithms
-and then attribute those choices to v0.2.
+On 2026-09-22 the original v0.2 files were located on the separate
+`research/trail-navigation-pilot-20260920` branch at commit `b3450c59`.
+Their exact paths, revision, byte sizes and hashes are now pinned in `plan.json`.
+See [source reconciliation](SOURCE_RECONCILIATION.md) for recovered parameters,
+explicit arrangement differences and remaining implementation obligations.
+This pins a design proposal, not an executable contract: G0 remains Open.
 
 [Structured plan](plan.json) · [Chinese arrangement](ARRANGEMENT.zh-CN.md)
 
@@ -35,8 +36,8 @@ The declared candidate grammar contains 108 contexts and 512 ordered fillings.
 The implementation must show the context count as two binary tree shapes,
 six hole permutations and nine ordered operation pairs, without quotienting
 by algebraic equality. The eight filling expressions remain distinct syntax.
-The five screening points must be fixed before search. Acceptance checks all
-25 F5 inputs and all boundary conditions, with a separate polynomial verifier.
+The source specifies screening points (0,0), (1,0), (0,1), (1,1), (2,1).
+Acceptance checks all 25 F5 inputs and all boundary conditions, with a separate polynomial verifier.
 An oracle disagreement invalidates the affected experiment; it is not a vote
 to accept the candidate. The evaluator's answer table must never be exposed
 to proposers, graph builders, feature selection or learned policies.
@@ -90,8 +91,10 @@ the full 512-element pool is empty.
 Additional required controls: hole-order mutation, changed roles, prohibited
 zero shortcut, overly broad context, agreement at the five screening points
 but disagreement at an unscreened point, and history preservation after a
-failed proposal and fallback. Every control needs an exact fixture and expected
-outcome before the manifest is frozen.
+failed proposal and fallback. For the screening-collision control, check whether
+a collision exists in the frozen cohort; if absent, report that fact without
+fabricating a fixture or widening the grammar. Freeze fixtures and expected
+outcomes, including this conditional outcome, before execution.
 
 ## Strategy comparison and information boundary
 
@@ -106,8 +109,8 @@ All arms use the same candidate pool, task, observer and exact checker.
 | I | Ordinary compatibility sets constructed on demand | Index construction and lookup both charged |
 
 Each fourth proposal uses the next eligible fixed-order candidate. Freeze
-tie breaking, duplicate handling and graph refresh timing. Graphs can differ
-between runs as a consequence of their checked histories, but the construction
+duplicate handling and graph refresh timing; source ties use canonical order.
+Graphs can differ between runs as a consequence of their checked histories, but the construction
 rules and allowed initial information cannot differ between D/S/C.
 
 The second end must be computable from the initial unfilled-hole relations.
@@ -121,14 +124,16 @@ Schedule query blocks within E3/E4, then E5/E6, then E1/E2. Freeze a balanced
 arm order and seeds before the campaign to reduce order effects. Do not share
 runtime caches or checked answers between arms unless an explicitly charged,
 identical input is declared for each. E1/E2's exact control-arm matrix and
-whether learned priors affect each of L/D/S/C/I await the full protocol.
+index-baseline participation remain to freeze. The source gives navigation
+arms the same learner and budgets, with only direction features differing.
 
 ## Resource arrangement
 
 Per-round hard caps: 2,000 proposals, 2,000,000 symbolic units, 10 s wall,
 8 s CPU, and 500,000,000 estimated real operations. Entire series hard caps:
 1,800 s wall, 1,200 s CPU, 1,000,000,000 symbolic units, 50,000,000,000 estimated
-real operations, 768 MiB worker memory and 128 MiB total evidence.
+real operations, 768 MiB worker memory and 128 MiB total evidence. The
+recovered design also requires a 1 MiB per-round evidence limit.
 
 Reserve at least 10% for controlled exit. Proposed work cutoffs are 90% of
 each consumable limit; per-round cutoffs are consequently 1,800 proposals,
@@ -136,7 +141,7 @@ each consumable limit; per-round cutoffs are consequently 1,800 proposals,
 Do not consume the exit reserve to propose one more candidate. Memory remains
 a hard process limit. Aggregate evidence includes temporary/partial output,
 and a supervisor must enforce the aggregate limit, not just a per-file cap.
-The full protocol must settle the reservation and accounting details before
+The implementation contract must settle reservation and accounting details before
 these proposed cutoffs become a frozen run contract.
 
 At n=64, one complete matrix response costs `32*n^3 + 64*n^2 = 8,650,752`
@@ -194,8 +199,10 @@ remain visible. This is a small-sample signal, not statistical significance.
 
 ## Required inputs before freezing
 
-1. Original full protocol and structured proposal, exact source revisions and
-   hashes, and a reconciliation of this arrangement with their contents.
+1. Source revisions and hashes are now located and pinned; complete the
+   implementation freeze and outstanding accounting reconciliation described
+   in SOURCE_RECONCILIATION.md. Items below require executable definitions
+   and hashes even where the original design now supplies a proposal.
 2. All query files, E1/E2 family and boundary split, screening points, target
    and role predicates, expected adversarial-control outcomes, and provenance.
 3. Feature allowlist and training update rules, negative-condition retention,
