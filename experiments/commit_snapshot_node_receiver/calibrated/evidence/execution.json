@@ -1,0 +1,22 @@
+{
+  "profile": "adva.research.node-meter-cumulative-audit.v1",
+  "status": "InvalidBudgetEvidence",
+  "semantic_replay_status": "Passed",
+  "reason": "Replay reset counters; combined attempts exceeded frozen total-work and receiver-call caps. Prior Passed is a per-process observation only.",
+  "frozen_work_cap": 215040,
+  "actual_work_units": 241154,
+  "overrun_work_units": 26114,
+  "frozen_child_cap": 14,
+  "receiver_calls": 24,
+  "extra_node_version_probes": 2,
+  "total_node_processes": 26,
+  "supervisor_assertions": 528,
+  "attempt_wall_seconds": 2.185091507999914,
+  "preflight_wall_seconds": 0.06215687400003844,
+  "peak_child_rss_kib": 50076,
+  "peak_supervisor_rss_kib": 13872,
+  "correction_replays": 1,
+  "additional_execution_permitted": false,
+  "new_vocabulary": [],
+  "followup": "External cumulative supervisor must retain spent work and started child count across correction; any remaining cases become NotRun when reserve is insufficient. No further receiver execution this round."
+}

@@ -1,0 +1,30 @@
+{
+  "profile": "adva.research.commit-snapshot-node-meter-calibration.v1",
+  "status": "FrozenBeforeExecution",
+  "parent_pr": 204,
+  "parent_commit": "34e1c485d6639e3ca21b00e743c17f9a34631077",
+  "question": "Does input-size calibrated use of the unchanged value-node plus check charging rule complete the original fourteen cases, with independent accounting checks and identical semantic projections?",
+  "objects_and_types": "Exactly the original four valid snapshot pairs, six refusal cases and four JSON parser controls. ASCII JSON and safe integers only; rational pairs, histories, provenance and semantic checks are unchanged. No ledger is opened.",
+  "preflight": "The archived symmetric empty triple has 6797 JSON value nodes; the committed triple has 14161. The old cap 10000 cannot even finish parsing the latter. Node counting includes one root and every array element/object value; object keys are counted separately. There is no evidence of repeated parsing. Byte-block counts and lexical-token counts are descriptive alternatives, not equivalent work units.",
+  "calibration": "Keep the old work rule. Reserve 1024 check units beyond the largest 14161-node valid triple, round up to the next 1024-unit boundary: ceil((14161+1024)/1024)*1024 = 15360. The 1024 reserve is a declared allowance, not a proof about arbitrary inputs. Require measured non-parser checks <=1024 for all four valid cases. Compare both languages' value-node counts per input role and full semantic projections. Do not replace operation costs by input size.",
+  "metering_invariant": "For every fully decoded valid input, parser.value is entered once per recursive JSON value occurrence; input roles remain distinct even when byte-identical. Runtime counts must equal an independent Python structural walk. Object keys are lexical string tokens, not JSON values. Canonicalization, hashing byte work, sorting, I/O and reporting are not fully represented by this abstract counter; byte, depth, process-memory and time bounds remain separate.",
+  "limits": {
+    "child_processes": 14,
+    "child_wall_seconds": 3,
+    "campaign_wall_seconds": 30,
+    "outer_wall_seconds": 35,
+    "work_per_call": 15360,
+    "total_work": 215040,
+    "wire_bytes_per_file": 262144,
+    "selected_archive_bytes": 3145728,
+    "output_bytes": 5242880,
+    "maximum_json_depth": 128,
+    "node_old_space_mib": 32,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "acceptance": "Four valid outcomes and complete semantic views match archived Python. All ten refusals have a cause-specific reason, not a resource-limit catch-all. Each valid decoded role matches structural, lexical-token and 64-byte-block input counts. Report every attempted child, including a failed or timed-out call.",
+  "protected": ["No semantic predicate removed or weakened", "No changes to old source, contract or evidence", "No Python or SQLite invoked by receiver", "No arithmetic replay, ledger modification, debit or retry authority", "No new terminology, native free, M6 or universality claim"],
+  "exit": "Stop on first unexpected outcome, accounting mismatch, subprocess error, limit, or after fourteen cases. At most one documented implementation correction. Preserve failures.",
+  "origin": "Project-original Codex (OpenAI) under Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee."
+}
