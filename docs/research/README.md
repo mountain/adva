@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **219 numbered
-notes, 52 named notes and 25 supporting directories**. Nothing here is a stable
+notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -775,6 +775,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`commit-state-two-builder-projection-agreement.md`](commit-state-two-builder-projection-agreement.md): two implementation-distinct builders retain different provenance while agreeing byte-for-byte on one ledger projection; disagreement or copied provenance remains Unknown.
 - [`commit-state-node-receiver-budget-pause.md`](commit-state-node-receiver-budget-pause.md): one Node.js receiver matches the archived Python empty-ledger projection, then pauses at the frozen work cap on a committed snapshot; remaining cases are NotRun.
 - [`commit-state-node-meter-calibration.md`](commit-state-node-meter-calibration.md): input-size calibration completes fourteen semantic cases, but the retained cumulative audit rejects the run because correction replay reset the resource counters.
+- [`cumulative-budget-through-correction.md`](cumulative-budget-through-correction.md): eight synthetic scenarios preserve conservative work/call reservations across correction and reconstruction; real Node receiver integration remains open.
 - [`borromean-independent-longitudes.md`](borromean-independent-longitudes.md)
 - [`catalog-key-words-alignment.md`](catalog-key-words-alignment.md)
 - [`catalog-key-words-v1.md`](catalog-key-words-v1.md)

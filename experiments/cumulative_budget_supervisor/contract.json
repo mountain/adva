@@ -1,0 +1,15 @@
+{
+  "profile": "adva.research.cumulative-budget-supervisor.v0",
+  "status": "FrozenBeforeExecution",
+  "parent": "ca7be68fd5caba3f68582a6bb7f774c5e7e943ce",
+  "question": "Can a single-writer supervisor retain reservation and process-attempt counters across reconstruction and one correction, while refusing insufficient resources before spawn?",
+  "domain": "Finite natural-number accounting; positive integer reservations, bounded call counts, explicit ordered journal events. Booleans are not integers. Synthetic trusted Python children only; no Node receiving campaign, ledger or native Adva evaluation.",
+  "invariant": "R=sum(reservations), C=count(reservations); 0<=R<=W and 0<=C<=K. Reserve before spawn, including probes and failed spawn attempts. Never refund. Correction changes neither R nor C. Pending reservation blocks any new launch.",
+  "scope": "One local sequential writer, intact canonical journal, trusted OS and fixtures. Exclusive create prevents accidental reinitialization of that journal; malicious deletion/replacement, concurrent writers, interrupted journal writes and power loss are out of scope.",
+  "cases": ["success-failure-correction-reload-exhaustion", "insufficient-work-after-failed-spawn", "probe-consumes-last-call", "malformed-then-overreported-work", "unsettled-reservation-on-reload", "context-reset-and-type-controls", "timeout-correction-reuse", "fresh-process-journal-inspection"],
+  "limits": {"outer_seconds":30,"child_seconds":0.5,"controlled_child_attempts_across_all_replays":20,"reserved_units_across_all_replays":400,"journal_bytes":32768,"journal_events":32,"output_bytes":1048576,"search_candidates":0,"implementation_correction_replays":1},
+  "acceptance": "All scenario outcomes match an independent summation of journal reservations and previous bytes remain unchanged on refusals; fresh-process inspection matches controller reconstruction. Unknown work retains the full reservation. Overreported work is a terminal budget violation, never successful semantic evidence.",
+  "cost_boundary": "Reservation bounds scheduled abstract entitlement, not physical CPU instructions or dishonest child work. Child wall timeout is separate. Persistent trial allowance also counts failed spawn attempts and inspection processes across any correction replay. Host validation/serialization time is measured separately; abstract model-transition counts do not price all host instructions.",
+  "protected": ["Old InvalidBudgetEvidence remains invalid", "No reset of task or trial allowance", "No arithmetic-truth or M6 claim", "No source/occurrence identity created", "No new vocabulary", "No external participant contacted"],
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, through Mingli Yuan's account proxy; not his review, endorsement or correctness guarantee."
+}
