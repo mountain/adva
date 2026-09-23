@@ -1,0 +1,68 @@
+{
+  "schema": "adva.research.address-and-scale-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "dbb73e3",
+  "input_document": "docs/research/0217-what-the-address-sees-and-what-the-grid-already-forces.md",
+  "question": "The source text states its own address algorithm for the eighty-one heads. Does it agree with the coordinate formula used in the earlier notes of this line? Which divisions of the eighty-one heads are definable in the address algebra, and is the split at forty-seven a congruence? Since two heads that the text pairs lie across that split, is the split a translate of a boundary that the text does pair? Is the river diagram's pairing a quotient, and is the reported calendar near miss closer than the grid of head boundaries already forces?",
+  "level": "External exact integer arithmetic, exact rational arithmetic and exhaustive checks over declared finite sets; no text and no corpus count imported",
+  "domain": "The four-place ternary address space of eighty-one heads; the formula the source text states for the head number; the nine heads with the last two places at their first value; the split of the head indices at forty-seven against every modulus from two to eighty-one; one displacement of the address space and its three-cycles; the river diagram's pairing of one to nine; and the calendar that the source text's own praise count defines",
+  "objects": {
+    "heads": 81,
+    "places": 4,
+    "cut": 47,
+    "sides": [47, 34],
+    "pair_before": [7, 47],
+    "pair_after": [8, 48],
+    "shift": [1, 2, 1, 1],
+    "river_numbers": [1, 2, 3, 4, 5, 6, 7, 8, 9],
+    "bundle_count": 36,
+    "praise_count": 729,
+    "total_bundles": 26244,
+    "praises_per_day": 72,
+    "year_half_days": 731,
+    "nodes": 24,
+    "reported_node": 15,
+    "reported_gap_days": "41/24"
+  },
+  "quantifiers": [
+    "All eighty-one heads for the two address formulas, the nine-row set and the three-cycle decomposition",
+    "All eighty moduli from two to eighty-one for the congruence question",
+    "All eighty-one heads for the order and orbit of the declared displacement",
+    "All nine numbers of the river diagram for the quotient",
+    "All twenty-four calendar nodes for the gap against the grid of head boundaries"
+  ],
+  "grammar": [
+    "exact integer arithmetic on the ternary places, with the head number recovered from the coordinates",
+    "exhaustive testing of membership in unions of residue classes, with a witness pair recorded for every failing modulus",
+    "exact rational arithmetic over Fraction for the calendar, with no floating-point value in any acceptance test",
+    "exact set comparisons on declared finite structures"
+  ],
+  "acceptance": [
+    "The formula the source text states for the head number reproduces all eighty-one heads, and its place weights are the successive multiples of three that the text lists, so it is the same map as the coordinate formula used in the earlier notes",
+    "The nine heads whose last two places are at their first value are the declared nine, equally spaced by nine, exactly the fiber over two fixed places, and are defined by exactly two place constraints while the first two places run freely",
+    "The split at forty-seven is a union of residue classes modulo eighty-one only, which is trivial, and for every one of the other seventy-nine moduli there is a witness pair that breaks it; the two cases of the argument hold on the data",
+    "The same displacement carries the first pair of heads and the second pair of heads, so the boundary at forty-seven and forty-eight is the translate of the boundary at seven and eight",
+    "The displacement has order three, its orbits on the two pairs are seven forty-seven sixty-nine and eight forty-eight sixty-seven, and it splits all eighty-one heads into twenty-seven three-cycles",
+    "The river diagram's pairs are exactly the fibers of reduction modulo five on the numbers one to nine, every pair differing by five, and the label is a function of the residue class",
+    "The shift by five has no fixed point on the ten residues but exactly one when restricted to one to nine, namely five, which is why that pair is written with a number against itself",
+    "The source text's own numbers give thirty-six bundles of seven hundred twenty-nine praises, twenty-six thousand two hundred forty-four in all, which divided by seventy-two is three hundred sixty-four and a half days, so one praise is half a day and one head is nine praises",
+    "The split at forty-seven divides the seven hundred twenty-nine praises into four hundred twenty-three and three hundred six, that is two hundred eleven and a half and one hundred fifty-three days",
+    "The head boundaries are a grid of spacing four and a half days, so every one of the twenty-four calendar nodes is within nine quarters of a day of a boundary by construction and no data can change that",
+    "The reported node's gap is forty-one twenty-fourths of a day, which is worse than the median node and ranks fourteenth of twenty-three by closeness, while another node is more than seventy-six times closer"
+  ],
+  "protected": [
+    "No classical text, edition, transcription, commentary, name table, symbol table, sequence or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "The formulas, the constants and the reported numbers are declared in this contract; the checker verifies their arithmetic and the structural consequences, and measures nothing",
+    "No claim about what any chapter, head or position means, and no claim about which transmitted reading is original",
+    "The address formula is checked against the formula the source text is reported to state, not against a collated edition; this note does not perform that collation and does not claim it",
+    "No claim that the split at forty-seven has no cause: the two negatives shown here are about definability in two declared algebras, and the external record's own remaining candidate, a transmitted editorial boundary, is neither tested nor excluded",
+    "No claim that the translate relation explains anything about the split; it is a structural coincidence in the text's own pairing and is recorded as such",
+    "No claim that the river diagram is or is not a historical source of anything; only that its pairing is a quotient and that the source text is reported to state it",
+    "No claim about calendars, seasons or astronomy beyond the arithmetic of the source text's own counts, and no claim that the year or the nodes describe any real sky",
+    "The near-miss analysis shows that the reported node is not closer than the grid forces; it does not show that no alignment between heads and seasons exists",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 200000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about declared finite objects: that the formula the source text states for the head number is the same map as the coordinate formula, so the address table of the earlier notes is not merely an inference from a symbol range; that the nine heads the text's own nine-fold series names are a fiber over two of the four places and so are visible to the address, while the split at forty-seven is visible to no proper subset of the places and to no modulus below eighty-one; that a split the text itself pairs across, seven and eight against forty-seven and forty-eight, is carried by one displacement of order three, so the two boundaries are translates of each other; that the river diagram's pairing is the quotient by five, with a single fixed point that exists only because its partner falls outside the range; and that the reported calendar near miss is worse than the median node and behind a node more than seventy-six times closer, because the grid of head boundaries puts every node within nine quarters of a day of a boundary no matter what the data are. Nothing here decides any question about a text. In particular the two invisibility results are about two declared algebras and not about cause; the translate relation is recorded and not explained; the calendar arithmetic is the source text's own and no claim is made that it describes a sky; and the near-miss result removes one piece of evidence without supplying any. No chapter, symbol sequence or passage text is reproduced."
+}

@@ -1,0 +1,252 @@
+{
+  "assertions": 98,
+  "checker_sha256": "6aceaf52f7d49c1fdc14a26f4473fcc147c7e3d15293e571729c05b9b26e105f",
+  "contract_sha256": "3e0cf6dec8d6ba2994b1d14815b89a0e0fb1d4d386e589f325d58f0b8d02e1f0",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 25444352,
+  "schema": "adva.research.definability-spectrum-evidence.v0",
+  "sections": {
+    "S1_spectrum": {
+      "all_defined_sizes_are_multiples_of_nine": true,
+      "beyond_exhaustion_are_counted_not_enumerated": true,
+      "cumulative_sets_by_level": {
+        "0": 2,
+        "1": 26,
+        "2": 3014
+      },
+      "exhausted_up_to_level": 2,
+      "heads": 81,
+      "levels_beyond_exhaustion": 2,
+      "per_level": {
+        "0": {
+          "block_size": 81,
+          "blocks_per_partition": 1,
+          "sets_per_algebra": 2,
+          "subsets": 1
+        },
+        "1": {
+          "block_size": 27,
+          "blocks_per_partition": 3,
+          "sets_per_algebra": 8,
+          "subsets": 4
+        },
+        "2": {
+          "block_size": 9,
+          "blocks_per_partition": 9,
+          "sets_per_algebra": 512,
+          "subsets": 6
+        },
+        "3": {
+          "block_size": 3,
+          "blocks_per_partition": 27,
+          "sets_per_algebra": 134217728,
+          "subsets": 4
+        },
+        "4": {
+          "block_size": 1,
+          "blocks_per_partition": 81,
+          "sets_per_algebra": 2417851639229258349412352,
+          "subsets": 1
+        }
+      },
+      "places": 4,
+      "power_set_size": 2417851639229258349412352,
+      "size_distribution_up_to_two_places": {
+        "0": 1,
+        "18": 216,
+        "27": 480,
+        "36": 756,
+        "45": 756,
+        "54": 480,
+        "63": 216,
+        "72": 54,
+        "81": 1,
+        "9": 54
+      }
+    },
+    "S2_lattice": {
+      "adding_a_place_strictly_enlarges": true,
+      "different_single_places_give_different_algebras": true,
+      "empty_place_set_gives_two_sets": true,
+      "exhausted_levels": 2,
+      "membership_is_tested_directly_not_by_enumeration": true,
+      "monotone": true,
+      "nested_pairs_checked": 33,
+      "two_single_places_share_only_the_two_trivial_sets": true
+    },
+    "S3_prior": {
+      "a_prior_of_one_means_no_constraint": true,
+      "exhausted_up_to_level": 2,
+      "level_sizes": {
+        "0": 2,
+        "1": 26,
+        "2": 3014
+      },
+      "rows": {
+        "all_heads": {
+          "all_sets_of_that_size": 1,
+          "definable_of_that_size_at_that_level": 1,
+          "mu": 0,
+          "prior": "1",
+          "prior_float": 1.0,
+          "size": 81
+        },
+        "cut_after": {
+          "all_sets_of_that_size": 75924263305981024225200,
+          "definable_of_that_size_at_that_level": 75924263305981024225200,
+          "mu": 4,
+          "prior": "1",
+          "prior_float": 1.0,
+          "size": 34
+        },
+        "cut_before": {
+          "all_sets_of_that_size": 75924263305981024225200,
+          "definable_of_that_size_at_that_level": 75924263305981024225200,
+          "mu": 4,
+          "prior": "1",
+          "prior_float": 1.0,
+          "size": 47
+        },
+        "first_quarter": {
+          "all_sets_of_that_size": 2306279447501851002720,
+          "definable_of_that_size_at_that_level": 12,
+          "mu": 1,
+          "prior": "1/192189953958487583560",
+          "prior_float": 5.2031855953095075e-21,
+          "size": 27
+        },
+        "nine_district_representatives": {
+          "all_sets_of_that_size": 260887834350,
+          "definable_of_that_size_at_that_level": 54,
+          "mu": 2,
+          "prior": "3/14493768575",
+          "prior_float": 2.0698550445842206e-10,
+          "size": 9
+        },
+        "orbit_of_seven": {
+          "all_sets_of_that_size": 85320,
+          "definable_of_that_size_at_that_level": 85320,
+          "mu": 4,
+          "prior": "1",
+          "prior_float": 1.0,
+          "size": 3
+        },
+        "three_quarter_representatives": {
+          "all_sets_of_that_size": 85320,
+          "definable_of_that_size_at_that_level": 108,
+          "mu": 3,
+          "prior": "1/790",
+          "prior_float": 0.0012658227848101266,
+          "size": 3
+        },
+        "two_prison_heads": {
+          "all_sets_of_that_size": 3240,
+          "definable_of_that_size_at_that_level": 3240,
+          "mu": 4,
+          "prior": "1",
+          "prior_float": 1.0,
+          "size": 2
+        }
+      },
+      "the_prior_is_about_the_algebra_not_the_text": true,
+      "the_prior_is_bounded_by_the_size_of_its_own_level": true,
+      "the_quarter_count_moved_from_480_to_12_when_the_level_was_restricted": true,
+      "the_smallest_prior_belongs_to_the_coarsest_division": true
+    },
+    "S4_placement": {
+      "block_sizes_across_all_levels": [
+        1,
+        3,
+        9,
+        27,
+        81
+      ],
+      "declared_sets_found_among_two_place_blocks": {
+        "(0, 1)": 0,
+        "(0, 2)": 0,
+        "(0, 3)": 0,
+        "(1, 2)": 0,
+        "(1, 3)": 0,
+        "(2, 3)": 1
+      },
+      "named_divisions_by_level": {
+        "single_places": 1,
+        "the_cut_sides": 4,
+        "the_nine_district_representatives": 2,
+        "the_three_quarter_representatives": 3
+      },
+      "pairs_of_places": [
+        [
+          0,
+          1
+        ],
+        [
+          0,
+          2
+        ],
+        [
+          0,
+          3
+        ],
+        [
+          1,
+          2
+        ],
+        [
+          1,
+          3
+        ],
+        [
+          2,
+          3
+        ]
+      ],
+      "the_cut_is_the_only_named_division_needing_all_four_places": true,
+      "the_cut_sides_are_unions_of_blocks_and_not_blocks": true,
+      "the_nine_are_a_block_of": [
+        [
+          2,
+          3
+        ]
+      ],
+      "the_nine_are_the_block_containing_the_first_head": true,
+      "the_quarter_is_a_block_of": [
+        [
+          0
+        ]
+      ],
+      "the_three_are_a_block_of": [
+        [
+          1,
+          2,
+          3
+        ]
+      ]
+    },
+    "S5_rivals": {
+      "all_sets_of_size_nine": 260887834350,
+      "each_rival_belongs_to_exactly_one_partition": true,
+      "rivals_containing_the_first_head": 6,
+      "rivals_of_size_nine": 54,
+      "the_nine_are_among_the_origin_blocks": true,
+      "the_rivals_are_one_in": 4831256191
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 76522000
+}

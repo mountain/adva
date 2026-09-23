@@ -1,0 +1,386 @@
+{
+  "assertions": 80,
+  "checker_sha256": "e663aaafdef5cbe3e6158aa15879eacd0d02d7c787ff2a4ef24ba292242b3255",
+  "contract_sha256": "639719871fb750529c7069b2ce3dda405468d692d8d572c59cac4be3a43475b5",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 100000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 39780352,
+  "schema": "adva.research.gain-and-coverage-evidence.v0",
+  "sections": {
+    "S1_doubling_quotient": {
+      "factors_through_the_odd_part": true,
+      "fibres_are_the_doubling_orbits": true,
+      "fixed_point_count_to_the_limit": 11,
+      "fixed_points_are_the_powers_of_two": true,
+      "identified_pair_example": [
+        3,
+        12
+      ],
+      "lands_in_the_unit_octave": true,
+      "limit": 2000,
+      "odd_elements_to_the_limit": 1000,
+      "odd_numbers_are_the_smallest_element_of_their_fibre": true,
+      "reduction": "n -> n / 2**floor(log2 n), a rational in [1,2)"
+    },
+    "S2_exact_hits": {
+      "division": 22,
+      "divisions_checked": 8,
+      "exact_hit_sets_identical_for_every_declared_division": true,
+      "exact_hits_are_the_powers_of_two": true,
+      "exhausted_integers_per_division": 1651,
+      "only_the_unison_is_rational": true,
+      "per_declared_limit": {
+        "122": {
+          "binary_exponent_plus_one": 7,
+          "count": 7,
+          "values": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64
+          ]
+        },
+        "1651": {
+          "binary_exponent_plus_one": 11,
+          "count": 11,
+          "values": [
+            1,
+            2,
+            4,
+            8,
+            16,
+            32,
+            64,
+            128,
+            256,
+            512,
+            1024
+          ]
+        }
+      },
+      "rational_positions_per_division": {
+        "1": [
+          0
+        ],
+        "12": [
+          0
+        ],
+        "2": [
+          0
+        ],
+        "22": [
+          0
+        ],
+        "3": [
+          0
+        ],
+        "5": [
+          0
+        ],
+        "53": [
+          0
+        ],
+        "7": [
+          0
+        ]
+      }
+    },
+    "S3_coverage": {
+      "coverage_threshold": {
+        "1_percent": 113,
+        "point_1_percent": 1237
+      },
+      "covering_radius": "1/44",
+      "covering_radius_as_a_share": "1/44",
+      "covering_radius_by_division": {
+        "12": "1/24",
+        "2": "1/4",
+        "22": "1/44",
+        "3": "1/6",
+        "5": "1/10",
+        "53": "1/106"
+      },
+      "division": 22,
+      "every_subset_satisfies_the_bound": true,
+      "exhausted_odd_integers": 826,
+      "measured_coverage": {
+        "122": {
+          "coverage_at_1_percent": 22,
+          "coverage_at_point_1_percent": 4
+        },
+        "1651": {
+          "coverage_at_1_percent": 22,
+          "coverage_at_point_1_percent": 22
+        }
+      },
+      "reported_maximum_distance": "0.02272",
+      "reported_maximum_is_the_covering_radius": true,
+      "thresholds_are_absolute_point_counts": true
+    },
+    "S4_count_arithmetic": {
+      "counts": {
+        "greyOrColorless": 230,
+        "magneticLayerGroups": 528,
+        "magneticPointGroups": 122,
+        "magneticRodGroups": 394,
+        "magneticSpaceGroups": 1651,
+        "typeIII": 1191
+      },
+      "exact_multiples": [
+        "magneticLayerGroups"
+      ],
+      "expected_count_is_below_one": true,
+      "expected_number_of_exact_multiples": "3/11",
+      "moduli": 22,
+      "moduli_count": 15,
+      "moduli_dividing_at_least_one_count": {
+        "10": [
+          "greyOrColorless"
+        ],
+        "11": [
+          "magneticLayerGroups"
+        ],
+        "12": [
+          "magneticLayerGroups"
+        ],
+        "13": [
+          "magneticSpaceGroups"
+        ],
+        "16": [
+          "magneticLayerGroups"
+        ],
+        "2": [
+          "magneticLayerGroups",
+          "magneticRodGroups",
+          "greyOrColorless",
+          "magneticPointGroups"
+        ],
+        "22": [
+          "magneticLayerGroups"
+        ],
+        "23": [
+          "greyOrColorless"
+        ],
+        "24": [
+          "magneticLayerGroups"
+        ],
+        "3": [
+          "typeIII",
+          "magneticLayerGroups"
+        ],
+        "33": [
+          "magneticLayerGroups"
+        ],
+        "4": [
+          "magneticLayerGroups"
+        ],
+        "5": [
+          "greyOrColorless"
+        ],
+        "6": [
+          "magneticLayerGroups"
+        ],
+        "8": [
+          "magneticLayerGroups"
+        ]
+      },
+      "moduli_range": [
+        2,
+        40
+      ],
+      "observing_one_is_an_ordinary_event": true,
+      "probability_of_at_least_one": "27613783/113379904",
+      "probability_of_at_least_one_float": "0.243564",
+      "probability_of_exactly_one": "12252303/56689952",
+      "probability_of_none": "85766121/113379904",
+      "residues": {
+        "greyOrColorless": 10,
+        "magneticLayerGroups": 0,
+        "magneticPointGroups": 12,
+        "magneticRodGroups": 20,
+        "magneticSpaceGroups": 1,
+        "typeIII": 3
+      }
+    },
+    "S5_gain_and_spread": {
+      "achievable_share_ranges_for_a_fixed_gain": {
+        "12_over_6": {
+          "distinct": 7,
+          "max": "1",
+          "min": "1/2"
+        },
+        "24_over_4": {
+          "distinct": 7,
+          "max": "1",
+          "min": "3/4"
+        }
+      },
+      "classes": {
+        "bracket": {
+          "gain": 10224,
+          "reported": "0.892",
+          "top3": [
+            4769,
+            2912,
+            1439
+          ],
+          "top3_share": "190/213",
+          "works": 15
+        },
+        "ganzhi": {
+          "gain": 3957,
+          "reported": "0.385",
+          "top3": [
+            630,
+            525,
+            368
+          ],
+          "top3_share": "1523/3957",
+          "works": 76
+        },
+        "grade": {
+          "gain": 1939,
+          "reported": "0.233",
+          "top3": [
+            165,
+            164,
+            123
+          ],
+          "top3_share": "452/1939",
+          "works": 90
+        },
+        "naming": {
+          "gain": 6800,
+          "reported": "0.307",
+          "top3": [
+            814,
+            679,
+            598
+          ],
+          "top3_share": "123/400",
+          "works": 111
+        },
+        "position": {
+          "gain": 1119,
+          "reported": "0.998",
+          "top3": [
+            683,
+            371,
+            63
+          ],
+          "top3_share": "1117/1119",
+          "works": 5
+        }
+      },
+      "corpus_baseline_is_not_the_uniform_value": true,
+      "corpus_baseline_share": "9/10",
+      "corpus_sizes": [
+        4000,
+        3000,
+        2000,
+        500,
+        500
+      ],
+      "effective_works_bounds": {
+        "bracket": {
+          "effective_works_high": "17421696/5565899",
+          "effective_works_low": "645248/213041",
+          "works": 15
+        },
+        "ganzhi": {
+          "effective_works_high": "1143022977/64904633",
+          "effective_works_low": "15657849/6732305",
+          "works": 76
+        },
+        "grade": {
+          "effective_works_high": "327095727/8235919",
+          "effective_works_low": "3759721/2280419",
+          "works": 90
+        },
+        "naming": {
+          "effective_works_high": "4993920000/182148709",
+          "effective_works_low": "23120000/11827961",
+          "works": 111
+        },
+        "position": {
+          "effective_works_high": "1252161/608101",
+          "effective_works_low": "139129/67567",
+          "works": 5
+        }
+      },
+      "exhausted_compositions": 9113,
+      "largest_gain_is_less_concentrated_than_the_smallest": true,
+      "largest_gain_row": "bracket",
+      "largest_gain_row_share": "190/213",
+      "order_by_gain": [
+        "bracket",
+        "naming",
+        "ganzhi",
+        "grade",
+        "position"
+      ],
+      "order_by_spread": [
+        "grade",
+        "naming",
+        "ganzhi",
+        "bracket",
+        "position"
+      ],
+      "rank_correlation_gain_versus_spread": "-1/10",
+      "rank_correlation_magnitude": "1/10",
+      "smallest_gain_row": "position",
+      "smallest_gain_row_share": "1117/1119",
+      "widest_effective_works_ratio_class": "grade"
+    },
+    "S6_threshold_versus_content": {
+      "classification": {
+        "has 曰 and a colon, no quote": 2,
+        "has 曰 or 云 without a colon or quote": 4,
+        "no speech verb at all": 169,
+        "other outside the grammar": 15
+      },
+      "component_vectors_with_the_same_aggregate": 969,
+      "components": {
+        "凡皆": 0,
+        "品第評語": 8,
+        "自始": 0,
+        "舊制故事國朝": 8,
+        "記言": 22
+      },
+      "components_exactly_zero": [
+        "自始",
+        "凡皆"
+      ],
+      "dominant_cause_share": "169/190",
+      "gate": "1/20",
+      "gate_passes": true,
+      "gate_passes_with": "7 hits to spare",
+      "largest_numerator_still_below_the_gate": 9,
+      "non_speech_numerator": 16,
+      "non_speech_share": "8/95",
+      "non_speech_share_float": "0.0842",
+      "the_aggregate_does_not_determine_the_components": true,
+      "unread": 190,
+      "vectors_putting_everything_on_one_component": 1
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 2091321958
+}

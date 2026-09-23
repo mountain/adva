@@ -1,0 +1,69 @@
+{
+  "schema": "adva.research.gain-and-coverage-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "dbb73e3",
+  "input_document": "docs/research/0213-gain-coverage-and-the-number-that-was-already-fixed.md",
+  "question": "Given a declared target set and a declared point set, which of the numbers usually reported about a correspondence claim are fixed before the data is seen? Is the octave reduction of a serial number a quotient with computable fibres, and are the exact hits of any equal division forced? What is the covering radius of an equal division, and at how many points does coverage become automatic? And when a count is reported per class over a corpus, what has to be divided out before two classes can be compared?",
+  "level": "External exact number theory, exact rational arithmetic and finite permutation-free combinatorics; every statement decided by exhaustion or by an exact integer comparison; no text and no corpus count imported from any source",
+  "domain": "The doubling action on the positive integers and its quotient, the exact hits of a b-fold equal division of the octave for eight declared b, the covering radius and coverage thresholds of the twenty-two-fold division, six declared counts against one modulus and against every modulus from two to forty, five declared class summaries with a gain, a top three and a work count each, and one declared gate with five component counts",
+  "objects": {
+    "reduction_limit": 2000,
+    "divisions_checked": [1, 2, 3, 5, 7, 12, 22, 53],
+    "main_division": 22,
+    "declared_limits": [122, 1651],
+    "tolerances": ["1/100", "1/1000"],
+    "counts": {"magneticSpaceGroups": 1651, "typeIII": 1191, "magneticLayerGroups": 528,
+               "magneticRodGroups": 394, "greyOrColorless": 230, "magneticPointGroups": 122},
+    "classes": [
+      {"id": "position", "gain": 1119, "top3": [683, 371, 63], "works": 5},
+      {"id": "ganzhi", "gain": 3957, "top3": [630, 525, 368], "works": 76},
+      {"id": "naming", "gain": 6800, "top3": [814, 679, 598], "works": 111},
+      {"id": "bracket", "gain": 10224, "top3": [4769, 2912, 1439], "works": 15},
+      {"id": "grade", "gain": 1939, "top3": [165, 164, 123], "works": 90}
+    ],
+    "corpus_sizes": [4000, 3000, 2000, 500, 500],
+    "gate": "1/20",
+    "gate_components": {"品第評語": 8, "記言": 22, "舊制故事國朝": 8, "自始": 0, "凡皆": 0},
+    "gate_unread": 190
+  },
+  "quantifiers": [
+    "All integers from one to two thousand for the fibres and fixed points of the reduction",
+    "All integers from one to one thousand six hundred fifty-one for the exact hits of each of eight divisions",
+    "All odd integers to that limit for the exact coverage at two tolerances and for the coverage thresholds",
+    "All six declared counts against the declared modulus and against every modulus from two to forty",
+    "Every weak composition of a declared gain over a declared number of works for the achievable spread range",
+    "Every weak composition of the declared non-speech numerator over its four components"
+  ],
+  "grammar": [
+    "exact rational arithmetic over Fraction, with no logarithm and no floating-point value",
+    "exact comparison of a rational power against a power of two by integer exponentiation, which replaces every tolerance test",
+    "exact integer root testing for the rationality of a root of two",
+    "exact rational distance on the circle and exact Spearman rank correlation"
+  ],
+  "acceptance": [
+    "The reduction lands in the half-open unit octave, factors through the odd part, and its fibres are exactly the doubling orbits of the odd numbers; its fixed points are exactly the powers of two, one more than the binary exponent of the limit",
+    "Two to the power k over b is rational exactly when b divides k; therefore within one octave the only rational position of any declared division is the unison",
+    "The exact hits of every one of the eight declared divisions up to one thousand six hundred fifty-one are the eleven powers of two, and up to one hundred twenty-two they are the seven powers of two; the exact-hit count is a function of the limit alone",
+    "The covering radius of the b-fold equal division is exactly one over twice b, so a bound of one forty-fourth of an octave on the distance to the nearest position is satisfied by every subset of the octave, including a single point",
+    "The larger declared set covers all twenty-two positions at both tolerances while the smaller covers all twenty-two at one percent and fewer at a tenth of a percent, which is what a density effect looks like",
+    "Full coverage is reached at an absolute point count that depends only on the division and the tolerance, and the declared larger set lies far above it",
+    "Exactly one of the six declared counts is a multiple of the declared modulus; the probability of at least one exact multiple is the exact fraction twenty-seven million six hundred thirteen thousand seven hundred eighty-three over one hundred thirteen million three hundred seventy-nine thousand nine hundred four, the observed single multiple is below the expectation of three elevenths, and at least ten of the moduli from two to forty divide one of the six counts",
+    "The five declared top-three shares reproduce the published values exactly, and the exact Spearman rank correlation between gain and spread is one tenth, so the order by gain and the order by spread are different orders",
+    "For a fixed gain and a fixed number of works the achievable top-three share runs from the uniform value to one, so gain and spread are independent quantities",
+    "The published top three bounds rather than determines the effective number of works, and for at least one class the bounds differ by more than a factor of two",
+    "A class distributed exactly like the corpus has a top-three share of nine tenths on the declared corpus, so the baseline for a spread statistic is the corpus's own concentration and not zero and not the uniform-over-works value",
+    "The declared gate passes at eight ninety-fifths against one twentieth with seven hits to spare, while two of its five listed components are exactly zero, and the same aggregate is compatible with more than a hundred different component vectors, so the gate is not a test of the listed content"
+  ],
+  "protected": [
+    "No text, edition, transcription, commentary, name table, annotation or corpus count is imported, reproduced or recomputed here; the summary numbers used are declared in this contract and are checked arithmetically, not re-measured",
+    "No claim about any published correspondence claim except what the declared reading of it establishes, and no claim that the underlying work is wrong about anything it actually computed",
+    "No claim that an equal division of the octave is the correct reading of any musical system; the division is declared and the declared choice is the one most favourable to the claim under test",
+    "No claim that the covering radius or the coverage threshold says anything about serial numbers, groups or music: the statements are about the division and the point count",
+    "No claim that the declared class counts measure any corpus; the arithmetic checks the summary table's internal consistency and the comparability of its columns, nothing else",
+    "No claim that the reduction map or its quotient is a native Adva structure, and no connection to the observer, aperture, clock or cell vocabulary",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 100000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about declared finite objects: a quotient of the positive integers by doubling whose fibres and fixed points are computed, an exact-hit theorem that makes the reported exact hits a function of the limit alone, a covering radius that makes a reported maximum distance trivial, a coverage threshold that makes full coverage a function of the point count, an exact fraction for a count coincidence that the observation does not exceed, and two arithmetic facts about a summary table, namely that its gain column and its spread column are rank-uncorrelated and that its top-three shares bound rather than determine the spread they are used to summarise. Nothing here decides any question about a text, a group or a musical system. In particular the coverage threshold is computed for the two declared tolerances only and not for finer ones, the exact fits are not computed at all and no claim is made about whether the point set could have been closer to the targets than it was, the class spread is bounded only because the full distribution over works was not available, and the corpus baseline is computed on a declared corpus rather than on the corpus the classes were measured on. The gate arithmetic shows that an aggregate can pass while named components are zero; it does not show that the underlying investigation misreported anything, and its author recorded the same miss independently."
+}

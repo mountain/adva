@@ -1,0 +1,59 @@
+{
+  "schema": "adva.research.definability-spectrum-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "dbb73e3",
+  "input_document": "docs/research/0219-the-definability-spectrum-of-the-address-algebra.md",
+  "question": "How much of the power set of the eighty-one heads can the four-place ternary address algebra express, level by level? Up to which level can the union be enumerated exactly, and what are the counts? For a declared division of the heads, how many rival divisions of the same size are expressible at the same level, so that definability can be priced rather than merely asserted? And where on the spectrum do the divisions a text names sit?",
+  "level": "External exact combinatorics on a four-place ternary address space; the union of the algebras is enumerated exactly up to two places and counted by binomial coefficients beyond that; no text and no corpus count imported",
+  "domain": "The eighty-one heads as points of four ternary places with all sixteen coordinate subsets; the partition each subset induces and the algebra of unions of its blocks; the size distribution of the sets expressible at each level; and eight declared divisions of the heads",
+  "objects": {
+    "places": 4,
+    "order": 3,
+    "heads": 81,
+    "exhaustion_level": 2,
+    "declared_sets": ["all_heads", "first_quarter", "nine_district_representatives", "three_quarter_representatives", "cut_before", "cut_after", "two_prison_heads", "orbit_of_seven"],
+    "expected_cumulative": {"0": 2, "1": 26, "2": 3014},
+    "expected_nine_element_sets_at_two_places": 54,
+    "expected_three_element_sets_at_three_places": 108
+  },
+  "quantifiers": [
+    "All sixteen coordinate subsets for the block structure and the algebra size at each level",
+    "All eleven algebras up to two places, whose union is enumerated in full",
+    "All nested pairs of place sets up to two places for monotonicity",
+    "All eight declared divisions for the minimal place count and the size prior",
+    "All six two-place partitions and all nine of their blocks for the placement",
+    "All fifty-four nine-element sets expressible at two places for the rival count"
+  ],
+  "grammar": [
+    "exact integer arithmetic on bit masks over eighty-one heads",
+    "exhaustive enumeration of unions of blocks up to two places, and binomial counting beyond",
+    "exact rational arithmetic over Fraction for the priors",
+    "declared finite sets compared by equality"
+  ],
+  "acceptance": [
+    "The partition by k places has three to the k blocks of size three to the four minus k, so the algebra it generates has two to the three to the k sets, which is two, eight, five hundred twelve, one hundred thirty four million two hundred seventeen thousand seven hundred twenty eight and two to the eighty one",
+    "The union of the algebras up to nought, one and two places has exactly two, twenty six and three thousand fourteen sets, which is fewer than the sum of the algebra sizes, so the algebras overlap and are nested",
+    "Every set expressible by at most two places has a size that is a multiple of nine, and there are exactly fifty four nine-element ones",
+    "A smaller set of places always gives a smaller algebra, and adding a place strictly enlarges it",
+    "The nine district representatives are a block of exactly the last two places, and specifically the block containing the first head, while the three quarter representatives are a block of exactly the last three places and the first quarter a block of exactly the first place",
+    "Exactly one block of a two-place partition coincides with a declared division, so the placement is not a coincidence of many coincidences",
+    "The cut's two sides are blocks of all four places and of nothing smaller",
+    "The nine district representatives meet fifty four rival nine-element sets expressible at two places, out of all two hundred sixty billion eight hundred eighty seven million eight hundred thirty four thousand three hundred fifty of that size, giving a prior below one in a billion",
+    "The first quarter meets twelve rival twenty seven-element sets at one place, not the four hundred eighty that counting it against the two-place union would give, and its prior is the smallest in the table",
+    "The three quarter representatives meet one hundred eight rivals of their size at three places, giving a prior of about one in a thousand, and a set needing all four places meets every set of its size, so its prior is one and constrains nothing"
+  ],
+  "protected": [
+    "No classical text, edition, transcription, commentary, name table, symbol table, sequence or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "The address space and the eight declared divisions are declared in this contract; the checker measures nothing outside them",
+    "The prior is a statement about the address algebra and not a p-value for any text: the address formula is reported elsewhere to be the text's own, so address expressibility and a text's naming are not independent and this experiment does not treat them as such",
+    "No claim that a division is intended, meaningful, or that a text chose it because it is expressible",
+    "The declared divisions named for quarters and districts are coordinate sets; naming them after the text's own vocabulary is a convenience of the earlier notes and not a reading performed here",
+    "The union is enumerated exactly only up to two places; the counts at three and four places are binomial counts per subset and the overlaps between subsets at those levels are not subtracted",
+    "No claim that the four places are the only coordinates of interest, and no claim that coordinate expressibility is the right notion of structure for any purpose",
+    "No statistical claim of any kind: the prior is a ratio of two finite counts",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 200000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about a declared finite algebra: the number of divisions of the eighty-one heads expressible by at most k ternary places, exactly two and twenty six and three thousand and fourteen for nought, one and two places, and counted but not enumerated beyond; that every such division has a size that is a multiple of nine; that the algebras are nested and the nesting is strict; and that for each declared division the number of rival divisions of the same size at the same level is computable, which prices definability rather than asserting it. Nothing here decides any question about a text. In particular the prior for the nine district representatives, three in fourteen billion four hundred ninety three million seven hundred sixty eight thousand five hundred seventy five, is a ratio inside the address algebra and is not evidence that any text chose that division for its expressibility, because the address formula is itself reported from the text; the experiment does not test that independence and does not conclude from it. The most constrained division in the table is not the nine but the first quarter, whose prior is about one in one hundred ninety two quintillion: a single place fixes twenty seven of the eighty one heads at once and only twelve twenty seven-element sets are expressible there, which is a statement about how coarse a one-place division is and not a finding about the quarter. The count for the first quarter was four hundred eighty in the first run of this checker, because it was taken against the two-place union rather than the union at the declared set's own level; the number moved to twelve when that was restricted, and the earlier figure is retained here as an error. The nine are a block of the last two places and the three quarter representatives of the last three, and this organisation by the last places rather than the first is recorded and not explained. The union is enumerated only to two places, so the counts beyond are per-subset binomials whose overlaps are unknown. The declared divisions are coordinate sets carrying names from earlier notes, and no reading of any text is performed. No claim is made that coordinate expressibility is the right notion of structure, and no statistical claim is made at all."
+}

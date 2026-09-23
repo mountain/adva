@@ -1,0 +1,197 @@
+{
+  "assertions": 66,
+  "checker_sha256": "7c981f7144166d3ed6d30ce72a8b6b3f14fc7e8342d169632496e1a46f33f8d6",
+  "contract_sha256": "744b6301d12ad64553ae725e118aca8e4d07a44b4dc6979148e7871b21de3af7",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 100000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 26034176,
+  "schema": "adva.research.four-trit-address-evidence.v0",
+  "sections": {
+    "S1_no_shift_is_a_pairing": {
+      "binary_shift_orders": {
+        "1": 1,
+        "2": 63
+      },
+      "dominant_differences": {
+        "(1,1,1,1)": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "(2,2,2,0)": [
+          2,
+          2,
+          2,
+          0
+        ]
+      },
+      "dominant_differences_have_order": 3,
+      "every_binary_shift_is_an_involution": true,
+      "every_nonzero_ternary_shift_has_order": 3,
+      "exhausted_shifts": 81,
+      "fixed_points_of_any_pairing_of_eighty_one": "odd, hence at least one",
+      "heads": 81,
+      "no_nontrivial_ternary_shift_is_an_involution": true,
+      "nonzero_shifts": 80,
+      "orbit_size_per_nonzero_ternary_shift": 3,
+      "orbits_per_nonzero_ternary_shift": 27,
+      "pairing_bound": 40,
+      "places": 4,
+      "radix": 3,
+      "reported_counts_above_the_bound": 4,
+      "reported_pair_counts": {
+        "cross_sentence": 69,
+        "deduplicated": 133,
+        "section_seven_consecutive": 131,
+        "section_seven_resolving": 126,
+        "sentence_internal": 35
+      },
+      "shifts_of_order_at_most_two": 1,
+      "ternary_shift_orders": {
+        "1": 1,
+        "3": 80
+      },
+      "the_identity_is_the_only_ternary_shift_of_order_at_most_two": true,
+      "why": "twice a shift vanishes modulo two and vanishes modulo three only for the identity"
+    },
+    "S2_capacity": {
+      "binary_words": 64,
+      "coordinate_wise_largest_image": 36,
+      "coordinate_wise_largest_image_share": "9/16",
+      "counting_minimum_largest_fibre": 2,
+      "exhausted_allocations": "every allocation of six binary places to four ternary places",
+      "four_ternary_places_carry_coordinate_wise_at_most": 36,
+      "four_ternary_places_carry_placewise": 16,
+      "heads": 81,
+      "information_optimal_binary_places_needed": 7,
+      "one_bit_per_place_image": 16,
+      "placewise_allocation_attaining_the_bound": [
+        2,
+        2,
+        1,
+        1
+      ],
+      "placewise_binary_places_needed": 8,
+      "placewise_cost_over_counting": "2",
+      "placewise_minimum_largest_fibre": 4,
+      "placewise_minimum_largest_fibre_dropping_a_place": 3,
+      "six_ternary_places_carry_all_sixty_four": true,
+      "the_declared_injection_is_coordinate_wise": false,
+      "unconstrained_injection_exists": true
+    },
+    "S3_odometer": {
+      "binary_carry_profile": {
+        "1": 32,
+        "2": 16,
+        "3": 8,
+        "4": 4,
+        "5": 2,
+        "6": 2
+      },
+      "binary_places": 6,
+      "binary_single_place_share": "1/2",
+      "closed_forms_match_the_exhaustion": true,
+      "distinct_single_place_shares": 4,
+      "exhausted_steps": 1177,
+      "single_place_shares": {
+        "binary_odometer": "1/2",
+        "binding_single_change_relation": "1",
+        "position_successor": "3/4",
+        "ternary_head_odometer": "2/3"
+      },
+      "ternary_carry_profile": {
+        "1": 54,
+        "2": 18,
+        "3": 6,
+        "4": 3
+      },
+      "ternary_closed_form": "for j below the place count, (b-1) b^(n-j); for j equal to it, b",
+      "ternary_places": 4,
+      "ternary_single_place_share": "2/3"
+    },
+    "S4_opposition": {
+      "a_similarity_measure_cannot_separate_opposition_from_unrelatedness": true,
+      "average_appearances_per_head": "28/9",
+      "deviation": "29/500",
+      "deviation_in_independent_pair_standard_errors_approx": "2.26",
+      "deviation_in_independent_pair_standard_errors_squared": "158949/31250",
+      "exhausted_pairs_for_the_percentile_population": 3240,
+      "expected_mean_percentile_under_exchangeability": "1/2",
+      "extracted_pairs": 126,
+      "heads": 81,
+      "independent_pair_variance_of_the_mean_percentile": "1/1512",
+      "mean_percentile": "221/500",
+      "pairs_are_not_disjoint": true,
+      "percentile_convention": "a rank r out of n scores (r - 1/2) / n, so the expected mean is exactly one half"
+    },
+    "S5_counting_unit": {
+      "documents_declared": [
+        {
+          "passages": 60,
+          "restatements": 0,
+          "section_titles": 12
+        },
+        {
+          "passages": 60,
+          "restatements": 12,
+          "section_titles": 0
+        }
+      ],
+      "exhausted_documents": 2,
+      "passage_level_count_is_an_upper_bound_on_restatements": true,
+      "passage_level_counts": [
+        0,
+        12
+      ],
+      "ranking_work_passage_level_share": "1/15",
+      "reported": {
+        "corpus_wide_class_gain": 1939,
+        "literary_mind": {
+          "passage_level_hits": 3,
+          "passages": 462
+        },
+        "poetry_grades": {
+          "passage_level_hits": 4,
+          "passages": 60,
+          "titles": 12
+        }
+      },
+      "the_count_is_independent_of_the_title_level_structure": true
+    },
+    "S6_role_orders": {
+      "a_one_role_frame_has": 1,
+      "a_two_role_frame_needs_evidence_to_choose_between": 2,
+      "declared_label_budget_covers": "two orderings for each of the eight speech frames",
+      "declared_role_counts": {
+        "declared_label_budget": 32,
+        "naming": 1,
+        "reported_speech_frames": 8
+      },
+      "exhausted_role_counts": 4,
+      "role_orderings_by_role_count": {
+        "1": 1,
+        "2": 2,
+        "3": 6,
+        "4": 24
+      },
+      "the_single_role_frame_is_pinned_by_arity": true
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 11368958
+}

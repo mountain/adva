@@ -1,0 +1,224 @@
+{
+  "assertions": 21074,
+  "checker_sha256": "5aef0f0b2a7e7383637fc0afdc954d0de8fbf568401d920343f234e1dbf2de39",
+  "contract_sha256": "1498366a657ad0228aa6e2f720e4a5216e60dd414571e786a2bbd3c6acf5aff4",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 26787840,
+  "schema": "adva.research.eighty-one-magic-square-evidence.v0",
+  "sections": {
+    "S1_canonical_grid": {
+      "canonical_grid_is_magic": false,
+      "column_sums": [
+        333,
+        342,
+        351,
+        360,
+        369,
+        378,
+        387,
+        396,
+        405
+      ],
+      "diagonal_sums": [
+        369,
+        369
+      ],
+      "entry_at_row_column": "9 r + c + 1",
+      "exhausted_cells": 81,
+      "grid": "rows by the first two places, columns by the last two",
+      "heads": 81,
+      "lines_attaining_the_magic_constant": 4,
+      "lines_in_total": 20,
+      "magic_constant": 369,
+      "main_diagonal": [
+        1,
+        11,
+        21,
+        31,
+        41,
+        51,
+        61,
+        71,
+        81
+      ],
+      "middle_column_sum": 369,
+      "middle_row_sum": 369,
+      "other_diagonal": [
+        9,
+        17,
+        25,
+        33,
+        41,
+        49,
+        57,
+        65,
+        73
+      ],
+      "row_sums": [
+        45,
+        126,
+        207,
+        288,
+        369,
+        450,
+        531,
+        612,
+        693
+      ]
+    },
+    "S2_linear_family": {
+      "entries_are_a_permutation_iff_the_matrix_is_invertible": true,
+      "exhausted_coefficient_matrices": 7267,
+      "magic_constants": {
+        "3": 15,
+        "5": 65,
+        "9": 369
+      },
+      "orders": [
+        3,
+        5,
+        9
+      ],
+      "row_sum_closed_form": "n n (n-1) / 2 + n (n-1) / 2 + n",
+      "row_sum_equals_the_magic_constant": true,
+      "unit_row_coefficient_cases_checked": 6864
+    },
+    "S3_magic_counts": {
+      "affine_magic_squares_at_even_orders": {
+        "4": 0,
+        "6": 0,
+        "8": 0
+      },
+      "coefficient_matrices_admitting_a_magic_square": {
+        "3": 8,
+        "5": 192,
+        "9": 648
+      },
+      "declared_construction": "start one at the top middle, then step up and right, dropping down on a collision",
+      "declared_construction_is_affine": true,
+      "declared_construction_is_magic_and_permuting": true,
+      "declared_construction_parameters": {
+        "3": {
+          "alpha": 1,
+          "beta": 1,
+          "centre": 5,
+          "delta": 2,
+          "e": 2,
+          "f": 1,
+          "gamma": 1
+        },
+        "5": {
+          "alpha": 1,
+          "beta": 1,
+          "centre": 13,
+          "delta": 2,
+          "e": 3,
+          "f": 1,
+          "gamma": 1
+        },
+        "9": {
+          "alpha": 1,
+          "beta": 1,
+          "centre": 41,
+          "delta": 2,
+          "e": 5,
+          "f": 1,
+          "gamma": 1
+        }
+      },
+      "even_orders_checked": [
+        4,
+        6,
+        8
+      ],
+      "exhausted_cases": 547795,
+      "linear_magic_squares_by_order": {
+        "3": 8,
+        "5": 1472,
+        "9": 3528
+      },
+      "linear_magic_squares_by_the_weaker_determinant_test": {
+        "3": 8,
+        "5": 1472,
+        "9": 6024
+      },
+      "one_coefficient_matrix_for_every_odd_order": true,
+      "order_three_matches_the_classical_count": true,
+      "shifts_differ_between_the_orders": true,
+      "the_family_is_odd_order_only": true,
+      "the_two_invertibility_tests_agree_at_prime_orders": true,
+      "the_weaker_test_over_counts_at_order_nine_by": 2496
+    },
+    "S4_relation_preservation": {
+      "expected_preserved_approx": "0.3781",
+      "expected_preserved_pairs": "245/648",
+      "extracted_pairs": 35,
+      "heads": 81,
+      "independent_pair_estimate_approx": "0.6838",
+      "independent_pair_estimate_of_preserving_none": "173792501033087943888223887714687927650744763595706512976488873119394261937798490617026745710614401/254170536405933772320300583531138234407901786385535768410460945281462436321307463052570188297797632",
+      "markov_bound_approx": "0.6219",
+      "markov_bound_on_preserving_none": "403/648",
+      "observed_is_inside_the_ordinary_range": true,
+      "observed_preserved_pairs": 0,
+      "preservation_of_none_is_not_evidence_of_antagonism": true,
+      "unordered_pairs": 3240
+    },
+    "S5_class_alignment": {
+      "a_three_class_row_is_the_block_pattern": true,
+      "aligned_total_incidence": 90,
+      "block_labelling_incidences": {
+        "columns": 27,
+        "rows": 27
+      },
+      "block_total_incidence": 54,
+      "first_pair_labelling_incidences": {
+        "columns": 81,
+        "rows": 9
+      },
+      "maximum_total_incidence": 162,
+      "order": 9,
+      "reported_classes_per_row_and_column": 3,
+      "second_pair_labelling_incidences": {
+        "columns": 9,
+        "rows": 81
+      },
+      "the_canonical_grid_aligns_both_coarsenings": true,
+      "the_incidence_statistic_separates_the_aligned_from_the_mixed": true
+    },
+    "S6_index_derived_count": {
+      "corpus_characters": 29544900,
+      "corpus_works": 138,
+      "largest_work_characters": 3490496,
+      "largest_work_readable_share": "3654/26533",
+      "largest_work_readable_share_approx": "0.1377",
+      "largest_work_share_approx": "0.1181",
+      "largest_work_share_of_characters": "872624/7386225",
+      "later_inserts": 2,
+      "lost_share": "1/69",
+      "no_statistic_from_the_manifest_can_detect_the_loss": true,
+      "snapshot": 136,
+      "the_manifest_is_internally_consistent": true,
+      "works_lost_from_the_manifest": [
+        136,
+        137
+      ]
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 8027299916
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "adva.research.preregistered-sweep-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "dbb73e3",
+  "input_document": "docs/research/0218-a-definability-theorem-and-a-pre-registered-property-sweep.md",
+  "question": "The eighty-one heads are a four-place ternary address space and the seven hundred twenty-nine praises are partitioned into eighty-one blocks of nine. How many places does a declared set of heads need before the address algebra can define it, and is that number forced by the set's size alone? Given a family of properties of praise numbers declared before any coincidence is examined, and a family of head sets declared independently, how many coincidences should the null produce, and how unlikely is the one coincidence that prompted the question?",
+  "level": "External exact combinatorics and exact rational arithmetic over declared finite sets; the property family and the head-set family are declared in this contract before any containment is evaluated",
+  "domain": "The four-place ternary address space of eighty-one heads with its fifteen proper coordinate subsets; the seven hundred twenty-nine praises partitioned into eighty-one blocks of nine; twelve declared arithmetic properties of praise numbers; ten declared head sets; the ordered pairs of distinct heads; and a declared family of arithmetic expressions over thirteen structural constants",
+  "objects": {
+    "places": 4,
+    "order": 3,
+    "heads": 81,
+    "praises_per_head": 9,
+    "praises": 729,
+    "declared_properties": ["prime", "centred_square", "square", "perfect_power", "triangular", "fibonacci", "palindromic", "congruent_one_mod_four", "congruent_one_mod_nine", "congruent_one_mod_twelve", "sum_of_two_squares", "power_of_three"],
+    "declared_head_sets": ["first_quarter", "second_quarter", "third_quarter", "cut_before", "cut_after", "nine_district_representatives", "three_quarter_representatives", "district_one", "district_two", "district_three"],
+    "post_hoc_property": "prime_centred_square",
+    "post_hoc_target": [21, 69],
+    "structural_constants": [2, 3, 9, 27, 34, 40, 47, 81, 306, 360, 423, 729, 731],
+    "naive_price_first_reported": "1/3240"
+  },
+  "quantifiers": [
+    "All fifteen proper subsets of the four places and all eighty-one heads for the fibre sizes, which is one thousand two hundred ninety-six fibres",
+    "All ten declared head sets for the minimal place count and the divisibility condition",
+    "All six containment sizes at nine praises for the null table, and four property sizes for the expected heads hit",
+    "All one hundred twenty declared property and head-set pairs for the sweep",
+    "All six thousand four hundred eighty ordered pairs of distinct heads for the vacuity check",
+    "All declared expressions over the thirteen constants with multipliers to nine for the coverage"
+  ],
+  "grammar": [
+    "exact integer arithmetic on the ternary places, with fibres and unions of fibres computed by exhaustion",
+    "exact rational inclusion and exclusion over binomial coefficients for the null model",
+    "exact rational arithmetic over Fraction throughout, with no floating-point value in any acceptance test",
+    "declared construction rules for the property family, evaluated before any coincidence is counted"
+  ],
+  "acceptance": [
+    "Every fibre of every one of the fifteen proper coordinate subsets has size three to the number of free places, so a set definable by k places has size divisible by three to the four minus k",
+    "The cut's two sides, of sizes forty-seven and thirty-four, and the two prison heads, of size two, therefore need all four places, and the nine district representatives need exactly two while the first quarter needs exactly one",
+    "The probability that a uniform nine-praise subset meets every one of one, two and three given heads is exactly a computed fraction, about one tenth, one per cent and one per thousand respectively, and a nine-praise property hits eight point six one three two heads in expectation",
+    "The declared property family has twelve members and the declared head-set family has ten, giving one hundred twenty pairs, and the observed and expected containment counts are both reported",
+    "The post-hoc property of praises that are both prime and centred squares has nine members, selects the nine declared heads, and contains both prison heads, with probability the computed fraction, about one per cent",
+    "That probability is more than thirty times the naive price first reported, which counted a nine-praise property as selecting one head instead of eight point six",
+    "Every difference of two distinct heads has order dividing three, so any two distinct heads lie in a common cycle of any displacement and the same-cycle relation is total",
+    "The declared expression family covers five hundred one of the seven hundred twenty-nine praises without the trivial constant and five hundred eighteen with it, so whether a given number is expressible depends on the constant list and not on the number"
+  ],
+  "protected": [
+    "No classical text, edition, transcription, commentary, name table, symbol table, sequence or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "The property family and the head-set family are declared in this contract; no member was added after a containment was observed, and the one coincidence that prompted the question is reported separately as post hoc and is not one of the declared pairs",
+    "No claim about what any head, praise or position means, and no claim that any containment is intended by anyone",
+    "The head sets named for districts and quarters are coordinate sets, not readings of any text; the nine district representatives are used because an external record names them, and that use is a declaration, not a verification",
+    "No claim that the property family is complete or natural; it is a declared family of arithmetic predicates, and a different family would give different counts",
+    "The null model treats a property as a uniform subset of its own size; it does not model how such properties are distributed in any language or how anyone would choose them",
+    "The vacuity result is about a declared relation on the address space and not about any argument anyone made",
+    "No claim that an expression's existence shows anything about a number; the coverage result is the whole content of that section",
+    "No statistical significance claim: the sweep reports exact probabilities and counts, and the pairs are dependent, so no family-wise tail is computed",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 200000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about declared finite objects: that the minimal number of places a set of heads needs is bounded below by the divisibility of its size by a power of three, which turns the cut's invisibility from a search result into arithmetic and predicts it for every set whose size is not a multiple of three; that the chance a property of a given size contains a given set of heads is an exact inclusion and exclusion over the blocks, so a nine-praise property hits eight point six heads and meets two given heads about one time in a hundred; that a declared sweep of one hundred twenty pairs produces a computable number of coincidences and the observed count is reported against it; that the coincidence which prompted the question is about one per cent and not the three in ten thousand first reported, because the first price treated a nine-praise property as selecting one head; that the same-cycle relation on the address space is total and therefore carries no information; and that whether a number is expressible by the declared forms depends on the constant list. Nothing here decides any question about a text. In particular the post-hoc entry is not a p-value in the sense the sweep's table is, because its property was chosen after its containment was seen; the property family is one declared family among many; the null is uniform over subsets of a fixed size and models no process; the sweep's pairs are dependent so no family-wise tail is computed; and the divisibility theorem bounds the minimal place count from below, so a set of size divisible by three is not thereby definable, as the declared sets show by having larger minimal counts than the bound requires in general."
+}

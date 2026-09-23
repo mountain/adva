@@ -1,0 +1,116 @@
+{
+  "schema": "adva.research.modal-property-systems-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "dbb73e3",
+  "input_document": "docs/research/0221-which-readings-of-a-modal-property-argument-are-impossible.md",
+  "question": "A modal argument of the positive-properties shape is read in several ways: that its conclusion follows from its first two axioms alone, that it works in any frame class the modality allows, that its axiom of necessary existence is what delivers the conclusion, that essence is doing work in it, that its conclusion carries modal force beyond actual existence, that it establishes uniqueness, and that the one-world case is evidence for it. Over a declared finite semantics in which every model within a declared bound is enumerated, which of those readings has a model and which has none?",
+  "level": "External exact finite model enumeration over a declared semantics: at most three worlds, one individual, the complete algebra of properties over those worlds, and every subset of seven declared axiom schemata. No proof calculus, no text, no edition and no paper is imported.",
+  "imported": {
+    "sources": "None. The axiom schemata and the derived notions are declared in this contract in this repository's own notation and in plain words, and the checker reads nothing else. The shape of the argument is public mathematical folklore; no expression of it is copied, quoted or parsed, and no numbering from any edition is used.",
+    "agreement": "Any agreement between a verdict here and a published verdict is a coincidence of results and is not imported as evidence. The evidence for every statement in the retained record is the enumerated models in this experiment's own evidence file."
+  },
+  "interface": {
+    "translated": "The informal notions are translated into declared set-theoretic definitions over a finite set of worlds: a property is a set of worlds, positivity is a set of properties at each world, godlikeness at a world is having every property that is positive there, being an essence is having the property while entailing every property the individual has throughout the worlds that world sees, and having necessary existence is having every one of one's essences instantiated throughout those worlds.",
+    "required_equivalence": "Two readings are distinguished by the set of models that realise them, not by the wording of a derivation. A reading is impossible here when no model of the declared class realises it.",
+    "retained": "The distinctions between the individual and its properties, between a property and its extension at a world, between positivity at one world and positivity at another, and between seeing a world and being seen by it are all retained.",
+    "forgotten": "The number of individuals is one, so no reading about distinct individuals is tested; the number of worlds is at most three; and no derivation is checked, only models.",
+    "justification": "The translation is justified by being written out in full in this contract and in the checker, so every step of it is open to inspection. It is not justified by resemblance to any published formulation, and the experiment makes no claim that its declared system is the system any author intended."
+  },
+  "domain": "Every relation of four declared frame classes on one to three worlds; every positivity assignment over the complete property algebra at every world; every subset of the seven declared axiom schemata; and the derived notions of godlikeness, essence, necessary existence and the conclusion",
+  "objects": {
+    "world_bound": 3,
+    "domain_size": 1,
+    "frame_classes": [
+      "universal",
+      "equivalence",
+      "preorder",
+      "reflexive"
+    ],
+    "axioms": [
+      "A1",
+      "A1c",
+      "A2",
+      "A3",
+      "A4",
+      "A6",
+      "A5"
+    ],
+    "axiom_names": {
+      "A1": "negation_excludes_positivity: no property and its negation are both positive at a world",
+      "A1c": "positivity_is_complete: a property is positive at a world when its negation is not",
+      "A2": "entailment_transfers_positivity: a property entailed at a world by a positive one is positive there",
+      "A3": "positivity_is_necessary: positivity at a world holds at every world it sees",
+      "A4": "positivity_is_possible_only_if_actual: positivity somewhere seen implies positivity here",
+      "A6": "godlikeness_is_positive: godlikeness is positive at every world",
+      "A5": "necessary_existence_is_positive: necessary existence is positive at every world"
+    },
+    "expected_equivalence_frames_at_three_worlds": 5,
+    "expected_preorders_at_three_worlds": 29,
+    "expected_reflexive_frames_at_three_worlds": 64,
+    "expected_axiom_table_rows": 1536,
+    "expected_models_for_the_lemma": 18508,
+    "expected_rows_forcing_the_conclusion": 640,
+    "expected_non_degenerate_forcing_rows": 128,
+    "expected_rows_admitting_no_conclusion": 48,
+    "expected_models_of_the_first_two_axioms_universal_three": 1728,
+    "expected_conclusions_under_the_first_two_universal_three": 216,
+    "expected_models_of_the_three_axioms": 86,
+    "expected_agreements_of_the_conclusion_with_constancy": 86,
+    "expected_models_of_the_three_axioms_satisfying_the_other_four": 50,
+    "expected_subsets_forcing_with_one_world": 128,
+    "expected_retained_countermodels": 12,
+    "expected_rows_forcing_the_essence_to_be_vacuous": 640
+  },
+  "quantifiers": [
+    "Every relation of every declared frame class on one, two and three worlds",
+    "Every positivity assignment over the complete property algebra at every world",
+    "Every one of the one hundred twenty-eight subsets of the seven declared axiom schemata",
+    "Every world of every enumerated model for the conclusion, the constancy of every property and the vacuity of the essence",
+    "Every property of the complete algebra for the constancy and the essence",
+    "Every shift of one axiom for the monotonicity of the model classes"
+  ],
+  "grammar": [
+    "exact set arithmetic on subsets of a finite set of worlds",
+    "enumeration with the first and the second axiom pruned as conditions on one world, after which every remaining axiom and derived notion is decided on the assembled model",
+    "a countermodel retained as a witness; a forcing claim reported only where models exist, so that a row with no model refutes nothing"
+  ],
+  "acceptance": [
+    "In every enumerated model necessary existence holds at a world exactly when that world sees only itself, with no exception among the eighteen thousand five hundred eight models of the declared class, and this one lemma is what every later verdict turns on",
+    "The declared frame classes have one, two and five relations for the equivalence class at one, two and three worlds, one, four and twenty-nine for the preorders, and one, four and sixty-four for the reflexive relations, while the universal class has one at every size",
+    "The first two axioms alone do not force the conclusion: over the universal frame at three worlds one thousand seven hundred twenty-eight models satisfy them and only two hundred sixteen satisfy the conclusion, and a countermodel is retained",
+    "No subset of the seven axioms forces the conclusion over the preorder, reflexive or universal frames at two or three worlds, so over those classes the argument fails even with every axiom present, and four such countermodels are retained",
+    "Over the equivalence frames at two and three worlds exactly sixty-four subsets force the conclusion, namely the subsets containing the axiom that necessary existence is positive, and each of them leaves exactly one model",
+    "That smallest forcing set is one axiom, the positivity of necessary existence, which is the most restrictive of the seven rather than the most informative: it pins the model class to a single point",
+    "The converse of the first axiom is not a harmless convenience: adding it moves the equivalence class from one thousand eight hundred thirty-two models to seventy-seven at three worlds and from two hundred seventy-eight conclusions to five, so it is neither fatal nor free",
+    "Over the three axioms of negation, entailment and necessary existence there are eighty-six models, and in every one of them the conclusion holds exactly when every property has the same extension at every world a world sees; the conclusion and the collapse of the modality coincide without exception",
+    "The single equivalence model left by those three axioms is the frame in which no world sees another, and its positivity at each world is exactly the set of non-empty properties the individual has there, so positivity carries no information in it and necessity is the identity",
+    "In the same eighty-six models only fifty also satisfy the remaining four axioms, so the positivity of necessary existence neither implies nor is implied by them",
+    "The declared family contains no identity predicate, so a statement that two godlike individuals are the same individual cannot be derived from it and is not tested here; uniqueness is recorded as an untested residual rather than as a verdict",
+    "With one world every one of the one hundred twenty-eight subsets forces the conclusion, including the empty set of axioms, so the degenerate case is evidence for nothing",
+    "No reading is decided by a failure to find a model: every verdict of impossibility rests on a model retained in the evidence, and every forcing claim is reported with the number of models it rests on",
+    "Wherever the declared axioms force the conclusion they also make the essence predicate vacuous in every model, so the six hundred forty rows that force the conclusion are exactly the six hundred forty rows in which every model makes the essence vacuous, and no row forces the conclusion while leaving the essence condition doing anything"
+  ],
+  "protected": [
+    "No text, edition, transcription, commentary, name table or annotation is imported, and no corpus count from any external repository is imported or recomputed. No published formulation of the argument is quoted, parsed or reproduced; the declared system is written in this repository's own notation",
+    "No agreement with a published verdict is imported as evidence. The evidence for every statement is the enumerated models in this experiment's own evidence file, and an agreement or a disagreement with any author is not a result of this experiment",
+    "This is a declared finite semantics and not a proof calculus: no derivation is checked, no completeness or soundness theorem is invoked, and nothing here decides what any axiom system proves",
+    "The declared window is at most three worlds and one individual. Transfer to an unrestricted system is not claimed, and a forcing row is a statement about the declared bound only",
+    "A countermodel is a refutation and one model is enough; the absence of a countermodel within the bound is not a proof of anything, and the forcing rows are reported with the number of models they rest on so that a singleton class is not read as strength",
+    "The number of individuals is one, which is the most favourable case for a claim that some individual is godlike, so the refutations retained here are not an artifact of a small domain; but no claim is made that a verdict about one individual carries to many",
+    "No claim is made about the meaning, truth, plausibility, theology or metaphysics of the argument, of positivity, of godlikeness or of any of its premises, and no claim that the declared translation is the reading any author intended",
+    "The axiom names are this experiment's own labels for content stated in the contract; they are not a numbering from any edition and no numbering from any edition is used",
+    "No claim that the seven declared axioms are all the axioms anyone has proposed, or that the four declared frame classes exhaust the modalities",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 300,
+    "cpu_seconds": 600,
+    "memory_bytes": 536870912,
+    "max_assertions": 200000,
+    "output_bytes": 4194304,
+    "correction_replays": 1
+  },
+  "residual": "What is established is a set of exact statements about a declared finite semantics, not about any proof system and not about any text. The one lemma that carries the rest is that necessary existence holds at a world exactly when that world sees only itself, verified by exhaustion over eighteen thousand five hundred eight models with no exception. On that lemma: the first two axioms do not force the conclusion, and a countermodel is retained; no subset of the seven axioms forces the conclusion over the frames that are not symmetric, so the argument fails there even with every axiom present and four countermodels are retained; over the symmetric frames the subsets that force the conclusion are exactly those containing the axiom of necessary existence, each leaving exactly one model, so that axiom is the most restrictive of the seven rather than the most informative. Over the three axioms of negation, entailment and necessary existence there are eighty-six models, and in all of them the conclusion holds exactly when every property is constant across the worlds a world sees, which is the exact form of the collapse: the argument is not refuted by the collapse of its modality and does not survive without it, the two coincide in the declared class. The single symmetric model left by those three axioms is the frame in which no world sees another, with positivity equal to the properties the individual has, so necessity is the identity in it. What is not established: nothing about more than three worlds or more than one individual, nothing about any derivation, and nothing about uniqueness, because the declared family contains no identity predicate and a statement about two individuals cannot be expressed in it. The readings that are impossible here are impossible in the declared semantics; the readings that hold here hold within the declared bound, and the forcing rows are reported with their model counts precisely so that a class with one model is not mistaken for a strong result. No text and no corpus count is imported, and no published verdict is imported as evidence either."
+}
