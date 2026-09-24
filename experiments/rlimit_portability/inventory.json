@@ -5,7 +5,7 @@
     "linux-required-entry": 7,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 71
+    "unguarded-installation": 83
   },
   "files": [
     {
@@ -542,6 +542,42 @@
     },
     {
       "category": "unguarded-installation",
+      "path": "experiments/floquet_forecast_audit_v1/attempt-1/run.py",
+      "reason": "Retained superseded attempt, byte identical to run.py beside it. The frozen rule keys on evidence/, run-01/ and before- names, so this copy counts as a live installation; whether a retained attempt directory should be historical is left open.",
+      "sha256": "5645785cc7fa463fe029095026fcc6401736a98ce2fe47aa64a35ccd3486c122",
+      "sites": [
+        {
+          "function": "main",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/floquet_forecast_audit_v1/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "5645785cc7fa463fe029095026fcc6401736a98ce2fe47aa64a35ccd3486c122",
+      "sites": [
+        {
+          "function": "main",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/floquet_forecast_audit_v1/verify.py",
+      "reason": "AS is installed unconditionally at entry, before the frozen model is read or its pin checked; no --worker branch and no platform gate.",
+      "sha256": "dc64f97d5da08d30de0815e8f2ae233b110370c00afe42d81563543573e95407",
+      "sites": [
+        {
+          "function": "main",
+          "line": 10
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
       "path": "experiments/frame_covariance/run.py",
       "reason": "main installs AS before trial. New separate portable replay bypasses only main; source/contract/evidence unchanged.",
       "sha256": "5f485fdf13f93362908a4890107f9903a529e27b4b89d9174c0cf9754c7238f4",
@@ -721,6 +757,42 @@
       ]
     },
     {
+      "category": "unguarded-installation",
+      "path": "experiments/japan_geostrophic_audit_v1/reproduce_full.py",
+      "reason": "AS is installed only in the --worker branch, which the parent reaches after a spent-ledger gate; largest declared budget here (540 s CPU, 6 GiB AS, 150 MB output).",
+      "sha256": "1a8f2aa2ec385ad30e615e5a3e4cae45df8590284a9c761dd15af835ec504c54",
+      "sites": [
+        {
+          "function": "main",
+          "line": 14
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/japan_geostrophic_audit_v1/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "459a1cd0c1247986e59497090a2b852919fc938902ac66a86a685653eb0032d4",
+      "sites": [
+        {
+          "function": "main",
+          "line": 11
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/japan_geostrophic_audit_v1/verify_summary.py",
+      "reason": "AS is installed unconditionally at entry, before verification-inputs.json is read; no --worker branch and no platform gate.",
+      "sha256": "0e0d0ecb66e69c4dce47405f19a1cbf5d78165a105fecc768cc13a3840962c00",
+      "sites": [
+        {
+          "function": "main",
+          "line": 29
+        }
+      ]
+    },
+    {
       "category": "linux-required-entry",
       "path": "experiments/judgment_distinction/calibration.py",
       "reason": "main rejects non-Linux before installing limits",
@@ -873,6 +945,30 @@
         {
           "function": "bounded",
           "line": 51
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/native_background_forecast_v1/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "f927b36864f007e3914c415f6dfe6eb3058b5755deb5659ae5daec4935f72736",
+      "sites": [
+        {
+          "function": "main",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/native_floquet_expression_v1/check.py",
+      "reason": "AS is installed unconditionally at entry with the alarm; no --worker branch and no platform gate.",
+      "sha256": "2ce8e5406e6a62e7f78534d7a949eb99cbe8445fc080585518442a8dc7731d0b",
+      "sites": [
+        {
+          "function": "main",
+          "line": 59
         }
       ]
     },
@@ -1145,6 +1241,18 @@
     },
     {
       "category": "unguarded-installation",
+      "path": "experiments/spectral_memory_forecast_v1/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "f927b36864f007e3914c415f6dfe6eb3058b5755deb5659ae5daec4935f72736",
+      "sites": [
+        {
+          "function": "main",
+          "line": 23
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
       "path": "experiments/structural_adjustment/calibration.py",
       "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
       "sha256": "cec88fccdeec78cfd92014db0f730db5c738ddf38e2a165a37398d0b21cc5dab",
@@ -1152,6 +1260,42 @@
         {
           "function": "limits",
           "line": 278
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/taixuan_hierarchy_spectrum_v1/check.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "b5c01c19aaaa6aee2f0c670d216e7e495086388389c7cd7c2fed6c61c36615bf",
+      "sites": [
+        {
+          "function": "main",
+          "line": 292
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/taixuan_spectral_analysis_v1/analyze.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "ad4a08c2ff9ed52d2f995998126e13dc0780d9b16a825a7d8ba3ea7ecd4e85de",
+      "sites": [
+        {
+          "function": "main",
+          "line": 264
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/taixuan_spectral_analysis_v1/bounded.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "5e3e74fc47e66b0bb260210237c83bad5ebf1f76565028888dfa500f3fc81376",
+      "sites": [
+        {
+          "function": "main",
+          "line": 34
         }
       ]
     },
