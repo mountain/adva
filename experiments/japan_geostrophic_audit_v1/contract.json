@@ -1,0 +1,125 @@
+{
+  "schema": "climatetensor.japan-geostrophic-review.v1",
+  "question": "Audit the actual ctcal12 URL frame and preserve the requested December-2026 target as unavailable; quantify total/climatology/anomaly balance with identical historical processing.",
+  "level": "External finite physical diagnostics, no native Adva authority or forecast training",
+  "target_binding": {
+    "requested": "2026-12",
+    "resolved_url": "2026-01",
+    "status": "Mismatch; no December forecast invented or relabelled"
+  },
+  "freeze_sha256": "11f0ffcaa241beefa060515c5d531fba1be5cb06254b1f20a226a697b9524715",
+  "baseline_years": [
+    1979,
+    2014
+  ],
+  "reference_years": [
+    2015,
+    2025
+  ],
+  "reference_calendar_months": [
+    1,
+    12
+  ],
+  "historical_skill_years": [
+    2020,
+    2025
+  ],
+  "historical_skill_leads": [
+    1,
+    3,
+    6
+  ],
+  "regions": {
+    "review": {
+      "south": 20,
+      "north": 60,
+      "west": 120,
+      "east": 200
+    },
+    "focus": {
+      "south": 25,
+      "north": 45,
+      "west": 140,
+      "east": 180
+    }
+  },
+  "constants": {
+    "earth_radius_m": 6371000.0,
+    "omega_s-1": 7.292115e-05,
+    "gravity_m_s-2": 9.80665
+  },
+  "derivatives": "Second-order centered angular finite differences in radians on full longitude grid, periodic longitude; latitude np.gradient on actual descending coordinates, before regional extraction. Absolute latitudes below 10 degrees excluded from geostrophic diagnostics.",
+  "area_weights": "Exact spherical grid-cell areas clipped to each region rectangle; common finite support with area coverage retained",
+  "direction": {
+    "total_and_climatology_min_both_speeds_m_s": 5.0,
+    "strong_wind_min_actual_speed_m_s": 20.0,
+    "anomaly_min_both_speeds_m_s": 2.0,
+    "anomaly_strong_mask": "Parent total-field actual speed at least 20 m/s",
+    "reported": "Area-weighted mean absolute smallest angle and eligible area fraction; no directions for calm/empty support"
+  },
+  "representations": [
+    "native reference 2.5-degree before truncation",
+    "both L12 fields on 2.5-degree",
+    "both L12 fields on 1.25-degree",
+    "matched published hybrid: interpolated native wind background + L12 wind anomaly, whole L12 geopotential on 1.25-degree"
+  ],
+  "anomaly_definitions": [
+    "effective model baseline for pure learned-anomaly separation",
+    "native physical mean baseline for representation-bias sensitivity; height anomaly additionally contains static truncation difference"
+  ],
+  "commutator": "Secondary declared diagnostic: weighted scalar/vector L12 projections on the same |latitude|>=10-degree belt, then compare G(P_scalar Phi) and P_vector(G Phi), with identical constant f field and finite difference operator. This masked belt projection differs from the production archive and is labelled separately; no zero-fill at equator.",
+  "metrics": [
+    "area RMS actual/geostrophic vector magnitudes",
+    "area RMS vector residual and relative residual",
+    "strong-zone direction bias",
+    "pointwise residual maps",
+    "anomaly energy with cross term",
+    "strong-jet axis and cross-jet profile",
+    "December and January historical physical residual empirical ranges, not confidence intervals",
+    "regional development forecast RMSE against native seasonal baseline, not independent confirmation"
+  ],
+  "checks": [
+    "geopotential vs height unit equivalence, double-g negative control",
+    "analytic smooth spherical field derivative accuracy",
+    "latitude reversal and periodic longitude roll invariance",
+    "geostrophic linearity and componentwise anomaly reconstruction",
+    "forecast reconstructed from frozen baseline plus saved spectral anomaly",
+    "shared time axes across public bundle metadata",
+    "all frozen source byte hashes retained before and after computation"
+  ],
+  "protected": [
+    "No retraining, assimilation, correction or mutation of frozen forecasts",
+    "No future observations or December forecast generation",
+    "Historical references use exact same target grid, derivative order and representation as each tested path",
+    "No ENSO causal attribution, no inference from visual agreement alone",
+    "No untreated assumption of independent u/v/Z prediction",
+    "No claim that regional residual is a forecast error bound"
+  ],
+  "budget": {
+    "diagnostic_launches": 1,
+    "wall_seconds": 600,
+    "cpu_seconds": 540,
+    "address_space_bytes": 6442450944,
+    "output_bytes": 150000000,
+    "enforcement": "Persistent external ledger plus supervised worker POSIX limits and timeout; fixed 22 reference months, two climatologies and finite lead/region loops; failures retained, no automatic retry"
+  },
+  "dependencies": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2",
+    "sphere_basis": "frozen/runtime/typed-spectrum/spectrum.py, runtime only, SHA256 in freeze manifest"
+  },
+  "authorship": "Codex (OpenAI), original contribution under Unknown v0.3 through Mingli Yuan authorized account proxy; not his review or endorsement.",
+  "imported_assumptions": {
+    "Floquet": "User clarification: first-method ideal result is conditional on periodic coefficients and homogeneous linear dynamics. Annual monodromy eigenvalues characterize modal propagation at the same seasonal phase; nonlinear/stochastic forcing needs separate treatment. Current direct lead regressions do not provide a checked periodic evolution operator.",
+    "balance": "User-specified spherical geostrophic diagnostic, not an imposed exact balance or a forecast-error estimator.",
+    "reference": "NCEP/NCAR R1 monthly reference fields share assimilation/model physics and are not independent raw truth."
+  },
+  "display_sensitivity": "Decode frozen Zarr arrays and distinguish derivative of quantized height from unquantized physical diagnostics; no screenshot-derived values.",
+  "implementation_pins": {
+    "audit.py": "8fe19473c8059056566293e712e099b4304712bf2d8d5a515316a9c7f27f7025",
+    "render.py": "b6ee8d1c27af365d973fc7b7fd1cd051031bd66e663fe319cca04d0fc9b20094",
+    "run.py": "459a1cd0c1247986e59497090a2b852919fc938902ac66a86a685653eb0032d4"
+  }
+}

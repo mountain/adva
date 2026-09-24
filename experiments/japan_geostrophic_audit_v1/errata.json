@@ -1,0 +1,14 @@
+{
+  "scope": "Documentary clarification only; frozen contract and numerical output retained verbatim",
+  "entries": [
+    {
+      "location": "contract.json:commutator and report.json:commutator_definition",
+      "original_phrase": "identical constant f field",
+      "correction": "Identical time-independent but latitude-varying Coriolis field f(phi)=2 Omega sin(phi) in both operator orders. No f-plane approximation was executed. See audit.py:geowind."
+    },
+    {
+      "location": "run.log:analytic control",
+      "explanation": "Expected analytic v expression divides by sin(phi) at the equator; excluded from the control comparison and from geostrophic diagnostics. The warning is retained. Comparison uses 20–60 degrees absolute latitude."
+    }
+  ]
+}

@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **239 numbered
+This directory holds the research record of the repository: **240 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -779,6 +779,7 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0229 — Spectral memory, local constraints, and weather errors](0229-spectral-memory-local-constraints-and-weather-errors.md): a declared synthetic coarse learner mistakes phase cancellation for damping; three-step memory repairs that family but fails a fourth-alias stress case. Exact finite witnesses separate power from local motif constraints without establishing an infinite monotile. Fixed xue development backtests retain mostly coarse error and mixed gains over seasonal baselines, with the user's data-authenticity reservation explicitly unresolved.
 
 - [0230 — Native background correction and display interpolation](0230-native-background-forecast-and-display-interpolation.md): a bounded temporal-memory trial fails its fixed switch threshold; a separate training-only background correction reduces exposed development physical MSE while preserving old products. Independent grid replay and a real-shader vector overshoot witness separate model improvement, rendering behavior and unresolved source authenticity.
+- [0231 — Frozen Japan jet review and Floquet scope](0231-frozen-japan-jet-and-floquet-scope.md): the requested December forecast is absent; the actual January URL has a geostrophically compatible monthly jet dominated by climatology, with small learned anomalies. Native-first and matched historical diagnostics separate representation effects, exposed development skill and the first ideal method’s conditional Floquet claim.
 
 ### Named notes
 

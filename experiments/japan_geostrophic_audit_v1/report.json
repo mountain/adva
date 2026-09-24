@@ -1,0 +1,1804 @@
+{
+  "status": "Completed with target-time mismatch",
+  "requested_forecast": "2026-12",
+  "requested_forecast_available": false,
+  "audited_url_frame": "2026-01",
+  "initial_input_cutoff": "2025-12",
+  "run_container_time": "2026-01-01T00:00:00Z",
+  "valid_time_label": "2026-01-15T00:00:00Z",
+  "averaging_period": [
+    "2026-01-01T00:00:00Z",
+    "2026-02-01T00:00:00Z"
+  ],
+  "training": [
+    "1979-01",
+    "2014-12"
+  ],
+  "selection": [
+    "2015-01",
+    "2019-12"
+  ],
+  "generation": "2026-09-24T12:39:07.563905+00:00",
+  "reference_data": "Frozen NCEP/NCAR Reanalysis 1 monthly means; cached through 2025-12, no independent source authentication",
+  "checks": {
+    "analytic_max_abs_error_m_s": 0.024869220336981357,
+    "latitude_reverse": true,
+    "periodic_roll": true,
+    "height_geopotential_units": true,
+    "double_g_negative_control_rejected": true,
+    "linearity": true
+  },
+  "forecast_reconstruction_max_error": {
+    "wind_m_s": 1.9052120525109295e-06,
+    "geopotential_m2_s2": 0.0019531085245603208
+  },
+  "reference_counts": {
+    "1": {
+      "mean_samples": 36,
+      "reference_samples": 11
+    },
+    "12": {
+      "mean_samples": 36,
+      "reference_samples": 11
+    }
+  },
+  "quantization": {
+    "wind_component_max_abs_m_s": 0.4999985098838806,
+    "height_max_abs_m": 3.9996545711322096,
+    "wind_geopotential_common_times": true,
+    "display_height_step_m": 8,
+    "note": "Geostrophic derivative of quantized grid is only a sensitivity test, not the preferred physical estimate or the smoothed rendered contour."
+  },
+  "decomposition": {
+    "review": {
+      "energy_m2_s2": {
+        "total": 509.8288845339587,
+        "baseline": 516.7118756106426,
+        "anomaly": 0.4905145601438398,
+        "cross_term": -7.373505636827517
+      },
+      "anomaly_over_total_rms": 0.031017995822876298,
+      "mean_speed_change_m_s": -0.08501577788445139,
+      "mean_along_baseline_change_m_s": -0.09492661627110548,
+      "mean_strong_zone_along_change_m_s": -0.25033079479712705,
+      "forecast_max": {
+        "speed_m_s": 37.69118777441733,
+        "latitude": 32.5,
+        "longitude_e": 152.5
+      },
+      "baseline_max": {
+        "speed_m_s": 37.71058126644694,
+        "latitude": 32.5,
+        "longitude_e": 152.5
+      },
+      "median_grid_jet_axis_shift_deg": 0.0,
+      "height_learned_anomaly_rms_m": 7.430070493949988,
+      "height_static_representation_bias_rms_m": 5.3478928020851,
+      "height_static_bias_geostrophic_rms_m_s": 1.4902452157347017
+    },
+    "focus": {
+      "energy_m2_s2": {
+        "total": 921.9298599404257,
+        "baseline": 932.4467364325249,
+        "anomaly": 0.41518249808973945,
+        "cross_term": -10.932058990188823
+      },
+      "anomaly_over_total_rms": 0.021221231260067558,
+      "mean_speed_change_m_s": -0.19329513333708803,
+      "mean_along_baseline_change_m_s": -0.19662436282286058,
+      "mean_strong_zone_along_change_m_s": -0.18347468781587917,
+      "forecast_max": {
+        "speed_m_s": 37.69118777441733,
+        "latitude": 32.5,
+        "longitude_e": 152.5
+      },
+      "baseline_max": {
+        "speed_m_s": 37.71058126644694,
+        "latitude": 32.5,
+        "longitude_e": 152.5
+      },
+      "median_grid_jet_axis_shift_deg": 0.0,
+      "height_learned_anomaly_rms_m": 4.490294205051064,
+      "height_static_representation_bias_rms_m": 5.334175783147322,
+      "height_static_bias_geostrophic_rms_m_s": 1.168603901847606
+    }
+  },
+  "reference_ranges": [
+    {
+      "month": 1,
+      "representation": "native",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.7032327711738784,
+          "median": 2.0201411472230393,
+          "max": 2.3454451634159077,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 21.032428387443005,
+          "median": 22.661363853840953,
+          "max": 26.76745563480331,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.39974603214587,
+          "median": 24.20269697174428,
+          "max": 27.701208449175198,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.275025785473935,
+          "median": 1.565011073329171,
+          "max": 3.116737774991048,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "native",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.4024389141205162,
+          "median": 2.432716354027988,
+          "max": 3.6109858069517777,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 27.33080531157566,
+          "median": 30.819259226455873,
+          "max": 35.82648349678286,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 28.956251040801575,
+          "median": 32.40767357430573,
+          "max": 36.25796097539063,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.031463540819286,
+          "median": 1.2520221021524356,
+          "max": 1.8867921491616957,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "native",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.8884407852235792,
+          "median": 1.2614361558155587,
+          "max": 1.7571958754449173,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 4.587045938541585,
+          "median": 4.952673176707657,
+          "max": 7.343616101443835,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 4.442148343470454,
+          "median": 5.035442426450011,
+          "max": 7.677914355921108,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 6.042396813018629,
+          "median": 9.464596601480135,
+          "max": 15.36459439852487,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "native",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.8646564362514801,
+          "median": 1.3434225987900825,
+          "max": 2.26555629551997,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.6065598702815462,
+          "median": 5.675371929185659,
+          "max": 7.6452093390326334,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.3762851771905225,
+          "median": 5.587796935454968,
+          "max": 7.901295104314325,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 5.6602863263679,
+          "median": 9.67540560174505,
+          "max": 17.548562126788365,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_native",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.8053725018709588,
+          "median": 2.333430575651203,
+          "max": 3.1204903424736097,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 20.879022076750278,
+          "median": 22.37978650869845,
+          "max": 26.815496591667234,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.15480822753207,
+          "median": 23.91530853611095,
+          "max": 27.50266994832557,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.0266626594172084,
+          "median": 1.7689708349810926,
+          "max": 3.2776865229766505,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_native",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.6663368026772447,
+          "median": 2.2201560484149163,
+          "max": 3.1526719928974516,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 26.919653793591706,
+          "median": 29.67048266784982,
+          "max": 35.98587229202287,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 27.713058057605334,
+          "median": 31.476111061946312,
+          "max": 35.28178229463901,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.42645755057779255,
+          "median": 1.213003116216914,
+          "max": 1.995992224290817,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_native",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0354232147374562,
+          "median": 1.4457667236970695,
+          "max": 1.8864303729937177,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 4.029929766031846,
+          "median": 4.591525666826986,
+          "max": 7.170186422074265,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.851931550916377,
+          "median": 4.713190657647241,
+          "max": 7.5363222234057154,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 7.275402570145972,
+          "median": 9.939099687617379,
+          "max": 19.541343206795002,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_native",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0243928652104703,
+          "median": 1.4733886327053904,
+          "max": 2.2488400205844505,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.49278761254875,
+          "median": 5.3260998637370776,
+          "max": 7.064199128793566,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.3523498570207195,
+          "median": 4.600043333493592,
+          "max": 6.794930899219251,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 8.237247429032996,
+          "median": 10.277272300919584,
+          "max": 17.688611753012196,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_fine",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.851853076314859,
+          "median": 2.3722440987581694,
+          "max": 3.110339090638871,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 20.891609020388298,
+          "median": 22.401181826638034,
+          "max": 26.83215904025883,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.273193716210123,
+          "median": 24.07951014901829,
+          "max": 27.664699739958632,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.0193391358130492,
+          "median": 1.7048439232829675,
+          "max": 3.2123785797376,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_fine",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.703276065043932,
+          "median": 2.319478115780926,
+          "max": 3.3773648386602995,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 26.97565333182212,
+          "median": 29.742837290948923,
+          "max": 36.07054741911872,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 27.928202904933542,
+          "median": 31.777619985581516,
+          "max": 35.56987020893728,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.4295415989382443,
+          "median": 1.183365320231298,
+          "max": 1.9770758692099015,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_fine",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0420433017764716,
+          "median": 1.4551534746280788,
+          "max": 1.8981249126750697,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 4.026168262858025,
+          "median": 4.5937728709310335,
+          "max": 7.179167241286025,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.884931702520844,
+          "median": 4.755284867068054,
+          "max": 7.655197135058671,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 7.245410658918241,
+          "median": 10.16123391196337,
+          "max": 19.861040923513894,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "L12_fine",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.022461226103631,
+          "median": 1.4821478670723456,
+          "max": 2.2976632421809535,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.4874179943591153,
+          "median": 5.314040994286059,
+          "max": 7.055825377937972,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.372225886950455,
+          "median": 4.66121644824045,
+          "max": 6.873473802841566,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 8.001413556804618,
+          "median": 10.402280399348578,
+          "max": 17.699377744165126,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "matched_hybrid_fine",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 2.0763741626635097,
+          "median": 2.484908073687261,
+          "max": 3.065938856830016,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 20.9139642865128,
+          "median": 22.42976677163108,
+          "max": 26.852093240662956,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.273193716210123,
+          "median": 24.07951014901829,
+          "max": 27.664699739958632,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.1559283355675454,
+          "median": 1.718696837649056,
+          "max": 3.3264527645036237,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "matched_hybrid_fine",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.6875043013530553,
+          "median": 2.340818227862856,
+          "max": 3.2943493048712322,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 27.031887646064924,
+          "median": 29.788612174905282,
+          "max": 36.10738335558744,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 27.928202904933542,
+          "median": 31.777619985581516,
+          "max": 35.56987020893728,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.49858507241649636,
+          "median": 1.383017148718574,
+          "max": 2.1832498301933576,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "matched_hybrid_fine",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0420433017764716,
+          "median": 1.4551534746280788,
+          "max": 1.8981249126750699,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 4.026168262858024,
+          "median": 4.5937728709310335,
+          "max": 7.179167241286025,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.884931702520844,
+          "median": 4.755284867068054,
+          "max": 7.655197135058671,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 7.3009445376405715,
+          "median": 10.447363310733971,
+          "max": 19.820539673228172,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 1,
+      "representation": "matched_hybrid_fine",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.022461226103631,
+          "median": 1.4821478670723456,
+          "max": 2.297663242180953,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.4874179943591153,
+          "median": 5.314040994286059,
+          "max": 7.055825377937972,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.372225886950455,
+          "median": 4.66121644824045,
+          "max": 6.873473802841566,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 7.986506902162818,
+          "median": 10.371790964714672,
+          "max": 17.69937774416513,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "native",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.6414144099557262,
+          "median": 2.078892295241774,
+          "max": 2.507954370093746,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 18.38587591470171,
+          "median": 21.997562524971592,
+          "max": 24.985241032284936,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 19.89015390989759,
+          "median": 23.094477195590443,
+          "max": 26.452993533239532,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.4638955588119997,
+          "median": 1.776239819462448,
+          "max": 3.181451491641173,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "native",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.7797974404786299,
+          "median": 2.341046642932357,
+          "max": 3.006388201358779,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 21.149306778154532,
+          "median": 28.705108881317557,
+          "max": 34.02655294060667,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.702165994937836,
+          "median": 30.147855803324266,
+          "max": 35.931437378789845,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.8846474856792458,
+          "median": 1.4071267166856962,
+          "max": 2.454113777939121,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "native",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.8469676643708464,
+          "median": 1.1537529257786996,
+          "max": 1.4985374930024205,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.6559701069879984,
+          "median": 5.235610734545193,
+          "max": 10.876541057273696,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.7099201949061342,
+          "median": 5.526957713534556,
+          "max": 10.917771853608668,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 6.3713468466381675,
+          "median": 9.080109853123473,
+          "max": 10.645953503817429,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "native",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.9542385150118065,
+          "median": 1.2695560490738267,
+          "max": 1.7911208762936623,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.4431526706591407,
+          "median": 4.844149771957877,
+          "max": 10.553903779819418,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.339965864199486,
+          "median": 4.859054768777148,
+          "max": 10.954761533267789,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 5.3124877466354725,
+          "median": 10.27993604907036,
+          "max": 16.090161805805447,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_native",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.844947338847333,
+          "median": 2.2521333686233094,
+          "max": 3.3694558613822667,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 18.284359843954075,
+          "median": 21.846059040866674,
+          "max": 24.695497198527473,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 19.717508302173705,
+          "median": 22.96657628927605,
+          "max": 26.125745537913122,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.6191919440719205,
+          "median": 1.9287886871963966,
+          "max": 3.2166576381664775,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_native",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.8114214601522143,
+          "median": 2.1288167355405827,
+          "max": 2.9283630096471334,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 21.626250298522947,
+          "median": 28.59337179839116,
+          "max": 33.25334726198173,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 22.998915126889486,
+          "median": 29.47553054690846,
+          "max": 34.85869541504032,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.7166025303614035,
+          "median": 1.5118591192812671,
+          "max": 2.3194973994489003,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_native",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.077120639646048,
+          "median": 1.4041841710265566,
+          "max": 1.927972213803342,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.1664069607344385,
+          "median": 4.953029273522031,
+          "max": 10.527331967438961,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.2375568010531928,
+          "median": 4.970812641356797,
+          "max": 10.551680107804318,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 5.918325199527726,
+          "median": 11.985163359046528,
+          "max": 19.40141634059827,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_native",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.9736722222683195,
+          "median": 1.450514927278949,
+          "max": 2.1000046940628017,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 2.9043876395000794,
+          "median": 4.5028147359902455,
+          "max": 10.533654477597015,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 2.751982064218171,
+          "median": 4.385995404238796,
+          "max": 10.279972654347354,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 4.055868107501674,
+          "median": 14.143404784681413,
+          "max": 18.812841252507578,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_fine",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.9036529407254568,
+          "median": 2.2983556625194117,
+          "max": 3.3815541722069202,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 18.29543386218668,
+          "median": 21.848944735458943,
+          "max": 24.704744316199573,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 19.81838541943215,
+          "median": 23.083629096872244,
+          "max": 26.30433890736119,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.6471331929137767,
+          "median": 1.8621229051143933,
+          "max": 3.1551443839889166,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_fine",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.8342101675223421,
+          "median": 2.2535344775088526,
+          "max": 3.0205406063757763,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 21.665020369918107,
+          "median": 28.65118973012971,
+          "max": 33.33267921498804,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 23.175942488491195,
+          "median": 29.703241144743764,
+          "max": 35.186017073034066,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.7376597811411332,
+          "median": 1.4897393878772083,
+          "max": 2.359805199237902,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_fine",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0648269237722214,
+          "median": 1.3937809806141672,
+          "max": 1.9355345772689396,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.167318042986251,
+          "median": 4.958662371571471,
+          "max": 10.532248684140978,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.258971064894781,
+          "median": 5.015629874751346,
+          "max": 10.652990891325603,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 6.057617663024562,
+          "median": 12.117441051947106,
+          "max": 18.66082509243968,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "L12_fine",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.962301598473687,
+          "median": 1.5059866694059116,
+          "max": 2.1061317659613215,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 2.8985681150418143,
+          "median": 4.493925248516765,
+          "max": 10.541496201836011,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 2.766925550734909,
+          "median": 4.427292502659304,
+          "max": 10.366662450306517,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 4.034994306135474,
+          "median": 14.238258610257635,
+          "max": 19.697321763102266,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "matched_hybrid_fine",
+      "part": "total",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 2.089328439801394,
+          "median": 2.373579700164257,
+          "max": 3.2273694715448795,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 18.405004289683678,
+          "median": 21.83348187270855,
+          "max": 24.697793773539836,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 19.81838541943215,
+          "median": 23.083629096872244,
+          "max": 26.30433890736119,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 1.6544597146650926,
+          "median": 2.000497405834527,
+          "max": 3.192510499634635,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "matched_hybrid_fine",
+      "part": "total",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.6822417660964775,
+          "median": 2.3546931999921226,
+          "max": 3.0261358552052875,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 21.70631407486063,
+          "median": 28.620768994514073,
+          "max": 33.36771197435505,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 23.175942488491195,
+          "median": 29.703241144743764,
+          "max": 35.186017073034066,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 0.8694720036138258,
+          "median": 1.46582774748054,
+          "max": 2.4487463806906193,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "matched_hybrid_fine",
+      "part": "anomaly",
+      "region": "review",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 1.0648269237722214,
+          "median": 1.3937809806141672,
+          "max": 1.9355345772689392,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 3.1673180429862504,
+          "median": 4.958662371571471,
+          "max": 10.532248684140978,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 3.258971064894781,
+          "median": 5.015629874751346,
+          "max": 10.652990891325603,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 6.041399770518332,
+          "median": 12.109923265474192,
+          "max": 19.960510755762986,
+          "count": 11
+        }
+      }
+    },
+    {
+      "month": 12,
+      "representation": "matched_hybrid_fine",
+      "part": "anomaly",
+      "region": "focus",
+      "years": [
+        2015,
+        2025
+      ],
+      "statistics": {
+        "rms_residual_m_s": {
+          "min": 0.962301598473687,
+          "median": 1.5059866694059119,
+          "max": 2.1061317659613215,
+          "count": 11
+        },
+        "rms_wind_m_s": {
+          "min": 2.8985681150418143,
+          "median": 4.493925248516765,
+          "max": 10.541496201836011,
+          "count": 11
+        },
+        "rms_geostrophic_m_s": {
+          "min": 2.766925550734909,
+          "median": 4.427292502659304,
+          "max": 10.366662450306517,
+          "count": 11
+        },
+        "strong_direction_abs_mean_deg": {
+          "min": 4.038330785919281,
+          "median": 14.195513460801513,
+          "max": 19.460738198594917,
+          "count": 11
+        }
+      }
+    }
+  ],
+  "regional_development_skill": [
+    {
+      "calendar_month": 1,
+      "lead_months": 1,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.467235427267774,
+      "native_seasonal_vector_rmse_m_s": 5.583389866846219,
+      "wind_mse_skill_vs_native_climatology": 0.041174350649658464,
+      "height_rmse_m": 52.50980722516706,
+      "native_seasonal_height_rmse_m": 55.10773869667973
+    },
+    {
+      "calendar_month": 1,
+      "lead_months": 1,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.423832010524477,
+      "native_seasonal_vector_rmse_m_s": 5.633257093852908,
+      "wind_mse_skill_vs_native_climatology": 0.07297101073297485,
+      "height_rmse_m": 52.886695237421996,
+      "native_seasonal_height_rmse_m": 55.58147722557933
+    },
+    {
+      "calendar_month": 1,
+      "lead_months": 3,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.628242079299187,
+      "native_seasonal_vector_rmse_m_s": 5.583389866846219,
+      "wind_mse_skill_vs_native_climatology": -0.01613083299529028,
+      "height_rmse_m": 52.969580003888474,
+      "native_seasonal_height_rmse_m": 55.10773869667973
+    },
+    {
+      "calendar_month": 1,
+      "lead_months": 3,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.614396570049792,
+      "native_seasonal_vector_rmse_m_s": 5.633257093852908,
+      "wind_mse_skill_vs_native_climatology": 0.006684925022246269,
+      "height_rmse_m": 53.52899771635091,
+      "native_seasonal_height_rmse_m": 55.58147722557933
+    },
+    {
+      "calendar_month": 1,
+      "lead_months": 6,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.43590461666658,
+      "native_seasonal_vector_rmse_m_s": 5.583389866846219,
+      "wind_mse_skill_vs_native_climatology": 0.05213225016280931,
+      "height_rmse_m": 50.51720174547832,
+      "native_seasonal_height_rmse_m": 55.10773869667973
+    },
+    {
+      "calendar_month": 1,
+      "lead_months": 6,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 5.500867030582005,
+      "native_seasonal_vector_rmse_m_s": 5.633257093852908,
+      "wind_mse_skill_vs_native_climatology": 0.04645070434843113,
+      "height_rmse_m": 49.861493402702074,
+      "native_seasonal_height_rmse_m": 55.58147722557933
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 1,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.2068276825945725,
+      "native_seasonal_vector_rmse_m_s": 7.41249416968591,
+      "wind_mse_skill_vs_native_climatology": 0.05472200834588781,
+      "height_rmse_m": 72.02082028451524,
+      "native_seasonal_height_rmse_m": 77.67523235303216
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 1,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.2276512104456145,
+      "native_seasonal_vector_rmse_m_s": 7.5129599407493854,
+      "wind_mse_skill_vs_native_climatology": 0.0745089433698054,
+      "height_rmse_m": 56.095196046968816,
+      "native_seasonal_height_rmse_m": 59.8643809107612
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 3,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.49267664141281,
+      "native_seasonal_vector_rmse_m_s": 7.41249416968591,
+      "wind_mse_skill_vs_native_climatology": -0.021751422669147535,
+      "height_rmse_m": 74.77461775579548,
+      "native_seasonal_height_rmse_m": 77.67523235303216
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 3,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.459826913648357,
+      "native_seasonal_vector_rmse_m_s": 7.5129599407493854,
+      "wind_mse_skill_vs_native_climatology": 0.014094350102954012,
+      "height_rmse_m": 58.41040518979494,
+      "native_seasonal_height_rmse_m": 59.8643809107612
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 6,
+      "region": "review",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.264250886406138,
+      "native_seasonal_vector_rmse_m_s": 7.41249416968591,
+      "wind_mse_skill_vs_native_climatology": 0.0395982548075029,
+      "height_rmse_m": 73.678306304569,
+      "native_seasonal_height_rmse_m": 77.67523235303216
+    },
+    {
+      "calendar_month": 12,
+      "lead_months": 6,
+      "region": "focus",
+      "samples": 6,
+      "years": [
+        2020,
+        2025
+      ],
+      "status": "exposed_development_not_independent",
+      "wind_vector_rmse_m_s": 7.15189020019853,
+      "native_seasonal_vector_rmse_m_s": 7.5129599407493854,
+      "wind_mse_skill_vs_native_climatology": 0.0938094472213804,
+      "height_rmse_m": 55.69352074873932,
+      "native_seasonal_height_rmse_m": 59.8643809107612
+    }
+  ],
+  "commutator_definition": "Secondary declared diagnostic: weighted scalar/vector L12 projections on the same |latitude|>=10-degree belt, then compare G(P_scalar Phi) and P_vector(G Phi), with identical constant f field and finite difference operator. This masked belt projection differs from the production archive and is labelled separately; no zero-fill at equator.",
+  "commutator_gram_condition": {
+    "scalar": 9.583978416543955,
+    "vector": 9.402246531916362
+  },
+  "commutator_rows": [
+    {
+      "month": 1,
+      "label": "climatology",
+      "region": "review",
+      "rms_commutator_m_s": 0.9302620240055077
+    },
+    {
+      "month": 1,
+      "label": "climatology",
+      "region": "focus",
+      "rms_commutator_m_s": 0.9595658944223171
+    },
+    {
+      "month": 1,
+      "label": "2015-01",
+      "region": "review",
+      "rms_commutator_m_s": 0.9507525380081515
+    },
+    {
+      "month": 1,
+      "label": "2015-01",
+      "region": "focus",
+      "rms_commutator_m_s": 0.8662523019013417
+    },
+    {
+      "month": 1,
+      "label": "2016-01",
+      "region": "review",
+      "rms_commutator_m_s": 2.215828688411965
+    },
+    {
+      "month": 1,
+      "label": "2016-01",
+      "region": "focus",
+      "rms_commutator_m_s": 2.079406159478001
+    },
+    {
+      "month": 1,
+      "label": "2017-01",
+      "region": "review",
+      "rms_commutator_m_s": 0.7979363670925529
+    },
+    {
+      "month": 1,
+      "label": "2017-01",
+      "region": "focus",
+      "rms_commutator_m_s": 0.7476149146303364
+    },
+    {
+      "month": 1,
+      "label": "2018-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.8542957904028714
+    },
+    {
+      "month": 1,
+      "label": "2018-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.784224591274628
+    },
+    {
+      "month": 1,
+      "label": "2019-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.316997112902735
+    },
+    {
+      "month": 1,
+      "label": "2019-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.4228971250167957
+    },
+    {
+      "month": 1,
+      "label": "2020-01",
+      "region": "review",
+      "rms_commutator_m_s": 0.9266454760100418
+    },
+    {
+      "month": 1,
+      "label": "2020-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.029803935485664
+    },
+    {
+      "month": 1,
+      "label": "2021-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.21879554252323
+    },
+    {
+      "month": 1,
+      "label": "2021-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.3463487147152964
+    },
+    {
+      "month": 1,
+      "label": "2022-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.4239115707992842
+    },
+    {
+      "month": 1,
+      "label": "2022-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.2743479438409195
+    },
+    {
+      "month": 1,
+      "label": "2023-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.984774387658771
+    },
+    {
+      "month": 1,
+      "label": "2023-01",
+      "region": "focus",
+      "rms_commutator_m_s": 2.110387802504391
+    },
+    {
+      "month": 1,
+      "label": "2024-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.091395041619694
+    },
+    {
+      "month": 1,
+      "label": "2024-01",
+      "region": "focus",
+      "rms_commutator_m_s": 1.1071766279245137
+    },
+    {
+      "month": 1,
+      "label": "2025-01",
+      "region": "review",
+      "rms_commutator_m_s": 1.712956189164188
+    },
+    {
+      "month": 1,
+      "label": "2025-01",
+      "region": "focus",
+      "rms_commutator_m_s": 2.011867725491778
+    },
+    {
+      "month": 12,
+      "label": "climatology",
+      "region": "review",
+      "rms_commutator_m_s": 0.9793159799067853
+    },
+    {
+      "month": 12,
+      "label": "climatology",
+      "region": "focus",
+      "rms_commutator_m_s": 0.9601081551199793
+    },
+    {
+      "month": 12,
+      "label": "2015-12",
+      "region": "review",
+      "rms_commutator_m_s": 1.540196790905043
+    },
+    {
+      "month": 12,
+      "label": "2015-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.3433189898762303
+    },
+    {
+      "month": 12,
+      "label": "2016-12",
+      "region": "review",
+      "rms_commutator_m_s": 1.0695115253501941
+    },
+    {
+      "month": 12,
+      "label": "2016-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.1376160002074678
+    },
+    {
+      "month": 12,
+      "label": "2017-12",
+      "region": "review",
+      "rms_commutator_m_s": 2.086034232206666
+    },
+    {
+      "month": 12,
+      "label": "2017-12",
+      "region": "focus",
+      "rms_commutator_m_s": 2.5238241187538293
+    },
+    {
+      "month": 12,
+      "label": "2018-12",
+      "region": "review",
+      "rms_commutator_m_s": 1.759584544152581
+    },
+    {
+      "month": 12,
+      "label": "2018-12",
+      "region": "focus",
+      "rms_commutator_m_s": 2.0356971649416
+    },
+    {
+      "month": 12,
+      "label": "2019-12",
+      "region": "review",
+      "rms_commutator_m_s": 0.9103538417137476
+    },
+    {
+      "month": 12,
+      "label": "2019-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.2010324409706565
+    },
+    {
+      "month": 12,
+      "label": "2020-12",
+      "region": "review",
+      "rms_commutator_m_s": 1.3920267378711297
+    },
+    {
+      "month": 12,
+      "label": "2020-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.3381107870491589
+    },
+    {
+      "month": 12,
+      "label": "2021-12",
+      "region": "review",
+      "rms_commutator_m_s": 0.9734621816829455
+    },
+    {
+      "month": 12,
+      "label": "2021-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.0653509683287405
+    },
+    {
+      "month": 12,
+      "label": "2022-12",
+      "region": "review",
+      "rms_commutator_m_s": 2.085197551276294
+    },
+    {
+      "month": 12,
+      "label": "2022-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.9709434453133947
+    },
+    {
+      "month": 12,
+      "label": "2023-12",
+      "region": "review",
+      "rms_commutator_m_s": 1.5482331280330563
+    },
+    {
+      "month": 12,
+      "label": "2023-12",
+      "region": "focus",
+      "rms_commutator_m_s": 1.8585870766151755
+    },
+    {
+      "month": 12,
+      "label": "2024-12",
+      "region": "review",
+      "rms_commutator_m_s": 0.8730634924762115
+    },
+    {
+      "month": 12,
+      "label": "2024-12",
+      "region": "focus",
+      "rms_commutator_m_s": 0.7214288778093189
+    },
+    {
+      "month": 12,
+      "label": "2025-12",
+      "region": "review",
+      "rms_commutator_m_s": 0.735805101914123
+    },
+    {
+      "month": 12,
+      "label": "2025-12",
+      "region": "focus",
+      "rms_commutator_m_s": 0.5653621374210032
+    }
+  ],
+  "published_global_metric": {
+    "incumbent_L12": [
+      19.489009774431032,
+      19.972675437046355,
+      20.10875458551502,
+      20.277020005805653,
+      20.233111013783272,
+      20.201528677691822
+    ],
+    "native_seasonal": [
+      18.280726838778815,
+      18.280726838778815,
+      18.280726838778815,
+      18.280726838778815,
+      18.280726838778815,
+      18.280726838778815
+    ],
+    "native_background_plus_learned_anomaly": [
+      17.84477392412894,
+      18.328439586744263,
+      18.464518735212923,
+      18.63278415550356,
+      18.588875163481177,
+      18.55729282738973
+    ],
+    "selected_calibrated": [
+      17.84477392412894,
+      18.328439586744263,
+      18.464518735212923,
+      18.63278415550356,
+      18.588875163481177,
+      18.55729282738973
+    ]
+  },
+  "source_coupling": "u/v from a shared vector harmonic block, Z from a distinct scalar block; all predicted through the same 64-dimensional EOF state and 6 direct ridge maps. Wind is not diagnosed from Z, no explicit geostrophic constraint; statistical coupling means outputs are not independent.",
+  "display": "Colour = magnitude of monthly-mean u/v after quantization/interpolation, not monthly mean of instantaneous speed. Particles advect in the displayed real monthly vector frame using visual Euler steps, bilinear sampling, time scaling and random reseeding; no synoptic trajectory claim. Filled frames can blend, particles update on real decoded frames. hgt500 contours have separate display smoothing.",
+  "floquet_scope": "User clarification: first-method ideal result is conditional on periodic coefficients and homogeneous linear dynamics. Annual monodromy eigenvalues characterize modal propagation at the same seasonal phase; nonlinear/stochastic forcing needs separate treatment. Current direct lead regressions do not provide a checked periodic evolution operator.",
+  "notebook": "User-supplied Observable code independently generates idealized cosine samples; 384 months cover 32 ideal years. Its AR1 text describes an earlier version, not ctcal12. It supplies no forecast source or physical verification.",
+  "December_missing_metrics": {
+    "total_residual": null,
+    "anomaly_residual": null,
+    "new_signal": null,
+    "forecast_skill_at_lead_12": null,
+    "reason": "No forecast array with target 2026-12; no substitution or extrapolation"
+  },
+  "limitations": [
+    "January URL audit is not a December-2026 forecast audit",
+    "Geostrophic residual is a balance diagnostic, not truth error; finite difference, mean-field nonlinear effects and representation contribute",
+    "No untouched independent hindcast and no future verification",
+    "Reference ranges use 11 historical same-calendar-month fields, not confidence limits",
+    "ENSO causation not tested; no event-specific ENSO index or composite analysis",
+    "Source authenticity concern retained"
+  ],
+  "contract_sha256": "50d974780833380de110eeb7b8b580ac47cd13b968681b8e2dce17edba9e1cf8",
+  "freeze_sha256": "11f0ffcaa241beefa060515c5d531fba1be5cb06254b1f20a226a697b9524715"
+}
