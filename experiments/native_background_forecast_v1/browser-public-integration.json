@@ -1,0 +1,52 @@
+{
+  "base": "https://climatetensor.io",
+  "scope": "integration",
+  "checks": [
+    {
+      "model": "ctcal12",
+      "field": "wind500",
+      "default_home": true,
+      "last": "06/15 00:00 UTC",
+      "ready": true
+    },
+    {
+      "fine_coarse_switch": true,
+      "same_month": true,
+      "same_field": true,
+      "same_camera": true,
+      "point_series_six_frames": true
+    },
+    {
+      "sampling_modes": 3,
+      "sampling_preserves_month_and_camera": true
+    },
+    {
+      "model": "ctfull",
+      "field": "wind500",
+      "default_home": false,
+      "last": "06/15 00:00 UTC",
+      "ready": true
+    },
+    {
+      "model": "cteven",
+      "field": "wind500",
+      "default_home": false,
+      "last": "06/15 00:00 UTC",
+      "ready": true
+    },
+    {
+      "model": "ctcal12",
+      "field": "tmp2m",
+      "default_home": false,
+      "last": "06/15 00:00 UTC",
+      "ready": true
+    },
+    {
+      "mobile_ready": true,
+      "legend_clear": true
+    }
+  ],
+  "page_errors": [],
+  "http_errors": [],
+  "range_responses": 41
+}

@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **238 numbered
+This directory holds the research record of the repository: **239 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -777,6 +777,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0228 — A Taixuan address hierarchy, its observers, and its spectra](0228-taixuan-hierarchy-observers-and-spectra.md): the full 6,561-point two-level four-coordinate family retains 81 coarse cells and exact detail, but unit-translation closure refines the block observation through 81, 1,296 and 6,561 classes. Two declared group laws on the same labels have different checked spectra. The note separates block subdivision from compatible translation phases and states conditional four-dimensional monotile obligations without asserting a geometric construction or native admission.
 
 - [0229 — Spectral memory, local constraints, and weather errors](0229-spectral-memory-local-constraints-and-weather-errors.md): a declared synthetic coarse learner mistakes phase cancellation for damping; three-step memory repairs that family but fails a fourth-alias stress case. Exact finite witnesses separate power from local motif constraints without establishing an infinite monotile. Fixed xue development backtests retain mostly coarse error and mixed gains over seasonal baselines, with the user's data-authenticity reservation explicitly unresolved.
+
+- [0230 — Native background correction and display interpolation](0230-native-background-forecast-and-display-interpolation.md): a bounded temporal-memory trial fails its fixed switch threshold; a separate training-only background correction reduces exposed development physical MSE while preserving old products. Independent grid replay and a real-shader vector overshoot witness separate model improvement, rendering behavior and unresolved source authenticity.
 
 ### Named notes
 

@@ -1,0 +1,28 @@
+{
+  "schema": "climatetensor.native-background-verification.v1",
+  "question": "Independently reconstruct trained backgrounds and all displayed forecast cells, and evaluate fixed regional errors without changing selection.",
+  "original_contract_sha256": "ee17f98fa7ed87750435fe6ac9c401a67d8eefa12ca9740314251f4d38686d24",
+  "implementation_pins": {
+    "learn.py": "ce985ab1d3715d2666d1a6160d6f4d42e3d3c49dc060fedc6a3f03dcc4096e4f",
+    "run.py": "f927b36864f007e3914c415f6dfe6eb3058b5755deb5659ae5daec4935f72736",
+    "verify.py": "26c785fe0dc5a69641c7c9f844366ab32fb043bc09a8de70cd2f2569c08a19b7"
+  },
+  "artifact_pins": {
+    "selection.json": "311294aa37ee3854a6246c3eb57338d66f4e5b03fabf8bb1e29e851758ef0453",
+    "background.npz": "7f3e706f062b69a3df2f9212b9042d5b798cdc3639b8acb84fbabacb845e3184",
+    "model.npz": "e042b45ffcb1508c1204a37d9da2a54289184ffb0274b763e9f8b541b1bb3d4f",
+    "forecast.npz": "51042525d22c741dd3217bed28ea06fae1d9e8ff5ab67a15188cf6e9971ec832",
+    "forecast-on-coarse-grid.npz": "a575dd6131c634230b8b058d29ef14ffde4de7cc18565b8a71b7be3c818487f5",
+    "backtest-coefficients.npz": "8cbbbed4a4f38c1641bd583e6cbf08c30f0e6c8e288030545eec491dec426383",
+    "report.json": "1d5723f258c958e0cb46f90ed53b9b0a1a6abc3633871991bad49c075e861dec",
+    "training-receipt.json": "33ae4b9aeffdddb032f52e65c05f7c851472860a14c13f899dc7a0626ee4527a"
+  },
+  "budget_source": "contract.json verification limits: exactly one launch, 240 s wall, 210 s CPU, 4 GiB address space",
+  "checks": [
+    "Arithmetic means on all training-domain points, using training arrays only",
+    "Saved model and all output grid values independently reconstructed with explicit four-corner interpolation",
+    "Exact coarse subset and finite mask equality",
+    "Three fixed 9x9 regional comparisons at leads 1 and 6, without model selection"
+  ],
+  "scope": "Engineering/numerical verification; no independent physical source authentication."
+}

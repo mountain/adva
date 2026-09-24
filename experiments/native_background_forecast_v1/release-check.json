@@ -1,0 +1,226 @@
+{
+  "status": "Pass",
+  "generated_utc": "2026-09-24T13:03:17.565126+00:00",
+  "model": "ctcal12",
+  "site": "https://climatetensor.io",
+  "release": "native-background-l12-v1-20260924",
+  "previous_release": "multivariate-l12-v1-20260924",
+  "numerical_report_sha256": "1d5723f258c958e0cb46f90ed53b9b0a1a6abc3633871991bad49c075e861dec",
+  "note": "Completes the release gate after the immutable numerical report was written. Its original pending field is retained, not rewritten.",
+  "training_gate": true,
+  "independent_replay": "Pass",
+  "native_xue_and_zarr_bundles_checked": 11,
+  "quantization_clamped_cells": 0,
+  "typescript_and_production_build": "Pass",
+  "unit_tests_passed": 122,
+  "webgl_pixel_tests_passed": 17,
+  "webgl_counterexample": "Unit cardinal-vector patch: cubic norm about 1.105; bilinear bounded by 1; nearest retains unit values. This is a synthetic possibility witness, not measured weather bias.",
+  "local_browser": {
+    "base": "http://127.0.0.1:8088",
+    "scope": "integration",
+    "checks": [
+      {
+        "model": "ctcal12",
+        "field": "wind500",
+        "default_home": true,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "fine_coarse_switch": true,
+        "same_month": true,
+        "same_field": true,
+        "same_camera": true,
+        "point_series_six_frames": true
+      },
+      {
+        "sampling_modes": 3,
+        "sampling_preserves_month_and_camera": true
+      },
+      {
+        "model": "ctfull",
+        "field": "wind500",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "model": "cteven",
+        "field": "wind500",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "model": "ctcal12",
+        "field": "tmp2m",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "mobile_ready": true,
+        "legend_clear": true
+      }
+    ],
+    "page_errors": [],
+    "http_errors": [],
+    "range_responses": 41
+  },
+  "public_browser": {
+    "base": "https://climatetensor.io",
+    "scope": "integration",
+    "checks": [
+      {
+        "model": "ctcal12",
+        "field": "wind500",
+        "default_home": true,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "fine_coarse_switch": true,
+        "same_month": true,
+        "same_field": true,
+        "same_camera": true,
+        "point_series_six_frames": true
+      },
+      {
+        "sampling_modes": 3,
+        "sampling_preserves_month_and_camera": true
+      },
+      {
+        "model": "ctfull",
+        "field": "wind500",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "model": "cteven",
+        "field": "wind500",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "model": "ctcal12",
+        "field": "tmp2m",
+        "default_home": false,
+        "last": "06/15 00:00 UTC",
+        "ready": true
+      },
+      {
+        "mobile_ready": true,
+        "legend_clear": true
+      }
+    ],
+    "page_errors": [],
+    "http_errors": [],
+    "range_responses": 41
+  },
+  "public_https": {
+    "status": "Pass",
+    "checked_utc": "2026-09-24T13:02:04.316890+00:00",
+    "trusted_https": true,
+    "old_public_objects_preserved": 312,
+    "old_bytes_compared": 115602546,
+    "manifest_crc_equal": true,
+    "bundles": [
+      {
+        "path": "data/ctcal12.2026010100/v1/tmp2m.xue",
+        "bytes": 105928,
+        "crc32": "27b5ad04",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/tmp850.xue",
+        "bytes": 61872,
+        "crc32": "ee7ecc97",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/prmsl.xue",
+        "bytes": 59504,
+        "crc32": "608254c9",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/hgt500.xue",
+        "bytes": 52968,
+        "crc32": "8b5d8de1",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/spfh850.xue",
+        "bytes": 98760,
+        "crc32": "2a13897a",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/spfh700.xue",
+        "bytes": 77344,
+        "crc32": "b24d7823",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/vvel500.xue",
+        "bytes": 18968,
+        "crc32": "44fd601b",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/vvel700.xue",
+        "bytes": 22464,
+        "crc32": "d4a67d58",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/wind850.xue",
+        "bytes": 87752,
+        "crc32": "0a80d87d",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/wind500.xue",
+        "bytes": 85744,
+        "crc32": "80a653a9",
+        "suffix_range_equal": true
+      },
+      {
+        "path": "data/ctcal12.2026010100/v1/wind250.xue",
+        "bytes": 101008,
+        "crc32": "ea9cd3d5",
+        "suffix_range_equal": true
+      }
+    ],
+    "research_files_sha256_equal": 23,
+    "cors_for_observable": true,
+    "latest_and_report_no_cache": true,
+    "homepage_sampling_selector": true
+  },
+  "frontend_source_sha256": {
+    "web/src/layer.ts": "90cad1bf592f166e155f37debcea4aea2b2116d347189b5be3e0c5c7486cc4c7",
+    "web/src/main.ts": "0311f6548e9b62a67e8222682069097afafa230096f37ec2e96f6714b73fd511",
+    "web/src/manifest.ts": "99f12089f0d4e146e7e8d09445add7c74a44954d003d63afa512d38431a8dd88",
+    "web/src/urlstate.ts": "3b2ee3ffc7bfa1b76c192ffd5d3c29770afc9878669348ff304192f49c710f62",
+    "web/index.html": "adb4e5e8e814fa128f91f46cb332c8248bd8781ffa050c30e703870c8e2b2648",
+    "tests/e2e/shader.spec.ts": "a3cce81f17f206a887132c332127e7420262f91c5549d3fe9e397f1991fbde01",
+    "scripts/climatetensor_background_publish.py": "b41fdd297e94bdcd0112d585e2a2e450206b7bb49530abe56ab2e1666a1cb88b",
+    "scripts/climatetensor_refinement_publish.py": "c40ae87e2fefda7419868c8beb89c6ae567a92fe6e5b01c51f56bddbade425ca",
+    "scripts/climatetensor/background-browser-check.mjs": "f72404d66472c5e1c2b63ba165e3eaad4e474e5cf60932b271b338cc8ceeb7d1"
+  },
+  "prior_nonpassing_checks": [
+    {
+      "phase": "web unit tests",
+      "reason": "expected model list lacked new ctcal12 entry",
+      "resolution": "updated fixed fixture; all 122 tests passed; no numerical retraining"
+    }
+  ],
+  "scientific_limits": [
+    "Already exposed validation/development periods, no untouched confirmation",
+    "Source authenticity unresolved",
+    "Forecast origin 2025-12, targets 2026-01 through 2026-06; generated 2026-09-24, not live",
+    "Three-frame memory trial failed selection; promotion is a background correction"
+  ]
+}

@@ -1,0 +1,231 @@
+{
+  "schema": "climatetensor.native-background-forecast.v1",
+  "version": "climatetensor-native-background-l12-v1",
+  "question": "Does restoring training-only native monthly background detail improve the frozen spectral anomaly forecast on unchanged native observation domains?",
+  "reason_for_new_contract": "The completed three-frame memory experiment did not reach its predeclared 2 percent validation switch threshold in any channel; all selected forecasts remained incumbent. This new finite attempt repairs separately identified seasonal representation error; it does not loosen that threshold, change memory parameters or repeat the same search.",
+  "predecessor": {
+    "contract_sha256": "86aa557ceb98f8270339f09c3e3d9c2736e5ba230b4e9daabacfcf2756f099ef",
+    "selection_sha256": "0d0149e59c18260c238c28ba6641ea3100b0f492289aa2f79d9c3152a24d84ec",
+    "training_receipt_sha256": "80698f7a244b92a21e6b3f72f6e12472e604469bd8fc68f248b1f28bba255198"
+  },
+  "source_archive": "xue-study/archive/multivariate-l12-v1",
+  "input_pins": [
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/projection-L12.npz",
+      "bytes": 28894789,
+      "sha256": "4852df6fb2f4320171cfc4fcdc6568285411579cfb9eadb51e56bc136c557224"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/model.npz",
+      "bytes": 28214240,
+      "sha256": "807c46c89691f34dea108384dbc13433aba8316f5e146cb7285068494656d7ca"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/backtest.npz",
+      "bytes": 45099036,
+      "sha256": "f89485e70bd7c1b0711d9d8d41ac4576d7ab3896bead61ee6a74b038998245dd"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/forecast.npz",
+      "bytes": 12623469,
+      "sha256": "73a017287267fe6c5cf392d27733270e8eb1ed8e00d9a867b5aa39d16c50a2eb"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/report.json",
+      "bytes": 196496,
+      "sha256": "2cb340432fbe73efb38da63e1e79b8b360cb314e5a7243412b941a12c2a6bbc1"
+    },
+    {
+      "path": "xue-study/experiments/multivariate-refinement/fields.py",
+      "bytes": 2427,
+      "sha256": "13b64a493f57b697a65f2a885c64f544d48c8fba02d8881c8ace5ba6565f1028"
+    },
+    {
+      "path": "xue-study/experiments/multivariate-refinement/project.py",
+      "bytes": 5969,
+      "sha256": "b27affd462f3a81a77dcbc4bbe41f78d3d7f6b134d811cd121f73707d0d4efa5"
+    },
+    {
+      "path": "xue-study/experiments/multivariate-refinement/model.py",
+      "bytes": 3170,
+      "sha256": "a26133236a2bffbb2c0b2568670274ebc16c02f4b88c181f3c9889b8c20d2722"
+    },
+    {
+      "path": "xue-study/experiments/multivariate-refinement/train.py",
+      "bytes": 13871,
+      "sha256": "b1d22c4c9785d23b6200be9b243afe46bcec7fba6cc88363695430950ef89f30"
+    },
+    {
+      "path": "xue-study/experiments/typed-spectrum/spectrum.py",
+      "bytes": 10990,
+      "sha256": "0aa8f8a1b3160fa10005fa1e0fee469f0d05f9e699d71e5aecc804759b0b0f7c"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/q850.npz",
+      "bytes": 17495788,
+      "sha256": "0ed410969140a898ec77c8d6fc89308874b496c8bb091ad10f5e6b881892fb51"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/q700.npz",
+      "bytes": 16210563,
+      "sha256": "46a22e3ac84cd00f50b9e9605aed5af131ea1b03723ef7d066fba4d62267484f"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/sp.npz",
+      "bytes": 21357590,
+      "sha256": "5aba7361ecdcd2d40a93bf01560f5c385507cb001a92eb8014baeb3ac6c0a492"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/u500.npz",
+      "bytes": 14663929,
+      "sha256": "abe57749ceb0a13298d41198e740be13bc681a40878321d4ed8eab45c98763fb"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/v500.npz",
+      "bytes": 14004309,
+      "sha256": "2097a1f7c4284e9d45dbe55f220fc4eeefb7db2fac780747dea3a2914e72f686"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/t850.npz",
+      "bytes": 13485470,
+      "sha256": "73aaa7c6b08e3e0276edc4d01790cd2f848d5da846532e7afbec1b637440aeaa"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/t2m.npz",
+      "bytes": 31253442,
+      "sha256": "a2205689951eaf98ed86822c6910af76e757baf81f4e9c77a8120766f89e7460"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/sst.npz",
+      "bytes": 16454058,
+      "sha256": "31331e05c3293371b5a3a0450d8f517b5738748a74fcf38ca61022d354b803e7"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/msl.npz",
+      "bytes": 16861312,
+      "sha256": "b05e826e5d74a850f21dbb91af8903cd6f23f80a15315560871c5de1ee7426e0"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/z500.npz",
+      "bytes": 16630140,
+      "sha256": "c4574d3c8b6272bc6c8632591562b43e27a635470baaa5e4723cbec957418465"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/w500.npz",
+      "bytes": 9870060,
+      "sha256": "8d58078cc2f5c27cacb5d4df8b671cf6ccbe0c034611ae2eed43758abfd2f0a4"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/w700.npz",
+      "bytes": 10251133,
+      "sha256": "b720746ab6c57631d8218dc80d771623941ecd55c11b46c3ad58cb953d904b3d"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/u850.npz",
+      "bytes": 14503527,
+      "sha256": "501bac7093129cb6a4f73a75cd9471a5e68752428bf623fb7d458fb95f44ee80"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/v850.npz",
+      "bytes": 13967385,
+      "sha256": "dcf871306496612d166d0d71f5ff7d582101a7d0dbe21fa255c78f1fb647a60d"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/u250.npz",
+      "bytes": 15152876,
+      "sha256": "413e7e0b6a96e52d2e751181000c75289d18d8018d72e7f454af6a17a7957839"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/v250.npz",
+      "bytes": 14460557,
+      "sha256": "378b4b668579b4bf3d362504b6d68894603e94ce4ca109f9efa737c65d627902"
+    }
+  ],
+  "training": [
+    "1979-01",
+    "2014-12"
+  ],
+  "validation": [
+    "2015-01",
+    "2019-12"
+  ],
+  "development_backtest": [
+    "2020-01",
+    "2025-12"
+  ],
+  "initial_month": "2025-12",
+  "target_months": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06"
+  ],
+  "degree": 12,
+  "grid_step_degrees": 1.25,
+  "method": "For identity channels: native monthly arithmetic training mean plus unchanged learned L12 anomaly. For positive humidity: native monthly arithmetic training mean times exp(predicted log field minus spectral log climatology). Background fitted from 1979-2014 only. Native pressure masks and training domains preserved.",
+  "background_domain": "Per-variable native grid. Calendar-month means use only finite, training-fixed valid cells and per-month pressure screening. Means computed over observed samples only; no zero-filled missing values.",
+  "candidates": [
+    "incumbent_L12",
+    "native_seasonal",
+    "native_background_plus_learned_anomaly"
+  ],
+  "selection": "No hyperparameter search. For each whole channel choose corrected forecast if its full native PHYSICAL validation MSE averaged over six leads is at least 2 percent below incumbent; otherwise keep incumbent. Do not select the native seasonal comparator. Freeze choices before development evaluation.",
+  "switch_min_validation_gain": 0.02,
+  "comparators": [
+    "incumbent_L12",
+    "native_seasonal",
+    "native_background_plus_learned_anomaly",
+    "selected_calibrated"
+  ],
+  "normalizers": "Frozen original L6 TRAINING physical seasonal error per channel from the archived L12 report; equal channel and lead weight. Humidity scored in kg/kg.",
+  "output": "Use exact saved L12 spectral anomaly at the existing 1.25-degree grid; bilinear periodic-longitude interpolation of trained background and nearest fixed native mask. Coarse 2.5-degree download is exact subset; original L6 remains independent and unchanged. Interpolated background adds no new observations or claimed local skill. Bilinear background interpolation renormalizes finite-neighbor weights; zero filling is not treated as an observation.",
+  "promotion_gate": {
+    "min_development_aggregate_physical_gain": 0.005,
+    "max_wind500_relative_degradation": 0.005,
+    "max_channel_relative_degradation": 0.05,
+    "additional": "Finite forecast, positive humidity, chronological isolation, exact saved-model replay, no Xue quantization clamping; otherwise publish clearly marked research candidate without making it default. Gate cannot change selected parameters."
+  },
+  "regional_diagnostic": "Same three fixed 9x9 native patches and leads 1 and 6 as Research 0229, reported only after selection; no regional fitting.",
+  "source_authenticity_reservation": "The user questions the whole data chain. Source integrity and reproduced calculations do not establish physical truth; no independent source replication is performed.",
+  "protected": [
+    "Original L6/L12 forecasts, data pointers and public bytes retained",
+    "No testing-interval refit, weight tuning or hidden retry",
+    "Data authenticity of the whole pipeline remains unverified; no independent source replication",
+    "Historical origin and monthly cadence visible on website; no typhoon or ENSO attribution",
+    "External dependencies and source observations not copied into Adva",
+    "Native authority, paused Lorentzian work and library obligations unchanged",
+    "No recasting the failed memory switch as successful dynamics learning",
+    "No 2026 observed data used in correction",
+    "Retain frozen source and model bytes"
+  ],
+  "budget": {
+    "training_launches": 1,
+    "verification_launches": 1,
+    "training_wall_seconds": 300,
+    "training_cpu_seconds": 270,
+    "verification_wall_seconds": 240,
+    "verification_cpu_seconds": 210,
+    "address_space_bytes": 4294967296,
+    "max_output_bytes": 250000000,
+    "candidate_families": 1,
+    "channels": 13,
+    "leads": 6,
+    "validation_targets": 60,
+    "development_targets": 72,
+    "enforcement": "Supervised finite channel loops, worker CPU/address-space limits, parent timeout and persistent private launch ledger. No automatic retry."
+  },
+  "dependencies": {
+    "python_reference": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "vendored": false
+  },
+  "authorship": "Codex (OpenAI), Unknown v0.3 through Mingli Yuan account proxy only; not his review or endorsement.",
+  "scope": "Retrospective historical-origin monthly forecast revision. Training-only representation correction, not a newly learned dynamical memory benefit or higher-frequency forecast.",
+  "training_implementation_pins": {
+    "learn.py": "ce985ab1d3715d2666d1a6160d6f4d42e3d3c49dc060fedc6a3f03dcc4096e4f",
+    "run.py": "f927b36864f007e3914c415f6dfe6eb3058b5755deb5659ae5daec4935f72736"
+  }
+}
