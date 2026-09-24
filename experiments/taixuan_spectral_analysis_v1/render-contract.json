@@ -1,0 +1,32 @@
+{
+  "schema": "adva.research.aggregate-render.v1",
+  "question": "Render two original figures from retained numerical aggregates without recomputation or new model selection.",
+  "level": "Evidence presentation only",
+  "worker": "render.py",
+  "worker_sha256": "dee3d6730ddf74114c7bdba05ea59f00c0902234b69d2ff43335780549199a05",
+  "runner_sha256": "5e3e74fc47e66b0bb260210237c83bad5ebf1f76565028888dfa500f3fc81376",
+  "local_evidence": [
+    {
+      "path": "phase1.json",
+      "sha256": "2932552996d6cb7efd32429c402a5cd5296191887b85ef92543194bd63549583"
+    },
+    {
+      "path": "xue-evidence.json",
+      "sha256": "6faac4534a667dc0555c23472026a3a68296c772ca64683a6a14ea0bca5cd74c"
+    }
+  ],
+  "matplotlib": "3.11.2",
+  "budget": {
+    "launches": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 25,
+    "address_space_bytes": 2147483648,
+    "max_json_bytes": 2097152,
+    "case_bound": "Exactly two SVG figures; text elements, no embedded fonts or external images. No adaptive search."
+  },
+  "protected": [
+    "Read original evidence only",
+    "Newly rendered output remains outside repository pending exact-byte admission"
+  ],
+  "authorship": "Codex (OpenAI), Unknown v0.3"
+}

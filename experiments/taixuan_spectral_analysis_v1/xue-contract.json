@@ -1,0 +1,154 @@
+{
+  "schema": "adva.research.xue-spectral-errors.v1",
+  "question": "In three fixed native-grid patches, how much archived 500 hPa vector forecast error survives three-to-one block averaging, and does L12 beat L6 and its own seasonal baseline?",
+  "level": "External retrospective development diagnostic, no native semantic admission",
+  "worker": "xue_errors.py",
+  "worker_sha256": "029dd8043a1bd9ac1ae1bc875546ca4af1d44780eb11717a04b8c26e368fb2be",
+  "runner_sha256": "5e3e74fc47e66b0bb260210237c83bad5ebf1f76565028888dfa500f3fc81376",
+  "local_evidence": [
+    {
+      "path": "phase1.json",
+      "sha256": "2932552996d6cb7efd32429c402a5cd5296191887b85ef92543194bd63549583"
+    },
+    {
+      "path": "phase2.json",
+      "sha256": "fdfc47283bc77a8560ed05cf319918956f32b76a4a95bb575242a1002a09c347"
+    },
+    {
+      "path": "homometry-evidence.json",
+      "sha256": "4818b81c55d603bf6b57e457a2abdc89db1ff74101f4b413ab2df411284da856"
+    }
+  ],
+  "input_pins": [
+    {
+      "path": "xue-study/experiments/typed-spectrum/spectrum.py",
+      "bytes": 10990,
+      "sha256": "0aa8f8a1b3160fa10005fa1e0fee469f0d05f9e699d71e5aecc804759b0b0f7c"
+    },
+    {
+      "path": "xue-study/archive/multivariate-seasonal-v1/report.json",
+      "bytes": 140186,
+      "sha256": "e40bede296273e9c616d043c6fb532f9acb16d93b5adbd92293603be33b61357"
+    },
+    {
+      "path": "xue-study/archive/multivariate-seasonal-v1/backtest.npz",
+      "bytes": 13022931,
+      "sha256": "24ef0d1f1098b36dfe73c6f3452a84dc6f160fcdac7c7d702b5775050d46c5a2"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/report.json",
+      "bytes": 196496,
+      "sha256": "2cb340432fbe73efb38da63e1e79b8b360cb314e5a7243412b941a12c2a6bbc1"
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1/backtest.npz",
+      "bytes": 45099036,
+      "sha256": "f89485e70bd7c1b0711d9d8d41ac4576d7ab3896bead61ee6a74b038998245dd"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/u500.npz",
+      "bytes": 14663929,
+      "sha256": "abe57749ceb0a13298d41198e740be13bc681a40878321d4ed8eab45c98763fb"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/v500.npz",
+      "bytes": 14004309,
+      "sha256": "2097a1f7c4284e9d45dbe55f220fc4eeefb7db2fac780747dea3a2914e72f686"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/ncep.reanalysis.derived__pressure__uwnd.mon.mean.nc",
+      "bytes": 436605227,
+      "sha256": "15227518f03dffbe95e87071d0473713b36be81b7b5f889b2639b746981bfcb5"
+    },
+    {
+      "path": "climatetensor-inputs/ncep-multivariate/ncep.reanalysis.derived__pressure__vwnd.mon.mean.nc",
+      "bytes": 440317807,
+      "sha256": "eab89e125aef1a84537980a3e80ea9b2dc1ee0bd2fb8db497a4fb2bbbbe23748"
+    }
+  ],
+  "evaluator": "xue-study/experiments/typed-spectrum/spectrum.py",
+  "source_directory": "climatetensor-inputs/ncep-multivariate",
+  "archives": [
+    {
+      "path": "xue-study/archive/multivariate-seasonal-v1",
+      "degree": 6
+    },
+    {
+      "path": "xue-study/archive/multivariate-l12-v1",
+      "degree": 12
+    }
+  ],
+  "models": [
+    "joint",
+    "climatology"
+  ],
+  "leads": [
+    1,
+    6
+  ],
+  "patches": [
+    {
+      "name": "East Asia",
+      "center_lat": 32.5,
+      "center_lon": 150
+    },
+    {
+      "name": "North America",
+      "center_lat": 40,
+      "center_lon": 295
+    },
+    {
+      "name": "Middle East",
+      "center_lat": 27.5,
+      "center_lon": 50
+    }
+  ],
+  "patch_geometry": "9 by 9 native 2.5-degree nodes, offsets -4 through 4; lat descending, lon ascending. Chosen around earlier named regions, not identical to their earlier broader boxes. No interpolation or value-based selection.",
+  "targets": [
+    "2020-01",
+    "2025-12"
+  ],
+  "weights": "Exact spherical cell areas at native centers with latitude edges +/-1.25 degrees, normalized inside each patch; both east/north components share each weight.",
+  "coarse_operator": "Weighted 3 by 3 child average into 3 by 3 blocks; orthogonal lift in the declared coordinate-component metric. Coarse and residual energies add.",
+  "spectral_operator": "Unitary two-dimensional length-9 tensor DFT of sqrt(area weight) times component error. Bands max(abs(k))=0,1,2..4. For boundary sensitivity only, orthonormal type-II DCT high band max(index)>=3. These are different boundary conventions, not equal filters or spherical degree bands.",
+  "tolerance": 1e-10,
+  "assumptions": [
+    "Saved backtest arrays contain decoded total wind coefficients, not standardized anomalies; prior frozen check independently reconstructed global errors.",
+    "Existing evaluator order and local east/north basis match archived channels. Hash-pin retained; no new independent spherical evaluator implemented.",
+    "Reanalysis is a comparison reference, not direct observation or proof of physical truth.",
+    "Local vector components use their declared east/north frame; block averaging does not add parallel transport."
+  ],
+  "cross_domain": "Apply the factorized length-9 address spectrum and ternary block projection on two native spatial axes; retain time and vector component labels. Do not fabricate four physical axes or identify this spectrum with spherical harmonics.",
+  "protected": [
+    "Frozen archives and production forecasts unchanged",
+    "No retraining or model selection using evaluation errors",
+    "No new untouched holdout claim",
+    "Retain all 24 model/patch/lead rows",
+    "Missing or changed private inputs return Unavailable or Failure; never claim a fresh Pass"
+  ],
+  "source_authenticity_reservation": "The user questions authenticity of the entire data chain, not only display or processing. Hash agreement and same-source consistency do not resolve that concern. No independent source replication or physical authenticity verification is performed; every result is conditional on these frozen inputs.",
+  "scope": "1979-2014 original fitting, 2015-2019 original validation, already exposed 2020-2025 development backtests. Aggregate diagnostics only; no operational forecast, teleconnection significance, typhoon or ENSO attribution.",
+  "dependencies": {
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "python_reference": "3.11.15",
+    "vendored": false
+  },
+  "budget": {
+    "launches": 2,
+    "wall_seconds": 60,
+    "cpu_seconds": 50,
+    "address_space_bytes": 2147483648,
+    "max_json_bytes": 2097152,
+    "max_input_bytes": 1100000000,
+    "max_diagnostic_rows": 24,
+    "enforcement": "Streaming input hashes; fixed input sizes and 24 cases; parent wall timeout, worker POSIX CPU/address-space limits, persistent private launch ledger. No automatic retry; only one unchanged replay."
+  },
+  "acceptance": "Pass requires pinned sources, exact time/grid agreement, all finite patch values and numerical energy identities. A model may be worse than its baseline.",
+  "authorship": "Codex (OpenAI), Unknown v0.3",
+  "data_acknowledgement": "NCEP/NCAR Reanalysis 1 data supplied by NOAA PSL, Boulder, Colorado, USA. Independent derived diagnostics; no NOAA endorsement.",
+  "references": [
+    "https://psl.noaa.gov/data/gridded/data.ncep.reanalysis.html",
+    "https://psl.noaa.gov/disclaimer/"
+  ]
+}

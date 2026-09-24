@@ -1,0 +1,45 @@
+{
+  "schema": "adva.research.homometry-witness.v1",
+  "question": "Does one analytically constructed nine-point pair share power but differ in local triple counts?",
+  "level": "External finite integer witness",
+  "reason_for_separate_continuation": "Completed phase 2 found no non-dihedral pair in either declared small family. Retain that absence; test a single direct-sum construction rather than enlarging the search.",
+  "source_base": "45e374f7d00c0b093da3ace556951397b391b344",
+  "worker": "homometry.py",
+  "worker_sha256": "c9ad90bb2d4a50d672e61082ed0adb05c349eae45b8b4e6a4e6fc5f1a95a6afa",
+  "runner_sha256": "5e3e74fc47e66b0bb260210237c83bad5ebf1f76565028888dfa500f3fc81376",
+  "local_evidence": [
+    {
+      "path": "phase2.json",
+      "sha256": "fdfc47283bc77a8560ed05cf319918956f32b76a4a95bb575242a1002a09c347"
+    }
+  ],
+  "length": 27,
+  "U": [
+    0,
+    1,
+    4
+  ],
+  "V": [
+    0,
+    10,
+    12
+  ],
+  "assumptions": [
+    "Collision-free direct sums produce binary words. Equality of integer cyclic autocorrelation entails equal Fourier power."
+  ],
+  "cross_domain": "Local word counts are a diagnostic counterexample for power-only inference, not geometric tile legality.",
+  "protected": [
+    "No infinite aperiodicity or Einstein tile claim",
+    "Keep failed finite searches visible"
+  ],
+  "budget": {
+    "launches": 2,
+    "wall_seconds": 10,
+    "cpu_seconds": 8,
+    "address_space_bytes": 268435456,
+    "max_json_bytes": 131072,
+    "case_bound": "Exactly one candidate pair, 54 dihedral comparisons and 325 triple-offset comparisons. No retries except one unchanged replay."
+  },
+  "acceptance": "Report equal power, equivalence and triple witness separately; Pass means completed instrument, not assumed non-equivalence.",
+  "authorship": "Codex (OpenAI), Unknown v0.3"
+}
