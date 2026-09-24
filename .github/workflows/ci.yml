@@ -36,6 +36,8 @@ jobs:
         run: timeout 180s cargo test --locked -p adva-witness --example verifier_search
       - name: Test frozen-verifier policy campaign boundaries
         run: timeout 180s cargo test --locked -p adva-witness --example search_campaign
+      - name: Test the native A/M variation reading of the periodic program
+        run: timeout 180s cargo test --locked -p adva-witness --example am_variation_reading
       - name: Run first bounded M6 reveal
         run: |
           cargo run -p adva-witness --bin adva -- \

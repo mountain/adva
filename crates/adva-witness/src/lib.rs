@@ -5,6 +5,7 @@
 //! exact witness language whose artifacts may be cached independently from
 //! the fresh program instances that cite them.
 
+mod am_power_weight;
 mod arithmetic;
 mod boundary;
 mod closure_transport;
@@ -28,6 +29,7 @@ mod trace_projection;
 mod verification;
 mod witness;
 
+pub use am_power_weight::*;
 pub use arithmetic::*;
 pub use boundary::*;
 pub use closure_transport::*;
