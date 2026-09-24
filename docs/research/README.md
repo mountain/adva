@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **243 numbered
+This directory holds the research record of the repository: **244 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -785,6 +785,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0233 — Periodic programs before Floquet observations](0233-periodic-programs-before-floquet-observations.md): a proposed native-compatible annual A/M program profile retains exact finite variation, baseline defects and process order before extracting a first-degree Floquet observation; an original rational fixture passes 23 external arithmetic checks, without claiming native certificates or weather-model integration.
 
 - [0234 — The rate of a periodic arithmetic program is its generator action](0234-the-rate-of-a-periodic-arithmetic-program-is-its-generator-action.md): a native Rust power–weight carrier `Φ_{ν,w}=a^νe^{(w−ν)v}` with exact `ℚ[exp(ℚ)]` coefficients, `A`/`M`/PBW laws and typed logarithmic and Jordan resonances reads the annual rate of the 0233 twelve-phase fixture as a generator action table rather than a Jacobian product; the multiplicative holonomy and the Addition reading at the reference agree exactly, declared flow phases force the exponential class, and no native Floquet calculus, matrix ontology or physical claim follows.
+
+- [0235 — The cheapest exchange is not a collision, and no real loop swaps the branches](0235-the-cheapest-exchange-is-not-a-collision-and-no-real-loop-swaps-the-branches.md): an exact variational computation on the 0233 twelve-phase program finds the amplitude floor `J_inf = 1` attained in the interior at `(p,q) = (-2, 17/10)` rather than on the discriminant variety, whose degree-twelve 52-term factorisation is computed exactly with Wu-style case chains cross-checked by Gröbner bases; no declared real loop realises the transposition of the two real-root branches, which is why the first scheme needs its complexification and what the second scheme's time direction would have to supply.
 
 ### Named notes
 

@@ -1,0 +1,63 @@
+{
+  "schema": "adva.research.exchange-amplitude-variation.v1",
+  "created_at": "2026-09-24T23:04:29Z",
+  "question": "For the twelve-phase 0233 periodic arithmetic program, can the two branch perturbations (p, q) that the exchange protocol needs be obtained by an exact variational computation that minimises the anomaly amplitude on every side of the whole process, and can the resulting stationary system, its real solutions and their minimality be certified by Wu's elimination, by Yang Lu's real-root methods and by Zhang Jingzhong--Yang Lu positivity?",
+  "level": "Bounded external exact calibration. No native certificate, no stable API, no physical claim, no forecast and no meteorological data.",
+  "declared_reading": {
+    "process": "The twelve-phase fixture of note 0233 and experiment native_floquet_expression_v1, with the exact periodic reference (0,1,2,1,0,-1,-2,-1,0,1,0,-1,0), dilations (1/2,3/4,1,...,1) and curvatures (1/8,1/8,0,...,0).",
+    "sides": "The twelve phase boundaries m = 0..11 carry the anomaly amplitudes |h_m|; the terminal boundary m = 12 carries |h_12| and is reported separately. 'Every side' means all twelve.",
+    "branches": "The two real roots of E(h) = 1, h+ = -2 + sqrt(8*sqrt(17) - 20) and h- = -2 - sqrt(8*sqrt(17) - 20). The conjugate pair -2 +- i*sqrt(8*sqrt(17) + 20) is reported as the first method's complex pair and is not a branch.",
+    "p_and_q": "p is the perturbation attached at the positive real root and q the perturbation attached at the negative real root. Declared primary realisation, in the quadratic field Q(sqrt(17)) with y = h + 2: P_{p,q}(y) = (y^2 + p*y + (20 - 8*sqrt(17) + q)) * (y^2 + 20 + 8*sqrt(17)), so p splits the two real roots asymmetrically and q shifts them together; p = q = 0 is the frozen unperturbed quartic. A declared control realisation keeps the root-anchored form (y - (s + p))*(y + s - q) with s = sqrt(8*sqrt(17) - 20) in the quartic field Q(s) and must agree with the primary at p = q = 0.",
+    "exchange": "The exchange is the monodromy of the four roots: a closed loop in the (p, q) plane around a branch of the discriminant variety Res_h(P_{p,q}, dP_{p,q}/dh) = 0 that realises the transposition of the two real-root branches. The protocol is a declared finite sequence of such loops, each carrying its permutation and its certificate."
+  },
+  "cost": {
+    "primary": "J_inf(p, q) = max over the twelve sides and both branches of |h_m|, i.e. the smallest uniform amplitude bound the process admits at (p, q).",
+    "control": "J_2(p, q) = sum over the twelve sides and both branches of h_m^2, reported as a declared alternative; agreement or disagreement between the two minimisers is part of the result.",
+    "why_a_constraint_is_required": "At h = 0 the anomaly vanishes identically, so J_inf is trivially minimised by the empty process. The minimisation is therefore constrained, not free."
+  },
+  "constraint": {
+    "kept_alive": "The perturbed configuration must still realise the exchange: the perturbed quartic must keep two real roots separated by the conjugate pair, and the declared loop must still encircle a discriminant branch, so the transposition remains available.",
+    "consequence_to_be_tested": "The declared conjecture is that the constrained minimum is attained on the discriminant variety itself, i.e. that the cheapest exchange is the collision configuration where two roots meet; this is stated as a question to be decided by the run, not as an assumption.",
+    "no_inequality_waiver": "If the minimum is attained on the constraint boundary, the run must say so and report the boundary point exactly, not replace it with an interior point."
+  },
+  "method": {
+    "wu": "Wu's elimination: the stationary system grad J = lambda * grad D together with D = 0 is triangularised by pseudo-division into characteristic chains, one chain per declared active-side case, and each conclusion is reduced modulo its chain; every remainder is cross-checked by a Groebner basis computation, as in Research 0181.",
+    "yang_lu": "Yang Lu's side: real-root counting and isolation for each perturbed quartic (Sturm sequences and exact rational interval isolation), plus the zero-decomposition reading of which branch of the discriminant variety each solution lies on.",
+    "zhang_yang": "Zhang Jingzhong--Yang Lu positivity: minimality rather than mere stationarity is decided by the sign of the second variation on each declared region, by successive difference substitution where the region is a declared rational box.",
+    "declared_library": "Polynomial arithmetic uses sympy 1.14 where a resultant, pseudo-remainder or Groebner basis is needed; the library is declared and is not native authority. Root isolation and all acceptance arithmetic are exact rationals."
+  },
+  "controls": [
+    "Every stationary system is run with one declared side deleted from the maximum; the minimiser must move, otherwise the case analysis is not doing work.",
+    "The frozen unperturbed quartic must reproduce the two real roots and the conjugate pair of note 0234 exactly.",
+    "The root-anchored control realisation must agree with the primary at p = q = 0 and must be reported if it disagrees elsewhere.",
+    "A deliberately non-encircling loop in the (p, q) plane must return the identity permutation, so the protocol's exchange claim is falsifiable.",
+    "The empty process h = 0 must be reported as the unconstrained minimiser, so the constraint is visibly load-bearing."
+  ],
+  "meteorological_correspondence": {
+    "status": "Declared correspondence only, not a physical claim.",
+    "declared": "The January mid-latitude westerly belt near the Tibetan Plateau and a gap or gap-like passage in that region are recorded as the intended reading of the protocol's exchange; no dataset, no reanalysis field, no station record and no forecast is used, and no mechanism is asserted.",
+    "data_side": "Unavailable in this checkout, as recorded for the neighbouring forecast audits; if a later run wants a data reading it needs its own contract, declared dataset and pins."
+  },
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact: integers, Fractions and the declared quadratic field Q(sqrt(17)). No floating-point value appears in any acceptance test. The run must report, for each declared active-side case, the characteristic chain, the remainder, the Groebner cross-check, the isolated real solutions, the second-variation sign, the resulting permutation of the exchange loop, and every control above.",
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No claims.toml refresh beyond the one new claim, no native admission and no Seal",
+    "The 0233 fixture, its experiment and the 0234 carrier are cited, not edited"
+  ],
+  "residual": [
+    "The declared family is one of several possible realisations of 'a perturbation at the positive and the negative real root'; the control realisation is reported and any disagreement is retained",
+    "A minimum of a maximum is piecewise algebraic: the case analysis is finite but declared, and an undeclared active side is a different run",
+    "Nothing here is a statement about the atmosphere, about the Tibetan Plateau, about January, or about any wind gap; the correspondence is declared and the data side is Unavailable",
+    "The variational computation produces a declared amplitude reading of one arithmetic process, not a stability result, not a physical flow and not a forecast"
+  ]
+}

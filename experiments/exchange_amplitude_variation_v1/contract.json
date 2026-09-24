@@ -1,0 +1,74 @@
+{
+  "schema": "adva.research.exchange-amplitude-variation.v1",
+  "created_at": "2026-09-24T23:04:29Z",
+  "revised_at": "2026-09-24T23:20:00Z",
+  "correction": {
+    "supersedes": "experiments/exchange_amplitude_variation_v1/contract-initial.json",
+    "superseded_sha256": "da49e395ad998dccbdf8794184043428023e06b9c6a22e6b74224b14d33eed01",
+    "reason": "The initial contract realised (p, q) as a perturbation of the real-root quadratic factor of the quartic, i.e. as a free movement of the two real-root branches. That family is degenerate: the branches are then no longer roots of the declared return equation, so the amplitude functional is minimised by moving both branches onto the reference h = 0, where every side amplitude vanishes. Exact witness, in the initial family P_{p,q}(y) = (y^2 + p y + (20 - 8 sqrt(17) + q)) (y^2 + 20 + 8 sqrt(17)) with y = h + 2: at p = -4 and q = 8 sqrt(17) - 16 the first factor is (y - 2)^2, so the quartic has a double root exactly at h = 0 and J_inf = 0; with branches at h = +eps and h = -eps for rational eps the functional is exactly eps, so the infimum 0 is approached with distinct branches and is not attained. The initial contract is retained byte for byte and is not rewritten.",
+    "amendment": "The perturbation acts on the process, not on the roots, so that the branches stay defined by the declared return condition E_{p,q}(h) = 1. The reference h = 0 then satisfies E_{p,q}(0) = 0 and is never a branch, and the collapse is excluded. Both realisations below are run and reported; the process realisation is primary and the branch-level realisation is the declared control, which is the literal reading of 'a perturbation at the positive and the negative real root'.",
+    "no_inequality_waiver": "The degeneracy is reported as a result of the superseded contract, not hidden by changing the cost or the constraint."
+  },
+  "question": "For the twelve-phase 0233 periodic arithmetic program, can the two branch perturbations (p, q) that the exchange protocol needs be obtained by an exact variational computation that minimises the anomaly amplitude on every side of the whole process, and can the resulting stationary system, its real solutions, its real-root structure and its minimality be certified by Wu's elimination, by Yang Lu's real-root methods and by Zhang Jingzhong--Yang Lu positivity?",
+  "level": "Bounded external exact calibration. No native certificate, no stable API, no physical claim, no forecast and no meteorological data.",
+  "declared_reading": {
+    "process": "The twelve-phase fixture of note 0233 and experiment native_floquet_expression_v1: the exact periodic reference (0,1,2,1,0,-1,-2,-1,0,1,0,-1,0), dilations (1/2,3/4,1,...,1), curvatures (1/8,1/8,0,...,0).",
+    "sides": "The twelve phase boundaries m = 0..11 carry the anomaly amplitudes |h_m|; the terminal boundary m = 12 is reported separately. 'Every side' means all twelve. For any branch h the ten sides m = 2..11 all equal |E_{p,q}(h)|, because phases 2..11 are pure translations; the run asserts this identity rather than assuming it.",
+    "branches": "The two real roots of the declared return equation E_{p,q}(h) = 1. At p = q = 0 they are h+ = -2 + sqrt(8 sqrt(17) - 20) and h- = -2 - sqrt(8 sqrt(17) - 20). The conjugate pair -2 +- i sqrt(8 sqrt(17) + 20) is reported as the first method's complex pair and is not a branch. Whether the perturbed return equation still has exactly two real roots is decided by real-root counting, not assumed.",
+    "family_primary_process": "E_{p,q}(h) is the annual return of the same twelve phases with the two nonlinear phases' curvatures replaced by (q_0, q_1) = (1/8 + p, 1/8 + q). p is the perturbation at phase 0 and q at phase 1; the two perturbations act at the two ends of the exchange. The linear part of the return is unaffected by p and q, so the branches cannot approach the reference.",
+    "family_control_branch_level": "The declared control keeps the process frozen and perturbs the level at each branch: the positive branch is the real root of E(h) = 1 + p and the negative branch the real root of E(h) = 1 + q. This is the literal reading of a perturbation at the positive and the negative real root; it is reported alongside the primary and any disagreement is retained.",
+    "exchange": "The exchange is the monodromy of the roots: a closed loop in the (p, q) plane around a branch of the discriminant variety of the perturbed return equation that realises the transposition of the two real-root branches. The protocol is a declared finite sequence of such loops, each carrying its permutation and its certificate."
+  },
+  "cost": {
+    "primary": "J_inf(p, q) = max over the twelve sides and both branches of |h_m|: the smallest uniform amplitude bound the process admits at (p, q).",
+    "control": "J_2(p, q) = sum over the twelve sides and both branches of h_m^2, reported as a declared alternative; agreement or disagreement between the two minimisers is part of the result.",
+    "reason_for_a_constraint": "A free movement of the branches collapses to the reference (see correction); with the process realisation the branches are pinned by the declared return and the minimisation is a genuine trade-off between the two branches."
+  },
+  "constraint": {
+    "kept_alive": "The perturbed configuration must still realise the exchange: the perturbed return equation must keep two distinct real roots separated by the conjugate pair, and the declared loop must still encircle a discriminant branch, so the transposition remains available.",
+    "declared_conjecture": "The constrained minimum is conjectured to sit on the discriminant variety itself, i.e. the cheapest exchange is the collision configuration. This is a question for the run, not an assumption.",
+    "boundary_honesty": "If the minimum is attained on the constraint boundary or is an unattained infimum, the run must say so and report the boundary point or the infimum exactly."
+  },
+  "method": {
+    "wu": "Wu's elimination: for each declared active-side case the stationary system grad J = lambda * grad D together with the discriminant condition D = 0 is triangularised by pseudo-division into a characteristic chain, and each conclusion is reduced modulo its chain; every remainder is cross-checked by a Groebner basis computation, as in Research 0181.",
+    "yang_lu": "Yang Lu's side: real-root counting and isolation for each perturbed return equation by Sturm sequences and exact rational interval isolation, and the zero-decomposition reading of which branch of the discriminant variety each solution lies on.",
+    "zhang_yang": "Zhang Jingzhong--Yang Lu positivity: minimality rather than mere stationarity is decided by the sign of the second variation on each declared region, by successive difference substitution on a declared rational box.",
+    "declared_library": "Polynomial arithmetic uses sympy 1.14 where a resultant, pseudo-remainder, Groebner basis or Sturm count is needed; the library is declared and is not native authority. All acceptance arithmetic is exact."
+  },
+  "controls": [
+    "The superseded family must reproduce its collapse witness exactly: (p, q) = (-4, 8 sqrt(17) - 16) gives the double root h = 0 and J_inf = 0, and branches at +-eps give J_inf = eps.",
+    "Every stationary system is run once with one declared side deleted from the maximum; the minimiser must move, otherwise the case analysis is doing no work.",
+    "The frozen unperturbed return must reproduce the two real roots and the conjugate pair of note 0234 exactly.",
+    "The branch-level control realisation must agree with the primary realisation at p = q = 0 and must be reported wherever it disagrees.",
+    "A deliberately non-encircling loop in the (p, q) plane must return the identity permutation, so the protocol's exchange claim is falsifiable.",
+    "The process realisation must assert E_{p,q}(0) = 0 for the declared perturbed parameters, so that the reference is visibly not a branch."
+  ],
+  "meteorological_correspondence": {
+    "status": "Declared correspondence only, not a physical claim.",
+    "declared": "The January mid-latitude westerly belt near the Tibetan Plateau and a gap or gap-like passage there are recorded as the intended reading of the protocol's exchange; no dataset, no reanalysis field, no station record and no forecast is used, and no mechanism is asserted.",
+    "data_side": "Unavailable in this checkout, as recorded for the neighbouring forecast audits; a data reading would need its own contract, declared dataset and pins."
+  },
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact: integers and Fractions. No floating-point value appears in any acceptance test. The run must report, for each declared active-side case, the characteristic chain, the remainder, the Groebner cross-check, the isolated real solutions, the second-variation sign, the resulting permutation of the exchange loop, both realisations, and every control above.",
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "contract-initial.json is retained byte for byte and is not rewritten",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No claims.toml refresh beyond the one new claim, no native admission and no Seal",
+    "The 0233 fixture, its experiment and the 0234 carrier are cited, not edited"
+  ],
+  "residual": [
+    "Two declared realisations of 'a perturbation at the positive and the negative real root' are run; the pairing of p and q with the branches is a declared convention, not a derived fact",
+    "A minimum of a maximum is piecewise algebraic: the case analysis is finite but declared, and an undeclared active side is a different run",
+    "Nothing here is a statement about the atmosphere, about the Tibetan Plateau, about January, or about any wind gap; the correspondence is declared and the data side is Unavailable",
+    "The variational computation produces a declared amplitude reading of one arithmetic process, not a stability result, not a physical flow and not a forecast"
+  ]
+}
