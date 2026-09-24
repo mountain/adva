@@ -1,0 +1,43 @@
+{
+  "profile": "adva.research.commit-snapshot-node-receiver.v0",
+  "status": "FrozenBeforeExecution",
+  "base_main": "79f6353511d736ae743b109f1c573b652eff170a",
+  "dependency": "Merged PR 203 at d6b9e93aa8f063cc2dd3fedafaa71bb4292ed545; archived cross-check evidence SHA-256 f453b565f232dcac480afc8ab156e32e7683f4dff30667079c949d95b01d900e",
+  "question": "Can a Node.js standard-library receiver, without opening a ledger or invoking Python semantics, recompute the pinned common projection and the same three commit-state outcomes from the archived snapshot bytes?",
+  "objects": "Four archived valid snapshot pairs and requests, six archived refusal requests, four parser-boundary controls, archived Python response bytes used only as comparison records, and one Node.js receiver source.",
+  "types_and_domain": "Strict canonical JSON restricted to ASCII strings, null/booleans, arrays, objects with unique keys, and integers in JavaScript's safe range; exact archived rational data remains encoded as integer pairs; SHA-256 pins; exactly StoredCommitted, ProvenUncommittedLedger, or UnknownCommitState.",
+  "quantifiers": "Four valid pairs over the symmetric/asymmetric and empty/committed cases; six inherited refusal controls; duplicate-key, fractional-number, unsafe-integer, and correctly repinned noncanonical-snapshot controls.",
+  "candidate_grammar": "The existing adva.research.commit-snapshot-pair-receive.v0 request and adva.research.commit-snapshot.v0 snapshot profiles, narrowed at this cross-language boundary to the declared JSON subset.",
+  "evaluation": "For valid cases, compare outcome, state, allowance, stored result, common-projection digest, both builder provenance maps, and no-authority fields with the archived Python response. Every refusal must return UnknownCommitState. Record exact runtime, source pins, costs and residuals.",
+  "limits": {
+    "campaign_wall_seconds": 30,
+    "outer_wall_seconds": 35,
+    "child_processes": 14,
+    "child_wall_seconds": 3,
+    "node_old_space_mib": 32,
+    "work_per_call": 10000,
+    "total_work": 100000,
+    "wire_bytes_per_file": 262144,
+    "selected_archive_bytes": 3145728,
+    "output_bytes": 5242880,
+    "maximum_json_depth": 128,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "protected": [
+    "No SQLite file is extracted or passed to the Node.js receiver",
+    "The Node.js receiver uses only node:fs, node:crypto and node:perf_hooks and invokes no subprocess",
+    "Both receiver-selected file pins, internal body digests, distinct builder provenance and exact common projection remain mandatory",
+    "Unsupported numeric or string grammar returns UnknownCommitState rather than coercion",
+    "No parent arithmetic replay, allowance debit, retry permission, native authority, Close, free, Seal, M6 or universality claim"
+  ],
+  "exit": "Stop after fourteen child calls or the first unexpected outcome or limit. Preserve failure evidence. At most one implementation correction replay.",
+  "residuals": [
+    "The Node.js receiver is independent in language and JSON parser but follows the same written profile and SHA-256 algorithm",
+    "Archived Python responses are comparison records, not a proof that either implementation is correct",
+    "The narrowed ASCII and safe-integer grammar does not cover arbitrary JSON accepted by Python",
+    "No authentication, hostile replacement, power-loss, external-action or distributed exactly-once model",
+    "No practical human-benefit measurement"
+  ],
+  "origin": "Project-original ChatGPT (OpenAI) contract under Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee."
+}
