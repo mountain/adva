@@ -123,7 +123,7 @@ def test_coverage_follows_from_the_point_count_alone():
     # the two declared limits straddle the finer threshold and both clear the coarser one
     assert 1651 > s["coverage_threshold"]["point_1_percent"] > 122
     assert 122 > s["coverage_threshold"]["1_percent"]
-    assert s["thresholds_are_absolute_point_counts"] is True
+    assert s["thresholds_are_odd_serial_number_index_bounds"] is True
 
 
 def test_the_count_coincidence_is_one_of_fifteen():
@@ -133,7 +133,7 @@ def test_the_count_coincidence_is_one_of_fifteen():
                              "magneticPointGroups": 12}
     assert s["exact_multiples"] == ["magneticLayerGroups"]
     assert s["probability_of_at_least_one"] == "27613783/113379904"
-    assert s["probability_of_at_least_one_float"] == "0.243564"
+    assert s["probability_of_at_least_one_six_decimals"] == "0.243551"
     assert s["expected_number_of_exact_multiples"] == "3/11"
     assert s["expected_count_is_below_one"] is True
     assert s["moduli_count"] == 15
@@ -191,7 +191,7 @@ def test_a_gate_can_pass_while_its_named_content_is_absent():
     s = section("S6_threshold_versus_content")
     assert s["non_speech_numerator"] == 16 and s["unread"] == 190
     assert s["non_speech_share"] == "8/95"
-    assert s["non_speech_share_float"] == "0.0842"
+    assert s["non_speech_share_four_decimals_exact"] == "0.0842"
     assert s["gate"] == "1/20" and s["gate_passes"] is True
     assert s["largest_numerator_still_below_the_gate"] == 9
     assert s["components_exactly_zero"] == ["自始", "凡皆"]

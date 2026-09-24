@@ -31,6 +31,7 @@ HERE = Path(__file__).resolve().parent
 COUNTS = {"assertions": 0}
 LIMITS = {}
 INSTALLED = {}
+CONTRACT = {}
 
 WORLD_BOUND = 3
 FRAME_CLASSES = ("universal", "equivalence", "preorder", "reflexive")
@@ -344,7 +345,38 @@ def s2_table(all_scans):
             retained[f"{kind}:{n}:first_two_axioms"] = table[first_two]["witness"]
     forcing = sorted(k for k, v in rows.items() if v["conclusion_holds_in_every_model"])
     never = sorted(k for k, v in rows.items() if v["conclusion_holds_in_no_model"])
-    check(len(rows) > 100, "the axiom table has fewer rows than expected")
+
+    # A row exists only for a subset that some model of the block satisfies, so a
+    # subset no model satisfies contributes no row and the table is smaller than the
+    # number of subset-and-block combinations. The gap is named and explained rather
+    # than left as a lower bound on a count.
+    combinations = len(FRAME_CLASSES) * 3 * (1 << len(SHORT))
+    declared = CONTRACT["objects"]["expected_axiom_table_rows"]
+    check(combinations == 1536,
+          "twelve blocks of one hundred twenty-eight subsets are not fifteen hundred thirty-six")
+    check(len(rows) == declared,
+          f"the axiom table does not have the declared {declared} rows but {len(rows)}")
+    gaps = {}
+    for (kind, n), (table, seen) in all_scans.items():
+        missing = [name_of(m) for m in range(1 << len(SHORT)) if m not in table]
+        if missing:
+            gaps[f"{kind}:{n}"] = {"rows": len(missing),
+                                   "every_missing_subset_contains_A5": all("A5" in name
+                                                                           for name in missing)}
+            check(all("A5" in name for name in missing),
+                  f"a subset missing from {kind}:{n} does not contain A5")
+            check(not any("A5" in d["axioms"] for key, d in rows.items()
+                          if key.startswith(f"{kind}:{n}:")),
+                  f"a row of {kind}:{n} contains A5 although the block misses its subsets")
+    check(sorted(gaps) == ["universal:2", "universal:3"],
+          f"the blocks with rows missing are not the universal frame at two and three worlds: {sorted(gaps)}")
+    check(all(v["rows"] == 1 << (len(SHORT) - 1) for v in gaps.values()),
+          "a block does not miss exactly the sixty-four subsets containing A5")
+    check(sum(v["rows"] for v in gaps.values()) == combinations - len(rows) == 128,
+          "the missing rows are not the difference between the declared combinations and the table")
+    check(mask_of(["A5"]) not in all_scans[("universal", 2)][0]
+          and mask_of(["A5"]) not in all_scans[("universal", 3)][0],
+          "A5 alone has a model under the universal frame above one world")
     check(forcing, "no declared axiom set forces the conclusion within the bound")
     check(never, "no declared axiom set refuses the conclusion within the bound")
 
@@ -414,6 +446,22 @@ def s2_table(all_scans):
     return {
         "models_enumerated": totals,
         "rows": rows,
+        "axiom_table_rows": len(rows),
+        "subset_and_block_combinations": combinations,
+        "rows_missing": combinations - len(rows),
+        "blocks_with_rows_missing": sorted(gaps),
+        "rows_missing_by_block": gaps,
+        "why_rows_are_missing": "a row is written only where a model of the block satisfies the"
+                                " subset, and A5 is satisfied by no model of the universal frame at"
+                                " two or three worlds, so the sixty-four subsets containing A5"
+                                " contribute no row in each of those two blocks",
+        "the_first_two_axioms_are_pruning_conditions": "the enumeration admits only positivity"
+                                                       " assignments that satisfy A1 and A2 at a"
+                                                       " world, so those two axioms hold by"
+                                                       " construction in every enumerated model and"
+                                                       " the model count of their row is the size of"
+                                                       " a pruned enumeration, not the result of an"
+                                                       " independent scan",
         "sets_forcing_the_conclusion": forcing,
         "sets_never_admitting_the_conclusion": never,
         "minimal_forcing": minimal_forcing,
@@ -435,6 +483,7 @@ def s3_necessary_existence(all_scans):
     equivalence = 0
     others = 0
     unique = None
+    per_block = {f"{kind}:{n}": 0 for kind in FRAME_CLASSES for n in (1, 2, 3)}
     for kind in FRAME_CLASSES:
         for n in (1, 2, 3):
             for model in enumerate_models(n, kind):
@@ -442,6 +491,7 @@ def s3_necessary_existence(all_scans):
                 if not (f["A1"] and f["A2"] and f["A5"]):
                     continue
                 total += 1
+                per_block[f"{kind}:{n}"] += 1
                 if f["conclusion"] == f["collapse"]:
                     equivalence += 1
                 if f["A3"] and f["A4"] and f["A6"] and f["A1c"]:
@@ -449,6 +499,17 @@ def s3_necessary_existence(all_scans):
                 if kind == "equivalence" and n == 3:
                     unique = model
     check(total > 0, "no model of the three axioms was found")
+    check(total == CONTRACT["objects"]["expected_models_of_the_three_axioms"],
+          f"the three axioms do not have the declared {CONTRACT['objects']['expected_models_of_the_three_axioms']} models")
+    check(sum(per_block.values()) == total,
+          "the per-block tally of the three-axiom models does not sum to the total")
+    # the eighty-six are spread over ten of the twelve blocks: the universal frame at
+    # two and three worlds contributes none, because A5 has no model there, so the
+    # figure must not be read as one model per class
+    check(per_block["universal:2"] == 0 and per_block["universal:3"] == 0,
+          "the three axioms have a model under the universal frame above one world")
+    check(sum(1 for count in per_block.values() if count) == 10,
+          "the three-axiom models are not spread over ten of the twelve blocks")
     check(equivalence == total,
           "the conclusion and the constancy of every property come apart inside the axioms")
     check(0 < others < total,
@@ -471,6 +532,9 @@ def s3_necessary_existence(all_scans):
           "the godlike worlds and the worlds of necessary existence are not every world there")
     return {
         "models_of_the_three_axioms": total,
+        "models_of_the_three_axioms_by_frame_class_and_worlds": per_block,
+        "blocks_contributing_a_model": sorted(k for k, count in per_block.items() if count),
+        "blocks_contributing_no_model": sorted(k for k, count in per_block.items() if not count),
         "models_where_the_conclusion_agrees_with_the_constancy_of_every_property": equivalence,
         "models_that_also_satisfy_the_other_four": others,
         "the_conclusion_holds_exactly_where_every_property_is_constant": True,
@@ -561,6 +625,9 @@ def s5_degenerate(all_scans):
 
 def run(output=None):
     started = time.perf_counter_ns()
+    # the table's declared row count is read from the contract here as well, so the
+    # section that compares against it does not depend on how this module was entered
+    CONTRACT.update(json.loads((HERE / "contract.json").read_text(encoding="utf-8")))
     all_scans = scans()
     sections = {
         "S1_semantics": s1_semantics(),
@@ -633,6 +700,7 @@ def main():
     args = parser.parse_args()
     contract = json.loads((HERE / "contract.json").read_text(encoding="utf-8"))
     LIMITS.update(contract["budget"])
+    CONTRACT.update(contract)
     install_limits()
     report, _ = run(args.output)
     print(json.dumps({"status": report["status"], "assertions": report["assertions"]},

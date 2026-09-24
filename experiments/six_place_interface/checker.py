@@ -7,7 +7,10 @@ arithmetic object declared in contract.json, and any classical name that might b
 attached to one of them stays in the residual.
 
 Everything reported is decided by exhaustion over a declared finite set, and the
-size of each exhausted set is reported with the result.
+size of each exhausted set is reported with the result. One pair of figures is an
+exception and is labelled as one: the declared state count of 731 and the two
+declared states outside the address space are read from contract.json, because a
+declared state set is not enumerated here.
 """
 from fractions import Fraction as F
 from itertools import product as iproduct
@@ -328,11 +331,27 @@ ZAN_COUNT = 3 ** N_ZAN
 ADDRESS_COUNT = 3 ** N_TERN
 
 
+def declared_states_outside_the_address_space():
+    """The declared shortfall, read from contract.json rather than restated here.
+
+    contract.json declares that two declared states lie outside the address space, so
+    the interface is declared to carry 731 states against the 729 addresses this
+    checker enumerates. This file contains no enumeration of a declared state set: it
+    counts no state and measures no shortfall, and the pair "731 against 729" is
+    arithmetic on a declared number and a computed one, not a count of anything found.
+    Reading the declaration instead of typing it again keeps the two figures from
+    drifting apart.
+    """
+    contract = json.loads((HERE / "contract.json").read_text(encoding="utf-8"))
+    return contract["objects"]["declared_states_outside_the_address_space"]
+
+
 def zan_digits(zero_based):
     return (zero_based % 3, zero_based // 3)
 
 
 def s5_ternary_interface():
+    declared_outside = declared_states_outside_the_address_space()
     check(HEAD_COUNT == 81 and ZAN_COUNT == 9 and ADDRESS_COUNT == 729,
           "the ternary address count is not 81 x 9 = 729")
     check(len({9 * h + z for h in range(HEAD_COUNT) for z in range(ZAN_COUNT)}) == 729,
@@ -383,8 +402,19 @@ def s5_ternary_interface():
         "numeral_successor_steps_carrying_into_a_head_place": 81,
         "declared_and_numeral_agree_on": agree,
         "numeral_steps_outside_the_declared_domain": len(numeral - declared),
-        "declared_states_without_an_address": 2,
-        "declared_state_count": ADDRESS_COUNT + 2,
+        # Declarations, not measurements. The checker enumerates the 729 addresses and
+        # nothing else: the 731 declared states and the shortfall of 2 are declared
+        # numbers, read at the top of this section from contract.json rather than typed
+        # here. The first key keeps its retained name because
+        # tests/python/test_six_place_interface.py reads it; the second is renamed so
+        # that it does not read as a computed count.
+        "declared_states_without_an_address": declared_outside,
+        "declared_state_count_declared_in_the_contract": ADDRESS_COUNT + declared_outside,
+        "declared_state_count_source":
+            "declared, not computed: read from contract.json objects."
+            "declared_states_outside_the_address_space = "
+            f"{declared_outside}, added to the {ADDRESS_COUNT} computed addresses; this "
+            "checker enumerates no declared state set and measures no shortfall",
         "exhausted_addresses": 729,
     }
 

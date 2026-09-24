@@ -31,8 +31,11 @@ something I did not expect when I started. Three results:
    enumerable at this budget, which is stated rather than hidden.
 3. **The "prior" I set out to compute is a bad measure of surprise**, and the
    arithmetic says so on its own: the smallest prior in the table belongs to the
-   *coarsest* division, and a prior can be made arbitrarily small by choosing a
-   weak level rather than a remarkable one. §5 is that argument.
+   first quarter, the division sitting at the *weakest level that has a
+   non-trivial rival count*, and a prior can be made arbitrarily small by
+   choosing a weak level rather than a remarkable one. §5 is that argument, and
+   it also fixes the range over which the price is monotone in the level: one
+   place to four, the nought-place level being the exception.
 
 **No text and no corpus count is imported.** The address space and the eight
 declared divisions are in this experiment's contract. No corpus is opened.
@@ -96,7 +99,13 @@ Three remarks, in order of how much they are worth.
   table has ten rows because the multiples of nine in `[0, 81]` are ten.
 - **The distribution is symmetric** — `d(s) = d(81−s)` — and that is *forced*,
   not found: the complement of a set expressible by `S` is expressible by `S`.
-  It is reported as a consistency check on the enumeration and not as a result.
+  The checker now decides it in two steps rather than assuming it: it verifies by
+  exhaustion over all 3014 sets that the union is closed under complement, and it
+  then compares the five independent mirror pairs `d(0)=d(81)`, `d(9)=d(72)`,
+  `d(18)=d(63)`, `d(27)=d(54)` and `d(36)=d(45)`. It is reported as a
+  consistency check on the enumeration and not as a result, and the pairs it
+  compared are recorded in the evidence under
+  `size_distribution_mirror_pairs`.
 - **The coarse window is minuscule.** 3014 sets out of `2^81` is a fraction of
   about `1.2 · 10^{−21}`, while a *single* three-place division already has
   134 217 728 sets. What is expressible at one or two places is a vanishing
@@ -171,14 +180,24 @@ measures the level, not the division.** It prices definability, as promised in
 the contract, and it explicitly cannot be read as a measure of how surprising,
 intended or meaningful a division is.
 
+**Where the monotonicity actually holds.** The table's prices fall as the level
+weakens *from one place to four*: `5.2 · 10^{−21}` at one place, `3/14 493 768 575
+≈ 2.1 · 10^{−10}` at two, `1/790 ≈ 1.3 · 10^{−3}` at three, and `1` at four. The
+**nought-place level breaks the pattern in the other direction**: the whole head
+set is the only set of size 81, it is definable by no places at all, and its price
+is therefore exactly `1` — the largest entry in the table. So the statement the
+experiment supports is a statement about levels 1 to 4, with level 0 named as the
+exception, and not a statement about "the level" in general.
+
 This is the second time in this line that a number I computed turned out to be
 about the wrong object. 0218 corrected a coincidence price upward by a factor of
 33 because the property in question hit 8.6 heads rather than one. Here the
-correction is conceptual and larger: the quantity is monotone in the weakness of
-the level, so its ordering is close to *backwards* from the ordering one would
-want as a surprise measure. Under a uniform null over subsets of a fixed size —
-the null 0218 used — every same-size division has the same probability, and the
-differences between these ratios are entirely differences between levels.
+correction is conceptual and larger: over levels 1 to 4 the quantity is monotone
+in the weakness of the level, so its ordering is close to *backwards* from the
+ordering one would want as a surprise measure, while the trivial level 0 sits at
+the top. Under a uniform null over subsets of a fixed size — the null 0218 used —
+every same-size division has the same probability, and the differences between
+these ratios are entirely differences between levels.
 
 ## 6. A number this checker got wrong, and the fix
 
@@ -226,14 +245,18 @@ measured are coordinate sets.
 One placement fact is a real constraint on any story: only one of the six
 two-place partitions has a declared block, so the alignment is not the generic
 outcome of "some pair of places happens to match something". The 54 nine-element
-rivals are spread six to a partition, one of which is the declared one, and each
-rival belongs to exactly one two-place partition.
+rivals are **nine to each** of the six two-place partitions — 6 × 9 = 54 — and
+each rival belongs to exactly one two-place partition. (Six is a different
+number in the same section: it is the count of rivals containing the first head,
+one per partition.)
 
 ## 8. What the checker ran
 
 `experiments/definability_spectrum/checker.py` against
-`experiments/definability_spectrum/contract.json`, five sections, **98
-assertions**, `ExternalExactPass`, in 0.13 s wall.
+`experiments/definability_spectrum/contract.json`, five sections, **111
+assertions**, `ExternalExactPass`, in about a tenth of a second (the retained run
+records the wall time; it is not an acceptance test and is stripped before the
+fresh run is compared with the retained evidence).
 
 `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; **no
 address-space ceiling is installed**, because this checker launches no child
@@ -255,8 +278,8 @@ No floating-point value enters any acceptance test: the prices are compared as
   text.** The address formula is reported elsewhere to be the text's own, so
   address-expressibility and the text's naming are not independent, and this
   experiment neither tests that independence nor concludes from it. §5 shows the
-  ratio is also monotone in the weakness of the level, which makes it a worse
-  candidate for evidence, not a better one.
+  ratio is also monotone in the weakness of the level from one place to four,
+  which makes it a worse candidate for evidence, not a better one.
 - **No statistical claim of any kind is made.** There is no null model here, no
   threshold and no significance; the sweep that had one is 0218, and its uniform
   null was already shown to under-predict for arithmetic properties.
@@ -265,7 +288,9 @@ No floating-point value enters any acceptance test: the prices are compared as
   level-3 union lies between 54 and 11700 for size nine. Nothing here reports a
   level-3 union count as exact.
 - **`μ = 4` is vacuous.** The four-place algebra is the whole power set, so a
-  division needing four places meets every set of its size and its price is 1.
+  division needing four places meets every set of its size and its price is 1 —
+  the same price as the whole head set at level nought, which is why the
+  monotonicity of §5 is stated for levels one to four and not for every level.
   Any argument that leans on a division "needing all four places" is leaning on
   a divisibility fact about its size and nothing more.
 - **The organisation by the last places is recorded and not explained**, and no
@@ -277,7 +302,7 @@ No floating-point value enters any acceptance test: the prices are compared as
 ## 10. What changed in the repository
 
 - `experiments/definability_spectrum/checker.py`, `contract.json`,
-  `evidence.json` — the bounded experiment, 98 assertions.
+  `evidence.json` — the bounded experiment, 111 assertions.
 - `tests/python/test_definability_spectrum.py` — twelve tests over the retained
   evidence, the fresh-run payload, the no-overwrite rule, the spectrum, the
   lattice, the prices, the placement, the rivals, the contract's protected list,

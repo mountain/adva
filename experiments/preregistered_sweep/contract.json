@@ -1,10 +1,10 @@
 {
   "schema": "adva.research.preregistered-sweep-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0218-a-definability-theorem-and-a-pre-registered-property-sweep.md",
-  "question": "The eighty-one heads are a four-place ternary address space and the seven hundred twenty-nine praises are partitioned into eighty-one blocks of nine. How many places does a declared set of heads need before the address algebra can define it, and is that number forced by the set's size alone? Given a family of properties of praise numbers declared before any coincidence is examined, and a family of head sets declared independently, how many coincidences should the null produce, and how unlikely is the one coincidence that prompted the question?",
-  "level": "External exact combinatorics and exact rational arithmetic over declared finite sets; the property family and the head-set family are declared in this contract before any containment is evaluated",
+  "question": "The eighty-one heads are a four-place ternary address space and the seven hundred twenty-nine praises are partitioned into eighty-one blocks of nine. How many places does a declared set of heads need before the address algebra can define it, and is that number forced by the set's size alone? Given a family of properties of praise numbers declared in this contract, and a family of head sets declared in this contract, how many coincidences should the null produce, and how unlikely is the one coincidence that prompted the question?",
+  "level": "External exact combinatorics and exact rational arithmetic over declared finite sets; the property family and the head-set family are declared in this contract as objects.declared_properties and objects.declared_head_sets, and the checker reads both families out of this file rather than keeping a copy of them",
   "domain": "The four-place ternary address space of eighty-one heads with its fifteen proper coordinate subsets; the seven hundred twenty-nine praises partitioned into eighty-one blocks of nine; twelve declared arithmetic properties of praise numbers; ten declared head sets; the ordered pairs of distinct heads; and a declared family of arithmetic expressions over thirteen structural constants",
   "objects": {
     "places": 4,
@@ -31,7 +31,7 @@
     "exact integer arithmetic on the ternary places, with fibres and unions of fibres computed by exhaustion",
     "exact rational inclusion and exclusion over binomial coefficients for the null model",
     "exact rational arithmetic over Fraction throughout, with no floating-point value in any acceptance test",
-    "declared construction rules for the property family, evaluated before any coincidence is counted"
+    "declared construction rules for the property family, and the members of both families read out of this contract by name rather than kept as a copy in the checker"
   ],
   "acceptance": [
     "Every fibre of every one of the fifteen proper coordinate subsets has size three to the number of free places, so a set definable by k places has size divisible by three to the four minus k",
@@ -41,11 +41,11 @@
     "The post-hoc property of praises that are both prime and centred squares has nine members, selects the nine declared heads, and contains both prison heads, with probability the computed fraction, about one per cent",
     "That probability is more than thirty times the naive price first reported, which counted a nine-praise property as selecting one head instead of eight point six",
     "Every difference of two distinct heads has order dividing three, so any two distinct heads lie in a common cycle of any displacement and the same-cycle relation is total",
-    "The declared expression family covers five hundred one of the seven hundred twenty-nine praises without the trivial constant and five hundred eighteen with it, so whether a given number is expressible depends on the constant list and not on the number"
+    "The declared expression family covers four hundred ninety-seven of the seven hundred twenty-nine praises without the trivial constant and five hundred eighteen with it, so whether a given number is expressible depends on the constant list and not on the number"
   ],
   "protected": [
     "No classical text, edition, transcription, commentary, name table, symbol table, sequence or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
-    "The property family and the head-set family are declared in this contract; no member was added after a containment was observed, and the one coincidence that prompted the question is reported separately as post hoc and is not one of the declared pairs",
+    "The property family and the head-set family are declared in this contract and read from it by the checker, so the families the sweep evaluates are the declared ones; the post-hoc entry is reported separately and is not one of the declared pairs. The declarations and the results were introduced by one commit whose base is the base_commit recorded above, and no earlier timestamped record of the declarations exists in this repository, so the contract claims no sequence in which the families were fixed before the counting and none can be shown from the repository",
     "No claim about what any head, praise or position means, and no claim that any containment is intended by anyone",
     "The head sets named for districts and quarters are coordinate sets, not readings of any text; the nine district representatives are used because an external record names them, and that use is a declaration, not a verification",
     "No claim that the property family is complete or natural; it is a declared family of arithmetic predicates, and a different family would give different counts",
@@ -53,7 +53,7 @@
     "The vacuity result is about a declared relation on the address space and not about any argument anyone made",
     "No claim that an expression's existence shows anything about a number; the coverage result is the whole content of that section",
     "No statistical significance claim: the sweep reports exact probabilities and counts, and the pairs are dependent, so no family-wise tail is computed",
-    "No floating-point value enters any acceptance test",
+    "No floating-point value enters any acceptance test: every comparison in the checker is an integer or Fraction comparison, and the decimal copies in the record are display only",
     "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
   ],
   "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 200000, "output_bytes": 2097152, "correction_replays": 1},

@@ -51,16 +51,22 @@ shift and the cut are declared in this experiment's contract.
 
 ## 2. The price of a hit is the coverage
 
-The family is the one 0218 declared: for constants `a, b` in a set `C` and
-multipliers `k = 2 … 9`, the forms are
+The family is the one 0218 declared: **for ordered pairs of constants `a, b` in a
+set `C`** and multipliers `k = 2 … 9`, the forms are
 
 ```
 a,   a + b,   |a − b|,   k a + b,   k a − b
 ```
 
-kept when the value lies in `Ω = {1, …, 729}`. The bare form carries no partner,
-so a constant that happens to be the target contributes one expression and not
-one per partner — that detail matters in §3.
+kept when the value lies in `Ω = {1, …, 729}`. Two conventions are declared here
+because the counts below depend on them and neither is natural. **The pairs are
+ordered**: `(a, b)` and `(b, a)` are both enumerated, so `a + b` and `|a − b|` are
+each written twice for every unordered pair, and the number of expressions a set
+of size `m` writes is `m + 18m²` rather than `m + 9m²` — every multiplicity in §4
+is therefore a count of ordered pairs, and the checker asserts the count rather
+than assuming it. The bare form carries no partner, so a constant that happens to
+be the target contributes one expression and not one per partner — that detail
+matters in §3.
 
 > **Price.** If `C` is fixed before the target is named and the target is drawn
 > uniformly from `Ω`, then `P(the family names it) = |image(C)| / 729`.
@@ -80,9 +86,15 @@ Two structural facts, both decided by exhaustion and not by argument.
 
 **The image is monotone in the constant set.** Adding a constant can only add
 expressions, so it can only enlarge the image; verified over all 32 nested pairs
-of the ten declared sets. A consequence that matters more than the fact itself:
-**a unique hit cannot be created by adding constants.** It can only be destroyed.
-A claim of uniqueness is therefore a claim about how small `C` was.
+of the ten declared sets. The inclusion itself follows from that definition — an
+expression over the smaller set *is* an expression over the larger one — so the
+checker reports it as a consistency check on the enumeration rather than as a
+finding, and puts the content elsewhere: it verifies that the enumeration writes
+exactly the counted `m + 18m²` expressions for every one of the ten declared sets,
+and that at each of the **22 strictly nested pairs** the strictly larger constant
+set names **strictly more** praises. A consequence that matters more than the
+fact itself: **a unique hit cannot be created by adding constants.** It can only
+be destroyed. A claim of uniqueness is therefore a claim about how small `C` was.
 
 **The first `n` consecutive integers name exactly the first `10n` praises** while
 `10n ≤ 729`, verified for every `n` up to 90 — the whole interval `[1, 10n]` is
@@ -130,8 +142,13 @@ coverage `ρ` a family "hitting" a target is an event of probability `ρ`.
 423 is one of the thirteen constants 0218 declared. So the bare form `a` names
 it, and "the family names 423" is a tautology for that set. This is worth
 separating out because it is invisible in a count: the family names 423 by
-**seven** expressions, but five of them survive removing 423 from `C`, and the
-one that does not is the tautology.
+**seven** expressions, but only **five** of them survive removing 423 from `C`.
+**Two** do not, not one, and both of them are the tautology in a different form —
+the bare form `a` with `a = 423`, and `k·a − b` with `a = b = 423` and `k = 2`,
+which is `2·423 − 423 = 423`. The count of destroyed expressions is now recorded
+in the evidence (`expressions_lost_when_the_target_leaves_the_constants`) and the
+two are named there (`expressions_lost`), so the slip below cannot recur
+unnoticed.
 
 | target | a declared constant? | expressions naming it | once 423 is not a constant |
 |---|---|---|---|
@@ -242,8 +259,8 @@ its source.
 ## 7. What the checker ran
 
 `experiments/coverage_and_crossing/checker.py` against
-`experiments/coverage_and_crossing/contract.json`, five sections, **820
-assertions**, `ExternalExactPass`, in 1.4 s wall.
+`experiments/coverage_and_crossing/contract.json`, five sections, **883
+assertions**, `ExternalExactPass`, in about a second and a half.
 
 `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; **no address-space
 ceiling is installed**, because this checker launches no child process — the
@@ -270,6 +287,13 @@ floats are never read by a test.
 - **The multiplier range and the form list are declared, not natural.** All
   coverage figures belong to `k ≤ 9` and to these five forms. A record that does
   not declare its multiplier range has not stated a computable price.
+- **The pairs of constants are ordered, and that is a declared convention.** Every
+  multiplicity in §4 counts ordered pairs, so `a + b` and `|a − b|` are each
+  written twice for every unordered pair and the expression count of a set of size
+  `m` is `m + 18m²`. Enumerating unordered pairs would divide the counts of those
+  two forms by two and change every multiplicity, the largest one included; the
+  experiment does not do that, and no claim is made that the ordered count is the
+  count a reader would write by hand.
 - **The coverage is a ratio, not a probability of anything that happened.** It is
   the chance a target drawn uniformly and independently of the constant set is
   named, and no target here was drawn that way; it is the right denominator for a
@@ -287,8 +311,8 @@ floats are never read by a test.
 
 ## 9. What changed in the repository
 
-- `experiments/coverage_and_crossing/checker.py`, `contract.json`, `evidence.json`
-  — the bounded experiment, 820 assertions.
+- `experiments/coverage_and_crossing/checker.py`, `contract.json`,
+  `evidence.json` — the bounded experiment, 883 assertions.
 - `tests/python/test_coverage_and_crossing.py` — twelve tests over the retained
   evidence, the fresh-run payload, the no-overwrite rule, the coverage ladder, the
   interval statement, the bracketed minimum, the excluded target, the

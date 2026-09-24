@@ -1,7 +1,7 @@
 {
-  "assertions": 80,
-  "checker_sha256": "e663aaafdef5cbe3e6158aa15879eacd0d02d7c787ff2a4ef24ba292242b3255",
-  "contract_sha256": "639719871fb750529c7069b2ce3dda405468d692d8d572c59cac4be3a43475b5",
+  "assertions": 79,
+  "checker_sha256": "e729a41a8aed85522c24420b7d56bad1a9dab8f0f85545b4a19dc59dab6e6b1b",
+  "contract_sha256": "f8ed1fa1354b12bcca6a013bb48d15055ae7ac7d6919bff311ea356c707a891d",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -18,7 +18,7 @@
     "routes": 1,
     "wall_seconds": 300
   },
-  "rss_high_water_bytes": 39780352,
+  "rss_high_water_bytes": 39763968,
   "schema": "adva.research.gain-and-coverage-evidence.v0",
   "sections": {
     "S1_doubling_quotient": {
@@ -107,6 +107,15 @@
         "1_percent": 113,
         "point_1_percent": 1237
       },
+      "coverage_threshold_index_bounds": {
+        "1_percent": 113,
+        "point_1_percent": 1237
+      },
+      "coverage_threshold_point_counts": {
+        "1_percent": 57,
+        "point_1_percent": 619
+      },
+      "coverage_threshold_units": "an odd serial-number index bound over the odd integers: the point count of the bound is (bound + 1) / 2",
       "covering_radius": "1/44",
       "covering_radius_as_a_share": "1/44",
       "covering_radius_by_division": {
@@ -117,6 +126,7 @@
         "5": "1/10",
         "53": "1/106"
       },
+      "covering_radius_is_attained_at_the_midpoints": true,
       "division": 22,
       "every_subset_satisfies_the_bound": true,
       "exhausted_odd_integers": 826,
@@ -132,7 +142,7 @@
       },
       "reported_maximum_distance": "0.02272",
       "reported_maximum_is_the_covering_radius": true,
-      "thresholds_are_absolute_point_counts": true
+      "thresholds_are_odd_serial_number_index_bounds": true
     },
     "S4_count_arithmetic": {
       "counts": {
@@ -207,7 +217,7 @@
       ],
       "observing_one_is_an_ordinary_event": true,
       "probability_of_at_least_one": "27613783/113379904",
-      "probability_of_at_least_one_float": "0.243564",
+      "probability_of_at_least_one_six_decimals": "0.243551",
       "probability_of_exactly_one": "12252303/56689952",
       "probability_of_none": "85766121/113379904",
       "residues": {
@@ -234,7 +244,9 @@
       },
       "classes": {
         "bracket": {
+          "exact_three_decimals": "0.892",
           "gain": 10224,
+          "published_value_is_the_exact_rounding": true,
           "reported": "0.892",
           "top3": [
             4769,
@@ -245,7 +257,9 @@
           "works": 15
         },
         "ganzhi": {
+          "exact_three_decimals": "0.385",
           "gain": 3957,
+          "published_value_is_the_exact_rounding": true,
           "reported": "0.385",
           "top3": [
             630,
@@ -256,7 +270,9 @@
           "works": 76
         },
         "grade": {
+          "exact_three_decimals": "0.233",
           "gain": 1939,
+          "published_value_is_the_exact_rounding": true,
           "reported": "0.233",
           "top3": [
             165,
@@ -267,7 +283,9 @@
           "works": 90
         },
         "naming": {
+          "exact_three_decimals": "0.308",
           "gain": 6800,
+          "published_value_is_the_exact_rounding": false,
           "reported": "0.307",
           "top3": [
             814,
@@ -278,7 +296,9 @@
           "works": 111
         },
         "position": {
+          "exact_three_decimals": "0.998",
           "gain": 1119,
+          "published_value_is_the_exact_rounding": true,
           "reported": "0.998",
           "top3": [
             683,
@@ -329,6 +349,10 @@
       "largest_gain_is_less_concentrated_than_the_smallest": true,
       "largest_gain_row": "bracket",
       "largest_gain_row_share": "190/213",
+      "naming_exact_three_decimals": "0.308",
+      "naming_published_value": "0.307",
+      "naming_published_value_is_the_truncation_of_its_exact_share": true,
+      "naming_share_is_exactly_a_three_decimal_half_way_value": true,
       "order_by_gain": [
         "bracket",
         "naming",
@@ -343,8 +367,18 @@
         "bracket",
         "position"
       ],
+      "published_three_decimal_values_not_reproduced_by_exact_rounding": [
+        "naming"
+      ],
+      "published_three_decimal_values_reproduced_by_exact_rounding": [
+        "position",
+        "ganzhi",
+        "bracket",
+        "grade"
+      ],
       "rank_correlation_gain_versus_spread": "-1/10",
       "rank_correlation_magnitude": "1/10",
+      "rounding_rule": "exact decimal rounding, halves away from zero, by integer arithmetic",
       "smallest_gain_row": "position",
       "smallest_gain_row_share": "1117/1119",
       "widest_effective_works_ratio_class": "grade"
@@ -356,6 +390,7 @@
         "no speech verb at all": 169,
         "other outside the grammar": 15
       },
+      "component_vectors_with_every_component_positive": 455,
       "component_vectors_with_the_same_aggregate": 969,
       "components": {
         "凡皆": 0,
@@ -368,19 +403,22 @@
         "自始",
         "凡皆"
       ],
+      "components_exactly_zero_source": "declared in contract.json objects.gate_components and restated here; this checker does not verify them against the external record",
       "dominant_cause_share": "169/190",
       "gate": "1/20",
+      "gate_direction": "falsification line: the gate fails when the share is below one twentieth, so it passes when the share is above it",
       "gate_passes": true,
       "gate_passes_with": "7 hits to spare",
+      "gate_source": "wenyan-relation-learning ca0008c, knowledge/relations/tangguoshibu-structure.json",
       "largest_numerator_still_below_the_gate": 9,
       "non_speech_numerator": 16,
       "non_speech_share": "8/95",
-      "non_speech_share_float": "0.0842",
+      "non_speech_share_four_decimals_exact": "0.0842",
       "the_aggregate_does_not_determine_the_components": true,
       "unread": 190,
       "vectors_putting_everything_on_one_component": 1
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 2091321958
+  "wall_ns": 2143652458
 }

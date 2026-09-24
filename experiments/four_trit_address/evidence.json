@@ -1,7 +1,7 @@
 {
-  "assertions": 66,
-  "checker_sha256": "7c981f7144166d3ed6d30ce72a8b6b3f14fc7e8342d169632496e1a46f33f8d6",
-  "contract_sha256": "744b6301d12ad64553ae725e118aca8e4d07a44b4dc6979148e7871b21de3af7",
+  "assertions": 136,
+  "checker_sha256": "ef3f64aca8f94e11f399d974012411f9e6a0d3f3707884fdb1ab972edd5906f3",
+  "contract_sha256": "f67d236c0739b63f4274e06547832082d633d7fd637aa0914e7d9cfb05e0915c",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -18,7 +18,7 @@
     "routes": 1,
     "wall_seconds": 300
   },
-  "rss_high_water_bytes": 26034176,
+  "rss_high_water_bytes": 27017216,
   "schema": "adva.research.four-trit-address-evidence.v0",
   "sections": {
     "S1_no_shift_is_a_pairing": {
@@ -26,14 +26,70 @@
         "1": 1,
         "2": 63
       },
+      "declared_addresses_used": {
+        "毅": [
+          2,
+          1,
+          1,
+          3
+        ],
+        "積": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "窮": [
+          3,
+          2,
+          2,
+          3
+        ],
+        "釋": [
+          1,
+          3,
+          1,
+          3
+        ]
+      },
+      "declared_head_symbols": {
+        "heads": [
+          1,
+          2,
+          3,
+          4,
+          27,
+          28
+        ],
+        "index_from_address_computed": true,
+        "names": [
+          "中",
+          "周",
+          "礥",
+          "閑",
+          "事",
+          "更"
+        ],
+        "tetragram_codepoint_computed": true
+      },
+      "difference_histogram_boxes": {
+        "[1, 1, 1, 1]": 13,
+        "[1, 2, 2, 0]": 6,
+        "[1, 2, 2, 1]": 6,
+        "[2, 1, 2, 0]": 6,
+        "[2, 2, 2, 0]": 24,
+        "[2, 2, 2, 1]": 5
+      },
+      "difference_histogram_boxes_have_order": 3,
+      "difference_histogram_pairs": 60,
       "dominant_differences": {
-        "(1,1,1,1)": [
+        "[1, 1, 1, 1]": [
           1,
           1,
           1,
           1
         ],
-        "(2,2,2,0)": [
+        "[2, 2, 2, 0]": [
           2,
           2,
           2,
@@ -46,6 +102,21 @@
       "exhausted_shifts": 81,
       "fixed_points_of_any_pairing_of_eighty_one": "odd, hence at least one",
       "heads": 81,
+      "named_differences_inside_a_declared_box": 1,
+      "named_pair_differences": {
+        "窮->毅": [
+          2,
+          2,
+          2,
+          0
+        ],
+        "釋->積": [
+          2,
+          1,
+          1,
+          0
+        ]
+      },
       "no_nontrivial_ternary_shift_is_an_involution": true,
       "nonzero_shifts": 80,
       "orbit_size_per_nonzero_ternary_shift": 3,
@@ -79,7 +150,15 @@
       "four_ternary_places_carry_placewise": 16,
       "heads": 81,
       "information_optimal_binary_places_needed": 7,
+      "one_bit_per_place_allocation": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "one_bit_per_place_binary_places_left_unused": 2,
       "one_bit_per_place_image": 16,
+      "one_bit_per_place_share_of_the_words": "1/4",
       "placewise_allocation_attaining_the_bound": [
         2,
         2,
@@ -92,6 +171,7 @@
       "placewise_minimum_largest_fibre_dropping_a_place": 3,
       "six_ternary_places_carry_all_sixty_four": true,
       "the_declared_injection_is_coordinate_wise": false,
+      "the_one_bit_per_place_image_is_constructed": true,
       "unconstrained_injection_exists": true
     },
     "S3_odometer": {
@@ -137,9 +217,27 @@
       "independent_pair_variance_of_the_mean_percentile": "1/1512",
       "mean_percentile": "221/500",
       "pairs_are_not_disjoint": true,
-      "percentile_convention": "a rank r out of n scores (r - 1/2) / n, so the expected mean is exactly one half"
+      "percentile_convention": "a rank r out of n scores (r - 1/2) / n, so the expected mean is exactly one half",
+      "similarity_witness_measure": "the size of the intersection over the size of the union of the two attribute sets",
+      "similarity_witness_pairs_differ": true,
+      "similarity_witness_scores": {
+        "opposite": "1/4",
+        "unrelated": "1/4"
+      }
     },
     "S5_counting_unit": {
+      "control_documents_declared": [
+        {
+          "passages": 60,
+          "restatements": 0,
+          "section_titles": 0
+        },
+        {
+          "passages": 60,
+          "restatements": 12,
+          "section_titles": 12
+        }
+      ],
       "documents_declared": [
         {
           "passages": 60,
@@ -152,7 +250,7 @@
           "section_titles": 0
         }
       ],
-      "exhausted_documents": 2,
+      "exhausted_documents": 4,
       "passage_level_count_is_an_upper_bound_on_restatements": true,
       "passage_level_counts": [
         0,
@@ -171,7 +269,8 @@
           "titles": 12
         }
       },
-      "the_count_is_independent_of_the_title_level_structure": true
+      "the_count_is_independent_of_the_title_level_structure": true,
+      "the_count_is_taken_over_declared_passages": true
     },
     "S6_role_orders": {
       "a_one_role_frame_has": 1,
@@ -189,9 +288,10 @@
         "3": 6,
         "4": 24
       },
+      "role_orderings_enumerated": true,
       "the_single_role_frame_is_pinned_by_arity": true
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 11368958
+  "wall_ns": 11820375
 }

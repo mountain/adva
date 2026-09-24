@@ -1,16 +1,19 @@
 """Exact external checker for a four-place ternary address and the shape of a pairing.
 
 This checker never constructs, reads or authorizes an Adva semantic identity. It
-uses integers and Fractions only; no floating-point value enters any acceptance
-test. It imports no text and no corpus count: the addresses, coordinates and
-reported counts it uses are declared in contract.json and are checked
-arithmetically rather than re-measured.
+uses integers, tuples, Fractions and unicodedata only; every acceptance test
+compares integers or exact rationals. It opens no corpus and imports no corpus
+count: the addresses, head names, histogram boxes, counts and documents it uses
+are declared in contract.json and are checked arithmetically rather than
+re-measured. The six head names and the two tetragram glosses the contract carries
+are the only text in it, and what is computed from them is the address index of
+each head and the codepoint of each gloss.
 
 Everything reported is decided by exhaustion over a declared finite set, and the
 size of each exhausted set is reported with the result.
 """
 from fractions import Fraction as F
-from itertools import product
+from itertools import product, permutations
 import argparse
 import hashlib
 import json
@@ -18,6 +21,7 @@ from pathlib import Path
 import resource
 import signal
 import time
+import unicodedata
 
 HERE = Path(__file__).resolve().parent
 COUNTS = {"assertions": 0}
@@ -31,6 +35,18 @@ def check(value, message):
         raise RuntimeError("Unknown: assertion budget")
     if not value:
         raise ValueError(message)
+
+
+def declared_objects():
+    """The declared numbers this experiment uses, read from contract.json."""
+    contract = json.loads((HERE / "contract.json").read_text(encoding="utf-8"))
+    return contract["objects"]
+
+
+def address_to_index(address):
+    """A declared one-based address to the zero-based head index of the formula."""
+    fang, zhou, bu, jia = address
+    return 27 * (fang - 1) + 9 * (zhou - 1) + 3 * (bu - 1) + (jia - 1)
 
 
 # ------------------------------- S1: in exponent three no nonzero shift is a pairing
@@ -135,11 +151,85 @@ def s1_no_shift_is_a_pairing():
           "the smallest reported pair count also exceeds the pairing bound")
 
     # the two dominant differences are both of order three
-    dominant = {"(2,2,2,0)": (2, 2, 2, 0), "(1,1,1,1)": (1, 1, 1, 1)}
-    for name, v in dominant.items():
+    objects = declared_objects()
+    dominant = {tuple(v): tuple(v) for v in objects["dominant_differences"]}
+    for v in dominant:
+        check(v != zero, "a declared dominant difference is the zero difference")
         check(orders[v] == 3,
-              f"the dominant difference {name} does not have order three")
-        check(add(v, v) != zero, f"twice the dominant difference {name} vanishes")
+              f"the dominant difference {v} does not have order three")
+        check(add(v, v) != zero, f"twice the dominant difference {v} vanishes")
+
+    # the six heads the external record exhibits: the address index and the tetragram
+    symbols = objects["declared_head_symbols"]["heads"]
+    base = int(objects["declared_head_symbols"]["symbol_base"].split("+")[1], 16)
+    check(len(symbols) == 6, "the contract does not declare six head names")
+    check(objects["declared_head_symbols"]["symbol_base"] == "U+1D306",
+          "the declared symbol base is not U+1D306")
+    check(len({h["name"] for h in symbols}) == 6, "two declared head names are the same name")
+    heads = [h["head"] for h in symbols]
+    check(all(1 <= h <= HEADS for h in heads) and heads == sorted(heads)
+          and len(set(heads)) == 6,
+          "the declared head numbers are not six distinct heads in increasing order")
+    for entry in symbols:
+        index = address_to_index(entry["address"])
+        check(index + 1 == entry["head"],
+              f"the address declared for {entry['name']} is not the address of its head number")
+        check(all(1 <= place <= RADIX for place in entry["address"]),
+              f"a place of the address declared for {entry['name']} leaves the ternary range")
+        character = chr(base + entry["head"] - 1)
+        check(unicodedata.name(character) == "TETRAGRAM FOR " + entry["tetragram_gloss"],
+              f"the tetragram at the declared head number is not the declared gloss for {entry['name']}")
+    check([h["name"] for h in symbols] == ["中", "周", "礥", "閑", "事", "更"],
+          "the declared head names are not the six the external record exhibits")
+    check(symbols[4]["head"] - symbols[3]["head"] == 23
+          and symbols[5]["head"] - symbols[4]["head"] == 1,
+          "the declared transmitted order does not jump into the second place at the declared head")
+
+    # the reported difference histogram, whose boxes and named pairs are declared
+    histogram = objects["difference_histogram"]
+    boxes = {tuple(b["difference"]): b["pairs"] for b in histogram["boxes"]}
+    check(len(histogram["boxes"]) == 6 and len(boxes) == 6,
+          "the declared difference histogram does not have six distinct boxes")
+    check(all(v > 0 for v in boxes.values()),
+          "a declared difference box has no pairs in it")
+    check(all(all(0 <= k < RADIX for k in d) for d in boxes),
+          "a declared difference box leaves the ternary space")
+    check(all(d != zero for d in boxes),
+          "a declared difference box holds the zero difference, which no pair can have")
+    check(all(orders[d] == 3 for d in boxes),
+          "a declared difference box holds a difference that is not of order three")
+    counted = sum(boxes.values())
+    check(counted == 60, "the declared histogram boxes do not add up to sixty pairs")
+    top_two = [d for d in sorted(boxes, key=lambda d: -boxes[d])][:2]
+    check(sorted(top_two) == sorted(dominant),
+          "the two largest declared histogram boxes are not the two declared dominant differences")
+    check(set(dominant) <= set(boxes),
+          "a declared dominant difference is not a box of the declared histogram")
+
+    # the two named pairs, recomputed from the declared addresses
+    addresses = {k: tuple(v) for k, v in objects["declared_addresses"].items()}
+    check(set(addresses) == {"釋", "窮", "毅", "積"},
+          "the contract does not declare the four addresses the note reports")
+    check(len({address_to_index(a) for a in addresses.values()}) == 4,
+          "two declared addresses are the same head")
+    named = {}
+    for entry in histogram["named_pairs"]:
+        first, second = entry["first"], entry["second"]
+        check(first in addresses and second in addresses,
+              "a named pair names a head that has no declared address")
+        diff = tuple((addresses[second][k] - addresses[first][k]) % RADIX for k in range(PLACES))
+        named[f"{first}->{second}"] = diff
+        check(diff == tuple(entry["difference"]),
+              f"the declared difference of the pair {first} and {second} is not the one its addresses give")
+        check(orders[diff] == 3,
+              f"the difference of the pair {first} and {second} is not of order three")
+    check(len(histogram["named_pairs"]) == 2,
+          "the contract does not declare the two named pairs")
+    in_a_box = [k for k, d in named.items() if d in boxes]
+    check(len(in_a_box) == 1,
+          "the declared named differences do not fall one inside and one outside the declared boxes")
+    check("窮->毅" in in_a_box and "釋->積" not in in_a_box,
+          "the named difference inside a declared box is not the one the note gives")
     return {
         "radix": RADIX,
         "places": PLACES,
@@ -159,8 +249,18 @@ def s1_no_shift_is_a_pairing():
         "fixed_points_of_any_pairing_of_eighty_one": "odd, hence at least one",
         "reported_pair_counts": reported_pair_counts,
         "reported_counts_above_the_bound": len(over),
-        "dominant_differences": {k: list(v) for k, v in dominant.items()},
+        "dominant_differences": {str(list(k)): list(v) for k, v in sorted(dominant.items())},
         "dominant_differences_have_order": 3,
+        "declared_head_symbols": {"heads": heads,
+                                  "names": [h["name"] for h in symbols],
+                                  "index_from_address_computed": True,
+                                  "tetragram_codepoint_computed": True},
+        "difference_histogram_boxes": {str(list(k)): v for k, v in sorted(boxes.items())},
+        "difference_histogram_pairs": counted,
+        "difference_histogram_boxes_have_order": 3,
+        "named_pair_differences": {k: list(v) for k, v in sorted(named.items())},
+        "named_differences_inside_a_declared_box": len(in_a_box),
+        "declared_addresses_used": {k: list(v) for k, v in sorted(addresses.items())},
         "exhausted_shifts": len(Z3),
     }
 
@@ -197,10 +297,11 @@ def placewise_fibre_lower_bound(radix, bin_places, tern_places, min_bits):
     return best
 
 
-def coordinate_wise_image_bound(radix, bin_places, tern_places):
+def coordinate_wise_image_bound(radix, bin_places, tern_places, max_bits_per_place=None):
     """Largest image of a coordinate-wise map from bin_places bits to tern_places trits.
 
     A ternary place reading k binary places can take min(radix, 2**k) distinct values.
+    With max_bits_per_place set, a place may not be allotted more than that many.
     """
     best = None
 
@@ -214,10 +315,29 @@ def coordinate_wise_image_bound(radix, bin_places, tern_places):
                 best = size
             return
         for take in range(remaining + 1):
+            if max_bits_per_place is not None and take > max_bits_per_place:
+                break
             walk(remaining - take, index + 1, current + [take])
 
     walk(bin_places, 0, [])
     return best
+
+
+def one_bit_per_place_reading(bin_places=6, tern_places=PLACES):
+    """The placewise reading that allots exactly one binary place to every place.
+
+    Six binary places are available and there are four ternary places, so four
+    binary places are read, one per ternary place, and the remaining two cannot be
+    used: a place allotted one binary place receives two of its three values, and
+    a binary place has nowhere else to go. The image of all sixty-four words under
+    this reading is constructed here and returned with the words it came from.
+    """
+    image, per_word = set(), {}
+    for m in range(2 ** bin_places):
+        read = tuple(m >> i & 1 for i in range(tern_places))
+        per_word[m] = read
+        image.add(read)
+    return image, per_word
 
 
 def base_three_digits(m, places):
@@ -242,9 +362,24 @@ def s2_capacity():
           "the smallest largest fibre when a place may be dropped is not three")
     check(placewise > counting and placewise_dropping > counting,
           "a placewise reading does not cost more than counting alone")
-    single_bit = 2 ** PLACES
-    check(single_bit == 16,
-          "one binary place per ternary place does not reach sixteen of the sixty-four words")
+    # the one-bit-per-place reading is constructed and its image counted, rather
+    # than taken from the identity 2 ** PLACES
+    one_bit_image, one_bit_words = one_bit_per_place_reading()
+    single_bit = len(one_bit_image)
+    check(len(one_bit_words) == len(Z2),
+          "the one-bit-per-place reading was not run over all sixty-four words")
+    check(single_bit == 2 ** PLACES,
+          "the image of the one-bit-per-place reading is not the product of two over four places")
+    check(all(all(place in (0, 1) for place in read) for read in one_bit_image),
+          "the one-bit-per-place reading reaches a value a binary place cannot carry")
+    check(len(one_bit_image) < len(Z2) and len(one_bit_image) < HEADS,
+          "the one-bit-per-place reading is not strictly short of both the words and the heads")
+    check(all(one_bit_words[m] == one_bit_words[m | (1 << 4)] for m in range(len(Z2))),
+          "the two binary places the reading cannot use change its image")
+    check(coordinate_wise_image_bound(RADIX, 6, PLACES, max_bits_per_place=1) == single_bit,
+          "the allocation bound with one bit per place does not agree with the constructed image")
+    check(single_bit < coordinate_wise_image_bound(RADIX, 6, PLACES),
+          "the one-bit-per-place reading is not strictly worse than the best allocation")
 
     coordinate = coordinate_wise_image_bound(RADIX, 6, PLACES)
     check(coordinate == 36,
@@ -289,6 +424,10 @@ def s2_capacity():
         "coordinate_wise_largest_image": coordinate,
         "coordinate_wise_largest_image_share": str(F(coordinate, len(Z2))),
         "one_bit_per_place_image": single_bit,
+        "one_bit_per_place_share_of_the_words": str(F(single_bit, len(Z2))),
+        "one_bit_per_place_allocation": [1, 1, 1, 1],
+        "one_bit_per_place_binary_places_left_unused": 6 - PLACES,
+        "the_one_bit_per_place_image_is_constructed": True,
         "unconstrained_injection_exists": True,
         "the_declared_injection_is_coordinate_wise": False,
         "six_ternary_places_carry_all_sixty_four": True,
@@ -379,6 +518,12 @@ MEAN_PERCENTILE = F(442, 1000)
 HEADS_TOUCHED = 81
 
 
+def jaccard(left, right):
+    """The declared measure: the intersection over the union of two attribute sets."""
+    a, b = set(left), set(right)
+    return F(len(a & b), len(a | b))
+
+
 def s4_opposition():
     deviation = F(1, 2) - MEAN_PERCENTILE
     check(deviation == F(29, 500), "the deviation from the expected percentile is not twenty-nine five-hundredths")
@@ -396,6 +541,28 @@ def s4_opposition():
           "a head does not appear more than three times on average, so the pairs would be nearly disjoint")
     check(PAIRS_EXTRACTED > HEADS_TOUCHED // 2,
           "the extracted pair count does not exceed the disjoint bound, so the dependence claim is empty")
+
+    # the declared instance: one pair declared opposite and one declared unrelated,
+    # scored with the same measure, which is computed here exactly
+    witness = declared_objects()["similarity_witness"]
+    check(len(witness["pairs"]) == 2,
+          "the contract does not declare the two pairs of the similarity witness")
+    relations = [p["relation"] for p in witness["pairs"]]
+    check(sorted(relations) == ["opposite", "unrelated"],
+          "the declared similarity witness does not declare one opposite and one unrelated pair")
+    scores = {p["relation"]: jaccard(p["left"], p["right"]) for p in witness["pairs"]}
+    pairs = {p["relation"]: (tuple(sorted(p["left"])), tuple(sorted(p["right"]))) for p in witness["pairs"]}
+    check(pairs["opposite"] != pairs["unrelated"],
+          "the two declared pairs carry the same attribute sets, so the witness is degenerate")
+    check(len(pairs["opposite"][0]) != len(pairs["unrelated"][0]),
+          "the two declared pairs have the same left size, so the equality could come from it")
+    check(scores["opposite"] == scores["unrelated"],
+          "the declared measure separates the declared opposite pair from the declared unrelated pair")
+    check(scores["opposite"] < F(1, 2) and scores["opposite"] > 0,
+          "the shared value is not a low but nonzero similarity, so the witness would be about zeros")
+    separable = scores["opposite"] != scores["unrelated"]
+    check(separable is False,
+          "the declared measure separated the two declared pairs, so it was a test of the distinction")
     return {
         "extracted_pairs": PAIRS_EXTRACTED,
         "heads": HEADS_TOUCHED,
@@ -408,31 +575,66 @@ def s4_opposition():
         "deviation_in_independent_pair_standard_errors_approx": "2.26",
         "average_appearances_per_head": str(appearances),
         "pairs_are_not_disjoint": True,
-        "a_similarity_measure_cannot_separate_opposition_from_unrelatedness": True,
+        "similarity_witness_measure": witness["measure"],
+        "similarity_witness_scores": {k: str(v) for k, v in sorted(scores.items())},
+        "similarity_witness_pairs_differ": True,
+        "a_similarity_measure_cannot_separate_opposition_from_unrelatedness": not separable,
         "exhausted_pairs_for_the_percentile_population": 3240,
     }
 
 
 # --------------------------------------- S5: the counting unit decides visibility
 
-def document(titles, passages, restatements):
-    """A declared document: a structure in the titles, restated in some passages."""
-    return {"section_titles": titles, "passages": passages, "restatements": restatements}
+def document(section_titles, passages, restating):
+    """A declared document: a structure in its titles, restated in declared passages."""
+    return {"section_titles": section_titles, "passages": passages,
+            "restating_passage_indices": sorted(restating)}
 
 
 def passage_level_count(doc):
-    return doc["restatements"]
+    """How many of the document's declared passages restate a section title.
+
+    The count is taken over the declared passages, so it is a count and not a
+    relabelling: the title count is not an argument of this function.
+    """
+    return len({i for i in doc["restating_passage_indices"] if 0 <= i < doc["passages"]})
 
 
 def s5_counting_unit():
-    a = document(titles=12, passages=60, restatements=0)
-    b = document(titles=0, passages=60, restatements=12)
+    objects = declared_objects()
+    declared_documents = objects["documents"]
+    check(len(declared_documents) == 2,
+          "the contract does not declare the two documents of the counting unit")
+    a, b = [document(d["section_titles"], d["passages"], d["restating_passage_indices"])
+            for d in declared_documents]
+    for doc, declared in zip((a, b), declared_documents):
+        check(all(0 <= i < doc["passages"] for i in doc["restating_passage_indices"]),
+              "a declared restating passage index is not a passage of its document")
+        check(passage_level_count(doc) == declared["restatements"],
+              "the declared restatement count is not the count of the declared restating passages")
     check(passage_level_count(a) == 0 and passage_level_count(b) == 12,
           "the declared documents do not exhibit a maximal title-level structure counting zero")
     check(a["section_titles"] > b["section_titles"] and passage_level_count(a) < passage_level_count(b),
           "the passage-level count does not order the two documents against their structure")
     check(passage_level_count(b) <= b["passages"],
           "the passage-level count exceeds the passage count")
+
+    # the count does not read the title count: two further declared documents
+    # carry the same restating passages with the title counts swapped
+    controls = [document(d["section_titles"], d["passages"], d["restating_passage_indices"])
+                for d in objects["counting_unit_controls"]]
+    check(len(controls) == 2, "the contract does not declare the two counting-unit controls")
+    pairs = list(zip((a, b), controls))
+    check(all(x["restating_passage_indices"] == y["restating_passage_indices"] for x, y in pairs),
+          "a control does not carry the same restating passages as the document it controls")
+    check(all(x["section_titles"] != y["section_titles"] for x, y in pairs),
+          "a control does not change the title count, so the comparison is empty")
+    independent = all(passage_level_count(x) == passage_level_count(y) for x, y in pairs)
+    check(independent,
+          "the passage-level count changed when only the title count changed")
+    check({passage_level_count(c) for c in controls} == {0, 12},
+          "the controls do not reproduce the two declared counts under swapped title counts")
+
     reported = {"poetry_grades": {"titles": 12, "passage_level_hits": 4, "passages": 60},
                 "literary_mind": {"passage_level_hits": 3, "passages": 462},
                 "corpus_wide_class_gain": 1939}
@@ -448,14 +650,20 @@ def s5_counting_unit():
           == F(1, 15),
           "the passage-level share in the ranking work is not one fifteenth")
     return {
-        "documents_declared": [a, b],
+        "documents_declared": [{"section_titles": d["section_titles"],
+                                "passages": d["passages"],
+                                "restatements": passage_level_count(d)} for d in (a, b)],
         "passage_level_counts": [passage_level_count(a), passage_level_count(b)],
-        "the_count_is_independent_of_the_title_level_structure": True,
+        "control_documents_declared": [{"section_titles": c["section_titles"],
+                                        "passages": c["passages"],
+                                        "restatements": passage_level_count(c)} for c in controls],
+        "the_count_is_independent_of_the_title_level_structure": independent,
+        "the_count_is_taken_over_declared_passages": True,
         "reported": reported,
         "ranking_work_passage_level_share": str(
             F(reported["poetry_grades"]["passage_level_hits"], reported["poetry_grades"]["passages"])),
         "passage_level_count_is_an_upper_bound_on_restatements": True,
-        "exhausted_documents": 2,
+        "exhausted_documents": 4,
     }
 
 
@@ -464,24 +672,28 @@ def s5_counting_unit():
 ROLE_COUNTS = {"naming": 1, "reported_speech_frames": 8, "declared_label_budget": 32}
 
 
-def permutations_of(n):
-    total = 1
-    for k in range(2, n + 1):
-        total *= k
-    return total
+def role_orderings(n):
+    """Every ordering of n distinct roles, constructed rather than counted by a formula."""
+    return [tuple(p) for p in permutations(range(n))]
 
 
 def s6_role_orders():
-    orders = {n: permutations_of(n) for n in range(1, 5)}
+    orderings = {n: role_orderings(n) for n in range(1, 5)}
+    orders = {n: len(v) for n, v in orderings.items()}
     check(orders == {1: 1, 2: 2, 3: 6, 4: 24},
           "the number of role orderings of a frame is not the factorial of its role count")
-    check(orders[1] == 1,
+    check(len(set(orderings[2])) == 2 and len(set(orderings[3])) == 6,
+          "the enumerated orderings of a frame are not distinct")
+    check(all(sorted(o) == list(range(n)) for n, v in orderings.items() for o in v),
+          "an enumerated role ordering is not a permutation of the roles")
+    check(len(orderings[1]) == 1,
           "a one-role frame does not have exactly one role ordering")
     check(orders[2] > orders[1] and orders[3] > orders[2],
           "adding a role does not multiply the ordering count")
     check(ROLE_COUNTS["naming"] == 1,
           "the declared non-speech construction does not carry a single role")
-    check(orders[ROLE_COUNTS["naming"]] == 1,
+    pinned = len(role_orderings(ROLE_COUNTS["naming"])) == 1
+    check(pinned,
           "the single-role construction is not pinned by its own arity")
     check(orders[2] > 1 and ROLE_COUNTS["reported_speech_frames"] >= 2,
           "the speech frames do not have more than one role, so the cost claim is empty")
@@ -491,9 +703,10 @@ def s6_role_orders():
           "the declared label budget is not thirty-two")
     return {
         "role_orderings_by_role_count": {str(k): v for k, v in sorted(orders.items())},
+        "role_orderings_enumerated": True,
         "a_one_role_frame_has": orders[1],
         "declared_role_counts": ROLE_COUNTS,
-        "the_single_role_frame_is_pinned_by_arity": True,
+        "the_single_role_frame_is_pinned_by_arity": pinned,
         "a_two_role_frame_needs_evidence_to_choose_between": orders[2],
         "declared_label_budget_covers": "two orderings for each of the eight speech frames",
         "exhausted_role_counts": 4,

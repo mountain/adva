@@ -110,6 +110,25 @@ def test_the_first_two_axioms_do_not_force_the_conclusion():
     assert s["forcing_is_reported_only_where_models_exist"] is True
 
 
+def test_the_axiom_table_has_the_declared_number_of_rows():
+    s = section("S2_table")
+    contract = load(CONTRACT)
+    # the checker reports the number of rows it actually wrote, and it is the
+    # declared one: 1536 subset-and-block combinations less the 128 that no model
+    # satisfies, because A5 has no model under the universal frame above one world
+    assert s["axiom_table_rows"] == len(s["rows"])
+    assert s["axiom_table_rows"] == contract["objects"]["expected_axiom_table_rows"] == 1408
+    assert s["subset_and_block_combinations"] == 1536 == 12 * 128
+    assert s["rows_missing"] == 128 == 1536 - 1408
+    assert s["blocks_with_rows_missing"] == ["universal:2", "universal:3"]
+    universal = [row for key, row in s["rows"].items()
+                 if key.startswith("universal:2:") or key.startswith("universal:3:")]
+    assert len(universal) == 128
+    assert all("A5" not in row["axioms"] for row in universal)
+    # the model counts of the first two axioms come from the pruning, not a scan
+    assert "pruned enumeration" in s["the_first_two_axioms_are_pruning_conditions"]
+
+
 def test_no_axiom_set_forces_the_conclusion_outside_the_symmetric_frames():
     s = section("S2_table")
     minimal = s["minimal_forcing"]
@@ -220,7 +239,10 @@ def test_the_contract_states_its_protected_boundaries():
     assert contract["interface"]["justification"].startswith("The translation is justified")
     objects = contract["objects"]
     assert objects["world_bound"] == 3 and objects["domain_size"] == 1
-    assert objects["expected_axiom_table_rows"] == 1536
+    assert objects["expected_axiom_table_rows"] == 1408
+    assert objects["expected_subset_and_block_combinations"] == 1536
+    assert objects["expected_rows_missing_because_A5_has_no_model"] == 128
+    assert objects["blocks_with_rows_missing"] == ["universal:2", "universal:3"]
     assert objects["expected_models_for_the_lemma"] == 18508
     assert objects["expected_non_degenerate_forcing_rows"] == 128
     assert objects["expected_models_of_the_three_axioms"] == 86

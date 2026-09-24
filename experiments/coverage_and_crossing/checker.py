@@ -80,6 +80,16 @@ def value_of(expression):
     return k * a - b
 
 
+def render(expression):
+    """One expression in words, for a record that names rather than counts."""
+    form, a, b, k = expression
+    if form == "a":
+        return f"a with a={a}"
+    if form in ("a+b", "|a-b|"):
+        return f"{form} with a={a}, b={b}"
+    return f"{form} with a={a}, b={b}, k={k}"
+
+
 def multiplicities(constants, kmax=KMAX):
     """How many declared expressions name each praise, over the praises only."""
     counts = Counter()
@@ -145,17 +155,41 @@ def s1_coverage():
     check(rows["the_thirteen_with_one"]["coverage"] == "518/729",
           "the coverage with the trivial constant is not the computed one")
 
-    # monotonicity, by exhaustion over every nested pair of declared sets
+    # Nested pairs. The inclusion image(left) <= image(right) follows from the
+    # definition -- an expression over the smaller constant set is an expression over
+    # the larger one -- so it is reported as a consistency check on the enumeration
+    # and not as a finding. The checks with content are that the enumeration writes
+    # exactly the counted number of expressions for every declared set, and that a
+    # strictly larger constant set strictly enlarges the image.
     nested = 0
+    strict = 0
     for left in sorted(DECLARED_SETS):
         for right in sorted(DECLARED_SETS):
-            if set(DECLARED_SETS[left]) <= set(DECLARED_SETS[right]):
+            small, big = set(DECLARED_SETS[left]), set(DECLARED_SETS[right])
+            if small <= big:
                 nested += 1
                 check(image(DECLARED_SETS[left]) <= image(DECLARED_SETS[right]),
                       f"the image is not monotone from {left} to {right}")
                 check(rows[left]["image_size"] <= rows[right]["image_size"],
                       f"the coverage is not monotone from {left} to {right}")
+                if small < big:
+                    strict += 1
+                    check(rows[left]["image_size"] < rows[right]["image_size"],
+                          f"a strictly larger constant set does not name more praises: {left} into {right}")
     check(nested == 32, "the number of nested declared pairs is not the counted one")
+    check(strict == 22, "the number of strictly nested declared pairs is not the counted one")
+    for name, constants in DECLARED_SETS.items():
+        check(len(set(constants)) == len(constants), f"{name} repeats a constant")
+        check(len(expressions(constants)) == expression_count(len(constants)),
+              f"the enumeration of {name} does not write the counted number of expressions")
+        check(rows[name]["expression_count"] == len(expressions(constants)),
+              f"the reported expression count of {name} is not the enumerated one")
+    # The two forms a+b and |a-b| are written over ordered pairs of constants, so each
+    # of them is written once for every ordered pair and a multiplicity is a count of
+    # ordered pairs. The convention is declared in the contract and asserted here.
+    check(sum(1 for e in expressions(THE_THIRTEEN) if e[0] in ("a+b", "|a-b|"))
+          == 2 * len(THE_THIRTEEN) ** 2,
+          "the two symmetric forms are not written over ordered pairs of constants")
 
     # the interval theorem: the first n integers reach exactly the first ten n
     for n in range(1, 91):
@@ -217,6 +251,12 @@ def s1_coverage():
     return {
         "rows": rows,
         "nested_pairs_exhausted": nested,
+        "nested_pairs_strictly_nested": strict,
+        "a_strictly_larger_constant_set_names_strictly_more_praises": True,
+        "the_enumeration_is_counted_for_every_declared_set": True,
+        "constant_pairs_are_ordered": True,
+        "the_two_symmetric_forms_are_written_over_ordered_pairs": True,
+        "image_monotonicity_follows_from_the_definition": True,
         "image_is_monotone_in_the_constant_set": True,
         "kmax": KMAX,
         "kmax_ladder": ladder,
@@ -258,6 +298,24 @@ def s2_target():
     check(rows["the_cut_constant"]["expressions_naming_it"]
           > rows["the_cut_constant"]["expressions_naming_it_with_the_cut_constant_removed"],
           "removing the target did not remove any expression naming it")
+
+    # how many expressions the removal destroys, and which: naming them is what keeps
+    # a later reader from repeating the wrong count of one
+    surviving = set(expressions(stripped))
+    naming = [e for e in expressions(BASE) if value_of(e) == 423]
+    lost = [e for e in naming if e not in surviving]
+    check(len(naming) == rows["the_cut_constant"]["expressions_naming_it"],
+          "the enumerated expressions naming the target are not the counted ones")
+    check(len(lost) == 2,
+          f"removing the cut constant does not destroy exactly two expressions naming it, but {len(lost)}")
+    check(sorted(render(e) for e in lost)
+          == ["a with a=423", "ka-b with a=423, b=423, k=2"],
+          "the two destroyed expressions are not the bare form and twice the cut constant minus itself")
+    check(len(naming) - len(lost) == rows["the_cut_constant"]
+          ["expressions_naming_it_with_the_cut_constant_removed"],
+          "the surviving expressions naming the target are not the counted ones")
+    check(2 * 423 - 423 == 423 and 423 in BASE,
+          "twice the cut constant minus itself is not the cut constant")
     check(rows["first_number"]["is_a_declared_constant"] is False,
           "the first number is a declared constant after all")
     check(rows["first_number"]["expressions_naming_it"] == 3,
@@ -276,6 +334,10 @@ def s2_target():
         "the_family_must_exclude_the_target": True,
         "image_size_with_the_target_as_a_constant": len(with_target),
         "image_size_once_it_is_not_a_constant": len(without),
+        "expressions_naming_the_target": len(naming),
+        "expressions_lost_when_the_target_leaves_the_constants": len(lost),
+        "expressions_lost": sorted(render(e) for e in lost),
+        "expressions_naming_the_target_that_survive": len(naming) - len(lost),
         "coverage_is_the_price_of_a_hit": True,
         "a_target_that_is_a_constant_is_named_by_the_bare_form": True,
     }

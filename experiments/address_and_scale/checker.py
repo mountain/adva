@@ -1,9 +1,12 @@
 """Exact external checker for what an address sees, what a modulus cannot, and a near miss.
 
 This checker never constructs, reads or authorizes an Adva semantic identity. It
-uses integers and Fractions only; no floating-point value enters any acceptance
-test. It imports no text and no corpus count: the formulas, the constants and the
-reported numbers are declared in contract.json and are checked arithmetically.
+uses integers and Fractions only, and every acceptance test compares integers or
+exact rationals. It opens no corpus and imports no corpus count: the formulas,
+the constants, the four clauses transcribed into the contract and the reported
+numbers are declared in contract.json and are checked arithmetically rather than
+re-measured. The transcription is of a quotation, so the check is of the
+transcription's arithmetic and is not a collation against any edition.
 
 Everything reported is decided by exhaustion over a declared finite set, and the
 size of each exhausted set is reported with the result.
@@ -52,37 +55,90 @@ def head_number(coords):
     return 27 * coords[0] + 9 * coords[1] + 3 * coords[2] + coords[3] + 1
 
 
+def text_address_increments():
+    """The four clauses the source is quoted to state, transcribed into the contract.
+
+    Each clause gives, for one place, the increment that place contributes at each
+    of its three values. The map below is built from these tables rather than from
+    a formula typed into this file, so a transcription error changes the computed
+    head number and the check fails.
+    """
+    contract = json.loads((HERE / "contract.json").read_text(encoding="utf-8"))
+    declared = contract["objects"]["text_address_increments"]
+    check(sorted(declared) == ["comment", "district", "family", "quarter", "section"],
+          "the contract declares a key other than the four places and their comment")
+    return {k: v for k, v in declared.items() if k != "comment"}
+
+
+def head_from_clauses(clauses, fang, zhou, bu, jia):
+    """The head number the four transcribed clauses give, places counted from one."""
+    return (clauses["family"][jia - 1] + clauses["section"][bu - 1]
+            + clauses["district"][zhou - 1] + clauses["quarter"][fang - 1])
+
+
 def s1_declared_algorithm():
-    """The address formula stated in the source text, and the coordinate formula."""
+    """The four clauses transcribed from the source, and the coordinate formula."""
+    clauses = text_address_increments()
+    check(sorted(clauses) == ["district", "family", "quarter", "section"],
+          "the contract does not declare the four places the source is quoted to state")
+    check(all(len(table) == 3 for table in clauses.values()),
+          "a transcribed clause does not give three values for its place")
+
+    # each clause is an arithmetic progression, and its step is the place weight;
+    # both are derived from the transcribed table rather than restated
+    units, weights = {}, {}
+    for name in sorted(clauses):
+        table = clauses[name]
+        unit = table[1] - table[0]
+        units[name] = unit
+        check(table[2] - table[1] == unit,
+              f"the transcribed clause for {name} does not step by the same amount twice")
+        check(table == [table[0] + unit * k for k in range(3)],
+              f"the transcribed clause for {name} is not an arithmetic progression")
+        weights[name] = [table[k] - table[0] for k in range(3)]
+    check(weights == {"family": [0, 1, 2], "section": [0, 3, 6],
+                      "district": [0, 9, 18], "quarter": [0, 27, 54]},
+          "the weight tables derived from the transcribed clauses are not the ones the note reports")
+    check(all(weights[name] == [units[name] * k for k in range(3)] for name in clauses),
+          "a derived weight table is not the successive multiples of its place weight")
+    ordered = [units[name] for name in ("family", "section", "district", "quarter")]
+    check(ordered == [3 ** k for k in range(4)],
+          "the place weights of the transcribed clauses are not the successive powers of three")
+    check(all(a < b for a, b in zip(ordered, ordered[1:])),
+          "the place weights of the transcribed clauses do not increase with the place")
+    check(sum(clauses[name][0] for name in clauses) == 1,
+          "the offsets of the four transcribed clauses do not sum to the one the head numbering starts at")
+
+    # the map built from the transcribed clauses, compared with the coordinate formula
     matches = 0
+    from_clauses = {}
     for head in range(1, HEADS + 1):
         fang, zhou, bu, jia = coordinates(head)
-        declared = ((jia + 1) + 3 * bu + 9 * zhou + 27 * fang)
+        declared = head_from_clauses(clauses, fang + 1, zhou + 1, bu + 1, jia + 1)
+        from_clauses[head] = declared
         if declared == head:
             matches += 1
     check(matches == HEADS,
-          "the formula stated in the source text does not reproduce every head number")
+          "the clauses transcribed from the source do not reproduce every head number")
+    check(len(set(from_clauses.values())) == HEADS,
+          "the clauses transcribed from the source do not give eighty-one distinct head numbers")
+    check(all(from_clauses[h] == head_number(coordinates(h)) for h in range(1, HEADS + 1)),
+          "the map built from the transcribed clauses is not the coordinate formula")
     check(head_number((0, 0, 0, 0)) == 1 and head_number((2, 2, 2, 2)) == 81,
           "the coordinate formula does not run from one to eighty-one")
     check(len({head_number(c) for c in
                [(a, b, c, d) for a in range(3) for b in range(3) for c in range(3) for d in range(3)]})
           == HEADS,
           "the coordinate formula is not a bijection on the eighty-one heads")
-    # the four place weights as the text states them
-    weights = {"family": [0, 1, 2], "section": [0, 3, 6], "district": [0, 9, 18],
-               "quarter": [0, 27, 54]}
-    check(weights["family"] == [0, 1, 2] and weights["section"] == [0, 3, 6]
-          and weights["district"] == [0, 9, 18] and weights["quarter"] == [0, 27, 54],
-          "the declared place weights are not the ones the source text lists")
-    check([3 * k for k in range(3)] == weights["section"]
-          and [9 * k for k in range(3)] == weights["district"]
-          and [27 * k for k in range(3)] == weights["quarter"],
-          "the declared weights are not successive multiples of three")
     return {
         "heads": HEADS,
-        "text_formula": "head = family + 3·section + 9·district + 27·quarter, places counted from one",
+        "text_formula": "head = family + section + district + quarter, the four clauses as transcribed",
         "coordinate_formula": "index = 27·fang + 9·zhou + 3·bu + jia",
         "place_weights": {k: v for k, v in weights.items()},
+        "place_weight_units": {k: units[k] for k in sorted(units)},
+        "clauses_declared_in_the_contract": True,
+        "the_map_is_built_from_the_transcribed_clauses": True,
+        "the_transcription_is_checked_against_a_collated_edition": False,
         "heads_reproduced": matches,
         "the_two_formulas_agree_on_every_head": True,
         "exhausted_heads": HEADS,
@@ -342,11 +398,11 @@ def s6_calendar():
           "the total divided by seventy-two is not three hundred sixty-four and a half days")
     check(CYCLE + 2 * F(1, 2) == YEAR,
           "adding the two extra praises does not give the declared year")
-    check(CYCLE == 364.5 and YEAR == 365.5,
-          "the cycle and the year are not the declared numbers of days")
+    check(CYCLE == F(729, 2) and YEAR == F(731, 2),
+          "the cycle and the year are not seven hundred twenty-nine and seven hundred thirty-one half-days")
     check(YEAR * 2 == 731, "the year is not seven hundred thirty-one half-days")
     check(BOUNDARY_SPACING * 2 == 9, "one head is not nine praises")
-    check(CUT_DAY == F(423, 2) and CUT_DAY == 211.5,
+    check(CUT_DAY == F(423, 2),
           "the cut is not at two hundred eleven and a half days")
     check(F(9 * (HEADS - CUT), 2) == F(306, 2) and F(423 + 306, 2) == F(729, 2),
           "the two sides do not split the seven hundred twenty-nine praises as four twenty-three and three hundred six")
@@ -356,16 +412,20 @@ def s6_calendar():
     check(spacing == F(731, 48), "the node spacing is not seven hundred thirty-one over forty-eight")
     reach = BOUNDARY_SPACING / 2
     check(reach == F(9, 4), "the grid is not within nine quarters of a day of every node")
+    # the gap of a node is its exact distance to the nearest of the eighty-one head
+    # boundaries, computed over every boundary rather than taken from a rounding
     rows = []
     for k in range(1, NODES + 1):
         t = (k - 1) * spacing
-        m = round(t / BOUNDARY_SPACING)
-        gap = abs(t - m * BOUNDARY_SPACING)
+        gap, nearest = min((abs(t - m * BOUNDARY_SPACING), m) for m in range(0, HEADS + 2))
         rows.append({"node": k, "day": str(t), "day_float": round(float(t), 4),
                      "gap": str(gap), "gap_float": round(float(gap), 6),
+                     "nearest_boundary": nearest, "boundaries_compared": HEADS + 2,
                      "relative": str(gap / t) if t else None,
                      "relative_float": round(float(gap / t), 6) if t else None})
         check(gap <= reach, f"node {k} is further than nine quarters of a day from every boundary")
+        check(nearest == round(t / BOUNDARY_SPACING),
+              f"the nearest boundary of node {k} is not the one a rounding of the quotient names")
     check(len(rows) == NODES, "there are not twenty-four nodes")
 
     relative = [F(r["relative"]) for r in rows if r["relative"] is not None]
@@ -385,8 +445,13 @@ def s6_calendar():
           "the reported node's gap is not above half the reach, that is above the even-spread value")
     check(rows[REPORTED_NODE - 1]["day"] == str(F(5117, 24)),
           "the reported node's day is not the declared fraction")
-    check(F(rows[REPORTED_NODE - 1]["gap_float"]) > F(0),
-          "the reported gap is not positive")
+    # the reported gap is the exact distance from that node to its nearest boundary,
+    # recomputed over all eighty-one boundaries as an exact rational
+    reported_day = F(rows[REPORTED_NODE - 1]["day"])
+    check(min(abs(reported_day - m * BOUNDARY_SPACING) for m in range(0, HEADS + 2)) == reported_gap,
+          "the reported node's gap is not the exact distance to its nearest head boundary")
+    check(reported_gap != min(F(r["gap"]) for r in rows),
+          "the reported node is the closest node, so the ranking claim would be empty")
     return {
         "cycle": str(CYCLE),
         "cycle_float": 364.5,

@@ -1,7 +1,7 @@
 {
   "schema": "adva.research.definability-spectrum-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0219-the-definability-spectrum-of-the-address-algebra.md",
   "question": "How much of the power set of the eighty-one heads can the four-place ternary address algebra express, level by level? Up to which level can the union be enumerated exactly, and what are the counts? For a declared division of the heads, how many rival divisions of the same size are expressible at the same level, so that definability can be priced rather than merely asserted? And where on the spectrum do the divisions a text names sit?",
   "level": "External exact combinatorics on a four-place ternary address space; the union of the algebras is enumerated exactly up to two places and counted by binomial coefficients beyond that; no text and no corpus count imported",
@@ -33,13 +33,13 @@
   "acceptance": [
     "The partition by k places has three to the k blocks of size three to the four minus k, so the algebra it generates has two to the three to the k sets, which is two, eight, five hundred twelve, one hundred thirty four million two hundred seventeen thousand seven hundred twenty eight and two to the eighty one",
     "The union of the algebras up to nought, one and two places has exactly two, twenty six and three thousand fourteen sets, which is fewer than the sum of the algebra sizes, so the algebras overlap and are nested",
-    "Every set expressible by at most two places has a size that is a multiple of nine, and there are exactly fifty four nine-element ones",
+    "Every set expressible by at most two places has a size that is a multiple of nine, and there are exactly fifty four nine-element ones; the union of the algebras up to two places is closed under complement, verified by exhaustion over its three thousand fourteen sets, and its size distribution is therefore symmetric with d(s) equal to d(81 minus s) at each of the five independent mirror pairs, which is reported as a consistency check on the enumeration",
     "A smaller set of places always gives a smaller algebra, and adding a place strictly enlarges it",
     "The nine district representatives are a block of exactly the last two places, and specifically the block containing the first head, while the three quarter representatives are a block of exactly the last three places and the first quarter a block of exactly the first place",
     "Exactly one block of a two-place partition coincides with a declared division, so the placement is not a coincidence of many coincidences",
     "The cut's two sides are blocks of all four places and of nothing smaller",
     "The nine district representatives meet fifty four rival nine-element sets expressible at two places, out of all two hundred sixty billion eight hundred eighty seven million eight hundred thirty four thousand three hundred fifty of that size, giving a prior below one in a billion",
-    "The first quarter meets twelve rival twenty seven-element sets at one place, not the four hundred eighty that counting it against the two-place union would give, and its prior is the smallest in the table",
+    "The first quarter meets twelve rival twenty seven-element sets at one place, not the four hundred eighty that counting it against the two-place union would give, and its prior is the smallest of the whole table, taken over every one of the eight declared divisions and attained by exactly one of them; the divisions whose prior is one are the whole head set, whose level constrains nothing, and the four that need all four places",
     "The three quarter representatives meet one hundred eight rivals of their size at three places, giving a prior of about one in a thousand, and a set needing all four places meets every set of its size, so its prior is one and constrains nothing"
   ],
   "protected": [

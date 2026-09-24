@@ -1,7 +1,7 @@
 {
   "schema": "adva.research.coverage-and-crossing-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0220-what-a-declared-family-and-a-declared-shift-already-fix.md",
   "question": "Given a declared finite set of constants and a declared family of expressions over it, what share of the seven hundred twenty-nine praises does the family name, and how many expressions name each praise? Does a claim that a family names a target uniquely carry any information once the share is known? And, separately, given a declared shift on the eighty-one heads, how many of its pairs lie inside a declared cut and how many straddle it, and is that split a fact about the cut or an identity of the shift?",
   "level": "External exact combinatorics on a declared expression family over the integers one to seven hundred twenty-nine, and on a declared shift of the eighty-one heads; no text and no corpus count imported",
@@ -32,7 +32,7 @@
   },
   "quantifiers": [
     "All ten declared constant sets for the coverage, the price and the multiplicity",
-    "All twenty-nine nested pairs of declared constant sets for monotonicity",
+    "All thirty-two nested pairs of declared constant sets for monotonicity, of which twenty-two are strictly nested",
     "All ninety prefixes of the integers for the interval statement",
     "All ninety candidates of the declared pool at every step of the greedy",
     "All seven hundred twenty-nine praises for the multiplicity histogram",
@@ -44,14 +44,15 @@
     "exact integer arithmetic for the image and the multiplicities",
     "exact rational arithmetic over Fraction for the coverage",
     "declared enumeration of the expression family, with the bare form carrying no partner",
+    "the pairs of constants are ordered: for constants a and b in the declared set the checker writes the ordered pair (a, b), so a + b and |a - b| are each written once for every ordered pair and the number of forms a set of size m writes is m + 18 m squared; every multiplicity in this experiment is therefore a count of ordered pairs, and the count is asserted rather than assumed",
     "direct counting compared against a closed form for the shift and the cut"
   ],
   "acceptance": [
-    "A family of five forms over a declared constant set names a computable subset of the seven hundred twenty-nine praises, and the thirteen constants of the earlier note name four hundred ninety-seven of them, which is a coverage of 497/729 and is the price of a hit",
-    "Adding a constant never removes a value from the image and never removes an expression naming a praise, so both the coverage and every praise's multiplicity are monotone in the constant set and can only be destroyed by adding constants, never created",
+    "A family of five forms over a declared constant set names a computable subset of the seven hundred twenty-nine praises, and the thirteen constants of the earlier note name four hundred ninety-seven of them, which is a coverage of 497/729 and is the price of a hit; the pairs of constants are ordered, so a multiplicity counts ordered pairs",
+    "Adding a constant never removes a value from the image and never removes an expression naming a praise, so both the coverage and every praise's multiplicity are monotone in the constant set and can only be destroyed by adding constants, never created; the inclusion is a consequence of the definition and is reported as a consistency check on the enumeration, while the check with content is that a strictly larger constant set names strictly more praises at every one of the twenty-two strictly nested pairs",
     "The first n consecutive integers name exactly the praises one to ten n while ten n is at most seven hundred twenty-nine, so the first seventy-two name seven hundred twenty and the first seventy-three name every praise, which is a coverage of one",
     "A declared greedy over a declared pool of ninety candidates reaches every praise with fourteen constants, while counting the expressions a constant set can write forces at least seven, so the smallest covering set lies between those figures and this experiment does not decide it",
-    "A target that is itself a declared constant is named by the bare form, so a family that contains its target has proved nothing; removing the target from the constants leaves five expressions naming it and lowers the coverage to 472/729",
+    "A target that is itself a declared constant is named by the bare form, so a family that contains its target has proved nothing; the seven expressions naming the target fall to five when it leaves the constant list, and the two that are destroyed are named in the evidence -- the bare form over the target and the form twice the target minus itself -- so the count of destroyed expressions is reported rather than left to be re-derived",
     "The largest multiplicity over the thirteen constants is fifteen, attained at the praise fifty-four, and no praise is named more often than the family has expressions",
     "Every praise not named by the family is named by none, and the second of the two earlier numbers is one of them, which the trivial constant repairs by exactly one expression",
     "For every shift and every cut the pairs split into those inside the cut and those straddling it, and the closed form agrees with the direct count at all six thousand four hundred pairs",

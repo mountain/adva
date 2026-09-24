@@ -1,7 +1,7 @@
 {
-  "assertions": 4940,
-  "checker_sha256": "3e46192592a4d6dca3f4d244c58619e78cbce2dd460f10dcf67fa7ae837eca21",
-  "contract_sha256": "d5c5348cd2854ea1cce296c6d9f2add625be0b4d67f34524f776cdafe15e71e6",
+  "assertions": 4953,
+  "checker_sha256": "7389723f5aa6ce76b1491fe7070b1400d41e8eaedc41c9ffcdd1114f3849649d",
+  "contract_sha256": "00034a8a5f3cea01ac52d0314cb74fe78f2d2cb8a6af5f63997f5d2c41aef2f6",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -18,7 +18,7 @@
     "routes": 1,
     "wall_seconds": 300
   },
-  "rss_high_water_bytes": 29507584,
+  "rss_high_water_bytes": 30015488,
   "schema": "adva.research.modal-property-systems-evidence.v0",
   "sections": {
     "S1_semantics": {
@@ -48,6 +48,11 @@
     "S2_table": {
       "a_refutation_is_one_model": true,
       "a_row_with_no_model_refutes_nothing": true,
+      "axiom_table_rows": 1408,
+      "blocks_with_rows_missing": [
+        "universal:2",
+        "universal:3"
+      ],
       "forcing_is_reported_only_where_models_exist": true,
       "forcing_the_conclusion_forces_the_essence_to_be_vacuous": true,
       "minimal_forcing": {
@@ -22806,6 +22811,17 @@
       },
       "rows_forcing_the_conclusion": 640,
       "rows_in_which_every_model_makes_the_essence_vacuous": 640,
+      "rows_missing": 128,
+      "rows_missing_by_block": {
+        "universal:2": {
+          "every_missing_subset_contains_A5": true,
+          "rows": 64
+        },
+        "universal:3": {
+          "every_missing_subset_contains_A5": true,
+          "rows": 64
+        }
+      },
       "sets_forcing_the_conclusion": [
         "equivalence:1:A1",
         "equivalence:1:A1+A1c",
@@ -23498,11 +23514,44 @@
         "universal:3:A1c+A4",
         "universal:3:A1c+A4+A6"
       ],
+      "subset_and_block_combinations": 1536,
       "the_conclusion_is_forced_only_over_symmetric_frames": true,
-      "the_smallest_forcing_set_is_one_axiom": true
+      "the_first_two_axioms_are_pruning_conditions": "the enumeration admits only positivity assignments that satisfy A1 and A2 at a world, so those two axioms hold by construction in every enumerated model and the model count of their row is the size of a pruned enumeration, not the result of an independent scan",
+      "the_smallest_forcing_set_is_one_axiom": true,
+      "why_rows_are_missing": "a row is written only where a model of the block satisfies the subset, and A5 is satisfied by no model of the universal frame at two or three worlds, so the sixty-four subsets containing A5 contribute no row in each of those two blocks"
     },
     "S3_necessary_existence": {
+      "blocks_contributing_a_model": [
+        "equivalence:1",
+        "equivalence:2",
+        "equivalence:3",
+        "preorder:1",
+        "preorder:2",
+        "preorder:3",
+        "reflexive:1",
+        "reflexive:2",
+        "reflexive:3",
+        "universal:1"
+      ],
+      "blocks_contributing_no_model": [
+        "universal:2",
+        "universal:3"
+      ],
       "models_of_the_three_axioms": 86,
+      "models_of_the_three_axioms_by_frame_class_and_worlds": {
+        "equivalence:1": 1,
+        "equivalence:2": 1,
+        "equivalence:3": 1,
+        "preorder:1": 1,
+        "preorder:2": 3,
+        "preorder:3": 37,
+        "reflexive:1": 1,
+        "reflexive:2": 3,
+        "reflexive:3": 37,
+        "universal:1": 1,
+        "universal:2": 0,
+        "universal:3": 0
+      },
       "models_that_also_satisfy_the_other_four": 50,
       "models_where_the_conclusion_agrees_with_the_constancy_of_every_property": 86,
       "positivity_carries_no_information_in_that_model": true,
@@ -23584,5 +23633,5 @@
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 2348001458
+  "wall_ns": 2506772875
 }

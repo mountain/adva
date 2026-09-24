@@ -19,6 +19,17 @@ A sixth batch outside this repository — `~/wenyan-relation-learning` at commit
 positive construction with an exact condition and the cleanest proxy chain this
 line has yet recorded.
 
+**Citation.** That record is the project author's own, and its git repository is
+public: <https://github.com/mountain/wenyan-relation-learning>. It carries the
+transcribed classical text at `data/corpus/works/太玄經.json`, which names its
+source site as `zh.wikisource.org` and records its own licence basis: the
+underlying classical work is public domain by age, and what is taken from
+Wikisource is **its transcription** — the choice of recension, the modern
+punctuation, the paragraphing and the character forms — with attribution recorded
+per section. This note quotes no clause of that text; the construction, the split
+and the counts below are carried from the named commits, and the one sentence
+quoted verbatim in §5 is the record's own prose from `2a29797`.
+
 | Reported there | Their number |
 |---|---|
 | a **four-dimensional magic hypercube on the eighty-one addresses**, constructed | `v(x) = 1 + Σⱼ 3ʲ((Mx)ⱼ mod 3)` with `M = J − 2I`, "invertible over `Z/3` and **every entry nonzero**"; 1..81 once each; **all 108 one-dimensional lines sum to 123**; the classical square is the two-place case |
@@ -83,9 +94,16 @@ alone:
   and no zero row, **zero** give constant lines.
 
 The count that matters follows: **22,272** of the zero-free matrices are
-invertible, and each gives a distinct magic hypercube. So there are **22,272**
-magic hypercubes of this shape on the eighty-one addresses, not one — and the
-external record's chosen matrix is one of them.
+invertible, and each gives a distinct magic hypercube. That last clause is now
+**computed rather than asserted**: the checker builds the eighty-one-value array
+of every one of the 22,272 invertible zero-free matrices, collects the arrays in a
+set and compares them, and finds **no collision** — 22,272 arrays, 22,272 distinct
+tuples, each a permutation of `1..81`. So there are **22,272** magic hypercubes of
+this shape on the eighty-one addresses, not one — and the external record's chosen
+matrix is one of them. (An earlier version of this file reported the count as
+"each gives a distinct magic hypercube" without ever comparing two of them; the
+derivation makes it obvious, but the derivation is not a comparison, and the
+comparison is what is now on the record.)
 
 Invertibility is a separate condition, and the two conditions do different jobs:
 **no zero entry makes the lines constant; invertibility makes the values a
@@ -147,8 +165,30 @@ recurring finding, now with a construction instead of a negative result.
 The second object is a split of the eighty-one heads at forty-seven: the ninth
 position of each head is named one way in heads `1..47` and the other way in
 heads `48..81`, contiguously, with no exception. The seed fact was verified
-earlier in the external record (the sectioning assumption holds: 81 heads times
-10 passages, first-passage spacing constant at 10).
+earlier in the external record (`b7cee9f`): the sectioning assumption holds, each
+head occupying **ten consecutive passages** of the transmitted text with the
+spacing between successive heads' first passages constant at ten.
+
+**Two block sizes are in play across this line, and they are not in conflict.**
+The record's counts are `sections 7, passages 864`, and its own arithmetic is
+`81 首 × (首辭 + 九贊 + 測) = 810 段` with the head spacing constant at `10`. So:
+
+* **ten passages per head** is the unit of the *running text* — a head's section
+  in the transmitted order, whose first passage stands ten passages after the
+  previous head's first passage. It is the unit in which the split at 47/48 is
+  contiguous, and the unit this section's arithmetic uses.
+* **nine praises per head** is the unit of the *praise block* inside that section:
+  the nine 贊 of one head, `81 × 9 = 729`. That is the number
+  [0217](0217-what-the-address-sees-and-what-the-grid-already-forces.md) builds
+  its calendar from, and the number the contract of
+  [0218](0218-a-definability-theorem-and-a-pre-registered-property-sweep.md)
+  declares as `praises_per_head`.
+
+`729 = 81 × 9` and `810 = 81 × 10` count different things — the praises alone, and
+the passages that carry them together with the head statement and the 測
+apparatus. Neither is a correction of the other, and the split at 47 is contiguous
+in both: `47` heads is `47 × 10 = 470` passages and `47 × 9 = 423` praises, and
+`423` is exactly the figure 0217's §7 uses.
 
 The address arithmetic is exact and worth stating: head 47 has index 46 and
 address
@@ -199,10 +239,10 @@ separate the two groups — and it is still not the law, because the second plac
 range is cut by the split rather than aligned with it. Every earlier version was
 a **correlate of the index**, and the index was the answer all along.
 
-The external record's own summary of why: *the residual was read head by head
-rather than treated as noise or as a regex problem.* The third version had
-declared the residual a limitation of its pattern, which would have closed the
-question one step early.
+The external record's own summary of why — quoted verbatim from commit `2a29797`:
+*the residual was read head by head rather than treated as noise or as a regex
+problem.* The third version had declared the residual a limitation of its pattern,
+which would have closed the question one step early.
 
 The arithmetic of the one statistic in the chain that is checked here:
 
@@ -226,16 +266,21 @@ python3 experiments/magic_hypercube/checker.py --output experiments/magic_hyperc
 library only — integers and `Fraction`; no floating-point value enters any
 acceptance test — and its output is compared against the retained
 [`evidence.json`](../../experiments/magic_hypercube/evidence.json) with timings
-removed. The retained run records **49 assertions** over four sections in about
-forty-three seconds, having exhausted 65,536 zero-free matrices, 22,440
-invertible binary matrices with a zero entry and no zero row, 108 coordinate
-lines, 8 diagonal directions and 15 proper subsets of the four places.
-`RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; no address-space
-ceiling is installed because the checker launches no child process. The checker
-refuses to overwrite an existing output path.
+removed. The retained run records **58 assertions** over four sections in about
+fifty-one seconds, having exhausted 65,536 zero-free matrices, 22,440 invertible
+binary matrices with a zero entry and no zero row, the 22,272 eighty-one-value
+arrays those zero-free invertible matrices give for the injectivity comparison,
+108 coordinate lines, 8 diagonal directions, all 85,320 three-head selections and
+15 proper subsets of the four places. `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall
+alarm are installed; no address-space ceiling is installed because the checker
+launches no child process. The checker refuses to overwrite an existing output
+path.
 
 Controls that keep the checks from being vacuous:
 
+* the 22,272 hypercubes are **constructed and compared pairwise** in a set, no
+  collision is found, and each array is asserted to be a permutation of `1..81`,
+  so "distinct" is a comparison and not a count of matrices;
 * the diagonal sums are asserted to have **five distinct values** and four
   directions at the constant, so "the diagonals are not constant" is a count and
   not an impression;
@@ -245,18 +290,29 @@ Controls that keep the checks from being vacuous:
   to be exactly the full one, so the invisibility claim is exhaustive;
 * the necessity family is asserted to have exactly **22,440** members, so an
   accidental empty family cannot make necessity look proved;
+* the three-head selections are **enumerated** and asserted to number 85,320, and
+  the two sides of the cut are asserted to be the contiguous ranges `0..46` and
+  `47..80`, so neither count is a restatement of a constant;
 * the p-value is asserted to be **above** one twentieth, so a near miss is not
   silently promoted.
 
 ## 7. Residual and non-claims
 
 * **No text and no corpus count is imported.** The construction, the cut and the
-  counts are declared; the checker measures nothing.
+  counts are declared; the checker measures nothing, and the note quotes no clause
+  of any text — the one verbatim quotation in it is the external record's own
+  sentence, attributed to its commit.
 * **The cut is described, not explained.** That no proper subset of the places
   can see it says nothing about why it is at 47. The external record's own
   candidate — that the head statements change phase at the cut — is not tested
   here, and this experiment does not choose between a phase and a transmitted
   variant.
+* **The count of hypercubes is a count of distinct arrays, and that is all.** The
+  injectivity of the map from invertible zero-free matrices to arrays is now
+  computed over all 22,272 of them, so the count is a count of distinct objects
+  and not of matrices that might have coincided. Nothing here says those objects
+  differ in any other respect, and nothing here says they are the objects anyone
+  would want.
 * **No claim that coordinate lines are the lines that matter.** The whole content
   of section 3 is that they are not the only lines one could declare, and that
   the declared set decides the answer. The diagonal result shows this

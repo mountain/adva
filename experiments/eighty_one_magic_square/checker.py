@@ -458,26 +458,61 @@ MINGSHI_PASSAGES = 26533
 MINGSHI_READABLE = 3654
 
 
+def declared_manifest_model():
+    """The two directory listings and the manifest are declared in contract.json."""
+    return json.loads((HERE / "contract.json").read_text(encoding="utf-8"))["manifest_model"]
+
+
+def rows_only_statistics(manifest_rows):
+    """Every statistic a reader who has only the manifest can compute.
+
+    The domain of this function is the manifest. It never sees a directory, so
+    whatever it returns is the same for every directory the manifest is compared
+    against -- which is exactly the blindness the section is about.
+    """
+    return {
+        "rows": len(manifest_rows),
+        "distinct_rows": len(set(manifest_rows)),
+        "sorted_rows": sorted(manifest_rows),
+    }
+
+
 def s6_index_derived_count():
+    model = declared_manifest_model()
+    manifest = list(model["snapshot_manifest_work_ids"])
+    directory = list(model["directory_work_ids"])
+    larger = list(model["a_second_directory_with_one_more_insert"])
+
+    check(len(set(manifest)) == len(manifest),
+          "the declared manifest has a repeated row, so it is not internally consistent")
+    check(len(set(directory)) == len(directory),
+          "the declared directory listing has a repeated entry")
+    check(len(set(larger)) == len(larger),
+          "the second declared directory listing has a repeated entry")
+    # the loss is computed from the two declared lists, not built into a range
+    losses = {"directory": sorted(set(directory) - set(manifest)),
+              "larger_directory": sorted(set(larger) - set(manifest))}
+    check(losses["directory"] == [SNAPSHOT, SNAPSHOT + 1],
+          "the declared manifest does not omit exactly the two works inserted after the snapshot")
+    check(sorted(set(manifest) - set(directory)) == [],
+          "the declared manifest lists a work the declared directory does not contain")
+    check(len(manifest) == SNAPSHOT and len(directory) == CORPUS_WORKS,
+          "the declared lists do not have the declared sizes")
     check(SNAPSHOT + LATER_INSERTS == CORPUS_WORKS,
           "the declared snapshot plus the later inserts is not the declared work count")
     check(F(LATER_INSERTS, CORPUS_WORKS) == F(1, 69),
           "the lost-update share is not one sixty-ninth")
-    manifest = list(range(SNAPSHOT))
-    truth = list(range(CORPUS_WORKS))
-    lost = sorted(set(truth) - set(manifest))
-    check(lost == [SNAPSHOT, SNAPSHOT + 1],
-          "the declared manifest loss is not the two works inserted after the snapshot")
-    check(len(manifest) == SNAPSHOT and len(truth) == CORPUS_WORKS,
-          "the declared manifest and truth do not have the declared sizes")
-    check(len(set(manifest)) == len(manifest),
-          "the declared manifest is not internally consistent, so the loss would be detectable")
-    # every statistic computed from the manifest is a function of the snapshot alone
-    statistics = {
-        "work_count": len(manifest),
-        "sum_of_sizes": sum(1 for _ in manifest),
-    }
-    check(statistics["work_count"] == SNAPSHOT,
+    lost = losses["directory"]
+    # every statistic computed from the manifest is a function of the snapshot alone:
+    # one manifest is compared against two declared directories whose losses differ,
+    # and the manifest-only statistics cannot tell them apart
+    from_manifest = {name: rows_only_statistics(manifest) for name in losses}
+    check(from_manifest["directory"] == from_manifest["larger_directory"],
+          "a manifest-only statistic differs between the two directories, so the manifest "
+          "does show its own loss")
+    check(losses["directory"] != losses["larger_directory"] and len(losses["larger_directory"]) == 3,
+          "the two declared directories lose the same works, so the blindness is not exhibited")
+    check(len(from_manifest["directory"]["sorted_rows"]) == SNAPSHOT,
           "the manifest statistic does not reflect the snapshot rather than the directory")
     share = F(MINGSHI_CHARS, CORPUS_CHARS)
     check(F(11, 100) < share < F(12, 100),
@@ -494,7 +529,11 @@ def s6_index_derived_count():
         "works_lost_from_the_manifest": lost,
         "lost_share": str(F(LATER_INSERTS, CORPUS_WORKS)),
         "the_manifest_is_internally_consistent": True,
+        "the_loss_is_computed_from_the_two_declared_lists": True,
+        "the_same_manifest_describes_directories_with_different_losses": True,
         "no_statistic_from_the_manifest_can_detect_the_loss": True,
+        "second_directory_works": len(larger),
+        "second_directory_loss": losses["larger_directory"],
         "largest_work_characters": MINGSHI_CHARS,
         "corpus_characters": CORPUS_CHARS,
         "largest_work_share_of_characters": str(share),

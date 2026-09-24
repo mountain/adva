@@ -1,17 +1,27 @@
-"""Exact checker for a definability theorem and a pre-registered property sweep.
+"""Exact checker for a definability theorem and a declared property sweep.
 
 This checker never constructs, reads or authorizes an Adva semantic identity. It
 uses integers and Fractions only; no floating-point value enters any acceptance
 test. It imports no text and no corpus count: the address space, the property
-family and the head-set family are declared in contract.json, and the property
-family is declared there BEFORE any coincidence is evaluated.
+family and the head-set family are declared in contract.json, and the checker
+reads both families out of that file rather than keeping a copy of them. A name
+declared there with no construction rule, a rule with no declaration, a repeated
+name or a wrong count is a refusal to run and not a silent fallback.
+
+The declarations and the results carry the same date and no earlier one:
+contract.json declares both families, and the contract, this checker, the
+retained evidence and the note were introduced by a single commit whose base is
+the one contract.json records as `base_commit`. The repository holds no
+timestamped record of the declarations that precedes the results, so the record
+says only what is true of it -- declared in the contract, read from the
+contract, same commit -- and claims no separate act of registration.
 
 Everything reported is decided by exhaustion over a declared finite set, and the
 size of each exhausted set is reported with the result.
 """
 from fractions import Fraction as F
 from itertools import combinations, product
-from math import comb
+from math import comb, isqrt
 import argparse
 import hashlib
 import json
@@ -127,6 +137,12 @@ def s1_definability():
           "a side of the cut is definable below four places")
     check(measured["two_prison_heads"]["mu"] == 4,
           "the two prison heads are definable below four places")
+    # the bound is necessary and not sufficient, and both halves are asserted
+    check(measured["orbit_of_seven"]["size"] == 3 and measured["orbit_of_seven"]["mu"] == PLACES,
+          "the orbit of head seven, of size three, is definable below four places")
+    check(measured["three_quarter_representatives"]["size"] == 3
+          and measured["three_quarter_representatives"]["mu"] == 3,
+          "the three quarter representatives, of size three, do not need exactly three places")
     check(measured["nine_district_representatives"]["mu"] == 2,
           "the nine district representatives do not need exactly two places")
     check(measured["first_quarter"]["mu"] == 1,
@@ -183,8 +199,17 @@ def s2_null():
     for s in (9, 19, 81, 128):
         check(0 <= expected_heads_hit(s) <= HEADS,
               "the expected number of heads hit is outside the range")
-    check(abs(float(expected_heads_hit(9)) - 8.6132) < 0.001,
+    # the recorded decimal is a display copy of an exact rational: eight point six
+    # one three two is the four-place rounding of a value that lies strictly
+    # between 86131/10000 and 86132/10000, and the comparison is rational
+    hit_nine = expected_heads_hit(9)
+    check(abs(hit_nine - F(86132, 10000)) < F(1, 1000),
           "the expected number of heads hit by nine praises is not eight point six one three two")
+    check(F(86131, 10000) < hit_nine < F(86132, 10000),
+          "the expected number of heads hit by nine praises does not lie between eight point six"
+          " one three one and eight point six one three two")
+    check(8 < hit_nine < 9,
+          "the expected number of heads hit by nine praises is not between eight and nine")
     check(expected_heads_hit(81) > expected_heads_hit(9),
           "a larger property does not hit more heads in expectation")
     return {
@@ -203,7 +228,7 @@ def s2_null():
 def sieve(limit):
     flags = [True] * (limit + 1)
     flags[0] = flags[1] = False
-    for i in range(2, int(limit ** 0.5) + 1):
+    for i in range(2, isqrt(limit) + 1):
         if flags[i]:
             for j in range(i * i, limit + 1, i):
                 flags[j] = False
@@ -265,8 +290,8 @@ def residues(limit, modulus, residue):
 
 def sums_of_two_squares(limit):
     out = set()
-    for a in range(1, int(limit ** 0.5) + 1):
-        for b in range(a, int(limit ** 0.5) + 1):
+    for a in range(1, isqrt(limit) + 1):
+        for b in range(a, isqrt(limit) + 1):
             if a * a + b * b <= limit:
                 out.add(a * a + b * b)
     return out
@@ -280,7 +305,7 @@ def powers_of_three(limit):
     return out
 
 
-PROPERTIES = {
+PROPERTY_RULES = {
     "prime": lambda: set(PRIMES),
     "centred_square": lambda: centred_squares(PRAISES),
     "square": lambda: squares(PRAISES),
@@ -295,24 +320,75 @@ PROPERTIES = {
     "power_of_three": lambda: powers_of_three(PRAISES),
 }
 POST_HOC = "prime_centred_square"
+TARGET = (21, 69)
+
+# The two families the sweep evaluates are not written down here: they are read
+# out of contract.json by load_declarations, and these maps hold what was read.
+PROPERTIES = {}
 
 
 def selected_heads(members):
     return {h for h in range(1, HEADS + 1) if block(h) & members}
 
 
-DECLARED_HEAD_SETS = {
-    "first_quarter": set(range(1, 28)),
-    "second_quarter": set(range(28, 55)),
-    "third_quarter": set(range(55, 82)),
-    "cut_before": set(range(1, 48)),
-    "cut_after": set(range(48, 82)),
-    "nine_district_representatives": {1, 10, 19, 28, 37, 46, 55, 64, 73},
-    "three_quarter_representatives": {1, 28, 55},
-    "district_one": {h for h in range(1, 82) if address(h)[1] == 0},
-    "district_two": {h for h in range(1, 82) if address(h)[1] == 1},
-    "district_three": {h for h in range(1, 82) if address(h)[1] == 2},
+HEAD_SET_RULES = {
+    "first_quarter": lambda: set(range(1, 28)),
+    "second_quarter": lambda: set(range(28, 55)),
+    "third_quarter": lambda: set(range(55, 82)),
+    "cut_before": lambda: set(range(1, 48)),
+    "cut_after": lambda: set(range(48, 82)),
+    "nine_district_representatives": lambda: {1, 10, 19, 28, 37, 46, 55, 64, 73},
+    "three_quarter_representatives": lambda: {1, 28, 55},
+    "district_one": lambda: {h for h in range(1, 82) if address(h)[1] == 0},
+    "district_two": lambda: {h for h in range(1, 82) if address(h)[1] == 1},
+    "district_three": lambda: {h for h in range(1, 82) if address(h)[1] == 2},
 }
+
+# as above: filled from the contract, not from a copy in this file
+DECLARED_HEAD_SETS = {}
+
+
+def load_declarations(contract):
+    """Read the two declared families out of the contract, or refuse to run.
+
+    A name declared in contract.json with no construction rule here, a rule with
+    no declaration, a repeated name or a wrong count is a refusal: the families
+    the sweep evaluates are the declared ones, and nothing falls back to a copy.
+    """
+    objects = contract["objects"]
+    for key, rules, count in (("declared_properties", PROPERTY_RULES, 12),
+                              ("declared_head_sets", HEAD_SET_RULES, 10)):
+        declared = objects.get(key)
+        check(isinstance(declared, list) and all(isinstance(n, str) for n in declared),
+              f"contract.json does not declare {key} as a list of names")
+        check(len(declared) == count, f"contract.json does not declare {count} members of {key}")
+        check(len(set(declared)) == len(declared), f"contract.json repeats a name in {key}")
+        unknown = sorted(n for n in declared if n not in rules)
+        undeclared = sorted(n for n in rules if n not in declared)
+        check(not unknown, f"{key} declares {unknown}, which this checker cannot construct")
+        check(not undeclared, f"this checker can construct {undeclared}, which {key} does not declare")
+
+    check(objects.get("post_hoc_property") == POST_HOC,
+          "contract.json declares another post-hoc property")
+    check(tuple(objects.get("post_hoc_target", ())) == TARGET,
+          "contract.json declares another post-hoc target")
+    check(list(objects.get("structural_constants", [])) == CONSTANTS,
+          "contract.json declares other structural constants")
+
+    PROPERTIES.clear()
+    PROPERTIES.update({name: PROPERTY_RULES[name] for name in objects["declared_properties"]})
+    DECLARED_HEAD_SETS.clear()
+    DECLARED_HEAD_SETS.update({name: HEAD_SET_RULES[name]()
+                               for name in objects["declared_head_sets"]})
+    check(sorted(PROPERTIES) == sorted(objects["declared_properties"]),
+          "the property family built here is not the declared one")
+    check(sorted(DECLARED_HEAD_SETS) == sorted(objects["declared_head_sets"]),
+          "the head-set family built here is not the declared one")
+    check(sorted(objects["declared_properties"]) == sorted(PROPERTY_RULES),
+          "the declared property family is not the family of construction rules")
+    check(sorted(objects["declared_head_sets"]) == sorted(HEAD_SET_RULES),
+          "the declared head-set family is not the family of construction rules")
+    return objects["declared_properties"], objects["declared_head_sets"]
 
 
 def s3_sweep():
@@ -399,7 +475,19 @@ def s3_sweep():
         "containments_contributed_by_those": dominating,
         "the_observed_count_is_driven_by_evenly_spread_properties": True,
         "the_uniform_null_under_predicts_for_evenly_spread_properties": True,
-        "the_sweep_is_declared_before_any_coincidence_is_evaluated": True,
+        "the_declared_families_are_read_from_the_contract": True,
+        "declared_properties": sorted(members),
+        "declared_head_sets": sorted(DECLARED_HEAD_SETS),
+        "declarations": {
+            "properties_source": "contract.json objects.declared_properties",
+            "head_sets_source": "contract.json objects.declared_head_sets",
+            "post_hoc_source": "contract.json objects.post_hoc_property and objects.post_hoc_target",
+            "ordering": "contract.json declares both families and the contract, the checker, the"
+                         " retained evidence and the note were introduced by one commit, whose base"
+                         " is the base_commit contract.json records; no earlier timestamped record"
+                         " of the declarations exists in this repository and none is claimed, so"
+                         " the sweep is declared rather than dated before its results",
+        },
         "table": table,
     }
 
@@ -411,11 +499,15 @@ def s4_post_hoc():
     check(len(m) == 9, "the post-hoc property does not have nine praises")
     check(sorted(m) == [5, 13, 41, 61, 113, 181, 313, 421, 613],
           "the post-hoc property is not the declared nine praises")
+    check(POST_HOC not in PROPERTIES,
+          "the post-hoc property is one of the declared properties after all")
     hits = selected_heads(m)
     check(sorted(hits) == [1, 2, 5, 7, 13, 21, 35, 47, 69],
           "the post-hoc property does not select the declared nine heads")
-    target = {21, 69}
+    target = set(TARGET)
     check(target <= hits, "the post-hoc property does not select both prison heads")
+    check(not any(target <= DECLARED_HEAD_SETS[name] for name in DECLARED_HEAD_SETS),
+          "the declared family contains the post-hoc target, so the entry is not separate")
     p = probability_of_containment(2, 9)
     check(p == F(3133760077447169, 308069738356701321),
           "the post-hoc probability is not the computed fraction")
@@ -457,14 +549,45 @@ def s4_post_hoc():
     }
 
 
-def probabilities_are_close(a, b):
-    return abs(float(a) - float(b)) < 1e-12
-
-
 # ------------------------------------------------------------------- vacuity
+
+def additive_order(difference):
+    """The least k with k times the difference zero in Z_3^4, or None.
+
+    The displacement group has eighty-one elements, so a search to that bound
+    decides the order exactly and a missing answer is reported as None rather
+    than silently treated as an order.
+    """
+    if all(x == 0 for x in difference):
+        return 1
+    for k in range(1, HEADS + 1):
+        if all((k * x) % ORDER == 0 for x in difference):
+            return k
+    return None
+
+
+def shifted(point, difference, multiple):
+    return tuple((point[k] + multiple * difference[k]) % ORDER for k in range(PLACES))
+
 
 def s5_vacuity():
     Z = [tuple(c) for c in product(range(ORDER), repeat=PLACES)]
+    check(len(Z) == HEADS, "the address space does not have eighty-one points")
+
+    # the additive order of every non-zero difference, computed by adding it to
+    # itself rather than by reading three times a residue modulo three, which is
+    # identically zero and decides nothing
+    orders = set()
+    for a in Z:
+        for b in Z:
+            if a == b:
+                continue
+            d = tuple((b[k] - a[k]) % ORDER for k in range(PLACES))
+            orders.add(additive_order(d))
+    check(orders == {ORDER},
+          f"the non-zero differences do not all have order three, but {sorted(str(o) for o in orders)}")
+    check(HEADS - 1 == 80, "the non-zero differences are not eighty")
+
     pairs = 0
     exceptional = 0
     for a in Z:
@@ -473,17 +596,29 @@ def s5_vacuity():
                 continue
             pairs += 1
             d = tuple((b[k] - a[k]) % ORDER for k in range(PLACES))
-            if d == (0, 0, 0, 0) or any((ORDER * x) % ORDER for x in d):
+            cycle = {shifted(a, d, m) for m in range(ORDER)}
+            if len(cycle) != ORDER or a not in cycle or b not in cycle:
                 exceptional += 1
     check(pairs == HEADS * (HEADS - 1) == 6480,
           "the ordered pairs of distinct heads are not six thousand four hundred eighty")
     check(exceptional == 0,
-          "some difference does not have order dividing three, so the relation is not total")
-    check(all(((ORDER * d) % ORDER) == 0 for d in range(ORDER)),
-          "three times a residue does not vanish")
+          "some pair of distinct heads does not lie in a common three-cycle of its own difference")
+
+    # one non-zero displacement partitions the space into its three-cycles
+    d = (1, 1, 1, 1)
+    cycles = {frozenset(shifted(a, d, m) for m in range(ORDER)) for a in Z}
+    check(len(cycles) == HEADS // ORDER == 27,
+          "a non-zero displacement does not partition the heads into twenty-seven three-cycles")
+    check(sum(len(c) for c in cycles) == HEADS,
+          "the three-cycles of a displacement do not cover every head exactly once")
+    check(all(len(c) == ORDER for c in cycles), "a three-cycle does not have three heads")
     return {
         "ordered_pairs_of_distinct_heads": pairs,
         "pairs_whose_difference_does_not_have_order_dividing_three": exceptional,
+        "orders_of_the_non_zero_differences": sorted(int(o) for o in orders),
+        "cycles_of_one_non_zero_displacement": len(cycles),
+        "the_order_is_computed_by_repeated_addition": True,
+        "every_pair_of_distinct_heads_lies_in_a_common_three_cycle": True,
         "the_same_cycle_relation_is_total": True,
         "a_total_relation_has_no_discriminating_power": True,
         "exhausted_pairs": pairs,
@@ -544,8 +679,9 @@ def s6_coverage():
 
 # ------------------------------------------------------------------------ driver
 
-def run(output=None):
+def run(contract, output=None):
     started = time.perf_counter_ns()
+    declared_properties, declared_head_sets = load_declarations(contract)
     sections = {
         "S1_definability": s1_definability(),
         "S2_null": s2_null(),
@@ -554,11 +690,16 @@ def run(output=None):
         "S5_vacuity": s5_vacuity(),
         "S6_coverage": s6_coverage(),
     }
+    check(sorted(sections["S3_sweep"]["declared_properties"]) == sorted(declared_properties),
+          "the swept property family is not the family read out of the contract")
+    check(sorted(sections["S3_sweep"]["declared_head_sets"]) == sorted(declared_head_sets),
+          "the swept head-set family is not the family read out of the contract")
     report = {
         "schema": "adva.research.preregistered-sweep-evidence.v0",
         "status": "ExternalExactPass",
         "checker_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "contract_sha256": hashlib.sha256((HERE / "contract.json").read_bytes()).hexdigest(),
+        "contract_base_commit": contract["base_commit"],
         "assertions": COUNTS["assertions"],
         "sections": sections,
         "limits": LIMITS,
@@ -619,7 +760,7 @@ def main():
     contract = json.loads((HERE / "contract.json").read_text(encoding="utf-8"))
     LIMITS.update(contract["budget"])
     install_limits()
-    report, _ = run(args.output)
+    report, _ = run(contract, args.output)
     print(json.dumps({"status": report["status"], "assertions": report["assertions"]},
                      sort_keys=True))
     return 0

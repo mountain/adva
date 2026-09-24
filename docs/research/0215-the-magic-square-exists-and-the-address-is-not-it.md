@@ -251,8 +251,8 @@ python3 experiments/eighty_one_magic_square/checker.py --output experiments/eigh
 standard library only — integers and `Fraction`; no floating-point value enters
 any acceptance test — and its output is compared against the retained
 [`evidence.json`](../../experiments/eighty_one_magic_square/evidence.json) with
-timings removed. The retained run records **21,072 assertions** over six sections
-in about seven seconds, having exhausted 81 cells of the canonical grid, 7,267
+timings removed. The retained run records **21,079 assertions** over six sections
+in about eight seconds, having exhausted 81 cells of the canonical grid, 7,267
 coefficient matrices for the entry-set equivalence, 6,864 unit-coefficient
 configurations, 547,795 affine squares across the three orders (twice, once per
 invertibility test), and the declared pair and class populations.
@@ -273,7 +273,12 @@ Controls that keep the checks from being vacuous:
 * the two aligned labellings are asserted to share total incidence **90** and the
   block labelling to be **below** it, so the alignment claim is a comparison;
 * the Markov bound is asserted to be **above three fifths**, so "ordinary" is a
-  bound and not an impression.
+  bound and not an impression;
+* the manifest loss is **computed as a set difference between two declared
+  listings** rather than written into a range, and one declared manifest is
+  compared against **two declared directories whose losses differ** (two works and
+  three), so "no statistic from the manifest can detect the loss" is an exhibited
+  comparison and not a restatement.
 
 ## 9. Residual and non-claims
 
@@ -294,7 +299,11 @@ Controls that keep the checks from being vacuous:
   on the reported permuted grid, which is not available here. It gives the
   statistic a second and a maximum value; it does not measure the reported grid.
 * **The manifest model is a model.** It is not an audit of any pipeline, and the
-  numbers used are the ones the external record published.
+  numbers used are the ones the external record published. The two listings and
+  the manifest are declared in the contract; what the checker computes is the set
+  difference between them and the arithmetic of the shares. That the two declared
+  directories lose different numbers of works under one and the same manifest is
+  a property of the declared model, not a measurement of any real directory.
 * **No native consequence.** No `SourceId`, observer, aperture, clock, operation
   or `Seal`; the address space, its grid and the affine family are not claimed as
   native structures.

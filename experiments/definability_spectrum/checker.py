@@ -156,6 +156,24 @@ def s1_spectrum():
     check(sizes[9] == 54, "the number of nine-element sets definable by two places is not fifty-four")
     check(sizes[0] == 1 and sizes[81] == 1, "the empty set or the whole set is missing")
     check(sum(sizes.values()) == cumulative["2"], "the size distribution does not sum to the union")
+
+    # The distribution's symmetry d(s) = d(81 - s) is forced by complementation: the
+    # complement of a union of blocks of a partition is a union of blocks of the same
+    # partition, so the union is closed under complement. Both facts are computed
+    # here rather than assumed, and the symmetry is reported as a consistency check
+    # on the enumeration.
+    full = to_mask(range(1, HEADS + 1))
+    complement_closed = all((full ^ mask) in union for mask in union)
+    check(complement_closed,
+          "the union of the algebras up to two places is not closed under complement")
+    check(all(sizes.get(HEADS - size, 0) == sizes[size] for size in sizes),
+          "the size distribution is not symmetric: d(s) is not d(81 - s)")
+    for size in sorted(sizes):
+        if size < HEADS - size:
+            check(sizes[size] == sizes[HEADS - size],
+                  f"the distribution at {size} is not the distribution at {HEADS - size}")
+    check(sorted(sizes) == sorted(HEADS - size for size in sizes),
+          "the sizes present are not closed under the complement mirror")
     return {
         "places": PLACES,
         "heads": HEADS,
@@ -166,6 +184,11 @@ def s1_spectrum():
         "beyond_exhaustion_are_counted_not_enumerated": True,
         "size_distribution_up_to_two_places": {str(k): v for k, v in sorted(sizes.items())},
         "all_defined_sizes_are_multiples_of_nine": True,
+        "the_union_is_closed_under_complement": complement_closed,
+        "the_complement_of_an_expressible_set_is_expressible": complement_closed,
+        "size_distribution_is_symmetric_under_complement": True,
+        "size_distribution_mirror_pairs": [[str(size), sizes[size], sizes[HEADS - size]]
+                                           for size in sorted(sizes) if size < HEADS - size],
         "power_set_size": 2 ** HEADS,
     }
 
@@ -311,10 +334,31 @@ def s3_prior():
     check(rows["cut_before"]["prior"] == "1" and rows["cut_after"]["prior"] == "1",
           "a set needing all four places does not have the trivial prior")
     check(rows["all_heads"]["prior"] == "1", "the whole set does not have the trivial prior")
-    check(rows["nine_district_representatives"]["prior_float"] < 1e-9,
-          "the nine-element prior is not extremely small")
-    check(rows["three_quarter_representatives"]["prior_float"] > 1e-4,
-          "the three-element prior is not comparatively large")
+    # exact rational comparisons: the recorded prior_float is a display copy and is
+    # never compared, so the thresholds are Fractions and not decimal literals
+    check(F(rows["nine_district_representatives"]["prior"]) < F(1, 10 ** 9),
+          "the nine-element prior is not below one in a billion")
+    check(F(rows["three_quarter_representatives"]["prior"]) > F(1, 10 ** 4),
+          "the three-element prior is not above one in ten thousand")
+
+    # The smallest prior is taken over every row of the table and not read off a
+    # single comparison. The rows whose prior is one are the whole set, whose level
+    # constrains nothing, and the four divisions that need all four places.
+    smallest = min(sorted(rows), key=lambda name: F(rows[name]["prior"]))
+    check(all(F(rows[name]["prior"]) >= F(rows[smallest]["prior"]) for name in rows),
+          "a row of the table has a prior below the smallest one")
+    check(smallest == "first_quarter",
+          f"the smallest prior in the table does not belong to the first quarter but to {smallest}")
+    check(len([name for name in rows if F(rows[name]["prior"]) == F(rows[smallest]["prior"])]) == 1,
+          "the smallest prior is not attained by exactly one declared division")
+    trivial = sorted(name for name in rows if F(rows[name]["prior"]) == 1)
+    check(sorted(trivial) == ["all_heads", "cut_after", "cut_before", "orbit_of_seven",
+                              "two_prison_heads"],
+          f"the divisions with a trivial prior are not the whole set and the four that need four places, but {trivial}")
+    weakest_nontrivial = min(rows[name]["mu"] for name in rows
+                             if F(rows[name]["prior"]) < 1)
+    check(rows[smallest]["mu"] == weakest_nontrivial,
+          "the smallest prior does not sit at the weakest level that has a non-trivial rival count")
     return {
         "rows": rows,
         "a_prior_of_one_means_no_constraint": True,
@@ -322,7 +366,13 @@ def s3_prior():
         "the_quarter_count_moved_from_480_to_12_when_the_level_was_restricted": True,
         "level_sizes": level_size,
         "the_prior_is_bounded_by_the_size_of_its_own_level": True,
-        "the_smallest_prior_belongs_to_the_coarsest_division": True,
+        "smallest_prior_division": smallest,
+        "smallest_prior": rows[smallest]["prior"],
+        "the_smallest_prior_is_taken_over_every_row": True,
+        "the_smallest_prior_belongs_to_the_first_quarter": smallest == "first_quarter",
+        "the_weakest_level_with_a_non_trivial_prior": weakest_nontrivial,
+        "divisions_with_a_trivial_prior": trivial,
+        "the_prior_is_compared_as_a_fraction_and_never_as_a_float": True,
         "exhausted_up_to_level": EXHAUSTION_LEVEL,
     }
 

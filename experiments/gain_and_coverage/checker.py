@@ -33,6 +33,28 @@ def check(value, message):
         raise ValueError(message)
 
 
+def decimal_round_half_up(value, digits):
+    """Exact decimal rounding of a non-negative rational, halves away from zero.
+
+    Integer arithmetic only, so no float enters any acceptance test that uses it: for
+    value = n/d >= 0 the rounded number of units of 10**-digits is
+    floor(n * 10**digits / d + 1/2) = (2 * n * 10**digits + d) // (2 * d).
+    """
+    if value < 0:
+        raise ValueError("this helper rounds non-negative rationals only")
+    scale = 10 ** digits
+    units = (2 * value.numerator * scale + value.denominator) // (2 * value.denominator)
+    whole, frac = divmod(units, scale)
+    return f"{whole}.{frac:0{digits}d}"
+
+
+def decimal_truncate(value, digits):
+    """value truncated to `digits` decimals, as a fixed-point string, exactly."""
+    scale = 10 ** digits
+    whole, frac = divmod((value.numerator * scale) // value.denominator, scale)
+    return f"{whole}.{frac:0{digits}d}"
+
+
 # --------------------------------------------- S1: the octave reduction is a quotient
 
 LIMIT_S1 = 2000
@@ -240,10 +262,20 @@ def s3_coverage():
         radii[str(b)] = str(worst)
         check(worst == F(1, 2 * b), "the covering radius is not one over twice the division")
     check(radii["22"] == "1/44", "the twenty-two-division covering radius is not one forty-fourth")
-    check(F(1, 44) > F(2272, 100000),
-          "the reported maximum distance is not below the covering radius")
-    check(F(1, 44) == F(227272, 10000000) + F(8, 11000000) or F(1, 44) > 0,
-          "the covering radius is not a positive rational")
+    # The covering radius is attained, so the bound is not strict: the points midway
+    # between two adjacent positions of the twenty-two-division are exactly one
+    # forty-fourth of an octave from the nearest one. (An earlier revision of this line
+    # was `... or F(1, 44) > 0`, which is true of every positive number and could not
+    # fail; it is replaced by the attainment it was reaching for.)
+    attainment = max(distance_to_division(F(2 * k + 1, 44), 22) for k in range(22))
+    check(attainment == F(1, 44),
+          "the covering radius of the twenty-two-division is not attained by a point of the octave")
+    # the declared five-decimal reported maximum distance is that bound to five decimals,
+    # and it is below the bound, because it is a maximum over the declared points
+    reported_agrees = F(2272, 100000) <= F(1, 44) < F(2273, 100000)
+    reported_below = F(2272, 100000) < F(1, 44)
+    check(reported_agrees and reported_below,
+          "the declared reported maximum distance is not the covering radius to five decimals")
 
     limit = N_DECLARED[1]
     table_1 = odd_power_table(limit, 1100)
@@ -271,17 +303,35 @@ def s3_coverage():
           "the finer tolerance does not require more points")
     check(thresholds["point_1_percent"] <= N_DECLARED[1],
           "the declared larger set is below its own coverage threshold")
+    # What these two numbers are. The coverage test walks the ODD integers, so the value
+    # returned for a tolerance is an odd serial-number index bound: the largest odd index
+    # whose predecessors already cover all twenty-two positions. The bound is one less
+    # than twice the number of points it contains, so the point counts are 57 and 619 and
+    # not 113 and 1237.
+    index_bounds = {name: value for name, value in thresholds.items() if value is not None}
+    point_counts = {name: (value + 1) // 2 for name, value in index_bounds.items()}
+    index_bounds_are_odd = all(value % 2 == 1 for value in index_bounds.values())
+    check(index_bounds_are_odd,
+          "a declared coverage threshold is not an odd serial-number index bound")
+    check(all(value == 2 * point_counts[name] - 1 for name, value in index_bounds.items()),
+          "a declared coverage threshold is not one less than twice its own point count")
     return {
         "division": B_MAIN,
         "covering_radius_by_division": radii,
         "covering_radius": "1/44",
         "covering_radius_as_a_share": str(F(1, 44)),
         "reported_maximum_distance": "0.02272",
-        "reported_maximum_is_the_covering_radius": True,
+        "reported_maximum_is_the_covering_radius": reported_agrees,
         "every_subset_satisfies_the_bound": True,
         "measured_coverage": measured,
         "coverage_threshold": thresholds,
-        "thresholds_are_absolute_point_counts": True,
+        "thresholds_are_odd_serial_number_index_bounds": index_bounds_are_odd,
+        "coverage_threshold_units":
+            "an odd serial-number index bound over the odd integers: the point count of "
+            "the bound is (bound + 1) / 2",
+        "coverage_threshold_index_bounds": index_bounds,
+        "coverage_threshold_point_counts": point_counts,
+        "covering_radius_is_attained_at_the_midpoints": attainment == F(1, 44),
         "exhausted_odd_integers": len(range(1, limit + 1, 2)),
     }
 
@@ -331,7 +381,12 @@ def s4_count_arithmetic():
         "probability_of_at_least_one": str(at_least_one),
         "probability_of_exactly_one": str(exactly_one),
         "probability_of_none": str(none),
-        "probability_of_at_least_one_float": "0.243564",
+        # The six-decimal rendering of the declared fraction by exact rational rounding.
+        # The literal this replaces read "0.243564", which is not a rounding of
+        # 0.243550947... at any precision; it was stale, and it is gone rather than kept
+        # beside a corrected copy.
+        "probability_of_at_least_one_six_decimals":
+            decimal_round_half_up(at_least_one, 6),
         "expected_count_is_below_one": True,
         "observing_one_is_an_ordinary_event": True,
         "moduli_dividing_at_least_one_count": divisors,
@@ -379,9 +434,28 @@ def s5_gain_and_spread():
     for c in CLASSES:
         share = top3_share(c["top3"], c["gain"])
         c["share"] = share
-        check(f"{float(share):.3f}" == c["reported"],
-              f"the declared top-three share of {c['id']} is not the published one")
+        c["exact_three_decimals"] = decimal_round_half_up(share, 3)
         check(sum(c["top3"]) <= c["gain"], "a declared top-three sum exceeds the declared gain")
+    # The published three-decimal values are compared with EXACT decimal rounding of the
+    # exact rational share, by integer arithmetic only. Four of the five agree. The fifth,
+    # naming, is exactly the three-decimal half-way value 2091/6800 = 123/400 = 0.3075:
+    # exact rounding gives 0.308, the published string is 0.307, and 0.307 is what the
+    # truncation of that share gives, which is also what binary floating point produces
+    # here because the nearest double to 0.3075 lies below it. The published digit is
+    # therefore one unit low and the disagreement is asserted rather than made to pass.
+    # (An earlier revision compared f"{float(share):.3f}" with the published string and
+    # passed on the float's own rounding error, which is how the disagreement survived.)
+    disagreements = [c["id"] for c in CLASSES
+                     if c["exact_three_decimals"] != c["reported"]]
+    check(disagreements == ["naming"],
+          "the published three-decimal values are not reproduced by exact rounding in "
+          "exactly the one declared half-way row")
+    naming = next(c for c in CLASSES if c["id"] == "naming")
+    check(naming["share"] * 10000 == 3075
+          and naming["exact_three_decimals"] == "0.308"
+          and decimal_truncate(naming["share"], 3) == naming["reported"],
+          "the published naming share is not the truncation of an exact three-decimal "
+          "half-way value whose exact rounding is 0.308")
     rho_rank = spearman([(c["gain"], c["share"]) for c in CLASSES])
     check(rho_rank == F(-1, 10),
           "the exact rank correlation between gain and spread is not minus one tenth")
@@ -442,8 +516,20 @@ def s5_gain_and_spread():
           "the corpus baseline is below some declared class share, so the point is not made")
     return {
         "classes": {c["id"]: {"gain": c["gain"], "top3": c["top3"], "works": c["works"],
-                              "top3_share": str(c["share"]), "reported": c["reported"]}
+                              "top3_share": str(c["share"]), "reported": c["reported"],
+                              "exact_three_decimals": c["exact_three_decimals"],
+                              "published_value_is_the_exact_rounding":
+                                  c["exact_three_decimals"] == c["reported"]}
                     for c in CLASSES},
+        "published_three_decimal_values_reproduced_by_exact_rounding":
+            [c["id"] for c in CLASSES if c["exact_three_decimals"] == c["reported"]],
+        "published_three_decimal_values_not_reproduced_by_exact_rounding": disagreements,
+        "naming_published_value": naming["reported"],
+        "naming_exact_three_decimals": naming["exact_three_decimals"],
+        "naming_share_is_exactly_a_three_decimal_half_way_value": naming["share"] * 10000 == 3075,
+        "naming_published_value_is_the_truncation_of_its_exact_share":
+            decimal_truncate(naming["share"], 3) == naming["reported"],
+        "rounding_rule": "exact decimal rounding, halves away from zero, by integer arithmetic",
         "rank_correlation_gain_versus_spread": str(rho_rank),
         "rank_correlation_magnitude": str(abs(rho_rank)),
         "order_by_gain": [c["id"] for c in by_gain],
@@ -477,19 +563,32 @@ def s6_threshold_versus_content():
     check(sum(COMPONENTS.values()) == 38, "the declared component counts do not sum to the published total")
     check(sum(CLASSIFIED.values()) == UNREAD,
           "the declared classification does not sum to the unread count")
-    check(COMPONENTS["自始"] == 0 and COMPONENTS["凡皆"] == 0,
-          "the two predicted patterns are not both exactly zero")
+    # The two components 自始 and 凡皆 are declared zero in contract.json. That is a
+    # declaration and this checker does not verify it against the record: an earlier
+    # revision asserted `COMPONENTS["自始"] == 0 and COMPONENTS["凡皆"] == 0`, which only
+    # restated the literal two lines above it and could not fail. What the checker CAN
+    # decide about the aggregate is what the aggregate fails to determine, below.
+    declared_zero = [k for k, v in COMPONENTS.items() if v == 0]
     speech_components = {"記言"}
     non_speech = sum(v for k, v in COMPONENTS.items() if k not in speech_components)
     check(non_speech == 16, "the declared non-speech numerator is not sixteen")
     share = F(non_speech, UNREAD)
     check(share == F(8, 95), "the declared non-speech share is not eight ninety-fifths")
-    check(share > GATE, "the declared gate does not pass")
-    check(f"{float(share):.4f}" == "0.0842", "the reported gate value is not the computed one")
-    largest_passing = max(n for n in range(UNREAD + 1) if F(n, UNREAD) < GATE)
-    check(F(largest_passing, UNREAD) < GATE <= F(largest_passing + 1, UNREAD),
+    # The gate is a FALSIFICATION line and not a ceiling. The external preregistration
+    # this experiment reads (wenyan-relation-learning, commit ca0008c,
+    # knowledge/relations/tangguoshibu-structure.json, "preregistration") states the line
+    # as: if the non-speech hits divided by the unread passages is below one twentieth,
+    # then the prediction does not hold. So the gate PASSES when the share is ABOVE one
+    # twentieth and FAILS at or below it, which is the direction checked here; the note's
+    # section 7 said the opposite and has been corrected with the rest of the five places.
+    check(share > GATE,
+          "the declared gate is a falsification line and the declared share is not above it")
+    check(decimal_round_half_up(share, 4) == "0.0842",
+          "the reported four-decimal gate value is not the exact one")
+    largest_below = max(n for n in range(UNREAD + 1) if F(n, UNREAD) < GATE)
+    check(F(largest_below, UNREAD) < GATE <= F(largest_below + 1, UNREAD),
           "the gate crossing point is not the declared one")
-    check(non_speech - largest_passing == 7,
+    check(non_speech - largest_below == 7,
           "the number of hits to spare before the gate fails is not seven")
 
     # the aggregate does not determine the components
@@ -508,26 +607,44 @@ def s6_threshold_versus_content():
     no_contribution = [v for v in vectors if v[3] == 0]
     check(len(no_contribution) > 0,
           "no declared vector leaves the last component at zero")
+    # the computed control: the same aggregate is compatible with a zero component AND
+    # with a vector in which every component is positive, so the aggregate cannot be a
+    # test of which components are present
+    all_positive = [v for v in vectors if all(x > 0 for x in v)]
+    aggregate_fixes_no_component = bool(all_positive) and bool(no_contribution)
+    check(aggregate_fixes_no_component,
+          "the declared numerator is compatible with only one side of the zero question, "
+          "so the aggregate would partly determine the named content")
     check(sum(CLASSIFIED.values()) == UNREAD,
           "the classification identity does not hold")
     check(F(CLASSIFIED["no speech verb at all"], UNREAD) == F(169, 190),
           "the dominant-cause share is not one hundred sixty-nine over one hundred ninety")
+    gate_passes = share > GATE and largest_below < non_speech
     return {
         "components": COMPONENTS,
         "unread": UNREAD,
         "non_speech_numerator": non_speech,
         "non_speech_share": str(share),
-        "non_speech_share_float": "0.0842",
+        "non_speech_share_four_decimals_exact": decimal_round_half_up(share, 4),
         "gate": str(GATE),
-        "gate_passes": True,
-        "largest_numerator_still_below_the_gate": largest_passing,
-        "gate_passes_with": "7 hits to spare",
-        "components_exactly_zero": [k for k, v in COMPONENTS.items() if v == 0],
+        "gate_direction":
+            "falsification line: the gate fails when the share is below one twentieth, so "
+            "it passes when the share is above it",
+        "gate_source":
+            "wenyan-relation-learning ca0008c, knowledge/relations/tangguoshibu-structure.json",
+        "gate_passes": gate_passes,
+        "largest_numerator_still_below_the_gate": largest_below,
+        "gate_passes_with": f"{non_speech - largest_below} hits to spare",
+        "components_exactly_zero": declared_zero,
+        "components_exactly_zero_source":
+            "declared in contract.json objects.gate_components and restated here; this "
+            "checker does not verify them against the external record",
         "component_vectors_with_the_same_aggregate": len(vectors),
         "vectors_putting_everything_on_one_component": len(all_zero),
+        "component_vectors_with_every_component_positive": len(all_positive),
         "classification": CLASSIFIED,
         "dominant_cause_share": str(F(CLASSIFIED["no speech verb at all"], UNREAD)),
-        "the_aggregate_does_not_determine_the_components": True,
+        "the_aggregate_does_not_determine_the_components": aggregate_fixes_no_component,
     }
 
 

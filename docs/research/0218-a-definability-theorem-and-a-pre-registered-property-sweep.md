@@ -1,4 +1,4 @@
-# 0218 — A definability theorem, and a pre-registered property sweep
+# 0218 — A definability theorem, and a sweep declared in the contract
 
 Date: 2026-09-23. Direction: Mingli Yuan. Analysis, checker and note:
 deepseek-v4-flash-vision-exp (DeepSeek Harness), submitted through his account
@@ -10,6 +10,21 @@ change, no library admission, no Seal, and no claim about any text.
 Base: `79f6353511d736ae743b109f1c573b652eff170a`. Library gitlink:
 `73a6af4ac4ed8225366d3c16794e309cff15f51d`.
 
+> **On the word "pre-registered" in this file's name.** The experiment's slug
+> still carries it, and the record does not. What the repository can show is
+> this: both families are declared in `contract.json` under
+> `objects.declared_properties` and `objects.declared_head_sets`; the checker
+> reads them out of that file, refusing to run on a name it cannot construct or
+> on a construction rule the contract does not declare, so the families it
+> sweeps are the declared ones; the contract, the checker, the evidence and this
+> note were introduced by a single commit (`56b0bcf`), whose base is the
+> `base_commit` above; and no earlier record of the declarations exists in the
+> repository (`git log -S declared_properties --all` finds that one commit and
+> no other). **There is therefore no independent timestamp and nothing is dated
+> before the counting.** The sweep is declared, not registered in advance, and
+> the claim that a family was fixed before its results were seen is one this
+> repository cannot support.
+
 ---
 
 ## 1. What this answers
@@ -20,13 +35,14 @@ praise, and can it explain a classical pair of hexagrams?* The answer was that
 explanation fails on three independent counts — but the *shape* of the question
 kept recurring, and this note gives that shape its mathematics. Two things come
 out of it: **a theorem about how many places a set of heads needs before the
-address algebra can see it**, and **a pre-registered sweep that prices a
-coincidence against a family rather than against nothing.**
+address algebra can see it**, and **a sweep, declared in the contract, that
+prices a coincidence against a declared family rather than against nothing.**
 
 **No text and no corpus count is imported.** The address space, the twelve
 arithmetic properties and the ten head sets are declared in this experiment's
-contract, **and the property and head-set families were declared there before
-any containment was evaluated.** No corpus is opened.
+contract, the checker reads both families out of that contract, and the
+declarations and the results carry the same commit and no earlier one (the box
+above). No corpus is opened.
 
 ## 2. The invariant, and its theorem
 
@@ -105,14 +121,19 @@ so meeting two given heads is about one in a hundred — not the one in three
 thousand two hundred forty that a single-probe intuition suggests. That
 correction is spent in section 6.
 
-## 5. The pre-registered sweep
+## 5. The sweep, and where its families come from
 
 Twelve declared arithmetic properties of praise numbers (prime, centred square,
 square, perfect power, triangular, Fibonacci, palindromic, three congruences, sum
 of two squares, power of three) against ten declared head sets (the three
 quarters, the two sides of the cut, the nine district representatives, the three
-quarter representatives, and three district levels). The families are fixed in
-the contract; nothing was added after looking.
+quarter representatives, and three district levels). Both families are the ones
+`contract.json` declares, and the checker builds them by reading those names out
+of the contract and matching each against a construction rule: a name with no
+rule, a rule with no declared name, a repeated name or a wrong count stops the
+run. The families and the count below are one commit's work, so the honest
+statement is that the families are declared and read from the declaration, not
+that they were fixed before the count was seen.
 
 ```
 pairs                              120
@@ -166,9 +187,9 @@ And the corrected value is not small in the company it has to keep:
 
 So the coincidence sits in the *less* surprising quarter of a table that was
 built without it. It is not the most unlikely thing in its own experiment. This
-is the whole reason for pre-registering: the question is never "is this
-unlikely?" but "is this more unlikely than the field it was selected from?" — and
-here it is not.
+is the whole reason for pricing a hit against a declared family instead of
+against nothing: the question is never "is this unlikely?" but "is this more
+unlikely than the field it was selected from?" — and here it is not.
 
 ## 7. The vacuity, proved
 
@@ -183,8 +204,17 @@ the proof rather than the impression.**
 ```
 
 The relation "there exists a displacement putting two heads in one cycle" is
-**total**. Exhaustion over all `6480` ordered pairs of distinct heads finds no
-exception. A total relation partitions nothing and discriminates nothing.
+**total**, and the checker decides it by computing rather than by writing three
+times a residue modulo three: the additive order of every one of the eighty
+non-zero differences is computed by adding the difference to itself until it
+vanishes, every one of the `6480` ordered pairs of distinct heads is put in the
+three-cycle its own difference generates and found there, and one fixed
+displacement is checked to partition the eighty-one heads into twenty-seven
+three-cycles with no exception. The earlier version of this control multiplied
+the difference by three and tested the product modulo three, which is identically
+zero: it could not have failed and carried no information, and it is recorded
+here rather than quietly replaced. A total relation partitions nothing and
+discriminates nothing.
 
 What survives from that section is the different statement that **one fixed
 displacement carries both pairs** (`7 ↦ 47` and `8 ↦ 48` by the same `(1,2,1,1)`),
@@ -219,9 +249,11 @@ python3 experiments/preregistered_sweep/checker.py --output experiments/preregis
 
 [`checker.py`](../../experiments/preregistered_sweep/checker.py) uses the standard
 library only — integers and `Fraction`; no floating-point value enters any
-acceptance test — and its output is compared against the retained
+acceptance test, every comparison being an integer or a `Fraction` comparison,
+and the decimal fields in the record being display copies of exact rationals —
+and its output is compared against the retained
 [`evidence.json`](../../experiments/preregistered_sweep/evidence.json) with
-timings removed. The retained run records **1,402 assertions** over six sections
+timings removed. The retained run records **1,432 assertions** over six sections
 in under a second, having exhausted 1,296 fibres, ten declared sets for the
 minimal place count, six containment sizes for the null, 120 declared pairs for
 the sweep, 6,480 ordered pairs for the vacuity, and the whole declared expression
@@ -233,9 +265,15 @@ Controls that keep the checks from being vacuous:
 
 * the fibre sizes are asserted for **every** subset and every head, so the
   theorem rests on the structure and not on a sample;
-* a set of size three is asserted to have `μ = 4` **and** another set of size
-  three to have `μ = 3`, so "the bound is not tight" is exhibited rather than
-  claimed;
+* a set of size three is asserted by the **checker** to have `μ = 4` **and**
+  another set of size three to have `μ = 3`, so "the bound is not tight" is
+  exhibited rather than claimed;
+* both families are read out of the contract and the construction rules are
+  compared with the declarations both ways, so a family that is not the declared
+  one cannot be swept;
+* the expected number of heads hit by nine praises is compared as an exact
+  rational against `86132/10000`, and the vacuity control computes the additive
+  order of every non-zero difference instead of multiplying a residue by three;
 * both monotonicities of the null are asserted — falling with the target size,
   rising with the property size — so the table is not a coincidence of numbers;
 * the sweep is asserted to have **120** pairs and the observed count is asserted
@@ -248,11 +286,15 @@ Controls that keep the checks from being vacuous:
 ## 10. Residual and non-claims
 
 * **The post-hoc entry is not a p-value in the sense the table's entries are.**
-  Its property was chosen after its containment was seen, and it is reported
-  separately for exactly that reason.
+  Its property is not one of the twelve declared properties and its target is not
+  one of the ten declared head sets, and the checker asserts both of those rather
+  than assuming them; it is reported separately for exactly that reason. The
+  label "post hoc" records where the entry came from — the question that started
+  this experiment — and not a dated sequence the repository can produce.
 * **The property family is one declared family among many.** Twelve arithmetic
-  predicates were fixed in the contract; a different family gives different
-  counts, and the family is not claimed to be natural or complete.
+  predicates are declared in the contract and read from it by the checker; a
+  different family gives different counts, and the family is not claimed to be
+  natural or complete.
 * **The null is uniform over subsets of a fixed size and models no process.**
   Section 5 shows the price of that: it under-predicts for evenly spread
   properties, which is a property of arithmetic predicates and not of the data.

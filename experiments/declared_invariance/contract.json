@@ -1,10 +1,10 @@
 {
   "schema": "adva.research.declared-invariance-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0212-what-a-declared-invariance-already-fixes.md",
   "question": "When a reading declares an invariance, how much of the answer is fixed before any data is seen? On one tetrahedron, do the four face mirrors and the three axis swaps generate the same symmetry set? For a matrix built by counting co-occurrences, can any row identify its own labelled item once the matrix is rank one, and does replacing the row argmax by an optimal assignment repair that? For a directed relation network, is the permutation null that preserves the two margins able to see anything except the margins?",
-  "level": "External exact combinatorics, finite permutations and exact rational arithmetic; every statement decided by exhaustion over a declared finite set; no corpus count and no text imported",
+  "level": "External exact combinatorics, finite permutations and exact rational arithmetic; every statement decided by exhaustion over a declared finite set; no text is imported, no corpus is opened, and the external counts cited in the note are quoted as that repository's published results rather than recomputed",
   "domain": "The four vertices, six edges and three perfect matchings of a tetrahedron with the Klein four-group of axis swaps and the four face mirrors of the affine Weyl group of type A3; declared nonnegative rank-one matrices with five row and five column weights; declared directed networks of four to six edges with the exact law of the statistic over every permutation of the recipients",
   "objects": {
     "vertices": 4,
@@ -28,7 +28,8 @@
     "All six edges for the action of the Klein four-group, and every one of the three matchings",
     "Every declared rank-one matrix over the weight sweep for the row-argmax collapse",
     "All one hundred twenty permutations of five indices for the assignment optimum at each of the ten declared perturbation values",
-    "Every permutation of the recipients for each declared network, which is the exact null law and not a sample of it"
+    "Every permutation of the recipients for each declared network, which is the exact null law and not a sample of it",
+    "Every directed edge family on two or three labelled vertices with at most six edges for the margins-only claim, each family compared inside its own margin class, whose members are grouped by the two margins alone before any law is computed"
   ],
   "grammar": [
     "finite permutations and affine isometries composed exactly",
@@ -39,18 +40,18 @@
   "acceptance": [
     "The three axis swaps are exactly the three double transpositions, each determines one perfect matching, each fixes exactly the two edges of its own matching and moves the other four, and they commute pairwise",
     "The Klein four-group has exactly three orbits on the six edges, of size two, and they are the three perfect matchings; its edge action is NOT free and every edge stabiliser has order two",
-    "The four face mirrors are involutions, non-adjacent pairs commute, adjacent pairs have product of order three, and their generated group is infinite and larger than twenty-four elements within the declared depth",
+    "The four face mirrors are involutions, non-adjacent pairs commute, adjacent pairs have product of order three, and their generated group is infinite and larger than twenty-four elements within the declared depth: the closure contains a pure translation of the lattice within that depth, an element whose linear part is the identity and whose translation vector is nonzero, and its powers are the translations by the successive multiples of that vector, none of them the identity and no two of them equal, which is what makes the group infinite rather than merely large",
     "The origin stabiliser of the closure has exactly twenty-four elements, its Coxeter length distribution is one, three, five, six, five, three, one, and no origin-fixing element has length beyond six",
     "The number of alcoves within Coxeter distance of the fundamental one has a constant fourth difference, so it is a cubic polynomial and the closure tiles without closing",
     "A rank-one matrix puts every row's argmax on the same column, and the same holds throughout the declared weight sweep",
     "The declared rank-one matrix has diagonal share eleven forty-fifths against a chance share of one fifth, an excess of two forty-fifths, with exactly zero row-specific information",
     "For sorted row and column weights the identity is the unique assignment optimum of the rank-one matrix, and for a declared unsorted pair the identity is not an optimum, so the assignment reading is margin-determined rather than alignment-determined",
     "The row-argmax reading first succeeds at perturbation five on the declared grid while the assignment reading already succeeds at perturbation zero, and the per-row threshold has the closed form max of the other column weights over the row's own, minus one",
-    "Two declared networks with the same two margins have the same exact null law and different observed reciprocity, so the null can see only the margins",
+    "Two declared networks with the same two margins have the same exact null law and different observed reciprocity, so the null can see only the margins; the same invariance holds with no disagreement over every directed edge family on two or three labelled vertices with at most six edges, each family compared with the first family of its own margin class, and every slice is asserted to contain exactly the number of families and of margin classes that the counting gives",
     "The declared two-way network attains the top of its null support, so a fully reciprocal network is detectable, while the chain's observed value lies inside its null support"
   ],
   "protected": [
-    "No classical text, edition, transcription, commentary, name table or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "No classical text, edition, transcription, commentary, name table or annotation is imported, and no corpus count from any external repository is reproduced, recomputed or re-measured here: the counts and the one sentence cited in the note are that repository's published results, quoted with repository, commit and file",
     "The matrices and networks in this contract are declared synthetic objects, not measurements of any corpus; the external measurements cited in the note are attributed to their repository and are not re-run here",
     "No claim that the three axis swaps or the four face mirrors are the symmetry of any text, or that any classical scheme is the tetrahedron used here",
     "No claim that a rank-one model is the correct model of any co-occurrence table, only that a rank-one table cannot distinguish its rows",

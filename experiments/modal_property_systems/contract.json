@@ -1,7 +1,7 @@
 {
   "schema": "adva.research.modal-property-systems-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0221-which-readings-of-a-modal-property-argument-are-impossible.md",
   "question": "A modal argument of the positive-properties shape is read in several ways: that its conclusion follows from its first two axioms alone, that it works in any frame class the modality allows, that its axiom of necessary existence is what delivers the conclusion, that essence is doing work in it, that its conclusion carries modal force beyond actual existence, that it establishes uniqueness, and that the one-world case is evidence for it. Over a declared finite semantics in which every model within a declared bound is enumerated, which of those readings has a model and which has none?",
   "level": "External exact finite model enumeration over a declared semantics: at most three worlds, one individual, the complete algebra of properties over those worlds, and every subset of seven declared axiom schemata. No proof calculus, no text, no edition and no paper is imported.",
@@ -47,7 +47,13 @@
     "expected_equivalence_frames_at_three_worlds": 5,
     "expected_preorders_at_three_worlds": 29,
     "expected_reflexive_frames_at_three_worlds": 64,
-    "expected_axiom_table_rows": 1536,
+    "expected_axiom_table_rows": 1408,
+    "expected_subset_and_block_combinations": 1536,
+    "expected_rows_missing_because_A5_has_no_model": 128,
+    "blocks_with_rows_missing": [
+      "universal:2",
+      "universal:3"
+    ],
     "expected_models_for_the_lemma": 18508,
     "expected_rows_forcing_the_conclusion": 640,
     "expected_non_degenerate_forcing_rows": 128,
@@ -88,6 +94,7 @@
     "The declared family contains no identity predicate, so a statement that two godlike individuals are the same individual cannot be derived from it and is not tested here; uniqueness is recorded as an untested residual rather than as a verdict",
     "With one world every one of the one hundred twenty-eight subsets forces the conclusion, including the empty set of axioms, so the degenerate case is evidence for nothing",
     "No reading is decided by a failure to find a model: every verdict of impossibility rests on a model retained in the evidence, and every forcing claim is reported with the number of models it rests on",
+    "The axiom table has one thousand four hundred eight rows and not the one thousand five hundred thirty-six subset-and-block combinations it could have, because a row is written only where a model of the block satisfies the subset, and the axiom that necessary existence is positive is satisfied by no model of the universal frame at two or three worlds: under that class the worlds of necessary existence are exactly the isolated worlds, of which there are none, so the axiom asks the empty set of worlds to be positive, and the first two axioms then force every property to be positive, which the first axiom forbids. The sixty-four subsets containing that axiom therefore contribute no row in each of those two blocks, and the missing one hundred twenty-eight rows are named in the evidence rather than passed over.",
     "Wherever the declared axioms force the conclusion they also make the essence predicate vacuous in every model, so the six hundred forty rows that force the conclusion are exactly the six hundred forty rows in which every model makes the essence vacuous, and no row forces the conclusion while leaving the essence condition doing anything"
   ],
   "protected": [

@@ -19,6 +19,21 @@ A seventh batch outside this repository — `~/wenyan-relation-learning` at comm
 `321c6d8` and `9554b7f` — closed the line that
 [0216](0216-the-magic-hypercube-and-a-cut-the-address-cannot-see.md) had opened.
 
+**Where the quoted text comes from.** The clauses reproduced below are quoted
+**verbatim** from the project author's own external record, whose git repository
+is public: <https://github.com/mountain/wenyan-relation-learning>, at commit
+`cfb6e4dc18425312447b01efd75b646d2ab1473e`. That record carries the transcribed
+classical text at `data/corpus/works/太玄經.json`, a transcript-layer file that
+names its source site as `zh.wikisource.org` and records its own licence basis,
+whose substance is: the underlying classical work is public domain by age, and
+what is taken from Wikisource is **its transcription** — the choice of recension,
+the modern punctuation, the paragraphing and the character forms — with
+attribution recorded per section. The quoted clauses are: the four address
+clauses at [§2](#2-the-text-states-its-own-address-algorithm), the calendar
+clauses `三十六策以律七百二十九贊，凡二萬六千二百四十四策` and
+`七十二策為一日，凡三百六十四日有半` in the table below, and the river-diagram
+clause `一與六共宗，二與七共明，三與八成友，四與九同道，五與五相守` at [§6](#6-the-river-diagram-is-a-quotient-by-five).
+
 | Reported there | Their number |
 |---|---|
 | **the source text states its own address algorithm** | `家一置一，二置二，三置三；部一勿增，二增三，三增六；州一勿增，二增九，三增十八；方一勿增，二增二十七，三增五十四` |
@@ -30,10 +45,16 @@ A seventh batch outside this repository — `~/wenyan-relation-learning` at comm
 | a new aperture, **A9** | "a resemblance is not evidence until chance is measured"; their worked case: 552 ratios × 11 targets, best 0.603%, against a same-size null whose median best is 0.106% |
 | a correction | an earlier reading of the split as a phase boundary was withdrawn: the position law is exact `81/81`, the phase correlation only `79%` |
 
-**No text and no corpus count is imported.** The formulas, the constants and the
-counts are declared in this experiment's contract; the checker verifies their
-arithmetic and the structural consequences. No corpus is opened and none of
-their measurements is re-run.
+**No text and no corpus count is imported into the checker or into any
+acceptance test here.** What this note does contain is the opposite of silence
+about its sources: the clauses above are quoted verbatim from the named record,
+and the four address clauses are transcribed into `contract.json` as four
+declared increment tables, so that the map they generate can be computed and
+compared with the coordinate formula. That comparison is a check of **the
+transcription's arithmetic**, and it is not a collation: no edition is collated,
+no transcription is verified against one, no corpus file is opened, and none of
+that record's measurements is re-run. The formulas, constants and counts the
+checker uses beyond those four tables are declared numbers in the contract.
 
 ## 2. The text states its own address algorithm
 
@@ -58,14 +79,29 @@ which is to say `head = 家 + 3(部−1) + 9(州−1) + 27(方−1)`, and that i
 index = 27·方 + 9·州 + 3·部 + 家      (places counted from zero)
 ```
 
-The checker confirms the two agree on **all eighty-one heads**, and that the
-place weights are the successive multiples of three the text lists: `0,1,2` then
-`0,3,6` then `0,9,18` then `0,27,54`.
+Those four clauses are now a **declaration** rather than prose: they are
+transcribed into `contract.json` as four increment tables (`家` contributing
+`1, 2, 3`; `部` contributing `0, 3, 6`; `州` contributing `0, 9, 18`; `方`
+contributing `0, 27, 54`), and the checker **builds the head number out of those
+tables** and then compares the map it built with the coordinate formula. A
+transcription error — one digit of one clause — changes the computed head number
+and fails the run. The checker confirms that the map these tables generate agrees
+with the coordinate formula on **all eighty-one heads**, and it derives the place
+weights from the tables instead of restating them: `0,1,2` then `0,3,6` then
+`0,9,18` then `0,27,54`, each the successive multiples of its own place weight,
+and the four weights the successive powers of three.
 
-So the four-place ternary address is no longer an inference from a block of
-symbols. It is the map the text states, and the earlier notes' declared object is
-the text's own object. That is exactly what 0211 §12 asked for, and this note
-records that the request has been met rather than re-deriving it.
+**What this does and does not establish.** It is a check of the arithmetic of a
+declared transcription against a declared formula. It is **not** a collation: the
+transcription comes from the external record's quotation, not from an edition
+read here, and nothing in the run would detect that the record misquoted the
+text. So the accurate statement is that the address object of 0211/0214/0216 and
+the object described by the quoted clauses are the same map **as quoted**, and
+that the earlier notes' declared object now has a stated source and a stated
+transcription whose arithmetic is checked. Whether the text states it is the
+external record's report, carried here as a citation and not re-derived. That is
+what 0211 §12 asked for, and this note records that the request has been met by
+citation plus arithmetic rather than by a collation.
 
 ## 3. A division the address does see
 
@@ -189,10 +225,16 @@ so the boundaries between heads are at multiples of `9 × 0.5 = 4.5` days, and t
 split at head 47 falls at `423 praises = 211.5` days, dividing the cycle into
 `423 + 306 = 729` praises, that is `211.5 + 153 = 364.5` days.
 
-Now the statistic. The twenty-four seasonal nodes sit at `(k−1) · 365.5/24`,
-which is `(k−1) · 731/48` days, and the cut's distance to the **nearest** head
-boundary is reported as **1.71 days**, about `0.80%` of the node. Two facts
-decide what that is worth:
+Now the statistic, stated with its object written out, because the object is easy
+to get backwards. The twenty-four seasonal nodes sit at `(k−1) · 365.5/24`, which
+is `(k−1) · 731/48` days. What is measured is **each node's distance to the
+nearest of the eighty-one head boundaries** — and the checker computes exactly
+that, exactly, as a rational, over all eighty-one boundaries rather than by
+rounding a quotient. The reported node's distance is **1.708 days**, about
+`0.80%` of the node's day. The cut itself is *not* the object of the statistic:
+it falls exactly on a head boundary (`423 praises = 211.5 days = 47 × 4.5`), so
+its own distance to the nearest boundary is zero by construction and could not be
+the number reported. Two facts decide what the node distance is worth:
 
 * **The grid forces it.** The boundaries are spaced `4.5` days apart, so **every**
   node lies within `2.25` days of some boundary, whatever the data are. There is
@@ -210,10 +252,10 @@ decide what that is worth:
 | **reported** | **15** | **213.21** | **1.708** | **0.801%** |
 | furthest | — | — | 2.104 | 3.42% |
 
-The reported node ranks **fourteenth of twenty-three** by closeness, its gap
-(`41/24` days) is *above* the `1.125`-day value an even spread would give, and
-**another node is more than seventy-six times closer** — a coincidence far
-tighter than the one reported, sitting unnoticed at 197.98 days.
+The reported node ranks **fourteenth of twenty-three** by closeness, its distance
+to its nearest boundary (`41/24` days) is *above* the `1.125`-day value an even
+spread would give, and **another node is more than seventy-six times closer** — a
+coincidence far tighter than the one reported, sitting unnoticed at 197.98 days.
 
 So the near miss is not a near miss. It is a node in the middle of the pack, made
 to look close by a grid whose spacing guarantees closeness. This is A9 applied to
@@ -227,19 +269,34 @@ python3 experiments/address_and_scale/checker.py --output experiments/address_an
 ```
 
 [`checker.py`](../../experiments/address_and_scale/checker.py) uses the standard
-library only — integers and `Fraction`; no floating-point value enters any
-acceptance test — and its output is compared against the retained
-[`evidence.json`](../../experiments/address_and_scale/evidence.json) with timings
-removed. The retained run records **91 assertions** over six sections in well
-under a second, having exhausted 81 heads twice, 80 moduli with a witness pair
-recorded for each of the 79 that fail, 81 heads again for the three-cycle
-decomposition, and all 24 calendar nodes. `RLIMIT_CPU`, `RLIMIT_FSIZE` and the
-wall alarm are installed; no address-space ceiling is installed because the
-checker launches no child process. The checker refuses to overwrite an existing
-output path.
+library only — integers and `Fraction`. **Every acceptance test in it compares
+integers or exact rationals**: the four transcribed increment tables, the
+head-number map, the moduli, the displacement, the river fibres and every
+calendar quantity are decided exactly, and the node distances are the exact
+minimum over all eighty-one head boundaries. The evidence does carry a few
+rounded decimal fields (`*_float`, and the decimal companions of the per-node day
+and distance) for readability; the checker never reads them back, and the paired
+test compares two of those renderings as decimals. The output is compared against
+the retained [`evidence.json`](../../experiments/address_and_scale/evidence.json)
+with timings removed. The retained run records **132 assertions** over six
+sections in well under a second, having exhausted 81 heads for the transcribed
+clauses and again for the coordinate formula, 81 heads for the nine-row fiber, 80
+moduli with a witness pair recorded for each of the 79 that fail, 81 heads again
+for the three-cycle decomposition, and all 24 calendar nodes against all 83
+candidate boundaries. `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are
+installed; no address-space ceiling is installed because the checker launches no
+child process. The checker refuses to overwrite an existing output path.
 
 Controls that keep the checks from being vacuous:
 
+* the head number is **built from the transcribed tables** and the resulting map
+  is compared with the coordinate formula, so the "two formulas agree" claim is a
+  comparison of two independently produced maps and not a definitional
+  restatement;
+* the place weights are **derived** from the transcribed tables (as their
+  successive differences) rather than compared with a literal written next to
+  them, and their offsets are asserted to sum to the one the head numbering
+  starts at;
 * the nine-row set is asserted to need **exactly two** place constraints with the
   other two places free, so "the address sees it" is a count and not a claim;
 * the congruence result is asserted to have **79** failing moduli each with a
@@ -249,20 +306,32 @@ Controls that keep the checks from being vacuous:
 * the ten-number shift is asserted **fixed-point free** and the nine-number
   restriction to leave **exactly one** number without a partner, so `五與五相守`
   is derived rather than quoted;
+* each node's distance is asserted to be the **exact distance to its nearest of
+  the eighty-one boundaries**, recomputed over all of them as a rational, so the
+  object of the statistic is fixed by the code and not by the prose;
 * the calendar's reach is asserted to be `9/4` days and every node asserted to
   lie within it, so the bound is universal and not an average;
-* the reported node is asserted to be **worse than the median** and to be beaten
-  by a factor greater than seventy-six, so section 7 is a ranking.
+* the reported node is asserted to be **worse than the median**, **not the
+  closest** node, and to be beaten by a factor greater than seventy-six, so
+  section 7 is a ranking.
 
 ## 9. Residual and non-claims
 
-* **No text and no corpus count is imported.** Every formula and constant here is
-  declared in the contract; the checker measures nothing.
-* **The address formula is checked against the formula the external record
-  reports the text to state**, not against a collated edition. This note does not
-  perform that collation and does not claim it. What it records is that the
-  declared object of 0211/0214/0216 now has a stated source, and that the two
-  agree arithmetically.
+* **No text and no corpus count is imported into the checker**, and no corpus is
+  opened here. The four address clauses, the two calendar clauses and the
+  river-diagram clause are quoted **verbatim** in this document and sourced above;
+  the four address clauses are additionally transcribed into the contract as
+  declared tables. Every other formula and constant is declared in the contract,
+  and the checker measures nothing.
+* **The address clauses are checked as a transcription, not as a text.** The
+  transcription is the external record's quotation; the checker builds the head
+  number from it and compares the result with the coordinate formula, so what is
+  established is that the transcription's arithmetic generates that formula. No
+  edition is collated, no transcription is verified against one, and this note
+  does not claim the text states the formula — it reports that the external record
+  quotes it as stating it. What the note records is that the declared object of
+  0211/0214/0216 now has a stated source, a stated transcription, and an
+  arithmetic check of that transcription.
 * **The two invisibility results are about two declared algebras, not about
   cause.** That the split is invisible to the places and to every modulus does not
   show it has no cause; the external record's own remaining candidate, a
@@ -276,7 +345,15 @@ Controls that keep the checks from being vacuous:
   exists unnoticed; it does not show that no alignment between heads and seasons
   exists.
 * **No claim about the river diagram's history.** That its pairing is a quotient,
-  and that the text states it, is not a claim about where either came from.
+  and that the external record quotes the text as stating it, is not a claim about
+  where either came from.
+* **The quoted clauses are a citation, and the citation is not a verification.**
+  Wherever this note says "the text states", the locatable content is that the
+  named record, at the named commit, reports the text as stating it, and that the
+  note has not read an edition. The one place the text is used quantitatively —
+  the address clauses — is used as a declared transcription whose arithmetic is
+  checked, and the check would pass for any transcription with those increments
+  whether or not any classical text contained them.
 * **No native consequence.** No `SourceId`, observer, aperture, clock, operation
   or `Seal`; the address, the displacement and the quotient are not claimed as
   native structures.

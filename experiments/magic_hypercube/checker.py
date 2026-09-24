@@ -90,6 +90,16 @@ def determinant(M, order=ORDER):
     return total % order
 
 
+def hypercube_signature(M, points):
+    """The array the construction gives, read at every declared point in order.
+
+    Two matrices give the same magic hypercube exactly when they give the same
+    tuple here, so a set of these tuples decides the injectivity question by
+    construction rather than by the derivation that M is recoverable from it.
+    """
+    return tuple(value(M, p) for p in points)
+
+
 def diagonal_sums(M, places=PLACES, order=ORDER):
     """Sums along the main diagonals, which are not coordinate lines."""
     points = all_points(places, order)
@@ -128,10 +138,14 @@ def s1_hypercube():
     check(lines == 108, "the number of one-dimensional coordinate lines is not one hundred eight")
     check(LINES_PER_PLACE == 27, "there are not twenty-seven lines per coordinate")
 
-    # sufficiency, by exhaustion over every zero-free matrix
+    # sufficiency, by exhaustion over every zero-free matrix, and at the same time
+    # the hypercube every invertible one gives, so that the map from matrices to
+    # hypercubes can be tested for injectivity instead of asserted to be one
     zero_free = 0
     constant = 0
     invertible_constant = 0
+    points = all_points()
+    signatures = {}
     for bits in product((1, 2), repeat=PLACES * PLACES):
         candidate = [list(bits[PLACES * i:PLACES * i + PLACES]) for i in range(PLACES)]
         zero_free += 1
@@ -139,11 +153,28 @@ def s1_hypercube():
             constant += 1
             if determinant(candidate) != 0:
                 invertible_constant += 1
+                signature = hypercube_signature(candidate, points)
+                signatures.setdefault(signature, []).append(candidate)
     check(zero_free == 65536, "the zero-free family does not have sixty-five thousand five hundred thirty-six")
     check(constant == zero_free,
           "a zero-free matrix does not have constant lines, so the sufficiency claim fails")
     check(invertible_constant == 22272,
           "the number of invertible zero-free matrices is not twenty-two thousand two hundred seventy-two")
+    # injectivity: every invertible zero-free matrix gives its own hypercube
+    check(len(signatures) == invertible_constant,
+          "two invertible zero-free matrices give the same array, so the count of "
+          "distinct magic hypercubes is lower than the count of matrices")
+    collisions = sorted(tuple(map(tuple, group)) for group in signatures.values() if len(group) > 1)
+    check(collisions == [],
+          "a collision between two invertible zero-free matrices was found")
+    check(all(len(group) == 1 for group in signatures.values()),
+          "an array is given by more than one invertible zero-free matrix")
+    check(all(len(sig) == CELLS for sig in signatures),
+          "a constructed hypercube does not have eighty-one values")
+    check(all(sorted(sig) == list(range(1, CELLS + 1)) for sig in signatures),
+          "an invertible zero-free matrix does not give a permutation of one to eighty-one")
+    check(len(set(signatures)) == invertible_constant,
+          "the number of distinct constructed hypercubes is not the number of invertible zero-free matrices")
 
     # necessity, by exhaustion over the declared binary family
     tested = 0
@@ -183,7 +214,10 @@ def s1_hypercube():
         "zero_free_matrices_exhausted": zero_free,
         "zero_free_matrices_with_constant_lines": constant,
         "invertible_zero_free_matrices": invertible_constant,
-        "distinct_magic_hypercubes": invertible_constant,
+        "distinct_magic_hypercubes": len(signatures),
+        "each_invertible_zero_free_matrix_gives_its_own_hypercube": len(signatures) == invertible_constant,
+        "collisions_between_constructed_hypercubes": len(collisions),
+        "constructed_hypercubes_compared": invertible_constant,
         "necessity_family_exhausted": tested,
         "necessity_family_members_with_constant_lines": constant_binary,
         "condition": "constant coordinate lines hold exactly when every entry is nonzero",
@@ -286,8 +320,15 @@ def s3_cut():
     differing = [k for k in range(4) if before[k] != after[k]]
     check(differing == [3],
           "the two heads across the cut do not differ in exactly one place")
-    check(CUT - 1 + 1 == CUT and (HEADS - CUT) == 34,
+    left = [i for i in range(HEADS) if i < CUT]
+    right = [i for i in range(HEADS) if i >= CUT]
+    check(len(left) == 47 and len(right) == 34 and len(left) + len(right) == HEADS,
           "the two sides of the cut are not forty-seven and thirty-four heads")
+    check(max(left) + 1 == min(right) and min(left) == 0 and max(right) == HEADS - 1,
+          "the two sides of the cut are not the contiguous head ranges the note declares")
+    check(all(address_of(i)[3] == 2 for i in (CUT - 1,)) and
+          all(address_of(i)[3] == 3 for i in (CUT,)),
+          "the cut does not fall between the second and third value of the last place")
 
     separating = []
     for r in range(1, PLACES + 1):
@@ -347,7 +388,12 @@ TRIPLES_AT_LEAST_FOURTEEN = 4_735
 def s4_proxy_chain():
     check(TRIPLES == 81 * 80 * 79 // 6,
           "the number of three-head selections is not eighty-five thousand three hundred twenty")
-    check(TRIBLES := TRIPLES, "unreachable")
+    # the selections are enumerated rather than taken from the closed form
+    enumerated = sum(1 for _ in combinations(range(HEADS), 3))
+    check(enumerated == TRIPLES,
+          "the enumerated three-head selections do not number eighty-five thousand three hundred twenty")
+    check(len(list(combinations(range(3), 2))) == 3,
+          "the selection enumerator does not agree with a case that can be counted by hand")
     p = F(TRIPLES_AT_LEAST_FOURTEEN, TRIPLES)
     check(p == F(947, 17064), "the exact share is not nine hundred forty-seven over seventeen thousand sixty-four")
     check(F(55, 1000) < p < F(56, 1000), "the exact share is not between fifty-five and fifty-six thousandths")

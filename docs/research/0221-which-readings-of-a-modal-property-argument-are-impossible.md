@@ -40,7 +40,7 @@ an exhaustion over the declared bound:
 
 | reading | verdict | what decides it |
 |---|---|---|
-| 1. the first two axioms suffice | **impossible** | 1 728 models of the two axioms at three worlds, only **216** with the conclusion; countermodel retained |
+| 1. the first two axioms suffice | **impossible** | 1 728 models of the two axioms at three worlds — a pruned enumeration, §3 — only **216** with the conclusion; countermodel retained |
 | 2. it works in any frame class | **impossible** | with **all seven** axioms, no set forces the conclusion outside the symmetric frames; 4 countermodels retained |
 | 3. necessary existence delivers it | **half: it forces, by being maximally restrictive** | over symmetric frames `{A5}` alone forces the conclusion — and leaves exactly **1** model |
 | 4. essence is doing work | **impossible** | wherever the axioms force the conclusion they also make the essence vacuous in every model: the same **640** rows, and `φ ess x` collapses to `φ(x)` in the one symmetric model |
@@ -93,6 +93,19 @@ reading on which the argument is "really" just those two axioms has no model to
 stand on; the reading is impossible in the declared semantics, and one model is
 enough to say so.
 
+**Where that 1 728 comes from, stated plainly, because the row reads like the
+output of a scan and is not one.** The checker does not enumerate every positivity
+assignment and then test the first two axioms: it prunes them first, since both
+are conditions on a single world given the frame, and admits only the world-local
+positivity assignments that already satisfy `A1` and `A2`. So in **every**
+enumerated model those two axioms hold **by construction**, and a row's model
+count — 1 728 here — is the size of a *pruned enumeration* over the declared frame.
+The contract's grammar says the same in its own words, the evidence carries the
+field `the_first_two_axioms_are_pruning_conditions`, and the assertion that the
+first two axioms do not force the conclusion is therefore carried not by the scan
+but by the countermodel retained against them: `A1` and `A2` hold in it by
+construction, and the conclusion fails in it.
+
 The converse of the first axiom deserves its own line, because it looks like a
 convenience and is not. Adding it — "a property is positive when its negation is
 not" — moves the symmetric class at three worlds from **1 832** models to **77**,
@@ -144,7 +157,19 @@ across every declared frame class and world count:
 > **in all 86, the conclusion holds exactly when every property has the same
 > extension at every world that a world sees.**
 
-86 of 86, no exception. So the collapse of the modality is not a further defect
+86 of 86, no exception.
+
+**Those 86 are not spread evenly and must not be read as if they were.** They sit
+in **ten** of the twelve declared frame-class and world-count blocks, and the two
+blocks that contribute **nothing** are `universal:2` and `universal:3`: under the
+universal frame above one world no model satisfies `A5` at all (§10 explains why,
+and it is the same fact that shortens the axiom table). The tally, now recorded in
+the evidence, is `1, 0, 0, 1, 1, 1, 1, 3, 37, 1, 3, 37` for `universal:1,2,3`,
+`equivalence:1,2,3`, `preorder:1,2,3` and `reflexive:1,2,3`. So "across every
+declared frame class and world count" means the three axioms were *tested* in all
+twelve blocks and found in ten of them.
+
+So the collapse of the modality is not a further defect
 that a better formulation might avoid; **in the declared semantics the conclusion
 and the collapse are the same condition.** A reading that keeps the argument and
 rejects the collapse has no model, and a reading that keeps the collapse and
@@ -200,15 +225,34 @@ is leaning on the absence of a modality.
 ## 10. What the checker ran
 
 `experiments/modal_property_systems/checker.py` against
-`experiments/modal_property_systems/contract.json`, five sections, **4 937
-assertions**, `ExternalExactPass`, in 2.4 s wall, evidence 646 kB.
+`experiments/modal_property_systems/contract.json`, five sections, **4 953
+assertions**, `ExternalExactPass`, in about two and a half seconds (the retained
+run records the wall time; it is not an acceptance test and is stripped before
+the fresh run is compared with the retained evidence), evidence about 633 kB.
 
 The enumeration is exhaustive within the declared bound: every relation of the
 four frame classes (`1, 2, 5` equivalence frames at one, two, three worlds; `1,
 4, 29` preorders; `1, 4, 64` reflexive relations; one universal frame at every
 size), every positivity assignment over the complete property algebra at every
 world (256 candidate sets of properties at three worlds), and every one of the
-128 axiom subsets, giving a table of 1 536 rows.
+128 axiom subsets, giving a table of **1 408 rows**.
+
+**Not 1 536 rows, which is what twelve blocks of 128 subsets would give**, and the
+difference is a fact about one axiom rather than a lost row. A row is written only
+where some model of the block satisfies the subset, and **`A5` — the axiom that
+necessary existence is positive — is satisfied by no model of the universal frame
+at two or three worlds**: under that class the worlds of necessary existence are
+exactly the worlds that see only themselves, of which there are none, so `A5` asks
+the *empty* set of worlds to be positive at every world; the pruned enumeration's
+first two axioms then have the empty property entail every property while the
+first axiom forbids a property and its complement both being positive, so the
+sixty-four subsets containing `A5` are satisfied nowhere in that block. Two blocks
+× sixty-four subsets = **128 rows that are absent by necessity**, and
+`1 536 − 128 = 1 408`. The checker now asserts the row count against the
+contract's declared `expected_axiom_table_rows`, names the two blocks in the
+evidence, and asserts further that no row of those blocks contains `A5`; the note
+of it is in the contract's acceptance list as well, so the figure 1 536 no longer
+appears anywhere as the table's size.
 
 `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; **no address-space
 ceiling is installed**, because this checker launches no child process — the
@@ -239,6 +283,16 @@ floating-point value enters any acceptance test.
 - **No failing search is reported as evidence.** Every impossibility verdict rests
   on a retained model; a row with no model refutes nothing, and the checker
   asserts forcing only where models exist.
+- **The model counts of the first two axioms are enumeration sizes, not scans.**
+  Those two axioms are the enumeration's pruning conditions, so they hold by
+  construction in every model that reaches the table and their row counts the
+  surviving positivity assignments; the impossibility verdict for that row rests
+  on the retained countermodel. The same construction is why the table has 1 408
+  rows rather than 1 536: a subset that no surviving model satisfies gets no row,
+  and two blocks lose sixty-four subsets each to `A5`.
+- **The eighty-six models of `{A1, A2, A5}` are spread over ten of the twelve
+  blocks**, not evenly: `universal:2` and `universal:3` contribute none, because
+  `A5` has no model there at all.
 - **No claim that the seven axioms are all that anyone has proposed**, or that
   the four frame classes exhaust the modalities.
 - **No SourceId, observer, aperture, clock, operation, native witness or Seal is
@@ -247,7 +301,8 @@ floating-point value enters any acceptance test.
 ## 12. What changed in the repository
 
 - `experiments/modal_property_systems/checker.py`, `contract.json`,
-  `evidence.json` — the bounded experiment, 4 937 assertions.
+  `evidence.json` — the bounded experiment, 4 953 assertions over a table of
+  1 408 rows.
 - `tests/python/test_modal_property_systems.py` — tests over the retained
   evidence, the fresh-run payload, the no-overwrite rule, the necessity lemma,
   the frame census, the forcing table, the countermodels, the collapse

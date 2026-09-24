@@ -1,7 +1,7 @@
 {
-  "assertions": 98,
-  "checker_sha256": "6aceaf52f7d49c1fdc14a26f4473fcc147c7e3d15293e571729c05b9b26e105f",
-  "contract_sha256": "3e0cf6dec8d6ba2994b1d14815b89a0e0fb1d4d386e589f325d58f0b8d02e1f0",
+  "assertions": 111,
+  "checker_sha256": "0a1ddd7f501b708ae60992a2f90c830f5d6da6a0c18124f918546fe1c50ec70a",
+  "contract_sha256": "cc2036f41ece3652b17f2bdba7d116b58bac815fb470a2862f9aa52155beee0e",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -18,7 +18,7 @@
     "routes": 1,
     "wall_seconds": 300
   },
-  "rss_high_water_bytes": 25444352,
+  "rss_high_water_bytes": 25886720,
   "schema": "adva.research.definability-spectrum-evidence.v0",
   "sections": {
     "S1_spectrum": {
@@ -66,6 +66,34 @@
       },
       "places": 4,
       "power_set_size": 2417851639229258349412352,
+      "size_distribution_is_symmetric_under_complement": true,
+      "size_distribution_mirror_pairs": [
+        [
+          "0",
+          1,
+          1
+        ],
+        [
+          "9",
+          54,
+          54
+        ],
+        [
+          "18",
+          216,
+          216
+        ],
+        [
+          "27",
+          480,
+          480
+        ],
+        [
+          "36",
+          756,
+          756
+        ]
+      ],
       "size_distribution_up_to_two_places": {
         "0": 1,
         "18": 216,
@@ -77,7 +105,9 @@
         "72": 54,
         "81": 1,
         "9": 54
-      }
+      },
+      "the_complement_of_an_expressible_set_is_expressible": true,
+      "the_union_is_closed_under_complement": true
     },
     "S2_lattice": {
       "adding_a_place_strictly_enlarges": true,
@@ -91,6 +121,13 @@
     },
     "S3_prior": {
       "a_prior_of_one_means_no_constraint": true,
+      "divisions_with_a_trivial_prior": [
+        "all_heads",
+        "cut_after",
+        "cut_before",
+        "orbit_of_seven",
+        "two_prison_heads"
+      ],
       "exhausted_up_to_level": 2,
       "level_sizes": {
         "0": 2,
@@ -163,10 +200,15 @@
           "size": 2
         }
       },
+      "smallest_prior": "1/192189953958487583560",
+      "smallest_prior_division": "first_quarter",
       "the_prior_is_about_the_algebra_not_the_text": true,
       "the_prior_is_bounded_by_the_size_of_its_own_level": true,
+      "the_prior_is_compared_as_a_fraction_and_never_as_a_float": true,
       "the_quarter_count_moved_from_480_to_12_when_the_level_was_restricted": true,
-      "the_smallest_prior_belongs_to_the_coarsest_division": true
+      "the_smallest_prior_belongs_to_the_first_quarter": true,
+      "the_smallest_prior_is_taken_over_every_row": true,
+      "the_weakest_level_with_a_non_trivial_prior": 1
     },
     "S4_placement": {
       "block_sizes_across_all_levels": [
@@ -248,5 +290,5 @@
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 76522000
+  "wall_ns": 83242542
 }

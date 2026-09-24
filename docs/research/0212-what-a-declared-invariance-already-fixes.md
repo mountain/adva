@@ -24,15 +24,24 @@ A second body of work outside this repository —
 | the five-phase correspondence tables are **not** recoverable from passage co-occurrence | diagonal share 16.6%–22.4% against a 20% chance baseline; the argmax of every one of the first four phases collapsed onto the same globally frequent item |
 | the 2.6×–116× spread of the diagonal counts is phase asymmetry | **retracted**: it is item frequency, not phase weight |
 
-Their diagnosis of the second is one sentence: *co-occurrence is not alignment*.
+Their diagnosis of the second is one sentence, *co-occurrence is not alignment* —
+this note's English rendering of "共现若不带对齐，量到的是边缘分布" and "需要对
+**对齐**而不是共现", which is how the repository puts it in
+`knowledge/relations/five-phases.json` ("correctMethod", "pattern") at
+[`wenyan-relation-learning`](https://github.com/mountain/wenyan-relation-learning)
+commit `9bc4a86`. The repository is public at that URL; the sentence quoted here
+is a translation, not its text.
+
 Their own proposed repair for the third was to replace a greedy row argmax with
 an optimal assignment.
 
-**This note imports no corpus, no count and no text from that repository or from
-anywhere else**, and it re-runs none of their measurements. Their numbers are
-cited as their results. What is abstracted here is the mathematics those results
-depend on, stated for declared synthetic objects, and the third finding below
-contradicts their proposed repair.
+**Nothing from that repository is reproduced, recomputed or re-measured here**:
+no corpus and no text is imported, and none of its measurements is re-run. The
+counts and the one sentence above are **its published results, attributed to it**
+with repository, commit and file named, and this note is answerable only for the
+reading it makes of them. What is abstracted here is the mathematics those
+results depend on, stated for declared synthetic objects, and the third finding
+below contradicts their proposed repair.
 
 The direction is Mingli Yuan's: the same two ideas that motivated
 [0211](0211-six-places-two-alphabets-and-the-policy-of-a-finite-arithmetic-truth.md)
@@ -67,8 +76,17 @@ four affine isometries of the lattice `{x ∈ Z⁴ : Σx = 0}` and verifies:
 * all four are involutions; pairs adjacent in the four-cycle diagram have
   product of order three, and the two non-adjacent pairs commute — the
   Coxeter relations of `Ã₃`, checked on all six pairs;
-* the group is **infinite**: 5,781 elements within Coxeter length twenty, and
-  the counts do not stop;
+* the group is **infinite**, and the checker now exhibits why rather than
+  reporting a large count. The closure contains a **pure translation** inside the
+  declared depth: an element `(1, t)` whose linear part is the identity and whose
+  translation vector is the nonzero lattice vector `(-1, 0, 0, 1)`, reached at
+  Coxeter length six. Composition is exact and `(1, t)·(1, u) = (1, t + u)`, so
+  the `n`th power of that element is the translation by `n·t`, and
+  `(1, n·t) ≠ (1, 0)` for every `n ≥ 1`: the group contains an element of
+  infinite order, so it is infinite. The bounded count is consistent with this
+  but does not establish it — **5,781 elements within Coxeter length twenty** is
+  equally compatible with a finite group that is merely larger than twenty-four,
+  and the closed form `2n² + 2` is verified only through `n = 20`;
 * the **origin stabiliser has exactly twenty-four elements**, and their Coxeter
   length distribution is `1, 3, 5, 6, 5, 3, 1` — the finite Weyl group `S₄`,
   recovered as a bounded slice of the infinite one rather than assumed;
@@ -202,6 +220,24 @@ the two margins alone, so a test built this way compares the observed network
 against a baseline that the margins have already fixed. It can detect departure
 from the marginal model. It cannot, by construction, see anything else.
 
+**That invariance is now checked and not asserted.** On the five declared networks
+the law agrees with the margins by inspection, which is weak. The checker
+therefore exhausts a sweep far wider than the contract declares: **every directed
+edge family on two or three labelled vertices with at most six edges** —
+self-loops admitted, **5,215 families** — computes each family's exact law, and
+compares it with the law of the first family of that family's own margin class.
+The class is read off the two margins before any law is computed, so a class never
+contains a family chosen for its law. The result: **1,736 margin classes over the
+fourteen slices** (1,596 distinct margin multisets across slices), **3,479
+within-class comparisons, no disagreement**. The number of classes is not an
+input either: a class of `m` edges on `n` labelled vertices is a pair of multisets,
+so a complete slice must contain exactly `C(n + m − 1, m)²` of them, and the
+checker asserts that per slice — `784` for the six-edge families on three
+vertices. The sweep computes the law in a second implementation, counting
+**138,401 distinct arrangements** of the recipients, which stand for
+**2,397,755 index permutations**, with the exact multiplicity of each; the two
+implementations are first compared on all five declared networks.
+
 **A guessed closed form, recorded because it is wrong.** I conjectured that the
 null mean would be `m·(Σₓ pₓ qₓ)²`, the squared overlap of the two degree laws.
 The exact enumeration gives ratios of `21/5`, `5` and `56/27` between the exact
@@ -242,8 +278,9 @@ python3 experiments/declared_invariance/checker.py --output experiments/declared
 standard library only — integers, permutations and `Fraction`; no floating-point
 value enters any acceptance test — and its output is compared against the
 retained [`evidence.json`](../../experiments/declared_invariance/evidence.json)
-with timings removed. The retained run records **1,818 assertions** over three
-sections. `RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; no
+with timings removed. The retained run records **1,863 assertions** over three
+sections, having also exhausted 5,215 swept edge families in 1,736 margin classes.
+`RLIMIT_CPU`, `RLIMIT_FSIZE` and the wall alarm are installed; no
 address-space ceiling is installed because the checker launches no child
 process, and the contract's memory figure is a declared budget observed as peak
 RSS rather than an enforced limit. The checker refuses to overwrite an existing
@@ -261,7 +298,26 @@ Controls that keep the checks from being vacuous:
 * the two same-margin networks are asserted to differ in the observed statistic,
   so section 5 is not comparing a network with itself;
 * the refuted closed form is asserted **not** to equal the exact mean, so a
-  future change cannot silently make the guess look right.
+  future change cannot silently make the guess look right;
+* the pure-translation witness is asserted to have the identity as its linear
+  part, a nonzero translation vector, powers that are the translations by the
+  successive multiples, and no power equal to the identity; and its existence is
+  asserted, so "the closure is infinite" cannot fall back to a count;
+* each slice of the margins sweep is asserted to contain exactly the number of
+  families and of margin classes the counting gives, so the sweep cannot silently
+  shrink and still report agreement.
+
+**Two revisions, recorded rather than quietly repaired.** An earlier revision of
+this checker carried a check that could not fail —
+`check(all(B not in seen for B in [AFFINE_IDENTITY] if False), "unreachable")`:
+the generator was empty, `all([])` is true, and the line still counted as an
+assertion. It has been deleted; the assertion count above is one lower for that
+reason and higher for the checks the two revisions below add. In the same
+revision, `closure_is_infinite` and `null_law_depends_only_on_the_two_margins`
+were hard-coded `True` next to checks that could not support them — a count above
+twenty-four does not make a group infinite, and five networks compared by
+inspection do not make a law a function of the margins. Both booleans are now read
+off the exhaustion described above.
 
 ## 8. Residual and non-claims
 

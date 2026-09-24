@@ -164,9 +164,23 @@ successor is total: it has `729` steps and carries into a head place `81` times.
 The declared successor agrees with it on **all 648** of the steps where no
 carry occurs and refuses exactly the other `81`. So the declaration is not a
 different arithmetic; it is the numeral successor with its carry domain cut
-off. And the interface carries `731` declared states against `729` addresses,
-so **two states have no address at all** — the address system is exact and the
-interface is larger than it.
+off. The contract also **declares** that the interface carries `731` states
+against the `729` addresses, so two declared states have no address at all.
+
+That last pair of numbers is a **declaration, not a measurement**, and the
+distinction is kept because an earlier draft of this section read it as a
+measurement. The checker enumerates the `729` addresses and nothing else: it
+enumerates no declared state set, so it neither counts the `731` states nor
+measures the shortfall. It **reads** the declared shortfall from the contract's
+own declaration of it instead of typing the `2` again, and its second field is
+renamed `declared_state_count_declared_in_the_contract` so that it no longer
+reads as a computed count; the first field keeps its retained name only because
+the paired test reads that name, and it is labelled in the checker as a
+declaration. `731` is therefore `729` plus the declared two, and "731 against
+729, so two have no address" is arithmetic on one declared and one computed
+number. What the exhaustion does establish is the exact half: the `729` addresses
+are in bijection with the head-and-position pairs, and the declared successor
+agrees with the numeral successor on all `648` steps of its domain.
 
 ## 7. One step is not the same relation on the two interfaces
 

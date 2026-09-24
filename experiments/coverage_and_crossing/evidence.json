@@ -1,7 +1,7 @@
 {
-  "assertions": 824,
-  "checker_sha256": "c58fa98fec0d2ce48a811101e06e871235e7c05e0cb771e2c720d06f96d3a337",
-  "contract_sha256": "a1a75ece8a5af9d3eb6e7fa9d07880d774730340c4029209a11475b2bb6346d6",
+  "assertions": 883,
+  "checker_sha256": "5408ebc340967878f75b253d5edca62d00252b84d88b67c77df8b8eafa179426",
+  "contract_sha256": "2d7a57d6aa55669d63038a3f38d543ddb381839f37592012c906714bb78f1fb2",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -22,6 +22,8 @@
   "schema": "adva.research.coverage-and-crossing-evidence.v0",
   "sections": {
     "S1_coverage": {
+      "a_strictly_larger_constant_set_names_strictly_more_praises": true,
+      "constant_pairs_are_ordered": true,
       "counting_lower_bound": 7,
       "greedy_constants": [
         1,
@@ -46,6 +48,7 @@
       ],
       "greedy_size": 14,
       "image_is_monotone_in_the_constant_set": true,
+      "image_monotonicity_follows_from_the_definition": true,
       "interval_checked_up_to": 90,
       "interval_theorem": "the first n integers reach exactly the first 10n praises while 10n is at most 729, and every praise from n = 73 on",
       "kmax": 9,
@@ -63,6 +66,7 @@
       },
       "kmax_ladder_is_monotone": true,
       "nested_pairs_exhausted": 32,
+      "nested_pairs_strictly_nested": 22,
       "rows": {
         "the_prefix_of_eighteen": {
           "coverage": "20/81",
@@ -135,11 +139,20 @@
           "size": 14
         }
       },
-      "smallest_covering_set_is_not_decided": true
+      "smallest_covering_set_is_not_decided": true,
+      "the_enumeration_is_counted_for_every_declared_set": true,
+      "the_two_symmetric_forms_are_written_over_ordered_pairs": true
     },
     "S2_target": {
       "a_target_that_is_a_constant_is_named_by_the_bare_form": true,
       "coverage_is_the_price_of_a_hit": true,
+      "expressions_lost": [
+        "a with a=423",
+        "ka-b with a=423, b=423, k=2"
+      ],
+      "expressions_lost_when_the_target_leaves_the_constants": 2,
+      "expressions_naming_the_target": 7,
+      "expressions_naming_the_target_that_survive": 5,
       "image_size_once_it_is_not_a_constant": 472,
       "image_size_with_the_target_as_a_constant": 497,
       "rows": {
@@ -314,5 +327,5 @@
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 1240285458
+  "wall_ns": 1297966666
 }

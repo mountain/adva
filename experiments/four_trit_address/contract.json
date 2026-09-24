@@ -1,11 +1,16 @@
 {
   "schema": "adva.research.four-trit-address-contract.v0",
   "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
-  "library_commit": "dbb73e3",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
   "input_document": "docs/research/0214-what-a-four-trit-address-carries-and-no-shift-pairs-it.md",
   "question": "On a four-place ternary address space of eighty-one heads, can a pairing be a coordinate shift, and what does the arithmetic force about any pairing at all? How much of the sixty-four binary configurations can four ternary places carry, placewise and coordinate-wise, and does an injection exist? If a transmitted head order is the coordinate order, what carry profile does that order have? Can a similarity measure test an opposition relation, and can a passage-level count see a structure carried in section titles?",
-  "level": "External exact finite group theory over Z3 and F2, exact combinatorics of the two interfaces, and exact rational arithmetic; every statement decided by exhaustion or by an exact bound; no text and no corpus count imported",
-  "domain": "The four-place ternary address space of eighty-one heads with its eighty nonzero shifts; the six-place binary space of sixty-four words; the carry profiles of the ternary and binary odometers; a declared population of three thousand two hundred forty pairs and one hundred twenty-six extracted pairs; and two declared documents",
+  "level": "External exact finite group theory over Z3 and F2, exact combinatorics of the two interfaces, and exact rational arithmetic; every statement decided by exhaustion or by an exact bound; no corpus is opened, no corpus count is imported or recomputed, and every acceptance test compares integers or exact rationals",
+  "sources": [
+    "The head names, the difference histogram and the two short quotations the input document carries are taken from the project author's own external record, https://github.com/mountain/wenyan-relation-learning, whose git repository is public; they are carried from commit 91f0107 of that record, which reports them from the transcribed classical text at data/corpus/works/太玄經.json. That file records its source site as zh.wikisource.org and its own licence note: the underlying classical works are public domain by age, and what is taken from Wikisource is its transcription, namely the choice of recension, the modern punctuation, the paragraphing and the character forms, with attribution recorded per section.",
+    "Nothing from that record is opened, read, executed or recomputed by this experiment. The head names and the histogram are declared numbers here, and the only text this contract carries is the six head names and the two tetragram glosses.",
+    "The two sentences the input document quotes verbatim are from commit 91f0107 of that record, which is also where the head symbols, the address table, the difference histogram and the two named pairs come from; the record's head was cfb6e4dc18425312447b01efd75b646d2ab1473e when it was read."
+  ],
+  "domain": "The four-place ternary address space of eighty-one heads with its eighty nonzero shifts; the six-place binary space of sixty-four words; the carry profiles of the ternary and binary odometers; a declared population of three thousand two hundred forty pairs and one hundred twenty-six extracted pairs; a declared similarity witness of two pairs; and four declared documents",
   "objects": {
     "ternary_places": 4,
     "radix": 3,
@@ -18,11 +23,52 @@
     "dominant_differences": [[2, 2, 2, 0], [1, 1, 1, 1]],
     "declared_addresses": {"釋": [1, 3, 1, 3], "窮": [3, 2, 2, 3], "毅": [2, 1, 1, 3],
                            "積": [3, 1, 2, 3]},
+    "declared_head_symbols": {
+      "comment": "The six heads the external record exhibits, declared with the head number, the name it gives, the Unicode tetragram gloss at that number, and the address the record reports. The checker recomputes the address index and the tetragram codepoint, and checks the declared gloss against the character name; the rendering of the gloss as a Chinese head name is a declared gloss and is not computed.",
+      "heads": [
+        {"head": 1, "name": "中", "tetragram_gloss": "CENTRE", "address": [1, 1, 1, 1]},
+        {"head": 2, "name": "周", "tetragram_gloss": "FULL CIRCLE", "address": [1, 1, 1, 2]},
+        {"head": 3, "name": "礥", "tetragram_gloss": "MIRED", "address": [1, 1, 1, 3]},
+        {"head": 4, "name": "閑", "tetragram_gloss": "BARRIER", "address": [1, 1, 2, 1]},
+        {"head": 27, "name": "事", "tetragram_gloss": "DUTIES", "address": [1, 3, 3, 3]},
+        {"head": 28, "name": "更", "tetragram_gloss": "CHANGE", "address": [2, 1, 1, 1]}
+      ],
+      "symbol_base": "U+1D306"
+    },
+    "difference_histogram": {
+      "comment": "The six boxes of the reported difference histogram over Z3^4 with their multiplicities, and the two named pairs the record gives. A named pair's difference is taken as the later-named address minus the earlier-named one, modulo three, and is recomputed from declared_addresses rather than restated.",
+      "boxes": [{"difference": [2, 2, 2, 0], "pairs": 24},
+                {"difference": [1, 1, 1, 1], "pairs": 13},
+                {"difference": [1, 2, 2, 1], "pairs": 6},
+                {"difference": [2, 1, 2, 0], "pairs": 6},
+                {"difference": [1, 2, 2, 0], "pairs": 6},
+                {"difference": [2, 2, 2, 1], "pairs": 5}],
+      "named_pairs": [{"first": "窮", "second": "毅", "difference": [2, 2, 2, 0]},
+                      {"first": "釋", "second": "積", "difference": [2, 1, 1, 0]}]
+    },
+    "similarity_witness": {
+      "comment": "A declared instance of the measure the external record used: the Jaccard ratio of two declared attribute sets. One pair is declared opposite and one unrelated, so the arithmetic shows what a low score is consistent with. This is a declared instance and not a measurement of any text.",
+      "measure": "the size of the intersection over the size of the union of the two attribute sets",
+      "pairs": [
+        {"relation": "opposite", "left": ["a", "b", "c"], "right": ["c", "d"]},
+        {"relation": "unrelated", "left": ["e", "f", "g", "h", "i", "j"],
+         "right": ["g", "h", "k", "l"]}
+      ]
+    },
     "extracted_pairs": 126,
     "mean_percentile": "442/1000",
     "pair_population": 3240,
-    "documents": [{"section_titles": 12, "passages": 60, "restatements": 0},
-                  {"section_titles": 0, "passages": 60, "restatements": 12}]
+    "documents": [{"section_titles": 12, "passages": 60, "restatements": 0,
+                   "restating_passage_indices": []},
+                  {"section_titles": 0, "passages": 60, "restatements": 12,
+                   "restating_passage_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}],
+    "counting_unit_controls": [
+      {"comment": "the same restating passages as the first declared document and no titles",
+       "section_titles": 0, "passages": 60, "restating_passage_indices": []},
+      {"comment": "the same restating passages as the second declared document with twelve titles",
+       "section_titles": 12, "passages": 60,
+       "restating_passage_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+    ]
   },
   "quantifiers": [
     "All eighty-one elements and all eighty shifts of the ternary address space for the order, orbit and involution tests",

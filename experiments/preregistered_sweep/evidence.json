@@ -1,7 +1,8 @@
 {
-  "assertions": 1402,
-  "checker_sha256": "65fbf1f8ae4e568372276ae72ca6d22695d7c755d8a8770246fb701ac5689c68",
-  "contract_sha256": "ff0ce0d2f2557498f38152321e3e16e957cf25585a7f9190b9269b138f8f6895",
+  "assertions": 1432,
+  "checker_sha256": "58c5a5e0749b4973183ce6ccd48b8d653e12806f353282d215a0905024d5bb45",
+  "contract_base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "contract_sha256": "497bf898442257083ebb934af4f0ba979bef4f34a505f9e48d00041dbb7a1eb5",
   "installed_limits": {
     "RLIMIT_CPU": "installed",
     "RLIMIT_FSIZE": "installed",
@@ -18,7 +19,7 @@
     "routes": 1,
     "wall_seconds": 300
   },
-  "rss_high_water_bytes": 26378240,
+  "rss_high_water_bytes": 26771456,
   "schema": "adva.research.preregistered-sweep-evidence.v0",
   "sections": {
     "S1_definability": {
@@ -92,6 +93,38 @@
     "S3_sweep": {
       "both_monotonicities_hold": true,
       "containments_contributed_by_those": 30,
+      "declarations": {
+        "head_sets_source": "contract.json objects.declared_head_sets",
+        "ordering": "contract.json declares both families and the contract, the checker, the retained evidence and the note were introduced by one commit, whose base is the base_commit contract.json records; no earlier timestamped record of the declarations exists in this repository and none is claimed, so the sweep is declared rather than dated before its results",
+        "post_hoc_source": "contract.json objects.post_hoc_property and objects.post_hoc_target",
+        "properties_source": "contract.json objects.declared_properties"
+      },
+      "declared_head_sets": [
+        "cut_after",
+        "cut_before",
+        "district_one",
+        "district_three",
+        "district_two",
+        "first_quarter",
+        "nine_district_representatives",
+        "second_quarter",
+        "third_quarter",
+        "three_quarter_representatives"
+      ],
+      "declared_properties": [
+        "centred_square",
+        "congruent_one_mod_four",
+        "congruent_one_mod_nine",
+        "congruent_one_mod_twelve",
+        "fibonacci",
+        "palindromic",
+        "perfect_power",
+        "power_of_three",
+        "prime",
+        "square",
+        "sum_of_two_squares",
+        "triangular"
+      ],
       "expected_containments": "551854253686846276077379905290105473984426483195517357579065134888169695079829914219503486436481606070265867286375571825992536194432428366958335472243009093523493517320654451932829532376231724272042665924622840787812059549850612064326347/66582588979059819668795113094829022382422839425080934833973708682848899782129648649430883471618763183804320977863227539483853539939695424469960301252223999584127816025810468775857832457230997351827128560623663489672078791699314836983900",
       "expected_containments_float": 8.2883,
       "head_sets": 10,
@@ -1339,8 +1372,8 @@
           "target_size": 3
         }
       ],
+      "the_declared_families_are_read_from_the_contract": true,
       "the_observed_count_is_driven_by_evenly_spread_properties": true,
-      "the_sweep_is_declared_before_any_coincidence_is_evaluated": true,
       "the_uniform_null_under_predicts_for_evenly_spread_properties": true
     },
     "S4_post_hoc": {
@@ -1384,9 +1417,15 @@
     },
     "S5_vacuity": {
       "a_total_relation_has_no_discriminating_power": true,
+      "cycles_of_one_non_zero_displacement": 27,
+      "every_pair_of_distinct_heads_lies_in_a_common_three_cycle": true,
       "exhausted_pairs": 6480,
       "ordered_pairs_of_distinct_heads": 6480,
+      "orders_of_the_non_zero_differences": [
+        3
+      ],
       "pairs_whose_difference_does_not_have_order_dividing_three": 0,
+      "the_order_is_computed_by_repeated_addition": true,
       "the_same_cycle_relation_is_total": true
     },
     "S6_coverage": {
@@ -1419,5 +1458,5 @@
     }
   },
   "status": "ExternalExactPass",
-  "wall_ns": 120344583
+  "wall_ns": 143383791
 }

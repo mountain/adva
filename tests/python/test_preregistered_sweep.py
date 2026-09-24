@@ -127,7 +127,20 @@ def test_the_sweep_is_declared_and_the_observed_count_is_explained():
     assert s["pairs_below_one_percent"] == 90
     assert s["pairs_below_a_tenth_percent"] == 81
     assert s["both_monotonicities_hold"] is True
-    assert s["the_sweep_is_declared_before_any_coincidence_is_evaluated"] is True
+    # the families are read out of the contract, and the record claims no ordering
+    # in which the declarations preceded the counting
+    assert s["the_declared_families_are_read_from_the_contract"] is True
+    assert s["declared_properties"] == sorted(s["property_sizes"])
+    assert s["declared_head_sets"] == ["cut_after", "cut_before", "district_one",
+                                       "district_three", "district_two", "first_quarter",
+                                       "nine_district_representatives", "second_quarter",
+                                       "third_quarter", "three_quarter_representatives"]
+    assert s["declarations"]["properties_source"] == (
+        "contract.json objects.declared_properties")
+    assert s["declarations"]["head_sets_source"] == (
+        "contract.json objects.declared_head_sets")
+    assert "no earlier timestamped record" in s["declarations"]["ordering"]
+    assert "the_sweep_is_declared_before_any_coincidence_is_evaluated" not in s
     # three properties reach every head and carry most of the observed count
     assert s["properties_reaching_every_head"] == ["congruent_one_mod_four",
                                                    "congruent_one_mod_nine",
@@ -180,7 +193,7 @@ def test_the_contract_states_its_protected_boundaries():
     contract = load(CONTRACT)
     protected = " ".join(contract["protected"])
     for phrase in (
-        "no member was added after a containment was observed",
+        "declared in this contract and read from it by the checker",
         "it is a declared family of arithmetic predicates",
         "not readings of any text",
         "No floating-point value",
@@ -215,7 +228,7 @@ def test_the_registered_claim_points_at_existing_artifacts():
     assert claim["dimension"].startswith("external")
     assert claim["dependencies"] == []
     assert len(claim["forbidden_conflations"]) >= 8
-    assert any("pre-registered" in item for item in claim["forbidden_conflations"])
+    assert any("declared table entry" in item for item in claim["forbidden_conflations"])
     for symbol in claim["code_symbol"].split("; "):
         assert (ROOT / symbol).is_file(), symbol
     assert claim["counterexample_boundary"].startswith("No text")
