@@ -1,0 +1,994 @@
+{
+  "schema": "adva.research.taixuan-hierarchy-spectrum-evidence.v1",
+  "contract_sha256": "e32a5efb08ec49b2f3703122d0fb89c642b6b268362bae9411d74c27af33ac05",
+  "checker_sha256": "b5c01c19aaaa6aee2f0c670d216e7e495086388389c7cd7c2fed6c61c36615bf",
+  "results": {
+    "input_pins_verified": [
+      {
+        "path": "docs/research/0036-triangular-symbolic-interpretation-learning-calculus.md",
+        "sha256": "c75c420908487d74684f194db8ac7b6c2dfdcf6e3a6140d6d324cff84fb311b9"
+      },
+      {
+        "path": "docs/research/0214-what-a-four-trit-address-carries-and-no-shift-pairs-it.md",
+        "sha256": "dd5935b8f377ef58f1bf374be3b1d3b5953e01f05441bd5d2eb13ba6325ee30c"
+      },
+      {
+        "path": "knowledge/packages/yi-taixuan-weishi-v1/materials/claims.json",
+        "sha256": "afbd04993ef86ad3606e5097df53569c5d90ce2872e31fd7f841f8bbe879d034"
+      },
+      {
+        "path": "knowledge/packages/yi-taixuan-weishi-v1/materials/corrections.json",
+        "sha256": "007ded9d2aab15884bca40f3c8f0934c4a0f3195112ce404d9848cdf9c5f0c1e"
+      },
+      {
+        "path": "dependencies/adva-machine.lock.json",
+        "sha256": "9ab4d8cb45bf2123c919d597b3a6b3e917cce76e0be142e415c5ef107c66aa96"
+      }
+    ],
+    "addresses": {
+      "coarse": 81,
+      "fine": 6561,
+      "ordered_pairs": 6561,
+      "children_per_parent": 81,
+      "qiong_ordinal": 69,
+      "qiong_zero_based": [
+        2,
+        1,
+        1,
+        2
+      ],
+      "qiong_children": 81
+    },
+    "observers": {
+      "unit_shift_cases": 26244,
+      "residue_is_unit_translation_factor": true,
+      "block_parent_is_triple_translation_factor": true,
+      "block_parent_unit_shift_commuting_failures": 17496,
+      "block_parent_not_any_autonomous_unit_factor_witness": [
+        {
+          "fine": [
+            6,
+            3,
+            3,
+            6
+          ],
+          "parent": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "next_fine": [
+            7,
+            3,
+            3,
+            6
+          ],
+          "next_parent": [
+            2,
+            1,
+            1,
+            2
+          ]
+        },
+        {
+          "fine": [
+            8,
+            3,
+            3,
+            6
+          ],
+          "parent": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "next_fine": [
+            0,
+            3,
+            3,
+            6
+          ],
+          "next_parent": [
+            0,
+            1,
+            1,
+            2
+          ]
+        }
+      ],
+      "minimal_stable_refinement_sizes": [
+        81,
+        1296,
+        6561
+      ],
+      "stable_check_completed": true,
+      "refinement_scope": "All four positive unit translations on the declared periodic grid."
+    },
+    "multiresolution": {
+      "coarse_dimension": 81,
+      "residual_dimension": 6480,
+      "exact_reconstruction": true,
+      "all_residual_fibre_means_zero": true,
+      "energy": "1315116",
+      "coarse_energy": "1180980",
+      "detail_energy": "134136",
+      "qiong_coarse_field_value": "15"
+    },
+    "fourier_replay": {
+      "relative_max_reconstruction_error": 8.0656903020442e-15,
+      "relative_parseval_error": 1.0622514378375883e-15,
+      "tolerance": 1e-10,
+      "kind": "Numerical synthetic-field calibration, not observed climate data."
+    },
+    "spectra": {
+      "exact_ring": "Z[t]/(t^6+t^3+1), t a primitive ninth root",
+      "one_axis_checks": {
+        "9": {
+          "gram_pairs": 81,
+          "eigenvector_entries": 81
+        },
+        "3": {
+          "gram_pairs": 9,
+          "eigenvector_entries": 9
+        }
+      },
+      "tensor_basis_count_each": 6561,
+      "cyclic_nine_four": {
+        "group_exponent": 9,
+        "degree": 8,
+        "trace": 52488,
+        "distinct_eigenvalues": 65,
+        "spectrum": [
+          {
+            "cyclotomic_coefficients": [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "approximate_eigenvalue": 0.0,
+            "multiplicity": 1
+          },
+          {
+            "cyclotomic_coefficients": [
+              2,
+              -1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "approximate_eigenvalue": 0.4679111137620442,
+            "multiplicity": 8
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              -2,
+              2,
+              0,
+              0,
+              2
+            ],
+            "approximate_eigenvalue": 0.9358222275240884,
+            "multiplicity": 24
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              -3,
+              3,
+              0,
+              0,
+              3
+            ],
+            "approximate_eigenvalue": 1.4037333412861321,
+            "multiplicity": 32
+          },
+          {
+            "cyclotomic_coefficients": [
+              2,
+              1,
+              -1,
+              0,
+              1,
+              0
+            ],
+            "approximate_eigenvalue": 1.6527036446661394,
+            "multiplicity": 8
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -4,
+              4,
+              0,
+              0,
+              4
+            ],
+            "approximate_eigenvalue": 1.8716444550481768,
+            "multiplicity": 16
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "approximate_eigenvalue": 2.1206147584281836,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              -1,
+              1,
+              0,
+              1,
+              2
+            ],
+            "approximate_eigenvalue": 2.588525872190228,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              3,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "approximate_eigenvalue": 3.0,
+            "multiplicity": 8
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -2,
+              2,
+              0,
+              1,
+              3
+            ],
+            "approximate_eigenvalue": 3.056436985952272,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              2,
+              -2,
+              0,
+              2,
+              0
+            ],
+            "approximate_eigenvalue": 3.305407289332279,
+            "multiplicity": 24
+          },
+          {
+            "cyclotomic_coefficients": [
+              5,
+              -1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "approximate_eigenvalue": 3.467911113762044,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              1,
+              -1,
+              0,
+              2,
+              1
+            ],
+            "approximate_eigenvalue": 3.773318403094323,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              2,
+              0,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            "approximate_eigenvalue": 3.8793852415718164,
+            "multiplicity": 8
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              -2,
+              2,
+              0,
+              0,
+              2
+            ],
+            "approximate_eigenvalue": 3.9358222275240884,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              0,
+              0,
+              0,
+              2,
+              2
+            ],
+            "approximate_eigenvalue": 4.241229516856367,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              -1,
+              1,
+              0,
+              -1,
+              0
+            ],
+            "approximate_eigenvalue": 4.34729635533386,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              -3,
+              3,
+              0,
+              0,
+              3
+            ],
+            "approximate_eigenvalue": 4.403733341286133,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              5,
+              1,
+              -1,
+              0,
+              1,
+              0
+            ],
+            "approximate_eigenvalue": 4.65270364466614,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              -2,
+              2,
+              0,
+              -1,
+              1
+            ],
+            "approximate_eigenvalue": 4.815207469095904,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              3,
+              -3,
+              0,
+              3,
+              0
+            ],
+            "approximate_eigenvalue": 4.958110933998419,
+            "multiplicity": 32
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "approximate_eigenvalue": 5.120614758428184,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -3,
+              3,
+              0,
+              -1,
+              2
+            ],
+            "approximate_eigenvalue": 5.2831185828579486,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              2,
+              -2,
+              0,
+              3,
+              1
+            ],
+            "approximate_eigenvalue": 5.426022047760463,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              1,
+              -1,
+              0,
+              0,
+              -1
+            ],
+            "approximate_eigenvalue": 5.532088886237956,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              -1,
+              1,
+              0,
+              1,
+              2
+            ],
+            "approximate_eigenvalue": 5.588525872190228,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "approximate_eigenvalue": 6.0,
+            "multiplicity": 216
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              2,
+              -2,
+              0,
+              2,
+              0
+            ],
+            "approximate_eigenvalue": 6.305407289332279,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "approximate_eigenvalue": 6.467911113762044,
+            "multiplicity": 288
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              4,
+              -4,
+              0,
+              4,
+              0
+            ],
+            "approximate_eigenvalue": 6.610814578664558,
+            "multiplicity": 16
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              1,
+              -1,
+              0,
+              2,
+              1
+            ],
+            "approximate_eigenvalue": 6.773318403094323,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              5,
+              0,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            "approximate_eigenvalue": 6.879385241571816,
+            "multiplicity": 48
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              -2,
+              2,
+              0,
+              0,
+              2
+            ],
+            "approximate_eigenvalue": 6.935822227524088,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              2,
+              -2,
+              0,
+              1,
+              -1
+            ],
+            "approximate_eigenvalue": 7.184792530904096,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              -1,
+              1,
+              0,
+              -1,
+              0
+            ],
+            "approximate_eigenvalue": 7.34729635533386,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              1,
+              -1,
+              0,
+              1,
+              0
+            ],
+            "approximate_eigenvalue": 7.65270364466614,
+            "multiplicity": 288
+          },
+          {
+            "cyclotomic_coefficients": [
+              4,
+              0,
+              0,
+              0,
+              -2,
+              -2
+            ],
+            "approximate_eigenvalue": 7.758770483143633,
+            "multiplicity": 24
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              -2,
+              2,
+              0,
+              -1,
+              1
+            ],
+            "approximate_eigenvalue": 7.815207469095904,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              3,
+              -3,
+              0,
+              3,
+              0
+            ],
+            "approximate_eigenvalue": 7.958110933998419,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              0,
+              0,
+              0,
+              1,
+              1
+            ],
+            "approximate_eigenvalue": 8.120614758428184,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              -1,
+              1,
+              0,
+              -2,
+              -1
+            ],
+            "approximate_eigenvalue": 8.226681596905676,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              1,
+              -1,
+              0,
+              0,
+              -1
+            ],
+            "approximate_eigenvalue": 8.532088886237956,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -2,
+              2,
+              0,
+              -2,
+              0
+            ],
+            "approximate_eigenvalue": 8.69459271066772,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              3,
+              -3,
+              0,
+              2,
+              -1
+            ],
+            "approximate_eigenvalue": 8.837496175570235,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "approximate_eigenvalue": 9.0,
+            "multiplicity": 416
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              2,
+              -2,
+              0,
+              2,
+              0
+            ],
+            "approximate_eigenvalue": 9.30540728933228,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              1,
+              -1,
+              0,
+              -1,
+              -2
+            ],
+            "approximate_eigenvalue": 9.411474127809772,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              11,
+              -1,
+              1,
+              0,
+              0,
+              1
+            ],
+            "approximate_eigenvalue": 9.467911113762044,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              0,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            "approximate_eigenvalue": 9.879385241571816,
+            "multiplicity": 288
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              2,
+              -2,
+              0,
+              1,
+              -1
+            ],
+            "approximate_eigenvalue": 10.184792530904096,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              -1,
+              1,
+              0,
+              -1,
+              0
+            ],
+            "approximate_eigenvalue": 10.34729635533386,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              11,
+              1,
+              -1,
+              0,
+              1,
+              0
+            ],
+            "approximate_eigenvalue": 10.65270364466614,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              7,
+              0,
+              0,
+              0,
+              -2,
+              -2
+            ],
+            "approximate_eigenvalue": 10.758770483143632,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              2,
+              -2,
+              0,
+              0,
+              -2
+            ],
+            "approximate_eigenvalue": 11.064177772475912,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              -1,
+              1,
+              0,
+              -2,
+              -1
+            ],
+            "approximate_eigenvalue": 11.226681596905676,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              1,
+              -1,
+              0,
+              0,
+              -1
+            ],
+            "approximate_eigenvalue": 11.532088886237956,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              6,
+              0,
+              0,
+              0,
+              -3,
+              -3
+            ],
+            "approximate_eigenvalue": 11.63815572471545,
+            "multiplicity": 32
+          },
+          {
+            "cyclotomic_coefficients": [
+              12,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            "approximate_eigenvalue": 12.0,
+            "multiplicity": 16
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              -1,
+              1,
+              0,
+              -3,
+              -2
+            ],
+            "approximate_eigenvalue": 12.106066838477494,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              1,
+              -1,
+              0,
+              -1,
+              -2
+            ],
+            "approximate_eigenvalue": 12.411474127809772,
+            "multiplicity": 192
+          },
+          {
+            "cyclotomic_coefficients": [
+              11,
+              0,
+              0,
+              0,
+              -1,
+              -1
+            ],
+            "approximate_eigenvalue": 12.879385241571816,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              1,
+              -1,
+              0,
+              -2,
+              -3
+            ],
+            "approximate_eigenvalue": 13.29085936938159,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              10,
+              0,
+              0,
+              0,
+              -2,
+              -2
+            ],
+            "approximate_eigenvalue": 13.758770483143632,
+            "multiplicity": 96
+          },
+          {
+            "cyclotomic_coefficients": [
+              9,
+              0,
+              0,
+              0,
+              -3,
+              -3
+            ],
+            "approximate_eigenvalue": 14.63815572471545,
+            "multiplicity": 64
+          },
+          {
+            "cyclotomic_coefficients": [
+              8,
+              0,
+              0,
+              0,
+              -4,
+              -4
+            ],
+            "approximate_eigenvalue": 15.517540966287266,
+            "multiplicity": 16
+          }
+        ]
+      },
+      "ternary_eight": {
+        "group_exponent": 3,
+        "degree": 16,
+        "trace": 104976,
+        "spectrum": [
+          {
+            "eigenvalue": 0,
+            "multiplicity": 1
+          },
+          {
+            "eigenvalue": 3,
+            "multiplicity": 16
+          },
+          {
+            "eigenvalue": 6,
+            "multiplicity": 112
+          },
+          {
+            "eigenvalue": 9,
+            "multiplicity": 448
+          },
+          {
+            "eigenvalue": 12,
+            "multiplicity": 1120
+          },
+          {
+            "eigenvalue": 15,
+            "multiplicity": 1792
+          },
+          {
+            "eigenvalue": 18,
+            "multiplicity": 1792
+          },
+          {
+            "eigenvalue": 21,
+            "multiplicity": 1024
+          },
+          {
+            "eigenvalue": 24,
+            "multiplicity": 256
+          }
+        ]
+      },
+      "scope": "Positive unnormalized graph Laplacians on two declared periodic finite groups."
+    },
+    "negative_controls_rejected": [
+      "floor_as_unit_translation_factor",
+      "encoding_as_group_isomorphism",
+      "drop_residual_without_loss",
+      "corrupted_fourier_reconstruction"
+    ],
+    "open": [
+      "Four-dimensional geometric monotile",
+      "Local matching and recognizability",
+      "Tiling existence and exclusion of all infinite-order symmetries",
+      "Spectra of an actual nonperiodic hull",
+      "Physical space-time and forecast validation"
+    ],
+    "native_admission": "NotRequested; external research only"
+  },
+  "status": "Pass",
+  "resources": {
+    "charged_cases": 544743,
+    "wall_seconds": 0.5880492299984326,
+    "cpu_seconds": 0.664004976,
+    "peak_rss_kib_linux": 30008,
+    "python": "3.14.4"
+  }
+}
