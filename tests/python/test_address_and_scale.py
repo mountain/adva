@@ -8,6 +8,7 @@ import hashlib
 import json
 import subprocess
 import sys
+from fractions import Fraction as F
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
@@ -153,10 +154,11 @@ def test_the_near_miss_is_what_the_grid_forces():
     assert s["reported_node_gap_days"] == "41/24"
     assert s["reported_rank_by_closeness"] == 14
     assert s["nodes_compared"] == 23
-    # a closer node exists, far closer, and the reported one is worse than the median
+    # a closer node exists, far closer, and the reported one is worse than the median;
+    # compared as exact rationals, so no floating-point value enters this acceptance test
     assert s["best_node"] == 14
-    assert s["best_relative_float"] < s["reported_relative_float"] / 50
-    assert float(__import__("fractions").Fraction(s["median_relative"])) < s["reported_relative_float"]
+    assert F(s["best_relative"]) < F(s["reported_relative"]) / 50
+    assert F(s["median_relative"]) < F(s["reported_relative"])
     assert s["every_node_is_within_the_reach_by_construction"] is True
     assert s["the_reported_near_miss_is_worse_than_the_median"] is True
 

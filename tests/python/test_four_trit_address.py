@@ -152,7 +152,7 @@ def test_a_similarity_measure_cannot_test_an_opposition():
     assert s["deviation_in_independent_pair_standard_errors_squared"] == "158949/31250"
     assert s["average_appearances_per_head"] == "28/9"
     assert s["pairs_are_not_disjoint"] is True
-    assert s["a_similarity_measure_cannot_separate_opposition_from_unrelatedness"] is True
+    assert s["the_declared_similarity_measure_does_not_separate_the_declared_opposite_and_unrelated_pairs"] is True
 
 
 def test_the_counting_unit_decides_what_is_visible():

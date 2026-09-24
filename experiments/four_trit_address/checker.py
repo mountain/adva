@@ -578,7 +578,7 @@ def s4_opposition():
         "similarity_witness_measure": witness["measure"],
         "similarity_witness_scores": {k: str(v) for k, v in sorted(scores.items())},
         "similarity_witness_pairs_differ": True,
-        "a_similarity_measure_cannot_separate_opposition_from_unrelatedness": not separable,
+        "the_declared_similarity_measure_does_not_separate_the_declared_opposite_and_unrelated_pairs": not separable,
         "exhausted_pairs_for_the_percentile_population": 3240,
     }
 
