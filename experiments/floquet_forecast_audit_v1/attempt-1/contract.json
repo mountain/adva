@@ -1,0 +1,124 @@
+{
+  "schema": "climatetensor.floquet-model-audit.v1",
+  "created_utc": "2026-09-24T14:32:16.914361+00:00",
+  "question": "Does the frozen current ctcal12 first annual-spectrum learner define a consistent periodic homogeneous propagation family; what does its explicit one-step annual extension actually imply?",
+  "level": "Original finite external matrix diagnostics; no native Adva authority, training or weather-product update",
+  "authorization": "User explicitly requires Floquet checks in the current first forecast; previous frozen physics review remains unchanged",
+  "assumptions": [
+    "Floquet applies to periodic homogeneous linear systems. A constant anomaly map is a special periodic case; periodic climatology alone does not prove seasonal propagation coefficients.",
+    "Normalize with the original training monthly means and fixed channel scales; do not refit on reference months.",
+    "Forecast uses x V R_l in row convention, V orthonormal; iterated one-step latent closure B=R_1 V. Annual column monodromy=(B^12)^T.",
+    "Euclidean norms refer to declared normalized coefficient or EOF coordinates, not physical atmospheric energy.",
+    "Eigenvalues describe asymptotic modal propagation; singular values and direct powers diagnose finite nonnormal gains."
+  ],
+  "interface": "Preserve all 2698 coefficient identities through existing numeric coordinate blocks; 64 EOF coordinates are an observational compression, not identified world dynamics or native semantic identities.",
+  "protected": [
+    "Original 592-file freeze and all forecast pointers remain immutable",
+    "No December 2026 forecast generation or future verification",
+    "Do not call direct-family composition failure a proven lack of forecast skill",
+    "Do not attribute realized innovation residual to a specific nonlinear or random cause",
+    "Do not label the one-step annual surrogate as a verified annual operator for incompatible direct maps",
+    "User ideal Floquet conclusion is retained within its assumptions"
+  ],
+  "finite_cases": {
+    "monthly_map": 1,
+    "published_leads": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "iterated_months": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12
+    ],
+    "direct_composition_pairs": "positive i,j with i+j<=6 (15 ordered pairs)",
+    "latent_modes": 64,
+    "historical_dates": [
+      "1979-01",
+      "2025-12"
+    ],
+    "splits": {
+      "training": [
+        "1979-01",
+        "2014-12"
+      ],
+      "validation": [
+        "2015-01",
+        "2019-12"
+      ],
+      "exposed_development": [
+        "2020-01",
+        "2025-12"
+      ]
+    }
+  },
+  "checks": [
+    "V orthonormality Frobenius <1e-10",
+    "All six saved published spectral anomalies reconstructed <1e-8 absolute coefficient units",
+    "Annual eigenvalue mapping matched by assignment within 1e-8",
+    "Repeated matrix multiplication versus matrix_power and independent full-state recurrence",
+    "Damped rotation analytic control, nonnormal stable transient control, inconsistent direct-map negative control",
+    "Direct family consistency threshold relative Frobenius 1e-8; report failure rather than modify maps",
+    "Realized one-step innovation annual variation-of-constants closure <1e-10; ex-post identity, no forecast skill interpretation",
+    "Inputs pinned before execution and checked again before publication"
+  ],
+  "budget": {
+    "diagnostic_launches": 1,
+    "wall_seconds": 180,
+    "cpu_seconds": 150,
+    "address_space_bytes": 3221225472,
+    "output_bytes": 30000000,
+    "enforcement": "Persistent ledger, supervised process group wall timeout and worker POSIX CPU/address-space/file limits; no automatic retry"
+  },
+  "inputs": [
+    {
+      "role": "model",
+      "path": "/home/ubuntu/research-inputs/japan-geostrophic-audit-20260924-v1/frozen/site/research/native-background-l12-v1/model.npz",
+      "bytes": 9529780,
+      "sha256": "e042b45ffcb1508c1204a37d9da2a54289184ffb0274b763e9f8b541b1bb3d4f"
+    },
+    {
+      "role": "projection",
+      "path": "/home/ubuntu/research-inputs/japan-geostrophic-audit-20260924-v1/frozen/original-l12/projection-L12.npz",
+      "bytes": 28894789,
+      "sha256": "4852df6fb2f4320171cfc4fcdc6568285411579cfb9eadb51e56bc136c557224"
+    },
+    {
+      "role": "forecast",
+      "path": "/home/ubuntu/research-inputs/japan-geostrophic-audit-20260924-v1/frozen/site/research/native-background-l12-v1/forecast.npz",
+      "bytes": 12627645,
+      "sha256": "51042525d22c741dd3217bed28ea06fae1d9e8ff5ab67a15188cf6e9971ec832"
+    },
+    {
+      "role": "model_source",
+      "path": "/home/ubuntu/research-inputs/japan-geostrophic-audit-20260924-v1/frozen/runtime/multivariate-refinement/model.py",
+      "bytes": 3170,
+      "sha256": "a26133236a2bffbb2c0b2568670274ebc16c02f4b88c181f3c9889b8c20d2722"
+    }
+  ],
+  "source_pins": {
+    "audit.py": "f347f506df1e420505803df7dbf7ae98bc5874761237e687d1910554b4b4d701",
+    "render.py": "f3125ee146c0e41ee0f458e376f88237cd3b646cd9d3b152c2d5b0b240191a9e",
+    "run.py": "5645785cc7fa463fe029095026fcc6401736a98ce2fe47aa64a35ccd3486c122"
+  },
+  "dependencies": {
+    "python": "3.11.15",
+    "numpy": "2.4.6",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.2"
+  },
+  "authorship": "Codex (OpenAI), Unknown v0.3 through Mingli Yuan authorized account proxy, not his review or endorsement."
+}

@@ -1,0 +1,10 @@
+{
+  "status": "Failure",
+  "reason": "UFuncTypeError(<ufunc 'greater_equal'>, (<class 'numpy.dtypes.DateTime64DType'>, <class 'numpy.dtypes.StrDType'>, None))",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/ubuntu/research-inputs/floquet-forecast-audit-20260924-v1/run.py\", line 14, in main\n    r=run(out)\n      ^^^^^^^^\n  File \"/home/ubuntu/research-inputs/floquet-forecast-audit-20260924-v1/audit.py\", line 79, in run\n    groups={'training':(dates>='1979-01')&(dates<'2015-01'),'validation':(dates>='2015-01')&(dates<'2020-01'),'exposed_development':dates>='2020-01'}\n                        ^^^^^^^^^^^^^^^^\nnumpy._core._exceptions._UFuncNoLoopError: ufunc 'greater_equal' did not contain a loop with signature matching types (<class 'numpy.dtypes.DateTime64DType'>, <class 'numpy.dtypes.StrDType'>) -> None\n",
+  "resources": {
+    "wall_seconds": 1.1509290910034906,
+    "cpu_seconds": 1.184218584,
+    "peak_rss_kib": 125524
+  }
+}

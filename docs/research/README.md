@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **240 numbered
+This directory holds the research record of the repository: **241 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -780,6 +780,7 @@ Every file in this directory, so that no note is reachable only through a summar
 
 - [0230 — Native background correction and display interpolation](0230-native-background-forecast-and-display-interpolation.md): a bounded temporal-memory trial fails its fixed switch threshold; a separate training-only background correction reduces exposed development physical MSE while preserving old products. Independent grid replay and a real-shader vector overshoot witness separate model improvement, rendering behavior and unresolved source authenticity.
 - [0231 — Frozen Japan jet review and Floquet scope](0231-frozen-japan-jet-and-floquet-scope.md): the requested December forecast is absent; the actual January URL has a geostrophically compatible monthly jet dominated by climatology, with small learned anomalies. Native-first and matched historical diagnostics separate representation effects, exposed development skill and the first ideal method’s conditional Floquet claim.
+- [0232 — Floquet checks of the frozen first forecast](0232-floquet-checks-of-the-frozen-first-forecast.md): the actual one-step homogeneous extension contracts with annual spectral radius 0.09855, while the six direct lead maps fail propagation composition. Independent operator checks and realized-innovation decomposition preserve the ideal method’s conditional scope without making a real-atmosphere stability or forecast-skill claim.
 
 ### Named notes
 

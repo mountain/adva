@@ -1,0 +1,1219 @@
+{
+  "status": "Completed",
+  "target": "frozen ctcal12 normalized learned anomaly state; original first annual-spectrum method as currently published",
+  "source_model_shapes": {
+    "vectors": [
+      2698,
+      64
+    ],
+    "maps": [
+      6,
+      64,
+      2698
+    ],
+    "climatology": [
+      12,
+      2698
+    ]
+  },
+  "forecast_target_months": [
+    "2026-01",
+    "2026-02",
+    "2026-03",
+    "2026-04",
+    "2026-05",
+    "2026-06"
+  ],
+  "normalization": "Training-only 12 monthly means, fixed channel scale, 64 shared EOF coordinates. Euclidean gains are in these normalized coordinates, not atmospheric energy.",
+  "seasonality": "Climatology depends on calendar month; the six forecast maps do not. No learned monthly coefficient family A_1,...,A_12 exists in this model.",
+  "homogeneous_extension": "Use only the published one-step map recursively: row z_{t+1}=z_t B, B=R1 V. This defines a constant (thus periodic) homogeneous surrogate. Annual column monodromy is (B^12)^T.",
+  "direct_family_consistent_at_1e-8": false,
+  "direct_family_caveat": "Six separately fitted direct lead maps need not compose. Annual B^12 characterizes an explicitly added iterated one-step interpretation; it is not an annual operator validated for the entire published direct family.",
+  "monthly_spectral_radius": 0.8244007164496567,
+  "annual_spectral_radius": 0.09855083910352788,
+  "annual_latent_operator_norm": 0.11514852591751243,
+  "annual_full_encoded_operator_norm": 0.11520147495823556,
+  "max_latent_gain_over_1_to_12": 0.8853658640973908,
+  "max_full_encoded_gain_over_1_to_12": 0.8863274358813258,
+  "modes": [
+    {
+      "index": 0,
+      "monthly_real": 0.8244007164496567,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.8244007164496567,
+      "annual_real": 0.0985508391035346,
+      "annual_imag": 0.0,
+      "annual_modulus": 0.0985508391035346,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 1,
+      "monthly_real": 0.6810378012062731,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.6810378012062731,
+      "annual_real": 0.009955306116368707,
+      "annual_imag": 0.0,
+      "annual_modulus": 0.009955306116368707,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 2,
+      "monthly_real": 0.5485745788922983,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.5485745788922983,
+      "annual_real": 0.0007427251682211518,
+      "annual_imag": 0.0,
+      "annual_modulus": 0.0007427251682211518,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 3,
+      "monthly_real": 0.4864827173743593,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.4864827173743593,
+      "annual_real": 0.00017571506410987407,
+      "annual_imag": 0.0,
+      "annual_modulus": 0.00017571506410987407,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 4,
+      "monthly_real": 0.3827463697377641,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.3827463697377641,
+      "annual_real": 9.884005137464766e-06,
+      "annual_imag": 0.0,
+      "annual_modulus": 9.884005137464766e-06,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 7,
+      "monthly_real": 0.3599070490963261,
+      "monthly_imag": 0.04171037585909863,
+      "monthly_modulus": 0.3623159387103092,
+      "annual_real": 9.47704496960816e-07,
+      "annual_imag": 5.028879410244175e-06,
+      "annual_modulus": 5.117398942464576e-06,
+      "annual_phase_radians_principal": 1.3845284616715527,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 8,
+      "monthly_real": 0.3599070490963261,
+      "monthly_imag": -0.04171037585909863,
+      "monthly_modulus": 0.3623159387103092,
+      "annual_real": 9.47704496960816e-07,
+      "annual_imag": -5.028879410244175e-06,
+      "annual_modulus": 5.117398942464576e-06,
+      "annual_phase_radians_principal": -1.3845284616715527,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 5,
+      "monthly_real": 0.31149883612462026,
+      "monthly_imag": 0.14633664974566846,
+      "monthly_modulus": 0.3441597593644258,
+      "annual_real": 1.4616439749201153e-06,
+      "annual_imag": -2.342784075387784e-06,
+      "annual_modulus": 2.7613475574999372e-06,
+      "annual_phase_radians_principal": -1.0129942544668216,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 6,
+      "monthly_real": 0.31149883612462026,
+      "monthly_imag": -0.14633664974566846,
+      "monthly_modulus": 0.3441597593644258,
+      "annual_real": 1.4616439749201153e-06,
+      "annual_imag": 2.342784075387784e-06,
+      "annual_modulus": 2.7613475574999372e-06,
+      "annual_phase_radians_principal": 1.0129942544668216,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 10,
+      "monthly_real": 0.3262000892690635,
+      "monthly_imag": 0.015527021836359376,
+      "monthly_modulus": 0.32656942086829227,
+      "annual_real": 1.238094957919023e-06,
+      "annual_imag": 7.949175998275889e-07,
+      "annual_modulus": 1.4713167963902818e-06,
+      "annual_phase_radians_principal": 0.5707654258499515,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 11,
+      "monthly_real": 0.3262000892690635,
+      "monthly_imag": -0.015527021836359376,
+      "monthly_modulus": 0.32656942086829227,
+      "annual_real": 1.238094957919023e-06,
+      "annual_imag": -7.949175998275889e-07,
+      "annual_modulus": 1.4713167963902818e-06,
+      "annual_phase_radians_principal": -0.5707654258499515,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 14,
+      "monthly_real": 0.2831406360460529,
+      "monthly_imag": 0.03270750854210114,
+      "monthly_modulus": 0.28502350937351645,
+      "annual_real": 5.448901529635301e-08,
+      "annual_imag": 2.822422516071906e-07,
+      "annual_modulus": 2.874538943557086e-07,
+      "annual_phase_radians_principal": 1.3800849638409198,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 15,
+      "monthly_real": 0.2831406360460529,
+      "monthly_imag": -0.03270750854210114,
+      "monthly_modulus": 0.28502350937351645,
+      "annual_real": 5.448901529635301e-08,
+      "annual_imag": -2.822422516071906e-07,
+      "annual_modulus": 2.874538943557086e-07,
+      "annual_phase_radians_principal": -1.3800849638409198,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 16,
+      "monthly_real": 0.17507373172119223,
+      "monthly_imag": 0.17532603819374382,
+      "monthly_modulus": 0.2477701176645362,
+      "annual_real": -5.352675460695864e-08,
+      "annual_imag": -4.625167564023669e-10,
+      "annual_modulus": 5.3528752839044556e-08,
+      "annual_phase_radians_principal": -3.1329520167877365,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 17,
+      "monthly_real": 0.17507373172119223,
+      "monthly_imag": -0.17532603819374382,
+      "monthly_modulus": 0.2477701176645362,
+      "annual_real": -5.352675460695864e-08,
+      "annual_imag": 4.625167564023669e-10,
+      "annual_modulus": 5.3528752839044556e-08,
+      "annual_phase_radians_principal": 3.1329520167877365,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 30,
+      "monthly_real": 0.23885534513080528,
+      "monthly_imag": 0.032434091086652954,
+      "monthly_modulus": 0.24104739401655725,
+      "annual_real": -1.8760541739926876e-09,
+      "annual_imag": 3.8433727872394385e-08,
+      "annual_modulus": 3.847948826885592e-08,
+      "annual_phase_radians_principal": 1.6195703175575564,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 31,
+      "monthly_real": 0.23885534513080528,
+      "monthly_imag": -0.032434091086652954,
+      "monthly_modulus": 0.24104739401655725,
+      "annual_real": -1.8760541739926876e-09,
+      "annual_imag": -3.8433727872394385e-08,
+      "annual_modulus": 3.847948826885592e-08,
+      "annual_phase_radians_principal": -1.6195703175575564,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 32,
+      "monthly_real": 0.20579772376160005,
+      "monthly_imag": 0.0811783069750001,
+      "monthly_modulus": 0.22122979145852664,
+      "annual_real": -2.781278567990645e-09,
+      "annual_imag": -1.3459973076404844e-08,
+      "annual_modulus": 1.3744321943635756e-08,
+      "annual_phase_radians_principal": -1.774561841533441,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 33,
+      "monthly_real": 0.20579772376160005,
+      "monthly_imag": -0.0811783069750001,
+      "monthly_modulus": 0.22122979145852664,
+      "annual_real": -2.781278567990645e-09,
+      "annual_imag": 1.3459973076404844e-08,
+      "annual_modulus": 1.3744321943635756e-08,
+      "annual_phase_radians_principal": 1.774561841533441,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 20,
+      "monthly_real": 0.08757821326057,
+      "monthly_imag": 0.19737947773028316,
+      "monthly_modulus": 0.2159365686191045,
+      "annual_real": 3.026484144466724e-09,
+      "annual_imag": 9.822447181131114e-09,
+      "annual_modulus": 1.027813576981833e-08,
+      "annual_phase_radians_principal": 1.271907509457284,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 21,
+      "monthly_real": 0.08757821326057,
+      "monthly_imag": -0.19737947773028316,
+      "monthly_modulus": 0.2159365686191045,
+      "annual_real": 3.026484144466724e-09,
+      "annual_imag": -9.822447181131114e-09,
+      "annual_modulus": 1.027813576981833e-08,
+      "annual_phase_radians_principal": -1.271907509457284,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 12,
+      "monthly_real": -0.058452582928623084,
+      "monthly_imag": 0.19087012985777232,
+      "monthly_modulus": 0.19961991614803978,
+      "annual_real": -3.648228531220847e-09,
+      "annual_imag": -1.64891706432438e-09,
+      "annual_modulus": 4.003560777736982e-09,
+      "annual_phase_radians_principal": -2.717095487726671,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 13,
+      "monthly_real": -0.058452582928623084,
+      "monthly_imag": -0.19087012985777232,
+      "monthly_modulus": 0.19961991614803978,
+      "annual_real": -3.648228531220847e-09,
+      "annual_imag": 1.64891706432438e-09,
+      "annual_modulus": 4.003560777736982e-09,
+      "annual_phase_radians_principal": 2.717095487726671,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 36,
+      "monthly_real": 0.1906945922897017,
+      "monthly_imag": 0.038155378030566345,
+      "monthly_modulus": 0.19447431810187943,
+      "annual_real": -2.097186085889671e-09,
+      "annual_imag": 2.0411163552805917e-09,
+      "annual_modulus": 2.9264902963521277e-09,
+      "annual_phase_radians_principal": 2.3697426299892825,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 37,
+      "monthly_real": 0.1906945922897017,
+      "monthly_imag": -0.038155378030566345,
+      "monthly_modulus": 0.19447431810187943,
+      "annual_real": -2.097186085889671e-09,
+      "annual_imag": -2.0411163552805917e-09,
+      "annual_modulus": 2.9264902963521277e-09,
+      "annual_phase_radians_principal": -2.3697426299892825,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 9,
+      "monthly_real": -0.18583047084886373,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.18583047084886373,
+      "annual_real": 1.6959112749190066e-09,
+      "annual_imag": 0.0,
+      "annual_modulus": 1.6959112749190066e-09,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 28,
+      "monthly_real": 0.05102911217470915,
+      "monthly_imag": 0.17642328559660092,
+      "monthly_modulus": 0.18365496451236724,
+      "annual_real": -1.431224220493978e-09,
+      "annual_imag": 3.458634288218376e-10,
+      "annual_modulus": 1.4724212307369766e-09,
+      "annual_phase_radians_principal": 2.9044827773707698,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 29,
+      "monthly_real": 0.05102911217470915,
+      "monthly_imag": -0.17642328559660092,
+      "monthly_modulus": 0.18365496451236724,
+      "annual_real": -1.431224220493978e-09,
+      "annual_imag": -3.458634288218376e-10,
+      "annual_modulus": 1.4724212307369766e-09,
+      "annual_phase_radians_principal": -2.9044827773707698,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 42,
+      "monthly_real": 0.14676876567262115,
+      "monthly_imag": 0.08509652467936582,
+      "monthly_modulus": 0.16965402762554943,
+      "annual_real": 5.68413987564184e-10,
+      "annual_imag": 1.252068536186161e-11,
+      "annual_modulus": 5.685518699472784e-10,
+      "annual_phase_radians_principal": 0.022023843862738573,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 43,
+      "monthly_real": 0.14676876567262115,
+      "monthly_imag": -0.08509652467936582,
+      "monthly_modulus": 0.16965402762554943,
+      "annual_real": 5.68413987564184e-10,
+      "annual_imag": -1.252068536186161e-11,
+      "annual_modulus": 5.685518699472784e-10,
+      "annual_phase_radians_principal": -0.022023843862738573,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 40,
+      "monthly_real": 0.11581696373226015,
+      "monthly_imag": 0.11327326961443449,
+      "monthly_modulus": 0.16200124288814585,
+      "annual_real": -3.238574823654725e-10,
+      "annual_imag": 4.34066416698355e-11,
+      "annual_modulus": 3.26753432155128e-10,
+      "annual_phase_radians_principal": 3.0083566153482746,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 41,
+      "monthly_real": 0.11581696373226015,
+      "monthly_imag": -0.11327326961443449,
+      "monthly_modulus": 0.16200124288814585,
+      "annual_real": -3.238574823654725e-10,
+      "annual_imag": -4.34066416698355e-11,
+      "annual_modulus": 3.26753432155128e-10,
+      "annual_phase_radians_principal": -3.0083566153482746,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 18,
+      "monthly_real": -0.10579106884423288,
+      "monthly_imag": 0.11606702540388784,
+      "monthly_modulus": 0.1570455495495239,
+      "annual_real": -1.9123339818406723e-10,
+      "annual_imag": 1.1867585173665615e-10,
+      "annual_modulus": 2.2506481370140204e-10,
+      "annual_phase_radians_principal": 2.5861772146176647,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 19,
+      "monthly_real": -0.10579106884423288,
+      "monthly_imag": -0.11606702540388784,
+      "monthly_modulus": 0.1570455495495239,
+      "annual_real": -1.9123339818406723e-10,
+      "annual_imag": -1.1867585173665615e-10,
+      "annual_modulus": 2.2506481370140204e-10,
+      "annual_phase_radians_principal": -2.5861772146176647,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 22,
+      "monthly_real": -0.04458121964345915,
+      "monthly_imag": 0.14884130454235958,
+      "monthly_modulus": 0.15537444797253433,
+      "annual_real": -1.8590630544260433e-10,
+      "annual_imag": -6.79925727501474e-11,
+      "annual_modulus": 1.9794985312574237e-10,
+      "annual_phase_radians_principal": -2.7909687430618053,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 23,
+      "monthly_real": -0.04458121964345915,
+      "monthly_imag": -0.14884130454235958,
+      "monthly_modulus": 0.15537444797253433,
+      "annual_real": -1.8590630544260433e-10,
+      "annual_imag": 6.79925727501474e-11,
+      "annual_modulus": 1.9794985312574237e-10,
+      "annual_phase_radians_principal": 2.7909687430618053,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 50,
+      "monthly_real": 0.1389991169762489,
+      "monthly_imag": 0.04903083049614046,
+      "monthly_modulus": 0.147393272774975,
+      "annual_real": -6.303684912451541e-11,
+      "annual_imag": -8.413644510968962e-11,
+      "annual_modulus": 1.051312786150855e-10,
+      "annual_phase_radians_principal": -2.2137991274817868,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 51,
+      "monthly_real": 0.1389991169762489,
+      "monthly_imag": -0.04903083049614046,
+      "monthly_modulus": 0.147393272774975,
+      "annual_real": -6.303684912451541e-11,
+      "annual_imag": 8.413644510968962e-11,
+      "annual_modulus": 1.051312786150855e-10,
+      "annual_phase_radians_principal": 2.2137991274817868,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 38,
+      "monthly_real": 0.055387702488495165,
+      "monthly_imag": 0.12521772143732415,
+      "monthly_modulus": 0.13692068999573936,
+      "annual_real": 1.2210735038656612e-11,
+      "annual_imag": 4.1661324259154914e-11,
+      "annual_modulus": 4.341391469576e-11,
+      "annual_phase_radians_principal": 1.2856861680793967,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 39,
+      "monthly_real": 0.055387702488495165,
+      "monthly_imag": -0.12521772143732415,
+      "monthly_modulus": 0.13692068999573936,
+      "annual_real": 1.2210735038656612e-11,
+      "annual_imag": -4.1661324259154914e-11,
+      "annual_modulus": 4.341391469576e-11,
+      "annual_phase_radians_principal": -1.2856861680793967,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 34,
+      "monthly_real": 0.01993997809665721,
+      "monthly_imag": 0.13177099920401097,
+      "monthly_modulus": 0.13327114825692254,
+      "annual_real": -7.199889188727933e-12,
+      "annual_imag": -3.055627473158641e-11,
+      "annual_modulus": 3.1393061809930986e-11,
+      "annual_phase_radians_principal": -1.8022025713936658,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 35,
+      "monthly_real": 0.01993997809665721,
+      "monthly_imag": -0.13177099920401097,
+      "monthly_modulus": 0.13327114825692254,
+      "annual_real": -7.199889188727933e-12,
+      "annual_imag": 3.055627473158641e-11,
+      "annual_modulus": 3.1393061809930986e-11,
+      "annual_phase_radians_principal": 1.8022025713936658,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 52,
+      "monthly_real": 0.1098962467535937,
+      "monthly_imag": 0.05077712021791518,
+      "monthly_modulus": 0.12105990660888255,
+      "annual_real": 4.588888163366588e-12,
+      "annual_imag": -8.781726182685608e-12,
+      "annual_modulus": 9.908411039291412e-12,
+      "annual_phase_radians_principal": -1.0892721438129802,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 53,
+      "monthly_real": 0.1098962467535937,
+      "monthly_imag": -0.05077712021791518,
+      "monthly_modulus": 0.12105990660888255,
+      "annual_real": 4.588888163366588e-12,
+      "annual_imag": 8.781726182685608e-12,
+      "annual_modulus": 9.908411039291412e-12,
+      "annual_phase_radians_principal": 1.0892721438129802,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 24,
+      "monthly_real": -0.0976823573468657,
+      "monthly_imag": 0.06909706223986511,
+      "monthly_modulus": 0.11965052004492317,
+      "annual_real": 3.869603574363089e-12,
+      "annual_imag": -7.690818404773816e-12,
+      "annual_modulus": 8.609443626502891e-12,
+      "annual_phase_radians_principal": -1.1046351840641573,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 25,
+      "monthly_real": -0.0976823573468657,
+      "monthly_imag": -0.06909706223986511,
+      "monthly_modulus": 0.11965052004492317,
+      "annual_real": 3.869603574363089e-12,
+      "annual_imag": 7.690818404773816e-12,
+      "annual_modulus": 8.609443626502891e-12,
+      "annual_phase_radians_principal": 1.1046351840641573,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 26,
+      "monthly_real": -0.10602255716028305,
+      "monthly_imag": 0.02691359396184688,
+      "monthly_modulus": 0.10938521000002079,
+      "annual_real": -2.897542765018173e-12,
+      "annual_imag": -4.629391575472243e-13,
+      "annual_modulus": 2.934291522446209e-12,
+      "annual_phase_radians_principal": -2.9831620790856896,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 27,
+      "monthly_real": -0.10602255716028305,
+      "monthly_imag": -0.02691359396184688,
+      "monthly_modulus": 0.10938521000002079,
+      "annual_real": -2.897542765018173e-12,
+      "annual_imag": 4.629391575472243e-13,
+      "annual_modulus": 2.934291522446209e-12,
+      "annual_phase_radians_principal": 2.9831620790856896,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 56,
+      "monthly_real": 0.08728952114932276,
+      "monthly_imag": 0.0498010579586257,
+      "monthly_modulus": 0.10049679535326717,
+      "annual_real": 1.0592595411606068e-12,
+      "annual_imag": -6.53200902312937e-14,
+      "annual_modulus": 1.0612716380491867e-12,
+      "annual_phase_radians_principal": -0.06158781597055802,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 57,
+      "monthly_real": 0.08728952114932276,
+      "monthly_imag": -0.0498010579586257,
+      "monthly_modulus": 0.10049679535326717,
+      "annual_real": 1.0592595411606068e-12,
+      "annual_imag": 6.53200902312937e-14,
+      "annual_modulus": 1.0612716380491867e-12,
+      "annual_phase_radians_principal": 0.06158781597055802,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 44,
+      "monthly_real": -0.03362116430796188,
+      "monthly_imag": 0.08046268928700666,
+      "monthly_modulus": 0.08720451282313517,
+      "annual_real": 7.188586101564587e-15,
+      "annual_imag": -1.9327128110183458e-13,
+      "annual_modulus": 1.9340492203892838e-13,
+      "annual_phase_radians_principal": -1.5336191844996274,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 45,
+      "monthly_real": -0.03362116430796188,
+      "monthly_imag": -0.08046268928700666,
+      "monthly_modulus": 0.08720451282313517,
+      "annual_real": 7.188586101564587e-15,
+      "annual_imag": 1.9327128110183458e-13,
+      "annual_modulus": 1.9340492203892838e-13,
+      "annual_phase_radians_principal": 1.5336191844996274,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 54,
+      "monthly_real": 0.04619679465349055,
+      "monthly_imag": 0.06750245229439948,
+      "monthly_modulus": 0.08179685141870958,
+      "annual_real": 5.4437946942945626e-14,
+      "annual_imag": -7.130446532430885e-14,
+      "annual_modulus": 8.970962513882513e-14,
+      "annual_phase_radians_principal": -0.9187377446176526,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 55,
+      "monthly_real": 0.04619679465349055,
+      "monthly_imag": -0.06750245229439948,
+      "monthly_modulus": 0.08179685141870958,
+      "annual_real": 5.4437946942945626e-14,
+      "annual_imag": 7.130446532430885e-14,
+      "annual_modulus": 8.970962513882513e-14,
+      "annual_phase_radians_principal": 0.9187377446176526,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 58,
+      "monthly_real": 0.0560025791480529,
+      "monthly_imag": 0.04592128469198873,
+      "monthly_modulus": 0.07242273993019463,
+      "annual_real": -7.872009049771667e-15,
+      "annual_imag": 1.9275403582820353e-14,
+      "annual_modulus": 2.0820895988412475e-14,
+      "annual_phase_radians_principal": 1.9585201187705095,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 59,
+      "monthly_real": 0.0560025791480529,
+      "monthly_imag": -0.04592128469198873,
+      "monthly_modulus": 0.07242273993019463,
+      "annual_real": -7.872009049771667e-15,
+      "annual_imag": -1.9275403582820353e-14,
+      "annual_modulus": 2.0820895988412475e-14,
+      "annual_phase_radians_principal": -1.9585201187705095,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 46,
+      "monthly_real": -0.04901739799699949,
+      "monthly_imag": 0.05027615680799691,
+      "monthly_modulus": 0.0702167875210661,
+      "annual_real": -1.4198656095914904e-14,
+      "annual_imag": 2.1766806476200575e-15,
+      "annual_modulus": 1.436453179090029e-14,
+      "annual_phase_radians_principal": 2.9894750598639566,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 47,
+      "monthly_real": -0.04901739799699949,
+      "monthly_imag": -0.05027615680799691,
+      "monthly_modulus": 0.0702167875210661,
+      "annual_real": -1.4198656095914904e-14,
+      "annual_imag": -2.1766806476200575e-15,
+      "annual_modulus": 1.436453179090029e-14,
+      "annual_phase_radians_principal": -2.9894750598639566,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 60,
+      "monthly_real": 0.0631137463935131,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.0631137463935131,
+      "annual_real": 3.994730861472508e-15,
+      "annual_imag": 0.0,
+      "annual_modulus": 3.994730861472508e-15,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 48,
+      "monthly_real": -0.04495151921160006,
+      "monthly_imag": 0.017901818359411223,
+      "monthly_modulus": 0.04838506153767092,
+      "annual_real": -2.6954072829756045e-17,
+      "annual_imag": 1.624187010412943e-16,
+      "annual_modulus": 1.6464008166316344e-16,
+      "annual_phase_radians_principal": 1.735251756752227,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 49,
+      "monthly_real": -0.04495151921160006,
+      "monthly_imag": -0.017901818359411223,
+      "monthly_modulus": 0.04838506153767092,
+      "annual_real": -2.6954072829756045e-17,
+      "annual_imag": -1.624187010412943e-16,
+      "annual_modulus": 1.6464008166316344e-16,
+      "annual_phase_radians_principal": -1.735251756752227,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 63,
+      "monthly_real": 0.027245001200668112,
+      "monthly_imag": 0.0,
+      "monthly_modulus": 0.027245001200668112,
+      "annual_real": 1.6727921298646699e-19,
+      "annual_imag": 0.0,
+      "annual_modulus": 1.6727921298646699e-19,
+      "annual_phase_radians_principal": 0.0,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 61,
+      "monthly_real": -0.002925906688711377,
+      "monthly_imag": 0.0032238053763703985,
+      "monthly_modulus": 0.004353602078252061,
+      "annual_real": -3.8760771748464573e-29,
+      "annual_imag": 2.544133482454643e-29,
+      "annual_modulus": 4.636441463225054e-29,
+      "annual_phase_radians_principal": 2.5607537424786395,
+      "annual_stability": "decay"
+    },
+    {
+      "index": 62,
+      "monthly_real": -0.002925906688711377,
+      "monthly_imag": -0.0032238053763703985,
+      "monthly_modulus": 0.004353602078252061,
+      "annual_real": -3.8760771748464573e-29,
+      "annual_imag": -2.544133482454643e-29,
+      "annual_modulus": 4.636441463225054e-29,
+      "annual_phase_radians_principal": -2.5607537424786395,
+      "annual_stability": "decay"
+    }
+  ],
+  "gains": [
+    {
+      "months": 1,
+      "latent_operator_norm": 0.8853658640973908,
+      "full_encoded_operator_norm": 0.8863274358813258,
+      "spectral_radius_power": 0.8244007164496567
+    },
+    {
+      "months": 2,
+      "latent_operator_norm": 0.7385965289067524,
+      "full_encoded_operator_norm": 0.7389096723665118,
+      "spectral_radius_power": 0.6796365412827073
+    },
+    {
+      "months": 3,
+      "latent_operator_norm": 0.616074133472224,
+      "full_encoded_operator_norm": 0.6163169671976985,
+      "spectral_radius_power": 0.5602928515588306
+    },
+    {
+      "months": 4,
+      "latent_operator_norm": 0.5128117057461195,
+      "full_encoded_operator_norm": 0.5130182104409545,
+      "spectral_radius_power": 0.46190582824672116
+    },
+    {
+      "months": 5,
+      "latent_operator_norm": 0.42648724091077356,
+      "full_encoded_operator_norm": 0.42666106082034133,
+      "spectral_radius_power": 0.380795495738869
+    },
+    {
+      "months": 6,
+      "latent_operator_norm": 0.3544560658920522,
+      "full_encoded_operator_norm": 0.3546030231760923,
+      "spectral_radius_power": 0.3139280795079258
+    },
+    {
+      "months": 7,
+      "latent_operator_norm": 0.29438776542757367,
+      "full_encoded_operator_norm": 0.2945120963691687,
+      "spectral_radius_power": 0.25880253365999883
+    },
+    {
+      "months": 8,
+      "latent_operator_norm": 0.24432687031781358,
+      "full_encoded_operator_norm": 0.24443200362162584,
+      "spectral_radius_power": 0.21335699416828943
+    },
+    {
+      "months": 9,
+      "latent_operator_norm": 0.20263711094893358,
+      "full_encoded_operator_norm": 0.20272590834443938,
+      "spectral_radius_power": 0.17589165885188304
+    },
+    {
+      "months": 10,
+      "latent_operator_norm": 0.16794705899024218,
+      "full_encoded_operator_norm": 0.1680219406804921,
+      "spectral_radius_power": 0.145005209575011
+    },
+    {
+      "months": 11,
+      "latent_operator_norm": 0.13910604951654698,
+      "full_encoded_operator_norm": 0.1391690799134751,
+      "spectral_radius_power": 0.11954239866257169
+    },
+    {
+      "months": 12,
+      "latent_operator_norm": 0.11514852591751243,
+      "full_encoded_operator_norm": 0.11520147495823556,
+      "spectral_radius_power": 0.09855083910353458
+    }
+  ],
+  "direct_vs_iterated": [
+    {
+      "lead_months": 1,
+      "relative_operator_frobenius": 0.0,
+      "latent_relative_frobenius": 0.0,
+      "last_origin_normalized_output_difference_rms": 0.0,
+      "last_origin_relative_output_difference": 0.0
+    },
+    {
+      "lead_months": 2,
+      "relative_operator_frobenius": 0.7294940252053747,
+      "latent_relative_frobenius": 0.6941509115332233,
+      "last_origin_normalized_output_difference_rms": 0.7533423160155954,
+      "last_origin_relative_output_difference": 0.6571504588281778
+    },
+    {
+      "lead_months": 3,
+      "relative_operator_frobenius": 0.8515943407635701,
+      "latent_relative_frobenius": 0.8260375611206398,
+      "last_origin_normalized_output_difference_rms": 0.8896152079122753,
+      "last_origin_relative_output_difference": 0.7806579906957314
+    },
+    {
+      "lead_months": 4,
+      "relative_operator_frobenius": 0.9000578637926954,
+      "latent_relative_frobenius": 0.8815494995621314,
+      "last_origin_normalized_output_difference_rms": 1.1151957300392124,
+      "last_origin_relative_output_difference": 0.8567010190539937
+    },
+    {
+      "lead_months": 5,
+      "relative_operator_frobenius": 0.926462752932306,
+      "latent_relative_frobenius": 0.912617095852808,
+      "last_origin_normalized_output_difference_rms": 0.9026645608682771,
+      "last_origin_relative_output_difference": 0.8344704850049327
+    },
+    {
+      "lead_months": 6,
+      "relative_operator_frobenius": 0.9444948154907987,
+      "latent_relative_frobenius": 0.934335282492954,
+      "last_origin_normalized_output_difference_rms": 1.0445125746644868,
+      "last_origin_relative_output_difference": 0.8599570064070325
+    }
+  ],
+  "semigroup_compositions": [
+    {
+      "first_months": 1,
+      "then_months": 1,
+      "target_lead": 2,
+      "relative_frobenius": 0.7294940252053747
+    },
+    {
+      "first_months": 1,
+      "then_months": 2,
+      "target_lead": 3,
+      "relative_frobenius": 0.756612146573579
+    },
+    {
+      "first_months": 1,
+      "then_months": 3,
+      "target_lead": 4,
+      "relative_frobenius": 0.771878731582478
+    },
+    {
+      "first_months": 1,
+      "then_months": 4,
+      "target_lead": 5,
+      "relative_frobenius": 0.7793758385771167
+    },
+    {
+      "first_months": 1,
+      "then_months": 5,
+      "target_lead": 6,
+      "relative_frobenius": 0.7826718785737874
+    },
+    {
+      "first_months": 2,
+      "then_months": 1,
+      "target_lead": 3,
+      "relative_frobenius": 0.7502697282829348
+    },
+    {
+      "first_months": 2,
+      "then_months": 2,
+      "target_lead": 4,
+      "relative_frobenius": 0.7782562960281699
+    },
+    {
+      "first_months": 2,
+      "then_months": 3,
+      "target_lead": 5,
+      "relative_frobenius": 0.7848832211742338
+    },
+    {
+      "first_months": 2,
+      "then_months": 4,
+      "target_lead": 6,
+      "relative_frobenius": 0.7929135958341923
+    },
+    {
+      "first_months": 3,
+      "then_months": 1,
+      "target_lead": 4,
+      "relative_frobenius": 0.7594415451798695
+    },
+    {
+      "first_months": 3,
+      "then_months": 2,
+      "target_lead": 5,
+      "relative_frobenius": 0.779286143808264
+    },
+    {
+      "first_months": 3,
+      "then_months": 3,
+      "target_lead": 6,
+      "relative_frobenius": 0.7927540499968668
+    },
+    {
+      "first_months": 4,
+      "then_months": 1,
+      "target_lead": 5,
+      "relative_frobenius": 0.755424817187061
+    },
+    {
+      "first_months": 4,
+      "then_months": 2,
+      "target_lead": 6,
+      "relative_frobenius": 0.7810553474285159
+    },
+    {
+      "first_months": 5,
+      "then_months": 1,
+      "target_lead": 6,
+      "relative_frobenius": 0.7558415123229675
+    }
+  ],
+  "one_step_innovations": [
+    {
+      "split": "training",
+      "samples": 431,
+      "actual_latent_rms": 3.207038381607896,
+      "innovation_rms": 2.729528864769443,
+      "innovation_over_actual_rms": 0.851105767995503,
+      "seasonal": [
+        {
+          "target_month": 1,
+          "samples": 35,
+          "innovation_rms": 2.916029131823916
+        },
+        {
+          "target_month": 2,
+          "samples": 36,
+          "innovation_rms": 3.083539453471568
+        },
+        {
+          "target_month": 3,
+          "samples": 36,
+          "innovation_rms": 2.7390149827551227
+        },
+        {
+          "target_month": 4,
+          "samples": 36,
+          "innovation_rms": 2.6139840750905883
+        },
+        {
+          "target_month": 5,
+          "samples": 36,
+          "innovation_rms": 2.6450141000124776
+        },
+        {
+          "target_month": 6,
+          "samples": 36,
+          "innovation_rms": 2.587900269987594
+        },
+        {
+          "target_month": 7,
+          "samples": 36,
+          "innovation_rms": 2.5351086630011905
+        },
+        {
+          "target_month": 8,
+          "samples": 36,
+          "innovation_rms": 2.622571995338935
+        },
+        {
+          "target_month": 9,
+          "samples": 36,
+          "innovation_rms": 2.486916045441711
+        },
+        {
+          "target_month": 10,
+          "samples": 36,
+          "innovation_rms": 2.5331865338468265
+        },
+        {
+          "target_month": 11,
+          "samples": 36,
+          "innovation_rms": 2.917267429425208
+        },
+        {
+          "target_month": 12,
+          "samples": 36,
+          "innovation_rms": 2.996064399331626
+        }
+      ]
+    },
+    {
+      "split": "validation",
+      "samples": 60,
+      "actual_latent_rms": 3.199706425954811,
+      "innovation_rms": 2.9113624418135875,
+      "innovation_over_actual_rms": 0.9098842375655823,
+      "seasonal": [
+        {
+          "target_month": 1,
+          "samples": 5,
+          "innovation_rms": 3.0779883174184755
+        },
+        {
+          "target_month": 2,
+          "samples": 5,
+          "innovation_rms": 3.598770491226612
+        },
+        {
+          "target_month": 3,
+          "samples": 5,
+          "innovation_rms": 3.131886756626295
+        },
+        {
+          "target_month": 4,
+          "samples": 5,
+          "innovation_rms": 2.7208587938610194
+        },
+        {
+          "target_month": 5,
+          "samples": 5,
+          "innovation_rms": 2.64146067965298
+        },
+        {
+          "target_month": 6,
+          "samples": 5,
+          "innovation_rms": 2.675643753755944
+        },
+        {
+          "target_month": 7,
+          "samples": 5,
+          "innovation_rms": 2.5004385523943724
+        },
+        {
+          "target_month": 8,
+          "samples": 5,
+          "innovation_rms": 2.5556321581340358
+        },
+        {
+          "target_month": 9,
+          "samples": 5,
+          "innovation_rms": 2.8764611620829887
+        },
+        {
+          "target_month": 10,
+          "samples": 5,
+          "innovation_rms": 2.855901559348853
+        },
+        {
+          "target_month": 11,
+          "samples": 5,
+          "innovation_rms": 3.045658985038632
+        },
+        {
+          "target_month": 12,
+          "samples": 5,
+          "innovation_rms": 3.0739799869418123
+        }
+      ]
+    },
+    {
+      "split": "exposed_development",
+      "samples": 72,
+      "actual_latent_rms": 3.254792696144643,
+      "innovation_rms": 2.8739120104364706,
+      "innovation_over_actual_rms": 0.8829785116086404,
+      "seasonal": [
+        {
+          "target_month": 1,
+          "samples": 6,
+          "innovation_rms": 2.977893050376903
+        },
+        {
+          "target_month": 2,
+          "samples": 6,
+          "innovation_rms": 3.2374143166220213
+        },
+        {
+          "target_month": 3,
+          "samples": 6,
+          "innovation_rms": 3.044975812333018
+        },
+        {
+          "target_month": 4,
+          "samples": 6,
+          "innovation_rms": 2.7693824648295595
+        },
+        {
+          "target_month": 5,
+          "samples": 6,
+          "innovation_rms": 2.818727461730106
+        },
+        {
+          "target_month": 6,
+          "samples": 6,
+          "innovation_rms": 2.5297228811736443
+        },
+        {
+          "target_month": 7,
+          "samples": 6,
+          "innovation_rms": 2.7633916370283704
+        },
+        {
+          "target_month": 8,
+          "samples": 6,
+          "innovation_rms": 2.564536094514353
+        },
+        {
+          "target_month": 9,
+          "samples": 6,
+          "innovation_rms": 2.7906809560812125
+        },
+        {
+          "target_month": 10,
+          "samples": 6,
+          "innovation_rms": 2.731157011792183
+        },
+        {
+          "target_month": 11,
+          "samples": 6,
+          "innovation_rms": 2.9662090532051235
+        },
+        {
+          "target_month": 12,
+          "samples": 6,
+          "innovation_rms": 3.1967126029561834
+        }
+      ]
+    }
+  ],
+  "annual_realized_innovation_identity": [
+    {
+      "split": "training",
+      "target_samples": 420,
+      "first_target": "1980-01",
+      "last_target": "2014-12",
+      "actual_latent_rms": 3.2045983426946987,
+      "autonomous_latent_rms": 0.08808440504755376,
+      "accumulated_innovation_rms": 3.187884972495663,
+      "accumulated_innovation_over_actual_rms": 0.9947845662976341,
+      "reconstruction_max_abs": 1.7763568394002505e-15,
+      "scope": "Ex-post algebraic decomposition; realized future innovations are used, may cross split boundaries, never a forecast skill score"
+    },
+    {
+      "split": "validation",
+      "target_samples": 60,
+      "first_target": "2015-01",
+      "last_target": "2019-12",
+      "actual_latent_rms": 3.199706425954811,
+      "autonomous_latent_rms": 0.10281421601854769,
+      "accumulated_innovation_rms": 3.180186690757958,
+      "accumulated_innovation_over_actual_rms": 0.9938995230817064,
+      "reconstruction_max_abs": 1.2212453270876722e-15,
+      "scope": "Ex-post algebraic decomposition; realized future innovations are used, may cross split boundaries, never a forecast skill score"
+    },
+    {
+      "split": "exposed_development",
+      "target_samples": 72,
+      "first_target": "2020-01",
+      "last_target": "2025-12",
+      "actual_latent_rms": 3.254792696144643,
+      "autonomous_latent_rms": 0.12428394242238526,
+      "accumulated_innovation_rms": 3.215235905518138,
+      "accumulated_innovation_over_actual_rms": 0.9878466021281906,
+      "reconstruction_max_abs": 1.5543122344752192e-15,
+      "scope": "Ex-post algebraic decomposition; realized future innovations are used, may cross split boundaries, never a forecast skill score"
+    }
+  ],
+  "checks": {
+    "basis_orthogonality_frobenius": 1.3436577910089182e-14,
+    "saved_published_anomaly_max_abs": 7.815970093361102e-14,
+    "annual_spectral_mapping_max_abs": 6.716849298982197e-15,
+    "full_state_recurrence_max_abs": 2.7755575615628914e-17,
+    "damped_rotation_max_abs": 1.1775693440128312e-16,
+    "nonnormal_transient_control": true,
+    "inconsistent_direct_map_negative_control": true
+  },
+  "limitations": [
+    "No new weather forecast, no retraining or assimilation",
+    "This is a coordinate-dependent finite model diagnosis, not real-atmosphere stability",
+    "Inhomogeneous residuals mix omitted state, bias, nonlinear dynamics, stochastic and observation effects; no identification of their causes",
+    "Realized innovation identity is not independent predictive skill",
+    "No new December 2026 forecast or verification",
+    "First-method ideal Floquet result retained conditional on periodic homogeneous linear approximation; nonlinear and stochastic forcing treated separately"
+  ],
+  "contract_sha256": "fad2b8ec5016340cbc382be42d5ba39fc2c26d58aa504b3b340fc5c62882c651"
+}
