@@ -1,0 +1,337 @@
+{
+  "assertions": 87,
+  "checker_sha256": "12a841a4544d25e5c5f326756053f74676aed493eaea4d4669cc8109e315c55e",
+  "contract_sha256": "c6cb8f492723732ea6a4b3fbfcb7c2cf0ac301418554bfbfc2d0809867614ef3",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 240,
+    "max_assertions": 200000,
+    "memory_bytes": 268435456,
+    "output_bytes": 4194304,
+    "routes": 1,
+    "wall_seconds": 180
+  },
+  "rss_high_water_bytes": 26001408,
+  "schema": "adva.research.iota-frame-signature-evidence.v0",
+  "sections": {
+    "S0_frame_instance": {
+      "carrier_dimension": 12,
+      "checks": {
+        "A_is_skew": true,
+        "G_equals_identity_is_J_compatible": true,
+        "H_commutes_with_J": true,
+        "H_is_symmetric": true,
+        "J_squared_is_minus_identity": true
+      },
+      "cuts": 6,
+      "d_max": "3",
+      "degrees": [
+        "2",
+        "3",
+        "2",
+        "2",
+        "3",
+        "2"
+      ],
+      "h0_scale": "L/6",
+      "inertia_of_G": [
+        12,
+        0
+      ],
+      "metric_G": "I",
+      "process": "chain-and-single",
+      "signature_of_G": [
+        12,
+        0
+      ],
+      "source": "@@a@i@ib@ic"
+    },
+    "S1_compatibility_system": {
+      "every_solution_commutes_with_J": true,
+      "general_dimension_is_two_n_squared": true,
+      "orders": [
+        {
+          "carrier_dimension": 2,
+          "every_basis_solution_commutes_with_J": true,
+          "expected_general_dimension": 2,
+          "expected_symmetric_dimension": 1,
+          "general_rank": 2,
+          "general_solution_dimension": 2,
+          "general_solutions_have_the_block_shape": true,
+          "n": 1,
+          "symmetric_rank": 3,
+          "symmetric_solution_dimension": 1,
+          "unknowns": 4
+        },
+        {
+          "carrier_dimension": 4,
+          "every_basis_solution_commutes_with_J": true,
+          "expected_general_dimension": 8,
+          "expected_symmetric_dimension": 4,
+          "general_rank": 8,
+          "general_solution_dimension": 8,
+          "general_solutions_have_the_block_shape": true,
+          "n": 2,
+          "symmetric_rank": 12,
+          "symmetric_solution_dimension": 4,
+          "unknowns": 16
+        },
+        {
+          "carrier_dimension": 6,
+          "every_basis_solution_commutes_with_J": true,
+          "expected_general_dimension": 18,
+          "expected_symmetric_dimension": 9,
+          "general_rank": 18,
+          "general_solution_dimension": 18,
+          "general_solutions_have_the_block_shape": true,
+          "n": 3,
+          "symmetric_rank": 27,
+          "symmetric_solution_dimension": 9,
+          "unknowns": 36
+        }
+      ],
+      "symmetric_dimension_is_n_squared": true
+    },
+    "S2_exhaustive_inertia": {
+      "every_symmetric_nondegenerate_member_has_even_indices": true,
+      "families": [
+        {
+          "carrier_dimension": 2,
+          "degenerate_members": 1,
+          "every_index_is_even": true,
+          "free_entries": 1,
+          "members_examined": 7,
+          "members_with_an_odd_index": [],
+          "n": 1,
+          "nondegenerate_members": 6,
+          "range": [
+            -3,
+            3
+          ],
+          "signatures_seen": {
+            "0,2": 3,
+            "2,0": 3
+          }
+        },
+        {
+          "carrier_dimension": 4,
+          "degenerate_members": 53,
+          "every_index_is_even": true,
+          "free_entries": 4,
+          "members_examined": 2401,
+          "members_with_an_odd_index": [],
+          "n": 2,
+          "nondegenerate_members": 2348,
+          "range": [
+            -3,
+            3
+          ],
+          "signatures_seen": {
+            "0,4": 105,
+            "2,2": 2138,
+            "4,0": 105
+          }
+        },
+        {
+          "carrier_dimension": 6,
+          "degenerate_members": 2843,
+          "every_index_is_even": true,
+          "free_entries": 9,
+          "members_examined": 19683,
+          "members_with_an_odd_index": [],
+          "n": 3,
+          "nondegenerate_members": 16840,
+          "range": [
+            -1,
+            1
+          ],
+          "signatures_seen": {
+            "0,6": 1,
+            "2,4": 8419,
+            "4,2": 8419,
+            "6,0": 1
+          }
+        }
+      ]
+    },
+    "S3_four_dimensional_conclusion": {
+      "carrier_dimension": 4,
+      "exactly_one_negative_direction_is_unreachable": true,
+      "reachable_signatures": [
+        [
+          0,
+          4
+        ],
+        [
+          2,
+          2
+        ],
+        [
+          4,
+          0
+        ]
+      ],
+      "unreachable_signatures": [
+        [
+          1,
+          3
+        ],
+        [
+          3,
+          1
+        ]
+      ]
+    },
+    "S4_lorentzian_cost": {
+      "identity_metric": {
+        "A_is_skew": true,
+        "residual_A_transpose_plus_A": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "signature": [
+          4,
+          0
+        ]
+      },
+      "instance": {
+        "carrier_dimension": 4,
+        "cuts": 2,
+        "d_max": "1",
+        "degrees": [
+          "1",
+          "1"
+        ],
+        "h0_scale": "L/2"
+      },
+      "lorentzian_metric": {
+        "A_is_skew": false,
+        "J_is_orthogonal": false,
+        "diagonal": [
+          1,
+          1,
+          1,
+          -1
+        ],
+        "residual_A_transpose_G_plus_G_A": [
+          [
+            "0",
+            "0",
+            "0",
+            "-1"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "1"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "-1",
+            "1",
+            "0",
+            "0"
+          ]
+        ],
+        "residual_A_transpose_G_plus_G_A_absolute_sum": "4",
+        "residual_J_transpose_G_J_minus_G": [
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "-2",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0",
+            "2"
+          ]
+        ],
+        "residual_J_transpose_G_J_minus_G_absolute_sum": "4",
+        "signature": [
+          3,
+          1
+        ]
+      },
+      "the_frame_identity_holds_for_one_metric_and_fails_for_the_other": true
+    },
+    "S5_involution_route": {
+      "complex_structure_is_compatible_with_the_lorentzian_metric": false,
+      "involution_diagonal": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "involution_equals_J": false,
+      "involution_is_compatible_with_the_lorentzian_metric": true,
+      "involution_squares_to_identity": true,
+      "lorentzian_signature": [
+        3,
+        1
+      ],
+      "reading": "a signature with exactly one negative direction is reachable on this carrier when the structure is an involution; what the frame's other obligations become under that structure is not decided here"
+    },
+    "S6_refusals": {
+      "refusal_count": 6,
+      "refusals": [
+        "reading a compatible signature as a physical spacetime, a light cone, a causal order or a clock",
+        "reading the frame's continuous operator parameter as a time coordinate",
+        "claiming that a Lorentzian signature is unreachable in general, when the computation shows it is unreachable only while the complex structure stays metric-compatible",
+        "claiming that the four towers of note 0224 have four-dimensional carriers, or that any of their carriers is Lorentzian",
+        "treating a characteristic polynomial, a determinant or a trace as a signature without computing the inertia",
+        "reading an exact inertia computation on declared rational matrices as a statement about a manifold"
+      ]
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 1257561334
+}

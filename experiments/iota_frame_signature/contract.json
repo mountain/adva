@@ -1,0 +1,96 @@
+{
+  "schema": "adva.research.iota-frame-signature-contract.v0",
+  "version": 0,
+  "name": "iota-frame-signature",
+  "base_commit": "ed38456ab4dd628a484874fa41dc97bd6fbb54ab",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "frozen_on": "2026-09-24",
+  "authority": "The received {e, i, iota} interpretation frame and the received pure-iota process package, both already in this repository at pinned digests, together with the four-frame layout retained by note 0224. This contract authorizes one bounded exact computation over declared finite rational matrices and nothing else. It does not authorize a physical interpretation, a new native operation, a stable type, a transport, or a changed frame profile.",
+  "question": "Under the received frame's own transport obligation, which metric signatures can a carrier carry while the declared complex structure J (J squared = -I) stays compatible with the metric, meaning J-transpose G J = G? Is any signature with exactly one negative direction reachable on a four-dimensional carrier, and if not, what exactly does a Lorentzian signature cost: which frame obligation is given up, and is that signature reachable at all under some other declared structure on the same carrier?",
+  "level": "External exact finite rational linear algebra: exact solution of a linear system over Q, exact congruence reduction for the inertia of a symmetric rational form, and exhaustive enumeration of a declared finite family of integer matrices with a declared entry range. Every acceptance test compares integers or exact rationals; no floating-point value enters any of them, and no eigenvalue is approximated. Standard library only.",
+  "sources": [
+    "The complex structure J, the cut operator convention H0 = L/(2 d_max) with denominator one for the empty-edge case, H = diag(H0,H0), the initial metric G = I and the initial observer O = I, and the chart transport rule that keeps H, J, G and O together, are quoted from knowledge/received/iota-frame-knowledge-2026-09-17-v1/materials/frame.md at SHA-256 d8967cc3e6b953d547a22010f37d9997a023d1b55935928f88becba86862dae0.",
+    "The received process chain-and-single, with its declared source, events, cut masks and cut-graph edges, is read from knowledge/received/iota-process-knowledge-2026-09-17-v1/materials/interpretations.json at SHA-256 8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1, and is used only to build the frame's own twelve-dimensional instance.",
+    "The retained layout of note 0224 supplies the four towers' carriers and their dimensions; it is not recomputed here and is cited as a bounded external experiment of this repository.",
+    "The pinned digests are cross-checked against the receiver's own record of its previous materials, so a pin that agrees only with this contract and not with the received record fails the run."
+  ],
+  "domain": "The complex structure J = [[0, -I], [I, 0]] on Q to the 2n for n = 1, 2, 3 and 6; the linear system J-transpose G J = G in all 4 n squared entries of G, with and without the symmetry of G; the inertia of a symmetric rational form by exact congruence reduction; a declared finite family of integer matrices in a declared entry range for n = 1, 2, 3; the frame's own twelve-dimensional instance built from the received process chain-and-single; and one declared four-dimensional instance with one declared Lorentzian metric and one declared involutive structure.",
+  "objects": {
+    "received_process": "chain-and-single",
+    "complex_structure_orders": [1, 2, 3],
+    "four_dimensional_carrier": 4,
+    "minimal_four_dimensional_instance": {
+      "comment": "two cuts joined by one edge: the cut graph of a one-event process, so d_max is one and the frame's denominator is two",
+      "cuts": 2,
+      "d_max": 1,
+      "denominator": 2
+    },
+    "declared_lorentzian_metric": {"diagonal": [1, 1, 1, -1], "signature": [3, 1]},
+    "declared_involution": {"diagonal": [1, 1, -1, -1], "square": "the identity"},
+    "declared_complex_structures": ["J on Q to the 4", "J on Q to the 12"],
+    "exhaustive_families": {
+      "comment": "symmetric J-compatible matrices are parametrised by A symmetric with n(n+1)/2 free entries and B antisymmetric with n(n-1)/2 free entries, so n squared in all; the declared range makes each family finite and the inertia of every nondegenerate member is computed",
+      "n_equals_1": {"range": [-3, 3], "free_entries": 1, "members": 7},
+      "n_equals_2": {"range": [-3, 3], "free_entries": 4, "members": 2401},
+      "n_equals_3": {"range": [-1, 1], "free_entries": 9, "members": 19683}
+    },
+    "recorded_pins": {
+      "interpretations.json": "8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1"
+    },
+    "receipt_pins": {
+      "frame.md": "d8967cc3e6b953d547a22010f37d9997a023d1b55935928f88becba86862dae0"
+    },
+    "refusals": [
+      "reading a compatible signature as a physical spacetime, a light cone, a causal order or a clock",
+      "reading the frame's continuous operator parameter as a time coordinate",
+      "claiming that a Lorentzian signature is unreachable in general, when the computation shows it is unreachable only while the complex structure stays metric-compatible",
+      "claiming that the four towers of note 0224 have four-dimensional carriers, or that any of their carriers is Lorentzian",
+      "treating a characteristic polynomial, a determinant or a trace as a signature without computing the inertia",
+      "reading an exact inertia computation on declared rational matrices as a statement about a manifold"
+    ]
+  },
+  "quantifiers": [
+    "every entry of the linear system J-transpose G J = G, solved exactly, for n = 1, 2 and 3",
+    "every solution of that system, checked for commutation with J, on a complete basis of the solution space",
+    "every symmetric nondegenerate member of each declared finite integer family, for its inertia",
+    "every pair of even inertia indices summing to four, for the exhaustive four-dimensional conclusion",
+    "every entry of the two declared four-dimensional residual matrices",
+    "every declared structural identity of the involution, the Lorentzian metric and the complex structures"
+  ],
+  "grammar": [
+    "exact rational Gaussian elimination for the solution space of a linear system",
+    "exact rational symmetric congruence reduction for the inertia, with one-by-one and two-by-two pivots and no eigenvalue approximation",
+    "matrix arithmetic over Fractions with the complex structure built from blocks",
+    "declared integer parametrisations enumerated exhaustively in a declared range"
+  ],
+  "acceptance": [
+    "The frame's own twelve-dimensional instance is rebuilt from the received process and satisfies J squared = -I, H symmetric, H J = J H and A = -J H skew, with H0 = L/6 and degrees two, three, two, two, three, two; its metric G = I is J-compatible and its inertia is twelve positive and zero negative.",
+    "For n equal to one, two and three the solution space of J-transpose G J = G has dimension 2 n squared, and the symmetric solutions form a subspace of dimension n squared, with a basis whose every member commutes with J.",
+    "Every symmetric nondegenerate member of every declared finite family has both inertia indices even, exhaustively over the declared range, and the counts of examined, degenerate and nondegenerate members are reported.",
+    "On a four-dimensional carrier the only signatures with both indices even are four zero, two two and zero four; the signatures three one and one three do not occur, so exactly one negative direction is unreachable while the complex structure stays metric-compatible.",
+    "On the declared four-dimensional instance the frame's own metric G = I makes A = -J H skew exactly, while the declared Lorentzian metric G = diag(1,1,1,-1) does not: both the residual J-transpose G J - G and the residual A-transpose G + G A are recorded exactly and are not zero, so the frame identity that the run checks under G = I fails at first order under that metric.",
+    "The declared involution K = diag(1,1,-1,-1) satisfies K squared = the identity and K-transpose G K = G for the same Lorentzian G, while K is neither J nor minus J and K squared is not minus the identity; hence a signature with exactly one negative direction is reachable on a four-dimensional carrier exactly when the structure is an involution rather than a complex structure.",
+    "No acceptance test compares a floating-point value, no eigenvalue is approximated, and the checker imports nothing outside the standard library."
+  ],
+  "protected": [
+    "No physical claim is made anywhere in this experiment. A signature is a property of a declared rational symmetric form on a declared finite carrier. Nothing here asserts a spacetime, a manifold, a light cone, a causal order, a curvature, a mass, a physical clock or a simultaneity, and no physical interpretation of the frame is created.",
+    "The result is a statement about metric compatibility, not about reachability in general: a Lorentzian signature is shown unreachable while the complex structure stays metric-compatible, and is shown reachable under a declared involution. The frame's own exponential and Wick coefficient identity is not re-derived under that involution, and what it would become is not decided here.",
+    "The four towers of note 0224 are cited, not recomputed. Their carriers have dimension two, twelve, twenty-two and thirty-two, so none of them is a four-dimensional carrier and none of them is the object the Lorentzian question is asked about.",
+    "An exact inertia on declared rational matrices is not a theorem about all real forms, and the exhaustive families are finite and declared: their ranges are part of the claim, and a different range is a different run.",
+    "The received materials are read-only. Nothing under knowledge/, spec/ or the library catalogue is modified, and no new transport, receipt, exchange or acknowledgment is executed or claimed.",
+    "No stable API change: no ValueType, no OperationSpec, no IR version, no Lisp builtin, no parser, type-checker, evaluator or lineage-table change, no Seal, no claim promotion beyond bounded-external-experiment.",
+    "Native admission is NotGranted, native execution is NotRun and new transport is NotRun. The functions named inertia and solve in this file are finite exact computations, not Adva operations.",
+    "No floating-point value enters any acceptance test, and the run installs no address-space ceiling because it launches no child process, so the repository's portability inventory is unaffected.",
+    "A corrected statement is recorded rather than a silently repaired one: the four-frame note 0224 left the signature question open, and this run decides it; the earlier reading that a split structure must give two positives and two negatives on a four-dimensional carrier is wrong and is recorded as wrong in the note that reports this run."
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 180,
+    "cpu_seconds": 240,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 4194304,
+    "correction_replays": 1
+  },
+  "residual": "What is established is a set of exact statements about declared finite rational matrices. The solutions of the frame's compatibility condition J-transpose G J = G form a space of dimension 2 n squared, the symmetric solutions among them a space of dimension n squared, and every solution commutes with J; over declared finite integer families every symmetric nondegenerate solution has both inertia indices even; on a four-dimensional carrier that leaves exactly the signatures four zero, two two and zero four, so exactly one negative direction is unreachable while J stays metric-compatible; the frame's own metric G = I makes the generator A = -J H skew exactly, and the declared Lorentzian metric does not, with both exact residuals retained; and a signature with exactly one negative direction is reachable on the same carrier once the structure is the declared involution K with K squared equal to the identity, for which K-transpose G K = G holds. What is not established: whether a K-compatible carrier keeps any of the frame's other obligations, what the frame's exponential and Wick coefficient identity becomes under K, whether a carrier with a Lorentzian signature and any structure can be given a causal order, an observer, a clock or a dynamics, whether the frame's carriers can be given a manifold structure at all, and anything about physical spacetime. Also not established: whether the complex structure could be kept while the metric compatibility is weakened by a declared factor rather than abandoned, which is a different question and is not asked here. The retained correction is part of this run's result: the earlier expectation that an involutive structure must give two positives and two negatives on a four-dimensional carrier is false, and the arithmetical reason is that a metric compatible with an involution is only required to be block diagonal in the involution's eigenspaces, whose two ranks need not be equal. No computation outside a contract counts as a result of this repository."
+}
