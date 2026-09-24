@@ -15,9 +15,9 @@ native load calls, eight controls, finite limits and exit conditions before
 execution. The original `byte-observer-v0` profile remains unchanged.
 
 **Contracts, and what a frozen replay would now do.** The active contract is
-[contract-v9.json](contract-v9.json). Each successor names the digest of the one
+[contract-v10.json](contract-v10.json). Each successor names the digest of the one
 it supersedes, so the chain is `contract.json` (v0) <- `contract-v1.json` <-
-`contract-v2.json` <- `contract-v3.json` <- `contract-v4.json` <- `contract-v5.json` <- `contract-v6.json` <- `contract-v7.json` <- `contract-v8.json` <- `contract-v9.json`, and a run verifies that digest rather than
+`contract-v2.json` <- `contract-v3.json` <- `contract-v4.json` <- `contract-v5.json` <- `contract-v6.json` <- `contract-v7.json` <- `contract-v8.json` <- `contract-v9.json` <- `contract-v10.json`, and a run verifies that digest rather than
 trusting the file:
 editing a superseded contract afterwards is a failure, not a silent
 reinterpretation. v1 moved two inputs — the symbol-surface README pin, after the
@@ -42,7 +42,13 @@ non-metadata contract field unchanged. It starts no new run. v9 binds the
 crates.io publication metadata, which gives `crates/adva-ir` and
 `crates/adva-lisp` a description and gives their workspace dependency entries a
 version requirement, again with native source, `Cargo.lock` and every
-non-metadata contract field unchanged. It starts no new run either.
+non-metadata contract field unchanged. It starts no new run either. v10 moves the
+base commit again for the same reason and no other: the native A/M variation
+reading adds a Rust carrier module and one calibration example under
+`crates/adva-witness/`, inside the boundary this profile pins, so the base moves
+to `0fe4ced`. Native operation semantics, `Cargo.lock`, the input pins, the
+library boundary, the authorization text and every execution limit are exactly
+v9's, and no run's fuel is renewed.
 The strict Rust-diff check remains unchanged.
 The run-01 evidence below keeps the
 frozen version-zero contract and its original digests as the record of what that
