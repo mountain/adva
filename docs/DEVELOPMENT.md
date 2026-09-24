@@ -207,6 +207,37 @@ live receiver's refusal. It requires repository history. See
 The [bootstrap runtime](BOOTSTRAP_RUNTIME_V0.md) is also a pinned release
 profile, not a promise that every current checkout accepts every saved witness.
 
+## Documentation language
+
+[AGENTS.md](../AGENTS.md) asks for shared documentation in English first. The
+practice is bilingual, and this section records what it actually is, measured on
+the tree rather than assumed.
+
+* Of the 21,025 files under `docs/`, **111 contain Chinese**. Of the 286
+  top-level notes in `docs/research/`, **82 contain Chinese**, and **38 of those
+  are more than thirty per cent Chinese**, the highest being 53%.
+* Chinese therefore appears in two distinct roles: as quoted terms and clause
+  fragments inside an English note, and as the main language of a note whose
+  content has no natural English register. English remains the shared register
+  for specifications, contracts, checkers, evidence and index lines.
+* Files at the repository root that carry a language suffix, such as
+  [README.zh-CN.md](../README.zh-CN.md), are translations of an English primary
+  document and are labelled as such.
+
+### Correction, 2026-09-24
+
+The commit that added research notes 0222 and 0223 states in its message that
+"the docs tree in this repository is otherwise English only". **That sentence is
+false**, and it is recorded here rather than left in the log unremarked. It came
+from a search that used an option the system `grep` does not support, so the
+command failed and returned nothing; the empty result was read as "no Chinese",
+and a normal bilingual practice was described as a first deviation. The notes
+themselves are unaffected, and no file is changed by this correction.
+
+The lesson is the repository's own: a check that cannot run is not a check that
+passed. A search offered as evidence has to be confirmed to have executed before
+its empty result is believed.
+
 ## Attribution
 
 Follow [AI attribution](AI_ATTRIBUTION.md). Authorship, account use and
