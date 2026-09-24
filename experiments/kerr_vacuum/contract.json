@@ -1,0 +1,103 @@
+{
+  "schema": "adva.research.kerr-vacuum-contract.v0",
+  "version": 0,
+  "name": "kerr-vacuum",
+  "base_commit": "df793aad6ef607c832161bcd12769de373bf5b39",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "frozen_on": "2026-09-24",
+  "authority": "Mingli Yuan's direction of 2026-09-24 to compute a black hole solution after the signature result of note 0225. This contract authorizes one bounded exact symbolic computation on declared rational parameters and nothing else. It authorizes no observation, no astrophysical statement, no stable semantic type, no native operation and no transport.",
+  "question": "For the Kerr line element declared in Boyer-Lindquist coordinates with rational mass M and rational spin parameter A, does the coordinate metric satisfy the vacuum Einstein equations, meaning every component of the Ricci tensor vanishes identically as a rational function of the radius and the cosine of the polar angle? What is its Kretschmann scalar, does the Schwarzschild case reproduce the known value, what is the signature of the metric at declared points outside the horizon, inside the horizon and inside the ergosphere, and do the horizon radii, the ergosphere, the extremality bound, the horizon area, the horizon angular velocity and the Smarr identity hold exactly?",
+  "level": "External exact symbolic tensor calculus over the rational function field of two variables, implemented for this experiment in the Python standard library alone: bivariate polynomials over Q with exact rational coefficients, a parity-split representation carrying the square root of one minus c squared, exact Christoffel symbols, Riemann tensor, Ricci tensor and Kretschmann scalar, exact inertia by congruence reduction, and exact arithmetic in a quadratic field for the horizon data. No floating-point value enters any acceptance test; floating-point arithmetic appears only in the declared calibration of the symbolic derivatives.",
+  "sources": [
+    "The Kerr line element in Boyer-Lindquist coordinates is declared in this contract as the five nonzero metric components written out in objects.kerr_metric. It is textbook material and no text, table or file is imported; the experiment recomputes its consequences rather than quoting them.",
+    "The Kretschmann scalar against which the computed value is checked is declared in objects.claimed_kretschmann as a closed form in M, A, r and c, together with the Schwarzschild reduction 48 M squared over r to the sixth.",
+    "The previous experiment of this line, docs/research/0225-a-complex-structure-admits-only-even-signatures.md, is cited for the reason this question is asked at all: a metric compatible with the frame's complex structure has even inertia, so a signature with exactly one negative direction needs a different structure. Nothing from that experiment is recomputed here.",
+    "No external repository, corpus, catalogue or measurement is opened."
+  ],
+  "domain": "The Kerr metric components on the coordinate domain r > 0, with c = cos(theta) and s = sin(theta); the rational function field Q(r, c, s) with s squared equal to one minus c squared; declared parameter pairs (M, A) with A below, at and above M; declared evaluation points outside the horizon, inside the horizon, inside the ergosphere and near the ring; and the quadratic field Q(sqrt(M squared minus A squared)) for the horizon radii.",
+  "objects": {
+    "kerr_metric": {
+      "comment": "g_tt = -(1 - 2 M r / Sigma), g_tphi = -2 M A r s^2 / Sigma, g_phiphi = (r^2 + A^2 + 2 M A^2 r s^2 / Sigma) s^2, g_rr = Sigma / Delta, g_theta theta = Sigma, with Sigma = r^2 + A^2 c^2 and Delta = r^2 - 2 M r + A^2",
+      "components": ["g_tt", "g_tphi", "g_phiphi", "g_rr", "g_thetatheta"],
+      "sigma": "r^2 + A^2 c^2",
+      "delta": "r^2 - 2 M r + A^2"
+    },
+    "declared_parameter_pairs": [
+      {"label": "Schwarzschild reduction", "M": [1, 1], "A": [0, 1]},
+      {"label": "slowly spinning", "M": [1, 1], "A": [1, 2]},
+      {"label": "the declared black hole", "M": [1, 1], "A": [3, 5]},
+      {"label": "no horizon, A above M", "M": [1, 1], "A": [7, 5]},
+      {"label": "a second mass", "M": [2, 1], "A": [3, 2]}
+    ],
+    "claimed_kretschmann": "48 M^2 (r^2 - A^2 c^2) ((r^2 + A^2 c^2)^2 - 16 r^2 A^2 c^2) / (r^2 + A^2 c^2)^6",
+    "schwarzschild_reduction": "48 M^2 / r^6",
+    "signature_points": [
+      {"label": "outside the horizon", "r": [3, 1], "c": [1, 2]},
+      {"label": "inside the outer horizon", "r": [1, 1], "c": [1, 2]},
+      {"label": "inside the ergosphere", "r": [3, 2], "c": [1, 10]},
+      {"label": "between the horizons", "r": [1, 2], "c": [1, 3]},
+      {"label": "inside the inner horizon, toward the ring", "r": [1, 10], "c": [1, 2]},
+      {"label": "far away", "r": [50, 1], "c": [-1, 3]}
+    ],
+    "declared_black_hole": {"M": [1, 1], "A": [3, 5]},
+    "refusals": [
+      "reading any computation here as an observation of a black hole, or as evidence that any such object exists",
+      "claiming a mass, a spin, a distance or a temperature for any real object",
+      "claiming that the frame's carriers, or the four towers of note 0224, are black holes or spacetimes",
+      "reading the vanishing of the Ricci tensor as a derivation of the Einstein equations, or as a physical explanation of anything",
+      "reading the Kretschmann scalar as a curvature measurement rather than as an exact algebraic invariant of a declared line element",
+      "claiming that the horizon, the ergosphere or the ring is a physical surface that anything crosses",
+      "reading the Smarr identity or the horizon area as thermodynamics",
+      "treating a coordinate singularity of the Boyer-Lindquist chart as a physical one"
+    ]
+  },
+  "quantifiers": [
+    "every one of the sixteen Ricci components, for every declared parameter pair",
+    "every Christoffel symbol and every independent Riemann component used to reach them",
+    "every term of the Kretschmann scalar, checked against the declared closed form by exact polynomial identity",
+    "the six declared evaluation points, for the exact inertia of the metric",
+    "every declared parameter pair, for the Schwarzschild reduction and the vanishing locus of the Kretschmann scalar",
+    "every horizon, ergosphere, area, angular velocity and Smarr term, in the declared quadratic field"
+  ],
+  "grammar": [
+    "bivariate polynomials over Q as dictionaries from exponent pairs to Fractions",
+    "rational functions as a parity-split triple: a pair of polynomials for the part without and with sin(theta), over powers of Sigma, Delta and sin squared theta",
+    "exact differentiation with respect to r and with respect to theta, where the latter is minus sin(theta) times the derivative in c",
+    "exact symmetric congruence reduction for the inertia, with one-by-one and two-by-two pivots",
+    "exact arithmetic in Q(sqrt(d)) for the horizon data",
+    "a declared floating-point calibration of the two symbolic derivatives against central differences"
+  ],
+  "acceptance": [
+    "The declared metric satisfies g times its inverse equal to the identity exactly, and the determinant of the time-phi block equals minus Delta times sin squared theta exactly.",
+    "The symbolic derivatives agree with central differences at the declared calibration point to a declared tolerance, so the differentiation used by every later section is calibrated before it is trusted.",
+    "The Kretschmann scalar computed from the declared metric equals the declared closed form identically as a rational function, for every declared parameter pair, and its numerator vanishes exactly where r squared equals A squared c squared.",
+    "In the Schwarzschild case A = 0 the computed Kretschmann scalar is 48 M squared over r to the sixth identically, which is the known value and therefore a check on the whole machinery.",
+    "Every one of the sixteen Ricci components vanishes identically as a rational function, for every declared parameter pair, including the pair with A above M.",
+    "The metric has signature three plus one, meaning exactly one negative direction, at every declared evaluation point, including points inside the outer horizon and inside the ergosphere; the metric is degenerate exactly where Sigma vanishes or where sin squared theta vanishes, and nowhere else among the declared points.",
+    "For the declared black hole the horizon radii M plus and minus the square root of M squared minus A squared solve Delta exactly, the extremality bound is exactly A squared at most M squared, the ergosphere radius M plus the square root of M squared minus A squared c squared makes g_tt vanish exactly, the horizon area is 4 pi (r plus squared + A squared) and equals 8 pi M r plus, the horizon angular velocity is A over (r plus squared + A squared) and equals A over (2 M r plus), and the Smarr identity M equals kappa A over 4 pi plus 2 Omega J holds exactly with J equal to M A.",
+    "The declared pair with A above M has no real horizon radius, so the extremality bound is exactly the condition for a horizon in this chart.",
+    "No acceptance test compares a floating-point value, and the checker imports nothing outside the standard library."
+  ],
+  "protected": [
+    "No physical claim is made anywhere in this experiment. A line element is a declared field of rational functions; a horizon, an ergosphere, a curvature invariant and a signature are computed properties of that declared field. Nothing here asserts that any such object exists, has been observed, or has a mass, a spin or a temperature.",
+    "The Einstein equations are not derived here. What is checked is that one declared metric has vanishing Ricci tensor, which is a statement about that metric and not about gravitation.",
+    "This experiment is not connected to the {e, i, iota} frame. The frame's carriers, the four towers of note 0224 and the signature result of note 0225 are cited only as the reason the question was asked; no carrier is claimed to be a spacetime, and no black hole is claimed to be a frame.",
+    "Every parameter is a declared rational and every acceptance test is exact. The floating-point numbers appear only in one declared calibration of the symbolic derivatives against central differences, and the calibration's tolerance is part of the claim.",
+    "Coordinate singularities are not physical singularities. The Boyer-Lindquist chart is degenerate on the axis and at the ring, and the experiment says exactly that and no more.",
+    "The received materials are not read at all by this experiment: it opens no corpus, no catalogue and no measurement, and no received pin is claimed.",
+    "No stable API change: no ValueType, no OperationSpec, no IR version, no Lisp builtin, no parser, type-checker, evaluator or lineage-table change, no Seal, no claim promotion beyond bounded-external-experiment.",
+    "Native admission is NotGranted, native execution is NotRun and new transport is NotRun. The functions in this file are finite exact computations, not Adva operations.",
+    "No floating-point value enters any acceptance test, and the run installs no address-space ceiling because it launches no child process, so the repository's portability inventory is unaffected.",
+    "The experiment is bounded by its declared parameter pairs and evaluation points. A different mass, spin or chart is a different run, and nothing here transfers to it without re-running the checker."
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 300,
+    "cpu_seconds": 360,
+    "memory_bytes": 536870912,
+    "max_assertions": 200000,
+    "output_bytes": 8388608,
+    "correction_replays": 1
+  },
+  "residual": "What is established is a set of exact statements about one declared line element. In Boyer-Lindquist coordinates with rational mass and rational spin parameter, the declared Kerr metric has an exactly verified inverse metric and a time-phi block determinant of minus Delta sin squared theta; its symbolic derivatives are calibrated against central differences; every one of the sixteen Ricci components vanishes identically as a rational function of the radius and the cosine of the polar angle, for masses and spins declared here including a spin above the mass; its Kretschmann scalar equals the declared closed form identically and reproduces 48 M squared over r to the sixth when the spin vanishes; the metric has exactly one negative direction at every declared point outside the horizon, inside the horizon, inside the ergosphere and near the ring; and the horizon radii, the ergosphere radius, the extremality bound, the horizon area and angular velocity and the Smarr identity all hold exactly in the declared quadratic field. What is not established: that the Einstein equations hold for any other metric or in any other chart; that any such object exists, has been observed, or carries a mass, a spin, a charge or a temperature; that the horizon, the ergosphere or the ring is anything more than a locus in a declared chart; that the vanishing Ricci tensor has any physical explanation; whether the frame of notes 0224 and 0225 can carry a Lorentzian carrier that is also a solution of this kind, which is a different question and is not asked here; and every question about dynamics, stability, radiation, thermodynamics or quantum theory. The declared parameters and points bound the claims: a different mass, spin, chart or point is a different run. No computation outside a contract counts as a result of this repository."
+}
