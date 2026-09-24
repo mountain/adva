@@ -1,0 +1,100 @@
+{
+  "status": "PassedExternalArithmeticCalibration",
+  "native_semantic_certificate": "NotConstructed",
+  "native_source_occurrence_history_identity": "NotAssignedByThisChecker",
+  "scope": "One fixed original scalar twelve-phase polynomial fixture; not meteorology or a general Floquet implementation",
+  "python": "3.14.4",
+  "checker_sha256": "2ce8e5406e6a62e7f78534d7a949eb99cbe8445fc080585518442a8dc7731d0b",
+  "contract_sha256": "7378533788dbb84799a7cc91590a5ea26a020872c860a6e2bfceacbf0c6e191a",
+  "checks": [
+    "reference_is_exact_periodic_orbit",
+    "full_annual_polynomial_equals_independent_expansion",
+    "first_degree_observation_composes",
+    "nonlinear_terms_are_retained",
+    "same_multiplier_does_not_identify_order",
+    "reversed_quadratic_coefficient",
+    "finite_product_identity_2",
+    "dropped_cross_term_rejected_2",
+    "finite_product_identity_1/2",
+    "dropped_cross_term_rejected_1/2",
+    "nested_evaluation_-1/2",
+    "nested_evaluation_-1/4",
+    "nested_evaluation_0",
+    "nested_evaluation_1/4",
+    "nested_evaluation_1/2",
+    "finite_amplitude_contraction_bound",
+    "remainder_bound_sample_-1/2",
+    "remainder_bound_sample_-1/4",
+    "remainder_bound_sample_0",
+    "remainder_bound_sample_1/4",
+    "remainder_bound_sample_1/2",
+    "periodic_reference_not_necessarily_solution",
+    "zero_anomaly_has_nonzero_defect"
+  ],
+  "check_count": 23,
+  "annual_coefficients_ascending": [
+    "0",
+    "3/8",
+    "1/8",
+    "1/64",
+    "1/512"
+  ],
+  "reverse_coefficients_ascending": [
+    "0",
+    "3/8",
+    "17/128",
+    "3/128",
+    "1/512"
+  ],
+  "annual_first_degree_multiplier": "3/8",
+  "nonlinear_remainder_bound_for_abs_h_le_half": "273/2048",
+  "absolute_return_bound_divided_by_abs_h": "1809/4096",
+  "shifted_periodic_reference_defects": [
+    "-31/512",
+    "-15/512",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0",
+    "0"
+  ],
+  "finite_perturbations": [
+    {
+      "h": "-1/2",
+      "exact_return": "-1295/8192",
+      "first_degree": "-3/16",
+      "nonlinear_residual": "241/8192"
+    },
+    {
+      "h": "-1/4",
+      "exact_return": "-11295/131072",
+      "first_degree": "-3/32",
+      "nonlinear_residual": "993/131072"
+    },
+    {
+      "h": "0",
+      "exact_return": "0",
+      "first_degree": "0",
+      "nonlinear_residual": "0"
+    },
+    {
+      "h": "1/4",
+      "exact_return": "13345/131072",
+      "first_degree": "3/32",
+      "nonlinear_residual": "1057/131072"
+    },
+    {
+      "h": "1/2",
+      "exact_return": "1809/8192",
+      "first_degree": "3/16",
+      "nonlinear_residual": "273/8192"
+    }
+  ],
+  "elapsed_seconds": 0.005008995998650789,
+  "max_rss_KiB": 21000
+}
