@@ -1,0 +1,363 @@
+{
+  "assertions": 548,
+  "checker_sha256": "607086f7f4324d508cffc0bab067a3d4e109dc4740aa2d2faa723363e2010d81",
+  "contract_sha256": "4f9ad323c780115830f4591795791bddbf4873ebaa5be265c96b49e4d2fc68e7",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 240,
+    "max_assertions": 100000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 120
+  },
+  "rss_high_water_bytes": 26902528,
+  "schema": "adva.research.six-place-interface-evidence.v0",
+  "sections": {
+    "S1_pairing_group": {
+      "action_is_free": true,
+      "action_is_transitive": true,
+      "alternating_walk_one_based": [
+        1,
+        2,
+        5,
+        6,
+        3,
+        4,
+        1
+      ],
+      "element_orders_sorted": [
+        1,
+        2,
+        2,
+        2,
+        3,
+        3
+      ],
+      "group_order": 6,
+      "matchings_are_transversal": true,
+      "product_of_the_two_pairings_order": 3,
+      "regular_action_on_six_places": true,
+      "six_cycle_is_an_element_of_the_group": false,
+      "union_is_a_single_six_cycle": true,
+      "union_matching_degree_every_place": [
+        2
+      ]
+    },
+    "S2_operators": {
+      "commutations": {
+        "complement_after_reversal": true,
+        "inner_after_complement": true,
+        "inner_after_reversal": true
+      },
+      "image_of_each_unit_place": [
+        "000000",
+        "100000",
+        "010100",
+        "001010",
+        "000001",
+        "000000"
+      ],
+      "image_size": 16,
+      "inner_four_reading_is_f2_linear": true,
+      "kernel_places_one_based": [
+        1,
+        6
+      ],
+      "kernel_size": 4,
+      "kernel_words": [
+        "000000",
+        "000001",
+        "100000",
+        "100001"
+      ],
+      "outer_places_are_invisible": true,
+      "pairs_checked_for_linearity": 4096,
+      "rank": 4
+    },
+    "S3_eventual_image": {
+      "clock_and_inner_reading_agree_on_the_eventual_image": true,
+      "eventual_image_size": 4,
+      "eventual_image_words": [
+        "000000",
+        "010101",
+        "101010",
+        "111111"
+      ],
+      "every_periodic_state_lies_in_the_eventual_image": true,
+      "exhausted_states": 64,
+      "fixed_state_words": [
+        "000000",
+        "111111"
+      ],
+      "fourth_iterate_equals_second": true,
+      "max_steps_to_reach_the_eventual_image": 2,
+      "nontrivial_two_cycle_words": [
+        "010101",
+        "101010"
+      ],
+      "periodic_states": [
+        "000000",
+        "101010",
+        "010101",
+        "111111"
+      ],
+      "second_iterate_form": "(x3,x4,x3,x4,x3,x4)",
+      "second_iterate_kernel_size": 16,
+      "second_iterate_rank": 2
+    },
+    "S4_orbits": {
+      "complement_fixed_states": 0,
+      "complement_orbits": 32,
+      "exhausted_states": 64,
+      "generated_group_orbit_size_multiset": {
+        "1": 2,
+        "2": 1,
+        "3": 6,
+        "6": 7
+      },
+      "generated_group_orbits": 16,
+      "reversal_fixed_state_words": [
+        "000000",
+        "001100",
+        "010010",
+        "011110",
+        "100001",
+        "101101",
+        "110011",
+        "111111"
+      ],
+      "reversal_fixed_states": 8,
+      "reversal_is_an_element_of_the_pairing_group": false,
+      "reversal_orbits": 36,
+      "states_fixed_by_the_whole_declared_group": [
+        "000000",
+        "111111"
+      ],
+      "the_two_groups_give_the_same_partition": false,
+      "two_involution_group_orbit_size_multiset": {
+        "2": 8,
+        "4": 12
+      },
+      "two_involution_group_orbits": 20,
+      "two_involutions_commute": true,
+      "two_involutions_composite_fixed_states": 8
+    },
+    "S5_ternary_address_interface": {
+      "address_bijection_checked": 729,
+      "address_count": 729,
+      "declared_and_numeral_agree_on": 648,
+      "declared_state_count_declared_in_the_contract": 731,
+      "declared_state_count_source": "declared, not computed: read from contract.json objects.declared_states_outside_the_address_space = 2, added to the 729 computed addresses; this checker enumerates no declared state set and measures no shortfall",
+      "declared_states_without_an_address": 2,
+      "declared_successor_advances": 648,
+      "declared_successor_boundaries": 81,
+      "declared_successor_one_digit_advances": 486,
+      "declared_successor_steps_carrying_into_a_head_place": 0,
+      "declared_successor_two_digit_advances": 162,
+      "exhausted_addresses": 729,
+      "head_count": 81,
+      "head_places": 4,
+      "numeral_steps_outside_the_declared_domain": 81,
+      "numeral_successor_steps": 729,
+      "numeral_successor_steps_carrying_into_a_head_place": 81,
+      "position_count": 9,
+      "position_places": 2
+    },
+    "S6_step_relations": {
+      "binary_directed_single_change_steps": 384,
+      "binary_numeral_successor_single_place_steps": 32,
+      "binary_numeral_successor_total_steps": 64,
+      "binary_out_degree_every_state": 6,
+      "binary_states": 64,
+      "binary_states_with_no_successor": 0,
+      "binary_steps_changing_exactly_one_place": 384,
+      "ternary_addresses": 729,
+      "ternary_declared_steps": 648,
+      "ternary_declared_steps_changing_one_place": 486,
+      "ternary_declared_steps_changing_two_places": 162,
+      "ternary_states_with_no_successor": 81
+    },
+    "S7_cross_reading": {
+      "binary_word_embeds_isometrically_onto_the_ternary_zero_one_subcube": true,
+      "binary_words": 64,
+      "counting_minimum_largest_fibre": 12,
+      "embedded_pairs_checked": 4096,
+      "gcd_of_interface_sizes": 1,
+      "information_optimal_binary_places_needed": 10,
+      "joint_period": 46656,
+      "joint_period_is_six_to_the_sixth": true,
+      "placewise_binary_places_needed": 12,
+      "placewise_cost_in_binary_places": 2,
+      "placewise_reading_minimum_largest_fibre": 64,
+      "ternary_addresses": 729,
+      "third_digit_values_used_by_the_embedding": 0
+    },
+    "S8_split_arithmetic": {
+      "classical_ratios": {
+        "6": "1/16",
+        "7": "5/16",
+        "8": "7/16",
+        "9": "3/16"
+      },
+      "classical_second_strip_parameter": "1/2",
+      "classical_second_strip_parameter_is_attained": false,
+      "difference_from_the_classical_ratios": {
+        "independent_stalk_assignment": {
+          "6": "322292579545679396732935/316912668798372859680592494608",
+          "7": "-186610612621630480700680600074191045442202370045/95780976965534624482500208723187781218566305413595152",
+          "8": "6812336487923502464653920777467854849/6371641864876137616421040948356306703033488",
+          "9": "-178920613168726648559763459/1298074292002450605125333451538448"
+        },
+        "uniform_over_left_pile_residue_classes": {
+          "6": "0",
+          "7": "0",
+          "8": "0",
+          "9": "0"
+        },
+        "uniform_over_splits": {
+          "6": "-23/6448",
+          "7": "-91803/9704240",
+          "8": "1173/313040",
+          "9": "83/8944"
+        }
+      },
+      "first_strip_distributions": {
+        "independent_stalk_assignment": {
+          "5": "25165825/33554434",
+          "9": "8388609/33554434"
+        },
+        "uniform_over_left_pile_residue_classes": {
+          "5": "3/4",
+          "9": "1/4"
+        },
+        "uniform_over_splits": {
+          "5": "3/4",
+          "9": "1/4"
+        }
+      },
+      "first_strip_is_five_with_the_classical_probability": "3/4",
+      "outcome_distributions": {
+        "independent_stalk_assignment": {
+          "6": "2475920511559731176179220481/39614083599796607460074061826",
+          "7": "3741421086389618565037576818174513429969566029922305/11972622120691828060312526090398472652320788176699394",
+          "8": "174225008013737383167916879301666353152000/398227616554758601026315059272269168939593",
+          "9": "15211796926865394983396966400000/81129643250153162820333340721153"
+        },
+        "uniform_over_left_pile_residue_classes": {
+          "6": "1/16",
+          "7": "5/16",
+          "8": "7/16",
+          "9": "3/16"
+        },
+        "uniform_over_splits": {
+          "6": "95/1612",
+          "7": "735193/2426060",
+          "8": "8633/19565",
+          "9": "110/559"
+        }
+      },
+      "remainder_conventions": {
+        "zero_counts_as_four": {
+          "split_count": 48,
+          "strip_counts": {
+            "5": 36,
+            "9": 12
+          }
+        },
+        "zero_counts_as_zero": {
+          "split_count": 48,
+          "strip_counts": {
+            "1": 12,
+            "5": 36
+          }
+        }
+      },
+      "second_strip_parameter_by_reachable_pile": {
+        "24": {
+          "excess_over_one_half": "1/46",
+          "p_of_four": "12/23",
+          "splits": 23,
+          "strip_eight": 11,
+          "strip_four": 12
+        },
+        "28": {
+          "excess_over_one_half": "1/54",
+          "p_of_four": "14/27",
+          "splits": 27,
+          "strip_eight": 13,
+          "strip_four": 14
+        },
+        "32": {
+          "excess_over_one_half": "1/62",
+          "p_of_four": "16/31",
+          "splits": 31,
+          "strip_eight": 15,
+          "strip_four": 16
+        },
+        "36": {
+          "excess_over_one_half": "1/70",
+          "p_of_four": "18/35",
+          "splits": 35,
+          "strip_eight": 17,
+          "strip_four": 18
+        },
+        "40": {
+          "excess_over_one_half": "1/78",
+          "p_of_four": "20/39",
+          "splits": 39,
+          "strip_eight": 19,
+          "strip_four": 20
+        },
+        "44": {
+          "excess_over_one_half": "1/86",
+          "p_of_four": "22/43",
+          "splits": 43,
+          "strip_eight": 21,
+          "strip_four": 22
+        }
+      }
+    },
+    "S9_declared_encoding": {
+      "assumptions": 2,
+      "contracts": 512,
+      "countermodel_examples": {
+        "figure1-AAE-boolean": 128,
+        "figure1-AAE-terms-nonempty": 128,
+        "figure1-AAI-boolean": 1,
+        "figure1-AAO-boolean": 1
+      },
+      "figures": 4,
+      "forms_gained_by_the_weaker_scope": {
+        "1": 2,
+        "2": 2,
+        "3": 2,
+        "4": 3
+      },
+      "moods": 64,
+      "occupancy_masks_exhausted": 255,
+      "same_syntax_two_declared_scopes": true,
+      "valid_forms_boolean": {
+        "1": 4,
+        "2": 4,
+        "3": 4,
+        "4": 3
+      },
+      "valid_forms_terms_nonempty": {
+        "1": 6,
+        "2": 6,
+        "3": 6,
+        "4": 6
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 56242042
+}

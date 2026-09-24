@@ -1,0 +1,66 @@
+{
+  "schema": "adva.research.magic-hypercube-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "input_document": "docs/research/0216-the-magic-hypercube-and-a-cut-the-address-cannot-see.md",
+  "question": "The eighty-one addresses are a four-dimensional array of side three as well as a nine by nine grid. Does an affine map of the four ternary coordinates into the eighty-one values make every one-dimensional coordinate line constant, and what exactly is the condition on the matrix? Do the main diagonals follow? What does the same construction give at two places, and is it the classical square? Separately: the ninth position of each head carries one of two names in a contiguous split of the heads at forty-seven; can any proper subset of the four places see that split?",
+  "level": "External exact finite arithmetic over Z3, with two exhaustive families of sixty-five thousand five hundred thirty-six and twenty-two thousand four hundred forty matrices, and exact rational arithmetic; no text and no corpus count imported",
+  "domain": "The four-place ternary address space of eighty-one cells; the affine construction value equals one plus the base-three digits of M times the point; the coordinate lines and the main diagonals of that array; the two-place case; the split of the head indices at forty-seven; and the four recorded readings of that split",
+  "objects": {
+    "places": 4,
+    "order": 3,
+    "cells": 81,
+    "coordinate_lines": 108,
+    "lines_per_place": 27,
+    "line_sum": 123,
+    "diagonal_directions": 8,
+    "cut": 47,
+    "sides": [47, 34],
+    "three_head_selections": 85320,
+    "selections_with_at_least_fourteen": 4735,
+    "reported_p_value": "0.0555",
+    "zero_free_family": 65536,
+    "necessity_family": 22440,
+    "readings": ["yang and yin", "the first place", "yin and yang set against each other", "head index"]
+  },
+  "quantifiers": [
+    "All eighty-one points for the permutation, the line sums and the diagonal sums",
+    "All one hundred eight one-dimensional coordinate lines",
+    "All sixty-five thousand five hundred thirty-six matrices with every entry nonzero, for the sufficiency of the condition",
+    "All twenty-two thousand four hundred forty invertible binary matrices with a zero entry and no zero row, for its necessity",
+    "All fifteen proper subsets of the four places for the split",
+    "All eighty-five thousand three hundred twenty three-head selections for the recorded p-value arithmetic"
+  ],
+  "grammar": [
+    "exact integer arithmetic modulo three, with determinants by expansion and coprimality not required because the order is prime",
+    "exhaustive enumeration of finite matrix families and direct line-sum computation",
+    "exact rational arithmetic over Fraction",
+    "exact combinatorial counts and set comparisons on declared finite structures"
+  ],
+  "acceptance": [
+    "The declared matrix has every entry nonzero, has determinant two modulo three, and its construction is a permutation of one to eighty-one",
+    "All one hundred eight one-dimensional coordinate lines of the declared construction sum to one hundred twenty-three, which is the hypercube magic constant for order three and four places",
+    "Every one of the sixty-five thousand five hundred thirty-six matrices with no zero entry has constant coordinate lines, so the condition is sufficient by exhaustion",
+    "None of the twenty-two thousand four hundred forty invertible binary matrices with a zero entry and no zero row has constant coordinate lines, so the condition is necessary on that family by exhaustion",
+    "Exactly twenty-two thousand two hundred seventy-two zero-free matrices are invertible, and the eighty-one-value array each of them gives is compared with every other: no two coincide, so each matrix gives a distinct magic hypercube",
+    "The eight main diagonal directions of the declared construction have five different sums, six, twelve, thirty, eighty-four and one hundred twenty-three, so the construction is magic along coordinate lines only, and four of the eight diagonal directions happen to reach the line sum while the other four do not",
+    "At two places the same construction has constant rows and columns at fifteen but diagonals six and eighteen; the declared shift makes it the classical square with both diagonals at fifteen, so the matrix gives the coordinate lines and the shift buys the diagonals",
+    "The two heads across the cut are at the declared addresses and differ in exactly one place, and only the full four-place set separates the two sides: no proper subset does, so the split is invisible to the address structure",
+    "The cut lies strictly inside the range of the second place, so no place boundary carries it",
+    "The recorded share of three-head selections reaching at least fourteen is exactly nine hundred forty-seven over seventeen thousand sixty-four, about five and a half per cent, above the one-twentieth threshold, so the effect is not significant"
+  ],
+  "protected": [
+    "No classical text, edition, transcription, commentary, name table, symbol table, sequence or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "The construction, the cut and the counts are declared in this contract; the checker verifies their arithmetic and the structural consequences, and measures nothing",
+    "No claim about what any chapter, head or position means, and no claim about which transmitted reading is original",
+    "No claim that the coordinate lines are the lines that matter: the whole content of the diagonal section is that they are not the only lines one could declare, and that the declared set decides the answer",
+    "No claim that a magic hypercube is or is not part of any tradition, and no claim that the construction was known anywhere",
+    "The necessity result is exhausted only over the declared binary family, not over all matrices with a zero entry; the general statement is given as a derivation, and the family is the evidence",
+    "The four readings of the split are recorded as reported, and their counterexample counts are declared; the checker verifies the arithmetic of the last one only",
+    "No claim about causation anywhere: that the split is invisible to the places is a statement about definability, not about why the cut is where it is",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 200000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about declared finite objects: that an affine construction on the four ternary places is a permutation exactly when its matrix is invertible, that all one hundred eight coordinate lines are constant exactly when the matrix has no zero entry, which is sufficient by full exhaustion and necessary on the declared family, that the same construction is not constant along its main diagonals so the declared line set is what the word magic means here, that at two places the shift and not the matrix produces the diagonals of the classical square, that the split of the heads at forty-seven is not visible to any proper subset of the four places, and that a recorded tail share is about five and a half per cent. The count of distinct magic hypercubes is a count of arrays actually constructed and compared, so it is a count of distinct objects. Nothing here decides any question about a text. In particular the cut is described and not explained: that no proper subset of the places can see it says nothing about why it is at forty-seven, and the candidate explanation the external record leaves open, a phase change in the head statements, is not tested here. The diagonal result does not show that no construction of this kind can be magic along diagonals, only that this one is not. The two-place case is checked at one shift and is not a classification. The necessity family is binary and does not exhaust the matrices with a zero entry. The proxy chain is reported, not re-derived: only the arithmetic of its last reading is checked, and the counterexample counts of the earlier ones are taken as declared. No text, symbol sequence or chapter is reproduced."
+}

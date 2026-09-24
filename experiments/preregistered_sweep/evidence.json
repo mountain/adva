@@ -1,0 +1,1462 @@
+{
+  "assertions": 1432,
+  "checker_sha256": "58c5a5e0749b4973183ce6ccd48b8d653e12806f353282d215a0905024d5bb45",
+  "contract_base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "contract_sha256": "497bf898442257083ebb934af4f0ba979bef4f34a505f9e48d00041dbb7a1eb5",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 26771456,
+  "schema": "adva.research.preregistered-sweep-evidence.v0",
+  "sections": {
+    "S1_definability": {
+      "corollary": "a set whose size is not divisible by three needs all four places",
+      "cut_needs_all_four_places_by_arithmetic": true,
+      "declared_sets": {
+        "all_heads": {
+          "mu": 0,
+          "size": 81
+        },
+        "cut_after": {
+          "mu": 4,
+          "size": 34
+        },
+        "cut_before": {
+          "mu": 4,
+          "size": 47
+        },
+        "first_quarter": {
+          "mu": 1,
+          "size": 27
+        },
+        "nine_district_representatives": {
+          "mu": 2,
+          "size": 9
+        },
+        "one_head_21": {
+          "mu": 4,
+          "size": 1
+        },
+        "one_head_69": {
+          "mu": 4,
+          "size": 1
+        },
+        "orbit_of_seven": {
+          "mu": 4,
+          "size": 3
+        },
+        "three_quarter_representatives": {
+          "mu": 3,
+          "size": 3
+        },
+        "two_prison_heads": {
+          "mu": 4,
+          "size": 2
+        }
+      },
+      "exhausted_subsets": 16,
+      "fibres_checked": 1296,
+      "heads": 81,
+      "praises": 729,
+      "the_two_prison_heads_need_all_four_places_by_arithmetic": true,
+      "theorem": "a set definable by k places has size divisible by three to the four minus k"
+    },
+    "S2_null": {
+      "containment_by_m_heads_at_nine_praises": {
+        "1": "22679130771254149/213279049631562453",
+        "2": "3133760077447169/308069738356701321",
+        "3": "973555029565103/1129589040641238177",
+        "4": "33091989561/522232566177179",
+        "5": "7400743885989/1882648401068730295",
+        "6": "371955614949/1882648401068730295"
+      },
+      "expected_heads_hit_by_128_praises_float": 66.9006,
+      "expected_heads_hit_by_nine_praises": "22679130771254149/2633074686809413",
+      "expected_heads_hit_by_nine_praises_float": 8.6132,
+      "the_null_is_exact_inclusion_exclusion": true,
+      "three_heads_float": "0.000862",
+      "two_heads_float": "0.010172"
+    },
+    "S3_sweep": {
+      "both_monotonicities_hold": true,
+      "containments_contributed_by_those": 30,
+      "declarations": {
+        "head_sets_source": "contract.json objects.declared_head_sets",
+        "ordering": "contract.json declares both families and the contract, the checker, the retained evidence and the note were introduced by one commit, whose base is the base_commit contract.json records; no earlier timestamped record of the declarations exists in this repository and none is claimed, so the sweep is declared rather than dated before its results",
+        "post_hoc_source": "contract.json objects.post_hoc_property and objects.post_hoc_target",
+        "properties_source": "contract.json objects.declared_properties"
+      },
+      "declared_head_sets": [
+        "cut_after",
+        "cut_before",
+        "district_one",
+        "district_three",
+        "district_two",
+        "first_quarter",
+        "nine_district_representatives",
+        "second_quarter",
+        "third_quarter",
+        "three_quarter_representatives"
+      ],
+      "declared_properties": [
+        "centred_square",
+        "congruent_one_mod_four",
+        "congruent_one_mod_nine",
+        "congruent_one_mod_twelve",
+        "fibonacci",
+        "palindromic",
+        "perfect_power",
+        "power_of_three",
+        "prime",
+        "square",
+        "sum_of_two_squares",
+        "triangular"
+      ],
+      "expected_containments": "551854253686846276077379905290105473984426483195517357579065134888169695079829914219503486436481606070265867286375571825992536194432428366958335472243009093523493517320654451932829532376231724272042665924622840787812059549850612064326347/66582588979059819668795113094829022382422839425080934833973708682848899782129648649430883471618763183804320977863227539483853539939695424469960301252223999584127816025810468775857832457230997351827128560623663489672078791699314836983900",
+      "expected_containments_float": 8.2883,
+      "head_sets": 10,
+      "heads_hit_by_each_property": {
+        "centred_square": 18,
+        "congruent_one_mod_four": 81,
+        "congruent_one_mod_nine": 81,
+        "congruent_one_mod_twelve": 61,
+        "fibonacci": 10,
+        "palindromic": 73,
+        "perfect_power": 30,
+        "power_of_three": 5,
+        "prime": 76,
+        "square": 25,
+        "sum_of_two_squares": 81,
+        "triangular": 33
+      },
+      "largest_property": "sum_of_two_squares",
+      "largest_property_containment_of_three_heads": "104521947379216771963094299522695236822/115551385468495855257730521078502991397",
+      "largest_property_size": 229,
+      "observed_containments": 34,
+      "pairs": 120,
+      "pairs_below_a_tenth_percent": 81,
+      "pairs_below_five_percent": 95,
+      "pairs_below_one_percent": 90,
+      "properties": 12,
+      "properties_reaching_every_head": [
+        "congruent_one_mod_four",
+        "congruent_one_mod_nine",
+        "sum_of_two_squares"
+      ],
+      "property_sizes": {
+        "centred_square": 19,
+        "congruent_one_mod_four": 183,
+        "congruent_one_mod_nine": 81,
+        "congruent_one_mod_twelve": 61,
+        "fibonacci": 14,
+        "palindromic": 81,
+        "perfect_power": 35,
+        "power_of_three": 7,
+        "prime": 129,
+        "square": 27,
+        "sum_of_two_squares": 229,
+        "triangular": 37
+      },
+      "table": [
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 18,
+          "p": "863379048335281074060822/6128772239654630905245535405777",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 18,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 18,
+          "p": "249716678924702421606281761363847/29620356234250831165051672616120241",
+          "p_float": 0.008431,
+          "property": "centred_square",
+          "size": 19,
+          "target_size": 3
+        },
+        {
+          "contained": true,
+          "head_set": "cut_after",
+          "heads_hit": 81,
+          "p": "371472101540753844418741221259668196871792515890687775934015930084707068375745943633422454469847481110327704839204453293198422663886635364662283084528980381164138019818973/5619353833283556686117722248273968221426125007244689615789092358765419821327936620685625924616069811056515103879559380303497396646059521374176828726452768821987706910224275",
+          "p_float": 0.066106,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 34
+        },
+        {
+          "contained": true,
+          "head_set": "cut_before",
+          "heads_hit": 81,
+          "p": "17163657039118501728462662458371607202305985530064809084436562256379398123106695432447800881649794326218373957688420501583860256390015284066390672243373673459637033782461/800536993825779583406225001141712401572269427489067715847844794865748984722018723020893980010059899077431383901435841412339129586950200084757846090539987417748479985360350",
+          "p_float": 0.02144,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 47
+        },
+        {
+          "contained": true,
+          "head_set": "district_one",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_three",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_two",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "first_quarter",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 81,
+          "p": "79440087333652833549231585652674442503671303897608894852600801124526129639963024265029529/158395578571007543978058241361865115912067051362398180575072896065099780971335498818090615",
+          "p_float": 0.50153,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 9
+        },
+        {
+          "contained": true,
+          "head_set": "second_quarter",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "third_quarter",
+          "heads_hit": 81,
+          "p": "63767237139295782274463931756326871740927707381170752785231709990304154387481863255032207899713493095216137512912007487218948374375368111700460193889119000136320789817598/537503410140166291715608215052292612484238044171231180640695790838431461170498285456885958006754503666275357762392636376856272722666562914051696660791134409059693704456235",
+          "p_float": 0.118636,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 81,
+          "p": "463458826736927818598999913189209638019/582080805258215743885523637370646351898",
+          "p_float": 0.79621,
+          "property": "congruent_one_mod_four",
+          "size": 183,
+          "target_size": 3
+        },
+        {
+          "contained": true,
+          "head_set": "cut_after",
+          "heads_hit": 81,
+          "p": "280142329454684613083871606147763210827377893121079691737394780825957015829780860507706926469271/8074506220849888733588445269173731894790079027789985457737153928295061690611223129296338379837767468945",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 34
+        },
+        {
+          "contained": true,
+          "head_set": "cut_before",
+          "heads_hit": 81,
+          "p": "22492271606058700691625628859081629476719615005677900767088326837617549699325893970083915725/4817399879678159339150591879110193673547338744266378286670634839968891267819309884539688285737382194397",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 47
+        },
+        {
+          "contained": true,
+          "head_set": "district_one",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_three",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_two",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "first_quarter",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 81,
+          "p": "42551274935615631492566105389005439884112681463635136815452421930829321817807991906499579549992880401/2200957605629680204250723355333606362101718137566983438895386101601736193876069129588414937629324448115",
+          "p_float": 0.019333,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 9
+        },
+        {
+          "contained": true,
+          "head_set": "second_quarter",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "third_quarter",
+          "heads_hit": 81,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 81,
+          "p": "530626354842648996415594552830656847258791/1904479418163259187739495204908860136541555",
+          "p_float": 0.27862,
+          "property": "congruent_one_mod_nine",
+          "size": 81,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 61,
+          "p": "12770352277727799706090859051798127000916537391847739827076836233930763/3030441776367790552434793007798691398673136398235697492003192405054740790451336220",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 61,
+          "p": "14461924138855205547512634097353596460364401711351944822256000561/23320454038057072736560967782189762428617709052866505553524148415802005279489948016",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 61,
+          "p": "11542574147823763636477255559695666776292644700964189599018286195024691527217954701/3483492821934775240023794562464595762774770289771934267057669669610424538623810984890",
+          "p_float": 0.003314,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 61,
+          "p": "217483039302267115448682670959958009034215918491750385118391101796610351688721/66454324603063404578915465499324596089857156297187669094638621389491175813746548019440",
+          "p_float": 0.0,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 61,
+          "p": "16437084352312288000609662823930653443597/102840316365246675420796471980130632040440",
+          "p_float": 0.159831,
+          "property": "congruent_one_mod_twelve",
+          "size": 61,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 10,
+          "p": "2973913357327209/755225628656074441087738",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 10,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 10,
+          "p": "35459270268351388831073/10312736170613982023129112",
+          "p_float": 0.003438,
+          "property": "fibonacci",
+          "size": 14,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 73,
+          "p": "280142329454684613083871606147763210827377893121079691737394780825957015829780860507706926469271/8074506220849888733588445269173731894790079027789985457737153928295061690611223129296338379837767468945",
+          "p_float": 0.0,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 73,
+          "p": "22492271606058700691625628859081629476719615005677900767088326837617549699325893970083915725/4817399879678159339150591879110193673547338744266378286670634839968891267819309884539688285737382194397",
+          "p_float": 0.0,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 73,
+          "p": "42551274935615631492566105389005439884112681463635136815452421930829321817807991906499579549992880401/2200957605629680204250723355333606362101718137566983438895386101601736193876069129588414937629324448115",
+          "p_float": 0.019333,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 73,
+          "p": "47648101825530973725519888844716944790901497954937747211028788932047198612573841084437466100147148/22254126901366766509646202815039797661250705613177276993275570582861999293635810088060639924918724975385",
+          "p_float": 2e-06,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 73,
+          "p": "530626354842648996415594552830656847258791/1904479418163259187739495204908860136541555",
+          "p_float": 0.27862,
+          "property": "palindromic",
+          "size": 81,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 30,
+          "p": "16405378252508670760031945648787/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 30,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 30,
+          "p": "5469499776073691579648583773941803520422285740328072/113558629642981268803717795580738176258588556266966241485",
+          "p_float": 4.8e-05,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 30,
+          "p": "2282157420266461532630245496483281556103/69882233626450011571518643434300416159131419241209994760",
+          "p_float": 0.0,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 30,
+          "p": "11429261657318663400430363300622090408624027/260362164530419232145628100793551008547587668",
+          "p_float": 0.043898,
+          "property": "perfect_power",
+          "size": 35,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 5,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 5,
+          "p": "585851179/1578139207788",
+          "p_float": 0.000371,
+          "property": "power_of_three",
+          "size": 7,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 76,
+          "p": "72738774627896284776078802652601653327350625712764305898272011372940935030914714580633675855930419377508112140689053209448659338983233259888/85537873784505662803869862515987789173223536975093840563807799020981842450969322423997131168021021602731225742697963604268618778228443649322435",
+          "p_float": 0.00085,
+          "property": "prime",
+          "size": 129,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 76,
+          "p": "718530990408668219467432572699115447770789162988606545208275508451430321695382906754262447416520179070257260049291953924758526477790921119/20019502375097070017926989099486503849052317164383664812806080621931920573631118014126988145707047609149861344035693609509676735330061279628655",
+          "p_float": 3.6e-05,
+          "property": "prime",
+          "size": 129,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 76,
+          "p": "43651959750242710553040039504654902331898416642429673352154285026360957532133792239338771470110610/246546083501562634836439666645553305305248902274664330958923640216505759973936553035421606976340897",
+          "p_float": 0.177054,
+          "property": "prime",
+          "size": 129,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 76,
+          "p": "299935823940512762520113453561102765119307289288161529312304120557386907365273103051686686124579263602083384603574138974300495727783708414054/72378200894581714680197575975066590838881454363540942015529676094676943612358657435689880219094710586926421782282892280534985120039452318657445",
+          "p_float": 0.004144,
+          "property": "prime",
+          "size": 129,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 76,
+          "p": "2903971584165641120944784135253171593238404/5121645524828448371869935067056621111444759",
+          "p_float": 0.567,
+          "property": "prime",
+          "size": 129,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 25,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 25,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 25,
+          "p": "61244892320379411848267438333893430230275/12836930281545021728502004288626767424992636141",
+          "p_float": 5e-06,
+          "property": "square",
+          "size": 27,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 25,
+          "p": "2153693963075557766310747/410781769009440695312064137236056557599764356512",
+          "p_float": 0.0,
+          "property": "square",
+          "size": 27,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 25,
+          "p": "2135112700760692276070989312202765712987460241/95612997959093954943325273322185578062014117464",
+          "p_float": 0.022331,
+          "property": "square",
+          "size": 27,
+          "target_size": 3
+        },
+        {
+          "contained": true,
+          "head_set": "cut_after",
+          "heads_hit": 81,
+          "p": "14530010486702018219823068306440816547105932998680816949247061039973260350638421014964362657834382451046489496923765408743010190177148282829297692882036547479065668516097952969650196952813/46794488370674004635029699685866903884309356521710703971784299898615331920173161058023041184188644207407398870230357293809894798106644926013504072453228340024638205760363271974143205624436",
+          "p_float": 0.310507,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 34
+        },
+        {
+          "contained": true,
+          "head_set": "cut_before",
+          "heads_hit": 81,
+          "p": "1852971868208885602451133969626580994384621444031778467917896182265888002882143650851941392046886187273212010185885670740180053287067374897874830586904826498261655602989013072977565575967/9523392637880000943299291332923884231774337127452687209798839942363897338055592444741044459316837859046834182655576877556130301187291289290444862108890133955060504410064680697790476630320",
+          "p_float": 0.194571,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 47
+        },
+        {
+          "contained": true,
+          "head_set": "district_one",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_three",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "district_two",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "first_quarter",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 81,
+          "p": "2943445399393626907027247952539330099692687249230281730731158507524497371089249413677/3983434085695410936718437812004706093082776521415174257329230906218705097479481464582",
+          "p_float": 0.738922,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 9
+        },
+        {
+          "contained": true,
+          "head_set": "second_quarter",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "third_quarter",
+          "heads_hit": 81,
+          "p": "781962488083617808283894208554843334625308073362345474939882078942760481509824009641384700409423846237393893610291233409611133003679739611806796124586622030166644008999022727460001340865/1967470127386197997077216231417242017113819098858357357628771328752101867642254263309138855331390678572312995977196102176431314970561277347916081402715763937968543768233142825477592974176",
+          "p_float": 0.397446,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 27
+        },
+        {
+          "contained": true,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 81,
+          "p": "104521947379216771963094299522695236822/115551385468495855257730521078502991397",
+          "p_float": 0.904549,
+          "property": "sum_of_two_squares",
+          "size": 229,
+          "target_size": 3
+        },
+        {
+          "contained": false,
+          "head_set": "cut_after",
+          "heads_hit": 33,
+          "p": "11071722336800543556917588434787281191/328018705451980164450436300553701981778727311880764433106780",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 34
+        },
+        {
+          "contained": false,
+          "head_set": "cut_before",
+          "heads_hit": 33,
+          "p": "0",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 47
+        },
+        {
+          "contained": false,
+          "head_set": "district_one",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_three",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "district_two",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "first_quarter",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "nine_district_representatives",
+          "heads_hit": 33,
+          "p": "1800058859805465145683456857825091114022353203159938833/23429907532284297460745450039550141555623379420054602364770",
+          "p_float": 7.7e-05,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 9
+        },
+        {
+          "contained": false,
+          "head_set": "second_quarter",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "third_quarter",
+          "heads_hit": 33,
+          "p": "1753914007430585039577466151200216141034535/5046441622338156376160558470056953565826574028934837432412",
+          "p_float": 0.0,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 27
+        },
+        {
+          "contained": false,
+          "head_set": "three_quarter_representatives",
+          "heads_hit": 33,
+          "p": "2178387426398947208587392410447742556641557/43168155137839779134332309850905806510748683",
+          "p_float": 0.050463,
+          "property": "triangular",
+          "size": 37,
+          "target_size": 3
+        }
+      ],
+      "the_declared_families_are_read_from_the_contract": true,
+      "the_observed_count_is_driven_by_evenly_spread_properties": true,
+      "the_uniform_null_under_predicts_for_evenly_spread_properties": true
+    },
+    "S4_post_hoc": {
+      "contained": true,
+      "declared_pairs_at_least_as_unlikely": 90,
+      "declared_pairs_total": 120,
+      "naive_price_first_reported": "1/3240",
+      "naive_price_float": "0.000309",
+      "p": "3133760077447169/308069738356701321",
+      "p_float": "0.010172",
+      "post_hoc_property": "prime_centred_square",
+      "praises": [
+        5,
+        13,
+        41,
+        61,
+        113,
+        181,
+        313,
+        421,
+        613
+      ],
+      "ratio_corrected_over_naive": 32.96,
+      "selected_heads": [
+        1,
+        2,
+        5,
+        7,
+        13,
+        21,
+        35,
+        47,
+        69
+      ],
+      "target": [
+        21,
+        69
+      ],
+      "the_first_price_was_wrong_by_a_factor_of_thirty": true,
+      "the_post_hoc_entry_is_not_one_of_the_declared_pairs": true
+    },
+    "S5_vacuity": {
+      "a_total_relation_has_no_discriminating_power": true,
+      "cycles_of_one_non_zero_displacement": 27,
+      "every_pair_of_distinct_heads_lies_in_a_common_three_cycle": true,
+      "exhausted_pairs": 6480,
+      "ordered_pairs_of_distinct_heads": 6480,
+      "orders_of_the_non_zero_differences": [
+        3
+      ],
+      "pairs_whose_difference_does_not_have_order_dividing_three": 0,
+      "the_order_is_computed_by_repeated_addition": true,
+      "the_same_cycle_relation_is_total": true
+    },
+    "S6_coverage": {
+      "an_earlier_count_of_501_implicitly_allowed_the_trivial_constant": true,
+      "constants": [
+        2,
+        3,
+        9,
+        27,
+        34,
+        40,
+        47,
+        81,
+        306,
+        360,
+        423,
+        729,
+        731
+      ],
+      "coverage_with_one": "518/729",
+      "coverage_with_one_float": 0.7106,
+      "coverage_without_one": "497/729",
+      "coverage_without_one_float": 0.6818,
+      "first_number_expressible_without_one": true,
+      "image_size_with_one": 518,
+      "image_size_without_one": 497,
+      "second_number_expressible_only_with_one": true,
+      "the_count_moved_from_501_to_497_when_that_was_removed": true,
+      "the_criterion_is_about_the_constant_list_not_the_number": true
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 143383791
+}

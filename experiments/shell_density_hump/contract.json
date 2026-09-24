@@ -1,0 +1,59 @@
+{
+  "schema": "adva.research.shell-density-hump-contract.v0",
+  "version": 0,
+  "name": "shell-density-hump",
+  "base_commit": "0d831e73d702e5456ad4248115b5a34507d82236",
+  "frozen_on": "2026-09-22",
+  "authority": "The figure review of the atomic line raised the question (quantum-atom-lab, notes/figure-review-clues-20260922.md, clue 2, and the follow-up recorded as clue 4), and the workspace run out/clue4-shell-hump-criterion.json holds the measurements. This contract authorizes one bounded reconstruction of the criterion and one comparison against those retained measurements, and nothing else.",
+  "question": "For a shell of an atom of charge Z whose radial density D(r) is built from one effective exponent zeta, when does the shell's density exceed Z itself, and which shells can do so at all?",
+  "level": "Analytic reconstruction in double precision: the exact hydrogenic radial functions with an explicitly written Laguerre convention, one closed-form criterion zeta/Z > 1/c, a table of c over the K, L and M occupancy patterns, and a comparison against retained finite-basis Hartree-Fock hump positions and values, with six deliberately broken variants and a rejected measurement channel",
+  "domain": "One shell of an atom of charge Z, its radial density D = 4 pi r^2 rho, the charge-free hydrogenic shape at x = zeta r, the K, L and M occupancy patterns occurring in the workspace, Slater's screening rules applied to the retained shell occupancies, and the twenty-two retained hump rows together with a retained one-row-per-atom scan from H to Ar",
+  "objects": {
+    "shape": "shape_{n,occ}(x) = sum_l N_l x^2 Rt_nl(x)^2, where Rt_nl is the charge-free hydrogenic radial shape, so that R_nl(r) = zeta^{3/2} Rt_nl(zeta r) and D(r) = zeta * shape(zeta r)",
+    "criterion": "D_shell,max > Z if and only if zeta / Z > 1 / c(n, occ), with c = max_x shape and x* = argmax_x shape",
+    "k_shell_closed_forms": "Rt_10(x) = 2 exp(-x) exactly, hence c = 4/e^2 for one 1s electron and c = 8/e^2 for two, and the hump of either sits at x* = 1 exactly",
+    "slater_channel": "zeta from Slater's rules applied to the retained per-shell electron counts; the prediction of the sign of (D_max - Z) uses Z, the occupancies and the closed-form table only, and never D_max",
+    "position_channel": "zeta = x*(pattern) / r*(measured), using only the measured hump position; the hump value forms the answer and never the prediction",
+    "value_channel": "zeta = D_max / c, retained only to be rejected: it makes the criterion the same statement as D_max > Z",
+    "retained_rows": 22,
+    "retained_scan_rows": 18,
+    "occupancy_patterns": 11,
+    "broken_variants": 6
+  },
+  "quantifiers": [
+    "The normalisation integral of every (n, l) shape used, so that the whole c * zeta scaling rests on a checked convention",
+    "Every c and x* in the table, recomputed from the analytic shape rather than read from the recorded run",
+    "Every retained hump row under both live channels, prediction and measured sign recorded side by side",
+    "Every retained row under the value channel, twice, with c perturbed by a relative 1e-3 in the back-solution",
+    "Every broken variant, whose failure must be reported rather than asserted"
+  ],
+  "acceptance": [
+    "The K-shell constants come out as 4/e^2 and 8/e^2 and the K-shell hump at x = 1, so the construction reproduces a case whose answer is known before it is computed",
+    "The pure-Python construction reproduces the recorded numpy run of the same formulas to better than 1e-7 in c, and the observed deviation is reported as the number it is",
+    "Slater's rules plus the closed-form table predict the measured sign of (D_max - Z) for all twenty-two retained rows, with no fitted parameter and without reading D_max",
+    "The hump position alone predicts the same sign for all twenty-two retained rows, so the agreement does not depend on the channel being tautological",
+    "The value channel is shown to be information free: a relative perturbation of 1e-3 in c leaves every one of its forty-four verdicts unchanged",
+    "The M patterns have c below 1 and the retained M rows stay below Z, so at most the K and L shells exceed Z in this model, and the check fails if either the cap or the measurement moves",
+    "(n - 0.30)/Z computed from Slater alone places the first atom with a K-shell hump above Z at Z > 3.9284, and the retained scan places it at Be, whose margin over Z is 1.2e-4 and is reported rather than smoothed",
+    "Each of the six broken variants is detected, and the variant that is invisible at the 1s is required to be caught at the 2s",
+    "The recorded D_max / Z of every retained row agrees with this file's own D_max divided by Z, and a ratio mistyped by 1e-6 is caught, so the transcription check is not two numbers that always agree",
+    "The checker runs under the standard library alone, in one process, with no subprocess"
+  ],
+  "protected": [
+    "This is not a statement about the true density of any real atom: it is a one-exponent-per-shell hydrogenic model compared against a finite-basis Hartree-Fock density at the measured hump",
+    "The retained measurements are not recomputed here. Re-running them needs PySCF, which this checker does not use and cannot use; the rows are evidence carried across, not a second measurement",
+    "The argument that at most two shells can exceed Z is an argument inside this model about which shells CAN, and it says nothing about any consequence of the excess",
+    "x*(L, 2s2 2p2) landing on 3 + sqrt(3) is an observation at a stated tolerance, not a derivation, and it is not used by any other check",
+    "The argmax of a flat maximum is located only to about sqrt(2 * eps) = 2.1e-8 in double precision; that limit is reported, and no check depends on a sharper position",
+    "No native certificate, no Rust witness, no Seal, and no admission to any geometry or chemistry catalog follows from this contract",
+    "This contract does not authorize a claim about correlation, about the true many-electron density, or about any figure beyond the ones the measurements came from"
+  ],
+  "budget": {
+    "wall_seconds": 30,
+    "cpu_seconds": 30,
+    "memory_bytes": 268435456,
+    "max_assertions": 100000,
+    "output_bytes": 4194304
+  },
+  "residual": "This gives the observed excess of a shell density over Z a closed-form criterion, a table of constants computed rather than fitted, two independent live channels that agree with the retained measurements on all twenty-two rows, one rejected channel shown to be incapable of disagreement, and a structural reason why only the K and L shells can exceed Z in this model. What it does not do is measure an atom: the measurements are carried across from a workspace run, the model has one exponent per shell where a real atom does not, and the agreement at the atom boundary is thin. The correct next step, if this line continues, is to replace the single exponent by per-l exponents and see whether the twenty-two agreements survive, because that is the assumption the criterion leans on hardest."
+}

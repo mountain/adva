@@ -1,0 +1,331 @@
+{
+  "assertions": 883,
+  "checker_sha256": "5408ebc340967878f75b253d5edca62d00252b84d88b67c77df8b8eafa179426",
+  "contract_sha256": "2d7a57d6aa55669d63038a3f38d543ddb381839f37592012c906714bb78f1fb2",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 39485440,
+  "schema": "adva.research.coverage-and-crossing-evidence.v0",
+  "sections": {
+    "S1_coverage": {
+      "a_strictly_larger_constant_set_names_strictly_more_praises": true,
+      "constant_pairs_are_ordered": true,
+      "counting_lower_bound": 7,
+      "greedy_constants": [
+        1,
+        12,
+        26,
+        63,
+        76,
+        70,
+        67,
+        83,
+        80,
+        73,
+        88,
+        86,
+        65,
+        75
+      ],
+      "greedy_image_size": 729,
+      "greedy_pool": [
+        1,
+        90
+      ],
+      "greedy_size": 14,
+      "image_is_monotone_in_the_constant_set": true,
+      "image_monotonicity_follows_from_the_definition": true,
+      "interval_checked_up_to": 90,
+      "interval_theorem": "the first n integers reach exactly the first 10n praises while 10n is at most 729, and every praise from n = 73 on",
+      "kmax": 9,
+      "kmax_ladder": {
+        "12": 569,
+        "2": 223,
+        "20": 664,
+        "3": 280,
+        "4": 339,
+        "5": 385,
+        "6": 420,
+        "7": 460,
+        "8": 497,
+        "9": 497
+      },
+      "kmax_ladder_is_monotone": true,
+      "nested_pairs_exhausted": 32,
+      "nested_pairs_strictly_nested": 22,
+      "rows": {
+        "the_prefix_of_eighteen": {
+          "coverage": "20/81",
+          "coverage_float": 0.2469,
+          "expression_count": 5850,
+          "image_size": 180,
+          "size": 18
+        },
+        "the_prefix_of_forty": {
+          "coverage": "400/729",
+          "coverage_float": 0.5487,
+          "expression_count": 28840,
+          "image_size": 400,
+          "size": 40
+        },
+        "the_prefix_of_forty_one": {
+          "coverage": "410/729",
+          "coverage_float": 0.5624,
+          "expression_count": 30299,
+          "image_size": 410,
+          "size": 41
+        },
+        "the_prefix_of_nine": {
+          "coverage": "10/81",
+          "coverage_float": 0.1235,
+          "expression_count": 1467,
+          "image_size": 90,
+          "size": 9
+        },
+        "the_prefix_of_seventy_three": {
+          "coverage": "1",
+          "coverage_float": 1.0,
+          "expression_count": 95995,
+          "image_size": 729,
+          "size": 73
+        },
+        "the_prefix_of_seventy_two": {
+          "coverage": "80/81",
+          "coverage_float": 0.9877,
+          "expression_count": 93384,
+          "image_size": 720,
+          "size": 72
+        },
+        "the_prefix_of_twenty_seven": {
+          "coverage": "10/27",
+          "coverage_float": 0.3704,
+          "expression_count": 13149,
+          "image_size": 270,
+          "size": 27
+        },
+        "the_structural_constants": {
+          "coverage": "319/729",
+          "coverage_float": 0.4376,
+          "expression_count": 1467,
+          "image_size": 319,
+          "size": 9
+        },
+        "the_thirteen_of_0218": {
+          "coverage": "497/729",
+          "coverage_float": 0.6818,
+          "expression_count": 3055,
+          "image_size": 497,
+          "size": 13
+        },
+        "the_thirteen_with_one": {
+          "coverage": "518/729",
+          "coverage_float": 0.7106,
+          "expression_count": 3542,
+          "image_size": 518,
+          "size": 14
+        }
+      },
+      "smallest_covering_set_is_not_decided": true,
+      "the_enumeration_is_counted_for_every_declared_set": true,
+      "the_two_symmetric_forms_are_written_over_ordered_pairs": true
+    },
+    "S2_target": {
+      "a_target_that_is_a_constant_is_named_by_the_bare_form": true,
+      "coverage_is_the_price_of_a_hit": true,
+      "expressions_lost": [
+        "a with a=423",
+        "ka-b with a=423, b=423, k=2"
+      ],
+      "expressions_lost_when_the_target_leaves_the_constants": 2,
+      "expressions_naming_the_target": 7,
+      "expressions_naming_the_target_that_survive": 5,
+      "image_size_once_it_is_not_a_constant": 472,
+      "image_size_with_the_target_as_a_constant": 497,
+      "rows": {
+        "first_number": {
+          "expressions_naming_it": 3,
+          "expressions_naming_it_with_the_cut_constant_removed": 1,
+          "is_a_declared_constant": false,
+          "target": 421
+        },
+        "second_number": {
+          "expressions_naming_it": 0,
+          "expressions_naming_it_with_the_cut_constant_removed": 0,
+          "is_a_declared_constant": false,
+          "target": 613
+        },
+        "the_cut_constant": {
+          "expressions_naming_it": 7,
+          "expressions_naming_it_with_the_cut_constant_removed": 5,
+          "is_a_declared_constant": true,
+          "target": 423
+        }
+      },
+      "the_family_must_exclude_the_target": true
+    },
+    "S3_multiplicity": {
+      "constants": [
+        2,
+        3,
+        9,
+        27,
+        34,
+        40,
+        47,
+        81,
+        306,
+        360,
+        423,
+        729,
+        731
+      ],
+      "coverage_float": 0.6818,
+      "expression_bound": 3055,
+      "histogram_of_multiplicity": {
+        "1": 173,
+        "10": 3,
+        "11": 1,
+        "12": 1,
+        "15": 1,
+        "2": 94,
+        "3": 89,
+        "4": 47,
+        "5": 32,
+        "6": 25,
+        "7": 12,
+        "8": 8,
+        "9": 11
+      },
+      "largest_multiplicity": 15,
+      "multiplicity_is_monotone_in_the_constant_set": true,
+      "multiplicity_of_421": 3,
+      "multiplicity_of_423": 7,
+      "multiplicity_of_613": 0,
+      "multiplicity_of_613_with_one": 1,
+      "praise_of_largest_multiplicity": 54,
+      "praises_reached": 497,
+      "praises_total": 729,
+      "the_price_of_a_hit_is_the_coverage": true,
+      "wider_coverage_float": 0.7106
+    },
+    "S4_crossing": {
+      "closed_form_checked_over": 6400,
+      "closed_form_mismatches": 0,
+      "crossing_at_the_other_side_of_the_boundary": 33,
+      "crossing_equals_the_second_side_at_this_many_cuts": 40,
+      "crossing_is_the_size_of_the_second_side": true,
+      "crossing_the_cut": 34,
+      "cut": 47,
+      "cuts_where_it_holds": [
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80
+      ],
+      "inside_is_the_cut_minus_the_shift": true,
+      "inside_the_first_side": 7,
+      "pairs": 41,
+      "shift": 40,
+      "switch_point": 41,
+      "the_crossing_count_is_an_identity_not_a_finding": true,
+      "the_identity_begins_at": 41,
+      "the_second_side_has": 34
+    },
+    "S5_odometer": {
+      "carry_free_count_is_the_product_of_three_minus_the_digits": true,
+      "difference_patterns": {
+        "1111": 16,
+        "1121": 4,
+        "1211": 4,
+        "1221": 4,
+        "2111": 4,
+        "2121": 1,
+        "2211": 4,
+        "2221": 4
+      },
+      "heads_with_a_constant_difference": [
+        1,
+        2,
+        4,
+        5,
+        10,
+        11,
+        13,
+        14,
+        28,
+        29,
+        31,
+        32,
+        37,
+        38,
+        40,
+        41
+      ],
+      "pairs": 41,
+      "pairs_with_a_constant_coordinate_difference": 16,
+      "reported_constant_difference_count": 13,
+      "reported_pair_count": 35,
+      "shift": 40,
+      "shift_digits": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "the_coordinate_reading_is_not_a_constant_vector": true,
+      "the_recorded_pair_count_is_not_the_computed_one": true
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 1297966666
+}

@@ -1,0 +1,182 @@
+{
+  "assertions": 58,
+  "checker_sha256": "dd70e6bb9f642fb5e57ef7a4cd94e3aeef67722f7804b48310926df4295f1356",
+  "contract_sha256": "261c6e1bc0f1c7fe01827284614a8783f266ef3d90293e2ff276b89f0e68b910",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 59326464,
+  "schema": "adva.research.magic-hypercube-evidence.v0",
+  "sections": {
+    "S1_hypercube": {
+      "cells": 81,
+      "collisions_between_constructed_hypercubes": 0,
+      "condition": "constant coordinate lines hold exactly when every entry is nonzero",
+      "constructed_hypercubes_compared": 22272,
+      "coordinate_lines": 108,
+      "determinant_modulo_three": 2,
+      "distinct_magic_hypercubes": 22272,
+      "each_invertible_zero_free_matrix_gives_its_own_hypercube": true,
+      "every_entry_nonzero": true,
+      "invertible_zero_free_matrices": 22272,
+      "is_a_permutation_of_one_to_eighty_one": true,
+      "line_sum": 123,
+      "line_sum_is_the_hypercube_magic_constant": true,
+      "lines_per_place": 27,
+      "matrix": "J - 2I over Z/3, one off the diagonal and minus one on it",
+      "necessity_family_exhausted": 22440,
+      "necessity_family_members_with_constant_lines": 0,
+      "order": 3,
+      "places": 4,
+      "zero_free_matrices_exhausted": 65536,
+      "zero_free_matrices_with_constant_lines": 65536
+    },
+    "S2_diagonals": {
+      "diagonal_directions": 8,
+      "diagonal_directions_reaching_the_line_sum": 4,
+      "diagonal_sums": [
+        6,
+        12,
+        30,
+        84,
+        123
+      ],
+      "diagonal_sums_by_direction": {
+        "(1, 1, 1, 1)": 123,
+        "(1, 1, 1, 2)": 84,
+        "(1, 1, 2, 1)": 30,
+        "(1, 1, 2, 2)": 123,
+        "(1, 2, 1, 1)": 12,
+        "(1, 2, 1, 2)": 123,
+        "(1, 2, 2, 1)": 123,
+        "(1, 2, 2, 2)": 6
+      },
+      "diagonals_are_constant": false,
+      "shifted_two_place_diagonals": [
+        15,
+        15
+      ],
+      "shifted_two_place_square": [
+        [
+          8,
+          1,
+          6
+        ],
+        [
+          3,
+          5,
+          7
+        ],
+        [
+          4,
+          9,
+          2
+        ]
+      ],
+      "the_declared_construction_is_magic_along_coordinate_lines_only": true,
+      "the_matrix_gives_the_coordinate_lines_and_the_shift_buys_the_diagonals": true,
+      "two_place_coordinate_lines": 6,
+      "two_place_diagonals": [
+        6,
+        18
+      ],
+      "two_place_line_sum": 15,
+      "two_place_rows_and_columns": [
+        [
+          15,
+          15,
+          15
+        ],
+        [
+          15,
+          15,
+          15
+        ]
+      ]
+    },
+    "S3_cut": {
+      "cut": 47,
+      "cut_lies_inside_the_second_place_range": true,
+      "head_after_the_cut": [
+        2,
+        3,
+        1,
+        3
+      ],
+      "head_before_the_cut": [
+        2,
+        3,
+        1,
+        2
+      ],
+      "heads": 81,
+      "places_differing": [
+        3
+      ],
+      "proper_subsets_separating_the_cut": 0,
+      "sides": [
+        47,
+        34
+      ],
+      "subsets_exhausted": 15,
+      "subsets_separating_the_cut": [
+        [
+          0,
+          1,
+          2,
+          3
+        ]
+      ],
+      "the_cut_is_invisible_to_any_proper_subset_of_the_places": true
+    },
+    "S4_proxy_chain": {
+      "above_the_declared_threshold": true,
+      "demoted_to_proxy": 1,
+      "exact": 1,
+      "exact_share": "947/17064",
+      "exact_share_approx": "0.055497",
+      "readings": {
+        "v1_yang_yin": {
+          "counterexamples_in_the_first_place": 6,
+          "reading": "yang heads take one name, yin heads the other",
+          "status": "refuted"
+        },
+        "v2_place": {
+          "note": "the first place is entirely before the cut, the third entirely after, and the second straddles it",
+          "reading": "the first place decides",
+          "status": "demoted to a proxy"
+        },
+        "v3_antithesis": {
+          "counterexamples_among_the_other_side": "9 to 10",
+          "reading": "the head statement sets yin and yang against each other",
+          "status": "refuted"
+        },
+        "v4_position": {
+          "reading": "head index at most forty-seven takes one name, at least forty-eight the other",
+          "status": "exact, contiguous, no exception"
+        }
+      },
+      "readings_recorded": 4,
+      "refuted": 2,
+      "reported_p_value": "0.0555",
+      "reported_p_value_matches": true,
+      "selections_with_at_least_fourteen": 4735,
+      "three_head_selections": 85320
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 49631424083
+}

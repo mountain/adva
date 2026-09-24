@@ -1,0 +1,435 @@
+{
+  "assertions": 1863,
+  "checker_sha256": "e61d16342caa3661fa6c04b35a1b5fbe504b5189abc9a25021dc6faea39b873f",
+  "contract_sha256": "81a44b5e14eb0f5c8cc771f11b42f6a1758fa8a1ad450e4fe15f47e6e10c9fb9",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 100000,
+    "memory_bytes": 536870912,
+    "output_bytes": 2097152,
+    "routes": 1,
+    "wall_seconds": 300
+  },
+  "rss_high_water_bytes": 29016064,
+  "schema": "adva.research.declared-invariance-evidence.v0",
+  "sections": {
+    "S1_two_symmetry_sets": {
+      "alcove_count_closed_form": "1 + 2 n + n (n + 1) (2 n + 1) / 3",
+      "alcove_count_cumulative": [
+        1,
+        5,
+        15,
+        35,
+        69,
+        121,
+        195,
+        295,
+        425,
+        589,
+        791,
+        1035,
+        1325,
+        1665,
+        2059,
+        2511,
+        3025,
+        3605,
+        4255,
+        4979,
+        5781
+      ],
+      "alcove_count_is_cubic": true,
+      "alcove_count_shells": [
+        1,
+        4,
+        10,
+        20,
+        34,
+        52,
+        74,
+        100,
+        130,
+        164,
+        202,
+        244,
+        290,
+        340,
+        394,
+        452,
+        514,
+        580,
+        650,
+        724,
+        802
+      ],
+      "axis_swap_fixed_edges": {
+        "[(0, 1), (2, 3)]": 1,
+        "[(0, 2), (1, 3)]": 1,
+        "[(0, 3), (1, 2)]": 1
+      },
+      "axis_swaps": 3,
+      "axis_swaps_commute_pairwise": true,
+      "closure_is_infinite": true,
+      "closure_is_infinite_reason": "the closure contains a pure translation inside the declared depth: an element whose linear part is the identity and whose translation vector is a nonzero lattice vector, so no positive power of it is the identity",
+      "declared_depth": 20,
+      "edges": 6,
+      "elements_found": 5781,
+      "elements_found_through_length": 20,
+      "face_mirror_coxeter_relations_hold": true,
+      "face_mirrors": 4,
+      "faces_of_the_fundamental_alcove": 4,
+      "finite_part_is_exactly_the_origin_stabiliser": true,
+      "fourth_difference_of_the_cumulative_count": 0,
+      "klein_edge_action_is_free": false,
+      "klein_edge_stabiliser_size": 2,
+      "klein_generates_the_closure": false,
+      "klein_group_order": 4,
+      "klein_is_a_subgroup_of_the_finite_part": true,
+      "klein_orbit_sizes": [
+        2,
+        2,
+        2
+      ],
+      "klein_orbits_on_edges": [
+        [
+          [
+            0,
+            1
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            2
+          ],
+          [
+            1,
+            3
+          ]
+        ],
+        [
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ]
+        ]
+      ],
+      "origin_stabiliser_length_profile": [
+        1,
+        3,
+        5,
+        6,
+        5,
+        3,
+        1
+      ],
+      "origin_stabiliser_order": 24,
+      "perfect_matchings": 3,
+      "pure_translation_has_no_power_equal_to_the_identity": true,
+      "pure_translation_powers_are_the_translations_by_the_multiples": true,
+      "pure_translation_powers_checked": 12,
+      "pure_translation_witness_coxeter_length": 6,
+      "pure_translation_witness_vector": [
+        -1,
+        0,
+        0,
+        1
+      ],
+      "pure_translations_within_the_declared_depth": 248,
+      "second_difference_of_the_shell_count": 4,
+      "shell_count_closed_form": "2 n^2 + 2 for n >= 1",
+      "shell_count_closed_form_verified_through": 20,
+      "vertices": 4
+    },
+    "S2_rank_one_collapse": {
+      "assignment_optimum_is_margin_determined": true,
+      "assignment_reading_threshold_on_the_grid": "0",
+      "chance_share": "1/5",
+      "column_weights": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "declared_matrix_is_rank_one": true,
+      "distinct_row_argmax_columns": 1,
+      "grid_points": 10,
+      "grid_readings": [
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "0"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "1/10"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [
+            3
+          ],
+          "t": "1/4"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "1/2"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "1"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "2"
+        },
+        {
+          "every_row_argmax_contains_its_column": false,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "3"
+        },
+        {
+          "every_row_argmax_contains_its_column": true,
+          "every_row_uniquely_recovers_its_column": false,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [
+            0
+          ],
+          "t": "4"
+        },
+        {
+          "every_row_argmax_contains_its_column": true,
+          "every_row_uniquely_recovers_its_column": true,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "5"
+        },
+        {
+          "every_row_argmax_contains_its_column": true,
+          "every_row_uniquely_recovers_its_column": true,
+          "identity_is_the_unique_assignment_optimum": true,
+          "rows_tied_with_an_earlier_column": [],
+          "t": "10"
+        }
+      ],
+      "per_row_threshold_closed_form": [
+        "4",
+        "3/2",
+        "2/3",
+        "1/4",
+        "-1/5"
+      ],
+      "permutations_checked_per_grid_point": 120,
+      "rank_one_diagonal_share": "11/45",
+      "rank_one_excess_over_chance": "2/45",
+      "rank_one_row_specific_information": 0,
+      "rank_one_sweep_matrices_checked": 1701,
+      "row_reading_threshold_on_the_grid": "5",
+      "row_weights": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "sorted_weights_make_the_identity_the_unique_optimum": true,
+      "the_one_argmax_column": 4,
+      "the_two_readings_disagree": true,
+      "unsorted_weights_do_not_make_the_identity_an_optimum": true
+    },
+    "S3_exact_null": {
+      "chain": {
+        "mass_strictly_below_observed": "0",
+        "mean": "1",
+        "observed": 0,
+        "permutations": 120,
+        "support_max": 4,
+        "support_min": 0,
+        "variance": "2"
+      },
+      "distinct_marginal_pairs": 4,
+      "exhausted_permutations_total": 1608,
+      "families": 5,
+      "four_edge_law": {
+        "mass_strictly_below_observed": "5/6",
+        "mean": "7/6",
+        "observed": 3,
+        "permutations": 24,
+        "support_max": 3,
+        "support_min": 0,
+        "variance": "53/36"
+      },
+      "null_law_depends_only_on_the_two_margins": true,
+      "null_law_margin_class_sweep": {
+        "distinct_margin_classes_across_the_slices": 1596,
+        "families_exhausted": 5215,
+        "index_permutations_they_stand_for": 2397755,
+        "margin_classes_per_slice_summed": 1736,
+        "max_edges": 6,
+        "per_slice": {
+          "2_vertices_0_edges": {
+            "families": 1,
+            "margin_classes": 1
+          },
+          "2_vertices_1_edges": {
+            "families": 4,
+            "margin_classes": 4
+          },
+          "2_vertices_2_edges": {
+            "families": 10,
+            "margin_classes": 9
+          },
+          "2_vertices_3_edges": {
+            "families": 20,
+            "margin_classes": 16
+          },
+          "2_vertices_4_edges": {
+            "families": 35,
+            "margin_classes": 25
+          },
+          "2_vertices_5_edges": {
+            "families": 56,
+            "margin_classes": 36
+          },
+          "2_vertices_6_edges": {
+            "families": 84,
+            "margin_classes": 49
+          },
+          "3_vertices_0_edges": {
+            "families": 1,
+            "margin_classes": 1
+          },
+          "3_vertices_1_edges": {
+            "families": 9,
+            "margin_classes": 9
+          },
+          "3_vertices_2_edges": {
+            "families": 45,
+            "margin_classes": 36
+          },
+          "3_vertices_3_edges": {
+            "families": 165,
+            "margin_classes": 100
+          },
+          "3_vertices_4_edges": {
+            "families": 495,
+            "margin_classes": 225
+          },
+          "3_vertices_5_edges": {
+            "families": 1287,
+            "margin_classes": 441
+          },
+          "3_vertices_6_edges": {
+            "families": 3003,
+            "margin_classes": 784
+          }
+        },
+        "recipient_arrangements_enumerated": 138401,
+        "self_loops_admitted": true,
+        "vertices": [
+          2,
+          3
+        ],
+        "violations": 0,
+        "within_class_law_comparisons": 3479
+      },
+      "null_law_margin_class_sweep_violations": 0,
+      "permutation_counts": {
+        "4": 24,
+        "5": 120,
+        "6": 720
+      },
+      "same_margins_different_observed": {
+        "exact_null_law_identical": true,
+        "exact_null_mean": "14/5",
+        "exact_null_mean_as_a_share_of_six_edges": "7/15",
+        "null_mass_at_a_fully_reciprocal_network": "4/45",
+        "null_mass_at_or_above_six": "4/45",
+        "observed_reciprocity": [
+          6,
+          0
+        ],
+        "one_sided_p_value_for_the_fully_reciprocal_network": "4/45",
+        "support": [
+          0,
+          6
+        ]
+      },
+      "squared_overlap_guess": [
+        {
+          "exact_null_mean": "14/5",
+          "m": 6,
+          "overlap": "1/3",
+          "ratio": "21/5",
+          "squared_overlap_times_m": "2/3"
+        },
+        {
+          "exact_null_mean": "14/5",
+          "m": 6,
+          "overlap": "1/3",
+          "ratio": "21/5",
+          "squared_overlap_times_m": "2/3"
+        },
+        {
+          "exact_null_mean": "1",
+          "m": 5,
+          "overlap": "1/5",
+          "ratio": "5",
+          "squared_overlap_times_m": "1/5"
+        },
+        {
+          "exact_null_mean": "7/6",
+          "m": 4,
+          "overlap": "3/8",
+          "ratio": "56/27",
+          "squared_overlap_times_m": "9/16"
+        },
+        {
+          "exact_null_mean": "7/6",
+          "m": 4,
+          "overlap": "3/8",
+          "ratio": "56/27",
+          "squared_overlap_times_m": "9/16"
+        }
+      ],
+      "squared_overlap_guess_is_the_exact_mean": false
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 299239125
+}

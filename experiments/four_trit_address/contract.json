@@ -1,0 +1,112 @@
+{
+  "schema": "adva.research.four-trit-address-contract.v0",
+  "base_commit": "79f6353511d736ae743b109f1c573b652eff170a",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "input_document": "docs/research/0214-what-a-four-trit-address-carries-and-no-shift-pairs-it.md",
+  "question": "On a four-place ternary address space of eighty-one heads, can a pairing be a coordinate shift, and what does the arithmetic force about any pairing at all? How much of the sixty-four binary configurations can four ternary places carry, placewise and coordinate-wise, and does an injection exist? If a transmitted head order is the coordinate order, what carry profile does that order have? Can a similarity measure test an opposition relation, and can a passage-level count see a structure carried in section titles?",
+  "level": "External exact finite group theory over Z3 and F2, exact combinatorics of the two interfaces, and exact rational arithmetic; every statement decided by exhaustion or by an exact bound; no corpus is opened, no corpus count is imported or recomputed, and every acceptance test compares integers or exact rationals",
+  "sources": [
+    "The head names, the difference histogram and the two short quotations the input document carries are taken from the project author's own external record, https://github.com/mountain/wenyan-relation-learning, whose git repository is public; they are carried from commit 91f0107 of that record, which reports them from the transcribed classical text at data/corpus/works/太玄經.json. That file records its source site as zh.wikisource.org and its own licence note: the underlying classical works are public domain by age, and what is taken from Wikisource is its transcription, namely the choice of recension, the modern punctuation, the paragraphing and the character forms, with attribution recorded per section.",
+    "Nothing from that record is opened, read, executed or recomputed by this experiment. The head names and the histogram are declared numbers here, and the only text this contract carries is the six head names and the two tetragram glosses.",
+    "The two sentences the input document quotes verbatim are from commit 91f0107 of that record, which is also where the head symbols, the address table, the difference histogram and the two named pairs come from; the record's head was cfb6e4dc18425312447b01efd75b646d2ab1473e when it was read."
+  ],
+  "domain": "The four-place ternary address space of eighty-one heads with its eighty nonzero shifts; the six-place binary space of sixty-four words; the carry profiles of the ternary and binary odometers; a declared population of three thousand two hundred forty pairs and one hundred twenty-six extracted pairs; a declared similarity witness of two pairs; and four declared documents",
+  "objects": {
+    "ternary_places": 4,
+    "radix": 3,
+    "heads": 81,
+    "binary_places": 6,
+    "binary_words": 64,
+    "reported_pair_counts": {"cross_sentence": 69, "sentence_internal": 35,
+                             "section_seven_resolving": 126, "section_seven_consecutive": 131,
+                             "deduplicated": 133},
+    "dominant_differences": [[2, 2, 2, 0], [1, 1, 1, 1]],
+    "declared_addresses": {"釋": [1, 3, 1, 3], "窮": [3, 2, 2, 3], "毅": [2, 1, 1, 3],
+                           "積": [3, 1, 2, 3]},
+    "declared_head_symbols": {
+      "comment": "The six heads the external record exhibits, declared with the head number, the name it gives, the Unicode tetragram gloss at that number, and the address the record reports. The checker recomputes the address index and the tetragram codepoint, and checks the declared gloss against the character name; the rendering of the gloss as a Chinese head name is a declared gloss and is not computed.",
+      "heads": [
+        {"head": 1, "name": "中", "tetragram_gloss": "CENTRE", "address": [1, 1, 1, 1]},
+        {"head": 2, "name": "周", "tetragram_gloss": "FULL CIRCLE", "address": [1, 1, 1, 2]},
+        {"head": 3, "name": "礥", "tetragram_gloss": "MIRED", "address": [1, 1, 1, 3]},
+        {"head": 4, "name": "閑", "tetragram_gloss": "BARRIER", "address": [1, 1, 2, 1]},
+        {"head": 27, "name": "事", "tetragram_gloss": "DUTIES", "address": [1, 3, 3, 3]},
+        {"head": 28, "name": "更", "tetragram_gloss": "CHANGE", "address": [2, 1, 1, 1]}
+      ],
+      "symbol_base": "U+1D306"
+    },
+    "difference_histogram": {
+      "comment": "The six boxes of the reported difference histogram over Z3^4 with their multiplicities, and the two named pairs the record gives. A named pair's difference is taken as the later-named address minus the earlier-named one, modulo three, and is recomputed from declared_addresses rather than restated.",
+      "boxes": [{"difference": [2, 2, 2, 0], "pairs": 24},
+                {"difference": [1, 1, 1, 1], "pairs": 13},
+                {"difference": [1, 2, 2, 1], "pairs": 6},
+                {"difference": [2, 1, 2, 0], "pairs": 6},
+                {"difference": [1, 2, 2, 0], "pairs": 6},
+                {"difference": [2, 2, 2, 1], "pairs": 5}],
+      "named_pairs": [{"first": "窮", "second": "毅", "difference": [2, 2, 2, 0]},
+                      {"first": "釋", "second": "積", "difference": [2, 1, 1, 0]}]
+    },
+    "similarity_witness": {
+      "comment": "A declared instance of the measure the external record used: the Jaccard ratio of two declared attribute sets. One pair is declared opposite and one unrelated, so the arithmetic shows what a low score is consistent with. This is a declared instance and not a measurement of any text.",
+      "measure": "the size of the intersection over the size of the union of the two attribute sets",
+      "pairs": [
+        {"relation": "opposite", "left": ["a", "b", "c"], "right": ["c", "d"]},
+        {"relation": "unrelated", "left": ["e", "f", "g", "h", "i", "j"],
+         "right": ["g", "h", "k", "l"]}
+      ]
+    },
+    "extracted_pairs": 126,
+    "mean_percentile": "442/1000",
+    "pair_population": 3240,
+    "documents": [{"section_titles": 12, "passages": 60, "restatements": 0,
+                   "restating_passage_indices": []},
+                  {"section_titles": 0, "passages": 60, "restatements": 12,
+                   "restating_passage_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}],
+    "counting_unit_controls": [
+      {"comment": "the same restating passages as the first declared document and no titles",
+       "section_titles": 0, "passages": 60, "restating_passage_indices": []},
+      {"comment": "the same restating passages as the second declared document with twelve titles",
+       "section_titles": 12, "passages": 60,
+       "restating_passage_indices": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]}
+    ]
+  },
+  "quantifiers": [
+    "All eighty-one elements and all eighty shifts of the ternary address space for the order, orbit and involution tests",
+    "All sixty-four elements and shifts of the binary space for the contrasting involution test",
+    "Every allocation of six binary places to four ternary places, in both directions, for the capacity bounds",
+    "Every step of the four-place ternary odometer and of the six-place binary odometer for the carry profiles",
+    "Three thousand two hundred forty pairs for the percentile population and one hundred twenty-six for the extracted set"
+  ],
+  "grammar": [
+    "finite group arithmetic in Z3 and F2 by exhaustion, with the order of every shift computed",
+    "exact integer optimisation over the allocations of binary places to ternary places",
+    "exact rational arithmetic over Fraction",
+    "declared injections between finite sets, checked for injectivity"
+  ],
+  "acceptance": [
+    "In the four-place ternary address space exactly one shift is an involution, namely the identity; every one of the eighty nonzero shifts has order three, is fixed-point-free, and decomposes the space into twenty-seven three-cycles",
+    "Twice a nonzero ternary shift never vanishes, while twice every binary shift vanishes; hence no nonzero shift of the ternary address can be a pairing and every binary shift is one",
+    "A pairing of eighty-one heads has at most forty pairs and an odd number of fixed points, hence at least one; four of the five reported pair counts exceed forty",
+    "The two dominant differences both have order three, so neither can be the difference of a shift that pairs anything",
+    "Reading eighty-one heads into sixty-four binary words cannot be injective, and the counting bound on the largest fibre is two, while a placewise reading has largest fibre at least four whatever the allocation of bits",
+    "A coordinate-wise reading of the sixty-four binary words into four ternary places reaches at most thirty-six of the eighty-one heads, and the same reading with one bit per place reaches sixteen; an unconstrained injection reaches all sixty-four and is not coordinate-wise",
+    "The six-place ternary address carries all sixty-four binary words on its zero-one subcube, so the four head places carry sixteen placewise and the six places carry sixty-four",
+    "The four-place ternary odometer changes one place in fifty-four of its eighty-one steps, two in eighteen, three in six and four in three, and the closed form matches the exhaustion; the six-place binary odometer changes one place in thirty-two of sixty-four",
+    "Four declared step relations give four different single-place shares: one, one half, two thirds and three quarters",
+    "The mean percentile of the extracted pairs is twenty-nine five-hundredths below the median, which is under 2.26 independent-pair standard errors, and the pairs are not disjoint because a head appears twenty-eight ninths times on average",
+    "A passage-level count of a title-level structure is independent of the number of titles, so a document with twelve titles and no restatements counts zero while a document with no titles and twelve restatements counts twelve"
+  ],
+  "protected": [
+    "No classical text, edition, transcription, commentary, name table, symbol table or annotation is imported, and no corpus count from any external repository is imported or recomputed here",
+    "The addresses, coordinates and counts used are declared numbers in this contract; they are checked for arithmetic consistency and are not re-measured",
+    "No claim about what any classical chapter means, and no claim that the pairing it describes is arbitrary: what is established is that a pairing cannot be a coordinate shift, and that a reported pair count exceeds the disjoint bound",
+    "No claim that the transmitted order of any text has been collated or verified here; the carry profile is offered as a fingerprint a collated order could be tested against, not as a result about a text",
+    "No claim that the two interfaces correspond in meaning, or that any correspondence between them exists; the statements are capacity statements about how many words can be carried placewise and coordinate-wise",
+    "No statistical significance claim about the percentile comparison, and no claim that a similarity measure is invalid in general: the statement is that it cannot separate opposition from unrelatedness",
+    "No claim that the counting-unit argument measures any document; the two documents are declared",
+    "No floating-point value enters any acceptance test",
+    "No native Rust witness, no claim promotion beyond bounded-external-experiment, no Seal, no library admission"
+  ],
+  "budget": {"routes": 1, "wall_seconds": 300, "cpu_seconds": 600, "memory_bytes": 536870912, "max_assertions": 100000, "output_bytes": 2097152, "correction_replays": 1},
+  "residual": "What is established is a set of exact statements about declared finite objects: that a four-place ternary address admits no nonzero shift as a pairing and that the reason is the characteristic; that a pairing of eighty-one elements is bounded at forty pairs with a fixed point, which several reported counts exceed; that four ternary places carry at most thirty-six of the sixty-four binary words coordinate-wise and sixteen with one bit per place, while six places carry all sixty-four; that a coordinate order has an exact carry profile and that four declared step relations give four different single-place shares; and two arithmetic statements about measurement, one that a similarity statistic cannot test an opposition and one that a passage-level count is blind to a title-level structure. Nothing here decides any question about a text or a tradition. In particular the pairing that the arithmetic rules out is a pairing by coordinate shift only; some other involution on the address space is not excluded and is not constructed here. The carry profile is a fingerprint and not a collation: whether any transmitted order matches it is not checked. The capacity bounds bound a placewise or coordinate-wise reading, and no claim is made that such a reading is what any correspondence intends. The percentile comparison is made under an independence assumption that the arithmetic itself shows to be false, which is why no significance is claimed. No source table, symbol sequence or chapter text is reproduced."
+}
