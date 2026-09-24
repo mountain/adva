@@ -1,0 +1,126 @@
+{
+  "schema": "adva.research.yi-taixuan-weishi-failed-intake.v1",
+  "exchange_id": "yi-taixuan-weishi-2026-09-24-v1",
+  "outcome": "NotAdmittedForUse",
+  "native_transport_observations": [
+    {
+      "attempt": "send-1",
+      "exit_code": 0,
+      "observation": {
+        "action": "send",
+        "attempt": "send-1",
+        "bytes_read": 131959,
+        "contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "envelope_blake3": "8cb9653a0c4bd4305a710d7f3bde07de4a83d8c7c8ade28c91db9e1f0fe23c7b",
+        "exchange_id": "yi-taixuan-weishi-2026-09-24-v1",
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "send"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receiver_observation": "Unknown",
+        "status": "Sent",
+        "supplied_contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "wall_seconds": 0.007455813
+      }
+    },
+    {
+      "attempt": "receive-1",
+      "exit_code": 0,
+      "observation": {
+        "acceptance_effects": 1,
+        "action": "receive",
+        "attempt": "receive-1",
+        "bytes_read": 555634,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "receive",
+          "check-integrity-and-contract",
+          "record-staging-started",
+          "accept-documentary-reference"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "f437397c84a32bc36331f0a1c775e2753316eaea705764ace8940ba3cc4a1370",
+        "status": "AcceptedDocumentary",
+        "supplied_contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "wall_seconds": 0.040786525
+      }
+    },
+    {
+      "attempt": "replay-1",
+      "exit_code": 0,
+      "observation": {
+        "acceptance_effects": 0,
+        "action": "receive",
+        "attempt": "replay-1",
+        "bytes_read": 555634,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "receive",
+          "check-integrity-and-contract",
+          "prior-acceptance-rechecked"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "f437397c84a32bc36331f0a1c775e2753316eaea705764ace8940ba3cc4a1370",
+        "status": "AlreadyAccepted",
+        "supplied_contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "wall_seconds": 0.01654582
+      }
+    },
+    {
+      "attempt": "ack-1",
+      "exit_code": 0,
+      "observation": {
+        "action": "acknowledge",
+        "attempt": "ack-1",
+        "bytes_read": 436253,
+        "contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "envelope_blake3": "8cb9653a0c4bd4305a710d7f3bde07de4a83d8c7c8ade28c91db9e1f0fe23c7b",
+        "exchange_id": "yi-taixuan-weishi-2026-09-24-v1",
+        "native_admission": "NotGranted",
+        "new_acceptance_effects": 0,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "sent-presentation-read",
+          "check-integrity-and-contract",
+          "reply-observed",
+          "acknowledge"
+        ],
+        "observed_receiver_status": "AcceptedDocumentary",
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "f437397c84a32bc36331f0a1c775e2753316eaea705764ace8940ba3cc4a1370",
+        "schema": "adva.communication.acknowledgment.v1",
+        "semantic_verification": "NotRun",
+        "status": "Acknowledged",
+        "supplied_contract_blake3": "552e3b20e79d83d6c34536e547f4416913626b843033608e014dd3888b81071e",
+        "wall_seconds": 0.013391302
+      }
+    }
+  ],
+  "post_arrival": {
+    "status": "Rejected",
+    "reason": "post-arrival result differs from retained source result",
+    "counted_nodes": 47187
+  },
+  "source_revision_claim": "1ecd29b47d216b4e1c482d61a1c3e68252f8a07b",
+  "source_revision_claim_valid_for_packet": false,
+  "causes": [
+    "The fresh clone had no Git author identity; the source commit failed. The initial shell sequence nevertheless started the sender.",
+    "The native documentary profile checks retained source coordinates and hashes but does not verify the claimed Git revision against a tree.",
+    "The external result comparison had Python tuples where the decoded JSON had lists."
+  ],
+  "correction": [
+    "Explicit temporary Git author settings copied from the authorized account identity; stop on commit failure.",
+    "Supervisor checks every source member and catalog against git show HEAD:path before any native send.",
+    "Compare external results after conversion to the JSON value domain.",
+    "Use a new exchange ID with a revised finite plan. Never overwrite the original receipt."
+  ],
+  "retained_failed_receipt_sha256": "70de433d0a8cf9cfe60da2793d6ffa548c1d43cde99d5ce29ed398a46f85cb75",
+  "retained_failed_postcheck_sha256": "65bd758a885d2d24aaeb917189f0f18dacfc8a30cc7167667ba39f5887e41ef7",
+  "private_retention": "Complete original received directory, source material bytes, envelope and raw observations retained in the private failed-delivery-v1 evidence directory. This documentary report is not a new receiving event.",
+  "authorship": "Codex (OpenAI), Unknown v0.3; account proxy is not review or endorsement."
+}

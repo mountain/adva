@@ -1,0 +1,123 @@
+{
+  "schema": "adva.research.yi-taixuan-weishi-integration.v1",
+  "source_revision": "fabfdb2554599d97daf0c3b0a587e47f1ac2498d",
+  "source_tree_preflight": "Every transported source member and catalog matched git show of the source revision before send.",
+  "claims": 72,
+  "sources": 49,
+  "corrections": 16,
+  "freshly_reconstructed_claims": 44,
+  "existing_bounded_evidence_claims": 28,
+  "external_exact_sections": 11,
+  "counted_nodes_per_normal_run": 47187,
+  "source_post_arrival_bytes_identical": true,
+  "post_arrival_sha256": "3f0947cb9e9711fe63e2ad5e8e8ee9c863bc2e62a073cdf17e478fc705d117ec",
+  "targeted_regressions": {
+    "command": [
+      ".venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/python/test_six_place_interface.py",
+      "tests/python/test_declared_invariance.py",
+      "tests/python/test_gain_and_coverage.py",
+      "tests/python/test_four_trit_address.py",
+      "tests/python/test_eighty_one_magic_square.py",
+      "tests/python/test_magic_hypercube.py",
+      "tests/python/test_address_and_scale.py",
+      "tests/python/test_preregistered_sweep.py",
+      "tests/python/test_definability_spectrum.py"
+    ],
+    "observed_summary": "127 passed in 548.72s (0:09:08)",
+    "exit_code": 0,
+    "runtime": "Python 3.11.15",
+    "tests": [
+      {
+        "path": "tests/python/test_six_place_interface.py",
+        "sha256": "b0f582063c8840e3159a23ebc14527217c134d725fd155c970b3b3eccd8597c1"
+      },
+      {
+        "path": "tests/python/test_declared_invariance.py",
+        "sha256": "24f51adaf4bbc500bcec3f2a7e82d19d8c2d28131e24166461b305314eb5f94f"
+      },
+      {
+        "path": "tests/python/test_gain_and_coverage.py",
+        "sha256": "fdd5c004b29a4de16b36881fd548793accbc7c306f54b3d2e358996b652de534"
+      },
+      {
+        "path": "tests/python/test_four_trit_address.py",
+        "sha256": "25fdc94d74765783314c25413790ddddde37620309e6db734c6dc527a0c8cb97"
+      },
+      {
+        "path": "tests/python/test_eighty_one_magic_square.py",
+        "sha256": "eabf124b93da4e3ab0b0164782743f84ee927f24f52e7beba0b79af9d578a40a"
+      },
+      {
+        "path": "tests/python/test_magic_hypercube.py",
+        "sha256": "464eb6d97e2c520f3fd829d65189224e1dd04c6b0a5a33382c9406f4421128fd"
+      },
+      {
+        "path": "tests/python/test_address_and_scale.py",
+        "sha256": "8a3812a596b9fdfd63d0b6edd1b100adad7e3ee75eba0a1a1d2bd54ee1b62514"
+      },
+      {
+        "path": "tests/python/test_preregistered_sweep.py",
+        "sha256": "2e51446027203f2ada0f53bb7ef5e0cc9169fc17ef068bc1d01707b37f88720a"
+      },
+      {
+        "path": "tests/python/test_definability_spectrum.py",
+        "sha256": "a867444a846dc889e984d3791fa33959c2f50aa7e03d63e04d99e32970dca80d"
+      }
+    ],
+    "scope": "Existing nine experiment modules; full historical suite not run."
+  },
+  "new_checker_controls": {
+    "controls": [
+      {
+        "control": "changed-claims",
+        "exit_code": 2,
+        "status": "Rejected",
+        "reason": "received bytes differ from source-run evidence"
+      },
+      {
+        "control": "missing-sources",
+        "exit_code": 3,
+        "status": "Unknown",
+        "reason": "[Errno 2] No such file or directory: '/home/ubuntu/research-inputs/yi-taixuan-weishi-import-20260924/controls-v3/missing-sources/sources.json'"
+      },
+      {
+        "control": "existing-output",
+        "exit_code": 2,
+        "status": "Rejected",
+        "unchanged_sha256": "3f0947cb9e9711fe63e2ad5e8e8ee9c863bc2e62a073cdf17e478fc705d117ec"
+      }
+    ],
+    "automatic_retries": 0
+  },
+  "machine": {
+    "revision": "df8b29ae58262e738ee03600965658c07a59d02a",
+    "build_command": "cargo build --locked --release -p adva-witness --bin adva",
+    "fresh_build_exit_code": 0,
+    "binary_sha256": "b105331d7a6d7b3fe51d85b71961750f070ccae672a0181b039569028a43374a",
+    "cargo": "cargo 1.97.1 (c980f4866 2026-06-30)",
+    "rustc": "rustc 1.97.1 (8bab26f4f 2026-07-14)"
+  },
+  "failed_attempts": "failed-intake.json and engineering-review.json retain the failures and correction boundaries; no failed attempt is relabeled as success.",
+  "publication_boundary": {
+    "original_working_clone": "History scan rejected legacy local refs containing withdrawn objects. No old refs were deleted or rewritten.",
+    "publication_clone": "Fresh single-branch no-tags clone of remote main; source-stage full check passed. Exact final-stage check runs before final commit/upload."
+  },
+  "unchanged": [
+    "native semantic authority",
+    "dependencies/adva-machine.lock.json",
+    "adva-library gitlink and math catalog",
+    "paused lorentzian_frame_reading_v1 work"
+  ],
+  "native_proof_admission": "NotGranted",
+  "authorship": "Codex (OpenAI), Unknown v0.3, through Mingli Yuan as authorized account proxy; not his authorship, review or endorsement.",
+  "documentary_erratum": {
+    "run_plan_field": "post_arrival",
+    "recorded_label": "v2",
+    "actual_material_contract_schema": "adva.research.yi-taixuan-weishi-check-contract.v3",
+    "reason": "The descriptive plan string retained its earlier label. The exact member byte pins bound the v3 contract before send; actual execution used those received bytes. Preserve the original plan and correct this label here. No change to executed scope, limits or outcome."
+  }
+}

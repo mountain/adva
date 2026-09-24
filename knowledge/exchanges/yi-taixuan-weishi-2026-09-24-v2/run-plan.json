@@ -1,0 +1,45 @@
+{
+  "schema": "adva.communication.local-run-plan.v1",
+  "exchange_id": "yi-taixuan-weishi-2026-09-24-v2",
+  "source_revision": "fabfdb2554599d97daf0c3b0a587e47f1ac2498d",
+  "contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+  "machine_repository": "https://github.com/mountain/adva-machine",
+  "machine_revision": "df8b29ae58262e738ee03600965658c07a59d02a",
+  "binary_sha256": "b105331d7a6d7b3fe51d85b71961750f070ccae672a0181b039569028a43374a",
+  "binary_origin": "Fresh --locked release build at the fixed machine commit; matches the earlier documentary profile binary digest.",
+  "invocations": [
+    {
+      "attempt": "send-1",
+      "action": "send"
+    },
+    {
+      "attempt": "receive-1",
+      "action": "receive"
+    },
+    {
+      "attempt": "replay-1",
+      "action": "receive"
+    },
+    {
+      "attempt": "ack-1",
+      "action": "acknowledge"
+    }
+  ],
+  "maximum_invocations": 4,
+  "maximum_aggregate_read_bytes": 33554432,
+  "cooperative_seconds_each": 5,
+  "supervisor_timeout_seconds_each": 30,
+  "automatic_retries": 0,
+  "on_failure": "Stop, retain observations and partial state; no reset.",
+  "post_arrival": "One Python run of received check.py under its own v2 contract, with source evidence as expected pins.",
+  "native_admission": "NotGranted",
+  "source_retirement": "NotPermitted",
+  "authorship": "Codex (OpenAI), Unknown v0.3, through Mingli Yuan as authorized account proxy; not his review.",
+  "predecessor": {
+    "exchange_id": "yi-taixuan-weishi-2026-09-24-v1",
+    "native_invocations_spent": 4,
+    "outcome": "NotAdmittedForUse",
+    "record": "failed-intake.json"
+  },
+  "total_native_invocations_including_predecessor": 8
+}

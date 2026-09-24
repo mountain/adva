@@ -1,0 +1,15 @@
+{
+  "predecessor": {
+    "check.py": "77f80b3417cd7f3f522fd8beea2fc3692283343e6b51c29c8e0eb1910729a2c6",
+    "contract.json": "af93aeda5f4650062a4e49a14f77ef21525547357e6f7ec90a8925ba3a777096",
+    "evidence.json": "7575a219fa818bf6e936139a6a5783178deb980c6a22ce7c7ad90fffd33ae45c"
+  },
+  "found_before_post_arrival_execution": "JSON integer/string key mismatch in translation-order histogram",
+  "fix": "Use string keys in the external result before comparison and serialization",
+  "mathematical_scope_changed": false,
+  "build_setup": [
+    "The pre-existing test environment lacked blake3.",
+    "System Python 3.14 lacked ensurepip.",
+    "A separate Python 3.11 environment installed blake3==1.0.9; no repository dependency lock changed."
+  ]
+}

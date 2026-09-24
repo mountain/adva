@@ -1,0 +1,113 @@
+{
+  "schema": "adva.research.yi-taixuan-weishi-transport-result.v1",
+  "source_revision": "fabfdb2554599d97daf0c3b0a587e47f1ac2498d",
+  "contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+  "observations": [
+    {
+      "attempt": "send-1",
+      "action": "send",
+      "exit_code": 0,
+      "supervisor_elapsed_seconds": 0.012162376999185653,
+      "observation": {
+        "action": "send",
+        "attempt": "send-1",
+        "bytes_read": 132030,
+        "contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "envelope_blake3": "00d649791a5d0ff15353ce2b35d62ecc9b5e10561e6ea8b91c13f1eef6272ec0",
+        "exchange_id": "yi-taixuan-weishi-2026-09-24-v2",
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "send"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receiver_observation": "Unknown",
+        "status": "Sent",
+        "supplied_contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "wall_seconds": 0.009886777
+      }
+    },
+    {
+      "attempt": "receive-1",
+      "action": "receive",
+      "exit_code": 0,
+      "supervisor_elapsed_seconds": 0.05584129500130075,
+      "observation": {
+        "acceptance_effects": 1,
+        "action": "receive",
+        "attempt": "receive-1",
+        "bytes_read": 555983,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "receive",
+          "check-integrity-and-contract",
+          "record-staging-started",
+          "accept-documentary-reference"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "64f1a4bd8084c2f4773b2f923629f97ecadaf25588d5861cfd9bc9b3473eae7a",
+        "status": "AcceptedDocumentary",
+        "supplied_contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "wall_seconds": 0.05325597
+      }
+    },
+    {
+      "attempt": "replay-1",
+      "action": "receive",
+      "exit_code": 0,
+      "supervisor_elapsed_seconds": 0.01800170700153103,
+      "observation": {
+        "acceptance_effects": 0,
+        "action": "receive",
+        "attempt": "replay-1",
+        "bytes_read": 555983,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "receive",
+          "check-integrity-and-contract",
+          "prior-acceptance-rechecked"
+        ],
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "64f1a4bd8084c2f4773b2f923629f97ecadaf25588d5861cfd9bc9b3473eae7a",
+        "status": "AlreadyAccepted",
+        "supplied_contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "wall_seconds": 0.015126161
+      }
+    },
+    {
+      "attempt": "ack-1",
+      "action": "acknowledge",
+      "exit_code": 0,
+      "supervisor_elapsed_seconds": 0.017104867001762614,
+      "observation": {
+        "action": "acknowledge",
+        "attempt": "ack-1",
+        "bytes_read": 436531,
+        "contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "envelope_blake3": "00d649791a5d0ff15353ce2b35d62ecc9b5e10561e6ea8b91c13f1eef6272ec0",
+        "exchange_id": "yi-taixuan-weishi-2026-09-24-v2",
+        "native_admission": "NotGranted",
+        "new_acceptance_effects": 0,
+        "observed_events": [
+          "contract-bound",
+          "publication-record-bound",
+          "sent-presentation-read",
+          "check-integrity-and-contract",
+          "reply-observed",
+          "acknowledge"
+        ],
+        "observed_receiver_status": "AcceptedDocumentary",
+        "profile": "documentary-library-entry-v1",
+        "receipt_blake3": "64f1a4bd8084c2f4773b2f923629f97ecadaf25588d5861cfd9bc9b3473eae7a",
+        "schema": "adva.communication.acknowledgment.v1",
+        "semantic_verification": "NotRun",
+        "status": "Acknowledged",
+        "supplied_contract_blake3": "d07751a70c7eececc7160ef29b3a843ffd10a4fa60697dc8bc039d8b7bd1ca62",
+        "wall_seconds": 0.014422406
+      }
+    }
+  ],
+  "automatic_retries": 0
+}
