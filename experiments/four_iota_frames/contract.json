@@ -1,0 +1,90 @@
+{
+  "schema": "adva.research.four-iota-frames-contract.v0",
+  "version": 0,
+  "name": "four-iota-frames",
+  "base_commit": "9e567c1521ba7965f0580bada21c04389f9283ad",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "frozen_on": "2026-09-24",
+  "authority": "The received pure-iota process package and the received {e, i, iota} interpretation frame, both already in this repository at pinned digests. This contract authorizes one bounded exact computation over four declared source terms and nothing else. It does not authorize a new native operation, a stable type, a transport, a content exchange or a physical interpretation.",
+  "question": "Under the received {e, i, iota} frame's own construction - the three declared iota rewrite rules, the cut set as the order ideals of the event dependency poset, H0 = L/(2 d_max) with denominator one for the empty-edge case, H = diag(H0,H0), J = [[0,-I],[I,0]], initially G = O = I - what process does each of the four left-nested pure-iota towers with 2k+1 iota leaves (k = 0..3) carry, are the four results admissible and pairwise distinct as frames, and does a tower as written bind the frame's declared construction, space and time roles at all?",
+  "level": "External exact finite term rewriting under three quoted rules, exhaustive enumeration of the order ideals of a finite poset, exact graph arithmetic on the cut graph, and exact rational linear algebra over Q. Every acceptance test compares integers or exact rationals; no floating-point value enters any of them. Standard library only.",
+  "sources": [
+    "The three rewrite rules and the three pure-iota encodings are quoted, not restated, from knowledge/received/iota-process-knowledge-2026-09-17-v1/materials/iota.md at SHA-256 f2f13d6fefafb11d451dcc46166e0b77f35013a971460387ee5c0e9b6bf72454: 'The internal rules are iota x -> x S K, K x y -> x, and S x y z -> x z (y z). Iota remains the sole primitive source combinator. I = iota iota, K = iota (iota (iota iota)), and S = iota K are the existing pure-iota encodings'.",
+    "The frame operators, the empty-edge convention for the normalisation, the initial metric and observer, the chart transport obligations and the declared construction, space and time roles are quoted from knowledge/received/iota-frame-knowledge-2026-09-17-v1/materials/frame.md at SHA-256 d8967cc3e6b953d547a22010f37d9997a023d1b55935928f88becba86862dae0.",
+    "The twelve received families with their declared sources, event dependencies, cut masks and edges, including the process chain-and-single, are read from knowledge/received/iota-process-knowledge-2026-09-17-v1/materials/interpretations.json at SHA-256 8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1.",
+    "The pinned digests are cross-checked against the receiver's own record of its previous materials in knowledge/received/iota-frame-knowledge-2026-09-17-v1/materials/dependencies.json, so a pin that agrees only with this contract and not with the received record fails the run."
+  ],
+  "domain": "The four left-nested pure-iota source terms i, @@iii, @@@@iiiii and @@@@@@iiiiiii; their complete local reduction ledgers under the three quoted rules; the order ideals of each event dependency poset together with the induced cut graph; the frame operators built from that graph; and the twelve received families used only as an independent check on the ideal machinery and as one declared comparison.",
+  "objects": {
+    "towers": ["i", "@@iii", "@@@@iiiii", "@@@@@@iiiiiii"],
+    "tower_recursion": "C_1 = i and C_(m+1) = ((C_m) i); the declared list is regenerated from this recursion and compared, so a hand-written list that disagrees fails the run",
+    "expected_event_counts": [0, 5, 10, 15],
+    "expected_cut_counts": [1, 6, 11, 16],
+    "expected_carrier_dimensions": [2, 12, 22, 32],
+    "received_families": 12,
+    "received_process_for_comparison": "chain-and-single",
+    "recorded_pins": {
+      "iota.md": "f2f13d6fefafb11d451dcc46166e0b77f35013a971460387ee5c0e9b6bf72454",
+      "interpretations.json": "8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1",
+      "contract.json": "c2656bf793d4175054cfc1822618233fe0bbb65a6f276578e77ba9749186bef6"
+    },
+    "declared_reading_of_dependencies": "A contraction at step j is declared to have been made available by the steps that created the nodes on the redex spine. The received families' own declared deps are used only for the independent cross-check in S0 and are not recomputed from this reading.",
+    "declared_reading_of_a_cut": "A cut is a downward-closed subset of the event dependency poset; a cut graph edge joins two cuts that differ in exactly one event, labelled by that event. This is the reading the received families' own cut masks and edges were checked against in S0.",
+    "refusals": [
+      "identifying the four towers with one frame because their four normal forms are equal",
+      "claiming an intrinsic causal dimension greater than one from a cut graph that is a path",
+      "claiming a carrier of dimension four, or a three-plus-one split, from a family whose carrier dimensions are two, twelve, twenty-two and thirty-two",
+      "reading the four towers as well-formed received source terms, which the received alphabet requires to carry declared apertures",
+      "importing a physical metric, a signature, a clock or a simultaneity",
+      "using the equality of the k = 1 tower's cut count with the received process's cut count to identify the two processes"
+    ]
+  },
+  "quantifiers": [
+    "every local contraction of each of the four towers, to a normal form",
+    "every order ideal of each event dependency poset, not a formula for the count",
+    "every pair of ideals, for the cut graph edges",
+    "every entry of H, J, J squared, H J and J H, for the frame checks",
+    "all twelve received families, for the independent reproduction of their declared cut masks",
+    "both Laplacian characteristic polynomials in full, compared coefficient by coefficient"
+  ],
+  "grammar": [
+    "prefix terms over @ i a b c with a leftmost-innermost spine reducer written for this experiment",
+    "identity-preserving rewriting, so that a redex can be traced to the contractions that made it available",
+    "worklist enumeration of downward-closed subsets",
+    "exact rational matrices with Fractions and Leverrier's method for the characteristic polynomial",
+    "exact polynomial arithmetic for the claimed factorisations of two characteristic polynomials"
+  ],
+  "acceptance": [
+    "The ideal machinery reproduces the twelve received families' declared cut masks exactly, from their declared event dependencies, twelve of twelve, and the four pinned digests agree with the receiver's own record of its previous materials.",
+    "Each of the four towers reaches a normal form in the recorded number of local contractions, and the four normal forms are all the single leaf i, so the four third slots are one value and four ledgers.",
+    "The cut set of each tower is exactly the set of prefixes of a total order and its size is one, six, eleven and sixteen; the induced cut graph is a path in every case, with degrees one one, then twos, then one one.",
+    "The carrier dimensions are two, twelve, twenty-two and thirty-two and are pairwise distinct, so no two towers occupy the same dimension.",
+    "In every tower J squared is minus the identity, H is symmetric, H commutes with J, every absolute row sum of H is at most one, and A = -J H is skew symmetric, with H0 = L/(2 d_max) and the denominator-one convention when there is no edge.",
+    "For k at least one the ledger of the k-th tower is the ledger of the k = 1 tower repeated k times in the same rule order, the blocks are chained because each block's first event is made available by the previous block's last event, events equal five k and the carrier dimension equals ten k plus two.",
+    "The k = 1 tower and the received process chain-and-single have the same number of cuts and the same carrier dimension, and different operators: the received process's Laplacian characteristic polynomial is x (x-1) (x-2) (x-3)^2 (x-5), whose roots are integers, while the k = 1 tower's is x (x-1) (x-2) (x-3) (x^2-4x+1), whose quadratic factor has discriminant twelve, which is not a perfect square.",
+    "Every one of the twelve received families' sources carries at least one aperture leaf and none of the four towers carries any, so as written the four towers declare no port and the frame's braces, brackets and parentheses roles are unbound; this is retained as an obstruction and is not repaired here.",
+    "No acceptance test compares a floating-point value, and the checker imports nothing outside the standard library."
+  ],
+  "protected": [
+    "No physical claim is made anywhere in this experiment. Nothing here identifies a carrier with physical spacetime, asserts a metric signature, constructs a Lorentz structure, or equates the continuous operator parameter with an event clock. The received frame's own residual list - physical Hamiltonians, physical simultaneity, nested boundary calculus, general PSC0 admission - is not discharged, widened or narrowed by this run.",
+    "The four towers are declared source terms of this contract. Whether a tower bound into a term that also carries declared apertures is an admissible received process is a separate question and is not decided here; the obstruction is retained instead.",
+    "The reduction strategy, the dependency reading and the cut reading are declared readings of this contract. They are validated against the received data only where S0 reproduces the twelve declared cut masks; nothing else about the received package is claimed to be reproduced.",
+    "Value equality is not used to identify processes: the four towers' common normal form is recorded as a fact about values and is explicitly refused as a ground for treating the four frames as one.",
+    "Operator or dimension equality is not used to identify frames either: S5 records that an equal cut count and an equal carrier dimension come with different operators.",
+    "The received materials are read-only. Nothing under knowledge/, spec/ or the library catalogue is modified, and no new transport, receipt, exchange or acknowledgment is executed or claimed.",
+    "No stable API change: no ValueType, no OperationSpec, no IR version, no Lisp builtin, no parser, type-checker, evaluator or lineage-table change, no Seal, no claim promotion beyond bounded-external-experiment.",
+    "Native admission is NotGranted, native execution is NotRun and new transport is NotRun. The Python function named reduce in this file is a finite term rewriter, not an Adva operation.",
+    "No floating-point value enters any acceptance test, and the run installs no address-space ceiling because it launches no child process, so the repository's portability inventory is unaffected.",
+    "The four towers' equal normal form is not a licence to contract, memoise or reuse anything, and the five-event cell is a pattern in the recorded ledger and not a native cell."
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 120,
+    "cpu_seconds": 180,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 4194304,
+    "correction_replays": 1
+  },
+  "residual": "What is established is a set of exact statements about four declared finite source terms and one received finite process. The four left-nested towers with one, three, five and seven iota leaves all reduce to the single leaf i, in zero, five, ten and fifteen local contractions, and their cut sets are the prefixes of a total order, of size one, six, eleven and sixteen, so every induced cut graph is a path and no tower widens the causal geometry. Their carriers have dimension two, twelve, twenty-two and thirty-two, so the family reaches no carrier of dimension four and no three-plus-one split. In that construction J squared is minus the identity, H is symmetric and commutes with J, the absolute row sums are at most one and A is skew, so all four are admissible under the frame's own checks and they are distinguished only by the process data. The family grows by one five-event cell per pair of iota leaves, and the k = 1 member shares its cut count and carrier dimension with the received process chain-and-single while carrying a different operator, whose spectrum is irrational where the received one is integral. Finally, the four towers as written carry no aperture leaf, so the received frame's declared construction, space and time roles have nothing to bind, and that gap is retained rather than repaired. What is not established: whether binding a tower into a term that carries declared apertures yields an admissible received process; whether any tower can be placed on a grid or a manifold; whether the tower index is a level, an energy or a time; and anything at all about physical spacetime. In particular the fact that a J-compatible metric forces an even inertia, which would make a three-plus-one signature unreachable on that branch, is a separate question that is not decided, checked or claimed here: it is the next boundary this run hands over, and no computation outside a contract counts as a result of this repository."
+}

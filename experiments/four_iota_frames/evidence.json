@@ -1,0 +1,1219 @@
+{
+  "assertions": 50,
+  "checker_sha256": "a5442ae21fa3fa6c2427113dc099ea4853cfa3e1fa1c5dc25d1a4f7150b6cb0c",
+  "contract_sha256": "bcfe110e2fc833e3a9f5ba748ddcd0a712818ab7379e7e43d5cc8d904a0ebdf8",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 180,
+    "max_assertions": 200000,
+    "memory_bytes": 268435456,
+    "output_bytes": 4194304,
+    "routes": 1,
+    "wall_seconds": 120
+  },
+  "rss_high_water_bytes": 26705920,
+  "schema": "adva.research.four-iota-frames-evidence.v0",
+  "sections": {
+    "S0_machinery_reproduces_received_cuts": {
+      "every_family_reproduced": true,
+      "families": [
+        {
+          "declared_cuts": 4,
+          "events": 2,
+          "masks_agree": true,
+          "name": "independent-iota",
+          "recomputed_cuts": 4
+        },
+        {
+          "declared_cuts": 5,
+          "events": 3,
+          "masks_agree": true,
+          "name": "joined-iota",
+          "recomputed_cuts": 5
+        },
+        {
+          "declared_cuts": 4,
+          "events": 3,
+          "masks_agree": true,
+          "name": "nested-iota",
+          "recomputed_cuts": 4
+        },
+        {
+          "declared_cuts": 6,
+          "events": 3,
+          "masks_agree": true,
+          "name": "chain-and-single",
+          "recomputed_cuts": 6
+        },
+        {
+          "declared_cuts": 36,
+          "events": 10,
+          "masks_agree": true,
+          "name": "independent-identities",
+          "recomputed_cuts": 36
+        },
+        {
+          "declared_cuts": 6,
+          "events": 5,
+          "masks_agree": true,
+          "name": "identity",
+          "recomputed_cuts": 6
+        },
+        {
+          "declared_cuts": 11,
+          "events": 10,
+          "masks_agree": true,
+          "name": "double-identity",
+          "recomputed_cuts": 11
+        },
+        {
+          "declared_cuts": 11,
+          "events": 10,
+          "masks_agree": true,
+          "name": "discard",
+          "recomputed_cuts": 11
+        },
+        {
+          "declared_cuts": 11,
+          "events": 10,
+          "masks_agree": true,
+          "name": "discard-pending",
+          "recomputed_cuts": 11
+        },
+        {
+          "declared_cuts": 13,
+          "events": 12,
+          "masks_agree": true,
+          "name": "copy",
+          "recomputed_cuts": 13
+        },
+        {
+          "declared_cuts": 48,
+          "events": 22,
+          "masks_agree": true,
+          "name": "copy-pending",
+          "recomputed_cuts": 48
+        },
+        {
+          "declared_cuts": 4,
+          "events": 2,
+          "masks_agree": true,
+          "name": "changed-roles",
+          "recomputed_cuts": 4
+        }
+      ],
+      "families_reproduced": 12,
+      "pins_agree_with_the_received_dependencies_record": true
+    },
+    "S1_tower_reductions": {
+      "event_counts": [
+        0,
+        5,
+        10,
+        15
+      ],
+      "every_normal_form_is_iota": true,
+      "the_four_values_are_equal_and_the_four_ledgers_are_not": true,
+      "towers": [
+        {
+          "event_count": 0,
+          "events": [],
+          "iota_leaves": 1,
+          "k": 0,
+          "normal_form": "i",
+          "source": "i"
+        },
+        {
+          "event_count": 5,
+          "events": [
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 0,
+              "made_available_by": [],
+              "path": [
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 1,
+              "made_available_by": [
+                0
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 2,
+              "made_available_by": [
+                0,
+                1
+              ],
+              "path": [
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 3,
+              "made_available_by": [
+                1,
+                2
+              ],
+              "path": [],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 4,
+              "made_available_by": [
+                0,
+                3
+              ],
+              "path": [],
+              "rule": "k"
+            }
+          ],
+          "iota_leaves": 3,
+          "k": 1,
+          "normal_form": "i",
+          "source": "@@iii"
+        },
+        {
+          "event_count": 10,
+          "events": [
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 0,
+              "made_available_by": [],
+              "path": [
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 1,
+              "made_available_by": [
+                0
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 2,
+              "made_available_by": [
+                0,
+                1
+              ],
+              "path": [
+                0,
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 3,
+              "made_available_by": [
+                1,
+                2
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 4,
+              "made_available_by": [
+                0,
+                3
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "k"
+            },
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 5,
+              "made_available_by": [
+                4
+              ],
+              "path": [
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 6,
+              "made_available_by": [
+                5
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 7,
+              "made_available_by": [
+                5,
+                6
+              ],
+              "path": [
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 8,
+              "made_available_by": [
+                6,
+                7
+              ],
+              "path": [],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 9,
+              "made_available_by": [
+                5,
+                8
+              ],
+              "path": [],
+              "rule": "k"
+            }
+          ],
+          "iota_leaves": 5,
+          "k": 2,
+          "normal_form": "i",
+          "source": "@@@@iiiii"
+        },
+        {
+          "event_count": 15,
+          "events": [
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 0,
+              "made_available_by": [],
+              "path": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 1,
+              "made_available_by": [
+                0
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 2,
+              "made_available_by": [
+                0,
+                1
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 3,
+              "made_available_by": [
+                1,
+                2
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 4,
+              "made_available_by": [
+                0,
+                3
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "k"
+            },
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 5,
+              "made_available_by": [
+                4
+              ],
+              "path": [
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 6,
+              "made_available_by": [
+                5
+              ],
+              "path": [
+                0,
+                0,
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 7,
+              "made_available_by": [
+                5,
+                6
+              ],
+              "path": [
+                0,
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 8,
+              "made_available_by": [
+                6,
+                7
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 9,
+              "made_available_by": [
+                5,
+                8
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "k"
+            },
+            {
+              "after": "@@isk",
+              "before": "@ii",
+              "index": 10,
+              "made_available_by": [
+                9
+              ],
+              "path": [
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@ssk",
+              "before": "@is",
+              "index": 11,
+              "made_available_by": [
+                10
+              ],
+              "path": [
+                0,
+                0
+              ],
+              "rule": "i"
+            },
+            {
+              "after": "@@sk@kk",
+              "before": "@@@sskk",
+              "index": 12,
+              "made_available_by": [
+                10,
+                11
+              ],
+              "path": [
+                0
+              ],
+              "rule": "s"
+            },
+            {
+              "after": "@@ki@@kki",
+              "before": "@@@sk@kki",
+              "index": 13,
+              "made_available_by": [
+                11,
+                12
+              ],
+              "path": [],
+              "rule": "s"
+            },
+            {
+              "after": "i",
+              "before": "@@ki@@kki",
+              "index": 14,
+              "made_available_by": [
+                10,
+                13
+              ],
+              "path": [],
+              "rule": "k"
+            }
+          ],
+          "iota_leaves": 7,
+          "k": 3,
+          "normal_form": "i",
+          "source": "@@@@@@iiiiiii"
+        }
+      ]
+    },
+    "S2_cut_structure": {
+      "carrier_dimensions": [
+        2,
+        12,
+        22,
+        32
+      ],
+      "cut_counts": [
+        1,
+        6,
+        11,
+        16
+      ],
+      "every_cut_graph_is_a_path": true,
+      "intrinsic_causal_dimension_claimed": 1,
+      "towers": [
+        {
+          "carrier_dimension": 2,
+          "cut_graph_is_a_path": true,
+          "cut_set_is_the_prefixes_of_a_total_order": true,
+          "cuts": 1,
+          "degrees": [
+            0
+          ],
+          "edges": [],
+          "k": 0,
+          "masks": [
+            0
+          ]
+        },
+        {
+          "carrier_dimension": 12,
+          "cut_graph_is_a_path": true,
+          "cut_set_is_the_prefixes_of_a_total_order": true,
+          "cuts": 6,
+          "degrees": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edges": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              3,
+              1
+            ],
+            [
+              3,
+              7,
+              2
+            ],
+            [
+              7,
+              15,
+              3
+            ],
+            [
+              15,
+              31,
+              4
+            ]
+          ],
+          "k": 1,
+          "masks": [
+            0,
+            1,
+            3,
+            7,
+            15,
+            31
+          ]
+        },
+        {
+          "carrier_dimension": 22,
+          "cut_graph_is_a_path": true,
+          "cut_set_is_the_prefixes_of_a_total_order": true,
+          "cuts": 11,
+          "degrees": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edges": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              3,
+              1
+            ],
+            [
+              3,
+              7,
+              2
+            ],
+            [
+              7,
+              15,
+              3
+            ],
+            [
+              15,
+              31,
+              4
+            ],
+            [
+              31,
+              63,
+              5
+            ],
+            [
+              63,
+              127,
+              6
+            ],
+            [
+              127,
+              255,
+              7
+            ],
+            [
+              255,
+              511,
+              8
+            ],
+            [
+              511,
+              1023,
+              9
+            ]
+          ],
+          "k": 2,
+          "masks": [
+            0,
+            1,
+            3,
+            7,
+            15,
+            31,
+            63,
+            127,
+            255,
+            511,
+            1023
+          ]
+        },
+        {
+          "carrier_dimension": 32,
+          "cut_graph_is_a_path": true,
+          "cut_set_is_the_prefixes_of_a_total_order": true,
+          "cuts": 16,
+          "degrees": [
+            1,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            1
+          ],
+          "edges": [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              1,
+              3,
+              1
+            ],
+            [
+              3,
+              7,
+              2
+            ],
+            [
+              7,
+              15,
+              3
+            ],
+            [
+              15,
+              31,
+              4
+            ],
+            [
+              31,
+              63,
+              5
+            ],
+            [
+              63,
+              127,
+              6
+            ],
+            [
+              127,
+              255,
+              7
+            ],
+            [
+              255,
+              511,
+              8
+            ],
+            [
+              511,
+              1023,
+              9
+            ],
+            [
+              1023,
+              2047,
+              10
+            ],
+            [
+              2047,
+              4095,
+              11
+            ],
+            [
+              4095,
+              8191,
+              12
+            ],
+            [
+              8191,
+              16383,
+              13
+            ],
+            [
+              16383,
+              32767,
+              14
+            ]
+          ],
+          "k": 3,
+          "masks": [
+            0,
+            1,
+            3,
+            7,
+            15,
+            31,
+            63,
+            127,
+            255,
+            511,
+            1023,
+            2047,
+            4095,
+            8191,
+            16383,
+            32767
+          ]
+        }
+      ]
+    },
+    "S3_frame_operators": {
+      "carrier_dimensions_are_pairwise_distinct": true,
+      "no_carrier_dimension_is_four": true,
+      "no_carrier_dimension_is_three_plus_one": true,
+      "towers": [
+        {
+          "carrier_dimension": 2,
+          "checks": {
+            "A_is_skew": true,
+            "H_commutes_with_J": true,
+            "H_is_symmetric": true,
+            "J_squared_is_minus_identity": true,
+            "absolute_row_sums_at_most_one": true
+          },
+          "cuts": 1,
+          "d_max": "0",
+          "degrees": [
+            "0"
+          ],
+          "denominator": "1",
+          "h0_scale": "L",
+          "k": 0,
+          "laplacian_charpoly": [
+            "1",
+            "0"
+          ]
+        },
+        {
+          "carrier_dimension": 12,
+          "checks": {
+            "A_is_skew": true,
+            "H_commutes_with_J": true,
+            "H_is_symmetric": true,
+            "J_squared_is_minus_identity": true,
+            "absolute_row_sums_at_most_one": true
+          },
+          "cuts": 6,
+          "d_max": "2",
+          "degrees": [
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1"
+          ],
+          "denominator": "4",
+          "h0_scale": "L/4",
+          "k": 1,
+          "laplacian_charpoly": [
+            "1",
+            "-10",
+            "36",
+            "-56",
+            "35",
+            "-6",
+            "0"
+          ]
+        },
+        {
+          "carrier_dimension": 22,
+          "checks": {
+            "A_is_skew": true,
+            "H_commutes_with_J": true,
+            "H_is_symmetric": true,
+            "J_squared_is_minus_identity": true,
+            "absolute_row_sums_at_most_one": true
+          },
+          "cuts": 11,
+          "d_max": "2",
+          "degrees": [
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1"
+          ],
+          "denominator": "4",
+          "h0_scale": "L/4",
+          "k": 2,
+          "laplacian_charpoly": [
+            "1",
+            "-20",
+            "171",
+            "-816",
+            "2380",
+            "-4368",
+            "5005",
+            "-3432",
+            "1287",
+            "-220",
+            "11",
+            "0"
+          ]
+        },
+        {
+          "carrier_dimension": 32,
+          "checks": {
+            "A_is_skew": true,
+            "H_commutes_with_J": true,
+            "H_is_symmetric": true,
+            "J_squared_is_minus_identity": true,
+            "absolute_row_sums_at_most_one": true
+          },
+          "cuts": 16,
+          "d_max": "2",
+          "degrees": [
+            "1",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "2",
+            "1"
+          ],
+          "denominator": "4",
+          "h0_scale": "L/4",
+          "k": 3,
+          "laplacian_charpoly": [
+            "1",
+            "-30",
+            "406",
+            "-3276",
+            "17550",
+            "-65780",
+            "177100",
+            "-346104",
+            "490314",
+            "-497420",
+            "352716",
+            "-167960",
+            "50388",
+            "-8568",
+            "680",
+            "-16",
+            "0"
+          ]
+        }
+      ]
+    },
+    "S4_unit_cell": {
+      "cell": {
+        "events": 5,
+        "rules": [
+          "i",
+          "i",
+          "s",
+          "s",
+          "k"
+        ],
+        "source": "@@iii"
+      },
+      "cell_is_the_k_equals_one_frame": true,
+      "towers": [
+        {
+          "blocks_are_chained": true,
+          "carrier_dimension": 12,
+          "cuts": 6,
+          "events": 5,
+          "events_equal_five_k": true,
+          "k": 1,
+          "rules": [
+            "i",
+            "i",
+            "s",
+            "s",
+            "k"
+          ],
+          "rules_are_the_cell_repeated": true
+        },
+        {
+          "blocks_are_chained": true,
+          "carrier_dimension": 22,
+          "cuts": 11,
+          "events": 10,
+          "events_equal_five_k": true,
+          "k": 2,
+          "rules": [
+            "i",
+            "i",
+            "s",
+            "s",
+            "k",
+            "i",
+            "i",
+            "s",
+            "s",
+            "k"
+          ],
+          "rules_are_the_cell_repeated": true
+        },
+        {
+          "blocks_are_chained": true,
+          "carrier_dimension": 32,
+          "cuts": 16,
+          "events": 15,
+          "events_equal_five_k": true,
+          "k": 3,
+          "rules": [
+            "i",
+            "i",
+            "s",
+            "s",
+            "k",
+            "i",
+            "i",
+            "s",
+            "s",
+            "k",
+            "i",
+            "i",
+            "s",
+            "s",
+            "k"
+          ],
+          "rules_are_the_cell_repeated": true
+        }
+      ]
+    },
+    "S5_same_dimension_different_operator": {
+      "received": {
+        "charpoly_factorisation_claimed": "x (x-1) (x-2) (x-3)^2 (x-5)",
+        "cuts": 6,
+        "degrees": [
+          "2",
+          "3",
+          "2",
+          "2",
+          "3",
+          "2"
+        ],
+        "events": 3,
+        "h0_scale": "L/6",
+        "laplacian_charpoly": [
+          "1",
+          "-14",
+          "74",
+          "-184",
+          "213",
+          "-90",
+          "0"
+        ],
+        "name": "chain-and-single",
+        "source": "@@a@i@ib@ic",
+        "spectrum_is_integral": true
+      },
+      "same_carrier_dimension": true,
+      "same_cut_count": true,
+      "same_degrees": false,
+      "same_operator": false,
+      "tower_k1": {
+        "charpoly_factorisation_claimed": "x (x-1) (x-2) (x-3) (x^2-4x+1)",
+        "cuts": 6,
+        "degrees": [
+          "1",
+          "2",
+          "2",
+          "2",
+          "2",
+          "1"
+        ],
+        "discriminant_of_the_quadratic_factor": 12,
+        "events": 5,
+        "h0_scale": "L/4",
+        "laplacian_charpoly": [
+          "1",
+          "-10",
+          "36",
+          "-56",
+          "35",
+          "-6",
+          "0"
+        ],
+        "quadratic_factor_is_irrational": true,
+        "source": "@@iii"
+      }
+    },
+    "S6_role_obstruction_and_refusals": {
+      "received_aperture_leaves": {
+        "chain-and-single": [
+          "a",
+          "b",
+          "c"
+        ],
+        "changed-roles": [
+          "a",
+          "b",
+          "c"
+        ],
+        "copy": [
+          "a",
+          "b",
+          "c"
+        ],
+        "copy-pending": [
+          "a",
+          "b",
+          "c"
+        ],
+        "discard": [
+          "a",
+          "b"
+        ],
+        "discard-pending": [
+          "a",
+          "b"
+        ],
+        "double-identity": [
+          "a"
+        ],
+        "identity": [
+          "a"
+        ],
+        "independent-identities": [
+          "a",
+          "b",
+          "c"
+        ],
+        "independent-iota": [
+          "a",
+          "b",
+          "c"
+        ],
+        "joined-iota": [
+          "a",
+          "b"
+        ],
+        "nested-iota": [
+          "a"
+        ]
+      },
+      "received_families": 12,
+      "received_families_carrying_an_aperture": 12,
+      "refusal_count": 6,
+      "refusals": [
+        "identifying the four towers with one frame because their four normal forms are equal",
+        "claiming an intrinsic causal dimension greater than one from a cut graph that is a path",
+        "claiming a carrier of dimension four, or a three-plus-one split, from a family whose carrier dimensions are two, twelve, twenty-two and thirty-two",
+        "reading the four towers as well-formed received source terms, which the received alphabet requires to carry declared apertures",
+        "importing a physical metric, a signature, a clock or a simultaneity",
+        "using the equality of the k = 1 tower's cut count with the received process's cut count to identify the two processes"
+      ],
+      "role_reading": "unbound: the received frame derives {} [] () from explicit entry and exit policies over declared apertures, and a tower carries none",
+      "roles_bound": false,
+      "tower_aperture_leaves": {
+        "@@@@@@iiiiiii": [],
+        "@@@@iiiii": [],
+        "@@iii": [],
+        "i": []
+      },
+      "towers_declare_no_port": true
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 130569125
+}
