@@ -1,0 +1,92 @@
+{
+  "schema": "adva.research.lorentzian-frame-reading-contract.v0",
+  "version": 0,
+  "name": "lorentzian-frame-reading",
+  "base_commit": "47f080c82bad7771ba50e33e67be87d1b3e38f24",
+  "library_commit": "73a6af4ac4ed8225366d3c16794e309cff15f51d",
+  "frozen_on": "2026-09-24",
+  "authority": "The received {e, i, iota} interpretation frame and the received pure-iota process package, both already in this repository at pinned digests, together with the signature result retained by note 0225. This contract authorizes one bounded exact computation over declared rational matrices and nothing else. It authorizes no physical interpretation, no stable type, no native operation and no transport.",
+  "question": "The received frame carries a complex structure J with J squared equal to minus the identity, a cut operator H built from a graph Laplacian, initially the metric G = I, and the generator A = -J H, whose exponential reading is checked through a declared degree together with the Wick coefficient identity (-J)^k A^k / k! = (-H)^k / k!. Note 0225 showed that a metric compatible with J has even inertia, so a carrier with exactly one negative direction needs the structure replaced by an involution K with K squared equal to the identity, and that such a K is compatible with a Lorentzian metric. What does that replacement do to the frame's exponential reading? Specifically: what is the general coefficient identity for a structure S with S squared equal to sigma times the identity, what does it give for sigma equal to minus one and for sigma equal to plus one, is the generator skew with respect to the Lorentzian metric on a carrier of dimension four, and can any nondegenerate metric of any signature make it skew while K stays compatible?",
+  "level": "External exact finite rational linear algebra: exact matrix arithmetic over Q, an exactly solved linear system for a declared family of metrics, exact determinants, exact inertia by congruence reduction, and coefficientwise identity checks of matrix power series through a declared degree. Every acceptance test compares integers or exact rationals; no floating-point value enters any of them, and no eigenvalue is approximated. Standard library only.",
+  "sources": [
+    "The complex structure J, the cut operator convention H0 = L/(2 d_max) with denominator one for the empty-edge case, H = diag(H0,H0), the initial metric G = I and the initial observer O = I, the generator A = -J H, the exponential readings U(t) = exp(tA) and T(tau) = exp(tau B) with B = -H, the Wick coefficient identity (-J)^k A^k / k! = (-H)^k / k!, and the checked degree of twelve, are all quoted from knowledge/received/iota-frame-knowledge-2026-09-17-v1/materials/frame.md at SHA-256 d8967cc3e6b953d547a22010f37d9997a023d1b55935928f88becba86862dae0.",
+    "The received process chain-and-single, with its declared source, events, cut masks and cut-graph edges, is read from knowledge/received/iota-process-knowledge-2026-09-17-v1/materials/interpretations.json at SHA-256 8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1, and supplies the frame's own twelve-dimensional instance.",
+    "The signature result this experiment continues is docs/research/0225-a-complex-structure-admits-only-even-signatures.md, which is cited and not recomputed; its involution and its Lorentzian metric are redeclared here because they are the objects this run works on.",
+    "The pinned digests are cross-checked against the receiver's own records, so a pin that agrees only with this contract and not with the received records fails the run."
+  ],
+  "domain": "The complex structure J = [[0,-I],[I,0]] on Q to the 2n; the cut operator built from the received process's cut graph with H0 = L/(2 d_max) and H = diag(H0,H0); the involution K that flips the sign of the second block, which commutes with H and squares to the identity; the declared four-dimensional instance of two cuts joined by one edge; the declared Lorentzian metric diag(1,1,1,-1) and the declared involution diag(1,1,-1,-1); the general symmetric matrix G in four or twelve dimensions; and the coefficient identities of matrix power series through degree twelve.",
+  "objects": {
+    "received_process": "chain-and-single",
+    "declared_analogue": "for a structure S with S squared equal to sigma times the identity and S commuting with H, the frame's generator A = -J H is generalised to A_S = -S H; this reproduces the received frame exactly when S is J, and that is the only reading used here",
+    "checked_degree": 12,
+    "declared_minimal_instance": {"cuts": 2, "carrier_dimension": 4, "d_max": 1, "denominator": 2},
+    "declared_lorentzian_metric": {"diagonal": [1, 1, 1, -1], "signature": [3, 1]},
+    "declared_involution": {"diagonal": [1, 1, -1, -1], "square": "the identity"},
+    "declared_block_involution": "on the frame's own carrier, the involution that fixes the first block of size n and negates the second, so that K = diag(I_n, -I_n)",
+    "degeneracy_witness": {
+      "comment": "the solution space of the declared system is spanned by two matrices; the determinant of a + t b is checked at five declared rational values of t, which decides a polynomial of degree at most four identically, so every element of the space is degenerate and not only the basis",
+      "sample_values": [0, 1, 2, 3, 4]
+    },
+    "recorded_pins": {
+      "interpretations.json": "8009db7b8828ae76aa01b25684b9aa974fc91c4fcb64a439946701a49fe528b1"
+    },
+    "receipt_pins": {
+      "frame.md": "d8967cc3e6b953d547a22010f37d9997a023d1b55935928f88becba86862dae0"
+    },
+    "refusals": [
+      "reading the exponential reading as physical time evolution, heat flow, diffusion or thermodynamics",
+      "claiming that either structure is physical, or that a Lorentzian carrier computed here is a spacetime",
+      "claiming that the involution route is excluded in general: what is excluded is one declared pair of obligations on the frame's own cut operator",
+      "claiming that a heat semigroup or its time reverse is a physical process",
+      "reading the impossibility as a theorem about all graphs, involutions or metrics: it is decided on the declared instances, and the structural reason is recorded as an elementary argument",
+      "connecting any of this to the Kerr experiment of note 0226",
+      "claiming that the frame, its carriers or its operators are native Adva structures"
+    ]
+  },
+  "quantifiers": [
+    "every coefficient of the two coefficient identities, from degree zero through degree twelve, for both structures",
+    "every entry of the metric, the involution, the generator and both residuals",
+    "every equation of the declared linear system in the ten or seventy-eight independent entries of a symmetric metric",
+    "every basis element of the solution space, and every element of the space through a determinant checked at five declared values",
+    "every inertia computation, decided by exact congruence reduction"
+  ],
+  "grammar": [
+    "exact rational matrix arithmetic over Q with Fractions",
+    "exact Gaussian elimination for the solution space of a homogeneous linear system",
+    "exact determinants by elimination with row exchanges",
+    "exact inertia by symmetric congruence reduction with one-by-one and two-by-two pivots",
+    "coefficientwise comparison of finite matrix power series through a declared degree"
+  ],
+  "acceptance": [
+    "The frame's own twelve-dimensional instance is rebuilt from the received process: six cuts, d_max three, H0 = L/6, H = diag(H0,H0), J squared equal to minus the identity, H commuting with J, and A = -J H skew with respect to the identity metric.",
+    "On that instance the coefficient identity (-J)^k A^k = (-H)^k holds for every degree from zero through twelve, which is the received frame's own Wick identity, and every coefficient of U(t) transposed times G times U(t) equals G holds through degree twelve, so the frame's own two identities are reproduced before anything is replaced.",
+    "For a structure S with S squared equal to sigma times the identity that commutes with H, the coefficient identity (-S)^k A_S^k = sigma^k H^k holds for every degree from zero through twelve, on the frame's own instance, for both the complex structure with sigma equal to minus one and the declared block involution with sigma equal to plus one.",
+    "At sigma equal to minus one the identity is the received heat reading, whose coefficients alternate sign and which is the exponential of minus H; at sigma equal to plus one every coefficient has the same sign and the reading is the exponential of plus H, so the replacement of the complex structure by an involution changes the exponential reading into its time reverse, and that sign is exactly the sign of the structure's square.",
+    "On the declared four-dimensional carrier the Lorentzian metric diag(1,1,1,-1) has signature three plus one, the declared involution squares to the identity and is compatible with that metric, and the generator A_K = -K H is nevertheless not skew with respect to it; the exact residual is recorded. The complex structure is not orthogonal with respect to that metric either.",
+    "For both declared instances, the symmetric metrics that are simultaneously compatible with the involution and make the generator skew form a solution space of dimension two, and every element of that space is degenerate: the determinant of the general element is checked at five declared values, which decides a polynomial of degree at most four identically.",
+    "Hence on the frame's own cut operator there is no nondegenerate metric of any signature that keeps the involution compatible and the generator skew at the same time, and the structural reason is recorded: the cut operator is a graph Laplacian whose kernel is the constants, so the compatible metrics that survive are scalar multiples of a rank-one matrix in each block of the involution.",
+    "No acceptance test compares a floating-point value, no eigenvalue is approximated, and the checker imports nothing outside the standard library."
+  ],
+  "protected": [
+    "No physical claim is made anywhere in this experiment. An exponential reading is a family of exact matrix coefficients; a heat reading and its time reverse are algebraic names for two sign patterns and are not processes, temperatures, entropy or time evolution.",
+    "The result is bounded to the declared instances. The impossibility is decided on the frame's own twelve-dimensional cut operator and on the declared four-dimensional instance; the general statement about connected cut graphs is recorded as an elementary argument and not as an executed check over all graphs.",
+    "What is excluded is one declared pair of obligations, not the involution route in general and not Lorentzian signature. A carrier with exactly one negative direction remains reachable, as note 0225 established; what this run adds is the price, and the price is paid in the exponential reading and in the invariance identity.",
+    "The frame's own identities are reproduced first, on the received instance, before any structure is replaced; if the replacement changed the frame's own case the run would fail before reaching a conclusion about it.",
+    "This experiment is not connected to the Kerr experiment of note 0226. Nothing here is a spacetime, a horizon, a curvature or a solution of any field equation.",
+    "The received materials are read-only. Nothing under knowledge/, spec/ or the library catalogue is modified, and no new transport, receipt, exchange or acknowledgment is executed or claimed.",
+    "No stable API change: no ValueType, no OperationSpec, no IR version, no Lisp builtin, no parser, type-checker, evaluator or lineage-table change, no Seal, no claim promotion beyond bounded-external-experiment.",
+    "Native admission is NotGranted, native execution is NotRun and new transport is NotRun. The functions in this file are finite exact computations, not Adva operations.",
+    "No floating-point value enters any acceptance test, and the run installs no address-space ceiling because it launches no child process, so the repository's portability inventory is unaffected.",
+    "Nothing here promotes a vocabulary word, creates a terminology home, or claims that the frame's carriers are native structures."
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 240,
+    "cpu_seconds": 300,
+    "memory_bytes": 268435456,
+    "max_assertions": 200000,
+    "output_bytes": 4194304,
+    "correction_replays": 1
+  },
+  "residual": "What is established is a set of exact statements about the received frame's own construction and two declared instances of it. The frame's twelve-dimensional instance is rebuilt from the received process and reproduces its own two identities: the Wick coefficient identity for the complex structure through degree twelve, and the metric invariance of the exponential through the same degree. For a structure whose square is sigma times the identity, the coefficient identity is (-S)^k A_S^k = sigma^k H^k, which for sigma equal to minus one is the received heat reading and for sigma equal to plus one is its time reverse: the sign in the exponent is exactly the sign of the structure's square, so replacing the complex structure by an involution turns the exponential reading into its reverse. On the declared four-dimensional carrier the involution is compatible with the declared Lorentzian metric of signature three plus one, and the generator is nevertheless not skew with respect to it, with the exact residual retained. Finally, on both declared instances, the metrics that keep the involution compatible and the generator skew form a two-dimensional space every element of which is degenerate, so no nondegenerate metric of any signature buys both. What is not established: whether some other declared analogue of the generator, other than the one that reproduces the received frame exactly, would behave differently; whether a different cut operator or a different involution escapes the impossibility, beyond the elementary reason recorded; whether any carrier of the frame can be given a causal order, an observer, a clock or a dynamics; whether the exponential reading has any physical meaning at all, which is not claimed; and everything about the Kerr experiment of note 0226, to which this run is not connected. The declared degree of twelve bounds the coefficient identities, and a larger degree is a different run. No computation outside a contract counts as a result of this repository."
+}

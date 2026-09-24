@@ -1,0 +1,236 @@
+{
+  "assertions": 30,
+  "checker_sha256": "385fcd6661c56b9b9498437dbc1383853db1cdbdd9e89fbbd0edee914241ac65",
+  "contract_sha256": "f3d16cc5122025a868a059c259a4900a4f601159e7261784bb0ea3083346afc2",
+  "installed_limits": {
+    "RLIMIT_CPU": "installed",
+    "RLIMIT_FSIZE": "installed",
+    "address_space_ceiling": "not-installed: no child process",
+    "memory_bound": "declared only; observed as peak RSS",
+    "wall_alarm": "installed"
+  },
+  "limits": {
+    "correction_replays": 1,
+    "cpu_seconds": 300,
+    "max_assertions": 200000,
+    "memory_bytes": 268435456,
+    "output_bytes": 4194304,
+    "routes": 1,
+    "wall_seconds": 240
+  },
+  "rss_high_water_bytes": 28278784,
+  "schema": "adva.research.lorentzian-frame-reading-evidence.v0",
+  "sections": {
+    "S0_frame_instance": {
+      "A_is_skew_for_the_identity_metric": true,
+      "H_commutes_with_J": true,
+      "J_squared_is_minus_identity": true,
+      "carrier_dimension": 12,
+      "checked_degree": 12,
+      "cuts": 6,
+      "d_max": "3",
+      "generator_A": "-J H",
+      "h0_scale": "L/6",
+      "invariance_identity_U_transpose_G_U_equals_G_degrees_with_nonzero_coefficient": [],
+      "process": "chain-and-single",
+      "source": "@@a@i@ib@ic",
+      "wick_identity_(-J)^k_A^k_equals_(-H)^k_mismatched_degrees": []
+    },
+    "S1_sign_lemma": {
+      "identity": "(-S)^k A_S^k = sigma^k H^k for S squared equal to sigma times the identity with S commuting with H",
+      "instances": [
+        {
+          "commutes_with_H": true,
+          "first_degrees": [
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": true,
+              "k": 0
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": false,
+              "k": 1
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": true,
+              "k": 2
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": false,
+              "k": 3
+            }
+          ],
+          "generator": "-S H",
+          "identity": "(-S)^k A_S^k = sigma^k H^k",
+          "mismatched_degrees": [],
+          "sigma": -1,
+          "squares_to_sigma_identity": true,
+          "structure": "the complex structure J"
+        },
+        {
+          "commutes_with_H": true,
+          "first_degrees": [
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": true,
+              "k": 0
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": false,
+              "equals_plus_H_power_k": true,
+              "k": 1
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": true,
+              "equals_plus_H_power_k": true,
+              "k": 2
+            },
+            {
+              "equals_minus_one_power_k_times_H_power_k": false,
+              "equals_plus_H_power_k": true,
+              "k": 3
+            }
+          ],
+          "generator": "-S H",
+          "identity": "(-S)^k A_S^k = sigma^k H^k",
+          "mismatched_degrees": [],
+          "sigma": 1,
+          "squares_to_sigma_identity": true,
+          "structure": "the declared block involution K"
+        }
+      ],
+      "reading_at_sigma_minus_one": "the coefficients alternate in sign, which is the exponential of minus H, the received heat reading",
+      "reading_at_sigma_plus_one": "every coefficient has the same sign, which is the exponential of plus H, the time reverse of the heat reading",
+      "the_sign_in_the_exponent_is_the_sign_of_the_structure_square": true
+    },
+    "S2_lorentzian_carrier": {
+      "A_K_is_skew": false,
+      "H_anticommutes_with_G_K": false,
+      "complex_structure_is_compatible_with_the_metric": false,
+      "generator_A_K": "-K H",
+      "instance": {
+        "carrier_dimension": 4,
+        "cuts": 2,
+        "d_max": "1",
+        "h0_scale": "L/2"
+      },
+      "involution_diagonal": [
+        1,
+        1,
+        -1,
+        -1
+      ],
+      "involution_is_compatible_with_the_metric": true,
+      "involution_squares_to_identity": true,
+      "lorentzian_metric_diagonal": [
+        1,
+        1,
+        1,
+        -1
+      ],
+      "lorentzian_signature": [
+        3,
+        1
+      ],
+      "residual_A_K_transpose_G_plus_G_A_K": [
+        [
+          "-1",
+          "1",
+          "0",
+          "0"
+        ],
+        [
+          "1",
+          "-1",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0",
+          "-1"
+        ]
+      ],
+      "residual_absolute_sum": "6",
+      "skewness_condition_is_H_anticommuting_with_G_K": true
+    },
+    "S3_impossibility": {
+      "bounded_to": "the two declared instances; the general statement is an elementary argument and not an executed check over all graphs",
+      "instances": [
+        {
+          "basis_determinants": [
+            "0",
+            "0"
+          ],
+          "basis_inertia_ranks": [
+            1,
+            1
+          ],
+          "carrier_dimension": 4,
+          "determinants_at_the_sample_values": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "every_element_of_the_solution_space_is_degenerate": true,
+          "label": "the declared four-dimensional instance",
+          "rank": 8,
+          "solution_dimension": 2,
+          "unknowns": 10
+        },
+        {
+          "basis_determinants": [
+            "0",
+            "0"
+          ],
+          "basis_inertia_ranks": [
+            1,
+            1
+          ],
+          "carrier_dimension": 12,
+          "determinants_at_the_sample_values": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "every_element_of_the_solution_space_is_degenerate": true,
+          "label": "the frame's own twelve-dimensional instance",
+          "rank": 76,
+          "solution_dimension": 2,
+          "unknowns": 78
+        }
+      ],
+      "no_nondegenerate_metric_satisfies_both": true,
+      "structural_reason": "the cut operator is a graph Laplacian, so its kernel on each connected component is the constants; the surviving compatible metrics are scalar multiples of a rank-one matrix in each block of the involution, and a block of rank one has zero determinant",
+      "system": "K^T G K = G and H (G K) + (G K) H = 0, in the independent entries of a symmetric G"
+    },
+    "S4_refusals": {
+      "refusal_count": 7,
+      "refusals": [
+        "reading the exponential reading as physical time evolution, heat flow, diffusion or thermodynamics",
+        "claiming that either structure is physical, or that a Lorentzian carrier computed here is a spacetime",
+        "claiming that the involution route is excluded in general: what is excluded is one declared pair of obligations on the frame's own cut operator",
+        "claiming that a heat semigroup or its time reverse is a physical process",
+        "reading the impossibility as a theorem about all graphs, involutions or metrics: it is decided on the declared instances, and the structural reason is recorded as an elementary argument",
+        "connecting any of this to the Kerr experiment of note 0226",
+        "claiming that the frame, its carriers or its operators are native Adva structures"
+      ]
+    }
+  },
+  "status": "ExternalExactPass",
+  "wall_ns": 6328224000
+}
