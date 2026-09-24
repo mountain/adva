@@ -1,0 +1,43 @@
+{
+  "schema": "adva.research.surreal-tear-frame-contract.v0",
+  "version": 0,
+  "name": "surreal-tear-frame",
+  "base_commit": "0d831e73d702e5456ad4248115b5a34507d82236",
+  "frozen_on": "2026-09-22",
+  "authority": "The workspace line simultaneity-order (notes/surreal-order-and-the-tear.md) and the nine-line criterion it quotes from helgoland/src/tear_witness.py; this contract authorizes one bounded re-execution of that enumeration and nothing else.",
+  "question": "On finite surreal cut presentations, does the order descend through the task/state map, and where does a tear live?",
+  "level": "Finite exact enumeration over surreal cut presentations built from {L|R} with rational arithmetic; standard library only; no matrix language, no differential forms",
+  "domain": "Surreal forms up to a bounded birthday, their L/R address words, the presentation day of a value, the nine-line descent criterion q(h)=q(h') => c(h)=c(h'), and the fibre size of each state",
+  "objects": {
+    "criterion": "a clock descends iff no witness pair (h,h') has q(h)=q(h') and c(h)!=c(h')",
+    "A": "order descent over the enumerated pairs",
+    "B": "presentation-day tear",
+    "C": "capacity of a fibre, ceil(log2|fibre|)"
+  },
+  "quantifiers": [
+    "every pair of forms up to the frozen birthday",
+    "every L/R address word of each day class",
+    "every state fibre, with its size and capacity"
+  ],
+  "acceptance": [
+    "the re-execution reproduces the retained evidence exactly, field for field",
+    "every self-check recorded by the run is true, and the run reports them rather than asserting them",
+    "the criterion is exercised in both directions on planted cases: a clock that descends returns None and a clock that does not returns a witness pair",
+    "the checker imports nothing outside the standard library",
+    "the count of enumerated pairs is the recorded one and is recomputed, not read"
+  ],
+  "protected": [
+    "Research 0021 (surreal cut presentations, objectification, PSP-star no-go) separates finite surreal cut presentations from the surreal numbers they objectify. This experiment stays on the PRESENTATION side: it does not claim objectification, a PSP* factorization, or that the objectified number can serve as a carrier. It must respect that boundary.",
+    "No matrix language is used: no H, J, G, O, no Laplacian and no spectrum appear in the checker. That is the point of the experiment, not a stylistic choice.",
+    "No claim is made about which clock or which task is right; those are declarations, and changing them can create or remove a tear.",
+    "The evidence is a finite enumeration on one machine; nothing transfers to another birthday bound without re-running it."
+  ],
+  "budget": {
+    "wall_seconds": 60,
+    "cpu_seconds": 60,
+    "memory_bytes": 268435456,
+    "max_assertions": 100000,
+    "output_bytes": 4194304
+  },
+  "residual": "The experiment gives one criterion, applied to finite surreal cut presentations, with a retained witness for the tear. What it does not do is decide which clock is right, or connect the presentation side to the objectified side that Research 0021 fences off."
+}
