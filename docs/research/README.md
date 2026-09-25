@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **251 numbered
+This directory holds the research record of the repository: **252 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -801,6 +801,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0241 — The four proposals, the geometry foundation, and the stage-one calibration](0241-four-proposals-and-the-stage-one-calibration.md): the programme is recorded as four proposals - the spherical spectrum and its complexification, the four-dimensional spacetime monotile, a space proposal with freer orbits and lattice or Archimedean-solid placement matched to relativistic spacetime symmetry, and the geometry computation split out as the common foundational subject - with proposal four carrying the corrected usable fraction about 0.149 in place of the superseded 0.787, and with stage one fixed as calibration inside the December-January window followed by continuous learning, under the two invariants that the overall topology is not broken and that learning never stops.
 
 - [0242 — A spatiotemporal ratchet: net transport needs both asymmetries, and the standing wave transports nothing](0242-a-spatiotemporal-ratchet-net-transport-needs-both-asymmetries.md): a declared six-site ring model, solved exactly, shows that net transport is exactly zero under a symmetric potential, under a symmetric drive, and under their combination, and that only the two asymmetries together give a non-zero transport whose direction reverses exactly with the declared phase gradient's sign; the standing wave transports nothing, the ring's connectivity and the declared step-energy bound are enforced with rejected controls, and the failed control - rescaling the potential, which the slope-sign gates cannot see - is retained rather than repaired.
+
+- [0243 — The geometry foundation: shared items, the corrected pairing, and the spacetime-group clause](0243-the-geometry-foundation-shared-items-the-corrected-pairing-and-the-spacetime-group-clause.md): the shared geometric basis of the first three proposals is computed once and exactly - the spot floor with its penumbra-diameter form, the one-microwatt-per-mode etendue ceiling, the corrected second-Lagrange-point usable fraction 0.149047 in place of the superseded 0.787261, the pattern scale, the symmetry constraints, the work-region and work-time calculus with its relay duty cycle, and the ablation-level assignment - with the pairing rules enforced as rules that raise on a mixed pairing and reject the deliberately mis-paired control by exactly a factor of two in the ratio and four in the fraction; the supplement records that the full point groups of the achiral solids lie in O(3) rather than SO(3), and replaces the ground pattern's symmetry with the spacetime symmetry of the (constellation, schedule) pair, where invariance under a spatial operation combined with a time translation gives exactly zero transport and its absence gives directed transport.
 
 ### Named notes
 
