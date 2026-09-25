@@ -1,0 +1,52 @@
+{
+  "schema": "adva.research.spatiotemporal-ratchet.proposal.v1",
+  "created_at": "2026-09-25T11:05:00Z",
+  "status": "PROPOSAL ONLY - 提议性方案 (supporting proposal three)",
+  "status_note": "A declared discrete model, studied in exact arithmetic, of the claim that a net transport over a cycle requires symmetry breaking in BOTH space and time. It authorizes nothing, decides nothing, asserts no physical effect, gives no magnitude for any physical quantity and uses no data.",
+  "question": "In a declared discrete model, is the net transport over one period exactly zero whenever the forcing is symmetric in space or symmetric in time, and exactly non-zero - with its direction reversing with the sign of the declared phase gradient - only when both asymmetries are present; and does a standing-wave phase schedule give zero while a phase-gradient schedule gives directed transport?",
+  "level": "Bounded external exact calibration of a declared model. No physical claim, no magnitude for any physical quantity, no forecast and no data.",
+  "model": {
+    "carrier": "A declared finite ring of N sites with a declared potential and a declared time-periodic drive; all quantities integers or exact rationals.",
+    "spatial_asymmetry": "The declared potential is asymmetric if it is not invariant under the declared reflection of the ring; a symmetric potential is declared as the reflection-invariant case.",
+    "temporal_asymmetry": "The declared drive is time-asymmetric if the schedule is not invariant under the declared half-period time translation composed with the declared reflection; the symmetric case is the invariant one.",
+    "phase_gradient": "A declared real phase assigned to each site; the standing-wave case has zero gradient, the travelling case has a constant non-zero gradient whose sign fixes the declared direction.",
+    "transport": "The net displacement of the declared measure over exactly one period, computed exactly, with the period's final state compared to the initial state."
+  },
+  "required_results": {
+    "R1": "Spatially symmetric potential with a time-symmetric drive: net transport EXACTLY zero. The claim that a symmetric forcing transports must be rejected.",
+    "R2": "Spatially asymmetric potential with a time-symmetric drive: net transport EXACTLY zero, so spatial asymmetry alone does not transport.",
+    "R3": "Spatially symmetric potential with a time-asymmetric drive: net transport EXACTLY zero, so temporal asymmetry alone does not transport.",
+    "R4": "Spatially asymmetric potential with a time-asymmetric drive: net transport NON-zero, and reversing the sign of the declared phase gradient reverses the direction exactly.",
+    "R5": "A standing-wave phase schedule gives zero transport; a phase-gradient schedule gives directed transport whose direction follows the gradient's sign.",
+    "R6": "Topology and safety: the declared ring's connectivity must be unchanged by the transport (no site lost, no edge created or removed), and each step's declared energy input must satisfy a declared bound; a schedule that crosses the bound, or that changes the connectivity, must be rejected."
+  },
+  "controls": [
+    "Every one of R1, R2, R3 and the standing-wave case is run as an EXECUTED rejection, not as a remark: the run must produce the zero and flag the corresponding claim as rejected.",
+    "A deliberately time-symmetric drive with a spatially asymmetric potential must fail to transport, and the same potential with a time-asymmetric drive must transport: the pair is the evidence that both asymmetries are needed.",
+    "A claimed transport under a symmetric potential must be rejected, and a claimed transport under a symmetric drive must be rejected.",
+    "The direction must flip exactly when the gradient's sign flips: a claim of transport independent of the gradient's sign must be rejected.",
+    "A schedule that violates the declared step-energy bound must be rejected; a schedule that removes or adds a ring edge must be rejected as breaking the declared connectivity.",
+    "A control that cannot be made to fail is reported as a failed control."
+  ],
+  "declared_obligations": {
+    "no_magnitude": "No magnitude, sign or timing is asserted for any physical quantity; the model's numbers are declared model parameters.",
+    "missing_point": "The 'singular point' of the wider programme appears here ONLY as a declared pinning site in the declared potential, that is as a declared spatial asymmetry; nothing is ablated, melted, moved or heated in any physical sense.",
+    "proposal_only": "authorization, decision, deployment and physical_effect_asserted are none; governance is unaddressed."
+  },
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports R1 to R6 with their exact values, every control above with its verdict, the direction reversal under the gradient's sign change, the connectivity check and the step-energy bound, and proposal-only bookkeeping.",
+  "residual": [
+    "The model is declared; a different ring, potential, drive or period is a different run",
+    "Zero transport under a symmetric forcing is a statement about the declared model, not a theorem about any physical system",
+    "Nothing here is an ablation, a melt, a transport of mass or heat, or a statement about ice, water, atmosphere or ocean",
+    "The termination problem, governance and any safety analysis beyond the declared bound remain Unaddressed"
+  ]
+}

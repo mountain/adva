@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **250 numbered
+This directory holds the research record of the repository: **251 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -799,6 +799,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0240 — A proposal-only optical scheme, its three derived bounds, and one erratum the run itself cannot repair](0240-a-proposal-only-optical-scheme-its-derived-bounds-and-one-erratum.md): a 提议性方案 that would use mirrors for power, fibres for phase and a diffractive output for the light-dark geometry is calibrated exactly, separating derived bounds (passive spot floor `theta_sun*L`, the one-microvolt-per-mode étendue ceiling, the second-Lagrange-point antumbra) from declared constants and from proposal-only bookkeeping, with all six overreach controls rejected and both inherited prohibitions applied; the note also registers an erratum: the payload's usable-flux fraction pairs the Earth's angular radius with the Sun's angular diameter, so the correct usable fraction is about 0.149 rather than the reported 0.787, and everything downstream of it must be recomputed in a follow-up run.
 
 - [0241 — The four proposals, the geometry foundation, and the stage-one calibration](0241-four-proposals-and-the-stage-one-calibration.md): the programme is recorded as four proposals - the spherical spectrum and its complexification, the four-dimensional spacetime monotile, a space proposal with freer orbits and lattice or Archimedean-solid placement matched to relativistic spacetime symmetry, and the geometry computation split out as the common foundational subject - with proposal four carrying the corrected usable fraction about 0.149 in place of the superseded 0.787, and with stage one fixed as calibration inside the December-January window followed by continuous learning, under the two invariants that the overall topology is not broken and that learning never stops.
+
+- [0242 — A spatiotemporal ratchet: net transport needs both asymmetries, and the standing wave transports nothing](0242-a-spatiotemporal-ratchet-net-transport-needs-both-asymmetries.md): a declared six-site ring model, solved exactly, shows that net transport is exactly zero under a symmetric potential, under a symmetric drive, and under their combination, and that only the two asymmetries together give a non-zero transport whose direction reverses exactly with the declared phase gradient's sign; the standing wave transports nothing, the ring's connectivity and the declared step-energy bound are enforced with rejected controls, and the failed control - rescaling the potential, which the slope-sign gates cannot see - is retained rather than repaired.
 
 ### Named notes
 
