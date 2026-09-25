@@ -1,0 +1,1477 @@
+{
+  "assertions": 126,
+  "checker_sha256": "49034f1bc27fdc7861b085315e24a50c3119ba1c996a600d989f379de9277597",
+  "checks": {
+    "a_gigawatt_would_need_ten_to_the_fifteen_fibres": true,
+    "a_megawatt_would_need_ten_to_the_twelve_fibres": true,
+    "all_parent_contracts_are_retained_byte_for_byte": true,
+    "all_six_overreach_controls_are_rejected": true,
+    "assertions_within_budget": true,
+    "each_mode_has_its_own_geometric_floor": true,
+    "each_mode_has_its_own_sustainment_statement": true,
+    "every_declared_constant_is_declared_and_not_measured": true,
+    "every_overreach_control_discriminates": true,
+    "governance_is_unaddressed_and_no_decision_is_claimed": true,
+    "mode_B_usable_fraction_is_recorded_as_declared": true,
+    "no_control_is_dropped": true,
+    "no_data_is_read_or_used": true,
+    "no_effect_is_asserted_by_the_target_arithmetic": true,
+    "no_effect_key_appears_anywhere": true,
+    "no_floating_point_value_is_retained": true,
+    "no_netting_is_performed": true,
+    "no_power_is_routed_through_fibres": true,
+    "observational_verification_is_recorded_unavailable": true,
+    "sealing_is_refused_for_the_termination": true,
+    "the_contract_declares_itself_a_proposal_only": true,
+    "the_declared_fibre_network_cannot_carry_the_required_power": true,
+    "the_declared_target_arithmetic_follows_exactly": true,
+    "the_diffractive_stage_carries_the_declared_blaze_asymmetry": true,
+    "the_division_of_labour_is_forced_by_the_fibre_bound": true,
+    "the_earth_is_in_the_antumbra_at_the_second_lagrange_point": true,
+    "the_failed_control_is_retained": true,
+    "the_fibre_ceiling_is_microwatts_per_mode": true,
+    "the_fibres_do_not_carry_power": true,
+    "the_inherited_prohibitions_apply_to_any_use": true,
+    "the_l2_floor_exceeds_the_earths_diameter": true,
+    "the_l2_usable_fraction_is_the_derived_annular_fraction": true,
+    "the_near_earth_floor_is_consistent_with_the_reported_case": true,
+    "the_passive_spot_floor_is_reported_for_three_platforms": true,
+    "the_payload_records_proposal_only_bookkeeping": true,
+    "the_proposal_only_bookkeeping_matches_the_contract": true,
+    "the_sun_appears_annular_there": true,
+    "the_target_arithmetic_is_ideal_and_is_a_lower_bound": true,
+    "the_termination_may_be_accounted_but_never_sealed": true,
+    "the_termination_problem_is_recorded_unaddressed": true,
+    "the_three_bounds_are_derived_from_the_declared_constants": true,
+    "the_two_deployment_modes_are_declared_separately": true,
+    "the_two_modes_are_not_netted": true,
+    "this_contract_digest_matches_the_declared_one": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/optical_imbalance_proposal_v1/contract.json",
+  "contract_sha256": "116913a9369e43666d80cf65a6877164f186fd813955a4d1c05f39777496fa4f",
+  "contract_sha256_declared": "116913a9369e43666d80cf65a6877164f186fd813955a4d1c05f39777496fa4f",
+  "level": "Bounded external exact calibration of a PROPOSAL. No authorization, no deployment, no physical claim, no forecast, no data, and no magnitude for any physical effect.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "blaze_as_declared_asymmetry": "the diffractive stage is declared as a zero-order-suppressed phase grating, which is two-sided by construction because the zero order is suppressed and the energy goes into the two first orders.  The asymmetry is the declared blaze direction together with unequal declared first-order shares 3/5 and 2/5 summing to exactly one; the difference is exactly 1/5.  A symmetric element has equal shares by declaration and can therefore carry no asymmetry.",
+    "declared_distances": "the three platform distances are declared constants: 400 km for the near-Earth platform, which is also the declared distance of the historically reported case, 35786000 m for the geostationary platform, and 1500000000 m for the second Lagrange point beyond the Earth on the anti-solar side.  No fourth platform is declared.  The solar angular size at the second Lagrange point uses the declared distance from the Sun there, the declared astronomical unit plus the declared second-Lagrange distance.",
+    "deployment_modes_separate": "the two deployment modes are declared separately, each with its own geometric floor, its own usable flux and its own account of required area, areal mass and launch-years.  Mode A carries the derived annular fraction and mode B is declared to carry the full declared solar constant; the two accounts are not netted and no fused figure over them is formed.",
+    "exact_only": "every acceptance assertion and every value in the retained payload is an exact integer or fraction, carried as an exact decimal-free string with its declared unit; no floating-point value is formed anywhere in this run and none is written into the payload.",
+    "external_library": "no external library is imported.  sympy 1.14 is declared as available on the host, as non-authoritative and as unused, because no step of this calibration needs a polynomial engine and the run must not depend on a host package to reproduce.",
+    "fibre_ceiling_forces_the_division": "the division of labour is asserted as forced: at the declared constants one fibre mode carries exactly one microwatt, so the declared network of a million fibres can carry at most one watt in total against a required terawatt, a factor of a trillion.  The mirror array therefore carries the power in free space, the fibres carry phase and coherence only, and the fine pattern is available only to the declared coherent fraction.",
+    "floor_ignores_the_aperture": "the declared floor is theta_sun * L exactly as the contract writes it, and it is a floor of the aperture-inclusive spot size D + theta_sun * L because D is positive.  The cross-check reports both the bare floor and the aperture-inclusive floor for the declared 20-metre mirror, so neither reading is hidden.",
+    "ideal_delivery_efficiency": "the declared delivery efficiency is exactly one, so the required intercepting area is the IDEAL area and is a LOWER bound: any real loss only increases it.  No efficiency is estimated, because an estimate would be a claim this run does not make.",
+    "inherited_prohibitions": "no netting of one account against another, and no sealing of a component that is by definition a leak.  Both are executed against rejected controls in R6, and the termination problem of this setting - the delivery's termination, which is by definition a leak - is recorded as Unaddressed rather than solved.",
+    "inverse_square_scaling": "the declared irradiance at the second Lagrange point follows from the declared solar constant at one astronomical unit by the declared inverse-square scaling over the declared distances.  The scaling is a declared assumption of this arithmetic and not a measurement; the run makes no claim about any measured irradiance.",
+    "l2_antumbra_check": "the statement that the Earth is in the antumbra at the second Lagrange point is DERIVED and not asserted: the umbra tip is computed exactly as the declared Earth radius times the declared astronomical unit over the difference of the declared solar and Earth radii, and the declared second-Lagrange distance is compared with it.  That distance lies beyond the tip, so the occultation is partial and the Sun appears annular.",
+    "proposal_only": "the payload records authorization none, decision none, deployment none, governance unaddressed, physical_effect_asserted none and data_used none, and states that the document is a \u63d0\u8bae\u6027\u65b9\u6848, a proposal only: it authorizes nothing, decides nothing and deploys nothing.",
+    "reported_case_is_declared": "the historically reported case is carried as declared constants - about 20 metres of mirror, about 5 km of spot - and not as data: nothing is read, no catalogue or archive is consulted, and the payload marks the reported constants as declared, not measured here and not read from data.  The check is that the reported spot is not below the derived floor, which is what a floor requires.",
+    "resource_limits": "the checker installs a CPU limit, a file-size limit and a wall alarm, and records the contract's declared memory budget without installing an address-space ceiling; no child process is launched and no pre-existing rlimit artifact is touched.",
+    "spectral_radiance_declaration": "the ceiling uses one declared bandwidth-integrated spectral radiance B and one declared wavelength, so that the exact ceiling is B times lambda squared as the contract writes it.  B is declared generously for a solar source, which makes the ceiling an upper bound a fortiori: a smaller declared B would only lower the ceiling and strengthen the conclusion.",
+    "target_arithmetic_is_a_proposal_input": "the declared target patch area and the declared target flux are ARITHMETIC INPUTS of a proposal.  Every figure derived from them - required power, required intercepting area, areal mass, launch-years and mirror count - is arithmetic on declared inputs, not an effect, not a forecast, not a capability claim and not a statement about any atmosphere, ocean, cloud, surface, weather or climate.",
+    "theta_sun_declaration": "theta_sun is declared as the FULL angular size of the solar disk, twice the declared solar radius over the declared distance, so that the contract's bound theta_sun * L is the spot size and not half of it.  The reported cross-check selects this reading: at the declared near-Earth distance the full-angular-size floor lies below the reported 5 km spot, while the half-angular-size reading would put the floor below it by a factor of about two and a half.  The factor-of-two question is recorded as Undecided."
+  },
+  "parent_contracts": [
+    {
+      "path": "experiments/three_cycle_supplement_v1/contract.json",
+      "relation": "the surgery run: the blaze direction of this proposal plays the role of the chirality declared there, and its retained failures carry forward",
+      "retained_byte_for_byte": true,
+      "sha256": "157838642e9097ea4a1a1c7461db9e548affb0c6f3af7b830816f37f22b74f5a",
+      "sha256_declared": "157838642e9097ea4a1a1c7461db9e548affb0c6f3af7b830816f37f22b74f5a"
+    },
+    {
+      "path": "experiments/three_cycle_supplement_v2/contract.json",
+      "relation": "the rounded ending: its netting prohibition and its refusal to seal a component that is by definition a leak are the prohibitions inherited here, and they are executed against controls in R6",
+      "retained_byte_for_byte": true,
+      "sha256": "823eedfaa492d0524c901793b580d5f02b67d7cf739f26781e326aa667d1e990",
+      "sha256_declared": "823eedfaa492d0524c901793b580d5f02b67d7cf739f26781e326aa667d1e990"
+    }
+  ],
+  "protected": [
+    "All parent contracts are retained byte for byte and are not edited",
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No data is read or used",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "This is a proposal: no authorization, no decision, no deployment, no governance assessment",
+    "The derived bounds rest on DECLARED constants carried as exact rationals; a different declaration of those constants is a different run, while the form of each bound is not a declaration",
+    "Spot floor, \u00e9tendue ceiling and annular fraction are bounds on instruments; they are not statements about the atmosphere, the ocean or any weather",
+    "The declared target figures are arithmetic inputs of a proposal and not asserted effects",
+    "Nothing here addresses the termination problem beyond noting that the inherited prohibitions apply, and nothing here addresses who might decide, or how, or whether it should be done"
+  ],
+  "schema": "adva.external.optical-imbalance-proposal-calibration.v1",
+  "sections": {
+    "R1_derived_bounds": {
+      "all_three_bounds_are_derived_from_declared_constants": true,
+      "bounds_are_bounds_on_instruments_not_effects": true,
+      "declared_constants": [
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "astronomical_unit",
+          "read_from_data": false,
+          "role": "the declared distance unit; the value is exact under the 2012 definition",
+          "unit": "m",
+          "value": "149597870700"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "solar_radius",
+          "read_from_data": false,
+          "role": "the declared nominal solar radius",
+          "unit": "m",
+          "value": "695700000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "earth_mean_radius",
+          "read_from_data": false,
+          "role": "the declared mean Earth radius",
+          "unit": "m",
+          "value": "6371000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "near_earth_distance",
+          "read_from_data": false,
+          "role": "the declared near-Earth platform distance, which is also the declared distance of the historically reported case",
+          "unit": "m",
+          "value": "400000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "geostationary_distance",
+          "read_from_data": false,
+          "role": "the declared geostationary platform distance",
+          "unit": "m",
+          "value": "35786000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "second_lagrange_distance",
+          "read_from_data": false,
+          "role": "the declared second-Lagrange-point distance beyond the Earth on the anti-solar side",
+          "unit": "m",
+          "value": "1500000000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "reported_mirror_diameter",
+          "read_from_data": false,
+          "role": "the mirror diameter of the historically reported case, carried as a declared constant",
+          "unit": "m",
+          "value": "20"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "reported_spot",
+          "read_from_data": false,
+          "role": "the spot of the historically reported case, carried as a declared constant",
+          "unit": "m",
+          "value": "5000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "solar_constant_at_one_au",
+          "read_from_data": false,
+          "role": "the declared solar constant at one astronomical unit",
+          "unit": "W m^-2",
+          "value": "1361"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "target_patch_area",
+          "read_from_data": false,
+          "role": "the declared target patch area of the proposal, an arithmetic input and not an effect",
+          "unit": "m^2",
+          "value": "100000000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "target_flux",
+          "read_from_data": false,
+          "role": "the declared target flux of the proposal, an arithmetic input and not an effect",
+          "unit": "W m^-2",
+          "value": "10000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "wavelength",
+          "read_from_data": false,
+          "role": "the declared operating wavelength, one micrometre",
+          "unit": "m",
+          "value": "1/1000000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "spectral_radiance_B",
+          "read_from_data": false,
+          "role": "the declared bandwidth-integrated spectral radiance B that sets the \u00e9tendue ceiling",
+          "unit": "W m^-2 sr^-1",
+          "value": "1000000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "areal_density",
+          "read_from_data": false,
+          "role": "the declared areal density of the mirror array",
+          "unit": "kg m^-2",
+          "value": "1/10"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "annual_launch_rate",
+          "read_from_data": false,
+          "role": "the declared annual launch rate",
+          "unit": "kg year^-1",
+          "value": "100000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "mirror_element_side",
+          "read_from_data": false,
+          "role": "the declared side of one square mirror element, of the same order as the reported case",
+          "unit": "m",
+          "value": "20"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "declared_fibre_count",
+          "read_from_data": false,
+          "role": "the declared number of fibres in the phase-and-coherence network",
+          "unit": "1",
+          "value": "1000000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "coherent_fraction",
+          "read_from_data": false,
+          "role": "the declared fraction of the delivered power carried coherently, which is the only part available to a fine pattern",
+          "unit": "1",
+          "value": "1/1000"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "blaze_first_order_share",
+          "read_from_data": false,
+          "role": "the declared share of the +1 first order of the blazed grating",
+          "unit": "1",
+          "value": "3/5"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "other_first_order_share",
+          "read_from_data": false,
+          "role": "the declared share of the -1 first order of the blazed grating",
+          "unit": "1",
+          "value": "2/5"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "symmetric_grating_order_share",
+          "read_from_data": false,
+          "role": "the declared share of each first order of a symmetric zero-order-suppressed grating",
+          "unit": "1",
+          "value": "1/2"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "zero_order_share",
+          "read_from_data": false,
+          "role": "the declared zero-order share of the zero-order-suppressed grating",
+          "unit": "1",
+          "value": "0"
+        },
+        {
+          "declared": true,
+          "measured_here": false,
+          "name": "gigawatt_reference_power",
+          "read_from_data": false,
+          "role": "the declared reference power of the fibre count",
+          "unit": "W",
+          "value": "1000000000"
+        }
+      ],
+      "declared_constants_count": 23,
+      "declared_inputs_are_declared_and_not_measured": true,
+      "declared_inputs_statement": "every constant above is a DECLARED input of the proposal, carried as an exact rational with its declared unit; none of them is a measurement of this run, no instrument was used, no data was read and no clock was consulted.  The three bounds below are the only derived quantities in this run and they rest on these declarations: a different declaration of the constants is a different run, while the FORM of each bound is not a declaration.",
+      "fibre_power_ceiling": {
+        "declared_fibre_count": {
+          "between_the_exact_integers": [
+            "1000000",
+            "1000001"
+          ],
+          "unit": "1",
+          "value": "1000000"
+        },
+        "declared_spectral_radiance": {
+          "between_the_exact_integers": [
+            "1000000",
+            "1000001"
+          ],
+          "unit": "W m^-2 sr^-1",
+          "value": "1000000"
+        },
+        "declared_wavelength": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "m",
+          "value": "1/1000000"
+        },
+        "fibres_a_gigawatt_would_need": {
+          "between_the_exact_integers": [
+            "1000000000000000",
+            "1000000000000001"
+          ],
+          "unit": "1",
+          "value": "1000000000000000"
+        },
+        "fibres_a_megawatt_would_need": {
+          "between_the_exact_integers": [
+            "1000000000000",
+            "1000000000001"
+          ],
+          "unit": "1",
+          "value": "1000000000000"
+        },
+        "fibres_the_coherent_part_would_need": {
+          "between_the_exact_integers": [
+            "1000000000000000",
+            "1000000000000001"
+          ],
+          "unit": "1",
+          "value": "1000000000000000"
+        },
+        "fibres_the_required_power_would_need": {
+          "between_the_exact_integers": [
+            "1000000000000000000",
+            "1000000000000000001"
+          ],
+          "unit": "1",
+          "value": "1000000000000000000"
+        },
+        "gigawatt_reference_power": {
+          "between_the_exact_integers": [
+            "1000000000",
+            "1000000001"
+          ],
+          "unit": "W",
+          "value": "1000000000"
+        },
+        "maximum_power_the_declared_fibre_network_can_carry": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "W",
+          "value": "1"
+        },
+        "per_mode_power": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "W",
+          "value": "1/1000000"
+        },
+        "per_mode_power_is_microwatts": true,
+        "reading": "the ceiling is exactly one microwatt per fibre mode at the declared constants, so the fibre network is not a power channel: the declared network of a million fibres can carry at most one watt in total, one part in a trillion of the power the declared target requires, and the required power would need 10^18 fibres.  This bound is what forces the division of labour.",
+        "rule": "the \u00e9tendue-limited single-mode ceiling, of order B * lambda^2, with B a declared bandwidth-integrated spectral radiance and lambda a declared wavelength",
+        "the_contracts_reported_order": "of order a trillion fibres for a gigawatt",
+        "the_declared_network_can_carry_this_fraction_of_the_required_power": "1/1000000000000",
+        "the_exact_count_and_the_reported_order": "at the declared constants a gigawatt needs exactly 10^15 fibres, one thousand trillion, while the contract's prose reports the order of a trillion; that prose figure is exactly the count at a megawatt, one thousandth of the declared gigawatt.  The exact division is reported and governs; the mismatch of three orders is recorded and not repaired.",
+        "the_megawatt_is_this_fraction_of_the_declared_gigawatt": "1/1000"
+      },
+      "l2_usable_fraction": {
+        "annular_statement": "the declared second-Lagrange distance lies beyond the derived umbra tip of the Earth, so the Earth is in the antumbra there and the Sun appears annular: the Earth occults only the derived fraction of the solar disk and the usable fraction is one minus that fraction",
+        "declared_irradiance_at_the_second_lagrange_point": {
+          "between_the_exact_integers": [
+            "1334",
+            "1335"
+          ],
+          "unit": "W m^-2",
+          "value": "338428118792916700721/253672961445265761"
+        },
+        "declared_solar_constant_at_one_au": {
+          "between_the_exact_integers": [
+            "1361",
+            "1362"
+          ],
+          "unit": "W m^-2",
+          "value": "1361"
+        },
+        "inverse_square_scaling_is_declared": true,
+        "reading": "the usable flux at the second Lagrange point is the derived annular fraction times the declared irradiance there; both are exact rationals, the declared irradiance follows from the declared solar constant at one astronomical unit by the declared inverse-square scaling, and no measurement is involved.",
+        "rule": "1 - (theta_earth / theta_sun)^2, exact in the declared units",
+        "the_declared_distance_exceeds_the_umbra_length": true,
+        "the_earth_is_in_the_antumbra": true,
+        "the_occulted_fraction": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1144054937385575376509089/5377761000000000000000000"
+        },
+        "the_ratio": "1069605038033/2319000000000",
+        "the_sun_appears_annular": true,
+        "theta_earth_at_the_second_lagrange_point": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "rad",
+          "value": "6371/1500000"
+        },
+        "theta_sun_at_the_second_lagrange_point": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "rad",
+          "value": "1546000/167886523"
+        },
+        "umbra_length": {
+          "between_the_exact_integers": [
+            "1382631565",
+            "1382631566"
+          ],
+          "unit": "m",
+          "value": "953088034229700/689329"
+        },
+        "usable_flux": {
+          "between_the_exact_integers": [
+            "1050",
+            "1051"
+          ],
+          "unit": "W m^-2",
+          "value": "1432805178292766127971612615837653783650646831/1364192558814853844141121000000000000000000"
+        },
+        "usable_fraction": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "4233706062614424623490911/5377761000000000000000000"
+        }
+      },
+      "no_physics_is_asserted_by_these_bounds": "the three bounds are bounds on what any such instrument can do; they are not statements about any atmosphere, ocean, cloud, surface, weather or climate",
+      "passive_spot_floor": {
+        "cross_check": {
+          "consistent": true,
+          "declared_reported_case": "the historically reported case of a deployed space mirror of about 20 metres producing a spot of about 5 km, carried as DECLARED constants of this run",
+          "declared_reported_mirror_diameter": {
+            "between_the_exact_integers": [
+              "20",
+              "21"
+            ],
+            "unit": "m",
+            "value": "20"
+          },
+          "declared_reported_spot": {
+            "between_the_exact_integers": [
+              "5000",
+              "5001"
+            ],
+            "unit": "m",
+            "value": "5000"
+          },
+          "implied_distance_for_exactly_the_reported_spot": {
+            "between_the_exact_integers": [
+              "535430",
+              "535431"
+            ],
+            "unit": "m",
+            "value": "41388744227/77300"
+          },
+          "measured_here": false,
+          "read_from_data": false,
+          "reading": "the floor is CONSISTENT with the historically reported case: at the declared near-Earth distance the floor is below the reported spot, with the declared mirror aperture added it is still below it, and the angular size the reported case implies is larger than the declared solar angular size.  A floor may not be violated and the reported case does not violate it.  The reported case is carried as a declared constant, not read as data, and it is not a measurement of this run.",
+          "reported_floor_at_the_declared_distance": {
+            "between_the_exact_integers": [
+              "3720",
+              "3721"
+            ],
+            "unit": "m",
+            "value": "1855200000000/498659569"
+          },
+          "reported_floor_with_the_aperture_included": {
+            "between_the_exact_integers": [
+              "3740",
+              "3741"
+            ],
+            "unit": "m",
+            "value": "1865173191380/498659569"
+          },
+          "the_reported_angular_size_exceeds_the_declared_solar_angular_size": true,
+          "the_reported_spot_is_not_below_the_floor": true,
+          "the_reported_spot_over_the_declared_distance": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "rad",
+            "value": "1/80"
+          },
+          "the_reported_spot_over_the_floor": "124664892250/93258659569",
+          "verdict": "Consistent_FloorIsNotViolated"
+        },
+        "earth_diameter": {
+          "between_the_exact_integers": [
+            "12742000",
+            "12742001"
+          ],
+          "unit": "m",
+          "value": "12742000"
+        },
+        "floor_ratio_of_the_largest_to_the_smallest": "623324461250/167886523",
+        "l2_floor_minus_the_earths_diameter": {
+          "between_the_exact_integers": [
+            "1070901",
+            "1070902"
+          ],
+          "unit": "m",
+          "value": "179789923934000/167886523"
+        },
+        "largest_floor": {
+          "between_the_exact_integers": [
+            "13812901",
+            "13812902"
+          ],
+          "unit": "m",
+          "value": "2319000000000000/167886523"
+        },
+        "platform_count": 3,
+        "platforms": [
+          {
+            "declared_distance": {
+              "between_the_exact_integers": [
+                "400000",
+                "400001"
+              ],
+              "unit": "m",
+              "value": "400000"
+            },
+            "floor": {
+              "between_the_exact_integers": [
+                "3720",
+                "3721"
+              ],
+              "unit": "m",
+              "value": "1855200000000/498659569"
+            },
+            "name": "a near-Earth platform",
+            "theta_sun": {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "rad",
+              "value": "4638000/498659569"
+            }
+          },
+          {
+            "declared_distance": {
+              "between_the_exact_integers": [
+                "35786000",
+                "35786001"
+              ],
+              "unit": "m",
+              "value": "35786000"
+            },
+            "floor": {
+              "between_the_exact_integers": [
+                "332843",
+                "332844"
+              ],
+              "unit": "m",
+              "value": "165975468000000/498659569"
+            },
+            "name": "a geostationary platform",
+            "theta_sun": {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "rad",
+              "value": "4638000/498659569"
+            }
+          },
+          {
+            "declared_distance": {
+              "between_the_exact_integers": [
+                "1500000000",
+                "1500000001"
+              ],
+              "unit": "m",
+              "value": "1500000000"
+            },
+            "floor": {
+              "between_the_exact_integers": [
+                "13812901",
+                "13812902"
+              ],
+              "unit": "m",
+              "value": "2319000000000000/167886523"
+            },
+            "name": "the second Lagrange point",
+            "theta_sun": {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "rad",
+              "value": "1546000/167886523"
+            }
+          }
+        ],
+        "reading": "the three floors are exact rationals in metres: the near-Earth floor is the smallest and the second-Lagrange-point floor the largest, and the largest exceeds the Earth's diameter, so a passive mirror at the second Lagrange point cannot in any case form a spot smaller than the Earth itself.",
+        "rule": "theta_sun * L: any passive mirror forms a spot no smaller than the product of the declared solar angular size and the declared distance, because radiance cannot be increased",
+        "smallest_floor": {
+          "between_the_exact_integers": [
+            "3720",
+            "3721"
+          ],
+          "unit": "m",
+          "value": "1855200000000/498659569"
+        },
+        "the_l2_floor_exceeds_the_earths_diameter": true,
+        "the_largest_floor_is_at_the_second_lagrange_point": true,
+        "theta_sun_at_one_au": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "rad",
+          "value": "4638000/498659569"
+        },
+        "theta_sun_at_the_second_lagrange_point": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "rad",
+          "value": "1546000/167886523"
+        },
+        "theta_sun_declared_as": "the full angular size of the solar disk, twice the declared solar radius over the declared distance; the contract writes the bound as theta_sun * L, and the reported cross-check below fixes the factor-of-two reading as the full angular size"
+      },
+      "the_three_bounds": [
+        {
+          "bound": "the passive spot floor theta_sun * L",
+          "derived_from": "the declared solar radius and the declared distances",
+          "unit": "m at the second Lagrange point",
+          "value": "2319000000000000/167886523"
+        },
+        {
+          "bound": "the \u00e9tendue-limited single-mode power",
+          "derived_from": "the declared spectral radiance B and the declared wavelength",
+          "unit": "W per mode",
+          "value": "1/1000000"
+        },
+        {
+          "bound": "the usable fraction at the second Lagrange point",
+          "derived_from": "the declared Earth radius and the declared distances",
+          "unit": "1",
+          "value": "4233706062614424623490911/5377761000000000000000000"
+        }
+      ]
+    },
+    "R2_division_of_labour": {
+      "diffractive_stage": {
+        "blaze_direction": "the declared blaze direction: the +1 first order is biased toward the declared night-side patch along the declared order axis",
+        "element": "a zero-order-suppressed phase grating",
+        "minus_first_order_share": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "2/5"
+        },
+        "order_share_difference": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/5"
+        },
+        "order_share_sum": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "1",
+          "value": "1"
+        },
+        "orders": [
+          "+1",
+          "-1",
+          "0"
+        ],
+        "plus_first_order_share": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "3/5"
+        },
+        "reading": "the grating is two-sided by construction, because a zero-order-suppressed phase grating sends its energy into the two first orders; the declared blaze direction together with unequal declared shares is what makes one side larger than the other, and it plays the role of the chirality declared in the surgery run",
+        "role": "sets the angular pattern, including the blaze asymmetry",
+        "the_asymmetry_is_a_declared_asymmetry": true,
+        "the_two_first_order_shares_are_unequal": true,
+        "two_sided_by_construction": true,
+        "zero_order_share": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        }
+      },
+      "fibres": {
+        "carries_power": false,
+        "declared_fibre_count": {
+          "between_the_exact_integers": [
+            "1000000",
+            "1000001"
+          ],
+          "unit": "1",
+          "value": "1000000"
+        },
+        "maximum_power_the_declared_network_can_carry": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "W",
+          "value": "1"
+        },
+        "required_power": {
+          "between_the_exact_integers": [
+            "1000000000000",
+            "1000000000001"
+          ],
+          "unit": "W",
+          "value": "1000000000000"
+        },
+        "role": "carry phase, coherence and the phase reference only",
+        "the_fraction_of_the_required_power_the_network_can_carry": "1/1000000000000",
+        "what_forces_the_division": "the \u00e9tendue-limited single-mode ceiling: at the declared constants one mode carries exactly one microwatt, the declared network of a million fibres can carry at most one watt, and the required power is a trillion times that, so routing power through fibres is not a stylistic alternative but is excluded by the derived ceiling"
+      },
+      "mirrors": {
+        "carries_power": true,
+        "combination_happens_in_free_space": true,
+        "declared_element_side": {
+          "between_the_exact_integers": [
+            "20",
+            "21"
+          ],
+          "unit": "m",
+          "value": "20"
+        },
+        "how_many_mirror_elements": {
+          "between_the_exact_integers": [
+            "2380282",
+            "2380283"
+          ],
+          "unit": "1",
+          "value": "3410481397037134610352802500000000000000000000000000/1432805178292766127971612615837653783650646831"
+        },
+        "reading": "the power is collected and combined in free space by the mirror array; no power is routed through fibres",
+        "required_power": {
+          "between_the_exact_integers": [
+            "1000000000000",
+            "1000000000001"
+          ],
+          "unit": "W",
+          "value": "1000000000000"
+        },
+        "role": "carry power"
+      },
+      "no_power_is_routed_through_fibres": true,
+      "statement": "mirrors carry power; fibres carry phase and coherence only; the output diffractive stage sets the angular pattern including the blaze asymmetry - and the fibre bound is the reason, asserted here, not a stylistic choice",
+      "the_division_is_forced_not_stylistic": true,
+      "the_fibre_bound_is_the_reason": true,
+      "why": "the division of labour is asserted as FORCED rather than chosen: the ceiling computed in R1 caps what any number of declared fibres can carry at one microwatt per mode, so mirrors must carry the power in free space, fibres can carry phase and coherence only, and the angular pattern including the blaze asymmetry is set by the output diffractive stage, where no power ceiling of this kind applies"
+    },
+    "R3_deployment_modes": {
+      "each_mode_has_its_own_geometric_floor": true,
+      "each_mode_has_its_own_sustainment_statement": true,
+      "floor_ratio_of_the_largest_to_the_smallest": "623324461250/167886523",
+      "mode_A_second_lagrange_point": {
+        "areal_mass": {
+          "between_the_exact_integers": [
+            "95211308",
+            "95211309"
+          ],
+          "unit": "kg",
+          "value": "136419255881485384414112100000000000000000000000000000/1432805178292766127971612615837653783650646831"
+        },
+        "declared": "second-Lagrange-point night-side addition: the light arriving there has already passed the Earth and the mirror returns it to the night side",
+        "geometric_floor": {
+          "between_the_exact_integers": [
+            "13812901",
+            "13812902"
+          ],
+          "unit": "m",
+          "value": "2319000000000000/167886523"
+        },
+        "launch_years": {
+          "between_the_exact_integers": [
+            "952",
+            "953"
+          ],
+          "unit": "years",
+          "value": "1364192558814853844141121000000000000000000000000/1432805178292766127971612615837653783650646831"
+        },
+        "required_intercepting_area": {
+          "between_the_exact_integers": [
+            "952113085",
+            "952113086"
+          ],
+          "unit": "m^2",
+          "value": "1364192558814853844141121000000000000000000000000000000/1432805178292766127971612615837653783650646831"
+        },
+        "sustainment": {
+          "cadence_declared": false,
+          "cost_assessed": false,
+          "feasibility_assessed": false,
+          "reading": "the declared mode requires station-keeping at the second Lagrange point; whether it can be achieved, and at what cost, is not assessed anywhere in this run and is recorded as undecided",
+          "required": true,
+          "statement": "station-keeping is required"
+        },
+        "usable_flux": {
+          "between_the_exact_integers": [
+            "1050",
+            "1051"
+          ],
+          "unit": "W m^-2",
+          "value": "1432805178292766127971612615837653783650646831/1364192558814853844141121000000000000000000"
+        },
+        "usable_fraction": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "4233706062614424623490911/5377761000000000000000000"
+        }
+      },
+      "mode_B_near_earth_relay": {
+        "areal_mass": {
+          "between_the_exact_integers": [
+            "73475385",
+            "73475386"
+          ],
+          "unit": "kg",
+          "value": "100000000000/1361"
+        },
+        "declared": "near-Earth relay chain: a chain of mirrors at a small distance, where the geometric floor is the smallest of the three",
+        "geometric_floor": {
+          "between_the_exact_integers": [
+            "3720",
+            "3721"
+          ],
+          "unit": "m",
+          "value": "1855200000000/498659569"
+        },
+        "launch_years": {
+          "between_the_exact_integers": [
+            "734",
+            "735"
+          ],
+          "unit": "years",
+          "value": "1000000/1361"
+        },
+        "required_intercepting_area": {
+          "between_the_exact_integers": [
+            "734753857",
+            "734753858"
+          ],
+          "unit": "m^2",
+          "value": "1000000000000/1361"
+        },
+        "sustainment": {
+          "cadence_declared": false,
+          "cost_assessed": false,
+          "feasibility_assessed": false,
+          "reading": "the declared mode cannot be sustained by one platform: the declared spot sweeps with the platform's motion, so a succession of platforms is required.  The number of platforms, the dwell and the cadence are NOT declared in the contract and are not invented here; they are recorded as undecided",
+          "required": true,
+          "statement": "the light spot sweeps because of orbital motion, so sustained illumination requires a succession of platforms rather than one"
+        },
+        "usable_flux": {
+          "between_the_exact_integers": [
+            "1361",
+            "1362"
+          ],
+          "unit": "W m^-2",
+          "value": "1361"
+        },
+        "usable_fraction": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "1",
+          "value": "1"
+        }
+      },
+      "mode_B_usable_fraction_is_declared_not_derived": true,
+      "mode_B_usable_fraction_note": "the derived annular fraction 1 - (theta_earth / theta_sun)^2 is a statement about the second Lagrange point, where mode A sits.  Mode B's usable fraction of exactly 1 is a DECLARED fraction of this proposal and not a derived bound: the near-Earth mode is declared not to be occulted, and whether the relay chain can always be on the sunlit side of the Earth is not assessed here.  The declaration is recorded in the undecided list and is not counted as one of the three derived bounds.",
+      "mode_count": 2,
+      "no_fourth_platform_is_declared": true,
+      "separate_accounts_statement": "each mode carries its own geometric floor, its own usable flux, its own required intercepting area, areal mass and launch-years, and no fused figure over the two is formed anywhere in this run",
+      "the_modes_are_a_declared_choice": true,
+      "the_two_modes_are_declared_separately": true,
+      "the_two_modes_are_not_netted": true
+    },
+    "R4_declared_target_arithmetic": {
+      "areal_mass": {
+        "between_the_exact_integers": [
+          "95211308",
+          "95211309"
+        ],
+        "derivation": "the required intercepting area times the declared areal density",
+        "unit": "kg",
+        "value": "136419255881485384414112100000000000000000000000000000/1432805178292766127971612615837653783650646831"
+      },
+      "arithmetic_on_declared_proposal_inputs": true,
+      "declared_target": {
+        "declared_as_proposal_inputs": true,
+        "flux": {
+          "between_the_exact_integers": [
+            "10000",
+            "10001"
+          ],
+          "unit": "W m^-2",
+          "value": "10000"
+        },
+        "patch_area": {
+          "between_the_exact_integers": [
+            "100000000",
+            "100000001"
+          ],
+          "unit": "m^2",
+          "value": "100000000"
+        },
+        "reading": "a declared target patch and a declared target flux; both are arithmetic inputs of the proposal and neither is an asserted effect"
+      },
+      "fibres_the_required_power_would_need": {
+        "between_the_exact_integers": [
+          "1000000000000000000",
+          "1000000000000000001"
+        ],
+        "derivation": "the required power over the \u00e9tendue-limited single-mode power",
+        "unit": "1",
+        "value": "1000000000000000000"
+      },
+      "launch_years": {
+        "between_the_exact_integers": [
+          "952",
+          "953"
+        ],
+        "derivation": "the areal mass over the declared annual launch rate",
+        "unit": "years",
+        "value": "1364192558814853844141121000000000000000000000000/1432805178292766127971612615837653783650646831"
+      },
+      "mirror_elements": {
+        "between_the_exact_integers": [
+          "2380282",
+          "2380283"
+        ],
+        "derivation": "the required intercepting area over the declared square element area",
+        "unit": "1",
+        "value": "3410481397037134610352802500000000000000000000000000/1432805178292766127971612615837653783650646831"
+      },
+      "no_effect_is_asserted": true,
+      "required_intercepting_area": {
+        "between_the_exact_integers": [
+          "952113085",
+          "952113086"
+        ],
+        "derivation": "the required power over the derived usable flux at the second Lagrange point",
+        "ratio_to_the_declared_patch_area": "13641925588148538441411210000000000000000000000/1432805178292766127971612615837653783650646831",
+        "unit": "m^2",
+        "value": "1364192558814853844141121000000000000000000000000000000/1432805178292766127971612615837653783650646831"
+      },
+      "required_power": {
+        "between_the_exact_integers": [
+          "1000000000000",
+          "1000000000001"
+        ],
+        "derivation": "the declared target flux times the declared target patch area",
+        "unit": "W",
+        "value": "1000000000000"
+      },
+      "statement": "the required intercepting area, the areal mass and the launch-years follow from the declared target patch area and the declared target flux by exact arithmetic.  They are ARITHMETIC ON DECLARED PROPOSAL INPUTS and no effect on any atmosphere, ocean, cloud, surface, weather or climate is asserted or estimated anywhere in this run",
+      "the_arithmetic_is_ideal_and_is_a_lower_bound": true,
+      "the_delivery_efficiency_is_declared_exactly_one": true
+    },
+    "R5_overreach_controls": {
+      "control_count": 6,
+      "controls": [
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the spot claimed is exactly the derived floor 2319000000000000/167886523 m, which is not finer than the floor",
+            "verdict": "Accepted_AtTheFloor"
+          },
+          "claim": "a passive mirror at the second Lagrange point delivers a declared spot of 100 metres on the night side",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "100",
+              "101"
+            ],
+            "unit": "m",
+            "value": "100"
+          },
+          "control": "1. a passive-mirror pattern claimed finer than the derived floor theta_sun * L",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "13812901",
+              "13812902"
+            ],
+            "unit": "m",
+            "value": "2319000000000000/167886523"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the derived passive spot floor theta_sun * L",
+          "rejection_reasons": [
+            "the derived floor at the declared second-Lagrange distance is 2319000000000000/167886523 m and any passive mirror forms a spot no smaller than theta_sun * L, because radiance cannot be increased",
+            "the claimed 100 m is finer than that floor by an exact factor of 23190000000000/167886523",
+            "a fine pattern is available only to the coherent part of the power, which has its own \u00e9tendue ceiling and its own controls (2 and 3)"
+          ],
+          "unit": "m",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "exactly the \u00e9tendue-limited single-mode power through one mode, 1/1000000 W, with the power itself carried in free space",
+            "verdict": "Accepted_AtTheCeiling"
+          },
+          "claim": "one fibre mode carries twice the \u00e9tendue-limited single-mode power, and the fibre network carries the required power",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "W",
+            "value": "1/500000"
+          },
+          "control": "2. more than the \u00e9tendue ceiling through one fibre mode, or fibres treated as a power channel",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "W",
+            "value": "1/1000000"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the \u00e9tendue-limited single-mode ceiling B * lambda^2",
+          "rejection_reasons": [
+            "the ceiling is exactly 1/1000000 W per mode at the declared spectral radiance and wavelength, so twice the ceiling through one mode is excluded by the \u00e9tendue bound",
+            "treating fibres as the power channel is excluded too: the required power of 1000000000000 W would need 1000000000000000000 single-mode fibres, while the declared network has 1000000",
+            "the declared network can carry at most 1 W in total, one part in a trillion of the required power"
+          ],
+          "unit": "W",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the fine pattern claimed at the declared coherent part, 1000000000 W, as the proposal declares it",
+            "verdict": "Accepted_AtTheDeclaredCoherentFraction"
+          },
+          "claim": "the fine pattern is claimed at the whole required power, with the declared coherent fraction treated as if it were the whole power",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1000000000000",
+              "1000000000001"
+            ],
+            "unit": "W",
+            "value": "1000000000000"
+          },
+          "control": "3. the coherent fraction treated as the whole power: a fine pattern claimed at full power",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "1000000000",
+              "1000000001"
+            ],
+            "unit": "W",
+            "value": "1000000000"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the declared coherent fraction",
+          "rejection_reasons": [
+            "the declared coherent fraction is 1/1000, so only 1000000000 W of the required 1000000000000 W is carried coherently, and a fine pattern is available only to that part",
+            "the claim exceeds the coherent part by exactly the factor 1000",
+            "at full power the fine pattern would need 1000000000000000000 fibres against a declared count of 1000000, and even the coherent part alone would need 1000000000000000"
+          ],
+          "unit": "W",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the usable fraction used exactly as derived, 4233706062614424623490911/5377761000000000000000000, with the resulting usable flux 1432805178292766127971612615837653783650646831/1364192558814853844141121000000000000000000 W m^-2",
+            "verdict": "Accepted_AtTheDerivedFraction"
+          },
+          "claim": "the usable fraction at the second Lagrange point is claimed to be 1, with no occultation by the Earth",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "1",
+            "value": "1"
+          },
+          "control": "4. a usable flux at the second Lagrange point above the derived annular fraction",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "4233706062614424623490911/5377761000000000000000000"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the derived annular fraction 1 - (theta_earth / theta_sun)^2",
+          "rejection_reasons": [
+            "the derived usable fraction is 4233706062614424623490911/5377761000000000000000000, because the Earth occults the derived fraction 1144054937385575376509089/5377761000000000000000000 of the solar disk and the declared point lies beyond the derived umbra tip",
+            "a claimed usable fraction of 1 is above the derived fraction by the exact factor 5377761000000000000000000/4233706062614424623490911, and a claim one part in a thousand above the derived fraction is above it too: the control is strict and not a tolerance",
+            "the usable flux would be overstated by exactly that factor and the required intercepting area understated by its reciprocal; the derived fraction may not be substituted"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared grating: first-order shares 3/5 and 2/5, zero order 0, with the declared blaze direction: the +1 first order is biased toward the declared night-side patch along the declared order axis",
+            "verdict": "Accepted_WithTheDeclaredBlazeDirection"
+          },
+          "claim": "an asymmetric pattern is claimed from the diffractive stage with no blaze direction declared, and a symmetric zero-order-suppressed grating with equal first-order shares is claimed to give an asymmetric pattern",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "control": "5. an asymmetric pattern claimed without a declared blaze direction, and a symmetric element claimed to give an asymmetric pattern",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "1/5"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the declared blaze direction together with unequal declared first-order shares",
+          "rejection_reasons": [
+            "an asymmetric pattern requires a DECLARED blaze direction: without one the two first orders are interchangeable and the pattern is symmetric, and the claimed direction is none",
+            "a symmetric element cannot give an asymmetric pattern either: its declared first-order shares are equal at 1/2 each, so the declared difference between the orders is exactly zero",
+            "the declared grating with the declared direction is asymmetric by exactly 1/5 of the two-first-order energy, and it is two-sided by construction because a zero-order-suppressed grating sends its energy into the two first orders"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the same target reached by changing the declaration instead: the declared patch area is halved, so the required intercepting area is 682096279407426922070560500000000000000000000000000000/1432805178292766127971612615837653783650646831 m^2 by the same unchanged derivation at the derived usable flux 1432805178292766127971612615837653783650646831/1364192558814853844141121000000000000000000 W m^-2",
+            "verdict": "Accepted_ByDeclaration"
+          },
+          "claim": "the declared target is claimed to be reached with the usable fraction of 1 substituted for the derived annular fraction, which shrinks the required intercepting area",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "749562306",
+              "749562307"
+            ],
+            "unit": "m^2",
+            "value": "253672961445265761000000000000/338428118792916700721"
+          },
+          "control": "6. a target reached by loosening the derivation rather than the declaration",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "952113085",
+              "952113086"
+            ],
+            "unit": "m^2",
+            "value": "1364192558814853844141121000000000000000000000000000000/1432805178292766127971612615837653783650646831"
+          },
+          "discriminates": true,
+          "rejected": true,
+          "rejected_by": "the derived usable fraction, which may not be substituted by a looser value",
+          "rejection_reasons": [
+            "the claim reaches a smaller area only by loosening the derivation: the substituted fraction is above the derived annular fraction by the exact factor 5377761000000000000000000/4233706062614424623490911",
+            "the derived bounds are the part of this proposal that is not a declaration, so a target reached by loosening one of them is rejected by rule and not by arithmetic alone",
+            "the accepted route is the other one: keep the derivation and change the DECLARATION"
+          ],
+          "unit": "m^2",
+          "verdict": "Rejected"
+        }
+      ],
+      "controls_executed": 6,
+      "controls_rejected": 6,
+      "every_control_produces_a_rejection": true,
+      "failed_controls": [
+        {
+          "control": "the declared target reached by loosening the declared areal density from 1/10 to 1/100 kg m^-2",
+          "derived_launch_years": "1364192558814853844141121000000000000000000000000/1432805178292766127971612615837653783650646831",
+          "derived_mass": "136419255881485384414112100000000000000000000000000000/1432805178292766127971612615837653783650646831",
+          "discriminates": false,
+          "outcome": "FAILED_TO_DISCRIMINATE",
+          "reading": "what the six overreach controls actually separate is the derived bounds from the declared inputs: a claim that moves a derived bound is rejected, and a claim that moves a declared input is a different declaration.  This variant moves only a declared input, so it is not an overreach of the kind the controls catch, and the failure is reported.",
+          "relaxed_launch_years": "136419255881485384414112100000000000000000000000/1432805178292766127971612615837653783650646831",
+          "relaxed_mass": "13641925588148538441411210000000000000000000000000000/1432805178292766127971612615837653783650646831",
+          "variant": "the areal density is a DECLARED input, and the arithmetic cannot distinguish a re-declaration of a declared input from a loosening of the derivation",
+          "why": "the same arithmetic that rejects control 6 accepts this variant unchanged, because the areal density and the annual launch rate are declared inputs rather than derived bounds; no exact computation can tell a re-declaration from a loosening, and the difference is a rule about which quantities are derived, not a number.  The control therefore FAILED TO DISCRIMINATE and is retained rather than repaired."
+        }
+      ],
+      "failed_controls_count": 1,
+      "no_control_is_dropped": true,
+      "why_the_failed_control_is_retained": "a control that cannot be made to fail is reported as a failed control rather than dropped or quietly repaired, so the record shows exactly where the rejection argument stops"
+    },
+    "R6_inherited_prohibitions": {
+      "inherited_prohibitions": [
+        {
+          "applies_to_any_use": true,
+          "control": "a single fused account over the two deployment modes, reporting one areal mass and one launch-years figure for the pair",
+          "prohibition": "no netting of one account against another",
+          "rejected": true,
+          "rejected_by": "the separateness of the two accounts",
+          "rejection_reasons": [
+            "the two modes are declared separately and each is accounted separately: mode A's areal mass is 136419255881485384414112100000000000000000000000000000/1432805178292766127971612615837653783650646831 kg and mode B's is 100000000000/1361 kg, and a fused figure of 241695169055090537093877905719151637299827100000000000/1432805178292766127971612615837653783650646831 kg would present the pair as one account",
+            "netting is prohibited: one account may not be reduced by, or merged with, another, in this proposal as in the contracts it inherits",
+            "no fused area, mass or launch-years figure over the two modes is formed anywhere in this run"
+          ],
+          "source": "inherited from the parent contracts and applied to any use of this proposal",
+          "verdict": "Rejected"
+        },
+        {
+          "applies_to_any_use": true,
+          "control": "the termination of the delivery - the energy that leaves the instrument and is not delivered to the declared target - declared sealed and therefore closed",
+          "prohibition": "no sealing of a component that is by definition a leak",
+          "rejected": true,
+          "rejected_by": "the refusal to seal a component that is by definition a leak",
+          "rejection_reasons": [
+            "the termination is by definition a leak: it is the part of the delivery that exits the instrument without arriving at the declared target, so it can be accounted as an exit and can never be sealed",
+            "sealing it would report an exit as closed, which is exactly the sealing the inherited prohibition refuses",
+            "the termination is therefore carried as an accounted, unquantified exit and is not discharged, and the termination problem itself is NOT solved here"
+          ],
+          "source": "inherited from the parent contracts and applied to any use of this proposal",
+          "verdict": "Rejected"
+        }
+      ],
+      "inherited_prohibitions_apply_to_any_use": true,
+      "inherited_prohibitions_count": 2,
+      "no_netting": true,
+      "parent_contracts_cited": [
+        "experiments/three_cycle_supplement_v1/contract.json",
+        "experiments/three_cycle_supplement_v2/contract.json"
+      ],
+      "sealing_refused_for_the_termination": true,
+      "termination_problem": {
+        "declared_as": "the termination of the delivery: the energy that leaves the instrument and is not delivered to the declared target",
+        "governance": "unaddressed",
+        "may_be_accounted_but_never_sealed": true,
+        "no_attempt_is_made_to_solve_it": true,
+        "status": "Unaddressed",
+        "the_component_is_by_definition_a_leak": true,
+        "why": "this run does not attempt to solve the termination problem.  It records that the component is by definition a leak, that it may be accounted and never sealed, and that the inherited prohibitions apply to any use of this proposal. Nothing here addresses who might decide, or how, or whether it should be done."
+      }
+    },
+    "R7_proposal_only_bookkeeping": {
+      "authorization": "none",
+      "authorizes_nothing": true,
+      "data_used": "none",
+      "decides_nothing": true,
+      "decision": "none",
+      "deployment": "none",
+      "deploys_nothing": true,
+      "governance": "unaddressed",
+      "no_governance_assessment": true,
+      "nothing_said_about_who_might_decide": "nothing here addresses who might decide, or how, or whether it should be done",
+      "physical_effect_asserted": "none",
+      "proposal_only_in_chinese_and_english": "\u63d0\u8bae\u6027\u65b9\u6848 / proposal only",
+      "proposal_only_statement": "this document is a PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848: it is not authorized, not a plan of record, not engineering, not a deployment decision and not a governance position; it authorizes nothing, decides nothing and deploys nothing",
+      "record_purpose": "To keep the derived bounds and the declared choices separate, and to make the three usual overreaches falsifiable before any such proposal is taken seriously.",
+      "status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848"
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "arithmetic": "exact integers and fractions.Fraction only",
+    "declared_external_library_available_but_unused": "sympy 1.14",
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "external_libraries_imported": [],
+    "not_implemented": [
+      "a wave-optics or beam-propagation solver of any kind",
+      "a diffraction-efficiency computation of the declared grating",
+      "a native certificate of any kind",
+      "any physical effect, forecast or magnitude"
+    ],
+    "used_for": [
+      "exact rational arithmetic on declared constants and derived bounds"
+    ]
+  },
+  "undecided": [
+    {
+      "item": "whether theta_sun in the contract's bound theta_sun * L names the solar angular radius or the full angular size of the solar disk",
+      "reason": "the contract's derived-bounds note calls theta_sun the solar angular radius while writing the bound as theta_sun * L, a factor of two apart.  This run declares it as the full angular size, which is the reading under which the historically reported case of a 20-metre mirror and a 5 km spot is consistent, and it reports the declared solar angular size at both distances so the other reading can be formed from the same payload.  The FORM of the bound, a floor proportional to the distance, is unaffected.",
+      "retained_partial_result": {
+        "near_earth_floor": "1855200000000/498659569",
+        "reported_spot_over_the_floor": "124664892250/93258659569",
+        "theta_sun_at_one_au": "4638000/498659569",
+        "theta_sun_at_the_second_lagrange_point": "1546000/167886523"
+      }
+    },
+    {
+      "item": "whether the declared spectral radiance and wavelength are the ones the contract's order-of-magnitude prose intends",
+      "reason": "the contract's prose says the ceiling is microwatts and that a gigawatt would need of order a trillion fibres.  At the declared constants the ceiling is exactly one microwatt and a gigawatt needs exactly 10^15 fibres, one thousand trillion, while a megawatt needs exactly 10^12.  The exact division is reported and governs; whether the prose's 'trillion' was meant for a gigawatt or for a megawatt is not decided here and is not repaired.  A different declaration of B and lambda is a different run.",
+      "retained_partial_result": {
+        "fibres_a_gigawatt_would_need": "1000000000000000",
+        "fibres_a_megawatt_would_need": "1000000000000",
+        "megawatt_over_the_declared_gigawatt": "1/1000",
+        "per_mode_power": "1/1000000"
+      }
+    },
+    {
+      "item": "which distance the historically reported spot of about 5 km belongs to",
+      "reason": "the reported case is carried as declared constants - about 20 metres of mirror, about 5 km of spot, at the declared near-Earth distance.  The derived floor there is below the reported spot both with and without the declared aperture, so the floor is consistent with the report and the report does not violate it; the distance at which the reported spot would sit exactly on the floor is reported, and the excess of the reported spot over the floor is attributed to nothing.",
+      "retained_partial_result": {
+        "implied_distance_for_exactly_the_reported_spot": "41388744227/77300",
+        "reported_floor_with_the_aperture_included": "1865173191380/498659569",
+        "the_reported_spot_over_the_floor": "124664892250/93258659569"
+      }
+    },
+    {
+      "item": "whether the declared fibre count can carry the coherent part of the declared power",
+      "reason": "the declared network can carry at most one watt in total, the required power is a terawatt and the declared coherent part is a gigawatt.  Even the coherent part would need 10^15 single-mode fibres against a declared count of 10^6.  Whether a phase-and-coherence network needs one fibre per watt, or one fibre per controlled mode, or something else, is NOT decided here: the run reports the ceiling and the declared counts and stops.",
+      "retained_partial_result": {
+        "declared_fibre_count": "1000000",
+        "fibres_the_coherent_part_would_need": "1000000000000000",
+        "fibres_the_required_power_would_need": "1000000000000000000",
+        "maximum_power_the_declared_network_can_carry": "1"
+      }
+    },
+    {
+      "item": "how the near-Earth relay chain is sustained",
+      "reason": "the contract declares that the spot sweeps and that a succession of platforms is required rather than one.  The number of platforms, the dwell of one platform over the declared patch and the cadence of the succession are NOT declared in the contract and are not invented here, so the sustainment of mode B is recorded as a required statement with no arithmetic behind it.  Mode B's usable fraction of exactly 1 is likewise a DECLARED fraction rather than a derived bound: whether the relay chain can always be on the sunlit side of the Earth, and so whether the full declared solar constant is available to it, is not assessed here.  Station-keeping for mode A is required and not assessed either.",
+      "retained_partial_result": {
+        "mode_A_floor": "2319000000000000/167886523",
+        "mode_A_sustainment": "station-keeping is required",
+        "mode_B_floor": "1855200000000/498659569",
+        "mode_B_sustainment": "the light spot sweeps because of orbital motion, so sustained illumination requires a succession of platforms rather than one"
+      }
+    },
+    {
+      "item": "which contracts the proposal's 'parent contracts' names",
+      "reason": "the contract records that the prohibitions of the parent contracts still apply to any use of the proposal, and names neither.  This run cites the two earlier contracts its own prose points at - the surgery run, whose declared chirality the blaze direction plays the role of, and the rounded ending, which prohibits netting and refuses to seal a component that is by definition a leak - and hashes both as retained byte for byte.  Whether some other inheritance was intended is not decided here.",
+      "retained_partial_result": {
+        "cited": [
+          "experiments/three_cycle_supplement_v1/contract.json",
+          "experiments/three_cycle_supplement_v2/contract.json"
+        ],
+        "rounded_sha256": "823eedfaa492d0524c901793b580d5f02b67d7cf739f26781e326aa667d1e990",
+        "surgery_sha256": "157838642e9097ea4a1a1c7461db9e548affb0c6f3af7b830816f37f22b74f5a"
+      }
+    }
+  ],
+  "verification_status": {
+    "checked_here": {
+      "governance_is_unaddressed": true,
+      "no_data_read_or_used": true,
+      "no_physical_effect_is_asserted": true,
+      "the_derived_bounds_are_bounds_on_instruments": true,
+      "the_target_figures_are_proposal_arithmetic": true
+    },
+    "deployment": "none",
+    "no_data_read_or_used": true,
+    "observational": "Unavailable",
+    "physical_effect_asserted": "none",
+    "reason": "the proposal describes an instrument that does not exist and is not deployed, and this run uses no data; no observation, forecast or measurement enters it"
+  },
+  "version": 1,
+  "what_is_not_claimed": {
+    "authorization": "none",
+    "capability_claim": false,
+    "data_used": "none",
+    "decision": "none",
+    "deployment": "none",
+    "effect_on_any_atmosphere_ocean_cloud_or_surface": false,
+    "forecast": false,
+    "governance": "unaddressed",
+    "meteorological_data_used": false,
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_contract_or_note_edited": true,
+    "no_data_read_or_used": true,
+    "no_netting_of_one_account_against_another": true,
+    "no_rust_source_or_lock_changed": true,
+    "no_seal_no_transport_no_terminology_home": true,
+    "no_sealing_of_a_component_that_is_by_definition_a_leak": true,
+    "observational_verification": "Unavailable",
+    "physical_claim": false,
+    "physical_effect_asserted": "none",
+    "pre_existing_files_byte_identical": true,
+    "stable_api_change": false,
+    "the_declared_constants_are_declared_inputs_not_measurements": true,
+    "the_division_of_labour_is_forced_by_the_fibre_bound": true,
+    "the_document_is_a_proposal_only": true,
+    "the_target_figures_are_proposal_arithmetic": true,
+    "the_termination_problem_is_unaddressed": true,
+    "the_three_bounds_are_derived_from_declared_constants": true,
+    "weather_or_climate_effect": false
+  }
+}

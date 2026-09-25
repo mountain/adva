@@ -1,0 +1,63 @@
+{
+  "schema": "adva.research.optical-imbalance.proposal.v1",
+  "created_at": "2026-09-25T09:52:05Z",
+  "status": "PROPOSAL ONLY - 提议性方案",
+  "status_note": "This document records a PROPOSED scheme and nothing else. It is not authorized, not a plan of record, not engineering, not a deployment decision, and not a governance position. It carries no physical claim, no magnitude for any physical effect, and no data. Its purpose is to fix the few bounds that are DERIVED rather than declared, and to make the proposal falsifiable at exactly three places where such proposals usually overreach.",
+  "question": "For a proposed scheme that would use a mirror array together with controllable fibre diffraction to produce a small, local, controllable energy imbalance - read at the second Lagrange point as night-side energy addition rather than global dimming - which parts of the scheme are DERIVED bounds that must hold for any such instrument, which parts are DECLARED choices that another declaration would change, and where exactly does the proposal fail if it is overreached?",
+  "level": "Bounded external exact calibration of a PROPOSAL. No authorization, no deployment, no physical claim, no forecast, no data, and no magnitude for any physical effect.",
+  "derived_bounds": {
+    "note": "These are computed from declared inputs and are the only place in this programme where a bound is derived rather than declared. The inputs themselves (distances, the solar angular radius, the solar constant, a spectral radiance, a wavelength) are DECLARED constants carried as exact rationals in declared units, not measured values of this run.",
+    "passive_spot_floor": "Any passive mirror forms a spot no smaller than theta_sun * L, because radiance cannot be increased: for a low-Earth platform, a geostationary platform and the second Lagrange point the floor is computed exactly in declared units, and the low-Earth value is cross-checked against the historically reported spot of a deployed space mirror of about 20 metres producing a spot of about 5 km.",
+    "fibre_power_ceiling": "A single-mode fibre carries at most the étendue-limited power of one mode, of order B * lambda^2 with B a declared spectral radiance; computed exactly, it is microwatts, so a gigawatt through fibres would need of order a trillion fibres. The bound is what makes the division of labour below necessary rather than stylistic.",
+    "l2_usable_fraction": "At the second Lagrange point the Earth occults the fraction (theta_earth / theta_sun)^2 of the solar disk, so the usable flux fraction is one minus that, computed exactly; the Earth lies in the antumbra there, so the Sun appears annular."
+  },
+  "declared_choices": {
+    "platforms": "A near-Earth platform, a geostationary platform and the second Lagrange point, with their declared distances and no fourth platform.",
+    "instrument": "A mirror array for power in free space, a fibre network for phase and coherence only, and an output diffractive stage whose blaze direction is a declared asymmetry.",
+    "target": "A declared target patch area and a declared target flux, from which the required intercepting area, the areal mass and the launch-years at a declared annual launch rate follow arithmetically.",
+    "no_magnitude_rule": "The declared target figures are ARITHMETIC INPUTS of a proposal, not asserted effects. No effect on any atmosphere, ocean, cloud or surface is asserted or estimated."
+  },
+  "division_of_labour": {
+    "mirrors": "Carry power. Combination happens in free space; no power is routed through fibres.",
+    "fibres": "Carry phase, coherence and the phase reference only. Their job is pattern control, and the étendue ceiling above is the reason this division is forced rather than chosen.",
+    "diffractive_stage": "Sets the angular pattern, including the blaze asymmetry; a zero-order-suppressed phase grating sends energy into the two first orders and is therefore two-sided by construction, and the blaze direction plays the role of the chirality declared in the surgery run."
+  },
+  "deployment_modes": {
+    "A_second_lagrange_point": "Night-side energy addition: the light arriving at the second Lagrange point has already passed the Earth and the mirror returns it to the night side. The usable flux is the derived fraction, the geometric floor is the largest of the three platforms, and station-keeping is required.",
+    "B_near_earth_relay": "A relay chain of mirrors at a small distance, where the geometric floor is smallest; the light spot sweeps because of orbital motion, so sustained illumination requires a succession of platforms rather than one."
+  },
+  "controls": [
+    "Overreach 1: a claim of a passive-mirror pattern finer than the derived floor theta_sun * L must be rejected; the fine pattern is available only to the coherent part, with its own ceiling.",
+    "Overreach 2: routing more than the étendue ceiling through one fibre mode, or treating fibres as a power channel, must be rejected.",
+    "Overreach 3: treating the coherent fraction as the whole power - a fine pattern claimed at full power - must be rejected.",
+    "Overreach 4: a usable flux at the second Lagrange point above the derived annular fraction must be rejected.",
+    "Overreach 5: an asymmetric pattern claimed without a declared blaze direction must be rejected, and a symmetric element claimed to produce an asymmetric pattern must be rejected.",
+    "Arithmetic: the required intercepting area, areal mass and launch-years must follow from the declared inputs by exact arithmetic, and a target reached by loosening the derivation rather than the declaration must be rejected.",
+    "Inherited: the prohibitions of the parent contracts still apply to any use of this proposal - no netting of one account against another, and no sealing of a component that is by definition a leak, which is the termination problem in this setting."
+  ],
+  "proposal_only_bookkeeping": {
+    "authorization": "none",
+    "decision": "none",
+    "deployment": "none",
+    "governance": "unaddressed",
+    "physical_effect_asserted": "none",
+    "data_used": "none",
+    "record_purpose": "To keep the derived bounds and the declared choices separate, and to make the three usual overreaches falsifiable before any such proposal is taken seriously."
+  },
+  "budgets": {"wall_seconds": 900, "cpu_seconds": 600, "memory_bytes": 1073741824, "max_assertions": 200000, "routes": 1, "correction_replays": 1, "child_processes": 0},
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports the three derived bounds, the declared inputs they rest on, the division of labour, the two deployment modes, the arithmetic of the declared target, and every control above including any that failed to discriminate; and it records in the payload that the document is a proposal with no authorization, no decision and no deployment.",
+  "protected": [
+    "All parent contracts are retained byte for byte and are not edited",
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No data is read or used",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "This is a proposal: no authorization, no decision, no deployment, no governance assessment",
+    "The derived bounds rest on DECLARED constants carried as exact rationals; a different declaration of those constants is a different run, while the form of each bound is not a declaration",
+    "Spot floor, étendue ceiling and annular fraction are bounds on instruments; they are not statements about the atmosphere, the ocean or any weather",
+    "The declared target figures are arithmetic inputs of a proposal and not asserted effects",
+    "Nothing here addresses the termination problem beyond noting that the inherited prohibitions apply, and nothing here addresses who might decide, or how, or whether it should be done"
+  ]
+}

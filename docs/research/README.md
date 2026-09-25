@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **248 numbered
+This directory holds the research record of the repository: **249 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -795,6 +795,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0238 — Three chained annual cycles: every cycle closes, and the drift control fails to discriminate](0238-three-chained-annual-cycles-every-cycle-closes-and-the-drift-control-fails-to-discriminate.md): three cycles beginning at the December 2026/January 2027 seam are chained exactly with the closure amplitude as an exact element of its cubic field; each cycle is ClosedByFixedPoint with zero drift, the cumulative reading has no genuine real period-3 orbit, the end block holds exactly two steps and the step remainder is 6 of 33, all nine conditions carry an executed calamity counterpart, the slow component is conserved while the declared open-ocean variant loses the memory, and the drift control failed to discriminate and is retained as a failure.
 
 - [0239 — The rounded ending: a conjunction that nets nothing, and a one-way commitment that sealing may not touch](0239-the-rounded-ending-a-conjunction-that-nets-nothing-and-a-one-way-commitment.md): the ending is 圆融, a conjunction in which the sealable component closes exactly at the fixed point while the committed component is carried out and written out, with four prohibitions each rejected by an executed control; the beginning splits into resetable obstructions and a non-resetable commitment, the middle carries two directed five-cycles, the chain of 1095 days closes none of 260, 2920 and 18980, the one-way reservoir is monotone and hysteretic while the parent's relaxation fails both controls, sealing is refused for the leak, and a four-by-two table classifies aerosols, low cloud, water vapour and wildfire on each side with no magnitude anywhere.
+
+- [0240 — A proposal-only optical scheme, its three derived bounds, and one erratum the run itself cannot repair](0240-a-proposal-only-optical-scheme-its-derived-bounds-and-one-erratum.md): a 提议性方案 that would use mirrors for power, fibres for phase and a diffractive output for the light-dark geometry is calibrated exactly, separating derived bounds (passive spot floor `theta_sun*L`, the one-microvolt-per-mode étendue ceiling, the second-Lagrange-point antumbra) from declared constants and from proposal-only bookkeeping, with all six overreach controls rejected and both inherited prohibitions applied; the note also registers an erratum: the payload's usable-flux fraction pairs the Earth's angular radius with the Sun's angular diameter, so the correct usable fraction is about 0.149 rather than the reported 0.787, and everything downstream of it must be recomputed in a follow-up run.
 
 ### Named notes
 
