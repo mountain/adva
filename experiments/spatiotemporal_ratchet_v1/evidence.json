@@ -1,0 +1,1886 @@
+{
+  "assertions": 400,
+  "checker_sha256": "29560f15a18db09cd8e540a8a0cc0fc17194fc26fbadb66670c8317f65ae3313",
+  "checks": {
+    "R1_is_exactly_zero": true,
+    "R2_is_exactly_zero": true,
+    "R3_is_exactly_zero": true,
+    "R4_is_non_zero": true,
+    "R4_reverses_exactly_with_the_declared_phase_gradients_sign": true,
+    "R5_standing_wave_is_exactly_zero": true,
+    "R5_the_declared_phase_gradient_transports": true,
+    "R6_every_step_satisfies_the_declared_step_energy_bound": true,
+    "R6_the_declared_connectivity_changing_schedule_is_rejected": true,
+    "R6_the_declared_connectivity_is_unchanged": true,
+    "R6_the_declared_crossing_schedule_is_rejected": true,
+    "all_seven_declared_controls_are_rejected": true,
+    "assertions_within_budget": true,
+    "every_declared_control_discriminates": true,
+    "every_declared_rate_and_stay_probability_is_positive": true,
+    "every_zero_is_an_executed_rejection": true,
+    "exactly_one_declared_potential_is_reflection_invariant": true,
+    "governance_is_unaddressed_and_no_decision_is_claimed": true,
+    "no_control_is_dropped": true,
+    "no_data_is_read_or_used": true,
+    "no_effect_key_appears_anywhere": true,
+    "no_floating_point_value_is_retained": true,
+    "no_magnitude_for_any_physical_quantity_is_asserted": true,
+    "nothing_is_ablated_melted_moved_or_heated": true,
+    "observational_verification_is_recorded_unavailable": true,
+    "the_R3_bias_identity_is_executed": true,
+    "the_contract_declares_itself_a_proposal_only": true,
+    "the_declared_model_is_declared_in_full": true,
+    "the_declared_per_step_flows_pair_in_the_declared_symmetric_cases": true,
+    "the_declared_periodic_measure_is_reproduced_exactly": true,
+    "the_declared_periodic_measure_is_unique": true,
+    "the_declared_pinning_site_is_minimal_and_not_fixed_by_the_declared_reflection": true,
+    "the_declared_reflection_is_an_involution": true,
+    "the_declared_time_asymmetric_schedule_is_checked_not_invariant": true,
+    "the_declared_time_symmetric_schedules_are_checked_invariant": true,
+    "the_declared_transfer_field_invariance_is_checked": true,
+    "the_declared_uniform_reference_measure_agrees_on_the_declared_zeros": true,
+    "the_declared_uniform_reference_measure_reports_the_same_reversal": true,
+    "the_failed_control_is_retained": true,
+    "the_payload_records_proposal_only_bookkeeping": true,
+    "the_singular_point_is_only_a_declared_pinning_site": true,
+    "this_contract_digest_matches_the_declared_one": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/spatiotemporal_ratchet_v1/contract.json",
+  "contract_sha256": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+  "contract_sha256_declared": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+  "contract_status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848 (supporting proposal three)",
+  "controls": {
+    "control_count": 7,
+    "controls": [
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared configuration is admitted as the declared symmetric case",
+          "verdict": "Accepted_AsTheDeclaredSymmetricCase"
+        },
+        "claim": "the declared symmetric forcing transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared symmetric potential and the declared time-symmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so a declared symmetric potential with a declared time-symmetric drive transports exactly nothing",
+          "the declared per-step flows of this configuration pair exactly under the declared half-period translation composed with the declared reflection and cancel step by step",
+          "the rejection is exact and carries no tolerance"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared asymmetric potential with the declared time-asymmetric drive is admitted as the declared transporting pair",
+          "verdict": "Accepted_AsTheDeclaredTransportingPair"
+        },
+        "claim": "the declared spatial asymmetry alone transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared asymmetric potential and the declared time-symmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so the declared spatial asymmetry of the declared potential alone transports nothing",
+          "the declared transfer field of the declared time-symmetric schedule is invariant under the declared half-period translation composed with the declared reflection, so its declared flows pair exactly",
+          "the declared periodic measure of this configuration is not the declared uniform measure, so this zero is not the declared trivial case"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared schedule with the declared asymmetric potential is admitted as the declared transporting pair",
+          "verdict": "Accepted_AsTheDeclaredTransportingPair"
+        },
+        "claim": "the declared temporal asymmetry alone transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared symmetric potential and the declared time-asymmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so the declared temporal asymmetry of the declared schedule alone transports nothing",
+          "at the declared reflection-invariant potential every declared per-step flow is exactly the declared bias coefficient times that step's declared drive amplitude, so the declared transport follows the declared schedule's mean exactly and the declared timing asymmetry contributes exactly nothing",
+          "the declared schedule used here is checked to be time-asymmetric and its declared mean is checked to be exactly zero"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "a declared transport that reverses with the declared phase gradient's sign is admitted",
+          "verdict": "Accepted_AsTheDeclaredDirectedTransport"
+        },
+        "claim": "the declared transport does not depend on the sign of the declared phase gradient",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-2395373021828541/130893752065903472383"
+        },
+        "control": "a declared transport independent of the declared phase gradient's sign",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "2395373021828541/130893752065903472383"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 2395373021828541/130893752065903472383 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport at the declared phase gradient +1 is exactly -2395373021828541/130893752065903472383 and at -1 exactly 2395373021828541/130893752065903472383, and the two sum to exactly zero",
+          "the declared direction therefore follows the declared phase gradient's sign exactly, and a claim of independence is rejected exactly",
+          "the rejection is exact and carries no tolerance"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared configuration with a declared phase gradient is admitted as the declared directed transport",
+          "verdict": "Accepted_AsTheDeclaredDirectedTransport"
+        },
+        "claim": "the declared standing wave transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport at the declared standing wave",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "at the declared standing wave the declared phase gradient is zero, the declared transfer is the declared uniform diffusion at every site of every step, and the declared transport is exactly zero",
+          "the declared rejection is executed rather than remarked: the run derives the zero and flags this claim as rejected",
+          "the rejection is exact and carries no tolerance"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared schedule whose every step satisfies the declared bound is admitted",
+          "verdict": "Accepted_WithinTheDeclaredStepEnergyBound"
+        },
+        "claim": "the declared candidate schedule satisfies the declared step energy bound",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "2",
+            "3"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "2"
+        },
+        "control": "the declared candidate schedule that crosses the declared step energy bound",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "3",
+            "4"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "3"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 3 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared step energy input of the declared candidate schedule reaches 3, above the declared bound 2",
+          "the declared candidate is still a declared stochastic map, so it is rejected by the declared bound and not by an ill-formed transfer",
+          "a declared crossing schedule is rejected exactly"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared schedule whose declared support is exactly the declared ring's edge set is admitted",
+          "verdict": "Accepted_WithTheDeclaredConnectivity"
+        },
+        "claim": "the declared candidate schedule preserves the declared connectivity of the ring",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "control": "the declared candidate schedule that moves declared measure to a non-adjacent declared site",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/8"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 1/8 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared candidate moves declared measure between declared sites that are not adjacent on the declared ring, so its declared edge set is not the declared ring's edge set",
+          "the declared connectivity of the declared ring is therefore broken by the declared candidate, and the candidate is rejected",
+          "the rejection is executed on the declared candidate's own declared support"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      }
+    ],
+    "controls_executed": 7,
+    "controls_rejected": 7,
+    "every_control_produces_a_rejection": true,
+    "failed_controls": [
+      {
+        "control": "the declared potential's rescaling by the declared factor 3",
+        "derived_gates": [
+          "1",
+          "1/2",
+          "1/2",
+          "1/2",
+          "1",
+          "1/2"
+        ],
+        "derived_transport": "-2395373021828541/130893752065903472383",
+        "discriminates": false,
+        "outcome": "FAILED_TO_DISCRIMINATE",
+        "reading": "a failed control is retained and reported, not dropped and not repaired",
+        "rescaled_gates": [
+          "1",
+          "1/2",
+          "1/2",
+          "1/2",
+          "1",
+          "1/2"
+        ],
+        "rescaled_transport": "-2395373021828541/130893752065903472383",
+        "variant": "the declared potential U_asym replaced by 3*U_asym, with the declared schedule and the declared phase gradient held fixed",
+        "why": "the control tried to discriminate a declared potential from a positive rescaling of it and cannot: the declared gates read only the declared slope signs, so every positive rescaling of the declared potential gives the identical declared transfer and the identical declared transport.  The control is retained exactly as a FAILED control rather than repaired, and the limitation it exposes - the declared magnitudes of the declared potential do not enter the declared transfer - is recorded as Undecided."
+      }
+    ],
+    "failed_controls_count": 1,
+    "no_control_is_dropped": true,
+    "why_the_failed_control_is_retained": "a control that cannot be made to fail is reported as a failed control and retained rather than repaired, because the mechanism is only worth trusting while its failures remain on the record"
+  },
+  "declared_controls": [
+    "Every one of R1, R2, R3 and the standing-wave case is run as an EXECUTED rejection, not as a remark: the run must produce the zero and flag the corresponding claim as rejected.",
+    "A deliberately time-symmetric drive with a spatially asymmetric potential must fail to transport, and the same potential with a time-asymmetric drive must transport: the pair is the evidence that both asymmetries are needed.",
+    "A claimed transport under a symmetric potential must be rejected, and a claimed transport under a symmetric drive must be rejected.",
+    "The direction must flip exactly when the gradient's sign flips: a claim of transport independent of the gradient's sign must be rejected.",
+    "A schedule that violates the declared step-energy bound must be rejected; a schedule that removes or adds a ring edge must be rejected as breaking the declared connectivity.",
+    "A control that cannot be made to fail is reported as a failed control."
+  ],
+  "declared_obligations": {
+    "missing_point": "The 'singular point' of the wider programme appears here ONLY as a declared pinning site in the declared potential, that is as a declared spatial asymmetry; nothing is ablated, melted, moved or heated in any physical sense.",
+    "no_magnitude": "No magnitude, sign or timing is asserted for any physical quantity; the model's numbers are declared model parameters.",
+    "proposal_only": "authorization, decision, deployment and physical_effect_asserted are none; governance is unaddressed."
+  },
+  "level": "Bounded external exact calibration of a declared model. No physical claim, no magnitude for any physical quantity, no forecast and no data.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "every_zero_is_an_executed_rejection": "every declared zero of this run is produced as an executed rejection of the corresponding declared claim: the run derives the declared zero and flags the claim rejected, with no tolerance and no floating-point comparison.",
+    "exact_only": "every acceptance assertion and every value in the retained payload is an exact integer or fraction, carried as an exact decimal-free string with its unit and the two exact integers it lies between; no floating-point value is formed anywhere in this run and none is written into the payload.",
+    "external_library": "no external library is imported.  The standard library alone is used, so the run does not depend on a host package to reproduce.",
+    "proposal_only": "the document is a \u63d0\u8bae\u6027\u65b9\u6848, a proposal only: authorization, decision and deployment are none, governance is unaddressed, no physical effect is asserted and no data is used.",
+    "resource_limits": "the checker installs RLIMIT_CPU and RLIMIT_FSIZE together with a wall alarm, and records the contract's declared memory budget without installing an address-space ceiling, because no child process is launched and the declared model is one exact six-site linear solve.",
+    "the_declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period, solved exactly and checked to be unique by the exact rank of the declared period transfer minus the identity.",
+    "the_declared_phase": "the declared phase of a site is the declared phase gradient times the declared site label, with the declared gradient in {-1, 0, +1}: the standing wave is the gradient zero and the declared sign fixes the declared direction.",
+    "the_declared_schedule_and_its_bound": "a declared schedule of exactly T = 4 declared signed amplitudes per period with the declared amplitude bound 1/2, the declared energy unit 4 and so the declared step energy input bounded by the declared bound 2.  Both are declared model numbers and carry no physical magnitude.",
+    "the_declared_transfer": "a declared stochastic map per declared step: a declared rightward hop probability, a declared leftward hop probability and the declared remainder as the declared stay probability.  Every declared rate is positive and every declared stay probability is positive, and both are checked here.",
+    "the_declared_transport": "the net displacement of the declared measure over exactly one declared period, computed as the accumulated declared flow.  Because the declared measure is the declared periodic measure, the declared period's final state equals its declared initial state exactly, so the declared transport is a declared steady circulation around the declared ring rather than a drift of a non-periodic state; both are reported exactly, and the same declared transport is reported from the declared uniform reference measure, whose declared final state does differ from its declared initial state.",
+    "the_exact_reversal": "the declared transport's exact reversal under the declared phase gradient's sign is a consequence of the declared transfer and the declared gate convention, and it is executed here as an exact comparison of the two declared values and their declared sum.",
+    "the_failed_control": "one declared control could not be made to fail and is reported as a failed control rather than repaired or dropped.",
+    "the_gates_and_the_reflection_convention": "one declared gate array is read from the declared potential's slope signs, and the declared leftward reading at a site is the declared gate at the reflected site.  That single declaration is what makes the declared transfer field's invariance - and therefore the declared R2 zero and the exact declared reversal - checkable exactly.",
+    "the_potential": "two declared potentials, both declared integers per site: the declared reflection-invariant variant and the declared variant that is not invariant under the declared reflection, whose unique minimal site is declared as the pinning site.  The pinning site is the only place where the wider programme's singular point appears, and it appears ONLY as a declared spatial asymmetry of a declared model.",
+    "the_question_is_a_declared_model_question": "the run studies one declared discrete model and nothing else.  No physical system, material or process is modelled, measured or claimed.",
+    "the_ring": "a declared finite ring of 6 sites with the declared adjacent pairs {i, i+1 mod N} and the declared reflection R(i) = (-i) mod N, which is declared to be an involution with the declared fixed points 0 and 3.",
+    "the_time_symmetry_reading": "the declared schedule is time-symmetric exactly when it is invariant under the declared half-period time translation composed with the declared reflection, that is nu_{s+T/2} = -nu_s.  The run checks this invariance of the declared schedule AND the invariance of the declared transfer field it generates, at every site and every step, and it is the second check that carries the declared R2 zero.  A palindromic reading of the same words is recorded as Undecided and is not used."
+  },
+  "question": "In a declared discrete model, is the net transport over one period exactly zero whenever the forcing is symmetric in space or symmetric in time, and exactly non-zero - with its direction reversing with the sign of the declared phase gradient - only when both asymmetries are present; and does a standing-wave phase schedule give zero while a phase-gradient schedule gives directed transport?",
+  "residual": [
+    "The model is declared; a different ring, potential, drive or period is a different run",
+    "Zero transport under a symmetric forcing is a statement about the declared model, not a theorem about any physical system",
+    "Nothing here is an ablation, a melt, a transport of mass or heat, or a statement about ice, water, atmosphere or ocean",
+    "The termination problem, governance and any safety analysis beyond the declared bound remain Unaddressed"
+  ],
+  "schema": "adva.external.spatiotemporal-ratchet-proposal-calibration.v1",
+  "sections": {
+    "R1_spatially_and_temporally_symmetric": {
+      "configuration": {
+        "declared_phase_gradient": "1",
+        "potential": "U_sym, the declared reflection-invariant potential",
+        "potential_values": [
+          "2",
+          "0",
+          "1",
+          "2",
+          "1",
+          "0"
+        ],
+        "schedule": "the declared time-symmetric schedule",
+        "schedule_amplitudes": [
+          "1/2",
+          "0",
+          "-1/2",
+          "0"
+        ],
+        "schedule_is_declared_time_symmetric": true
+      },
+      "declared_mechanism": {
+        "reading": "the declared reflection-invariant potential and the declared time-symmetric drive give exactly zero declared transport, and the declared claim that such a forcing transports is rejected here by an executed comparison and not by a remark",
+        "the_declared_per_step_flows_pair": true,
+        "the_declared_transfer_field_is_invariant": true,
+        "the_declared_transport_follows_the_declared_schedule_mean": true
+      },
+      "reading": "nothing symmetric in both space and time transports in this declared model",
+      "rejected_claim": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared configuration is admitted as the declared symmetric case",
+          "verdict": "Accepted_AsTheDeclaredSymmetricCase"
+        },
+        "claim": "the declared symmetric forcing transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared symmetric potential and the declared time-symmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so a declared symmetric potential with a declared time-symmetric drive transports exactly nothing",
+          "the declared per-step flows of this configuration pair exactly under the declared half-period translation composed with the declared reflection and cancel step by step",
+          "the rejection is exact and carries no tolerance"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "requirement": "Spatially symmetric potential with a time-symmetric drive: net transport EXACTLY zero. The claim that a symmetric forcing transports must be rejected.",
+      "transport": {
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "final_minus_initial": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "final_state_equals_initial_state": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "3/16"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-3/16"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          }
+        ],
+        "periodic_measure": [
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6"
+        ],
+        "periodic_measure_is_uniform": true,
+        "the_two_declared_readings_agree_on_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+          "unit": "declared sites of net displacement per declared period",
+          "unwrapped": true,
+          "value": "0"
+        },
+        "transport_from_the_declared_uniform_reference_measure": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+          "final_measure": [
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6"
+          ],
+          "final_state_equals_initial_state": true,
+          "per_step_flows": [
+            "3/16",
+            "0",
+            "-3/16",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "transport_is_zero": true
+      },
+      "verdict": "Rejected"
+    },
+    "R2_spatial_asymmetry_alone": {
+      "configuration": {
+        "declared_phase_gradient": "1",
+        "declared_pinning_site": "1",
+        "potential": "U_asym, the declared potential that is not invariant under the declared reflection",
+        "potential_values": [
+          "3",
+          "0",
+          "1",
+          "2",
+          "3",
+          "2"
+        ],
+        "schedule": "the declared time-symmetric schedule",
+        "schedule_amplitudes": [
+          "1/2",
+          "0",
+          "-1/2",
+          "0"
+        ],
+        "schedule_is_declared_time_symmetric": true
+      },
+      "declared_mechanism": {
+        "reading": "the declared spatial asymmetry of the declared potential alone transports nothing: the declared transfer field is invariant under the declared half-period translation composed with the declared reflection, so its declared flows pair exactly, and the declared transport is exactly zero even though the declared periodic measure is not the declared uniform measure",
+        "the_declared_measure_is_not_the_declared_uniform_measure": true,
+        "the_declared_per_step_flows_pair": true,
+        "the_declared_transfer_field_is_invariant": true
+      },
+      "reading": "a declared spatial asymmetry alone does not transport in this declared model",
+      "rejected_claim": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared asymmetric potential with the declared time-asymmetric drive is admitted as the declared transporting pair",
+          "verdict": "Accepted_AsTheDeclaredTransportingPair"
+        },
+        "claim": "the declared spatial asymmetry alone transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared asymmetric potential and the declared time-symmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so the declared spatial asymmetry of the declared potential alone transports nothing",
+          "the declared transfer field of the declared time-symmetric schedule is invariant under the declared half-period translation composed with the declared reflection, so its declared flows pair exactly",
+          "the declared periodic measure of this configuration is not the declared uniform measure, so this zero is not the declared trivial case"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "requirement": "Spatially asymmetric potential with a time-symmetric drive: net transport EXACTLY zero, so spatial asymmetry alone does not transport.",
+      "the_declared_pair": {
+        "statement": "the same declared asymmetric potential with the declared time-asymmetric drive transports something, which is the declared evidence that both declared asymmetries are needed",
+        "the_pair_discriminates": true,
+        "the_potential_is_held_fixed": true,
+        "the_same_potential_with_the_declared_time_asymmetric_drive": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-2395373021828541/130893752065903472383"
+        }
+      },
+      "transport": {
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "final_minus_initial": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "final_state_equals_initial_state": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "935803/5613188"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-935803/5613188"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          }
+        ],
+        "periodic_measure": [
+          "469939/2806594",
+          "232612/1403297",
+          "456117/2806594",
+          "465365/2806594",
+          "477241/2806594",
+          "236354/1403297"
+        ],
+        "periodic_measure_is_uniform": false,
+        "the_two_declared_readings_agree_on_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+          "unit": "declared sites of net displacement per declared period",
+          "unwrapped": true,
+          "value": "0"
+        },
+        "transport_from_the_declared_uniform_reference_measure": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+          "final_measure": [
+            "1027/6144",
+            "4091/24576",
+            "2009/12288",
+            "2041/12288",
+            "2081/12288",
+            "4115/24576"
+          ],
+          "final_state_equals_initial_state": false,
+          "per_step_flows": [
+            "1/6",
+            "0",
+            "-1/6",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "transport_is_zero": true
+      },
+      "verdict": "Rejected"
+    },
+    "R3_temporal_asymmetry_alone": {
+      "configuration": {
+        "declared_phase_gradient": "1",
+        "potential": "U_sym, the declared reflection-invariant potential",
+        "potential_values": [
+          "2",
+          "0",
+          "1",
+          "2",
+          "1",
+          "0"
+        ],
+        "schedule": "the declared time-asymmetric schedule",
+        "schedule_amplitudes": [
+          "1/2",
+          "1/4",
+          "-1/4",
+          "-1/2"
+        ],
+        "schedule_is_declared_time_symmetric": false
+      },
+      "declared_mechanism": {
+        "every_declared_per_step_flow_is_the_declared_bias_coefficient_times_that_steps_declared_amplitude": true,
+        "reading": "at the declared reflection-invariant potential each declared per-step flow is exactly the declared bias coefficient times that step's declared drive amplitude, so the declared transport follows the declared schedule's mean exactly and the declared timing asymmetry contributes exactly nothing; the declared time-asymmetric schedule has declared mean exactly zero, so its declared transport is exactly zero",
+        "the_declared_bias_coefficient": "3/8",
+        "the_declared_schedule_mean": "0",
+        "the_declared_transfer_field_is_invariant": false,
+        "the_declared_transport_follows_the_declared_schedule_mean": true
+      },
+      "reading": "a declared temporal asymmetry alone does not transport in this declared model",
+      "rejected_claim": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the same declared schedule with the declared asymmetric potential is admitted as the declared transporting pair",
+          "verdict": "Accepted_AsTheDeclaredTransportingPair"
+        },
+        "claim": "the declared temporal asymmetry alone transports the declared measure",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/6"
+        },
+        "control": "a declared transport under the declared symmetric potential and the declared time-asymmetric drive",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport derived here is exactly zero, so the declared temporal asymmetry of the declared schedule alone transports nothing",
+          "at the declared reflection-invariant potential every declared per-step flow is exactly the declared bias coefficient times that step's declared drive amplitude, so the declared transport follows the declared schedule's mean exactly and the declared timing asymmetry contributes exactly nothing",
+          "the declared schedule used here is checked to be time-asymmetric and its declared mean is checked to be exactly zero"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "requirement": "Spatially symmetric potential with a time-asymmetric drive: net transport EXACTLY zero, so temporal asymmetry alone does not transport.",
+      "the_declared_contrast": {
+        "statement": "the same declared time-asymmetric schedule with the declared asymmetric potential transports something",
+        "the_contrast_discriminates": true,
+        "the_same_schedule_with_the_declared_asymmetric_potential": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-2395373021828541/130893752065903472383"
+        },
+        "the_schedule_is_held_fixed": true
+      },
+      "transport": {
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "final_minus_initial": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "final_state_equals_initial_state": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "3/16"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "3/32"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-3/32"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-3/16"
+          }
+        ],
+        "periodic_measure": [
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6",
+          "1/6"
+        ],
+        "periodic_measure_is_uniform": true,
+        "the_two_declared_readings_agree_on_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+          "unit": "declared sites of net displacement per declared period",
+          "unwrapped": true,
+          "value": "0"
+        },
+        "transport_from_the_declared_uniform_reference_measure": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+          "final_measure": [
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6"
+          ],
+          "final_state_equals_initial_state": true,
+          "per_step_flows": [
+            "3/16",
+            "3/32",
+            "-3/32",
+            "-3/16"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "transport_is_zero": true
+      },
+      "verdict": "Rejected"
+    },
+    "R4_both_asymmetries": {
+      "configuration": {
+        "declared_phase_gradients": [
+          "1",
+          "-1"
+        ],
+        "declared_pinning_site": "1",
+        "potential": "U_asym, the declared potential that is not invariant under the declared reflection",
+        "potential_values": [
+          "3",
+          "0",
+          "1",
+          "2",
+          "3",
+          "2"
+        ],
+        "schedule": "the declared time-asymmetric schedule",
+        "schedule_amplitudes": [
+          "1/2",
+          "1/4",
+          "-1/4",
+          "-1/2"
+        ],
+        "schedule_is_declared_time_symmetric": false
+      },
+      "declared_mechanism": {
+        "reading": "with both the declared spatial asymmetry and the declared temporal asymmetry present the declared transfer field is not invariant under the declared half-period translation composed with the declared reflection, the declared flows no longer pair, and the declared transport is non-zero, with its direction fixed exactly by the declared phase gradient's sign",
+        "the_declared_transfer_field_is_invariant": false,
+        "the_declared_transport_is_non_zero": true
+      },
+      "reading": "both declared asymmetries together transport, and the declared direction follows the declared phase gradient's sign exactly",
+      "rejected_claim": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "a declared transport that reverses with the declared phase gradient's sign is admitted",
+          "verdict": "Accepted_AsTheDeclaredDirectedTransport"
+        },
+        "claim": "the declared transport does not depend on the sign of the declared phase gradient",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-2395373021828541/130893752065903472383"
+        },
+        "control": "a declared transport independent of the declared phase gradient's sign",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "2395373021828541/130893752065903472383"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 2395373021828541/130893752065903472383 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared transport at the declared phase gradient +1 is exactly -2395373021828541/130893752065903472383 and at -1 exactly 2395373021828541/130893752065903472383, and the two sum to exactly zero",
+          "the declared direction therefore follows the declared phase gradient's sign exactly, and a claim of independence is rejected exactly",
+          "the rejection is exact and carries no tolerance"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "requirement": "Spatially asymmetric potential with a time-asymmetric drive: net transport NON-zero, and reversing the sign of the declared phase gradient reverses the direction exactly.",
+      "the_declared_direction_reversal": {
+        "reading": "reversing the declared phase gradient's sign reverses the declared transport exactly, and the two declared directions sum to exactly zero, with no tolerance and no floating-point comparison",
+        "the_direction_reverses_exactly": true,
+        "the_exact_sum": "0",
+        "the_same_reversal_on_the_declared_uniform_reference_measure": true,
+        "the_sum_is_exactly_zero": true,
+        "transport_at_minus_one": "2395373021828541/130893752065903472383",
+        "transport_at_plus_one": "-2395373021828541/130893752065903472383"
+      },
+      "transport_at_the_declared_phase_gradient_minus_one": {
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "final_minus_initial": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "final_state_equals_initial_state": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-174609731747765250467/1047150016527227779064"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-174479262821679451859/2094300033054455558128"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "174631454117461009859/2094300033054455558128"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "174552799084049099795/1047150016527227779064"
+          }
+        ],
+        "periodic_measure": [
+          "21959524069668552070/130893752065903472383",
+          "21812200259446601257/130893752065903472383",
+          "23175296404314213290/130893752065903472383",
+          "21713511383313828403/130893752065903472383",
+          "20337614820072238738/130893752065903472383",
+          "21895605129088038625/130893752065903472383"
+        ],
+        "periodic_measure_is_uniform": false,
+        "the_two_declared_readings_agree_on_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+          "unit": "declared sites of net displacement per declared period",
+          "unwrapped": true,
+          "value": "2395373021828541/130893752065903472383"
+        },
+        "transport_from_the_declared_uniform_reference_measure": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+          "final_measure": [
+            "65777/393216",
+            "43183/262144",
+            "91977/524288",
+            "43615/262144",
+            "247259/1572864",
+            "132889/786432"
+          ],
+          "final_state_equals_initial_state": false,
+          "per_step_flows": [
+            "-1/6",
+            "-1/12",
+            "4097/49152",
+            "16379/98304"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-1/32768"
+        },
+        "transport_is_zero": false
+      },
+      "transport_at_the_declared_phase_gradient_plus_one": {
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "final_minus_initial": [
+          "0",
+          "0",
+          "0",
+          "0",
+          "0",
+          "0"
+        ],
+        "final_state_equals_initial_state": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "174609731747765250467/1047150016527227779064"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "174479262821679451859/2094300033054455558128"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-174631454117461009859/2094300033054455558128"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "-174552799084049099795/1047150016527227779064"
+          }
+        ],
+        "periodic_measure": [
+          "21959524069668552070/130893752065903472383",
+          "21895605129088038625/130893752065903472383",
+          "20337614820072238738/130893752065903472383",
+          "21713511383313828403/130893752065903472383",
+          "23175296404314213290/130893752065903472383",
+          "21812200259446601257/130893752065903472383"
+        ],
+        "periodic_measure_is_uniform": false,
+        "the_two_declared_readings_agree_on_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+          "unit": "declared sites of net displacement per declared period",
+          "unwrapped": true,
+          "value": "-2395373021828541/130893752065903472383"
+        },
+        "transport_from_the_declared_uniform_reference_measure": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+          "final_measure": [
+            "65777/393216",
+            "132889/786432",
+            "247259/1572864",
+            "43615/262144",
+            "91977/524288",
+            "43183/262144"
+          ],
+          "final_state_equals_initial_state": false,
+          "per_step_flows": [
+            "1/6",
+            "1/12",
+            "-4097/49152",
+            "-16379/98304"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/32768"
+        },
+        "transport_is_zero": false
+      },
+      "verdict": "Accepted"
+    },
+    "R5_the_declared_phase_schedule": {
+      "declared_phase_gradient": {
+        "declared_phase_gradients": [
+          "1",
+          "-1"
+        ],
+        "reading": "a declared phase gradient transports, and the declared direction follows the declared phase gradient's sign exactly",
+        "the_direction_follows_the_gradients_sign": true,
+        "the_exact_sum": "0",
+        "transport_at_minus_one": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "2395373021828541/130893752065903472383"
+        },
+        "transport_at_plus_one": {
+          "between_the_exact_integers": [
+            "-1",
+            "0"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "-2395373021828541/130893752065903472383"
+        },
+        "verdict": "Accepted"
+      },
+      "reading": "the declared standing wave transports nothing and the declared phase gradient transports something: the declared direction is fixed by the declared phase gradient's sign",
+      "requirement": "A standing-wave phase schedule gives zero transport; a phase-gradient schedule gives directed transport whose direction follows the gradient's sign.",
+      "standing_wave": {
+        "declared_phase_gradient": "0",
+        "potential": "U_asym",
+        "reading": "at the declared standing wave the declared phase is constant across the ring and the declared transfer is the declared uniform diffusion, so the declared transport is exactly zero and the declared claim that the standing wave transports is rejected here",
+        "rejected_claim": {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the same declared configuration with a declared phase gradient is admitted as the declared directed transport",
+            "verdict": "Accepted_AsTheDeclaredDirectedTransport"
+          },
+          "claim": "the declared standing wave transports the declared measure",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "1/6"
+          },
+          "control": "a declared transport at the declared standing wave",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          },
+          "discriminates": true,
+          "executed": true,
+          "rejected": true,
+          "rejected_by": "the declared transport derived here is exactly 0 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+          "rejection_reasons": [
+            "at the declared standing wave the declared phase gradient is zero, the declared transfer is the declared uniform diffusion at every site of every step, and the declared transport is exactly zero",
+            "the declared rejection is executed rather than remarked: the run derives the zero and flags this claim as rejected",
+            "the rejection is exact and carries no tolerance"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "verdict": "Rejected"
+        },
+        "schedule": "the declared time-asymmetric schedule",
+        "the_declared_phase_is_constant_across_the_ring": true,
+        "the_declared_transfer_is_the_declared_uniform_diffusion": true,
+        "transport": {
+          "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+          "final_minus_initial": [
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ],
+          "final_state_equals_initial_state": true,
+          "per_step_flows": [
+            {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "declared sites of net displacement per declared period",
+              "value": "0"
+            },
+            {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "declared sites of net displacement per declared period",
+              "value": "0"
+            },
+            {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "declared sites of net displacement per declared period",
+              "value": "0"
+            },
+            {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "declared sites of net displacement per declared period",
+              "value": "0"
+            }
+          ],
+          "periodic_measure": [
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6",
+            "1/6"
+          ],
+          "periodic_measure_is_uniform": true,
+          "the_two_declared_readings_agree_on_zero": true,
+          "transport": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "derivation": "the accumulated declared flow sum_s J_s over the T declared steps",
+            "unit": "declared sites of net displacement per declared period",
+            "unwrapped": true,
+            "value": "0"
+          },
+          "transport_from_the_declared_uniform_reference_measure": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "derivation": "the same accumulated declared flow, carried from the declared uniform reference measure 1/N at every site",
+            "final_measure": [
+              "1/6",
+              "1/6",
+              "1/6",
+              "1/6",
+              "1/6",
+              "1/6"
+            ],
+            "final_state_equals_initial_state": true,
+            "per_step_flows": [
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "unit": "declared sites of net displacement per declared period",
+            "value": "0"
+          },
+          "transport_is_zero": true
+        },
+        "verdict": "Rejected"
+      },
+      "verdict": "RejectedForTheStandingWaveAcceptedForTheGradient"
+    },
+    "R6_topology_and_step_bound": {
+      "connectivity_of_the_declared_transport": {
+        "edge_count": "6",
+        "edge_set_of_the_declared_transport": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "every_edge_carries_positive_declared_flow_in_both_directions": true,
+        "no_edge_is_added_or_removed": true,
+        "no_site_is_lost": true,
+        "reading": "the declared transport never moves declared measure outside the declared ring's adjacent pairs, so the declared connectivity is unchanged: no declared site is lost and no declared edge is added or removed",
+        "site_count": "6",
+        "sites_reached": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "the_edge_set_is_exactly_the_declared_rings": true
+      },
+      "declared_ring": {
+        "declared_edge_count": "6",
+        "declared_edge_set": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "n_sites": 6
+      },
+      "reading": "a declared schedule crossing the declared step energy bound is rejected, and a declared schedule whose declared support is not the declared ring's edge set is rejected as breaking the declared connectivity",
+      "rejected_claim_changing_the_connectivity": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared schedule whose declared support is exactly the declared ring's edge set is admitted",
+          "verdict": "Accepted_WithTheDeclaredConnectivity"
+        },
+        "claim": "the declared candidate schedule preserves the declared connectivity of the ring",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "0"
+        },
+        "control": "the declared candidate schedule that moves declared measure to a non-adjacent declared site",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "1/8"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 1/8 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared candidate moves declared measure between declared sites that are not adjacent on the declared ring, so its declared edge set is not the declared ring's edge set",
+          "the declared connectivity of the declared ring is therefore broken by the declared candidate, and the candidate is rejected",
+          "the rejection is executed on the declared candidate's own declared support"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "rejected_claim_crossing_the_declared_step_energy_bound": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared schedule whose every step satisfies the declared bound is admitted",
+          "verdict": "Accepted_WithinTheDeclaredStepEnergyBound"
+        },
+        "claim": "the declared candidate schedule satisfies the declared step energy bound",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "2",
+            "3"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "2"
+        },
+        "control": "the declared candidate schedule that crosses the declared step energy bound",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "3",
+            "4"
+          ],
+          "unit": "declared sites of net displacement per declared period",
+          "value": "3"
+        },
+        "discriminates": true,
+        "executed": true,
+        "rejected": true,
+        "rejected_by": "the declared transport derived here is exactly 3 declared sites of net displacement per declared period, so the claimed value is rejected exactly, with no tolerance and no floating-point comparison",
+        "rejection_reasons": [
+          "the declared step energy input of the declared candidate schedule reaches 3, above the declared bound 2",
+          "the declared candidate is still a declared stochastic map, so it is rejected by the declared bound and not by an ill-formed transfer",
+          "a declared crossing schedule is rejected exactly"
+        ],
+        "unit": "declared sites of net displacement per declared period",
+        "verdict": "Rejected"
+      },
+      "requirement": "Topology and safety: the declared ring's connectivity must be unchanged by the transport (no site lost, no edge created or removed), and each step's declared energy input must satisfy a declared bound; a schedule that crosses the bound, or that changes the connectivity, must be rejected.",
+      "the_declared_step_energy_bound": {
+        "declared_amplitude_bound": "1/2",
+        "declared_energy_unit": "4",
+        "declared_step_energy_bound": "2",
+        "declared_step_energy_input_per_step": [
+          "2",
+          "1",
+          "1",
+          "2"
+        ],
+        "every_step_satisfies_the_declared_bound": true,
+        "reading": "the declared step energy input is a declared model number and carries no physical magnitude: it is the declared energy unit times the step's declared drive amplitude, and it satisfies the declared bound at every declared step",
+        "the_declared_schedule_reaches_the_bound": true,
+        "the_declared_step_energy_input_is_a_declared_model_number_with_no_physical_magnitude": true
+      },
+      "verdict": "Rejected"
+    },
+    "R7_proposal_only_bookkeeping": {
+      "authorization": "none",
+      "authorizes_nothing": true,
+      "data_used": "none",
+      "decides_nothing": true,
+      "decision": "none",
+      "deployment": "none",
+      "deploys_nothing": true,
+      "governance": "unaddressed",
+      "no_governance_assessment": true,
+      "nothing_said_about_who_might_decide": "nothing is said here about who might decide anything, and no decision is taken or recommended",
+      "physical_effect_asserted": "none",
+      "proposal_only_in_chinese_and_english": "\u63d0\u8bae\u6027\u65b9\u6848 / proposal only",
+      "proposal_only_statement": "This document and this payload are a PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848: the document authorizes nothing, decides nothing, deploys nothing and asserts no physical effect.",
+      "record_purpose": "an exact calibration of one declared discrete model, retained as evidence for the declared finite scope only",
+      "status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848",
+      "the_question_is_declared_and_nothing_else": "In a declared discrete model, is the net transport over one period exactly zero whenever the forcing is symmetric in space or symmetric in time, and exactly non-zero - with its direction reversing with the sign of the declared phase gradient - only when both asymmetries are present; and does a standing-wave phase schedule give zero while a phase-gradient schedule gives directed transport?"
+    },
+    "the_declared_model": {
+      "gates": {
+        "declared_value_for_an_uphill_move": "1/2",
+        "for_the_asymmetric_potential": {
+          "leftward": [
+            "1",
+            "1/2",
+            "1",
+            "1/2",
+            "1/2",
+            "1/2"
+          ],
+          "rightward": [
+            "1",
+            "1/2",
+            "1/2",
+            "1/2",
+            "1",
+            "1/2"
+          ]
+        },
+        "for_the_reflection_invariant_potential": {
+          "leftward": [
+            "1",
+            "1/2",
+            "1",
+            "1",
+            "1/2",
+            "1/2"
+          ],
+          "rightward": [
+            "1",
+            "1/2",
+            "1/2",
+            "1",
+            "1",
+            "1/2"
+          ]
+        },
+        "leftward_convention": "G'(i) = G(R(i)): the declared leftward gate at a site is the declared gate read at the reflected site, which is the declared reflection convention for one declared gate array",
+        "rule": "G(i) = 1 if U(i+1) <= U(i) and the declared value 1/2 otherwise; the declared rightward gate at site i",
+        "the_gates_read_only_the_declared_slope_signs": true
+      },
+      "measure": {
+        "cross_check_measure": "the declared uniform reference measure 1/N at every site, carried through the same declared transfer as a declared cross-check of the declared transport",
+        "declared_measure": "the declared periodic measure: the unique measure the declared transfer reproduces after exactly one declared period",
+        "uniqueness": "exactly one declared measure is reproduced, checked here by the exact rank of the declared period transfer minus the identity"
+      },
+      "phase": {
+        "declared_phase_gradient_values": [
+          "1",
+          "0",
+          "-1"
+        ],
+        "the_declared_phase_of_site_i": "the declared phase gradient times the declared site label i",
+        "the_gradient_fixes_the_declared_direction": true,
+        "the_standing_wave_gradient": "0",
+        "the_standing_wave_statement": "at the standing wave the declared phase is constant across the ring, so the declared phase gradient is zero and the declared direction is undeclared"
+      },
+      "potentials": {
+        "not_reflection_invariant": {
+          "declared_as": "the declared spatial asymmetry: the declared pinning site is the declared analogue of the wider programme's singular point, and it is a declared model site and nothing physical",
+          "declared_pinning_site": "1",
+          "is_reflection_invariant": false,
+          "name": "U_asym",
+          "the_pinning_site_is_a_fixed_point_of_the_declared_reflection": false,
+          "the_pinning_site_is_minimal": true,
+          "values": [
+            "3",
+            "0",
+            "1",
+            "2",
+            "3",
+            "2"
+          ]
+        },
+        "reflection_invariant": {
+          "declared_as": "the declared reflection-invariant case: a symmetric potential",
+          "is_reflection_invariant": true,
+          "minimal_sites": [
+            "1",
+            "5"
+          ],
+          "name": "U_sym",
+          "values": [
+            "2",
+            "0",
+            "1",
+            "2",
+            "1",
+            "0"
+          ]
+        }
+      },
+      "ring": {
+        "declared_adjacent_pairs": [
+          [
+            0,
+            1
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ],
+          [
+            5,
+            0
+          ]
+        ],
+        "declared_edge_count": 6,
+        "declared_edge_set": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ],
+          [
+            3,
+            4
+          ],
+          [
+            4,
+            5
+          ]
+        ],
+        "declared_reflection": [
+          "0",
+          "5",
+          "4",
+          "3",
+          "2",
+          "1"
+        ],
+        "declared_reflection_fixed_points": [
+          "0",
+          "3"
+        ],
+        "n_sites": 6,
+        "site_labels": [
+          "0",
+          "1",
+          "2",
+          "3",
+          "4",
+          "5"
+        ],
+        "the_reflection_is_an_involution": true
+      },
+      "schedule": {
+        "declared_amplitude_bound": "1/2",
+        "declared_energy_unit": "4",
+        "declared_step_energy_bound": "2",
+        "period_steps": 4,
+        "schedules": {
+          "crossing_the_declared_step_energy_bound": {
+            "amplitudes": [
+              "1/2",
+              "3/4",
+              "-1/4",
+              "-1/2"
+            ],
+            "crosses_the_declared_step_energy_bound": true,
+            "declared_step_energy_input_per_step": [
+              "2",
+              "3",
+              "1",
+              "2"
+            ],
+            "declared_time_symmetric": false,
+            "schedule_mean": "1/2"
+          },
+          "time_asymmetric": {
+            "amplitudes": [
+              "1/2",
+              "1/4",
+              "-1/4",
+              "-1/2"
+            ],
+            "crosses_the_declared_step_energy_bound": false,
+            "declared_step_energy_input_per_step": [
+              "2",
+              "1",
+              "1",
+              "2"
+            ],
+            "declared_time_symmetric": false,
+            "schedule_mean": "0"
+          },
+          "time_symmetric": {
+            "amplitudes": [
+              "1/2",
+              "0",
+              "-1/2",
+              "0"
+            ],
+            "crosses_the_declared_step_energy_bound": false,
+            "declared_step_energy_input_per_step": [
+              "2",
+              "0",
+              "2",
+              "0"
+            ],
+            "declared_time_symmetric": true,
+            "schedule_mean": "0"
+          }
+        },
+        "the_declared_time_symmetry_rule": "the declared schedule is time-symmetric when it is invariant under the declared half-period time translation composed with the declared reflection, that is nu_{s+T/2} = -nu_s"
+      },
+      "statement": "One declared discrete model and nothing else: a declared finite ring, a declared potential, a declared time-periodic drive with a declared schedule, a declared phase per site, and a declared transport measure computed with exact rationals through a declared transfer.  Every number is a declared model parameter or an exact consequence of the declared model.",
+      "transfer": {
+        "epsilon": "1/4",
+        "every_declared_rate_is_positive": true,
+        "every_declared_stay_probability_is_positive": true,
+        "rule": "A_s(i) = (1/4)*(1 + nu_s*g*G(i)) is the declared probability of hopping right from site i at step s, B_s(i) = (1/4)*(1 - nu_s*g*G'(i)) is the declared probability of hopping left, and 1 - A_s(i) - B_s(i) is the declared probability of staying",
+        "stay_rule": "the declared stay probability is the declared remainder of the declared hop probabilities"
+      },
+      "transport": {
+        "definition": "the net displacement of the declared measure over exactly one declared period: the sum over the declared steps of the declared flow J_s = sum_i (A_s(i) - B_s(i)) * p_s(i), the unwrapped displacement along the declared ring",
+        "no_physical_magnitude_is_claimed": true,
+        "the_final_state_is_compared_with_the_initial_state_exactly": true,
+        "unit": "declared sites of net displacement per declared period"
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "child_processes": 0,
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "external_libraries_imported": [],
+    "native_certificate": false,
+    "not_implemented": "nothing outside this declared model is implemented, and no Rust source, lock file, contract or note is touched",
+    "python": "the standard library alone"
+  },
+  "undecided": [
+    {
+      "item": "whether the declared gate rule is the intended relation between the declared potential and the declared transfer",
+      "reason": "the declared gates read only the declared slope signs, so the declared magnitudes of the declared potential do not enter the declared transfer.  The failed control of this run reports exactly that limitation, and no magnitude-carrying gate rule is decided here.",
+      "retained_partial_result": {
+        "declared_gates_for_the_asymmetric_potential": [
+          "1",
+          "1/2",
+          "1/2",
+          "1/2",
+          "1",
+          "1/2"
+        ],
+        "the_rescaled_gates_are_identical": true,
+        "the_rescaled_transport_is_identical": true
+      }
+    },
+    {
+      "item": "whether the declared phase gradient should be allowed values other than the declared -1, 0 and +1",
+      "reason": "this run declares the gradient in {-1, 0, +1} and decides nothing about other declared gradients; a different declaration is a different run.",
+      "retained_partial_result": {
+        "declared_gradient_values": [
+          "1",
+          "0",
+          "-1"
+        ],
+        "the_standing_wave_gradient": "0"
+      }
+    },
+    {
+      "item": "whether the declared uniform reference measure should be the declared transport measure instead of the declared periodic measure",
+      "reason": "both declared measures report the same declared zeros and the same exact reversal here, but the declared periodic measure is the one whose exact zero follows from the declared invariance of the declared transfer field, so it is the declared transport measure and the declared uniform reference measure is reported only as a declared cross-check.",
+      "retained_partial_result": {
+        "the_two_readings_agree_on_zero_in_the_declared_symmetric_cases": true,
+        "transport_from_the_periodic_measure_in_R4": "-2395373021828541/130893752065903472383",
+        "transport_from_the_uniform_reference_measure_in_R4": "1/32768"
+      }
+    },
+    {
+      "item": "whether the declared time symmetry should be read as the declared antisymmetric rocking schedule used here or as a declared palindromic schedule",
+      "reason": "the run adopts the contract's declared reading - invariance under the declared half-period time translation composed with the declared reflection - and checks it exactly at every site and step.  A palindromic reading is NOT decided here and would be a different run.",
+      "retained_partial_result": {
+        "its_declared_invariance_is_checked": true,
+        "the_declared_time_symmetric_schedule": [
+          "1/2",
+          "0",
+          "-1/2",
+          "0"
+        ]
+      }
+    },
+    {
+      "item": "whether the declared step energy input should be declared as an energy-like quantity at all",
+      "reason": "the declared step energy input is a declared model number with no physical magnitude; the contract asks for a declared bound and this run declares one, and no physical reading of it is made or decided.",
+      "retained_partial_result": {
+        "declared_energy_unit": "4",
+        "declared_step_energy_bound": "2",
+        "declared_step_energy_input_per_step": [
+          "2",
+          "1",
+          "1",
+          "2"
+        ]
+      }
+    },
+    {
+      "item": "whether the declared zeros persist for a different declared ring, period, step size or gate value",
+      "reason": "the model is declared; a different ring, potential, drive or period is a different run, and nothing here is a theorem about any other declaration.",
+      "retained_partial_result": {
+        "declared_epsilon": "1/4",
+        "declared_gate_value_for_an_uphill_move": "1/2",
+        "declared_n_sites": "6",
+        "declared_period_steps": "4"
+      }
+    }
+  ],
+  "verification_status": {
+    "checked_here": {
+      "every_declared_arithmetic_is_exact": true,
+      "governance_is_unaddressed": true,
+      "no_data_read_or_used": true,
+      "no_magnitude_for_any_physical_quantity_is_asserted": true,
+      "no_physical_effect_is_asserted": true,
+      "nothing_is_ablated_melted_moved_or_heated": true,
+      "the_singular_point_is_only_a_declared_pinning_site": true
+    },
+    "deployment": "none",
+    "no_data_read_or_used": true,
+    "observational": "Unavailable",
+    "physical_effect_asserted": "none"
+  },
+  "version": 1,
+  "what_is_not_claimed": {
+    "authorization": "none",
+    "data_used": "none",
+    "decision": "none",
+    "deployment": "none",
+    "governance": "unaddressed",
+    "governance_is_unaddressed": true,
+    "magnitude_sign_or_timing_of_any_physical_quantity": "none",
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_clock_read": true,
+    "no_contract_or_note_edited": true,
+    "no_data_read_or_used": true,
+    "no_magnitude_for_any_physical_quantity": true,
+    "no_material_is_transported": true,
+    "no_rust_source_or_lock_changed": true,
+    "nothing_is_ablated_melted_moved_or_heated": true,
+    "observational_verification": "Unavailable",
+    "physical_claim": false,
+    "physical_effect_asserted": "none",
+    "stable_api_change": false,
+    "the_document_is_a_proposal_only": true,
+    "the_model_is_declared_and_a_different_declaration_is_a_different_run": true,
+    "the_singular_point_appears_only_as_a_declared_pinning_site": true,
+    "the_singular_point_is_a_declared_spatial_asymmetry_and_nothing_physical": true,
+    "zero_transport_under_a_symmetric_forcing_is_a_statement_about_the_declared_model": true
+  }
+}

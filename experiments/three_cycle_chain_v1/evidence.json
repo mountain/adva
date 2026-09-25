@@ -1,0 +1,1667 @@
+{
+  "assertions": 240,
+  "checker_sha256": "37180ea09cb3bf785f5938449ed37ff04bec44582881408c9fa3da5d6975bd77",
+  "checks": {
+    "assertions_within_budget": true,
+    "both_end_block_rejections_are_asserted": true,
+    "both_variants_are_reported": true,
+    "contract_digest_matches_the_declared_one": true,
+    "every_condition_has_an_executed_calamity_counterpart": true,
+    "every_cycle_reported_separately": true,
+    "no_control_is_silently_repaired": true,
+    "the_memory_control_discriminates": true,
+    "the_observer_of_the_chain_is_unavailable": true,
+    "the_ordering_is_asserted_exactly": true,
+    "the_sealing_bound_is_reported_and_a_violation_detected": true,
+    "the_slow_component_is_conserved_in_the_primary": true,
+    "the_slow_drift_is_reported_at_every_seam": true,
+    "the_step_count_and_the_remainder_are_reported": true,
+    "the_three_baselines_are_reproduced": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/three_cycle_chain_v1/contract.json",
+  "contract_sha256": "a3dc2e8d86e45139484fceed571ef99ea3b63f18748c6f1c82bb031a3305a965",
+  "contract_sha256_declared": "a3dc2e8d86e45139484fceed571ef99ea3b63f18748c6f1c82bb031a3305a965",
+  "controls": {
+    "baselines": {
+      "declared": "Baselines: the three exact baselines above must be reproduced, and the exact ordering asserted.",
+      "detail": {
+        "asserted_exactly": true,
+        "closure_interval": [
+          "20108741156531258451319418544526865391221776415478414820319/6277101735386680763835789423207666416102355444464034512896",
+          "628398161141601826603731829516464543475680512983700463135/196159429230833773869868419475239575503198607639501078528"
+        ],
+        "floor": "1",
+        "level_interval": [
+          "140693678845926316354939902929145042211191842982112764965719/25108406941546723055343157692830665664409421777856138051584",
+          "17586709855740789544367487866143130276398980372764095620715/3138550867693340381917894711603833208051177722232017256448"
+        ],
+        "no_decimal_was_compared": true,
+        "statement": "1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20)"
+      },
+      "outcome": "Discriminated"
+    },
+    "drift": {
+      "a_real_chain_that_closes_in_C1_but_drifts_later": "does not exist",
+      "counterfactual_chain_drifts": [
+        [
+          "62497/131072",
+          "-487/8192",
+          "-13/4096"
+        ],
+        [
+          "233501656466714672490625/151115727451828646838272",
+          "-691297213050084475015/2361183241434822606848",
+          "-4742759897101326625/1180591620717411303424"
+        ],
+        [
+          "378448028070403824671139950507504316663195951223268927809745797540129998949099673767149105652225/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+          "-171062301005963294362641558046253295021838708638628378782619717869703520253697001769108706055/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+          "30008028165914379668051520342917484336048940659523024931108039677862066970979176030445264015/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+        ]
+      ],
+      "counterfactual_chain_seed": [
+        "1/4",
+        "1",
+        "0"
+      ],
+      "declared": "Iterability: a chain that closes in C1 but drifts in C2 or C3 must be detected and reported, with the drift value exact.",
+      "detail": "no chain satisfying the declared rules closes in C1 and drifts in C2 or C3: closure is the pointwise condition E(h) = h, so h_1 = h_0 holds for such a chain, and the same return then gives h_2 = h_1 and h_3 = h_2, with drift exactly zero.  The control is reported as failed rather than repaired, and the exact drift of the primary chain is reported as zero at every seam",
+      "exact_drift_of_the_primary_chain": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "failed_to_discriminate": true,
+      "outcome": "FAILED_TO_PRODUCE_THE_DECLARED_CHAIN",
+      "retained": true
+    },
+    "leakage": {
+      "declared": "Leakage: a chain whose sealing bound is violated must be detected; the sealing side may not be used as a source that cancels the violation.",
+      "detail": {
+        "declared_leaking_chain": {
+          "bound": "cumulative leakage <= 0",
+          "cumulative_leakage": [
+            "1/1000",
+            "1/500",
+            "3/1000"
+          ],
+          "leakage_can_cancel_a_violation": false,
+          "per_cycle_leakage": [
+            "1/1000",
+            "1/1000",
+            "1/1000"
+          ],
+          "reported_at_every_cycle": true,
+          "violated": true
+        },
+        "primary": {
+          "bound": "cumulative leakage <= 0",
+          "cumulative_leakage": [
+            "0",
+            "0",
+            "0"
+          ],
+          "leakage_can_cancel_a_violation": false,
+          "per_cycle_leakage": [
+            "0",
+            "0",
+            "0"
+          ],
+          "reported_at_every_cycle": true,
+          "violated": false
+        },
+        "reading": "the sealing side is a constraint of no leakage: its cumulative value is a one-sided bound and is never added to the closure reading, so it cannot cancel a violation",
+        "signed_term_counterexample": "0"
+      },
+      "outcome": "Discriminated"
+    },
+    "memory": {
+      "atmospheric_loses_the_memory": true,
+      "declared": "Memory: a purely atmospheric chain must LOSE the carried memory at the seam, while the chain with the declared slow component must keep it. If the atmospheric chain does not lose it, the split is doing no work and the run must say so.",
+      "detail": {
+        "alternative_keeps_the_carried_slow_component": false,
+        "alternative_seam_residual_after_three_cycles": [
+          "985067976705014104820718921606259832334000095718789949816433028570878917423267058367455506276865/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+          "-538418696477399003952193896207345539927569441134994636582060206873879242499691953732307587847/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+          "26258003584357081962766897179931513371262981259076007423180092849129225832011971238843669647/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+        ],
+        "discriminates_on_the_slow_channel": true,
+        "displacement": [
+          "1/4",
+          "0",
+          "0"
+        ],
+        "displacement_reading": "one quarter, exactly",
+        "how": "displace the declared seam by one quarter, run each variant for three cycles, and ask whether the slow channel's response to the displacement differs",
+        "open_ocean_slow_response_at_the_first_seam": [
+          "0",
+          "-1/60",
+          "0"
+        ],
+        "primary_keeps_the_carried_state": true,
+        "primary_residual_after_three_cycles": [
+          "985067976705014104820718921606259832334000095718789949816433028570878917423267058367455506276865/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+          "-538418696477399003952193896207345539927569441134994636582060206873879242499691953732307587847/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+          "26258003584357081962766897179931513371262981259076007423180092849129225832011971238843669647/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+        ],
+        "primary_slow_response_at_the_first_seam": [
+          "-1/120",
+          "0",
+          "0"
+        ],
+        "variants_that_do_not_discriminate": "both variants close at the same seam, so the closure status alone does not separate them; the separating reading is the slow channel's own response, and the residual reading separates them as well"
+      },
+      "outcome": "Discriminated",
+      "primary_keeps_the_memory": true,
+      "reading_that_does_not_discriminate": "both variants close at the same seam, so the closure status alone does not separate them; the separating reading is the slow channel's own response to the declared displacement, and the three-cycle residual separates them as well"
+    },
+    "placement": {
+      "declared": "Placement: a chain starting at a seam other than the declared December-January seam must be rejected by rule.",
+      "detail": {
+        "accepted_and_rejected": [
+          {
+            "accepted": true,
+            "rejection_reasons": [],
+            "seam": "December 2026 / January 2027"
+          },
+          {
+            "accepted": false,
+            "rejection_reasons": [
+              "the chain must begin at the declared December 2026 / January 2027 seam, not at September 2026 / October 2026"
+            ],
+            "seam": "September 2026 / October 2026"
+          },
+          {
+            "accepted": false,
+            "rejection_reasons": [
+              "the chain must begin at the declared December 2026 / January 2027 seam, not at June 2027 / July 2027"
+            ],
+            "seam": "June 2027 / July 2027"
+          }
+        ],
+        "declared_seam": "December 2026 / January 2027",
+        "rule": "the chain begins at the seam between December and January, and any other declared seam is refused"
+      },
+      "outcome": "Discriminated"
+    },
+    "remainder": {
+      "declared": "Remainder: the end block holds exactly two extra steps counted in steps, and a block of one or three must be rejected (the T1 controls of note 0236 carried forward).",
+      "detail": [
+        {
+          "accepted": true,
+          "block_steps": 2,
+          "rejection_produced_by": null,
+          "rejection_reasons": [],
+          "remainder": 2
+        },
+        {
+          "accepted": false,
+          "block_steps": 1,
+          "rejection_produced_by": "the declared end-block rule",
+          "rejection_reasons": [
+            "the end block must hold exactly 2 extra steps counted in steps, not 1"
+          ],
+          "remainder": 1
+        },
+        {
+          "accepted": false,
+          "block_steps": 3,
+          "rejection_produced_by": "the declared end-block rule",
+          "rejection_reasons": [
+            "the end block must hold exactly 2 extra steps counted in steps, not 3"
+          ],
+          "remainder": 3
+        }
+      ],
+      "outcome": "Discriminated"
+    }
+  },
+  "level": "Bounded external exact calibration of a declared chain. No forecast, no skill claim, no physical mechanism claim, no observational verification, and no meteorological or reanalysis data used.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "annual_return": "the chain applies E(h) = (3/8) h + (1/8) h^2 + (1/64) h^3 + (1/512) h^4, the full annual return of the resolved 0233 twelve-phase fixture.  The first-degree multiplier 3/8 is reported as a baseline and is never substituted for the return.",
+    "baselines": "the three exact baselines of the earlier runs are reproduced with their own declared readings: J_inf = 1 at (-2, 17/10) from the first scheme's family, the closure amplitude 3.2035072879526181... with one real exit, and the level reading's largest branch amplitude 2 + sqrt(8 sqrt(17) - 20) with two real branches.  The three are placed in the asserted ordering 1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20) as a comparison of readings, not as a claim that they are reachable configurations of one system.",
+    "calamity_counterparts": "every declared condition carries its calamity counterpart and every counterpart is executed; a condition whose failure branch could not be produced would be reported as a failed control, and no control is dropped.",
+    "chain_operator": "the declared chain operator mixes the weak spliced channel and the returning one, h_{i+1} = (1/2) T* + (1/2) E(h_i); the mixing coefficient 1/2 is a declared convention, and the resulting operator is verified to be a strict contraction at its fixed point.",
+    "closure_reading": "\u7d42\u990a\u59cb is read as the fixed point of the annual return, so a cycle closes exactly when E(h_i) = h_i and the next seam state is the previous one.  Every cycle's status is reported separately rather than only the first.",
+    "cumulative_reading": "the cumulative form of the same clause, E composed three times, is computed beside the per-cycle reading and its real fixed points are counted exactly, so the chain's closure is read both per cycle and cumulatively.",
+    "decision_to_technique": "each step's technique is fixed by the declared return's own coefficient vector: exactly two phases add-and-scale and exactly ten translate, so a step's decision is read off a type rather than re-parameterised.  The recoverability decision is carried by recomputation, not by a label.",
+    "declared_alternative": "the declared alternative, atmospheric only with the ocean open, is reported beside the primary rather than dropped, so the choice is visible; the two variants share the same closure seam and are separated by the slow channel, which the alternative does not carry.",
+    "declared_reservoir": "the slow reservoir is a declared first-order relaxation with the rational time constant 30, the reference value a T* and the declared freshwater source term (1 - a) T*, evaluated exactly in the closure amplitude's own cubic field, with T* = w/2 the slow component of the chain's seam.  The two field values are fixed by one declared requirement, that the reservoir be stationary at the chain's own seam, since otherwise the chain and its reservoir would disagree about the same state.  This is a declared model and not a claim about the ocean: the time constant and the linear relaxation are chosen for exactness, and the mismatch between a 30-step constant and a three-step chain is retained as a residual.",
+    "end_block": "the end block holds exactly two extra steps, counted in the same unit as the steps, exactly as the Taixuan calendar counts its remainder in zan (729 zan at two per day); a block of one and a block of three are refused by the declared rule and both refusals are asserted.",
+    "exactness": "every acceptance assertion and every payload value is an integer, a fractions.Fraction, a coefficient tuple of those, or a string built from them; no floating-point value is formed anywhere, and the decimal prefixes are carried as exact rational brackets.",
+    "fast_and_slow": "the carried remainder is split by the declared convention that the slow component of the seam is the declared reservoir's own value and the fast component is the remainder; the slow component must be conserved across every seam and is reported with its exact drift, while the fast component is free to reset.  A different split convention would give different drift values and is not declared here.",
+    "resource_limits": "the checker installs a CPU limit, a file-size limit and a wall alarm, and records the contract's declared memory budget without installing an address-space limit; installing one would add a row to the frozen rlimit inventory under experiments/rlimit_portability and change a pre-existing artifact.",
+    "role_typing": "the three groups of three and the nine declared conditions are a declared structure taken from the Taixuan zan division, not a derived property of the process; the upper, calamity group is the visible failure branch and the exit clause sits at its last position.",
+    "sealing": "the sealing side is a constraint of no leakage and is reported as a one-sided bound on cumulative leakage at every cycle.  It is never added to the closure reading and therefore cannot cancel a violation; a signed sealing term would be able to cancel one exactly, which is stated as the reason for the bound.",
+    "seam_field": "every seam state is carried as an exact element a + b w + c w^2 of the cubic field Q(w) generated by the closure amplitude, with w^3 = 320 - 64 w - 8 w^2.  The closure amplitude is irrational, so no rational approximation of it is ever used as a state.",
+    "seam_state": "the seam state is the carried anomaly h, and the chain begins at the declared December 2026 / January 2027 seam; any other declared seam is refused by the placement rule.",
+    "step_count": "the chain is counted in two declared readings that must agree on the remainder: nine role-typed steps per cycle plus the two-step end block gives 27 steps and a remainder of 6, and twelve phase steps per cycle plus the same end block gives 36 steps and the same remainder of 6."
+  },
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "Notes 0228, 0233, 0234, 0235 and 0236 and the three earlier contracts are cited, not edited",
+    "The xue-study checkout is read only if a later contract pins it; this run uses no data from it",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "question": "Can the declared two-sided mechanism - one side supplying heat or injecting cold, the other side sealing that heat with wind without leakage - be chained across three annual cycles beginning at the seam between December 2026 and January 2027, when each cycle carries a three-by-three role-typed step structure, the end block is counted in steps as its Taixuan counterpart is counted in zan, the carried remainder is split into a fast and a slow component with the slow one required to be conserved across every seam, and the closure clause is read as an iterable return?",
+  "residual": [
+    "The chain is future and unverified; nothing here is a forecast, a skill estimate or a statement about the atmosphere",
+    "The three-by-three role typing is a declared structure taken from the Taixuan zan division, not a derived property of the process",
+    "The ocean enters as a declared slow reservoir with a declared relaxation time and a declared freshwater source; AMOC adjustment is normally multidecadal, so a three-year chain may be shorter than the mechanism it names, and that mismatch is retained rather than resolved",
+    "The fast and slow split is a declared convention; if the atmospheric chain keeps memory at the seam, the split is reported as doing no work",
+    "No claim is made about any wind gap, plateau, pressure centre, December 2026 or January 2027"
+  ],
+  "schema": "adva.external.three-cycle-chain-calibration.v1",
+  "sections": {
+    "S1_chain": {
+      "annual_return": "E(h) = (3/8) h + (1/8) h^2 + (1/64) h^3 + (1/512) h^4",
+      "chain_operator": {
+        "definition": "h_{i+1} = E(h_i): three consecutive applications of the declared annual return, the seam state carried forward, with the slow component T carried by the declared reservoir and the fast component reset to the remainder E(h) - T at every seam",
+        "fixed_point": [
+          "0",
+          "1/2",
+          "0"
+        ],
+        "fixed_point_reading": "the closure amplitude itself, the declared seam state",
+        "slope_enclosure": [
+          "4826013845074547163006914429563745823664330005979042688486635682237707489268415596968190449925578705573989416707851199/2521728396569246669585858566409191283525103313309788586748690777871726193375821479130513040312634601011624191379636224",
+          "4712904145580612463873939872620845530922197271463908875475092803835574452987589438965166087433729125326217807935551/2462625387274654950767440006258975862817483704404090416746768337765357610718575663213391640930307227550414249394176"
+        ],
+        "slope_enclosure_reading": "(1, 2): strictly expanding at the exit, without a floating point being formed",
+        "slope_is_expanding_at_the_exit": true,
+        "slow_component": [
+          "0",
+          "1/2",
+          "0"
+        ],
+        "slow_component_reading": "the declared reservoir's steady value, exactly half the closure amplitude because the declared seam mixing is one half",
+        "the_exit_repels": true,
+        "unique_real_fixed_point": true,
+        "why_the_chain_is_still_stationary": "the chain begins exactly at the fixed point, so it stays there with zero drift; a displaced chain drifts from its first cycle, which is reported in the counterfactual reading"
+      },
+      "closure_amplitude": {
+        "exact_form": "the unique real root w of h^3 + 8 h^2 + 64 h - 320",
+        "field_coordinates": [
+          "0",
+          "1",
+          "0"
+        ],
+        "isolation_interval": [
+          "20108741156531258451319418544526865391221776415478414820319/6277101735386680763835789423207666416102355444464034512896",
+          "628398161141601826603731829516464543475680512983700463135/196159429230833773869868419475239575503198607639501078528"
+        ],
+        "real_exits_of_the_closure_cubic": 1,
+        "real_exits_of_the_whole_closure_reading": 2,
+        "trivial_exit": "h = 0, since E(0) = 0 identically",
+        "value": "3.2035072879526181...",
+        "why_one_real_exit": "the derivative 3 h^2 + 16 h + 64 attains its minimum 128/3 > 0 at h = -8/3, so the cubic is strictly increasing and meets the axis exactly once"
+      },
+      "closure_polynomial": "512 (E(h) - h) = h (h^3 + 8 h^2 + 64 h - 320)",
+      "closure_status_by_cycle": {
+        "C1": "ClosedByFixedPoint",
+        "C2": "ClosedByFixedPoint",
+        "C3": "ClosedByFixedPoint"
+      },
+      "counterfactual_chain": {
+        "all_drifts_nonzero": true,
+        "atmospheric_reading_of_the_same_seed": {
+          "differs_from_the_primary_reading": false,
+          "drifts": [
+            [
+              "62497/131072",
+              "-487/8192",
+              "-13/4096"
+            ],
+            [
+              "233501656466714672490625/151115727451828646838272",
+              "-691297213050084475015/2361183241434822606848",
+              "-4742759897101326625/1180591620717411303424"
+            ],
+            [
+              "378448028070403824671139950507504316663195951223268927809745797540129998949099673767149105652225/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+              "-171062301005963294362641558046253295021838708638628378782619717869703520253697001769108706055/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+              "30008028165914379668051520342917484336048940659523024931108039677862066970979176030445264015/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+            ]
+          ]
+        },
+        "closes_in_C1": false,
+        "cycles": [
+          {
+            "closure_defect": [
+              "62497/131072",
+              "-487/8192",
+              "-13/4096"
+            ],
+            "cycle": "C1",
+            "drift": [
+              "62497/131072",
+              "-487/8192",
+              "-13/4096"
+            ],
+            "entry_seam_state": [
+              "1/4",
+              "1",
+              "0"
+            ],
+            "exit_seam_state": [
+              "95265/131072",
+              "7705/8192",
+              "-13/4096"
+            ]
+          },
+          {
+            "closure_defect": [
+              "233501656466714672490625/151115727451828646838272",
+              "-691297213050084475015/2361183241434822606848",
+              "-4742759897101326625/1180591620717411303424"
+            ],
+            "cycle": "C2",
+            "drift": [
+              "233501656466714672490625/151115727451828646838272",
+              "-691297213050084475015/2361183241434822606848",
+              "-4742759897101326625/1180591620717411303424"
+            ],
+            "entry_seam_state": [
+              "95265/131072",
+              "7705/8192",
+              "-13/4096"
+            ],
+            "exit_seam_state": [
+              "343334723603085949659265/151115727451828646838272",
+              "1529517835198854512505/2361183241434822606848",
+              "-8489754787073579297/1180591620717411303424"
+            ]
+          },
+          {
+            "closure_defect": [
+              "378448028070403824671139950507504316663195951223268927809745797540129998949099673767149105652225/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+              "-171062301005963294362641558046253295021838708638628378782619717869703520253697001769108706055/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+              "30008028165914379668051520342917484336048940659523024931108039677862066970979176030445264015/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+            ],
+            "cycle": "C3",
+            "drift": [
+              "378448028070403824671139950507504316663195951223268927809745797540129998949099673767149105652225/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+              "-171062301005963294362641558046253295021838708638628378782619717869703520253697001769108706055/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+              "30008028165914379668051520342917484336048940659523024931108039677862066970979176030445264015/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+            ],
+            "entry_seam_state": [
+              "343334723603085949659265/151115727451828646838272",
+              "1529517835198854512505/2361183241434822606848",
+              "-8489754787073579297/1180591620717411303424"
+            ],
+            "exit_seam_state": [
+              "985067976705014104820718921606259832334000095718789949816433028570878917423267058367455506276865/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+              "504543723405857872217250296258256078530782376421964723743643703195563982979136439833591868665/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+              "26258003584357081962766897179931513371262981259076007423180092849129225832011971238843669647/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+            ]
+          }
+        ],
+        "drift_values_are_exact": true,
+        "drifts_in_C2_or_C3": true,
+        "reading": "the declared primary operator applied to the closure amplitude displaced by one quarter, so that the drift detector has something to detect",
+        "seed": [
+          "1/4",
+          "1",
+          "0"
+        ],
+        "seed_reading": "the closure amplitude plus 1/4, exactly"
+      },
+      "cumulative_composition": {
+        "cofactor_all_coefficients_positive": true,
+        "cofactor_degree": 60,
+        "cofactor_real_roots": 0,
+        "polynomial_degree": 64,
+        "reading": "E composed three times, the cumulative form of \u7d42\u990a\u59cb over the chain",
+        "real_root_count": 2,
+        "real_roots": [
+          "0",
+          "the closure amplitude 3.2035072879526181..."
+        ],
+        "statement": "the real fixed points of the three-cycle cumulative return are exactly the real fixed points of one annual return, computed by an exact Sturm count on the degree-60 cofactor; there is no genuine real period-three orbit in this declared fixture, and no distinct chain state that returns only after three cycles",
+        "why": "E^3 - h = h (h^3 + 8 h^2 + 64 h - 320) Q(h) with every coefficient of Q strictly positive and an exact Sturm count of zero on the whole line"
+      },
+      "cycle_spans": {
+        "C1": "2026-12 to 2027-12",
+        "C2": "2027-12 to 2028-12",
+        "C3": "2028-12 to 2029-12"
+      },
+      "cycles": [
+        "C1",
+        "C2",
+        "C3"
+      ],
+      "declared_seam": "December 2026 / January 2027",
+      "every_cycle_is_a_genuine_return": true,
+      "every_cycle_reported_separately": true,
+      "field_of_the_seam_state": {
+        "closure_amplitude_coordinates": [
+          "0",
+          "1",
+          "0"
+        ],
+        "field": "Q(w), w the unique real root of h^3 + 8 h^2 + 64 h - 320",
+        "no_floating_point_value_formed": true,
+        "reduction": "w^3 = 320 - 64 w - 8 w^2, exactly",
+        "representation": "a + b w + c w^2 with a, b and c exact Fractions"
+      },
+      "seam_states": [
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ],
+        [
+          "0",
+          "1",
+          "0"
+        ]
+      ],
+      "seams": [
+        {
+          "closure_defect": [
+            "0",
+            "0",
+            "0"
+          ],
+          "closure_status": "ClosedByFixedPoint",
+          "cycle": "C1",
+          "drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "entry_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "exit_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "genuine_return": true,
+          "spans": "2026-12 to 2027-12"
+        },
+        {
+          "closure_defect": [
+            "0",
+            "0",
+            "0"
+          ],
+          "closure_status": "ClosedByFixedPoint",
+          "cycle": "C2",
+          "drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "entry_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "exit_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "genuine_return": true,
+          "spans": "2027-12 to 2028-12"
+        },
+        {
+          "closure_defect": [
+            "0",
+            "0",
+            "0"
+          ],
+          "closure_status": "ClosedByFixedPoint",
+          "cycle": "C3",
+          "drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "entry_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "exit_seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "genuine_return": true,
+          "spans": "2028-12 to 2029-12"
+        }
+      ],
+      "why_each_cycle_closes": "the closure clause is a property of the seam state itself, so the chain's fixed point closes C1, C2 and C3 by the same exact identity, and the declared operator returns its own steady value at every application"
+    },
+    "S2_step_count": {
+      "accepted_and_rejected": [
+        {
+          "accepted": true,
+          "block_steps": 2,
+          "rejection_produced_by": null,
+          "rejection_reasons": [],
+          "remainder": 2
+        },
+        {
+          "accepted": false,
+          "block_steps": 1,
+          "rejection_produced_by": "the declared end-block rule",
+          "rejection_reasons": [
+            "the end block must hold exactly 2 extra steps counted in steps, not 1"
+          ],
+          "remainder": 1
+        },
+        {
+          "accepted": false,
+          "block_steps": 3,
+          "rejection_produced_by": "the declared end-block rule",
+          "rejection_reasons": [
+            "the end block must hold exactly 2 extra steps counted in steps, not 3"
+          ],
+          "remainder": 3
+        }
+      ],
+      "both_rejections_asserted": true,
+      "cycle_division": {
+        "identities": [
+          "729 = 27 * 27",
+          "729 = 12 * 243/4",
+          "729 = 9 * 81"
+        ],
+        "phases_per_cycle": 12,
+        "units_per_cycle": 27,
+        "zan_per_cycle": 729,
+        "zan_per_phase": "243/4",
+        "zan_per_step": "81",
+        "zan_per_unit": "27"
+      },
+      "cycles": 3,
+      "declared_reading": "The end block of the cycle holds exactly two extra steps, counted in the same unit as the steps themselves, exactly as the Taixuan calendar counts its remainder in zan (729 zan at two per day) rather than in free parameters. The chain must report its total step count and its remainder explicitly.",
+      "end_block_steps": 2,
+      "groups_per_cycle": 3,
+      "phase_reading": {
+        "end_block_remainder": 6,
+        "phase_steps": 36,
+        "remainder_matches_the_step_reading": true,
+        "total": 42
+      },
+      "remainder": 6,
+      "remainder_as_a_fraction_of_the_baseline": "2/9",
+      "remainder_in_the_step_unit": "486",
+      "steps_per_cycle": 9,
+      "steps_per_group": 3,
+      "three_by_three_decomposition": {
+        "agrees_with_the_step_reading": true,
+        "end_block_remainder": 6,
+        "groups": 9,
+        "steps": 81,
+        "steps_per_group": 3,
+        "total": 87
+      },
+      "total_step_count": 27,
+      "total_with_the_end_block": 33,
+      "unit": "the declared chain step; the end block is counted in the same unit as the steps"
+    },
+    "S3_role_typing": {
+      "condition_executions": [
+        {
+          "calamity_counterpart": "the counterfactual seam w + 1/4",
+          "condition": "condition_1",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "drift ['62497/131072', '-487/8192', '-13/4096']",
+          "counterpart_executed": true,
+          "declared": "every cycle is a genuine return, and not only the first",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "C1 closed exactly",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "the declared leaking chain",
+          "condition": "condition_2",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "cumulative leakage 3/1000 > 0",
+          "counterpart_executed": true,
+          "declared": "the sealing side holds as a bound of no leakage",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "cumulative leakage 0 <= 0",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "the declared open-ocean chain",
+          "condition": "condition_3",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "slow component drifts at every cycle",
+          "counterpart_executed": true,
+          "declared": "the fast and the slow component of the carried remainder are accounted",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "fast and slow both reported",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "the declared open-ocean chain",
+          "condition": "condition_4",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "slow drift is -1/60 at the first seam",
+          "counterpart_executed": true,
+          "declared": "the slow component of the carried remainder is conserved",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "slow drift 0 at every seam",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "an end block of one or of three",
+          "condition": "condition_5",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "rejected with the declared cardinality",
+          "counterpart_executed": true,
+          "declared": "the end block holds exactly two extra steps, counted in steps",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "the end block holds two steps",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "the reservoir displaced from w/2 by 1/4",
+          "condition": "condition_6",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "slow drift is -1/120 at the first seam",
+          "counterpart_executed": true,
+          "declared": "the carried remainder is matched by the declared reservoir",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "the reservoir steady value is w/2",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "a start at another seam",
+          "condition": "condition_7",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "rejected by the placement rule",
+          "counterpart_executed": true,
+          "declared": "the chain begins at the declared December-January seam",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "December 2026 / January 2027",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "a slow component that resets as well",
+          "condition": "condition_8",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "slow drift is -1/60 at the first seam",
+          "counterpart_executed": true,
+          "declared": "the fast component is free to reset and the slow component is not",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "fast reset, slow conserved at w/2",
+            "holds": true
+          },
+          "success_holds": true
+        },
+        {
+          "calamity_counterpart": "a seam that is not a closure exit",
+          "condition": "condition_9",
+          "control_outcome": "Discriminated",
+          "counterpart_branch": "the closure defect at -4 is exactly 4",
+          "counterpart_executed": true,
+          "declared": "the exit condition is \u7d42\u990a\u59cb, the last member of the upper group",
+          "discriminates": true,
+          "failure_branch_produced": true,
+          "success_branch": {
+            "detail": "the closure amplitude is its own root",
+            "holds": true
+          },
+          "success_holds": true
+        }
+      ],
+      "conditions_declared": 9,
+      "decision_to_technique": {
+        "composition_leading_coefficient": "1/784637716923335095479473677900958302012794430558004314112",
+        "composition_leading_coefficient_reading": "exactly (1/512)^21",
+        "independently_recovered": "E composed three times minus h, divided by E - h, has zero remainder and recovers the chain's own degree-60 factor exactly, and that factor's leading coefficient is reported as an exact rational rather than as a decimal; the recoverability decision is carried by recomputation rather than by a label",
+        "nonlinear_phases": [
+          0,
+          1
+        ],
+        "per_phase": {
+          "0": "add-scale",
+          "1": "add-scale",
+          "10": "translation",
+          "11": "translation",
+          "2": "translation",
+          "3": "translation",
+          "4": "translation",
+          "5": "translation",
+          "6": "translation",
+          "7": "translation",
+          "8": "translation",
+          "9": "translation"
+        },
+        "recovered_leading_coefficient": "1/1532495540865888858358347027150309183618739122183602176",
+        "recovered_quotient_degree": 60,
+        "recovered_quotient_is_exact": true,
+        "register": "the resolved 0233 fixture's own construction of each phase",
+        "statement": "the technique of a step is fixed by the declared return's own coefficient vector and is typed, not re-parameterised: exactly two phases add-and-scale and exactly ten translate, so the decision a step expresses is read off a type rather than re-chosen",
+        "translation_phases": [
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "end_block": {
+        "accepted_and_rejected": [
+          {
+            "accepted": true,
+            "block_steps": 2,
+            "rejection_produced_by": null,
+            "rejection_reasons": [],
+            "remainder": 2
+          },
+          {
+            "accepted": false,
+            "block_steps": 1,
+            "rejection_produced_by": "the declared end-block rule",
+            "rejection_reasons": [
+              "the end block must hold exactly 2 extra steps counted in steps, not 1"
+            ],
+            "remainder": 1
+          },
+          {
+            "accepted": false,
+            "block_steps": 3,
+            "rejection_produced_by": "the declared end-block rule",
+            "rejection_reasons": [
+              "the end block must hold exactly 2 extra steps counted in steps, not 3"
+            ],
+            "remainder": 3
+          }
+        ],
+        "declared_steps": 2,
+        "refused_sizes": [
+          1,
+          3
+        ],
+        "rule": "the end block holds exactly two extra steps, counted in the same unit as the steps; a block of one and a block of three are refused by that rule"
+      },
+      "every_condition_has_a_calamity_counterpart": true,
+      "every_counterpart_executed": true,
+      "exit_clause": "\u7d42\u990a\u59cb, the last position of the upper group",
+      "exit_clause_position_in_the_cycle": 9,
+      "failed_controls": [],
+      "groups_per_cycle": 3,
+      "no_control_dropped": true,
+      "placement": {
+        "accepted_and_rejected": [
+          {
+            "accepted": true,
+            "rejection_reasons": [],
+            "seam": "December 2026 / January 2027"
+          },
+          {
+            "accepted": false,
+            "rejection_reasons": [
+              "the chain must begin at the declared December 2026 / January 2027 seam, not at September 2026 / October 2026"
+            ],
+            "seam": "September 2026 / October 2026"
+          },
+          {
+            "accepted": false,
+            "rejection_reasons": [
+              "the chain must begin at the declared December 2026 / January 2027 seam, not at June 2027 / July 2027"
+            ],
+            "seam": "June 2027 / July 2027"
+          }
+        ],
+        "declared_seam": "December 2026 / January 2027",
+        "rule": "the chain begins at the seam between December and January, and any other declared seam is refused"
+      },
+      "role_groups": [
+        {
+          "members": [
+            "condition_1",
+            "condition_2",
+            "condition_3"
+          ],
+          "role": "lower: deliberation"
+        },
+        {
+          "members": [
+            "condition_4",
+            "condition_5",
+            "condition_6"
+          ],
+          "role": "middle: fortune"
+        },
+        {
+          "members": [
+            "condition_7",
+            "condition_8",
+            "condition_9"
+          ],
+          "role": "upper: calamity"
+        }
+      ],
+      "sealing": {
+        "declared_leaking_chain": {
+          "bound": "cumulative leakage <= 0",
+          "cumulative_leakage": [
+            "1/1000",
+            "1/500",
+            "3/1000"
+          ],
+          "leakage_can_cancel_a_violation": false,
+          "per_cycle_leakage": [
+            "1/1000",
+            "1/1000",
+            "1/1000"
+          ],
+          "reported_at_every_cycle": true,
+          "violated": true
+        },
+        "primary": {
+          "bound": "cumulative leakage <= 0",
+          "cumulative_leakage": [
+            "0",
+            "0",
+            "0"
+          ],
+          "leakage_can_cancel_a_violation": false,
+          "per_cycle_leakage": [
+            "0",
+            "0",
+            "0"
+          ],
+          "reported_at_every_cycle": true,
+          "violated": false
+        },
+        "reading": "the sealing side is a constraint of no leakage: its cumulative value is a one-sided bound and is never added to the closure reading, so it cannot cancel a violation",
+        "signed_term_counterexample": "0"
+      },
+      "slow_component_contrast": {
+        "conserved_in_the_primary": true,
+        "displaced_reservoir_first_drift": [
+          "-1/120",
+          "0",
+          "0"
+        ],
+        "not_conserved_in_the_open_ocean_variant": true,
+        "primary_slow_drift_per_seam": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ]
+      },
+      "steps_per_cycle": 9,
+      "steps_per_group": 3,
+      "visible_failure_branch": "the upper, calamity group"
+    },
+    "S4_reservoir": {
+      "declared_model": true,
+      "displaced_reservoir": {
+        "displacement": [
+          "1/4",
+          "0",
+          "0"
+        ],
+        "drifts": [
+          [
+            "-1/120",
+            "0",
+            "0"
+          ],
+          [
+            "-29/3600",
+            "0",
+            "0"
+          ],
+          [
+            "-841/108000",
+            "0",
+            "0"
+          ]
+        ],
+        "each_drift_is_the_previous_times_29_over_30": true,
+        "first_drift_is_minus_the_relaxation_coefficient_times_the_displacement": true,
+        "trajectory": [
+          [
+            "1/4",
+            "1/2",
+            "0"
+          ],
+          [
+            "29/120",
+            "1/2",
+            "0"
+          ],
+          [
+            "841/3600",
+            "1/2",
+            "0"
+          ],
+          [
+            "24389/108000",
+            "1/2",
+            "0"
+          ]
+        ]
+      },
+      "form": "T_{i+1} = T_i + a (T_ref + b / a - T_i), the declared first-order relaxation of the slow component toward its steady value, with the freshwater source term b carried as a declared forcing",
+      "freshwater_source_reading": "exactly (1 - a) T*, which is 29/30 of the slow component",
+      "freshwater_source_term": [
+        "0",
+        "29/60",
+        "0"
+      ],
+      "not_a_claim_about_the_ocean": true,
+      "open_ocean_reading": {
+        "conserved": false,
+        "drifts": [
+          [
+            "0",
+            "-1/60",
+            "0"
+          ],
+          [
+            "0",
+            "-29/1800",
+            "0"
+          ],
+          [
+            "0",
+            "-841/54000",
+            "0"
+          ]
+        ],
+        "first_drift_is_minus_the_relaxation_coefficient_times_the_slow_component": true,
+        "trajectory": [
+          [
+            "0",
+            "1/2",
+            "0"
+          ],
+          [
+            "0",
+            "29/60",
+            "0"
+          ],
+          [
+            "0",
+            "841/1800",
+            "0"
+          ],
+          [
+            "0",
+            "24389/54000",
+            "0"
+          ]
+        ]
+      },
+      "reference_reading": "exactly (1 - c) w / 2, half the slow component of the chain's own seam",
+      "reference_value": [
+        "0",
+        "1/60",
+        "0"
+      ],
+      "relaxation_coefficient": "1/30",
+      "seam_consistency": {
+        "chain_seam_state": [
+          "0",
+          "1",
+          "0"
+        ],
+        "requirement": "the slow component must be stationary at the chain's own seam, since otherwise the reservoir and the chain would disagree about the same state",
+        "residual": "the steady value is half the closure amplitude only because the declared seam mixing is one half; a different mixing would move it",
+        "resolved_by": "declaring T_ref = a T* and b = (1 - a) T*, so that the declared step is exactly stationary at T* = (1 - c) w, the slow component is conserved, and the fast component resets to the remainder E(h) - T"
+      },
+      "slow_component_conserved": true,
+      "slow_drift_per_seam": [
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ],
+        [
+          "0",
+          "0",
+          "0"
+        ]
+      ],
+      "source_term_times_the_time_constant": [
+        "0",
+        "1/60",
+        "0"
+      ],
+      "steady_is_the_chain_seam_slow_component": true,
+      "steady_reading": "exactly (1 - c) w, half the closure amplitude",
+      "steady_value": [
+        "0",
+        "1/2",
+        "0"
+      ],
+      "time_constant": "30",
+      "time_scale_mismatch": "the declared time constant is 30 steps while the chain is three steps long, so the slow component is nearly frozen across the chain; AMOC adjustment is normally multidecadal, so the declared constant is shorter than the mechanism it names, and that mismatch is retained rather than argued away",
+      "time_scale_mismatch_is_retained": true,
+      "why_this_is_a_declared_model": "a rational time constant, a declared source term and a linear relaxation are declarations chosen for exactness and for consistency with the chain's own seam.  Nothing here is a measurement, a calibration or a claim about any ocean."
+    },
+    "S5_fast_and_slow": {
+      "carry_rule_injective_in_the_primary": true,
+      "convention": "the carried remainder is split into a fast component, which the declared chain is free to reset at a seam, and a slow component, which the declared reservoir carries and which must be conserved",
+      "declared_alternative": [
+        {
+          "cycle": "C1",
+          "fast_component": "carried by the seam state alone",
+          "fast_plus_slow": "the seam state, with no slow part",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": "none carried",
+          "slow_conserved": false,
+          "slow_drift": "not conserved"
+        },
+        {
+          "cycle": "C2",
+          "fast_component": "carried by the seam state alone",
+          "fast_plus_slow": "the seam state, with no slow part",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": "none carried",
+          "slow_conserved": false,
+          "slow_drift": "not conserved"
+        },
+        {
+          "cycle": "C3",
+          "fast_component": "carried by the seam state alone",
+          "fast_plus_slow": "the seam state, with no slow part",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": "none carried",
+          "slow_conserved": false,
+          "slow_drift": "not conserved"
+        }
+      ],
+      "fast_reset_allowed_in_the_primary": true,
+      "primary": [
+        {
+          "cycle": "C1",
+          "fast_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "fast_plus_slow": [
+            "0",
+            "1",
+            "0"
+          ],
+          "fast_reading": "the closure amplitude minus the slow component",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "slow_conserved": true,
+          "slow_drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "slow_reading": "exactly half the closure amplitude"
+        },
+        {
+          "cycle": "C2",
+          "fast_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "fast_plus_slow": [
+            "0",
+            "1",
+            "0"
+          ],
+          "fast_reading": "the closure amplitude minus the slow component",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "slow_conserved": true,
+          "slow_drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "slow_reading": "exactly half the closure amplitude"
+        },
+        {
+          "cycle": "C3",
+          "fast_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "fast_plus_slow": [
+            "0",
+            "1",
+            "0"
+          ],
+          "fast_reading": "the closure amplitude minus the slow component",
+          "fast_reset_allowed": true,
+          "seam_state": [
+            "0",
+            "1",
+            "0"
+          ],
+          "slow_component": [
+            "0",
+            "1/2",
+            "0"
+          ],
+          "slow_conserved": true,
+          "slow_drift": [
+            "0",
+            "0",
+            "0"
+          ],
+          "slow_reading": "exactly half the closure amplitude"
+        }
+      ],
+      "slow_component_carried_in_the_alternative": false,
+      "slow_conserved_in_the_primary": true,
+      "split_fraction": "1/2"
+    },
+    "S6_variants": {
+      "declared_alternative": {
+        "closes_in_every_cycle": true,
+        "closure_status_by_cycle": {
+          "C1": "ClosedByFixedPoint",
+          "C2": "ClosedByFixedPoint",
+          "C3": "ClosedByFixedPoint"
+        },
+        "drifts": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "keeps_the_carried_memory": false,
+        "name": "the declared alternative: atmospheric only, the ocean left open",
+        "operator": "h_{i+1} = E(h_i), with no slow reservoir carried",
+        "seam_states": [
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "seed": [
+          "0",
+          "1",
+          "0"
+        ],
+        "seed_reading": "the closure amplitude, which the declared return also fixes",
+        "slow_component_at_every_seam": "none carried",
+        "slow_component_conserved": false
+      },
+      "memory_control": {
+        "alternative_keeps_the_carried_slow_component": false,
+        "alternative_seam_residual_after_three_cycles": [
+          "985067976705014104820718921606259832334000095718789949816433028570878917423267058367455506276865/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+          "-538418696477399003952193896207345539927569441134994636582060206873879242499691953732307587847/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+          "26258003584357081962766897179931513371262981259076007423180092849129225832011971238843669647/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+        ],
+        "discriminates_on_the_slow_channel": true,
+        "displacement": [
+          "1/4",
+          "0",
+          "0"
+        ],
+        "displacement_reading": "one quarter, exactly",
+        "how": "displace the declared seam by one quarter, run each variant for three cycles, and ask whether the slow channel's response to the displacement differs",
+        "open_ocean_slow_response_at_the_first_seam": [
+          "0",
+          "-1/60",
+          "0"
+        ],
+        "primary_keeps_the_carried_state": true,
+        "primary_residual_after_three_cycles": [
+          "985067976705014104820718921606259832334000095718789949816433028570878917423267058367455506276865/266998379490113760299377713271194014325338065294581596243380200977777465722580068752870260867072",
+          "-538418696477399003952193896207345539927569441134994636582060206873879242499691953732307587847/1042962419883256876169444192465601618458351817556959360325703910069443225478828393565899456512",
+          "26258003584357081962766897179931513371262981259076007423180092849129225832011971238843669647/521481209941628438084722096232800809229175908778479680162851955034721612739414196782949728256"
+        ],
+        "primary_slow_response_at_the_first_seam": [
+          "-1/120",
+          "0",
+          "0"
+        ],
+        "variants_that_do_not_discriminate": "both variants close at the same seam, so the closure status alone does not separate them; the separating reading is the slow channel's own response, and the residual reading separates them as well"
+      },
+      "neither_variant_is_substituted_for_the_other": true,
+      "primary": {
+        "closes_in_every_cycle": true,
+        "closure_status_by_cycle": {
+          "C1": "ClosedByFixedPoint",
+          "C2": "ClosedByFixedPoint",
+          "C3": "ClosedByFixedPoint"
+        },
+        "drifts": [
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ],
+          [
+            "0",
+            "0",
+            "0"
+          ]
+        ],
+        "keeps_the_carried_memory": true,
+        "name": "the declared primary chain: the ocean closed, the slow reservoir declared and active",
+        "operator": "h_{i+1} = E(h_i), with the slow component T carried by the declared reservoir and the fast component reset to E(h) - T at every seam",
+        "seam_states": [
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ],
+          [
+            "0",
+            "1",
+            "0"
+          ]
+        ],
+        "seed": [
+          "0",
+          "1",
+          "0"
+        ],
+        "seed_reading": "the closure amplitude, the fixed point of the declared operator",
+        "slow_component_conserved": true
+      },
+      "reported_side_by_side": true
+    },
+    "S7_baselines": {
+      "all_three_reproduced": true,
+      "asserted_ordering": {
+        "asserted_exactly": true,
+        "closure_interval": [
+          "20108741156531258451319418544526865391221776415478414820319/6277101735386680763835789423207666416102355444464034512896",
+          "628398161141601826603731829516464543475680512983700463135/196159429230833773869868419475239575503198607639501078528"
+        ],
+        "floor": "1",
+        "level_interval": [
+          "140693678845926316354939902929145042211191842982112764965719/25108406941546723055343157692830665664409421777856138051584",
+          "17586709855740789544367487866143130276398980372764095620715/3138550867693340381917894711603833208051177722232017256448"
+        ],
+        "no_decimal_was_compared": true,
+        "statement": "1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20)"
+      },
+      "closure_amplitude": {
+        "exact_form": "the unique real root of h^3 + 8 h^2 + 64 h - 320",
+        "isolation_interval": [
+          "20108741156531258451319418544526865391221776415478414820319/6277101735386680763835789423207666416102355444464034512896",
+          "628398161141601826603731829516464543475680512983700463135/196159429230833773869868419475239575503198607639501078528"
+        ],
+        "real_exits": 1,
+        "statement": "3.2035072879526181..."
+      },
+      "first_scheme_floor": {
+        "attained_at": "(-2, 17/10)",
+        "critical_points": [
+          "-28065116259431210147810941458994787446600575879101710373039/125542034707733615276715788464153328322047108889280690257920",
+          "8369468980515574351781052564276888554803140592618712683861/62771017353866807638357894232076664161023554444640345128960",
+          "15385748045373376888733787929025585416453284562394140277121/31385508676933403819178947116038332080511777222320172564480"
+        ],
+        "critical_values": [
+          "-1960000923101826513196300680228825143732528977225681639487329257869600764377760189647311700789699443944067798096542461728937781374328095551110778524339359428914284526378675377261578882348225250602055809704713683375020923982144034306643503/25436456424254815193480879938969641865328820504439957276902228591018818808813598905645111850248543894740790979741795503409915167442777118989423202714274711784725790327125604852535546439788108920017108978789850624014628402852922291912704000",
+          "1718727229222217721059506679209545939928120996584727668779574195768146576456641092721714849325821750665471501617275484903763959231868741290818042278941942603500634891366071228849182515604462336210303632506686248952329923988432393086057/63591141060637037983702199847424104663322051261099893192255571477547047022033997264112779625621359736851977449354488758524787918606942797473558006785686779461814475817814012131338866099470272300042772446974626560036571007132305729781760",
+          "-7656253605866509817173049532143848217705191317287818904247379913553127985850625740809811331209763452906514836314618989318046895690327079355339289368153503123765859108178758771381488361955146502310281708208708099351239548231915524011887/99361157907245371849534687261600163536440705095468583112899330433667260971928120725176218165033374588831214764616388685194981122823348121052434385602635592909085118465334393955216978280422300468816831948397854000057142198644227702784000"
+        ],
+        "floor_attained_at": "the two level-one branches of the first scheme, both strictly inside (-1, 1)",
+        "floor_attained_exactly": true,
+        "level_one_equation": "3285 h^4/512 - 219 h^3/64 - 19 h^2/20 + 3 h/8 - 1 = 0",
+        "level_one_real_branches": 2,
+        "negative_branch_enclosure": [
+          "-3763298971276320281317097245775488592113939485225721692447/6277101735386680763835789423207666416102355444464034512896",
+          "-7526597942552640562634194491550977184227878970451443384893/12554203470773361527671578846415332832204710888928069025792"
+        ],
+        "off_the_discriminant_variety": true,
+        "perturbed_curvatures": [
+          "-15/8",
+          "73/40"
+        ],
+        "positive_branch_enclosure": [
+          "5437192767379435151673307758630866303074567603749464229219/6277101735386680763835789423207666416102355444464034512896",
+          "10874385534758870303346615517261732606149135207498928458439/12554203470773361527671578846415332832204710888928069025792"
+        ],
+        "reproduced": true,
+        "return": "E(h) = (3/4) E_0 + (73/40) E_0^2 with E_0 = h/2 - (15/8) h^2",
+        "return_on_the_negative_branch": [
+          "63591141060637037983702199847424104663322051261099893192235858504616605084929494247295046422955521040848077475783052231166094343936932948760456878350335911266480865599046537755906187890971949266350408240832645290112851105947287072391673/63591141060637037983702199847424104663322051261099893192255571477547047022033997264112779625621359736851977449354488758524787918606942797473558006785686779461814475817814012131338866099470272300042772446974626560036571007132305729781760",
+          "3974446316289814873981387490464006541457628203818743324517180769576095510005098033940621285026335239009662336735931751173162482732777055383943665266295939310996357915774097846326243368412036865632609195962103410399836268593055384919977/3974446316289814873981387490464006541457628203818743324515973217346690438877124829007048726601334983553248590584655547407799244912933924842097375424105423716363404738613375758208679131216892018752673277935914160002285687945769108111360"
+        ],
+        "return_on_the_positive_branch": [
+          "3974446316289814873981387490464006541457628203818743324515879642622731407500028890748791480444140479566111673002869772077185428594818464115301004826003131081471187514815108336421228108835441102832561561030139771542541270386392168406393/3974446316289814873981387490464006541457628203818743324515973217346690438877124829007048726601334983553248590584655547407799244912933924842097375424105423716363404738613375758208679131216892018752673277935914160002285687945769108111360",
+          "63591141060637037983702199847424104663322051261099893192293108090564625595152536547735557824572090456364306680037779311389084726007110964580733937723219473365588363241242076605454571816214173140265036415984012326670617804076629124466057/63591141060637037983702199847424104663322051261099893192255571477547047022033997264112779625621359736851977449354488758524787918606942797473558006785686779461814475817814012131338866099470272300042772446974626560036571007132305729781760"
+        ],
+        "sampled_band_inside_the_floor": true,
+        "statement": "J_inf = 1",
+        "witness": [
+          "-2",
+          "17/10"
+        ]
+      },
+      "level_reading_largest_amplitude": {
+        "declared_form_enclosure": [
+          "140693678845926316354939902929145042211191842982112764965719/25108406941546723055343157692830665664409421777856138051584",
+          "17586709855740789544367487866143130276398980372764095620715/3138550867693340381917894711603833208051177722232017256448"
+        ],
+        "distinct_real_roots": 2,
+        "exact_form": "2 + sqrt(8 sqrt(17) - 20)",
+        "real_branches": 2,
+        "root_enclosure": [
+          "35173419711481579088734975732286260552797960745528191241429/6277101735386680763835789423207666416102355444464034512896",
+          "17586709855740789544367487866143130276398980372764095620715/3138550867693340381917894711603833208051177722232017256448"
+        ],
+        "shifted_quartic": "u^4 + 40 u^2 - 688 with u = h + 2",
+        "square_root_enclosure": [
+          "90476864962832870244253587543483710882372999426400488862551/25108406941546723055343157692830665664409421777856138051584",
+          "11309608120354108780531698442935463860296624928300061107819/3138550867693340381917894711603833208051177722232017256448"
+        ],
+        "statement": "2 + sqrt(8 sqrt(17) - 20) = 5.6034490429..."
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "available": true,
+    "declared_external_library": true,
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "not_implemented": [
+      "successive difference substitution of Zhang Jingzhong and Yang Lu",
+      "a certified complex or projective continuation of roots",
+      "a native certificate of any kind"
+    ],
+    "not_used_for": [
+      "floating-point evaluation",
+      "root finding by iteration in floats",
+      "a native certificate of any kind"
+    ],
+    "python_library": "sympy",
+    "used_for": [
+      "exact polynomial arithmetic",
+      "exact polynomial composition",
+      "exact polynomial division",
+      "Sturm real-root counts with rational endpoints"
+    ],
+    "version": "1.14.0"
+  },
+  "undecided": [
+    {
+      "item": "whether a chain that closes in C1 can drift in C2 or C3",
+      "reason": "the closure clause is a property of the seam state itself: a chain whose C1 satisfies E(h) = h has h_1 = h_0, and applying the same return again gives h_2 = h_1 and h_3 = h_2, so the drift is exactly zero in every cycle.  No chain satisfying the declared rules closes in C1 and drifts later, so the declared control cannot be produced and is reported as a failed control rather than dropped or repaired.",
+      "retained_partial_result": {
+        "closure_defect_at_a_fixed_point": [
+          "0",
+          "0",
+          "0"
+        ],
+        "counterfactual_chain_that_does_not_close_in_C1": {
+          "closure_defect": [
+            "62497/131072",
+            "-487/8192",
+            "-13/4096"
+          ],
+          "cycle": "C1",
+          "drift": [
+            "62497/131072",
+            "-487/8192",
+            "-13/4096"
+          ],
+          "entry_seam_state": [
+            "1/4",
+            "1",
+            "0"
+          ],
+          "exit_seam_state": [
+            "95265/131072",
+            "7705/8192",
+            "-13/4096"
+          ]
+        },
+        "cumulative_reading_real_root_count": 2,
+        "drift_of_the_primary_chain_at_every_seam": [
+          "0",
+          "0",
+          "0"
+        ]
+      }
+    },
+    {
+      "item": "a genuine real period-three orbit of the declared return",
+      "reason": "the cumulative composition E^3 - h factors over the rationals as h (h^3 + 8 h^2 + 64 h - 320) Q(h) with Q of degree 60 and every coefficient strictly positive; an exact Sturm count gives Q no real root, so every real point that returns after three cycles is already a fixed point of one annual return and there is no distinct chain state that closes only after three cycles",
+      "retained_partial_result": {
+        "cofactor_all_coefficients_positive": true,
+        "cofactor_degree": 60,
+        "cofactor_real_roots": 0,
+        "polynomial_degree": 64,
+        "reading": "E composed three times, the cumulative form of \u7d42\u990a\u59cb over the chain",
+        "real_root_count": 2,
+        "real_roots": [
+          "0",
+          "the closure amplitude 3.2035072879526181..."
+        ],
+        "statement": "the real fixed points of the three-cycle cumulative return are exactly the real fixed points of one annual return, computed by an exact Sturm count on the degree-60 cofactor; there is no genuine real period-three orbit in this declared fixture, and no distinct chain state that returns only after three cycles",
+        "why": "E^3 - h = h (h^3 + 8 h^2 + 64 h - 320) Q(h) with every coefficient of Q strictly positive and an exact Sturm count of zero on the whole line"
+      }
+    },
+    {
+      "item": "the physical magnitude and sign of the declared freshwater source term",
+      "reason": "the source term is the declared exact element w/60, chosen together with the reference value w/2 so that the declared reservoir is stationary at the chain's own seam.  It is not estimated, measured or compared with any observation, and the chain is future and unverified",
+      "retained_partial_result": {
+        "declared_model": true,
+        "freshwater_source_term": [
+          "0",
+          "29/60",
+          "0"
+        ],
+        "steady_value": [
+          "0",
+          "1/2",
+          "0"
+        ]
+      }
+    },
+    {
+      "item": "the recovery of the six historical forecast maps as one annual program",
+      "reason": "note 0233 records that the six direct forecast maps failed composition and were not reinterpreted as one annual program.  This run uses the resolved twelve-phase fixture, which is a declared arithmetic program and not a forecast program, and it does not attempt that recovery.",
+      "retained_partial_result": {
+        "carrier_used": "the resolved 0233 twelve-phase fixture",
+        "forecast_maps_used": false
+      }
+    }
+  ],
+  "verification_status": {
+    "data_authenticity_reservation": "The user's recorded reservation about the authenticity of the data in the xue-study work is carried with this contract; hashes and same-source read-backs do not remove it, and it is not narrowed to any single stage.",
+    "future_chain": true,
+    "observational": "Unavailable",
+    "reason": "The chain is future; no observation and no issued forecast exists for 2026-12 onwards in this checkout.",
+    "xue_study_data_used": false
+  },
+  "version": 1,
+  "what_is_not_claimed": {
+    "chain_is_future_and_unverified": true,
+    "forecast": false,
+    "meteorological_data_used": false,
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_note_or_contract_edited": true,
+    "no_rust_source_or_lock_changed": true,
+    "no_seal_no_transport_no_terminology_home": true,
+    "no_wind_gap_no_plateau_no_december_2026_no_january_2027": true,
+    "observational_verification": "Unavailable",
+    "physical_claim": false,
+    "pre_existing_files_byte_identical": true,
+    "reservoir_is_a_declared_model_not_a_claim_about_the_ocean": true,
+    "role_typing_is_a_declared_structure": true,
+    "skill_claim": false,
+    "stable_api_change": false,
+    "the_chain_is_a_declared_model": true,
+    "xue_study_data_used": false
+  }
+}

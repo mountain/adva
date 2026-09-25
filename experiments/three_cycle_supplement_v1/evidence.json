@@ -1,0 +1,1408 @@
+{
+  "assertions": 191,
+  "checker_sha256": "31ee3d4b1b3945c40fbdd5622ab4874443e3a4b1629e0e1e4dcdef5d12471366",
+  "checks": {
+    "a_layer_wise_violation_is_not_cancelled_by_a_total": true,
+    "assertions_within_budget": true,
+    "both_parent_contracts_are_retained_byte_for_byte": true,
+    "every_layer_is_sealed": true,
+    "no_floating_point_value_is_retained": true,
+    "no_resource_is_created_by_the_surgery": true,
+    "observational_verification_is_recorded_unavailable": true,
+    "side_I_arrives_within_the_budget": true,
+    "side_O_discharges_a_written_obstruction": true,
+    "the_atmospheric_chain_loses_the_carried_memory": true,
+    "the_baselines_are_reproduced": true,
+    "the_collar_has_exactly_two_sides": true,
+    "the_data_authenticity_reservation_is_carried_verbatim": true,
+    "the_declared_pair_has_opposite_chirality": true,
+    "the_failed_controls_are_retained": true,
+    "the_flux_strictly_rises": true,
+    "the_over_budget_arrival_fails": true,
+    "the_projection_is_accepted_as_a_map": true,
+    "the_rise_is_attributed": true,
+    "the_roles_swapped_fail_both_conditions": true,
+    "the_same_chirality_control_does_not_raise_the_flux": true,
+    "the_same_chirality_pair_is_rejected_by_the_condition": true,
+    "the_sampling_change_invariance_control_runs": true,
+    "the_separated_uncertainty_control_runs": true,
+    "the_unwritten_obstruction_fails": true,
+    "this_contract_digest_matches_the_declared_one": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/three_cycle_supplement_v1/contract.json",
+  "contract_sha256": "157838642e9097ea4a1a1c7461db9e548affb0c6f3af7b830816f37f22b74f5a",
+  "contract_sha256_declared": "157838642e9097ea4a1a1c7461db9e548affb0c6f3af7b830816f37f22b74f5a",
+  "level": "Bounded external exact calibration of a declared construction. No physical claim, no forecast, no skill claim, no observational verification, and no data used.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "arrival_condition_and_role_swap": "side I's arrival is a declared bounded-step condition to the declared time-domain target; swapping the two sides' roles puts the arrival condition on the outer side, whose declared spiral advances outward only and so cannot arrive at the inner radius.",
+    "attribution_rule_and_unattributed_rise": "a rise is attributed only when it equals exactly the declared pair's rise over the declared before-flux; any excess over that is reported as unattributed rather than absorbed.",
+    "baselines": "the exact baselines of the earlier runs are reproduced with exact arithmetic: J_inf = 1 at (p, q) = (-2, 17/10) off the discriminant variety, the closure amplitude 3.2035072879526181... with one real exit, the level reading's largest amplitude 2 + sqrt(8 sqrt(17) - 20) with two real branches, and the asserted ordering.",
+    "carrier_and_lattice": "the declared carrier is the cylinder Z x Z_12: a radial index and one phase index of the twelve-phase cycle of the parent fixture.  Both indices are declared conventions.",
+    "chirality_condition": "chirality is a declared sign: plus one outside and minus one inside.  The declared condition is sigma_outer = -sigma_inner, evaluated as a rule on the declared signs, so the same-chirality construction is rejected by the rule and not by a count.",
+    "collar_and_orientation": "the collar is the declared one-cell neighbourhood of the seam circle: the whole twelve-phase cycle at the singular radial index.  Its orientation is the declared ordered frame (radial outward, phase increasing), and the orientation of its boundary sends the declared normal outward on the outer component and inward on the inner one.  The size of the collar is part of the declaration.",
+    "collar_normal_tilt": "the declared collar normal is (1, 1) in the (radial, phase) character basis: it is tilted by one phase at the seam.  The tilt is declared, and the flux rise is exactly linear in it, which is why the radial-normal control is reported.",
+    "exact_only": "every acceptance assertion and every value in the retained payload is an exact integer or fraction, or an exact rational interval, or a string naming one; no floating-point value is formed anywhere.",
+    "excision_and_the_two_sides": "the excision is exact set subtraction of the declared collar; the two sides are the two connected boundary components of the excised collar, and they are declared to be distinct objects.  The excision is declared rather than derived.",
+    "external_library": "sympy 1.14 is declared and used as an engine for the resultant, its integer factorisation and real-root isolation; it is not native authority and no semantic identity is created here.",
+    "flux_before_is_the_declared_zero": "before the helical introduction no resource is introduced on either side, so the before-flux is the declared zero of the pairing at the same collar; it is a declaration and not a limit.",
+    "flux_pairing": "the flux is the declared pairing B(u, v) = u_radial v_radial + u_phase v_phase of the introduced resource with each side's outward normal, evaluated exactly; the introduced resource per turn is the declared spiral data (radial advance 1/12, angular step sigma).",
+    "inherited_controls": "the sampling-change invariance control, the separated uncertainty control and the purely atmospheric memory-loss control of the parent contracts and their supplement run here unchanged; the four amendments are adopted as declared structure and no text, table or number is imported.",
+    "layer_sealing_bound": "the layer-wise sealing bound of supplement one is declared as zero leakage per layer: the post-surgery carrier's content must equal the declared content in every layer separately, and a total may not cancel a layer-wise violation.",
+    "obstruction_record_and_discharge": "side O's obstruction is an explicit object with a written record; the discharge is a condition on that record - every declared field present and every written value equal to the computed one - so an unwritten or implicit obstruction fails.",
+    "projection_and_codomain_labels": "the declared projection sends the outer side to the sealing side, the inner side to the supplying or injecting side, and the helical pair to the two rotation senses.  The codomain labels are declared labels of the two-sided reading and no cold, heat, wind or ocean quantity is asserted.",
+    "resource_limits": "the checker installs a CPU limit, a file-size limit and a wall alarm, and records the contract's declared memory budget without installing an address-space ceiling; no child process is launched and no pre-existing rlimit artifact is touched.",
+    "resource_split": "the surgery splits the carried remainder between the two sides by shares derived from the declared collar flux - each side's share is its flux term over the sum of the two - so the split is not a free parameter, and the layer-wise sums are an independent check that nothing is created.",
+    "seam_redistribution_and_memory": "the declared inter-layer redistribution moves an eighth of the mixed layer to the thermocline and a sixteenth of the thermocline to the deep layer at every seam, conserving the total exactly; the layer holding the carried memory is reported at every seam.",
+    "singular_locus": "the singular locus is declared to be two things at once: the discriminant collision of the earlier runs, taken on the B1 branch q = 256 p^2 + 76 p + 43/8 at (p, q) = (-2, 7019/8), and the annual seam, taken at side 0 of the twelve-phase cycle where the declared time coupling of note 0236 has its maximum 31/512.",
+    "spiral_declaration": "a spiral is declared as a rotation by one phase of the twelve-phase cycle compounded with a radial advance of 1/12 per step; a pure rotation and a pure radial advance are both rejected by that declared condition.",
+    "step_budget": "the declared step budget is 36 unit steps, the three annual cycles of the parent chain at twelve phases each; the inherited end block of exactly two extra steps counted in steps gives 42 beside it, and the budget is a declared convention."
+  },
+  "parent_contracts": [
+    {
+      "path": "experiments/three_cycle_chain_v1/contract.json",
+      "relation": "in force; where this run and that one disagree, that one governs",
+      "retained_byte_for_byte": true,
+      "sha256": "a3dc2e8d86e45139484fceed571ef99ea3b63f18748c6f1c82bb031a3305a965",
+      "sha256_declared": "a3dc2e8d86e45139484fceed571ef99ea3b63f18748c6f1c82bb031a3305a965"
+    },
+    {
+      "path": "experiments/three_cycle_chain_v1/contract-supplement-1.json",
+      "relation": "its four amendments - layered slow reservoir, per-layer sealing, sampling-change control, separated uncertainty - are inherited unchanged and are executed here",
+      "retained_byte_for_byte": true,
+      "sha256": "e125ee4940b838924257d9420bde71cf060a0745dc5d3d482c1691158785ac9f",
+      "sha256_declared": "e125ee4940b838924257d9420bde71cf060a0745dc5d3d482c1691158785ac9f"
+    }
+  ],
+  "protected": [
+    "experiments/three_cycle_chain_v1/contract.json and contract-supplement-1.json are retained byte for byte and are not edited",
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No data is read or used, and the authenticity reservation of the parent contract is carried un-narrowed",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "The surgery, the collar, the spirals, the chirality signs, the flux pairing and the step budget are all declared conventions; another declaration is another run",
+    "The spacetime statement is a declared construction and its cold/heat projection is a declared map, not physics; no cold, heat, wind, ocean or plateau quantity is asserted",
+    "The chain remains future and unverified; nothing here is a forecast, a reconstruction or a skill estimate",
+    "Whether opposite chirality is necessary rather than merely declared is not decided here: the run reports what the declared pair does and what the same-chirality control does, and stops there"
+  ],
+  "schema": "adva.external.three-cycle-supplement-surgery-calibration.v1",
+  "sections": {
+    "S1_surgery_and_collar": {
+      "collar": {
+        "carrier": "the declared cylinder Z x Z_12: a radial index r and a phase index k of the twelve-phase cycle",
+        "cell_set": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ]
+        ],
+        "cells": 12,
+        "definition": "the singular seam circle {(0, k): k in Z_12}: the whole twelve-phase cycle at the singular radial index",
+        "normal": {
+          "basis": "(radial, phase), the declared character basis of the carrier",
+          "phase_component": "1",
+          "phase_tilt": "1",
+          "radial_component": "1",
+          "vector": [
+            "1",
+            "1"
+          ],
+          "why_tilted": "the collar is declared tilted by one phase at the seam, where the declared time coupling of note 0236 puts its maximum 31/512; the tilt is part of the declaration"
+        },
+        "orientation": {
+          "boundary_orientation": "on the outer component the outward normal is the declared normal, on the inner component its negative",
+          "ordered_frame": [
+            "radial outward",
+            "phase increasing"
+          ],
+          "orientation_sign": "1",
+          "the_two_side_normals_are_opposite": true
+        },
+        "phase_extent": "the whole cycle",
+        "radial_extent": 1,
+        "radial_index": 0,
+        "side_normals": {
+          "inner": [
+            "-1",
+            "-1"
+          ],
+          "outer": [
+            "1",
+            "1"
+          ]
+        }
+      },
+      "declared_singular_locus": {
+        "annual_seam": {
+          "coupling_maximum": "31/512",
+          "coupling_maximum_at_phase": 0,
+          "cycle_phases": 12,
+          "seam_phase": 0,
+          "the_seam_is_where_the_declared_coupling_is_largest": true,
+          "time_coupling": [
+            "-31/512",
+            "-15/512",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        "collision_branch": "B1: q = 256 p^2 + 76 p + 43/8, the branch of note 0235 on which two simple roots collide",
+        "collision_parameter": {
+          "p": "-2",
+          "q": "7019/8"
+        },
+        "collision_parameter_on_the_branch": true,
+        "discriminant_at_the_collision": "0",
+        "discriminant_form": "D(p, q) = -(8 p + 1)^6 (8 q + 1)^2 (64 q + 17)^2 (2048 p^2 + 608 p - 8 q + 43)",
+        "discriminant_is_the_cleared_resultant": true,
+        "factor_multiplicities": {
+          "2048*p^2 + 608*p - 8*q + 43": 1,
+          "64*q + 17": 2,
+          "8*p + 1": 6,
+          "8*q + 1": 2
+        },
+        "number_of_terms": 52,
+        "sign_rule_off_the_branch": "sign(D) = -sign(f(p) - q), checked exactly",
+        "total_degree": 12
+      },
+      "excision": {
+        "boundary_components": 2,
+        "carried_out": "the declared collar is removed from the declared carrier",
+        "carrier_after_the_surgery": "(Z x Z_12) minus the collar",
+        "exactness": "the excision is exact set subtraction on the declared lattice; the two sides are the exact boundary components of the excised collar",
+        "excised_cell_set": [
+          [
+            0,
+            0
+          ],
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            0,
+            4
+          ],
+          [
+            0,
+            5
+          ],
+          [
+            0,
+            6
+          ],
+          [
+            0,
+            7
+          ],
+          [
+            0,
+            8
+          ],
+          [
+            0,
+            9
+          ],
+          [
+            0,
+            10
+          ],
+          [
+            0,
+            11
+          ]
+        ],
+        "excised_cells": 12,
+        "sides": {
+          "inner": {
+            "cell_set": [
+              [
+                -1,
+                0
+              ],
+              [
+                -1,
+                1
+              ],
+              [
+                -1,
+                2
+              ],
+              [
+                -1,
+                3
+              ],
+              [
+                -1,
+                4
+              ],
+              [
+                -1,
+                5
+              ],
+              [
+                -1,
+                6
+              ],
+              [
+                -1,
+                7
+              ],
+              [
+                -1,
+                8
+              ],
+              [
+                -1,
+                9
+              ],
+              [
+                -1,
+                10
+              ],
+              [
+                -1,
+                11
+              ]
+            ],
+            "cells": 12,
+            "disjoint_from_the_other_side": true,
+            "radial_index": "-1"
+          },
+          "outer": {
+            "cell_set": [
+              [
+                1,
+                0
+              ],
+              [
+                1,
+                1
+              ],
+              [
+                1,
+                2
+              ],
+              [
+                1,
+                3
+              ],
+              [
+                1,
+                4
+              ],
+              [
+                1,
+                5
+              ],
+              [
+                1,
+                6
+              ],
+              [
+                1,
+                7
+              ],
+              [
+                1,
+                8
+              ],
+              [
+                1,
+                9
+              ],
+              [
+                1,
+                10
+              ],
+              [
+                1,
+                11
+              ]
+            ],
+            "cells": 12,
+            "disjoint_from_the_other_side": true,
+            "radial_index": "1"
+          }
+        },
+        "sides_are_distinct_objects": true,
+        "two_sides_replace_the_singular_carrier": true
+      }
+    },
+    "S2_spirals_and_chirality": {
+      "chirality_condition": "the declared chirality condition is sigma_outer = -sigma_inner",
+      "chirality_condition_on_the_declared_pair": {
+        "accepted": true,
+        "decided_by_a_count": false,
+        "reasons": [],
+        "rejected_by": "the declared chirality condition sigma_outer = -sigma_inner",
+        "sigma_inner": "-1",
+        "sigma_outer": "+1",
+        "signs_are_opposite": true,
+        "verdict": "Accepted"
+      },
+      "declared_spiral_map": "S_sigma(r, k) = (r + a, k + sigma) with a = 1/12: a rotation by one phase compounded with a radial advance of 1/12",
+      "degenerate_spiral_controls": {
+        "both_rejected": true,
+        "pure_radial_advance": {
+          "accepted": false,
+          "angular_step": 0,
+          "radial_advance": "1/12",
+          "reasons": [
+            "a spiral is a rotation compounded with a radial advance; a zero angular step is a pure radial advance and is not the declared spiral"
+          ],
+          "rotation_compounded_with_a_radial_advance": false,
+          "verdict": "Rejected"
+        },
+        "pure_rotation": {
+          "accepted": false,
+          "angular_step": 1,
+          "radial_advance": "0",
+          "reasons": [
+            "a spiral is a rotation compounded with a radial advance; a zero radial advance is a pure rotation and is not the declared spiral"
+          ],
+          "rotation_compounded_with_a_radial_advance": false,
+          "verdict": "Rejected"
+        }
+      },
+      "opposite_chirality_declared": true,
+      "spirals": {
+        "inner": {
+          "after_twelve_turns": [
+            "0",
+            0
+          ],
+          "after_twenty_four_turns": [
+            "1",
+            0
+          ],
+          "angular_step": -1,
+          "chirality_sign": "-1",
+          "declared_map": "S_sigma(r, k) = (r + 1/12, k + sigma mod 12), a rotation by one phase of the twelve-phase cycle compounded with a radial advance",
+          "handedness": "negative (the phase index decreases by one per turn)",
+          "radial_advance": "1/12",
+          "rotation_compounded_with_a_radial_advance": true,
+          "side": "inner",
+          "start": [
+            "-1",
+            0
+          ],
+          "well_defined_on_the_declared_lattice": true
+        },
+        "outer": {
+          "after_twelve_turns": [
+            "2",
+            0
+          ],
+          "after_twenty_four_turns": [
+            "3",
+            0
+          ],
+          "angular_step": 1,
+          "chirality_sign": "+1",
+          "declared_map": "S_sigma(r, k) = (r + 1/12, k + sigma mod 12), a rotation by one phase of the twelve-phase cycle compounded with a radial advance",
+          "handedness": "positive (the phase index increases by one per turn)",
+          "radial_advance": "1/12",
+          "rotation_compounded_with_a_radial_advance": true,
+          "side": "outer",
+          "start": [
+            "1",
+            0
+          ],
+          "well_defined_on_the_declared_lattice": true
+        }
+      }
+    },
+    "S3_flux_and_attribution": {
+      "attribution": {
+        "attributed_rise": "2",
+        "attributed_to": "the declared helical introduction on the two sides",
+        "rule": "a rise counts as attributed only when it is exactly the rise of the declared pair over the declared before-flux; anything else is reported as unattributed",
+        "unattributed_rise": "0",
+        "verdict": "Attributed"
+      },
+      "collar_normal": [
+        "1",
+        "1"
+      ],
+      "declared_pairing": "B(u, v) = u_radial v_radial + u_phase v_phase: the declared pairing of the introduced resource with the collar normal",
+      "flux_after": "2",
+      "flux_after_from_the_rise_formula": "2",
+      "flux_after_terms": {
+        "inner": {
+          "normal": [
+            "-1",
+            "-1"
+          ],
+          "resource": [
+            "1/12",
+            "-1"
+          ],
+          "term": "11/12"
+        },
+        "outer": {
+          "normal": [
+            "1",
+            "1"
+          ],
+          "resource": [
+            "1/12",
+            "1"
+          ],
+          "term": "13/12"
+        }
+      },
+      "flux_before": "0",
+      "flux_before_reason": "before the helical introduction no resource is introduced on either side, so the pairing is exactly the declared zero; it is the declared zero of the pairing, not a limit",
+      "introduced_resource_per_turn": {
+        "inner": [
+          "1/12",
+          "-1"
+        ],
+        "outer": [
+          "1/12",
+          "1"
+        ]
+      },
+      "radial_cancellation": {
+        "angular_sum": "2",
+        "radial_contributions": {
+          "inner": "-1/12",
+          "outer": "1/12"
+        },
+        "radial_sum": "0",
+        "reading": "the two declared radial advances pair with opposite normals and cancel exactly, so the rise above the declared before-flux is carried by the declared angular component alone"
+      },
+      "radial_normal_control": {
+        "control": "the same two spirals paired with a purely radial collar normal (1, 0)",
+        "flux_after_by_sign_pair": {
+          "+1/+1": "0",
+          "+1/-1": "0",
+          "-1/+1": "0"
+        },
+        "rise_for_every_sign_pair": "0",
+        "verdict": "FAILED_TO_DISCRIMINATE",
+        "why": "with a purely radial normal the pairing never meets the angular component, so the rise vanishes for the same-chirality pair and for both opposite pairs alike: this control does not discriminate chirality, and the rise of the declared construction is a declared consequence of the phase tilt as much as of the chirality"
+      },
+      "rise": "2",
+      "rise_formula": "the rise is w n_phase (sigma_outer - sigma_inner) with the declared angular step w = 1 phase and the declared phase tilt n_phase = 1, so it is exactly 2",
+      "same_chirality_control": {
+        "chirality_condition": {
+          "accepted": false,
+          "decided_by_a_count": false,
+          "reasons": [
+            "the declared chirality condition requires sigma_outer = -sigma_inner, so the two declared signs must be opposite; sigma_outer = +1 and sigma_inner = +1 are equal"
+          ],
+          "rejected_by": "the declared chirality condition sigma_outer = -sigma_inner",
+          "sigma_inner": "+1",
+          "sigma_outer": "+1",
+          "signs_are_opposite": false,
+          "verdict": "Rejected"
+        },
+        "control": "the same-chirality introduction on both sides",
+        "decided_by_a_count": false,
+        "flux_after": "0",
+        "rejected_by": "the declared chirality condition sigma_outer = -sigma_inner",
+        "rejection_reasons": [
+          "the declared chirality condition requires sigma_outer = -sigma_inner, so the two declared signs must be opposite; sigma_outer = +1 and sigma_inner = +1 are equal"
+        ],
+        "rose": false
+      },
+      "sign_pairs": [
+        {
+          "chirality_condition": "Accepted",
+          "flux_after": "2",
+          "label": "the declared pair, opposite chirality",
+          "rose": true,
+          "signs": "+1/-1"
+        },
+        {
+          "chirality_condition": "Rejected",
+          "flux_after": "0",
+          "label": "same chirality on both sides",
+          "rose": false,
+          "signs": "+1/+1"
+        },
+        {
+          "chirality_condition": "Accepted",
+          "flux_after": "-2",
+          "label": "the reversed opposite pair",
+          "rose": false,
+          "signs": "-1/+1"
+        }
+      ],
+      "strictly_greater": true,
+      "unattributed_control": {
+        "attributed_rise": "2",
+        "control": "a declared non-helical introduction added on the outer side",
+        "declared_extra_introduction": [
+          "1/8",
+          "0"
+        ],
+        "flux_observed": "17/8",
+        "rule": "the rise above the declared before-flux that is not the declared helical rise is reported as unattributed rather than absorbed",
+        "unattributed_rise": "1/8",
+        "verdict": "Unattributed"
+      }
+    },
+    "S4_side_O_obstruction": {
+      "computed_values": {
+        "boundary_object": "the outer side: the boundary component at radial index +1",
+        "collar_normal": "(1, 1)",
+        "kind": "discriminant collision at the declared collar cell",
+        "locus_branch": "2048*p**2 + 608*p - 8*q + 43",
+        "parameter_p": "-2",
+        "parameter_q": "7019/8",
+        "vanishing_factor_value": "0"
+      },
+      "controls": [
+        {
+          "control": "an unwritten obstruction",
+          "rejected_by_the_declared_condition": true,
+          "rejection_reasons": [
+            "the obstruction is not written out: the record omits boundary_object"
+          ],
+          "verdict": "Rejected",
+          "written": false
+        },
+        {
+          "control": "an implicit obstruction with no record at all",
+          "rejected_by_the_declared_condition": true,
+          "rejection_reasons": [
+            "the obstruction is implicit: no record object is declared on this side"
+          ],
+          "verdict": "Rejected",
+          "written": false
+        },
+        {
+          "control": "a written record whose value disagrees",
+          "rejected_by_the_declared_condition": true,
+          "rejection_reasons": [
+            "the written value of parameter_q is 7019/7 and the computed value is 7019/8"
+          ],
+          "verdict": "Rejected",
+          "written": true
+        }
+      ],
+      "declared_obstruction": {
+        "explicit_object_declared": true,
+        "object": "the discriminant collision at the collar's base cell: the vanishing of the B1 factor of D(p, q) at (p, q) = (-2, 7019/8)",
+        "the_obstruction_is_a_point_where_the_construction_stopped": true
+      },
+      "discharge": {
+        "agrees": true,
+        "reasons": [],
+        "rejected_by": "",
+        "verdict": "Discharged",
+        "written": true
+      },
+      "discharge_condition": "the record must be written out - every declared field present and non-empty - and every written exact value must equal the value computed by this run",
+      "discharge_is_a_condition_on_the_record": true,
+      "record_agrees_with_the_computed_values": true,
+      "side": "outer",
+      "written_record": {
+        "boundary_object": "the outer side: the boundary component at radial index +1",
+        "collar_normal": "(1, 1)",
+        "kind": "discriminant collision at the declared collar cell",
+        "locus_branch": "2048*p**2 + 608*p - 8*q + 43",
+        "parameter_p": "-2",
+        "parameter_q": "7019/8",
+        "record_id": "O-1",
+        "vanishing_factor_value": "0",
+        "written_by": "the declared construction's outer side"
+      }
+    },
+    "S5_side_I_arrival": {
+      "arrival": {
+        "angular_step": -1,
+        "excess": 0,
+        "excised_cells_on_the_orbit": [
+          [
+            0,
+            0
+          ]
+        ],
+        "orbit_cells_on_the_declared_lattice": [
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ],
+        "phase_congruence_holds": true,
+        "radial_advance": "1/12",
+        "radial_distance_covered": "2",
+        "reasons": [],
+        "slack": 12,
+        "solvable": true,
+        "start": [
+          "-1",
+          0
+        ],
+        "step_budget": 36,
+        "steps": 24,
+        "target": [
+          "1",
+          0
+        ],
+        "verdict": "ArrivedWithinBudget",
+        "within_budget": true
+      },
+      "collar_diameter": "2",
+      "controls": [
+        {
+          "control": "an over-budget arrival",
+          "excess": 12,
+          "radial_advance": "1/24",
+          "rejected_by": "the declared step budget",
+          "rejection_reasons": [
+            "the arrival takes 48 steps and the declared step budget is 36, an excess of 12 steps"
+          ],
+          "steps": 48,
+          "verdict": "Rejected_OverBudget",
+          "within_budget": false
+        },
+        {
+          "control": "the outer side judged by the arrival condition (roles swapped)",
+          "rejected_by": "the declared arrival condition with the declared outward spiral",
+          "rejection_reasons": [
+            "the declared spiral advances outward with a radial advance of 1/12 per step, so it cannot reach the declared radial index -1 from 1: the required step count is -24, not a non-negative integer"
+          ],
+          "solvable": false,
+          "verdict": "Rejected_NoArrival"
+        },
+        {
+          "control": "the earlier phase recurrence of the declared spiral",
+          "excised_cells_on_the_orbit": [
+            [
+              0,
+              0
+            ]
+          ],
+          "rejection_reasons": [
+            "the declared target is the outer collar radius, so the 12-step recurrence at the excised singular cell is not the declared arrival"
+          ],
+          "steps": 12,
+          "verdict": "Reported"
+        }
+      ],
+      "declared_start": {
+        "phase": 0,
+        "radial_index": "-1"
+      },
+      "declared_step_budget": 36,
+      "declared_time_domain_target": {
+        "phase": 0,
+        "radial_index": "1",
+        "reading": "the seam phase at the outer collar radius: the declared time-domain location of the fast arrival"
+      },
+      "failed_to_discriminate": {
+        "control": "the arrival step count under the two declared chirality signs",
+        "steps_under_minus_one": 24,
+        "steps_under_plus_one": 24,
+        "verdict": "FAILED_TO_DISCRIMINATE",
+        "why": "the declared target is a whole number of twelve-phase turns away, so both declared rotation senses arrive at the same step count; the arrival condition does not discriminate the handedness"
+      },
+      "radial_distance_equals_the_collar_diameter": true,
+      "side": "inner",
+      "step_accounting": {
+        "budget": 36,
+        "cycles": 3,
+        "end_block_steps": 2,
+        "phases_per_cycle": 12,
+        "the_budget_is_the_declared_convention": true,
+        "total_with_the_inherited_end_block": 42,
+        "unit": "one phase of the twelve-phase cycle"
+      }
+    },
+    "S6_resource_accounting": {
+      "atmospheric_memory_control": {
+        "atmospheric_only": {
+          "carried_memory_at_the_seam": "0",
+          "lost": true
+        },
+        "control": "the purely atmospheric chain of the frozen contract, carried forward",
+        "the_split_does_work": true,
+        "with_the_slow_component": {
+          "carried_memory_at_the_seam": "7/8",
+          "kept": true
+        }
+      },
+      "carried_remainder": {
+        "fast": "1/4",
+        "slow_layers": {
+          "deep": "1/2",
+          "mixed": "1/8",
+          "thermocline": "1/4"
+        },
+        "slow_total": "7/8",
+        "total": "9/8"
+      },
+      "grand_total_unchanged": true,
+      "layer_sealing": {
+        "all_layers_sealed": true,
+        "bound": {
+          "deep": "0",
+          "mixed": "0",
+          "thermocline": "0"
+        },
+        "layers": {
+          "deep": {
+            "bound": "0",
+            "carried_content": "1/2",
+            "drift": "0",
+            "post_surgery_content": "1/2",
+            "sealed": true
+          },
+          "mixed": {
+            "bound": "0",
+            "carried_content": "1/8",
+            "drift": "0",
+            "post_surgery_content": "1/8",
+            "sealed": true
+          },
+          "thermocline": {
+            "bound": "0",
+            "carried_content": "1/4",
+            "drift": "0",
+            "post_surgery_content": "1/4",
+            "sealed": true
+          }
+        },
+        "sealed_at_every_seam": true,
+        "the_bound_applies_layer_by_layer": true
+      },
+      "no_resource_created_by_the_surgery": true,
+      "per_layer_sums_equal_the_carried_remainder": true,
+      "seam_redistribution": {
+        "declared_operator": "the mixed layer loses an eighth of itself to the thermocline and the thermocline loses a sixteenth of itself to the deep layer at every seam",
+        "memory_layer_stable": true,
+        "seams": [
+          {
+            "contents": [
+              "7/64",
+              "1/4",
+              "33/64"
+            ],
+            "cycle": "C1",
+            "memory_layer": "deep",
+            "per_layer_drift": [
+              "-1/64",
+              "0",
+              "1/64"
+            ],
+            "sealed_layer_by_layer": true,
+            "total": "7/8"
+          },
+          {
+            "contents": [
+              "49/512",
+              "127/512",
+              "17/32"
+            ],
+            "cycle": "C2",
+            "memory_layer": "deep",
+            "per_layer_drift": [
+              "-7/512",
+              "-1/512",
+              "1/64"
+            ],
+            "sealed_layer_by_layer": true,
+            "total": "7/8"
+          },
+          {
+            "contents": [
+              "343/4096",
+              "2003/8192",
+              "4479/8192"
+            ],
+            "cycle": "C3",
+            "memory_layer": "deep",
+            "per_layer_drift": [
+              "-49/4096",
+              "-29/8192",
+              "127/8192"
+            ],
+            "sealed_layer_by_layer": true,
+            "total": "7/8"
+          }
+        ],
+        "slow_total_conserved_at_every_seam": true
+      },
+      "surgery_split": {
+        "fast": {
+          "inner": "11/96",
+          "outer": "13/96",
+          "sum": "1/4"
+        },
+        "flux_terms": {
+          "inner": "11/12",
+          "outer": "13/12"
+        },
+        "per_layer": {
+          "deep": {
+            "equals_the_carried_content": true,
+            "inner": "11/48",
+            "outer": "13/48",
+            "sum": "1/2"
+          },
+          "mixed": {
+            "equals_the_carried_content": true,
+            "inner": "11/192",
+            "outer": "13/192",
+            "sum": "1/8"
+          },
+          "thermocline": {
+            "equals_the_carried_content": true,
+            "inner": "11/96",
+            "outer": "13/96",
+            "sum": "1/4"
+          }
+        },
+        "shares": {
+          "inner": "11/24",
+          "outer": "13/24"
+        },
+        "shares_derived_from": "the declared collar flux terms, as the absolute flux of each side over their sum; the shares are derived, not free",
+        "totals": {
+          "inner": "33/64",
+          "outer": "39/64",
+          "sum": "9/8"
+        }
+      },
+      "total_cancelling_control": {
+        "cancelled_by_the_total": false,
+        "control": "a declared layer-wise violation whose total is conserved exactly",
+        "declared_violation": {
+          "deep": "-1/64",
+          "mixed": "1/64",
+          "thermocline": "0"
+        },
+        "reported_as": "a violation of the layer-wise bound and not as a pass",
+        "total_drift": "0",
+        "total_looks_sealed": true,
+        "verdict": "LayerWiseViolation",
+        "violating_layers": [
+          "mixed",
+          "deep"
+        ]
+      },
+      "zero_redistribution_control": {
+        "control": "a chain with no redistribution at all",
+        "per_layer_drift": [
+          "0",
+          "0",
+          "0"
+        ],
+        "reported_rather_than_smoothed": true,
+        "total_conserved": true,
+        "verdict": "the layer structure does no work in this control"
+      }
+    },
+    "S7_projection": {
+      "checked_as_a_map": {
+        "accepted": true,
+        "images": {
+          "inner_side": "supplying_or_injecting_side",
+          "inner_spiral": "rotation_sense_negative",
+          "outer_side": "sealing_side",
+          "outer_spiral": "rotation_sense_positive"
+        },
+        "reasons": [],
+        "single_valued_on_the_declared_domain": true,
+        "the_two_sides_have_distinct_images": true,
+        "the_two_spirals_have_distinct_images": true,
+        "verdict": "Accepted"
+      },
+      "controls": [
+        {
+          "control": "a projection that identifies the two sides",
+          "rejection_reasons": [
+            "the two sides must have distinct projections; the declared projection sends both to two_sided_mechanism",
+            "the image of outer_side must lie in the declared side codomain",
+            "the image of inner_side must lie in the declared side codomain"
+          ],
+          "verdict": "Rejected"
+        },
+        {
+          "control": "a projection that reads the helical pair as one rotation sense",
+          "rejection_reasons": [
+            "the helical pair must project to two distinct rotation senses; the declared projection sends both to rotation_sense_positive"
+          ],
+          "verdict": "Rejected"
+        },
+        {
+          "control": "a projection that sends a side into the rotation-sense codomain",
+          "rejection_reasons": [
+            "the image of outer_side must lie in the declared side codomain"
+          ],
+          "verdict": "Rejected"
+        }
+      ],
+      "declared_codomain": {
+        "rotation_senses": [
+          "rotation_sense_positive",
+          "rotation_sense_negative"
+        ],
+        "sides": [
+          "sealing_side",
+          "supplying_or_injecting_side"
+        ]
+      },
+      "declared_domain": [
+        "outer_side",
+        "inner_side",
+        "outer_spiral",
+        "inner_spiral"
+      ],
+      "declared_projection": {
+        "inner_side": "supplying_or_injecting_side",
+        "inner_spiral": "rotation_sense_negative",
+        "outer_side": "sealing_side",
+        "outer_spiral": "rotation_sense_positive"
+      },
+      "no_cold_heat_quantity_asserted": true,
+      "the_cold_heat_reading_exists_only_as_this_map": true,
+      "the_projection_is_declared_only": true,
+      "verdict": "Accepted"
+    },
+    "S8_baselines": {
+      "closure_reading": {
+        "amplitude": "3.2035072879526181...",
+        "correctly_rounded_prefix": "3.2035072879526181",
+        "derivative_discriminant": "-512",
+        "isolation_interval": [
+          "5398060391721/1685047014571",
+          "2066052364720/644934498039"
+        ],
+        "no_rational_root": true,
+        "nontrivial_branch_equation": "h^3 + 8 h^2 + 64 h - 320 = 0",
+        "quotient_quadratic_discriminant_enclosure": [
+          "-37995263178526623318973504/138646835586938964948507",
+          "-778114557471107027744588451/2839383441314639886314041"
+        ],
+        "real_exits": 1,
+        "the_other_two_exits_are_non_real": true
+      },
+      "first_scheme": {
+        "amplitude_floor": "J_inf = 1",
+        "attained_at": "(p, q) = (-2, 17/10)",
+        "branches": [
+          {
+            "abs_E_0_upper_bound": "322802040380146345799581/331520113025596542843000",
+            "abs_h_upper_bound": "472677719119/788416268175",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "-472677719119/788416268175",
+              "-1590476991621/2652881410804"
+            ],
+            "refined_interval": [
+              "-472677719119/788416268175",
+              "-1590476991621/2652881410804"
+            ]
+          },
+          {
+            "abs_E_0_upper_bound": "322802040380146345799581/331520113025596542843000",
+            "abs_h_upper_bound": "682922057299/788416268175",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "2115799485889/2442637072624",
+              "682922057299/788416268175"
+            ],
+            "refined_interval": [
+              "2115799485889/2442637072624",
+              "682922057299/788416268175"
+            ]
+          }
+        ],
+        "frozen_level_of_the_ten_middle_sides": "1",
+        "on_the_discriminant_variety": false,
+        "real_branches_at_the_witness": 2,
+        "source": "note 0235 and experiments/two_address_exchange_v1/evidence.json"
+      },
+      "level_reading": {
+        "closed_form": "h = -2 +- sqrt(8 sqrt(17) - 20)",
+        "closed_form_verified_in": "the exact real quadratic extension Q(sqrt(17))",
+        "equation": "h^4 + 8 h^3 + 64 h^2 + 192 h - 512 = 0",
+        "largest_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+        "largest_branch_amplitude_enclosure": [
+          "1125549430767410530839519223433160337689534743856902119725755/200867255532373784442745261542645325315275374222849104412672",
+          "2251098861534821061679038446866320675379069487713804239451513/401734511064747568885490523085290650630550748445698208825344"
+        ],
+        "negative_branch_enclosure": [
+          "-15463546764987/2759647967981",
+          "-2034063873202/363002118449"
+        ],
+        "positive_branch_enclosure": [
+          "582055399406/363002118449",
+          "4424954893063/2759647967981"
+        ],
+        "real_branches": 2,
+        "sigma": "8 sqrt(17) - 20",
+        "sigma_is_positive": true,
+        "substitution": "u = h + 2, u^4 + 40 u^2 - 688 = 0"
+      },
+      "ordering": {
+        "asserted_exactly": true,
+        "between": [
+          "the first scheme's amplitude floor 1",
+          "the closure reading's amplitude 3.2035072879526181...",
+          "the level reading's largest branch amplitude 2 + sqrt(8 sqrt(17) - 20)"
+        ],
+        "statement": "1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20)"
+      }
+    },
+    "S9_controls": {
+      "atmospheric_memory_loss": {
+        "atmospheric_only": {
+          "carried_memory_at_the_seam": "0",
+          "lost": true
+        },
+        "control": "the purely atmospheric chain of the frozen contract, carried forward",
+        "the_split_does_work": true,
+        "with_the_slow_component": {
+          "carried_memory_at_the_seam": "7/8",
+          "kept": true
+        }
+      },
+      "controls_that_did_discriminate": [
+        "the declared chirality condition on the same-chirality pair",
+        "the same-chirality introduction against the flux rise",
+        "the unwritten obstruction against the discharge condition",
+        "the implicit obstruction against the discharge condition",
+        "the over-budget arrival against the declared step budget",
+        "the total-cancelling layer-wise violation against the layer-wise bound",
+        "the side-identifying projection and the single-rotation-sense projection"
+      ],
+      "failed_controls": [
+        {
+          "control": "the radial-normal flux control",
+          "outcome": "FAILED_TO_DISCRIMINATE",
+          "where": "S3_flux_and_attribution",
+          "why": "with a purely radial normal every chirality pair has rise zero, so this control cannot separate the declared pair from the same-chirality pair"
+        },
+        {
+          "control": "the arrival step count under the two declared chirality signs",
+          "outcome": "FAILED_TO_DISCRIMINATE",
+          "where": "S5_side_I_arrival",
+          "why": "both declared rotation senses arrive in 24 steps at the declared target"
+        }
+      ],
+      "inherited_controls_still_run": [
+        "the sampling-change invariance control",
+        "the separated-uncertainty control",
+        "the purely atmospheric memory-loss control"
+      ],
+      "sampling_change_invariance": {
+        "composition_only_difference": "3/256",
+        "composition_only_reading_moves": true,
+        "control": "the sampling-change invariance control of supplement one, carried forward",
+        "declared_compositions": {
+          "A": [
+            "1",
+            "0",
+            "0"
+          ],
+          "B": [
+            "1/2",
+            "1/4",
+            "1/4"
+          ]
+        },
+        "fused_reading": {
+          "declared": "a reading that adds the composition term to the mechanism reading",
+          "difference": "3/256",
+          "first": "29/32",
+          "second": "235/256",
+          "verdict": "Rejected as an artefact"
+        },
+        "not_read_as_a_change_of_mechanism": true,
+        "readings": {
+          "A": {
+            "composition": [
+              "1",
+              "0",
+              "0"
+            ],
+            "composition_only_reading": "1/32",
+            "mechanism_reading": {
+              "memory_layer": "deep",
+              "per_layer_drift": [
+                "-1/64",
+                "0",
+                "1/64"
+              ],
+              "slow_layer_contents": [
+                "7/64",
+                "1/4",
+                "33/64"
+              ],
+              "slow_total": "7/8"
+            }
+          },
+          "B": {
+            "composition": [
+              "1/2",
+              "1/4",
+              "1/4"
+            ],
+            "composition_only_reading": "11/256",
+            "mechanism_reading": {
+              "memory_layer": "deep",
+              "per_layer_drift": [
+                "-1/64",
+                "0",
+                "1/64"
+              ],
+              "slow_layer_contents": [
+                "7/64",
+                "1/4",
+                "33/64"
+              ],
+              "slow_total": "7/8"
+            }
+          }
+        },
+        "readings_unchanged": true,
+        "the_composition_only_reading_is_an_artefact": true
+      },
+      "separated_uncertainty": {
+        "control": "the separated-uncertainty control of supplement one, carried forward",
+        "fused_control": {
+          "fused_figure": "11/256",
+          "reason": "a single fused uncertainty figure is a violation of the declaration; the three terms must be recorded separately at every seam",
+          "verdict": "Rejected"
+        },
+        "pooling_control": {
+          "pooled": "rejected: heterogeneous sources are recorded separately and pinned separately, never pooled"
+        },
+        "seams": [
+          {
+            "bias": "1/64",
+            "cycle": "C1",
+            "mapping": "1/64",
+            "recorded_separately": true,
+            "sampling": "3/256"
+          },
+          {
+            "bias": "1/64",
+            "cycle": "C2",
+            "mapping": "1/64",
+            "recorded_separately": true,
+            "sampling": "3/256"
+          },
+          {
+            "bias": "1/64",
+            "cycle": "C3",
+            "mapping": "1/64",
+            "recorded_separately": true,
+            "sampling": "3/256"
+          }
+        ],
+        "terms": [
+          "mapping",
+          "bias",
+          "sampling"
+        ],
+        "three_terms_present_separately_at_every_seam": true
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "not_implemented": [
+      "a certified complex or projective continuation of roots",
+      "a native certificate of any kind",
+      "successive difference substitution of Zhang Jingzhong and Yang Lu"
+    ],
+    "polynomial_library": "sympy",
+    "used_for": [
+      "exact polynomial arithmetic",
+      "the cleared resultant and its integer factorisation",
+      "Sturm real-root isolation with rational intervals",
+      "exact sign conditions"
+    ],
+    "version": "1.14.0"
+  },
+  "undecided": [
+    {
+      "item": "whether opposite chirality is necessary rather than merely declared",
+      "reason": "the declared pair raises the flux and the same-chirality pair is rejected by the declared chirality condition and fails to raise it, but the flux rise is w n_phase (sigma_outer - sigma_inner) with the declared phase tilt n_phase, so the rise is a declared consequence of the tilt as much as of the chirality: with a purely radial normal the rise vanishes for every chirality pair, and another declaration is another run",
+      "retained_partial_result": {
+        "declared_pair_flux": "2",
+        "radial_normal_rise_for_every_pair": "0",
+        "reversed_opposite_pair_flux": "-2",
+        "rise_formula": "the rise is w n_phase (sigma_outer - sigma_inner) with the declared angular step w = 1 phase and the declared phase tilt n_phase = 1, so it is exactly 2",
+        "same_chirality_flux": "0"
+      }
+    },
+    {
+      "item": "whether the declared collar and its normal are canonical",
+      "reason": "the collar's size, its radial index and the phase tilt of its normal are declared conventions of this run; the rise is linear in the declared tilt and the excision is exact for whatever collar is declared, so no uniqueness is decided here",
+      "retained_partial_result": {
+        "collar_cells": 12,
+        "collar_normal": [
+          "1",
+          "1"
+        ],
+        "collar_radial_extent": 1,
+        "rise_with_tilt_one": "2",
+        "rise_with_tilt_zero": "0"
+      }
+    },
+    {
+      "item": "whether the declared projection is the only projection to the cold/heat reading",
+      "reason": "the projection is declared and checked as a map; the two rejected projections show which conditions it must satisfy, but no argument is given here that no other admissible projection exists",
+      "retained_partial_result": {
+        "accepted_projection": {
+          "inner_side": "supplying_or_injecting_side",
+          "inner_spiral": "rotation_sense_negative",
+          "outer_side": "sealing_side",
+          "outer_spiral": "rotation_sense_positive"
+        },
+        "rejected_projections": [
+          "a projection that identifies the two sides",
+          "a projection that reads the helical pair as one rotation sense",
+          "a projection that sends a side into the rotation-sense codomain"
+        ]
+      }
+    },
+    {
+      "item": "whether the arrival path must avoid the excised collar at every step",
+      "reason": "the declared arrival condition is a bounded-step condition on the declared target, and the declared inner spiral's orbit crosses the singular radius at 12 steps on its way; whether the arrival should also be required to stay inside the post-surgery carrier at every intermediate step is not decided here",
+      "retained_partial_result": {
+        "arrival_steps": 24,
+        "declared_step_budget": 36,
+        "excised_cells_on_the_orbit": [
+          [
+            0,
+            0
+          ]
+        ],
+        "orbit_cells_on_the_declared_lattice": [
+          [
+            -1,
+            0
+          ],
+          [
+            0,
+            0
+          ],
+          [
+            1,
+            0
+          ]
+        ]
+      }
+    }
+  ],
+  "verification_status": {
+    "checked_here": {
+      "hashes_and_read_backs_do_not_remove_the_reservation": true,
+      "no_data_read_or_used": true,
+      "observational_verification": "Unavailable"
+    },
+    "data_authenticity_reservation": "The user's recorded reservation about the authenticity of the data in the xue-study work is carried with this contract; hashes and same-source read-backs do not remove it, and it is not narrowed to any single stage.",
+    "data_authenticity_reservation_source": "experiments/three_cycle_chain_v1/contract.json, carried verbatim and un-narrowed",
+    "observational": "Unavailable",
+    "reason": "the three-cycle chain is future; no observation and no issued forecast exists for 2026-12 onwards in this checkout, and this run uses no data"
+  },
+  "version": 1,
+  "what_is_not_claimed": {
+    "cold_heat_reading_exists_only_as_the_declared_projection": true,
+    "forecast": false,
+    "meteorological_data_used": false,
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_cold_heat_wind_ocean_plateau_or_forecast_quantity_asserted": true,
+    "no_contract_or_note_edited": true,
+    "no_data_read_or_used": true,
+    "no_native_admission_no_seal_no_transport_no_terminology_home": true,
+    "no_rust_source_or_lock_changed": true,
+    "opposite_chirality_necessity_not_claimed": true,
+    "physical_claim": false,
+    "stable_api_change": false,
+    "the_surgery_is_a_declared_construction_not_a_physical_mechanism": true
+  }
+}

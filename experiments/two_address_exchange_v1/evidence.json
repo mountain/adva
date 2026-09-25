@@ -1,0 +1,4797 @@
+{
+  "assertions": 33886,
+  "checker_sha256": "5bfec110a35f635d90907677a77e2b28c332834fd58e125d725ba40ba2d0bcd2",
+  "checks": {
+    "assertions_within_budget": true,
+    "both_t1_negative_controls_rejected": true,
+    "contract_digest_matches_the_declared_one": true,
+    "every_declared_control_reported": true,
+    "every_t3_candidate_reported": true,
+    "no_control_is_silently_repaired": true,
+    "the_two_closure_readings_differ": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/two_address_exchange_v1/contract.json",
+  "contract_sha256": "fbaeffb2dc53d4ca7dcc875fa1ebdec8cf6220bde8b15fcc3f45a358c8d7e13e",
+  "contract_sha256_declared": "fbaeffb2dc53d4ca7dcc875fa1ebdec8cf6220bde8b15fcc3f45a358c8d7e13e",
+  "level": "Bounded external exact calibration. No native certificate, no stable API, no physical claim, no forecast and no meteorological or reanalysis data.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "extrusion": "the extrusion countermodel is reproduced on the declared diagonal carrier, since that is the only closing the second scheme is offered here, and it is judged degenerate for exactly that reason.  The countermodel's own three-dimensional spatial factor is declared only as a repeated pattern, which is the property the note cites.",
+    "identity_loop": "the identity-loop control is reproduced as exact rational tracking of the two real branches of the level-one quartic along the two declared rectangles, with the branches verified separated at every sampled point; a root that collided would make the control Undecided rather than identity",
+    "mutual_measuring": "\u4e92\u5ea6 is implemented as the declared componentwise inverse pair a = floor(z/3), b = z mod 3, together with the two 81-valued observations of 0228 \u00a73.  A stronger reading would need its own definition and is not supplied here.",
+    "resource_limits": "the checker installs a CPU limit, a file-size limit and a wall alarm, and records the contract's declared memory budget without installing an address-space limit; installing one would add a row to the frozen rlimit inventory under experiments/rlimit_portability and change a pre-existing artifact",
+    "spectral_crossing_declaration": "0228 \u00a75 does not name a crossing; this run declares one and states it exactly rather than recording it undecided, and it keeps the two equal-rank spaces separate as the note requires",
+    "t1_placement": "the two extras are declared at the end of the cycle, after phase 11, which is also the seam at which the cycle closes; the placement is a declared convention with two executed negative controls and is not a derived fact",
+    "t1_rejection_rule": "the declared rules are exactly two: the block holds two extra states and it starts at the declared end index 12.  The rejections are produced by those rules, not by a count of trials",
+    "t2_closed_form": "the closed form is the Cardano expression of the depressed cubic, verified in the exact real quadratic extension Q(sqrt(4281)) and enclosed by exact rational bisection; its two cube roots are complex, so the sum is real by conjugation rather than term by term",
+    "t2_closure": "\u7d42\u990a\u59cb is read as the fixed point of the annual return, E_{p,q}(h) = h.  Other readings of the term are not excluded here.",
+    "t2_nontrivial_branch": "the closure always has the trivial exit h = 0 because E_{p,q}(0) = 0 identically; the nontrivial branch is the exact quotient by h, whose constant term is (p, q)-free.  The declared cubic is stated for p = q = 0 and the perturbed members are reported separately.",
+    "t2_real_root": "the real root is reported as a correctly rounded decimal prefix carried by an exact rational isolation interval; no floating-point value is formed anywhere",
+    "t3_amplitudes": "the amplitude of a reading is the largest absolute value the reading attains over the declared sides.  The declared-level reading carries exactly 1 on every side; the branch reading carries |h| on side 0, |E_0(h)| on side 1 and the frozen level on sides 2 to 11.  The diagonal's amplitude is the largest coordinate of its 81 points.",
+    "t3_candidates": "each declared candidate is reported separately and none is substituted for another.  The year seam is read at side 0 of the twelve-phase cycle; the diagonal is read as the 81-point agreement locus of the two observations; the spectral crossing is declared in this run as the index relation k = 3 c under which the two declared character bases are the same function",
+    "time_enters_on_the_target_side": "the declared time step is one phase of the twelve-phase cycle, and a transition selects one target per source, which is the second address read as target state",
+    "two_addresses": "the pair is the state and both readings of 0228 \u00a72 are kept: the nested spatial reading (coarse cell / child) and the ordered state reading (source / target).  The two are not identified; only the bijection is exhausted."
+  },
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "Notes 0228, 0233, 0234 and 0235 and the two 0235 contracts are cited, not edited",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "The \u4e92\u5ea6 is declared at the level of the division/remainder pair and the two character bases; a stronger reading would need its own definition",
+    "T1's placement of the two extra states on the twelve-phase cycle is a declared convention with a negative control, not a derived fact",
+    "T2's closure clause is read as the fixed point of the annual return; other readings of \u7d42\u990a\u59cb are not excluded by this run",
+    "The time direction here is a declared order resource, not physical time, causality or a Lorentzian structure; note 0228 \u00a77 already records that even a successful four-dimensional construction would not pick out physical time",
+    "Nothing here is a statement about the atmosphere, the Tibetan Plateau, January or any wind gap"
+  ],
+  "schema": "adva.external.two-address-exchange-calibration.v1",
+  "sections": {
+    "S1_two_addresses": {
+      "carrier": {
+        "bijection_exhausted": true,
+        "fine_points": 6561,
+        "first_address_points": 81,
+        "neither_address_alone_recovers_the_fine_point": true,
+        "pair_recovers_the_fine_point": true,
+        "paired_points": 6561,
+        "points_in_each_fixed_a_fibre": 81,
+        "points_in_each_fixed_b_fibre": 81,
+        "why": "a fixed first address leaves an 81-point fibre and a fixed second address leaves an 81-point fibre, so each address alone is 81-valued while the pair is 6561-valued; the pair is the state"
+      },
+      "componentwise_inverse_pair": {
+        "first": "a = floor(z/3)",
+        "second": "b = z mod 3"
+      },
+      "declared_qiong_fibre": {
+        "a": [
+          2,
+          1,
+          1,
+          2
+        ],
+        "arithmetic_ordinal": 69,
+        "cited_not_derived": true,
+        "fine_points": 81,
+        "set": "{6,7,8} x {3,4,5} x {3,4,5} x {6,7,8}"
+      },
+      "declared_reading": "Note 0228 \u00a72 reads the bijection e(a,b)_i = 3 a_i + b_i from {0,1,2}^4 x {0,1,2}^4 onto {0,...,8}^4 in two ways: nested spatial addresses with a the coarse cell and b the child inside it, and ordered state relations with a the source state and b the target state. This run uses BOTH addresses simultaneously; the state is the pair, and neither address alone recovers the fine point. The mutual measuring (\u4e92\u5ea6) is declared as the pair of inverses a = floor(z/3) and b = z mod 3 componentwise, together with the two 81-valued observations q_block and q_phase of 0228 \u00a73 whose character bases are the two Fourier readings of 0228 \u00a75. The two addresses are two different sides, not two names for one side.",
+      "declared_readings": [
+        {
+          "a": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "b": [
+            0,
+            1,
+            2,
+            0
+          ],
+          "reading": "nested spatial: coarse cell / child",
+          "z": [
+            6,
+            4,
+            5,
+            6
+          ]
+        },
+        {
+          "a": [
+            1,
+            0,
+            2,
+            2
+          ],
+          "b": [
+            2,
+            2,
+            0,
+            1
+          ],
+          "reading": "ordered state: source / target",
+          "z": [
+            5,
+            2,
+            6,
+            7
+          ]
+        }
+      ],
+      "map": "e(a, b)_i = 3 a_i + b_i from {0,1,2}^4 x {0,1,2}^4 onto {0,...,8}^4",
+      "readings_are_not_identified_by_counting": "the nested spatial reading names a coarse cell and a child inside it; the ordered state reading names a source state and a target state.  Both are realised by the same bijection and the contract keeps them distinct: a deterministic transition selects one target per source, which the paired carrier does not by itself supply."
+    },
+    "S2_observations_and_spectra": {
+      "character_bases": {
+        "base_3": {
+          "carrier": "eight independent cyclic coordinates of length 3",
+          "characters": 6561,
+          "distinct_eigenvalues_measured": 9,
+          "eigenvalues": "3 j, with multiplicity C(8, j) 2^j",
+          "graph_degree": 16,
+          "index_space": "{0,1,2}^8, enumerated in lexicographic order; the eight ternary coordinates are the four coordinates of the first address followed by the four of the second",
+          "trace": 104976
+        },
+        "base_9": {
+          "carrier": "four cyclic coordinates of length 9",
+          "characters": 6561,
+          "distinct_eigenvalues_measured": 65,
+          "eigenvalues": "sum_i (2 - t^(k_i) - t^(-k_i)), t a primitive ninth root",
+          "graph_degree": 8,
+          "index_space": "{0,...,8}^4, enumerated in lexicographic order",
+          "trace": 52488
+        },
+        "eigenvalue_intersection": {
+          "multiplicities": {
+            "0": {
+              "multiplicity_on_the_length_3_carrier": 1,
+              "multiplicity_on_the_length_9_carrier": 1
+            },
+            "12": {
+              "multiplicity_on_the_length_3_carrier": 1120,
+              "multiplicity_on_the_length_9_carrier": 16
+            },
+            "3": {
+              "multiplicity_on_the_length_3_carrier": 16,
+              "multiplicity_on_the_length_9_carrier": 8
+            },
+            "6": {
+              "multiplicity_on_the_length_3_carrier": 112,
+              "multiplicity_on_the_length_9_carrier": 216
+            },
+            "9": {
+              "multiplicity_on_the_length_3_carrier": 448,
+              "multiplicity_on_the_length_9_carrier": 416
+            }
+          },
+          "reading": "the two declared Laplacian spectra meet only on the multiples of three, where the length-3 eigenvalue is constant on the length-9 carrier; the intersection is not the same object as the agreement of the two character bases",
+          "values": [
+            0,
+            3,
+            6,
+            9,
+            12
+          ]
+        },
+        "eigenvalue_multiplicities": {
+          "length_3": [
+            [
+              [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1
+            ],
+            [
+              [
+                "3",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              16
+            ],
+            [
+              [
+                "6",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              112
+            ],
+            [
+              [
+                "9",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              448
+            ],
+            [
+              [
+                "12",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1120
+            ],
+            [
+              [
+                "15",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1792
+            ],
+            [
+              [
+                "18",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1792
+            ],
+            [
+              [
+                "21",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1024
+            ],
+            [
+              [
+                "24",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              256
+            ]
+          ],
+          "length_9": [
+            [
+              [
+                "0",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              1
+            ],
+            [
+              [
+                "2",
+                "-1",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              8
+            ],
+            [
+              [
+                "2",
+                "1",
+                "-1",
+                "0",
+                "1",
+                "0"
+              ],
+              8
+            ],
+            [
+              [
+                "2",
+                "0",
+                "0",
+                "0",
+                "-1",
+                "-1"
+              ],
+              8
+            ],
+            [
+              [
+                "3",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              8
+            ],
+            [
+              [
+                "4",
+                "-2",
+                "2",
+                "0",
+                "0",
+                "2"
+              ],
+              24
+            ],
+            [
+              [
+                "4",
+                "0",
+                "0",
+                "0",
+                "1",
+                "1"
+              ],
+              48
+            ],
+            [
+              [
+                "4",
+                "-1",
+                "1",
+                "0",
+                "-1",
+                "0"
+              ],
+              48
+            ],
+            [
+              [
+                "4",
+                "2",
+                "-2",
+                "0",
+                "2",
+                "0"
+              ],
+              24
+            ],
+            [
+              [
+                "4",
+                "1",
+                "-1",
+                "0",
+                "0",
+                "-1"
+              ],
+              48
+            ],
+            [
+              [
+                "4",
+                "0",
+                "0",
+                "0",
+                "-2",
+                "-2"
+              ],
+              24
+            ],
+            [
+              [
+                "5",
+                "-1",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              48
+            ],
+            [
+              [
+                "5",
+                "1",
+                "-1",
+                "0",
+                "1",
+                "0"
+              ],
+              48
+            ],
+            [
+              [
+                "5",
+                "0",
+                "0",
+                "0",
+                "-1",
+                "-1"
+              ],
+              48
+            ],
+            [
+              [
+                "6",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              216
+            ],
+            [
+              [
+                "6",
+                "-3",
+                "3",
+                "0",
+                "0",
+                "3"
+              ],
+              32
+            ],
+            [
+              [
+                "6",
+                "-1",
+                "1",
+                "0",
+                "1",
+                "2"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "-2",
+                "2",
+                "0",
+                "-1",
+                "1"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "1",
+                "-1",
+                "0",
+                "2",
+                "1"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "-1",
+                "1",
+                "0",
+                "-2",
+                "-1"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "3",
+                "-3",
+                "0",
+                "3",
+                "0"
+              ],
+              32
+            ],
+            [
+              [
+                "6",
+                "2",
+                "-2",
+                "0",
+                "1",
+                "-1"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "1",
+                "-1",
+                "0",
+                "-1",
+                "-2"
+              ],
+              96
+            ],
+            [
+              [
+                "6",
+                "0",
+                "0",
+                "0",
+                "-3",
+                "-3"
+              ],
+              32
+            ],
+            [
+              [
+                "7",
+                "-2",
+                "2",
+                "0",
+                "0",
+                "2"
+              ],
+              96
+            ],
+            [
+              [
+                "7",
+                "0",
+                "0",
+                "0",
+                "1",
+                "1"
+              ],
+              192
+            ],
+            [
+              [
+                "7",
+                "-1",
+                "1",
+                "0",
+                "-1",
+                "0"
+              ],
+              192
+            ],
+            [
+              [
+                "7",
+                "2",
+                "-2",
+                "0",
+                "2",
+                "0"
+              ],
+              96
+            ],
+            [
+              [
+                "7",
+                "1",
+                "-1",
+                "0",
+                "0",
+                "-1"
+              ],
+              192
+            ],
+            [
+              [
+                "7",
+                "0",
+                "0",
+                "0",
+                "-2",
+                "-2"
+              ],
+              96
+            ],
+            [
+              [
+                "8",
+                "-1",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              288
+            ],
+            [
+              [
+                "8",
+                "1",
+                "-1",
+                "0",
+                "1",
+                "0"
+              ],
+              288
+            ],
+            [
+              [
+                "8",
+                "0",
+                "0",
+                "0",
+                "-1",
+                "-1"
+              ],
+              288
+            ],
+            [
+              [
+                "8",
+                "-4",
+                "4",
+                "0",
+                "0",
+                "4"
+              ],
+              16
+            ],
+            [
+              [
+                "8",
+                "-2",
+                "2",
+                "0",
+                "1",
+                "3"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "-3",
+                "3",
+                "0",
+                "-1",
+                "2"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "0",
+                "0",
+                "0",
+                "2",
+                "2"
+              ],
+              96
+            ],
+            [
+              [
+                "8",
+                "-2",
+                "2",
+                "0",
+                "-2",
+                "0"
+              ],
+              96
+            ],
+            [
+              [
+                "8",
+                "2",
+                "-2",
+                "0",
+                "3",
+                "1"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "-1",
+                "1",
+                "0",
+                "-3",
+                "-2"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "4",
+                "-4",
+                "0",
+                "4",
+                "0"
+              ],
+              16
+            ],
+            [
+              [
+                "8",
+                "3",
+                "-3",
+                "0",
+                "2",
+                "-1"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "2",
+                "-2",
+                "0",
+                "0",
+                "-2"
+              ],
+              96
+            ],
+            [
+              [
+                "8",
+                "1",
+                "-1",
+                "0",
+                "-2",
+                "-3"
+              ],
+              64
+            ],
+            [
+              [
+                "8",
+                "0",
+                "0",
+                "0",
+                "-4",
+                "-4"
+              ],
+              16
+            ],
+            [
+              [
+                "9",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              416
+            ],
+            [
+              [
+                "9",
+                "-3",
+                "3",
+                "0",
+                "0",
+                "3"
+              ],
+              64
+            ],
+            [
+              [
+                "9",
+                "-1",
+                "1",
+                "0",
+                "1",
+                "2"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "-2",
+                "2",
+                "0",
+                "-1",
+                "1"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "1",
+                "-1",
+                "0",
+                "2",
+                "1"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "-1",
+                "1",
+                "0",
+                "-2",
+                "-1"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "3",
+                "-3",
+                "0",
+                "3",
+                "0"
+              ],
+              64
+            ],
+            [
+              [
+                "9",
+                "2",
+                "-2",
+                "0",
+                "1",
+                "-1"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "1",
+                "-1",
+                "0",
+                "-1",
+                "-2"
+              ],
+              192
+            ],
+            [
+              [
+                "9",
+                "0",
+                "0",
+                "0",
+                "-3",
+                "-3"
+              ],
+              64
+            ],
+            [
+              [
+                "10",
+                "-2",
+                "2",
+                "0",
+                "0",
+                "2"
+              ],
+              96
+            ],
+            [
+              [
+                "10",
+                "0",
+                "0",
+                "0",
+                "1",
+                "1"
+              ],
+              192
+            ],
+            [
+              [
+                "10",
+                "-1",
+                "1",
+                "0",
+                "-1",
+                "0"
+              ],
+              192
+            ],
+            [
+              [
+                "10",
+                "2",
+                "-2",
+                "0",
+                "2",
+                "0"
+              ],
+              96
+            ],
+            [
+              [
+                "10",
+                "1",
+                "-1",
+                "0",
+                "0",
+                "-1"
+              ],
+              192
+            ],
+            [
+              [
+                "10",
+                "0",
+                "0",
+                "0",
+                "-2",
+                "-2"
+              ],
+              96
+            ],
+            [
+              [
+                "11",
+                "-1",
+                "1",
+                "0",
+                "0",
+                "1"
+              ],
+              64
+            ],
+            [
+              [
+                "11",
+                "1",
+                "-1",
+                "0",
+                "1",
+                "0"
+              ],
+              64
+            ],
+            [
+              [
+                "11",
+                "0",
+                "0",
+                "0",
+                "-1",
+                "-1"
+              ],
+              64
+            ],
+            [
+              [
+                "12",
+                "0",
+                "0",
+                "0",
+                "0",
+                "0"
+              ],
+              16
+            ]
+          ]
+        },
+        "single_zero_mode_each": true
+      },
+      "declared_reading": "Note 0228 \u00a72 reads the bijection e(a,b)_i = 3 a_i + b_i from {0,1,2}^4 x {0,1,2}^4 onto {0,...,8}^4 in two ways: nested spatial addresses with a the coarse cell and b the child inside it, and ordered state relations with a the source state and b the target state. This run uses BOTH addresses simultaneously; the state is the pair, and neither address alone recovers the fine point. The mutual measuring (\u4e92\u5ea6) is declared as the pair of inverses a = floor(z/3) and b = z mod 3 componentwise, together with the two 81-valued observations q_block and q_phase of 0228 \u00a73 whose character bases are the two Fourier readings of 0228 \u00a75. The two addresses are two different sides, not two names for one side.",
+      "diagonal_a_equals_b": {
+        "conditions_agreeing_here": [
+          "a = b",
+          "q_block(z) = q_phase(z)"
+        ],
+        "largest_coordinate_amplitude": "8",
+        "locus": "z = 4 a, every coordinate of z in {0,4,8}",
+        "not_closed_under_the_declared_translations": true,
+        "points": [
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 0,
+            "fine_point": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              0,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              0,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              0,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              0,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              0,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              0,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              0,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              0,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              0,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              4,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              4,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              4,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              4,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              0,
+              4,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              4,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              4,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              4,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              1,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              4,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              0,
+              2,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              0,
+              8,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              0,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              0,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              0,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              0,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              0,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              0,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              0,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              0,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              0,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              0,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              4,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              4,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              4,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              4,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 4,
+            "fine_point": [
+              4,
+              4,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              4,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              4,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              4,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              1,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              4,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              1,
+              2,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              4,
+              8,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              0,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              0,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              1,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              4,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              0,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              0,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              0,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              0,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              0,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              0,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              1,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              4,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              1,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              4,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              1,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              4,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              2,
+              0
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              8,
+              0
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              2,
+              1
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              8,
+              4
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          },
+          {
+            "block_equals_phase": [
+              2,
+              2,
+              2,
+              2
+            ],
+            "coordinate_amplitude": 8,
+            "fine_point": [
+              8,
+              8,
+              8,
+              8
+            ],
+            "returns_to_its_own_block_after_three_steps": [
+              false,
+              false,
+              false,
+              false
+            ]
+          }
+        ],
+        "size": 81
+      },
+      "mutual_measuring": {
+        "first": "a = floor(z/3)",
+        "pair_is_the_inverse_of_the_encoding": true,
+        "returns_the_fine_point": true,
+        "second": "b = z mod 3"
+      },
+      "observations": {
+        "asymmetry": "the phase observation updates under one declared unit step; the block observation updates only under three, so the two 81-valued readings are different measurements of the same fine point",
+        "each_is_81_valued": true,
+        "exhausted_point_generator_pairs": 26244,
+        "q_block": "q_block(z) = floor(z/3), componentwise",
+        "q_block_law_holds_on": 26244,
+        "q_block_law_verified": "q_block(T_i^3 z) = q_block(z) + e_i mod 3",
+        "q_phase": "q_phase(z) = z mod 3, componentwise",
+        "q_phase_law_holds_on": 26244,
+        "q_phase_law_verified": "q_phase(T_i z) = q_phase(z) + e_i mod 3",
+        "value_carrier": "{0,1,2}^4"
+      },
+      "spectral_crossing": {
+        "agreeing_base_3_frequencies": [
+          [
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            2
+          ],
+          [
+            0,
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0
+          ],
+          [
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1
+          ],
+          [
+            0,
+            0,
+            1,
+            2,
+            0,
+            0,
+            1,
+            2
+          ],
+          [
+            0,
+            0,
+            2,
+            0,
+            0,
+            0,
+            2,
+            0
+          ],
+          [
+            0,
+            0,
+            2,
+            1,
+            0,
+            0,
+            2,
+            1
+          ],
+          [
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            2,
+            2
+          ],
+          [
+            0,
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0
+          ],
+          [
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1
+          ],
+          [
+            0,
+            1,
+            0,
+            2,
+            0,
+            1,
+            0,
+            2
+          ],
+          [
+            0,
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0
+          ],
+          [
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1
+          ],
+          [
+            0,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            2
+          ],
+          [
+            0,
+            1,
+            2,
+            0,
+            0,
+            1,
+            2,
+            0
+          ],
+          [
+            0,
+            1,
+            2,
+            1,
+            0,
+            1,
+            2,
+            1
+          ],
+          [
+            0,
+            1,
+            2,
+            2,
+            0,
+            1,
+            2,
+            2
+          ],
+          [
+            0,
+            2,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0
+          ],
+          [
+            0,
+            2,
+            0,
+            1,
+            0,
+            2,
+            0,
+            1
+          ],
+          [
+            0,
+            2,
+            0,
+            2,
+            0,
+            2,
+            0,
+            2
+          ],
+          [
+            0,
+            2,
+            1,
+            0,
+            0,
+            2,
+            1,
+            0
+          ],
+          [
+            0,
+            2,
+            1,
+            1,
+            0,
+            2,
+            1,
+            1
+          ],
+          [
+            0,
+            2,
+            1,
+            2,
+            0,
+            2,
+            1,
+            2
+          ],
+          [
+            0,
+            2,
+            2,
+            0,
+            0,
+            2,
+            2,
+            0
+          ],
+          [
+            0,
+            2,
+            2,
+            1,
+            0,
+            2,
+            2,
+            1
+          ],
+          [
+            0,
+            2,
+            2,
+            2,
+            0,
+            2,
+            2,
+            2
+          ],
+          [
+            1,
+            0,
+            0,
+            0,
+            1,
+            0,
+            0,
+            0
+          ],
+          [
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0,
+            1
+          ],
+          [
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            0,
+            2
+          ],
+          [
+            1,
+            0,
+            1,
+            0,
+            1,
+            0,
+            1,
+            0
+          ],
+          [
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1,
+            1
+          ],
+          [
+            1,
+            0,
+            1,
+            2,
+            1,
+            0,
+            1,
+            2
+          ],
+          [
+            1,
+            0,
+            2,
+            0,
+            1,
+            0,
+            2,
+            0
+          ],
+          [
+            1,
+            0,
+            2,
+            1,
+            1,
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            0,
+            2,
+            2,
+            1,
+            0,
+            2,
+            2
+          ],
+          [
+            1,
+            1,
+            0,
+            0,
+            1,
+            1,
+            0,
+            0
+          ],
+          [
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0,
+            1
+          ],
+          [
+            1,
+            1,
+            0,
+            2,
+            1,
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            1,
+            0,
+            1,
+            1,
+            1,
+            0
+          ],
+          [
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1,
+            1
+          ],
+          [
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            2
+          ],
+          [
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            2,
+            0
+          ],
+          [
+            1,
+            1,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1
+          ],
+          [
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2
+          ],
+          [
+            1,
+            2,
+            0,
+            0,
+            1,
+            2,
+            0,
+            0
+          ],
+          [
+            1,
+            2,
+            0,
+            1,
+            1,
+            2,
+            0,
+            1
+          ],
+          [
+            1,
+            2,
+            0,
+            2,
+            1,
+            2,
+            0,
+            2
+          ],
+          [
+            1,
+            2,
+            1,
+            0,
+            1,
+            2,
+            1,
+            0
+          ],
+          [
+            1,
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1
+          ],
+          [
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2
+          ],
+          [
+            1,
+            2,
+            2,
+            0,
+            1,
+            2,
+            2,
+            0
+          ],
+          [
+            1,
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1
+          ],
+          [
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2
+          ],
+          [
+            2,
+            0,
+            0,
+            0,
+            2,
+            0,
+            0,
+            0
+          ],
+          [
+            2,
+            0,
+            0,
+            1,
+            2,
+            0,
+            0,
+            1
+          ],
+          [
+            2,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0,
+            2
+          ],
+          [
+            2,
+            0,
+            1,
+            0,
+            2,
+            0,
+            1,
+            0
+          ],
+          [
+            2,
+            0,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1
+          ],
+          [
+            2,
+            0,
+            1,
+            2,
+            2,
+            0,
+            1,
+            2
+          ],
+          [
+            2,
+            0,
+            2,
+            0,
+            2,
+            0,
+            2,
+            0
+          ],
+          [
+            2,
+            0,
+            2,
+            1,
+            2,
+            0,
+            2,
+            1
+          ],
+          [
+            2,
+            0,
+            2,
+            2,
+            2,
+            0,
+            2,
+            2
+          ],
+          [
+            2,
+            1,
+            0,
+            0,
+            2,
+            1,
+            0,
+            0
+          ],
+          [
+            2,
+            1,
+            0,
+            1,
+            2,
+            1,
+            0,
+            1
+          ],
+          [
+            2,
+            1,
+            0,
+            2,
+            2,
+            1,
+            0,
+            2
+          ],
+          [
+            2,
+            1,
+            1,
+            0,
+            2,
+            1,
+            1,
+            0
+          ],
+          [
+            2,
+            1,
+            1,
+            1,
+            2,
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1,
+            2
+          ],
+          [
+            2,
+            1,
+            2,
+            0,
+            2,
+            1,
+            2,
+            0
+          ],
+          [
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1
+          ],
+          [
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2,
+            2
+          ],
+          [
+            2,
+            2,
+            0,
+            0,
+            2,
+            2,
+            0,
+            0
+          ],
+          [
+            2,
+            2,
+            0,
+            1,
+            2,
+            2,
+            0,
+            1
+          ],
+          [
+            2,
+            2,
+            0,
+            2,
+            2,
+            2,
+            0,
+            2
+          ],
+          [
+            2,
+            2,
+            1,
+            0,
+            2,
+            2,
+            1,
+            0
+          ],
+          [
+            2,
+            2,
+            1,
+            1,
+            2,
+            2,
+            1,
+            1
+          ],
+          [
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1,
+            2
+          ],
+          [
+            2,
+            2,
+            2,
+            0,
+            2,
+            2,
+            2,
+            0
+          ],
+          [
+            2,
+            2,
+            2,
+            1,
+            2,
+            2,
+            2,
+            1
+          ],
+          [
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2,
+            2
+          ]
+        ],
+        "agreeing_base_9_frequencies": [
+          [
+            0,
+            0,
+            0,
+            0
+          ],
+          [
+            0,
+            0,
+            0,
+            3
+          ],
+          [
+            0,
+            0,
+            0,
+            6
+          ],
+          [
+            0,
+            0,
+            3,
+            0
+          ],
+          [
+            0,
+            0,
+            3,
+            3
+          ],
+          [
+            0,
+            0,
+            3,
+            6
+          ],
+          [
+            0,
+            0,
+            6,
+            0
+          ],
+          [
+            0,
+            0,
+            6,
+            3
+          ],
+          [
+            0,
+            0,
+            6,
+            6
+          ],
+          [
+            0,
+            3,
+            0,
+            0
+          ],
+          [
+            0,
+            3,
+            0,
+            3
+          ],
+          [
+            0,
+            3,
+            0,
+            6
+          ],
+          [
+            0,
+            3,
+            3,
+            0
+          ],
+          [
+            0,
+            3,
+            3,
+            3
+          ],
+          [
+            0,
+            3,
+            3,
+            6
+          ],
+          [
+            0,
+            3,
+            6,
+            0
+          ],
+          [
+            0,
+            3,
+            6,
+            3
+          ],
+          [
+            0,
+            3,
+            6,
+            6
+          ],
+          [
+            0,
+            6,
+            0,
+            0
+          ],
+          [
+            0,
+            6,
+            0,
+            3
+          ],
+          [
+            0,
+            6,
+            0,
+            6
+          ],
+          [
+            0,
+            6,
+            3,
+            0
+          ],
+          [
+            0,
+            6,
+            3,
+            3
+          ],
+          [
+            0,
+            6,
+            3,
+            6
+          ],
+          [
+            0,
+            6,
+            6,
+            0
+          ],
+          [
+            0,
+            6,
+            6,
+            3
+          ],
+          [
+            0,
+            6,
+            6,
+            6
+          ],
+          [
+            3,
+            0,
+            0,
+            0
+          ],
+          [
+            3,
+            0,
+            0,
+            3
+          ],
+          [
+            3,
+            0,
+            0,
+            6
+          ],
+          [
+            3,
+            0,
+            3,
+            0
+          ],
+          [
+            3,
+            0,
+            3,
+            3
+          ],
+          [
+            3,
+            0,
+            3,
+            6
+          ],
+          [
+            3,
+            0,
+            6,
+            0
+          ],
+          [
+            3,
+            0,
+            6,
+            3
+          ],
+          [
+            3,
+            0,
+            6,
+            6
+          ],
+          [
+            3,
+            3,
+            0,
+            0
+          ],
+          [
+            3,
+            3,
+            0,
+            3
+          ],
+          [
+            3,
+            3,
+            0,
+            6
+          ],
+          [
+            3,
+            3,
+            3,
+            0
+          ],
+          [
+            3,
+            3,
+            3,
+            3
+          ],
+          [
+            3,
+            3,
+            3,
+            6
+          ],
+          [
+            3,
+            3,
+            6,
+            0
+          ],
+          [
+            3,
+            3,
+            6,
+            3
+          ],
+          [
+            3,
+            3,
+            6,
+            6
+          ],
+          [
+            3,
+            6,
+            0,
+            0
+          ],
+          [
+            3,
+            6,
+            0,
+            3
+          ],
+          [
+            3,
+            6,
+            0,
+            6
+          ],
+          [
+            3,
+            6,
+            3,
+            0
+          ],
+          [
+            3,
+            6,
+            3,
+            3
+          ],
+          [
+            3,
+            6,
+            3,
+            6
+          ],
+          [
+            3,
+            6,
+            6,
+            0
+          ],
+          [
+            3,
+            6,
+            6,
+            3
+          ],
+          [
+            3,
+            6,
+            6,
+            6
+          ],
+          [
+            6,
+            0,
+            0,
+            0
+          ],
+          [
+            6,
+            0,
+            0,
+            3
+          ],
+          [
+            6,
+            0,
+            0,
+            6
+          ],
+          [
+            6,
+            0,
+            3,
+            0
+          ],
+          [
+            6,
+            0,
+            3,
+            3
+          ],
+          [
+            6,
+            0,
+            3,
+            6
+          ],
+          [
+            6,
+            0,
+            6,
+            0
+          ],
+          [
+            6,
+            0,
+            6,
+            3
+          ],
+          [
+            6,
+            0,
+            6,
+            6
+          ],
+          [
+            6,
+            3,
+            0,
+            0
+          ],
+          [
+            6,
+            3,
+            0,
+            3
+          ],
+          [
+            6,
+            3,
+            0,
+            6
+          ],
+          [
+            6,
+            3,
+            3,
+            0
+          ],
+          [
+            6,
+            3,
+            3,
+            3
+          ],
+          [
+            6,
+            3,
+            3,
+            6
+          ],
+          [
+            6,
+            3,
+            6,
+            0
+          ],
+          [
+            6,
+            3,
+            6,
+            3
+          ],
+          [
+            6,
+            3,
+            6,
+            6
+          ],
+          [
+            6,
+            6,
+            0,
+            0
+          ],
+          [
+            6,
+            6,
+            0,
+            3
+          ],
+          [
+            6,
+            6,
+            0,
+            6
+          ],
+          [
+            6,
+            6,
+            3,
+            0
+          ],
+          [
+            6,
+            6,
+            3,
+            3
+          ],
+          [
+            6,
+            6,
+            3,
+            6
+          ],
+          [
+            6,
+            6,
+            6,
+            0
+          ],
+          [
+            6,
+            6,
+            6,
+            3
+          ],
+          [
+            6,
+            6,
+            6,
+            6
+          ]
+        ],
+        "agreeing_pairs": 81,
+        "criterion": "the agreement of a base-9 index k and a base-3 index c holds exactly when 9 divides k_i - 3 c_i in every coordinate",
+        "declared_reading": "a frequency of the length-9 base and a frequency of the length-3 base cross when the two characters are the same function on the 6561-point carrier, which is the index relation k = 3 c",
+        "is_a_bijection_of_81_frequencies": true,
+        "maximum_amplitude": "1",
+        "maximum_amplitude_reason": "an agreeing pair is one function of unit modulus on the 6561-point carrier, so its largest coordinate amplitude is 1; the other 6480 characters of each base have no partner in the other base",
+        "neither_base_contains_the_other": true,
+        "relation_to_0228_section_5": "note 0228 \u00a75 records the embedding exp(2 pi i k.(z mod 3)/3) = exp(2 pi i (3k).z/9) and selects the 81 frequencies whose four indices are divisible by three.  It also says that equal ranks are not a reason to substitute one observation for the other; this run declares the agreement itself as the crossing and keeps the two spaces separate."
+      }
+    },
+    "S3_extra_block": {
+      "accepted_and_rejected": [
+        {
+          "accepted": true,
+          "at_the_declared_end": true,
+          "basis": "the structural position of \u7528\u4e5d and \u7528\u516d in Yi and of \u8e26 and \u8d0f, the intercalary remainder, in Taixuan: the two extra states sit at the end of the twelve-phase cycle, after phase 11 and at the seam where the cycle closes",
+          "extras": [
+            "yong-9",
+            "yong-6"
+          ],
+          "factor": "12 to 14",
+          "is_doubling": true,
+          "label": "declared placement: two extras at the declared end",
+          "rejection_produced_by": null,
+          "rejection_reasons": [],
+          "start_index": 12
+        },
+        {
+          "accepted": false,
+          "at_the_declared_end": false,
+          "basis": "an interior placement is a different declared reading",
+          "extras": [
+            "yong-9",
+            "yong-6"
+          ],
+          "factor": "12 to 14",
+          "is_doubling": true,
+          "label": "negative control: the extra block in the interior",
+          "rejection_produced_by": "the declared structural rules",
+          "rejection_reasons": [
+            "the block must start at the declared end of the twelve-phase cycle, index 12, not index 6"
+          ],
+          "start_index": 6
+        },
+        {
+          "accepted": false,
+          "at_the_declared_end": true,
+          "basis": "a block of three is not the declared factor two",
+          "extras": [
+            "yong-9",
+            "yong-6",
+            "a third extra state"
+          ],
+          "factor": "12 to 15",
+          "is_doubling": false,
+          "label": "negative control: a third extra state",
+          "rejection_produced_by": "the declared structural rules",
+          "rejection_reasons": [
+            "the block must hold exactly two extra states, not 3"
+          ],
+          "start_index": 12
+        }
+      ],
+      "cycle": {
+        "closure_after": "twelve unit steps",
+        "declared_end_index": 12,
+        "phases": 12,
+        "unit_time_step": "one phase"
+      },
+      "declared_reading": "Declared condition one: at the 13 scale the time axis carries a factor-two extra block at the end of the cycle, the structural position of \u7528\u4e5d/\u7528\u516d in Yi and of \u8e26/\u8d0f (the intercalary remainder) in Taixuan. The run must place the two extra states at the declared end of the twelve-phase cycle and must be able to fail: a protocol that puts the extra block in the interior, or that needs more than two extra states, is a different declared reading and must be rejected rather than absorbed.",
+      "declared_structure": {
+        "basis": "the structural position of \u7528\u4e5d and \u7528\u516d in Yi and of \u8e26 and \u8d0f, the intercalary remainder, in Taixuan: the two extra states sit at the end of the twelve-phase cycle, after phase 11 and at the seam where the cycle closes",
+        "count": 2,
+        "extra_states": [
+          "yong-9",
+          "yong-6"
+        ],
+        "factor": "two, at the 13 scale when the twelve-phase cycle carries it",
+        "placement": "immediately after phase 11, at the declared end of the cycle, which is also the seam at which the cycle closes",
+        "positions": {
+          "extra_block_at": [
+            12,
+            13
+          ],
+          "phase_order": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "total_states": 14
+        },
+        "states_in_the_cycle_with_the_block": 14,
+        "structural_position": "\u7528\u4e5d / \u7528\u516d in Yi and \u8e26 / \u8d0f, the intercalary remainder, in Taixuan"
+      },
+      "negative_controls": {
+        "both_rejected": true,
+        "count": 2,
+        "declared_failure_modes": [
+          "an extra block placed in the interior",
+          "a third extra state"
+        ],
+        "rejection_is_asserted_not_narrated": true
+      }
+    },
+    "S4_closure": {
+      "annual_return": "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8",
+      "cardano": {
+        "closed_form": "h* = -8/3 + (6112/27 + (32/9) sqrt(4281))^(1/3) + (6112/27 - (32/9) sqrt(4281))^(1/3)",
+        "closed_form_as_a_real_expression": "h* = -8/3 + u + v with u and v the real cube roots of the two real resolvent roots",
+        "closed_form_enclosure": {
+          "bisection_steps": 240,
+          "inside_the_open_interval_5_6": true,
+          "sign_test": "the sign of t^3 - (A +- B sqrt(d)) is decided by exact squaring in Q(sqrt(4281)); no decimal and no floating-point value is formed",
+          "u_enclosed_in": [
+            "6814631902064019868394917056205550513571122727104678771339912685634977237/883423532389192164791648750371459257913741948437809479060803100646309888",
+            "13629263804128039736789834112411101027142245454209357542679825371269954475/1766847064778384329583297500742918515827483896875618958121606201292619776"
+          ],
+          "u_plus_v_enclosed_in": [
+            "10371699621457603983392935177783289781401954570356572802043326604039575931/1766847064778384329583297500742918515827483896875618958121606201292619776",
+            "10371699621457603983392935177783289781401954570356572802043326604039575933/1766847064778384329583297500742918515827483896875618958121606201292619776"
+          ],
+          "v_enclosed_in": [
+            "-3257564182670435753396898934627811245740290883852784740636498767230378543/1766847064778384329583297500742918515827483896875618958121606201292619776",
+            "-1628782091335217876698449467313905622870145441926392370318249383615189271/883423532389192164791648750371459257913741948437809479060803100646309888"
+          ]
+        },
+        "depressed_cubic": "y^3 + 128/3 y - 12224/27 = 0 with y = h + 8/3",
+        "discriminant": "1461248/27 = (32/9)^2 * 4281",
+        "discriminant_positive": true,
+        "exactly_one_real_root_by_monotonicity": true,
+        "resolvent": "t^2 + q t - (p/3)^3 = 0 with roots 6112/27 +- (32/9) sqrt(4281)",
+        "resolvent_roots": "6112/27 + (32/9) sqrt(4281) and its conjugate, whose product is exactly -(p/3)^3 = -2097152/729",
+        "strict_monotonicity": "the derivative 3 y^2 + 128/3 is positive for every real y",
+        "why_the_closed_form_is_the_real_root": "the Cardano pair satisfies u^3 + v^3 = 2 A = -q and u v = -p/3 exactly, the second because u^3 v^3 = A^2 - B^2 d = -(p/3)^3, so (u + v)^3 + p (u + v) + q vanishes identically and u + v is a root of the depressed cubic; the bisection encloses u + v strictly inside (5, 6), where the depressed cubic is strictly increasing and has exactly one root, so u + v is that root"
+      },
+      "closure_polynomial": "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 - 5*h/8",
+      "comparison_with_the_declared_level_reading": {
+        "closure_reading": {
+          "equation": "E_{p,q}(h) = h at p = q = 0, the \u7d42\u990a\u59cb reading of T2",
+          "exits": [
+            {
+              "exit": "exit one: the trivial fixed point",
+              "note": "the closure E_{p,q}(h) = h has h = 0 as a root for every (p, q)",
+              "status": "real, always present because E_{p,q}(0) = 0 identically",
+              "value": "0"
+            },
+            {
+              "correctly_rounded_prefix": "3.2035072879526181",
+              "exit": "exit two: the realised closure",
+              "isolation_interval": [
+                "6385298/1993221",
+                "7642665/2385718"
+              ],
+              "status": "real, isolated exactly in the rational interval (3, 4)",
+              "value": "h*"
+            },
+            {
+              "exit": "exit three: the retreating conjugate pair",
+              "isolation_interval": null,
+              "status": "not real: the quotient conic h^2 + 11 h + 935/4 has the exact negative discriminant 11^2 - 935 = -814",
+              "value": "-5.6017536439763091 +- 8.2771295362453176 i"
+            }
+          ],
+          "nontrivial_branch": "h^3 + 8 h^2 + 64 h - 320 = 0",
+          "nontrivial_distinct_real_roots": 1,
+          "real_roots_of_the_whole_closure": 2,
+          "total_exits": 3,
+          "trivial_exit": "h = 0, a root for every (p, q)",
+          "why_one_real": "the derivative 3 h^2 + 16 h + 64 has the exact negative discriminant -512, so the cubic is strictly increasing and meets the axis once"
+        },
+        "declared_level_reading": {
+          "branch_values": "h_+ = 1.6034490429..., h_- = -5.6034490429...",
+          "conjugate_pair": "h = -2 +- i sqrt(8 sqrt(17) + 20)",
+          "distinct_real_roots": 2,
+          "equation": "E_{p,q}(h) = 1 at p = q = 0, the reading of note 0235",
+          "isolation_intervals": [
+            [
+              "-18766528/3349103",
+              "-19774129/3528921",
+              1
+            ],
+            [
+              "5658445/3528921",
+              "5370116/3349103",
+              1
+            ]
+          ],
+          "largest_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+          "polynomial": "h^4 + 8 h^3 + 64 h^2 + 192 h - 512 = 0",
+          "real_branches": "h = -2 +- sqrt(8 sqrt(17) - 20)",
+          "why_two_real_branches": "after the exact substitution u = h + 2 the quartic is u^4 + 40 u^2 - 688 = (u^2 + 20 - 8 sqrt(17)) (u^2 + 20 + 8 sqrt(17)); the first factor has two real roots because 8 sqrt(17) - 20 > 0, and the second is positive for every real u, so it carries a conjugate pair"
+        },
+        "difference": {
+          "counts_differ": true,
+          "kept_side_by_side": true,
+          "not_substituted": true,
+          "real_branch_count": {
+            "closure_nontrivial_branch": 1,
+            "declared_level": 2
+          },
+          "statement": "the two readings have a different number of real branches: two for the declared-level reading and one for the nontrivial closure branch"
+        }
+      },
+      "declared_reading": "Declared condition two: at the 25 scale the three-exits clause is \u7d42\u990a\u59cb, the end nourishes the beginning, read as periodic closure. In the process language the closure is the fixed point of the annual return, E_{p,q}(h) = h, whose non-trivial branch is a cubic: h^3 + 8 h^2 + 64 h - 320 = 0 at p = q = 0, with one real root h* = 3.2035072879526181... and the conjugate pair -5.6017536439763091 +- 8.2771295362453176 i. The run must report the three exits of that cubic - one realised closure and two retreating into the complex plane - and must compare this reading with the declared-level reading of note 0235 in which the return equation is E(h) = 1 and there are two real branches. The two readings must be kept side by side and must not be substituted for one another.",
+      "nontrivial_branch_at_p_eq_q_eq_0": "h^3 + 8 h^2 + 64 h - 320 = 0",
+      "perturbed_closure_members": [
+        {
+          "constant_term": "-5/8",
+          "degree": 3,
+          "distinct_real_roots": 1,
+          "p": "0",
+          "q": "0",
+          "real_roots": [
+            [
+              "6385298/1993221",
+              "7642665/2385718",
+              1
+            ]
+          ]
+        },
+        {
+          "constant_term": "-5/8",
+          "degree": 3,
+          "distinct_real_roots": 1,
+          "p": "1",
+          "q": "1",
+          "real_roots": [
+            [
+              "441003/1238963",
+              "408182/1146755",
+              1
+            ]
+          ]
+        },
+        {
+          "constant_term": "-5/8",
+          "degree": 3,
+          "distinct_real_roots": 1,
+          "p": "-2",
+          "q": "17/10",
+          "real_roots": [
+            [
+              "958744/1134619",
+              "1129211/1336357",
+              1
+            ]
+          ]
+        }
+      ],
+      "three_exits": [
+        {
+          "exit": "exit one: the trivial fixed point",
+          "note": "the closure E_{p,q}(h) = h has h = 0 as a root for every (p, q)",
+          "status": "real, always present because E_{p,q}(0) = 0 identically",
+          "value": "0"
+        },
+        {
+          "correctly_rounded_prefix": "3.2035072879526181",
+          "exit": "exit two: the realised closure",
+          "isolation_interval": [
+            "6385298/1993221",
+            "7642665/2385718"
+          ],
+          "status": "real, isolated exactly in the rational interval (3, 4)",
+          "value": "h*"
+        },
+        {
+          "exit": "exit three: the retreating conjugate pair",
+          "isolation_interval": null,
+          "status": "not real: the quotient conic h^2 + 11 h + 935/4 has the exact negative discriminant 11^2 - 935 = -814",
+          "value": "-5.6017536439763091 +- 8.2771295362453176 i"
+        }
+      ]
+    },
+    "S5_crossing_candidates": {
+      "candidate_count": 3,
+      "candidates": {
+        "i_year_seam_side_0": {
+          "candidate": "the year seam, side 0 of the twelve-phase cycle",
+          "decided": true,
+          "maximum_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+          "spatial_amplitude": {
+            "attained_at_side": 0,
+            "branch_reading_maximum": "2 + sqrt(8 sqrt(17) - 20)",
+            "branch_reading_maximum_enclosure": [
+              "19774129/3528921",
+              "18766528/3349103"
+            ],
+            "branch_reading_side_0": "|h|",
+            "branch_reading_side_1": "|E_0(h)|",
+            "branch_reading_side_1_enclosure": [
+              "575/512",
+              "1151/1024"
+            ],
+            "branch_reading_side_1_exact": "sqrt(17) - 3, from E_0^2 + 6 E_0 - 8 = 0 on a level-one branch",
+            "branch_reading_sides_2_to_11": "the frozen level 1",
+            "decided": true,
+            "declared_level_reading": "1, the frozen level carried by all twelve sides",
+            "declared_level_reading_maximum": "1",
+            "per_side_amplitudes": [
+              {
+                "attained": true,
+                "branch_reading_maximum": "18766528/3349103",
+                "declared_level_reading": "1",
+                "side": "side_0"
+              },
+              {
+                "attained": true,
+                "branch_reading_maximum": "1151/1024",
+                "declared_level_reading": "1",
+                "side": "side_1"
+              },
+              {
+                "attained": true,
+                "branch_reading_maximum": "1",
+                "declared_level_reading": "1",
+                "side": "sides_2_to_11"
+              },
+              {
+                "attained": true,
+                "branch_reading_maximum": "1",
+                "declared_level_reading": "1",
+                "side": "terminal_boundary_12"
+              }
+            ],
+            "which_branch": "the negative level-one branch h_- = -2 - sqrt(8 sqrt(17) - 20), whose amplitude is 5.6034490429..."
+          },
+          "time_coupling": {
+            "amplitudes": [
+              "31/512",
+              "15/512",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "attained_at_side": 0,
+            "decided": true,
+            "declared_shifted_reference": "c_m = s_m + 1/8",
+            "defects": [
+              "-31/512",
+              "-15/512",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0",
+              "0"
+            ],
+            "maximum": "31/512",
+            "side_0_seam_value": "1/8"
+          }
+        },
+        "ii_mutual_measuring_diagonal": {
+          "candidate": "the mutual-measuring diagonal a = b",
+          "decided": true,
+          "locus": "the 81 points z = 4 a with every coordinate in {0,4,8}",
+          "maximum_amplitude": "8",
+          "maximum_amplitude_reading": "the largest coordinate of the 81 diagonal points",
+          "size": 81,
+          "time_coupling_at_the_diagonal": "the diagonal is on the spatial side of the declared carrier and carries no time coupling of its own; the declared time coupling is the shifted reference's and is reported at candidate (i)",
+          "undecided_part": "the diagonal is not closed under the declared translations, so no time iteration is declared on it",
+          "why_the_diagonal_is_a_seam": "the diagonal is exactly q_block(z) = q_phase(z), where the two 81-valued observations agree, so it is where the mutual measuring is degenerate"
+        },
+        "iii_spectral_crossing": {
+          "candidate": "the spectral crossing of the block and phase characters",
+          "crossing_frequencies": 81,
+          "decided": true,
+          "declaration": "a base-9 character with index k and a base-3 character with index c cross when they are the same function on the 6561-point carrier, which holds exactly when k_i = 3 c_i in every coordinate",
+          "declared": true,
+          "maximum_amplitude": "1",
+          "spectral_companion": "the two declared Laplacian spectra meet exactly on the multiples of three, with multiplicities reported in the observations section"
+        }
+      },
+      "declared_reading": "Declared condition three: once the time factor enters it introduces a crossing point on the spatial side, and the maximum amplitude there is to be computed. Declared candidates, each computed exactly and each reported separately: (i) the year seam, side 0 of the twelve-phase cycle, where the time coupling |d_m| and the spatial amplitude |h_m| both attain their maximum - already computed for this fixture as 31/512 and 2 + sqrt(8 sqrt(17) - 20) = 5.6034490429...; (ii) the mutual-measuring diagonal a = b, which is the 81 points z = 4 a with every coordinate in {0,4,8}; (iii) a spectral crossing where the block and phase characters agree, which must be declared explicitly or recorded as not decided.",
+      "every_declared_candidate_reported_separately": true
+    },
+    "S6_controls": {
+      "amplitude_floor_witness": {
+        "J_inf": "1",
+        "attained": true,
+        "branches": [
+          {
+            "abs_E_0_upper_bound": "3225623197043/3312739180960",
+            "abs_h_upper_bound": "862667/1438910",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "-862667/1438910",
+              "-655322/1093063"
+            ],
+            "refined_interval": [
+              "-862667/1438910",
+              "-655322/1093063"
+            ],
+            "sign": "negative"
+          },
+          {
+            "abs_E_0_upper_bound": "10127514651741376781/10401033395124835416",
+            "abs_h_upper_bound": "764591/882701",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "1445356/1668627",
+              "764591/882701"
+            ],
+            "refined_interval": [
+              "1445356/1668627",
+              "764591/882701"
+            ],
+            "sign": "positive"
+          }
+        ],
+        "discriminant_value": "-269182911485215935",
+        "in_the_interior": true,
+        "on_the_discriminant_variety": false,
+        "p": "-2",
+        "q": "17/10",
+        "reproduced_from_the_first_scheme": true
+      },
+      "block_witness": {
+        "count_of_failures_of_the_particular_equation": 17496,
+        "declared_control": "The block-address two-point witness of 0228 \u00a73 must fail any time iteration declared on the 81 coarse block labels: (6,3,3,6) and (8,3,3,6) share the block (2,1,1,2) and have different blocks after T_0.",
+        "equal_inputs_different_successors": true,
+        "no_deterministic_update_on_the_81_block_labels_exists": true,
+        "produced_by_the_witness": true,
+        "qiong_fibre_of_the_witness": "{6,7,8} x {3,4,5} x {3,4,5} x {6,7,8}",
+        "refinement_chain_of_class_counts": [
+          81,
+          1296,
+          6561
+        ],
+        "the_witness_is_not_a_count": "the two-point witness decides the question; the count of failures of the particular equation q_block T_i = T_i q_block is reported beside it and is not the evidence",
+        "why": "a deterministic update F on the 81 block labels would have to satisfy F(q_block(z)) = q_block(T_0 z) for every fine point z; the witness gives two fine points with the same block label and different block labels after T_0, so no such F exists",
+        "witness": {
+          "block_after_T_0": [
+            [
+              2,
+              1,
+              1,
+              2
+            ],
+            [
+              0,
+              1,
+              1,
+              2
+            ]
+          ],
+          "common_block": [
+            2,
+            1,
+            1,
+            2
+          ],
+          "first_after_T_0": [
+            7,
+            3,
+            3,
+            6
+          ],
+          "first_point": [
+            6,
+            3,
+            3,
+            6
+          ],
+          "second_after_T_0": [
+            0,
+            3,
+            3,
+            6
+          ],
+          "second_point": [
+            8,
+            3,
+            3,
+            6
+          ]
+        }
+      },
+      "extrusion": {
+        "construction": "a spatial pattern repeated at every integer fourth coordinate, Q_3 x [0, 1] with the same spatial tiling at every level",
+        "declared_control": "The extrusion countermodel of 0228 \u00a77 must be reproduced and must be judged degenerate: repeating the same spatial pattern along the time direction, or closing only on the a = b diagonal of 81 points, is not a time resource and must not count as one.",
+        "declared_period": [
+          0,
+          0,
+          0,
+          1
+        ],
+        "diagonal_spatial_pattern": "the 81 points z = 4 a",
+        "diagonal_variant_period_verified_exactly": true,
+        "not_a_time_resource": true,
+        "period_verified_exactly": true,
+        "reproduced": true,
+        "spatial_pattern": "the 6561 fine points of the declared carrier, used as one pattern",
+        "time_coordinate": "a cyclic integer coordinate of the extrusion, declared for the control; the period is exact there",
+        "verdict": "Degenerate",
+        "why_degenerate": "the extruded carrier has the exact period (0,0,0,1) however aperiodic the spatial pattern is, and closing the extrusion on the 81-point diagonal a = b does not remove it, so the repetition carries no time information: repeating the same spatial pattern along the time direction, or closing only on the diagonal, is not a time resource"
+      },
+      "identity_loop_control": {
+        "agrees_with_the_first_scheme": true,
+        "control": "the identity-loop control of note 0235, reproduced on this reading",
+        "falsifiable": true,
+        "first_scheme_value": "identity",
+        "loops": [
+          {
+            "branch_count_per_sample": 2,
+            "branches_stay_separated": true,
+            "corners": [
+              [
+                "-6",
+                "4"
+              ],
+              [
+                "-5",
+                "4"
+              ],
+              [
+                "-5",
+                "6"
+              ],
+              [
+                "-6",
+                "6"
+              ]
+            ],
+            "justification": "the two real branches stay strictly separated at every sampled point, so each branch has exactly one nearest continuation and the permutation is decided exactly: identity",
+            "loop": "L0 identity control, non-encircling",
+            "maximum_exact_gap_between_the_branches": "2016051984781/2862796022772",
+            "minimum_exact_gap_between_the_branches": "2135530005487/3733504515996",
+            "pairing_at_every_step": [
+              0,
+              1
+            ],
+            "permutation_of_the_two_real_branches": "identity",
+            "sample_points": 64,
+            "verdict": "DecidedIdentity"
+          },
+          {
+            "branch_count_per_sample": 2,
+            "branches_stay_separated": true,
+            "corners": [
+              [
+                "5",
+                "4"
+              ],
+              [
+                "6",
+                "4"
+              ],
+              [
+                "6",
+                "6"
+              ],
+              [
+                "5",
+                "6"
+              ]
+            ],
+            "justification": "the two real branches stay strictly separated at every sampled point, so each branch has exactly one nearest continuation and the permutation is decided exactly: identity",
+            "loop": "L1 around a smooth point of the branch B1",
+            "maximum_exact_gap_between_the_branches": "468809823661/816903320292",
+            "minimum_exact_gap_between_the_branches": "761538645161/1575738760020",
+            "pairing_at_every_step": [
+              0,
+              1
+            ],
+            "permutation_of_the_two_real_branches": "identity",
+            "sample_points": 64,
+            "verdict": "DecidedIdentity"
+          }
+        ],
+        "permutation": "identity"
+      },
+      "realisation_control": {
+        "agrees_at_the_frozen_point": true,
+        "control_outcome": "FAILED_TO_DISCRIMINATE",
+        "detail": "the first scheme's deleted-side control left the value at the witness at exactly 1, so the minimiser did not move; that failure is retained here rather than repaired, and the discriminating variant is the change of equation from the level reading to the closure reading",
+        "discriminating_variant": "the closure reading E_{p,q}(h) = h of this run has one real branch where the level reading has two, which the level reading cannot reach",
+        "reproduced": true,
+        "retained": true
+      }
+    },
+    "S7_baseline_comparison": {
+      "do_the_time_conditions_change_what_is_reachable": {
+        "reason": "reachability is a property of a declared protocol with a transition relation and a certificate; this run changes the equation of the return, from level one to the closure, and reports the exact algebraic consequences.  No declared protocol in this contract maps a closed real path to a root permutation under the closure reading, and the first scheme's finding that no declared real loop realises the transposition is stated for the level reading only.  Whether the declared time conditions therefore change what is reachable is not decided here.",
+        "retained_partial_result": {
+          "amplitude_order": "1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20)",
+          "closure_amplitude": "3.2035072879526181...",
+          "closure_real_branches": 1,
+          "first_scheme_floor": "1",
+          "level_largest_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+          "level_real_branches": 2
+        },
+        "verdict": "NotDecided",
+        "what_was_decided": "the closure reading has one real branch where the level reading has two, and its realised amplitude is 3.2035072879526181... where the level reading's largest branch amplitude is 2 + sqrt(8 sqrt(17) - 20) = 5.6034490429..."
+      },
+      "first_scheme": {
+        "amplitude_floor": "J_inf = 1",
+        "attained_at": "(p, q) = (-2, 17/10)",
+        "no_declared_real_loop_realises_the_transposition": true,
+        "on_the_discriminant_variety": false,
+        "source": "note 0235 and experiments/exchange_amplitude_variation_v1/evidence.json"
+      },
+      "second_scheme": {
+        "enclosure": [
+          "6385298/1993221",
+          "7642665/2385718"
+        ],
+        "largest_level_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+        "largest_level_branch_amplitude_enclosure": [
+          "19774129/3528921",
+          "18766528/3349103"
+        ],
+        "real_branches_of_the_declared_level_reading": 2,
+        "real_branches_of_the_nontrivial_closure_branch": 1,
+        "unperturbed_closure_amplitude": "h* = 3.2035072879526181..."
+      },
+      "side_by_side": {
+        "amplitude_floor_of_the_first_scheme": "1",
+        "closure_amplitude_of_the_second_scheme": "3.2035072879526181...",
+        "level_reading_largest_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+        "real_branch_counts": {
+          "closure_reading": 1,
+          "level_reading": 2
+        },
+        "the_numbers_are_not_comparable_directly": true,
+        "why_not_comparable": "the floor is a minimum of the first scheme's J_inf over a perturbed family, while the closure amplitude is a root of a different equation of the same annual return; placing them side by side is a comparison of readings, not of reachable configurations"
+      }
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "not_implemented": [
+      "successive difference substitution of Zhang Jingzhong and Yang Lu",
+      "a certified complex or projective continuation of roots",
+      "a native certificate of any kind"
+    ],
+    "polynomial_library": "sympy",
+    "used_for": [
+      "exact polynomial arithmetic",
+      "resultants",
+      "Sturm real-root isolation with rational intervals",
+      "discriminant sign conditions"
+    ],
+    "version": "1.14.0"
+  },
+  "undecided": [
+    {
+      "item": "whether the declared time conditions change what is reachable",
+      "reason": "reachability needs a declared protocol with a transition relation; this run reports the exact algebraic consequence of the closure reading (one real branch instead of two) and does not declare such a protocol",
+      "retained_partial_result": {
+        "amplitude_order": "1 < 3.2035072879526181... < 2 + sqrt(8 sqrt(17) - 20)",
+        "closure_amplitude": "3.2035072879526181...",
+        "closure_real_branches": 1,
+        "first_scheme_floor": "1",
+        "level_largest_branch_amplitude": "2 + sqrt(8 sqrt(17) - 20)",
+        "level_real_branches": 2
+      }
+    },
+    {
+      "item": "a crossing of the two declared Laplacian spectra as dynamic quantities",
+      "reason": "the eigenvalues are exact elements of the ninth cyclotomic field and the two spectra meet only on the multiples of three, which is decided exactly; a crossing of the spectra as dynamic quantities would need a declared common carrier for both operators, which this contract does not supply",
+      "retained_partial_result": {
+        "multiplicities": {
+          "0": {
+            "multiplicity_on_the_length_3_carrier": 1,
+            "multiplicity_on_the_length_9_carrier": 1
+          },
+          "12": {
+            "multiplicity_on_the_length_3_carrier": 1120,
+            "multiplicity_on_the_length_9_carrier": 16
+          },
+          "3": {
+            "multiplicity_on_the_length_3_carrier": 16,
+            "multiplicity_on_the_length_9_carrier": 8
+          },
+          "6": {
+            "multiplicity_on_the_length_3_carrier": 112,
+            "multiplicity_on_the_length_9_carrier": 216
+          },
+          "9": {
+            "multiplicity_on_the_length_3_carrier": 448,
+            "multiplicity_on_the_length_9_carrier": 416
+          }
+        },
+        "reading": "the two declared Laplacian spectra meet only on the multiples of three, where the length-3 eigenvalue is constant on the length-9 carrier; the intersection is not the same object as the agreement of the two character bases",
+        "values": [
+          0,
+          3,
+          6,
+          9,
+          12
+        ]
+      }
+    },
+    {
+      "item": "a closed form for the realised closure root in an extension smaller than the splitting field",
+      "reason": "the cubic is irreducible over the rationals and over the real quadratic extensions tested here; the Cardano expression in cube roots of complex Radicands is the exact closed form by the depressed cubic and is enclosed exactly, but no simplification to a surd of the declared kind was found",
+      "retained_partial_result": {
+        "bisection_steps": 240,
+        "inside_the_open_interval_5_6": true,
+        "sign_test": "the sign of t^3 - (A +- B sqrt(d)) is decided by exact squaring in Q(sqrt(4281)); no decimal and no floating-point value is formed",
+        "u_enclosed_in": [
+          "6814631902064019868394917056205550513571122727104678771339912685634977237/883423532389192164791648750371459257913741948437809479060803100646309888",
+          "13629263804128039736789834112411101027142245454209357542679825371269954475/1766847064778384329583297500742918515827483896875618958121606201292619776"
+        ],
+        "u_plus_v_enclosed_in": [
+          "10371699621457603983392935177783289781401954570356572802043326604039575931/1766847064778384329583297500742918515827483896875618958121606201292619776",
+          "10371699621457603983392935177783289781401954570356572802043326604039575933/1766847064778384329583297500742918515827483896875618958121606201292619776"
+        ],
+        "v_enclosed_in": [
+          "-3257564182670435753396898934627811245740290883852784740636498767230378543/1766847064778384329583297500742918515827483896875618958121606201292619776",
+          "-1628782091335217876698449467313905622870145441926392370318249383615189271/883423532389192164791648750371459257913741948437809479060803100646309888"
+        ]
+      }
+    }
+  ],
+  "version": 1,
+  "what_is_not_claimed": {
+    "exchange_realised_by_a_declared_real_loop": false,
+    "forecast": false,
+    "meteorological_correspondence": "Declared correspondence only, not a physical claim.",
+    "meteorological_data_side": "Unavailable in this checkout.",
+    "meteorological_data_used": false,
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_note_or_contract_edited": true,
+    "no_rust_source_or_lock_changed": true,
+    "no_wind_gap_no_plateau_no_january_circulation": true,
+    "physical_claim": false,
+    "stable_api_change": false,
+    "time_direction_is_a_declared_order_resource_only": true
+  }
+}

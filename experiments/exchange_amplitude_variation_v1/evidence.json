@@ -1,0 +1,4034 @@
+{
+  "assertions": 173,
+  "checker_sha256": "1aa12c438926eb1f8b4a2fd2f2c4f2390b91f1903ad4800dcbc391059cb35e00",
+  "checks": {
+    "assertions_within_budget": true,
+    "every_control_reported": true,
+    "every_declared_case_reported": true,
+    "every_declared_loop_reported": true,
+    "every_declared_point_reported": true,
+    "no_control_is_silently_repaired": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/exchange_amplitude_variation_v1/contract.json",
+  "contract_initial": "experiments/exchange_amplitude_variation_v1/contract-initial.json",
+  "contract_initial_sha256": "da49e395ad998dccbdf8794184043428023e06b9c6a22e6b74224b14d33eed01",
+  "contract_sha256": "ca7c5ab30a69752a55c7f5af3f39e5d4029a4653a3a3a4f399d3a1c6015aecdb",
+  "level": "Bounded external exact calibration. No native certificate, no stable API, no physical claim, no forecast and no meteorological data.",
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "J_inf_includes_the_frozen_side": "the maximum is taken over |h|, |E_0(h)| and the exact level 1, as the task formula states",
+    "absolute_values": "|h| = sigma_h h and |E_0(h)| = sigma_E E_0(h) with the signs declared per case; the stationarity conditions are invariant under the sign, so only the level equation carries it",
+    "case_stationarity_system": "each |h| case writes the along-branch derivative conditions Q'(h) G_p = 0 and Q'(h) G_q = 0 with the branch equation G = 0 and the level equation Q(h) = lambda; the contract's prose 'grad J = lambda grad D with D = 0' is not used, because taking D = 0 as a hypothesis would make the conjecture it is meant to test circular. The conclusion reduced modulo each chain is D itself.",
+    "declared_case_set": "two branches times two active quantities plus the frozen-side case; an undeclared active side is a different run",
+    "deleted_side_control": "a single deleted side cannot lower the floor, so the discriminating variant deletes all ten frozen sides; both are reported",
+    "loops": "each declared loop is an axis-aligned rational rectangle, and 'encircling a declared branch' is read as: the loop crosses that branch in exactly two points, so the arc between them lies inside the loop",
+    "minimality_method": "the interval-subdivision variant of exact rational interval arithmetic; successive difference substitution is not implemented",
+    "resource_limits": "the checker installs a CPU limit, a file-size limit and a wall alarm, and records the contract's declared memory budget without installing an address-space limit; installing one would add a row to the frozen rlimit inventory under experiments/rlimit_portability and change a pre-existing artifact"
+  },
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "contract-initial.json is retained byte for byte and is not rewritten",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No claims.toml refresh beyond the one new claim, no native admission and no Seal",
+    "The 0233 fixture, its experiment and the 0234 carrier are cited, not edited"
+  ],
+  "residual": [
+    "Two declared realisations of 'a perturbation at the positive and the negative real root' are run; the pairing of p and q with the branches is a declared convention, not a derived fact",
+    "A minimum of a maximum is piecewise algebraic: the case analysis is finite but declared, and an undeclared active side is a different run",
+    "Nothing here is a statement about the atmosphere, about the Tibetan Plateau, about January, or about any wind gap; the correspondence is declared and the data side is Unavailable",
+    "The variational computation produces a declared amplitude reading of one arithmetic process, not a stability result, not a physical flow and not a forecast"
+  ],
+  "schema": "adva.external.exchange-amplitude-variation-calibration.v1",
+  "sections": {
+    "S1_fixture_and_side_identity": {
+      "E_0": "h**2*p + h**2/8 + h/2",
+      "E_p_q": "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8",
+      "E_p_q_at_zero_is_zero_for_declared_parameters": [
+        "0, 0",
+        "-2, 17/10",
+        "15/8, 0",
+        "1, 1",
+        "-1/8, 0",
+        "5/2, -1/4"
+      ],
+      "E_p_q_minus_one": "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8 - 1",
+      "curvatures": [
+        "1/8",
+        "1/8",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "declared_reading": "The twelve-phase fixture of note 0233 and experiment native_floquet_expression_v1: the exact periodic reference (0,1,2,1,0,-1,-2,-1,0,1,0,-1,0), dilations (1/2,3/4,1,...,1), curvatures (1/8,1/8,0,...,0).",
+      "dilations": [
+        "1/2",
+        "3/4",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1",
+        "1"
+      ],
+      "reference_is_an_exact_periodic_orbit": true,
+      "reference_path": [
+        0,
+        1,
+        2,
+        1,
+        0,
+        -1,
+        -2,
+        -1,
+        0,
+        1,
+        0,
+        -1,
+        0
+      ],
+      "side_amplitude_model": {
+        "side_0": "|h|",
+        "side_1": "|E_0(h)| with E_0(h) = h/2 + (1/8 + p) h^2",
+        "sides_2_to_11": "exactly 1 on a branch, because h_m = h_2 = E_{p,q}(h) = 1",
+        "terminal_boundary_12": "exactly 1 on a branch, reported separately"
+      },
+      "side_identity_for_a_general_h": {
+        "annual_return": "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8",
+        "composed_return": "h**4/512 + h**3/64 + h**2/8 + 3*h/8",
+        "h_1": "h**2/8 + h/2",
+        "h_2": "h**4/512 + h**3/64 + h**2/8 + 3*h/8",
+        "h_m_equals_h_2_for_m_equals_3_to_12": true
+      }
+    },
+    "S2_unperturbed_return": {
+      "annual_return": "h**4/512 + h**3/64 + h**2/8 + 3*h/8",
+      "conjugate_pair": "h = -2 +- i sqrt(8 sqrt(17) + 20)",
+      "factorisation_checked_by_field_arithmetic": true,
+      "factorisation_in_Q_sqrt17_y": "(y^2 + 20 - 8 sqrt(17)) (y^2 + 20 + 8 sqrt(17))",
+      "field_rows": [
+        {
+          "name": "real pair",
+          "sign_of_y_squared": "negative",
+          "y_squared": "(-20 + 8 sqrt(17))"
+        },
+        {
+          "name": "conjugate pair",
+          "sign_of_y_squared": "negative",
+          "y_squared": "(-20 + -8 sqrt(17))"
+        }
+      ],
+      "return_polynomial": "h**4 + 8*h**3 + 64*h**2 + 192*h - 512",
+      "shifted_polynomial": "y**4 + 40*y**2 - 688",
+      "sign_conditions": {
+        "8_sqrt17_minus_20_positive": true,
+        "comparison": "64*17 = 1088 > 400 = 20^2, so 8 sqrt(17) > 20",
+        "first_factor": "y^2 + 20 - 8 sqrt(17) = y^2 - (8 sqrt(17) - 20) has two real roots, since its constant term is negative",
+        "second_factor": "y^2 + 20 + 8 sqrt(17) > 0 for every real y, so it carries the conjugate pair"
+      },
+      "sturm": {
+        "distinct_real_roots": 2,
+        "exact_brackets": {
+          "negative_root_in": "(-6, -5)",
+          "positive_root_in": "(3/2, 17/10)"
+        },
+        "isolation_intervals": [
+          [
+            "-18766528/3349103",
+            "-19774129/3528921",
+            1
+          ],
+          [
+            "5658445/3528921",
+            "5370116/3349103",
+            1
+          ]
+        ]
+      },
+      "two_real_roots": "h = -2 +- sqrt(8 sqrt(17) - 20)"
+    },
+    "S3_superseded_collapse_witness": {
+      "J_inf_at_the_collapsed_branch": "0",
+      "amplitudes_at_the_collapsed_branch": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "branches_at_plus_minus_eps": [
+        {
+          "J_inf_of_the_two_branches": "1/2",
+          "eps": "1/2",
+          "side_amplitudes_negative_branch": [
+            "1/2",
+            "7/32",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192",
+            "1295/8192"
+          ],
+          "side_amplitudes_positive_branch": [
+            "1/2",
+            "9/32",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192",
+            "1809/8192"
+          ],
+          "terminal_amplitude_negative_branch": "1295/8192",
+          "terminal_amplitude_positive_branch": "1809/8192"
+        },
+        {
+          "J_inf_of_the_two_branches": "1/4",
+          "eps": "1/4",
+          "side_amplitudes_negative_branch": [
+            "1/4",
+            "15/128",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072",
+            "11295/131072"
+          ],
+          "side_amplitudes_positive_branch": [
+            "1/4",
+            "17/128",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072",
+            "13345/131072"
+          ],
+          "terminal_amplitude_negative_branch": "11295/131072",
+          "terminal_amplitude_positive_branch": "13345/131072"
+        },
+        {
+          "J_inf_of_the_two_branches": "1/10",
+          "eps": "1/10",
+          "side_amplitudes_negative_branch": [
+            "1/10",
+            "39/800",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000",
+            "185679/5120000"
+          ],
+          "side_amplitudes_positive_branch": [
+            "1/10",
+            "41/800",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000",
+            "198481/5120000"
+          ],
+          "terminal_amplitude_negative_branch": "185679/5120000",
+          "terminal_amplitude_positive_branch": "198481/5120000"
+        },
+        {
+          "J_inf_of_the_two_branches": "1/100",
+          "eps": "1/100",
+          "side_amplitudes_negative_branch": [
+            "1/100",
+            "399/80000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000",
+            "191360799/51200000000"
+          ],
+          "side_amplitudes_positive_branch": [
+            "1/100",
+            "401/80000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000",
+            "192640801/51200000000"
+          ],
+          "terminal_amplitude_negative_branch": "191360799/51200000000",
+          "terminal_amplitude_positive_branch": "192640801/51200000000"
+        }
+      ],
+      "collapsed_parameters": {
+        "p": "-4",
+        "q": "8 sqrt(17) - 16"
+      },
+      "double_root": {
+        "h": "0",
+        "multiplicity": 2,
+        "y": "2"
+      },
+      "first_factor_at_the_collapsed_parameters": "(y - 2)^2",
+      "initial_family": "P_{p,q}(y) = (y^2 + p y + (20 - 8 sqrt(17) + q)) (y^2 + 20 + 8 sqrt(17)) with y = h + 2",
+      "superseded_sha256_declared": "da49e395ad998dccbdf8794184043428023e06b9c6a22e6b74224b14d33eed01",
+      "superseded_sha256_matches": true,
+      "superseded_sha256_recomputed": "da49e395ad998dccbdf8794184043428023e06b9c6a22e6b74224b14d33eed01",
+      "supersedes": "experiments/exchange_amplitude_variation_v1/contract-initial.json",
+      "terminal_amplitude_at_the_collapsed_branch": "0",
+      "the_reference_is_never_a_branch_in_the_frozen_family": "E_{p,q}(0) = 0 for every (p, q), while a branch requires E_{p,q}(h) = 1",
+      "why_the_initial_contract_was_superseded": "In the initial family the two branches were roots of the perturbed quartic rather than of a declared return equation, so they could be moved onto the reference h = 0. At (p, q) = (-4, 8 sqrt(17) - 16) the quartic has a double root exactly at h = 0, every side amplitude vanishes and J_inf = 0 with coincident branches; with distinct branches at +-eps the functional is exactly eps, so the infimum 0 is approached without being attained. The frozen contract instead keeps the branches defined by E_{p,q}(h) = 1, so h = 0 is never a branch and the collapse is excluded."
+    },
+    "S4_discriminant_variety": {
+      "declared_branches": [
+        {
+          "locus": "q = 256 p^2 + 76 p + 43/8",
+          "multiplicity": 1,
+          "name": "B1",
+          "nature": "two simple roots of the quartic collide for every p"
+        },
+        {
+          "locus": "q = -17/64",
+          "multiplicity": 2,
+          "name": "B2",
+          "nature": "the quartic keeps a two-fold factor for every p; the double roots are real exactly when p > -19/128 and become one double root at the vertex p = -19/128, where B2 is tangent to B1"
+        },
+        {
+          "locus": "q = -1/8",
+          "multiplicity": 2,
+          "name": "B3",
+          "nature": "the leading coefficient vanishes and two roots leave the affine chart"
+        },
+        {
+          "locus": "p = -1/8",
+          "multiplicity": 2,
+          "name": "B4",
+          "nature": "the leading coefficient vanishes and two roots leave the affine chart"
+        }
+      ],
+      "definition": "D(p, q) = Res_h(E_{p,q}(h) - 1, d/dh E_{p,q}(h)), cleared of denominators",
+      "degree_in_p": 8,
+      "degree_in_q": 5,
+      "factorisation": [
+        {
+          "factor": "8*q + 1",
+          "multiplicity": 2
+        },
+        {
+          "factor": "64*q + 17",
+          "multiplicity": 2
+        },
+        {
+          "factor": "8*p + 1",
+          "multiplicity": 6
+        },
+        {
+          "factor": "2048*p**2 + 608*p - 8*q + 43",
+          "multiplicity": 1
+        }
+      ],
+      "integer_polynomial": "-140737488355328*p**8*q**4 - 109951162777600*p**8*q**3 - 30820685316096*p**8*q**2 - 3650722201600*p**8*q - 155155693568*p**8 - 147334558121984*p**7*q**4 - 115105123532800*p**7*q**3 - 32265404940288*p**7*q**2 - 3821849804800*p**7*q - 162428616704*p**7 + 549755813888*p**6*q**5 - 66846870994944*p**6*q**4 - 52439268982784*p**6*q**3 - 14718869700608*p**6*q**2 - 1744538959872*p**6*q - 74168664064*p**6 + 412316860416*p**5*q**5 - 17184164151296*p**5*q**4 - 13586491506688*p**5*q**3 - 3823078735872*p**5*q**2 - 453657493504*p**5*q - 19299762176*p**5 + 128849018880*p**4*q**5 - 2739383828480*p**4*q**4 - 2190569635840*p**4*q**3 - 618611343360*p**4*q**2 - 73528606720*p**4*q - 3131002880*p**4 + 21474836480*p**3*q**5 - 277428043776*p**3*q**4 - 225144995840*p**3*q**3 - 63872172032*p**3*q**2 - 7607992320*p**3*q - 324345856*p**3 + 2013265920*p**2*q**5 - 17435721728*p**2*q**4 - 14409564160*p**2*q**3 - 4110544896*p**2*q**2 - 490862080*p**2*q - 20955968*p**2 + 100663296*p*q**5 - 621805568*p*q**4 - 525180928*p*q**3 - 150782976*p*q**2 - 18058624*p*q - 772208*p + 2097152*q**5 - 9633792*q**4 - 8347136*q**3 - 2414144*q**2 - 290088*q - 12427",
+      "relation_to_the_discriminant": "Res_h(G, G_h) = lc(G) disc_h(G) with lc(G) = (1/8 + p)^2 (1/8 + q)",
+      "sign_rule": "away from the branches, sign(D) = -sign(f(p) - q) and sign(disc_h(G)) = sign(D) sign(1/8 + q)",
+      "sign_rule_checks": [
+        {
+          "D": "-12427",
+          "disc_h_G": "-12427/1073741824",
+          "label": "frozen",
+          "p": "0",
+          "q": "0",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": -1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "-269182911485215935",
+          "disc_h_G": "-81943047636291/1073741824",
+          "label": "the declared J_inf witness",
+          "p": "-2",
+          "q": "17/10",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": -1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "-760017882670371",
+          "disc_h_G": "-1042548535899/1073741824",
+          "label": "equal perturbations",
+          "p": "1",
+          "q": "1",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": -1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "-40645943099392",
+          "disc_h_G": "-2422687/16384",
+          "label": "large positive p with q = 0",
+          "p": "15/8",
+          "q": "0",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": -1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "1930416005",
+          "disc_h_G": "39396245/1073741824",
+          "label": "above the parabola with q > -1/8",
+          "p": "0",
+          "q": "6",
+          "sign_D": 1,
+          "sign_D_by_the_declared_rule": 1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": 1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "-1345883/3125",
+          "disc_h_G": "192269/671088640000",
+          "label": "below q = -1/8",
+          "p": "0",
+          "q": "-3/10",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": 1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "-1232030328165",
+          "disc_h_G": "2793719565/1073741824",
+          "label": "four real roots",
+          "p": "5/2",
+          "q": "-1/4",
+          "sign_D": -1,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": true,
+          "sign_D_rule_applies": true,
+          "sign_disc_by_the_declared_rule": 1,
+          "sign_disc_rule_agrees": true,
+          "sign_disc_rule_applies": true
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "on the branch B1",
+          "p": "0",
+          "q": "43/8",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": 0,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "on the branch B2 at p = 0",
+          "p": "0",
+          "q": "-17/64",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "the tangency vertex of B1 and B2",
+          "p": "-19/128",
+          "q": "-17/64",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": 0,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "on the degenerate line B3",
+          "p": "0",
+          "q": "-1/8",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": -1,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "on the degenerate line B4",
+          "p": "-1/8",
+          "q": "0",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": 1,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        },
+        {
+          "D": "0",
+          "disc_h_G": "0",
+          "label": "the triple point of B1, B3 and B4",
+          "p": "-1/8",
+          "q": "-1/8",
+          "sign_D": 0,
+          "sign_D_by_the_declared_rule": 0,
+          "sign_D_rule_agrees": null,
+          "sign_D_rule_applies": false,
+          "sign_disc_by_the_declared_rule": 0,
+          "sign_disc_rule_agrees": null,
+          "sign_disc_rule_applies": false
+        }
+      ],
+      "term_count": 52,
+      "total_degree": 12,
+      "two_real_roots_region": "q < f(p) with q > -1/8, or q > f(p) with q < -1/8"
+    },
+    "S5_case_analysis": {
+      "cases": [
+        {
+          "active_quantity": "|h|",
+          "branch": "positive real root",
+          "case": "C1",
+          "chain": [
+            {
+              "main_variable": "p",
+              "polynomial": "h**4*p**2 + h**4*p/4 + h**4/64 + h**3*p + h**3/8 + h**2/4"
+            },
+            {
+              "main_variable": "p",
+              "polynomial": "3*h**6*p/4 + 3*h**6/32 + 3*h**5/8 - h**4"
+            },
+            {
+              "main_variable": "q",
+              "polynomial": "2*h**8*q + 13*h**8/16"
+            }
+          ],
+          "chain_status": "reduced",
+          "conclusion": "the primitive integer discriminant polynomial D(p, q)",
+          "cross_check_verdict": "vacuous_agreement_with_a_recorded_chain_limitation: the basic pseudo-division chain is not a zero-decomposition of this inconsistent system, so its nonzero remainder is retained as a limitation of the chain and not as a verdict",
+          "groebner_basis_size": 1,
+          "groebner_membership": true,
+          "groebner_remainder": "0",
+          "leftover_polynomials": [],
+          "methods_agree": true,
+          "pseudo_reduction_steps": [
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 38,
+              "terms_before": 52
+            },
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 22,
+              "terms_before": 38
+            },
+            {
+              "main_variable": "q",
+              "remainder_is_zero": false,
+              "remainder_terms": 4,
+              "terms_before": 22
+            }
+          ],
+          "reading": "|h| = h > 0 on the positive branch, so the along-branch derivative of the active quantity is 1 and its vanishing forces grad_{p,q} G = 0",
+          "remainder": "-3359232*h**65*(27*h**3 - 1008*h**2 + 16896*h - 131072)",
+          "remainder_is_zero": false,
+          "solutions": {
+            "certificate": "G_q = h^2 (8 h p + h + 4)^2 / 64 = 0 together with G(0) = -1 forces h != 0 and p = -(h + 4)/(8 h); substituting that into G gives G = -1 identically, contradicting G = 0. The Groebner basis of the system is {1}, which confirms emptiness over the complex numbers.",
+            "detail": "the branch value |h| is never a stationary active quantity, so this case carries no candidate minimiser",
+            "groebner_basis_is_one": true,
+            "kind": "empty"
+          },
+          "system": [
+            "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8 - 1",
+            "2*h**4*p*q + h**4*p/4 + h**4*q/4 + h**4/32 + h**3*q + h**3/8 + 3*h**2/4",
+            "h**4*p**2 + h**4*p/4 + h**4/64 + h**3*p + h**3/8 + h**2/4"
+          ],
+          "verdict": "EmptyCase_no_stationary_candidate"
+        },
+        {
+          "active_quantity": "|E_0(h)|",
+          "branch": "positive real root",
+          "case": "C2",
+          "chain": [
+            {
+              "main_variable": "p",
+              "polynomial": "2*h*p + h/4 + 1/2"
+            },
+            {
+              "main_variable": "q",
+              "polynomial": "h**4*q/4 + h**4/32 + 3*h**3/4 - 4*h**2"
+            },
+            {
+              "main_variable": "lam",
+              "polynomial": "-h**2/2 + 2*h*lam"
+            }
+          ],
+          "chain_status": "reduced",
+          "conclusion": "the primitive integer discriminant polynomial D(p, q)",
+          "cross_check_verdict": "agree",
+          "groebner_basis_size": 4,
+          "groebner_membership": true,
+          "groebner_remainder": "0",
+          "leftover_polynomials": [],
+          "methods_agree": true,
+          "pseudo_reduction_steps": [
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 16,
+              "terms_before": 52
+            },
+            {
+              "main_variable": "q",
+              "remainder_is_zero": true,
+              "remainder_terms": 0,
+              "terms_before": 16
+            }
+          ],
+          "reading": "the along-branch derivative of +-E_0(h) vanishes where E_0'(h) = 0 or where grad_{p,q} G = 0; the second component is C1 and is run there",
+          "remainder": "0",
+          "remainder_is_zero": true,
+          "solutions": {
+            "declared_instances": [
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-4",
+                "level_lambda": "-1",
+                "on_the_discriminant_variety": true,
+                "p": "-1/16",
+                "q": "13/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/2",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-2",
+                "level_lambda": "-1/2",
+                "on_the_discriminant_variety": true,
+                "p": "0",
+                "q": "43/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/4",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1",
+                "level_lambda": "-1/4",
+                "on_the_discriminant_variety": true,
+                "p": "1/8",
+                "q": "151/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/8",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1/2",
+                "level_lambda": "-1/8",
+                "on_the_discriminant_variety": true,
+                "p": "3/8",
+                "q": "559/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/8",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1/2",
+                "level_lambda": "1/8",
+                "on_the_discriminant_variety": true,
+                "p": "-5/8",
+                "q": "463/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/4",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1",
+                "level_lambda": "1/4",
+                "on_the_discriminant_variety": true,
+                "p": "-3/8",
+                "q": "103/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/2",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "2",
+                "level_lambda": "1/2",
+                "on_the_discriminant_variety": true,
+                "p": "-1/4",
+                "q": "19/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "4",
+                "level_lambda": "1",
+                "on_the_discriminant_variety": true,
+                "p": "-3/16",
+                "q": "1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "4/3",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1",
+                  "B3"
+                ],
+                "degree_at_that_point": 2,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "16/3",
+                "level_lambda": "4/3",
+                "on_the_discriminant_variety": true,
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "8/3",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1",
+                  "B2"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "32/3",
+                "level_lambda": "8/3",
+                "on_the_discriminant_variety": true,
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "isolated_intersections_with_the_other_branches": [
+              {
+                "branches": "B1 and B3",
+                "h": "16/3",
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "branches": "B1 and B2, the vertex",
+                "h": "32/3",
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "kind": "one-dimensional, parametrised by the free branch value h",
+            "level": "h**2*p + h**2/8 + h/2",
+            "locus": "q = f(p) on the whole declared locus, so every stationary candidate of this case lies on the discriminant variety",
+            "p_of_h": "(-h - 2)/(8*h)",
+            "q_of_h": "-1/8 - 3/h + 16/h**2"
+          },
+          "system": [
+            "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8 - 1",
+            "2*h*p + h/4 + 1/2",
+            "-h**2*p - h**2/8 - h/2 + lam"
+          ],
+          "verdict": "OnTheDiscriminantVariety"
+        },
+        {
+          "active_quantity": "|h|",
+          "branch": "negative real root",
+          "case": "C3",
+          "chain": [
+            {
+              "main_variable": "p",
+              "polynomial": "h**4*p**2 + h**4*p/4 + h**4/64 + h**3*p + h**3/8 + h**2/4"
+            },
+            {
+              "main_variable": "p",
+              "polynomial": "3*h**6*p/4 + 3*h**6/32 + 3*h**5/8 - h**4"
+            },
+            {
+              "main_variable": "q",
+              "polynomial": "2*h**8*q + 13*h**8/16"
+            }
+          ],
+          "chain_status": "reduced",
+          "conclusion": "the primitive integer discriminant polynomial D(p, q)",
+          "cross_check_verdict": "vacuous_agreement_with_a_recorded_chain_limitation: the basic pseudo-division chain is not a zero-decomposition of this inconsistent system, so its nonzero remainder is retained as a limitation of the chain and not as a verdict",
+          "groebner_basis_size": 1,
+          "groebner_membership": true,
+          "groebner_remainder": "0",
+          "leftover_polynomials": [],
+          "methods_agree": true,
+          "pseudo_reduction_steps": [
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 38,
+              "terms_before": 52
+            },
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 22,
+              "terms_before": 38
+            },
+            {
+              "main_variable": "q",
+              "remainder_is_zero": false,
+              "remainder_terms": 4,
+              "terms_before": 22
+            }
+          ],
+          "reading": "as C1 with |h| = -h < 0",
+          "remainder": "-3359232*h**65*(27*h**3 - 1008*h**2 + 16896*h - 131072)",
+          "remainder_is_zero": false,
+          "solutions": {
+            "certificate": "G_q = h^2 (8 h p + h + 4)^2 / 64 = 0 together with G(0) = -1 forces h != 0 and p = -(h + 4)/(8 h); substituting that into G gives G = -1 identically, contradicting G = 0. The Groebner basis of the system is {1}, which confirms emptiness over the complex numbers.",
+            "detail": "the branch value |h| is never a stationary active quantity, so this case carries no candidate minimiser",
+            "groebner_basis_is_one": true,
+            "kind": "empty"
+          },
+          "system": [
+            "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8 - 1",
+            "2*h**4*p*q + h**4*p/4 + h**4*q/4 + h**4/32 + h**3*q + h**3/8 + 3*h**2/4",
+            "h**4*p**2 + h**4*p/4 + h**4/64 + h**3*p + h**3/8 + h**2/4"
+          ],
+          "verdict": "EmptyCase_no_stationary_candidate"
+        },
+        {
+          "active_quantity": "|E_0(h)|",
+          "branch": "negative real root",
+          "case": "C4",
+          "chain": [
+            {
+              "main_variable": "p",
+              "polynomial": "2*h*p + h/4 + 1/2"
+            },
+            {
+              "main_variable": "q",
+              "polynomial": "h**4*q/4 + h**4/32 + 3*h**3/4 - 4*h**2"
+            },
+            {
+              "main_variable": "lam",
+              "polynomial": "-h**2/2 + 2*h*lam"
+            }
+          ],
+          "chain_status": "reduced",
+          "conclusion": "the primitive integer discriminant polynomial D(p, q)",
+          "cross_check_verdict": "agree",
+          "groebner_basis_size": 4,
+          "groebner_membership": true,
+          "groebner_remainder": "0",
+          "leftover_polynomials": [],
+          "methods_agree": true,
+          "pseudo_reduction_steps": [
+            {
+              "main_variable": "p",
+              "remainder_is_zero": false,
+              "remainder_terms": 16,
+              "terms_before": 52
+            },
+            {
+              "main_variable": "q",
+              "remainder_is_zero": true,
+              "remainder_terms": 0,
+              "terms_before": 16
+            }
+          ],
+          "reading": "as C2 on the negative branch",
+          "remainder": "0",
+          "remainder_is_zero": true,
+          "solutions": {
+            "declared_instances": [
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-4",
+                "level_lambda": "-1",
+                "on_the_discriminant_variety": true,
+                "p": "-1/16",
+                "q": "13/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/2",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-2",
+                "level_lambda": "-1/2",
+                "on_the_discriminant_variety": true,
+                "p": "0",
+                "q": "43/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/4",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1",
+                "level_lambda": "-1/4",
+                "on_the_discriminant_variety": true,
+                "p": "1/8",
+                "q": "151/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/8",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1/2",
+                "level_lambda": "-1/8",
+                "on_the_discriminant_variety": true,
+                "p": "3/8",
+                "q": "559/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/8",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1/2",
+                "level_lambda": "1/8",
+                "on_the_discriminant_variety": true,
+                "p": "-5/8",
+                "q": "463/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/4",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1",
+                "level_lambda": "1/4",
+                "on_the_discriminant_variety": true,
+                "p": "-3/8",
+                "q": "103/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/2",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "2",
+                "level_lambda": "1/2",
+                "on_the_discriminant_variety": true,
+                "p": "-1/4",
+                "q": "19/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "4",
+                "level_lambda": "1",
+                "on_the_discriminant_variety": true,
+                "p": "-3/16",
+                "q": "1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "4/3",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1",
+                  "B3"
+                ],
+                "degree_at_that_point": 2,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "16/3",
+                "level_lambda": "4/3",
+                "on_the_discriminant_variety": true,
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "8/3",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1",
+                  "B2"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "32/3",
+                "level_lambda": "8/3",
+                "on_the_discriminant_variety": true,
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "isolated_intersections_with_the_other_branches": [
+              {
+                "branches": "B1 and B3",
+                "h": "16/3",
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "branches": "B1 and B2, the vertex",
+                "h": "32/3",
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "kind": "one-dimensional, parametrised by the free branch value h",
+            "level": "h**2*p + h**2/8 + h/2",
+            "locus": "q = f(p) on the whole declared locus, so every stationary candidate of this case lies on the discriminant variety",
+            "p_of_h": "(-h - 2)/(8*h)",
+            "q_of_h": "-1/8 - 3/h + 16/h**2"
+          },
+          "system": [
+            "h**4*p**2*q + h**4*p**2/8 + h**4*p*q/4 + h**4*p/32 + h**4*q/64 + h**4/512 + h**3*p*q + h**3*p/8 + h**3*q/8 + h**3/64 + 3*h**2*p/4 + h**2*q/4 + h**2/8 + 3*h/8 - 1",
+            "2*h*p + h/4 + 1/2",
+            "-h**2*p - h**2/8 - h/2 + lam"
+          ],
+          "verdict": "OnTheDiscriminantVariety"
+        },
+        {
+          "active_quantity": "the exact level 1",
+          "branch": "the frozen constant side",
+          "case": "C5",
+          "chain": [],
+          "cross_check_verdict": "not_applicable",
+          "groebner_basis_size": null,
+          "groebner_membership": null,
+          "pseudo_reduction_steps": [],
+          "reading": "no stationarity system: J_inf is identically 1 wherever |h| and |E_0(h)| are both strictly below 1, so this case has no interior critical point and is decided in S7",
+          "remainder": null,
+          "remainder_is_zero": null,
+          "solutions": {
+            "declared_instances": [
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-4",
+                "level_lambda": "-1",
+                "on_the_discriminant_variety": true,
+                "p": "-1/16",
+                "q": "13/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/2",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-2",
+                "level_lambda": "-1/2",
+                "on_the_discriminant_variety": true,
+                "p": "0",
+                "q": "43/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/4",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1",
+                "level_lambda": "-1/4",
+                "on_the_discriminant_variety": true,
+                "p": "1/8",
+                "q": "151/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "-1/8",
+                "branch_sign_matches_the_case": true,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "-1/2",
+                "level_lambda": "-1/8",
+                "on_the_discriminant_variety": true,
+                "p": "3/8",
+                "q": "559/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/8",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1/2",
+                "level_lambda": "1/8",
+                "on_the_discriminant_variety": true,
+                "p": "-5/8",
+                "q": "463/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/4",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "1",
+                "level_lambda": "1/4",
+                "on_the_discriminant_variety": true,
+                "p": "-3/8",
+                "q": "103/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1/2",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "2",
+                "level_lambda": "1/2",
+                "on_the_discriminant_variety": true,
+                "p": "-1/4",
+                "q": "19/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "1",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 3,
+                "h": "4",
+                "level_lambda": "1",
+                "on_the_discriminant_variety": true,
+                "p": "-3/16",
+                "q": "1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "4/3",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1",
+                  "B3"
+                ],
+                "degree_at_that_point": 2,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "16/3",
+                "level_lambda": "4/3",
+                "on_the_discriminant_variety": true,
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "D_at_that_point": "0",
+                "E_0_at_the_branch": "8/3",
+                "branch_sign_matches_the_case": false,
+                "declared_branch_membership": [
+                  "B1",
+                  "B2"
+                ],
+                "degree_at_that_point": 4,
+                "distinct_real_roots_at_that_point": 1,
+                "h": "32/3",
+                "level_lambda": "8/3",
+                "on_the_discriminant_variety": true,
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "isolated_intersections_with_the_other_branches": [
+              {
+                "branches": "B1 and B3",
+                "h": "16/3",
+                "p": "-11/64",
+                "q": "-1/8"
+              },
+              {
+                "branches": "B1 and B2, the vertex",
+                "h": "32/3",
+                "p": "-19/128",
+                "q": "-17/64"
+              }
+            ],
+            "kind": "one-dimensional, parametrised by the free branch value h",
+            "level": "h**2*p + h**2/8 + h/2",
+            "locus": "q = f(p) on the whole declared locus, so every stationary candidate of this case lies on the discriminant variety",
+            "p_of_h": "(-h - 2)/(8*h)",
+            "q_of_h": "-1/8 - 3/h + 16/h**2"
+          },
+          "system": [],
+          "verdict": "NoStationaritySystem"
+        }
+      ],
+      "conclusion_tested": "the conjecture 'the stationary candidate lies on D = 0' is tested by reducing D itself modulo each case chain",
+      "decomposition_note": "the along-branch derivative conditions of the |E_0(h)| cases are Q'(h) G_p = 0 and Q'(h) G_q = 0 with Q = +-E_0; since G_q = h^2 (8 h p + h + 4)^2 / 64, the second factor forces 8 h p + h + 4 = 0, and with h = 0 excluded by G(0) = -1 the remaining component is the declared C1/C3 system",
+      "main_variable_convention": "the highest-ranked variable of the declared order present; the branch value h is ranked first, so it is never eliminated",
+      "variables_and_order": [
+        "h",
+        "p",
+        "q",
+        "lam"
+      ]
+    },
+    "S6_real_root_structure": {
+      "counts": [
+        [
+          "frozen",
+          2
+        ],
+        [
+          "the declared J_inf witness",
+          2
+        ],
+        [
+          "equal perturbations",
+          2
+        ],
+        [
+          "large positive p with q = 0",
+          2
+        ],
+        [
+          "above the parabola with q > -1/8",
+          4
+        ],
+        [
+          "below q = -1/8",
+          0
+        ],
+        [
+          "four real roots",
+          4
+        ],
+        [
+          "on the branch B1",
+          3
+        ],
+        [
+          "on the branch B2 at p = 0",
+          2
+        ],
+        [
+          "the tangency vertex of B1 and B2",
+          1
+        ],
+        [
+          "on the degenerate line B3",
+          2
+        ],
+        [
+          "on the degenerate line B4",
+          2
+        ],
+        [
+          "the triple point of B1, B3 and B4",
+          1
+        ]
+      ],
+      "endpoints": "every isolation endpoint retained here is an exact rational",
+      "exceptional_points": {
+        "triple_point_of_B1_B3_B4": "G = 3h/8 - 1 at (p, q) = (-1/8, -1/8): the quartic degenerates to a line, so three sheets are at infinity and the only finite root is h = 8/3",
+        "vertex_of_B1_and_B2": "G = (1/8 + p)^2 (1/8 + q) (h - 32/3)^4 at (p, q) = (-19/128, -17/64): one quadruple root"
+      },
+      "method": "Sturm sequences with exact rational isolation (sympy Poly.intervals)",
+      "points": [
+        {
+          "D_at_the_point": "-12427",
+          "degree": 4,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": true,
+          "label": "frozen",
+          "p": "0",
+          "q": "0",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "3581063284039/125809668213176423137442881",
+              "G_at_upper_endpoint": "-3978501128262407/79403145238771530949850153472",
+              "G_prime_interval": [
+                "-279060496631402927763/300521466704789725816",
+                "-5223464423958878515243/5625171634528764667008"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-18766528/3349103",
+                "-19774129/3528921"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-3978501128262407/79403145238771530949850153472",
+              "G_at_upper_endpoint": "3581063284039/125809668213176423137442881",
+              "G_prime_interval": [
+                "5223464423958878515243/5625171634528764667008",
+                "279060496631402927763/300521466704789725816"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "5658445/3528921",
+                "5370116/3349103"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "-269182911485215935",
+          "degree": 4,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": true,
+          "label": "the declared J_inf witness",
+          "p": "-2",
+          "q": "17/10",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "603621009998577/438969635242701265060864000",
+              "G_at_upper_endpoint": "-804992225131227/228402449758948561157913760",
+              "G_prime_interval": [
+                "-117545045099517571907/15253547311600491520",
+                "-402558541640301795667/52239086347024041880"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-862667/1438910",
+                "-655322/1093063"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-7900735156576/4306897750297465427659245",
+              "G_at_upper_endpoint": "5280206118419073/1554155392649216489653250560",
+              "G_prime_interval": [
+                "159121460100118366459/20648822056924479480",
+                "3391987969631103955189/440170395368651584640"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "1445356/1668627",
+                "764591/882701"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "-760017882670371",
+          "degree": 4,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": true,
+          "label": "equal perturbations",
+          "p": "1",
+          "q": "1",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "1965155385601/858185708789485486080000",
+              "G_at_upper_endpoint": "-132291270714287/3889106734933563075939410432",
+              "G_prime_interval": [
+                "-827724430993255201/204061735240704000",
+                "-2375576903878090487763/585659099879703452288"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-1076041/1051380",
+                "-1699081/1660141"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-1736796350521/1340649583637689374809761",
+              "G_at_upper_endpoint": "1965155385601/858185708789485486080000",
+              "G_prime_interval": [
+                "40429711643026468683/9967275102994695368",
+                "827724430993255201/204061735240704000"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "623040/1076041",
+                "608761/1051380"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "-40645943099392",
+          "degree": 4,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": true,
+          "label": "large positive p with q = 0",
+          "p": "15/8",
+          "q": "0",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "79123134057053/377596143743956267928755232",
+              "G_at_upper_endpoint": "-10280307417197/6563561331812602357086728",
+              "G_prime_interval": [
+                "-319085769752017635999/101865744041347843216",
+                "-10801310150436026325/3448237431433910332"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-1639745/1853401",
+                "-842014/951727"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-48661389393527/123834235833781719827750912",
+              "G_at_upper_endpoint": "15045196347043/340751721860433417721432968",
+              "G_prime_interval": [
+                "17285316381424398021/5518207896118364288",
+                "208905714543072123775/66691585973765319948"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "1780477/2805128",
+                "1621514/2554683"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "1930416005",
+          "degree": 4,
+          "distinct_real_roots": 4,
+          "in_the_declared_feasible_region": false,
+          "label": "above the parabola with q > -1/8",
+          "p": "0",
+          "q": "6",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "5146105625112313/6075458247025573654298665472",
+              "G_at_upper_endpoint": "-46055563978315/91576156088174048527219232",
+              "G_prime_interval": [
+                "-2666832108916753522119/818355073718542332544",
+                "-28680598590592348677/8801046490867790828"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-8544573/1855997",
+                "-5987854/1300643"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-631728050724415/2571545991695615750058278912",
+              "G_at_upper_endpoint": "1259984233657/57874523494170431600050688",
+              "G_prime_interval": [
+                "5792572989501688587/9431354087019552128",
+                "263754990481898030661/429440718651240546304"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-3728707/1497032",
+                "-3821031/1534099"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "1259984233657/57874523494170431600050688",
+              "G_at_upper_endpoint": "-631728050724415/2571545991695615750058278912",
+              "G_prime_interval": [
+                "-263754990481898030661/429440718651240546304",
+                "-5792572989501688587/9431354087019552128"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-2315365/1534099",
+                "-2259421/1497032"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-46055563978315/91576156088174048527219232",
+              "G_at_upper_endpoint": "5146105625112313/6075458247025573654298665472",
+              "G_prime_interval": [
+                "28680598590592348677/8801046490867790828",
+                "2666832108916753522119/818355073718542332544"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "785282/1300643",
+                "1120585/1855997"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D > 0: four real roots or none"
+        },
+        {
+          "D_at_the_point": "-1345883/3125",
+          "degree": 4,
+          "distinct_real_roots": 0,
+          "in_the_declared_feasible_region": false,
+          "label": "below q = -1/8",
+          "p": "0",
+          "q": "-3/10",
+          "roots": [],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "-1232030328165",
+          "degree": 4,
+          "distinct_real_roots": 4,
+          "in_the_declared_feasible_region": false,
+          "label": "four real roots",
+          "p": "5/2",
+          "q": "-1/4",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "0",
+              "G_at_upper_endpoint": "0",
+              "G_prime_interval": [
+                "13/8",
+                "13/8"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-4/3",
+                "-4/3"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "5386688213775/58032819824866546952356352",
+              "G_at_upper_endpoint": "-10125958233418125/43072896511166517743004618272",
+              "G_prime_interval": [
+                "-2048802226095035042731/1777790419545452726296",
+                "-28815902758840637797/25004187911739698048"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-564733/580231",
+                "-5895298/6057083"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-1530030818156585/12969497531899192205245816832",
+              "G_at_upper_endpoint": "59392854968895/87099042502859682319073792",
+              "G_prime_interval": [
+                "39073922460593342761/33905295552658376576",
+                "1665594729499194426093/1445272908841890624512"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "1756191/2243434",
+                "502741/642223"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            },
+            {
+              "G_at_lower_endpoint": "0",
+              "G_at_upper_endpoint": "0",
+              "G_prime_interval": [
+                "-13/8",
+                "-13/8"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "8/7",
+                "8/7"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "inside_a_region_of_D",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "D < 0: two real roots and a conjugate pair"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 4,
+          "distinct_real_roots": 3,
+          "in_the_declared_feasible_region": false,
+          "label": "on the branch B1",
+          "p": "0",
+          "q": "43/8",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "2052808630074207/5115279506290328011932180608",
+              "G_at_upper_endpoint": "-49760106700213/39286564864461507545008128",
+              "G_prime_interval": [
+                "-1587590896122184828029/508621281728212412896",
+                "-41187896755799693249/13195490658717613824"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-11637415/2514287",
+                "-3445087/744318"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "0",
+              "G_at_upper_endpoint": "0",
+              "G_prime_interval": [
+                "0",
+                "0"
+              ],
+              "G_prime_sign_definite": false,
+              "is_simple": false,
+              "isolation_interval": [
+                "-2",
+                "-2"
+              ],
+              "multiplicity": 2,
+              "root_is_on_the_simple_side": false,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-49760106700213/39286564864461507545008128",
+              "G_at_upper_endpoint": "2052808630074207/5115279506290328011932180608",
+              "G_prime_interval": [
+                "41187896755799693249/13195490658717613824",
+                "1587590896122184828029/508621281728212412896"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "467815/744318",
+                "1580267/2514287"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 4,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": true,
+          "label": "on the branch B2 at p = 0",
+          "p": "0",
+          "q": "-17/64",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "-1/25505800228118056432803840000",
+              "G_at_upper_endpoint": "-49/16350749642323681600121487616",
+              "G_prime_interval": [
+                "-74701599/1445949920102653457344",
+                "13771351/2330497190161695744000"
+              ],
+              "G_prime_sign_definite": false,
+              "is_simple": false,
+              "isolation_interval": [
+                "-19243531/2736090",
+                "-19882858/2826991"
+              ],
+              "multiplicity": 2,
+              "root_is_on_the_simple_side": false,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-49/16350749642323681600121487616",
+              "G_at_upper_endpoint": "-1/25505800228118056432803840000",
+              "G_prime_interval": [
+                "-13771351/2330497190161695744000",
+                "74701599/1445949920102653457344"
+              ],
+              "G_prime_sign_definite": false,
+              "is_simple": false,
+              "isolation_interval": [
+                "8574894/2826991",
+                "8299171/2736090"
+              ],
+              "multiplicity": 2,
+              "root_is_on_the_simple_side": false,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 4,
+          "distinct_real_roots": 1,
+          "in_the_declared_feasible_region": false,
+          "label": "the tangency vertex of B1 and B2",
+          "p": "-19/128",
+          "q": "-17/64",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "0",
+              "G_at_upper_endpoint": "0",
+              "G_prime_interval": [
+                "0",
+                "0"
+              ],
+              "G_prime_sign_definite": false,
+              "is_simple": false,
+              "isolation_interval": [
+                "32/3",
+                "32/3"
+              ],
+              "multiplicity": 4,
+              "root_is_on_the_simple_side": false,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 2,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": false,
+          "label": "on the degenerate line B3",
+          "p": "0",
+          "q": "-1/8",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "1/3631255885824",
+              "G_at_upper_endpoint": "-41/254108934320672",
+              "G_prime_interval": [
+                "-2234497/3111808",
+                "-32375907/45087376"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-3401425/583464",
+                "-16427891/2817961"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-41/254108934320672",
+              "G_at_upper_endpoint": "1/3631255885824",
+              "G_prime_interval": [
+                "32375907/45087376",
+                "2234497/3111808"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "5156047/2817961",
+                "1067569/583464"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 2,
+          "distinct_real_roots": 2,
+          "in_the_declared_feasible_region": false,
+          "label": "on the degenerate line B4",
+          "p": "-1/8",
+          "q": "0",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "1/42279971069952",
+              "G_at_upper_endpoint": "-19/65662591239200",
+              "G_prime_interval": [
+                "-9478657/18391296",
+                "-11812409/22919440"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "-16375393/1149456",
+                "-20407199/1432465"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "negative"
+            },
+            {
+              "G_at_lower_endpoint": "-19/65662591239200",
+              "G_at_upper_endpoint": "1/42279971069952",
+              "G_prime_interval": [
+                "11812409/22919440",
+                "9478657/18391296"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "3217619/1432465",
+                "2581921/1149456"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        },
+        {
+          "D_at_the_point": "0",
+          "degree": 1,
+          "distinct_real_roots": 1,
+          "in_the_declared_feasible_region": false,
+          "label": "the triple point of B1, B3 and B4",
+          "p": "-1/8",
+          "q": "-1/8",
+          "roots": [
+            {
+              "G_at_lower_endpoint": "0",
+              "G_at_upper_endpoint": "0",
+              "G_prime_interval": [
+                "3/8",
+                "3/8"
+              ],
+              "G_prime_sign_definite": true,
+              "is_simple": true,
+              "isolation_interval": [
+                "8/3",
+                "8/3"
+              ],
+              "multiplicity": 1,
+              "root_is_on_the_simple_side": true,
+              "side_of_the_discriminant_variety": "on_the_variety",
+              "sign_of_the_root": "positive"
+            }
+          ],
+          "side_of_the_discriminant_variety": "on D = 0"
+        }
+      ]
+    },
+    "S7_minimality_and_second_variation": {
+      "control_functional_J_2": {
+        "definition": "J_2 = sum over the two branches and all twelve sides of h_m^2 = 20 + sum over the branches of (h^2 + E_0(h)^2)",
+        "disagreement_with_J_inf": "J_inf is minimised at a finite plateau point; J_2 has no minimiser at all and its infimum is approached at infinity, so the two declared functionals disagree",
+        "escape_ray": {
+          "p": "-t",
+          "q": "t",
+          "rows": [
+            {
+              "J_2_upper_bound": "441622473006437808346649731075345413985594333154441042432274701308236811072256459449273413371521/16399083074759100157133637825829365301207022286687697782604664509767903093095301455422927159296",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "47108690959292414323/35331518219469310728",
+                  "abs_h_upper_bound": "2062331069/2101532721",
+                  "isolation_interval": [
+                    "-2062331069/2101532721",
+                    "-637089141/649199198"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "347951502551016790357889804905/260963626913262592761254408064",
+                  "abs_h_upper_bound": "9550594153/6150663036",
+                  "isolation_interval": [
+                    "9372438912/6035929561",
+                    "9550594153/6150663036"
+                  ]
+                }
+              ],
+              "p": "-1",
+              "q": "1",
+              "t": "1"
+            },
+            {
+              "J_2_upper_bound": "4570618020568333647140552316769134312082273256133652895446832478531387810424266934321115461/202413144474979762539899887463452418481008015423917101525760379824769997634538455104000000",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "2363981871135080203/2671770708802276000",
+                  "abs_h_upper_bound": "731959519/1292229350",
+                  "isolation_interval": [
+                    "-731959519/1292229350",
+                    "-500378485/883387329"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "23838839608619539888309658239/26942640371249184847514176320",
+                  "abs_h_upper_bound": "3379688757/4056770915",
+                  "isolation_interval": [
+                    "3409694101/4092787488",
+                    "3379688757/4056770915"
+                  ]
+                }
+              ],
+              "p": "-2",
+              "q": "2",
+              "t": "2"
+            },
+            {
+              "J_2_upper_bound": "1429901162588585880035300077351465453287144296181562167390387167758293530606598814461814355209/68019387609146299390785922080152815579536512977596675204246992529423757718914506865373144064",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "1076916488895818931/1820353892712582728",
+                  "abs_h_upper_bound": "158133103/477015971",
+                  "isolation_interval": [
+                    "-158133103/477015971",
+                    "-1089471801/3286443124"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "21442564182521377308367223539/36245201537784470054770410912",
+                  "abs_h_upper_bound": "119689177/259890414",
+                  "isolation_interval": [
+                    "30891900678/67077985309",
+                    "119689177/259890414"
+                  ]
+                }
+              ],
+              "p": "-4",
+              "q": "4",
+              "t": "4"
+            },
+            {
+              "J_2_upper_bound": "4383534586854156720119854507047640525410713696038916350053363781597605089315371642926334726816681/214609637278438244691542918398944271269774435439801555063724717830633550136264897072808449960000",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "7325923563049764772/18314808907624411903",
+                  "abs_h_upper_bound": "2217589396/11322705611",
+                  "isolation_interval": [
+                    "-2217589396/11322705611",
+                    "-18842025/96204781"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "3372569865337103451829934799/8431424663342758626951645400",
+                  "abs_h_upper_bound": "667449499/2573593215",
+                  "isolation_interval": [
+                    "742817599/2864202214",
+                    "667449499/2573593215"
+                  ]
+                }
+              ],
+              "p": "-8",
+              "q": "8",
+              "t": "8"
+            },
+            {
+              "J_2_upper_bound": "2058012564180495342725297052891403776586459395931560940934512864655995133802173968615039260321/101958062850622596177045693805053590111999805799450771782667266084183443076774501296373760000",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "10427965550599527063/38146190935182540800",
+                  "abs_h_upper_bound": "254216403/2183637760",
+                  "isolation_interval": [
+                    "-254216403/2183637760",
+                    "-218425181/1876202587"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "578892610713758950824826111/2117627638114298497794869576",
+                  "abs_h_upper_bound": "38928549/263182201",
+                  "isolation_interval": [
+                    "565273052/3821611897",
+                    "38928549/263182201"
+                  ]
+                }
+              ],
+              "p": "-16",
+              "q": "16",
+              "t": "16"
+            },
+            {
+              "J_2_upper_bound": "455346225300289495963293405782315439989273594231702769860261776014045062744111094308581/22723671649067300264289019378295963526075464994134868304014560831245976115924503040000",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "289795118356771335/2214493847636384288",
+                  "abs_h_upper_bound": "21843801/526129006",
+                  "isolation_interval": [
+                    "-21843801/526129006",
+                    "-108674417/2617528103"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "1523414359472660043086673719/11641299362054287219495156800",
+                  "abs_h_upper_bound": "83426021/1690642655",
+                  "isolation_interval": [
+                    "100488769/2036422176",
+                    "83426021/1690642655"
+                  ]
+                }
+              ],
+              "p": "-64",
+              "q": "64",
+              "t": "64"
+            },
+            {
+              "J_2_upper_bound": "6065327054862611228836386615644719996468291682123780985497444876718874595203147515554230176841/303134684641951220825457645712855375893498783782834075393660386186504258488167537781304960000",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "593129360597985015/9272568419944247072",
+                  "abs_h_upper_bound": "16002791/1076601622",
+                  "isolation_interval": [
+                    "-16002791/1076601622",
+                    "-18122248/1219189927"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "480426700941435745371442447/7510654085234117229186992300",
+                  "abs_h_upper_bound": "28491954/1694109265",
+                  "isolation_interval": [
+                    "22006235/1308473494",
+                    "28491954/1694109265"
+                  ]
+                }
+              ],
+              "p": "-256",
+              "q": "256",
+              "t": "256"
+            },
+            {
+              "J_2_upper_bound": "353662899462454761230993964330346993673563109999249601680467963347278629550153741904839703709993/17681322744085053875146655604625900331763885068565388814125927422191939179447700366424491336704",
+              "branches": [
+                {
+                  "abs_E_0_upper_bound": "446892810245930325/14134839783490974962",
+                  "abs_h_upper_bound": "14137950/2658461941",
+                  "isolation_interval": [
+                    "-14137950/2658461941",
+                    "-13981139/2628975624"
+                  ]
+                },
+                {
+                  "abs_E_0_upper_bound": "594852044691148262274008203/18814664621622121768699688608",
+                  "abs_h_upper_bound": "8591713/1479688222",
+                  "isolation_interval": [
+                    "6236998/1074152789",
+                    "8591713/1479688222"
+                  ]
+                }
+              ],
+              "p": "-1024",
+              "q": "1024",
+              "t": "1024"
+            }
+          ]
+        },
+        "floor": "J_2 > 20 for every (p, q), because a branch never sits at h = 0: E_{p,q}(0) = 0 while a branch requires E_{p,q}(h) = 1",
+        "infimum": "20, not attained, approached along the declared escape ray",
+        "on_the_discriminant_variety": false
+      },
+      "declared_conjecture": {
+        "decision_for_the_minimiser": "False",
+        "decision_for_the_stationary_candidates": "True",
+        "reason": "the constrained minimum of J_inf is 1, the floor forced by the ten frozen sides; it is attained on an open set in the interior, so the cheapest configuration is not a collision configuration. Every stationary candidate found in S5 does lie on the discriminant variety, so the failure is not in the elimination but in the assumption that the minimum is stationary.",
+        "statement": "The constrained minimum is conjectured to sit on the discriminant variety itself, i.e. the cheapest exchange is the collision configuration. This is a question for the run, not an assumption.",
+        "witness": {
+          "D_at_the_witness": "nonzero",
+          "J_inf": "1",
+          "p": "-2",
+          "q": "17/10"
+        }
+      },
+      "deleted_side_controls": {
+        "control_outcome": "FAILED_TO_DISCRIMINATE: removing one declared side never removes the floor, because at least nine frozen sides remain at exactly 1, so the minimiser's value does not move. The failure is recorded rather than repaired.",
+        "declared_single_side_deletions": [
+          {
+            "deleted_kind": "a branch side",
+            "deleted_side": 0,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a branch side",
+            "deleted_side": 1,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a frozen side",
+            "deleted_side": 2,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a frozen side",
+            "deleted_side": 11,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          }
+        ],
+        "discriminating_variant": {
+          "deleted_sides": "all ten frozen sides",
+          "levels_along_the_escape_ray": [
+            {
+              "J_inf_without_the_frozen_sides": "9550594153/6150663036",
+              "t": "1"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "5753296020889834165541411832126623244895/9725020385093003562968960194092117167232",
+              "t": "4"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "8849211552756363388628270428048901895/32371003900934455139928407348819782688",
+              "t": "16"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "49637036557871368864413803263143316351/379305602853472054554453069313875148800",
+              "t": "64"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "49419286277733751115847890386243502719/1563090024576205253361716594185702459392",
+              "t": "1024"
+            }
+          ],
+          "verdict": "the minimum moves from the attained value 1 in the interior to the unattained infimum 0 approached at infinity, so the composition of the maximum does matter when no frozen side is present"
+        },
+        "single_side_deletion_moves_the_minimiser": false
+      },
+      "floor": "J_inf(p, q) >= 1 for every (p, q), because the ten frozen sides carry |h_m| = 1",
+      "floor_table": [
+        {
+          "J_2_upper_bound": "354036533025003861382725641983747854220849/6266973823073639114738012086720913113284",
+          "J_inf_upper_bound": "18766528/3349103",
+          "at_least_one": true,
+          "branch_enclosures": [
+            {
+              "E_0_enclosure": [
+                "374733885520724278031/333658631007806446584",
+                "88909781502567921455/79164220599167393778"
+              ],
+              "abs_E_0_upper_bound": "88909781502567921455/79164220599167393778",
+              "abs_h_upper_bound": "18766528/3349103",
+              "isolation_interval": [
+                "-18766528/3349103",
+                "-19774129/3528921"
+              ]
+            },
+            {
+              "E_0_enclosure": [
+                "111890821369405/99626267393928",
+                "12597304034656/11216490904609"
+              ],
+              "abs_E_0_upper_bound": "12597304034656/11216490904609",
+              "abs_h_upper_bound": "5370116/3349103",
+              "isolation_interval": [
+                "5658445/3528921",
+                "5370116/3349103"
+              ]
+            }
+          ],
+          "branches": 2,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "frozen",
+          "p": "0",
+          "q": "0"
+        },
+        {
+          "J_2_upper_bound": "426763361853811725392784543243540851107233820784598512055741937/18550153008403777291230278339660437475291082198493519282406400",
+          "J_inf_upper_bound": "1",
+          "at_least_one": true,
+          "branch_enclosures": [
+            {
+              "E_0_enclosure": [
+                "-3225623197043/3312739180960",
+                "-2326734195101/2389573443938"
+              ],
+              "abs_E_0_upper_bound": "3225623197043/3312739180960",
+              "abs_h_upper_bound": "862667/1438910",
+              "isolation_interval": [
+                "-862667/1438910",
+                "-655322/1093063"
+              ]
+            },
+            {
+              "E_0_enclosure": [
+                "-10127514651741376781/10401033395124835416",
+                "-1595391530347110007/1638479050003622286"
+              ],
+              "abs_E_0_upper_bound": "10127514651741376781/10401033395124835416",
+              "abs_h_upper_bound": "764591/882701",
+              "isolation_interval": [
+                "1445356/1668627",
+                "764591/882701"
+              ]
+            }
+          ],
+          "branches": 2,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "the declared J_inf witness",
+          "p": "-2",
+          "q": "17/10"
+        },
+        {
+          "J_2_upper_bound": "29630929134263430546489726242654605561/1330435288178940833905248404075520000",
+          "J_inf_upper_bound": "1076041/1051380",
+          "at_least_one": true,
+          "branch_enclosures": [
+            {
+              "E_0_enclosure": [
+                "965891640302258321/1448837460454042890",
+                "1087478342337250621/1631217513502684800"
+              ],
+              "abs_E_0_upper_bound": "1087478342337250621/1631217513502684800",
+              "abs_h_upper_bound": "1076041/1051380",
+              "isolation_interval": [
+                "-1076041/1051380",
+                "-1699081/1660141"
+              ]
+            },
+            {
+              "E_0_enclosure": [
+                "771909489120/1157864233681",
+                "655051795201/982577692800"
+              ],
+              "abs_E_0_upper_bound": "655051795201/982577692800",
+              "abs_h_upper_bound": "608761/1051380",
+              "isolation_interval": [
+                "623040/1076041",
+                "608761/1051380"
+              ]
+            }
+          ],
+          "branches": 2,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "equal perturbations",
+          "p": "1",
+          "q": "1"
+        },
+        {
+          "J_2_upper_bound": "10793232609380736473414950055675990559284139920935433602904289451/455250492698683234404537305341627330179297248971030374008039409",
+          "J_inf_upper_bound": "3671738800256407743/3269272912986715327",
+          "at_least_one": true,
+          "branch_enclosures": [
+            {
+              "E_0_enclosure": [
+                "3770897882481455279/3357562990047062258",
+                "3671738800256407743/3269272912986715327"
+              ],
+              "abs_E_0_upper_bound": "3671738800256407743/3269272912986715327",
+              "abs_h_upper_bound": "1639745/1853401",
+              "isolation_interval": [
+                "-1639745/1853401",
+                "-842014/951727"
+              ]
+            },
+            {
+              "E_0_enclosure": [
+                "4418714819043/3934371548192",
+                "7329842429423/6526405230489"
+              ],
+              "abs_E_0_upper_bound": "7329842429423/6526405230489",
+              "abs_h_upper_bound": "1621514/2554683",
+              "isolation_interval": [
+                "1780477/2805128",
+                "1621514/2554683"
+              ]
+            }
+          ],
+          "branches": 2,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "large positive p with q = 0",
+          "p": "15/8",
+          "q": "0"
+        },
+        {
+          "J_2_upper_bound": null,
+          "J_inf_upper_bound": null,
+          "branch_enclosures": null,
+          "branches": 4,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "above the parabola with q > -1/8",
+          "note": "not in the declared two-branch region, so only the floor 1 is reported",
+          "p": "0",
+          "q": "6"
+        },
+        {
+          "J_2_upper_bound": null,
+          "J_inf_upper_bound": null,
+          "branch_enclosures": null,
+          "branches": 0,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "below q = -1/8",
+          "note": "not in the declared two-branch region, so only the floor 1 is reported",
+          "p": "0",
+          "q": "-3/10"
+        },
+        {
+          "J_2_upper_bound": null,
+          "J_inf_upper_bound": null,
+          "branch_enclosures": null,
+          "branches": 4,
+          "frozen_side_and_all_twelve_sides_included": true,
+          "label": "four real roots",
+          "note": "not in the declared two-branch region, so only the floor 1 is reported",
+          "p": "5/2",
+          "q": "-1/4"
+        }
+      ],
+      "plateau_box": {
+        "declared_box": [
+          [
+            "-2001/1000",
+            "-1999/1000"
+          ],
+          [
+            "1699/1000",
+            "1701/1000"
+          ]
+        ],
+        "final_box": [
+          [
+            "-2001/1000",
+            "-1999/1000"
+          ],
+          [
+            "1699/1000",
+            "1701/1000"
+          ]
+        ],
+        "method": "exact rational interval arithmetic with declared subdivision; successive difference substitution is NOT implemented in this run",
+        "rounds": [
+          {
+            "E_0_left_bracket_bounds": [
+              "-3048/3125",
+              "-1437/2000"
+            ],
+            "E_0_right_bracket_bounds": [
+              "-2462361/2500000",
+              "-1195013/1250000"
+            ],
+            "G_at_minus_one": [
+              "29288429/3906250",
+              "235248643/31250000"
+            ],
+            "G_at_plus_one": [
+              "21938841/15625000",
+              "44818893/31250000"
+            ],
+            "all_conditions_decided_and_true": true,
+            "box_p": [
+              "-2001/1000",
+              "-1999/1000"
+            ],
+            "box_q": [
+              "1699/1000",
+              "1701/1000"
+            ],
+            "conditions": {
+              "D_never_vanishes_on_the_box": true,
+              "E_0_is_monotone_on_the_left_bracket": true,
+              "E_0_is_monotone_on_the_right_bracket": true,
+              "G_at_minus_one_is_positive": true,
+              "G_at_plus_one_is_positive": true,
+              "abs_E_0_stays_below_one_on_the_left_branch": true,
+              "abs_E_0_stays_below_one_on_the_right_branch": true,
+              "left_branch_bracketed_by_minus_three_fifths_and_minus_one_half": true,
+              "right_branch_bracketed_by_43_over_50_and_87_over_100": true,
+              "the_parabola_factor_never_vanishes": true
+            },
+            "round": 0
+          }
+        ],
+        "verdict": "J_inf is identically 1 on the whole box: the minimum is attained on a non-isolated plateau in the interior of the feasible region"
+      },
+      "second_variation": {
+        "active_quantity": "the frozen constant side, exactly 1",
+        "competitors": "|h| < 1 and |E_0(h)| < 1 strictly at both branches on the box",
+        "first_variation": "0 identically on the declared box",
+        "method": "exact interval arithmetic on a declared rational box, subdivision variant; no floating-point verdict is reported",
+        "second_variation": "0 identically on the declared box",
+        "verdict": "SecondVariationZero_NonIsolatedMinimum"
+      },
+      "witness": {
+        "J_inf": "1",
+        "argument": "both branches lie strictly inside (-1, 1) and |E_0| < 1 at both, so the maximum over the twelve sides equals the frozen side 1 exactly",
+        "branches": [
+          {
+            "E_0_enclosure": [
+              "-3225623197043/3312739180960",
+              "-2326734195101/2389573443938"
+            ],
+            "abs_E_0_upper_bound": "3225623197043/3312739180960",
+            "abs_h_upper_bound": "862667/1438910",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "-862667/1438910",
+              "-655322/1093063"
+            ]
+          },
+          {
+            "E_0_enclosure": [
+              "-10127514651741376781/10401033395124835416",
+              "-1595391530347110007/1638479050003622286"
+            ],
+            "abs_E_0_upper_bound": "10127514651741376781/10401033395124835416",
+            "abs_h_upper_bound": "764591/882701",
+            "below_the_frozen_level": true,
+            "isolation_interval": [
+              "1445356/1668627",
+              "764591/882701"
+            ]
+          }
+        ],
+        "in_the_interior_of_the_feasible_region": true,
+        "is_attained": true,
+        "on_the_discriminant_variety": false,
+        "p": "-2",
+        "q": "17/10"
+      }
+    },
+    "S8_exchange_protocol": {
+      "crossing_method": "exact rational arithmetic on the four declared branches of D = 0, with the arcs taken between consecutive crossings",
+      "declared_sequence": [
+        "L0 identity control, non-encircling",
+        "L1 around a smooth point of the branch B1",
+        "L2 around a smooth point of the branch B2",
+        "L3 around the degenerate triple point",
+        "L4 a wide loop crossing every branch"
+      ],
+      "finding": "no declared real loop realises the transposition of the two real-root branches: the loops whose crossings are simple and smooth are decided to the identity, and the loops whose crossings are non-simple or whose arcs leave the two-real regime are recorded as Undecided rather than given a floating-point permutation. Every transversal crossing of a smooth branch point contributes a transposition and a real loop crosses each branch an even number of times, so an odd permutation is not available to a declared real loop.",
+      "identity_control": {
+        "falsifiable": true,
+        "loop": "L0 identity control, non-encircling",
+        "permutation": "identity"
+      },
+      "identity_loops": [
+        "L0 identity control, non-encircling",
+        "L1 around a smooth point of the branch B1"
+      ],
+      "loops": [
+        {
+          "crossing_count": 0,
+          "crossings": [],
+          "crossings_per_branch": [],
+          "edge_midpoint_real_root_counts": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "encircles": "nothing: the closed square meets no branch of D = 0",
+          "irrational_crossings": 0,
+          "justification": "the closed loop meets no branch of D = 0; on a simply connected parameter domain where the discriminant does not vanish the four roots are single-valued, so the monodromy is trivial",
+          "loop": "L0 identity control, non-encircling",
+          "permutation_of_the_four_roots": "identity",
+          "sub_arc_real_root_counts": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "sub_arc_runs": [
+            [
+              2,
+              4
+            ]
+          ],
+          "sub_arcs": [
+            {
+              "distinct_real_roots": 2,
+              "edge": 0,
+              "from_position": "0",
+              "sample_point": [
+                "0",
+                "-1/100"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 1,
+              "from_position": "0",
+              "sample_point": [
+                "1/100",
+                "0"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 2,
+              "from_position": "0",
+              "sample_point": [
+                "0",
+                "1/100"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 3,
+              "from_position": "0",
+              "sample_point": [
+                "-1/100",
+                "0"
+              ],
+              "to_position": "1"
+            }
+          ],
+          "verdict": "DecidedIdentity",
+          "vertices": [
+            [
+              "-1/100",
+              "-1/100"
+            ],
+            [
+              "1/100",
+              "-1/100"
+            ],
+            [
+              "1/100",
+              "1/100"
+            ],
+            [
+              "-1/100",
+              "1/100"
+            ]
+          ]
+        },
+        {
+          "crossing_count": 2,
+          "crossings": [
+            {
+              "branch": "B1",
+              "edge": 0,
+              "local_structure": {
+                "common_factor": "(7*h + 16)/7",
+                "common_factor_degree": 1,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": true,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": "-16/7"
+              },
+              "point": [
+                "-1/64",
+                "17/4"
+              ],
+              "position_along_the_edge": "5/8"
+            },
+            {
+              "branch": "B1",
+              "edge": 2,
+              "local_structure": {
+                "common_factor": "(9*h + 16)/9",
+                "common_factor_degree": 1,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": true,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": "-16/9"
+              },
+              "point": [
+                "1/64",
+                "53/8"
+              ],
+              "position_along_the_edge": "1/8"
+            }
+          ],
+          "crossings_per_branch": [
+            [
+              "B1",
+              2
+            ]
+          ],
+          "edge_midpoint_real_root_counts": [
+            [
+              0,
+              4
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              4
+            ]
+          ],
+          "encircles": "the arc of the parabola branch B1 between its two crossings with the rectangle",
+          "irrational_crossings": 0,
+          "justification": "exactly two transversal crossings with the single declared branch, both of them simple double roots, and the loop alternates once between a two-real arc and a four-real arc; the two crossings bound that one two-real arc, so the same pair of sheets collides twice and the two transpositions cancel",
+          "loop": "L1 around a smooth point of the branch B1",
+          "permutation_of_the_four_roots": "identity",
+          "sub_arc_real_root_counts": [
+            4,
+            2,
+            2,
+            2,
+            4,
+            4
+          ],
+          "sub_arc_runs": [
+            [
+              4,
+              3
+            ],
+            [
+              2,
+              3
+            ]
+          ],
+          "sub_arcs": [
+            {
+              "distinct_real_roots": 4,
+              "edge": 0,
+              "from_position": "0",
+              "sample_point": [
+                "-7/128",
+                "17/4"
+              ],
+              "to_position": "5/8"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 0,
+              "from_position": "5/8",
+              "sample_point": [
+                "1/128",
+                "17/4"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 1,
+              "from_position": "0",
+              "sample_point": [
+                "1/32",
+                "87/16"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 2,
+              "edge": 2,
+              "from_position": "0",
+              "sample_point": [
+                "3/128",
+                "53/8"
+              ],
+              "to_position": "1/8"
+            },
+            {
+              "distinct_real_roots": 4,
+              "edge": 2,
+              "from_position": "1/8",
+              "sample_point": [
+                "-5/128",
+                "53/8"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 4,
+              "edge": 3,
+              "from_position": "0",
+              "sample_point": [
+                "-3/32",
+                "87/16"
+              ],
+              "to_position": "1"
+            }
+          ],
+          "verdict": "DecidedIdentity",
+          "vertices": [
+            [
+              "-3/32",
+              "17/4"
+            ],
+            [
+              "1/32",
+              "17/4"
+            ],
+            [
+              "1/32",
+              "53/8"
+            ],
+            [
+              "-3/32",
+              "53/8"
+            ]
+          ]
+        },
+        {
+          "crossing_count": 2,
+          "crossings": [
+            {
+              "branch": "B2",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": "(15*h**2 + 48*h - 256)/15",
+                "common_factor_degree": 2,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": false,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": null
+              },
+              "point": [
+                "1/32",
+                "-17/64"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B2",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": "(3*h**2 + 48*h - 256)/3",
+                "common_factor_degree": 2,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": false,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": null
+              },
+              "point": [
+                "-3/32",
+                "-17/64"
+              ],
+              "position_along_the_edge": "1/2"
+            }
+          ],
+          "crossings_per_branch": [
+            [
+              "B2",
+              2
+            ]
+          ],
+          "edge_midpoint_real_root_counts": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "encircles": "the arc of the line branch q = -17/64 between its two crossings with the rectangle",
+          "irrational_crossings": 0,
+          "justification": "a crossing is not a simple double root: the gcd of G and G_h there is not linear, so more than one pair of roots collides at once and exact real tracking cannot identify the pairs",
+          "loop": "L2 around a smooth point of the branch B2",
+          "permutation_of_the_four_roots": "Undecided",
+          "sub_arc_real_root_counts": [
+            0,
+            0,
+            4,
+            4,
+            4,
+            0
+          ],
+          "sub_arc_runs": [
+            [
+              0,
+              3
+            ],
+            [
+              4,
+              3
+            ]
+          ],
+          "sub_arcs": [
+            {
+              "distinct_real_roots": 0,
+              "edge": 0,
+              "from_position": "0",
+              "sample_point": [
+                "-1/32",
+                "-9/32"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 0,
+              "edge": 1,
+              "from_position": "0",
+              "sample_point": [
+                "1/32",
+                "-35/128"
+              ],
+              "to_position": "1/2"
+            },
+            {
+              "distinct_real_roots": 4,
+              "edge": 1,
+              "from_position": "1/2",
+              "sample_point": [
+                "1/32",
+                "-33/128"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 4,
+              "edge": 2,
+              "from_position": "0",
+              "sample_point": [
+                "-1/32",
+                "-1/4"
+              ],
+              "to_position": "1"
+            },
+            {
+              "distinct_real_roots": 4,
+              "edge": 3,
+              "from_position": "0",
+              "sample_point": [
+                "-3/32",
+                "-33/128"
+              ],
+              "to_position": "1/2"
+            },
+            {
+              "distinct_real_roots": 0,
+              "edge": 3,
+              "from_position": "1/2",
+              "sample_point": [
+                "-3/32",
+                "-35/128"
+              ],
+              "to_position": "1"
+            }
+          ],
+          "verdict": "Undecided",
+          "vertices": [
+            [
+              "-3/32",
+              "-9/32"
+            ],
+            [
+              "1/32",
+              "-9/32"
+            ],
+            [
+              "1/32",
+              "-1/4"
+            ],
+            [
+              "-3/32",
+              "-1/4"
+            ]
+          ]
+        },
+        {
+          "crossing_count": 8,
+          "crossings": [
+            {
+              "branch": "B1",
+              "defined_by": "256 x^2 + 76 x + 177/32",
+              "edge": 0,
+              "local_structure": {
+                "is_a_single_double_root": null,
+                "note": "the crossing parameter is irrational, so the local structure at the crossing is not evaluated exactly by this run"
+              },
+              "point": null,
+              "root_sign": 1
+            },
+            {
+              "branch": "B4",
+              "edge": 0,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-1/8",
+                "-5/32"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B4",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-3/32",
+                "-1/8"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B3",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-3/32",
+                "-1/8"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B1",
+              "defined_by": "256 x^2 + 76 x + 175/32",
+              "edge": 2,
+              "local_structure": {
+                "is_a_single_double_root": null,
+                "note": "the crossing parameter is irrational, so the local structure at the crossing is not evaluated exactly by this run"
+              },
+              "point": null,
+              "root_sign": 1
+            },
+            {
+              "branch": "B4",
+              "edge": 2,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-1/8",
+                "-3/32"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B4",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-5/32",
+                "-1/8"
+              ],
+              "position_along_the_edge": "1/2"
+            },
+            {
+              "branch": "B3",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-5/32",
+                "-1/8"
+              ],
+              "position_along_the_edge": "1/2"
+            }
+          ],
+          "crossings_per_branch": [
+            [
+              "B1",
+              2
+            ],
+            [
+              "B3",
+              2
+            ],
+            [
+              "B4",
+              4
+            ]
+          ],
+          "edge_midpoint_real_root_counts": [
+            [
+              0,
+              2
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              2
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "encircles": "the triple point (p, q) = (-1/8, -1/8) of the branches B1, B3 and B4",
+          "irrational_crossings": 2,
+          "justification": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained",
+          "loop": "L3 around the degenerate triple point",
+          "permutation_of_the_four_roots": "Undecided",
+          "sub_arc_real_root_counts": [],
+          "sub_arc_runs": [],
+          "sub_arcs": [],
+          "verdict": "Undecided",
+          "vertices": [
+            [
+              "-5/32",
+              "-5/32"
+            ],
+            [
+              "-3/32",
+              "-5/32"
+            ],
+            [
+              "-3/32",
+              "-3/32"
+            ],
+            [
+              "-5/32",
+              "-3/32"
+            ]
+          ]
+        },
+        {
+          "crossing_count": 10,
+          "crossings": [
+            {
+              "branch": "B4",
+              "edge": 0,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-1/8",
+                "-1"
+              ],
+              "position_along_the_edge": "15/32"
+            },
+            {
+              "branch": "B4",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "2",
+                "-1/8"
+              ],
+              "position_along_the_edge": "7/88"
+            },
+            {
+              "branch": "B3",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "2",
+                "-1/8"
+              ],
+              "position_along_the_edge": "7/88"
+            },
+            {
+              "branch": "B2",
+              "edge": 1,
+              "local_structure": {
+                "common_factor": "(51*h**2 + 12*h - 64)/51",
+                "common_factor_degree": 2,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": false,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": null
+              },
+              "point": [
+                "2",
+                "-17/64"
+              ],
+              "position_along_the_edge": "47/704"
+            },
+            {
+              "branch": "B1",
+              "defined_by": "256 x^2 + 76 x + -37/8",
+              "edge": 2,
+              "local_structure": {
+                "is_a_single_double_root": null,
+                "note": "the crossing parameter is irrational, so the local structure at the crossing is not evaluated exactly by this run"
+              },
+              "point": null,
+              "root_sign": 1
+            },
+            {
+              "branch": "B1",
+              "defined_by": "256 x^2 + 76 x + -37/8",
+              "edge": 2,
+              "local_structure": {
+                "is_a_single_double_root": null,
+                "note": "the crossing parameter is irrational, so the local structure at the crossing is not evaluated exactly by this run"
+              },
+              "point": null,
+              "root_sign": -1
+            },
+            {
+              "branch": "B4",
+              "edge": 2,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-1/8",
+                "10"
+              ],
+              "position_along_the_edge": "17/32"
+            },
+            {
+              "branch": "B4",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-2",
+                "-1/8"
+              ],
+              "position_along_the_edge": "81/88"
+            },
+            {
+              "branch": "B3",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": null,
+                "common_factor_degree": null,
+                "degree_at_the_crossing": 2,
+                "is_a_single_double_root": false,
+                "note": "the quartic loses degree at this branch",
+                "repeated_root": null
+              },
+              "point": [
+                "-2",
+                "-1/8"
+              ],
+              "position_along_the_edge": "81/88"
+            },
+            {
+              "branch": "B2",
+              "edge": 3,
+              "local_structure": {
+                "common_factor": "(45*h**2 - 12*h + 64)/45",
+                "common_factor_degree": 2,
+                "degree_at_the_crossing": 4,
+                "is_a_single_double_root": false,
+                "note": "the gcd of G and G_h is linear exactly when one pair of roots collides; a quadratic gcd means two pairs collide at once, so the crossing is not simple",
+                "repeated_root": null
+              },
+              "point": [
+                "-2",
+                "-17/64"
+              ],
+              "position_along_the_edge": "657/704"
+            }
+          ],
+          "crossings_per_branch": [
+            [
+              "B1",
+              2
+            ],
+            [
+              "B2",
+              2
+            ],
+            [
+              "B3",
+              2
+            ],
+            [
+              "B4",
+              4
+            ]
+          ],
+          "edge_midpoint_real_root_counts": [
+            [
+              0,
+              0
+            ],
+            [
+              1,
+              2
+            ],
+            [
+              2,
+              4
+            ],
+            [
+              3,
+              2
+            ]
+          ],
+          "encircles": "a long arc of every declared branch",
+          "irrational_crossings": 2,
+          "justification": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained",
+          "loop": "L4 a wide loop crossing every branch",
+          "permutation_of_the_four_roots": "Undecided",
+          "sub_arc_real_root_counts": [],
+          "sub_arc_runs": [],
+          "sub_arcs": [],
+          "verdict": "Undecided",
+          "vertices": [
+            [
+              "-2",
+              "-1"
+            ],
+            [
+              "2",
+              "-1"
+            ],
+            [
+              "2",
+              "10"
+            ],
+            [
+              "-2",
+              "10"
+            ]
+          ]
+        }
+      ],
+      "undecided_loops": [
+        {
+          "loop": "L2 around a smooth point of the branch B2",
+          "reason": "a crossing is not a simple double root: the gcd of G and G_h there is not linear, so more than one pair of roots collides at once and exact real tracking cannot identify the pairs"
+        },
+        {
+          "loop": "L3 around the degenerate triple point",
+          "reason": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained"
+        },
+        {
+          "loop": "L4 a wide loop crossing every branch",
+          "reason": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained"
+        }
+      ]
+    },
+    "S9_controls": {
+      "deleted_side_control": {
+        "control_outcome": "FAILED_TO_DISCRIMINATE: removing one declared side never removes the floor, because at least nine frozen sides remain at exactly 1, so the minimiser's value does not move. The failure is recorded rather than repaired.",
+        "declared_single_side_deletions": [
+          {
+            "deleted_kind": "a branch side",
+            "deleted_side": 0,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a branch side",
+            "deleted_side": 1,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a frozen side",
+            "deleted_side": 2,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          },
+          {
+            "deleted_kind": "a frozen side",
+            "deleted_side": 11,
+            "floor_remains_one": true,
+            "minimum_moves": false,
+            "note": "nine or ten frozen sides still carry exactly 1, so the floor survives the deletion and the minimiser's value does not move",
+            "rigorous_upper_bound_at_the_witness": "1"
+          }
+        ],
+        "discriminating_variant": {
+          "deleted_sides": "all ten frozen sides",
+          "levels_along_the_escape_ray": [
+            {
+              "J_inf_without_the_frozen_sides": "9550594153/6150663036",
+              "t": "1"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "5753296020889834165541411832126623244895/9725020385093003562968960194092117167232",
+              "t": "4"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "8849211552756363388628270428048901895/32371003900934455139928407348819782688",
+              "t": "16"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "49637036557871368864413803263143316351/379305602853472054554453069313875148800",
+              "t": "64"
+            },
+            {
+              "J_inf_without_the_frozen_sides": "49419286277733751115847890386243502719/1563090024576205253361716594185702459392",
+              "t": "1024"
+            }
+          ],
+          "verdict": "the minimum moves from the attained value 1 in the interior to the unattained infimum 0 approached at infinity, so the composition of the maximum does matter when no frozen side is present"
+        },
+        "single_side_deletion_moves_the_minimiser": false
+      },
+      "frozen_unperturbed_roots": {
+        "conjugate_pair": "h = -2 +- i sqrt(8 sqrt(17) + 20)",
+        "distinct_real_roots": 2,
+        "reproduced": true,
+        "roots": [
+          {
+            "isolation_interval": [
+              "-18766528/3349103",
+              "-19774129/3528921"
+            ],
+            "midpoint_exactly": "-132451189512575/23637439815726",
+            "multiplicity": 1
+          },
+          {
+            "isolation_interval": [
+              "5658445/3528921",
+              "5370116/3349103"
+            ],
+            "midpoint_exactly": "37901430249671/23637439815726",
+            "multiplicity": 1
+          }
+        ]
+      },
+      "identity_loop_control": {
+        "loop": "L0 identity control, non-encircling",
+        "permutation": "identity",
+        "reported": true
+      },
+      "reference_is_never_a_branch": {
+        "E_p_q_at_zero": "0 for every (p, q), while a branch requires E_{p,q}(h) = 1",
+        "asserted_at_declared_parameters": [
+          "0, 0",
+          "-2, 17/10",
+          "15/8, 0",
+          "1, 1",
+          "-1/8, 0",
+          "5/2, -1/4"
+        ],
+        "checked": true
+      },
+      "superseded_collapse_witness": {
+        "J_inf_at_the_collapsed_branch": "0",
+        "branches_at_plus_minus_eps": [
+          {
+            "J_inf_of_the_two_branches": "1/2",
+            "eps": "1/2",
+            "side_amplitudes_negative_branch": [
+              "1/2",
+              "7/32",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192",
+              "1295/8192"
+            ],
+            "side_amplitudes_positive_branch": [
+              "1/2",
+              "9/32",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192",
+              "1809/8192"
+            ],
+            "terminal_amplitude_negative_branch": "1295/8192",
+            "terminal_amplitude_positive_branch": "1809/8192"
+          },
+          {
+            "J_inf_of_the_two_branches": "1/4",
+            "eps": "1/4",
+            "side_amplitudes_negative_branch": [
+              "1/4",
+              "15/128",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072",
+              "11295/131072"
+            ],
+            "side_amplitudes_positive_branch": [
+              "1/4",
+              "17/128",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072",
+              "13345/131072"
+            ],
+            "terminal_amplitude_negative_branch": "11295/131072",
+            "terminal_amplitude_positive_branch": "13345/131072"
+          },
+          {
+            "J_inf_of_the_two_branches": "1/10",
+            "eps": "1/10",
+            "side_amplitudes_negative_branch": [
+              "1/10",
+              "39/800",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000",
+              "185679/5120000"
+            ],
+            "side_amplitudes_positive_branch": [
+              "1/10",
+              "41/800",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000",
+              "198481/5120000"
+            ],
+            "terminal_amplitude_negative_branch": "185679/5120000",
+            "terminal_amplitude_positive_branch": "198481/5120000"
+          },
+          {
+            "J_inf_of_the_two_branches": "1/100",
+            "eps": "1/100",
+            "side_amplitudes_negative_branch": [
+              "1/100",
+              "399/80000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000",
+              "191360799/51200000000"
+            ],
+            "side_amplitudes_positive_branch": [
+              "1/100",
+              "401/80000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000",
+              "192640801/51200000000"
+            ],
+            "terminal_amplitude_negative_branch": "191360799/51200000000",
+            "terminal_amplitude_positive_branch": "192640801/51200000000"
+          }
+        ],
+        "double_root": {
+          "h": "0",
+          "multiplicity": 2,
+          "y": "2"
+        },
+        "reproduced": true
+      },
+      "two_realisations": [
+        {
+          "branch_level_roots": [
+            {
+              "agrees_with_a_primary_branch": true,
+              "overlapping_primary_branches": [
+                1
+              ],
+              "root": {
+                "abs_E_0_upper_bound": "12597304034656/11216490904609",
+                "abs_h_upper_bound": "5370116/3349103",
+                "equation": "G(h) = 0, that is E(h) = 1 + 0",
+                "isolation_interval": [
+                  "5658445/3528921",
+                  "5370116/3349103"
+                ],
+                "overlaps": [
+                  false,
+                  true
+                ],
+                "pick": "largest",
+                "sign": "positive"
+              }
+            },
+            {
+              "agrees_with_a_primary_branch": true,
+              "overlapping_primary_branches": [
+                0
+              ],
+              "root": {
+                "abs_E_0_upper_bound": "88909781502567921455/79164220599167393778",
+                "abs_h_upper_bound": "18766528/3349103",
+                "equation": "G(h) = 0, that is E(h) = 1 + 0",
+                "isolation_interval": [
+                  "-18766528/3349103",
+                  "-19774129/3528921"
+                ],
+                "overlaps": [
+                  true,
+                  false
+                ],
+                "pick": "smallest",
+                "sign": "negative"
+              }
+            }
+          ],
+          "detail": "at p = q = 0 the branch-level equations E(h) = 1 + p and E(h) = 1 + q are both E(h) = 1, so the two realisations coincide exactly",
+          "label": "frozen",
+          "p": "0",
+          "primary_branches": [
+            {
+              "abs_E_0_upper_bound": "88909781502567921455/79164220599167393778",
+              "abs_h_upper_bound": "18766528/3349103",
+              "isolation_interval": [
+                "-18766528/3349103",
+                "-19774129/3528921"
+              ],
+              "sign": "negative"
+            },
+            {
+              "abs_E_0_upper_bound": "12597304034656/11216490904609",
+              "abs_h_upper_bound": "5370116/3349103",
+              "isolation_interval": [
+                "5658445/3528921",
+                "5370116/3349103"
+              ],
+              "sign": "positive"
+            }
+          ],
+          "q": "0",
+          "realisations_agree": true
+        },
+        {
+          "branch_level_roots": [
+            {
+              "agrees_with_a_primary_branch": false,
+              "overlapping_primary_branches": [],
+              "root": {
+                "equation": "G(h) = -2, that is E(h) = 1 + -2",
+                "isolation_interval": null,
+                "note": "this branch-level equation has no real root at this parameter point",
+                "overlaps": [
+                  false,
+                  false
+                ],
+                "pick": "largest",
+                "real_root_exists": false
+              }
+            },
+            {
+              "agrees_with_a_primary_branch": false,
+              "overlapping_primary_branches": [],
+              "root": {
+                "abs_E_0_upper_bound": "1355883113343/942213044768",
+                "abs_h_upper_bound": "258357/343186",
+                "equation": "G(h) = 17/10, that is E(h) = 1 + 17/10",
+                "isolation_interval": [
+                  "-258357/343186",
+                  "-2199773/2922047"
+                ],
+                "overlaps": [
+                  false,
+                  false
+                ],
+                "pick": "smallest",
+                "sign": "negative"
+              }
+            }
+          ],
+          "detail": "the branch-level control keeps the process frozen and perturbs the level; its roots are reported here and every disagreement with the primary realisation is retained",
+          "label": "declared witness",
+          "p": "-2",
+          "primary_branches": [
+            {
+              "abs_E_0_upper_bound": "3225623197043/3312739180960",
+              "abs_h_upper_bound": "862667/1438910",
+              "isolation_interval": [
+                "-862667/1438910",
+                "-655322/1093063"
+              ],
+              "sign": "negative"
+            },
+            {
+              "abs_E_0_upper_bound": "10127514651741376781/10401033395124835416",
+              "abs_h_upper_bound": "764591/882701",
+              "isolation_interval": [
+                "1445356/1668627",
+                "764591/882701"
+              ],
+              "sign": "positive"
+            }
+          ],
+          "q": "17/10",
+          "realisations_agree": false
+        },
+        {
+          "branch_level_roots": [
+            {
+              "agrees_with_a_primary_branch": false,
+              "overlapping_primary_branches": [],
+              "root": {
+                "abs_E_0_upper_bound": "20890848623449/20067379520000",
+                "abs_h_upper_bound": "1211719/1583800",
+                "equation": "G(h) = 1, that is E(h) = 1 + 1",
+                "isolation_interval": [
+                  "503783/658479",
+                  "1211719/1583800"
+                ],
+                "overlaps": [
+                  false,
+                  false
+                ],
+                "pick": "largest",
+                "sign": "positive"
+              }
+            },
+            {
+              "agrees_with_a_primary_branch": false,
+              "overlapping_primary_branches": [],
+              "root": {
+                "abs_E_0_upper_bound": "621139541861825197/596655652725400975",
+                "abs_h_upper_bound": "550050/454769",
+                "equation": "G(h) = 1, that is E(h) = 1 + 1",
+                "isolation_interval": [
+                  "-550050/454769",
+                  "-3489421/2884975"
+                ],
+                "overlaps": [
+                  false,
+                  false
+                ],
+                "pick": "smallest",
+                "sign": "negative"
+              }
+            }
+          ],
+          "detail": "the branch-level control keeps the process frozen and perturbs the level; its roots are reported here and every disagreement with the primary realisation is retained",
+          "label": "equal perturbations",
+          "p": "1",
+          "primary_branches": [
+            {
+              "abs_E_0_upper_bound": "1087478342337250621/1631217513502684800",
+              "abs_h_upper_bound": "1076041/1051380",
+              "isolation_interval": [
+                "-1076041/1051380",
+                "-1699081/1660141"
+              ],
+              "sign": "negative"
+            },
+            {
+              "abs_E_0_upper_bound": "655051795201/982577692800",
+              "abs_h_upper_bound": "608761/1051380",
+              "isolation_interval": [
+                "623040/1076041",
+                "608761/1051380"
+              ],
+              "sign": "positive"
+            }
+          ],
+          "q": "1",
+          "realisations_agree": false
+        }
+      ]
+    }
+  },
+  "status": "ExternalExactPass",
+  "tooling": {
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "not_implemented": [
+      "successive difference substitution of Zhang Jingzhong and Yang Lu",
+      "a certified complex or projective continuation of roots"
+    ],
+    "polynomial_library": "sympy",
+    "used_for": [
+      "resultant",
+      "discriminant",
+      "pseudo-remainder",
+      "Groebner basis",
+      "Sturm real-root isolation",
+      "polynomial factorisation"
+    ],
+    "version": "1.14.0"
+  },
+  "undecided": [
+    {
+      "item": "the root permutation around the loops whose crossings are not simple double roots or whose arcs leave the two-real regime",
+      "reason": "identifying which pair of sheets collides on such a crossing or arc needs a certified complex or projective continuation of the roots; this run implements exact real tracking only",
+      "retained_partial_result": [
+        {
+          "loop": "L2 around a smooth point of the branch B2",
+          "reason": "a crossing is not a simple double root: the gcd of G and G_h there is not linear, so more than one pair of roots collides at once and exact real tracking cannot identify the pairs"
+        },
+        {
+          "loop": "L3 around the degenerate triple point",
+          "reason": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained"
+        },
+        {
+          "loop": "L4 a wide loop crossing every branch",
+          "reason": "2 of the crossings have an irrational parameter, so their local structure and the arcs beside them are not evaluated exactly; the crossing count and the defining polynomials are retained"
+        }
+      ]
+    },
+    {
+      "item": "second variation by successive difference substitution",
+      "reason": "successive difference substitution is not implemented in this run; the interval-subdivision variant of exact rational interval arithmetic is used instead and decides every declared sign exactly",
+      "retained_partial_result": "J_inf is identically 1 on the whole box: the minimum is attained on a non-isolated plateau in the interior of the feasible region"
+    }
+  ],
+  "version": 1,
+  "what_is_not_claimed": {
+    "exchange_realised_by_a_declared_real_loop": false,
+    "forecast": false,
+    "meteorological_correspondence": "Declared correspondence only, not a physical claim.",
+    "meteorological_data_used": false,
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "physical_claim": false,
+    "stable_api_change": false
+  }
+}

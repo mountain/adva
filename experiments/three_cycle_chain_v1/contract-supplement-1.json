@@ -1,0 +1,59 @@
+{
+  "schema": "adva.research.three-cycle-chain.supplement.v1",
+  "created_at": "2026-09-25T00:50:30Z",
+  "supplements": {
+    "path": "experiments/three_cycle_chain_v1/contract.json",
+    "sha256": "a3dc2e8d86e45139484fceed571ef99ea3b63f18748c6f1c82bb031a3305a965",
+    "relation": "This is a SUPPLEMENT, not a successor. The frozen contract stays in force byte for byte and is not edited; this document adds declared structure to its slow component, its sealing condition, its memory control and its uncertainty accounting. Where the two disagree, the frozen contract governs and the disagreement is reported rather than resolved by editing it.",
+    "reason": "The frozen chain keeps the ocean as one declared slow reservoir with one declared relaxation time. A three-dimensional reading of ocean heat - the vertical distribution rather than a single content - makes three things testable that one scalar reservoir cannot express: where in the column the memory lives, whether the sealing condition holds layer by layer rather than only in total, and whether a change in what is observed can be distinguished from a change in the mechanism."
+  },
+  "external_methodological_input": {
+    "status": "Methodological discipline adopted as declared structure only. No text, table, dataset, code or number is imported, and no data from the referenced work is used as an input to any computation.",
+    "cited": [
+      "https://www.tandfonline.com/doi/pdf/10.3878/aosl20150031 - upper-ocean heat content estimation: mapping, instrument bias and sampling error treated as separate uncertainty sources rather than one number, and bias handled per distinct historical observation network rather than pooled.",
+      "https://static-content.springer.com/esm/art%3A10.1038%2Fs41558-020-00918-2/MediaObjects/41558_2020_918_MOESM1_ESM.pdf - a systematic vertical-sampling bias in stratification change, negative before 2005 and approaching zero after, so a change in the observing system can masquerade as a change in the ocean.",
+      "https://earthlab.iap.ac.cn/news/532.html - the vertical structure and stratification of the ocean as a quantity with its own turning points, rather than a passive consequence of the total heat content."
+    ],
+    "what_is_adopted": "Only four structural requirements below. Nothing about the magnitude, sign or timing of any oceanic quantity is adopted, asserted or assumed.",
+    "not_verified_here": "The referenced papers were not read in full for this document and their numbers were not replayed; they are cited as the reason the four requirements exist, not as evidence for any result of this run."
+  },
+  "amendments": {
+    "A1_layered_slow_reservoir": "The declared slow component becomes a three-layer vector - mixed layer, thermocline, deep - each layer carrying its own declared rational relaxation time and its own declared content. The annual seam conserves the TOTAL of the three layers exactly; inter-layer redistribution is a declared operator with a declared bound. The location of the carried memory therefore becomes a checkable question: which layer holds it at each seam, and whether the answer is stable across C1, C2 and C3.",
+    "A2_per_layer_sealing": "The sealing side's no-leakage bound applies LAYER BY LAYER. Leakage in any single layer must be detected, and a total that is conserved while one layer leaks and another gains must NOT be accepted as sealed: compensation between layers may not cancel a violation of the bound.",
+    "A3_sampling_change_control": "A change in the declared observation composition, with the mechanism held fixed, must leave every reading unchanged. A reading that moves when only the observing composition moves must be reported as a sampling artefact and must not be read as a change of mechanism. This is the negative control that the stratification-sampling bias cited above makes necessary.",
+    "A4_separated_uncertainty_and_no_pooling": "Three uncertainty terms - mapping, bias, sampling - are recorded separately at every seam and are never fused into one number; a fused figure must be rejected as a violation of the declaration. Heterogeneous sources are recorded separately and pinned separately, never pooled, and the user's recorded reservation about data authenticity is carried verbatim, un-narrowed to any single stage."
+  },
+  "controls": [
+    "A1 drift: a chain whose slow total is conserved while one layer's content drifts must report the per-layer drift exactly; a chain with no redistribution must be reported as making the layer structure do no work if that is what the numbers show.",
+    "A1 memory location: the layer holding the carried memory at each seam is reported for C1, C2 and C3; if it is not stable, that instability is the result and is not smoothed over.",
+    "A2 leakage: a per-layer violation must be detected, and the total-cancelling case must be reported as a violation rather than as a pass.",
+    "A3 invariance: with the mechanism fixed and the observation composition changed, every reading must be unchanged; the complementary control - a reading that moves only with the composition - must be flagged as an artefact.",
+    "A4 fusion: a single fused uncertainty figure must be rejected; the three terms must be present separately at every seam.",
+    "Inherited: every control of the frozen contract still runs unchanged, including the calamity counterpart of each condition and the requirement that the purely atmospheric chain lose the carried memory at the seam."
+  ],
+  "calamity_typing": "Under the three-by-three role typing of the frozen contract, each amendment sits in the middle group and its control sits in the upper, calamity-visible group: A1 with the drift and memory-location controls, A2 with the leakage controls, A3 with the invariance and artefact controls, A4 with the fusion-rejection control. A control that cannot be made to fail is reported as a failed control.",
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact and no floating-point value appears in any acceptance test or in the retained payload. The run reports, per seam and per cycle: the three layer contents, the conserved total, the per-layer drift, which layer carries the memory, the per-layer sealing bound verdicts, the sampling-change invariance result, and the three separated uncertainty terms. A fused uncertainty figure, a total-cancelled leakage or an invariance failure is a rejection, not a warning.",
+  "protected": [
+    "experiments/three_cycle_chain_v1/contract.json is retained byte for byte and is not edited",
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No text, table, dataset or number from the cited work is imported, and no such data enters any computation",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "The four amendments are adopted as declared structure from a methodological reading; they are not derived from the process and the cited work is not replayed here",
+    "Layer definitions, relaxation times, redistribution bounds and the observation-composition variable are all declared conventions; a different declaration is a different run",
+    "The chain remains future and unverified; nothing here is a forecast, a skill estimate, a reconstruction or a statement about the ocean",
+    "The three-year chain may be shorter than the oceanic time scales it names, and that mismatch stays retained rather than argued away",
+    "The authenticity reservation about the underlying data is carried un-narrowed, and hashes and same-source read-backs do not remove it"
+  ]
+}

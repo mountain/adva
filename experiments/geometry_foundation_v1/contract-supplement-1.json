@@ -1,0 +1,39 @@
+{
+  "schema": "adva.research.geometry-foundation.supplement.v1.spacetime-group",
+  "created_at": "2026-09-25T11:40:00Z",
+  "status": "PROPOSAL ONLY - 提议性方案 (supplement to proposal four)",
+  "supplements": {
+    "path": "experiments/geometry_foundation_v1/contract.json",
+    "sha256": "1e07f9a04a9d6d60073a5cb3f726df7d38554608f4d023383314fbff83217750",
+    "relation": "A supplement, not a successor: the frozen contract and its completed run are retained byte for byte. Where the two disagree, the frozen contract governs and the disagreement is reported rather than resolved by editing it."
+  },
+  "corrects": {
+    "statement": "The frozen contract reads a polyhedral point group as a subgroup of SO(3). The completed run shows this holds for the ROTATION PART only: the full point groups of the achiral solids it computed (T_d of order 24, O_h of order 48) contain 12 and 24 improper elements respectively, so the full groups lie in O(3), not in SO(3).",
+    "consequence": "The symmetry that matches relativistic spacetime on the constellation's side is O(3) - rotations together with parity - embedded in the full Lorentz group O(3,1). Parity (inversion) is exactly the element that pairs antipodal platforms, which is what makes the sunlit and the unsunlit sides structural rather than scheduled.",
+    "second_correction": "An earlier reading of this programme said that the ground light-dark pattern inherits the constellation's point group. That is the wrong object for a transport goal: a pattern that is symmetric in space and unchanging in time has no direction, and by symmetry it drives no net transport at all. The object to declare is the SPACETIME symmetry of the (constellation, schedule) pair."
+  },
+  "spacetime_group_clause": {
+    "declared_object": "The pair (constellation placement, illumination schedule) and the group of operations that leave the pair invariant, where the allowed operations are spatial operations from O(3) - including parity - COMBINED WITH time translations of the declared schedule.",
+    "zero_transport_condition": "If the pair is invariant under any operation of the form (spatial reflection or rotation) combined with a time translation, then the net transport over one period is exactly zero. The mechanism is the one already executed in the ratchet run: a reflection composed with a half-period time shift makes the per-step flows pair exactly, so their sum vanishes.",
+    "directed_transport_condition": "Directed transport requires that invariance to be BROKEN: a non-symmorphic spacetime element must be absent, that is, the schedule must not be recoverable from the placement by a spatial operation plus a time shift. The direction is then written by the declared phase gradient, not by the pattern's shape.",
+    "point_group_role": "The point group's remaining role is to constrain WHICH schedules are compatible with the declared placement: a schedule invariant under a subgroup gives a standing pattern and transports nothing, while a schedule carrying a phase gradient relative to that subgroup gives a travelling pattern and transports.",
+    "direction_is_declared": "The direction and speed of the travelling pattern are read from the schedule's phase gradient; the pattern's magnitude is a separate, bounded quantity, so geometry and power stay decoupled."
+  },
+  "required_checks": [
+    "Exhibit the pair's invariance group and list its elements as (spatial operation, time shift) pairs; report the order and whether the group is symmorphic or non-symmorphic in the declared sense.",
+    "Produce the zero: a declared invariant pair must give exactly zero transport, produced as an executed rejection of the claim that it transports.",
+    "Produce the non-zero: a declared pair with the invariance broken must give non-zero transport, and reversing the schedule's phase gradient must reverse the direction exactly with the two directions summing to zero.",
+    "Reject a schedule claimed invariant under a spatial operation it is not invariant under, and reject a claimed direction that does not follow the gradient's sign.",
+    "Reject any claim that the ground pattern's shape alone fixes the direction of transport.",
+    "Reject any identification of the full point group of an achiral solid with a subgroup of SO(3)."
+  ],
+  "declared_obligations": {
+    "no_magnitude": "No magnitude, sign or timing is asserted for any physical quantity; no pattern is projected onto any real surface and nothing is ablated, melted, moved or heated.",
+    "proposal_only": "authorization, decision, deployment and physical_effect_asserted are none; governance is unaddressed."
+  },
+  "residual": [
+    "The clause is declared structure; whether another spacetime-symmetry reading (for instance one carrying time reversal as well as parity) changes the conditions is not decided",
+    "The zero and the non-zero are to be produced inside the declared models; neither is a theorem about any physical system",
+    "The run's own Undecided items, its single failed control and its rotation-part finding all remain in force"
+  ]
+}

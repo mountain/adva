@@ -1,0 +1,72 @@
+{
+  "schema": "adva.research.space-proposal.v3.contract",
+  "created_at": "2026-09-25T12:10:00Z",
+  "status": "PROPOSAL ONLY - 提议性方案 (proposal three)",
+  "status_note": "The third space proposal: freer orbits with a lattice or polyhedral placement matched to relativistic spacetime symmetry, working in both sunlit and unsunlit regions to create a controllable small-scale energy imbalance, with work regions and times computed in advance and tasks assigned to declared ablation levels. It authorizes nothing, decides nothing, deploys nothing, asserts no physical effect, gives no magnitude for any physical quantity and uses no data.",
+  "inherits": {
+    "shared_geometry": {
+      "path": "experiments/geometry_foundation_v1/contract.json",
+      "sha256": "1e07f9a04a9d6d60073a5cb3f726df7d38554608f4d023383314fbff83217750",
+      "use": "referenced, never recomputed: the spot floor with its penumbra-diameter form, the etendue ceiling, the corrected usable fraction, the pattern scale and its coherence statement, the work-region calculus and the ablation-level assignment"
+    },
+    "spacetime_group_clause": {
+      "path": "experiments/geometry_foundation_v1/contract-supplement-1.json",
+      "sha256": "1540a1290d805bf031fd6734fba1701267e7ce1e67a19a6d52a7e1b1dce7c7ab",
+      "use": "the conditions: invariance of the (constellation, schedule) pair under a spatial operation combined with a time translation gives exactly zero transport; directed transport requires that invariance to be absent, with the direction written by the declared phase gradient"
+    },
+    "ratchet_model": {
+      "path": "experiments/spatiotemporal_ratchet_v1/contract.json",
+      "sha256": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+      "use": "the executed mechanism of the zeros and of the exact reversal"
+    },
+    "entry_window": {
+      "use": "the mixed water-ice window before sealing, expressed below as W1 to W4"
+    }
+  },
+  "declared_reading": {
+    "constellation_family": "Primary: the pyritohedron, point group T_h of order 24, which contains inversion (parity) and is a crystallographic point group, so it is lattice-compatible; its twenty vertices split into two orbits of sizes 8 and 12, and inversion pairs them into exactly ten antipodal pairs, which is what makes the sunlit and unsunlit sides structural rather than scheduled. Alternative: the snub cube, point group O of order 24, chiral, and also crystallographic - the choice when a declared chirality is required, since the pyritohedron itself is achiral.",
+    "two_regions": "Each antipodal pair works one sunward and one anti-sunward member at any time; the two regions are addressed by the same declared phase schedule with opposite sense, and the schedule must be declared, not chosen in flight.",
+    "topology_preserved": "The constellation's combinatorial type (twelve faces, thirty edges, twenty vertices, Euler two) is unchanged between the primary and the alternative family member and under any declared orbit-radius change, so a symmetry reduction cannot break the declared topology.",
+    "entry_window": {
+      "W1_state": "Entry requires the declared medium to be in the mixed water-ice state ABOVE the declared percolation threshold, so the liquid phase is connected; a declared state below the threshold is a different run and entry is refused.",
+      "W2_time": "The window is the freeze-up segment inside the December-January window already fixed, determined by the declared phase state rather than by the calendar alone; a claim of entry after sealing is refused.",
+      "W3_topology_invariant": "The connected-phase topology must not be broken: the declared side of the percolation threshold must be preserved, or the crossing itself declared as an event; a silent crossing while claiming the invariant is refused.",
+      "W4_safety_bound": "The declared energy of a single action must be strictly below a declared fraction of the latent heat of a connected region at the threshold; a single action able to cross the threshold by itself is refused. This is the only place a safety statement is made, and it is an inequality on declared model numbers."
+    },
+    "ablation_levels": "Tasks are assigned to declared energy LEVELS matched to the declared ablation levels of the target medium by declaration; only declared ordinal levels are used, every level carries at least one task, and no magnitude of any physical quantity appears.",
+    "stage_one": "Calibration first: observational material computed, aggregated and distributed inside the December-January window, then continuous observation and learning of the small perturbations, growing with each launch; the two invariants are that the declared topology is not broken and that learning is continuous from the first stage.",
+    "corrections_carried": "The ground pattern's symmetry is NOT the object: the spacetime symmetry of the (constellation, schedule) pair is. And the full point groups of achiral solids lie in O(3), not SO(3); parity is the pairing element."
+  },
+  "required_checks": [
+    "Exhaust the pyritohedron's twenty vertices under the declared T_h generator set by exact integer closure: report the two orbit sizes (8 and 12), the number of antipodal pairs (10), and that a general pyritohedron moves only within each orbit.",
+    "Verify the snub cube's group order and that it is chiral (no improper element) while remaining crystallographic, as the declared alternative.",
+    "Verify the spacetime-group conditions on a declared (constellation, schedule) pair: an invariant pair gives exactly zero transport (produced as an executed rejection of the claim that it transports), and breaking the invariance gives non-zero transport whose direction reverses exactly when the phase gradient's sign reverses, the two directions summing to zero.",
+    "Verify schedule compatibility: a schedule invariant under a subgroup of the declared placement gives a standing pattern (zero), while a schedule carrying a phase gradient gives a travelling pattern (non-zero, direction following the gradient).",
+    "Apply W1 to W4: the above-threshold state accepted, entry below the threshold refused, entry after sealing refused, a silent threshold crossing refused, and a single action able to cross the threshold refused by an exact inequality on declared numbers.",
+    "Assign the declared tasks to the declared levels, refusing a task routed to a platform and a level outside the declared set, and confirm that no magnitude of any physical quantity appears anywhere.",
+    "Stage one: 4096 declared units carried identically through compute, aggregate and distribute, learning entering at the first step, with the topology-broken and learning-delayed controls refused.",
+    "Refuse the overreaches: a claim that an icosahedral constellation is lattice-compatible, a claim that the ground pattern's shape fixes the transport direction, a claim that the two vertex orbits are combinatorially different, and a claim that the primary and alternative family members have different topology."
+  ],
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports every item above with its exact values, every control with its verdict, the antipodal pairing, the two-region schedule, W1 to W4, the level assignment, the stage-one invariants, and proposal-only bookkeeping with authorization, decision, deployment and physical effect all none and governance unaddressed.",
+  "protected": [
+    "All parent contracts are retained byte for byte and are not edited",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No data is read or used",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "Every placement, symmetry choice, orbit radius, threshold, schedule and level is declared; another declaration is another run",
+    "No magnitude, sign or timing is asserted for any physical quantity; nothing is ablated, melted, moved or heated and no pattern is projected onto any real surface",
+    "The entry window's percolation threshold and the latent heat are DECLARED constants and declared thresholds, not measurements of this run",
+    "The termination problem, governance and any safety analysis beyond W4 remain Unaddressed"
+  ]
+}

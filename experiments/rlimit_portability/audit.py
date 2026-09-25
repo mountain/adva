@@ -31,6 +31,11 @@ NOTES = {
     'experiments/murphy/run.py': 'Only Python children install AS; outer handler reports Failed on preexec refusal. Non-Python children do not execute this AS call.',
     'experiments/representation_residual/run.py': 'AS call is in the optional native-backend branch, not the pure Python portion.',
     'experiments/frame_covariance/run.py': 'main installs AS before trial. New separate portable replay bypasses only main; source/contract/evidence unchanged.',
+    'experiments/floquet_forecast_audit_v1/attempt-1/run.py': 'Retained superseded attempt, byte identical to run.py beside it. The frozen rule keys on evidence/, run-01/ and before- names, so this copy counts as a live installation; whether a retained attempt directory should be historical is left open.',
+    'experiments/floquet_forecast_audit_v1/verify.py': 'AS is installed unconditionally at entry, before the frozen model is read or its pin checked; no --worker branch and no platform gate.',
+    'experiments/japan_geostrophic_audit_v1/reproduce_full.py': 'AS is installed only in the --worker branch, which the parent reaches after a spent-ledger gate; largest declared budget here (540 s CPU, 6 GiB AS, 150 MB output).',
+    'experiments/japan_geostrophic_audit_v1/verify_summary.py': 'AS is installed unconditionally at entry, before verification-inputs.json is read; no --worker branch and no platform gate.',
+    'experiments/native_floquet_expression_v1/check.py': 'AS is installed unconditionally at entry with the alarm; no --worker branch and no platform gate.',
 }
 
 

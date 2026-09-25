@@ -1,0 +1,62 @@
+{
+  "schema": "adva.research.three-cycle-chain.v1",
+  "created_at": "2026-09-25T00:43:27Z",
+  "question": "Can the declared two-sided mechanism - one side supplying heat or injecting cold, the other side sealing that heat with wind without leakage - be chained across three annual cycles beginning at the seam between December 2026 and January 2027, when each cycle carries a three-by-three role-typed step structure, the end block is counted in steps as its Taixuan counterpart is counted in zan, the carried remainder is split into a fast and a slow component with the slow one required to be conserved across every seam, and the closure clause is read as an iterable return?",
+  "level": "Bounded external exact calibration of a declared chain. No forecast, no skill claim, no physical mechanism claim, no observational verification, and no meteorological or reanalysis data used.",
+  "declared_reading": {
+    "chain": "Three annual cycles C1, C2 and C3 beginning at the seam between December 2026 and January 2027, so C1 runs 2026-12 to 2027-12, C2 to 2028-12 and C3 to 2029-12. This is a FUTURE chain: no observation and no issue exists for it in this checkout, and the xue-study record states that its model output is initialised 2025-12 and covers 2026-01 to 2026-06 only. Verification is therefore Unavailable and must be recorded as such, not approximated.",
+    "role_typed_steps": "The nine zan of a Taixuan head divide into three groups of three - the lower three are deliberation, the middle three fortune, the upper three calamity. The chain adopts that shape as a declared structure rather than a flat step list: every cycle carries three groups of three steps, and every declared condition carries its calamity counterpart, so a failure branch is part of the structure and not an afterthought.",
+    "end_block_counted_in_steps": "The end block of the cycle holds exactly two extra steps, counted in the same unit as the steps themselves, exactly as the Taixuan calendar counts its remainder in zan (729 zan at two per day) rather than in free parameters. The chain must report its total step count and its remainder explicitly.",
+    "closure_iterable": "The clause 終養始 closes a cycle by feeding the end into the beginning, and it sits at the last position of the upper, calamity group. The chain requires every cycle to be a genuine return rather than only the first, and the exit condition is typed as the last member of the calamity-visible group.",
+    "two_sided_mechanism": "One side supplies heat or injects cold; the other side seals that heat with wind. The sealing side is a CONSTRAINT - no leakage - and not a source, so it must be stated as a bound rather than as a term that can cancel a violation.",
+    "fast_and_slow_remainder": "The carried remainder is split into a fast component and a slow component. The slow component must be conserved across every seam; the fast component may reset. The ocean is included as a DECLARED slow reservoir with a declared relaxation time and with Greenland meltwater entering as a declared freshwater source term on that reservoir; this is a declared model, not physics, and the time-scale mismatch with a three-year chain is retained as a residual rather than argued away.",
+    "declared_alternative": "The declared alternative - keeping the chain atmospheric only and leaving the ocean open - is reported beside the primary rather than dropped, so the choice is visible."
+  },
+  "objects": {
+    "algebraic_carrier": "The twelve-phase fixture of note 0233 and the readings of notes 0234, 0235 and 0236: the annual return E, its level reading, and the closure reading E(h) = h at the fixed point.",
+    "chain": "Three consecutive applications of the declared return, with the seam state carried forward, the fast and slow remainder components accounted separately, and the sealing bound checked at every cycle.",
+    "baselines": "The exact baselines of the earlier runs: J_inf = 1 at (p, q) = (-2, 17/10) off the discriminant variety, the closure amplitude 3.2035072879526181... with one real exit, and the level reading's two real branches with largest amplitude 2 + sqrt(8 sqrt(17) - 20) = 5.6034490429..., ordered 1 < 3.2035... < 5.6034..."
+  },
+  "method": {
+    "exact": "All acceptance arithmetic is exact integers and fractions. sympy 1.14 is a declared non-authoritative engine where resultants, Groebner bases or Sturm counts are needed.",
+    "declared_reservoir": "The slow reservoir is a declared first-order relaxation with a rational time constant, evaluated exactly, with the meltwater source entering as a declared term; the run must state plainly that this is a declared model and not a claim about the ocean.",
+    "controls_first": "The calamity counterpart of every condition is executed: a condition whose failure branch cannot be produced is reported as a failed control rather than quietly dropped."
+  },
+  "controls": [
+    "Iterability: a chain that closes in C1 but drifts in C2 or C3 must be detected and reported, with the drift value exact.",
+    "Memory: a purely atmospheric chain must LOSE the carried memory at the seam, while the chain with the declared slow component must keep it. If the atmospheric chain does not lose it, the split is doing no work and the run must say so.",
+    "Placement: a chain starting at a seam other than the declared December-January seam must be rejected by rule.",
+    "Leakage: a chain whose sealing bound is violated must be detected; the sealing side may not be used as a source that cancels the violation.",
+    "Remainder: the end block holds exactly two extra steps counted in steps, and a block of one or three must be rejected (the T1 controls of note 0236 carried forward).",
+    "Baselines: the three exact baselines above must be reproduced, and the exact ordering asserted."
+  ],
+  "verification_status": {
+    "observational": "Unavailable",
+    "reason": "The chain is future; no observation and no issued forecast exists for 2026-12 onwards in this checkout.",
+    "data_authenticity_reservation": "The user's recorded reservation about the authenticity of the data in the xue-study work is carried with this contract; hashes and same-source read-backs do not remove it, and it is not narrowed to any single stage."
+  },
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports: the three-cycle chain with its seam states; the three-by-three role typing with a calamity counterpart for every condition; the step count and the remainder of the end block; the closure status of each cycle separately; the fast and slow remainder components at every seam and the drift of the slow one; the declared reservoir model and its declared relaxation time; the sealing bound at every cycle; both the primary and the declared alternative; and every control above, including any that failed to discriminate.",
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "Notes 0228, 0233, 0234, 0235 and 0236 and the three earlier contracts are cited, not edited",
+    "The xue-study checkout is read only if a later contract pins it; this run uses no data from it",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "The chain is future and unverified; nothing here is a forecast, a skill estimate or a statement about the atmosphere",
+    "The three-by-three role typing is a declared structure taken from the Taixuan zan division, not a derived property of the process",
+    "The ocean enters as a declared slow reservoir with a declared relaxation time and a declared freshwater source; AMOC adjustment is normally multidecadal, so a three-year chain may be shorter than the mechanism it names, and that mismatch is retained rather than resolved",
+    "The fast and slow split is a declared convention; if the atmospheric chain keeps memory at the seam, the split is reported as doing no work",
+    "No claim is made about any wind gap, plateau, pressure centre, December 2026 or January 2027"
+  ]
+}
