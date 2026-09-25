@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **247 numbered
+This directory holds the research record of the repository: **248 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -793,6 +793,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [0237 — Singularity surgery: opposite chirality, a raised flux, and two roles that fail when swapped](0237-singularity-surgery-opposite-chirality-a-raised-flux-and-two-roles.md): the declared surgery excises the discriminant collision and the annual seam, and the excised boundary has exactly two connected components carrying opposite-chirality spirals; the collar flux rises from 0 to 2 fully attributed, the outer role writes out and discharges the obstruction, the inner role arrives in 24 steps against a budget of 36, no resource is created, the memory layer is the deep one across all three cycles, and the projection is accepted only as a map; whether opposite chirality is necessary rather than merely declared is recorded as Undecided, because the rise is `w·n·(σ_O−σ_I)` and the declared tilt does as much work as the chirality.
 
 - [0238 — Three chained annual cycles: every cycle closes, and the drift control fails to discriminate](0238-three-chained-annual-cycles-every-cycle-closes-and-the-drift-control-fails-to-discriminate.md): three cycles beginning at the December 2026/January 2027 seam are chained exactly with the closure amplitude as an exact element of its cubic field; each cycle is ClosedByFixedPoint with zero drift, the cumulative reading has no genuine real period-3 orbit, the end block holds exactly two steps and the step remainder is 6 of 33, all nine conditions carry an executed calamity counterpart, the slow component is conserved while the declared open-ocean variant loses the memory, and the drift control failed to discriminate and is retained as a failure.
+
+- [0239 — The rounded ending: a conjunction that nets nothing, and a one-way commitment that sealing may not touch](0239-the-rounded-ending-a-conjunction-that-nets-nothing-and-a-one-way-commitment.md): the ending is 圆融, a conjunction in which the sealable component closes exactly at the fixed point while the committed component is carried out and written out, with four prohibitions each rejected by an executed control; the beginning splits into resetable obstructions and a non-resetable commitment, the middle carries two directed five-cycles, the chain of 1095 days closes none of 260, 2920 and 18980, the one-way reservoir is monotone and hysteretic while the parent's relaxation fails both controls, sealing is refused for the leak, and a four-by-two table classifies aerosols, low cloud, water vapour and wildfire on each side with no magnitude anywhere.
 
 ### Named notes
 
