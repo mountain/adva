@@ -1,0 +1,4498 @@
+{
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports every item above with its exact values, every control with its verdict, the antipodal pairing, the two-region schedule, W1 to W4, the level assignment, the stage-one invariants, and proposal-only bookkeeping with authorization, decision, deployment and physical effect all none and governance unaddressed.",
+  "assertions": 719,
+  "checker_sha256": "1fa8ca8c22aa417a529fc1f1d9123dcde8a00ccba5dc0471d563ad6897f99b51",
+  "checks": {
+    "W1_the_declared_above_threshold_state_is_accepted": true,
+    "W1_the_declared_below_threshold_state_is_refused": true,
+    "W2_entry_after_the_declared_sealing_step_is_refused": true,
+    "W3_a_silent_threshold_crossing_is_refused": true,
+    "W4_a_declared_action_reaching_the_declared_bound_is_refused": true,
+    "W4_the_bound_is_the_declared_fraction_of_the_connected_region_latent_heat": true,
+    "W4_the_declared_action_is_strictly_below_the_declared_bound": true,
+    "a_general_pyritohedron_moves_only_within_each_orbit": true,
+    "a_task_outside_the_declared_level_set_is_refused": true,
+    "assertions_within_budget": true,
+    "each_declared_antipodal_pair_serves_one_member_of_each_region": true,
+    "every_declared_control_discriminates": true,
+    "every_declared_control_is_rejected": true,
+    "every_declared_level_carries_at_least_one_task": true,
+    "every_declared_overreach_is_executed_and_refused": true,
+    "governance_is_unaddressed_and_no_decision_is_claimed": true,
+    "no_data_is_read_or_used": true,
+    "no_declared_control_is_dropped": true,
+    "no_floating_point_value_is_retained": true,
+    "no_host_path_timestamp_or_duration_key_appears_anywhere": true,
+    "no_magnitude_of_any_physical_quantity_appears_anywhere": true,
+    "no_pattern_is_projected_onto_any_real_surface": true,
+    "no_sign_or_timing_key_for_any_physical_quantity_appears_anywhere": true,
+    "no_task_is_routed_to_a_platform": true,
+    "nothing_is_ablated_melted_moved_or_heated": true,
+    "observational_verification_is_recorded_unavailable": true,
+    "stage_one_carries_the_declared_units_identically_through_all_three_stages": true,
+    "stage_one_declared_learning_enters_at_the_first_step": true,
+    "stage_one_the_declared_learning_delayed_control_is_refused": true,
+    "stage_one_the_declared_topology_broken_control_is_refused": true,
+    "the_contract_declares_itself_a_proposal_only": true,
+    "the_declared_alternative_group_has_exactly_order_twenty_four": true,
+    "the_declared_alternative_is_chiral": true,
+    "the_declared_alternative_is_crystallographic": true,
+    "the_declared_antipodal_pair_count_is_ten": true,
+    "the_declared_broken_pair_reverses_exactly_with_the_phase_gradient_sign": true,
+    "the_declared_broken_pair_transports_exactly_non_zero": true,
+    "the_declared_checks_all_pass": true,
+    "the_declared_constellation_has_twenty_vertices": true,
+    "the_declared_full_point_group_is_not_a_subgroup_of_SO3": true,
+    "the_declared_graph_has_thirty_edges": true,
+    "the_declared_graph_is_invariant_under_the_declared_group": true,
+    "the_declared_graph_is_three_regular": true,
+    "the_declared_group_contains_inversion": true,
+    "the_declared_group_contains_no_five_fold_element": true,
+    "the_declared_group_has_exactly_the_declared_order": true,
+    "the_declared_group_is_crystallographic": true,
+    "the_declared_icosahedral_constellation_is_refused": true,
+    "the_declared_invariant_pair_is_produced_as_an_executed_rejection": true,
+    "the_declared_invariant_pair_transports_exactly_zero": true,
+    "the_declared_level_values_are_not_magnitudes_of_a_physical_quantity": true,
+    "the_declared_model_is_declared_in_full": true,
+    "the_declared_orbit_sizes_are_eight_and_twelve": true,
+    "the_declared_pairing_set_of_the_invariant_pair_has_the_half_period_shift": true,
+    "the_declared_standing_pattern_transports_exactly_zero": true,
+    "the_declared_travelling_direction_follows_the_gradient_sign": true,
+    "the_declared_travelling_pattern_transports_exactly_non_zero": true,
+    "the_declared_two_orbits_are_combinatorially_different": true,
+    "the_declared_two_regions_partition_the_constellation": true,
+    "the_entry_window_thresholds_are_declared_and_not_measured": true,
+    "the_failed_control_is_retained": true,
+    "the_payload_declares_itself_a_proposal_only": true,
+    "the_payload_records_proposal_only_bookkeeping": true,
+    "the_ratchet_contract_is_referenced_by_digest": true,
+    "the_shared_geometry_is_referenced_by_digest_and_not_recomputed": true,
+    "the_termination_problem_is_unaddressed_and_unsolved": true,
+    "this_contract_digest_matches_the_declared_one": true,
+    "undecided_items_are_declared": true
+  },
+  "contract": "experiments/space_proposal_v3/contract.json",
+  "contract_sha256": "d9b8ef6444c24f1d77fb9d64f23b49ddb50e2805baf1446e26d21d432497df3c",
+  "contract_sha256_declared": "d9b8ef6444c24f1d77fb9d64f23b49ddb50e2805baf1446e26d21d432497df3c",
+  "contract_status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848 (proposal three)",
+  "controls": {
+    "control_count": 9,
+    "controls": [
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared task task_constellation_placement assigned to the declared level level_1",
+          "unit": "1",
+          "value": "1",
+          "verdict": "Accepted_AssignedToADeclaredLevel"
+        },
+        "claim": "the declared task task_constellation_placement is assigned to a declared vertex of the declared constellation",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        },
+        "control": "a declared task routed to a platform instead of to a declared level",
+        "control_id": "ABL-TASK-TO-A-PLATFORM",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "5",
+            "6"
+          ],
+          "unit": "1",
+          "value": "5"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared assignment domain, which is the declared level set",
+        "rejection_reasons": [
+          "the declared assignment domain is the declared level set [1, 2, 3, 4, 5] and the declared task task_constellation_placement carries the declared required level value 1",
+          "a declared vertex of the declared constellation is a declared placement object and not a declared level, so the claim names an object outside the declared level set",
+          "the accepted form assigns the task to the declared level level_1, so a platform is never the destination of a task"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared task task_entry_window_state assigned to the declared level level_3",
+          "unit": "1",
+          "value": "3",
+          "verdict": "Accepted_InsideTheDeclaredSet"
+        },
+        "claim": "the declared task task_entry_window_state is assigned to a level whose declared value is 6",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "6",
+            "7"
+          ],
+          "unit": "1",
+          "value": "6"
+        },
+        "control": "a declared task assigned to a level outside the declared level set",
+        "control_id": "ABL-LEVEL-OUTSIDE-THE-DECLARED-SET",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "5",
+            "6"
+          ],
+          "unit": "1",
+          "value": "5"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared level set",
+        "rejection_reasons": [
+          "the declared level values are [1, 2, 3, 4, 5] and the claimed value 6 is not among them",
+          "the claim lies exactly 1 above the largest declared level value, so it is outside the declared set",
+          "a level outside the declared set has no declared ablation level to match, so the claim is rejected by the declared set itself"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the identity-carrying declared pipeline: the declared sets exactly equal, with the declared index sums retained as the declared witness",
+          "unit": "1",
+          "value": "4096",
+          "verdict": "Accepted_DeclaredTopologyNotBroken"
+        },
+        "claim": "the aggregation merges one declared unit, so fewer declared units are distributed than were computed",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "4095",
+            "4096"
+          ],
+          "unit": "1",
+          "value": "4095"
+        },
+        "control": "a violation of the declared topology invariant of stage one: the aggregation merges exactly one declared unit",
+        "control_id": "STAGE-TOPOLOGY-BROKEN",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "4096",
+            "4097"
+          ],
+          "unit": "1",
+          "value": "4096"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared invariant that the declared topology is not broken",
+        "rejection_reasons": [
+          "the declared computed, aggregated and distributed unit sets are exactly equal, so no declared unit is merged, dropped or invented and the declared count 4096 is carried through unchanged",
+          "a declared merge would carry exactly one declared unit fewer",
+          "the accepted form is the identity-carrying declared pipeline"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "declared learning continuous from the first stage",
+          "unit": "1",
+          "value": "4",
+          "verdict": "Accepted_DeclaredLearningContinuous"
+        },
+        "claim": "the first declared growth step carries zero declared learning units",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        },
+        "control": "a violation of the declared continuous-learning invariant: the first declared step carries no declared learning units",
+        "control_id": "STAGE-LEARNING-DELAYED",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "4",
+            "5"
+          ],
+          "unit": "1",
+          "value": "4"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared invariant that declared learning is continuous from the first stage",
+        "rejection_reasons": [
+          "the first declared growth step carries exactly 4 declared learning units",
+          "the declared learning units grow strictly with every declared growth step",
+          "the declared claim of a zero-learning first step is the declared delayed learning the declared invariant forbids"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared crystallographic constellation, whose declared group has no 5-fold element",
+          "unit": "1",
+          "value": "0",
+          "verdict": "Accepted_AsTheDeclaredCrystallographicConstellation"
+        },
+        "claim": "the declared icosahedral constellation is lattice-compatible",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        },
+        "control": "a declared icosahedral constellation claimed lattice-compatible",
+        "control_id": "OVR-ICOSAHEDRAL-LATTICE-COMPATIBLE",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "24",
+            "25"
+          ],
+          "unit": "1",
+          "value": "24"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared crystallographic rotation orders and the icosahedral rotation group",
+        "rejection_reasons": [
+          "the declared icosahedral rotation group has exactly 60 elements and contains exactly 24 elements of order 5, so it has a 5-fold rotation axis",
+          "the declared crystallographic rotation orders are [1, 2, 3, 4, 6] and 5 is not among them, so no declared lattice can carry this declared constellation",
+          "the accepted form is the declared crystallographic constellation, whose declared group T_h of order 24 has rotation axes of order 2 and 3 only"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared direction written by the declared phase gradient's sign",
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0",
+          "verdict": "Accepted_AsTheDeclaredGradientWrittenDirection"
+        },
+        "claim": "the declared ground pattern's shape alone fixes the declared transport direction",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "1"
+        },
+        "control": "the declared ground pattern's shape claimed to fix the declared transport direction",
+        "control_id": "OVR-PATTERN-SHAPE-FIXES-THE-DIRECTION",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared transport at the declared standing gradient, exactly",
+        "rejection_reasons": [
+          "at the declared standing gradient the declared pattern's transport derived here is exactly 0 declared units of net signed flow per declared period, so the declared shape alone declares no direction",
+          "the declared direction of the declared travelling pattern is fixed by the declared phase gradient's sign and not by the declared pattern's shape",
+          "the declared correction carried by the frozen contract is exactly that the declared ground pattern's symmetry is NOT the declared object"
+        ],
+        "unit": "declared units of net signed flow per declared period",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared statement that the two declared orbits are combinatorially different, with their exactly computed distinct declared stabiliser orders",
+          "unit": "1",
+          "value": "2",
+          "verdict": "Accepted_AsTheDeclaredCombinatorialDifference"
+        },
+        "claim": "the declared cube orbit and the declared petrie orbit are the declared same combinatorial kind",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "2",
+            "3"
+          ],
+          "unit": "1",
+          "value": "2"
+        },
+        "control": "the two declared vertex orbits claimed to be the declared same combinatorial kind",
+        "control_id": "OVR-THE-TWO-ORBITS-ARE-THE-SAME-COMBINATORIAL-KIND",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "3",
+            "4"
+          ],
+          "unit": "1",
+          "value": "3"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the exactly computed declared stabiliser orders of the two declared orbits",
+        "rejection_reasons": [
+          "the declared cube orbit has exactly 3 declared elements fixing a declared orbit point and the declared petrie orbit has exactly 2",
+          "the two declared stabiliser orders DIFFER, so the two declared orbits are NOT isomorphic declared group sets and the claim that they are the same declared combinatorial kind is refused exactly",
+          "the declared orbits nevertheless have declared sizes 8 and 12"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared shared combinatorial type with its declared Euler characteristic 2",
+          "unit": "1",
+          "value": "2",
+          "verdict": "Accepted_AsTheDeclaredSharedCombinatorialType"
+        },
+        "claim": "the declared primary constellation and the declared alternative constellation have different declared topology",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "1",
+            "2"
+          ],
+          "unit": "1",
+          "value": "1"
+        },
+        "control": "the declared primary and the declared alternative claimed to have different topology",
+        "control_id": "OVR-THE-FAMILY-MEMBERS-HAVE-DIFFERENT-TOPOLOGY",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared combinatorial type referenced from the declared shared-geometry contract",
+        "rejection_reasons": [
+          "the declared combinatorial type is referenced from the declared shared-geometry contract at its declared digest: twelve declared faces, thirty declared edges, twenty declared vertices and the declared Euler characteristic exactly 2, and the same declared counts are carried by the declared primary and by the declared alternative",
+          "a declared orbit-radius change moves declared vertices within a declared orbit and is checked here to leave the declared orbit sizes unchanged",
+          "the accepted form is the declared shared combinatorial type"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared rotation part, which is the declared subgroup of SO(3) of exact order 12",
+          "unit": "1",
+          "value": "12",
+          "verdict": "Accepted_AsTheDeclaredRotationPartInsideSO3"
+        },
+        "claim": "the full declared point group T_h of the declared pyritohedron is a subgroup of SO(3)",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "0"
+        },
+        "control": "the full point group of a declared achiral solid claimed to be a subgroup of SO(3)",
+        "control_id": "OVR-FULL-POINT-GROUP-INSIDE-SO3",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "12",
+            "13"
+          ],
+          "unit": "1",
+          "value": "12"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the exactly computed determinants of every declared group element",
+        "rejection_reasons": [
+          "the declared group has exactly 12 elements of determinant exactly minus one, and the declared inversion [[-1, 0, 0], [0, -1, 0], [0, 0, -1]] is one of them",
+          "a subgroup of SO(3) contains only elements of determinant exactly plus one, so the declared full point group is not a subgroup of SO(3)",
+          "only the declared rotation part, of exact order 12, is a subgroup of SO(3); the declared pairing element is the declared parity element, which is the declared correction the frozen contract carries"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      }
+    ],
+    "controls_by_section": {
+      "S3_the_spacetime_group_conditions": 0,
+      "S4_schedule_compatibility": 0,
+      "S5_the_entry_window_W1_to_W4": 0,
+      "S6_the_declared_ablation_levels": 2,
+      "S7_stage_one": 2,
+      "S8_the_declared_overreaches": 5
+    },
+    "controls_executed": 9,
+    "controls_rejected": 9,
+    "every_control_produces_a_rejection": true,
+    "failed_controls": [
+      {
+        "control": "a declared attempt to discriminate the declared asymmetric placement from the declared symmetric placement through the declared transport",
+        "control_id": "SC-DECLARED-PLACEMENT-ODDNESS",
+        "derived_transport": "-15/2",
+        "discriminates": false,
+        "outcome": "FAILED_TO_DISCRIMINATE",
+        "reading": "a failed control is retained and reported, not dropped and not repaired",
+        "variant": "the declared symmetric placement P_sym replaced by the declared asymmetric placement P_asym, with the declared graph, the declared region indicator, the declared schedule and the declared phase gradient all held fixed",
+        "variant_transport": "-15/2",
+        "why": "the control tried to discriminate the declared symmetric placement from the declared asymmetric placement through the declared transport and cannot: in this declared model the declared placement and the declared region indicator enter the declared weight as a declared product, so replacing the declared placement by the declared alternative placement declared here leaves the declared transport identical.  The control is retained exactly as a FAILED control rather than repaired, and the limitation it exposes - this run does not declare a placement field whose declared difference alone breaks the declared invariance - is recorded as Undecided."
+      }
+    ],
+    "failed_controls_count": 1,
+    "no_control_is_dropped": true,
+    "why_the_failed_control_is_retained": "a control that cannot be made to fail is reported as a failed control and retained rather than repaired, because the mechanism is only worth trusting while its failures remain on the record"
+  },
+  "declared_model": {
+    "amplitude_bound": "1/2",
+    "antipodal_pair_count": 10,
+    "declared_gradient_values": [
+      1,
+      0,
+      -1
+    ],
+    "declared_transfer_margin": "29/128",
+    "graph_degree": 3,
+    "graph_edge_count": 30,
+    "group_name": "T_h",
+    "group_order": 24,
+    "measure": "the declared uniform declared measure 1/20 at every declared vertex",
+    "orbit_sizes": [
+      8,
+      12
+    ],
+    "period_steps": 4,
+    "reference_statement": "The shared geometry is REFERENCED AND NEVER RECOMPUTED: the declared face, edge, vertex and Euler counts, the declared spot floor, the declared etendue ceiling, the declared usable fraction, the declared pattern scale, the declared work-region calculus and the declared ablation-level assignment are read from the declared shared-geometry contract by digest and are not re-derived here.  The executed mechanism of the declared zeros and of the declared exact reversal is the mechanism already executed in the declared ratchet run: an orientation-reversing spatial element composed with a declared half-period time shift makes the declared per-step flows pair exactly, so their declared sum vanishes.  That mechanism is re-executed here inside THIS run's own declared model and is not imported as a value.",
+    "schedule_names": [
+      "broken_shifted",
+      "broken_uniform",
+      "crossing_the_declared_amplitude_bound",
+      "time_antisymmetric"
+    ],
+    "schedules": {
+      "broken_shifted": {
+        "amplitude_sum": "3/4",
+        "amplitudes": [
+          "1/2",
+          "1/4",
+          "-1/4",
+          "1/4"
+        ],
+        "crosses_the_declared_amplitude_bound": false,
+        "declared_step_magnitudes": [
+          "1/2",
+          "1/4",
+          "1/4",
+          "1/4"
+        ],
+        "half_period_antisymmetric": false
+      },
+      "broken_uniform": {
+        "amplitude_sum": "2",
+        "amplitudes": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ],
+        "crosses_the_declared_amplitude_bound": false,
+        "declared_step_magnitudes": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ],
+        "half_period_antisymmetric": false
+      },
+      "crossing_the_declared_amplitude_bound": {
+        "amplitude_sum": "5/4",
+        "amplitudes": [
+          "1/2",
+          "3/4",
+          "-1/4",
+          "1/4"
+        ],
+        "crosses_the_declared_amplitude_bound": true,
+        "declared_step_magnitudes": [
+          "1/2",
+          "3/4",
+          "1/4",
+          "1/4"
+        ],
+        "half_period_antisymmetric": false
+      },
+      "time_antisymmetric": {
+        "amplitude_sum": "0",
+        "amplitudes": [
+          "1/2",
+          "-1/2",
+          "-1/2",
+          "1/2"
+        ],
+        "crosses_the_declared_amplitude_bound": false,
+        "declared_step_magnitudes": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ],
+        "half_period_antisymmetric": true
+      }
+    },
+    "statement": "One declared constellation family and nothing else: a declared twenty-vertex constellation built as two declared orbits of a declared point group closed by exact integer matrix multiplication, a declared two-region reading, a declared 3-regular constellation graph, a declared phase gradient, a declared four-step schedule, a declared exact transfer and a declared exact transport.  Every number is a declared model parameter or an exact consequence of the declared model.",
+    "the_schedules_are_declared_model_numbers_with_no_physical_magnitude": true,
+    "transfer_coefficient": "1/16",
+    "vertex_count": 20
+  },
+  "limits": {
+    "child_processes": 0,
+    "correction_replays": 1,
+    "cpu_seconds": 600,
+    "max_assertions": 200000,
+    "memory_bytes": 1073741824,
+    "routes": 1,
+    "wall_seconds": 900
+  },
+  "modelling_choices": {
+    "every_zero_is_an_executed_rejection": "every declared zero of this run is produced as an executed rejection of the corresponding declared claim, with no tolerance and no floating-point comparison.",
+    "exact_only": "every acceptance assertion and every value in the retained payload is an exact integer or fraction, carried as an exact decimal-free string with its unit and the two exact integers it lies between; no floating-point value is formed anywhere in this run and none is written into the payload.",
+    "external_library": "no external library is imported.  The standard library alone is used, so the run does not depend on a host package to reproduce.",
+    "proposal_only": "the document is a \u63d0\u8bae\u6027\u65b9\u6848, a proposal only: authorization, decision, deployment and physical_effect_asserted are none, governance is unaddressed, no physical effect is asserted and no data is used.",
+    "resource_limits": "the checker installs RLIMIT_CPU and RLIMIT_FSIZE together with a wall alarm, and records the contract's declared memory budget without installing an address-space ceiling, because no child process is launched and the declared model is a finite exact computation over twenty declared vertices.",
+    "the_ablation_levels_are_declared_ordinals": "the declared level values are declared ordinal levels with declared unit 1 matched to the declared ablation levels by declaration; they are not magnitudes of any physical quantity, and every declared level carries at least one declared task.",
+    "the_constellation": "a declared twenty-vertex constellation built as exactly two declared orbits of the declared point group T_h of order 24: the declared cube orbit of size 8 from the declared triple (1, 1, 1), and the declared petrie orbit of size 12 from the declared triple (1, 0, 2).",
+    "the_declared_direction": "the declared direction is written by the declared phase gradient's sign and not by the declared pattern's shape: at the declared standing gradient the declared transport is exactly zero, and reversing the declared gradient reverses the declared transport exactly.",
+    "the_declared_graph": "a declared 3-regular constellation graph with exactly thirty declared edges: the declared cube edge rule on the declared cube orbit and the declared Cayley edge rule on the declared petrie orbit.  The declared graph is invariant under every declared group element.",
+    "the_declared_transfer": "the declared weight from a declared vertex to a declared neighbour is the declared transfer coefficient times the declared step amplitude times the declared phase gradient times the declared placement difference across the declared edge times the declared sunward indicator at the declared first endpoint.  The declared transfer rates are the declared positive parts of the declared weight and the declared stay probability is the declared remainder of the declared margin.",
+    "the_declared_zero_mechanism": "the declared zero is the mechanism already executed in the declared ratchet run, re-executed inside this run's own declared model: the declared pairing element composed with a declared half-period time shift makes the declared per-step flows pair exactly and their declared sum vanish.  The declared zero is produced as an executed rejection of the declared claim that the pair transports.",
+    "the_entry_window_is_declared": "the declared percolation threshold, the declared latent heat, the declared connected-region size and the declared safety fraction are DECLARED constants and declared thresholds with declared unit 1 and are not measurements of this run; W4 is the only declared safety statement and it is an exact inequality on declared numbers.",
+    "the_failed_control": "one declared control could not be made to fail and is reported as a failed control rather than repaired or dropped.",
+    "the_group": "the declared group is generated by three declared exact integer matrices and closed by exact integer matrix multiplication, so its order, its determinants and its element orders are exact computations.  The declared group contains inversion and has rotation axes of order 2 and 3 only, so it is crystallographic.",
+    "the_pairing_element": "the declared involution is the declared inversion, which has no fixed point on the declared constellation and whose ten 2-cycles are the declared ten antipodal pairs; it is the declared parity element, which is what makes the declared two regions structural rather than scheduled.",
+    "the_question_is_a_declared_model_question": "the run studies one declared constellation family and one declared transport model and nothing else.  No physical system, material or process is modelled or claimed.",
+    "the_ratchet_mechanism_is_read_not_imported": "the executed mechanism of the declared zeros and of the declared exact reversal is read from the declared ratchet run and re-executed inside this run's own declared model; no value is imported from it.",
+    "the_shared_geometry_is_referenced": "the declared spot floor, the declared etendue ceiling, the declared usable fraction, the declared pattern scale, the declared work-region calculus, the declared ablation-level assignment and the declared combinatorial type are REFERENCED from the declared shared-geometry contract and its supplement by digest and are NEVER RECOMPUTED here.",
+    "the_two_regions": "each declared antipodal pair serves one declared sunward and one declared anti-sunward member, declared in advance; the declared sunward indicator is exact-odd under the declared pairing element, so the two declared regions are addressed by the same declared phase schedule with the declared opposite sense."
+  },
+  "protected": [
+    "All parent contracts are retained byte for byte and are not edited",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "No data is read or used",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "referenced_by_digest": {
+    "ratchet_model": {
+      "declared_sha256": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+      "matches": true,
+      "path": "experiments/spatiotemporal_ratchet_v1/contract.json",
+      "present_sha256": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+      "recomputed_here": false,
+      "use": "the executed mechanism of the zeros and of the exact reversal"
+    },
+    "shared_geometry": {
+      "declared_sha256": "1e07f9a04a9d6d60073a5cb3f726df7d38554608f4d023383314fbff83217750",
+      "matches": true,
+      "path": "experiments/geometry_foundation_v1/contract.json",
+      "present_sha256": "1e07f9a04a9d6d60073a5cb3f726df7d38554608f4d023383314fbff83217750",
+      "recomputed_here": false,
+      "use": "referenced, never recomputed: the spot floor with its penumbra-diameter form, the etendue ceiling, the corrected usable fraction, the pattern scale and its coherence statement, the work-region calculus and the ablation-level assignment"
+    },
+    "spacetime_group_clause": {
+      "declared_sha256": "1540a1290d805bf031fd6734fba1701267e7ce1e67a19a6d52a7e1b1dce7c7ab",
+      "matches": true,
+      "path": "experiments/geometry_foundation_v1/contract-supplement-1.json",
+      "present_sha256": "1540a1290d805bf031fd6734fba1701267e7ce1e67a19a6d52a7e1b1dce7c7ab",
+      "recomputed_here": false,
+      "use": "the conditions: invariance of the (constellation, schedule) pair under a spatial operation combined with a time translation gives exactly zero transport; directed transport requires that invariance to be absent, with the direction written by the declared phase gradient"
+    }
+  },
+  "residual": [
+    "Every placement, symmetry choice, orbit radius, threshold, schedule and level is declared; another declaration is another run",
+    "No magnitude, sign or timing is asserted for any physical quantity; nothing is ablated, melted, moved or heated and no pattern is projected onto any real surface",
+    "The entry window's percolation threshold and the latent heat are DECLARED constants and declared thresholds, not measurements of this run",
+    "The termination problem, governance and any safety analysis beyond W4 remain Unaddressed"
+  ],
+  "schema": "adva.external.space-proposal-v3-proposal-calibration.v1",
+  "sections": {
+    "S1_the_constellation_family": {
+      "alternative": {
+        "chirality_reason": "the declared alternative group is generated by exact integer matrices of determinant exactly plus one and its exact closure contains no element of determinant minus one; an achiral solid would have to carry an orientation-reversing element, and none is present",
+        "contains_an_antipodal_pair": false,
+        "declared_vertex_construction": "the declared alternative constellation is the exact orbit of the declared integer triple (1, 2, 4) under the declared alternative group",
+        "declared_vertices": [
+          [
+            -4,
+            -2,
+            -1
+          ],
+          [
+            -4,
+            -1,
+            2
+          ],
+          [
+            -4,
+            1,
+            -2
+          ],
+          [
+            -4,
+            2,
+            1
+          ],
+          [
+            -2,
+            -4,
+            1
+          ],
+          [
+            -2,
+            -1,
+            -4
+          ],
+          [
+            -2,
+            1,
+            4
+          ],
+          [
+            -2,
+            4,
+            -1
+          ],
+          [
+            -1,
+            -4,
+            -2
+          ],
+          [
+            -1,
+            -2,
+            4
+          ],
+          [
+            -1,
+            2,
+            -4
+          ],
+          [
+            -1,
+            4,
+            2
+          ],
+          [
+            1,
+            -4,
+            2
+          ],
+          [
+            1,
+            -2,
+            -4
+          ],
+          [
+            1,
+            2,
+            4
+          ],
+          [
+            1,
+            4,
+            -2
+          ],
+          [
+            2,
+            -4,
+            -1
+          ],
+          [
+            2,
+            -1,
+            4
+          ],
+          [
+            2,
+            1,
+            -4
+          ],
+          [
+            2,
+            4,
+            1
+          ],
+          [
+            4,
+            -2,
+            1
+          ],
+          [
+            4,
+            -1,
+            -2
+          ],
+          [
+            4,
+            1,
+            2
+          ],
+          [
+            4,
+            2,
+            -1
+          ]
+        ],
+        "element_orders": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "every_element_has_determinant_plus_one": true,
+        "every_element_preserves_the_vertex_set": true,
+        "generators": [
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              1,
+              0,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ]
+        ],
+        "group_order_computed": 24,
+        "improper_element_count": 0,
+        "invariance_failure_count": 0,
+        "is_chiral": true,
+        "is_crystallographic": true,
+        "name": "the declared snub cube placement",
+        "point_group": "O",
+        "point_group_order": 24,
+        "vertex_count": 24
+      },
+      "declared_family": "Primary: the pyritohedron, point group T_h of order 24, which contains inversion (parity) and is a crystallographic point group, so it is lattice-compatible; its twenty vertices split into two orbits of sizes 8 and 12, and inversion pairs them into exactly ten antipodal pairs, which is what makes the sunlit and unsunlit sides structural rather than scheduled. Alternative: the snub cube, point group O of order 24, chiral, and also crystallographic - the choice when a declared chirality is required, since the pyritohedron itself is achiral.",
+      "primary": {
+        "a_general_pyritohedron_moves_only_within_each_orbit": true,
+        "antipodal_pair_count": 10,
+        "antipodal_pairs_of_vertex_indices": [
+          [
+            0,
+            19
+          ],
+          [
+            1,
+            18
+          ],
+          [
+            2,
+            17
+          ],
+          [
+            3,
+            16
+          ],
+          [
+            4,
+            15
+          ],
+          [
+            5,
+            14
+          ],
+          [
+            6,
+            13
+          ],
+          [
+            7,
+            12
+          ],
+          [
+            8,
+            11
+          ],
+          [
+            9,
+            10
+          ]
+        ],
+        "antipodal_pairs_of_vertices": [
+          [
+            [
+              -2,
+              -1,
+              0
+            ],
+            [
+              2,
+              1,
+              0
+            ]
+          ],
+          [
+            [
+              -2,
+              1,
+              0
+            ],
+            [
+              2,
+              -1,
+              0
+            ]
+          ],
+          [
+            [
+              -1,
+              -1,
+              -1
+            ],
+            [
+              1,
+              1,
+              1
+            ]
+          ],
+          [
+            [
+              -1,
+              -1,
+              1
+            ],
+            [
+              1,
+              1,
+              -1
+            ]
+          ],
+          [
+            [
+              -1,
+              0,
+              -2
+            ],
+            [
+              1,
+              0,
+              2
+            ]
+          ],
+          [
+            [
+              -1,
+              0,
+              2
+            ],
+            [
+              1,
+              0,
+              -2
+            ]
+          ],
+          [
+            [
+              -1,
+              1,
+              -1
+            ],
+            [
+              1,
+              -1,
+              1
+            ]
+          ],
+          [
+            [
+              -1,
+              1,
+              1
+            ],
+            [
+              1,
+              -1,
+              -1
+            ]
+          ],
+          [
+            [
+              0,
+              -2,
+              -1
+            ],
+            [
+              0,
+              2,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              -2,
+              1
+            ],
+            [
+              0,
+              2,
+              -1
+            ]
+          ]
+        ],
+        "contains_a_five_fold_element": false,
+        "contains_inversion": true,
+        "cube_orbit_size": 8,
+        "declared_combinatorial_type": {
+          "declared_edge_count": 30,
+          "declared_euler_characteristic": 2,
+          "declared_face_count": 12,
+          "declared_vertex_count": 20,
+          "euler_identity_stated_exactly": "20 - 30 + 12 = 2",
+          "internally_consistent": true,
+          "reading": "the declared combinatorial type is REFERENCED from the declared shared-geometry contract and is not recomputed here; this run reports only that the declared counts satisfy the declared Euler identity exactly",
+          "recomputed_here": false,
+          "source": "experiments/geometry_foundation_v1/contract.json"
+        },
+        "declared_crystallographic_reason": "the declared rotation part has rotation axes of order 2 and 3 only, and the declared crystallographic rotation orders are [1, 2, 3, 4, 6]; a 5-fold axis would exclude the declared lattice compatibility and none is present",
+        "declared_pairing_element": [
+          [
+            -1,
+            0,
+            0
+          ],
+          [
+            0,
+            -1,
+            0
+          ],
+          [
+            0,
+            0,
+            -1
+          ]
+        ],
+        "declared_vertex_construction": "the declared constellation is the exact union of two declared orbits of the declared group: the orbit of the declared integer triple (1, 1, 1), which is the declared cube orbit of exactly eight vertices, and the orbit of the declared integer triple (1, 0, 2), which is the declared petrie orbit of exactly twelve vertices",
+        "declared_vertices": [
+          [
+            -2,
+            -1,
+            0
+          ],
+          [
+            -2,
+            1,
+            0
+          ],
+          [
+            -1,
+            -1,
+            -1
+          ],
+          [
+            -1,
+            -1,
+            1
+          ],
+          [
+            -1,
+            0,
+            -2
+          ],
+          [
+            -1,
+            0,
+            2
+          ],
+          [
+            -1,
+            1,
+            -1
+          ],
+          [
+            -1,
+            1,
+            1
+          ],
+          [
+            0,
+            -2,
+            -1
+          ],
+          [
+            0,
+            -2,
+            1
+          ],
+          [
+            0,
+            2,
+            -1
+          ],
+          [
+            0,
+            2,
+            1
+          ],
+          [
+            1,
+            -1,
+            -1
+          ],
+          [
+            1,
+            -1,
+            1
+          ],
+          [
+            1,
+            0,
+            -2
+          ],
+          [
+            1,
+            0,
+            2
+          ],
+          [
+            1,
+            1,
+            -1
+          ],
+          [
+            1,
+            1,
+            1
+          ],
+          [
+            2,
+            -1,
+            0
+          ],
+          [
+            2,
+            1,
+            0
+          ]
+        ],
+        "element_orders": [
+          1,
+          2,
+          3,
+          6
+        ],
+        "every_element_is_a_signed_permutation": true,
+        "every_element_preserves_the_constellation": true,
+        "every_vertex_has_its_antipode_in_the_constellation": true,
+        "five_fold_element_count": 0,
+        "generators": [
+          [
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ]
+          ],
+          [
+            [
+              0,
+              1,
+              0
+            ],
+            [
+              0,
+              0,
+              1
+            ],
+            [
+              1,
+              0,
+              0
+            ]
+          ],
+          [
+            [
+              -1,
+              0,
+              0
+            ],
+            [
+              0,
+              -1,
+              0
+            ],
+            [
+              0,
+              0,
+              -1
+            ]
+          ]
+        ],
+        "group_construction": "the declared group is the exact integer closure of the declared generators [diag(-1,-1,1), the 3x3 permutation matrix sending the declared x axis to y, y to z and z to x, and diag(-1,-1,-1)], by exact integer matrix multiplication",
+        "group_order_computed": 24,
+        "improper_element_count": 12,
+        "invariance_failure_count": 0,
+        "is_crystallographic": true,
+        "name": "the declared pyritohedron placement",
+        "orbit_count": 2,
+        "orbit_sizes": [
+          8,
+          12
+        ],
+        "petrie_orbit_size": 12,
+        "point_group": "T_h",
+        "point_group_order": 24,
+        "rotation_part_element_orders": [
+          1,
+          2,
+          3
+        ],
+        "rotation_part_order": 12,
+        "the_group_is_a_subgroup_of_the_orthogonal_group": true,
+        "the_group_lies_inside_SO3": false,
+        "the_inversion_is_the_declared_pairing_element": true,
+        "the_rotation_part": "T",
+        "the_rotation_part_lies_inside_SO3": true,
+        "vertex_count": 20
+      },
+      "reading": "the declared primary placement is the declared pyritohedron: its twenty vertices are exactly two declared orbits of size 8 and 12 under the declared point group T_h of order 24, built by exact integer closure; the declared group contains inversion, has exactly ten antipodal pairs on the declared vertex set, has rotation axes of order 2 and 3 only and therefore no 5-fold element, so it is crystallographic; and every declared element maps the declared vertex set onto itself, so a general declared pyritohedron moves only within each orbit.  The declared alternative is the declared snub cube, whose group has exactly order 24, every element of which is a rotation, so it is chiral, and whose rotation orders are 1, 2, 3 and 4 only, so it is crystallographic too."
+    },
+    "S2_the_two_regions": {
+      "antisunward_region": {
+        "declared_as": "the other declared member of every declared antipodal pair",
+        "member_count": 10,
+        "vertex_indices": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          6,
+          8,
+          9,
+          12,
+          14
+        ]
+      },
+      "declared_reading": "Each antipodal pair works one sunward and one anti-sunward member at any time; the two regions are addressed by the same declared phase schedule with opposite sense, and the schedule must be declared, not chosen in flight.",
+      "declared_region_count": 2,
+      "declared_region_indicator": [
+        -1,
+        -1,
+        -1,
+        -1,
+        -1,
+        1,
+        -1,
+        1,
+        -1,
+        -1,
+        1,
+        1,
+        -1,
+        1,
+        -1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "each_antipodal_pair_serves_one_member_of_each_region": true,
+      "no_step_is_chosen_in_flight": true,
+      "reading": "each declared antipodal pair serves one declared sunward and one declared anti-sunward member, so the declared sunward indicator is exact-odd under the declared pairing element; the two declared regions are addressed by the same declared phase schedule with the declared opposite sense at every declared step, the whole table is computed in advance by this checker, and nothing is chosen in flight.",
+      "sunward_indicator_is_exact_odd_under_the_declared_pairing_element": true,
+      "sunward_region": {
+        "declared_as": "one declared member of every declared antipodal pair",
+        "invariant_under_the_declared_pairing_element": false,
+        "mapped_onto_the_anti_sunward_region_by_the_declared_pairing_element": true,
+        "member_count": 10,
+        "vertex_indices": [
+          5,
+          7,
+          10,
+          11,
+          13,
+          15,
+          16,
+          17,
+          18,
+          19
+        ]
+      },
+      "the_declared_addressing_table": [
+        {
+          "antisunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 0
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 1
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 2
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 3
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 4
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 6
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 8
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 9
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 12
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 14
+            }
+          ],
+          "declared_amplitude": "1/2",
+          "step": 0,
+          "sunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 5
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 7
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 10
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 11
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 13
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 15
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 16
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 17
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 18
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 19
+            }
+          ],
+          "the_two_regions_carry_opposite_declared_sense": true
+        },
+        {
+          "antisunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 0
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 1
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 2
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 3
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 4
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 6
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 8
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 9
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 12
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 14
+            }
+          ],
+          "declared_amplitude": "-1/2",
+          "step": 1,
+          "sunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 5
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 7
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 10
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 11
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 13
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 15
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 16
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 17
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 18
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 19
+            }
+          ],
+          "the_two_regions_carry_opposite_declared_sense": true
+        },
+        {
+          "antisunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 0
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 1
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 2
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 3
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 4
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 6
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 8
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 9
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 12
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": true,
+              "vertex": 14
+            }
+          ],
+          "declared_amplitude": "-1/2",
+          "step": 2,
+          "sunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 5
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 7
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 10
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 11
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 13
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 15
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 16
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 17
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 18
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": false,
+              "vertex": 19
+            }
+          ],
+          "the_two_regions_carry_opposite_declared_sense": true
+        },
+        {
+          "antisunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 0
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 1
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 2
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 3
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 4
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 6
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 8
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 9
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 12
+            },
+            {
+              "declared_amplitude": "-1/2",
+              "declared_opposite_sense": true,
+              "vertex": 14
+            }
+          ],
+          "declared_amplitude": "1/2",
+          "step": 3,
+          "sunward_region_declared_addressing": [
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 5
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 7
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 10
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 11
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 13
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 15
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 16
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 17
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 18
+            },
+            {
+              "declared_amplitude": "1/2",
+              "declared_opposite_sense": false,
+              "vertex": 19
+            }
+          ],
+          "the_two_regions_carry_opposite_declared_sense": true
+        }
+      ],
+      "the_declared_addressing_table_step_count": 4,
+      "the_declared_schedule_is_computed_in_advance": true,
+      "the_same_declared_phase_schedule_addresses_both_regions": true,
+      "the_two_region_addressings_are_exact_negatives": true,
+      "the_two_regions_have_opposite_declared_sense": true,
+      "the_two_regions_partition_the_constellation": true
+    },
+    "S3_the_spacetime_group_conditions": {
+      "declared_broken_pair": {
+        "declared_phase_gradient_values": [
+          "1",
+          "-1"
+        ],
+        "exact_reversal": {
+          "reading": "reversing the declared phase gradient's sign reverses the declared transport exactly, and the two declared directions sum to exactly zero, with no tolerance and no floating-point comparison",
+          "the_direction_reverses_exactly": true,
+          "the_exact_sum": "0",
+          "the_sum_is_exactly_zero": true,
+          "the_transport_is_non_zero": true
+        },
+        "pairing_set_is_empty": true,
+        "pairing_set_order": 0,
+        "per_step_flows_at_minus_one": [
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          }
+        ],
+        "per_step_flows_at_plus_one": [
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          }
+        ],
+        "rejected_claim": {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "a declared transport that reverses exactly with the declared phase gradient's sign is admitted",
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/2",
+            "verdict": "Accepted_AsTheDeclaredDirectedTransport"
+          },
+          "claim": "the declared broken pair's transport does not depend on the sign of the declared phase gradient",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "7",
+              "8"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/2"
+          },
+          "control": "the declared broken pair's transport is independent of the declared phase gradient's sign",
+          "control_id": "ST-DIRECTION-INDEPENDENT-OF-THE-GRADIENT",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "-8",
+              "-7"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/2"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the two declared transports derived here, exactly",
+          "rejection_reasons": [
+            "the declared transport at the declared phase gradient plus one is exactly -15/2 and at minus one exactly 15/2",
+            "the two declared values sum to exactly 0, so the declared direction follows the declared phase gradient's sign exactly",
+            "the rejection is exact and carries no tolerance and no floating-point comparison"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "verdict": "Rejected"
+        },
+        "schedule": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ],
+        "schedule_is_half_period_antisymmetric": false,
+        "the_declared_per_step_flows_pair_exactly": false,
+        "transport_at_minus_one": {
+          "between_the_exact_integers": [
+            "7",
+            "8"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "15/2"
+        },
+        "transport_at_plus_one": {
+          "between_the_exact_integers": [
+            "-8",
+            "-7"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "-15/2"
+        },
+        "transport_at_the_declared_standing_gradient": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0"
+        },
+        "verdict": "Accepted"
+      },
+      "declared_clause": "the conditions: invariance of the (constellation, schedule) pair under a spatial operation combined with a time translation gives exactly zero transport; directed transport requires that invariance to be absent, with the direction written by the declared phase gradient",
+      "declared_invariance_condition": "a declared (spatial operation, time shift) pair is in the declared pairing set of a declared schedule exactly when the declared image flow of the declared shifted step is the exact declared negative of the declared flow of the declared step, at every declared step; the declared per-step flows then pair exactly and their declared sum over one declared period is exactly zero",
+      "declared_invariant_pair": {
+        "declared_phase_gradient": "1",
+        "every_declared_group_element_appears_once": true,
+        "is_non_symmorphic": true,
+        "is_symmorphic": false,
+        "pairing_set_determinants": [
+          -1,
+          1
+        ],
+        "pairing_set_elements": [
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "spatial_trace": -3,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "spatial_trace": -1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "spatial_trace": -1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "spatial_trace": 1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "spatial_trace": 0,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "spatial_trace": -1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "spatial_trace": 1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": -1,
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "spatial_trace": 1,
+            "time_shift": 2
+          },
+          {
+            "spatial_determinant": 1,
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "spatial_trace": 3,
+            "time_shift": 2
+          }
+        ],
+        "pairing_set_order": 24,
+        "pairing_set_shifts": [
+          2
+        ],
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          }
+        ],
+        "rejected_claim": {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared pair is admitted as the declared invariant standing pattern with exactly zero declared transport",
+            "unit": "declared units of net signed flow per declared period",
+            "value": "0",
+            "verdict": "Accepted_AsTheDeclaredZeroTransport"
+          },
+          "claim": "the declared invariant pair transports the declared measure",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "1"
+          },
+          "control": "the declared invariant (constellation, schedule) pair transports the declared measure",
+          "control_id": "ST-ZERO-INVARIANT-PAIR",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "0"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared transport derived here from the declared model, exactly",
+          "rejection_reasons": [
+            "the declared invariant pair's transport derived here is exactly 0 declared units of net signed flow per declared period",
+            "the declared per-step flows of this declared pair are exactly ['-15/8', '15/8', '15/8', '-15/8'] and pair exactly under the declared pairing element composed with the declared half-period time shift, so their declared sum is exactly zero",
+            "the declared pairing element is present in the declared group, which is what makes the declared zero structural rather than incidental",
+            "the rejection is exact and carries no tolerance and no floating-point comparison"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "verdict": "Rejected"
+        },
+        "schedule": [
+          "1/2",
+          "-1/2",
+          "-1/2",
+          "1/2"
+        ],
+        "schedule_is_half_period_antisymmetric": true,
+        "the_declared_pairing_element_is_in_the_set": true,
+        "the_declared_per_step_flows_pair_exactly": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "derivation": "the declared sum over the declared steps of the declared per-step flow",
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0"
+        },
+        "transport_at_the_declared_standing_gradient": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0"
+        },
+        "transport_is_zero": true,
+        "verdict": "Rejected"
+      },
+      "declared_position_field": "P_sym, the declared signed coordinate sum x + y + z, which is exact-odd under the declared pairing element",
+      "reading": "the declared pairing set of the declared invariant pair is exhibited as explicit declared (spatial operation, declared time shift) pairs: it carries every declared group element exactly once, each with the declared half-period time shift, so it is non-symmorphic and contains the declared pairing element; that pair's declared per-step flows pair exactly and its declared transport is exactly zero, produced as an executed rejection of the declared claim that it transports; the declared broken pair transports exactly non-zero and reverses exactly when the declared phase gradient's sign reverses, the two declared directions summing to exactly zero.",
+      "the_declared_residual_of_the_transfer": "the declared weight is exact-EVEN in its two declared endpoints, so the declared measure can be an exact stationary measure of the declared transfer only if the declared transport vanishes; this run therefore reports the declared divergence exactly at every declared vertex and does NOT claim exact stationarity.  The declared transfer is still declared a doubly stochastic map, because its declared rates are the declared positive parts of the declared weight and the declared stay probability is the declared remainder of the declared margin.",
+      "the_declared_uniform_measure_is_exactly_stationary": false,
+      "the_element_that_shifts_time_without_the_declared_pairing_element": {
+        "declared_element_count": 24,
+        "declared_shifts": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "reading": "the declared half-period time shift alone, without the declared pairing element, does not satisfy the declared pairing condition, which is why the declared pair is reported as the declared PAIRING element composed with the declared half-period time shift and not as a time shift alone"
+      },
+      "the_mechanism_is_re_executed_inside_this_runs_own_declared_model": true,
+      "the_mechanism_is_the_one_already_executed_in_the_declared_ratchet_run": true,
+      "the_second_declared_broken_pair": {
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/16"
+          },
+          {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/16"
+          },
+          {
+            "between_the_exact_integers": [
+              "-1",
+              "0"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/16"
+          }
+        ],
+        "reading": "a second declared broken schedule also transports exactly non-zero and also reverses exactly with the declared phase gradient's sign",
+        "schedule": [
+          "1/2",
+          "1/4",
+          "-1/4",
+          "1/4"
+        ],
+        "schedule_is_half_period_antisymmetric": false,
+        "the_direction_reverses_exactly": true,
+        "the_exact_sum": "0",
+        "transport_at_minus_one": {
+          "between_the_exact_integers": [
+            "2",
+            "3"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "45/16"
+        },
+        "transport_at_plus_one": {
+          "between_the_exact_integers": [
+            "-3",
+            "-2"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "-45/16"
+        }
+      },
+      "the_transfer_is_exactly_divergence_free": false,
+      "vertex_divergence": [
+        "-3/2",
+        "-1/2",
+        "-3/4",
+        "-1/4",
+        "-3/2",
+        "-1/2",
+        "-1/4",
+        "-1/4",
+        "-3/2",
+        "-1/2",
+        "-1/2",
+        "-3/2",
+        "-1/4",
+        "-1/4",
+        "-1/2",
+        "-3/2",
+        "-1/4",
+        "-3/4",
+        "-1/2",
+        "-3/2"
+      ]
+    },
+    "S4_schedule_compatibility": {
+      "declared_reading": "Tasks are assigned to declared energy LEVELS matched to the declared ablation levels of the target medium by declaration; only declared ordinal levels are used, every level carries at least one task, and no magnitude of any physical quantity appears.",
+      "declared_standing_pattern": {
+        "declared_subgroup_operations": [
+          {
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                -1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ],
+              [
+                1,
+                0,
+                0
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                -1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                -1
+              ]
+            ],
+            "time_shift": 2
+          },
+          {
+            "spatial_operation": [
+              [
+                1,
+                0,
+                0
+              ],
+              [
+                0,
+                1,
+                0
+              ],
+              [
+                0,
+                0,
+                1
+              ]
+            ],
+            "time_shift": 2
+          }
+        ],
+        "declared_subgroup_order": 24,
+        "is_a_standing_pattern": true,
+        "per_step_flows": [
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          }
+        ],
+        "rejected_claim": {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared schedule carrying a declared phase gradient is admitted as the declared travelling pattern",
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/2",
+            "verdict": "Accepted_AsTheDeclaredTravellingPattern"
+          },
+          "claim": "the declared standing pattern transports the declared measure",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "1"
+          },
+          "control": "the declared schedule invariant under a subgroup of the declared placement transports",
+          "control_id": "SC-STANDING-PATTERN-TRANSPORTS",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "0"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared pairing set and the declared transport, both exact",
+          "rejection_reasons": [
+            "the declared standing pattern's transport derived here is exactly 0 declared units of net signed flow per declared period",
+            "its declared pairing set has exactly 24 declared elements while the declared travelling pattern's declared pairing set has exactly 0",
+            "the declared per-step flows of the declared standing pattern are exactly ['-15/8', '15/8', '15/8', '-15/8'] and cancel exactly in declared half-period pairs"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "verdict": "Rejected"
+        },
+        "schedule": [
+          "1/2",
+          "-1/2",
+          "-1/2",
+          "1/2"
+        ],
+        "the_transport_is_zero": true,
+        "transport": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "0"
+        },
+        "verdict": "Rejected"
+      },
+      "declared_travelling_pattern": {
+        "declared_invariance_group_order": 0,
+        "declared_phase_gradient_values": [
+          "1",
+          "-1"
+        ],
+        "is_a_travelling_pattern": true,
+        "per_step_flows_at_minus_one": [
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "15/8"
+          }
+        ],
+        "per_step_flows_at_plus_one": [
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          },
+          {
+            "between_the_exact_integers": [
+              "-2",
+              "-1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "-15/8"
+          }
+        ],
+        "schedule": [
+          "1/2",
+          "1/2",
+          "1/2",
+          "1/2"
+        ],
+        "the_direction_follows_the_gradient_sign": true,
+        "the_exact_sum": "0",
+        "the_transport_is_non_zero": true,
+        "transport_at_minus_one": {
+          "between_the_exact_integers": [
+            "7",
+            "8"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "15/2"
+        },
+        "transport_at_plus_one": {
+          "between_the_exact_integers": [
+            "-8",
+            "-7"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "value": "-15/2"
+        },
+        "verdict": "Accepted"
+      },
+      "reading": "the declared schedule invariant under a declared subgroup of the declared placement gives a declared standing pattern with exactly zero transport, produced as an executed rejection; the declared schedule carrying a declared phase gradient gives a declared travelling pattern with exactly non-zero transport whose declared direction follows the declared gradient's sign and reverses exactly with it.",
+      "the_compatibility_rule": "a declared schedule invariant under a subgroup of the declared placement gives a declared standing pattern with exactly zero declared transport; a declared schedule carrying a declared phase gradient gives a declared travelling pattern with exactly non-zero declared transport whose declared direction follows the declared gradient's sign"
+    },
+    "S5_the_entry_window_W1_to_W4": {
+      "W1_the_declared_state_above_the_declared_threshold": {
+        "above_the_declared_threshold": true,
+        "declared_percolation_threshold": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/2"
+        },
+        "declared_state": "the declared state above the declared percolation threshold",
+        "declared_state_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "3/4"
+        },
+        "entry_accepted": true,
+        "the_declared_liquid_phase_is_declared_connected": true,
+        "verdict": "Accepted"
+      },
+      "W1_the_declared_state_at_the_declared_threshold": {
+        "above_the_declared_threshold": false,
+        "at_the_declared_threshold": true,
+        "declared_state": "the declared state exactly at the declared percolation threshold",
+        "declared_state_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/2"
+        },
+        "entry_accepted": true,
+        "verdict": "Accepted"
+      },
+      "W1_the_declared_state_below_the_declared_threshold": {
+        "above_the_declared_threshold": false,
+        "declared_state": "the declared state below the declared percolation threshold",
+        "declared_state_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/4"
+        },
+        "entry_accepted": false,
+        "verdict": "Refused"
+      },
+      "W2_the_declared_entry_step": {
+        "between_the_exact_integers": [
+          "2",
+          "3"
+        ],
+        "unit": "1",
+        "value": "2"
+      },
+      "W2_the_declared_sealing_step": {
+        "between_the_exact_integers": [
+          "6",
+          "7"
+        ],
+        "unit": "1",
+        "value": "6"
+      },
+      "W2_the_declared_window_is_determined_by_the_declared_phase_state": true,
+      "W3_a_silent_crossing_is_refused": true,
+      "W3_the_declared_connected_phase_topology_invariant": true,
+      "W3_the_declared_permitted_silent_crossing_count": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "0"
+      },
+      "W3_the_declared_threshold_crossing_count": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "0"
+      },
+      "W4_is_the_only_declared_safety_statement_of_this_run": true,
+      "W4_the_declared_safety_statement_is_an_exact_inequality_on_declared_numbers": true,
+      "declared_constants_and_thresholds_not_measurements": true,
+      "declared_window": "the mixed water-ice window before sealing, expressed below as W1 to W4",
+      "every_declared_refusal_is_executed": true,
+      "no_data_is_read_or_used": true,
+      "reading": "W1 to W4 are applied to declared constants and declared thresholds and never to measurements: the declared above-threshold state is accepted, the declared below-threshold state is refused, entry after the declared sealing step is refused, a silent declared threshold crossing while the declared invariant is claimed is refused, and a single declared action whose declared energy reaches the declared fraction of the declared latent heat of a declared connected region at the declared threshold is refused by an exact inequality on declared numbers.",
+      "refusal_count": 4,
+      "refusals": [
+        {
+          "basis": "the declared above-threshold state 3/4 against the declared below-threshold state 1/4 with the declared threshold 1/2",
+          "consequence": "entry is refused and the declared state below the declared threshold is recorded as a different declared run",
+          "executed": true,
+          "refusal_id": "W1-BELOW-THE-DECLARED-PERCOLATION-THRESHOLD",
+          "refused": true,
+          "statement": "entry below the declared percolation threshold: the declared liquid phase is not declared connected",
+          "triggered": true,
+          "verdict": "Refused"
+        },
+        {
+          "basis": "the declared entry step 2 against the declared sealing step 6",
+          "consequence": "a declared claim of entry after the declared sealing step is refused, because the declared window is determined by the declared phase state and not by the declared step label alone",
+          "executed": true,
+          "refusal_id": "W2-ENTRY-AFTER-SEALING",
+          "refused": true,
+          "statement": "entry after the declared sealing step of the declared entry window",
+          "triggered": true,
+          "verdict": "Refused"
+        },
+        {
+          "basis": "the declared permitted number of silent crossings is exactly 0",
+          "consequence": "a crossing that is not declared as a declared event is refused and the declared connected-phase invariant is not claimed to hold silently",
+          "executed": true,
+          "refusal_id": "W3-SILENT-THRESHOLD-CROSSING",
+          "refused": true,
+          "statement": "a silent crossing of the declared percolation threshold while the declared invariant is claimed",
+          "triggered": true,
+          "verdict": "Refused"
+        },
+        {
+          "basis": "the declared safety inequality 1/8 < 1/4 on declared model numbers",
+          "consequence": "a declared action able to reach the declared bound by itself is refused by an exact inequality on declared numbers, and this is the only place in this run where a declared safety statement is made",
+          "executed": true,
+          "refusal_id": "W4-A-SINGLE-DECLARED-ACTION-REACHING-THE-DECLARED-BOUND",
+          "refused": true,
+          "statement": "a single declared action whose declared energy reaches the declared fraction of the declared latent heat of a declared connected region at the declared threshold",
+          "triggered": true,
+          "verdict": "Refused"
+        }
+      ],
+      "rejected_claim": {
+        "accepted_companion": {
+          "accepted": true,
+          "claim": "the declared action whose declared energy is strictly below the declared bound",
+          "unit": "1",
+          "value": "1/8",
+          "verdict": "Accepted_WithinTheDeclaredSafetyBound"
+        },
+        "claim": "a single declared action reaches the declared fraction of the declared latent heat of a declared connected region at the declared threshold",
+        "claimed_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/4"
+        },
+        "control": "a declared single action whose declared energy reaches the declared safety bound",
+        "control_id": "W4-SINGLE-ACTION-REACHES-THE-DECLARED-BOUND",
+        "derived_value": {
+          "between_the_exact_integers": [
+            "0",
+            "1"
+          ],
+          "unit": "1",
+          "value": "1/4"
+        },
+        "discriminates": true,
+        "outcome": "RejectedWithAnAcceptedCompanion",
+        "rejected": true,
+        "rejected_by": "the declared safety inequality, which is an exact inequality on declared numbers",
+        "rejection_reasons": [
+          "the declared energy of a single declared action at the declared bound is exactly 1/4 and the declared bound is exactly 1/4",
+          "the declared inequality requires the declared action's declared energy to be STRICTLY below the declared bound, so reaching the declared bound is refused exactly",
+          "the accepted form is the declared action whose declared energy is exactly 1/8, strictly below the declared bound 1/4"
+        ],
+        "unit": "1",
+        "verdict": "Rejected"
+      },
+      "the_declared_action_is_strictly_below_the_declared_bound": true,
+      "the_declared_connected_region_vertex_count": {
+        "between_the_exact_integers": [
+          "4",
+          "5"
+        ],
+        "unit": "1",
+        "value": "4"
+      },
+      "the_declared_inequality_stated_exactly": "1/8 < 1/96 * (6 * 4) = 1/4",
+      "the_declared_latent_heat": {
+        "between_the_exact_integers": [
+          "6",
+          "7"
+        ],
+        "unit": "1",
+        "value": "6"
+      },
+      "the_declared_latent_heat_of_a_connected_region_at_the_threshold": {
+        "between_the_exact_integers": [
+          "24",
+          "25"
+        ],
+        "unit": "1",
+        "value": "24"
+      },
+      "the_declared_percolation_threshold": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "1/2"
+      },
+      "the_declared_safety_bound": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "1/4"
+      },
+      "the_declared_safety_fraction": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "1/96"
+      },
+      "the_declared_single_action_energy": {
+        "between_the_exact_integers": [
+          "0",
+          "1"
+        ],
+        "unit": "1",
+        "value": "1/8"
+      }
+    },
+    "S6_the_declared_ablation_levels": {
+      "assignment_count": 8,
+      "assignments": [
+        {
+          "assigned_level": "level_1",
+          "assigned_level_value": 1,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 1,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_constellation_placement"
+        },
+        {
+          "assigned_level": "level_1",
+          "assigned_level_value": 1,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 1,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_two_region_addressing"
+        },
+        {
+          "assigned_level": "level_2",
+          "assigned_level_value": 2,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 2,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_schedule_phase_gradient"
+        },
+        {
+          "assigned_level": "level_2",
+          "assigned_level_value": 2,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 2,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_spacetime_invariance_reading"
+        },
+        {
+          "assigned_level": "level_3",
+          "assigned_level_value": 3,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 3,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_entry_window_state"
+        },
+        {
+          "assigned_level": "level_4",
+          "assigned_level_value": 4,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 4,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_entry_window_time"
+        },
+        {
+          "assigned_level": "level_5",
+          "assigned_level_value": 5,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 5,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_observation_and_learning"
+        },
+        {
+          "assigned_level": "level_5",
+          "assigned_level_value": 5,
+          "assigned_to_a_level": true,
+          "assigned_to_a_platform": false,
+          "declared_required_level_value": 5,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "task": "task_overreach_controls"
+        }
+      ],
+      "control_count": 2,
+      "controls": [
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared task task_constellation_placement assigned to the declared level level_1",
+            "unit": "1",
+            "value": "1",
+            "verdict": "Accepted_AssignedToADeclaredLevel"
+          },
+          "claim": "the declared task task_constellation_placement is assigned to a declared vertex of the declared constellation",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "control": "a declared task routed to a platform instead of to a declared level",
+          "control_id": "ABL-TASK-TO-A-PLATFORM",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "5",
+              "6"
+            ],
+            "unit": "1",
+            "value": "5"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared assignment domain, which is the declared level set",
+          "rejection_reasons": [
+            "the declared assignment domain is the declared level set [1, 2, 3, 4, 5] and the declared task task_constellation_placement carries the declared required level value 1",
+            "a declared vertex of the declared constellation is a declared placement object and not a declared level, so the claim names an object outside the declared level set",
+            "the accepted form assigns the task to the declared level level_1, so a platform is never the destination of a task"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared task task_entry_window_state assigned to the declared level level_3",
+            "unit": "1",
+            "value": "3",
+            "verdict": "Accepted_InsideTheDeclaredSet"
+          },
+          "claim": "the declared task task_entry_window_state is assigned to a level whose declared value is 6",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "6",
+              "7"
+            ],
+            "unit": "1",
+            "value": "6"
+          },
+          "control": "a declared task assigned to a level outside the declared level set",
+          "control_id": "ABL-LEVEL-OUTSIDE-THE-DECLARED-SET",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "5",
+              "6"
+            ],
+            "unit": "1",
+            "value": "5"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared level set",
+          "rejection_reasons": [
+            "the declared level values are [1, 2, 3, 4, 5] and the claimed value 6 is not among them",
+            "the claim lies exactly 1 above the largest declared level value, so it is outside the declared set",
+            "a level outside the declared set has no declared ablation level to match, so the claim is rejected by the declared set itself"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        }
+      ],
+      "declared_level_count": 5,
+      "declared_level_values": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "declared_levels": [
+        {
+          "declared": true,
+          "declared_level_value": 1,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "level": "level_1",
+          "measured_here": false,
+          "read_from_data": false,
+          "unit": "1"
+        },
+        {
+          "declared": true,
+          "declared_level_value": 2,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "level": "level_2",
+          "measured_here": false,
+          "read_from_data": false,
+          "unit": "1"
+        },
+        {
+          "declared": true,
+          "declared_level_value": 3,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "level": "level_3",
+          "measured_here": false,
+          "read_from_data": false,
+          "unit": "1"
+        },
+        {
+          "declared": true,
+          "declared_level_value": 4,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "level": "level_4",
+          "measured_here": false,
+          "read_from_data": false,
+          "unit": "1"
+        },
+        {
+          "declared": true,
+          "declared_level_value": 5,
+          "is_a_magnitude_of_a_physical_quantity": false,
+          "level": "level_5",
+          "measured_here": false,
+          "read_from_data": false,
+          "unit": "1"
+        }
+      ],
+      "declared_reading": "Tasks are assigned to declared energy LEVELS matched to the declared ablation levels of the target medium by declaration; only declared ordinal levels are used, every level carries at least one task, and no magnitude of any physical quantity appears.",
+      "every_declared_level_carries_at_least_one_task": true,
+      "every_task_is_assigned_to_a_declared_level": true,
+      "no_level_outside_the_declared_set_is_used": true,
+      "no_magnitude_of_any_physical_quantity_is_used": true,
+      "no_task_is_assigned_to_a_platform": true,
+      "reading": "the declared tasks are assigned to the declared ordinal levels, every declared level carries at least one declared task, a task routed to a declared platform and a task routed to a level outside the declared set are both rejected, and no magnitude of any physical quantity appears anywhere in the assignment.",
+      "tasks_per_declared_level": [
+        {
+          "declared_level_value": 1,
+          "level": "level_1",
+          "task_count": 2
+        },
+        {
+          "declared_level_value": 2,
+          "level": "level_2",
+          "task_count": 2
+        },
+        {
+          "declared_level_value": 3,
+          "level": "level_3",
+          "task_count": 1
+        },
+        {
+          "declared_level_value": 4,
+          "level": "level_4",
+          "task_count": 1
+        },
+        {
+          "declared_level_value": 5,
+          "level": "level_5",
+          "task_count": 2
+        }
+      ],
+      "the_assignment_is_declared": "the declared level values are declared ordinal levels matched to the declared ablation levels of the target medium by declaration; they are NOT magnitudes of any physical quantity"
+    },
+    "S7_stage_one": {
+      "aggregated": {
+        "stage": "aggregated",
+        "unit_count": 4096,
+        "unit_index_sum": 8386560,
+        "unit_index_sum_of_squares": 22898104320
+      },
+      "computed": {
+        "stage": "computed",
+        "unit_count": 4096,
+        "unit_index_sum": 8386560,
+        "unit_index_sum_of_squares": 22898104320
+      },
+      "control_count": 2,
+      "controls": [
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the identity-carrying declared pipeline: the declared sets exactly equal, with the declared index sums retained as the declared witness",
+            "unit": "1",
+            "value": "4096",
+            "verdict": "Accepted_DeclaredTopologyNotBroken"
+          },
+          "claim": "the aggregation merges one declared unit, so fewer declared units are distributed than were computed",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "4095",
+              "4096"
+            ],
+            "unit": "1",
+            "value": "4095"
+          },
+          "control": "a violation of the declared topology invariant of stage one: the aggregation merges exactly one declared unit",
+          "control_id": "STAGE-TOPOLOGY-BROKEN",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "4096",
+              "4097"
+            ],
+            "unit": "1",
+            "value": "4096"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared invariant that the declared topology is not broken",
+          "rejection_reasons": [
+            "the declared computed, aggregated and distributed unit sets are exactly equal, so no declared unit is merged, dropped or invented and the declared count 4096 is carried through unchanged",
+            "a declared merge would carry exactly one declared unit fewer",
+            "the accepted form is the identity-carrying declared pipeline"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "declared learning continuous from the first stage",
+            "unit": "1",
+            "value": "4",
+            "verdict": "Accepted_DeclaredLearningContinuous"
+          },
+          "claim": "the first declared growth step carries zero declared learning units",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "control": "a violation of the declared continuous-learning invariant: the first declared step carries no declared learning units",
+          "control_id": "STAGE-LEARNING-DELAYED",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "4",
+              "5"
+            ],
+            "unit": "1",
+            "value": "4"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared invariant that declared learning is continuous from the first stage",
+          "rejection_reasons": [
+            "the first declared growth step carries exactly 4 declared learning units",
+            "the declared learning units grow strictly with every declared growth step",
+            "the declared claim of a zero-learning first step is the declared delayed learning the declared invariant forbids"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        }
+      ],
+      "declared_invariants": [
+        {
+          "falsifiable_counterpart": {
+            "accepted_companion": {
+              "accepted": true,
+              "claim": "the identity-carrying declared pipeline: the declared sets exactly equal, with the declared index sums retained as the declared witness",
+              "unit": "1",
+              "value": "4096",
+              "verdict": "Accepted_DeclaredTopologyNotBroken"
+            },
+            "claim": "the aggregation merges one declared unit, so fewer declared units are distributed than were computed",
+            "claimed_value": {
+              "between_the_exact_integers": [
+                "4095",
+                "4096"
+              ],
+              "unit": "1",
+              "value": "4095"
+            },
+            "control": "a violation of the declared topology invariant of stage one: the aggregation merges exactly one declared unit",
+            "control_id": "STAGE-TOPOLOGY-BROKEN",
+            "derived_value": {
+              "between_the_exact_integers": [
+                "4096",
+                "4097"
+              ],
+              "unit": "1",
+              "value": "4096"
+            },
+            "discriminates": true,
+            "outcome": "RejectedWithAnAcceptedCompanion",
+            "rejected": true,
+            "rejected_by": "the declared invariant that the declared topology is not broken",
+            "rejection_reasons": [
+              "the declared computed, aggregated and distributed unit sets are exactly equal, so no declared unit is merged, dropped or invented and the declared count 4096 is carried through unchanged",
+              "a declared merge would carry exactly one declared unit fewer",
+              "the accepted form is the identity-carrying declared pipeline"
+            ],
+            "unit": "1",
+            "verdict": "Rejected"
+          },
+          "invariant": "the declared topology is not broken"
+        },
+        {
+          "falsifiable_counterpart": {
+            "accepted_companion": {
+              "accepted": true,
+              "claim": "declared learning continuous from the first stage",
+              "unit": "1",
+              "value": "4",
+              "verdict": "Accepted_DeclaredLearningContinuous"
+            },
+            "claim": "the first declared growth step carries zero declared learning units",
+            "claimed_value": {
+              "between_the_exact_integers": [
+                "0",
+                "1"
+              ],
+              "unit": "1",
+              "value": "0"
+            },
+            "control": "a violation of the declared continuous-learning invariant: the first declared step carries no declared learning units",
+            "control_id": "STAGE-LEARNING-DELAYED",
+            "derived_value": {
+              "between_the_exact_integers": [
+                "4",
+                "5"
+              ],
+              "unit": "1",
+              "value": "4"
+            },
+            "discriminates": true,
+            "outcome": "RejectedWithAnAcceptedCompanion",
+            "rejected": true,
+            "rejected_by": "the declared invariant that declared learning is continuous from the first stage",
+            "rejection_reasons": [
+              "the first declared growth step carries exactly 4 declared learning units",
+              "the declared learning units grow strictly with every declared growth step",
+              "the declared claim of a zero-learning first step is the declared delayed learning the declared invariant forbids"
+            ],
+            "unit": "1",
+            "verdict": "Rejected"
+          },
+          "invariant": "the declared learning is continuous from the first stage"
+        }
+      ],
+      "declared_reading": "Calibration first: observational material computed, aggregated and distributed inside the December-January window, then continuous observation and learning of the small perturbations, growing with each launch; the two invariants are that the declared topology is not broken and that learning is continuous from the first stage.",
+      "declared_recipient_count": {
+        "between_the_exact_integers": [
+          "64",
+          "65"
+        ],
+        "unit": "1",
+        "value": "64"
+      },
+      "declared_unit_count": {
+        "between_the_exact_integers": [
+          "4096",
+          "4097"
+        ],
+        "unit": "1",
+        "value": "4096"
+      },
+      "declared_units_per_recipient": {
+        "between_the_exact_integers": [
+          "64",
+          "65"
+        ],
+        "unit": "1",
+        "value": "64"
+      },
+      "distributed": {
+        "stage": "distributed",
+        "unit_count": 4096,
+        "unit_index_sum": 8386560,
+        "unit_index_sum_of_squares": 22898104320
+      },
+      "every_declared_invariant_has_a_rejected_counterpart": true,
+      "growth_step_count": 8,
+      "growth_steps": [
+        {
+          "cumulative_declared_launches": 1,
+          "declared_launches": 1,
+          "declared_learning_units": 4,
+          "growth_step": 1
+        },
+        {
+          "cumulative_declared_launches": 3,
+          "declared_launches": 2,
+          "declared_learning_units": 8,
+          "growth_step": 2
+        },
+        {
+          "cumulative_declared_launches": 6,
+          "declared_launches": 3,
+          "declared_learning_units": 12,
+          "growth_step": 3
+        },
+        {
+          "cumulative_declared_launches": 10,
+          "declared_launches": 4,
+          "declared_learning_units": 16,
+          "growth_step": 4
+        },
+        {
+          "cumulative_declared_launches": 15,
+          "declared_launches": 5,
+          "declared_learning_units": 20,
+          "growth_step": 5
+        },
+        {
+          "cumulative_declared_launches": 21,
+          "declared_launches": 6,
+          "declared_learning_units": 24,
+          "growth_step": 6
+        },
+        {
+          "cumulative_declared_launches": 28,
+          "declared_launches": 7,
+          "declared_learning_units": 28,
+          "growth_step": 7
+        },
+        {
+          "cumulative_declared_launches": 36,
+          "declared_launches": 8,
+          "declared_learning_units": 32,
+          "growth_step": 8
+        }
+      ],
+      "invariant_count": 2,
+      "learning_enters_at_the_first_declared_step": true,
+      "no_data_is_read_or_used": true,
+      "reading": "stage one is declared calibration: the declared 4096 units are carried identically through the declared compute, aggregate and distribute stages with identical counts and identical index sums at all three, declared learning enters at the first declared step with declared launches and a strictly growing declared cumulative network, and the declared topology-broken control and the declared learning-delayed control are both refused.",
+      "the_declared_network_grows_strictly": true,
+      "the_declared_units_are_declared_not_read": true,
+      "the_declared_units_divide_exactly_among_the_recipients": true,
+      "the_three_declared_stages_carry_identical_counts_and_identical_index_sums": true,
+      "total_declared_launches": 36,
+      "total_declared_learning_units": 144
+    },
+    "S8_the_declared_overreaches": {
+      "control_count": 5,
+      "controls": [
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared crystallographic constellation, whose declared group has no 5-fold element",
+            "unit": "1",
+            "value": "0",
+            "verdict": "Accepted_AsTheDeclaredCrystallographicConstellation"
+          },
+          "claim": "the declared icosahedral constellation is lattice-compatible",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "control": "a declared icosahedral constellation claimed lattice-compatible",
+          "control_id": "OVR-ICOSAHEDRAL-LATTICE-COMPATIBLE",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "24",
+              "25"
+            ],
+            "unit": "1",
+            "value": "24"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared crystallographic rotation orders and the icosahedral rotation group",
+          "rejection_reasons": [
+            "the declared icosahedral rotation group has exactly 60 elements and contains exactly 24 elements of order 5, so it has a 5-fold rotation axis",
+            "the declared crystallographic rotation orders are [1, 2, 3, 4, 6] and 5 is not among them, so no declared lattice can carry this declared constellation",
+            "the accepted form is the declared crystallographic constellation, whose declared group T_h of order 24 has rotation axes of order 2 and 3 only"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared direction written by the declared phase gradient's sign",
+            "unit": "declared units of net signed flow per declared period",
+            "value": "0",
+            "verdict": "Accepted_AsTheDeclaredGradientWrittenDirection"
+          },
+          "claim": "the declared ground pattern's shape alone fixes the declared transport direction",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "1"
+          },
+          "control": "the declared ground pattern's shape claimed to fix the declared transport direction",
+          "control_id": "OVR-PATTERN-SHAPE-FIXES-THE-DIRECTION",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "declared units of net signed flow per declared period",
+            "value": "0"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared transport at the declared standing gradient, exactly",
+          "rejection_reasons": [
+            "at the declared standing gradient the declared pattern's transport derived here is exactly 0 declared units of net signed flow per declared period, so the declared shape alone declares no direction",
+            "the declared direction of the declared travelling pattern is fixed by the declared phase gradient's sign and not by the declared pattern's shape",
+            "the declared correction carried by the frozen contract is exactly that the declared ground pattern's symmetry is NOT the declared object"
+          ],
+          "unit": "declared units of net signed flow per declared period",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared statement that the two declared orbits are combinatorially different, with their exactly computed distinct declared stabiliser orders",
+            "unit": "1",
+            "value": "2",
+            "verdict": "Accepted_AsTheDeclaredCombinatorialDifference"
+          },
+          "claim": "the declared cube orbit and the declared petrie orbit are the declared same combinatorial kind",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "2",
+              "3"
+            ],
+            "unit": "1",
+            "value": "2"
+          },
+          "control": "the two declared vertex orbits claimed to be the declared same combinatorial kind",
+          "control_id": "OVR-THE-TWO-ORBITS-ARE-THE-SAME-COMBINATORIAL-KIND",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "3",
+              "4"
+            ],
+            "unit": "1",
+            "value": "3"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the exactly computed declared stabiliser orders of the two declared orbits",
+          "rejection_reasons": [
+            "the declared cube orbit has exactly 3 declared elements fixing a declared orbit point and the declared petrie orbit has exactly 2",
+            "the two declared stabiliser orders DIFFER, so the two declared orbits are NOT isomorphic declared group sets and the claim that they are the same declared combinatorial kind is refused exactly",
+            "the declared orbits nevertheless have declared sizes 8 and 12"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared shared combinatorial type with its declared Euler characteristic 2",
+            "unit": "1",
+            "value": "2",
+            "verdict": "Accepted_AsTheDeclaredSharedCombinatorialType"
+          },
+          "claim": "the declared primary constellation and the declared alternative constellation have different declared topology",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "1",
+              "2"
+            ],
+            "unit": "1",
+            "value": "1"
+          },
+          "control": "the declared primary and the declared alternative claimed to have different topology",
+          "control_id": "OVR-THE-FAMILY-MEMBERS-HAVE-DIFFERENT-TOPOLOGY",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the declared combinatorial type referenced from the declared shared-geometry contract",
+          "rejection_reasons": [
+            "the declared combinatorial type is referenced from the declared shared-geometry contract at its declared digest: twelve declared faces, thirty declared edges, twenty declared vertices and the declared Euler characteristic exactly 2, and the same declared counts are carried by the declared primary and by the declared alternative",
+            "a declared orbit-radius change moves declared vertices within a declared orbit and is checked here to leave the declared orbit sizes unchanged",
+            "the accepted form is the declared shared combinatorial type"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        },
+        {
+          "accepted_companion": {
+            "accepted": true,
+            "claim": "the declared rotation part, which is the declared subgroup of SO(3) of exact order 12",
+            "unit": "1",
+            "value": "12",
+            "verdict": "Accepted_AsTheDeclaredRotationPartInsideSO3"
+          },
+          "claim": "the full declared point group T_h of the declared pyritohedron is a subgroup of SO(3)",
+          "claimed_value": {
+            "between_the_exact_integers": [
+              "0",
+              "1"
+            ],
+            "unit": "1",
+            "value": "0"
+          },
+          "control": "the full point group of a declared achiral solid claimed to be a subgroup of SO(3)",
+          "control_id": "OVR-FULL-POINT-GROUP-INSIDE-SO3",
+          "derived_value": {
+            "between_the_exact_integers": [
+              "12",
+              "13"
+            ],
+            "unit": "1",
+            "value": "12"
+          },
+          "discriminates": true,
+          "outcome": "RejectedWithAnAcceptedCompanion",
+          "rejected": true,
+          "rejected_by": "the exactly computed determinants of every declared group element",
+          "rejection_reasons": [
+            "the declared group has exactly 12 elements of determinant exactly minus one, and the declared inversion [[-1, 0, 0], [0, -1, 0], [0, 0, -1]] is one of them",
+            "a subgroup of SO(3) contains only elements of determinant exactly plus one, so the declared full point group is not a subgroup of SO(3)",
+            "only the declared rotation part, of exact order 12, is a subgroup of SO(3); the declared pairing element is the declared parity element, which is the declared correction the frozen contract carries"
+          ],
+          "unit": "1",
+          "verdict": "Rejected"
+        }
+      ],
+      "declared_corrections_carried": "The ground pattern's symmetry is NOT the object: the spacetime symmetry of the (constellation, schedule) pair is. And the full point groups of achiral solids lie in O(3), not SO(3); parity is the pairing element.",
+      "every_overreach_is_executed_and_refused": true,
+      "reading": "five declared overreaches are each executed and refused: a declared icosahedral constellation is refused as lattice-incompatible because its exactly computed rotation group carries 5-fold elements, the declared ground pattern's shape is refused as fixing the declared direction, a claim that the two declared vertex orbits are the declared same combinatorial kind is refused because their exactly computed stabiliser orders differ, the declared primary and the declared alternative are refused as having different declared topology because the declared shared combinatorial type with Euler characteristic exactly 2 is referenced for both, and the declaration that the full point group of the declared achiral solid is a subgroup of SO(3) is refused because the declared group has twelve elements of determinant exactly minus one.",
+      "the_declared_alternative_euler_identity": "24 - 36 + 14 = 2",
+      "the_declared_combinatorial_type_is_referenced_not_recomputed": true,
+      "the_declared_combinatorial_type_source": "experiments/geometry_foundation_v1/contract.json",
+      "the_declared_euler_characteristic": 2,
+      "the_declared_primary_euler_identity": "20 - 30 + 12 = 2",
+      "the_icosahedral_constellation": {
+        "contains_a_five_fold_element": true,
+        "declared_as_an_exact_permutation_group_rather_than_matrices": true,
+        "declared_rotation_group_order": 60,
+        "declared_vertex_construction": "the declared icosahedral constellation is declared as the declared vertex set of the regular icosahedron, whose rotation group is the declared alternating group on five letters; the declared group is computed here exactly by exact closure on permutations, because a 5-fold rotation cannot be written as an exact integer 3x3 matrix and this run forms no irrational number",
+        "declared_vertex_count": 12,
+        "declared_vertices": [],
+        "element_orders": [
+          1,
+          2,
+          3,
+          5
+        ],
+        "five_fold_element_count": 24,
+        "is_crystallographic": false,
+        "lattice_compatible": false,
+        "refused_reason": "a declared 5-fold rotation axis is not among the declared crystallographic rotation orders, so the declared icosahedral constellation is refused as lattice-incompatible"
+      },
+      "the_two_declared_orbits": {
+        "combinatorially_different": true,
+        "cube_orbit_point_stabiliser_order": 3,
+        "cube_orbit_size": 8,
+        "every_element_stays_inside_its_own_orbit": true,
+        "no_element_maps_one_orbit_onto_the_other": true,
+        "petrie_orbit_point_stabiliser_order": 2,
+        "petrie_orbit_size": 12,
+        "stabiliser_orders_are_equal": false,
+        "the_orbits_are_isomorphic_declared_group_sets": false
+      }
+    },
+    "S9_proposal_only_bookkeeping": {
+      "authorization": "none",
+      "authorizes_nothing": true,
+      "data_used": "none",
+      "decides_nothing": true,
+      "decision": "none",
+      "deployment": "none",
+      "deploys_nothing": true,
+      "governance": "unaddressed",
+      "no_governance_assessment": true,
+      "nothing_said_about_who_might_decide": "nothing is said here about who might decide anything, and no decision is taken or recommended",
+      "physical_effect_asserted": "none",
+      "proposal_only_in_chinese_and_english": "\u63d0\u8bae\u6027\u65b9\u6848 / proposal only",
+      "proposal_only_statement": "This document and this payload are a PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848 (proposal three): the document authorizes nothing, decides nothing, deploys nothing, assesses no governance and asserts no physical effect.",
+      "record_purpose": "an exact calibration of one declared constellation family and its declared spacetime-group conditions, retained as evidence for the declared finite scope only",
+      "status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848",
+      "termination_problem": {
+        "addressed_here": false,
+        "problem": "the termination problem of the wider programme",
+        "reading": "the termination problem is recorded as Unaddressed and is NOT solved or decided by this run",
+        "solved_here": false,
+        "status": "Unaddressed"
+      },
+      "the_status_note_of_the_frozen_contract_is_quoted": "The third space proposal: freer orbits with a lattice or polyhedral placement matched to relativistic spacetime symmetry, working in both sunlit and unsunlit regions to create a controllable small-scale energy imbalance, with work regions and times computed in advance and tasks assigned to declared ablation levels. It authorizes nothing, decides nothing, deploys nothing, asserts no physical effect, gives no magnitude for any physical quantity and uses no data.",
+      "the_status_of_the_frozen_contract_is_quoted": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848 (proposal three)"
+    }
+  },
+  "status": "PROPOSAL ONLY - \u63d0\u8bae\u6027\u65b9\u6848 / ExternalExactPass",
+  "tooling": {
+    "child_processes": 0,
+    "declared_not_native_authority": true,
+    "exact_only": true,
+    "external_libraries_imported": [],
+    "native_certificate": false,
+    "not_implemented": "nothing outside this declared model is implemented, and no Rust source, lock file, parent contract or note is touched",
+    "python": "the standard library alone"
+  },
+  "undecided": [
+    {
+      "item": "whether the declared model should carry a declared placement field whose declared difference alone breaks the declared invariance",
+      "reason": "in this declared model the declared placement and the declared region indicator enter the declared weight as a declared product, so the failed control of this run cannot discriminate the declared symmetric placement from the declared asymmetric placement through the declared transport.  No such placement field is decided here.",
+      "retained_partial_result": {
+        "declared_asymmetric_transport": "-15/2",
+        "declared_symmetric_transport": "-15/2",
+        "the_two_declared_transports_are_equal": true
+      }
+    },
+    {
+      "item": "whether the declared per-step flow should be the declared sum over declared edges of the declared weight, as declared here, or a declared measure-carrying flow",
+      "reason": "this run declares the declared per-step flow as that declared sum, which is what makes the declared pairing condition, the declared zero and the declared exact reversal checkable exactly.  A declared measure-carrying flow is NOT decided here, and the declared divergence residual is reported exactly instead of claiming an exact stationarity this declared model does not have.",
+      "retained_partial_result": {
+        "declared_vertex_divergence": [
+          "-3/2",
+          "-1/2",
+          "-3/4",
+          "-1/4"
+        ],
+        "the_declared_uniform_measure_is_exactly_stationary": false
+      }
+    },
+    {
+      "item": "whether the declared invariance condition should be read with the declared pairing condition or with a declared weight-field condition",
+      "reason": "this run declares the declared pairing condition - the declared image flow of the declared shifted step is exactly the declared negative of the declared flow of the declared step - and checks it exactly at every declared step.  A declared weight-field reading is NOT decided here.",
+      "retained_partial_result": {
+        "the_declared_pairing_set_order": 24,
+        "the_declared_pairing_set_shifts": [
+          2
+        ]
+      }
+    },
+    {
+      "item": "whether the declared constellation should be declared with a different declared orbit radius or a different declared base triple",
+      "reason": "every base triple, orbit radius and placement is declared; a different declaration is a different run, and nothing here is a theorem about any other declared constellation.",
+      "retained_partial_result": {
+        "declared_cube_base_triple": [
+          1,
+          1,
+          1
+        ],
+        "declared_orbit_sizes": [
+          8,
+          12
+        ],
+        "declared_petrie_base_triple": [
+          1,
+          0,
+          2
+        ]
+      }
+    },
+    {
+      "item": "whether a declared lattice embedder for the declared crystallographic constellation should be exhibited",
+      "reason": "this run checks that the declared group is crystallographic, that its declared rotation axis orders lie in the declared crystallographic set and that it contains no 5-fold element; it does NOT exhibit a declared lattice or a declared embedding.",
+      "retained_partial_result": {
+        "declared_crystallographic_rotation_orders": [
+          1,
+          2,
+          3,
+          4,
+          6
+        ],
+        "declared_rotation_axis_orders": [
+          1,
+          2,
+          3
+        ],
+        "five_fold_element_count": 0
+      }
+    },
+    {
+      "item": "whether the entry window's declared percolation threshold and declared latent heat should carry a declared physical reading",
+      "reason": "both are DECLARED constants of the declared model with declared unit 1 and are not measurements of this run; no physical reading of them is made or decided.",
+      "retained_partial_result": {
+        "declared_latent_heat": "6",
+        "declared_percolation_threshold": "1/2",
+        "declared_safety_bound": "1/4",
+        "measured_here": false
+      }
+    }
+  ],
+  "verification_status": {
+    "checked_here": {
+      "every_declared_arithmetic_is_exact": true,
+      "governance_is_unaddressed": true,
+      "no_data_read_or_used": true,
+      "no_magnitude_sign_or_timing_for_any_physical_quantity_is_asserted": true,
+      "no_pattern_is_projected_onto_any_real_surface": true,
+      "no_physical_effect_is_asserted": true,
+      "nothing_is_ablated_melted_moved_or_heated": true,
+      "the_shared_geometry_is_referenced_and_not_recomputed": true,
+      "the_termination_problem_is_unaddressed_and_unsolved": true
+    },
+    "deployment": "none",
+    "no_data_read_or_used": true,
+    "observational": "Unavailable",
+    "physical_effect_asserted": "none"
+  },
+  "version": 1,
+  "what_is_not_claimed": {
+    "authorization": "none",
+    "data_used": "none",
+    "decision": "none",
+    "deployment": "none",
+    "governance": "unaddressed",
+    "governance_is_unaddressed": true,
+    "magnitude_sign_or_timing_of_any_physical_quantity": "none",
+    "native_admission": "NotGranted",
+    "native_certificate": false,
+    "no_claim_added_to_docs_claims_toml": true,
+    "no_clock_read": true,
+    "no_data_read_or_used": true,
+    "no_docs_or_github_file_touched": true,
+    "no_magnitude_for_any_physical_quantity": true,
+    "no_material_is_transported": true,
+    "no_parent_contract_or_note_edited": true,
+    "no_pattern_is_projected_onto_any_real_surface": true,
+    "no_rust_source_or_lock_changed": true,
+    "no_sign_of_any_physical_quantity": true,
+    "no_surface_is_addressable": true,
+    "no_timestamp_duration_or_host_path_is_written": true,
+    "no_timing_of_any_physical_quantity": true,
+    "nothing_is_ablated": true,
+    "nothing_is_ablated_melted_moved_or_heated": true,
+    "nothing_is_heated": true,
+    "nothing_is_melted": true,
+    "nothing_is_moved": true,
+    "observational_verification": "Unavailable",
+    "physical_claim": false,
+    "physical_effect_asserted": "none",
+    "stable_api_change": false,
+    "the_declared_level_values_are_declared_ordinals_and_not_magnitudes": true,
+    "the_document_is_a_proposal_only": true,
+    "the_entry_window_thresholds_are_declared_and_not_measured": true,
+    "the_model_is_declared_and_a_different_declaration_is_a_different_run": true,
+    "the_status_is_proposal_only_in_chinese_and_english": "\u63d0\u8bae\u6027\u65b9\u6848 / proposal only",
+    "the_termination_problem_is_unaddressed_and_unsolved": true,
+    "the_zero_is_a_statement_about_the_declared_model": true
+  }
+}
