@@ -1,0 +1,63 @@
+{
+  "schema": "adva.research.two-address-exchange.v1",
+  "created_at": "2026-09-24T23:52:06Z",
+  "question": "Can the exchange of the two real-root branches that the first scheme cannot perform on the real side be obtained when the time direction enters through the second address read as target state, subject to three declared time conditions - a factor-two extra block at the end of the cycle, the closure clause 終養始 read as the fixed point of the annual return, and the crossing point the time factor forces on the spatial side, where the maximum amplitude must be computed - with the two addresses used simultaneously as two mutually measuring sides?",
+  "level": "Bounded external exact calibration. No native certificate, no stable API, no physical claim, no forecast and no meteorological or reanalysis data.",
+  "declared_reading": {
+    "two_addresses": "Note 0228 §2 reads the bijection e(a,b)_i = 3 a_i + b_i from {0,1,2}^4 x {0,1,2}^4 onto {0,...,8}^4 in two ways: nested spatial addresses with a the coarse cell and b the child inside it, and ordered state relations with a the source state and b the target state. This run uses BOTH addresses simultaneously; the state is the pair, and neither address alone recovers the fine point. The mutual measuring (互度) is declared as the pair of inverses a = floor(z/3) and b = z mod 3 componentwise, together with the two 81-valued observations q_block and q_phase of 0228 §3 whose character bases are the two Fourier readings of 0228 §5. The two addresses are two different sides, not two names for one side.",
+    "time_enters_on_the_target_side": "The time direction enters through b read as target state: one transition selects exactly one target per source, and the next transition takes the old target as its new source. The reference h = 0 and the closure below are read in this language.",
+    "T1_two_extras_at_the_end": "Declared condition one: at the 13 scale the time axis carries a factor-two extra block at the end of the cycle, the structural position of 用九/用六 in Yi and of 踦/贏 (the intercalary remainder) in Taixuan. The run must place the two extra states at the declared end of the twelve-phase cycle and must be able to fail: a protocol that puts the extra block in the interior, or that needs more than two extra states, is a different declared reading and must be rejected rather than absorbed.",
+    "T2_three_exits_clause": "Declared condition two: at the 25 scale the three-exits clause is 終養始, the end nourishes the beginning, read as periodic closure. In the process language the closure is the fixed point of the annual return, E_{p,q}(h) = h, whose non-trivial branch is a cubic: h^3 + 8 h^2 + 64 h - 320 = 0 at p = q = 0, with one real root h* = 3.2035072879526181... and the conjugate pair -5.6017536439763091 +- 8.2771295362453176 i. The run must report the three exits of that cubic - one realised closure and two retreating into the complex plane - and must compare this reading with the declared-level reading of note 0235 in which the return equation is E(h) = 1 and there are two real branches. The two readings must be kept side by side and must not be substituted for one another.",
+    "T3_crossing_point": "Declared condition three: once the time factor enters it introduces a crossing point on the spatial side, and the maximum amplitude there is to be computed. Declared candidates, each computed exactly and each reported separately: (i) the year seam, side 0 of the twelve-phase cycle, where the time coupling |d_m| and the spatial amplitude |h_m| both attain their maximum - already computed for this fixture as 31/512 and 2 + sqrt(8 sqrt(17) - 20) = 5.6034490429...; (ii) the mutual-measuring diagonal a = b, which is the 81 points z = 4 a with every coordinate in {0,4,8}; (iii) a spectral crossing where the block and phase characters agree, which must be declared explicitly or recorded as not decided.",
+    "second_scheme_context": "The second scheme is a four-dimensional spacetime monotile whose time direction is meant to supply the dimension the real side lacks. The obstruction that motivates it is executed, not assumed: note 0235 established that no declared real loop realises the transposition of the two real-root branches, and that the cheapest reachable configuration is the amplitude floor attained away from the discriminant variety."
+  },
+  "objects": {
+    "fixture": "The twelve-phase 0233 fixture exactly as in notes 0234 and 0235: reference (0,1,2,1,0,-1,-2,-1,0,1,0,-1,0), dilations (1/2,3/4,1,...,1), curvatures (1/8,1/8,0,...,0).",
+    "perturbation": "The process-side primary family of the 0235 contract, with curvatures (1/8 + p, 1/8 + q), and its declared branch-level control family. p and q are the two sides' perturbations.",
+    "closure": "E_{p,q}(h) = h for T2, alongside E_{p,q}(h) = 1 for the 0235 comparison.",
+    "amplitude": "J_inf over the twelve sides and both branches as in 0235, and its declared control J_2."
+  },
+  "method": {
+    "exact": "All acceptance arithmetic is exact integers and fractions. sympy 1.14 is a declared non-authoritative engine for resultants, Groebner bases and Sturm counts.",
+    "wu": "Wu-style characteristic chains for the declared case systems, every remainder cross-checked by a Groebner membership test, with a vacuous agreement on an inconsistent chain recorded as vacuous rather than as confirmation.",
+    "yang_lu": "Real-root counting and isolation with exact rational intervals for the closure cubic, the level-one quartic and the perturbed members of both, plus the branch side of each isolated root.",
+    "zhang_yang": "Minimality and positivity by exact rational interval arithmetic with declared subdivision; successive difference substitution is not implemented unless the implementer supplies it exactly, and the run must say which was used.",
+    "monodromy": "Root permutations of declared real loops only where they can be certified exactly; anything else is recorded as Undecided with its retained partial data."
+  },
+  "controls": [
+    "The block-address two-point witness of 0228 §3 must fail any time iteration declared on the 81 coarse block labels: (6,3,3,6) and (8,3,3,6) share the block (2,1,1,2) and have different blocks after T_0.",
+    "The extrusion countermodel of 0228 §7 must be reproduced and must be judged degenerate: repeating the same spatial pattern along the time direction, or closing only on the a = b diagonal of 81 points, is not a time resource and must not count as one.",
+    "The identity-loop control of note 0235 must still return the identity permutation.",
+    "The two closure readings must differ and the difference must be reported: the declared-level reading has two real branches, the 終養始 reading has one real root and a conjugate pair.",
+    "T1 must fail on a declared negative control: an extra block placed in the interior, or a third extra state, must be rejected.",
+    "T3 must report every declared candidate separately; if the spectral candidate is not declared, it must be recorded as not decided rather than dropped."
+  ],
+  "meteorological_correspondence": {
+    "status": "Declared correspondence only, not a physical claim.",
+    "declared": "The January mid-latitude westerly belt near the Tibetan Plateau and a gap-like passage there remain the declared intended reading; no dataset, reanalysis field, station record or forecast is used and no mechanism is asserted.",
+    "data_side": "Unavailable in this checkout."
+  },
+  "budgets": {
+    "wall_seconds": 900,
+    "cpu_seconds": 600,
+    "memory_bytes": 1073741824,
+    "max_assertions": 200000,
+    "routes": 1,
+    "correction_replays": 1,
+    "child_processes": 0
+  },
+  "acceptance": "Every acceptance assertion is exact; no floating-point value appears in any acceptance test or in the retained payload. The run reports: the two-address declaration it implements; the T1 placement and its negative control; the closure cubic, its three exits and the side-by-side comparison with the level-one reading; every T3 candidate with its exact maximum amplitude; the block-address and extrusion controls; the identity-loop control; and every item it could not decide, with the reason.",
+  "protected": [
+    "All pre-existing repository files remain byte identical",
+    "No Rust source, Cargo.toml or Cargo.lock change, so the advance-surface base commit does not move",
+    "Notes 0228, 0233, 0234 and 0235 and the two 0235 contracts are cited, not edited",
+    "No native admission, no Seal, no transport and no terminology home"
+  ],
+  "residual": [
+    "The 互度 is declared at the level of the division/remainder pair and the two character bases; a stronger reading would need its own definition",
+    "T1's placement of the two extra states on the twelve-phase cycle is a declared convention with a negative control, not a derived fact",
+    "T2's closure clause is read as the fixed point of the annual return; other readings of 終養始 are not excluded by this run",
+    "The time direction here is a declared order resource, not physical time, causality or a Lorentzian structure; note 0228 §7 already records that even a successful four-dimensional construction would not pick out physical time",
+    "Nothing here is a statement about the atmosphere, the Tibetan Plateau, January or any wind gap"
+  ]
+}
