@@ -1,0 +1,43 @@
+{
+  "profile": "adva.research.cumulative-node-receiver.v1",
+  "status": "RevisedBeforeSingleCorrectionReplay",
+  "main_at_start": "19ac70e4886a3096bec00c3f4ba0008fbdc48c5d",
+  "merged_parent": "b79b3eab6f644d22675fb41cd8daf70d27efe381",
+  "correction_reason": "The v0 contract and execution report recorded a nonexistent full main hash ending 87bd instead of the checked main commit ending 8c5d. The two receiver results are retained but v0 is InvalidContext. The revision changes no snapshot, receiver, semantic predicate or per-call reservation.",
+  "question": "After retaining the invalid-context attempt's full reservations, can one correction replay start exactly one empty and one committed Node snapshot reception, reserving the receiver's possible stopping tick before each process, while preserving the semantic results and refusing further launches?",
+  "objects_and_types": "The archived symmetric-empty and symmetric-committed request/left/right triples and their archived Python receiving reports. Inputs are pinned canonical ASCII JSON with safe integers. Commit state, task history, exact rational candidate and allowance remain distinct fields. No SQLite ledger is opened.",
+  "invariant": "Each Node launch reserves 15361 abstract units before spawn: the calibrated receiver cap 15360 plus its possible post-increment stopping tick. The v0 account's two reservations are imported by exact digest. Across v0 and the sole correction replay, R is the sum of all reservations and C their count, with R<=61444 and C<=4. Settlement never refunds a reservation. Semantic acceptance is a separate comparison with the archived Python projection.",
+  "cases": [
+    {"name":"symmetric-empty","expected":"ProvenUncommittedLedger"},
+    {"name":"symmetric-committed","expected":"StoredCommitted"}
+  ],
+  "pins": {
+    "archive_sha256": "f453b565f232dcac480afc8ab156e32e7683f4dff30667079c949d95b01d900e",
+    "node_receiver_sha256": "75eec00887c68f38cd7293dc135d2ca25f174c0612515935f250d6e2f1725179",
+    "supervisor_sha256": "d0feb46565979170ddf182000c31c4475259533d69d18eaba85d6f0ce72a833b",
+    "prior_trial_account_sha256": "3160f1734c5c82686cc86d3981ddb9db9e0fbeffe577f2fcd377b8c5f153c3cb",
+    "prior_execution_sha256": "92d6c0c18a98d4bf355626063eb942643cd9b861fc00a04472266a7721c32ab9",
+    "prior_contract_sha256": "0541ad2a35b2105463b44cdb58f4e16277cbf4faa7f035b906999750e1b81d38",
+    "prior_run_sha256": "2de21b80db88f7b73529be03021e289c7b9cb6bda235a06b54c409b0694604a2"
+  },
+  "limits": {
+    "node_processes_this_replay": 2,
+    "node_processes_across_replays": 4,
+    "node_seconds_each": 3,
+    "outer_seconds": 20,
+    "reservation_each": 15361,
+    "task_reserved_units_this_replay": 30722,
+    "cumulative_trial_reserved_units": 61444,
+    "verifier_work_units_this_replay": 100000,
+    "selected_archive_bytes_this_replay": 1048576,
+    "stdout_bytes_each": 65536,
+    "stderr_bytes_each": 65536,
+    "retained_output_bytes_this_replay": 2097152,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "acceptance": "The exact v0 account and evidence are recognized as InvalidContext and their 30722 reserved units remain charged. Both correction-replay Node results match the archived Python semantic view, each report has independently recounted input value nodes, all authority and ledger flags remain false, and the cumulative account contains four reservations totaling 61444. Further task and trial reservations are refused without changing either account.",
+  "exit": "Stop on the first pin, import, extraction, process, receipt, accounting, semantic, time or output failure. This is the sole correction replay. Preserve any pending reservation or failure; no second correction or account reset is permitted.",
+  "protected": ["The earlier InvalidBudgetEvidence remains invalid", "The v0 InvalidContext attempt remains visible and charged", "No receiver predicate is removed", "No refund or automatic retry", "No Python or SQLite inside the Node receiver", "No arithmetic-truth, native free, M6 or universality claim", "No new vocabulary"],
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, through Mingli Yuan's authorized account proxy; not his review, endorsement or correctness guarantee. Reused inputs and receivers are existing project-original repository artifacts; no external content is incorporated."
+}

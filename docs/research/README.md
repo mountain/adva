@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **253 numbered
+This directory holds the research record of the repository: **255 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -23,6 +23,10 @@ declares for itself.
 - [Applied mathematics contract roadmap](applied-mathematics-contract-roadmap.md): existing capabilities and the ordered gaps after finite probability receipts; proposed obligations, not new native operations.
 
 - [Continuation binding after implementation failure](continuation-binding-after-implementation-failure.md): finite fresh-process retry with the complete receiver-selected checkpoint and failure parent retained; no native recovery claim.
+
+- [Research 0245 — A charge without a task binding cannot authorize a launch](0245-a-charge-without-a-task-binding-cannot-authorize-a-launch.md): the current amount-only cumulative account cannot associate one retained charge with one task; equal totals double-match two distinct tasks, so the read-only receiver preserves `UnknownAttemptState` and starts neither.
+
+- [Research 0246 — One charge, one task, one bound pair](0246-one-charge-one-task-bound-pair.md): a successor charge binds its identifier, canonical task-contract digest, units and directed phase; exact pairs verify while a second task reusing the identifier is refused, but identical replay remains an unresolved consumption boundary.
 
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
