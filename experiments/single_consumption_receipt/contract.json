@@ -1,0 +1,42 @@
+{
+  "profile": "adva.research.single-consumption-receipt.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "fec283277f3175be2a6ff69897d896526fc54fc9",
+  "parent_research_head": "60e8ba1ff156b83fc3f995634f03dfec2fd2371f",
+  "question": "Can a finite persistent ledger allow only one charge--task pair to occupy a consumption chain, preserve read-only replay after completion, and block retry as UnknownConsumptionState when a process exits after recording pending but before storing a receipt?",
+  "objects_and_types": "Two exact Research 0246 bound pairs, canonical project-original JSON ledger states unconsumed/pending/consumed, bounded text attempt identifiers, SHA-256 pair and marker coordinates, exclusive local file locks and atomic same-directory replacement on one trusted Linux host.",
+  "quantifiers": "Sixteen tool processes across five scenarios: one completed alpha chain plus replay and second reservation, one completed gamma reuse instance, one injected exit after durable pending, two contending reservations, and one wrong-pair control.",
+  "candidate_grammar": "unconsumed may move once to pending under an exclusive lock; the same attempt may move pending to consumed with a marker digest. Reconcile is read-only. pending returns UnknownConsumptionState and authorizes no retry. consumed returns StoredConsumed and blocks every later reservation. No command authorizes or starts a target effect.",
+  "evaluation": "Normal alpha and gamma chains each store one consumed receipt. Reconciliation is byte-preserving. A second alpha reservation is blocked. Exactly one of two contending reservations records pending. The injected exit leaves pending, and both reconciliation and a later reservation retain UnknownConsumptionState. A wrong pair is rejected without mutation.",
+  "pins": {
+    "tool_sha256": "7970879e3dc10d3490407447d3d8b1f16bd7d1614f0cedbc31ead8d350a53962",
+    "alpha_account_sha256": "cd56ead733d0e21cb25a3000440bbf196129c49059609829c4887e4e4698d6df",
+    "alpha_journal_sha256": "dda0961da152590c467ded069d578cb41a00aa62c08bef921e5df354455f5f58",
+    "gamma_account_sha256": "2cb6e5e9590c31542e008236a7cafbf15bc01afe98a0d721622640f703a2afc8",
+    "gamma_journal_sha256": "2a13e48ec163af7dce0a9d88a686f61102af3dacbd87049d8088b68858c023d1"
+  },
+  "limits": {
+    "tool_processes": 16,
+    "target_processes": 0,
+    "seconds_each": 1,
+    "outer_seconds": 15,
+    "work_units": 20000,
+    "stdout_bytes_each": 4096,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 262144,
+    "search_candidates": 0,
+    "expected_injected_exits": 1,
+    "implementation_correction_replays": 0
+  },
+  "exit": "Stop on the first pin, process, output, mutation, classification, accounting or resource failure. The one declared exit after pending is an input case, not an implementation correction. Never reset pending, refund, retry or start a target.",
+  "protected": [
+    "Binding verification and effect consumption remain distinct",
+    "Pending without a stored marker is UnknownConsumptionState, not permission",
+    "Consumed replay is observation, not a second effect",
+    "The marker is project-original test data and not evidence that a real effect ran",
+    "Atomic replacement on one trusted host is not a power-loss or distributed guarantee",
+    "No native free, Close, M6 or arithmetic-universality claim",
+    "No new vocabulary"
+  ],
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}
