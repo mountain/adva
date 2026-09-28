@@ -8,6 +8,12 @@ The [dependency continuity plan](docs/KNOWLEDGE_MACHINE_BOUNDARY.md) and its
 external execution route. Existing implementation paths and historical evidence
 remain available while consumers migrate. English documentation is primary.
 
+The [kernel and package boundary contract v0.1](https://github.com/mountain/adva-machine/blob/acfc9806fe18a36d0f7194dcc196a380b2834adf/spec/framework/kernel-package-boundary-v0.1.md)
+governs future kernel/profile, learning-method and package-interface design.
+It requires explicit premises, finite verification budgets and qualified
+cross-repository references. This documentary reference does not upgrade
+executable dependency locks or change historical evidence.
+
 The first [checked library exchange](knowledge/exchanges/party-naming-layer-2026-09-16-v1/README.md)
 has received an original naming entry through the Rust communication profile,
 with its publication review, source home, obligations and receiver receipt retained.

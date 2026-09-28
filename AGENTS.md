@@ -252,3 +252,12 @@ no rewriting of published commits, no credential changes, and no push of a
 change whose checks have not run. A direct `main` push is still a fast-forward
 or a reviewed merge, and the checks for the change are reported with it,
 including the ones that could not run on the current host.
+
+## Kernel and package boundary, 2026-09-28
+
+Before kernel/profile, learning-method, package-interface or verification-cut
+work, read the [canonical contract v0.1](https://github.com/mountain/adva-machine/blob/acfc9806fe18a36d0f7194dcc196a380b2834adf/spec/framework/kernel-package-boundary-v0.1.md).
+Keep premises, guards, budgets and receiving rules explicit. Cross-repository
+research references require the repository and full path; evidence references
+also fix a commit. Preserve existing payloads, catalog authority, dependency
+locks and frozen evidence. This reference installs no new executable profile.
