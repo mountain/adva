@@ -6,7 +6,7 @@ vocabulary word.
 
 ## Question and dependency boundary
 
-Research 0233 connected cumulative pre-spawn reservation to two real Node
+Research 0248 connected cumulative pre-spawn reservation to two real Node
 receipts. Its remaining narrow interruption window was:
 
 1. the cumulative trial account has durably recorded a charge;

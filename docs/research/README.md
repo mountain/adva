@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **256 numbered
+This directory holds the research record of the repository: **257 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -29,6 +29,8 @@ declares for itself.
 - [Research 0246 — One charge, one task, one bound pair](0246-one-charge-one-task-bound-pair.md): a successor charge binds its identifier, canonical task-contract digest, units and directed phase; exact pairs verify while a second task reusing the identifier is refused, but identical replay remains an unresolved consumption boundary.
 
 - [Research 0247 — One consumption chain and the pending unknown](0247-one-consumption-chain-and-the-pending-unknown.md): completed local chains retain one marker and block later reservation; a process exit or contention after `pending` yields `UnknownConsumptionState` and never authorizes retry.
+
+- [Research 0248 — Cumulative reservation on two real Node receipts](0248-cumulative-reservation-on-real-node-receiving.md): cumulative pre-spawn reservation wraps the existing Node commit-state receiver; one retained `InvalidContext` attempt keeps its 30722 reserved units, the sole correction replay passes 82 assertions against the archived semantic projections, and no authority or ledger flag is set. Written as Research 0233 and renumbered because `main` took that number while the branch was open.
 
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede

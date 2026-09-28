@@ -28,7 +28,7 @@ checks the directed phase pair. It is read-only. `BindingVerified` is a local
 receipt outcome, not a promoted word, formal `accept`, launch authorization or
 native judgment.
 
-This is a resource-continuity experiment downstream of Research 0233 and 0245.
+This is a resource-continuity experiment downstream of Research 0248 and 0245.
 It does not change Research 0090 coverage, Research 0092 promotion, additive
 zero, multiplicative unity, ordered M6 histories, hypothesized arithmetic truth
 or arithmetic universality.

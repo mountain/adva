@@ -6,7 +6,7 @@ snapshot receiver. The valid result is `PassedAfterCorrectionReplay`; the
 first attempt is retained as `InvalidContext` because it mistyped the full main
 commit coordinate. Its reservations were not refunded or reset.
 
-Read the [research report](../../docs/research/0233-cumulative-reservation-on-real-node-receiving.md),
+Read the [research report](../../docs/research/0248-cumulative-reservation-on-real-node-receiving.md),
 [contract](contract.json), [execution](evidence/execution.json) and
 [manifest](evidence/manifest.json) together. The evidence archive contains
 both attempts, their exact executed sources, inputs, outputs and accounts.

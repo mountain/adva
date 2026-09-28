@@ -1,4 +1,10 @@
-# Research 0233: Cumulative reservation on two real Node receipts
+# Research 0248: Cumulative reservation on two real Node receipts
+
+Number: this note was written as Research 0233. `main` took 0233 while this
+branch was open, so the merge brought in two notes numbered 0233 and this one is
+renumbered to 0248 rather than left as a duplicate. The renumber changes the
+file name, this title and the references to it; the recorded measurements,
+evidence and residuals are unchanged.
 
 Status: **finite integration passed after one retained `InvalidContext` attempt**.
 This note adds no native operation, theorem or vocabulary word.
