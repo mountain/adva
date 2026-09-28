@@ -1,0 +1,41 @@
+{
+  "profile": "adva.research.pending-effect-witness.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "e617f65ef5129d1888d892e77cabdfd6e5de7786",
+  "parent_research_head": "90950aa892f1f117d4a149426f07ac55bcdf62a6",
+  "question": "Can a read-only receiver distinguish one independently checkable effect witness, one bounded no-effect witness, and an unresolved pending attempt without running the target or turning absence of a record into global nonoccurrence?",
+  "objects_and_types": "One exact Research 0247 pending ledger, one independent pending reuse instance, canonical project-original finite event-channel witnesses, bounded result bytes and SHA-256 coordinates. A no-effect result is relative only to an explicitly complete channel and closed sequence interval.",
+  "quantifiers": "Ten receiver processes: a positive alpha witness and exact replay, a complete empty gamma reuse witness, incomplete and missing witnesses, conflicting effect events, attempt and pair substitutions, a wrong result artifact, and a duplicate sequence coordinate.",
+  "candidate_grammar": "A pending ledger and witness must bind the same attempt and pair. One matching effect event is accepted only when supplied result bytes hash to its result coordinate. Zero matching events is accepted only inside a witness declaring complete coverage of the exact finite channel and interval. Missing or incomplete coverage and conflicting matching events remain UnknownConsumptionState. Context substitutions and malformed evidence are refused.",
+  "evaluation": "The positive witness and replay return EffectWitnessVerified; the new gamma instance returns NoEffectWitnessVerified; incomplete, missing and conflicting evidence return UnknownConsumptionState; substitutions and malformed inputs are rejected. Every input remains byte-identical and every authority flag stays false.",
+  "pins": {
+    "receiver_sha256": "cacc303eecf7b7438f4cc0fd17e98f714d1039d49dd9f963ded546aa16ccd202",
+    "parent_pending_ledger_sha256": "9aa2d8c9856ccddda1d582598fe5a90fd2ba1a9e",
+    "parent_pending_pair_digest": "8b04c08985545f4392ab7ab62f568889d414b046cb04e15a6b02b2860f2b3611"
+  },
+  "limits": {
+    "receiver_processes": 10,
+    "target_processes": 0,
+    "seconds_each": 1,
+    "outer_seconds": 15,
+    "work_units_total": 20000,
+    "stdout_bytes_each": 4096,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "exit": "Stop on the first pin, process, output, mutation, classification, accounting or resource failure. At most one implementation-correction replay is permitted. Never launch a target, mutate the parent ledger, infer global nonoccurrence, refund or authorize retry.",
+  "protected": [
+    "Effect evidence and no-effect evidence are different finite judgments",
+    "An empty or missing file is not a no-effect witness",
+    "No-effect is scoped to one declared complete finite channel and interval",
+    "A result digest must be recomputed from supplied bytes",
+    "Conflicting evidence remains UnknownConsumptionState",
+    "Read-only recovery evidence does not itself mutate pending",
+    "No native free, Close, M6 or arithmetic-universality claim",
+    "No new vocabulary"
+  ],
+  "kernel_package_boundary": "mountain/adva-machine/spec/framework/kernel-package-boundary-v0.1.md@acfc9806fe18a36d0f7194dcc196a380b2834adf; premises, scope, receiver, budget and residual remain explicit. This is a research package in mountain/adva, not a kernel/profile change.",
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}
