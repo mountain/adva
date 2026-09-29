@@ -34,7 +34,7 @@ def test_pending_effect_witness_evidence_and_claim_are_bound():
 
     claims = (ROOT / "docs/claims.toml").read_text()
     assert claims.count('claim_id = "adva.bounded-experiment.pending-effect-witness.v0"') == 1
-    assert "docs/research/0249-pending-effect-and-bounded-no-effect-witnesses.md" in claims
+    assert "docs/research/0250-pending-effect-and-bounded-no-effect-witnesses.md" in claims
 
 
 def test_wrapper_failure_precedes_the_only_experiment_execution():

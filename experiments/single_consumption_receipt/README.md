@@ -1,6 +1,6 @@
 # Single consumption receipt
 
-This project-original finite experiment follows Research 0246. It separates
+This project-original finite experiment follows Research 0247. It separates
 repeatable verification of a charge--task binding from the state of one local
 consumption chain.
 

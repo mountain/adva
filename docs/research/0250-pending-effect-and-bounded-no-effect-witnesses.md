@@ -1,4 +1,4 @@
-# Research 0249: Pending effect and bounded no-effect witnesses
+# Research 0250: Pending effect and bounded no-effect witnesses
 
 Status: **bounded read-only receiving result**. This note adds no native
 operation, general exactly-once guarantee, recovery permission or vocabulary
@@ -6,7 +6,7 @@ word.
 
 ## Question and frozen boundary
 
-[Research 0247](0247-one-consumption-chain-and-the-pending-unknown.md) keeps a
+[Research 0248](0248-one-consumption-chain-and-the-pending-unknown.md) keeps a
 single consumption slot at `pending` after a process disappears. Retrying is
 unsafe because the effect may already have occurred. Merely leaving the slot
 unknown is safe but gives no way to examine later evidence. This run asks the
@@ -18,7 +18,7 @@ The [frozen contract](../../experiments/pending_effect_witness/contract.json)
 fixes ten receiver processes, zero target processes, 20,000 total counted work
 units, one second per receiver, fifteen outer seconds, zero search candidates
 and at most one implementation-correction replay. It imports the exact pending
-ledger digest and pair digest from Research 0247. The kernel/package boundary
+ledger digest and pair digest from Research 0248. The kernel/package boundary
 is the canonical
 `mountain/adva-machine/spec/framework/kernel-package-boundary-v0.1.md` at
 `acfc9806fe18a36d0f7194dcc196a380b2834adf`; this remains an `adva` research

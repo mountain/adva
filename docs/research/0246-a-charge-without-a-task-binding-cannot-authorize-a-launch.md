@@ -1,4 +1,4 @@
-# Research 0245: A charge without a task binding cannot authorize a launch
+# Research 0246: A charge without a task binding cannot authorize a launch
 
 Status: **bounded negative result on the current v0 account schema**. This note
 adds no native operation, theorem beyond the declared finite representation, or
@@ -6,7 +6,7 @@ vocabulary word.
 
 ## Question and dependency boundary
 
-Research 0248 connected cumulative pre-spawn reservation to two real Node
+Research 0249 connected cumulative pre-spawn reservation to two real Node
 receipts. Its remaining narrow interruption window was:
 
 1. the cumulative trial account has durably recorded a charge;

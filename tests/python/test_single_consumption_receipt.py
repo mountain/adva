@@ -38,4 +38,4 @@ def test_single_consumption_receipt():
                  if item["claim_id"] == "adva.bounded-experiment.single-consumption-receipt.v0")
     assert claim["status"] == "bounded-experiment"
     index = (ROOT / "docs" / "research" / "README.md").read_text()
-    assert "0247-one-consumption-chain-and-the-pending-unknown.md" in index
+    assert "0248-one-consumption-chain-and-the-pending-unknown.md" in index

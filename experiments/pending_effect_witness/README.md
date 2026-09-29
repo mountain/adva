@@ -1,7 +1,7 @@
 # Pending effect witness receiver
 
 This project-original bounded experiment receives evidence about one exact
-`pending` ledger from Research 0247. It does not run an effect and never edits
+`pending` ledger from Research 0248. It does not run an effect and never edits
 the ledger or witness.
 
 Replay from the repository root with a new output directory:

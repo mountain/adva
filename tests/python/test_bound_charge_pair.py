@@ -40,4 +40,4 @@ def test_bound_charge_pair():
                  if item["claim_id"] == "adva.bounded-experiment.bound-charge-pair.v0")
     assert claim["status"] == "bounded-experiment"
     index = (ROOT / "docs" / "research" / "README.md").read_text()
-    assert "0246-one-charge-one-task-bound-pair.md" in index
+    assert "0247-one-charge-one-task-bound-pair.md" in index

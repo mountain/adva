@@ -35,4 +35,4 @@ def test_cumulative_charge_gap():
                  if item["claim_id"] == "adva.bounded-experiment.cumulative-charge-gap.v0")
     assert claim["status"] == "bounded-experiment"
     index = (ROOT / "docs" / "research" / "README.md").read_text()
-    assert "0245-a-charge-without-a-task-binding-cannot-authorize-a-launch.md" in index
+    assert "0246-a-charge-without-a-task-binding-cannot-authorize-a-launch.md" in index

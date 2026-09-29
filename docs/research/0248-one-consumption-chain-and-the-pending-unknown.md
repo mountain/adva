@@ -1,11 +1,11 @@
-# Research 0247: One consumption chain and the pending unknown
+# Research 0248: One consumption chain and the pending unknown
 
 Status: **bounded single-host process-persistence result**. This note adds no
 native operation, general exactly-once guarantee or vocabulary word.
 
 ## Question and frozen boundary
 
-Research 0246 bound one retained charge to one exact task, but its read-only
+Research 0247 bound one retained charge to one exact task, but its read-only
 receipt could be replayed indefinitely. Verification should be reproducible;
 performing an effect should not be. The next question was therefore whether a
 finite persistent state could keep those two roles separate.

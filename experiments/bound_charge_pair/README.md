@@ -1,7 +1,7 @@
 # Bound charge pair
 
 This project-original finite experiment tests the successor of the amount-only
-charge obstruction in Research 0245. A `cumulative-trial-v1` charge binds a
+charge obstruction in Research 0246. A `cumulative-trial-v1` charge binds a
 fresh identifier, the SHA-256 coordinate of canonical task-contract bytes, a
 positive integer amount and phase `charged`. A task reservation repeats the
 identifier, digest and amount at phase `reserved`.

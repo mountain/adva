@@ -1,4 +1,4 @@
-# Research 0248: Cumulative reservation on two real Node receipts
+# Research 0249: Cumulative reservation on two real Node receipts
 
 Number: this note was written as Research 0233. `main` took 0233 while this
 branch was open, so the merge brought in two notes numbered 0233 and this one is

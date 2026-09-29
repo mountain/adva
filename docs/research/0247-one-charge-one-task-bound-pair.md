@@ -1,4 +1,4 @@
-# Research 0246: One charge, one task, one bound pair
+# Research 0247: One charge, one task, one bound pair
 
 Status: **bounded positive relation check with a retained replay residual**.
 This note adds no native operation, theorem beyond the declared finite
@@ -6,7 +6,7 @@ representation, or vocabulary word.
 
 ## Question and frozen boundary
 
-Research 0245 showed that `cumulative-trial-v0` stores only charge amounts.
+Research 0246 showed that `cumulative-trial-v0` stores only charge amounts.
 The same seven-unit charge therefore total-matched two distinct task journals,
 and a safe receiver had to retain `UnknownAttemptState`. The next minimum
 question was whether a successor representation could carry the missing
@@ -28,7 +28,7 @@ checks the directed phase pair. It is read-only. `BindingVerified` is a local
 receipt outcome, not a promoted word, formal `accept`, launch authorization or
 native judgment.
 
-This is a resource-continuity experiment downstream of Research 0248 and 0245.
+This is a resource-continuity experiment downstream of Research 0249 and 0245.
 It does not change Research 0090 coverage, Research 0092 promotion, additive
 zero, multiplicative unity, ordered M6 histories, hypothesized arithmetic truth
 or arithmetic universality.
