@@ -8,7 +8,10 @@ import hashlib
 import json
 import subprocess
 import sys
+from copy import deepcopy
 from pathlib import Path
+
+import pytest
 
 ROOT = Path(__file__).resolve().parents[2]
 HERE = ROOT / "experiments/kerr_vacuum"
@@ -29,6 +32,10 @@ def load(path):
 
 
 def payload(report):
+    # Central differences vary with Python/platform floating-point arithmetic.
+    # Only their measured residual is inexact; keep all other S0 fields exact.
+    report = deepcopy(report)
+    del report["sections"]["S0_calibration"]["worst_relative_disagreement"]
     return {
         key: value
         for key, value in report.items()
@@ -36,6 +43,12 @@ def payload(report):
         and not key.startswith("rss_high_water")
         and key not in TIMING_KEYS
     }
+
+
+def assert_calibration_tolerance(report):
+    s = report["sections"]["S0_calibration"]
+    assert s["declared_tolerance"] == "1e-6"
+    assert 0 <= float(s["worst_relative_disagreement"]) < 1e-6
 
 
 def invoke(checker, output, timeout=900):
@@ -66,7 +79,45 @@ def test_fresh_run_reproduces_the_retained_mathematical_payload(tmp_path):
     output = tmp_path / "fresh.json"
     completed = invoke(CHECKER, output)
     assert completed.returncode == 0, completed.stderr
-    assert payload(load(output)) == payload(load(EVIDENCE))
+    fresh = load(output)
+    assert_calibration_tolerance(fresh)
+    assert payload(fresh) == payload(load(EVIDENCE))
+
+
+@pytest.mark.parametrize("disagreement", ["2.771e-10", "4.318e-10"])
+def test_payload_allows_python_calibration_variation_without_mutating_reports(disagreement):
+    retained = load(EVIDENCE)
+    fresh = deepcopy(retained)
+    fresh["sections"]["S0_calibration"]["worst_relative_disagreement"] = disagreement
+    before = deepcopy(fresh)
+    assert_calibration_tolerance(fresh)
+    assert payload(fresh) == payload(retained)
+    assert fresh == before
+    assert retained == load(EVIDENCE)
+
+
+@pytest.mark.parametrize("disagreement", ["1e-6", "2e-6", "nan", "inf", "-1e-10"])
+def test_calibration_tolerance_rejects_invalid_residuals(disagreement):
+    report = load(EVIDENCE)
+    report["sections"]["S0_calibration"]["worst_relative_disagreement"] = disagreement
+    with pytest.raises(AssertionError):
+        assert_calibration_tolerance(report)
+
+
+@pytest.mark.parametrize("name, field, value", [
+    ("S0_calibration", "g_times_inverse_is_the_identity", False),
+    ("S0_calibration", "calibration_pairs", 12),
+    ("S0_calibration", "declared_tolerance", "1e-5"),
+    ("S1_vacuum", "every_pair_is_vacuum", False),
+    ("S2_kretschmann", "parameter_pairs", []),
+    ("S3_signature", "every_declared_point_has_exactly_one_negative_direction", False),
+    ("S4_horizons", "smarr_identity_M_equals_kappa_A_over_4pi_plus_two_Omega_J", False),
+])
+def test_payload_keeps_symbolic_results_and_calibration_contract_exact(name, field, value):
+    retained = load(EVIDENCE)
+    changed = deepcopy(retained)
+    changed["sections"][name][field] = value
+    assert payload(changed) != payload(retained)
 
 
 def test_an_existing_output_is_never_overwritten(tmp_path):
@@ -83,8 +134,7 @@ def test_the_machinery_is_calibrated_before_it_is_trusted():
     assert s["g_times_inverse_is_the_identity"] is True
     assert s["mismatched_product_rows"] == []
     assert s["calibration_pairs"] == 14
-    assert s["declared_tolerance"] == "1e-6"
-    assert float(s["worst_relative_disagreement"]) < 1e-6
+    assert_calibration_tolerance(load(EVIDENCE))
     assert "only floating-point arithmetic" in s["note"]
 
 
