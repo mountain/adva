@@ -1,0 +1,129 @@
+{
+  "schema": "adva.research.space-proposal-v3-transfer.v1.contract",
+  "status": "PROPOSAL ONLY - external exact finite successor",
+  "base": {
+    "repository": "mountain/adva",
+    "commit": "e617f65ef5129d1888d892e77cabdfd6e5de7786"
+  },
+  "question": "Replace only the defective edge-sum mechanism of Research 0244 section 5 by a doubly stochastic measure-carrying transfer; derive the invariant-schedule zero and exact gradient reversal.",
+  "level": "external rational calibration; native admission NotGranted; native execution NotRun",
+  "protected_files": {
+    "experiments/space_proposal_v3/calibration.py": "1fa8ca8c22aa417a529fc1f1d9123dcde8a00ccba5dc0471d563ad6897f99b51",
+    "experiments/space_proposal_v3/contract.json": "d9b8ef6444c24f1d77fb9d64f23b49ddb50e2805baf1446e26d21d432497df3c",
+    "experiments/space_proposal_v3/evidence.json": "a4aabacedc722d790f232292859e0ce221b3527f9e46cb76aa9ef2ad471bd02b",
+    "experiments/spatiotemporal_ratchet_v1/calibration.py": "29560f15a18db09cd8e540a8a0cc0fc17194fc26fbadb66670c8317f65ae3313",
+    "experiments/spatiotemporal_ratchet_v1/contract.json": "9c495906eee86e6bfaa5eb39c88ea8b7cc9048f86bec574e458e413626a9963c",
+    "experiments/spatiotemporal_ratchet_v1/evidence.json": "26cf72d7927f29c87bdb765ce66453ead0d0aafdec54498656d09bd605a91666",
+    "experiments/geometry_foundation_v1/calibration.py": "f108bc02605d045307334a78ced961f6addd6c74f41f8ef9ec9f022e45f06fe9",
+    "experiments/geometry_foundation_v1/contract-supplement-1.json": "1540a1290d805bf031fd6734fba1701267e7ce1e67a19a6d52a7e1b1dce7c7ab",
+    "experiments/geometry_foundation_v1/contract.json": "1e07f9a04a9d6d60073a5cb3f726df7d38554608f4d023383314fbff83217750",
+    "experiments/geometry_foundation_v1/evidence.json": "ecd9dbe122ac96732f37ccc44798cf8fec3d58d074adbeab204f408e2c8974a6",
+    "docs/research/0244-proposal-three-the-pyritohedral-constellation-the-entry-window-and-a-transport-defect-disclosed.md": "66c9557d276ec63ad950ba4ca305e056c72ba2b294b2b916c7109eb4479d4bf9",
+    "docs/research/0242-a-spatiotemporal-ratchet-net-transport-needs-both-asymmetries.md": "398e89d74b2c51d94843ac76ee2a6ad591cd2b197e302c94019b3d97c51becdc",
+    "tests/python/test_space_proposal_v3.py": "a85f75aa548648704737328346f68624804c80bcc138ec35b71ac8d1d732b7de",
+    "tests/python/test_spatiotemporal_ratchet.py": "885ac1c36367e9000c174bf5830872c10f5639899949e26503c449ea3c597962"
+  },
+  "protected_sections": [
+    "S1_the_constellation_family",
+    "S2_the_two_regions",
+    "S5_the_entry_window_W1_to_W4",
+    "S6_the_declared_ablation_levels",
+    "S7_stage_one",
+    "S8_the_declared_overreaches",
+    "S9_proposal_only_bookkeeping"
+  ],
+  "model": {
+    "vertices_and_edges": "Exactly the ordered 20 vertices and 30 edges in the pinned space_proposal_v3 checker; retain all components.",
+    "cycle": [
+      [
+        -1,
+        -1,
+        -1
+      ],
+      [
+        -1,
+        -1,
+        1
+      ],
+      [
+        -1,
+        1,
+        1
+      ],
+      [
+        -1,
+        1,
+        -1
+      ]
+    ],
+    "current": "C=K-RKR, with K the skew directed square current and R the existing antipodal involution; reverse orientation on the antipodal square.",
+    "row_convention": "P[i][j] carries mass from i to j; mu_next=mu P.",
+    "base_rate": "1/4",
+    "coefficient": "1/16",
+    "measure": "1/20 at every vertex at every step",
+    "amplitude_bound": "1/2",
+    "gradients": [
+      -1,
+      0,
+      1
+    ],
+    "schedules": {
+      "invariant": [
+        "1/2",
+        "-1/2",
+        "-1/2",
+        "1/2"
+      ],
+      "broken_uniform": [
+        "1/2",
+        "1/2",
+        "1/2",
+        "1/2"
+      ],
+      "broken_shifted": [
+        "1/2",
+        "1/4",
+        "-1/4",
+        "1/4"
+      ]
+    },
+    "operator": "P_s=B+(a_s*g/16)C, with B=I/4+A/4 on the unchanged 3-regular graph.",
+    "observable": "D_ij=C_ij; J_s=sum_ij mu_s[i] P_s[i][j] D_ij. This is oriented cycle circulation, not endpoint displacement or the frozen edge sum.",
+    "zero_condition": "The actual transfer field satisfies P_(s+2)[R(i),R(j)]=P_s[i,j]; D[R(i),R(j)]=-D[i,j].",
+    "reversal_condition": "P_s(-g)=transpose(P_s(g)), with the same exactly stationary uniform measure and fixed skew observable."
+  },
+  "independent_reference": "Research 0242: replay its unchanged six-site checker and tests, using its periodic measure. Its R4 is not doubly stochastic and must NOT pass the successor uniform-stationarity gate.",
+  "negative_controls": [
+    "unbalanced single-edge bias preserving row sums",
+    "its transpose preserving column sums and uniform stationarity but losing row sums",
+    "negative entry with both marginals still one",
+    "raw frozen weights added to the base matrix",
+    "row-normalized frozen-weight candidate",
+    "0242 R4 incorrectly offered as uniform-stationary",
+    "double-stochastic broken schedule incorrectly claimed invariant",
+    "phase reversal incorrectly claimed sign-independent",
+    "nonzero endpoint displacement incorrectly claimed",
+    "schedule bound and undeclared gradient"
+  ],
+  "acceptance": "Exact rational nonnegativity, both marginals one, actual measure carry, zero vertex mass imbalance, preserved support, transfer-field symmetry, nine schedule/gradient cases, nonvacuous reversal, protected-section equality, all controls refused. Different declarations need another contract.",
+  "budgets": {
+    "wall_seconds": 60,
+    "cpu_seconds": 30,
+    "max_output_bytes": 1048576,
+    "vertices": 20,
+    "period_steps": 4,
+    "schedule_gradient_cases": 9,
+    "child_processes": 0,
+    "search_routes": 1,
+    "automatic_retries": 0,
+    "memory_policy": "Fixed 20x20 rational matrices and four-step traces; no unbounded input or search; no address-space limit on Darwin."
+  },
+  "residual": [
+    "The cycle and its orientation are declared, not selected by the old placement field; the failed placement control remains unresolved.",
+    "Only the antipodal/half-period field identity is claimed; the old edge-sum pairing-set count is not a transfer-field group certificate.",
+    "The unchanged graph has disconnected components; the uniform stationary measure is not asserted unique.",
+    "Nonzero transport means cycle circulation. Every single-valued endpoint-gradient observable has zero stationary current. Old magnitudes are not preserved.",
+    "No physical magnitude, effect, authorization, decision or deployment; governance and termination remain Unaddressed. No native transport, exchange, Seal, stable API, catalog or dependency-lock change."
+  ],
+  "origin": "Project-original contribution under Unknown v0.3 by ChatGPT (OpenAI), through Mingli Yuan account proxy; no third-party content imported; no independent reviewer."
+}
