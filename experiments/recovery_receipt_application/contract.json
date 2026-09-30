@@ -1,0 +1,41 @@
+{
+  "profile": "adva.research.recovery-receipt-application.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "3287c61ab7d16253605b3d0cca818f5a698e258b",
+  "parent_research_head": "28d39804308cbe5d96b1c1fe24c7dcd3c99cbc2a",
+  "question": "Can one exact Research 0250 recovery receipt be atomically applied to the unchanged pending ledger as a completed or separately versioned bounded-cancellation terminal, while replay, conflict and insufficient evidence remain non-authorizing?",
+  "objects_and_types": "Canonical project-original pending ledgers, exact pending-effect-witness-receipt-v0 values produced by the pinned Research 0250 receiver, and one recovery-resolution-ledger-v0 terminal written by same-directory atomic replacement under an exclusive local lock.",
+  "quantifiers": "Sixteen bounded tool processes: six read-only parent receiver processes and ten application processes covering positive completion, bounded cancellation, exact replays, insufficient evidence, wrong context, post-replace process exit, and two-process contradictory-receipt contention on a new instance.",
+  "candidate_grammar": "EffectWitnessVerified maps pending to completed. NoEffectWitnessVerified maps pending to a separately typed cancelled terminal that retains the exact channel and closed interval and grants no retry. Unknown or invalid parent outcomes do not mutate. A byte-identical receipt after a terminal is ReplayRefused; a distinct receipt for the same terminal context is ConflictRefused. Context substitution is InvalidContext.",
+  "evaluation": "Exactly one transition is committed per ledger. Replays and conflicts leave terminal bytes unchanged; insufficient and wrong-context inputs leave pending bytes unchanged; a process exit after durable replacement leaves a terminal that refuses replay; concurrent contradictory receipts produce one terminal and one refusal. No target process starts and all authority flags remain false.",
+  "pins": {
+    "application_sha256": "fb5c65d3748115fe4847e5184a027807ad5379a568ffd05d3b77a9a30eab443d",
+    "parent_receiver_sha256": "cacc303eecf7b7438f4cc0fd17e98f714d1039d49dd9f963ded546aa16ccd202"
+  },
+  "limits": {
+    "tool_processes": 16,
+    "target_processes": 0,
+    "seconds_each": 1,
+    "outer_seconds": 20,
+    "work_units_total": 50000,
+    "stdout_bytes_each": 4096,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "exit": "Stop on the first pin, process, output, state, atomicity, classification, accounting or resource failure. At most one implementation-correction replay is permitted. Never launch a target, infer global nonoccurrence, refund, authorize retry or rewrite frozen parent evidence.",
+  "protected": [
+    "Completed and bounded-cancelled are distinct terminal states",
+    "Cancelled retains the exact finite channel and interval and is not global nonoccurrence",
+    "Cancelled grants no retry or refund authority",
+    "Unknown and invalid parent outcomes cannot mutate pending",
+    "Exact replay is refused rather than counted as another application",
+    "Conflicting receipts cannot both commit",
+    "A durable terminal survives absence of an application stdout receipt",
+    "No native free, Close, M6 or arithmetic-universality claim",
+    "No new vocabulary"
+  ],
+  "kernel_package_boundary": "mountain/adva-machine/spec/framework/kernel-package-boundary-v0.1.md@acfc9806fe18a36d0f7194dcc196a380b2834adf; premises, scope, receiver, budget and residual remain explicit. This is a research package in mountain/adva, not a kernel/profile change.",
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}

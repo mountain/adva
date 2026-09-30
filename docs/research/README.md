@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **259 numbered
+This directory holds the research record of the repository: **260 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -29,6 +29,7 @@ declares for itself.
 - [Research 0248](0248-one-consumption-chain-and-the-pending-unknown.md) gives one local `unconsumed -> pending -> consumed` chain and preserves pending uncertainty under exit and contention.
 - [Research 0249](0249-cumulative-reservation-on-real-node-receiving.md) connects cumulative pre-spawn reservation to two real Node snapshot receipts while retaining correction cost; it was written as 0233 and renumbered twice as the main sequence advanced.
 - [Research 0250](0250-pending-effect-and-bounded-no-effect-witnesses.md) distinguishes a verified effect event, a bounded complete-channel no-effect witness, and unresolved missing, incomplete or conflicting evidence without retry authority.
+- [Research 0251](0251-atomic-recovery-application-and-scoped-cancellation.md) atomically applies one exact recovery receipt to one pending ledger, retaining distinct completed and scoped-cancelled terminals while refusing replay and conflict.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
