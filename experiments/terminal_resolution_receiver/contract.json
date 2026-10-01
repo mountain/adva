@@ -1,0 +1,40 @@
+{
+  "profile": "adva.research.terminal-resolution-receiver.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "3287c61ab7d16253605b3d0cca818f5a698e258b",
+  "parent_research_head": "8add99bbdaf0962afc3ac91e59aaca3f09657177",
+  "question": "Can a read-only independent receiver verify the completed and scoped-cancelled Research 0251 terminal projections from archived source-pending, recovery-receipt and terminal bytes, without opening a mutable lock file or treating missing or divergent projection data as completion?",
+  "objects_and_types": "One canonical terminal-resolution-query-v0 binding the exact question, canonical archived single-consumption-ledger-v0 pending bytes, canonical pending-effect-witness-receipt-v0 recovery bytes, and canonical recovery-resolution-ledger-v0 terminal bytes.",
+  "quantifiers": "Ten receiver processes: three exact archived terminals and seven controls covering a missing terminal, wrong source, wrong recovery receipt, changed terminal bytes, whole-object substitution, noncanonical terminal bytes and a wrong state projection with a self-consistent terminal digest.",
+  "candidate_grammar": "ResolutionVerified only when every query digest matches recomputed archived bytes and the terminal equals the complete projection of the source pending record and recovery receipt. Missing or divergent components return UnknownResolutionState. Malformed or noncanonical bytes return InvalidEvidence.",
+  "evaluation": "The exact completed, scoped-cancelled and post-replace-crash terminals verify. Six structurally meaningful missing or divergent controls remain UnknownResolutionState and one noncanonical control is InvalidEvidence. All input bytes remain unchanged, no target starts, no lock file is accepted by the interface and all authority flags remain false.",
+  "pins": {
+    "receiver_sha256": "e0b2c88f9eeff45f8beb1bd9bc1fd55ca3f52a83aa54c7ac05019f156621408d",
+    "parent_research": "docs/research/0251-atomic-recovery-application-and-scoped-cancellation.md@8add99bbdaf0962afc3ac91e59aaca3f09657177",
+    "kernel_package_boundary": "mountain/adva-machine/spec/framework/kernel-package-boundary-v0.1.md@acfc9806fe18a36d0f7194dcc196a380b2834adf"
+  },
+  "limits": {
+    "receiver_processes": 10,
+    "target_processes": 0,
+    "seconds_each": 1,
+    "outer_seconds": 20,
+    "work_units_total": 30000,
+    "stdout_bytes_each": 4096,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "exit": "Stop on the first pin, process, output, classification, input-mutation, accounting or resource failure. At most one implementation-correction replay is permitted. Never open or alter a runtime lock, launch a target, infer global nonoccurrence, refund or authorize retry.",
+  "protected": [
+    "The query binds the exact attempt, pair and three archived byte digests",
+    "Completed and bounded-cancelled remain distinct terminal projections",
+    "Whole-object substitution is not accepted as an answer to the original query",
+    "Missing or divergent projection evidence remains UnknownResolutionState",
+    "Noncanonical bytes are InvalidEvidence rather than semantic refutation",
+    "No target, effect, retry, refund, mutation, native or free authority",
+    "No new vocabulary",
+    "No Research 0090 coverage, Research 0092 promotion, native free or Close, M6 closure, hypothesized arithmetic truth or arithmetic universality claim"
+  ],
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}

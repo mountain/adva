@@ -1,0 +1,36 @@
+{
+  "profile": "adva.research.cumulative-charge-gap.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "fec283277f3175be2a6ff69897d896526fc54fc9",
+  "parent_research_head": "4f4090f4cc2434edd0bf74b7413d7cd0b56b9407",
+  "question": "After the cumulative account is charged but before the task journal records a reservation, can the current v0 account safely determine which task owns the charge and authorize a launch?",
+  "objects_and_types": "Canonical project-original JSON trial accounts of profile cumulative-trial-v0 and canonical project-original single-writer task journals. Charges are positive bounded integers only; task, purpose, reservation sequence and arithmetic totals remain distinct.",
+  "quantifiers": "Five fixed receiver cases: two charge-before-reservation gaps with different amounts, two distinct task journals that each equal the same single charge by total, and one task reservation with no trial charge.",
+  "candidate_grammar": "A read-only receiver may validate both files and compare finite counts and totals. It may authorize neither launch, retry nor account mutation unless a unique charge-to-task relation is present in the received bytes. The v0 trial schema contains no such relation.",
+  "evaluation": "Every valid case returns UnknownAttemptState, preserves both input files byte-for-byte and authorizes no continuation. The totals-only control must match the same seven-unit charge to two distinct task journals, demonstrating that equality of totals cannot be the missing binding.",
+  "pins": {
+    "receiver_sha256": "d9fbecf31309927b81029980092ba593e57157ad43ef6e2ed33ec22eec9f31f1"
+  },
+  "limits": {
+    "receiver_processes": 5,
+    "target_processes": 0,
+    "receiver_seconds_each": 1,
+    "outer_seconds": 10,
+    "receiver_work_units": 2560,
+    "stdout_bytes_each": 4096,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 131072,
+    "search_candidates": 0,
+    "implementation_correction_replays": 0
+  },
+  "exit": "Stop on the first pin, schema, process, output, mutation, classification, accounting or resource failure. Do not repair, bind, spawn or retry a target task.",
+  "protected": [
+    "All earlier invalid and charged attempts remain visible and charged",
+    "UnknownAttemptState is not a counterexample or permission",
+    "Numerical equality is not a task binding",
+    "No refund, automatic retry or target process start",
+    "No native free, Close, M6 or arithmetic-universality claim",
+    "No new vocabulary"
+  ],
+  "origin": "Project-original ChatGPT (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}
