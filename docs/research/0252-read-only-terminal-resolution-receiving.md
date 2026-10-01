@@ -78,6 +78,17 @@ embedded absolute workspace paths. The sole allowed correction changed only
 path presentation to repository-relative coordinates and then replayed the
 frozen cases. No archive or outcome changed.
 
+A separate [preflight summary](../../experiments/terminal_resolution_receiver/evidence/preflight-reconstructed-archive.json)
+records why one earlier ten-receiver invocation was needed: the partial local
+workspace lacked three already-published Research 0251 terminal paths, so they
+were reconstructed from the archived pending and recovery bytes. That preflight
+used another 29,184 counted work units, 0.3998681340017356 receiver seconds and
+0.4054369850018702 whole-run seconds. Three preparation application processes
+also ran; their time and memory were not separately measured. Across preflight,
+the nonportable run and the final run, 30 receiver processes report 87,552
+counted work units, about 1.10216 receiver seconds and 1.12503 summed
+supervisor seconds. Only the final repository-path run is the retained result.
+
 ## Meaning and residual
 
 No new word is justified. `ResolutionVerified` and
