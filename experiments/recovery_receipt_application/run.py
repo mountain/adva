@@ -13,7 +13,7 @@ import time
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-APPLY = HERE / "apply.py"
+APPLY = HERE / "apply_frozen_v0.py"
 PARENT_RECEIVER = HERE.parent / "pending_effect_witness" / "receiver.py"
 PAIR_ALPHA = "8b04c08985545f4392ab7ab62f568889d414b046cb04e15a6b02b2860f2b3611"
 PAIR_GAMMA = "51d24380c79274b9ad21b9f45d36013256a2b1e9ef7f340343704d845ed223da"

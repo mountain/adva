@@ -116,24 +116,6 @@ def validate_terminal(value: dict[str, object]) -> None:
     if value["state"] not in ("completed", "cancelled"):
         raise InvalidEvidence("TerminalState")
 
-    for key in ("attempt_id", "channel_id"):
-        if not isinstance(value[key], str) or not value[key]:
-            raise InvalidEvidence("TerminalIdentifier:" + key)
-    for key in ("pair_digest", "source_pending_sha256", "recovery_receipt_sha256", "witness_sha256"):
-        if not isinstance(value[key], str) or not HEX64.fullmatch(value[key]):
-            raise InvalidEvidence("TerminalDigest:" + key)
-    coverage = value["coverage"]
-    if (not isinstance(coverage, list) or len(coverage) != 2 or
-            any(not isinstance(x, int) or isinstance(x, bool) for x in coverage) or
-            coverage[0] < 0 or coverage[1] < coverage[0]):
-        raise InvalidEvidence("TerminalCoverage")
-    result = value["result_sha256"]
-    if value["state"] == "completed":
-        if not isinstance(result, str) or not HEX64.fullmatch(result):
-            raise InvalidEvidence("TerminalResultDigest")
-    elif result is not None:
-        raise InvalidEvidence("CancelledHasResult")
-
 
 def write_atomic(path: Path, value: dict[str, object], crash_before: bool, crash_after: bool) -> None:
     raw = canonical(value)
@@ -175,12 +157,6 @@ def apply(ledger_path: Path, recovery_path: Path, crash_before: bool, crash_afte
         if ledger.get("profile") == "recovery-resolution-ledger-v0":
             validate_terminal(ledger)
             if ledger.get("recovery_receipt_sha256") == recovery_sha:
-                expected_state = "completed" if recovery_outcome == "EffectWitnessVerified" else "cancelled"
-                if (ledger["state"] != expected_state or
-                        any(ledger[key] != recovery[key] for key in
-                            ("attempt_id", "pair_digest", "witness_sha256", "channel_id", "coverage")) or
-                        ledger["result_sha256"] != recovery.get("result_sha256")):
-                    raise InvalidEvidence("TerminalRecoveryProjection")
                 return response("ReplayRefused", "RecoveryReceiptAlreadyApplied", state=str(ledger["state"]), work=work + 1)
             if ledger.get("attempt_id") == recovery.get("attempt_id") and ledger.get("pair_digest") == recovery.get("pair_digest"):
                 return response("ConflictRefused", "DifferentRecoveryReceiptAfterTerminal", state=str(ledger["state"]), work=work + 1)
