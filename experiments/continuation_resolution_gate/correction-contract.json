@@ -1,0 +1,26 @@
+{
+  "profile": "adva.research.implementation-correction-contract.v0",
+  "status": "FrozenBeforeSoleCorrectionReplay",
+  "parent_contract_sha256": "00ce382f4c51c3e1e3a170be794f446b3d4b13654f9590f684d9bdf9c3f56d7b",
+  "failure_record_sha256": "bb6ad025a874b1f1422a3ca83f8f13a65956ea13119605afc7cb7fdcfe2827c4",
+  "unchanged_receiver_sha256": "3b763201218fd5c314ec0f026d3b4039ec032c0ba2714c1cfeff1e5494fc1ea1",
+  "corrected_runner_sha256": "d3b9e1ba143b6c0e6536b65008f5e4ef9ac7168925dbd4da9cc35d56cf2c99a8",
+  "reason": "The receiver correctly returned InvalidEvidence for an undeclared budget field, but the supervisor incorrectly demanded a parsed-object round-trip from that rejected object.",
+  "permitted_change": "When preserved_continuation is present, require its canonical bytes to equal the input bytes. When it is absent, require the expected outcome to be InvalidEvidence. Update the declared assertion total from 77 to the actual 75 checks.",
+  "forbidden_changes": [
+    "No receiver change",
+    "No case, expected outcome or input change",
+    "No authority or budget change",
+    "No additional correction replay",
+    "No search or target process"
+  ],
+  "replay": {
+    "command": "python -O experiments/continuation_resolution_gate/run.py --output experiments/continuation_resolution_gate/evidence/attempt-2",
+    "receiver_processes": 10,
+    "target_processes": 0,
+    "work_units_total": 40000,
+    "seconds_each": 1,
+    "outer_seconds": 20
+  },
+  "origin": "Project-original ChatGPT (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee."
+}
