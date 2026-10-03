@@ -1,0 +1,17 @@
+{
+  "profile": "adva.research.continuation-resolution-gate.failure.v0",
+  "classification": "ImplementationFailure",
+  "attempt": 1,
+  "python_optimize": 1,
+  "receiver_processes_started": 9,
+  "target_processes_started": 0,
+  "receipted_work_units": 25960,
+  "search_candidates": 0,
+  "outer_observed_seconds": 1.259253852,
+  "peak_memory": "Unmeasured because the supervisor stopped before emitting its execution record.",
+  "failure": "CheckFailed:undeclared-replenishment-field:tuple-roundtrip",
+  "cause": "The receiver correctly rejected an invalid continuation tuple containing an undeclared replenishment field and therefore returned no parsed preserved_continuation object. The supervisor incorrectly required every dictionary-shaped input, including a rejected one, to round-trip as a parsed object.",
+  "preservation": "Nine case directories and their write-new canonical receipts remain under evidence/attempt-1. No target started. No input was mutated. No execution.json or success classification was produced.",
+  "correction_scope": "Require byte round-trip only when the receiver returned a parsed preserved_continuation. Otherwise require that the expected outcome is InvalidEvidence. No receiver, input case, expected semantic outcome, authority flag or resource limit changes.",
+  "origin": "Project-original ChatGPT (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee."
+}

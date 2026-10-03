@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **261 numbered
+This directory holds the research record of the repository: **263 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -31,6 +31,8 @@ declares for itself.
 - [Research 0250](0250-pending-effect-and-bounded-no-effect-witnesses.md) distinguishes a verified effect event, a bounded complete-channel no-effect witness, and unresolved missing, incomplete or conflicting evidence without retry authority.
 - [Research 0251](0251-atomic-recovery-application-and-scoped-cancellation.md) atomically applies one exact recovery receipt to one pending ledger, retaining distinct completed and scoped-cancelled terminals while refusing replay and conflict.
 - [Research 0252](0252-read-only-terminal-resolution-receiving.md) independently checks exact completed and scoped-cancelled terminal projections from archived bytes while preserving missing, divergent and substituted projections as unknown.
+- [Research 0253](0253-terminal-resolution-continuation-tuple-gate.md) binds one exact terminal-resolution receipt to one exact problem--history--budget tuple, preserves unknown and invalid paths byte for byte with zero fuel delta, and retains one supervisor correction failure.
+- [Research 0254](0254-cross-language-continuation-receiving-agreement.md) gives the exact Research 0253 bytes to a distinct zero-dependency Node receiver; matching classifications and preserved tuples form a finite implementation agreement, while changed, missing or same-source projections remain unknown.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
