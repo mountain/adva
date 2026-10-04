@@ -72,8 +72,9 @@ def atomic_write_new(path: Path, value: object | bytes) -> None:
 
 
 class Campaign:
-    def __init__(self, output: Path) -> None:
+    def __init__(self, output: Path, child_timeout_seconds: float) -> None:
         self.output = output
+        self.child_timeout_seconds = child_timeout_seconds
         self.started = time.monotonic()
         self.assertions = 0
         self.comparison_units = 0
@@ -121,7 +122,12 @@ class Campaign:
             "--resolution-receipt", str(resolution),
         ]
         started = time.monotonic()
-        completed = subprocess.run(command, capture_output=True, timeout=1, check=False)
+        completed = subprocess.run(
+            command,
+            capture_output=True,
+            timeout=self.child_timeout_seconds,
+            check=False,
+        )
         elapsed = time.monotonic() - started
         self.node_seconds += elapsed
         self.check(completed.returncode == 0, case_name + ":node-exit")
@@ -158,16 +164,36 @@ class Campaign:
         self.records.append(record)
 
 
-def main(output: Path) -> int:
+def main(output: Path, *, validation_timeout_seconds: float | None = None) -> int:
     if output.exists():
         raise SystemExit("output already exists")
     output.mkdir(parents=True)
-    campaign = Campaign(output)
-    signal.signal(signal.SIGALRM,
-                  lambda *_: (_ for _ in ()).throw(TimeoutError("CampaignWallLimit")))
-    signal.setitimer(signal.ITIMER_REAL, 20)
     try:
         contract = json.loads((HERE / "contract.json").read_bytes())
+        timeout_seconds = contract["limits"]["seconds_each"]
+        execution_kind = "FrozenExecution"
+        if validation_timeout_seconds is not None:
+            validation = json.loads((HERE / "ci-validation-contract.json").read_bytes())
+            if validation["status"] != "FrozenBeforeValidation":
+                raise RuntimeError("InvalidValidationContractStatus")
+            if file_sha(HERE / "contract.json") != validation["pins"]["contract_sha256"]:
+                raise RuntimeError("ValidationContractPinMismatch")
+            if file_sha(Path(__file__)) != validation["pins"]["runner_sha256"]:
+                raise RuntimeError("ValidationRunnerPinMismatch")
+            test_path = ROOT / "tests" / "python" / \
+                "test_continuation_resolution_crosscheck.py"
+            if file_sha(test_path) != validation["pins"]["test_sha256"]:
+                raise RuntimeError("ValidationTestPinMismatch")
+            if file_sha(NODE_RECEIVER) != validation["pins"]["node_receiver_sha256"]:
+                raise RuntimeError("ValidationNodePinMismatch")
+            timeout_seconds = validation_timeout_seconds
+            if timeout_seconds != validation["limits"]["seconds_each"]:
+                raise RuntimeError("UnfrozenValidationTimeout")
+            execution_kind = "CiValidationReplay"
+        campaign = Campaign(output, timeout_seconds)
+        signal.signal(signal.SIGALRM,
+                      lambda *_: (_ for _ in ()).throw(TimeoutError("CampaignWallLimit")))
+        signal.setitimer(signal.ITIMER_REAL, contract["limits"]["outer_seconds"])
         campaign.check(contract["status"] == "FrozenBeforeExecution", "contract-status")
         campaign.check(file_sha(NODE_RECEIVER) == contract["pins"]["node_receiver_sha256"],
                        "node-source-pin")
@@ -224,6 +250,8 @@ def main(output: Path) -> int:
         result = {
             "profile": "adva.research.continuation-resolution-crosscheck.execution.v0",
             "status": "Passed",
+            "execution_kind": execution_kind,
+            "node_timeout_seconds": timeout_seconds,
             "assertions": campaign.assertions,
             "node_processes": len(campaign.records),
             "python_receiver_processes": 0,

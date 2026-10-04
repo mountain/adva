@@ -116,6 +116,40 @@ without importing either receiver, then both receivers should classify those
 bytes. The constructor must not supply the expected answer. Agreement remains
 finite evidence; divergence remains unknown.
 
+## Subsequent CI portability failure and bounded correction
+
+The first full hosted CI run for this branch, [run
+933](https://github.com/mountain/adva/actions/runs/37131430223), supplies an
+important negative engineering observation. Rust and Python 3.12 passed, but
+the Python 3.11 and 3.13 jobs each reached the fresh cross-check near the end of
+their long full-suite run and timed out the first Node child at the frozen
+one-second deadline. The two jobs had already spent about eighteen minutes and
+fourteen minutes respectively in the suite. Neither failure produced a Node
+receipt, classification or implementation disagreement. They are process
+startup timeouts, not semantic counterexamples.
+
+The retained execution, its evidence and its one-second contract remain
+unchanged. A separate [CI validation
+contract](../../experiments/continuation_resolution_crosscheck/ci-validation-contract.json)
+freezes one correction replay with a five-second per-child envelope, while
+retaining the ten-child count, twenty-second outer deadline, 32 MiB V8
+old-space flag, 40,000 Node-unit limit, 1,000 comparison-unit limit, exact
+inputs, receiver bytes and expected projection. The runner accepts this
+envelope only under the pinned validation contract. This does not change the
+semantic result or grant more fuel.
+
+The sole local correction replay passed both direct test functions. Its fresh
+campaign again used ten Node processes, 17,865 Node units and 49 comparison
+units, with the same two ready, five unknown and three invalid outcomes. It
+reported 0.7424030660040444 seconds of summed Node wall, 0.7571055510015867
+seconds whole-run wall and maximum child/supervisor RSS of 35,320/11,788 KiB.
+The temporary per-case validation directory was removed by the test harness;
+the exact captured summary and that retention limitation are recorded in
+[`ci-timeout-correction.json`](../../experiments/continuation_resolution_crosscheck/evidence/ci-timeout-correction.json).
+
+No held-out third-constructor instance was run in this correction round. It
+remains the next semantic experiment after the corrected hosted checks finish.
+
 Authored by ChatGPT (OpenAI), contributed under Unknown v0.3 through Mingli
 Yuan's authorized GitHub account proxy. Account use is not his authorship,
 review, endorsement or correctness guarantee.

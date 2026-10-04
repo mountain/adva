@@ -42,9 +42,11 @@ def test_fresh_crosscheck_replays_the_frozen_projection():
     runner = load_runner()
     with tempfile.TemporaryDirectory() as directory:
         output = Path(directory) / "evidence"
-        assert runner.main(output) == 0
+        assert runner.main(output, validation_timeout_seconds=5) == 0
         result = json.loads((output / "execution.json").read_bytes())
         assert result["status"] == "Passed"
+        assert result["execution_kind"] == "CiValidationReplay"
+        assert result["node_timeout_seconds"] == 5
         assert result["node_processes"] == 10
         assert result["node_work_units"] <= 40_000
         assert [case["node_outcome"] for case in result["cases"]].count(
