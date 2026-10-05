@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **263 numbered
+This directory holds the research record of the repository: **264 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -33,6 +33,7 @@ declares for itself.
 - [Research 0252](0252-read-only-terminal-resolution-receiving.md) independently checks exact completed and scoped-cancelled terminal projections from archived bytes while preserving missing, divergent and substituted projections as unknown.
 - [Research 0253](0253-terminal-resolution-continuation-tuple-gate.md) binds one exact terminal-resolution receipt to one exact problem--history--budget tuple, preserves unknown and invalid paths byte for byte with zero fuel delta, and retains one supervisor correction failure.
 - [Research 0254](0254-cross-language-continuation-receiving-agreement.md) gives the exact Research 0253 bytes to a distinct zero-dependency Node receiver; matching classifications and preserved tuples form a finite implementation agreement, while changed, missing or same-source projections remain unknown.
+- [Research 0255](0255-held-out-continuation-receiving.md) uses an answer-free Perl constructor to generate two new canonical continuation instances, then checks fresh Python and Node classifications and byte-identical tuple preservation while retaining every comparison divergence as unknown.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
