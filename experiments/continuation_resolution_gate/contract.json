@@ -1,0 +1,45 @@
+{
+  "profile": "adva.research.continuation-resolution-gate.v0",
+  "status": "FrozenBeforeExecution",
+  "main_at_start": "01743dc8017eaa8dec7e210cc73855a4c27164fe",
+  "parent_research": "docs/research/0252-read-only-terminal-resolution-receiving.md@01743dc8017eaa8dec7e210cc73855a4c27164fe",
+  "question": "Can one read-only gate bind an exact terminal-resolution receipt to one canonical problem-history-budget tuple so that only ResolutionVerified becomes locally ready, while UnknownResolutionState and InvalidEvidence preserve the tuple byte for byte and add zero fuel?",
+  "objects_and_types": "One canonical continuation-resolution-gate-query-v0, one canonical problem-history-budget-continuation-v0 containing distinct problem, history and cumulative-natural-budget components, and one canonical terminal-resolution-receipt-v0 from Research 0252.",
+  "quantifiers": "Ten receiver processes: exact completed and cancelled instances; parent Unknown and Invalid outcomes; whole-object substitution; self-consistent wrong problem and wrong history; changed budget under the old query; an undeclared replenishment field; and a noncanonical continuation.",
+  "arithmetic_domain": "Natural-number budget units with exact initial = spent + remaining; fuel delta is the integer zero on every path.",
+  "candidate_grammar": "ContinuationReady only when the gate query binds the exact continuation and receipt bytes, the history binds the exact receipt, the parent outcome is ResolutionVerified, and the problem attempt, pair and allowed terminal state agree. Parent unknown or binding divergence returns UnknownContinuationState. Parent invalid or malformed/noncanonical input returns InvalidEvidence.",
+  "evaluation": "Both exact instances become locally ready. Five missing, substituted or divergent relations remain UnknownContinuationState. Three invalid representations remain InvalidEvidence. Every valid tuple round-trips byte for byte, every input remains unchanged, every fuel delta is zero, and all effect/retry/refund/mutation/native/free authority remains false.",
+  "pins": {
+    "receiver_sha256": "3b763201218fd5c314ec0f026d3b4039ec032c0ba2714c1cfeff1e5494fc1ea1",
+    "runner_sha256": "94a88af604f77626f116de89756e6c2d27db9234268cdac401e140937ab7237b",
+    "terminal_receiver_evidence": "experiments/terminal_resolution_receiver/evidence/attempt-1@01743dc8017eaa8dec7e210cc73855a4c27164fe",
+    "kernel_package_boundary": "mountain/adva-machine/spec/framework/kernel-package-boundary-v0.1.md@acfc9806fe18a36d0f7194dcc196a380b2834adf"
+  },
+  "limits": {
+    "routes": 1,
+    "receiver_processes": 10,
+    "target_processes": 0,
+    "seconds_each": 1,
+    "outer_seconds": 20,
+    "work_units_total": 40000,
+    "stdout_bytes_each": 16384,
+    "stderr_bytes_each": 4096,
+    "retained_output_bytes": 262144,
+    "search_candidates": 0,
+    "implementation_correction_replays": 0
+  },
+  "enforcement": "Run the supervisor and every receiver under python -O. All checks use explicit RuntimeError rejection rather than assert. New evidence files use write-new temporary files, fsync, same-directory atomic replacement and directory fsync.",
+  "exit": "Stop on the first pin, process, output, classification, input-mutation, tuple-roundtrip, accounting or resource failure. No correction replay is authorized. Never launch a target, alter an input, add fuel or grant continuation authority.",
+  "protected": [
+    "Problem, history and budget remain distinct typed components",
+    "The selected query binds the exact tuple bytes and exact terminal-resolution receipt bytes",
+    "ResolutionVerified is necessary but not sufficient without problem/history binding",
+    "UnknownResolutionState and InvalidEvidence do not become negative mathematical results",
+    "Every valid tuple is returned byte-identically and every input file remains byte-identical",
+    "No fuel replenishment, target, effect, retry, refund, mutation, native or free authority",
+    "ContinuationReady is a local receiver outcome, not framework accept or executable permission",
+    "No new vocabulary",
+    "No Research 0090 coverage, Research 0092 promotion, native free or Close, M6 closure, hypothesized arithmetic truth or arithmetic universality claim"
+  ],
+  "origin": "Project-original ChatGPT (OpenAI), Unknown v0.3, submitted through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee. No external content is incorporated."
+}

@@ -1,0 +1,84 @@
+{
+  "profile": "adva.research.continuation-resolution-crosscheck.ci-timeout-correction.v0",
+  "status": "LocalCorrectionReplayPassed",
+  "date": "2026-10-04",
+  "prior_failure": {
+    "workflow_run": 37131430223,
+    "workflow_run_number": 933,
+    "passing_jobs": [
+      "rust",
+      "python (3.12)"
+    ],
+    "failing_jobs": [
+      {
+        "job_id": 111227161942,
+        "name": "python (3.11)",
+        "suite_seconds": 1122.89,
+        "failure": "First Node child timed out after the frozen one-second deadline"
+      },
+      {
+        "job_id": 111227162040,
+        "name": "python (3.13)",
+        "suite_seconds": 839.23,
+        "failure": "First Node child timed out after the frozen one-second deadline"
+      }
+    ],
+    "classification": "ImplementationOrEnvironmentFailure",
+    "semantic_receipts_produced_by_failed_children": 0,
+    "semantic_counterexample": false
+  },
+  "correction": {
+    "retained_execution_rewritten": false,
+    "retained_one_second_contract_rewritten": false,
+    "validation_timeout_seconds_each": 5,
+    "outer_seconds": 20,
+    "node_processes": 10,
+    "node_old_space_mib": 32,
+    "node_work_units_limit": 40000,
+    "comparison_work_units_limit": 1000,
+    "implementation_correction_replays": 1,
+    "search_candidates": 0,
+    "target_processes": 0
+  },
+  "observed_local_replay": {
+    "status": "Passed",
+    "assertions": 104,
+    "outcomes": {
+      "ContinuationReady": 2,
+      "UnknownContinuationState": 5,
+      "InvalidEvidence": 3
+    },
+    "node_processes": 10,
+    "node_work_units": 17865,
+    "comparison_work_units": 49,
+    "node_seconds": 0.7424030660040444,
+    "whole_run_seconds": 0.7571055510015867,
+    "serialization_seconds": 0.004803089988854481,
+    "max_child_rss_kib": 35320,
+    "max_supervisor_rss_kib": 11788,
+    "execution_kind": "CiValidationReplay",
+    "node_timeout_seconds": 5,
+    "direct_test_functions": 2,
+    "node_syntax_check": "Passed",
+    "python_byte_compile": "Passed"
+  },
+  "pins": {
+    "original_contract_sha256": "6e511da5840e83a89e3b687e017b0e5bbb0d61954e02d794246e9e128c9ac02c",
+    "node_receiver_sha256": "1fd24225b85d64b55372d4a870dca94f413baf2cdf8aa05990f015a48dccf4d4",
+    "python_receiver_sha256": "3b763201218fd5c314ec0f026d3b4039ec032c0ba2714c1cfeff1e5494fc1ea1"
+  },
+  "retention": {
+    "captured_summary_retained": true,
+    "fresh_per_case_directory_retained": false,
+    "reason": "The sole correction replay was executed through the tempfile-based direct test harness; the temporary directory was removed after the passing test.",
+    "original_per_case_evidence_remains": "experiments/continuation_resolution_crosscheck/evidence/attempt-1"
+  },
+  "boundary": {
+    "timeout_is_semantic_counterexample": false,
+    "validation_timeout_grants_fuel": false,
+    "validation_timeout_grants_authority": false,
+    "hosted_matrix_correction_verified": false,
+    "held_out_constructor_executed": false,
+    "new_vocabulary": []
+  }
+}

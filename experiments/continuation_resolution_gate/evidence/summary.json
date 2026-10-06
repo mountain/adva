@@ -1,0 +1,38 @@
+{
+  "profile": "adva.research.continuation-resolution-gate.aggregate.v0",
+  "status": "PassedAfterOneImplementationCorrectionReplay",
+  "attempts": [
+    {
+      "attempt": 1,
+      "classification": "ImplementationFailure",
+      "receiver_processes": 9,
+      "target_processes": 0,
+      "receipted_work_units": 25960,
+      "outer_observed_seconds": 1.259253852,
+      "peak_memory": "Unmeasured"
+    },
+    {
+      "attempt": 2,
+      "classification": "Passed",
+      "receiver_processes": 10,
+      "target_processes": 0,
+      "receipted_work_units": 25960,
+      "receiver_seconds": 1.2213635359948967,
+      "whole_run_seconds": 1.2313895620027324,
+      "max_child_rss_kib": 16696,
+      "max_supervisor_rss_kib": 16696,
+      "execution_sha256": "3c7006e7ba5ae97d03f5b0590f7f3dfecdfae09dd3f90284ecc151306c9014ee"
+    }
+  ],
+  "aggregate": {
+    "receiver_processes": 19,
+    "target_processes": 0,
+    "receipted_work_units": 51920,
+    "summed_outer_observed_seconds": 2.4906434140027325,
+    "highest_measured_rss_kib": 16696,
+    "unmeasured_peak_memory_attempts": 1,
+    "search_candidates": 0,
+    "implementation_correction_replays": 1
+  },
+  "boundary": "The first attempt's nine case files are retained. The sole correction changed only the supervisor's treatment of an invalid tuple that the receiver deliberately did not parse. No semantic case, receiver, authority flag, target count or resource limit changed."
+}
