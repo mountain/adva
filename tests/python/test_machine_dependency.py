@@ -95,7 +95,7 @@ def test_successor_lock_preserves_the_original_receipt_bindings():
         assert CHECK.sha(ROOT / "dependencies/evidence" / run / "dependency.lock.json") in seen
 
 
-@pytest.mark.parametrize("run", ("continuity-01", "continuity-02", "continuity-03"))
+@pytest.mark.parametrize("run", ("continuity-01", "continuity-02", "continuity-03", "g4-continuity-2026-10-06"))
 def test_retained_run_binds_inputs_history_and_native_replay(run):
     evidence = ROOT / "dependencies/evidence" / run
     manifest = CHECK.read(evidence / "manifest.json")
@@ -150,3 +150,38 @@ def test_first_ci_failure_remains_a_failed_dependency_acquisition():
     assert report["error"]["message"] == "library-fetch failed; see retained stderr"
     assert "Permission denied (publickey)" in (evidence / "logs/library-fetch.stderr").read_text()
     assert not any(command["label"] == "build" for command in report["commands"])
+
+
+def test_g4_successor_is_limited_to_one_consumer():
+    active = CHECK.read(CHECK.LOCK)
+    previous = active['previous_lock']
+    prior = CHECK.read(ROOT / previous['path'])
+    assert CHECK.sha(ROOT / previous['path']) == previous['sha256']
+    allowed = copy.deepcopy(prior)
+    allowed['machine']['revision'] = 'a0b710a2517f06f2fe03cc463e855548adf418ac'
+    allowed['machine']['spec_catalog_sha256'] = 'bb5073b37fae782886253f45d2e417d74fe5f7b339de69cf59a4ccee11f5603e'
+    allowed['previous_lock'] = previous
+    assert active == allowed
+    assert CHECK.git(ROOT, 'ls-tree', 'HEAD', 'adva-library').split()[2] == active['library']['revision']
+
+
+def test_g4_actual_refusals_are_bound_and_precede_build():
+    evidence = ROOT / 'dependencies/evidence/g4-controls-2026-10-06'
+    CHECK.pins(evidence, CHECK.read(evidence / 'manifest.json')['files'])
+    summary = CHECK.read(evidence / 'report.json')
+    assert summary['status'] == 'Passed'
+    assert summary['lock_sha256'] == CHECK.sha(CHECK.LOCK)
+    assert summary['checker_sha256'] == CHECK.sha(ROOT / 'scripts/check_machine_dependency.py')
+    assert {r['name'] for r in summary['controls']} == {
+        'pin-mismatch', 'moving-head', 'dirty-tracked', 'dirty-untracked'}
+    for row in summary['controls']:
+        path = evidence / row['report']
+        assert CHECK.sha(path) == row['report_sha256']
+        report = CHECK.read(path)
+        assert report['status'] == 'Error' and report['error'] == row['error']
+        assert report['commands'] == [] and report['checks'] == []
+        assert row['status'] == 'RefusedAsExpected' and row['exit_code'] == 1
+        if row['name'] == 'moving-head':
+            assert row['observed_head'] != row['locked_revision']
+        else:
+            assert row['observed_head'] == row['locked_revision']
