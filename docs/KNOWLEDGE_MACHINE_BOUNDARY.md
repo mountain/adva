@@ -149,3 +149,16 @@ remain in Git history and retained run bundles. A mismatch is a failed gate,
 not permission to relax a fingerprint, change a historical witness, or grant
 the library a missing import capability. General optimizing mix and general
 second/third projection capabilities remain open under their own contracts.
+
+## Bounded G4 adoption, 2026-10-06
+
+Only the first executable consumer above has advanced through a successor lock
+to machine `a0b710a2517f06f2fe03cc463e855548adf418ac`. The library pin,
+knowledge inputs, four observations and native authority are unchanged.
+The [migration record](../dependencies/README.md#one-consumer-g4-successor-2026-10-06)
+retains source comparison, complete previous-lock ancestry, a fresh checkout/
+build/replay run and actual pin/HEAD/dirty-checkout refusals. All earlier
+evidence remains under its original bindings. This does not migrate another
+consumer, retire duplicate paths, adopt the synthetic raw-evidence intake
+profile or complete KPB-14. Codex (OpenAI), Unknown v0.3, through Mingli Yuan's
+authorized account proxy; not his review or endorsement.

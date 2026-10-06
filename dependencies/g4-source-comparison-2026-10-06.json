@@ -1,0 +1,130 @@
+{
+  "schema": "adva.knowledge.g4-source-comparison.v0",
+  "date": "2026-10-06",
+  "knowledge_base": "01743dc8017eaa8dec7e210cc73855a4c27164fe",
+  "consumer": "scripts/check_machine_dependency.py + dependencies/adva-machine.lock.json",
+  "old_machine": "e62d88dcc83fc4967260866518029942b9631b71",
+  "successor_machine": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+  "old_lock_sha256": "9ab4d8cb45bf2123c919d597b3a6b3e917cce76e0be142e415c5ef107c66aa96",
+  "successor_lock_sha256": "89ad0f3f24e5df6a898d106c184d7c04655b18b6da182a48c8e32050569feb4b",
+  "status": "SourceCompatibleAndFreshReplayPassed",
+  "scope": "One existing consumer only; no duplicate retirement or other pin changes; no adoption of the synthetic G3 intake profile.",
+  "catalog": {
+    "old_sha256": "671d8460ab2e2ce837a09e52305fa1325e54d624d1a7293a5b5cb3dae41a1b15",
+    "successor_sha256": "bb5073b37fae782886253f45d2e417d74fe5f7b339de69cf59a4ccee11f5603e",
+    "old_entries_preserved": true,
+    "added_profiles": [
+      "carrier-matrix-v0",
+      "iota-substrate-v0"
+    ],
+    "added_files": [
+      "experiments/iota-substrate/src/lib.rs",
+      "experiments/iota-substrate/src/main.rs",
+      "experiments/iota-substrate/Cargo.toml",
+      "experiments/iota-substrate/Cargo.lock"
+    ],
+    "authority_unchanged": true
+  },
+  "library_binding": {
+    "byte_identical": true,
+    "sha256": "d6feaf527164e8992c84d6eebf9c4118f19b235c0738945637349d70339750bf",
+    "revision": "73a6af4ac4ed8225366d3c16794e309cff15f51d"
+  },
+  "byte_identical_interfaces": [
+    {
+      "path": "adva-machine",
+      "old_sha256": "5c69ef953a49aac9122c6bb37db348b756c85619bb4b5000d877c3657dfd2128",
+      "successor_sha256": "5c69ef953a49aac9122c6bb37db348b756c85619bb4b5000d877c3657dfd2128",
+      "byte_identical": true
+    },
+    {
+      "path": "toolchain/cli.py",
+      "old_sha256": "0f41d504fd7527e4fd3f8d02453aa13286cd4231f349b55f940acf4769230880",
+      "successor_sha256": "0f41d504fd7527e4fd3f8d02453aa13286cd4231f349b55f940acf4769230880",
+      "byte_identical": true
+    },
+    {
+      "path": "toolchain/boundary.py",
+      "old_sha256": "dd5fc081cd693540236d4656e6302cfe5c6cbd8aca4d0c06eb19c5f579d49495",
+      "successor_sha256": "dd5fc081cd693540236d4656e6302cfe5c6cbd8aca4d0c06eb19c5f579d49495",
+      "byte_identical": true
+    },
+    {
+      "path": "toolchain/execute.py",
+      "old_sha256": "613dd7810c995f4e2c152db671fa9009fdc9936b6b69c87a5d64e610749d9ab9",
+      "successor_sha256": "613dd7810c995f4e2c152db671fa9009fdc9936b6b69c87a5d64e610749d9ab9",
+      "byte_identical": true
+    },
+    {
+      "path": "crates/adva-witness/src/bin/support/native_run_cli.rs",
+      "old_sha256": "cfd2eda38bc4fb71730f339d8601a3e52bdcd52a3091536c5d105d2f07253da2",
+      "successor_sha256": "cfd2eda38bc4fb71730f339d8601a3e52bdcd52a3091536c5d105d2f07253da2",
+      "byte_identical": true
+    },
+    {
+      "path": "crates/adva-witness/src/bin/support/data_machine_cli.rs",
+      "old_sha256": "6b9fd2209d3234f55b6018e640ccefa276b83312909ec1b9f238a708ebc010ff",
+      "successor_sha256": "6b9fd2209d3234f55b6018e640ccefa276b83312909ec1b9f238a708ebc010ff",
+      "byte_identical": true
+    },
+    {
+      "path": "crates/adva-witness/src/data_machine.rs",
+      "old_sha256": "ec260813e9532b5f788a74c0d9212f24dced0af48aecc38accd638a974b7cfd0",
+      "successor_sha256": "ec260813e9532b5f788a74c0d9212f24dced0af48aecc38accd638a974b7cfd0",
+      "byte_identical": true
+    },
+    {
+      "path": "Cargo.toml",
+      "old_sha256": "b3936802ff11d9144c463afec65bf6e471424500304bdba06575df8e424df7d8",
+      "successor_sha256": "b3936802ff11d9144c463afec65bf6e471424500304bdba06575df8e424df7d8",
+      "byte_identical": true
+    },
+    {
+      "path": "Cargo.lock",
+      "old_sha256": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9",
+      "successor_sha256": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9",
+      "byte_identical": true
+    }
+  ],
+  "changed_boundary_files": {
+    "crates/adva-witness/src/bin/adva.rs": "Adds communicate dispatcher and usage; existing run/data commands unchanged.",
+    "toolchain/process.py": "Installs address-space cap on Linux; adds host capability fields to cost, without changing outcomes, native trace replay or fuel.",
+    "toolchain/conformance.py": "Adds host provenance to a conformance command not used by this consumer."
+  },
+  "continuity_cases": [
+    {
+      "name": "library-arithmetic-history",
+      "observer": "Every native report field except phase_seconds; retained Research 0140 unchanged."
+    },
+    {
+      "name": "returned",
+      "value": 14,
+      "spent": 134,
+      "fuel": 2048,
+      "quantum": 2048,
+      "verification": "NativeReplayPassed"
+    },
+    {
+      "name": "rejected",
+      "reason": "unsupported object tag",
+      "required_exit": 2,
+      "verification": "NativeReplayPassed"
+    },
+    {
+      "name": "suspended",
+      "spent": 17,
+      "fuel": 2048,
+      "quantum": 17,
+      "verification": "NativeReplayPassed"
+    }
+  ],
+  "residual": "Only the existing executable consumer is migrated. This does not adopt the synthetic G3 intake route, retire duplicate paths, migrate other consumers or complete KPB-14.",
+  "authorship": "Codex (OpenAI); through Mingli Yuan authorized account proxy, not human review or endorsement; original contribution under Unknown v0.3.",
+  "migration_evidence": {
+    "report": "dependencies/evidence/g4-continuity-2026-10-06/report.json",
+    "sha256": "ae82f6bf1b0f65c859e7e2e8e81bfc7a28e9edba6f56b3b12faba55a4f783a32",
+    "checks": 4,
+    "refusals": "dependencies/evidence/g4-controls-2026-10-06/report.json",
+    "refusal_count": 4
+  }
+}

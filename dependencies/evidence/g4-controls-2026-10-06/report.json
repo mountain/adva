@@ -1,0 +1,67 @@
+{
+  "schema": "adva.knowledge.migration-refusals.v0",
+  "status": "Passed",
+  "consumer": "scripts/check_machine_dependency.py",
+  "machine_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+  "lock_sha256": "89ad0f3f24e5df6a898d106c184d7c04655b18b6da182a48c8e32050569feb4b",
+  "checker_sha256": "ec4c99fc017f96848afeadebf6021157bb702d7b5a6d19200166e54a063cdeb8",
+  "controls": [
+    {
+      "name": "pin-mismatch",
+      "status": "RefusedAsExpected",
+      "exit_code": 1,
+      "error": {
+        "type": "ValueError",
+        "message": "pinned input differs: spec/catalog.json"
+      },
+      "observed_head": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "locked_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "commands": 0,
+      "report": "pin-mismatch/evidence/report.json",
+      "report_sha256": "f6e0a81d46e3cb7c7f826e4ec847fdea6b424b9206ca388c6cf56294ce51149f"
+    },
+    {
+      "name": "moving-head",
+      "status": "RefusedAsExpected",
+      "exit_code": 1,
+      "error": {
+        "type": "ValueError",
+        "message": "dependency revision differs from lock"
+      },
+      "observed_head": "2a6627824c3f4a9b72063dc040e92442e4e1cde7",
+      "locked_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "commands": 0,
+      "report": "moving-head/evidence/report.json",
+      "report_sha256": "8e5e43ed22b791fefd53cfea285f1a5d3d8bc6236e6d869eafa0befb0951bc9d"
+    },
+    {
+      "name": "dirty-tracked",
+      "status": "RefusedAsExpected",
+      "exit_code": 1,
+      "error": {
+        "type": "ValueError",
+        "message": "dependency checkout contains changes"
+      },
+      "observed_head": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "locked_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "commands": 0,
+      "report": "dirty-tracked/evidence/report.json",
+      "report_sha256": "c9abf090a00e6c27423677a68c435659b0082703e9c71936c6f34951550d1921"
+    },
+    {
+      "name": "dirty-untracked",
+      "status": "RefusedAsExpected",
+      "exit_code": 1,
+      "error": {
+        "type": "ValueError",
+        "message": "dependency checkout contains changes"
+      },
+      "observed_head": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "locked_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+      "commands": 0,
+      "report": "dirty-untracked/evidence/report.json",
+      "report_sha256": "c9abf090a00e6c27423677a68c435659b0082703e9c71936c6f34951550d1921"
+    }
+  ],
+  "scope": "actual receiver refusals before build; no native semantic admission"
+}

@@ -103,3 +103,57 @@ The final public pins are independently checked by the dependency-continuity
 workflow. The main branch of the machine remains free to advance independently.
 The eight removed golden-ratio inputs are outside this native execution chain;
 full historical calibration with those inputs remains unavailable publicly.
+
+## One-consumer G4 successor, 2026-10-06
+
+The active executable consumer now selects machine
+`a0b710a2517f06f2fe03cc463e855548adf418ac`; library
+`73a6af4ac4ed8225366d3c16794e309cff15f51d` remains fixed. The
+[source comparison](g4-source-comparison-2026-10-06.json) binds the old and new
+commits. Every old catalog file pin survives; the two additional research
+profiles grant this consumer no new authority. The machine library lock is
+byte-identical, as are existing PSC0/v0 command adapters and native handlers.
+The native dispatcher adds documentary communication; Python process accounting
+adds host capability fields and makes address-space limits Linux-specific.
+The historical native observer and replay predicates are unchanged.
+
+The [new report](evidence/g4-continuity-2026-10-06/report.json) records fresh
+public HTTPS checkout, library acquisition, locked release build in a new target
+directory (71.83 seconds), and four passed checks. Rust 1.99.0 and Python 3.12.14
+versions are retained in the raw command logs. PSC0 matches every historical
+field except phase timings. Returned 14/134 steps, rejected tag/21 steps and
+Suspended/17 steps all pass fresh Rust replay; lifetime fuel remains 2048.
+This is local build provenance, not an authenticated build attestation.
+
+The [refusal report](evidence/g4-controls-2026-10-06/report.json) records four
+actual calls through the unchanged receiver: deliberately wrong catalog pin,
+an isolated checkout advanced beyond the pinned commit, tracked changes and
+untracked injection. Each returns Error before any build/native command.
+The isolated advanced commit is a synthetic Git fixture, not an upstream
+release. Its source worktree is not published. The
+[control supervisor](../scripts/check_machine_migration_controls.py) reproduces
+these cases without changing the active lock or the receiving predicate:
+
+```sh
+python scripts/check_machine_dependency.py --output /absolute/new/continuity
+python scripts/check_machine_migration_controls.py \
+  --machine /absolute/new/continuity/dependencies/machine \
+  --output /absolute/new/refusals
+```
+
+The dedicated CI workflow now repeats both routes. The exact active predecessor
+is retained in [a new lock archive](locks/g4-predecessor-2026-10-06.json), including
+its existing previous_lock; the complete receipt chain survives. Earlier evidence,
+knowledge inputs, historical fingerprints, authority, budgets, library gitlink
+and every other consumer pin are unchanged. No duplicate implementation is retired.
+
+This completes the selected existing consumer's bounded KPB-14 G4 adoption.
+It does not make this route a consumer of the synthetic G3 raw-evidence intake
+profile, finish all G3/G4 work, or complete KPB-14. General loader/cut-checker
+and other consumers retain their own open obligations. No execution failure or
+native incompatibility occurred; local setup initially lacked Rust/pytest,
+and was completed before running the receiver. An initial test invocation
+could not start without pytest and is not counted as a passed test.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy;
+original contribution under Unknown v0.3, not human review or endorsement.
