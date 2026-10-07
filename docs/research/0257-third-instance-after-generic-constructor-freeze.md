@@ -109,6 +109,21 @@ is validation cost rather than another research attempt.
 The source-design, reading, authoring, branch publication and review costs are
 unmeasured. File size is not a memory measurement.
 
+## Retained publication-transfer failure
+
+The first branch upload sent the large research index as one base64 line
+through a bounded shell-output channel. That line was truncated, so commit
+`b6fce24686ac6d74a0663e9b0f3a242c17dd8768` contained a non-UTF-8
+`docs/research/README.md`. The error was detected by fetching the branch path
+before opening a pull request. The correction commit restores the exact main
+index text and inserts only the Research 0257 line through the GitHub text
+content route. The retained
+[`failure record`](../../experiments/continuation_constructor_generalization/evidence/prior-publication-transfer-failure.json)
+classifies this as `PrePublicationTransferFailure`: the research execution was
+not replayed, no evidence byte changed and no mathematical outcome was
+produced by either the failure or its repair. Transfer wall time and memory were
+not measured.
+
 ## Meaning and residual
 
 No new word is justified. `ImplementationAgreement` and
