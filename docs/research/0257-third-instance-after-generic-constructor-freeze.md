@@ -99,6 +99,13 @@ records:
 - 21 retained files using 10,050 filesystem bytes before the later manifest;
 - zero search candidates, receivers, targets and correction replays.
 
+Before the source-freeze commit, one project-original temporary smoke row
+outside the repository exercised the generic input path. Java reported 8,259
+units and Perl 8,444 units; the enclosing command took about 0.657 seconds.
+That preflight established only that both sources could parse a different row
+and emit matching payloads before publication. It is not part of the Research
+0257 result, was not retained as evidence, and its peak memory was not measured.
+
 The later direct validation command compiled the Python files, checked Perl
 syntax, loaded both test functions without `pytest`, ran one fresh two-constructor
 replay and verified all 21 manifest entries. It took about 0.727 seconds. The
