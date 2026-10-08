@@ -1,0 +1,879 @@
+{
+  "status": "ExternalExactPass",
+  "rows": [
+    {
+      "family": "pure",
+      "k": 1,
+      "application_nodes": 0,
+      "left_tree": {
+        "type": "iota-leaf",
+        "symbol": "i"
+      },
+      "right_tree": {
+        "type": "iota-leaf",
+        "symbol": "i"
+      },
+      "left_comb": {
+        "type": "AEG-hole",
+        "symbol": "z"
+      },
+      "right_comb": {
+        "type": "AEG-hole",
+        "symbol": "z"
+      },
+      "left": {
+        "source": "i",
+        "normal_form": "i",
+        "events": [],
+        "schedule_cuts": [
+          "i"
+        ]
+      },
+      "right": {
+        "source": "i",
+        "normal_form": "i",
+        "events": [],
+        "schedule_cuts": [
+          "i"
+        ]
+      }
+    },
+    {
+      "family": "pure",
+      "k": 2,
+      "application_nodes": 1,
+      "left_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "right_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "left_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_1",
+        "slot": 1,
+        "active": {
+          "type": "AEG-hole",
+          "symbol": "z"
+        },
+        "constant": "c1"
+      },
+      "right_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_1",
+        "slot": 2,
+        "active": {
+          "type": "AEG-hole",
+          "symbol": "z"
+        },
+        "constant": "c1"
+      },
+      "left": {
+        "source": "@ii",
+        "normal_form": "@@sk@kk",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@ii",
+            "after": "@@isk"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0
+            ],
+            "before": "@is",
+            "after": "@@ssk"
+          },
+          {
+            "rule": "s",
+            "path": [],
+            "before": "@@@sskk",
+            "after": "@@sk@kk"
+          }
+        ],
+        "schedule_cuts": [
+          "@ii",
+          "@@isk",
+          "@@@sskk",
+          "@@sk@kk"
+        ]
+      },
+      "right": {
+        "source": "@ii",
+        "normal_form": "@@sk@kk",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@ii",
+            "after": "@@isk"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0
+            ],
+            "before": "@is",
+            "after": "@@ssk"
+          },
+          {
+            "rule": "s",
+            "path": [],
+            "before": "@@@sskk",
+            "after": "@@sk@kk"
+          }
+        ],
+        "schedule_cuts": [
+          "@ii",
+          "@@isk",
+          "@@@sskk",
+          "@@sk@kk"
+        ]
+      }
+    },
+    {
+      "family": "pure",
+      "k": 3,
+      "application_nodes": 2,
+      "left_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-application",
+          "function": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          },
+          "argument": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          }
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "right_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "iota-application",
+          "function": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          },
+          "argument": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          }
+        }
+      },
+      "left_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_2",
+        "slot": 1,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_1",
+          "slot": 1,
+          "active": {
+            "type": "AEG-hole",
+            "symbol": "z"
+          },
+          "constant": "c1"
+        },
+        "constant": "c2"
+      },
+      "right_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_2",
+        "slot": 2,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_1",
+          "slot": 2,
+          "active": {
+            "type": "AEG-hole",
+            "symbol": "z"
+          },
+          "constant": "c1"
+        },
+        "constant": "c2"
+      },
+      "left": {
+        "source": "@@iii",
+        "normal_form": "i",
+        "events": [
+          {
+            "rule": "i",
+            "path": [
+              0
+            ],
+            "before": "@ii",
+            "after": "@@isk"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0
+            ],
+            "before": "@is",
+            "after": "@@ssk"
+          },
+          {
+            "rule": "s",
+            "path": [
+              0
+            ],
+            "before": "@@@sskk",
+            "after": "@@sk@kk"
+          },
+          {
+            "rule": "s",
+            "path": [],
+            "before": "@@@sk@kki",
+            "after": "@@ki@@kki"
+          },
+          {
+            "rule": "k",
+            "path": [],
+            "before": "@@ki@@kki",
+            "after": "i"
+          }
+        ],
+        "schedule_cuts": [
+          "@@iii",
+          "@@@iski",
+          "@@@@sskki",
+          "@@@sk@kki",
+          "@@ki@@kki",
+          "i"
+        ]
+      },
+      "right": {
+        "source": "@i@ii",
+        "normal_form": "@sk",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@i@ii",
+            "after": "@@@iisk"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0
+            ],
+            "before": "@ii",
+            "after": "@@isk"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0,
+              0
+            ],
+            "before": "@is",
+            "after": "@@ssk"
+          },
+          {
+            "rule": "s",
+            "path": [
+              0,
+              0
+            ],
+            "before": "@@@sskk",
+            "after": "@@sk@kk"
+          },
+          {
+            "rule": "s",
+            "path": [
+              0
+            ],
+            "before": "@@@sk@kks",
+            "after": "@@ks@@kks"
+          },
+          {
+            "rule": "k",
+            "path": [
+              0
+            ],
+            "before": "@@ks@@kks",
+            "after": "s"
+          }
+        ],
+        "schedule_cuts": [
+          "@i@ii",
+          "@@@iisk",
+          "@@@@isksk",
+          "@@@@@sskksk",
+          "@@@@sk@kksk",
+          "@@@ks@@kksk",
+          "@sk"
+        ]
+      }
+    },
+    {
+      "family": "open",
+      "k": 1,
+      "application_nodes": 1,
+      "left_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "aperture-leaf",
+          "symbol": "a"
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "right_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "aperture-leaf",
+          "symbol": "a"
+        }
+      },
+      "left_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_1",
+        "slot": 1,
+        "active": {
+          "type": "AEG-hole",
+          "symbol": "z"
+        },
+        "constant": "c1"
+      },
+      "right_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_1",
+        "slot": 2,
+        "active": {
+          "type": "AEG-hole",
+          "symbol": "z"
+        },
+        "constant": "c1"
+      },
+      "left": {
+        "source": "@ai",
+        "normal_form": "@ai",
+        "events": [],
+        "schedule_cuts": [
+          "@ai"
+        ]
+      },
+      "right": {
+        "source": "@ia",
+        "normal_form": "@@ask",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@ia",
+            "after": "@@ask"
+          }
+        ],
+        "schedule_cuts": [
+          "@ia",
+          "@@ask"
+        ]
+      }
+    },
+    {
+      "family": "open",
+      "k": 2,
+      "application_nodes": 2,
+      "left_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-application",
+          "function": {
+            "type": "aperture-leaf",
+            "symbol": "a"
+          },
+          "argument": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          }
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "right_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "iota-application",
+          "function": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          },
+          "argument": {
+            "type": "aperture-leaf",
+            "symbol": "a"
+          }
+        }
+      },
+      "left_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_2",
+        "slot": 1,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_1",
+          "slot": 1,
+          "active": {
+            "type": "AEG-hole",
+            "symbol": "z"
+          },
+          "constant": "c1"
+        },
+        "constant": "c2"
+      },
+      "right_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_2",
+        "slot": 2,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_1",
+          "slot": 2,
+          "active": {
+            "type": "AEG-hole",
+            "symbol": "z"
+          },
+          "constant": "c1"
+        },
+        "constant": "c2"
+      },
+      "left": {
+        "source": "@@aii",
+        "normal_form": "@@aii",
+        "events": [],
+        "schedule_cuts": [
+          "@@aii"
+        ]
+      },
+      "right": {
+        "source": "@i@ia",
+        "normal_form": "@@@@asksk",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@i@ia",
+            "after": "@@@iask"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0
+            ],
+            "before": "@ia",
+            "after": "@@ask"
+          }
+        ],
+        "schedule_cuts": [
+          "@i@ia",
+          "@@@iask",
+          "@@@@asksk"
+        ]
+      }
+    },
+    {
+      "family": "open",
+      "k": 3,
+      "application_nodes": 3,
+      "left_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-application",
+          "function": {
+            "type": "iota-application",
+            "function": {
+              "type": "aperture-leaf",
+              "symbol": "a"
+            },
+            "argument": {
+              "type": "iota-leaf",
+              "symbol": "i"
+            }
+          },
+          "argument": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          }
+        },
+        "argument": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        }
+      },
+      "right_tree": {
+        "type": "iota-application",
+        "function": {
+          "type": "iota-leaf",
+          "symbol": "i"
+        },
+        "argument": {
+          "type": "iota-application",
+          "function": {
+            "type": "iota-leaf",
+            "symbol": "i"
+          },
+          "argument": {
+            "type": "iota-application",
+            "function": {
+              "type": "iota-leaf",
+              "symbol": "i"
+            },
+            "argument": {
+              "type": "aperture-leaf",
+              "symbol": "a"
+            }
+          }
+        }
+      },
+      "left_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_3",
+        "slot": 1,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_2",
+          "slot": 1,
+          "active": {
+            "type": "AEG-comb-skeleton",
+            "operation": "omega_1",
+            "slot": 1,
+            "active": {
+              "type": "AEG-hole",
+              "symbol": "z"
+            },
+            "constant": "c1"
+          },
+          "constant": "c2"
+        },
+        "constant": "c3"
+      },
+      "right_comb": {
+        "type": "AEG-comb-skeleton",
+        "operation": "omega_3",
+        "slot": 2,
+        "active": {
+          "type": "AEG-comb-skeleton",
+          "operation": "omega_2",
+          "slot": 2,
+          "active": {
+            "type": "AEG-comb-skeleton",
+            "operation": "omega_1",
+            "slot": 2,
+            "active": {
+              "type": "AEG-hole",
+              "symbol": "z"
+            },
+            "constant": "c1"
+          },
+          "constant": "c2"
+        },
+        "constant": "c3"
+      },
+      "left": {
+        "source": "@@@aiii",
+        "normal_form": "@@@aiii",
+        "events": [],
+        "schedule_cuts": [
+          "@@@aiii"
+        ]
+      },
+      "right": {
+        "source": "@i@i@ia",
+        "normal_form": "@@@@@@asksksk",
+        "events": [
+          {
+            "rule": "i",
+            "path": [],
+            "before": "@i@i@ia",
+            "after": "@@@i@iask"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0
+            ],
+            "before": "@i@ia",
+            "after": "@@@iask"
+          },
+          {
+            "rule": "i",
+            "path": [
+              0,
+              0,
+              0,
+              0
+            ],
+            "before": "@ia",
+            "after": "@@ask"
+          }
+        ],
+        "schedule_cuts": [
+          "@i@i@ia",
+          "@@@i@iask",
+          "@@@@@iasksk",
+          "@@@@@@asksksk"
+        ]
+      }
+    }
+  ],
+  "controls": [
+    {
+      "source": "i",
+      "normal_form": "i",
+      "events": [],
+      "schedule_cuts": [
+        "i"
+      ]
+    },
+    {
+      "source": "@@iii",
+      "normal_form": "i",
+      "events": [
+        {
+          "rule": "i",
+          "path": [
+            0
+          ],
+          "before": "@ii",
+          "after": "@@isk"
+        },
+        {
+          "rule": "i",
+          "path": [
+            0,
+            0
+          ],
+          "before": "@is",
+          "after": "@@ssk"
+        },
+        {
+          "rule": "s",
+          "path": [
+            0
+          ],
+          "before": "@@@sskk",
+          "after": "@@sk@kk"
+        },
+        {
+          "rule": "s",
+          "path": [],
+          "before": "@@@sk@kki",
+          "after": "@@ki@@kki"
+        },
+        {
+          "rule": "k",
+          "path": [],
+          "before": "@@ki@@kki",
+          "after": "i"
+        }
+      ],
+      "schedule_cuts": [
+        "@@iii",
+        "@@@iski",
+        "@@@@sskki",
+        "@@@sk@kki",
+        "@@ki@@kki",
+        "i"
+      ]
+    },
+    {
+      "source": "a",
+      "normal_form": "a",
+      "events": [],
+      "schedule_cuts": [
+        "a"
+      ]
+    },
+    {
+      "source": "@@iia",
+      "normal_form": "a",
+      "events": [
+        {
+          "rule": "i",
+          "path": [
+            0
+          ],
+          "before": "@ii",
+          "after": "@@isk"
+        },
+        {
+          "rule": "i",
+          "path": [
+            0,
+            0
+          ],
+          "before": "@is",
+          "after": "@@ssk"
+        },
+        {
+          "rule": "s",
+          "path": [
+            0
+          ],
+          "before": "@@@sskk",
+          "after": "@@sk@kk"
+        },
+        {
+          "rule": "s",
+          "path": [],
+          "before": "@@@sk@kka",
+          "after": "@@ka@@kka"
+        },
+        {
+          "rule": "k",
+          "path": [],
+          "before": "@@ka@@kka",
+          "after": "a"
+        }
+      ],
+      "schedule_cuts": [
+        "@@iia",
+        "@@@iska",
+        "@@@@sskka",
+        "@@@sk@kka",
+        "@@ka@@kka",
+        "a"
+      ]
+    },
+    {
+      "source": "@ia",
+      "normal_form": "@@ask",
+      "events": [
+        {
+          "rule": "i",
+          "path": [],
+          "before": "@ia",
+          "after": "@@ask"
+        }
+      ],
+      "schedule_cuts": [
+        "@ia",
+        "@@ask"
+      ]
+    },
+    {
+      "source": "@ai",
+      "normal_form": "@ai",
+      "events": [],
+      "schedule_cuts": [
+        "@ai"
+      ]
+    },
+    {
+      "source": "@@a@ibc",
+      "normal_form": "@@a@@bskc",
+      "events": [
+        {
+          "rule": "i",
+          "path": [
+            0,
+            1
+          ],
+          "before": "@ib",
+          "after": "@@bsk"
+        }
+      ],
+      "schedule_cuts": [
+        "@@a@ibc",
+        "@@a@@bskc"
+      ]
+    }
+  ],
+  "independent_reducer_agreements": [
+    "i",
+    "i",
+    "@ii",
+    "@ii",
+    "@@iii",
+    "@i@ii",
+    "@ai",
+    "@ia",
+    "@@aii",
+    "@i@ia",
+    "@@@aiii",
+    "@i@i@ia",
+    "i",
+    "@@iii",
+    "a",
+    "@@iia",
+    "@ia",
+    "@ai",
+    "@@a@ibc"
+  ],
+  "three_role_binding": {
+    "source": "@@a@ibc",
+    "entry_roles": [
+      0,
+      1,
+      2
+    ],
+    "exit_roles": [
+      0,
+      1,
+      2
+    ],
+    "port_leaves": [
+      "a",
+      "b",
+      "c"
+    ],
+    "role_reading": [
+      "{}",
+      "[]",
+      "()"
+    ],
+    "scope": "external declared policy over actual source leaves; not native aperture admission"
+  },
+  "pins": {
+    "experiments/four_iota_frames/checker.py": "a5442ae21fa3fa6c2427113dc099ea4853cfa3e1fa1c5dc25d1a4f7150b6cb0c",
+    "knowledge/received/iota-process-knowledge-2026-09-17-v1/materials/iota.md": "f2f13d6fefafb11d451dcc46166e0b77f35013a971460387ee5c0e9b6bf72454",
+    "experiments/iota_dual_expansion/contract.json": "de0ef442180f81248642bdaa9869171807a651f62402263602bee88340c2ac6e",
+    "experiments/iota_dual_expansion/checker.py": "97d733f09b01ab82391f25f877d473da8a8cb7d18de802db39e8b2df6a964d5f"
+  }
+}
