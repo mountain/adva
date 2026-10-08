@@ -1,0 +1,49 @@
+{
+  "schema": "adva.external-program-positivity-request.v0",
+  "program": {
+    "holes": [
+      "x"
+    ],
+    "steps": [
+      {
+        "name": "y",
+        "op": "div",
+        "args": [
+          "x",
+          "x"
+        ]
+      }
+    ],
+    "outputs": {
+      "y": "y"
+    }
+  },
+  "fillings": [
+    {
+      "x": "0"
+    },
+    {
+      "x": "1"
+    }
+  ],
+  "observations": {
+    "positive": {
+      "op": "gt",
+      "args": [
+        "out.y",
+        "0"
+      ]
+    }
+  },
+  "properties": {},
+  "theory": {
+    "policy": "basic",
+    "positive": [],
+    "negative": []
+  },
+  "query": [
+    "positive",
+    "all",
+    "empty"
+  ]
+}

@@ -1,0 +1,218 @@
+{
+  "schema": "adva.external-program-positivity-request.v0",
+  "program": {
+    "holes": [
+      "a",
+      "b",
+      "x",
+      "y"
+    ],
+    "steps": [
+      {
+        "name": "ax",
+        "op": "mul",
+        "args": [
+          "a",
+          "x"
+        ]
+      },
+      {
+        "name": "p",
+        "op": "add",
+        "args": [
+          "ax",
+          "b"
+        ]
+      },
+      {
+        "name": "q",
+        "op": "mul",
+        "args": [
+          "a",
+          "y"
+        ]
+      },
+      {
+        "name": "pp",
+        "op": "mul",
+        "args": [
+          "p",
+          "p"
+        ]
+      },
+      {
+        "name": "qq",
+        "op": "mul",
+        "args": [
+          "q",
+          "q"
+        ]
+      },
+      {
+        "name": "d",
+        "op": "add",
+        "args": [
+          "pp",
+          "qq"
+        ]
+      },
+      {
+        "name": "minus_p",
+        "op": "neg",
+        "args": [
+          "p"
+        ]
+      },
+      {
+        "name": "r",
+        "op": "div",
+        "args": [
+          "minus_p",
+          "d"
+        ]
+      },
+      {
+        "name": "s",
+        "op": "div",
+        "args": [
+          "q",
+          "d"
+        ]
+      },
+      {
+        "name": "rr",
+        "op": "mul",
+        "args": [
+          "r",
+          "r"
+        ]
+      },
+      {
+        "name": "shift",
+        "op": "sub",
+        "args": [
+          "s",
+          "1/2"
+        ]
+      },
+      {
+        "name": "shift_sq",
+        "op": "mul",
+        "args": [
+          "shift",
+          "shift"
+        ]
+      },
+      {
+        "name": "circle",
+        "op": "add",
+        "args": [
+          "rr",
+          "shift_sq"
+        ]
+      }
+    ],
+    "outputs": {
+      "r": "r",
+      "s": "s",
+      "circle": "circle"
+    }
+  },
+  "fillings": [
+    {
+      "a": "1",
+      "b": "0",
+      "x": "1",
+      "y": "1"
+    },
+    {
+      "a": "2",
+      "b": "1",
+      "x": "1/2",
+      "y": "1/2"
+    },
+    {
+      "a": "3",
+      "b": "-1",
+      "x": "2/3",
+      "y": "2/3"
+    },
+    {
+      "a": "4",
+      "b": "-3",
+      "x": "5/4",
+      "y": "3/4"
+    }
+  ],
+  "observations": {
+    "B": {
+      "op": "lt",
+      "args": [
+        "out.circle",
+        "1/4"
+      ]
+    },
+    "H": {
+      "op": "gt",
+      "args": [
+        "out.s",
+        "1/4"
+      ]
+    }
+  },
+  "properties": {
+    "both": {
+      "op": "and",
+      "args": [
+        "B",
+        "H"
+      ]
+    },
+    "triangle": {
+      "op": "xor",
+      "args": [
+        "B",
+        "H"
+      ]
+    }
+  },
+  "theory": {
+    "policy": "joint",
+    "positive": [
+      "B",
+      "H"
+    ],
+    "negative": []
+  },
+  "query": [
+    "B",
+    "H",
+    "both",
+    "triangle",
+    "all",
+    "empty"
+  ],
+  "domain": [
+    {
+      "op": "gt",
+      "args": [
+        "a",
+        "0"
+      ]
+    },
+    {
+      "op": "gt",
+      "args": [
+        "y",
+        "0"
+      ]
+    },
+    {
+      "op": "gt",
+      "args": [
+        "d",
+        "0"
+      ]
+    }
+  ]
+}
