@@ -1,0 +1,80 @@
+{
+  "schema": "adva.external-multihole-positivity-contract.v0",
+  "frozen_before_execution": "2026-10-08",
+  "question": "Can exact programs on two bijective four-real-hole coordinate spaces decide forced positivity relative to a fixed finite Boolean property algebra and declared policies?",
+  "level": "External exact finite calibration; no native semantic authority",
+  "programs": {
+    "source_holes": ["a", "b", "x", "y"],
+    "target_holes": ["a", "b", "p", "q"],
+    "domain": "a > 0 and y > 0; target a > 0 and q > 0",
+    "source": "p = a*x+b; q = a*y; d = p*p+q*q; retain(a,b,-p/d,q/d)",
+    "target": "d = p*p+q*q; retain(a,b,-p/d,q/d)",
+    "coordinate_map": "(a,b,x,y) -> (a,b,a*x+b,a*y)",
+    "inverse": "(a,b,p,q) -> (a,b,(p-b)/a,q/a)",
+    "retained_equivalence": "A rational coordinate bijection and region-incidence transport on the frozen finite carrier; no expression-word, source, occurrence, history or cell equivalence",
+    "fillings": [["1","0","1","1"],["2","1","1/2","1/2"],["3","-1","2/3","2/3"],["4","-3","5/4","3/4"]],
+    "target_order": [3,2,1,0],
+    "observers": {
+      "B": "r*r+(s-1/2)*(s-1/2)<1/4, pulled back as a*y>1",
+      "H": "s>1/4, pulled back as (a*x+b)^2+(a*y-2)^2<4"
+    }
+  },
+  "assumptions": [
+    "Four frozen legal fillings only; exact rational arithmetic",
+    "All 16 subsets are properties; the two observations generate four distinct atoms",
+    "Static A1 means exactly one of a region and its complement is positive",
+    "Static A2 means positivity is upward closed under subset inclusion",
+    "Joint policy additionally requires an actual point in every positive region",
+    "Marked policy additionally fixes the realizing point to source index 2",
+    "No modal A3, A4, A5, general higher-order property domain or intrinsic positivity is implemented"
+  ],
+  "interface": "decide(query_mask, positive_masks, negative_masks, policy, fuel) -> classification, model witnesses and separate realization witness",
+  "outcomes": ["ForcedPositive","ForcedNegative","Underdetermined","Inconsistent","Unknown","InvalidInput"],
+  "cases": [
+    {"name":"unconstrained","positive":[],"negative":[]},
+    {"name":"two_positive_observations","positive":[12,5],"negative":[]},
+    {"name":"triangle_positive","positive":[12,5,9],"negative":[]},
+    {"name":"direct_conflict","positive":[5],"negative":[5]}
+  ],
+  "checker": {
+    "producer": "Enumerate all 256 complement choices and check all 81 subset incidences",
+    "independent": "Separately derive all upward families from 65,536 subset families using ordinary sets; compare complete model families, case classifications, returned witnesses and geometric incidence",
+    "negative_controls": ["Three individually inhabited positive regions have empty common intersection", "Forgetting a,b collides source index 2 with (2,1,0,1) and prevents marked positivity descent", "Division without its nonzero guard admits the spurious equation 0*y=0", "Zero fuel returns Unknown", "Contradictory positivity assumptions return Inconsistent", "Changed witness or coordinate evidence is rejected", "Output overwrite is refused"],
+    "acceptance": "Both ordinary and optimized producer runs byte-identical; independent receiver accepts exact evidence and rejects deliberate mutations; all 16 query results and all 12 basic model families transport across the reversed target order"
+  },
+  "protected_obligations": [
+    "Only external indices, never SourceId, OccurrenceId or native certificates",
+    "Coordinate transport does not authorize native rewrites or objectification",
+    "Inhabited regions are not automatically positive",
+    "Universality is not assigned a positivity value by this finite carrier",
+    "No stable kernel changes, dependency-lock changes, catalog growth or Pascal obligation discharge",
+    "Unknown and InvalidInput cannot be interpreted as nonexistence"
+  ],
+  "budget": {
+    "producer_runs": 2,
+    "independent_receiver_runs": 1,
+    "test_suites": 1,
+    "test_verifications": 4,
+    "test_decision_calls": 8,
+    "test_decision_fuel_per_call": 100000,
+    "test_receiver_cache": "At most one independently derived immutable model table per test process; checking mutations still counted, with no producer table trusted",
+    "producer_fuel_per_run": 100000,
+    "independent_family_candidates": 65536,
+    "independent_fuel": 10000000,
+    "campaign_wall_seconds": 60,
+    "campaign_cpu_seconds": 45,
+    "address_space_bytes": 268435456,
+    "each_child_wall_seconds": 12,
+    "output_bytes": 1048576,
+    "output_limit_scope": "Per file, enforced by RLIMIT_FSIZE in each child; stdout and stderr go to exclusive regular files, not unbounded captured pipes",
+    "total_retained_bytes": 16777216,
+    "cpu_limit_scope": "Aggregate parent and child CPU; parent hard limit and each child's remaining aggregate allowance with one second reserved for parent bookkeeping",
+    "maximum_child_launches": 5,
+    "automatic_retries": 0,
+    "scope_widening": false,
+    "checkpoint_policy": "No continuation checkpoint or fuel reset; source hashes frozen before launching the single campaign; failures retained outside the repository for an explicitly revised finite contract"
+  },
+  "exit": "Stop after the five bounded child launches or any failure/limit. Limits yield Unknown, not Inconsistent. Integration checks are documentary checks outside this semantic campaign.",
+  "cross_domain_justification": "Represent finite geometric observations as exact region incidence; transport complement, inclusion and common intersection along the explicit coordinate bijection, then solve a separately declared finite positivity theory.",
+  "authorship": "Codex (OpenAI), original project contribution under Unknown v0.3 through Mingli Yuan account proxy; not his authorship, review or correctness endorsement"
+}

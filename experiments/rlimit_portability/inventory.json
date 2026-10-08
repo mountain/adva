@@ -2,10 +2,10 @@
   "counts": {
     "historical-source": 15,
     "linux-only-install": 3,
-    "linux-required-entry": 7,
+    "linux-required-entry": 8,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 83
+    "unguarded-installation": 85
   },
   "files": [
     {
@@ -745,6 +745,18 @@
       ]
     },
     {
+      "category": "linux-required-entry",
+      "path": "experiments/iota_dual_expansion/checker.py",
+      "reason": "main rejects non-Linux with Unknown before installing limits; contract requires Linux",
+      "sha256": "97d733f09b01ab82391f25f877d473da8a8cb7d18de802db39e8b2df6a964d5f",
+      "sites": [
+        {
+          "function": "main",
+          "line": 168
+        }
+      ]
+    },
+    {
       "category": "unguarded-installation",
       "path": "experiments/iota_grid_embedding/check.py",
       "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
@@ -938,6 +950,22 @@
     },
     {
       "category": "unguarded-installation",
+      "path": "experiments/multihole_positivity/run_campaign.py",
+      "reason": "run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.",
+      "sha256": "0b054c3b1ebd8e50d06dddaffe257533ed12cb8ac47ed86f2cd457888d384d6c",
+      "sites": [
+        {
+          "function": "run",
+          "line": 29
+        },
+        {
+          "function": "limits",
+          "line": 57
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
       "path": "experiments/murphy/run.py",
       "reason": "Only Python children install AS; outer handler reports Failed on preexec refusal. Non-Python children do not execute this AS call.",
       "sha256": "9abd87ab645afb06901b2b45384e5360a492e9798c6b8c6e0f72c14a7b17b75a",
@@ -1124,6 +1152,22 @@
         {
           "function": "limits",
           "line": 112
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/program_positivity/run_campaign.py",
+      "reason": "run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.",
+      "sha256": "cf59443e3512ae0fa14171abe7824cd109fe75caf90111ee147c0c1741df7f9b",
+      "sites": [
+        {
+          "function": "run",
+          "line": 31
+        },
+        {
+          "function": "limits",
+          "line": 68
         }
       ]
     },
