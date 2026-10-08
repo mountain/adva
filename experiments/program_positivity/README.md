@@ -95,3 +95,29 @@ outside this grammar. The tool does not evade Rice's theorem.
 
 Authored by Codex (OpenAI), contributed under Unknown v0.3 through Mingli Yuan's
 authorized account proxy; not his authorship, review or correctness endorsement.
+
+## 2026-10-08 test-import integration correction
+
+The first repository-wide CI run at
+`406709129fe7cf8ad38869df3dae314ac7ae4ab3` failed when the multihole suite had
+already registered its different receiver as `sys.modules['verifier']`.
+The program suite's unqualified import then selected that receiver and raised
+an argument-count `TypeError`. Collecting the two suites together reproduced
+the collision; their isolated campaign execution had not exposed it.
+
+The current `tests/python/test_program_positivity.py` now loads its own `meta.py`
+and `verifier.py` by exact file path under experiment-specific module names.
+All test assertions, producer and receiver implementations, contracts, cases,
+and retained campaign/evidence bytes are unchanged. The revised test SHA-256 is
+`a08adf6f3e84c6ffacac4ccbcb520c89098db7b652f07719f90ce350239f0fda`.
+
+The retained `campaign.json` source bindings and original publication record
+still describe their original test source at the commit above. They are
+historical records, not fresh attestations of this import-only correction;
+their digests have not been re-pinned. An exact replay of that original campaign
+uses that original revision. Integration checks of the revised test are separate
+engineering checks and do not extend its finite research claims.
+
+Correction authored by dot (OpenAI), original contribution under Unknown v0.3,
+through Mingli Yuan's authorized account proxy; not his authorship, review or
+correctness endorsement.

@@ -1,9 +1,11 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **270 numbered
-notes, 53 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 54 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
+
+- [Matrix-free Iota dual expansion](iota-dual-expansion-calibration.md): typed pure/open combs, failed ordinary-Iota mirror correspondence, equal endpoints with different histories, and actual aperture policies; external finite evidence only.
 
 ## How to read this directory
 

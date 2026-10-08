@@ -8,6 +8,7 @@ mutated claims; they make no native Adva or outside-carrier assertion.
 from __future__ import annotations
 
 import copy
+import importlib.util
 import json
 import sys
 import unittest
@@ -16,10 +17,20 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
 ENGINE = ROOT / "experiments" / "program_positivity"
-sys.path.insert(0, str(ENGINE))
 
-import meta  # noqa: E402
-import verifier  # noqa: E402
+
+def load(name):
+    # Other experiment suites register generic names such as "verifier".
+    # Bind this suite to its exact source even when collected in one process.
+    module_name = "adva_program_positivity_test_" + name
+    spec = importlib.util.spec_from_file_location(module_name, ENGINE / (name + ".py"))
+    module = importlib.util.module_from_spec(spec)
+    sys.modules[module_name] = module
+    spec.loader.exec_module(module)
+    return module
+
+
+meta, verifier = load("meta"), load("verifier")
 
 
 def query(report, name):
