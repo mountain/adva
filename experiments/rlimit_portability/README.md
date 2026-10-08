@@ -301,3 +301,40 @@ python experiments/rlimit_portability/audit.py > experiments/rlimit_portability/
   still records the baseline digests of `audit.py` and `inventory.json`; those two
   digests are superseded by this re-pin, and its other recorded digests are
   unchanged.
+
+## 2026-10-08 re-pin for Iota dual expansion and current main
+
+PR #210 initially failed `test_inventory_and_pins`: its new
+`experiments/iota_dual_expansion/checker.py` was absent from the pinned inventory.
+Review of `main` confirms that lines 165-166 reject non-Linux with `Unknown`
+before the AS installation at line 168. It is a `linux-required-entry`, not an
+unguarded installation. The checker, its contract and retained evidence are
+unchanged; this classification does not claim Darwin execution or weaken the
+mandatory Linux memory limit.
+
+Integrating main at `406709129fe7cf8ad38869df3dae314ac7ae4ab3` also brings two
+new campaign runners into the scanned tree. Both install AS in their parent
+`run` before the campaign exception handler and again in child `limits`, without
+a platform gate or local refusal record. They remain
+`unguarded-installation`; their source and evidence are preserved.
+
+| Added file | AST reference lines | Classification |
+| --- | --- | --- |
+| `experiments/iota_dual_expansion/checker.py` | 168 | linux-required-entry |
+| `experiments/multihole_positivity/run_campaign.py` | 29, 57 | unguarded-installation |
+| `experiments/program_positivity/run_campaign.py` | 31, 68 | unguarded-installation |
+
+Regenerated with the same audit command recorded above. The resulting
+`inventory.json` SHA-256 is
+`147753c6906b55f273adfecae46ae46b23a38a109de1ed0ac6c18d0519701ae7`.
+The reviewed current-tree total is **115 files and 119 AST references**:
+8 linux-required entries, 3 linux-only installations, 3 refusal-recorded,
+1 mock-only, 15 historical copies and 85 unguarded installations. The prior
+baseline and 2026-09-24 re-pin remain historical records, including their counts
+and digests. No previous inventory row or frozen verification record is
+rewritten beyond adding these three reviewed entries and updating category
+totals.
+
+This is original engineering documentation by dot (OpenAI), contributed under
+Unknown v0.3 through Mingli Yuan's authorized account proxy. Account use does
+not imply his authorship, review or correctness guarantee.

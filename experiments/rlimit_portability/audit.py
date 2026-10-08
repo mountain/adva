@@ -15,6 +15,7 @@ GUARDED = {
     'experiments/borromean_longitude_audit/check.py': 'run rejects non-Linux with Exhausted before install',
     'experiments/sharkovsky_interval_extension/check.py': 'install rejects non-Linux with Exhausted',
     'experiments/triadic_period_bridge/check.py': 'install rejects non-Linux with Exhausted',
+    'experiments/iota_dual_expansion/checker.py': 'main rejects non-Linux with Unknown before installing limits; contract requires Linux',
 }
 CONDITIONAL = {
     'python/adva/quine_relay.py', 'experiments/phase_runner/run_six.py',
@@ -36,6 +37,8 @@ NOTES = {
     'experiments/japan_geostrophic_audit_v1/reproduce_full.py': 'AS is installed only in the --worker branch, which the parent reaches after a spent-ledger gate; largest declared budget here (540 s CPU, 6 GiB AS, 150 MB output).',
     'experiments/japan_geostrophic_audit_v1/verify_summary.py': 'AS is installed unconditionally at entry, before verification-inputs.json is read; no --worker branch and no platform gate.',
     'experiments/native_floquet_expression_v1/check.py': 'AS is installed unconditionally at entry with the alarm; no --worker branch and no platform gate.',
+    'experiments/multihole_positivity/run_campaign.py': 'run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.',
+    'experiments/program_positivity/run_campaign.py': 'run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.',
 }
 
 

@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **266 numbered
-notes, 54 named notes and 25 supporting directories**. Nothing here is a stable
+This directory holds the research record of the repository: **270 numbered
+notes, 54 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -38,6 +38,10 @@ declares for itself.
 - [Research 0255](0255-held-out-continuation-receiving.md) uses an answer-free Perl constructor to generate two new canonical continuation instances, then checks fresh Python and Node classifications and byte-identical tuple preservation while retaining every comparison divergence as unknown.
 - [Research 0256](0256-independent-construction-from-an-abstract-continuation-description.md) compares a Java standard-library construction from an abstract TSV with the frozen Perl route, retaining exact fourteen-payload agreement and four divergence controls after one pre-execution supervisor correction.
 - [Research 0257](0257-third-instance-after-generic-constructor-freeze.md) freezes two generic constructor sources in a prior commit, then gives them one later third instance absent from both sources and retains exact seven-payload agreement plus four divergence controls.
+- [Research 0258](0258-henkin-completion-galois-closure-and-observer-separation.md) connects Hintikka/Henkin completion, Galois theory/model closure, and separating event probes; the supplied 242-poset calibration replays byte-for-byte in ordinary and optimized Python, while native triadic halt-word realization and cell faithfulness remain Open.
+- [Research 0259](0259-henkin-witness-completion-and-process-neighborhood-duality.md) combines Henkin witness completion with the projective process-neighborhood pairing, proves conditional finite witness transport and persistence of old observation collisions, and separates realization, lifting, faithfulness, and universality; the native causal-prefix bridge remains Open.
+- [Research 0260](0260-finite-positivity-program-on-equivalent-multihole-spaces.md) implements an external exact positivity decision on two bijective four-hole arithmetic charts, separates static A1/A2 consistency from common realization, and transports all finite model and query results; native checking and universality remain Open.
+- [Research 0261](0261-external-program-positivity-metaprogram.md): a generic external rational-program interpreter derives finite observer regions from program input, returns complete positivity models and query witnesses, and is independently checked in one fourteen-request bounded campaign; native and universal decision claims remain withheld.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
@@ -877,6 +881,7 @@ Every file in this directory, so that no note is reachable only through a summar
 
 ### Supporting directories
 
+- [`0258-evidence/`](0258-evidence/)
 - [`0129-evidence/`](0129-evidence/)
 - [`0139-phase-runner-preflight/`](0139-phase-runner-preflight/)
 - [`0140-native-run-evidence/`](0140-native-run-evidence/)

@@ -1,0 +1,102 @@
+{
+  "automatic_retries": 0,
+  "byte_identical": true,
+  "child_cpu_seconds": 1.190413,
+  "elapsed_seconds": 1.333658,
+  "evidence_sha256": "c249c3ac8f9350ca1fe1c4350e5b3c26827115ec2d4f3a787795840b9d19f4f6",
+  "independent_receiver": {
+    "cache_hits": 0,
+    "derived_basic_families": 12,
+    "derived_joint_families": 4,
+    "family_candidates": 65536,
+    "native_status": "Unavailable",
+    "queries_checked": 384,
+    "schema": "adva.external-multihole-positivity-verification.v0",
+    "status": "Verified",
+    "verifier_sha256": "8a4bc92c8b232fbaf67fcfd59daa8e40677f072ed2d9f8435d55b2a30c584aa2",
+    "work": 1059191
+  },
+  "launches": [
+    {
+      "argv": [
+        "python",
+        "checker.py",
+        "--output",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.115848,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": "{\"cases\": 24, \"native_status\": \"Unavailable\", \"status\": \"ExternalExactPass\"}\n"
+    },
+    {
+      "argv": [
+        "python",
+        "-O",
+        "checker.py",
+        "--output",
+        "optimized.json"
+      ],
+      "elapsed_seconds": 0.266042,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": "{\"cases\": 24, \"native_status\": \"Unavailable\", \"status\": \"ExternalExactPass\"}\n"
+    },
+    {
+      "argv": [
+        "python",
+        "verifier.py",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.417207,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": "{\"cache_hits\":0,\"derived_basic_families\":12,\"derived_joint_families\":4,\"family_candidates\":65536,\"native_status\":\"Unavailable\",\"queries_checked\":384,\"schema\":\"adva.external-multihole-positivity-verification.v0\",\"status\":\"Verified\",\"verifier_sha256\":\"8a4bc92c8b232fbaf67fcfd59daa8e40677f072ed2d9f8435d55b2a30c584aa2\",\"work\":1059191}\n"
+    },
+    {
+      "argv": [
+        "python",
+        "test_multihole_positivity.py"
+      ],
+      "elapsed_seconds": 0.466567,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.353s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "python",
+        "checker.py",
+        "--output",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.065742,
+      "exit": 2,
+      "expected_exit": 2,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": "{\"reason\": \"output path already exists\", \"status\": \"RefusedOutput\"}\n"
+    }
+  ],
+  "native_status": "Unavailable",
+  "optimized_sha256": "c249c3ac8f9350ca1fe1c4350e5b3c26827115ec2d4f3a787795840b9d19f4f6",
+  "parent_cpu_seconds": 0.010684,
+  "schema": "adva.external-multihole-positivity-campaign.v0",
+  "source_bindings": {
+    "checker.py": "745e52fdee1f28bb707f991c638470bb46187fc8fc04294611b3810ad7afa26a",
+    "contract.json": "05feffcc6da4cc4e9abb1d4c79f62f559d5b4ce143ad619f899216adf08bd405",
+    "run_campaign.py": "0b054c3b1ebd8e50d06dddaffe257533ed12cb8ac47ed86f2cd457888d384d6c",
+    "test_multihole_positivity.py": "a0b01d12b5f1cf3635f148c23b1ce1bec4a78b0814e6fe5de26b7681ac577176",
+    "verifier.py": "8a4bc92c8b232fbaf67fcfd59daa8e40677f072ed2d9f8435d55b2a30c584aa2"
+  },
+  "status": "Passed",
+  "total_launches": 5
+}

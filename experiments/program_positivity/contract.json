@@ -1,0 +1,147 @@
+{
+  "authorship": "Codex (OpenAI), original contribution under Unknown v0.3 through Mingli Yuan account proxy; not his authorship, review or endorsement",
+  "bounds": {
+    "basic_candidates_per_request": 256,
+    "domain_guards": 8,
+    "fillings": 4,
+    "fuel_per_request": 200000,
+    "holes": 8,
+    "identifier_chars": 32,
+    "negative_premises": 24,
+    "observations": 8,
+    "outputs": 8,
+    "positive_premises": 24,
+    "predicate_depth": 16,
+    "properties": 16,
+    "queries": 16,
+    "rational_bits": 1024,
+    "rational_token_chars": 80,
+    "receiver_family_candidates": 65812,
+    "receiver_fuel": 10000000,
+    "request_bytes": 65536,
+    "steps": 64,
+    "tree_nodes": 256,
+    "wall_seconds_per_request": 8
+  },
+  "campaign": {
+    "batch_requests": 14,
+    "child_launches": 5,
+    "child_wall_seconds": 12,
+    "cpu_seconds": 45,
+    "enforcement": "One supervisor records frozen source hashes, aggregate parent/child CPU and launches; POSIX memory/CPU/file limits, bounded regular-file logs and child deadlines; immutable receiver model cache does not reset work",
+    "memory_bytes": 268435456,
+    "output_bytes_per_file": 1048576,
+    "producer_runs": 2,
+    "receiver_runs": 1,
+    "retries": 0,
+    "test_analyze_calls": 24,
+    "test_suites": 1,
+    "test_verify_calls": 12,
+    "total_output_bytes": 16777216,
+    "wall_seconds": 60
+  },
+  "cases": [
+    "mobius_joint",
+    "mobius_basic",
+    "mobius_target",
+    "triangle_joint",
+    "triangle_basic",
+    "square_marked",
+    "negative_identity",
+    "one_point",
+    "two_points",
+    "division_zero",
+    "zero_fuel",
+    "unsupported_loop",
+    "forward_reference",
+    "direct_conflict"
+  ],
+  "cross_domain_justification": "Exact evaluation derives finite region incidence from input program data. Set-theoretic complement and inclusion then encode a separately declared positivity theory. This is a conditional finite analysis, not a proof about all programs.",
+  "exit": "Stop on declared completion or the first failed/limited campaign child; retain failures. Any continuation needs an explicitly revised finite contract, with no automatic restart.",
+  "frozen_before_execution": "2026-10-08",
+  "input_language": {
+    "arities": "const accepts one rational literal; neg one operand; other arithmetic operations two. Predicate/region and/or take at least two children, not one, xor exactly two.",
+    "domain": "Optional predicate list checked at each filling after execution; a failed guard is InvalidInput and never silently drops a point",
+    "fillings": "A list of 1..4 indexed dictionaries mapping every hole to a canonical rational string. Equal coordinate dictionaries may remain separate trials; no observational quotient or native identity is inferred.",
+    "limits": "A request may lower logical fuel from the fixed maximum; no scope enlargement",
+    "observations": "Named predicate trees with eq/ne/lt/le/gt/ge over tokens, and and/or/not over predicates",
+    "operations": {
+      "add": 2,
+      "const": 1,
+      "div": 2,
+      "mul": 2,
+      "neg": 1,
+      "sub": 2
+    },
+    "program": "Ordered holes, ordered SSA step objects {name, op, args}, named outputs; identifiers are external local labels only",
+    "properties": "Named Boolean region trees over observation names, acyclic property references (forward references permitted), and reserved all/empty, with and/or/not/xor",
+    "property_domain": "The full powerset of the 1..4 supplied fillings, including regions not named by the observations",
+    "query": "An ordered list of named properties or observations",
+    "request_schema": "adva.external-program-positivity-request.v0",
+    "shape": "Required keys schema, program, fillings, observations, properties, theory, query; optional domain and limits. Identifiers match [A-Za-z_][A-Za-z0-9_]{0,31}; region and observation names are disjoint, all/empty reserved.",
+    "theory": "positive and negative property names, basic/joint/marked policy, marked index for marked policy",
+    "tokens": "A prior hole or step name, or a canonical reduced rational string; observers may also use out.label. No host-language eval, recursion, loops, imports or calls"
+  },
+  "level": "External research program and exact rational calibration; not native Adva IR or a universal semantic decider",
+  "mathematical_assumptions": [
+    "Exact Fraction arithmetic with a checked nonzero divisor",
+    "Static A1 selects exactly one member of every complementary pair",
+    "Static A2 preserves positivity under subset inclusion",
+    "Joint policy demands one filling common to every positive region",
+    "Marked policy fixes that filling; these are explicitly chosen interpretations, not intrinsic goodness",
+    "All semantic claims concern the supplied finite carrier only; arbitrary program behavior outside it is unresolved"
+  ],
+  "outcomes": {
+    "program": [
+      "Analyzed",
+      "UndefinedOnCarrier",
+      "InvalidInput",
+      "Unsupported",
+      "Unknown"
+    ],
+    "query": [
+      "ForcedPositive",
+      "ForcedNegative",
+      "Underdetermined",
+      "Inconsistent",
+      "Unknown"
+    ],
+    "receiver": [
+      "Verified",
+      "NoClaim",
+      "Rejected",
+      "Unknown"
+    ]
+  },
+  "protected": [
+    "No native types, SourceId, OccurrenceId, histories, cells, certificates or Seal are created",
+    "No arbitrary host code is executed; all input is data in the external grammar",
+    "Source structure is retained as request data but no native history semantics is inferred",
+    "Undefined, unsupported and exhausted inputs cannot produce decisive positivity claims",
+    "Underdetermined is complete theory ambiguity and differs from computational Unknown",
+    "No arbitrary Turing-program decision, intrinsic positivity, full modal A1..A5, general CAD or Wu algorithm is claimed",
+    "Legacy Research 0260 and its evidence remain unchanged",
+    "No machine specification, stable API, dependency lock, library catalog or Pascal obligation is changed"
+  ],
+  "question": "Can a metaprogram receive different finite rational arithmetic programs as data, evaluate their declared finite fillings and observations, and decide positivity entailment under an explicit finite theory?",
+  "retained_data": "Canonical request digest, program trace and outputs per filling, observer incidence, named region masks, complete surviving positivity families, positive/negative model witnesses, common-realizer indices, fuel and residuals",
+  "schema": "adva.external-program-positivity-contract.v0",
+  "verification": {
+    "acceptance": "Normal and optimized batch outputs byte-identical; independent receiver verifies all decisive claims and explicitly classifies no-claim reports; unit and mutation checks pass",
+    "controls": [
+      "Different input programs yield different incidence",
+      "Reversed equivalent chart transports all queries and common-realizer indices; a separate marked-policy program fixes its declared filling",
+      "Undefined divisor returns an explicit finite counterexample",
+      "Unsupported loop is withheld",
+      "Forward reference is invalid",
+      "No fuel is Unknown",
+      "Both positive and negative interpretations are retained",
+      "Conflicting premises are Inconsistent",
+      "Mutated output, region, model or query witness is rejected",
+      "Request substitution is rejected",
+      "Existing output is refused before evaluation"
+    ],
+    "producer": "Direct SSA evaluator and complete complement-choice positivity census",
+    "receiver": "Independent recursive evaluation from expression dependencies and independently enumerated ordinary-set positivity families; no producer import"
+  }
+}
