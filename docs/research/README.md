@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **268 numbered
+This directory holds the research record of the repository: **269 numbered
 notes, 53 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -38,6 +38,7 @@ declares for itself.
 - [Research 0257](0257-third-instance-after-generic-constructor-freeze.md) freezes two generic constructor sources in a prior commit, then gives them one later third instance absent from both sources and retains exact seven-payload agreement plus four divergence controls.
 - [Research 0258](0258-henkin-completion-galois-closure-and-observer-separation.md) connects Hintikka/Henkin completion, Galois theory/model closure, and separating event probes; the supplied 242-poset calibration replays byte-for-byte in ordinary and optimized Python, while native triadic halt-word realization and cell faithfulness remain Open.
 - [Research 0259](0259-henkin-witness-completion-and-process-neighborhood-duality.md) combines Henkin witness completion with the projective process-neighborhood pairing, proves conditional finite witness transport and persistence of old observation collisions, and separates realization, lifting, faithfulness, and universality; the native causal-prefix bridge remains Open.
+- [Research 0260](0260-finite-positivity-program-on-equivalent-multihole-spaces.md) implements an external exact positivity decision on two bijective four-hole arithmetic charts, separates static A1/A2 consistency from common realization, and transports all finite model and query results; native checking and universality remain Open.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
