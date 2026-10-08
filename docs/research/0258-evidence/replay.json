@@ -1,0 +1,69 @@
+{
+  "author": "Codex (OpenAI)",
+  "date": "2026-10-08",
+  "execution_scope": "Replay of the frozen abstract finite-poset v0; no native Adva command or semantic identity",
+  "executions": [
+    {
+      "byte_identical_to_retained": true,
+      "exit_code": 0,
+      "mode": "ordinary",
+      "output_sha256": "ecf16e7679285078ba91c49c39296475b09caef08f727250db2d04b550a75f72"
+    },
+    {
+      "byte_identical_to_retained": true,
+      "exit_code": 0,
+      "mode": "optimized",
+      "output_sha256": "ecf16e7679285078ba91c49c39296475b09caef08f727250db2d04b550a75f72"
+    }
+  ],
+  "host": "Linux",
+  "inspected_commit": "6d7ab990021f201d189c92be5d3729b3a9d4bf42",
+  "not_claimed": [
+    "Native Adva correctness or admission",
+    "Independent verified kernel",
+    "General Henkin completeness for Adva",
+    "Faithfulness on proof or coherence cells"
+  ],
+  "python": "3.12.14",
+  "repository": "mountain/adva",
+  "repository_validation": {
+    "admission_payload_digests": "Passed",
+    "attempts_retained": [
+      {
+        "outcome": "Unavailable: no pytest installed; no test body ran",
+        "step": "pytest entry point"
+      },
+      {
+        "outcome": "Path resolution failed after index checks; corrected by resolving the repository absolute path; no source or retained report changed",
+        "step": "first extra source-copy comparison wrapper"
+      }
+    ],
+    "research_index": {
+      "existing_check_count": 8,
+      "result": "Passed",
+      "runner": "stdlib runpy invokes the unchanged eight test functions; pytest unavailable on this host"
+    },
+    "supplied_bytes_unchanged": "Passed"
+  },
+  "resource_scope": {
+    "candidate_family_unchanged": true,
+    "no_wall_time_or_memory_benchmark_claim": true,
+    "poset_sizes": [
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "retained_report": {
+    "bytes": 1798,
+    "path": "henkin_faithfulness_finite_posets_v0.json",
+    "sha256": "ecf16e7679285078ba91c49c39296475b09caef08f727250db2d04b550a75f72"
+  },
+  "schema": "adva.research.external-finite-replay.v1",
+  "source": {
+    "bytes": 5987,
+    "path": "henkin_faithfulness_finite_posets_v0.py",
+    "sha256": "a0fb1450ff116c1f80c95cd22bb87595df0d8e6134f43e60ea6db6d45aabf681"
+  }
+}
