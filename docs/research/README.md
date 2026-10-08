@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **265 numbered
+This directory holds the research record of the repository: **266 numbered
 notes, 53 named notes and 25 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
