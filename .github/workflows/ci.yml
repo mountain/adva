@@ -210,6 +210,8 @@ jobs:
       - run: pytest
       - name: Replay the frozen third-instance continuation constructors
         run: pytest tests/test_continuation_constructor_generalization.py
+      - name: Replay the frozen observer identity collision
+        run: pytest tests/test_observer_identity_collision.py
       - name: Re-receive the frozen structured self compiler
         if: matrix.python-version == '3.12'
         run: |
