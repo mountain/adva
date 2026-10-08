@@ -208,6 +208,8 @@ jobs:
       - run: python -m pip install --upgrade pip
       - run: python -m pip install '.[test]'
       - run: pytest
+      - name: Replay the frozen third-instance continuation constructors
+        run: pytest tests/test_continuation_constructor_generalization.py
       - name: Re-receive the frozen structured self compiler
         if: matrix.python-version == '3.12'
         run: |
