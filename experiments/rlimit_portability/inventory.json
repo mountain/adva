@@ -5,7 +5,7 @@
     "linux-required-entry": 8,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 85
+    "unguarded-installation": 86
   },
   "files": [
     {
@@ -1168,6 +1168,22 @@
         {
           "function": "limits",
           "line": 68
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/program_positivity/three_point/run_campaign.py",
+      "reason": "run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record; parent refusal aborts before campaign.json, and child preexec refusal raises SubprocessError outside the campaign handler.",
+      "sha256": "caf22927b0e772e4343ae893f441f04af7c5fc979c515e14423cdf1bd9c03577",
+      "sites": [
+        {
+          "function": "run",
+          "line": 32
+        },
+        {
+          "function": "limits",
+          "line": 69
         }
       ]
     },
