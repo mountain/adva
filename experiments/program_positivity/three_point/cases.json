@@ -1,0 +1,493 @@
+{
+  "basic": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [],
+      "policy": "basic",
+      "positive": []
+    }
+  },
+  "joint": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [],
+      "policy": "joint",
+      "positive": []
+    }
+  },
+  "joint_negative_pair": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [
+        "pair"
+      ],
+      "policy": "joint",
+      "positive": []
+    }
+  },
+  "marked_conflict": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 0,
+      "negative": [
+        "pair"
+      ],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "marked_one": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 1,
+      "negative": [],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "marked_two": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 2,
+      "negative": [],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "marked_zero": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 0,
+      "negative": [],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "partial_fuel": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      },
+      {
+        "x": "2"
+      }
+    ],
+    "limits": {
+      "fuel": 200
+    },
+    "observations": {
+      "large": {
+        "args": [
+          "out.y",
+          "1"
+        ],
+        "op": "gt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "y": "y"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "y",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {
+      "pair": {
+        "args": [
+          "large"
+        ],
+        "op": "not"
+      }
+    },
+    "query": [
+      "pair",
+      "large",
+      "all",
+      "empty"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [],
+      "policy": "basic",
+      "positive": []
+    }
+  }
+}

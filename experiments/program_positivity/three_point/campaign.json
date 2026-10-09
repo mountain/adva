@@ -1,0 +1,182 @@
+{
+  "automatic_retries": 0,
+  "batch_requests": 8,
+  "byte_identical": true,
+  "child_cpu_seconds": 0.483086,
+  "elapsed_seconds": 0.531139,
+  "evidence_sha256": "629caaa7c34612ba4ee36eb8178d1fa71ec94597a376418a4a49c817fec89b2c",
+  "independent_receiver": {
+    "cache_hits": 6,
+    "family_candidates": 256,
+    "reports": {
+      "basic": {
+        "cache_hits": 0,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 2937
+      },
+      "joint": {
+        "cache_hits": 1,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 3134
+      },
+      "joint_negative_pair": {
+        "cache_hits": 2,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 3319
+      },
+      "marked_conflict": {
+        "cache_hits": 3,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 3498
+      },
+      "marked_one": {
+        "cache_hits": 4,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 3683
+      },
+      "marked_two": {
+        "cache_hits": 5,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 3868
+      },
+      "marked_zero": {
+        "cache_hits": 6,
+        "family_candidates": 256,
+        "reason": "Finite arithmetic, region incidence, complete model census and query witnesses are verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "Verified",
+        "work": 4053
+      },
+      "partial_fuel": {
+        "cache_hits": 6,
+        "family_candidates": 256,
+        "reason": "No decisive positivity claim was emitted; no semantic theorem is verified.",
+        "schema": "adva.external-program-positivity-verification.v0",
+        "scope": "declared-finite-carrier",
+        "status": "NoClaim",
+        "work": 4109
+      }
+    },
+    "schema": "adva.external-program-positivity-verification.v0",
+    "status": "Verified",
+    "verifier_sha256": "4ea234e6efc9818fb5c13fbbae873d976cc7094a9b68750b440e1881c4a28c47",
+    "work": 4109
+  },
+  "launches": [
+    {
+      "argv": [
+        "python",
+        "meta.py",
+        "--batch",
+        "cases.json",
+        "--output",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.065475,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "python",
+        "-O",
+        "meta.py",
+        "--batch",
+        "cases.json",
+        "--output",
+        "optimized.json"
+      ],
+      "elapsed_seconds": 0.216123,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "python",
+        "verifier.py",
+        "cases.json",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.065749,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "",
+      "stdout": "{\"cache_hits\":6,\"family_candidates\":256,\"reports\":{\"basic\":{\"cache_hits\":0,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":2937},\"joint\":{\"cache_hits\":1,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":3134},\"joint_negative_pair\":{\"cache_hits\":2,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":3319},\"marked_conflict\":{\"cache_hits\":3,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":3498},\"marked_one\":{\"cache_hits\":4,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":3683},\"marked_two\":{\"cache_hits\":5,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":3868},\"marked_zero\":{\"cache_hits\":6,\"family_candidates\":256,\"reason\":\"Finite arithmetic, region incidence, complete model census and query witnesses are verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"Verified\",\"work\":4053},\"partial_fuel\":{\"cache_hits\":6,\"family_candidates\":256,\"reason\":\"No decisive positivity claim was emitted; no semantic theorem is verified.\",\"schema\":\"adva.external-program-positivity-verification.v0\",\"scope\":\"declared-finite-carrier\",\"status\":\"NoClaim\",\"work\":4109}},\"schema\":\"adva.external-program-positivity-verification.v0\",\"status\":\"Verified\",\"verifier_sha256\":\"4ea234e6efc9818fb5c13fbbae873d976cc7094a9b68750b440e1881c4a28c47\",\"work\":4109}\n"
+    },
+    {
+      "argv": [
+        "python",
+        "test_program_positivity_three_point.py"
+      ],
+      "elapsed_seconds": 0.11605,
+      "exit": 0,
+      "expected_exit": 0,
+      "outcome": "AsDeclared",
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.016s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "argv": [
+        "python",
+        "meta.py",
+        "--batch",
+        "cases.json",
+        "--output",
+        "ordinary.json"
+      ],
+      "elapsed_seconds": 0.065376,
+      "exit": 2,
+      "expected_exit": 2,
+      "outcome": "AsDeclared",
+      "stderr": "metaprogram: [Errno 17] File exists: '/workspace/scratch/f639ebb15f5b/three-point-run/ordinary.json'\n",
+      "stdout": ""
+    }
+  ],
+  "native_status": "Unavailable",
+  "optimized_sha256": "629caaa7c34612ba4ee36eb8178d1fa71ec94597a376418a4a49c817fec89b2c",
+  "parent_cpu_seconds": 0.008101,
+  "schema": "adva.three-point-positivity-campaign.v0",
+  "source_bindings": {
+    "experiments/program_positivity/contract.json": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+    "experiments/program_positivity/meta.py": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17",
+    "experiments/program_positivity/three_point/cases.json": "fc3854ccb55a4eb2f4b63ee660c6790b04d5f71039b4d6a7fc363c902d15f31a",
+    "experiments/program_positivity/three_point/contract.json": "416ac10ed806015681eecf45e2ff28906efc1a956dbf0d7a61d1ef00cd31f6ad",
+    "experiments/program_positivity/three_point/run_campaign.py": "caf22927b0e772e4343ae893f441f04af7c5fc979c515e14423cdf1bd9c03577",
+    "experiments/program_positivity/verifier.py": "4ea234e6efc9818fb5c13fbbae873d976cc7094a9b68750b440e1881c4a28c47",
+    "tests/python/test_program_positivity_three_point.py": "0859e4c4fae4a7c23d7937510c53e24f788789a0953f5046d37edfd3b0adbabf"
+  },
+  "status": "Passed",
+  "total_launches": 5
+}
