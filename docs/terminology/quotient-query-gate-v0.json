@@ -1,0 +1,37 @@
+{
+  "term": "quotient-query-gate",
+  "version": "v0",
+  "status": "Proposed",
+  "introduced": "2026-10-09",
+  "operation": {
+    "input": "A finite carrier C, a declared surjection q:C->Q, and a proposition region S subset C",
+    "output": [
+      "Descends(T), with the unique T subset Q satisfying S=q^{-1}(T)",
+      "NonSaturated(c,c'), with q(c)=q(c') and exactly one of c,c' in S"
+    ]
+  },
+  "applicability": [
+    "C and Q are finite and explicitly indexed",
+    "q has matching arity and is onto consecutive quotient labels",
+    "S is an explicit region on C"
+  ],
+  "witness": {
+    "Descends": "The quotient mask T and exact round-trip equality q^{-1}(T)=S",
+    "NonSaturated": "A same-fibre pair with unequal S membership"
+  },
+  "refusal": [
+    "Mismatched arity",
+    "Negative or non-consecutive labels",
+    "Non-surjective q",
+    "Any claimed Descends result whose pullback differs from S"
+  ],
+  "replay": "Scan each q-fibre for constant membership; if constant, assemble the unique quotient mask and pull it back; otherwise return the first differing pair in index order.",
+  "tested_reuse": [
+    "Three-point square observation quotient with fibres {0,1},{2}",
+    "Fresh four-point quotient with fibres {0,1},{2,3}"
+  ],
+  "comparison_boundary": "An unchecked direct image maps singleton {0} to a quotient class whose pullback is a larger set; the gate refuses the same input with a concrete fibre witness. No speedup claim is made.",
+  "residual": "This term authorizes only proposition descent. It does not merge semantic identities, construct a quotient program, choose an exact lift, create a native certificate, or establish free, Close, M6 closure, hypothesized arithmetic truth, or arithmetic universality.",
+  "evidence": "experiments/quotient_query_gate/evidence/execution.json",
+  "authorship": "Codex (OpenAI), project-original under Unknown v0.3 through Mingli Yuan's authorized account proxy; not his authorship, review or endorsement"
+}

@@ -1,0 +1,43 @@
+{
+  "schema": "adva.quotient-query-gate.contract.v0",
+  "base_commit": "435f6e042f09c421234c81c7cdb994ccfacda03f",
+  "question": "Which positivity queries descend through a finite observation quotient without changing the question, and how many exact A1/A2 models remain above each quotient model?",
+  "budget": {
+    "wall_seconds": 30,
+    "candidate_families": 100000,
+    "child_launches": 3,
+    "memory_bytes": 268435456,
+    "output_bytes_per_file": 1048576
+  },
+  "fixtures": [
+    {
+      "name": "three_point_square",
+      "carrier_size": 3,
+      "quotient": [0, 0, 1],
+      "named_query_quotient_mask": 1,
+      "identity_sensitive_masks": [1, 2]
+    },
+    {
+      "name": "four_point_reuse",
+      "carrier_size": 4,
+      "quotient": [0, 0, 1, 1],
+      "named_query_quotient_mask": 1,
+      "identity_sensitive_masks": [1, 4]
+    }
+  ],
+  "controls": [
+    "wrong lifted region",
+    "wrong lift multiplicity",
+    "non-saturated singleton claimed to descend",
+    "omitted exact model",
+    "changed query classification",
+    "non-surjective quotient"
+  ],
+  "protected": [
+    "Exact carrier indices remain distinct",
+    "Descent is limited to quotient-saturated proposition regions",
+    "A quotient model does not select a unique exact lift",
+    "No native identity, ProgramSlice, certificate, free, Close or M6 filler is created"
+  ],
+  "authorship": "Codex (OpenAI), project-original under Unknown v0.3 through Mingli Yuan's authorized account proxy; not his authorship, review or endorsement"
+}
