@@ -40,8 +40,10 @@ The contract fixed two instances before execution:
 2. a fresh four-point reuse instance with fibres `{0,1}` and `{2,3}`.
 
 The run allowed at most 30 seconds, 100,000 counted candidate families, three
-child launches, 256 MiB address space, and one MiB per output file. There was no
-search expansion and no correction replay.
+child launches, and one MiB per output file. Child RSS was measured, but no hard
+address-space cap was installed. There was no search expansion. One correction
+replay removed an inaccurate 256 MiB contract claim after the publication
+review found that the supervisor measured rather than enforced memory.
 
 ## 2. General finite proposition
 
@@ -119,9 +121,9 @@ The retained campaign reports:
 - 24 query-gate checks;
 - **66,128 counted work units** total, below the 100,000 limit;
 - three child launches;
-- 1.222113689 seconds wall and 1.217505 seconds child CPU;
+- 0.92155568 seconds wall and 0.919793 seconds child CPU for the accepted replay;
 - 14,720 KiB maximum child RSS;
-- zero search candidates and zero correction replays.
+- zero search candidates and one correction replay.
 
 Ordinary and optimized producer outputs are byte-identical. The independent
 receiver returned `Verified` and rejected all six controls. Reproduce into a new

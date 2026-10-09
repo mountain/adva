@@ -54,7 +54,7 @@ def run(destination):
         "receiver_candidate_families": verified["receiver_candidate_families"],
         "gate_checks": sum(x["gate_checks"] for x in report["fixtures"]),
         "total_counted_work": report["producer_candidate_families"] + verified["receiver_candidate_families"] + sum(x["gate_checks"] for x in report["fixtures"]),
-        "search_candidates": 0, "correction_replays": 0,
+        "search_candidates": 0, "correction_replays": 1,
         "result_sha256": sha(result), "optimized_sha256": sha(optimized), "verification_sha256": sha(receipt)
     }
     if telemetry["total_counted_work"] > budget["candidate_families"] or telemetry["elapsed_seconds"] > budget["wall_seconds"]:
