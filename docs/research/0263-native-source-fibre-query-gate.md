@@ -101,7 +101,10 @@ The one-copy fixture performs 20 units for the accepted query and 16 for the
 rejected query, for 36 units. Each of the two copied fibres in the reuse
 fixture performs 30 accepted-query units and 25 rejected-query units, for 110
 units. The total is therefore **146 finite comparison/pullback units**, with
-zero search candidates and no correction replay in the frozen implementation.
+zero search candidates. The first CI launch stopped at `rustfmt --check`
+before compiling or executing the test. The single permitted correction
+applied only the formatter's mechanical diff; the frozen objects, queries and
+counts did not change.
 
 Replay:
 
