@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **271 numbered
+This directory holds the research record of the repository: **273 numbered
 notes, 54 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -46,6 +46,8 @@ for the two distinct 0259 notes and pinned successor disambiguations.
 - [Research 0259](0259-henkin-witness-completion-and-process-neighborhood-duality.md) combines Henkin witness completion with the projective process-neighborhood pairing, proves conditional finite witness transport and persistence of old observation collisions, and separates realization, lifting, faithfulness, and universality; the native causal-prefix bridge remains Open.
 - [Research 0260](0260-finite-positivity-program-on-equivalent-multihole-spaces.md) implements an external exact positivity decision on two bijective four-hole arithmetic charts, separates static A1/A2 consistency from common realization, and transports all finite model and query results; native checking and universality remain Open.
 - [Research 0261](0261-external-program-positivity-metaprogram.md): a generic external rational-program interpreter derives finite observer regions from program input, returns complete positivity models and query witnesses, and is independently checked in one fourteen-request bounded campaign; native and universal decision claims remain withheld.
+- [Research 0262](0262-quotient-query-gate-and-nonunique-exact-lifts.md) proves the finite saturated-query criterion and calibrates it on three- and four-point carriers: query classifications descend, while exact A1/A2 lifts are generally non-unique and identity-sensitive singleton queries are refused.
+- [Research 0263](0263-native-source-fibre-query-gate.md) instantiates the same gate on two Rust-checked `ProgramSlice` carriers: complete source fibres descend, while selecting one copied occurrence is refused with a same-source, different-occurrence-and-path witness.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.

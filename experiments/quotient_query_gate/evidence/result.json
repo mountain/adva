@@ -1,0 +1,751 @@
+{
+  "base_commit": "435f6e042f09c421234c81c7cdb994ccfacda03f",
+  "conclusion": "Saturated queries descend, but quotient models need not have unique exact lifts; non-saturated queries are refused with a fibre counterexample.",
+  "fixtures": [
+    {
+      "basic": {
+        "exact_models": [
+          [
+            1,
+            3,
+            5,
+            7
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            3,
+            5,
+            6,
+            7
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        "exact_query": "Underdetermined",
+        "lift_multiplicity": {
+          "1,3": 3,
+          "2,3": 1
+        },
+        "quotient_models": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "quotient_query": "Underdetermined"
+      },
+      "carrier_size": 3,
+      "gate_checks": 8,
+      "gates": {
+        "0": {
+          "quotient_mask": 0,
+          "status": "Descends"
+        },
+        "1": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "2": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "3": {
+          "quotient_mask": 1,
+          "status": "Descends"
+        },
+        "4": {
+          "quotient_mask": 2,
+          "status": "Descends"
+        },
+        "5": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "6": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "7": {
+          "quotient_mask": 3,
+          "status": "Descends"
+        }
+      },
+      "joint": {
+        "exact_models": [
+          [
+            1,
+            3,
+            5,
+            7
+          ],
+          [
+            2,
+            3,
+            6,
+            7
+          ],
+          [
+            4,
+            5,
+            6,
+            7
+          ]
+        ],
+        "exact_query": "Underdetermined",
+        "lift_multiplicity": {
+          "1,3": 2,
+          "2,3": 1
+        },
+        "quotient_models": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "quotient_query": "Underdetermined"
+      },
+      "name": "three_point_square",
+      "producer_candidate_families": 20,
+      "quotient": [
+        0,
+        0,
+        1
+      ],
+      "quotient_size": 2,
+      "restrictions": [
+        {
+          "exact_model": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": [
+            0
+          ]
+        },
+        {
+          "exact_model": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": [
+            1
+          ]
+        },
+        {
+          "exact_model": [
+            3,
+            5,
+            6,
+            7
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": [
+            2
+          ]
+        }
+      ],
+      "saturated_exact_masks": [
+        0,
+        3,
+        4,
+        7
+      ]
+    },
+    {
+      "basic": {
+        "exact_models": [
+          [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            6,
+            7,
+            11,
+            13,
+            14,
+            15
+          ],
+          [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15
+          ],
+          [
+            3,
+            6,
+            7,
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          [
+            3,
+            7,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          [
+            4,
+            5,
+            6,
+            7,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            5,
+            6,
+            7,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            5,
+            7,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "exact_query": "Underdetermined",
+        "lift_multiplicity": {
+          "1,3": 6,
+          "2,3": 6
+        },
+        "quotient_models": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "quotient_query": "Underdetermined"
+      },
+      "carrier_size": 4,
+      "gate_checks": 16,
+      "gates": {
+        "0": {
+          "quotient_mask": 0,
+          "status": "Descends"
+        },
+        "1": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "10": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "11": {
+          "counterexample": [
+            2,
+            3
+          ],
+          "status": "NonSaturated"
+        },
+        "12": {
+          "quotient_mask": 2,
+          "status": "Descends"
+        },
+        "13": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "14": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "15": {
+          "quotient_mask": 3,
+          "status": "Descends"
+        },
+        "2": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "3": {
+          "quotient_mask": 1,
+          "status": "Descends"
+        },
+        "4": {
+          "counterexample": [
+            2,
+            3
+          ],
+          "status": "NonSaturated"
+        },
+        "5": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "6": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        },
+        "7": {
+          "counterexample": [
+            2,
+            3
+          ],
+          "status": "NonSaturated"
+        },
+        "8": {
+          "counterexample": [
+            2,
+            3
+          ],
+          "status": "NonSaturated"
+        },
+        "9": {
+          "counterexample": [
+            0,
+            1
+          ],
+          "status": "NonSaturated"
+        }
+      },
+      "joint": {
+        "exact_models": [
+          [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          [
+            4,
+            5,
+            6,
+            7,
+            12,
+            13,
+            14,
+            15
+          ],
+          [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ]
+        ],
+        "exact_query": "Underdetermined",
+        "lift_multiplicity": {
+          "1,3": 2,
+          "2,3": 2
+        },
+        "quotient_models": [
+          [
+            1,
+            3
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "quotient_query": "Underdetermined"
+      },
+      "name": "four_point_reuse",
+      "producer_candidate_families": 260,
+      "quotient": [
+        0,
+        0,
+        1,
+        1
+      ],
+      "quotient_size": 2,
+      "restrictions": [
+        {
+          "exact_model": [
+            1,
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": [
+            0
+          ]
+        },
+        {
+          "exact_model": [
+            2,
+            3,
+            6,
+            7,
+            10,
+            11,
+            14,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": [
+            1
+          ]
+        },
+        {
+          "exact_model": [
+            3,
+            5,
+            6,
+            7,
+            11,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            3,
+            5,
+            7,
+            9,
+            11,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            3,
+            6,
+            7,
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            3,
+            7,
+            9,
+            10,
+            11,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            1,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            4,
+            5,
+            6,
+            7,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": [
+            2
+          ]
+        },
+        {
+          "exact_model": [
+            5,
+            6,
+            7,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            5,
+            7,
+            9,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            6,
+            7,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            7,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": []
+        },
+        {
+          "exact_model": [
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15
+          ],
+          "quotient_model": [
+            2,
+            3
+          ],
+          "realizers": [
+            3
+          ]
+        }
+      ],
+      "saturated_exact_masks": [
+        0,
+        3,
+        12,
+        15
+      ]
+    }
+  ],
+  "producer_candidate_families": 280,
+  "schema": "adva.quotient-query-gate.result.v0",
+  "search_candidates": 0,
+  "status": "Passed"
+}
