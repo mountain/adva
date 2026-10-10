@@ -39,6 +39,7 @@ NOTES = {
     'experiments/native_floquet_expression_v1/check.py': 'AS is installed unconditionally at entry with the alarm; no --worker branch and no platform gate.',
     'experiments/multihole_positivity/run_campaign.py': 'run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.',
     'experiments/program_positivity/run_campaign.py': 'run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record.',
+    'experiments/program_positivity/three_point/run_campaign.py': 'run installs AS before its campaign try block; child preexec limits installs AS again. Neither installation has a platform gate or local refusal record; parent refusal aborts before campaign.json, and child preexec refusal raises SubprocessError outside the campaign handler.',
 }
 
 

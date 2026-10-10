@@ -1,0 +1,1371 @@
+{
+  "reports": {
+    "basic": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 4
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199649,
+        "used": 351
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "realizers": [
+            1
+          ]
+        },
+        {
+          "positive_masks": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "realizers": [
+            0
+          ]
+        },
+        {
+          "positive_masks": [
+            3,
+            5,
+            6,
+            7
+          ],
+          "realizers": []
+        },
+        {
+          "positive_masks": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "realizers": [
+            2
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "Underdetermined",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 1,
+          "negative_witness": 3,
+          "positive_model_count": 3,
+          "positive_witness": 0
+        },
+        {
+          "classification": "Underdetermined",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 3,
+          "negative_witness": 0,
+          "positive_model_count": 1,
+          "positive_witness": 3
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 4,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 4,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "9ff55cd80f4803569e282654f73ef517dc16ab8a776d7731cffea7b76cece5c0",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "joint": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 3
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199653,
+        "used": 347
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "realizers": [
+            1
+          ]
+        },
+        {
+          "positive_masks": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "realizers": [
+            0
+          ]
+        },
+        {
+          "positive_masks": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "realizers": [
+            2
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "Underdetermined",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 1,
+          "negative_witness": 2,
+          "positive_model_count": 2,
+          "positive_witness": 0
+        },
+        {
+          "classification": "Underdetermined",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 2,
+          "negative_witness": 0,
+          "positive_model_count": 1,
+          "positive_witness": 2
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 3,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 3,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "43aae2955f5478a75c14a72ed38a8b32f81be3cfa96f56771df28df2ac102884",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "joint_negative_pair": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 1
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199658,
+        "used": 342
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "realizers": [
+            2
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "426429b3bed4b0795c3790627969dbd3f19803b8ae074a63d64c40f938e5b93a",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "marked_conflict": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 0
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199664,
+        "used": 336
+      },
+      "full_mask": 7,
+      "models": [],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "Inconsistent",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Inconsistent",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Inconsistent",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Inconsistent",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "3232d9ade43c6a1ba075692e83be8746fc032a1c562dd1c104d1327d36ffed27",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "marked_one": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 1
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199661,
+        "used": 339
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            2,
+            3,
+            6,
+            7
+          ],
+          "realizers": [
+            1
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "3508f3fea334439cf2ad028c5aa59bb537a58362590a3d54c13d4dd1df1e97b4",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "marked_two": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 1
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199661,
+        "used": 339
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            4,
+            5,
+            6,
+            7
+          ],
+          "realizers": [
+            2
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "332fdf074f795061c9f8f877f41a377cfb2c37171064199c30ca7cffb418c541",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "marked_zero": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 16,
+        "complete": true,
+        "surviving_count": 1
+      },
+      "failure": null,
+      "fuel": {
+        "limit": 200000,
+        "remaining": 199661,
+        "used": 339
+      },
+      "full_mask": 7,
+      "models": [
+        {
+          "positive_masks": [
+            1,
+            3,
+            5,
+            7
+          ],
+          "realizers": [
+            0
+          ]
+        }
+      ],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1
+            ],
+            "value": true
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [
+              2
+            ],
+            "value": true
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "ForcedPositive",
+          "inhabited": {
+            "filling_indices": [
+              0,
+              1,
+              2
+            ],
+            "value": true
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 1,
+          "positive_witness": 0
+        },
+        {
+          "classification": "ForcedNegative",
+          "inhabited": {
+            "filling_indices": [],
+            "value": false
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 1,
+          "negative_witness": 0,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "48eba23bc3f786af5f5b17d6a3b426fe701414757795c33fd45964ef29f03288",
+      "residuals": [
+        "Behavior outside the declared finite carrier is unresolved.",
+        "The selected static policy is not a decision of intrinsic or full modal positivity."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Analyzed",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    },
+    "partial_fuel": {
+      "binding": {
+        "contract_sha256": "941a7576acdd83c2d94734e1a35ccf271c4423ec7fc7a60fb5c49acf596b4468",
+        "producer_sha256": "b623fc6696f3f9fb4777ba49ed62c43003bae90018a41a0894ba8de823cf8e17"
+      },
+      "census": {
+        "candidate_count": 8,
+        "complete": false,
+        "surviving_count": 0
+      },
+      "failure": {
+        "code": "fuel",
+        "message": "The declared logical fuel was exhausted."
+      },
+      "fuel": {
+        "limit": 200,
+        "remaining": 0,
+        "used": 200
+      },
+      "full_mask": 7,
+      "models": [],
+      "n": 3,
+      "queries": [
+        {
+          "classification": "Unknown",
+          "inhabited": {
+            "filling_indices": [],
+            "value": null
+          },
+          "mask": 3,
+          "name": "pair",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Unknown",
+          "inhabited": {
+            "filling_indices": [],
+            "value": null
+          },
+          "mask": 4,
+          "name": "large",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Unknown",
+          "inhabited": {
+            "filling_indices": [],
+            "value": null
+          },
+          "mask": 7,
+          "name": "all",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        },
+        {
+          "classification": "Unknown",
+          "inhabited": {
+            "filling_indices": [],
+            "value": null
+          },
+          "mask": 0,
+          "name": "empty",
+          "negative_model_count": 0,
+          "negative_witness": null,
+          "positive_model_count": 0,
+          "positive_witness": null
+        }
+      ],
+      "regions": {
+        "all": 7,
+        "empty": 0,
+        "large": 4,
+        "pair": 3
+      },
+      "request_sha256": "aa5d16e638f85bc883a1c33a0de3b176df791b2a58c1697472c4d4cf3e670ee0",
+      "residuals": [
+        "No decisive positivity claim is made for this request."
+      ],
+      "schema": "adva.external-program-positivity-report.v0",
+      "scope": "declared-finite-carrier",
+      "status": "Unknown",
+      "trace": [
+        {
+          "domain": [],
+          "filling": {
+            "x": "-1"
+          },
+          "index": 0,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "1"
+          },
+          "index": 1,
+          "observations": {
+            "large": false
+          },
+          "outputs": {
+            "y": "1"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "1"
+            }
+          ]
+        },
+        {
+          "domain": [],
+          "filling": {
+            "x": "2"
+          },
+          "index": 2,
+          "observations": {
+            "large": true
+          },
+          "outputs": {
+            "y": "4"
+          },
+          "steps": [
+            {
+              "name": "y",
+              "value": "4"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "schema": "adva.external-program-positivity-batch.v0"
+}

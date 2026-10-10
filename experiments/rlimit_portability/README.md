@@ -338,3 +338,54 @@ totals.
 This is original engineering documentation by dot (OpenAI), contributed under
 Unknown v0.3 through Mingli Yuan's authorized account proxy. Account use does
 not imply his authorship, review or correctness guarantee.
+
+## 2026-10-09 re-pin for the three-point positivity successor (PR #213)
+
+Independent execution of the unchanged audit at PR head
+`7f629579f6f7e53f53229cc6b722361ef42883f1`, based on
+`cce73004c2b4fbfb87d9ba1ccc66820423273cf6`, found exactly one added file.
+All 115 prior rows, including byte digests, classifications, reasons and AST
+sites, remain identical; there are no removed or changed prior entries.
+The unchanged `test_inventory_and_pins` reproduced the stale-inventory failure.
+
+| Added file | SHA-256 | AST reference sites | Classification |
+| --- | --- | --- | --- |
+| `experiments/program_positivity/three_point/run_campaign.py` | `caf22927b0e772e4343ae893f441f04af7c5fc979c515e14423cdf1bd9c03577` | `run`: 32; nested `limits`: 69 | unguarded-installation |
+
+The parent installs AS after creating the destination and reading the contract,
+but before its campaign `try` block. Installation refusal therefore aborts
+before a campaign report is written. The nested child installer is passed as
+`preexec_fn`; a refusal there raises `subprocess.SubprocessError`, which is not
+caught by the child timeout handler or the campaign's
+`(RuntimeError, OSError, ValueError)` handler. Neither installer has a platform
+gate or local refusal record. This is not a Linux-required guarded entry and
+supplies no Darwin memory-limit guarantee. `audit.py` adds only this reviewed
+per-file explanation; its scanning and classification rules are unchanged.
+
+Regenerated with the existing audit command. The new `inventory.json` SHA-256 is
+`d24dc8075ed7c6d62964463fc2312e68b194d8d0e88379559260bd225ddb57d4`;
+the previous pin was
+`147753c6906b55f273adfecae46ae46b23a38a109de1ed0ac6c18d0519701ae7`.
+Current totals are **116 files and 121 AST references**: 86 unguarded
+installations; the other category totals remain 8 Linux-required entries,
+3 Linux-only installations, 3 refusal-recorded, 1 mock-only and 15 historical
+copies. Two AST sites do not imply only two dynamic executions.
+
+Local verification: the unchanged portability suite passes all 10 tests after
+re-pin; original and three-point positivity suites pass all 15 tests together.
+Equality checks reject an omitted inventory row, a wrong source digest and a
+wrong AST line. The original missing-row failure is retained in the preceding
+PR CI run, not erased or bypassed. Local pytest was unavailable; complete Rust
+and Python 3.11/3.12/3.13 validation remains the remote CI gate.
+
+This change updates only this README, the per-file audit note and the current
+inventory. It preserves all experiment sources, resource contracts, evidence,
+prior README audit sections, `verification.json` and retained replay bytes.
+No experiment is rerun with changed resource semantics or enlarged conclusions.
+PR #212 is an independent documentary citation correction on the same base;
+its four paths do not overlap these three audit paths or PR #213's seven
+successor paths. No dependency lock or registry change is required.
+
+Authored and reviewed by Codex (OpenAI), original engineering contribution under
+Unknown v0.3, submitted through Mingli Yuan's authorized GitHub account proxy.
+Account use is not his authorship, review, endorsement or correctness guarantee.
