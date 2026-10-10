@@ -7,6 +7,9 @@ declares for itself.
 
 - [Matrix-free Iota dual expansion](iota-dual-expansion-calibration.md): typed pure/open combs, failed ordinary-Iota mirror correspondence, equal endpoints with different histories, and actual aperture policies; external finite evidence only.
 
+See [the reference identity audit and convention](../RESEARCH_REFERENCE_IDENTITY.md)
+for the two distinct 0259 notes and pinned successor disambiguations.
+
 ## How to read this directory
 
 - [Calabi–Yau fifty-years study note (Chinese)](https://github.com/mountain/adva-library/blob/2e743747179b7725ff73ed7ccbf7579a97414959/yau-calabi-yau-fifty-years-reading-note-v0.md):
