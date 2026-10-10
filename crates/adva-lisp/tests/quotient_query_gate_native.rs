@@ -7,8 +7,7 @@
 //! source fibre.
 
 use adva_ir::{
-    HistoryEvent, SourceId, TriadicCutIncidenceV0, TriadicDomainV0,
-    TriadicObserverPolicyV0,
+    HistoryEvent, SourceId, TriadicCutIncidenceV0, TriadicDomainV0, TriadicObserverPolicyV0,
 };
 use adva_lisp::{
     analyze_triadic_observer_transition_v0, compile_function, link_modules, parse_module,
@@ -49,10 +48,7 @@ enum QueryGate<L> {
 /// when the proposition descends. The full pair scan is retained even after a
 /// first obstruction so the declared finite cost does not depend on witness
 /// order.
-fn gate_query<L: Clone + Ord>(
-    quotient: &[L],
-    selected: &BTreeSet<usize>,
-) -> (QueryGate<L>, usize) {
+fn gate_query<L: Clone + Ord>(quotient: &[L], selected: &BTreeSet<usize>) -> (QueryGate<L>, usize) {
     assert!(selected.iter().all(|index| *index < quotient.len()));
 
     let mut first_obstruction = None;
@@ -117,10 +113,7 @@ fn source_fibres(incidences: &[TriadicCutIncidenceV0]) -> BTreeMap<SourceId, Vec
     fibres
 }
 
-fn check_fibre(
-    incidences: &[TriadicCutIncidenceV0],
-    indices: &[usize],
-) -> (usize, usize) {
+fn check_fibre(incidences: &[TriadicCutIncidenceV0], indices: &[usize]) -> (usize, usize) {
     assert_eq!(indices.len(), 2, "the declared fixture uses copy siblings");
 
     let quotient = incidences
@@ -175,11 +168,13 @@ fn one_copy_accepts_the_source_fibre_and_rejects_one_sibling() {
     let result = &transition.result;
     assert_eq!(result.upper.incidences.len(), 4);
     assert!(result.upper.source_free_wire_indices.is_empty());
-    assert!(result
-        .upper
-        .incidences
-        .iter()
-        .all(|incidence| result.slice.occurrences.contains(&incidence.occurrence)));
+    assert!(
+        result
+            .upper
+            .incidences
+            .iter()
+            .all(|incidence| result.slice.occurrences.contains(&incidence.occurrence))
+    );
     assert_eq!(
         result
             .slice
@@ -201,8 +196,7 @@ fn one_copy_accepts_the_source_fibre_and_rejects_one_sibling() {
         vec![2, 1, 1]
     );
 
-    let (positive_work, negative_work) =
-        check_fibre(&result.upper.incidences, duplicated[0]);
+    let (positive_work, negative_work) = check_fibre(&result.upper.incidences, duplicated[0]);
     assert_eq!((positive_work, negative_work), (20, 16));
     assert_eq!(positive_work + negative_work, 36);
 }
@@ -223,11 +217,13 @@ fn two_copy_reuses_the_gate_on_two_independent_source_fibres() {
     let result = &transition.result;
     assert_eq!(result.upper.incidences.len(), 5);
     assert!(result.upper.source_free_wire_indices.is_empty());
-    assert!(result
-        .upper
-        .incidences
-        .iter()
-        .all(|incidence| result.slice.occurrences.contains(&incidence.occurrence)));
+    assert!(
+        result
+            .upper
+            .incidences
+            .iter()
+            .all(|incidence| result.slice.occurrences.contains(&incidence.occurrence))
+    );
     assert_eq!(
         result
             .slice
