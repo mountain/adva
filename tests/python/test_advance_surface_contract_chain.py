@@ -118,7 +118,7 @@ def test_every_pin_in_the_active_contract_matches_the_live_file():
 
 def test_the_module_uses_the_successor_and_verifies_the_frozen_digest():
     source = MODULE.read_text(encoding="utf-8")
-    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v10.json"' in source
+    assert 'CONTRACT = ROOT / "experiments/advance_symbol_surface/contract-v11.json"' in source
     # The chain check is generic: it hashes whatever the contract names, so a new
     # successor does not require editing the module.
     assert 'contract.get("version", 0) < 1 or "supersedes" not in contract' in source
