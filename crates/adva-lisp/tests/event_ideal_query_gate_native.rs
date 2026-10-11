@@ -51,10 +51,7 @@ fn compile(name: &str) -> adva_ir::CompilationArtifact {
     compile_function(&linked, "native-event-ideal-gate", name).unwrap()
 }
 
-fn receive_schedule(
-    artifact: &adva_ir::CompilationArtifact,
-    word: &[NodeId],
-) -> ScheduleReceipt {
+fn receive_schedule(artifact: &adva_ir::CompilationArtifact, word: &[NodeId]) -> ScheduleReceipt {
     let mut completed = Vec::new();
     let mut cut_path = vec![completed.clone()];
     for event in word {
@@ -80,10 +77,7 @@ fn receive_schedule(
     }
 }
 
-fn gate_query<L: Clone + Ord>(
-    quotient: &[L],
-    selected: &BTreeSet<usize>,
-) -> (QueryGate<L>, usize) {
+fn gate_query<L: Clone + Ord>(quotient: &[L], selected: &BTreeSet<usize>) -> (QueryGate<L>, usize) {
     assert!(selected.iter().all(|index| *index < quotient.len()));
 
     let mut first_obstruction = None;
@@ -154,10 +148,7 @@ fn check_fibre(
         .collect::<Vec<_>>();
     let whole_fibre = (0..receipts.len()).collect::<BTreeSet<_>>();
     let (positive, positive_work) = gate_query(&quotient, &whole_fibre);
-    assert_eq!(
-        positive,
-        QueryGate::Descends(BTreeSet::from([all.clone()]))
-    );
+    assert_eq!(positive, QueryGate::Descends(BTreeSet::from([all.clone()])));
 
     let first_event = words[0][0];
     let first_sensitive = receipts
