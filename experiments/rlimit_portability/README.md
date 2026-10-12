@@ -389,3 +389,31 @@ successor paths. No dependency lock or registry change is required.
 Authored and reviewed by Codex (OpenAI), original engineering contribution under
 Unknown v0.3, submitted through Mingli Yuan's authorized GitHub account proxy.
 Account use is not his authorship, review, endorsement or correctness guarantee.
+
+## 2026-10-12 re-pin for schedule receiving (PR #214)
+
+Full CI at `5d3473280a31a47e4dae099d0a7d12354eda8aa9` rejected the stale
+current-tree inventory in Python 3.11 and 3.13 (one failure, 3364 passes and
+five skips each). The original 17 index failures are absent.
+The unchanged audit finds exactly one additional source:
+`experiments/schedule_receiving/run.py`, SHA-256
+`c7ca7943f5ad06306724ec5f1bf7bf70e0380c42f64bd7ed96d15d958ad3e647`, with one AST site at
+line 32 in nested `limits`. All 116 prior rows remain exactly identical.
+
+The installer is passed as `preexec_fn` for producer/receiver children, while
+build launches bypass it. There is no platform gate or local installation
+refusal handler; the outer campaign handler may record failure. Retain the
+existing `unguarded-installation` classification and default explanation.
+No Darwin execution or portability guarantee is claimed; resource enforcement,
+the campaign runner, contract and frozen evidence remain unchanged.
+
+The current inventory is regenerated with the existing audit command. Previous
+SHA-256: `d24dc8075ed7c6d62964463fc2312e68b194d8d0e88379559260bd225ddb57d4`. New SHA-256:
+`e87cc7bf04ccf681d44e2e5d7dd31a0c31c72d0591e3728c67a3e5661a068304`. Totals: 117 files, 122 AST references;
+87 unguarded installations, with all other category counts unchanged.
+This updates current-tree bookkeeping only; previous README records,
+`verification.json`, retained replay records and audit rules remain unchanged.
+
+Authored and reviewed by Codex (OpenAI), project-original under Unknown v0.3,
+submitted through Mingli Yuan's authorized GitHub account proxy. Account use
+is not his authorship, review, endorsement or correctness guarantee.

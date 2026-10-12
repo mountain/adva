@@ -5,7 +5,7 @@
     "linux-required-entry": 8,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 86
+    "unguarded-installation": 87
   },
   "files": [
     {
@@ -1284,6 +1284,18 @@
         {
           "function": "limits",
           "line": 227
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/schedule_receiving/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "c7ca7943f5ad06306724ec5f1bf7bf70e0380c42f64bd7ed96d15d958ad3e647",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 32
         }
       ]
     },
