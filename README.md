@@ -228,6 +228,7 @@ can find it again and follow its development.
 | Understand the programme's larger questions | [Philosophy](docs/philosophy/README.md) and [research agenda](docs/RESEARCH_ENGINEERING_AGENDA.md) |
 | Explore the library | [Library](adva-library/README.md) and [mathematical growth obligation](adva-library/math/README.md) |
 | Exchange knowledge across interfaces | [Formal communication vocabulary and receiving contracts](docs/COMMUNICATION_FRAMEWORK.md) |
+| Find current public questions, reading paths and open obligations | [Public research guide](docs/RESEARCH_GUIDE.md) |
 | Trace results, corrections and remaining questions | [Research index](docs/research/README.md), [claims](docs/claims.toml), and each note's later corrections |
 
 Historical runs retain their original profiles. In particular, some stored
