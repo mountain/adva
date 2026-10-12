@@ -43,6 +43,16 @@ computer, program geometry, or the proposed open logic.
 6. [The Third Absurdity Witness: Euler's Formula and a Cut Through Time and Space](0006-euler-cut-imagination-necessity-experience.md)
 7. [Trust Continuity and a Bounded Machine Witness](0007-trust-continuity-and-bounded-machine-witness.md)
 
+## Personal maintenance and public history
+
+The originals numbered 0004–0006 now have a personal maintenance home in
+`mountain/mingli-library`. Their indexed paths remain compatibility pointers
+with publicly readable fixed historical originals. The other notes retain
+their existing public home. See the [public research guide](../RESEARCH_GUIDE.md)
+and [first placement record](../migrations/PHILOSOPHY_ORIGINS_V1.md).
+This separation changes maintenance responsibility, not truth status or the
+original witnesses' attribution.
+
 ## Relationship to the repository
 
 The closest existing executable evidence is:

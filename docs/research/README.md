@@ -12,6 +12,13 @@ for the two distinct 0259 notes and pinned successor disambiguations.
 
 ## How to read this directory
 
+The [public research guide](../RESEARCH_GUIDE.md) presents current questions,
+reading paths and open obligations. It is a selected entry point; this complete
+historical index and all existing counts remain authoritative for its directory.
+The [philosophy placement record](../migrations/PHILOSOPHY_ORIGINS_V1.md) explains
+why the three personal-context links below now resolve through successor pointers
+while their public historical originals and witness programs remain available.
+
 - [Calabi–Yau fifty-years study note (Chinese)](https://github.com/mountain/adva-library/blob/2e743747179b7725ff73ed7ccbf7579a97414959/yau-calabi-yau-fifty-years-reading-note-v0.md):
   original exposition of canonical metrics, stability, mirror symmetry and
   higher-genus functions, including Candelas enumeration, spectral limitations
