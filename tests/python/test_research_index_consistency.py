@@ -106,3 +106,33 @@ def test_shared_numbers_are_tolerated_but_each_note_still_has_a_number():
         assert int(number) > 0
         for name in files:
             assert name.startswith(number + "-")
+
+
+def test_independent_preflight_rejects_complete_listing_loss():
+    from scripts.check_research_index import validate_index
+
+    text = README.read_text(encoding="utf-8")
+    assert not validate_index(text, RESEARCH)
+    truncated = text.split("## Complete listing")[0]
+    errors = validate_index(truncated, RESEARCH)
+    assert any("numbered notes missing" in error for error in errors)
+    assert any("named notes missing" in error for error in errors)
+    assert any("supporting directories missing" in error for error in errors)
+
+
+def test_independent_preflight_rejects_identity_entry_loss():
+    from scripts.check_research_index import validate_index
+
+    text = README.read_text(encoding="utf-8")
+    corrupted = text.replace("../RESEARCH_REFERENCE_IDENTITY.md", "../REMOVED.md")
+    assert "reference identity entry missing" in validate_index(corrupted, RESEARCH)
+
+
+def test_independent_preflight_rejects_count_drift_and_dangling_note():
+    from scripts.check_research_index import validate_index
+
+    text = README.read_text(encoding="utf-8")
+    corrupted = re.sub(r"\*\*\d+ numbered", "**1 numbered", text)
+    assert any("header counts" in error for error in validate_index(corrupted, RESEARCH))
+    errors = validate_index(text + "\n[missing](9999-missing.md)\n", RESEARCH)
+    assert any("dangling links" in error for error in errors)
