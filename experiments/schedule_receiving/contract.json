@@ -1,0 +1,22 @@
+{
+  "schema": "schedule-receiving-contract.v0",
+  "base": "56e3fbc1bc36835c9174b69e3fe079bd8944b935",
+  "question": "Can a separate Rust process recheck serialized schedule receipts without compilation, including complete legal-schedule coverage?",
+  "objects": ["three-event diamond", "three independent events", "fresh four-event delayed diamond"],
+  "types": "Rust checked diagrams, NodeId schedules, whole ProgramSlice and CausalStep artifacts; exact finite sets, no scalar arithmetic",
+  "quantifiers": "All permutations of each admitted diagram with 1..4 nodes, only the three fixed fixtures executed",
+  "query_grammar": ["all", "first(event)"],
+  "criteria": "Native import and exact slice/step rederivation; receiver-selected diagram/slice binding; complete legal schedule set before quotient judgment",
+  "routes": 1,
+  "max_nodes": 4,
+  "max_permutations_per_receive": 24,
+  "max_receiver_launches": 16,
+  "max_total_work_units": 100000,
+  "process_timeout_seconds": 10,
+  "process_address_space_bytes": 268435456,
+  "input_bytes_per_file": 1048576,
+  "build_timeout_seconds": 240,
+  "max_implementation_correction_replays": 1,
+  "native_scope": "Existing Rust import/cut/slice API; research-local receiver, no stable semantic extension, no dependency lock upgrade",
+  "residual": "Shared Rust kernel; no independent kernel implementation, authentication, arbitrary schedules, M6/free/universality or measured practical value"
+}
