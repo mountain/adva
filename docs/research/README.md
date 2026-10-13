@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **275 numbered
+This directory holds the research record of the repository: **276 numbered
 notes, 54 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -57,6 +57,7 @@ while their public historical originals and witness programs remain available.
 - [Research 0263](0263-native-source-fibre-query-gate.md) instantiates the same gate on two Rust-checked `ProgramSlice` carriers: complete source fibres descend, while selecting one copied occurrence is refused with a same-source, different-occurrence-and-path witness.
 - [Research 0264](0264-final-event-ideal-does-not-determine-schedule.md) instantiates the gate on certified native schedule receipts: one final event ideal admits complete-fibre questions but refuses first-event questions with an equal-ideal, different-word-and-cut-path witness.
 - [Research 0265](0265-receiving-schedule-fibres-with-complete-coverage.md) receives serialized native schedule paths in a separate Rust process, rederives complete legal-schedule coverage, and corrects the prior index truncation and advance count.
+- [Research 0266](0266-history-preserving-state-dag-artifact-boundary.md) folds complete schedule prefixes by exact cut while retaining every labelled path; four finite fibres survive, storage shrinks, artifact receiving does not become cheaper, and native replay remains Unknown.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
@@ -848,6 +849,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0264-final-event-ideal-does-not-determine-schedule.md`](0264-final-event-ideal-does-not-determine-schedule.md)
 
 - [`0265-receiving-schedule-fibres-with-complete-coverage.md`](0265-receiving-schedule-fibres-with-complete-coverage.md)
+
+- [`0266-history-preserving-state-dag-artifact-boundary.md`](0266-history-preserving-state-dag-artifact-boundary.md)
 
 ### Named notes
 

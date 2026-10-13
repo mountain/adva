@@ -1,0 +1,23 @@
+{
+  "schema": "schedule-state-dag-comparison.v0",
+  "base": "8a41d515da0275ef8a716ccac1b1b92a080e0c8a",
+  "main": "7a8fb500c32e414f170a780f5e5f93161ca76b2e",
+  "question": "Can exact completed-cut states share verified transitions while a receiver retains every incoming schedule path and the complete finite word fibre?",
+  "objects": ["0265 diamond", "0265 three independent events", "0265 delayed diamond", "two independent two-event chains"],
+  "types": "Rust-validated diagrams, exact NodeId words, completed cuts, full causal steps, finite labelled state DAGs",
+  "quantifiers": "Every reachable cut, enabled edge and reconstructed root-to-terminal path on four fixed diagrams of at most four nodes",
+  "candidate_grammar": "One transition record per exact completed cut; all enabled labelled edges retained; route identity reconstructed as all root-to-terminal labelled paths",
+  "criteria": "Independent invocation rederives every reachable state and edge, rejects missing/tampered/unreachable material, reconstructs the exact prior legal-word set and first-event counter-pair",
+  "routes": 1,
+  "max_events": 4,
+  "max_states": 17,
+  "max_paths": 24,
+  "max_processes_including_build": 18,
+  "runtime_timeout_seconds": 10,
+  "build_timeout_seconds": 180,
+  "total_counted_units": 100000,
+  "file_bytes": 1048576,
+  "memory": "Measure Linux VmHWM and supervisor RSS; no hard memory cap",
+  "correction_replays": 1,
+  "residual": "Shared Rust authority; no arbitrary-size result, authentication, M6 filler, native free, or universal grammar conclusion"
+}
