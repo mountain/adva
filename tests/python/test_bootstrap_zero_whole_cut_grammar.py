@@ -29,6 +29,11 @@ class Motion(Enum):
     REVERSE = "reverse"
 
 
+class Crossing(Enum):
+    OVER = "over"
+    UNDER = "under"
+
+
 class Carrier(Enum):
     LINE = "line"
     CIRCLE = "circle"
@@ -72,11 +77,19 @@ class WholeCutCell:
 
 
 @dataclass(frozen=True)
+class ThreadStep:
+    name: str
+    gap: int
+    crossing: Crossing
+
+
+@dataclass(frozen=True)
 class ThroughChannel:
     name: str
     source_port: str
     target_port: str
     motion: Motion
+    thread: tuple[ThreadStep, ...] = ()
 
 
 @dataclass(frozen=True)
@@ -221,6 +234,19 @@ class Atom:
 
 
 @dataclass(frozen=True)
+class Hole:
+    name: str
+    value_type: str
+
+
+@dataclass(frozen=True)
+class Use:
+    source: str
+    occurrence: str
+    value_type: str
+
+
+@dataclass(frozen=True)
 class EmptyZero:
     name: str
 
@@ -242,7 +268,28 @@ class Tensor:
     inner: AMTerm
 
 
-AMTerm: TypeAlias = Atom | EmptyZero | PolarDual | Plus | Tensor
+AMTerm: TypeAlias = Atom | Hole | Use | EmptyZero | PolarDual | Plus | Tensor
+
+
+@dataclass(frozen=True)
+class HoleBinding:
+    expression: str
+    position: tuple[int, ...]
+    hole: Hole
+    use: Use
+
+
+@dataclass(frozen=True)
+class DistributivityRecord:
+    name: str
+    source: WholeCut6
+    boundary: tuple[HoleDecl, ...]
+    source_expression: AMTerm
+    target_expression: AMTerm
+    productions: tuple[Production, ...]
+    hole_bindings: tuple[HoleBinding, ...]
+    thread_ledger: tuple[ThroughChannel, ...]
+    residuals: tuple[str, ...]
 
 
 @dataclass(frozen=True)
@@ -405,6 +452,8 @@ def _validate_productions(form: WholeCut6) -> None:
 
 
 def _validate_whole(form: WholeCut6) -> None:
+    if not isinstance(form.name, str) or not form.name:
+        raise ValueError("WholeCut6 needs a nonempty carrier name")
     triples = tuple((cell.left_role, cell.right_role, cell.middle_role) for cell in form.cells)
     if triples != EXPECTED_ROLE_TRIPLES:
         raise ValueError("WholeCut6 needs the ordered three-role cut cycle")
@@ -446,6 +495,9 @@ def _validate_whole(form: WholeCut6) -> None:
         _validate_closed_alternating_cycle(form)
 
     for channel in form.channels:
+        if not isinstance(channel.motion, Motion):
+            raise ValueError("channel motion must belong to the declared Motion alphabet")
+        _validate_thread(channel.thread)
         source = ports_by_name[channel.source_port]
         target = ports_by_name[channel.target_port]
         if source.value_type != target.value_type:
@@ -455,6 +507,22 @@ def _validate_whole(form: WholeCut6) -> None:
             raise ValueError("an open port needs a named hole and retained residual")
 
     _validate_hole_ledgers(form)
+
+
+def _validate_thread(thread: tuple[ThreadStep, ...]) -> None:
+    if not isinstance(thread, tuple) or len(thread) > 256:
+        raise ValueError("thread word must fit the declared 256-step finite budget")
+    names: set[str] = set()
+    for step in thread:
+        if not isinstance(step, ThreadStep) or not isinstance(step.name, str) or not step.name:
+            raise ValueError("thread steps need declared nonempty names")
+        if step.name in names:
+            raise ValueError("thread step names must be distinct within the raw word")
+        names.add(step.name)
+        if type(step.gap) is not int or not 1 <= step.gap <= 5:
+            raise ValueError("thread gap must select adjacent ports of the six-port carrier")
+        if not isinstance(step.crossing, Crossing):
+            raise ValueError("thread crossing must belong to the declared Crossing alphabet")
 
 
 def _validate_hole_ledgers(form: WholeCut6) -> None:
@@ -482,12 +550,142 @@ def _validate_hole_ledgers(form: WholeCut6) -> None:
             raise ValueError("alternative names must be nonempty strings")
         if any(option.value_type != holes[entry.hole].value_type for option in entry.alternatives):
             raise ValueError("alternative type disagrees with its hole")
-        # Bodies are retained raw AM syntax; no evaluation or general type inference.
-        if any(
-            not isinstance(option.form, (Atom, EmptyZero, PolarDual, Plus, Tensor))
-            for option in entry.alternatives
+        for option in entry.alternatives:
+            _validate_am(option.form, form)
+
+
+def _validate_am(term: AMTerm, whole: WholeCut6) -> None:
+    """Bounded recursive formation only; no evaluation or general type inference."""
+    holes = {hole.name: hole for hole in whole.holes}
+    ports = {port.occurrence: port for port in whole.ports}
+    pending = [(term, 0)]
+    visited = 0
+    occurrences: list[str] = []
+    while pending:
+        item, depth = pending.pop()
+        visited += 1
+        if visited > 256 or depth > 32:
+            raise ValueError("AM formation exceeds the declared 256-node / 32-depth budget")
+        if isinstance(item, (Atom, EmptyZero)):
+            if not isinstance(item.name, str) or not item.name:
+                raise ValueError("AM atoms need nonempty names")
+        elif isinstance(item, Hole):
+            if any(
+                not isinstance(value, str) or not value for value in (item.name, item.value_type)
+            ):
+                raise ValueError("AM holes need nonempty typed names")
+            declaration = holes.get(item.name)
+            if declaration is None or item.value_type != declaration.value_type:
+                raise ValueError("AM hole must retain a declared hole name and type")
+        elif isinstance(item, Use):
+            if any(
+                not isinstance(value, str) or not value
+                for value in (item.source, item.occurrence, item.value_type)
+            ):
+                raise ValueError("AM uses need nonempty source, occurrence and type names")
+            port = ports.get(item.occurrence)
+            if port is None or (item.source, item.value_type) != (port.source, port.value_type):
+                raise ValueError("AM use must retain a declared occurrence, source and type")
+            occurrences.append(item.occurrence)
+        elif isinstance(item, PolarDual):
+            pending.append((item.term, depth + 1))
+        elif isinstance(item, Plus):
+            pending.extend(((item.right, depth + 1), (item.left, depth + 1)))
+        elif isinstance(item, Tensor):
+            pending.extend(((item.inner, depth + 1), (item.outer, depth + 1)))
+        else:
+            raise ValueError("unsupported AM constructor at a recursive position")
+    if len(set(occurrences)) != len(occurrences):
+        raise ValueError("an AM occurrence must not be reused within one expression")
+
+
+def _distributivity_expressions(boundary: tuple[HoleDecl, ...]) -> tuple[AMTerm, AMTerm]:
+    a, b, c = (Hole(hole.name, hole.value_type) for hole in boundary)
+    return Tensor(a, Plus(b, c)), Plus(Tensor(a, b), Tensor(a, c))
+
+
+def _validate_distributivity(
+    expected: WholeCut6,
+    boundary: tuple[HoleDecl, ...],
+    witness: DistributivityRecord,
+) -> None:
+    """The caller supplies the source and ordered boundary independently."""
+    _validate_whole(expected)
+    if not isinstance(witness.name, str) or not witness.name:
+        raise ValueError("distributivity needs a named formation record")
+    if witness.source != expected or witness.boundary != boundary:
+        raise ValueError(
+            "distributivity must retain the independently supplied source and boundary"
+        )
+    if len(boundary) != 3 or len({hole.name for hole in boundary}) != 3:
+        raise ValueError("distributivity needs three distinct ordered declared holes")
+    if any(hole not in expected.holes for hole in boundary):
+        raise ValueError("distributivity boundary must retain declared hole payloads")
+
+    _validate_am(witness.source_expression, expected)
+    _validate_am(witness.target_expression, expected)
+    if (witness.source_expression, witness.target_expression) != _distributivity_expressions(
+        boundary
+    ):
+        raise ValueError("distributivity must retain both ordered expression shapes")
+    if witness.productions != expected.productions:
+        raise ValueError("distributivity must retain the complete ordered production ledger")
+    _validate_productions(replace(expected, productions=witness.productions))
+    if witness.thread_ledger != expected.channels:
+        raise ValueError("distributivity must retain the complete source thread ledger")
+    if witness.residuals != expected.residuals:
+        raise ValueError("distributivity must retain every ordered source residual")
+
+    a, b, c = (Hole(hole.name, hole.value_type) for hole in boundary)
+    slots = (
+        ("source", (0,), a),
+        ("source", (1, 0), b),
+        ("source", (1, 1), c),
+        ("target", (0, 0), a),
+        ("target", (0, 1), b),
+        ("target", (1, 0), a),
+        ("target", (1, 1), c),
+    )
+    for entry in witness.hole_bindings:
+        if not isinstance(entry, HoleBinding) or not isinstance(entry.hole, Hole):
+            raise ValueError("distributivity bindings must retain typed binding and hole records")
+        if type(entry.position) is not tuple or any(
+            type(index) is not int for index in entry.position
         ):
-            raise ValueError("unsupported alternative body constructor")
+            raise ValueError("binding positions must be tuples of exact integer coordinates")
+    if (
+        tuple((entry.expression, entry.position, entry.hole) for entry in witness.hole_bindings)
+        != slots
+    ):
+        raise ValueError("distributivity needs exact ordered bindings for all seven hole positions")
+    for entry in witness.hole_bindings:
+        if not isinstance(entry.use, Use):
+            raise ValueError("each distributivity binding must retain a typed Use")
+        _validate_am(entry.use, expected)
+        if entry.use.value_type != entry.hole.value_type:
+            raise ValueError("distributivity binding must preserve its hole type")
+
+    ports = {port.name: port for port in expected.ports}
+    source_uses = tuple(
+        Use(ports[h.port].source, ports[h.port].occurrence, h.value_type) for h in boundary
+    )
+    uses = tuple(entry.use for entry in witness.hole_bindings)
+    if uses[:3] != source_uses:
+        raise ValueError(
+            "source bindings must retain the independently supplied boundary occurrences"
+        )
+    if (uses[3], uses[4], uses[6]) != source_uses:
+        raise ValueError(
+            "target must retain the first A and the unchanged ordered B and C bindings"
+        )
+    repeated_a = uses[5]
+    if (repeated_a.source, repeated_a.value_type) != (
+        source_uses[0].source,
+        source_uses[0].value_type,
+    ):
+        raise ValueError("repeated A must retain its declared source and type")
+    if len({use.occurrence for use in uses[3:]}) != 4:
+        raise ValueError("repeated A needs a fresh explicitly allocated target occurrence")
 
 
 def _line_view(form: WholeCut6) -> LineView:
