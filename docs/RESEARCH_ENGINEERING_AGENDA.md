@@ -5,6 +5,8 @@ Status: durable research backlog and dependency map. Exact `GraftTrace`,
 typed-aperture open--close calibration is the current research-only bridge to
 specialization and open logic. It does not authorize premature stable APIs.
 
+Current task status and active issue links are reconciled in section 20 below.
+
 The phrase "Futamura projections" below is the intended reading of the
 Chinese term 二村投影: the classical relationship among interpreters,
 specializers, compilers, and compiler generators. Adva uses that theory as a
@@ -1009,3 +1011,54 @@ Full self interpretation remains a dependency for specializing an interpreter of
 the entire structured subset. Input binding can be checked without that missing
 interpreter because it preserves the admitted body rather than evaluating it.
 No earlier bootstrap result is retroactively promoted to a projection result.
+
+## 20. Current issue reconciliation and tracking home, 2026-10-14
+
+This is the current task-status checkpoint, reviewed against merged main
+`20ce78afdf0ddaf05f98000a85d43ac2e26f7e10`. Earlier dated calibrations retain their original scopes and
+evidence; this checkpoint does not rewrite them or add stable API authority.
+
+| Active issue | Completed scoped components | Remaining original acceptance |
+| --- | --- | --- |
+| [#26](https://github.com/mountain/adva/issues/26): observer specialization | Exact slices; Adva-written conservative input-binding mix and executed finite three-projection code equations | Native source-to-residual transformation certificate, fresh identities, copy/discard and forgotten-structure correspondence, observation law and refusal/Unknown cases |
+| [#27](https://github.com/mountain/adva/issues/27): complex program geometry | Related Möbius transport and finite toy-history reconstruction | Nine-fragment theorem/counterexample table with complex completion, geometric correspondence and preserved/forgotten process data |
+| [#28](https://github.com/mountain/adva/issues/28): intrinsic-structure learning | External learner/refinement calibrations; native known-program source fibres and complete schedule coverage from merged PR #214 | Complete finite candidate-world grammar, observational hypothesis classes, separating observer/intervention, program-native minimality and the #26 certificate dependency |
+| [#29](https://github.com/mountain/adva/issues/29): practical programs | Tagged arithmetic-tree interpreter with exact i64, explicit stacks, 129 frozen cases, replay/suspension and finite compiler/mix results | A: certificate-bearing evaluator specialization; B: exact small-field fixed-limb carry/reduction and algorithm-history comparison; C: Adva-executed bounded Metamath checker |
+| [#102](https://github.com/mountain/adva/issues/102): Bootstrap Zero | Production, holes/alternatives, total fibres, source-bound selection, interpreter declarations and open M6 bridge | Integrated distributivity/source ledger, complete recursive formation and syntax-only coordination theorem |
+
+All five acceptance obligations remain Open. Current issue reconciliations
+supersede their older implementation-status and next-step lists; the original
+requirements and dated evidence remain available in each issue.
+
+Issue [#30](https://github.com/mountain/adva/issues/30) duplicates this durable
+umbrella. Its continuing tracking responsibility now belongs to this agenda and
+the five active issues above. Retiring that duplicate tracker is administrative
+consolidation, not completion of the research directions. No replacement
+umbrella issue is needed. Future promotion, refutation, transfer, completion or
+deferral must update this document and the affected active issue.
+
+### Next bounded actions
+
+1. #26: bind one existing input-binding transformation to native identity and
+   correspondence evidence; optimizing mix and unrestricted laws are separate.
+2. #102: one source-bound distributivity witness and paired missing-binding /
+   undeclared-occurrence controls; reuse the completed ledger components.
+3. #29: continue from A's completed arithmetic interpreter, activating only
+   separately frozen A-specialization, B-field or C-proof-step contracts.
+4. #28: declare candidate-world coverage before claiming structural recovery;
+   complete schedules within one known world do not establish that coverage.
+5. #27: one rational one-port representation row and a stated multi-input
+   obstruction before expanding the nine-fragment table.
+
+The #102 targeted replay on the fixed main used Python 3.12.14 / pytest 8.4.2:
+1036 tests passed, while three separately executed malformed-formation probes
+remained accepted. This is a concrete closure blocker, not a native Rust defect.
+The other tracks were audited through current source, scoped reports, contracts
+and retained evidence; this reconciliation does not claim new full campaigns or
+remote CI. [The mix report](research/bounded-mix-and-three-projections.md),
+[interpreter report](research/bounded-native-data-interpreter.md),
+[native source-fibre report](research/0263-native-source-fibre-query-gate.md) and
+[WholeCut6 formation contract](research/0102-bootstrap-zero-whole-cut-grammar.md)
+retain the corresponding boundaries.
+
+Authored by Codex (OpenAI), submitted through Mingli Yuan's GitHub account (mountain) as an authorized proxy. Account use is not his authorship, review, endorsement or correctness guarantee. Original reconciliation prose under Unknown v0.3; no third-party text or code imported.
