@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **276 numbered
-notes, 54 named notes and 26 supporting directories**. Nothing here is a stable
+This directory holds the research record of the repository: **277 numbered
+notes, 55 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -572,6 +572,8 @@ Every file in this directory, so that no note is reachable only through a summar
 
 ### Numbered notes
 
+- [0102 follow-up — Source-bound distributivity formation](0102-distributivity-formation-followup.md): integrates the two ordered expressions, production, hole/use, thread and residual records without asserting arithmetic equality or completing the syntax coordination theorem.
+
 - [`0001-paired-spectral-objectification.md`](0001-paired-spectral-objectification.md)
 - [`0002-affine-exp-observer-spectrum.md`](0002-affine-exp-observer-spectrum.md)
 - [`0003-affine-boundary-two-jet-faithfulness.md`](0003-affine-boundary-two-jet-faithfulness.md)
@@ -853,6 +855,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0266-history-preserving-state-dag-artifact-boundary.md`](0266-history-preserving-state-dag-artifact-boundary.md)
 
 ### Named notes
+
+- [Native input-binding certificate v0](native-input-binding-certificate-v0.md): a research-local Rust checker for canonical static rational input binding, exact decorated correspondence and retained forgotten static lineage; no stable operation or numerical-equivalence theorem.
 
 - [iota-frame-three-dimensional-grid.md](iota-frame-three-dimensional-grid.md): the existing three-event process as a six-vertex, seven-edge cubical subgraph, preserving source reductions and its frame operator, with eight controls and an explicit boundary-condition obstruction.
 

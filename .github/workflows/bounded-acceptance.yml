@@ -1,0 +1,62 @@
+name: Bounded acceptance calibrations
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bounded-acceptance.yml'
+      - 'experiments/native_input_binding_certificate/**'
+      - 'tests/python/test_bootstrap_zero*'
+      - 'docs/research/native-input-binding-certificate-v0.md'
+      - 'docs/research/0102-distributivity-formation-followup.md'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-input-binding:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Stage the research checker as an ephemeral integration test
+        run: |
+          test ! -e crates/adva-lisp/tests/native_input_binding_certificate.rs
+          cp experiments/native_input_binding_certificate/native_input_binding_certificate.rs crates/adva-lisp/tests/native_input_binding_certificate.rs
+          cmp experiments/native_input_binding_certificate/native_input_binding_certificate.rs crates/adva-lisp/tests/native_input_binding_certificate.rs
+      - name: Format the staged Rust source and retain its exact bytes
+        run: |
+          rustfmt --edition 2024 crates/adva-lisp/tests/native_input_binding_certificate.rs
+          python3 - <<'PY'
+          import base64, hashlib, json
+          from pathlib import Path
+          source = Path('experiments/native_input_binding_certificate/native_input_binding_certificate.rs').read_bytes()
+          staged = Path('crates/adva-lisp/tests/native_input_binding_certificate.rs').read_bytes()
+          print('FORMATTED_RESEARCH_SOURCE=' + json.dumps({'source_sha256': hashlib.sha256(source).hexdigest(), 'formatted_sha256': hashlib.sha256(staged).hexdigest(), 'formatted_base64': base64.b64encode(staged).decode()}))
+          PY
+          cargo fmt --all --check
+      - name: Check the research test with the unchanged dependency lock
+        run: cargo clippy --locked -p adva-lisp --test native_input_binding_certificate -- -D warnings
+      - name: Execute the certificate and existing process/graft/import regressions
+        run: cargo test --locked -p adva-lisp --test native_input_binding_certificate --test process --test graft_trace --test diagram_validation
+
+  whole-cut-formation:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install isolated check tools
+        run: python -m pip install pytest==8.4.2 ruff==0.13.0
+      - name: Check modified Python research sources
+        run: |
+          ruff check tests/python/test_bootstrap_zero_whole_cut_grammar.py tests/python/test_bootstrap_zero_distributivity_record.py
+          ruff format --check tests/python/test_bootstrap_zero_whole_cut_grammar.py tests/python/test_bootstrap_zero_distributivity_record.py
+      - name: Replay all Bootstrap Zero syntax modules
+        run: python -m pytest -q tests/python/test_bootstrap_zero*.py -p no:cacheprovider
