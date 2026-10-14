@@ -91,3 +91,8 @@ Future notes in this directory should:
 
 Executable claims continue to belong in `docs/claims.toml`. Semantic decisions
 continue to require an ADR and the authority rules in `AGENTS.md`.
+
+The [second placement candidate review](../migrations/RESEARCH_PLACEMENT_CANDIDATES_V2.md)
+retains the remaining public bodies, distinguishes mixed session context from
+public method and evidence, and records fixed cross-repository reference leads.
+It executes no additional migration or native consumer admission.
