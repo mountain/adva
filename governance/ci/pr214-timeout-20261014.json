@@ -1,0 +1,178 @@
+{
+  "purpose": "Finite engineering diagnosis of PR214 child timeout, not a new research or semantic campaign",
+  "baseline_head": "8a41d515da0275ef8a716ccac1b1b92a080e0c8a",
+  "parent_head": "302a8ea4d3777db9e9b9a01a8147edb28bd521a7",
+  "old_failure": {
+    "run": 38268763853,
+    "job": 114877514111,
+    "case": "exact-alpha",
+    "deadline_seconds": 5,
+    "stdout_bytes": 0,
+    "stderr_bytes": 0,
+    "root_cause": "Not identified by retained logs"
+  },
+  "plans": [
+    {
+      "purpose": "Independent engineering timeout diagnosis; no semantic extension",
+      "baseline_head": "8a41d515da0275ef8a716ccac1b1b92a080e0c8a",
+      "current_head": "302a8ea4d3777db9e9b9a01a8147edb28bd521a7",
+      "limits": {
+        "campaigns": 3,
+        "children_per_campaign": 10,
+        "seconds_each": 5,
+        "outer_seconds_each": 20,
+        "retry_on_failure": false
+      },
+      "protected": [
+        "receiver bytes",
+        "frozen inputs/receipts",
+        "work/heap/deadlines",
+        "historical evidence"
+      ],
+      "origin": "Codex (OpenAI), original engineering diagnostics, Unknown v0.3; authorized account proxy, not Mingli review"
+    },
+    {
+      "purpose": "Independent engineering timeout diagnosis; no semantic extension",
+      "baseline_head": "8a41d515da0275ef8a716ccac1b1b92a080e0c8a",
+      "current_head": "302a8ea4d3777db9e9b9a01a8147edb28bd521a7",
+      "limits": {
+        "campaigns": 3,
+        "children_per_campaign": 10,
+        "seconds_each": 5,
+        "outer_seconds_each": 20,
+        "retry_on_failure": false
+      },
+      "protected": [
+        "receiver bytes",
+        "frozen inputs/receipts",
+        "work/heap/deadlines",
+        "historical evidence"
+      ],
+      "origin": "Codex (OpenAI), original engineering diagnostics, Unknown v0.3; authorized account proxy, not Mingli review",
+      "stress": {
+        "campaigns": 1,
+        "cpu_hogs": 3,
+        "cpu_hog_seconds": 8,
+        "affinity": "first allowed CPU",
+        "seconds_each": 5,
+        "outer_seconds": 20,
+        "retry_on_failure": false
+      }
+    }
+  ],
+  "baseline": {
+    "python": "3.12.14",
+    "node": "v24.19.0",
+    "rows": [
+      {
+        "index": 0,
+        "wall": 0.7994979209979647,
+        "node_wall": 0.7847418610181194,
+        "max_case_wall": 0.12311712300288491,
+        "work": 17865,
+        "outcomes": [
+          "ContinuationReady",
+          "ContinuationReady",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "InvalidEvidence"
+        ]
+      },
+      {
+        "index": 1,
+        "wall": 0.7386018290053471,
+        "node_wall": 0.7259494829995674,
+        "max_case_wall": 0.083521391999966,
+        "work": 17865,
+        "outcomes": [
+          "ContinuationReady",
+          "ContinuationReady",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "InvalidEvidence"
+        ]
+      },
+      {
+        "index": 2,
+        "wall": 0.8234011849999661,
+        "node_wall": 0.8112598499865271,
+        "max_case_wall": 0.10502429700136418,
+        "work": 17865,
+        "outcomes": [
+          "ContinuationReady",
+          "ContinuationReady",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "UnknownContinuationState",
+          "InvalidEvidence",
+          "InvalidEvidence"
+        ]
+      }
+    ]
+  },
+  "stress": {
+    "cpu": 0,
+    "cpu_hogs": 3,
+    "whole_wall": 3.1888800760061713,
+    "max_case_wall": 0.34713941500376677,
+    "work": 17865,
+    "outcomes": [
+      "ContinuationReady",
+      "ContinuationReady",
+      "UnknownContinuationState",
+      "InvalidEvidence",
+      "UnknownContinuationState",
+      "UnknownContinuationState",
+      "UnknownContinuationState",
+      "UnknownContinuationState",
+      "InvalidEvidence",
+      "InvalidEvidence"
+    ]
+  },
+  "focused_verification": {
+    "python": "3.12.14",
+    "tests_passed": 22,
+    "additional_crosscheck_children": 10,
+    "delay_control_children": 1,
+    "delay_control_seconds": 2,
+    "delay_control_timeout_seconds": 0.2
+  },
+  "cost_accounting": {
+    "receiver_children_local_total": 50,
+    "node_work_units_total": 89325,
+    "comparison_work_units_total": 245,
+    "per_replay_limits_unchanged": true,
+    "automatic_retries": 0,
+    "semantic_target_processes": 0
+  },
+  "protected_sha256_at_parent": {
+    "experiments/continuation_resolution_crosscheck/receiver.mjs": "1fd24225b85d64b55372d4a870dca94f413baf2cdf8aa05990f015a48dccf4d4",
+    "experiments/continuation_resolution_crosscheck/run.py": "ae8f16f563cb91585a9ea5c6f1007055e2413a585953ed84d588bcf6b37efee4",
+    "experiments/continuation_resolution_crosscheck/contract.json": "6e511da5840e83a89e3b687e017b0e5bbb0d61954e02d794246e9e128c9ac02c",
+    "experiments/continuation_resolution_crosscheck/ci-validation-contract.json": "0ba11bd52bb2c58b5164c049a390e46512e73f032f26c9724fd107fc8bda03d1",
+    "tests/python/test_continuation_resolution_crosscheck.py": "c0aaa913f5995d5cf4fa700093a1a99a4eca439c0cb73ded277a4d8056649e91",
+    "docs/research/README.md": "3b27a1a3addfab2909ab22cb72265584df008ec221c40ff0b8d970ce4aba1b8f",
+    "scripts/check_research_index.py": "accef2d653602bcbe834c2a767819529cd4ef2559393c0b76fb4b50802fddbc5",
+    "dependencies/adva-machine.lock.json": "89ad0f3f24e5df6a898d106c184d7c04655b18b6da182a48c8e32050569feb4b"
+  },
+  "limitations": [
+    "No Python 3.11 or 3.13 interpreter or Rust/Cargo is available locally; remote checks are mandatory.",
+    "Controlled CPU competition did not reproduce the hosted timeout.",
+    "No startup-stage telemetry exists for the failed job; startup, I/O and host scheduling cannot be distinguished.",
+    "The new job ordering and fixed Node runtime are engineering mitigations, not proof of the historical cause."
+  ],
+  "origin": "Project-original Codex (OpenAI), Unknown v0.3; submitted through Mingli Yuan authorized account proxy, not his authorship, review or endorsement."
+}
