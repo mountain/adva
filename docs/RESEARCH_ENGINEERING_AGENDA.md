@@ -1107,3 +1107,23 @@ no consumer migration or package authority is inferred from this trial.
 Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
 Original first-party reconciliation under Unknown v0.3; account use is not his
 authorship, review, endorsement or a correctness guarantee.
+
+## 22. Complete finite Bootstrap Zero formation boundary, 2026-10-14
+
+[Research 0267](research/0267-complete-finite-whole-cut-formation-boundary.md)
+completes the current research-local constructor, name, type and residual-ledger
+formation coverage left by section 21. `HistoryComposition` is ordered and
+recursively formed. `BalancedZero` retains one term plus its exact `PolarDual`
+view without introducing a second occurrence, implicit copy or cancellation.
+One fresh-source instance and fourteen other positive/negative boundary cases pass;
+the complete Bootstrap Zero suite passes 1,078 cases.
+
+This updates #102's next bounded action to the original syntax-only coordination
+theorem over the exact admitted grammar. It does not prove arithmetic
+distributivity, history invertibility, M6 filling, native `free`, stable API
+admission or universal grammar. Any 0092 continuation remains subordinate to
+0090 coverage and must preserve missing coverage as a gap rather than closure.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.

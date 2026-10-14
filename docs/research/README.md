@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **277 numbered
+This directory holds the research record of the repository: **278 numbered
 notes, 55 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -58,6 +58,7 @@ while their public historical originals and witness programs remain available.
 - [Research 0264](0264-final-event-ideal-does-not-determine-schedule.md) instantiates the gate on certified native schedule receipts: one final event ideal admits complete-fibre questions but refuses first-event questions with an equal-ideal, different-word-and-cut-path witness.
 - [Research 0265](0265-receiving-schedule-fibres-with-complete-coverage.md) receives serialized native schedule paths in a separate Rust process, rederives complete legal-schedule coverage, and corrects the prior index truncation and advance count.
 - [Research 0266](0266-history-preserving-state-dag-artifact-boundary.md) folds complete schedule prefixes by exact cut while retaining every labelled path; four finite fibres survive, storage shrinks, artifact receiving does not become cheaper, and native replay remains Unknown.
+- [Research 0267](0267-complete-finite-whole-cut-formation-boundary.md) admits `HistoryComposition` and exact-dual-view `BalancedZero` to the finite WholeCut6 grammar, makes current name/type/residual boundaries explicit, and retains arithmetic, history and M6 semantics as open.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.
