@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, fields, replace
 from enum import Enum
 from typing import TypeAlias
 
@@ -585,6 +585,7 @@ def _validate_am(term: AMTerm, whole: WholeCut6) -> None:
     ports = {port.occurrence: port for port in whole.ports}
     pending = [(term, 0)]
     visited = 0
+    comparison_pairs = 0
     occurrences: list[str] = []
     while pending:
         item, depth = pending.pop()
@@ -619,8 +620,40 @@ def _validate_am(term: AMTerm, whole: WholeCut6) -> None:
         elif isinstance(item, Tensor):
             pending.extend(((item.inner, depth + 1), (item.outer, depth + 1)))
         elif isinstance(item, BalancedZero):
-            if not isinstance(item.negative, PolarDual) or item.negative.term != item.positive:
+            if type(item.negative) is not PolarDual:
                 raise ValueError("BalancedZero must retain one term and its exact PolarDual view")
+            pairs = [(item.positive, item.negative.term, depth + 1)]
+            constructors = (
+                Atom,
+                EmptyZero,
+                Hole,
+                Use,
+                PolarDual,
+                Plus,
+                Tensor,
+                BalancedZero,
+                HistoryComposition,
+            )
+            while pairs:
+                left, right, pair_depth = pairs.pop()
+                comparison_pairs += 1
+                if comparison_pairs > 256 or pair_depth > 32:
+                    raise ValueError(
+                        "AM dual comparison exceeds the declared 256-pair / 32-depth budget"
+                    )
+                if type(left) not in constructors or type(right) is not type(left):
+                    raise ValueError(
+                        "BalancedZero must retain one term and its exact PolarDual view"
+                    )
+                for field in reversed(fields(left)):
+                    a, b = getattr(left, field.name), getattr(right, field.name)
+                    if type(left) in (Atom, EmptyZero, Hole, Use):
+                        if type(a) is not str or type(b) is not str or a != b:
+                            raise ValueError(
+                                "BalancedZero must retain one term and its exact PolarDual view"
+                            )
+                    else:
+                        pairs.append((a, b, pair_depth + 1))
             # The negative side is a coordinated view of the same retained
             # syntax, not a second use or an implicit copy.
             pending.append((item.positive, depth + 1))

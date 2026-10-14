@@ -105,3 +105,62 @@ def test_all_current_whole_cut_name_and_type_boundaries_are_explicit(mutation):
 
     with pytest.raises(ValueError):
         _validate_whole(malformed)
+
+
+def _deep_view(depth, name="leaf"):
+    term = Atom(name)
+    for _ in range(depth):
+        term = PolarDual(term)
+    return term
+
+
+@pytest.mark.parametrize("depth", (0, 30, 31))
+def test_distinct_equal_dual_views_within_depth_budget(depth):
+    _validate_am(BalancedZero(_deep_view(depth), PolarDual(_deep_view(depth))), _fixture())
+
+
+@pytest.mark.parametrize("depth", (32, 100, 600, 5000))
+@pytest.mark.parametrize("negative_name", ("leaf", "different"))
+def test_deep_dual_comparison_refuses_before_recursive_equality(depth, negative_name):
+    with pytest.raises(ValueError, match="budget"):
+        _validate_am(
+            BalancedZero(_deep_view(depth), PolarDual(_deep_view(depth, negative_name))),
+            _fixture(),
+        )
+
+
+def test_shared_deep_dual_view_still_obeys_budget():
+    term = _deep_view(600)
+    with pytest.raises(ValueError, match="budget"):
+        _validate_am(BalancedZero(term, PolarDual(term)), _fixture())
+
+
+def test_dual_comparison_budget_is_cumulative():
+    term = Atom("leaf")
+    for _ in range(16):
+        term = BalancedZero(term, PolarDual(term))
+    with pytest.raises(ValueError, match="256-pair"):
+        _validate_am(term, _fixture())
+
+
+def test_dual_comparison_never_calls_recursive_term_equality(monkeypatch):
+    def forbidden(*args):
+        raise AssertionError("recursive equality invoked")
+
+    monkeypatch.setattr(PolarDual, "__eq__", forbidden)
+    _validate_am(BalancedZero(_deep_view(4), PolarDual(_deep_view(4))), _fixture())
+
+
+def _binary_view(levels):
+    if not levels:
+        return Atom("leaf")
+    return HistoryComposition(_binary_view(levels - 1), _binary_view(levels - 1))
+
+
+def test_exact_node_boundary_and_wide_dual_refusal():
+    # 255 positive nodes plus BalancedZero = exactly 256 formation visits.
+    _validate_am(BalancedZero(_binary_view(7), PolarDual(_binary_view(7))), _fixture())
+    with pytest.raises(ValueError, match="256-pair"):
+        _validate_am(BalancedZero(_binary_view(8), PolarDual(_binary_view(8))), _fixture())
+    with pytest.raises(ValueError, match="256-node"):
+        _validate_am(HistoryComposition(_binary_view(7), Atom("extra")), _fixture())

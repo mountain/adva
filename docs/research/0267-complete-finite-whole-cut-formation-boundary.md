@@ -123,3 +123,59 @@ relation. Any later use for Research 0092 must first preserve Research 0090's
 coverage gate and may yield only a paired witness or explicit gap until full
 coverage is present. Arithmetic equality, history semantics, global M6 closure,
 native `free`, stable API admission and universal grammar remain open.
+
+## Independent PR #217 resource review
+
+The original head `616aec1a13f1fe526920575502fa11411679b383` compares
+negative and positive terms recursively before checking their descendants.
+Two independently constructed 5,000-deep PolarDual chains produced
+`RecursionError` on Python 3.12 (recursion limit 1,000); depth 600 instead
+returned the formation-budget ValueError, but still compared before budgeting.
+The explicit review contract extends the diagnostic fixture maximum from 600
+to 5,000; it does not enlarge the accepted grammar.
+
+The correction replaces dataclass term equality with an iterative ordered
+field comparison. Formation visits retain the original 256-node cap and
+root-zero depth 32. Dual comparison has a separate **cumulative** cap of 256
+node pairs for the entire call, with absolute depth at most 32; nested
+BalancedZero never resets that fuel. At most 256 formation nodes and 256
+comparison pairs are processed (a pair reads two nodes). Equal separate trees
+are accepted, so pointer sharing is not required and does not confer identity.
+No term equality callback is invoked. The comparison can reject formerly
+accepted terms when their aggregate comparison fuel is exhausted; this is an
+explicit strengthened research-local receiving boundary.
+
+This bounds structural work and auxiliary stacks for exact declared dataclass
+constructors with ordinary string fields. String lengths, dictionary setup
+from supplied WholeCut6 declarations, allocation before receiving, arbitrary
+Python subclasses and malicious host objects are outside this resource
+contract. Thus 256/32 is not a wall-time or total-input-byte guarantee.
+The WholeCut6 validator covers the declared formation invariants and frozen
+mutations; it is not a total decoder for arbitrary Python payloads.
+
+The formation theorem is conditional on a valid WholeCut6 declaration and a
+successfully accepted finite term under both budgets. Ordered children and
+exact nominal source/type binding are preserved; the dual view registers no
+second occurrence. This yields syntax well-formedness, not an evaluation law.
+HistoryComposition order is raw constructor order, not a proved temporal
+composition law. Cross-source uses are checked against the independently
+supplied occurrence ledger.
+
+For Research 0090/0092, still needed are: an explicit constructor-by-constructor
+coordination interpretation and preservation proof; checked Rust program/type,
+source/occurrence/history correspondence; complete declared filling-world
+coverage and observer invariance; residual-preserving close/reopen witnesses;
+and scoped generation, fair fuel, characteristic/promotion and reuse evidence.
+Pairwise syntactic agreement cannot issue all-fillings FeatureClosed or prove
+arithmetic cancellation, distributivity, invertibility or global M6 filling.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized GitHub account
+proxy; not his authorship, review or endorsement. Original code, fixtures and
+review prose contributed under Unknown v0.3; no external expression imported.
+
+Review replay: 30 targeted cases passed (0.16 s pytest), full Bootstrap Zero
+suite 1,093 passed (1.90 s), lint/format and publication history check passed.
+Exact node threshold and wide-tree refusal are covered. The equality-callback
+trap and deep mismatch controls directly distinguish the old implementation.
+The original manifest and attempt-1 evidence remain historical byte pins at
+the original head; use review-manifest.json for this correction.
