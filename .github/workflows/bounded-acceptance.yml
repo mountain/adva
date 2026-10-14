@@ -23,6 +23,8 @@ jobs:
         with:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
+      - name: Check the published research source formatting
+        run: rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_certificate.rs
       - name: Stage the research checker as an ephemeral integration test
         run: |
           test ! -e crates/adva-lisp/tests/native_input_binding_certificate.rs

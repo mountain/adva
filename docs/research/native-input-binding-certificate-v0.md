@@ -234,10 +234,38 @@ verification, but share the same Rust compiler, operation registry, diagram
 validator and graft/slice kernel. This is not independent implementation of
 those trusted kernels or a proof-assistant formalization.
 
+### Executed remote verification, 2026-10-14
+
+The first candidate commit `64fee9fd322d357f05acaf0841b3258979341b14`
+completed the dedicated [workflow run 38528818098](https://github.com/mountain/adva/actions/runs/38528818098).
+The actual [Rust job log](https://github.com/mountain/adva/actions/runs/38528818098/job/115735469432)
+was read: Rust 1.99.0 compiled the staged checker, Clippy with warnings denied
+and workspace formatting passed, all **10 certificate tests passed**, and the
+existing diagram-validation, graft and process suites passed **6 + 2 + 19**
+tests. The certificate test group completed in 0.02 seconds; this is not a
+performance claim or a count of kernel instructions.
+
+The initial published Rust source SHA-256 was
+`e1376be633d4995d40664e0187936ff5c822ce75c286735b855bc303127f7628`.
+The workflow formatted its temporary copy before compiling it, retaining the
+exact formatted bytes in its log. Their SHA-256 is
+`95f66df8078d3b72c74be3376b6cb4119d7c34daeb8bcaaf31150fd892984c8a`.
+Those exact verified canonical bytes are now the published research source.
+The successor workflow also checks the published file with rustfmt before
+staging, so a future formatting mismatch is an explicit failure. This is a
+recorded source-formatting normalization, not a hidden failed native campaign
+or a semantic correction inferred from a green status badge.
+
+The companion [Python job](https://github.com/mountain/adva/actions/runs/38528818098/job/115735469787)
+passed Ruff lint/format and all 1063 Bootstrap Zero cases on Python 3.12.15.
+The existing complete CI and external-machine checks remain separate gates.
+Later-head success is not inherited from this run. Local Rust status remains
+NotRun; the executed native result above is remote and shares the stated kernel.
+
 ## Remaining issue boundary
 
-A passing remote run would support this one finite, Rust-checked input-binding
-correspondence result. It would not close the entire observer-conditioned
+The executed remote run supports this one finite, Rust-checked input-binding
+correspondence result. It does not close the entire observer-conditioned
 specialization issue, install a stable native transformation certificate, or
 prove general partial evaluation or arbitrary world-fibre residualization.
 

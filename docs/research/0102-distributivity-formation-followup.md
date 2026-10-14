@@ -160,8 +160,16 @@ Ruff check and formatting passed for the two changed Python files. The new
 module contains its valid witnesses and executable negative controls; no
 historical evidence payload was rewritten.
 
-No full Rust workspace build, full-workspace replay, interpreter-body
-implementation or new remote-CI result is claimed by this local report.
+The dedicated remote [run 38528818098](https://github.com/mountain/adva/actions/runs/38528818098)
+at candidate `64fee9fd322d357f05acaf0841b3258979341b14` also passed.
+The actual [Python job log](https://github.com/mountain/adva/actions/runs/38528818098/job/115735469787)
+records Python 3.12.15, Ruff lint/format success and **1063 passed in 1.78s**.
+This is a new remote targeted replay; complete repository CI is a separate gate
+and later heads do not inherit success. A root integration replay independently
+returned 1063 passed in 0.95s on Python 3.12.14.
+
+No full Rust workspace build, full-workspace replay or interpreter-body
+implementation is claimed by the local/targeted verification above.
 The next step is to finish the remaining constructor/typed-boundary coverage
 and then state the accepted finite domain and per-constructor coordination
 argument. An M6 semantic filler is not an added closure requirement.

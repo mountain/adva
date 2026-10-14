@@ -8,7 +8,8 @@ use adva_ir::{
     SourceId, ValueType, WireProducer, WireRef,
 };
 use adva_lisp::{
-    analyze_program_slice_with_graft, compile_function, link_modules, parse_module, validate_diagram,
+    analyze_program_slice_with_graft, compile_function, link_modules, parse_module,
+    validate_diagram,
 };
 use std::collections::{BTreeMap, BTreeSet};
 
@@ -224,9 +225,13 @@ fn check(
             || diagram.signature.inputs.len() > 2
             || diagram.nodes.iter().any(|node| node.inputs.len() > 2)
         {
-            return Err(Outcome::Unknown("outside the fixed finite structural profile"));
+            return Err(Outcome::Unknown(
+                "outside the fixed finite structural profile",
+            ));
         }
-        budget.charge(1 + diagram.nodes.len() + diagram.occurrences.len() + diagram.history.prefix.len())?;
+        budget.charge(
+            1 + diagram.nodes.len() + diagram.occurrences.len() + diagram.history.prefix.len(),
+        )?;
         validate_diagram(diagram.clone())
             .map_err(|_| Outcome::Refused("native diagram validation failed"))?;
     }
@@ -243,8 +248,11 @@ fn check(
     )?;
     require(
         certificate.static_value == request.static_value
-            && Rational::new(request.static_value.numerator, request.static_value.denominator)
-                .ok()
+            && Rational::new(
+                request.static_value.numerator,
+                request.static_value.denominator,
+            )
+            .ok()
                 == Some(request.static_value),
         "static rational is changed or noncanonical",
     )?;
@@ -305,8 +313,7 @@ fn check(
     )?;
     require(
         certificate.bound_source == input_source(source, 0)
-            && certificate.dynamic_source
-                == (input_source(source, 1), input_source(residual, 0)),
+            && certificate.dynamic_source == (input_source(source, 1), input_source(residual, 0)),
         "source correspondence mismatch",
     )?;
     require(
@@ -338,7 +345,10 @@ fn check(
             "qualified source occurrence mismatch",
         )?;
         if source_occurrence.source == certificate.bound_source {
-            require(target.is_none(), "static lineage was silently retained or identified")?;
+            require(
+                target.is_none(),
+                "static lineage was silently retained or identified",
+            )?;
             static_occurrences.push(source_occurrence.clone());
             occurrences.insert(source_occurrence.id.clone(), None);
         } else {
@@ -395,13 +405,20 @@ fn check(
                 _ => return Err(Outcome::Refused("unsupported source input")),
             },
             WireProducer::Node { node } => WireProducer::Node {
-                node: *events.get(&node).ok_or(Outcome::Refused("unmapped body producer"))?,
+                node: *events
+                    .get(&node)
+                    .ok_or(Outcome::Refused("unmapped body producer"))?,
             },
         };
         mapped.lineage = wire
             .lineage
             .iter()
-            .map(|id| occurrences.get(id).cloned().ok_or(Outcome::Refused("unmapped lineage")))
+            .map(|id| {
+                occurrences
+                    .get(id)
+                    .cloned()
+                    .ok_or(Outcome::Refused("unmapped lineage"))
+            })
             .collect::<Result<Vec<_>, _>>()?
             .into_iter()
             .flatten()
@@ -435,7 +452,11 @@ fn check(
         )?;
     }
     require(
-        source_diagram.outputs.iter().map(&project_wire).collect::<Result<Vec<_>, _>>()?
+        source_diagram
+            .outputs
+            .iter()
+            .map(&project_wire)
+            .collect::<Result<Vec<_>, _>>()?
             == residual_diagram.outputs,
         "ordered output correspondence changed",
     )?;
@@ -449,7 +470,12 @@ fn check(
     require(
         body_slice.certificate.certified()
             && body_slice.result.internal_events
-                == source_slice.result.internal_events.iter().map(|id| events[id]).collect::<Vec<_>>(),
+                == source_slice
+                    .result
+                    .internal_events
+                    .iter()
+                    .map(|id| events[id])
+                    .collect::<Vec<_>>(),
         "hidden body events were erased",
     )?;
     let project_cut = |cut: &CutWire| -> Result<CutWire, Outcome> {
@@ -479,14 +505,32 @@ fn check(
     // Cut vectors use each diagram's canonical producer order. Compare exact
     // incidences without pretending that the two vector orders are identical.
     for (left, right) in [
-        (&source_slice.result.lower.frontier, &body_slice.result.lower.frontier),
-        (&source_slice.result.upper.frontier, &body_slice.result.upper.frontier),
-        (&source_slice.result.through_wires, &body_slice.result.through_wires),
-        (&source_slice.result.lower_boundary, &body_slice.result.lower_boundary),
-        (&source_slice.result.upper_boundary, &body_slice.result.upper_boundary),
+        (
+            &source_slice.result.lower.frontier,
+            &body_slice.result.lower.frontier,
+        ),
+        (
+            &source_slice.result.upper.frontier,
+            &body_slice.result.upper.frontier,
+        ),
+        (
+            &source_slice.result.through_wires,
+            &body_slice.result.through_wires,
+        ),
+        (
+            &source_slice.result.lower_boundary,
+            &body_slice.result.lower_boundary,
+        ),
+        (
+            &source_slice.result.upper_boundary,
+            &body_slice.result.upper_boundary,
+        ),
     ] {
         budget.charge(left.len())?;
-        let projected = left.iter().map(&project_cut).collect::<Result<Vec<_>, _>>()?;
+        let projected = left
+            .iter()
+            .map(&project_cut)
+            .collect::<Result<Vec<_>, _>>()?;
         require(
             projected.len() == right.len() && projected.iter().all(|wire| right.contains(wire)),
             "decorated cut observation does not commute",
@@ -496,19 +540,32 @@ fn check(
     for event in &source_slice.result.event_history {
         budget.charge(1)?;
         match event {
-            HistoryEvent::Copy { node, parent, children } if !static_ids.contains(parent) => {
+            HistoryEvent::Copy {
+                node,
+                parent,
+                children,
+            } if !static_ids.contains(parent) => {
                 projected_history.push(HistoryEvent::Copy {
                     node: events[node],
-                    parent: occurrences[parent].clone().ok_or(Outcome::Refused("copy parent missing"))?,
+                    parent: occurrences[parent]
+                        .clone()
+                        .ok_or(Outcome::Refused("copy parent missing"))?,
                     children: children
                         .iter()
-                        .map(|id| occurrences[id].clone().ok_or(Outcome::Refused("copy child missing")))
+                        .map(|id| {
+                            occurrences[id]
+                                .clone()
+                                .ok_or(Outcome::Refused("copy child missing"))
+                        })
                         .collect::<Result<Vec<_>, _>>()?,
                 });
             }
             HistoryEvent::Copy { .. } => {}
             HistoryEvent::Operation { node, operation } => {
-                projected_history.push(HistoryEvent::Operation { node: events[node], operation: operation.clone() });
+                projected_history.push(HistoryEvent::Operation {
+                    node: events[node],
+                    operation: operation.clone(),
+                });
             }
             _ => return Err(Outcome::Refused("unsupported body history event")),
         }
@@ -520,7 +577,11 @@ fn check(
     Ok(())
 }
 
-fn request(source: &CompilationArtifact, residual: &CompilationArtifact, value: Rational) -> ExpectedRequest {
+fn request(
+    source: &CompilationArtifact,
+    residual: &CompilationArtifact,
+    value: Rational,
+) -> ExpectedRequest {
     ExpectedRequest {
         source_snapshot: source.result.clone(),
         residual_context: residual.result.function.clone(),
@@ -530,31 +591,72 @@ fn request(source: &CompilationArtifact, residual: &CompilationArtifact, value: 
 
 #[test]
 fn certified_binding_preserves_dynamic_copy_and_all_body_events_without_evaluation() {
-    for value in [Rational::ZERO, Rational::new(7, 3).unwrap(), Rational::new(-5, 2).unwrap()] {
+    for value in [
+        Rational::ZERO,
+        Rational::new(7, 3).unwrap(),
+        Rational::new(-5, 2).unwrap(),
+    ] {
         let (source, residual) = fixtures(BODY, value);
         let certificate = propose(&source, &residual, value);
         let expected = request(&source, &residual, value);
-        assert_eq!(receive(&source, &residual, &certificate, &expected, 512), Outcome::Certified(Box::new(certificate.clone())));
+        assert_eq!(
+            receive(&source, &residual, &certificate, &expected, 512),
+            Outcome::Certified(Box::new(certificate.clone()))
+        );
         assert_eq!(certificate.event_map.len(), 6);
         assert_eq!(certificate.forgotten_static_occurrences.len(), 3);
         assert_eq!(certificate.forgotten_static_history.len(), 2);
-        assert_eq!(certificate.occurrence_map.iter().filter(|(_, target)| target.is_some()).count(), 3);
-        assert!(source.result.nodes.iter().any(|node| node.operation.name == "discard"));
-        assert!(residual.result.nodes.iter().any(|node| node.operation.name == "discard"));
+        assert_eq!(
+            certificate
+                .occurrence_map
+                .iter()
+                .filter(|(_, target)| target.is_some())
+                .count(),
+            3
+        );
+        assert!(
+            source
+                .result
+                .nodes
+                .iter()
+                .any(|node| node.operation.name == "discard")
+        );
+        assert!(
+            residual
+                .result
+                .nodes
+                .iter()
+                .any(|node| node.operation.name == "discard")
+        );
         // Both contexts deliberately reuse local occ:0; equality of this local
         // coordinate must not identify source and residual semantic objects.
-        assert_eq!(source.result.occurrences[0].id, residual.result.occurrences[0].id);
+        assert_eq!(
+            source.result.occurrences[0].id,
+            residual.result.occurrences[0].id
+        );
         assert_ne!(source.result.function, residual.result.function);
     }
 }
 
 #[test]
 fn forgotten_static_root_is_retained_when_the_bound_input_is_discarded() {
-    let (source, residual) = fixtures("(frontier (discard (use static)) (copy (use dynamic)))", Rational::ONE);
+    let (source, residual) = fixtures(
+        "(frontier (discard (use static)) (copy (use dynamic)))",
+        Rational::ONE,
+    );
     let certificate = propose(&source, &residual, Rational::ONE);
     assert_eq!(certificate.forgotten_static_occurrences.len(), 1);
     assert_eq!(certificate.forgotten_static_history.len(), 1);
-    assert!(matches!(receive(&source, &residual, &certificate, &request(&source, &residual, Rational::ONE), 512), Outcome::Certified(_)));
+    assert!(matches!(
+        receive(
+            &source,
+            &residual,
+            &certificate,
+            &request(&source, &residual, Rational::ONE),
+            512
+        ),
+        Outcome::Certified(_)
+    ));
 }
 
 #[test]
@@ -562,7 +664,16 @@ fn zero_event_source_keeps_ordered_through_wires_under_binding() {
     let (source, residual) = fixtures("(frontier (use static) (use dynamic))", Rational::ONE);
     let certificate = propose(&source, &residual, Rational::ONE);
     assert!(certificate.event_map.is_empty());
-    assert!(matches!(receive(&source, &residual, &certificate, &request(&source, &residual, Rational::ONE), 512), Outcome::Certified(_)));
+    assert!(matches!(
+        receive(
+            &source,
+            &residual,
+            &certificate,
+            &request(&source, &residual, Rational::ONE),
+            512
+        ),
+        Outcome::Certified(_)
+    ));
 }
 
 #[test]
@@ -572,17 +683,38 @@ fn missing_or_forged_accounting_is_refused() {
     let original = propose(&source, &residual, value);
     let expected = request(&source, &residual, value);
     let mut mutations = Vec::new();
-    let mut changed = original.clone(); changed.event_map.pop(); mutations.push(changed);
-    let mut changed = original.clone(); changed.event_map.swap(0, 1); mutations.push(changed);
-    let mut changed = original.clone(); changed.forgotten_static_occurrences.pop(); mutations.push(changed);
-    let mut changed = original.clone(); changed.forgotten_static_history.pop(); mutations.push(changed);
-    let mut changed = original.clone(); changed.occurrence_map.pop(); mutations.push(changed);
-    let mut changed = original.clone(); changed.static_value = Rational::ONE; mutations.push(changed);
-    let mut changed = original.clone(); changed.occurrence_map[1].1 = None; mutations.push(changed);
-    let mut changed = original.clone(); changed.occurrence_map[1].1.as_mut().unwrap().context = source.result.function.clone(); mutations.push(changed);
-    let mut changed = original.clone(); changed.occurrence_map[4].1.as_mut().unwrap().path = OccurrencePath::root(); mutations.push(changed);
+    let mut changed = original.clone();
+    changed.event_map.pop();
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.event_map.swap(0, 1);
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.forgotten_static_occurrences.pop();
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.forgotten_static_history.pop();
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.occurrence_map.pop();
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.static_value = Rational::ONE;
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.occurrence_map[1].1 = None;
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.occurrence_map[1].1.as_mut().unwrap().context = source.result.function.clone();
+    mutations.push(changed);
+    let mut changed = original.clone();
+    changed.occurrence_map[4].1.as_mut().unwrap().path = OccurrencePath::root();
+    mutations.push(changed);
     for changed in mutations {
-        assert!(matches!(receive(&source, &residual, &changed, &expected, 512), Outcome::Refused(_)));
+        assert!(matches!(
+            receive(&source, &residual, &changed, &expected, 512),
+            Outcome::Refused(_)
+        ));
     }
 }
 
@@ -596,11 +728,23 @@ fn changed_body_with_the_same_local_ids_cannot_repin_the_callers_source() {
     assert_eq!(source.result.function, changed_source.result.function);
     assert_eq!(source.result.occurrences, changed_source.result.occurrences);
     let repinned = propose(&changed_source, &changed_residual, value);
-    assert!(matches!(receive(&changed_source, &changed_residual, &repinned, &expected, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(
+            &changed_source,
+            &changed_residual,
+            &repinned,
+            &expected,
+            512
+        ),
+        Outcome::Refused(_)
+    ));
     let changed_request_context = request(&source, &residual, value);
     let mut forged = propose(&source, &residual, value);
     forged.residual_snapshot.function = source.result.function.clone();
-    assert!(matches!(receive(&source, &residual, &forged, &changed_request_context, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(&source, &residual, &forged, &changed_request_context, 512),
+        Outcome::Refused(_)
+    ));
 }
 
 #[test]
@@ -611,10 +755,22 @@ fn ordered_outputs_and_graft_maps_are_checked_again() {
     let mut changed = residual.clone();
     changed.result.outputs.swap(0, 1);
     let repinned = propose(&source, &changed, value);
-    assert!(matches!(receive(&source, &changed, &repinned, &expected, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(&source, &changed, &repinned, &expected, 512),
+        Outcome::Refused(_)
+    ));
     let mut changed = residual.clone();
     changed.graft_trace.result.frames[1].holes.swap(0, 1);
-    assert!(matches!(receive(&source, &changed, &propose(&source, &residual, value), &expected, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(
+            &source,
+            &changed,
+            &propose(&source, &residual, value),
+            &expected,
+            512
+        ),
+        Outcome::Refused(_)
+    ));
 }
 
 #[test]
@@ -634,10 +790,16 @@ fn literal_version_and_repinned_static_data_do_not_change_the_question() {
     }
     assert!(validate_diagram(historical_literal.result.clone()).is_ok());
     let repinned = propose(&source, &historical_literal, value);
-    assert!(matches!(receive(&source, &historical_literal, &repinned, &expected, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(&source, &historical_literal, &repinned, &expected, 512),
+        Outcome::Refused(_)
+    ));
     let (_, changed_literal) = fixtures(BODY, Rational::ONE);
     let repinned = propose(&source, &changed_literal, Rational::ONE);
-    assert!(matches!(receive(&source, &changed_literal, &repinned, &expected, 512), Outcome::Refused(_)));
+    assert!(matches!(
+        receive(&source, &changed_literal, &repinned, &expected, 512),
+        Outcome::Refused(_)
+    ));
 }
 
 #[test]
@@ -651,7 +813,10 @@ fn deletion_of_hidden_discard_or_copy_is_not_a_specialization_certificate() {
     ] {
         let (_, changed_residual) = fixtures(&changed_body, value);
         let repinned = propose(&source, &changed_residual, value);
-        assert!(matches!(receive(&source, &changed_residual, &repinned, &expected, 512), Outcome::Refused(_)));
+        assert!(matches!(
+            receive(&source, &changed_residual, &repinned, &expected, 512),
+            Outcome::Refused(_)
+        ));
     }
 }
 
@@ -666,7 +831,16 @@ fn a_valid_graph_outside_the_frozen_size_profile_is_unknown() {
     assert_eq!(source.result.nodes.len(), 17);
     assert_eq!(residual.result.nodes.len(), 18);
     let certificate = propose(&source, &residual, Rational::ONE);
-    assert_eq!(receive(&source, &residual, &certificate, &request(&source, &residual, Rational::ONE), 512), Outcome::Unknown("outside the fixed finite structural profile"));
+    assert_eq!(
+        receive(
+            &source,
+            &residual,
+            &certificate,
+            &request(&source, &residual, Rational::ONE),
+            512
+        ),
+        Outcome::Unknown("outside the fixed finite structural profile")
+    );
 }
 
 #[test]
@@ -675,6 +849,9 @@ fn exhaustion_produces_no_certificate_or_automatic_refuelling() {
     let certificate = propose(&source, &residual, Rational::ONE);
     let expected = request(&source, &residual, Rational::ONE);
     for work in [0, 1, 40] {
-        assert!(matches!(receive(&source, &residual, &certificate, &expected, work), Outcome::Unknown(_)));
+        assert!(matches!(
+            receive(&source, &residual, &certificate, &expected, work),
+            Outcome::Unknown(_)
+        ));
     }
 }
