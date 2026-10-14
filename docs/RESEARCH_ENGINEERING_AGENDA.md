@@ -5,7 +5,7 @@ Status: durable research backlog and dependency map. Exact `GraftTrace`,
 typed-aperture open--close calibration is the current research-only bridge to
 specialization and open logic. It does not authorize premature stable APIs.
 
-Current task status and active issue links are reconciled in section 20 below.
+Current task status is reconciled in section 21 below. Section 20 retains the previous issue-tracking checkpoint.
 
 The phrase "Futamura projections" below is the intended reading of the
 Chinese term 二村投影: the classical relationship among interpreters,
@@ -1062,3 +1062,48 @@ remote CI. [The mix report](research/bounded-mix-and-three-projections.md),
 retain the corresponding boundaries.
 
 Authored by Codex (OpenAI), submitted through Mingli Yuan's GitHub account (mountain) as an authorized proxy. Account use is not his authorship, review, endorsement or correctness guarantee. Original reconciliation prose under Unknown v0.3; no third-party text or code imported.
+
+## 21. Implemented bounded acceptance components, 2026-10-14
+
+[PR #216](https://github.com/mountain/adva/pull/216) merged at
+`b687447faf6e61944f13b7e6f87e1d806e0afb76`, after four exact-head gates passed at
+`b7762854031138e3c1141b8aab326fe4e4f2f90c`. This checkpoint supersedes
+section 20's remaining-work list for #26 and #102; the other three tracks keep
+their existing obligations.
+
+| Issue | New completed finite component | Remaining scope |
+| --- | --- | --- |
+| [#26](https://github.com/mountain/adva/issues/26) | Rust research-local PSC0 input-binding receiver; independently fixed request, qualified source/residual contexts, exact decorated correspondence and complete forgotten static lineage | Reusable/versioned receiving and persistent certificate boundary under the canonical machine responsibilities; broader observer-conditioned residualization remains separately scoped |
+| [#102](https://github.com/mountain/adva/issues/102) | Source-bound distributivity record with complete production, seven exact typed bindings, raw thread/residual retention and recursive Hole/Use formation; the three audit probes and noninteger position aliases are refused | Complete constructor/typed-boundary/name coverage, including HistoryComposition/BalancedZero, then the original syntax-only coordination theorem |
+
+The first implementation steps in section 20 are no longer outstanding.
+This does not close either research track, allocate globally fresh local IDs,
+install a stable transformation operation, execute copying in the syntax
+record or prove arithmetic/numerical equality. The prior source snapshots,
+frozen evidence, Cargo/crate bytes and external dependency lock are preserved.
+
+Actual exact-head logs establish:
+
+- [Dedicated acceptance](https://github.com/mountain/adva/actions/runs/38529180605):
+  10 new and 27 existing Rust tests, published-source formatting and Clippy;
+  1063 Bootstrap Zero tests and Python lint/format.
+- [Complete CI](https://github.com/mountain/adva/actions/runs/38529180693):
+  Rust success; Python 3.11/3.12/3.13 each 3406 passed and 5 historical skipped,
+  plus the unchanged isolated two-test crosscheck and supplementary replays.
+- [Publication boundary](https://github.com/mountain/adva/actions/runs/38529180615)
+  and [machine dependency continuity](https://github.com/mountain/adva/actions/runs/38529180635):
+  success under their existing contracts.
+
+The actual job logs were read. These pre-merge results are tied to the stated
+head; later commits have their own CI status. The source/formatted Rust byte
+bindings, static-review corrections, budgets and shared-kernel limits remain
+in [the input-binding report](research/native-input-binding-certificate-v0.md)
+and [the distributivity report](research/0102-distributivity-formation-followup.md).
+
+Next: #26's reusable receiving boundary and #102's remaining formation
+coverage. Keep stable toolchain/interface promotion in `mountain/adva-machine`;
+no consumer migration or package authority is inferred from this trial.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party reconciliation under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
