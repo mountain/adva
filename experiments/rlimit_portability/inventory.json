@@ -1,6 +1,6 @@
 {
   "counts": {
-    "historical-source": 15,
+    "historical-source": 16,
     "linux-only-install": 3,
     "linux-required-entry": 8,
     "mock-only": 1,
@@ -101,6 +101,30 @@
         {
           "function": "main",
           "line": 319
+        }
+      ]
+    },
+    {
+      "category": "historical-source",
+      "path": "experiments/bounded_metamath_step/evidence/attempt-1/sources/experiments/bounded_metamath_step/run.py",
+      "reason": "Frozen source snapshot; preserve bytes. Legacy invocation can still refuse AS; snapshot presence is not a live-path bug.",
+      "sha256": "cdef6a55a2a057f3502d690435e6800685a1236c8db85978d86ccdb185682115",
+      "sites": [
+        {
+          "function": "child_limits",
+          "line": 101
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/bounded_metamath_step/run.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "cdef6a55a2a057f3502d690435e6800685a1236c8db85978d86ccdb185682115",
+      "sites": [
+        {
+          "function": "child_limits",
+          "line": 101
         }
       ]
     },
