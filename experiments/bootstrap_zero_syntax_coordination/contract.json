@@ -1,0 +1,58 @@
+{
+  "research": "0268",
+  "title": "Finite AM syntax coordination projection",
+  "dependency": {
+    "main": "8585c5b965b84422b802d50f11f375aea171bd27",
+    "draft_pr": 217,
+    "draft_head": "dbafa05442109b478d5ad6dcdac50a5692bbc7a1"
+  },
+  "question": "For every accepted research-local AMTerm in the declared finite budget, can one constructor-by-constructor projection preserve exact constructor order and every bound leaf while counting a BalancedZero dual as a view rather than a second occurrence?",
+  "objects": [
+    "one independently supplied valid WholeCut6",
+    "one accepted AMTerm",
+    "one structured coordination projection"
+  ],
+  "types": "Exact project-original frozen dataclass constructors and ordinary string fields from the PR #217 research model",
+  "quantifiers": "Every node visited by the accepted term, at most 256 formation nodes and depth 32, with at most 256 cumulative dual-comparison pairs and comparison depth 32; plus an exhaustive depth-two calibration over four fixed leaf terms and all nine constructors",
+  "arithmetic_domain": "none; no evaluator, scalar, equality, additive-zero or multiplicative-unit semantics",
+  "candidate_grammar": "Atom | Hole | Use | EmptyZero | PolarDual | Plus | Tensor | BalancedZero | HistoryComposition",
+  "projection_fields": [
+    "whole name",
+    "prefix-delimited constructor word",
+    "ordered hole name/type leaves",
+    "ordered source/occurrence/type uses",
+    "authoritative source occurrence and multiplicity ledger",
+    "ordered production ledger",
+    "ordered residual ledger",
+    "BalancedZero dual-view count",
+    "HistoryComposition count"
+  ],
+  "acceptance": [
+    "one term containing all nine constructors has the exact expected projection",
+    "a fresh independently named source reuses the same constructor signature without reusing identities",
+    "HistoryComposition order and Plus/Tensor constructor distinctions remain visible",
+    "BalancedZero contributes one positive leaf traversal and one dual-view marker, not a second Use",
+    "invalid source, duplicate occurrence, mismatched dual and invalid WholeCut6 residual ledger are refused before projection",
+    "the exhaustive declared depth-two family has no projection collision between distinct accepted terms",
+    "the complete Bootstrap Zero suite, lint, format, research index and publication boundary pass"
+  ],
+  "budgets": {
+    "routes": 1,
+    "per_search_seconds": 30,
+    "maximum_candidates": 100000,
+    "overall_minutes": 20,
+    "implementation_correction_replays": 1
+  },
+  "forbidden_conflations": [
+    "structured syntax projection with denotational semantics",
+    "constructor faithfulness with arithmetic equality or distributivity",
+    "BalancedZero dual view with copying, cancellation or additive zero",
+    "HistoryComposition order with temporal composition or invertibility",
+    "finite depth-two injectivity with unrestricted grammar completeness",
+    "pairwise syntax coordination with all-fillings coverage or M6 filler",
+    "research Python projection with Rust authority, stable API or native free",
+    "formation with arithmetic-universality or hypothesized-arithmetic-truth"
+  ],
+  "stop": "Stop after the exact positive, reuse, refusal and exhaustive finite checks pass or after one implementation correction; retain any remaining failure as Unknown.",
+  "residual": "The broader WholeCut6 theorem for every built-in view and morphism, Rust correspondence, 0090 coverage, 0092 generation/promotion/reuse, semantic interpreters and practical task value remain open."
+}
