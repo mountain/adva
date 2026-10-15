@@ -5,7 +5,7 @@
     "linux-required-entry": 8,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 87
+    "unguarded-installation": 88
   },
   "files": [
     {
@@ -537,6 +537,18 @@
         {
           "function": "main",
           "line": 388
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/finite_world_identification/run.py",
+      "reason": "Build and test children call limits via Popen preexec_fn, installing 4 GiB AS without a platform gate. Installation refusal raises SubprocessError outside the timeout handler; finally removes the staged test and records ImplementationFailure in result.json. No Darwin memory guarantee follows.",
+      "sha256": "f46db7e55500dd7f44983095238796b14b9dc49ffa4acce75b3e797297a85f71",
+      "sites": [
+        {
+          "function": "limits",
+          "line": 19
         }
       ]
     },
