@@ -1127,3 +1127,32 @@ admission or universal grammar. Any 0092 continuation remains subordinate to
 Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
 Original first-party research under Unknown v0.3; account use is not his
 authorship, review, endorsement or a correctness guarantee.
+
+## 23. AM-fragment syntax coordination, 2026-10-15
+
+[Research 0268](research/0268-finite-am-syntax-coordination-projection.md)
+defines a constructor-faithful projection for every AM term accepted by the
+finite PR #217 formation boundary. Structured constructor delimiters preserve
+tree shape and order; exact hole and source/occurrence/type leaves remain
+visible; `BalancedZero` contributes one retained subtree plus one dual-view
+marker rather than a second use. In the declared depth-two family, 8,542 of
+10,924 candidates form, 2,382 are refused and accepted projections have zero
+collisions. One fresh independently named source reuses the constructor
+signature without reusing identities.
+
+This is the AM fragment of #102's syntax-only coordination goal, not the full
+Research 0102 theorem over every built-in view and morphism. The corrected
+targeted replay passes; the successor complete-suite launch failed before tests
+because a subprocess received an unexpanded wildcard. The sole correction
+allowance was already consumed by the retained finite-enumeration count repair,
+so complete local integration remains `Unknown/NotRun`.
+
+Next: under a new finite contract, replay the complete Bootstrap Zero suite
+with an explicit file list. Only after that passes, extend coordination by one
+non-AM built-in view. Research 0090 coverage and Research 0092 generation,
+promotion and reuse remain separate dependencies; no arithmetic equality,
+history semantics, M6 filling, native `free` or universal grammar follows.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
