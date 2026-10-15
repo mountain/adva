@@ -7,6 +7,7 @@ on:
       - 'programs/bounded-metamath-step/**'
       - 'experiments/bounded_metamath_step/**'
       - 'tests/python/test_bounded_metamath_step.py'
+      - 'experiments/rlimit_portability/inventory.json'
       - 'crates/adva-witness/src/data_machine_v1.rs'
       - 'crates/adva-witness/src/bin/support/data_machine_v1_cli.rs'
       - 'Cargo.lock'
@@ -42,7 +43,7 @@ jobs:
         run: |
           ruff check experiments/bounded_metamath_step/author.py experiments/bounded_metamath_step/run.py tests/python/test_bounded_metamath_step.py
           ruff format --check experiments/bounded_metamath_step/author.py experiments/bounded_metamath_step/run.py tests/python/test_bounded_metamath_step.py
-          python -m pytest -q tests/python/test_bounded_metamath_step.py -p no:cacheprovider
+          python -m pytest -q tests/python/test_bounded_metamath_step.py tests/python/test_rlimit_portability.py -p no:cacheprovider
       - name: Execute Adva and Metamath in two fresh finite regressions
         run: |
           python experiments/bounded_metamath_step/run.py --binary target/debug/adva --metamath "$RUNNER_TEMP/metamath-tool/src/metamath" --output "$RUNNER_TEMP/metamath-evidence/primary"
