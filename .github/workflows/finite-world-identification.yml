@@ -1,0 +1,42 @@
+name: Finite world structure identification
+on:
+  pull_request:
+    paths:
+      - 'experiments/finite_world_identification/**'
+      - '.github/workflows/finite-world-identification.yml'
+      - 'crates/**'
+      - 'Cargo.lock'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/finite_world_identification/**'
+      - '.github/workflows/finite-world-identification.yml'
+      - 'crates/**'
+      - 'Cargo.lock'
+permissions:
+  contents: read
+jobs:
+  identify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Check published Rust bytes
+        run: rustfmt --edition 2024 --check experiments/finite_world_identification/worlds.rs
+      - name: Replay native family, receiving controls and exact frozen evidence
+        run: python3 experiments/finite_world_identification/run.py --output "$RUNNER_TEMP/world-identification-$GITHUB_RUN_ID-$GITHUB_RUN_ATTEMPT"
+      - name: Check staged experiment and existing native regressions
+        run: |
+          test ! -e crates/adva-lisp/tests/finite_world_identification.rs
+          cp experiments/finite_world_identification/worlds.rs crates/adva-lisp/tests/finite_world_identification.rs
+          cargo clippy --locked -p adva-lisp --test finite_world_identification -- -D warnings
+          timeout 180s cargo test --locked -p adva-lisp --test quotient_query_gate_native --test process --test graft_trace --test diagram_validation
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: finite-world-identification
+          path: ${{ runner.temp }}/world-identification-${{ github.run_id }}-${{ github.run_attempt }}
