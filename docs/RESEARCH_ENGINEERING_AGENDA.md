@@ -1156,3 +1156,29 @@ history semantics, M6 filling, native `free` or universal grammar follows.
 Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
 Original first-party research under Unknown v0.3; account use is not his
 authorship, review, endorsement or a correctness guarantee.
+
+## 24. Explicit integration and first non-AM coordination pause, 2026-10-16
+
+[Research 0269](research/0269-explicit-integration-and-line-coordination-pause.md)
+resolves section 23's integration residual: all thirteen Bootstrap Zero modules
+were passed as explicit subprocess arguments and 1,102 tests succeeded. Draft
+PR #221's exact head also passed complete CI, bounded acceptance, publication
+and machine-dependency workflows.
+
+The attempted next step did not establish `LineView` coordination. A frozen
+fresh-instance clause incorrectly required distinct residual identities even
+though a closed line source necessarily has an empty residual ledger. After the
+sole correction fixed that domain error, Ruff found one formatting difference
+before tests. The candidate was retained but not formatted, executed or
+retried; its status is `Unknown/NotRun`.
+
+Next: under a new contract, permit the one recorded format correction and run
+the fixed positive, fresh-source and six-refusal family exactly once. Do not
+claim that bare `LineView` preserves residuals: only an independently bound
+pairing witness could retain source residual coordinates. Circle/thread/logic
+views, morphisms, Research 0090 coverage and Research 0092 promotion remain
+separate obligations.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
