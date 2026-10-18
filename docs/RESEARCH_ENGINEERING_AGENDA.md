@@ -1182,3 +1182,24 @@ separate obligations.
 Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
 Original first-party research under Unknown v0.3; account use is not his
 authorship, review, endorsement or a correctness guarantee.
+
+## 25. Closed LineView coordination replay, 2026-10-17
+
+[Research 0270](research/0270-closed-lineview-coordination-replay.md) executes
+the exact candidate retained by section 24 after only its recorded Ruff format
+change. Two closed-source positive cases and six fixed substitution controls
+pass; the explicit fourteen-module Bootstrap Zero integration suite passes
+1,110 tests. A fresh source reuses the coordination relation without reusing
+whole, occurrence or channel identities.
+
+The source residual ledger is necessarily empty for every admitted instance.
+Consequently this result coordinates the current closed `LineView`; it does not
+test nonempty residual transport or make the bare view invertible. Any next
+step must define a separately constrained open-line profile rather than widen
+the existing view silently. Research 0090 coverage, Research 0092 promotion,
+semantic agreement, M6 filling, native `free`, arithmetic universality and
+universal grammar remain separate obligations.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
