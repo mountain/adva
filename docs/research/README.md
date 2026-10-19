@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 57 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 58 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -13,6 +13,8 @@ See [the reference identity audit and convention](../RESEARCH_REFERENCE_IDENTITY
 for the two distinct 0259 notes and pinned successor disambiguations.
 
 - [Finite world structure identification v0](finite-world-structure-identification-v0.md): all 16 checked candidates, exact observer classes, source/history refinement and the counterexample to shortest-program recovery; research-only, with #26 residual retained.
+
+- [Open-line residual pairing](open-line-residual-pairing.md): two source-bound nonempty-residual proposals, seven refusals and a concrete lossy-projection collision; research-only.
 
 ## How to read this directory
 
