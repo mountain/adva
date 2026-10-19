@@ -1,0 +1,41 @@
+{
+  "status": "PassedFiniteTargetedSyntaxCoordination",
+  "integration_status": "UnknownNotRun",
+  "base_main": "8585c5b965b84422b802d50f11f375aea171bd27",
+  "dependency_pr": 217,
+  "dependency_head": "dbafa05442109b478d5ad6dcdac50a5692bbc7a1",
+  "route": "one research-local Python constructor projection plus finite exhaustive calibration",
+  "search": {
+    "generated_candidates_after_deduplication": 10924,
+    "accepted": 8542,
+    "rejected_by_existing_formation_boundary": 2382,
+    "projection_collisions": 0,
+    "maximum_candidates": 100000
+  },
+  "targeted_replay": {
+    "command": "python -m pytest -q tests/python/test_bootstrap_zero_syntax_coordination.py -p no:cacheprovider",
+    "result": "9 passed in 1.15s",
+    "wall_seconds_including_process_launch": 1.5109131180070108,
+    "child_peak_rss_kib": 46828,
+    "processes": 1
+  },
+  "cost_partition": {
+    "construction_validation_projection_and_reuse_seconds": null,
+    "serialization_seconds": 0,
+    "note": "Candidate construction, existing formation validation, projection and fresh-instance reuse run in one process and were not separately timed. The receiver performs no evidence serialization."
+  },
+  "implementation_correction_replays": 1,
+  "correction": "The first targeted execution expected the pre-deduplication formula count. One correction bound the assertions to the actually deduplicated 10,924 candidates and their measured 8,542/2,382 partition. The grammar and generator were unchanged.",
+  "integration": {
+    "attempted_command": "python subprocess wrapper -> python -m pytest -q 'tests/python/test_bootstrap_zero*.py' -p no:cacheprovider",
+    "outcome": "LaunchFailureBeforeTests",
+    "detail": "subprocess passed the wildcard literally without shell expansion; pytest reported no tests ran and file or directory not found",
+    "returncode": 4,
+    "wall_seconds": 0.30711420699662995,
+    "child_peak_rss_kib": 27604,
+    "tests_run": 0,
+    "retry": false,
+    "reason_not_retried": "The contract allowed at most one implementation correction replay and it had already been used."
+  },
+  "classification_boundary": "The targeted result checks an AM syntax projection only. Complete Bootstrap Zero integration, Rust authority, interpretation, arithmetic equality, all-fillings coverage and M6 filling remain Unknown or Open."
+}
