@@ -1,0 +1,13 @@
+{
+  "status": "ImplementationCountMismatch",
+  "stage": "first targeted pytest execution",
+  "command": "python -m ruff check tests/python/test_bootstrap_zero_syntax_coordination.py && python -m ruff format --check tests/python/test_bootstrap_zero_syntax_coordination.py && python -m pytest -q tests/python/test_bootstrap_zero_syntax_coordination.py -p no:cacheprovider",
+  "lint": "passed",
+  "format": "passed",
+  "pytest": "8 passed, 1 failed in 0.30s",
+  "declared_candidate_count": 10980,
+  "deduplicated_candidate_count": 10924,
+  "cause": "The pre-execution formula counted 56 terms already present in the previous level; tuple(dict.fromkeys(...)) correctly removed them.",
+  "mathematical_classification_reached": false,
+  "correction": "Change only the exact deduplicated candidate, accepted and rejected counts; do not change the generator, grammar, depth or budgets."
+}

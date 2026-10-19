@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections import Counter
-from dataclasses import dataclass, replace
+from dataclasses import dataclass, fields, replace
 from enum import Enum
 from typing import TypeAlias
 
@@ -268,7 +268,21 @@ class Tensor:
     inner: AMTerm
 
 
-AMTerm: TypeAlias = Atom | Hole | Use | EmptyZero | PolarDual | Plus | Tensor
+@dataclass(frozen=True)
+class BalancedZero:
+    positive: AMTerm
+    negative: PolarDual
+
+
+@dataclass(frozen=True)
+class HistoryComposition:
+    first: AMTerm
+    second: AMTerm
+
+
+AMTerm: TypeAlias = (
+    Atom | Hole | Use | EmptyZero | PolarDual | Plus | Tensor | BalancedZero | HistoryComposition
+)
 
 
 @dataclass(frozen=True)
@@ -290,18 +304,6 @@ class DistributivityRecord:
     hole_bindings: tuple[HoleBinding, ...]
     thread_ledger: tuple[ThroughChannel, ...]
     residuals: tuple[str, ...]
-
-
-@dataclass(frozen=True)
-class BalancedZero:
-    positive: AMTerm
-    negative: PolarDual
-
-
-@dataclass(frozen=True)
-class HistoryComposition:
-    first: str
-    second: str
 
 
 @dataclass(frozen=True)
@@ -462,6 +464,22 @@ def _validate_whole(form: WholeCut6) -> None:
 
     port_names = tuple(port.name for port in form.ports)
     occurrences = tuple(port.occurrence for port in form.ports)
+    declared_names = (
+        *(cell.name for cell in form.cells),
+        *(port.name for port in form.ports),
+        *(port.cut for port in form.ports),
+        *(port.value_type for port in form.ports),
+        *(port.source for port in form.ports),
+        *occurrences,
+        *(channel.name for channel in form.channels),
+        *(item.port for item in form.open_ports),
+        *(item.hole for item in form.open_ports),
+        *(item.residual for item in form.open_ports),
+        *form.circle_order,
+        *form.residuals,
+    )
+    if any(not isinstance(name, str) or not name for name in declared_names):
+        raise ValueError("WholeCut6 declarations need nonempty string names")
     if len(set(port_names)) != 6 or len(set(occurrences)) != 6:
         raise ValueError("initial port and occurrence names must be distinct")
     if any(port.multiplicity != 1 for port in form.ports):
@@ -505,6 +523,8 @@ def _validate_whole(form: WholeCut6) -> None:
     for item in form.open_ports:
         if not item.hole or item.residual not in form.residuals:
             raise ValueError("an open port needs a named hole and retained residual")
+    if tuple(item.residual for item in form.open_ports) != form.residuals:
+        raise ValueError("residual ledger must exactly follow the ordered open ports")
 
     _validate_hole_ledgers(form)
 
@@ -535,6 +555,11 @@ def _validate_hole_ledgers(form: WholeCut6) -> None:
     ports = {port.name: port for port in form.ports}
     holes = {hole.name: hole for hole in form.holes}
     for hole in form.holes:
+        if any(
+            not isinstance(value, str) or not value
+            for value in (hole.name, hole.value_type, hole.port)
+        ):
+            raise ValueError("hole declarations need nonempty name, type and port")
         if hole.port != expected[hole.name] or hole.value_type != ports[hole.port].value_type:
             raise ValueError("hole declaration must retain its port and type")
     alternative_holes = tuple(entry.hole for entry in form.alternatives)
@@ -560,6 +585,7 @@ def _validate_am(term: AMTerm, whole: WholeCut6) -> None:
     ports = {port.occurrence: port for port in whole.ports}
     pending = [(term, 0)]
     visited = 0
+    comparison_pairs = 0
     occurrences: list[str] = []
     while pending:
         item, depth = pending.pop()
@@ -593,6 +619,46 @@ def _validate_am(term: AMTerm, whole: WholeCut6) -> None:
             pending.extend(((item.right, depth + 1), (item.left, depth + 1)))
         elif isinstance(item, Tensor):
             pending.extend(((item.inner, depth + 1), (item.outer, depth + 1)))
+        elif isinstance(item, BalancedZero):
+            if type(item.negative) is not PolarDual:
+                raise ValueError("BalancedZero must retain one term and its exact PolarDual view")
+            pairs = [(item.positive, item.negative.term, depth + 1)]
+            constructors = (
+                Atom,
+                EmptyZero,
+                Hole,
+                Use,
+                PolarDual,
+                Plus,
+                Tensor,
+                BalancedZero,
+                HistoryComposition,
+            )
+            while pairs:
+                left, right, pair_depth = pairs.pop()
+                comparison_pairs += 1
+                if comparison_pairs > 256 or pair_depth > 32:
+                    raise ValueError(
+                        "AM dual comparison exceeds the declared 256-pair / 32-depth budget"
+                    )
+                if type(left) not in constructors or type(right) is not type(left):
+                    raise ValueError(
+                        "BalancedZero must retain one term and its exact PolarDual view"
+                    )
+                for field in reversed(fields(left)):
+                    a, b = getattr(left, field.name), getattr(right, field.name)
+                    if type(left) in (Atom, EmptyZero, Hole, Use):
+                        if type(a) is not str or type(b) is not str or a != b:
+                            raise ValueError(
+                                "BalancedZero must retain one term and its exact PolarDual view"
+                            )
+                    else:
+                        pairs.append((a, b, pair_depth + 1))
+            # The negative side is a coordinated view of the same retained
+            # syntax, not a second use or an implicit copy.
+            pending.append((item.positive, depth + 1))
+        elif isinstance(item, HistoryComposition):
+            pending.extend(((item.second, depth + 1), (item.first, depth + 1)))
         else:
             raise ValueError("unsupported AM constructor at a recursive position")
     if len(set(occurrences)) != len(occurrences):
