@@ -1,0 +1,8 @@
+{
+  "status": "ContractCorrectionBeforeLineImplementation",
+  "incorrect_clause": "a fresh source reuses the relation without reusing whole, occurrence, channel or residual identities",
+  "cause": "The existing WholeCut6 formation rule requires the residual ledger to equal the ordered residuals of open ports. A closed source accepted by LineView has no open ports and therefore necessarily has the empty residual ledger. Distinct residual identities cannot exist in this domain.",
+  "correction": "Require distinct whole, occurrence and channel identities in the fresh closed source, while requiring both closed sources to retain their exact empty residual ledger.",
+  "scope_change": "none; the object domain, grammar, route count and budgets are unchanged",
+  "implementation_correction_replays_consumed": 1
+}

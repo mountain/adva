@@ -1,0 +1,57 @@
+{
+  "research": "0267",
+  "status": "PassedFiniteFormation",
+  "base_main": "8585c5b965b84422b802d50f11f375aea171bd27",
+  "route": "research-local Python formation receiver",
+  "search_candidates": 0,
+  "implementation_correction_replays": 0,
+  "pre_execution_events": [
+    {
+      "event": "lint correction",
+      "detail": "The first static lint preflight found one unused test import; it was removed before any semantic execution."
+    },
+    {
+      "event": "measurement tool unavailable",
+      "detail": "/usr/bin/time was absent, so the targeted replay used Python subprocess resource accounting."
+    }
+  ],
+  "checks": [
+    {
+      "command": "python -m ruff check tests/python/test_bootstrap_zero_whole_cut_grammar.py tests/python/test_bootstrap_zero_distributivity_record.py tests/python/test_bootstrap_zero_complete_formation.py",
+      "result": "passed"
+    },
+    {
+      "command": "python -m ruff format --check tests/python/test_bootstrap_zero_whole_cut_grammar.py tests/python/test_bootstrap_zero_distributivity_record.py tests/python/test_bootstrap_zero_complete_formation.py",
+      "result": "3 files already formatted"
+    },
+    {
+      "command": "python -m pytest -q 'tests/python/test_bootstrap_zero*.py' -p no:cacheprovider",
+      "result": "1078 passed in 1.90s",
+      "test_cases": 1078,
+      "peak_rss_kib": null,
+      "memory_note": "Peak memory was not measured for the complete suite."
+    },
+    {
+      "command": "python subprocess resource wrapper -> python -m pytest -q tests/python/test_bootstrap_zero_complete_formation.py -p no:cacheprovider",
+      "result": "15 passed in 0.08s",
+      "test_cases": 15,
+      "wall_seconds": 0.3365581760008354,
+      "child_peak_rss_kib": 27984,
+      "processes": 1
+    }
+  ],
+  "new_test_partition": {
+    "positive_and_relational_cases": 2,
+    "malformed_constructor_cases": 4,
+    "name_type_and_ledger_mutations": 9,
+    "total": 15
+  },
+  "separate_costs": {
+    "construction": null,
+    "receiver_validation": null,
+    "serialization": 0,
+    "fresh_instance_reuse": null,
+    "note": "The in-process tests do not expose separate construction, validation or fresh-reuse timers; only the targeted aggregate is measured. No evidence serialization occurs in the receiver."
+  },
+  "classification_boundary": "Finite formation acceptance/refusal only. No evaluator, arithmetic equality, history law, filler or native operation was exercised."
+}

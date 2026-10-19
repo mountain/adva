@@ -27,6 +27,7 @@ RECORDED = {
     'experiments/reflexive_lattice_gate/calibration.py',
 }
 NOTES = {
+    'experiments/finite_world_identification/run.py': 'Build and test children call limits via Popen preexec_fn, installing 4 GiB AS without a platform gate. Installation refusal raises SubprocessError outside the timeout handler; finally removes the staged test and records ImplementationFailure in result.json. No Darwin memory guarantee follows.',
     'python/adva/verifier_search.py': 'Supervisor.call reaches child_limits without a platform gate. run catches SubprocessError as Blocked; dependencies may fail first. search_campaign reuses the pinned child_limits. Do not weaken or re-pin.',
     'experiments/execution_performance/run.py': 'Linux scheduler affinity is an additional portability blocker; an AS guard alone is insufficient.',
     'experiments/murphy/run.py': 'Only Python children install AS; outer handler reports Failed on preexec refusal. Non-Python children do not execute this AS call.',
