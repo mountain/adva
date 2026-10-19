@@ -1,0 +1,32 @@
+{
+  "engineering_smoke": {
+    "status": "6 tests passed before addition of the event-count observer and checked-prefix retention",
+    "supervisor": "not resource-supervised; not the frozen evidence run"
+  },
+  "supervised_attempt_1": {
+    "status": "ImplementationFailure",
+    "baseline": "8585c5b965b84422b802d50f11f375aea171bd27",
+    "wall_seconds": 0.5705220960007864,
+    "cause": "Linker terminated by SIGXFSZ: original 8 MiB per-file limit also applied to the test executable. No experimental test executed in this supervised attempt.",
+    "correction": "Separate 512 MiB build-file cap from unchanged 8 MiB test-file cap; one environmental correction, no semantic-family expansion."
+  },
+  "supervised_attempt_2": {
+    "status": "UnfrozenNativeReplay",
+    "baseline": "8585c5b965b84422b802d50f11f375aea171bd27",
+    "native_sha256": "ce196d9f23d714e1006fd0a62f76398e8ca3f507f58860a875a51f37df24bd0e",
+    "wall_seconds": 1.84927969299315
+  },
+  "freeze_replay": {
+    "status": "ExactNativeReplayMatched",
+    "baseline": "8585c5b965b84422b802d50f11f375aea171bd27",
+    "native_sha256": "ce196d9f23d714e1006fd0a62f76398e8ca3f507f58860a875a51f37df24bd0e",
+    "wall_seconds": 1.6500686590006808
+  },
+  "final_source_replay": {
+    "status": "ExactNativeReplayMatched",
+    "baseline": "8585c5b965b84422b802d50f11f375aea171bd27",
+    "native_sha256": "ce196d9f23d714e1006fd0a62f76398e8ca3f507f58860a875a51f37df24bd0e",
+    "wall_seconds": 2.9482034930042573
+  },
+  "harness_preflight_refusal": "One later invocation refused because an ephemeral integration-test path remained; no build or experiment ran. Removed only that temporary file, then performed the recorded final-source replay."
+}
