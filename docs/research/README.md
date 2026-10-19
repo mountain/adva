@@ -1,11 +1,13 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 56 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 57 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
 - [Matrix-free Iota dual expansion](iota-dual-expansion-calibration.md): typed pure/open combs, failed ordinary-Iota mirror correspondence, equal endpoints with different histories, and actual aperture policies; external finite evidence only.
+
+- [Bounded Metamath proof steps](bounded-metamath-proof-step-v0.md): an Adva research program executes frozen one-variable substitution, type/scope checks and a fixed-depth proof stack; native traces, independent instruction replay and external Metamath controls remain distinct.
 
 See [the reference identity audit and convention](../RESEARCH_REFERENCE_IDENTITY.md)
 for the two distinct 0259 notes and pinned successor disambiguations.

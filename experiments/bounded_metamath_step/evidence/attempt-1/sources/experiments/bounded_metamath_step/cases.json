@@ -1,0 +1,23 @@
+[
+  {"name":"floating", "proof":[100], "type":1, "tokens":[11], "native":"Returned", "external":true},
+  {"name":"constant-term", "proof":[101], "type":3, "tokens":[5], "native":"Returned", "external":true},
+  {"name":"substitute-once", "proof":[100,200], "type":2, "tokens":[11], "native":"Returned", "external":true},
+  {"name":"substitute-sequence", "proof":[100,201,200], "type":2, "tokens":[4,11], "native":"Returned", "external":true},
+  {"name":"substitute-longer", "proof":[100,201,201,200], "type":2, "tokens":[4,4,11], "native":"Returned", "external":true},
+  {"name":"substitute-token-cap", "proof":[100,201,201,201,200], "type":2, "tokens":[4,4,4,11], "native":"Returned", "external":true},
+  {"name":"repeat-variable", "proof":[100,202], "type":2, "tokens":[11,11], "native":"Returned", "external":true},
+  {"name":"repeat-sequence", "proof":[100,201,202], "type":2, "tokens":[4,11,4,11], "native":"Returned", "external":true},
+  {"name":"wrong-substitution", "proof":[100,200], "type":2, "tokens":[10], "native":"Rejected", "reason":"wrong substitution", "external":false},
+  {"name":"wrong-length", "proof":[100,200], "type":2, "tokens":[11,11], "native":"Rejected", "reason":"wrong substitution", "external":false},
+  {"name":"wrong-second-occurrence", "proof":[100,202], "type":2, "tokens":[11,10], "native":"Rejected", "reason":"wrong substitution", "external":false},
+  {"name":"wrong-prefix", "proof":[100,201,200], "type":2, "tokens":[11,4], "native":"Rejected", "reason":"wrong substitution", "external":false},
+  {"name":"type-mismatch", "proof":[101,200], "type":2, "tokens":[5], "native":"Rejected", "reason":"type mismatch", "external":false},
+  {"name":"wrong-target-type", "proof":[100,200], "type":1, "tokens":[11], "native":"Rejected", "reason":"type mismatch", "external":false},
+  {"name":"scope-violation", "proof":[102,200], "type":2, "tokens":[11], "native":"Rejected", "reason":"inactive label", "external":false},
+  {"name":"unknown-label", "proof":[999,200], "type":2, "tokens":[11], "native":"Rejected", "reason":"unknown label", "external":false},
+  {"name":"stack-underflow", "proof":[200], "type":2, "tokens":[11], "native":"Rejected", "reason":"stack underflow", "external":false},
+  {"name":"stack-leftover", "proof":[100,100,200], "type":2, "tokens":[11], "native":"Rejected", "reason":"non-singleton proof stack", "external":false},
+  {"name":"stack-overflow", "proof":[100,100,100,100,100,200], "type":2, "tokens":[11], "native":"Rejected", "reason":"stack overflow", "external":false},
+  {"name":"token-bound", "proof":[100,201,201,201,201,200], "type":2, "tokens":[4,4,4,4,11], "native":"Rejected", "reason":"token bound", "external":true},
+  {"name":"proof-bound", "proof":[100,201,201,201,201,201,201,201,200], "type":2, "tokens":[4,4,4,4,4,4,4,11], "native":"Rejected", "reason":"proof bound", "external":true}
+]
