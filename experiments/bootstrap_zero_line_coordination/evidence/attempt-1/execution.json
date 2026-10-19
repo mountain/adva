@@ -1,0 +1,65 @@
+{
+  "status": "PassedExplicitIntegrationPausedBeforeLineTests",
+  "dependencies": {
+    "main": "1f1b1134d54cccf896e1f66691a320c458d63c47",
+    "am_coordination_pr": 221,
+    "am_coordination_head": "4adba5a23d3ccaaa1c711c377dbee637b664c841"
+  },
+  "remote_exact_head": {
+    "ci": {
+      "run": 38752682507,
+      "conclusion": "success"
+    },
+    "bounded_acceptance": {
+      "run": 38752682581,
+      "conclusion": "success"
+    },
+    "publication_boundary": {
+      "run": 38752682812,
+      "conclusion": "success"
+    },
+    "machine_dependency_continuity": {
+      "run": 38752682504,
+      "conclusion": "success"
+    }
+  },
+  "explicit_integration": {
+    "modules": 13,
+    "shell_wildcard": false,
+    "result": "1102 passed in 1.62s",
+    "wall_seconds_including_process_launch": 2.0202594050060725,
+    "child_peak_rss_kib": 54944,
+    "processes": 1
+  },
+  "environment_preflight": {
+    "first_launch": {
+      "status": "ImplementationEnvironmentFailureBeforeTests",
+      "reason": "the selected Python environment did not contain pytest",
+      "tests_run": 0,
+      "wall_seconds": 0.013255832993309014,
+      "child_peak_rss_kib": 8704
+    },
+    "isolated_setup": {
+      "repository_files_changed": false,
+      "pytest": "9.1.1",
+      "ruff": "0.16.10",
+      "pytest_setup_wall_seconds": 22.525895518,
+      "ruff_setup_wall_seconds_approximate": 20.8,
+      "note": "The virtual environment is gitignored and is not evidence or a repository dependency lock."
+    }
+  },
+  "line_coordination_route": {
+    "status": "UnknownNotRun",
+    "lint": "passed",
+    "format": "failed before tests: one tuple expression would be placed on one line",
+    "tests_run": 0,
+    "search_candidates": 0,
+    "candidate_path": "evidence/line-coordination-candidate.py.txt",
+    "candidate_bytes": 6782,
+    "candidate_sha256": "d31b2363e5a95d0c39de902d5830f85372dc547f2193e55bfc28e63952e35b22",
+    "retry": false,
+    "reason_not_retried": "The sole correction allowance was already consumed by the retained contract correction."
+  },
+  "implementation_correction_replays": 1,
+  "classification_boundary": "Exact-head complete integration is now Passed. The proposed AM-to-LineView pairing was never executed and supplies no coordination theorem, vocabulary, semantic agreement, coverage, M6 filling or universality evidence."
+}
