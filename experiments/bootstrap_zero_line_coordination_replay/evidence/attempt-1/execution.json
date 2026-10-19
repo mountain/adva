@@ -1,0 +1,111 @@
+{
+  "status": "PassedFiniteClosedLineCoordination",
+  "dependencies": {
+    "main": "1f1b1134d54cccf896e1f66691a320c458d63c47",
+    "line_preflight_pr": 222,
+    "line_preflight_head": "886a6d996b0166c86f36bbc76f9d87cd8e2bb71d"
+  },
+  "candidate": {
+    "retained_path": "experiments/bootstrap_zero_line_coordination/evidence/line-coordination-candidate.py.txt",
+    "retained_bytes": 6782,
+    "retained_sha256": "d31b2363e5a95d0c39de902d5830f85372dc547f2193e55bfc28e63952e35b22",
+    "executed_path": "tests/python/test_bootstrap_zero_line_coordination.py",
+    "executed_bytes": 6752,
+    "executed_sha256": "804370dc44c7f07eca7825bc4cf345e35ee0a2640d4d8450d284322728be2f6c",
+    "only_semantic_edit": false,
+    "only_edit": "Ruff 0.16.10 collapsed the already recorded thread tuple expression onto one line",
+    "ruff_lint": "passed",
+    "ruff_format_check": "passed"
+  },
+  "targeted_replay": {
+    "tests": 8,
+    "positive_cases": 2,
+    "refusal_cases": 6,
+    "result": "8 passed in 0.06s",
+    "wall_seconds_including_process_launch": 0.40349799300020095,
+    "child_peak_rss_kib_linux": 29820,
+    "processes": 1,
+    "search_candidates": 0
+  },
+  "explicit_integration": {
+    "modules": 14,
+    "module_count_derivation": "The command has four launcher arguments followed by fourteen explicit paths. The supervisor printed 15 because its display expression subtracted three instead of four; the command and result were not rerun.",
+    "shell_wildcard": false,
+    "result": "1110 passed in 1.60s",
+    "wall_seconds_including_process_launch": 1.7865547389956191,
+    "child_peak_rss_kib_linux": 53852,
+    "processes": 1,
+    "paths": [
+      "tests/python/test_bootstrap_zero_axis_circle_pendulum_syntax.py",
+      "tests/python/test_bootstrap_zero_boolean_triangle_alignment.py",
+      "tests/python/test_bootstrap_zero_cell_carrier_views.py",
+      "tests/python/test_bootstrap_zero_complete_formation.py",
+      "tests/python/test_bootstrap_zero_distributivity_record.py",
+      "tests/python/test_bootstrap_zero_line_coordination.py",
+      "tests/python/test_bootstrap_zero_multihole_am_type_formation_constraints.py",
+      "tests/python/test_bootstrap_zero_production_ledger.py",
+      "tests/python/test_bootstrap_zero_retention.py",
+      "tests/python/test_bootstrap_zero_syntax_coordination.py",
+      "tests/python/test_bootstrap_zero_syntax_factor_inventory.py",
+      "tests/python/test_bootstrap_zero_thread_braid_syntax_alignment.py",
+      "tests/python/test_bootstrap_zero_whole_cut_grammar.py",
+      "tests/python/test_bootstrap_zero_whole_cut_m6_bridge.py"
+    ]
+  },
+  "environment_preflights": [
+    {
+      "status": "LaunchFailureBeforeTests",
+      "reason": "/usr/bin/time is absent",
+      "tests_run": 0
+    },
+    {
+      "status": "LaunchFailureBeforeTests",
+      "reason": "the retained gitignored .venv has pytest and Ruff entry points but its Python target is absent",
+      "tests_run": 0
+    },
+    {
+      "status": "SetupAttemptRefused",
+      "reason": "uv would not replace the existing incomplete .venv without a destructive clear",
+      "repository_files_changed": false
+    }
+  ],
+  "isolated_environment": {
+    "path": "/tmp/adva-0270-venv",
+    "repository_files_changed": false,
+    "python": "3.12.14",
+    "pytest": "9.1.1",
+    "ruff": "0.16.10",
+    "setup_wall_seconds": 24.256809
+  },
+  "publication_boundary": {
+    "status": "PassedAfterBoundedObjectPrefetch",
+    "first_history_scan": "The unified process ended without a captured result after repeated partial-clone object fetches.",
+    "second_history_scan": "Stopped after more than six minutes with no checker output in order to retain save time; the pending Git fetch returned Proxy CONNECT aborted.",
+    "third_history_scan": "Timed out after the declared 480-second bound with no checker output while lazily fetching partial-clone objects.",
+    "object_prefetch": {
+      "command": "git fetch --refetch --filter=blob:limit=100m origin",
+      "bound_seconds": 180,
+      "wall_seconds": 18.460073699,
+      "status": "passed"
+    },
+    "successful_history_scan": {
+      "wall_seconds": 10.531983132,
+      "unique_blobs": 5664,
+      "scanned_members": 14458,
+      "expanded_bytes": 429894831,
+      "withdrawn_copies": []
+    },
+    "staged_diff_check": "passed",
+    "repository_upload": "permitted after the successful scan; not itself evidence of mathematical correctness",
+    "classification": "The earlier stalls were partial-clone transport failures, not test failures or mathematical counterexamples. The mandatory identified-withdrawal history scan now passes."
+  },
+  "cost_boundary": {
+    "construction_validation_serialization_separately_measured": false,
+    "fresh_instance_reuse_separately_timed": false,
+    "counted_receiver_work_units": null,
+    "reason": "The inherited test-local receivers expose no internal work counter or evidence serializer. Test and process totals are reported without a speedup claim."
+  },
+  "implementation_correction_replays": 0,
+  "format_corrections": 1,
+  "classification_boundary": "The finite closed-source pairing and six refusal controls pass. Bare LineView residual preservation, nonempty residual transport, semantics, coverage, promotion, M6 filling, native free, arithmetic universality, hypothesized arithmetic truth and universal grammar do not follow."
+}
