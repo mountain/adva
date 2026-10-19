@@ -1,6 +1,6 @@
 # Research notes, calibrations and the bounded record
 
-This directory holds the research record of the repository: **279 numbered
+This directory holds the research record of the repository: **281 numbered
 notes, 55 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
@@ -60,6 +60,8 @@ while their public historical originals and witness programs remain available.
 - [Research 0266](0266-history-preserving-state-dag-artifact-boundary.md) folds complete schedule prefixes by exact cut while retaining every labelled path; four finite fibres survive, storage shrinks, artifact receiving does not become cheaper, and native replay remains Unknown.
 - [Research 0267](0267-complete-finite-whole-cut-formation-boundary.md) admits `HistoryComposition` and exact-dual-view `BalancedZero` to the finite WholeCut6 grammar, makes current name/type/residual boundaries explicit, and retains arithmetic, history and M6 semantics as open.
 - [Research 0268](0268-finite-am-syntax-coordination-projection.md) gives accepted finite AM terms a constructor-faithful source/type/occurrence projection; 10,924 depth-two candidates have zero accepted-term projection collisions, while the complete successor integration replay remains `Unknown/NotRun` after a retained launch failure.
+- [Research 0269](0269-explicit-integration-and-line-coordination-pause.md) resolves Research 0268's complete integration residual with 1,102 explicit-path tests, then pauses the first non-AM LineView pairing before execution after one contract correction and one format-check failure.
+- [Research 0270](0270-closed-lineview-coordination-replay.md) executes that retained candidate after its single recorded format change; two closed-source positives, six substitution refusals and the 1,110-case explicit integration suite pass, while nonempty residual transport remains outside the closed LineView domain.
 - **A numbered note is an append-only record.** `NNNN-slug.md` is the note as it
   was written, ordered by when it entered the record. A later note may supersede
   an earlier one; it does not rewrite it.

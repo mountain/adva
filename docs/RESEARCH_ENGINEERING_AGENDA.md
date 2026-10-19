@@ -1156,3 +1156,50 @@ history semantics, M6 filling, native `free` or universal grammar follows.
 Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
 Original first-party research under Unknown v0.3; account use is not his
 authorship, review, endorsement or a correctness guarantee.
+
+## 24. Explicit integration and first non-AM coordination pause, 2026-10-16
+
+[Research 0269](research/0269-explicit-integration-and-line-coordination-pause.md)
+resolves section 23's integration residual: all thirteen Bootstrap Zero modules
+were passed as explicit subprocess arguments and 1,102 tests succeeded. Draft
+PR #221's exact head also passed complete CI, bounded acceptance, publication
+and machine-dependency workflows.
+
+The attempted next step did not establish `LineView` coordination. A frozen
+fresh-instance clause incorrectly required distinct residual identities even
+though a closed line source necessarily has an empty residual ledger. After the
+sole correction fixed that domain error, Ruff found one formatting difference
+before tests. The candidate was retained but not formatted, executed or
+retried; its status is `Unknown/NotRun`.
+
+Next: under a new contract, permit the one recorded format correction and run
+the fixed positive, fresh-source and six-refusal family exactly once. Do not
+claim that bare `LineView` preserves residuals: only an independently bound
+pairing witness could retain source residual coordinates. Circle/thread/logic
+views, morphisms, Research 0090 coverage and Research 0092 promotion remain
+separate obligations.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
+
+## 25. Closed LineView coordination replay, 2026-10-17
+
+[Research 0270](research/0270-closed-lineview-coordination-replay.md) executes
+the exact candidate retained by section 24 after only its recorded Ruff format
+change. Two closed-source positive cases and six fixed substitution controls
+pass; the explicit fourteen-module Bootstrap Zero integration suite passes
+1,110 tests. A fresh source reuses the coordination relation without reusing
+whole, occurrence or channel identities.
+
+The source residual ledger is necessarily empty for every admitted instance.
+Consequently this result coordinates the current closed `LineView`; it does not
+test nonempty residual transport or make the bare view invertible. Any next
+step must define a separately constrained open-line profile rather than widen
+the existing view silently. Research 0090 coverage, Research 0092 promotion,
+semantic agreement, M6 filling, native `free`, arithmetic universality and
+universal grammar remain separate obligations.
+
+Authored by Codex (OpenAI), through Mingli Yuan's authorized account proxy.
+Original first-party research under Unknown v0.3; account use is not his
+authorship, review, endorsement or a correctness guarantee.
