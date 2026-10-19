@@ -1,0 +1,58 @@
+{
+  "schema": "adva.bounded-metamath-step.contract.v0",
+  "base_commit": "8585c5b965b84422b802d50f11f375aea171bd27",
+  "question": "Can unchanged data-machine-v1 instructions execute one-variable substitution, active-hypothesis and type checks, and a fixed-depth proof stack for a frozen pre-parsed toy Metamath database?",
+  "level": "Research program calibration; no stable language or machine authority change",
+  "authority": "Adva checker.adva performs label dispatch, stack operations, substitution construction, type and active-label checks, and token comparison. Python authors/encodes fixtures and supervises independent checks; it is not called by the Adva runtime.",
+  "trusted_inputs": [
+    "The fixed correspondence between database.mm and the assertion/hypothesis table embedded in checker.adva is manually audited, not established by a native .mm parser",
+    "The inherited Rust data-machine-v1 implementation and its source-bound profile",
+    "No disjoint-variable restrictions, essential hypotheses, compressed proofs, arbitrary databases or multiple mandatory variables are admitted"
+  ],
+  "language_audit": {
+    "v0": "Tagged data, stacks, integer equality, branch and fixed field access can encode a smaller cons-list checker within its 128-instruction/16-register limits; no instruction absence blocks the finite question",
+    "selected": "Existing v1: Length, FieldDynamic, StackLength and Pack make finite token-sequence construction and comparison explicit. Equal compares integers only; the Adva program loops over tokens.",
+    "machine_source": "crates/adva-witness/src/data_machine_v1.rs",
+    "new_instructions": []
+  },
+  "encoding": {
+    "input": "Node(10, [Node(11, integer label IDs), expected expression])",
+    "expression": "Node(1, [integer typecode, Node(2, integer token IDs)])",
+    "types": {"wff": 1, "|-": 2, "term": 3},
+    "tokens": {"~": 4, "a": 5, "p": 10, "q": 11},
+    "labels": {"fq": 100, "at": 101, "fr_inactive": 102, "ax": 200, "neg": 201, "dup": 202},
+    "context": "fp and fq are active. fr was an earlier closed-block floating hypothesis wff q, closed before fq was introduced; thus using fr has exactly the same substitution/type as fq but an inactive label. Only the listed proof labels are supported; earlier assertions remain usable after a block closes. The substitution variable p is mandatory in each ax/neg/dup frame."
+  },
+  "bounds": {
+    "proof_labels": 8,
+    "proof_stack_depth": 4,
+    "expression_tokens": 4,
+    "fuel_per_run": 8192,
+    "calls_per_invocation": 128,
+    "reference_steps": 200000,
+    "wall_seconds": 180,
+    "child_wall_seconds": 20,
+    "child_cpu_seconds": 15,
+    "child_address_space_bytes": 1073741824,
+    "child_file_bytes": 8388608,
+    "artifact_bytes": 67108864
+  },
+  "protected": [
+    "No hidden Python/Rust proof-checking callback or program-selected host oracle",
+    "Preserve input, complete bytecode, native transition trace and fresh native replay receipt",
+    "Independently replay each native state digest using the inherited Python v1 instruction reference",
+    "Explicit Rejected differs from FuelExhausted and Suspended; resource bounds do not establish logical invalidity",
+    "No automatic fuel refill; continuation must preserve the original program/input/fuel and complete trace",
+    "The independent Metamath tool checks original toy fixtures only, with no set.mm import or third-party source vendoring"
+  ],
+  "external_checker": {
+    "repository": "https://github.com/metamath/metamath-exe",
+    "commit": "9898f5d1bb27045d764dd01672862a1c2a3b4f5e",
+    "version": "0.200.pre 17-Aug-2026",
+    "command": "READ case.mm; VERIFY PROOF *; EXIT",
+    "acceptance": "Exit zero, explicit verification summary, and no ?Error or incomplete-proof warning. Exit zero alone is insufficient."
+  },
+  "exit": "Stop the finite invocation on the first mismatch or resource limit, retain its failure report, and do not retry automatically. Regressions use a fresh directory. A successful run establishes only this frozen database and fixture family.",
+  "residual": "General .mm parsing, database admission, dynamic/nested scope, $e/$d, arbitrary assertion frames, multi-variable substitution, compressed proof and generic proof capability remain open. The toy axiom |- p is deliberately not a claim of propositional soundness. No PSC0 diagram/source/graft certificate, native Seal or completed Issue #29 is asserted.",
+  "origin": "Original code, fixtures and documentation by Codex (OpenAI), Unknown v0.3, through Mingli Yuan's authorized account proxy; not his authorship, review or correctness guarantee. External checker software remains separately licensed outside the publication payload."
+}

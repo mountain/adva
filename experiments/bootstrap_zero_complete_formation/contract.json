@@ -1,0 +1,45 @@
+{
+  "research": "0267",
+  "title": "Complete finite WholeCut6 formation boundary",
+  "base_main": "8585c5b965b84422b802d50f11f375aea171bd27",
+  "question": "Can the research-local WholeCut6 grammar admit HistoryComposition and BalancedZero while making every current name, type, source and occurrence boundary explicit?",
+  "objects": [
+    "WholeCut6",
+    "AMTerm",
+    "HistoryComposition",
+    "BalancedZero",
+    "PolarDual",
+    "source-bound Use"
+  ],
+  "types": "Python frozen dataclasses in tests/python/test_bootstrap_zero_whole_cut_grammar.py; no stable API authority",
+  "quantifiers": "all recursive positions of each supplied finite term, at most 256 visited nodes and depth 32; all current WholeCut6 declaration fields in the frozen fixtures",
+  "arithmetic_domain": "none; syntax formation and exact nominal/type equality only",
+  "candidate_grammar": "Atom | Hole | Use | EmptyZero | PolarDual | Plus | Tensor | BalancedZero | HistoryComposition",
+  "acceptance": [
+    "one positive witness uses both added constructors over the merged source-bound distributivity fixture",
+    "one fresh-source reuse instance passes",
+    "constructor order remains observable",
+    "mismatched dual, non-dual negative, malformed recursive child and cross-source occurrence are refused",
+    "all current WholeCut6 name, type and residual-ledger mutations are refused",
+    "the complete Bootstrap Zero Python suite and Python formatting/lint pass"
+  ],
+  "budgets": {
+    "routes": 1,
+    "per_search_seconds": 30,
+    "search_candidates": 100000,
+    "actual_search_candidates": 0,
+    "term_nodes": 256,
+    "term_depth": 32,
+    "implementation_correction_replays": 1
+  },
+  "forbidden_conflations": [
+    "arithmetic distributivity",
+    "history invertibility or cancellation",
+    "additive zero or multiplicative unit semantics",
+    "M6 filler",
+    "native free",
+    "arithmetic universality",
+    "stable API admission"
+  ],
+  "residual": "A syntax-only coordination theorem over the complete admitted grammar remains open; any Research 0092 closure still depends on Research 0090 coverage."
+}

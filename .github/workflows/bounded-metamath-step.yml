@@ -1,0 +1,70 @@
+name: Bounded Metamath step
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/bounded-metamath-step.yml'
+      - 'programs/bounded-metamath-step/**'
+      - 'experiments/bounded_metamath_step/**'
+      - 'tests/python/test_bounded_metamath_step.py'
+      - 'experiments/rlimit_portability/inventory.json'
+      - 'crates/adva-witness/src/data_machine_v1.rs'
+      - 'crates/adva-witness/src/bin/support/data_machine_v1_cli.rs'
+      - 'Cargo.lock'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native-and-external:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install isolated verification dependencies
+        run: python -m pip install blake3==1.0.9 pytest==8.4.2 ruff==0.13.0
+      - name: Build unchanged native data machine
+        run: cargo build --locked -p adva-witness --bin adva
+      - name: Build separately licensed external checker outside the payload
+        run: |
+          git init "$RUNNER_TEMP/metamath-tool"
+          git -C "$RUNNER_TEMP/metamath-tool" fetch --depth=1 https://github.com/metamath/metamath-exe.git 9898f5d1bb27045d764dd01672862a1c2a3b4f5e
+          git -C "$RUNNER_TEMP/metamath-tool" checkout --detach FETCH_HEAD
+          cd "$RUNNER_TEMP/metamath-tool/src"
+          gcc m*.c -O2 -o metamath
+          sha256sum metamath
+      - name: Check research sources and retained state evidence
+        run: |
+          ruff check experiments/bounded_metamath_step/author.py experiments/bounded_metamath_step/run.py tests/python/test_bounded_metamath_step.py
+          ruff format --check experiments/bounded_metamath_step/author.py experiments/bounded_metamath_step/run.py tests/python/test_bounded_metamath_step.py
+          python -m pytest -q tests/python/test_bounded_metamath_step.py tests/python/test_rlimit_portability.py -p no:cacheprovider
+      - name: Execute Adva and Metamath in two fresh finite regressions
+        run: |
+          python experiments/bounded_metamath_step/run.py --binary target/debug/adva --metamath "$RUNNER_TEMP/metamath-tool/src/metamath" --output "$RUNNER_TEMP/metamath-evidence/primary"
+          python experiments/bounded_metamath_step/run.py --binary target/debug/adva --metamath "$RUNNER_TEMP/metamath-tool/src/metamath" --output "$RUNNER_TEMP/metamath-evidence/fresh"
+          python - <<'PY'
+          import json, os
+          from pathlib import Path
+          root = Path(os.environ['RUNNER_TEMP']) / 'metamath-evidence'
+          a = json.loads((root / 'primary/result.json').read_text())
+          b = json.loads((root / 'fresh/result.json').read_text())
+          assert a['status'] == b['status'] == 'Passed'
+          for key in ('profile', 'reference_steps'):
+              assert a[key] == b[key]
+          for x, y in zip(a['rows'], b['rows'], strict=True):
+              for key in ('name', 'status', 'phase', 'spent', 'report_sha256'):
+                  assert x[key] == y[key]
+          print(json.dumps({'status': a['status'], 'cases': a['cases'], 'native_runs': len(a['rows']), 'reference_steps': a['reference_steps'], 'deterministic_native_reports': True}))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bounded-metamath-step-evidence
+          path: ${{ runner.temp }}/metamath-evidence
+          if-no-files-found: warn

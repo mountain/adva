@@ -15,6 +15,10 @@ Status vocabulary:
 
 ## Weekly provenance register: 2026-10-12 through 2026-10-18
 
+The entries below retain the status recorded for that reporting period; they
+are not a live PR-status tracker. Later authorization and correction records
+are appended separately so historical failures and dispositions remain visible.
+
 ### P-2026-10-18-01 — Public core and personal research placement
 
 - **Human origin and decision:** Mingli Yuan, conversation on 2026-10-12:
@@ -134,3 +138,26 @@ Model assistance is not independent human review. Human responsibility does not
 retroactively make every model-produced byte or proof personally authored or
 line-by-line reviewed by Mingli Yuan.
 
+
+## Integration authorization and successor evidence: 2026-10-19
+
+Mingli Yuan explicitly requested review, resolution of blockers and merge of
+the four remaining Adva PRs: #217, #218, #219 and #223. This supersedes the
+earlier pending merge dispositions above without asserting independent human
+review or changing the scope of any result. The linked PRs retain their actual
+merge status, commit identity and remote workflow records.
+
+Research [0270](docs/research/0270-closed-lineview-coordination-replay.md),
+carried by #217, records a separately contracted successor to the stopped
+LineView attempt: 1,110 Bootstrap Zero tests passed for the closed-view scope.
+The earlier attempt remains `Unknown/NotRun`; nonempty residual transport and
+the stated native/semantic obligations remain open.
+
+The integration preserves the 2026-10-18 signed baseline snapshot, fixed
+research evidence and dependency locks. It resolves only aggregate research
+index and resource-inventory counts; no experimental budget is enlarged.
+The placement inventory in #218 still executes no second migration.
+
+Integration review and this addendum: Codex (OpenAI), original contribution
+under Unknown v0.3 through Mingli Yuan's authorized account proxy; not his
+personal authorship, independent review or endorsement of the results.

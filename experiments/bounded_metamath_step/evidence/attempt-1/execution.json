@@ -1,0 +1,28 @@
+{
+  "status": "Passed",
+  "base_commit": "8585c5b965b84422b802d50f11f375aea171bd27",
+  "profile": "e9a700a7ca68f73587b18be1230f908e358a7d30f0a3f7d62397493b378b5797",
+  "fixture_cases": 21,
+  "native_runs_per_process": 34,
+  "subprocesses_per_process": 90,
+  "reference_steps_per_process": 7120,
+  "deterministic_native_reports": true,
+  "archives": {
+    "primary": "9ee5e8bd99d09e96d6cc6ab4a2d2a05dbc357ef180fb845550109480968e1c87",
+    "fresh": "057341235336c0430a160e356b0b9a89bfcfc5a6ee0dbfdd65f2f7b197c1ce4f"
+  },
+  "native_toolchain": {
+    "rustc": "1.99.0 (b940084d7 2026-09-28)",
+    "cargo": "1.99.0",
+    "build": "cargo build --locked -p adva-witness --bin adva",
+    "binary_sha256": "c15909601f64904ea7507a5179a0a8666eafbf0fe265c334c5cf3012da649f6e"
+  },
+  "preflight": {
+    "status": "Passed",
+    "cases": 21,
+    "runs": 33,
+    "reference_steps": 6898,
+    "changes_before_final_pair": "Strengthened scope-only fixture using closed fr for q before active fq; added penetrating scope-guard mutation; made artifact reservation conservative. No native acceptance defect found."
+  },
+  "review": "Original fixtures, code and factual execution outputs reviewed by Codex (OpenAI); no external source, binary or proof database bundled; external tool provenance is a build record, not a proof of compiler correctness."
+}

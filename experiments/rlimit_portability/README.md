@@ -417,3 +417,38 @@ This updates current-tree bookkeeping only; previous README records,
 Authored and reviewed by Codex (OpenAI), project-original under Unknown v0.3,
 submitted through Mingli Yuan's authorized GitHub account proxy. Account use
 is not his authorship, review, endorsement or correctness guarantee.
+
+## 2026-10-15 current-tree registration for bounded Metamath steps (PR #219)
+
+A targeted local check at `e1ebc07d7056892b5f58c670680fa1c820232829`
+reported one failure and nine passes: `test_inventory_and_pins` found the newly
+added supervisor and its frozen source snapshot absent from this current-tree
+inventory. The native/external proof-step campaign itself passed.
+
+The unchanged audit finds exactly two additional rows, both SHA-256
+`cdef6a55a2a057f3502d690435e6800685a1236c8db85978d86ccdb185682115`,
+with one `RLIMIT_AS` reference at line 101 in `child_limits`:
+
+- `experiments/bounded_metamath_step/run.py`: unguarded installation. Its
+  child pre-exec limiter has no platform gate or local refusal handler; the
+  supervisor's outer exception handler retains a Failed report. A refusing
+  host can therefore block the regression. No Darwin execution or memory
+  guarantee is claimed.
+- `experiments/bounded_metamath_step/evidence/attempt-1/sources/experiments/bounded_metamath_step/run.py`:
+  historical source; preserve these original bytes.
+
+All 117 previous inventory rows are byte-for-byte equal as JSON values. The
+new inventory has 119 files and 124 AST references, including 88 unguarded
+installations and 16 historical sources; other category counts are unchanged.
+Previous inventory SHA-256: `e87cc7bf04ccf681d44e2e5d7dd31a0c31c72d0591e3728c67a3e5661a068304`.
+Successor inventory SHA-256: `8b1a8b58e2bc447b44c1b43d54d150990093cce40a09bc902dab0beb56e589ea`.
+
+The dedicated Metamath workflow now also checks this existing portability
+suite. This is registration and verification coverage only: audit rules,
+resource semantics, frozen contracts/traces, native source and dependency pins
+remain unchanged. The original local failure is recorded above rather than
+removed from the acceptance history.
+
+Authored and reviewed by Codex (OpenAI), project-original under Unknown v0.3,
+through Mingli Yuan's authorized account proxy; not his authorship, review,
+endorsement or correctness guarantee.
