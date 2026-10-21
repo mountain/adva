@@ -1,0 +1,47 @@
+{
+  "status": "UnknownPaused",
+  "reason": "The sole implementation-correction replay failed before evidence serialization; no correspondence result is admitted.",
+  "base_commit": "e50810d93f9720b5c11975b60e34f73ae2c15f1b",
+  "search_nodes": 0,
+  "new_words": 0,
+  "attempts": [
+    {
+      "name": "attempt-1",
+      "classification": "ImplementationFailure",
+      "wall_seconds": 0.1552954819999286,
+      "child_peak_rss_kib_linux": 25460,
+      "supervisor_peak_rss_kib_linux": 12928,
+      "last_observation": "assertion 7 while checking reversed-reuse",
+      "diagnosis": "thread-step namespace declaration order was incorrectly coupled to raw word occurrence order"
+    },
+    {
+      "name": "attempt-2",
+      "classification": "CorrectionReplayFailed",
+      "wall_seconds": 0.18471485400368692,
+      "child_peak_rss_kib_linux": 24896,
+      "supervisor_peak_rss_kib_linux": 12928,
+      "last_observation": "assertion 29 in the negative-control loop",
+      "diagnosis": "swap_targets returned only two pairs for six-entry namespaces, so the expected refusal reason did not match; the run stopped before writing cases.json"
+    }
+  ],
+  "correction": "One source change only: canonicalize the thread-step namespace ledger by name while preserving occurrence order in rename_source.",
+  "unmeasured": [
+    "successful construction, receiving, reuse and serialization costs",
+    "primitive validation work",
+    "hard memory limit",
+    "separate authoring time",
+    "human practical-use value"
+  ],
+  "evidence_sha256": {
+    "contract.json": "d91cf1ed73eac6782797768859da4ff4f05516d43a29dbcc933e2aa23970361e",
+    "run.py-after-correction": "3d8f2585c312a681263db2b4fba81b6a721583d5939d0a4d137ec43b9e58dc03",
+    "evidence/attempt-1/stderr.txt": "da1e873fe98492e6dd320bccb28982e529561f9221fff67f891fac04cccbb042",
+    "evidence/attempt-1/stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt-1/supervision.json": "0bfb6c2d67a29b0147246a002ac679fe7127ff167fff8712d34e9c45272c54ec",
+    "evidence/attempt-2/stderr.txt": "a5e2bfe887b592c094bf7401d565d69b00338f0579a93d4434f2d99688497f69",
+    "evidence/attempt-2/stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt-2/supervision.json": "b6bef4cc2002f52aefaf5af9a5d52cf50ecf54d356cdb9eb39d3fbcd1e601e56"
+  },
+  "source_gap": "Attempt-1 source bytes were overwritten by the allowed correction and have no retained SHA-256. The exact one-line predecessor is documented in the research note. This prevents byte-exact attempt-1 replay and is an explicit archive defect.",
+  "next": "Under a new finite continuation contract, retain the current failed bytes, repair swap_targets to keep pairs[2:], then run at most one fresh supervised attempt without changing cases or budgets."
+}

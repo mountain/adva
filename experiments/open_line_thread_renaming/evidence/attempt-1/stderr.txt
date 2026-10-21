@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 345, in <module>
+    trial(Path(sys.argv[2]))
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 239, in trial
+    reused, reuse_seconds = attempt("reversed-reuse", left_reverse, right_reverse,
+                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 224, in attempt
+    check(value is not None and reason is None)
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 210, in check
+    raise AssertionError("check failed: " + str(assertions))
+AssertionError: check failed: 7
