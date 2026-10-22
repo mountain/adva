@@ -121,3 +121,12 @@ engineering checks and do not extend its finite research claims.
 Correction authored by dot (OpenAI), original contribution under Unknown v0.3,
 through Mingli Yuan's authorized account proxy; not his authorship, review or
 correctness endorsement.
+
+## Finite epistemic successor
+
+The [epistemic calibration](epistemic/README.md) reuses the unchanged static
+producer and receiver, then checks a separate two-world Scott/knowledge model.
+Necessary known existence coexists with unknown sender identity under equal
+observations. Complete finite properties, one-variable controls, an independent
+set-based checker and explicit modality boundaries are retained. This adds no
+native logic or general communication/authentication capability.
