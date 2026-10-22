@@ -1,0 +1,43 @@
+{
+  "status": "UnknownEnvironmentBlocked",
+  "reason": "The one permitted supervised execution stopped during dependency import because pytest was unavailable; no source construction, correspondence checking, negative control, or serialization occurred.",
+  "base_commit": "23d0e6873bb6afe68c5f6e05b0edc23ab37cb08c",
+  "main_commit": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "route_count": 1,
+  "search_nodes": 0,
+  "correction_replays": 0,
+  "new_words": 0,
+  "launcher_preflight": {
+    "status": "LauncherUnavailable",
+    "semantic_or_trial_process_started": false,
+    "wall_seconds_reported_by_executor": 0.0000373
+  },
+  "attempt": {
+    "name": "attempt-3",
+    "classification": "EnvironmentDependencyFailure",
+    "returncode": 1,
+    "wall_seconds": 0.07106978000228992,
+    "child_peak_rss_kib_linux": 13056,
+    "supervisor_peak_rss_kib_linux": 13056,
+    "evidence_bytes_before_supervision": 984,
+    "within_1mib": true,
+    "last_observation": "ModuleNotFoundError while importing pytest through the unchanged predecessor test dependency",
+    "cases_serialized": 0
+  },
+  "implemented_but_unvalidated": "swap_targets now swaps the first two target values and retains pairs[2:], with unchanged checker, positive pairs and controls",
+  "evidence_sha256": {
+    "run.py": "688ecbd7c7a7ee984797fc7a1135b33f18bd239cfcf3dbce1985b46c3f570383",
+    "continuation-contract.json": "c5f7a3ba06c232790552aba878d526f5eb12836fc88ef729b6bc361f49543bda",
+    "evidence/attempt-3/stderr.txt": "7a4746994562a82c810acc389fab87ecd5ab834d3f13eff9e6e48efd638e0a0a",
+    "evidence/attempt-3/stdout.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt-3/supervision.json": "eb148c99b69af9bd70003a64b07c00ff9b1bfc3112530a370ffcd771e96eb8e6"
+  },
+  "unmeasured": [
+    "successful formation, receiving, reuse and serialization costs",
+    "primitive validation work",
+    "hard memory limit",
+    "separate authoring time",
+    "human practical-use value"
+  ],
+  "residual": "No correspondence result is admitted. The repaired helper bytes require a new contract with a successful pytest dependency preflight before one supervised run; both prior failures and attempt-3 must remain unchanged."
+}

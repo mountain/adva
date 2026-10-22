@@ -181,9 +181,20 @@ def receive(left, right, left_term, right_term, candidate, dependencies_):
 def trial(output):
     started = time.perf_counter()
     contract = json.loads((HERE / "contract.json").read_bytes())
+    continuation = json.loads((HERE / "continuation-contract.json").read_bytes())
     for path, digest in contract["input_sha256"].items():
         if hashlib.sha256((ROOT / path).read_bytes()).hexdigest() != digest:
             raise ValueError("input fingerprint mismatch: " + path)
+    retained = {
+        "contract.json": "contract.json",
+        "outcome.json": "outcome.json",
+        "attempt-1-supervision.json": "evidence/attempt-1/supervision.json",
+        "attempt-2-supervision.json": "evidence/attempt-2/supervision.json",
+    }
+    for name, path in retained.items():
+        digest = continuation["input_sha256"][name]
+        if hashlib.sha256((HERE / path).read_bytes()).hexdigest() != digest:
+            raise ValueError("retained predecessor fingerprint mismatch: " + path)
     dependencies_ = dependencies()
     residual, _, Crossing, _, _, ThreadStep, _ = dependencies_
     formation_start = time.perf_counter()
@@ -251,7 +262,8 @@ def trial(output):
     check({x.occurrence for x in left.ports}.isdisjoint(x.occurrence for x in right.ports))
 
     def swap_targets(pairs):
-        return (pairs[0][0], pairs[1][1]), (pairs[1][0], pairs[0][1])
+        return ((pairs[0][0], pairs[1][1]),
+                (pairs[1][0], pairs[0][1]), *pairs[2:])
 
     controls = (
         ("reversed-target-source", left, right_reverse, correspondence,
@@ -308,9 +320,11 @@ def trial(output):
         "serialization_and_decode_seconds": serialization_seconds,
         "total_seconds_before_summary": time.perf_counter() - started,
         "peak_rss_kib_linux": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss,
-        "python": platform.python_version(), "base_commit": contract["base_commit"],
+        "python": platform.python_version(), "base_commit": continuation["base_commit"],
         "script_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "contract_sha256": hashlib.sha256((HERE / "contract.json").read_bytes()).hexdigest(),
+        "continuation_contract_sha256": hashlib.sha256(
+            (HERE / "continuation-contract.json").read_bytes()).hexdigest(),
         "missing_costs": ["primitive validation work units", "hard memory cap",
                           "separate authoring time", "human practical-use measurement"]}
     (output / "execution.json").write_bytes(encode(summary))
