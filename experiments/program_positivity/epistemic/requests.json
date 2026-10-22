@@ -1,0 +1,297 @@
+{
+  "conflict": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      }
+    ],
+    "limits": {
+      "fuel": 200000
+    },
+    "observations": {
+      "reply_one": {
+        "args": [
+          "out.reply",
+          "1"
+        ],
+        "op": "eq"
+      },
+      "selected": {
+        "args": [
+          "x",
+          "0"
+        ],
+        "op": "lt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "reply": "square"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "square",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {},
+    "query": [
+      "reply_one",
+      "selected"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 0,
+      "negative": [
+        "selected"
+      ],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "joint": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      }
+    ],
+    "limits": {
+      "fuel": 200000
+    },
+    "observations": {
+      "reply_one": {
+        "args": [
+          "out.reply",
+          "1"
+        ],
+        "op": "eq"
+      },
+      "selected": {
+        "args": [
+          "x",
+          "0"
+        ],
+        "op": "lt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "reply": "square"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "square",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {},
+    "query": [
+      "reply_one",
+      "selected"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [],
+      "policy": "joint",
+      "positive": []
+    }
+  },
+  "marked_one": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      }
+    ],
+    "limits": {
+      "fuel": 200000
+    },
+    "observations": {
+      "reply_one": {
+        "args": [
+          "out.reply",
+          "1"
+        ],
+        "op": "eq"
+      },
+      "selected": {
+        "args": [
+          "x",
+          "0"
+        ],
+        "op": "lt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "reply": "square"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "square",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {},
+    "query": [
+      "reply_one",
+      "selected"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 1,
+      "negative": [],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "marked_zero": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      }
+    ],
+    "limits": {
+      "fuel": 200000
+    },
+    "observations": {
+      "reply_one": {
+        "args": [
+          "out.reply",
+          "1"
+        ],
+        "op": "eq"
+      },
+      "selected": {
+        "args": [
+          "x",
+          "0"
+        ],
+        "op": "lt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "reply": "square"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "square",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {},
+    "query": [
+      "reply_one",
+      "selected"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "marked": 0,
+      "negative": [],
+      "policy": "marked",
+      "positive": []
+    }
+  },
+  "zero_fuel": {
+    "fillings": [
+      {
+        "x": "-1"
+      },
+      {
+        "x": "1"
+      }
+    ],
+    "limits": {
+      "fuel": 0
+    },
+    "observations": {
+      "reply_one": {
+        "args": [
+          "out.reply",
+          "1"
+        ],
+        "op": "eq"
+      },
+      "selected": {
+        "args": [
+          "x",
+          "0"
+        ],
+        "op": "lt"
+      }
+    },
+    "program": {
+      "holes": [
+        "x"
+      ],
+      "outputs": {
+        "reply": "square"
+      },
+      "steps": [
+        {
+          "args": [
+            "x",
+            "x"
+          ],
+          "name": "square",
+          "op": "mul"
+        }
+      ]
+    },
+    "properties": {},
+    "query": [
+      "reply_one",
+      "selected"
+    ],
+    "schema": "adva.external-program-positivity-request.v0",
+    "theory": {
+      "negative": [],
+      "policy": "joint",
+      "positive": []
+    }
+  }
+}
