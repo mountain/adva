@@ -1,0 +1,63 @@
+{
+  "status": "FiniteRunPassedArchiveUnknown",
+  "reason": "The one permitted receiver execution passed, but the independent archive verifier failed again after its sole correction replay; no complete validation certificate or claim promotion is admitted.",
+  "base_commit": "b0b2570194ce514a4e66dd4cc4550e04ea15328c",
+  "main_commit": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "route_count": 1,
+  "search_nodes": 0,
+  "new_words": 0,
+  "environment": {
+    "status": "DependencyPreflightPassed",
+    "python": "3.12.14",
+    "pytest": "9.1.1",
+    "setup_and_import_preflight_seconds": 7.426210941,
+    "setup_peak_rss": "unmeasured"
+  },
+  "finite_run": {
+    "status": "Passed",
+    "assertions": 52,
+    "receiving_calls": 12,
+    "positive_pairs": 2,
+    "refusal_controls": 10,
+    "formation_seconds": 0.0004119340010220185,
+    "first_receiving_seconds": 0.0015303960026358254,
+    "reuse_receiving_seconds": 0.0009255509939976037,
+    "negative_receiving_seconds": 0.004069189999427181,
+    "serialization_and_decode_seconds": 0.0029221680015325546,
+    "execution_seconds_before_summary": 0.16221408700221218,
+    "supervised_wall_seconds": 0.2723690619968693,
+    "child_peak_rss_kib_linux": 25792,
+    "supervisor_peak_rss_kib_linux": 13056,
+    "evidence_bytes_before_supervision": 106083,
+    "within_1mib": true
+  },
+  "archive_verifier": {
+    "status": "UnknownPaused",
+    "attempts": 2,
+    "correction_replays": 1,
+    "first_diagnosis": "The verifier conflated the historically pinned attempt-2 run.py-after-correction bytes with the current repaired run.py bytes.",
+    "correction": "Treat the historical attempt-2 source digest as a coordinate retained inside the validation-pinned outcome record, not as the current run.py path.",
+    "second_diagnosis": "The verifier requested negative_controls from validation-contract.json, while the unchanged case list remains in the inherited contract.json.",
+    "report_written": false,
+    "peak_rss": "unmeasured"
+  },
+  "evidence_sha256": {
+    "run.py": "688ecbd7c7a7ee984797fc7a1135b33f18bd239cfcf3dbce1985b46c3f570383",
+    "validation-contract.json": "ab6dcd5403711cd8b35c21a87ca5352dbc19c6877bfb5eed0b64a6835aa227cd",
+    "verify_attempt4.py-after-correction": "0307174a516ec097997f1176629f8b530a1f5ee19ee0a1c94222aaf47d10afd9",
+    "evidence/attempt-4/cases.json": "c312d9ddfbf73675789955d3fbffe1337ee0d0efd74db65f76c8cee15c3441d2",
+    "evidence/attempt-4/execution.json": "bc72bf3d28210aa27ded7bb9dc264d952ed384ebb1c85412dde3e832c3c56a67",
+    "evidence/attempt-4/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt-4/stdout.txt": "9474aea8bdee58ca4283bfe5b87cd2e355339904369fce9dadc015642b030d8b",
+    "evidence/attempt-4/supervision.json": "7eee58635fc14c263dfed1b1288f32e88922bea5ae24ac196ca81e9d0d025355"
+  },
+  "unmeasured": [
+    "primitive validation work units",
+    "hard memory limit",
+    "environment setup peak RSS",
+    "failed verifier peak RSS",
+    "separate authoring time",
+    "human practical-use value"
+  ],
+  "residual": "Do not rerun the receiver. Under a new contract, change only the verifier to read negative_controls from contract.json and allow one archive-verification run over the immutable attempt-4 evidence."
+}
