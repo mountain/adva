@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 62 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 63 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -23,6 +23,8 @@ for the two distinct 0259 notes and pinned successor disambiguations.
 - [Open-line thread renaming environment pause](open-line-thread-renaming-environment-pause.md): the narrowly repaired continuation stopped before construction because pytest was unavailable; the helper bytes remain unvalidated and the result stays `Unknown`.
 
 - [Open-line thread renaming finite-run/archive pause](open-line-thread-renaming-finite-run-archive-pause.md): two fresh-name correspondences and ten controls pass, while the independently required archive verifier remains `Unknown` after its sole correction replay.
+
+- [Open-line thread renaming archive verified](open-line-thread-renaming-archive-verified.md): one archive-only process independently checks all pinned inputs, twelve retained cases, exact refusal reasons, full swap tails and five immutable evidence digests; finite research evidence only.
 
 ## How to read this directory
 

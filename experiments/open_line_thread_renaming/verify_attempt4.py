@@ -34,6 +34,7 @@ def main(output):
     started = time.perf_counter()
     checks = [0]
     contract = load(HERE / "validation-contract.json")
+    inherited_contract = load(HERE / "contract.json")
     pinned = {
         "run.py": HERE / "run.py",
         "contract.json": HERE / "contract.json",
@@ -73,7 +74,11 @@ def main(output):
     check(len(cases) == 12, "case count", checks)
 
     names = [row["case"] for row in cases]
-    expected_names = ["forward", "reversed-reuse", *contract["negative_controls"]]
+    expected_names = [
+        "forward",
+        "reversed-reuse",
+        *inherited_contract["negative_controls"],
+    ]
     check(names == expected_names, "case order", checks)
     check([row["outcome"] for row in cases[:2]] == ["Checked", "Checked"],
           "positive outcomes", checks)
