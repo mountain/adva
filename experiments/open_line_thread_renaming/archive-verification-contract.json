@@ -1,0 +1,52 @@
+{
+  "version": 0,
+  "status": "frozen-before-verifier-edit",
+  "date": "2026-10-24",
+  "base_commit": "09931719bff896a7e0e143a9bc9848e424ff09c6",
+  "main_commit": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "question": "Does one independently implemented archive-only verifier confirm the immutable attempt-4 receiver evidence after changing only the known negative-control contract lookup, without importing or executing the receiver?",
+  "level": "finite archive verification of one already completed research-local receiver run; no native identity, transport or arithmetic authority",
+  "objects": "The five immutable attempt-4 evidence files, their validation and inherited contracts, the retained predecessor outcomes, and one verifier source",
+  "types": "Canonical JSON records, exact byte digests, ordered case names, checked/refused outcome tags and complete ordered renaming maps",
+  "quantifiers": "Exactly twelve archived cases: two positive pairs and the ten inherited negative controls; no receiver rerun and no unrestricted renaming or coverage quantifier",
+  "arithmetic_domain": "None. Additive zero and multiplicative unity remain separate and unevaluated; no quotient, zero-point, invertibility or arithmetic-truth judgment occurs.",
+  "candidate_grammar": "Unchanged predecessor HistoryComposition(Hole,Use) profile and exact explicit identity correspondence; the verifier only reads serialized records",
+  "evaluation": "Verify all pinned predecessor inputs, historical evidence coordinates, archive/stdout equality, declared counts and outcomes, exact positive mappings, raw forward/reverse order, refusal reasons, complete six-entry source/occurrence mutations and the 1 MiB evidence bound",
+  "allowed_source_delta": "In verify_attempt4.py, load the unchanged inherited contract.json and obtain negative_controls from that record instead of validation-contract.json. No other verifier or evidence change is permitted before execution.",
+  "success": "One verifier process writes ArchiveVerified with every check passing, zero search and zero new words; the receiver is not imported or executed and every attempt-4 input digest remains unchanged.",
+  "failure": "Any exception, digest mismatch, order/reason mismatch, overwrite attempt or nonzero exit retains ArchiveUnknown; no correction replay or second verifier run is permitted.",
+  "protected": "The receiver, all attempt-1 through attempt-4 evidence, every prior failure trace, validation contract and outcome, raw occurrence order, exact source/occurrence identities and complete maps; no 0090 coverage, 0092 promotion, M6 filler, native free, alpha-equivalence theorem or 0123 universality",
+  "dependencies": {
+    "main": "PR225 merged at 2154b3c",
+    "draft": "PR226 head 0993171; proposed and unmerged",
+    "unrelated_open_pr": "PR227 does not alter this branch or dependency chain",
+    "0090": "general coverage remains open",
+    "0092": "promotion remains blocked on coverage",
+    "0123": "arithmetic-universality and hypothesized-arithmetic-truth remain Proposed"
+  },
+  "budgets": {
+    "session_seconds": 1200,
+    "routes": 1,
+    "search_nodes": 0,
+    "receiver_runs": 0,
+    "verifier_seconds": 30,
+    "max_verifier_runs": 1,
+    "max_correction_replays": 0,
+    "max_cases": 12,
+    "max_evidence_bytes": 1048576,
+    "memory": "No hard cap; verifier peak RSS measured by the verifier process"
+  },
+  "input_sha256": {
+    "verify_attempt4.py-before-allowed-delta": "0307174a516ec097997f1176629f8b530a1f5ee19ee0a1c94222aaf47d10afd9",
+    "validation-contract.json": "ab6dcd5403711cd8b35c21a87ca5352dbc19c6877bfb5eed0b64a6835aa227cd",
+    "contract.json": "d91cf1ed73eac6782797768859da4ff4f05516d43a29dbcc933e2aa23970361e",
+    "validation-outcome.json": "0028a8406a3d4bd65e6cc57c8763bea32429f126d56f7cb8469b14a7d986114e",
+    "evidence/attempt-4/cases.json": "c312d9ddfbf73675789955d3fbffe1337ee0d0efd74db65f76c8cee15c3441d2",
+    "evidence/attempt-4/execution.json": "bc72bf3d28210aa27ded7bb9dc264d952ed384ebb1c85412dde3e832c3c56a67",
+    "evidence/attempt-4/stdout.txt": "9474aea8bdee58ca4283bfe5b87cd2e355339904369fce9dadc015642b030d8b",
+    "evidence/attempt-4/stderr.txt": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "evidence/attempt-4/supervision.json": "7eee58635fc14c263dfed1b1288f32e88922bea5ae24ac196ca81e9d0d025355"
+  },
+  "publication": "Project-original contract and verifier delta under Unknown v0.3; no external expression, dependency bytes or payload imported",
+  "authorship": "ChatGPT (OpenAI), through Mingli Yuan's authorized account proxy; not his authorship, review, endorsement or correctness guarantee"
+}

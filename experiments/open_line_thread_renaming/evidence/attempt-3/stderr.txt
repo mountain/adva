@@ -1,0 +1,14 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 363, in <module>
+    trial(Path(sys.argv[2]))
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 198, in trial
+    dependencies_ = dependencies()
+                    ^^^^^^^^^^^^^^
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_thread_renaming/run.py", line 44, in dependencies
+    from experiments.open_line_residual import run as residual
+  File "/workspace/scratch/1ee294a179e8/adva/experiments/open_line_residual/run.py", line 13, in <module>
+    from test_bootstrap_zero_line_coordination import _renamed_closed  # noqa: E402
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/1ee294a179e8/adva/tests/python/test_bootstrap_zero_line_coordination.py", line 5, in <module>
+    import pytest
+ModuleNotFoundError: No module named 'pytest'

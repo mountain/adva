@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 58 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 63 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -15,6 +15,16 @@ for the two distinct 0259 notes and pinned successor disambiguations.
 - [Finite world structure identification v0](finite-world-structure-identification-v0.md): all 16 checked candidates, exact observer classes, source/history refinement and the counterexample to shortest-program recovery; research-only, with #26 residual retained.
 
 - [Open-line residual pairing](open-line-residual-pairing.md): two source-bound nonempty-residual proposals, seven refusals and a concrete lossy-projection collision; research-only.
+
+- [Open-line thread order pairing](open-line-thread-order-pairing.md): four own-context two-step pairings, eleven refusals and two AM/order-forgetting collisions; research-only, no braid or history semantics.
+
+- [Open-line thread renaming pause](open-line-thread-renaming-pause.md): the source-changing correspondence trial stopped after its sole correction replay; declaration order versus occurrence order is clarified, while the proposed correspondence remains `Unknown`.
+
+- [Open-line thread renaming environment pause](open-line-thread-renaming-environment-pause.md): the narrowly repaired continuation stopped before construction because pytest was unavailable; the helper bytes remain unvalidated and the result stays `Unknown`.
+
+- [Open-line thread renaming finite-run/archive pause](open-line-thread-renaming-finite-run-archive-pause.md): two fresh-name correspondences and ten controls pass, while the independently required archive verifier remains `Unknown` after its sole correction replay.
+
+- [Open-line thread renaming archive verified](open-line-thread-renaming-archive-verified.md): one archive-only process independently checks all pinned inputs, twelve retained cases, exact refusal reasons, full swap tails and five immutable evidence digests; finite research evidence only.
 
 ## How to read this directory
 

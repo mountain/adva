@@ -1,0 +1,40 @@
+{
+  "version": 0,
+  "status": "frozen-before-implementation",
+  "date": "2026-10-20",
+  "base_commit": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "question": "Does source-bound open-line pairing retain a two-step raw thread order that the AM projection and an unordered thread observer forget?",
+  "level": "finite research-local syntax; no native semantic authority",
+  "objects": "Three cells, six ports, two channels, two open ports and two residuals; first channel has exactly two ThreadStep records and second has none",
+  "types": "Existing trusted research dataclasses and OpenLineProposal; independently supplied complete expected WholeCut6",
+  "quantifiers": "Four fixed valid sources: canonical and fresh-source reuse, each with forward and reversed raw words. Eight candidate substitutions and three expected-source refusals. No general coverage claim.",
+  "arithmetic_domain": "None. Integers 1 and 2 are gap indices, not an arithmetic-truth interpretation. Additive zero and multiplicative unity remain separate and unevaluated.",
+  "candidate_grammar": "HistoryComposition(Hole(first declared hole), Use(first source occurrence)); first thread [(unique-a,1,OVER),(unique-b,2,UNDER)] or its literal reversal",
+  "checker": "New receive_two_step profile validates expected source, checks exact ordered proposal equality, obtains unchanged AM projection, and preserves exact open bindings. Old empty-thread receiver is not widened.",
+  "success": "Four own-context pairings succeed; reverse substitutions refuse; both source pairs have equal AM projections and equal unordered thread observers but distinct ordered proposals; fresh identities differ; JSON roundtrip preserves ordered output; old receiver refuses nonempty words",
+  "candidate_refusals": ["reverse-word", "drop-step", "rename-step", "change-gap", "change-crossing", "reverse-motion", "rename-residual", "foreign-source"],
+  "source_refusals": ["boolean-gap", "duplicate-step-name", "empty-word"],
+  "protected": "Source, occurrence, motion, raw order, hole and residual bindings. No topology, braid equality, historical inverse, source-changing transport, M6 filler, native free, 0090 coverage, 0092 promotion or 0123 universality inferred.",
+  "budgets": {
+    "session_seconds": 1200,
+    "routes": 1,
+    "search_nodes": 0,
+    "trial_seconds": 30,
+    "max_correction_replays": 1,
+    "max_valid_sources": 4,
+    "max_receiving_calls_per_attempt": 15,
+    "max_old_profile_calls_per_attempt": 2,
+    "max_evidence_bytes_per_attempt": 1048576,
+    "memory": "Measured Linux process peak RSS; no hard cap, trusted fixed-size fixtures",
+    "validation_seconds": 30
+  },
+  "input_sha256": {
+    "experiments/open_line_residual/run.py": "68f2c402f59702415511116e2ca7716f93e1988dc6f6257bf0d0cbf3259ec02b",
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py": "ab87aaaca51b362ea85c51e03e642889015ac5163038e8e6e30a0268abea72f9",
+    "tests/python/test_bootstrap_zero_syntax_coordination.py": "52077d783e1bb4de8b7ad26f8bc552096d508e28a0d51bf90c8da14c22b5d91a",
+    "tests/python/test_bootstrap_zero_line_coordination.py": "804370dc44c7f07eca7825bc4cf345e35ee0a2640d4d8450d284322728be2f6c",
+    "tests/python/test_bootstrap_zero_distributivity_record.py": "518f17c6be8de4907016cf4a7c054c99a0942eacaf457a40ddc5f9789bea980c"
+  },
+  "context": "Latest main and no open PRs checked on 2026-10-20; PR225 merged. Agenda, claim registry, Research0123 and predecessor reviewed. Main-pinned documentary context is not an executable import.",
+  "authorship": "Codex (OpenAI), original contribution under Unknown v0.3 through Mingli Yuan authorized account proxy; not his authorship, review or endorsement"
+}
