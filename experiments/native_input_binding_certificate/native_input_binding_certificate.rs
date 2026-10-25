@@ -695,23 +695,12 @@ fn external_open_line_leaf_labels_cannot_repin_the_native_request() {
     let dynamic_index = dynamic_indices[0];
 
     for (source_name, occurrence_name, target_source, target_occurrence) in [
-        (
-            "s-KX-L",
-            "o-KX-L",
-            "open-reuse-s-KX-L",
-            "open-reuse-o-KX-L",
-        ),
-        (
-            "s-tK-R",
-            "o-tK-R",
-            "open-reuse-s-tK-R",
-            "open-reuse-o-tK-R",
-        ),
+        ("s-KX-L", "o-KX-L", "open-reuse-s-KX-L", "open-reuse-o-KX-L"),
+        ("s-tK-R", "o-tK-R", "open-reuse-s-tK-R", "open-reuse-o-tK-R"),
     ] {
         let mut changed = original.clone();
         changed.occurrence_map[dynamic_index].0.source = SourceId::explicit(source_name);
-        changed.occurrence_map[dynamic_index].0.local_id =
-            OccurrenceId::explicit(occurrence_name);
+        changed.occurrence_map[dynamic_index].0.local_id = OccurrenceId::explicit(occurrence_name);
         let target = changed.occurrence_map[dynamic_index].1.as_mut().unwrap();
         target.source = SourceId::explicit(target_source);
         target.local_id = OccurrenceId::explicit(target_occurrence);
