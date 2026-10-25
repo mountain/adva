@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 63 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 64 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -877,6 +877,8 @@ Every file in this directory, so that no note is reachable only through a summar
 ### Named notes
 
 - [Native input-binding certificate v0](native-input-binding-certificate-v0.md): a research-local Rust checker for canonical static rational input binding, exact decorated correspondence and retained forgotten static lineage; no stable operation or numerical-equivalence theorem.
+
+- [Native input-binding/open-line leaf boundary](native-input-binding-open-line-leaf-boundary.md): two exact external source/occurrence label substitutions are refused by the independently bound native request while its unchanged positive control remains certified; no bridge impossibility or stable schema claim.
 
 - [iota-frame-three-dimensional-grid.md](iota-frame-three-dimensional-grid.md): the existing three-event process as a six-vertex, seven-edge cubical subgraph, preserving source reductions and its frame operator, with eight controls and an explicit boundary-condition obstruction.
 
