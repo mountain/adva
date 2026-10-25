@@ -677,6 +677,52 @@ fn zero_event_source_keeps_ordered_through_wires_under_binding() {
 }
 
 #[test]
+fn external_open_line_leaf_labels_cannot_repin_the_native_request() {
+    let (source, residual) = fixtures("(frontier (use static) (use dynamic))", Rational::ONE);
+    let original = propose(&source, &residual, Rational::ONE);
+    let expected = request(&source, &residual, Rational::ONE);
+    assert_eq!(
+        receive(&source, &residual, &original, &expected, 512),
+        Outcome::Certified(Box::new(original.clone()))
+    );
+    let dynamic_indices = original
+        .occurrence_map
+        .iter()
+        .enumerate()
+        .filter_map(|(index, (_, target))| target.as_ref().map(|_| index))
+        .collect::<Vec<_>>();
+    assert_eq!(dynamic_indices.len(), 1);
+    let dynamic_index = dynamic_indices[0];
+
+    for (source_name, occurrence_name, target_source, target_occurrence) in [
+        (
+            "s-KX-L",
+            "o-KX-L",
+            "open-reuse-s-KX-L",
+            "open-reuse-o-KX-L",
+        ),
+        (
+            "s-tK-R",
+            "o-tK-R",
+            "open-reuse-s-tK-R",
+            "open-reuse-o-tK-R",
+        ),
+    ] {
+        let mut changed = original.clone();
+        changed.occurrence_map[dynamic_index].0.source = SourceId::explicit(source_name);
+        changed.occurrence_map[dynamic_index].0.local_id =
+            OccurrenceId::explicit(occurrence_name);
+        let target = changed.occurrence_map[dynamic_index].1.as_mut().unwrap();
+        target.source = SourceId::explicit(target_source);
+        target.local_id = OccurrenceId::explicit(target_occurrence);
+        assert_eq!(
+            receive(&source, &residual, &changed, &expected, 512),
+            Outcome::Refused("qualified source occurrence mismatch")
+        );
+    }
+}
+
+#[test]
 fn missing_or_forged_accounting_is_refused() {
     let value = Rational::new(7, 3).unwrap();
     let (source, residual) = fixtures(BODY, value);
