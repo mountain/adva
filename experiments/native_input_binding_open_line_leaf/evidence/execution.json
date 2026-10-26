@@ -1,0 +1,96 @@
+{
+  "profile": "native-input-binding-open-line-leaf-boundary-v0",
+  "status": "FiniteRefusalBoundaryChecked",
+  "date": "2026-10-25",
+  "repository": "mountain/adva",
+  "main": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "tested_head": "ae6d76354385dcfc68394413d1c71396e26e7ee6",
+  "pull_request": 226,
+  "inputs": {
+    "contract": {
+      "path": "experiments/native_input_binding_open_line_leaf/contract.json",
+      "sha256": "ff6c09f8baf1f9fe740b97b44f537eea896edff77b9a3b3fb8a4e6583ff80e6c",
+      "bytes": 3490
+    },
+    "rust_source": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+      "sha256": "28f38a2c81fd78a4e552121aa052a195501bc71f7347b48b36f07395ec65695d",
+      "bytes": 32798
+    },
+    "open_line_cases": {
+      "path": "experiments/open_line_thread/evidence/attempt-1/cases.json",
+      "sha256": "c312d9ddfbf73675789955d3fbffe1337ee0d0efd74db65f76c8cee15c3441d2"
+    }
+  },
+  "route": {
+    "count": 1,
+    "search_candidates": 0,
+    "fixture": "(frontier (use static) (use dynamic))",
+    "static_value": "Rational::ONE",
+    "structural_budget_per_receive": 512,
+    "receiver_calls": 3,
+    "actual_receiver_work_units": null,
+    "actual_receiver_work_note": "The private counter does not expose its remaining value; 512 was supplied independently to each call and file size is not used as a memory or work proxy."
+  },
+  "checks": [
+    {
+      "kind": "positive-control",
+      "input": "unmodified native certificate and independently fixed request",
+      "outcome": "Certified"
+    },
+    {
+      "kind": "finite-refusal",
+      "source": "s-KX-L/o-KX-L",
+      "target": "open-reuse-s-KX-L/open-reuse-o-KX-L",
+      "outcome": "Refused",
+      "reason": "qualified source occurrence mismatch"
+    },
+    {
+      "kind": "finite-refusal-reuse",
+      "source": "s-tK-R/o-tK-R",
+      "target": "open-reuse-s-tK-R/open-reuse-o-tK-R",
+      "outcome": "Refused",
+      "reason": "qualified source occurrence mismatch"
+    }
+  ],
+  "workflow": {
+    "successful_run_id": 40204251184,
+    "successful_job_id": 121201683467,
+    "rustc": "1.99.1 (58cf8f9c3 2026-10-13)",
+    "rustfmt": "success",
+    "clippy_locked_seconds": 5.53,
+    "cargo_test_build_seconds": 6.29,
+    "native_tests": {
+      "passed": 11,
+      "failed": 0,
+      "reported_seconds": 0.02
+    },
+    "all_selected_test_binaries": {
+      "passed": 38,
+      "failed": 0,
+      "reported_test_seconds_sum": 0.21
+    },
+    "job_observed_wall_seconds": 32.33,
+    "peak_memory_bytes": null,
+    "memory_note": "GitHub Actions logs did not report peak RSS or concurrent aggregate memory."
+  },
+  "correction_replay": {
+    "count": 1,
+    "prior_run_id": 40204075359,
+    "prior_job_id": 121201163946,
+    "classification": "FormattingFailureBeforeCompilation",
+    "reason": "rustfmt --check requested only mechanical tuple and assignment compaction",
+    "semantic_execution_in_prior_run": false
+  },
+  "authority": {
+    "new_word": false,
+    "native_bridge": false,
+    "stable_schema": false,
+    "close": false,
+    "free": false,
+    "m6_filler": false,
+    "arithmetic_universality": false,
+    "hypothesized_arithmetic_truth": false
+  },
+  "residual": "No serialized receiving request carries and validates an external SharedProgramDiagram, qualified context and source/occurrence/path map. Refusal of label substitution does not prove that such a bridge cannot be constructed."
+}

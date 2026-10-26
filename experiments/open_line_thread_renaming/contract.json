@@ -1,0 +1,57 @@
+{
+  "version": 0,
+  "status": "frozen-before-implementation",
+  "date": "2026-10-21",
+  "base_commit": "e50810d93f9720b5c11975b60e34f73ae2c15f1b",
+  "question": "Can one explicit finite correspondence map every declared identity of the canonical two-step open WholeCut6 to the fresh instance while preserving raw step order, and refuse a swapped-step mapping?",
+  "level": "finite research-local source correspondence over trusted dataclasses; no native identity or transport authority",
+  "objects": "Canonical and fresh three-cell, six-port, two-channel, two-open-port WholeCut6 sources from the predecessor experiment, each in forward and reversed two-step order",
+  "types": "A local RenamingCorrespondence with ordered maps for whole, cells, ports, sources, occurrences, channels, thread steps, holes, residuals and alternatives",
+  "quantifiers": "Two positive source pairs (forward and reversed reuse) and ten one-field correspondence/target controls; no unrestricted alpha-equivalence or coverage theorem",
+  "arithmetic_domain": "None. Gap integers and unchanged enums are literal syntax. Additive zero, multiplicative unity, division at zero and arithmetic truth are not evaluated.",
+  "candidate_grammar": "The predecessor AM term HistoryComposition(Hole(first declared hole),Use(first port source,occurrence,type)); correspondence maps the exact Hole/Use leaves and preserves constructor order",
+  "checker": "Validate both independently supplied sources; require exact ordered domain/range coverage and injectivity in every identity namespace; rename the entire left source and AM term; require byte-structural dataclass equality to the right source and term",
+  "success": "The same explicit correspondence receives forward-to-forward and reversed-to-reversed; exact source/occurrence/step identities differ; raw order is preserved; ten controls refuse; archive JSON roundtrip preserves every ordered mapping",
+  "negative_controls": [
+    "reversed-target-source",
+    "swapped-step-targets",
+    "duplicate-step-target",
+    "swapped-occurrence-targets",
+    "swapped-source-targets",
+    "swapped-residual-targets",
+    "swapped-hole-targets",
+    "reversed-port-map-order",
+    "wrong-whole-target",
+    "omitted-alternative-map"
+  ],
+  "protected": "Exact source and occurrence identities, ordered ports/channels/open ports/thread words/residual ledger, motion, gap, crossing, hole and alternative bindings, AM constructor order; no sorting, cancellation, topology, braid law, history inverse, M6 filler, native free, 0090 coverage, 0092 promotion or 0123 universality",
+  "dependencies": {
+    "predecessor": "PR226 head e50810d; unmerged proposed finite experiment",
+    "main": "2154b3c; PR225 merged",
+    "0090": "general coverage remains open",
+    "0092": "promotion remains blocked on coverage",
+    "0123": "both arithmetic words remain Proposed"
+  },
+  "budgets": {
+    "session_seconds": 1200,
+    "routes": 1,
+    "search_nodes": 0,
+    "trial_seconds": 30,
+    "max_correction_replays": 1,
+    "max_positive_pairs": 2,
+    "max_receiving_calls_per_attempt": 12,
+    "max_evidence_bytes_per_attempt": 1048576,
+    "memory": "No hard cap; trusted fixed-size inputs; child and supervisor process peak RSS measured",
+    "validation_seconds": 30
+  },
+  "input_sha256": {
+    "experiments/open_line_thread/run.py": "b760038ec6528913fea885625d3f0ed4923079d82e4519dc1339c9a6cb072af1",
+    "experiments/open_line_thread/contract.json": "3dcf73db47edff979e354ca3bd255f0ef076c4794ccf2da85d5470676dc99bc7",
+    "experiments/open_line_thread/evidence/attempt-1/cases.json": "051420340ad63f3e54f0b6cd3480a84cadb76c6dd8009933d572ba6e3ebe5625",
+    "tests/python/test_bootstrap_zero_whole_cut_grammar.py": "ab87aaaca51b362ea85c51e03e642889015ac5163038e8e6e30a0268abea72f9",
+    "tests/python/test_bootstrap_zero_syntax_coordination.py": "52077d783e1bb4de8b7ad26f8bc552096d508e28a0d51bf90c8da14c22b5d91a",
+    "tests/python/test_bootstrap_zero_line_coordination.py": "804370dc44c7f07eca7825bc4cf345e35ee0a2640d4d8450d284322728be2f6c"
+  },
+  "publication": "Project-original code, fixtures and prose under Unknown v0.3; no external expression or payload imported",
+  "authorship": "Codex (OpenAI), through Mingli Yuan authorized account proxy; not his authorship, review, endorsement or correctness guarantee"
+}
