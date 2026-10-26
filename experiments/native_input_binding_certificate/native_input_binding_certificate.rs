@@ -9,8 +9,9 @@ use adva_ir::{
 };
 use adva_lisp::{
     analyze_program_slice_with_graft, compile_function, link_modules, parse_module,
-    validate_diagram,
+    import_diagram_json, validate_diagram,
 };
+use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
 
 const MODULE: &str = "native-binding";
@@ -56,6 +57,14 @@ struct ExpectedRequest {
     source_snapshot: SharedProgramDiagram,
     residual_context: QualifiedName,
     static_value: Rational,
+}
+
+#[derive(Clone, Debug, Eq, PartialEq)]
+struct ExpectedExternalLeaf {
+    source: String,
+    occurrence: String,
+    target_source: String,
+    target_occurrence: String,
 }
 
 #[derive(Debug, Eq, PartialEq)]
@@ -589,6 +598,136 @@ fn request(
     }
 }
 
+fn qualified_json(occurrence: &QualifiedOccurrence) -> Value {
+    json!({
+        "context": occurrence.context.to_string(),
+        "source": occurrence.source.as_str(),
+        "occurrence": occurrence.local_id.as_str(),
+        "path": &occurrence.path.0,
+    })
+}
+
+fn external_leaf_json(leaf: &ExpectedExternalLeaf) -> Value {
+    json!({
+        "source": leaf.source,
+        "occurrence": leaf.occurrence,
+        "target_source": leaf.target_source,
+        "target_occurrence": leaf.target_occurrence,
+    })
+}
+
+fn only_dynamic_pair(
+    certificate: &ResearchCertificate,
+) -> Result<(&QualifiedOccurrence, &QualifiedOccurrence), Outcome> {
+    let dynamic = certificate
+        .occurrence_map
+        .iter()
+        .filter_map(|(source, target)| target.as_ref().map(|target| (source, target)))
+        .collect::<Vec<_>>();
+    if dynamic.len() != 1 {
+        return Err(Outcome::Unknown(
+            "outside the one-dynamic-occurrence request profile",
+        ));
+    }
+    Ok(dynamic[0])
+}
+
+fn serialized_leaf_request(
+    source: &CompilationArtifact,
+    residual: &CompilationArtifact,
+    certificate: &ResearchCertificate,
+    leaf: &ExpectedExternalLeaf,
+) -> String {
+    let (native_source, native_target) = only_dynamic_pair(certificate).unwrap();
+    json!({
+        "profile": "adva.research.native-input-binding-open-line-leaf-request.v0",
+        "source_diagram_json": source.result.to_json().unwrap(),
+        "residual_diagram_json": residual.result.to_json().unwrap(),
+        "external_leaf": external_leaf_json(leaf),
+        "native_occurrence_map": [{
+            "source": qualified_json(native_source),
+            "target": qualified_json(native_target),
+        }],
+    })
+    .to_string()
+}
+
+fn receive_serialized_leaf_request(
+    source: &CompilationArtifact,
+    residual: &CompilationArtifact,
+    certificate: &ResearchCertificate,
+    request: &ExpectedRequest,
+    expected_leaf: &ExpectedExternalLeaf,
+    encoded: &str,
+    byte_budget: usize,
+    structural_work: usize,
+) -> Outcome {
+    if encoded.len() > byte_budget {
+        return Outcome::Unknown("serialized request byte budget exhausted");
+    }
+    let value: Value = match serde_json::from_str(encoded) {
+        Ok(value) => value,
+        Err(_) => return Outcome::Refused("serialized request malformed"),
+    };
+    let root = match value.as_object() {
+        Some(root) => root,
+        None => return Outcome::Refused("serialized request shape mismatch"),
+    };
+    let expected_root = BTreeSet::from([
+        "external_leaf",
+        "native_occurrence_map",
+        "profile",
+        "residual_diagram_json",
+        "source_diagram_json",
+    ]);
+    if root.keys().map(String::as_str).collect::<BTreeSet<_>>() != expected_root {
+        return Outcome::Refused("serialized request shape mismatch");
+    }
+    if root.get("profile").and_then(Value::as_str)
+        != Some("adva.research.native-input-binding-open-line-leaf-request.v0")
+    {
+        return Outcome::Refused("serialized request profile mismatch");
+    }
+    let source_json = match root.get("source_diagram_json").and_then(Value::as_str) {
+        Some(source_json) => source_json,
+        None => return Outcome::Refused("serialized request shape mismatch"),
+    };
+    let residual_json = match root.get("residual_diagram_json").and_then(Value::as_str) {
+        Some(residual_json) => residual_json,
+        None => return Outcome::Refused("serialized request shape mismatch"),
+    };
+    let imported_source = match import_diagram_json(source_json) {
+        Ok(diagram) => diagram,
+        Err(_) => return Outcome::Refused("serialized native diagram invalid"),
+    };
+    let imported_residual = match import_diagram_json(residual_json) {
+        Ok(diagram) => diagram,
+        Err(_) => return Outcome::Refused("serialized native diagram invalid"),
+    };
+    if imported_source != source.result
+        || imported_residual != residual.result
+        || source_json != source.result.to_json().unwrap()
+        || residual_json != residual.result.to_json().unwrap()
+    {
+        return Outcome::Refused("serialized source or residual snapshot mismatch");
+    }
+    if root.get("external_leaf") != Some(&external_leaf_json(expected_leaf)) {
+        return Outcome::Refused("serialized external leaf binding mismatch");
+    }
+    let (native_source, native_target) = match only_dynamic_pair(certificate) {
+        Ok(pair) => pair,
+        Err(outcome) => return outcome,
+    };
+    let expected_mapping = json!([{
+        "source": qualified_json(native_source),
+        "target": qualified_json(native_target),
+    }]);
+    if root.get("native_occurrence_map") != Some(&expected_mapping) {
+        return Outcome::Refused("serialized native occurrence mismatch");
+    }
+    receive(source, residual, certificate, request, structural_work)
+}
+
 #[test]
 fn certified_binding_preserves_dynamic_copy_and_all_body_events_without_evaluation() {
     for value in [
@@ -709,6 +848,120 @@ fn external_open_line_leaf_labels_cannot_repin_the_native_request() {
             Outcome::Refused("qualified source occurrence mismatch")
         );
     }
+}
+
+#[test]
+fn serialized_open_line_leaf_request_binds_validated_complete_native_diagrams() {
+    let (source, residual) = fixtures("(frontier (use static) (use dynamic))", Rational::ONE);
+    let certificate = propose(&source, &residual, Rational::ONE);
+    let expected = request(&source, &residual, Rational::ONE);
+    let leaves = [
+        ExpectedExternalLeaf {
+            source: "s-KX-L".into(),
+            occurrence: "occ-KX-L".into(),
+            target_source: "t-KX-L".into(),
+            target_occurrence: "tocc-KX-L".into(),
+        },
+        ExpectedExternalLeaf {
+            source: "s-tK-R".into(),
+            occurrence: "occ-tK-R".into(),
+            target_source: "t-tK-R".into(),
+            target_occurrence: "tocc-tK-R".into(),
+        },
+    ];
+    for leaf in &leaves {
+        let encoded = serialized_leaf_request(&source, &residual, &certificate, leaf);
+        assert!(encoded.len() < 65_536);
+        assert_eq!(
+            receive_serialized_leaf_request(
+                &source,
+                &residual,
+                &certificate,
+                &expected,
+                leaf,
+                &encoded,
+                65_536,
+                512,
+            ),
+            Outcome::Certified(Box::new(certificate.clone()))
+        );
+    }
+
+    let leaf = &leaves[0];
+    let encoded = serialized_leaf_request(&source, &residual, &certificate, leaf);
+    let mutate = |change: &dyn Fn(&mut Value)| {
+        let mut value: Value = serde_json::from_str(&encoded).unwrap();
+        change(&mut value);
+        value.to_string()
+    };
+    let controls = [
+        (
+            mutate(&|value| value["external_leaf"]["occurrence"] = json!("occ-rebound")),
+            Outcome::Refused("serialized external leaf binding mismatch"),
+        ),
+        (
+            mutate(&|value| {
+                value["native_occurrence_map"][0]["source"]["source"] = json!("s-KX-L")
+            }),
+            Outcome::Refused("serialized native occurrence mismatch"),
+        ),
+        (
+            mutate(&|value| {
+                value["native_occurrence_map"][0]["target"]["path"] = json!([9])
+            }),
+            Outcome::Refused("serialized native occurrence mismatch"),
+        ),
+        (
+            mutate(&|value| {
+                let (changed_source, _) = fixtures(
+                    "(frontier (copy (use static)) (use dynamic))",
+                    Rational::ONE,
+                );
+                value["source_diagram_json"] = json!(changed_source.result.to_json().unwrap());
+            }),
+            Outcome::Refused("serialized source or residual snapshot mismatch"),
+        ),
+        (
+            mutate(&|value| value["source_diagram_json"] = json!("{}")),
+            Outcome::Refused("serialized native diagram invalid"),
+        ),
+        (
+            mutate(&|value| value["unexpected"] = json!(true)),
+            Outcome::Refused("serialized request shape mismatch"),
+        ),
+        (
+            mutate(&|value| value["profile"] = json!("future-profile")),
+            Outcome::Refused("serialized request profile mismatch"),
+        ),
+    ];
+    for (changed, expected_outcome) in controls {
+        assert_eq!(
+            receive_serialized_leaf_request(
+                &source,
+                &residual,
+                &certificate,
+                &expected,
+                leaf,
+                &changed,
+                65_536,
+                512,
+            ),
+            expected_outcome
+        );
+    }
+    assert_eq!(
+        receive_serialized_leaf_request(
+            &source,
+            &residual,
+            &certificate,
+            &expected,
+            leaf,
+            &encoded,
+            encoded.len() - 1,
+            512,
+        ),
+        Outcome::Unknown("serialized request byte budget exhausted")
+    );
 }
 
 #[test]
