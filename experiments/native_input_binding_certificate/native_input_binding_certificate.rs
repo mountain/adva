@@ -8,8 +8,8 @@ use adva_ir::{
     SourceId, ValueType, WireProducer, WireRef,
 };
 use adva_lisp::{
-    analyze_program_slice_with_graft, compile_function, link_modules, parse_module,
-    import_diagram_json, validate_diagram,
+    analyze_program_slice_with_graft, compile_function, import_diagram_json, link_modules,
+    parse_module, validate_diagram,
 };
 use serde_json::{Value, json};
 use std::collections::{BTreeMap, BTreeSet};
@@ -906,9 +906,7 @@ fn serialized_open_line_leaf_request_binds_validated_complete_native_diagrams() 
             Outcome::Refused("serialized native occurrence mismatch"),
         ),
         (
-            mutate(&|value| {
-                value["native_occurrence_map"][0]["target"]["path"] = json!([9])
-            }),
+            mutate(&|value| value["native_occurrence_map"][0]["target"]["path"] = json!([9])),
             Outcome::Refused("serialized native occurrence mismatch"),
         ),
         (
