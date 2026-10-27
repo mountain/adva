@@ -704,8 +704,8 @@ fn receive_serialized_leaf_request(
         Ok(diagram) => diagram,
         Err(_) => return Outcome::Refused("serialized native diagram invalid"),
     };
-    if imported_source != source.result
-        || imported_residual != residual.result
+    if imported_source.result != source.result
+        || imported_residual.result != residual.result
         || source_json != source.result.to_json().unwrap()
         || residual_json != residual.result.to_json().unwrap()
     {
