@@ -652,6 +652,9 @@ fn serialized_leaf_request(
     .to_string()
 }
 
+// This research-only boundary keeps the independently supplied current
+// artifacts, expected request, external leaf, and both budgets explicit.
+#[allow(clippy::too_many_arguments)]
 fn receive_serialized_leaf_request(
     source: &CompilationArtifact,
     residual: &CompilationArtifact,
