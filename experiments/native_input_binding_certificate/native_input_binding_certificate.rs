@@ -984,8 +984,7 @@ fn serialized_leaf_request_requires_each_fresh_native_instance_to_bind_itself() 
     let certificate = propose(&source, &residual, Rational::ONE);
     let encoded = serialized_leaf_request(&source, &residual, &certificate, &leaf);
 
-    let (fresh_source, fresh_residual) =
-        fixtures_in("native-binding-fresh", body, Rational::ONE);
+    let (fresh_source, fresh_residual) = fixtures_in("native-binding-fresh", body, Rational::ONE);
     let fresh_certificate = propose(&fresh_source, &fresh_residual, Rational::ONE);
     let fresh_expected = request(&fresh_source, &fresh_residual, Rational::ONE);
 
@@ -1011,12 +1010,8 @@ fn serialized_leaf_request_requires_each_fresh_native_instance_to_bind_itself() 
         Outcome::Refused("serialized source or residual snapshot mismatch")
     );
 
-    let fresh_encoded = serialized_leaf_request(
-        &fresh_source,
-        &fresh_residual,
-        &fresh_certificate,
-        &leaf,
-    );
+    let fresh_encoded =
+        serialized_leaf_request(&fresh_source, &fresh_residual, &fresh_certificate, &leaf);
     assert!(fresh_encoded.len() < 65_536);
     assert_eq!(
         receive_serialized_leaf_request(
