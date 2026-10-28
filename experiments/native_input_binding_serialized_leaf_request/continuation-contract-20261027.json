@@ -1,0 +1,63 @@
+{
+  "contract": "adva.research.native-input-binding-serialized-leaf-request-continuation.v0",
+  "status": "frozen-before-continuation-execution",
+  "base": {
+    "main_commit": "03c37587c5c983647f302b6ef49aac6bd000626e",
+    "draft_pr": 228,
+    "draft_head": "03de0353888bc64ad8443cb3c685f1e323b163f1",
+    "candidate_source_sha256": "ca8cddc89fcbfb4a3f3ac811600c7a0d8e32a790ffd1233914106a8c896856d5",
+    "rust_importer_sha256": "32ef06a407d5adde13fea8df1869da12bdbb16be059f3866b2733c3caf0b2330",
+    "validation_artifact_sha256": "cc8f30e8036c9e90c3da8a61385e5ad0d3934aec0b1d0032ceb9f1a6f4726f3a"
+  },
+  "question": "Does projecting each successfully imported DiagramValidationArtifact to its checked result remove the sole recorded type residual without changing the serialized leaf request or native receiver judgments?",
+  "objects": {
+    "source_body": "(frontier (use static) (use dynamic))",
+    "static_value": "1/1",
+    "arithmetic_domain": "one canonical Rational::ONE fixture only; no arithmetic evaluation",
+    "metadata_correction": "The inherited contract's source_body field named the complex BODY fixture, while its encoded test target and pause report use this zero-event fixture. This continuation freezes the actual test object and does not reinterpret prior execution."
+  },
+  "types_and_quantifiers": {
+    "import_type": "DiagramValidationArtifact { result: SharedProgramDiagram, certificate: DiagramValidationCertificate }",
+    "positive": "exactly two inherited external leaf tuples",
+    "negative": "exactly seven inherited Refused controls",
+    "budget_control": "exactly one inherited byte-budget Unknown control",
+    "result": ["Certified", "Refused", "Unknown"]
+  },
+  "candidate_change": {
+    "allowed": [
+      "compare imported_source.result with source.result",
+      "compare imported_residual.result with residual.result"
+    ],
+    "forbidden": [
+      "schema changes",
+      "new fixtures or controls",
+      "budget changes",
+      "Python identity reconstruction",
+      "stable API promotion"
+    ]
+  },
+  "evaluation": [
+    "rustfmt and clippy pass",
+    "the inherited dedicated Rust test and existing process/graft/import regressions pass",
+    "both positive requests are Certified",
+    "all seven malformed or rebound requests are Refused for their frozen reason",
+    "byte exhaustion is Unknown",
+    "the second external tuple reuses the same bounded receiving relation"
+  ],
+  "budget": {
+    "substantively_distinct_routes": 1,
+    "search_candidates": 0,
+    "max_request_bytes": 65536,
+    "structural_work_per_receive": 512,
+    "max_workflow_executions_before_correction": 1,
+    "max_implementation_correction_replays": 1,
+    "workflow_timeout_seconds": 1800,
+    "overall_minutes": 20
+  },
+  "stop": "Stop after the first successful bounded workflow, or retain the exact new residual after one failed execution and at most one implementation correction replay.",
+  "nonclaims": [
+    "no general external-to-native bridge",
+    "no arbitrary renaming or alpha-equivalence theorem",
+    "no M6 filler, native free, arithmetic universality, or universal grammar"
+  ]
+}

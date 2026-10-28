@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 64 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 66 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -875,6 +875,10 @@ Every file in this directory, so that no note is reachable only through a summar
 - [`0266-history-preserving-state-dag-artifact-boundary.md`](0266-history-preserving-state-dag-artifact-boundary.md)
 
 ### Named notes
+
+- [Serialized open-line leaf request: import-artifact pause](serialized-open-line-leaf-request-paused-at-import-artifact.md): the retained initial type mismatch; no executed bridge claim.
+
+- [Serialized open-line leaf request: positive prefix and continuation](serialized-open-line-leaf-request-positive-prefix-pause.md): the retained ill-typed negative control, separate full-CI index failure, and explicitly bounded same-arity continuation; historical failures remain evidence.
 
 - [Native input-binding certificate v0](native-input-binding-certificate-v0.md): a research-local Rust checker for canonical static rational input binding, exact decorated correspondence and retained forgotten static lineage; no stable operation or numerical-equivalence theorem.
 

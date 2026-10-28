@@ -1,0 +1,53 @@
+{
+  "profile": "adva.research.native-input-binding-serialized-leaf-request-outcome.v0",
+  "status": "Unknown",
+  "base_main": "03c37587c5c983647f302b6ef49aac6bd000626e",
+  "candidate_head": "638caf52888bce6d4e921fea16221cb89e899e15",
+  "workflow": "https://github.com/mountain/adva/actions/runs/40525724730",
+  "route_count": 1,
+  "search_candidates": 0,
+  "correction_replays": 1,
+  "format_passed": true,
+  "clippy_passed": true,
+  "positive_receipts": {
+    "planned": 2,
+    "executed": 2,
+    "certified": 2
+  },
+  "negative_controls": {
+    "planned": 7,
+    "constructed_before_failure": 3,
+    "receiver_assertions_executed": 0,
+    "refused": 0
+  },
+  "budget_control": {
+    "planned": 1,
+    "executed": 0
+  },
+  "existing_tests_before_failure": {
+    "diagram_validation_passed": 6,
+    "graft_trace_passed": 2,
+    "native_input_binding_existing_passed": 11
+  },
+  "residual": {
+    "stage": "construction of valid-but-different source negative control",
+    "input": "(frontier (copy (use static)) (use dynamic))",
+    "error": "function native-binding/source declares outputs CodomainFrontier(TypedFrontier([Real, Real])), got [Real, Real, Real]",
+    "smallest_next_change": "replace that control body with a different valid two-output body; do not change the request schema, positive fixtures, budgets, or receiver"
+  },
+  "cost": {
+    "first_clippy_seconds_approx": 3.9,
+    "correction_clippy_seconds": 7.01,
+    "correction_test_build_seconds": 7.09,
+    "correction_native_test_seconds": 0.02,
+    "serialized_request_bytes": "not measured",
+    "peak_memory": "not measured"
+  },
+  "claims_not_made": [
+    "negative controls are enforced",
+    "byte exhaustion returns Unknown",
+    "new native program instance reuse",
+    "general external-to-native bridge",
+    "arithmetic universality or universal grammar"
+  ]
+}

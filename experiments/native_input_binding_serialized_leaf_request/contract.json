@@ -1,0 +1,60 @@
+{
+  "contract": "adva.research.native-input-binding-serialized-leaf-request.v0",
+  "status": "frozen-before-execution",
+  "base": {
+    "main_commit": "03c37587c5c983647f302b6ef49aac6bd000626e",
+    "native_certificate_sha256": "28f38a2c81fd78a4e552121aa052a195501bc71f7347b48b36f07395ec65695d",
+    "rust_importer_sha256": "32ef06b13bdc6b7edc5799045a90d4fd35d1bb2e9473e0d1f0e39b8070386418",
+    "diagram_ir_sha256": "88cae596f5050fcb0955a4a82351a9f15c42b327a1e56f9f819586cc926db3a1"
+  },
+  "question": "Can one externally named open-line leaf be received by the existing native Rust certificate only when a versioned request also binds complete importer-validated source and residual diagrams plus the exact qualified native source/target occurrence pair?",
+  "objects": {
+    "source_body": "(frontier (add (copy (use static))) (add (copy (use dynamic))) (discard 1))",
+    "static_value": "1/1",
+    "arithmetic_domain": "one canonical Rational fixture only; additive zero and multiplicative unity remain distinct typed operations",
+    "external_leaf_families": [
+      ["s-KX-L", "occ-KX-L", "t-KX-L", "tocc-KX-L"],
+      ["s-tK-R", "occ-tK-R", "t-tK-R", "tocc-tK-R"]
+    ]
+  },
+  "types_and_quantifiers": {
+    "positive": "for each of exactly two frozen external leaf tuples, one request over the same independently compiled native fixture",
+    "negative": "one control each for external rebinding, native source rebinding, native path rebinding, valid-but-different source snapshot, malformed native diagram, unknown root field, wrong profile, and insufficient byte budget",
+    "result": ["Certified", "Refused", "Unknown"]
+  },
+  "candidate_grammar": {
+    "profile": "adva.research.native-input-binding-open-line-leaf-request.v0",
+    "root_fields": [
+      "profile",
+      "source_diagram_json",
+      "residual_diagram_json",
+      "external_leaf",
+      "native_occurrence_map"
+    ],
+    "external_leaf_fields": ["source", "occurrence", "target_source", "target_occurrence"],
+    "qualified_occurrence_fields": ["context", "source", "occurrence", "path"]
+  },
+  "evaluation": [
+    "both complete diagram strings pass adva_lisp::import_diagram_json",
+    "their canonical imported values equal the caller-supplied current artifacts",
+    "the request contains exactly the one dynamic source/target occurrence pair present in the certificate",
+    "the external tuple equals an independently supplied expected tuple",
+    "the existing native receiver still returns Certified",
+    "every frozen mismatch returns Refused and byte exhaustion returns Unknown"
+  ],
+  "budget": {
+    "substantively_distinct_routes": 1,
+    "search_candidates": 0,
+    "max_request_bytes": 65536,
+    "structural_work_per_receive": 512,
+    "max_implementation_correction_replays": 1,
+    "workflow_timeout_seconds": 1800,
+    "overall_minutes": 20
+  },
+  "nonclaims": [
+    "no general external-to-native bridge",
+    "no alpha-equivalence or renaming transport",
+    "no stable or public wire schema",
+    "no authentication, persistence, M6 filler, universal grammar, or arithmetic universality"
+  ]
+}
