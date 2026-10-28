@@ -1,0 +1,42 @@
+name: Finite epistemic positivity
+
+on:
+  pull_request:
+    paths:
+      - 'experiments/program_positivity/**'
+      - 'tests/python/test_epistemic_positivity.py'
+      - '.github/workflows/epistemic-positivity.yml'
+  push:
+    branches: [main]
+    paths:
+      - 'experiments/program_positivity/**'
+      - 'tests/python/test_epistemic_positivity.py'
+      - '.github/workflows/epistemic-positivity.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  finite-model:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    strategy:
+      matrix:
+        python: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+      - name: Replay both implementations and finite controls
+        run: |
+          timeout 45s prlimit --as=268435456 --cpu=30 --fsize=1048576 -- python experiments/program_positivity/epistemic/run.py --output /tmp/epistemic.json
+          timeout 45s prlimit --as=268435456 --cpu=30 --fsize=1048576 -- python -O experiments/program_positivity/epistemic/run.py --output /tmp/epistemic-optimized.json
+          cmp /tmp/epistemic.json /tmp/epistemic-optimized.json
+          cmp /tmp/epistemic.json experiments/program_positivity/epistemic/evidence.json
+          timeout 45s prlimit --as=268435456 --cpu=30 --fsize=1048576 -- python tests/python/test_epistemic_positivity.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: epistemic-${{ matrix.python }}
+          path: /tmp/epistemic*.json

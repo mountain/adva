@@ -914,10 +914,8 @@ fn serialized_open_line_leaf_request_binds_validated_complete_native_diagrams() 
         ),
         (
             mutate(&|value| {
-                let (changed_source, _) = fixtures(
-                    "(frontier (copy (use static)) (use dynamic))",
-                    Rational::ONE,
-                );
+                let (changed_source, _) =
+                    fixtures("(frontier (id (use static)) (use dynamic))", Rational::ONE);
                 value["source_diagram_json"] = json!(changed_source.result.to_json().unwrap());
             }),
             Outcome::Refused("serialized source or residual snapshot mismatch"),

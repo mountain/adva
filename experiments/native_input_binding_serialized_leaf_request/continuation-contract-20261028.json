@@ -1,0 +1,72 @@
+{
+  "contract": "adva.research.native-input-binding-serialized-leaf-request-same-arity-continuation.v0",
+  "status": "frozen-before-continuation-execution",
+  "prepared_at_utc": "2026-10-28T11:27:00Z",
+  "base": {
+    "draft_pr": 228,
+    "draft_head": "07b70993f504c8e8dd00ec68662f9f75de9071bc",
+    "integration_main": "d82817e0a9f936a47cd963743cd0b87f9b0a9f1a",
+    "inherited_source_sha256": "3b4a989573426d853cab430244d29006127905647a1f13bdfaf4de1a7ff9b1fe",
+    "rust_importer_sha256": "32ef06a407d5adde13fea8df1869da12bdbb16be059f3866b2733c3caf0b2330",
+    "validation_artifact_sha256": "cc8f30e8036c9e90c3da8a61385e5ad0d3934aec0b1d0032ceb9f1a6f4726f3a",
+    "cargo_lock_sha256": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9"
+  },
+  "question": "Does replacing only the ill-typed different-source control with a valid two-output control permit the frozen two positive receipts, seven exact refusals and byte-budget Unknown assertion to execute?",
+  "level": "finite research-test repair and engineering integration; no new receiving profile",
+  "reason_to_continue": "The previous run failed while compiling the control, before any negative receiver assertion. The replacement preserves arity but adds an explicit id event, so complete snapshot equality must still refuse it.",
+  "history": {
+    "prior_contract": "continuation-contract-20261027.json",
+    "prior_outcome": "outcome-20261027.json",
+    "prior_status": "Unknown; correction replay exhausted",
+    "retention": "Prior contracts, outcome bytes, failed run links and source history remain unchanged; this is a separately budgeted continuation, not a reset of the prior run."
+  },
+  "candidate_change": {
+    "old_control_body": "(frontier (copy (use static)) (use dynamic))",
+    "new_control_body": "(frontier (id (use static)) (use dynamic))",
+    "allowed": [
+      "replace only this control body and apply rustfmt",
+      "index the two existing pause notes and correct the named-note count",
+      "correct the full-CI failure attribution while retaining the erroneous historical statement",
+      "record this contract and exact new outcomes; integrate already published main without changing its content"
+    ],
+    "protected": [
+      "unchanged Rust importer and native receiver",
+      "unchanged serialized request grammar and exact snapshot/occurrence equality",
+      "same two positive external tuples and seven exact Refused expectations",
+      "same one byte-budget Unknown assertion",
+      "same 65536-byte request limit and 512 structural units per receive",
+      "unchanged Cargo.lock, stable API and historical outcome bytes"
+    ]
+  },
+  "evaluation": [
+    "research index preflight and its existing regression tests pass",
+    "published and staged Rust formatting and locked Clippy pass",
+    "the dedicated test and existing process/graft/import regressions pass",
+    "the two positive receipts return Certified; all seven negatives return their frozen Refused reason; byte exhaustion returns Unknown",
+    "complete CI, bounded acceptance, publication boundary and machine dependency checks pass on the final PR head before merge",
+    "post-merge checks reach terminal success; failures are disclosed and no protection is bypassed"
+  ],
+  "budget": {
+    "substantively_distinct_routes": 1,
+    "search_candidates": 0,
+    "max_request_bytes": 65536,
+    "structural_work_per_receive": 512,
+    "max_local_focused_test_executions": 2,
+    "max_pr_verification_rounds": 3,
+    "max_implementation_correction_replays": 1,
+    "max_post_merge_verification_rounds": 1,
+    "local_command_timeout_seconds": 900,
+    "bounded_workflow_job_timeout_seconds": 900,
+    "integration_observation_window_minutes": 120,
+    "retained_new_report_bytes_max": 65536,
+    "enforcement": "Use timeout for local execution, retain existing workflow timeouts, count all local/PR replay rounds cumulatively, and stop this continuation at its limits with the exact residual. The PR-round cap includes any evidence-only follow-up commit. Memory is not measured or claimed."
+  },
+  "stop": "Stop the research route when the frozen family passes, or after one implementation correction replay fails. Do not widen fixtures, weaken expectations or silently renew fuel. Engineering verification continues only within the stated integration window and replay caps; a limit or protection blocker is reported rather than bypassed.",
+  "nonclaims": [
+    "no general external-to-native bridge or renaming theorem",
+    "no stable schema or native communication profile",
+    "no M6 closure, arithmetic universality or universal grammar",
+    "no human review, endorsement or correctness guarantee inferred from account use"
+  ],
+  "attribution": "Authored by ChatGPT (OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy. Original first-party contribution under Unknown v0.3."
+}

@@ -2,8 +2,9 @@
 
 ## Status
 
-Unknown. Two finite positive receipts executed and returned `Certified`, but the
-negative-control phase did not reach its receiver assertions. This is not a
+Historical result, 2026-10-27: Unknown. Two finite positive receipts executed
+and returned `Certified`, but the negative-control phase did not reach its
+receiver assertions. This is not a
 bridge certificate, a learned word, a theorem, or evidence for arithmetic
 universality or universal grammar.
 
@@ -91,9 +92,17 @@ Observed work:
 - serialized byte counts and peak memory were not reported and are not inferred
   from file size.
 
-Publication-boundary validation passed. Full CI and the bounded workflow are
-red because the new test failed; a green publication check is not a mathematical
-success claim.
+Publication-boundary validation passed. The original report stated: "Full CI
+and the bounded workflow are red because the new test failed." That attribution
+was incorrect. At head `07b70993f504c8e8dd00ec68662f9f75de9071bc`, the
+[bounded workflow](https://github.com/mountain/adva/actions/runs/40526045840)
+failed at the ill-typed control described above. Independently,
+[full CI](https://github.com/mountain/adva/actions/runs/40526045620)
+stopped before builds at `scripts/check_research_index.py`: this note and the
+import-artifact pause note were missing from the research index, whose header
+still declared 64 named notes instead of 66. The Rust and three Python suites
+were skipped, not executed and failed. A green publication check is not a
+mathematical success claim.
 
 ## Vocabulary and utility
 
@@ -117,3 +126,35 @@ and structural budgets, and receiver unchanged. Execute the same bounded
 workflow once. If it passes, record exact assertion counts and any measurable
 serialization or memory costs; otherwise retain the next exact residual as
 Unknown.
+
+## Separately bounded continuation, 2026-10-28
+
+The [new finite contract](../../experiments/native_input_binding_serialized_leaf_request/continuation-contract-20261028.json)
+does not reset or rewrite the exhausted 2026-10-27 continuation. Its only
+executable change replaces the three-output `copy` control with
+`(frontier (id (use static)) (use dynamic))`: the same two-output boundary,
+but a different complete source diagram. The receiver, schema, both positive
+tuples, seven refusal expectations, byte-budget control and budgets remain
+unchanged. The two existing notes are indexed, and the incorrect full-CI
+attribution is corrected above with the original statement retained.
+
+At contract preparation, the new execution result is pending. Prior failures,
+the original contract and `outcome-20261027.json` remain frozen. Any subsequent
+result must identify its own exact source bytes and executed checks; merging
+the engineering correction is not promotion to a stable schema, a general
+external/native bridge, or an arithmetic-universality claim.
+
+The first local focused execution on 2026-10-28 passed with Rust 1.99.1:
+published/staged formatting, locked Clippy, 12 native input-binding tests,
+6 diagram-validation tests, 2 graft tests and 19 process tests. The serialized
+test now reaches all 2 `Certified`, 7 exact `Refused` and 1 byte-budget `Unknown`
+assertions. Research-index preflight and the combined index/Bootstrap Zero
+suite passed (1,121 tests), as did the existing Python lint/format checks.
+The candidate source SHA-256 is
+`60ceaacdd398f83b10772ac6eae45eb61be4206b892bf414d63deef92b1efcea`.
+These are local finite results, not a claim that remote integration has passed.
+
+Continuation and correction authored by ChatGPT (OpenAI), submitted through
+Mingli Yuan's GitHub account as an authorized proxy. Original first-party work
+contributed under Unknown v0.3; account use is not his authorship, review,
+endorsement or a correctness guarantee.
