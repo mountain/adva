@@ -1,0 +1,74 @@
+{
+  "contract": "adva.research.native-input-binding-serialized-leaf-request-fresh-instance.v0",
+  "status": "frozen-before-execution",
+  "prepared_at_utc": "2026-10-28T14:35:00Z",
+  "base": {
+    "main_commit": "a6872d1f6a1c767757b3d0cf696fe029a61b1d2a",
+    "merged_predecessor_pr": 228,
+    "predecessor_source_sha256": "60ceaacdd398f83b10772ac6eae45eb61be4206b892bf414d63deef92b1efcea",
+    "compiler_sha256": "7863a170ce14c248779bdd5fbcf466a26605b3bd45227bb378357f9f51db1f36",
+    "diagram_ir_sha256": "88cae59f72c43a5ac2ee2c6a1e6830268d15c85009f92000c26df5ff86da15e0",
+    "cargo_lock_sha256": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9"
+  },
+  "question": "Can the versioned serialized leaf receiving relation be reused for one independently compiled, differently named native instance while refusing an old-instance request and certifying a request serialized from the new instance itself?",
+  "level": "finite research-only native identity and receiving-boundary check",
+  "objects": {
+    "source_body": "(frontier (use static) (use dynamic))",
+    "static_value": "1/1",
+    "original_module": "native-binding",
+    "fresh_module": "native-binding-fresh",
+    "external_leaf": ["s-KX-L", "occ-KX-L", "t-KX-L", "tocc-KX-L"],
+    "arithmetic_domain": "one canonical Rational::ONE fixture; no arithmetic evaluation, additive-zero claim, or multiplicative-inverse claim"
+  },
+  "types_and_quantifiers": {
+    "instances": "exactly one original compilation and one independently compiled fresh-module instance with the same typed body and rational",
+    "old_request_against_fresh_instance": "Refused with serialized source or residual snapshot mismatch",
+    "fresh_request_against_fresh_instance": "Certified with the fresh instance certificate",
+    "result": ["Certified", "Refused", "Unknown"]
+  },
+  "candidate_change": {
+    "allowed": [
+      "parameterize the existing fixture constructor by module name while preserving its current default",
+      "add one test containing the two frozen receiving calls",
+      "record exact outcomes, request byte counts, elapsed phases and available process memory",
+      "add one English research report, one structured outcome and their research index entry"
+    ],
+    "protected": [
+      "unchanged importer, receiver, request schema and exact equality checks",
+      "unchanged existing tests and historical evidence",
+      "65536-byte request limit and 512 structural units per receive",
+      "no Python reconstruction of Rust identities",
+      "no stable API or receiving-profile promotion"
+    ]
+  },
+  "evaluation": [
+    "both independently compiled source and residual diagrams pass their existing compiler and validation boundaries",
+    "module, function and source identities differ between the two instances while typed body shape and Rational::ONE are held fixed",
+    "the old request is refused before the native receiver can repin the fresh instance",
+    "a fresh serialization is certified only against the matching fresh artifacts, certificate and expected request",
+    "the dedicated Rust test and inherited importer, graft and process regressions pass"
+  ],
+  "budget": {
+    "substantively_distinct_routes": 1,
+    "search_candidates": 0,
+    "search_node_limit": 0,
+    "search_timeout_seconds": 0,
+    "max_request_bytes": 65536,
+    "structural_work_per_receive": 512,
+    "max_workflow_executions_before_correction": 1,
+    "max_implementation_correction_replays": 1,
+    "workflow_timeout_seconds": 900,
+    "overall_minutes": 20,
+    "retained_new_report_bytes_max": 65536,
+    "memory_measurement": "use workflow-reported process memory if available; otherwise record missing and never substitute artifact size"
+  },
+  "stop": "Stop after one passing bounded workflow. After a failed first execution, permit at most one implementation correction replay without changing objects, quantifiers, judgments or budgets; otherwise retain the exact residual as Unknown.",
+  "nonclaims": [
+    "no transport of old semantic identity into the fresh module",
+    "no arbitrary alpha-equivalence or recompilation theorem",
+    "no stable communication profile or authentication",
+    "no Research 0090 coverage or Research 0092 vocabulary promotion",
+    "no M6 filler, native free, arithmetic universality, hypothesized arithmetic truth, or universal grammar",
+    "no measured benefit to Jiamin Zhao's real tasks"
+  ]
+}
