@@ -96,8 +96,16 @@ fn qualified(diagram: &SharedProgramDiagram, occurrence: &Occurrence) -> Qualifi
 }
 
 fn fixtures(body: &str, value: Rational) -> (CompilationArtifact, CompilationArtifact) {
+    fixtures_in(MODULE, body, value)
+}
+
+fn fixtures_in(
+    module: &str,
+    body: &str,
+    value: Rational,
+) -> (CompilationArtifact, CompilationArtifact) {
     let text = format!(
-        "(module {MODULE} (export source residual)\n\
+        "(module {module} (export source residual)\n\
          (def source (fn ((static Real) (dynamic Real)) (outputs Real Real) {body}))\n\
          (def residual (fn ((dynamic Real)) (outputs Real Real)\n\
            (call source {}/{} (use dynamic)))))",
@@ -105,8 +113,8 @@ fn fixtures(body: &str, value: Rational) -> (CompilationArtifact, CompilationArt
     );
     let linked = link_modules(vec![parse_module(&text).unwrap()]).unwrap();
     (
-        compile_function(&linked, MODULE, "source").unwrap(),
-        compile_function(&linked, MODULE, "residual").unwrap(),
+        compile_function(&linked, module, "source").unwrap(),
+        compile_function(&linked, module, "residual").unwrap(),
     )
 }
 
@@ -960,6 +968,68 @@ fn serialized_open_line_leaf_request_binds_validated_complete_native_diagrams() 
             512,
         ),
         Outcome::Unknown("serialized request byte budget exhausted")
+    );
+}
+
+#[test]
+fn serialized_leaf_request_requires_each_fresh_native_instance_to_bind_itself() {
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    let (source, residual) = fixtures(body, Rational::ONE);
+    let certificate = propose(&source, &residual, Rational::ONE);
+    let encoded = serialized_leaf_request(&source, &residual, &certificate, &leaf);
+
+    let (fresh_source, fresh_residual) =
+        fixtures_in("native-binding-fresh", body, Rational::ONE);
+    let fresh_certificate = propose(&fresh_source, &fresh_residual, Rational::ONE);
+    let fresh_expected = request(&fresh_source, &fresh_residual, Rational::ONE);
+
+    assert_ne!(source.result.function, fresh_source.result.function);
+    assert_ne!(residual.result.function, fresh_residual.result.function);
+    assert_eq!(source.result.nodes.len(), fresh_source.result.nodes.len());
+    assert_eq!(
+        source.result.occurrences.len(),
+        fresh_source.result.occurrences.len()
+    );
+    assert!(encoded.len() < 65_536);
+    assert_eq!(
+        receive_serialized_leaf_request(
+            &fresh_source,
+            &fresh_residual,
+            &fresh_certificate,
+            &fresh_expected,
+            &leaf,
+            &encoded,
+            65_536,
+            512,
+        ),
+        Outcome::Refused("serialized source or residual snapshot mismatch")
+    );
+
+    let fresh_encoded = serialized_leaf_request(
+        &fresh_source,
+        &fresh_residual,
+        &fresh_certificate,
+        &leaf,
+    );
+    assert!(fresh_encoded.len() < 65_536);
+    assert_eq!(
+        receive_serialized_leaf_request(
+            &fresh_source,
+            &fresh_residual,
+            &fresh_certificate,
+            &fresh_expected,
+            &leaf,
+            &fresh_encoded,
+            65_536,
+            512,
+        ),
+        Outcome::Certified(Box::new(fresh_certificate.clone()))
     );
 }
 
