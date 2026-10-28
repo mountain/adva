@@ -1,0 +1,105 @@
+{
+  "authorship": "Codex (OpenAI), through Mingli Yuan account proxy; not independent human review",
+  "base_commit": "2154b3c6716e7b5a19b98b81aca7940c0c93fe7d",
+  "byte_identical": true,
+  "evidence_sha256": "51ec06cceb69d185cac7a748e6859a1963eef8ca0251eb8edca61c5084d8ac1b",
+  "local_full_ci": "NotRun: native extension and pytest unavailable; dedicated standard-library checks executed",
+  "python": "3.12.14",
+  "runs": [
+    {
+      "command": [
+        "timeout",
+        "45s",
+        "prlimit",
+        "--as=268435456",
+        "--cpu=30",
+        "--fsize=1048576",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "experiments/program_positivity/epistemic/run.py",
+        "--output",
+        "/workspace/scratch/0bf6b34e7a50/adva/experiments/program_positivity/epistemic/evidence.json"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "{\"status\": \"Passed\", \"models\": 7, \"failure\": null}\n"
+    },
+    {
+      "command": [
+        "timeout",
+        "45s",
+        "prlimit",
+        "--as=268435456",
+        "--cpu=30",
+        "--fsize=1048576",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "-O",
+        "experiments/program_positivity/epistemic/run.py",
+        "--output",
+        "/workspace/scratch/0bf6b34e7a50/epistemic-optimized.json"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "{\"status\": \"Passed\", \"models\": 7, \"failure\": null}\n"
+    },
+    {
+      "command": [
+        "timeout",
+        "45s",
+        "prlimit",
+        "--as=268435456",
+        "--cpu=30",
+        "--fsize=1048576",
+        "--",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/python/test_epistemic_positivity.py"
+      ],
+      "exit": 0,
+      "stderr": "........\n----------------------------------------------------------------------\nRan 8 tests in 0.147s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/python/test_program_positivity.py"
+      ],
+      "exit": 0,
+      "stderr": ".........\n----------------------------------------------------------------------\nRan 9 tests in 0.296s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "timeout",
+        "45s",
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "tests/python/test_program_positivity_three_point.py"
+      ],
+      "exit": 0,
+      "stderr": "......\n----------------------------------------------------------------------\nRan 6 tests in 0.011s\n\nOK\n",
+      "stdout": ""
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/check_research_index.py"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "Research index: complete inventory, counts and reference identity entry checked.\n"
+    },
+    {
+      "command": [
+        "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+        "scripts/check_publication_boundary.py",
+        "--history"
+      ],
+      "exit": 0,
+      "stderr": "",
+      "stdout": "{\n  \"scope\": \"identified withdrawn content only\",\n  \"unique_blobs\": 5707,\n  \"scanned_members\": 15115,\n  \"expanded_bytes\": 436689111,\n  \"history_checked\": true,\n  \"withdrawn_copies\": []\n}\n"
+    }
+  ],
+  "status": "Passed"
+}
