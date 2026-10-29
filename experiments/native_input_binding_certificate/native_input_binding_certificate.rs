@@ -12,7 +12,12 @@ use adva_lisp::{
     parse_module, validate_diagram,
 };
 use serde_json::{Value, json};
-use std::collections::{BTreeMap, BTreeSet};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    env, fs,
+    path::Path,
+    process::{self, Command},
+};
 
 const MODULE: &str = "native-binding";
 const BODY: &str = "(frontier (add (copy (use static))) (add (copy (use dynamic))) (discard 1))";
@@ -1026,6 +1031,110 @@ fn serialized_leaf_request_requires_each_fresh_native_instance_to_bind_itself() 
         ),
         Outcome::Certified(Box::new(fresh_certificate.clone()))
     );
+}
+
+#[test]
+fn serialized_leaf_request_replays_across_processes_only_for_matching_identity() {
+    const ROLE: &str = "ADVA_SERIALIZED_LEAF_PROCESS_ROLE";
+    const REQUEST_PATH: &str = "ADVA_SERIALIZED_LEAF_REQUEST_PATH";
+    const TEST_NAME: &str =
+        "serialized_leaf_request_replays_across_processes_only_for_matching_identity";
+    const PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v0";
+    const CHANGED_PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v1";
+
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    if let Ok(role) = env::var(ROLE) {
+        let path = env::var(REQUEST_PATH).unwrap();
+        let module = if role == "receive-renamed" {
+            "native-binding-process-renamed"
+        } else {
+            "native-binding-process"
+        };
+        let (source, residual) = fixtures_in(module, body, Rational::ONE);
+        let certificate = propose(&source, &residual, Rational::ONE);
+        if role == "emit" {
+            let encoded = serialized_leaf_request(&source, &residual, &certificate, &leaf);
+            assert!(encoded.len() < 65_536);
+            fs::write(path, encoded).unwrap();
+            return;
+        }
+
+        let expected = request(&source, &residual, Rational::ONE);
+        let encoded = fs::read_to_string(path).unwrap();
+        let outcome = receive_serialized_leaf_request(
+            &source,
+            &residual,
+            &certificate,
+            &expected,
+            &leaf,
+            &encoded,
+            65_536,
+            512,
+        );
+        match role.as_str() {
+            "receive-matching" => {
+                assert_eq!(outcome, Outcome::Certified(Box::new(certificate.clone())))
+            }
+            "receive-renamed" => assert_eq!(
+                outcome,
+                Outcome::Refused("serialized source or residual snapshot mismatch")
+            ),
+            "receive-tampered-profile" => assert_eq!(
+                outcome,
+                Outcome::Refused("serialized request profile mismatch")
+            ),
+            _ => panic!("unexpected process role: {role}"),
+        }
+        return;
+    }
+
+    let directory = env::temp_dir().join(format!(
+        "adva-serialized-leaf-process-replay-{}",
+        process::id()
+    ));
+    fs::create_dir(&directory).unwrap();
+    let request_path = directory.join("request.json");
+    let tampered_path = directory.join("tampered-profile.json");
+    let executable = env::current_exe().unwrap();
+    let run_child = |role: &str, path: &Path| {
+        let output = Command::new("timeout")
+            .arg("10s")
+            .arg(&executable)
+            .arg("--exact")
+            .arg(TEST_NAME)
+            .env(ROLE, role)
+            .env(REQUEST_PATH, path)
+            .output()
+            .unwrap();
+        assert!(
+            output.status.success(),
+            "child {role} failed with {}\nstdout:\n{}\nstderr:\n{}",
+            output.status,
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr)
+        );
+    };
+
+    run_child("emit", &request_path);
+    let encoded = fs::read_to_string(&request_path).unwrap();
+    assert!(encoded.len() < 65_536);
+    let tampered = encoded.replacen(PROFILE, CHANGED_PROFILE, 1);
+    assert_ne!(encoded, tampered);
+    fs::write(&tampered_path, tampered).unwrap();
+
+    run_child("receive-matching", &request_path);
+    run_child("receive-renamed", &request_path);
+    run_child("receive-tampered-profile", &tampered_path);
+
+    fs::remove_file(request_path).unwrap();
+    fs::remove_file(tampered_path).unwrap();
+    fs::remove_dir(directory).unwrap();
 }
 
 #[test]
