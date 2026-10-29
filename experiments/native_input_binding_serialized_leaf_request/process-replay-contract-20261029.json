@@ -1,0 +1,86 @@
+{
+  "kind": "bounded_research_contract",
+  "date": "2026-10-29",
+  "status": "FrozenBeforeExecution",
+  "base": {
+    "main_commit": "a6872d1f6a1c767757b3d0cf696fe029a61b1d2a",
+    "draft_pr": 229,
+    "draft_head": "5d074c2e027126d1b8b975d2f1fb093cbd0d71ca",
+    "predecessor_report": "docs/research/serialized-leaf-fresh-native-instance-boundary.md",
+    "merged_dependency": "PR #228",
+    "unmerged_dependency": "PR #229"
+  },
+  "question": "Can a serialized leaf request emitted by one Rust process be certified by a second process that independently recompiles the exact same named module and source, while a renamed module and a byte-level profile mutation remain refused?",
+  "objects": {
+    "body": "(frontier (use static) (use dynamic))",
+    "static_value": "1/1",
+    "module": "native-binding-process",
+    "external_leaf": {
+      "source": "s-KX-L",
+      "occurrence": "occ-KX-L",
+      "target_source": "t-KX-L",
+      "target_occurrence": "tocc-KX-L"
+    },
+    "serialized_profile": "adva.research.native-input-binding-open-line-leaf-request.v0"
+  },
+  "types_and_domain": {
+    "native_inputs": "Real, Real",
+    "residual_inputs": "Real",
+    "outputs": "Real, Real",
+    "arithmetic_domain": "exact Rational; only canonical 1/1 is used",
+    "zero_and_invertibility": "not exercised; no additive-zero or multiplicative-inverse claim",
+    "order_and_history": "native noncommutative occurrence paths and history are compared exactly by the existing receiver"
+  },
+  "quantifiers": {
+    "producer_processes": 1,
+    "receiver_processes": 3,
+    "matching_receivers": 1,
+    "negative_controls": 2
+  },
+  "candidate_grammar": {
+    "change": "none",
+    "transport": "canonical UTF-8 request bytes written by the producer and read by fresh test-harness processes",
+    "receiver": "existing receive_serialized_leaf_request",
+    "identity_reconstruction": "forbidden"
+  },
+  "expected_cases": [
+    {
+      "case": "same-name-same-source",
+      "expected": "Certified"
+    },
+    {
+      "case": "renamed-module",
+      "expected": "Refused(serialized source or residual snapshot mismatch)"
+    },
+    {
+      "case": "profile-byte-mutation",
+      "expected": "Refused(serialized request profile mismatch)"
+    }
+  ],
+  "evaluation": {
+    "success": "all four child processes exit successfully after asserting the three expected outcomes; the persisted request is below the byte budget",
+    "refutation": "any matching receiver refusal, any negative-control certification, timeout, or assertion failure",
+    "unknown": "budget exhaustion, missing process execution, or an integration failure that prevents a semantic outcome"
+  },
+  "budgets": {
+    "routes": 1,
+    "search_candidates": 0,
+    "child_processes": 4,
+    "timeout_seconds_per_child": 10,
+    "request_bytes": 65536,
+    "structural_work_per_receiver": 512,
+    "workflow_executions_before_correction": 1,
+    "implementation_correction_replays": 1,
+    "overall_minutes": 20
+  },
+  "nonclaims": [
+    "No arithmetic-universality or hypothesized-arithmetic-truth result.",
+    "No 0090 coverage, 0092 filler, global M6, Teichmuller, or native free result.",
+    "No cross-machine, authenticated, crash-safe, or adversarial-process guarantee.",
+    "Matching serialized snapshots do not reconstruct identity or create a filler."
+  ],
+  "integration_residual_at_freeze": {
+    "full_ci": "Python 3.11 failed only in an inherited Java continuation constructor crosscheck after a 10 second subprocess timeout; Rust, Python 3.12, Python 3.13, bounded acceptance, publication, and machine-dependency workflows passed.",
+    "classification": "separate inherited integration residual, not evidence for or against this process-boundary question"
+  }
+}
