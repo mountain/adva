@@ -16,7 +16,9 @@ use std::{
     collections::{BTreeMap, BTreeSet},
     env, fs,
     path::Path,
-    process::{self, Command},
+    process::{self, Command, Stdio},
+    thread,
+    time::{Duration, Instant},
 };
 
 const MODULE: &str = "native-binding";
@@ -1103,15 +1105,29 @@ fn serialized_leaf_request_replays_across_processes_only_for_matching_identity()
     let tampered_path = directory.join("tampered-profile.json");
     let executable = env::current_exe().unwrap();
     let run_child = |role: &str, path: &Path| {
-        let output = Command::new("timeout")
-            .arg("10s")
-            .arg(&executable)
+        let mut child = Command::new(&executable)
             .arg("--exact")
             .arg(TEST_NAME)
             .env(ROLE, role)
             .env(REQUEST_PATH, path)
-            .output()
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
             .unwrap();
+        let deadline = Instant::now() + Duration::from_secs(10);
+        while child.try_wait().unwrap().is_none() {
+            if Instant::now() >= deadline {
+                child.kill().unwrap();
+                let output = child.wait_with_output().unwrap();
+                panic!(
+                    "child {role} timed out\nstdout:\n{}\nstderr:\n{}",
+                    String::from_utf8_lossy(&output.stdout),
+                    String::from_utf8_lossy(&output.stderr)
+                );
+            }
+            thread::sleep(Duration::from_millis(10));
+        }
+        let output = child.wait_with_output().unwrap();
         assert!(
             output.status.success(),
             "child {role} failed with {}\nstdout:\n{}\nstderr:\n{}",
