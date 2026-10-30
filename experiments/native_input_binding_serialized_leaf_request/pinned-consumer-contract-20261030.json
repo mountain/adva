@@ -1,0 +1,84 @@
+{
+  "profile": "adva.research.serialized-leaf-pinned-consumer-contract.v0",
+  "status": "frozen-before-execution",
+  "date": "2026-10-30",
+  "repository_base": {
+    "main_commit": "a6872d1f6a1c767757b3d0cf696fe029a61b1d2a",
+    "draft_branch_commit": "9c272fe9d629c293713edac806beda849d5aaa56",
+    "draft_pull_request": 229
+  },
+  "question": "Can a separately compiled Rust integration-test executable receive the producer's exact canonical request bytes when it independently rebuilds the same named source, while refusing a renamed module and a changed request profile?",
+  "route_limit": 1,
+  "route": "one producer integration-test target plus one independently pinned consumer integration-test target",
+  "objects": {
+    "module": "native-binding-process",
+    "source_body": "(frontier (use static) (use dynamic))",
+    "arithmetic_value": "1/1",
+    "native_signature": "Real, Real -> Real, Real",
+    "residual_signature": "Real -> Real, Real",
+    "external_leaf": {
+      "source": "s-KX-L",
+      "occurrence": "occ-KX-L",
+      "target_source": "t-KX-L",
+      "target_occurrence": "tocc-KX-L"
+    }
+  },
+  "types_and_domains": {
+    "arithmetic_domain": "the exact rational value 1/1 only",
+    "request_bytes": "canonical UTF-8 JSON emitted by the producer target",
+    "producer_target": "native_input_binding_certificate",
+    "consumer_target": "native_input_binding_serialized_consumer",
+    "consumer_cases": [
+      "matching",
+      "renamed-module",
+      "changed-profile"
+    ],
+    "excluded": [
+      "additive-zero laws",
+      "multiplicative-unit or inversion laws",
+      "noncommutative algebra beyond retained ordered diagrams and histories",
+      "arbitrary source languages",
+      "cross-implementation or cross-machine receiving"
+    ]
+  },
+  "quantifiers": "For the one frozen request, one producer process writes bytes; three separately compiled consumer-target process invocations each read those bytes and independently rebuild the case-selected current source artifacts.",
+  "candidate_grammar": {
+    "accepted": "same module name, source body, arithmetic value, external leaf, profile and imported source/residual snapshots",
+    "controls": {
+      "renamed-module": "change only native-binding-process to native-binding-process-renamed",
+      "changed-profile": "change only the first profile occurrence from v0 to v1 in consumer memory"
+    },
+    "producer_source": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+      "sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b"
+    },
+    "consumer_source": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+      "sha256": "5748468ab222b3e4b1e8a34f1bce488ce0642a915b2d917a3109fa6465a63d85"
+    }
+  },
+  "evaluation": {
+    "matching": "Certified",
+    "renamed-module": "Refused: serialized source or residual snapshot mismatch",
+    "changed-profile": "Refused: serialized request profile mismatch",
+    "source_coordinate_check": "both staged files must match the two frozen SHA-256 digests",
+    "regression_check": "unchanged-lock Clippy and selected native Rust tests must pass"
+  },
+  "budgets": {
+    "search_candidates": 0,
+    "semantic_test_executables": 4,
+    "cargo_supervisor_invocations": 4,
+    "semantic_process_deadline": "not separately installed; all four invocations are bounded by the 15-minute workflow job limit",
+    "workflow_timeout_minutes": 15,
+    "request_bytes_max": 65536,
+    "structural_work_units_each_consumer": 512,
+    "implementation_correction_replays_max": 1,
+    "memory_limit": "not installed; peak RSS must be reported missing unless the runner measures it"
+  },
+  "refusal_and_residual_policy": [
+    "A wrong outcome in any case is a replayable failure, not Unknown.",
+    "A build, source-digest or dependency failure is InvalidContext and cannot support a semantic claim.",
+    "Timeout or unmeasured completion preserves Unknown for the affected case.",
+    "Success remains a finite same-repository, same-toolchain experiment; it does not establish an independent implementation, Research 0090 coverage, Research 0092 promotion, M6 closure, native free, arithmetic-universality or hypothesized-arithmetic-truth."
+  ]
+}
