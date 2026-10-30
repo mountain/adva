@@ -35,7 +35,7 @@ jobs:
 
           expected = {
               Path('experiments/native_input_binding_certificate/native_input_binding_certificate.rs'): '096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b',
-              Path('experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'): '5748468ab222b3e4b1e8a34f1bce488ce0642a915b2d917a3109fa6465a63d85',
+              Path('experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'): 'bb048a76b5ff5b06c7890f4f0714ca12f68f261575606cd3ae4d05a6e15f6fbb',
           }
           for path, digest in expected.items():
               actual = hashlib.sha256(path.read_bytes()).hexdigest()
