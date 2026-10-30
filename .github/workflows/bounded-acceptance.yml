@@ -24,12 +24,32 @@ jobs:
           components: rustfmt, clippy
       - uses: Swatinem/rust-cache@v2
       - name: Check the published research source formatting
-        run: rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_certificate.rs
-      - name: Stage the research checker as an ephemeral integration test
+        run: |
+          rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_certificate.rs
+          rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs
+      - name: Check the independently pinned source coordinates
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          expected = {
+              Path('experiments/native_input_binding_certificate/native_input_binding_certificate.rs'): '096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b',
+              Path('experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'): '5748468ab222b3e4b1e8a34f1bce488ce0642a915b2d917a3109fa6465a63d85',
+          }
+          for path, digest in expected.items():
+              actual = hashlib.sha256(path.read_bytes()).hexdigest()
+              assert actual == digest, (path, actual, digest)
+              print(f'PINNED_SOURCE path={path} sha256={actual}')
+          PY
+      - name: Stage the producer and consumer as ephemeral integration tests
         run: |
           test ! -e crates/adva-lisp/tests/native_input_binding_certificate.rs
+          test ! -e crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
           cp experiments/native_input_binding_certificate/native_input_binding_certificate.rs crates/adva-lisp/tests/native_input_binding_certificate.rs
+          cp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
           cmp experiments/native_input_binding_certificate/native_input_binding_certificate.rs crates/adva-lisp/tests/native_input_binding_certificate.rs
+          cmp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
       - name: Format the staged Rust source and retain its exact bytes
         run: |
           rustfmt --edition 2024 crates/adva-lisp/tests/native_input_binding_certificate.rs
@@ -42,9 +62,27 @@ jobs:
           PY
           cargo fmt --all --check
       - name: Check the research test with the unchanged dependency lock
-        run: cargo clippy --locked -p adva-lisp --test native_input_binding_certificate -- -D warnings
+        run: cargo clippy --locked -p adva-lisp --test native_input_binding_certificate --test native_input_binding_serialized_consumer -- -D warnings
       - name: Execute the certificate and existing process/graft/import regressions
         run: cargo test --locked -p adva-lisp --test native_input_binding_certificate --test process --test graft_trace --test diagram_validation
+      - name: Replay the frozen request in the separately compiled consumer
+        run: |
+          request_file="${RUNNER_TEMP}/adva-pinned-consumer-request.json"
+          ADVA_SERIALIZED_LEAF_PROCESS_ROLE=emit \
+          ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
+            cargo test --locked -p adva-lisp \
+              --test native_input_binding_certificate \
+              serialized_leaf_request_replays_across_processes_only_for_matching_identity \
+              -- --exact
+          test -s "${request_file}"
+          for consumer_case in matching renamed-module changed-profile; do
+            ADVA_SERIALIZED_LEAF_CONSUMER_CASE="${consumer_case}" \
+            ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
+              cargo test --locked -p adva-lisp \
+                --test native_input_binding_serialized_consumer \
+                separately_compiled_consumer_receives_only_matching_request \
+                -- --exact
+          done
 
   whole-cut-formation:
     runs-on: ubuntu-latest

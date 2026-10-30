@@ -1153,6 +1153,60 @@ fn serialized_leaf_request_replays_across_processes_only_for_matching_identity()
     fs::remove_dir(directory).unwrap();
 }
 
+// This is public only inside the ephemeral research integration-test crate.
+// It is not a stable library surface or a promoted receiver API.
+pub fn receive_pinned_serialized_leaf_request(case: &str, request_path: &Path) {
+    const PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v0";
+    const CHANGED_PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v1";
+
+    let module = if case == "renamed-module" {
+        "native-binding-process-renamed"
+    } else {
+        "native-binding-process"
+    };
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    let (source, residual) = fixtures_in(module, body, Rational::ONE);
+    let certificate = propose(&source, &residual, Rational::ONE);
+    let expected = request(&source, &residual, Rational::ONE);
+    let original = fs::read_to_string(request_path).unwrap();
+    let encoded = if case == "changed-profile" {
+        let changed = original.replacen(PROFILE, CHANGED_PROFILE, 1);
+        assert_ne!(original, changed);
+        changed
+    } else {
+        original
+    };
+    let outcome = receive_serialized_leaf_request(
+        &source,
+        &residual,
+        &certificate,
+        &expected,
+        &leaf,
+        &encoded,
+        65_536,
+        512,
+    );
+
+    match case {
+        "matching" => assert_eq!(outcome, Outcome::Certified(Box::new(certificate))),
+        "renamed-module" => assert_eq!(
+            outcome,
+            Outcome::Refused("serialized source or residual snapshot mismatch")
+        ),
+        "changed-profile" => assert_eq!(
+            outcome,
+            Outcome::Refused("serialized request profile mismatch")
+        ),
+        _ => panic!("unexpected consumer case: {case}"),
+    }
+}
+
 #[test]
 fn missing_or_forged_accounting_is_refused() {
     let value = Rational::new(7, 3).unwrap();
