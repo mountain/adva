@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 67 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 68 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -881,6 +881,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [Serialized open-line leaf request: positive prefix and continuation](serialized-open-line-leaf-request-positive-prefix-pause.md): the retained ill-typed negative control, separate full-CI index failure, and explicitly bounded same-arity continuation; historical failures remain evidence.
 
 - [Serialized leaf request/fresh native instance boundary](serialized-leaf-fresh-native-instance-boundary.md): one old-instance request is refused by a fresh named module while that module's own matching request is certified; finite receiving-relation reuse, not identity transport.
+
+- [Serialized leaf cross-process replay boundary](serialized-leaf-cross-process-replay-boundary.md): one producer persists a source-bound request and fresh same-name, renamed and profile-mutated receiver processes distinguish certification from identity transport; finite same-implementation replay only.
 
 - [Native input-binding certificate v0](native-input-binding-certificate-v0.md): a research-local Rust checker for canonical static rational input binding, exact decorated correspondence and retained forgotten static lineage; no stable operation or numerical-equivalence theorem.
 
