@@ -1,0 +1,75 @@
+{
+  "profile": "adva.research.serialized-leaf-opaque-consumer-contract.v0",
+  "status": "frozen-before-construction",
+  "date": "2026-10-31",
+  "base_commit": "87a1a6933bca3fdb5c176cbf612729e278d172f7",
+  "question": "Can an independently compiled minimal Rust consumer that does not import the producer test module accept the exact canonical request fixture for the pinned current module and refuse both a renamed expected module and a changed request profile?",
+  "object": {
+    "producer_source": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+    "producer_test": "serialized_leaf_request_replays_across_processes_only_for_matching_identity",
+    "module": "native-binding-process",
+    "body": "(frontier (use static) (use dynamic))",
+    "rational_value": "1/1",
+    "external_leaf": {
+      "source": "s-KX-L",
+      "occurrence": "occ-KX-L",
+      "target_source": "t-KX-L",
+      "target_occurrence": "tocc-KX-L"
+    },
+    "request_profile": "adva.research.native-input-binding-open-line-leaf-request.v0"
+  },
+  "types": {
+    "source_signature": "Real, Real -> Real, Real",
+    "residual_signature": "Real -> Real, Real",
+    "fixture": "exact UTF-8 JSON bytes emitted by the pinned producer at base_commit",
+    "consumer_result": ["AcceptedCurrentFixture", "Refused"]
+  },
+  "quantifier": "exactly one canonical fixture, one matching case, one renamed-module case, and one changed-profile case",
+  "arithmetic_domain": "No arithmetic equality is inferred. Multiplicative unity is only the pinned producer input 1/1; additive-zero, inversion, zero denominators and new noncommutative laws are outside scope.",
+  "candidate_grammar": {
+    "root_keys": ["external_leaf", "native_occurrence_map", "profile", "residual_diagram_json", "source_diagram_json"],
+    "consumer_checks": [
+      "request byte budget",
+      "strict root key set",
+      "exact profile",
+      "external leaf object",
+      "single native occurrence-map pair",
+      "canonical source and residual diagram JSON strings from the frozen fixture",
+      "source and residual function module equals the independently supplied expected module"
+    ],
+    "forbidden_dependency": "The consumer source must not import, include, path-reference or call the producer test module."
+  },
+  "cases": [
+    {"name": "matching", "expected": "AcceptedCurrentFixture"},
+    {"name": "renamed-module", "expected": "Refused(module mismatch)"},
+    {"name": "changed-profile", "expected": "Refused(profile mismatch)"}
+  ],
+  "evaluation": {
+    "success": "All three cases pass in a separately compiled consumer target, the fixture bytes and both Rust source coordinates are pinned, and repository regressions selected by the existing workflow pass.",
+    "failure": "Any expected case disagrees or the dependency ban is violated.",
+    "unknown": "Construction, compilation, timeout, budget exhaustion, unavailable CI, or unmeasured obligation.",
+    "claim_boundary": "A finite envelope and snapshot-binding experiment only. It is not an independent implementation of the full native receiver, not Research 0090 coverage, not Research 0092 promotion, not an M6 filler and not arithmetic or universal-language evidence."
+  },
+  "budget": {
+    "routes": 1,
+    "search_candidates": 0,
+    "producer_construction_invocations": 1,
+    "consumer_semantic_cases": 3,
+    "request_bytes_max": 65536,
+    "structural_items_max": 512,
+    "workflow_minutes_max": 15,
+    "implementation_correction_replays_max": 1
+  },
+  "fixture_construction": {
+    "method": "Run the already merged producer test in emit role once and retain the exact request bytes.",
+    "pre_digest_state": "unknown until construction; no semantic claim is made before the exact digest is frozen",
+    "serialization": "record exact byte length, SHA-256 and checked-in UTF-8 bytes"
+  },
+  "residual_obligations": [
+    "The minimal consumer does not reconstruct or certify the full certificate, ordered histories, event maps or graft traces.",
+    "SHA-256 integrity is not authentication.",
+    "Peak memory and exact structural work remain missing unless directly measured.",
+    "Research 0090 coverage and Research 0092 generation/promotion remain open.",
+    "No practical value for Jiamin Zhao is claimed without an actual task and acceptance."
+  ]
+}
