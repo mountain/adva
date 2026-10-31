@@ -1,0 +1,77 @@
+{
+  "profile": "adva.research.serialized-leaf-pinned-consumer-outcome.v0",
+  "status": "finite-success",
+  "date": "2026-10-30",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/pinned-consumer-contract-20261030-v1.json",
+  "repository": {
+    "main_commit": "a6872d1f6a1c767757b3d0cf696fe029a61b1d2a",
+    "validated_branch_commit": "945a8f500167709f67ff71b29135b09547117330",
+    "draft_pull_request": 229
+  },
+  "source_coordinates": {
+    "producer_and_shared_receiver_sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b",
+    "separate_consumer_wrapper_sha256": "bb048a76b5ff5b06c7890f4f0714ca12f68f261575606cd3ae4d05a6e15f6fbb"
+  },
+  "attempts": [
+    {
+      "workflow_run": 41069579145,
+      "native_job": 124109832622,
+      "classification": "InvalidContext",
+      "reason": "rustfmt refused the wrapper before compilation or semantic execution",
+      "semantic_test_executables_started": 0
+    },
+    {
+      "workflow_run": 41069822924,
+      "native_job": 124110672838,
+      "classification": "ValidFiniteExperiment",
+      "cases": [
+        {
+          "case": "matching",
+          "outcome": "Certified"
+        },
+        {
+          "case": "renamed-module",
+          "outcome": "Refused",
+          "reason": "serialized source or residual snapshot mismatch"
+        },
+        {
+          "case": "changed-profile",
+          "outcome": "Refused",
+          "reason": "serialized request profile mismatch"
+        }
+      ]
+    }
+  ],
+  "cost": {
+    "search_candidates": 0,
+    "semantic_test_executables": 4,
+    "cargo_supervisor_invocations": 4,
+    "compiler_subprocess_count": "not measured",
+    "separate_route_wall_seconds_approx": 0.908,
+    "clippy_seconds": 3.73,
+    "selected_rust_compile_seconds": 5.41,
+    "separate_consumer_first_compile_seconds": 0.68,
+    "valid_native_job_wall_seconds_approx": 23.536,
+    "invalid_native_job_wall_seconds_approx": 10.824,
+    "existing_selected_rust_tests": 41,
+    "additional_route_test_processes_passed": 4,
+    "bootstrap_zero_tests": 1110,
+    "bootstrap_zero_seconds": 2.39,
+    "structural_work_units_supplied_per_consumer": 512,
+    "structural_work_units_consumed": "not measured; both refusal controls stop before the structural receiver",
+    "request_bytes": "not measured; producer asserts strictly below 65536",
+    "serialization_and_file_io_seconds": "not measured separately",
+    "peak_memory": "not measured",
+    "implementation_correction_replays": 1
+  },
+  "vocabulary": {
+    "new_words": [],
+    "reason": "serialized request binding, pinned source coordinate, Certified, Refused and InvalidContext already distinguish the observed boundary"
+  },
+  "residuals": [
+    "The two executables share the same receiver source, Rust toolchain, dependency graph and host.",
+    "The consumer wrapper is separately pinned and compiled, but it is not an independent receiver implementation.",
+    "There is no cross-machine, authenticated, hostile-input, crash-recovery, power-loss or distributed-consistency result.",
+    "No Research 0090 coverage, Research 0092 promotion, M6 closure, native free, arithmetic-universality or hypothesized-arithmetic-truth result follows."
+  ]
+}

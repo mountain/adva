@@ -1,0 +1,66 @@
+{
+  "profile": "adva.research.native-input-binding-serialized-leaf-request-fresh-instance-outcome.v0",
+  "status": "PassedFiniteCalibration",
+  "base_main": "a6872d1f6a1c767757b3d0cf696fe029a61b1d2a",
+  "candidate_head": "a28e523f0fbb68b1ecbd1641a3840ef1a4734ba4",
+  "candidate_source_sha256": "a09c10d5c654d7d96feafb7789356366b696c128d79a3e57611a44d41970b79b",
+  "workflow": "https://github.com/mountain/adva/actions/runs/40711843054",
+  "route_count": 1,
+  "search_candidates": 0,
+  "search_nodes": 0,
+  "correction_replays": 1,
+  "objects": {
+    "body": "(frontier (use static) (use dynamic))",
+    "rational": "1/1",
+    "original_module": "native-binding",
+    "fresh_module": "native-binding-fresh",
+    "external_leaf": ["s-KX-L", "occ-KX-L", "t-KX-L", "tocc-KX-L"]
+  },
+  "receiving_calls": [
+    {
+      "request_instance": "native-binding",
+      "current_instance": "native-binding-fresh",
+      "outcome": "Refused",
+      "reason": "serialized source or residual snapshot mismatch",
+      "supplied_structural_units": 512,
+      "underlying_native_receiver_reached": false
+    },
+    {
+      "request_instance": "native-binding-fresh",
+      "current_instance": "native-binding-fresh",
+      "outcome": "Certified",
+      "supplied_structural_units": 512,
+      "underlying_native_receiver_reached": true
+    }
+  ],
+  "request_byte_limit": 65536,
+  "exact_request_bytes": "not measured; both assertions were strictly below the limit",
+  "tests": {
+    "diagram_validation_passed": 6,
+    "graft_trace_passed": 2,
+    "native_input_binding_passed": 13,
+    "process_passed": 19,
+    "bootstrap_zero_passed": 1110
+  },
+  "cost": {
+    "clippy_seconds": 15.44,
+    "test_build_seconds": 8.46,
+    "native_test_file_seconds": 0.03,
+    "process_test_file_seconds": 0.19,
+    "bootstrap_zero_seconds": 3.0,
+    "construction_serialization_and_receiving_breakdown": "not separately measured",
+    "peak_memory": "not reported"
+  },
+  "vocabulary": {
+    "formed": [],
+    "revised": []
+  },
+  "claims_not_made": [
+    "transport of the old instance identity",
+    "arbitrary alpha-equivalence or recompilation",
+    "stable communication profile",
+    "Research 0090 coverage or Research 0092 promotion",
+    "M6 closure, native free, arithmetic universality or universal grammar",
+    "measured practical value to Jiamin Zhao"
+  ]
+}

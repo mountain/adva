@@ -1,0 +1,77 @@
+{
+  "kind": "bounded_research_outcome",
+  "date": "2026-10-29",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/process-replay-contract-20261029.json",
+  "status": "PassedFiniteProcessReplay",
+  "valid_commit": "28a1f431522bf9f2a52475ccfaa0ea174d60cb0f",
+  "cases": [
+    {
+      "case": "same-name-same-source",
+      "producer_processes": 1,
+      "receiver_processes": 1,
+      "outcome": "Certified"
+    },
+    {
+      "case": "renamed-module",
+      "receiver_processes": 1,
+      "outcome": "Refused",
+      "reason": "serialized source or residual snapshot mismatch"
+    },
+    {
+      "case": "profile-byte-mutation",
+      "receiver_processes": 1,
+      "outcome": "Refused",
+      "reason": "serialized request profile mismatch"
+    }
+  ],
+  "actual_resources": {
+    "routes": 1,
+    "search_candidates": 0,
+    "valid_child_processes": 4,
+    "valid_timeout_supervisor_processes": 0,
+    "timeout_seconds_per_child": 10,
+    "structural_work_limit_entered_by_matching_receiver": 512,
+    "exact_structural_work_consumed": "not measured",
+    "negative_controls": "refused before the structural receiver",
+    "serialized_request_bytes": "not measured; asserted strictly below 65536",
+    "serialization_and_file_io_time": "not separately measured",
+    "native_certificate_suite": "14 passed in 0.06 seconds",
+    "four_selected_rust_suites": "41 passed in 0.25 seconds",
+    "clippy": "9.89 seconds",
+    "rust_test_compilation": "7.38 seconds",
+    "bootstrap_zero": "1110 passed in 2.98 seconds",
+    "valid_native_job_wall_seconds": 34.0868149,
+    "peak_memory": "not measured",
+    "implementation_correction_replays": 1
+  },
+  "correction": {
+    "invalid_commit": "fe9b1bd29c75330813f4cc071f62382efffeebdc",
+    "invalid_workflow_run": 40889967581,
+    "classification": "ImplementationResourceAccountingFailure",
+    "reason": "Four external timeout wrappers each supervised one test worker, creating eight descendant process instances rather than the frozen four-child profile.",
+    "retained_cost": {
+      "timeout_wrapper_processes": 4,
+      "test_worker_processes": 4,
+      "native_job_wall_seconds": 50.1112528,
+      "semantic_assertions": "passed but not admitted as budget-valid evidence"
+    },
+    "repair": "The parent test now polls four direct child handles with try_wait and kills a child only after the same ten-second deadline."
+  },
+  "verification": {
+    "bounded_workflow_run": 40890515988,
+    "native_job": 123505722490,
+    "publication_workflow": "passed",
+    "machine_dependency_workflow": "still running at evidence checkpoint",
+    "full_ci": "still running at evidence checkpoint; not awaited"
+  },
+  "new_vocabulary": [],
+  "claim_class": "finite experiment",
+  "residuals": [
+    "The second process recompiles the same declared source under the same Rust implementation, dependency graph, host profile and compiler.",
+    "The request has no authentication, producer identity proof or cross-machine portability result.",
+    "Exact request bytes, per-phase serialization cost, receiver work consumption and peak memory were not measured.",
+    "No crash, concurrent writer, hostile child, power-loss or distributed case was tested.",
+    "No Research 0090 coverage, Research 0092 promotion, M6 filler, native free, arithmetic-universality or hypothesized-arithmetic-truth result follows."
+  ],
+  "next_minimal_step": "Run the exact matching request through a separately compiled consumer executable whose source coordinate is pinned independently of the producer, without increasing the case family."
+}

@@ -12,7 +12,14 @@ use adva_lisp::{
     parse_module, validate_diagram,
 };
 use serde_json::{Value, json};
-use std::collections::{BTreeMap, BTreeSet};
+use std::{
+    collections::{BTreeMap, BTreeSet},
+    env, fs,
+    path::Path,
+    process::{self, Command, Stdio},
+    thread,
+    time::{Duration, Instant},
+};
 
 const MODULE: &str = "native-binding";
 const BODY: &str = "(frontier (add (copy (use static))) (add (copy (use dynamic))) (discard 1))";
@@ -96,8 +103,16 @@ fn qualified(diagram: &SharedProgramDiagram, occurrence: &Occurrence) -> Qualifi
 }
 
 fn fixtures(body: &str, value: Rational) -> (CompilationArtifact, CompilationArtifact) {
+    fixtures_in(MODULE, body, value)
+}
+
+fn fixtures_in(
+    module: &str,
+    body: &str,
+    value: Rational,
+) -> (CompilationArtifact, CompilationArtifact) {
     let text = format!(
-        "(module {MODULE} (export source residual)\n\
+        "(module {module} (export source residual)\n\
          (def source (fn ((static Real) (dynamic Real)) (outputs Real Real) {body}))\n\
          (def residual (fn ((dynamic Real)) (outputs Real Real)\n\
            (call source {}/{} (use dynamic)))))",
@@ -105,8 +120,8 @@ fn fixtures(body: &str, value: Rational) -> (CompilationArtifact, CompilationArt
     );
     let linked = link_modules(vec![parse_module(&text).unwrap()]).unwrap();
     (
-        compile_function(&linked, MODULE, "source").unwrap(),
-        compile_function(&linked, MODULE, "residual").unwrap(),
+        compile_function(&linked, module, "source").unwrap(),
+        compile_function(&linked, module, "residual").unwrap(),
     )
 }
 
@@ -961,6 +976,235 @@ fn serialized_open_line_leaf_request_binds_validated_complete_native_diagrams() 
         ),
         Outcome::Unknown("serialized request byte budget exhausted")
     );
+}
+
+#[test]
+fn serialized_leaf_request_requires_each_fresh_native_instance_to_bind_itself() {
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    let (source, residual) = fixtures(body, Rational::ONE);
+    let certificate = propose(&source, &residual, Rational::ONE);
+    let encoded = serialized_leaf_request(&source, &residual, &certificate, &leaf);
+
+    let (fresh_source, fresh_residual) = fixtures_in("native-binding-fresh", body, Rational::ONE);
+    let fresh_certificate = propose(&fresh_source, &fresh_residual, Rational::ONE);
+    let fresh_expected = request(&fresh_source, &fresh_residual, Rational::ONE);
+
+    assert_ne!(source.result.function, fresh_source.result.function);
+    assert_ne!(residual.result.function, fresh_residual.result.function);
+    assert_eq!(source.result.nodes.len(), fresh_source.result.nodes.len());
+    assert_eq!(
+        source.result.occurrences.len(),
+        fresh_source.result.occurrences.len()
+    );
+    assert!(encoded.len() < 65_536);
+    assert_eq!(
+        receive_serialized_leaf_request(
+            &fresh_source,
+            &fresh_residual,
+            &fresh_certificate,
+            &fresh_expected,
+            &leaf,
+            &encoded,
+            65_536,
+            512,
+        ),
+        Outcome::Refused("serialized source or residual snapshot mismatch")
+    );
+
+    let fresh_encoded =
+        serialized_leaf_request(&fresh_source, &fresh_residual, &fresh_certificate, &leaf);
+    assert!(fresh_encoded.len() < 65_536);
+    assert_eq!(
+        receive_serialized_leaf_request(
+            &fresh_source,
+            &fresh_residual,
+            &fresh_certificate,
+            &fresh_expected,
+            &leaf,
+            &fresh_encoded,
+            65_536,
+            512,
+        ),
+        Outcome::Certified(Box::new(fresh_certificate.clone()))
+    );
+}
+
+#[test]
+fn serialized_leaf_request_replays_across_processes_only_for_matching_identity() {
+    const ROLE: &str = "ADVA_SERIALIZED_LEAF_PROCESS_ROLE";
+    const REQUEST_PATH: &str = "ADVA_SERIALIZED_LEAF_REQUEST_PATH";
+    const TEST_NAME: &str =
+        "serialized_leaf_request_replays_across_processes_only_for_matching_identity";
+    const PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v0";
+    const CHANGED_PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v1";
+
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    if let Ok(role) = env::var(ROLE) {
+        let path = env::var(REQUEST_PATH).unwrap();
+        let module = if role == "receive-renamed" {
+            "native-binding-process-renamed"
+        } else {
+            "native-binding-process"
+        };
+        let (source, residual) = fixtures_in(module, body, Rational::ONE);
+        let certificate = propose(&source, &residual, Rational::ONE);
+        if role == "emit" {
+            let encoded = serialized_leaf_request(&source, &residual, &certificate, &leaf);
+            assert!(encoded.len() < 65_536);
+            fs::write(path, encoded).unwrap();
+            return;
+        }
+
+        let expected = request(&source, &residual, Rational::ONE);
+        let encoded = fs::read_to_string(path).unwrap();
+        let outcome = receive_serialized_leaf_request(
+            &source,
+            &residual,
+            &certificate,
+            &expected,
+            &leaf,
+            &encoded,
+            65_536,
+            512,
+        );
+        match role.as_str() {
+            "receive-matching" => {
+                assert_eq!(outcome, Outcome::Certified(Box::new(certificate.clone())))
+            }
+            "receive-renamed" => assert_eq!(
+                outcome,
+                Outcome::Refused("serialized source or residual snapshot mismatch")
+            ),
+            "receive-tampered-profile" => assert_eq!(
+                outcome,
+                Outcome::Refused("serialized request profile mismatch")
+            ),
+            _ => panic!("unexpected process role: {role}"),
+        }
+        return;
+    }
+
+    let directory = env::temp_dir().join(format!(
+        "adva-serialized-leaf-process-replay-{}",
+        process::id()
+    ));
+    fs::create_dir(&directory).unwrap();
+    let request_path = directory.join("request.json");
+    let tampered_path = directory.join("tampered-profile.json");
+    let executable = env::current_exe().unwrap();
+    let run_child = |role: &str, path: &Path| {
+        let mut child = Command::new(&executable)
+            .arg("--exact")
+            .arg(TEST_NAME)
+            .env(ROLE, role)
+            .env(REQUEST_PATH, path)
+            .stdout(Stdio::piped())
+            .stderr(Stdio::piped())
+            .spawn()
+            .unwrap();
+        let deadline = Instant::now() + Duration::from_secs(10);
+        while child.try_wait().unwrap().is_none() {
+            if Instant::now() >= deadline {
+                child.kill().unwrap();
+                let output = child.wait_with_output().unwrap();
+                panic!(
+                    "child {role} timed out\nstdout:\n{}\nstderr:\n{}",
+                    String::from_utf8_lossy(&output.stdout),
+                    String::from_utf8_lossy(&output.stderr)
+                );
+            }
+            thread::sleep(Duration::from_millis(10));
+        }
+        let output = child.wait_with_output().unwrap();
+        assert!(
+            output.status.success(),
+            "child {role} failed with {}\nstdout:\n{}\nstderr:\n{}",
+            output.status,
+            String::from_utf8_lossy(&output.stdout),
+            String::from_utf8_lossy(&output.stderr)
+        );
+    };
+
+    run_child("emit", &request_path);
+    let encoded = fs::read_to_string(&request_path).unwrap();
+    assert!(encoded.len() < 65_536);
+    let tampered = encoded.replacen(PROFILE, CHANGED_PROFILE, 1);
+    assert_ne!(encoded, tampered);
+    fs::write(&tampered_path, tampered).unwrap();
+
+    run_child("receive-matching", &request_path);
+    run_child("receive-renamed", &request_path);
+    run_child("receive-tampered-profile", &tampered_path);
+
+    fs::remove_file(request_path).unwrap();
+    fs::remove_file(tampered_path).unwrap();
+    fs::remove_dir(directory).unwrap();
+}
+
+// This is public only inside the ephemeral research integration-test crate.
+// It is not a stable library surface or a promoted receiver API.
+pub fn receive_pinned_serialized_leaf_request(case: &str, request_path: &Path) {
+    const PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v0";
+    const CHANGED_PROFILE: &str = "adva.research.native-input-binding-open-line-leaf-request.v1";
+
+    let module = if case == "renamed-module" {
+        "native-binding-process-renamed"
+    } else {
+        "native-binding-process"
+    };
+    let body = "(frontier (use static) (use dynamic))";
+    let leaf = ExpectedExternalLeaf {
+        source: "s-KX-L".into(),
+        occurrence: "occ-KX-L".into(),
+        target_source: "t-KX-L".into(),
+        target_occurrence: "tocc-KX-L".into(),
+    };
+    let (source, residual) = fixtures_in(module, body, Rational::ONE);
+    let certificate = propose(&source, &residual, Rational::ONE);
+    let expected = request(&source, &residual, Rational::ONE);
+    let original = fs::read_to_string(request_path).unwrap();
+    let encoded = if case == "changed-profile" {
+        let changed = original.replacen(PROFILE, CHANGED_PROFILE, 1);
+        assert_ne!(original, changed);
+        changed
+    } else {
+        original
+    };
+    let outcome = receive_serialized_leaf_request(
+        &source,
+        &residual,
+        &certificate,
+        &expected,
+        &leaf,
+        &encoded,
+        65_536,
+        512,
+    );
+
+    match case {
+        "matching" => assert_eq!(outcome, Outcome::Certified(Box::new(certificate))),
+        "renamed-module" => assert_eq!(
+            outcome,
+            Outcome::Refused("serialized source or residual snapshot mismatch")
+        ),
+        "changed-profile" => assert_eq!(
+            outcome,
+            Outcome::Refused("serialized request profile mismatch")
+        ),
+        _ => panic!("unexpected consumer case: {case}"),
+    }
 }
 
 #[test]
