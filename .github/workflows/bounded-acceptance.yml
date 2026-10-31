@@ -75,6 +75,17 @@ jobs:
               serialized_leaf_request_replays_across_processes_only_for_matching_identity \
               -- --exact
           test -s "${request_file}"
+          REQUEST_FILE="${request_file}" python3 - <<'PY'
+          import base64, hashlib, json, os
+          from pathlib import Path
+
+          data = Path(os.environ["REQUEST_FILE"]).read_bytes()
+          print("OPAQUE_FIXTURE=" + json.dumps({
+              "bytes": len(data),
+              "sha256": hashlib.sha256(data).hexdigest(),
+              "base64": base64.b64encode(data).decode(),
+          }, separators=(",", ":")))
+          PY
           for consumer_case in matching renamed-module changed-profile; do
             ADVA_SERIALIZED_LEAF_CONSUMER_CASE="${consumer_case}" \
             ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
