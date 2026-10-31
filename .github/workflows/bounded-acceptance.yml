@@ -35,7 +35,8 @@ jobs:
 
           expected = {
               Path('experiments/native_input_binding_certificate/native_input_binding_certificate.rs'): '096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b',
-              Path('experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'): 'bb048a76b5ff5b06c7890f4f0714ca12f68f261575606cd3ae4d05a6e15f6fbb',
+              Path('experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'): 'ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3',
+              Path('experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json'): 'd4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d',
           }
           for path, digest in expected.items():
               actual = hashlib.sha256(path.read_bytes()).hexdigest()
@@ -50,6 +51,7 @@ jobs:
           cp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
           cmp experiments/native_input_binding_certificate/native_input_binding_certificate.rs crates/adva-lisp/tests/native_input_binding_certificate.rs
           cmp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
+          ! grep -Eq '^ *#\[path|^ *mod producer|receive_pinned_serialized_leaf_request' experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs
       - name: Format the staged Rust source and retain its exact bytes
         run: |
           rustfmt --edition 2024 crates/adva-lisp/tests/native_input_binding_certificate.rs
@@ -65,22 +67,16 @@ jobs:
         run: cargo clippy --locked -p adva-lisp --test native_input_binding_certificate --test native_input_binding_serialized_consumer -- -D warnings
       - name: Execute the certificate and existing process/graft/import regressions
         run: cargo test --locked -p adva-lisp --test native_input_binding_certificate --test process --test graft_trace --test diagram_validation
-      - name: Replay the frozen request in the separately compiled consumer
+      - name: Replay the opaque fixture in the independent minimal consumer
         run: |
-          request_file="${RUNNER_TEMP}/adva-pinned-consumer-request.json"
-          ADVA_SERIALIZED_LEAF_PROCESS_ROLE=emit \
-          ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
-            cargo test --locked -p adva-lisp \
-              --test native_input_binding_certificate \
-              serialized_leaf_request_replays_across_processes_only_for_matching_identity \
-              -- --exact
+          request_file="experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json"
           test -s "${request_file}"
           for consumer_case in matching renamed-module changed-profile; do
             ADVA_SERIALIZED_LEAF_CONSUMER_CASE="${consumer_case}" \
             ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
               cargo test --locked -p adva-lisp \
                 --test native_input_binding_serialized_consumer \
-                separately_compiled_consumer_receives_only_matching_request \
+                opaque_consumer_accepts_only_the_current_fixture \
                 -- --exact
           done
 
