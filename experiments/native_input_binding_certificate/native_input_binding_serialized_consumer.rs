@@ -34,7 +34,12 @@ fn diagram_matches_module(encoded: &str, module: &str) -> bool {
             == Some(module)
 }
 
-fn receive(expected_module: &str, encoded: &str, byte_budget: usize, work_budget: usize) -> Outcome {
+fn receive(
+    expected_module: &str,
+    encoded: &str,
+    byte_budget: usize,
+    work_budget: usize,
+) -> Outcome {
     if encoded.len() > byte_budget {
         return Outcome::Unknown("request byte budget exhausted");
     }
