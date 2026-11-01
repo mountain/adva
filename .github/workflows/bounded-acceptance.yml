@@ -69,7 +69,7 @@ jobs:
         run: cargo test --locked -p adva-lisp --test native_input_binding_certificate --test process --test graft_trace --test diagram_validation
       - name: Replay the opaque fixture in the independent minimal consumer
         run: |
-          request_file="experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json"
+          request_file="${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json"
           test -s "${request_file}"
           for consumer_case in matching renamed-module changed-profile; do
             ADVA_SERIALIZED_LEAF_CONSUMER_CASE="${consumer_case}" \

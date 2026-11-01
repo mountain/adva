@@ -1,7 +1,7 @@
 # Serialized leaf opaque-fixture consumer boundary
 
 Date: 2026-10-31  
-Status: predecessor **Unknown/paused** retained; 2026-11-01 path continuation is a finite success on draft PR #230; not merged  
+Status: predecessor **Unknown/paused** retained; 2026-11-01 path continuation is a finite success; subsequent integration evidence and merge state are recorded in [PR #230](https://github.com/mountain/adva/pull/230)
 Frozen contracts: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031.json` and its sole-correction overlay `opaque-consumer-contract-20261031-v1.json`  
 Outcome: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-outcome-20261031.json`
 
@@ -163,3 +163,44 @@ dedicated continuation is green. The next minimum step is a new integration
 contract that substitutes the now-witnessed absolute path into the existing
 bounded-acceptance workflow without changing the consumer or cases. Only then
 may the PR's complete checks be used to assess merge readiness.
+
+## 2026-11-01 bounded-acceptance integration contract
+
+The preceding integration pause is the historical state at
+`f26881d2f92b6a09db39a6fd4dc30bcae1525462`, with main still at
+`87a1a6933bca3fdb5c176cbf612729e278d172f7`. A new, separately finite
+[`integration contract`](../../experiments/native_input_binding_serialized_leaf_request/opaque-consumer-integration-contract-20261101.json)
+continues from that state. It does not reset or reinterpret either predecessor
+contract or their retained failures.
+
+The only executable change is to root the request path in
+`bounded-acceptance.yml` at `${GITHUB_WORKSPACE}`. The frozen fixture, both
+Rust sources, three assertions, 65,536-byte and 512-item limits, 15-minute
+consumer job limits, producer-dependency ban and dependency locks are unchanged.
+Both existing consumer workflows run the same three cases once on the new PR
+head; these are six executions of three cases, not six distinct semantic cases.
+The general workflow retains its existing native and Bootstrap regressions.
+
+Before integration, inspect the actual logs and require all five workflow
+families on the same head: bounded acceptance, dedicated path continuation,
+complete CI, publication boundary and machine dependency continuity. Retain
+their run/job identifiers, tested head and checkout commits, three individual
+case results, measured costs and unmeasured quantities in a commit-anchored PR
+review. This external result record avoids a result-only source commit
+silently triggering another experiment. Merge only that checked head, then
+inspect the resulting main commit and its automatically scheduled checks.
+Failure or budget exhaustion stops this contract; no repair retry is allocated.
+
+The result, if accepted, is only integration of the exact minimal consumer's
+envelope and canonical snapshot checks. It is not full native certificate
+verification, general malicious-input validation, Research 0090 coverage,
+Research 0092 promotion, an M6 filler or a general arithmetic conclusion.
+The 512-item check counts the parsed outer request; it is not a bound on all
+parser work or process memory. Existing resource checks are preserved without
+claiming stronger enforcement. No word is formed or revised.
+
+Integration contract and one-line workflow repair authored by Codex (OpenAI),
+submitted through Mingli Yuan's GitHub account (mountain) as an authorized
+proxy. Account use is not his authorship, review, endorsement or correctness
+guarantee. Original first-party contribution under Unknown v0.3; no external
+text, code or data is imported.
