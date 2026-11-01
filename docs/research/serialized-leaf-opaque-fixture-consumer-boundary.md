@@ -1,7 +1,7 @@
 # Serialized leaf opaque-fixture consumer boundary
 
 Date: 2026-10-31  
-Status: **Unknown/paused** on draft PR #230; not merged  
+Status: predecessor **Unknown/paused** retained; 2026-11-01 path continuation is a finite success on draft PR #230; not merged  
 Frozen contracts: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031.json` and its sole-correction overlay `opaque-consumer-contract-20261031-v1.json`  
 Outcome: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-outcome-20261031.json`
 
@@ -102,3 +102,64 @@ The next minimum step, under a fresh contract, is to pass the fixture through
 an absolute `GITHUB_WORKSPACE` path (or copy it beside the staged test) and
 run only the unchanged matching, renamed-module and changed-profile cases
 once. No broader regression replay or new vocabulary claim is needed.
+
+
+## 2026-11-01 absolute-path continuation
+
+A fresh contract retained the exact 4,464-byte fixture, consumer source,
+three cases, request grammar, arithmetic boundary and refusal conditions.
+It permitted no producer invocation and changed only the workflow coordinate
+from a repository-relative request path to an absolute
+`${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json`.
+A contract-record typo omitted the comma from the inherited residual signature.
+The v0 record remains visible; the sole correction overlay restores the exact
+`Real -> Real, Real` type before execution. No further correction was used.
+
+The dedicated
+[path-continuation workflow](https://github.com/mountain/adva/actions/runs/41314658363)
+then completed the three frozen cases exactly once:
+
+| Case | Observed assertion |
+| --- | --- |
+| `matching` | `AcceptedCurrentFixture` |
+| `renamed-module` | `Refused("module mismatch")` |
+| `changed-profile` | `Refused("profile mismatch")` |
+
+The consumer remained a separately compiled Rust test target. Its source SHA-256
+remained `ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3`;
+the fixture remained
+`d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d`.
+The explicit check again found no producer path import, producer module import,
+or call to `receive_pinned_serialized_leaf_request`.
+
+The fixture measurement reported 21 outer JSON items, 59 source-diagram items
+and 75 residual-diagram items. Read plus JSON parsing took 123,342 ns. Each
+semantic case consumed the outer 21-item structural count against a 512-item
+bound, so the three executions consumed 63 counted outer items in total.
+No new serialization was performed; the consumer read 4,464 frozen request
+bytes per case, 13,392 runtime input bytes in total.
+
+The dedicated job used four Cargo invocations and 25.961 s wall time. Clippy
+used 7.28 s and a process-tree peak RSS of 263,236 KiB. The matching test used
+6.96 s and 448,920 KiB; the two cached refusal tests used 0.05 s each and
+30,352 KiB and 30,364 KiB. These are `/usr/bin/time` measurements for each
+Cargo process tree, not isolated receiver memory.
+
+The finite result closes only the path-scope harness residual. It shows that
+this exact minimal consumer can receive the exact current fixture and preserve
+the two inherited refusals without importing the producer. It does not
+reconstruct the full native certificate, authenticate the fixture, establish
+arbitrary independent implementations, cover Research 0090, promote Research
+0092, construct an M6 filler, prove either Research 0123 word, or demonstrate
+practical value for Jiamin Zhao.
+
+No word was formed or revised. The existing terms `current fixture`,
+`AcceptedCurrentFixture`, `Refused`, `InvalidContext` and
+`Unknown/NotRun` remain sufficient.
+
+The draft PR is not integration-ready. Its earlier general bounded-acceptance
+workflow still passes the old relative path and therefore fails, while the
+dedicated continuation is green. The next minimum step is a new integration
+contract that substitutes the now-witnessed absolute path into the existing
+bounded-acceptance workflow without changing the consumer or cases. Only then
+may the PR's complete checks be used to assess merge readiness.

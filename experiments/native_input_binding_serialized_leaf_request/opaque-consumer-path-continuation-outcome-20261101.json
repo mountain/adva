@@ -1,0 +1,60 @@
+{
+  "profile": "adva.research.serialized-leaf-opaque-consumer-path-continuation-outcome.v0",
+  "status": "finite-success-in-dedicated-workflow",
+  "date": "2026-11-01",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-path-continuation-contract-20261101-v1.json",
+  "repository": {
+    "main_commit": "87a1a6933bca3fdb5c176cbf612729e278d172f7",
+    "draft_pull_request": 230,
+    "validated_head": "a40b28169aeaf9b16e7c5059e15e24d85474528d"
+  },
+  "coordinates": {
+    "fixture_bytes": 4464,
+    "fixture_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "consumer_sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "absolute_fixture_path": "${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+    "producer_invocations": 0
+  },
+  "cases": [
+    {"name": "matching", "observed": "AcceptedCurrentFixture", "passed": true},
+    {"name": "renamed-module", "observed": "Refused(module mismatch)", "passed": true},
+    {"name": "changed-profile", "observed": "Refused(profile mismatch)", "passed": true}
+  ],
+  "measurements": {
+    "workflow_run": 41314658363,
+    "job": 124872039887,
+    "job_wall_seconds": 25.961,
+    "cargo_invocations": 4,
+    "fixture_read_and_parse_ns": 123342,
+    "outer_items_per_case": 21,
+    "outer_items_total": 63,
+    "source_diagram_items": 59,
+    "residual_diagram_items": 75,
+    "runtime_request_bytes_total": 13392,
+    "clippy": {"elapsed": "0:07.28", "peak_rss_kib": 263236},
+    "matching": {"elapsed": "0:06.96", "peak_rss_kib": 448920},
+    "renamed_module": {"elapsed": "0:00.05", "peak_rss_kib": 30352},
+    "changed_profile": {"elapsed": "0:00.05", "peak_rss_kib": 30364}
+  },
+  "checks": {
+    "consumer_pin": "passed",
+    "fixture_pin": "passed",
+    "producer_dependency_ban": "passed",
+    "rustfmt": "passed",
+    "clippy": "passed",
+    "publication_boundary": "passed"
+  },
+  "integration_status": {
+    "dedicated_path_continuation": "success",
+    "existing_bounded_acceptance": "failure: predecessor workflow still supplies the relative path",
+    "full_ci_at_validated_head": "failure: research index named-note count was stale before the record commit",
+    "machine_dependency_continuity": "not used for the research judgment"
+  },
+  "vocabulary": {
+    "formed": [],
+    "revised": [],
+    "reason": "Existing current-fixture, AcceptedCurrentFixture, Refused, InvalidContext and Unknown/NotRun language is sufficient."
+  },
+  "claim_boundary": "Finite envelope and snapshot-binding evidence for one exact fixture and consumer only. No full native receiver, Research 0090 coverage, Research 0092 promotion, M6 filler, arithmetic universality, hypothesized arithmetic truth, native free, social trust or practical value is established.",
+  "next_minimal_step": "Under a new integration contract, replace the predecessor relative path in bounded-acceptance.yml with the witnessed GITHUB_WORKSPACE absolute path, leave the consumer and three cases unchanged, and inspect the complete PR checks."
+}
