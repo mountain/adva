@@ -1,0 +1,67 @@
+{
+  "profile": "adva.research.serialized-leaf-opaque-consumer-path-continuation.v0",
+  "status": "frozen-before-execution",
+  "date": "2026-11-01",
+  "repository": {
+    "main_commit": "87a1a6933bca3fdb5c176cbf612729e278d172f7",
+    "predecessor_pr": 230,
+    "predecessor_head": "407e6c068852fd8124e09b83272ba04465d60914"
+  },
+  "inherits": {
+    "fixture": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+    "fixture_bytes": 4464,
+    "fixture_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "consumer": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+    "consumer_sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "request_profile": "adva.research.native-input-binding-open-line-leaf-request.v0",
+    "source_signature": "Real, Real -> Real, Real",
+    "residual_signature": "Real -> Real, Real Real",
+    "module": "native-binding-process",
+    "external_leaf": ["s-KX-L", "occ-KX-L", "t-KX-L", "tocc-KX-L"]
+  },
+  "question": "When the frozen fixture is supplied through an absolute GITHUB_WORKSPACE path, does the unchanged producer-independent consumer accept the current fixture and refuse a renamed expected module and changed request profile?",
+  "types": {
+    "input": "one exact UTF-8 serialized request plus one case name",
+    "output": ["AcceptedCurrentFixture", "Refused(module mismatch)", "Refused(profile mismatch)", "Unknown"],
+    "path": "absolute filesystem path rooted at the checked-out repository"
+  },
+  "quantifier": "exactly the three inherited cases, once each, in order: matching, renamed-module, changed-profile",
+  "arithmetic_domain": "The pinned rational 1/1 remains data only. No additive-zero equation, multiplicative inverse, zero denominator, commutative shadow or new arithmetic law is tested.",
+  "candidate_grammar": {
+    "root_keys": ["external_leaf", "native_occurrence_map", "profile", "residual_diagram_json", "source_diagram_json"],
+    "consumer_checks": "unchanged from the predecessor consumer",
+    "forbidden_dependencies": ["producer path import", "producer module import", "receive_pinned_serialized_leaf_request call"]
+  },
+  "route": {
+    "change": "Only replace the workflow's repository-relative request path with ${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json.",
+    "producer_invocations": 0,
+    "consumer_semantic_cases": 3,
+    "search_candidates": 0
+  },
+  "evaluation": {
+    "success": "The matching case returns AcceptedCurrentFixture; renamed-module returns Refused(module mismatch); changed-profile returns Refused(profile mismatch); all exact pins and the producer-dependency ban hold.",
+    "failure": "Any completed case returns a different result or a forbidden dependency appears.",
+    "unknown": "Path, compilation, environment, timeout, budget or harness failure prevents a declared case from reaching its assertion.",
+    "claim_boundary": "Finite envelope and snapshot-binding evidence only; not the full native receiver, Research 0090 coverage, Research 0092 promotion, M6 filling, arithmetic universality, hypothesized arithmetic truth, native free or social trust."
+  },
+  "budget": {
+    "routes": 1,
+    "wall_minutes_max": 15,
+    "cargo_invocations_max": 4,
+    "request_bytes_max": 65536,
+    "structural_items_max": 512,
+    "semantic_cases_max": 3,
+    "implementation_correction_replays_max": 1
+  },
+  "measurements": {
+    "required": ["fixture bytes and SHA-256", "recursive outer JSON item count", "each Cargo wall time", "peak RSS when /usr/bin/time is available"],
+    "missing_policy": "Record missing explicitly; file size is not peak memory."
+  },
+  "vocabulary_policy": "No vocabulary candidate is proposed. Existing fixture, current snapshot, AcceptedCurrentFixture, Refused and Unknown/NotRun are sufficient.",
+  "residual_obligations": [
+    "The consumer does not reconstruct or certify the full native certificate, event map, ordered history or graft trace.",
+    "SHA-256 integrity is not authentication.",
+    "No practical value for Jiamin Zhao is claimed without a real task and acceptance.",
+    "Research 0090 coverage and Research 0092 promotion remain open."
+  ]
+}

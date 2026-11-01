@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 69 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 70 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -940,6 +940,8 @@ Every file in this directory, so that no note is reachable only through a summar
 - [futamura-projections-in-adva-terms.md](futamura-projections-in-adva-terms.md): the Futamura projections stated in this repository's terms, with the first projection executed — a compiler built from the frozen interpreter by a declared rule emits 3-instruction residuals for all 129 frozen trees, agreement checked three ways, and the compile cost recorded; projections two and three are blocked by measured bounds.
 - [futamura-dynamic-residual-calibration.md](futamura-dynamic-residual-calibration.md): the first projection with a live dynamic input — a 41-instruction compiler in the machine's own language emits 1- or 2-instruction residuals for a declared two-opcode subset, values and refusals both agree with interpretation, and the compile-versus-interpret ratio is measured rather than assumed.
 - [compiler-size-curve-and-bootstrapping-budget.md](compiler-size-curve-and-bootstrapping-budget.md): the in-language compiler size curve — each extra opcode costs 45 to 63 instructions and each extra source instruction 32, an extra slot costs nothing because slot indices travel as data, and a compiler for the machine's whole instruction language is a measured 201-instruction lower bound against 128.
+
+- [serialized-leaf-opaque-fixture-consumer-boundary.md](serialized-leaf-opaque-fixture-consumer-boundary.md): freezes the 4,464-byte canonical request and compiles a producer-independent minimal consumer; the predecessor pause is retained, while the 2026-11-01 absolute-path continuation accepts the current fixture and preserves the renamed-module and changed-profile refusals in one finite three-case run.
 
 ### Supporting directories
 

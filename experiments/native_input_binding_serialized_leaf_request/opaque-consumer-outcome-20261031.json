@@ -1,0 +1,63 @@
+{
+  "profile": "adva.research.serialized-leaf-opaque-consumer-outcome.v0",
+  "status": "unknown-paused",
+  "date": "2026-10-31",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031-v1.json",
+  "repository": {
+    "base_main_commit": "87a1a6933bca3fdb5c176cbf612729e278d172f7",
+    "paused_branch_commit": "ddbe9288ff6a25856e2d952d73452f5dcc41c7e8",
+    "draft_pull_request": 230
+  },
+  "fixture_construction": {
+    "status": "success",
+    "workflow_run": 41211976708,
+    "job": 124568681423,
+    "bytes": 4464,
+    "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "outer_json_structural_items": 21,
+    "source_diagram_structural_items_when_parsed": 59,
+    "residual_diagram_structural_items_when_parsed": 75
+  },
+  "invalid_attempt": {
+    "workflow_run": 41212123407,
+    "job": 124569111998,
+    "classification": "formatting failure before semantic execution",
+    "wall_seconds": 11.085
+  },
+  "sole_correction_replay": {
+    "workflow_run": 41212182710,
+    "job": 124569289405,
+    "status": "harness-failure-before-receiver",
+    "cause": "The workflow supplied a repository-relative fixture path, but the Rust test process resolved it from crates/adva-lisp.",
+    "format": "passed",
+    "source_and_fixture_pins": "passed",
+    "producer_import_ban": "passed",
+    "clippy": "passed",
+    "existing_rust_tests": {"passed": 41, "seconds": 0.25},
+    "bootstrap_tests": {"passed": 1110, "seconds": 2.56},
+    "new_cases": {
+      "matching": "HarnessFailure before receive",
+      "renamed-module": "NotRun",
+      "changed-profile": "NotRun"
+    },
+    "semantic_cases_completed": 0,
+    "wall_seconds_native_job": 20.867,
+    "correction_replays_remaining": 0
+  },
+  "cost": {
+    "search_candidates": 0,
+    "dedicated_native_job_wall_seconds_total": 61.835,
+    "cargo_invocations_total": 9,
+    "fixture_construction_invocations": 1,
+    "consumer_semantic_cases_completed": 0,
+    "serialization_bytes_retained": 4464,
+    "peak_memory": "missing; GitHub Actions logs did not report it"
+  },
+  "vocabulary": {
+    "formed": [],
+    "revised": [],
+    "reason": "Existing fixture, snapshot, InvalidContext and Unknown/NotRun language is sufficient."
+  },
+  "claim_boundary": "No independent receiver success, Research 0090 coverage, Research 0092 promotion, M6 filler, arithmetic universality, hypothesized arithmetic truth, social trust or practical value is established.",
+  "next_minimal_step": "Under a fresh contract, pass an absolute GITHUB_WORKSPACE fixture path (or copy the fixture beside the staged test) and execute only the same matching, renamed-module and changed-profile cases once."
+}

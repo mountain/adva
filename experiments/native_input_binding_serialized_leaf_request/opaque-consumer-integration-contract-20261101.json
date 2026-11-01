@@ -1,0 +1,93 @@
+{
+  "profile": "adva.research.serialized-leaf-opaque-consumer-integration.v0",
+  "status": "frozen-before-execution",
+  "date": "2026-11-01",
+  "level": "finite engineering integration; no semantic implementation or mathematical promotion",
+  "repository": {
+    "name": "mountain/adva",
+    "pull_request": 230,
+    "main_commit": "87a1a6933bca3fdb5c176cbf612729e278d172f7",
+    "predecessor_head": "f26881d2f92b6a09db39a6fd4dc30bcae1525462"
+  },
+  "question": "Does the unchanged minimal consumer retain its three frozen outcomes when the existing bounded-acceptance workflow supplies the request through an absolute GITHUB_WORKSPACE path, with all integration gates passing on the same PR head?",
+  "imports": {
+    "prior_contracts": [
+      "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031.json",
+      "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031-v1.json",
+      "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-path-continuation-contract-20261101.json",
+      "experiments/native_input_binding_serialized_leaf_request/opaque-consumer-path-continuation-contract-20261101-v1.json"
+    ],
+    "prior_evidence_run": "https://github.com/mountain/adva/actions/runs/41314840014",
+    "prior_failure_run": "https://github.com/mountain/adva/actions/runs/41314840137",
+    "status": "Prior failure and dedicated success remain separately scoped historical outcomes; no automatic fuel reset."
+  },
+  "frozen_files": {
+    "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "experiments/native_input_binding_certificate/native_input_binding_certificate.rs": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b",
+    "Cargo.lock": "b1042015a8b0f395aaa5334663356f3d253c7c493f8e50181ea9f318330416b9",
+    "dependencies/adva-machine.lock.json": "89ad0f3f24e5df6a898d106c184d7c04655b18b6da182a48c8e32050569feb4b"
+  },
+  "interface": {
+    "fixture_bytes": 4464,
+    "path": "${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+    "justification": "Absolute host filesystem coordinates survive Cargo's crate-local test working directory; this changes no request bytes or semantic identity and is not an Adva content exchange.",
+    "source_signature": "Real, Real -> Real, Real",
+    "residual_signature": "Real -> Real, Real",
+    "request_profile": "adva.research.native-input-binding-open-line-leaf-request.v0",
+    "module": "native-binding-process",
+    "external_leaf": ["s-KX-L", "occ-KX-L", "t-KX-L", "tocc-KX-L"]
+  },
+  "cases": [
+    {"name": "matching", "expected": "AcceptedCurrentFixture"},
+    {"name": "renamed-module", "expected": "Refused(module mismatch)"},
+    {"name": "changed-profile", "expected": "Refused(profile mismatch)"}
+  ],
+  "allowed_edits": [
+    "Replace only the request_file assignment in .github/workflows/bounded-acceptance.yml with the absolute coordinate.",
+    "Add this contract and append integration provenance to the existing research note."
+  ],
+  "protected_obligations": [
+    "Preserve the fixture, consumer, producer, three assertions and all historical contracts/outcomes byte-for-byte.",
+    "Retain exact SHA-256 checks, producer import/call ban, strict request shape, module/profile/leaf/occurrence/snapshot checks and existing resource limits.",
+    "Preserve Cargo and machine locks and all existing workflow regression commands.",
+    "No stable API, semantic identity, certificate, catalog or cross-repository authority changes."
+  ],
+  "budget": {
+    "routes": 1,
+    "search_candidates": 0,
+    "fixture_construction_invocations": 0,
+    "distinct_semantic_cases": 3,
+    "consumer_workflow_runs": 2,
+    "semantic_case_executions_per_workflow": 3,
+    "semantic_case_executions_total_max": 6,
+    "consumer_job_minutes_max": 15,
+    "request_bytes_max": 65536,
+    "outer_structural_items_max": 512,
+    "dedicated_cargo_invocations_max": 4,
+    "bounded_acceptance_cargo_invocations_max": 6,
+    "bootstrap_job_minutes_max": 5,
+    "implementation_corrections": 0,
+    "manual_reruns": 0,
+    "local_preflight_seconds_max": 300,
+    "premerge_workflow_runs_max": 6,
+    "postmerge_workflow_runs_max": 3,
+    "integration_enforcement": "One source update triggers CI, two consumer workflows, machine continuity and push/pull_request publication checks. Existing job/command limits remain; unconfigured CI/publication jobs retain GitHub's finite default job timeout. No new source update or retry is allocated. A merge triggers the existing CI/publication/machine workflows once.",
+    "memory": "Unchanged hosted-runner capacity and consumer byte/outer-item checks; no new RSS cap is asserted. Retain dedicated workflow time/RSS measurements; unmeasured quantities stay missing.",
+    "result_record_bytes_max": 32768
+  },
+  "acceptance": {
+    "checker": "Unchanged Rust assertions plus exact pins and producer-dependency ban; inspect actual workflow job logs.",
+    "required_workflows": ["Bounded acceptance calibrations", "Opaque consumer path continuation", "CI", "Publication boundary", "Machine dependency continuity"],
+    "success": "Both three-case workflows and all integration gates succeed at the new head; review that head, merge with an expected-head lease, and verify main and its checks.",
+    "failure": "A completed assertion differs, a frozen file changes, or a protected identity/dependency check fails; retain evidence and do not merge.",
+    "unknown": "Missing evidence, compilation/harness/environment failure, resource exhaustion or incomplete gate; retain the residual and do not merge."
+  },
+  "recording": {
+    "destination": "Commit-anchored review on https://github.com/mountain/adva/pull/230, with final main confirmation in the same PR discussion.",
+    "fields": ["tested head and checkout commit", "run and job IDs", "each case assertion and result", "frozen byte/digest checks", "regression outcomes", "measured cost and missing quantities", "review and merge status", "residual obligations"],
+    "reason": "Do not create a result-only source commit that silently triggers another finite run."
+  },
+  "claim_boundary": "One exact minimal consumer's envelope and canonical snapshot acceptance/refusal only. Not full native certificate verification or authentication, arbitrary-input validation, Research 0090 coverage, Research 0092 promotion, M6 filling, arithmetic universality or a general arithmetic conclusion.",
+  "authorship": "Codex (OpenAI), through Mingli Yuan's GitHub account as authorized proxy; not his authorship, review, endorsement or correctness guarantee. Original first-party contribution under Unknown v0.3."
+}
