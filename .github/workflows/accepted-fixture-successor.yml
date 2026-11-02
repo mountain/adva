@@ -1,0 +1,94 @@
+name: Accepted opaque fixture successor
+
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/accepted-fixture-successor.yml'
+      - 'experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs'
+      - 'experiments/native_input_binding_certificate/native_input_binding_opaque_successor.rs'
+      - 'experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json'
+      - 'experiments/native_input_binding_serialized_leaf_request/accepted-fixture-successor-contract-20261102.json'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  accepted-then-native-successor:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dtolnay/rust-toolchain@stable
+        with:
+          components: rustfmt, clippy
+      - uses: Swatinem/rust-cache@v2
+      - name: Verify inherited fixture and consumer pins
+        run: |
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+
+          expected = {
+              Path("experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json"): "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+              Path("experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs"): "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+          }
+          for path, digest in expected.items():
+              data = path.read_bytes()
+              assert hashlib.sha256(data).hexdigest() == digest
+              print(f"PIN path={path} bytes={len(data)} sha256={digest}")
+          PY
+      - name: Stage the unchanged consumer and the native successor
+        run: |
+          test ! -e crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
+          test ! -e crates/adva-lisp/tests/native_input_binding_opaque_successor.rs
+          cp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
+          cp experiments/native_input_binding_certificate/native_input_binding_opaque_successor.rs crates/adva-lisp/tests/native_input_binding_opaque_successor.rs
+          cmp experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs crates/adva-lisp/tests/native_input_binding_serialized_consumer.rs
+          cmp experiments/native_input_binding_certificate/native_input_binding_opaque_successor.rs crates/adva-lisp/tests/native_input_binding_opaque_successor.rs
+          ! grep -Eq '^ *#\[path|^ *mod producer|receive_pinned_serialized_leaf_request' experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs
+          rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs
+          rustfmt --edition 2024 --check experiments/native_input_binding_certificate/native_input_binding_opaque_successor.rs
+      - name: Compile both finite stages
+        run: |
+          if test -x /usr/bin/time; then
+            /usr/bin/time -v cargo clippy --locked -p adva-lisp \
+              --test native_input_binding_serialized_consumer \
+              --test native_input_binding_opaque_successor -- -D warnings
+          else
+            echo "PEAK_RSS=missing:/usr/bin/time"
+            cargo clippy --locked -p adva-lisp \
+              --test native_input_binding_serialized_consumer \
+              --test native_input_binding_opaque_successor -- -D warnings
+          fi
+      - name: Execute the three-case gate and one native successor
+        run: |
+          request_file="${GITHUB_WORKSPACE}/experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json"
+          test -s "${request_file}"
+          for consumer_case in matching renamed-module changed-profile; do
+            echo "CONSUMER_CASE=${consumer_case}"
+            ADVA_SERIALIZED_LEAF_CONSUMER_CASE="${consumer_case}" \
+            ADVA_SERIALIZED_LEAF_REQUEST_PATH="${request_file}" \
+              cargo test --locked -p adva-lisp \
+                --test native_input_binding_serialized_consumer \
+                opaque_consumer_accepts_only_the_current_fixture \
+                -- --exact
+            if test "${consumer_case}" = matching; then
+              echo "SUCCESSOR_CASE=${consumer_case} outcome=Started"
+              if test -x /usr/bin/time; then
+                ADVA_ACCEPTED_FIXTURE_PATH="${request_file}" \
+                  /usr/bin/time -v cargo test --locked -p adva-lisp \
+                    --test native_input_binding_opaque_successor \
+                    -- --nocapture
+              else
+                echo "PEAK_RSS=missing:/usr/bin/time"
+                ADVA_ACCEPTED_FIXTURE_PATH="${request_file}" \
+                  cargo test --locked -p adva-lisp \
+                    --test native_input_binding_opaque_successor \
+                    -- --nocapture
+              fi
+              echo "SUCCESSOR_CASE=${consumer_case} outcome=SuccessorVerified"
+            else
+              echo "SUCCESSOR_CASE=${consumer_case} outcome=NotRun"
+            fi
+          done
