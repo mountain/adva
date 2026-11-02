@@ -120,7 +120,9 @@ fn verify_accepted_fixture(encoded: &str) -> SuccessorOutcome {
         return SuccessorOutcome::Refused("native occurrence-map value mismatch");
     }
     if !endpoint_exists(source_endpoint, &source) || !endpoint_exists(target_endpoint, &residual) {
-        return SuccessorOutcome::Refused("native occurrence endpoint absent from imported diagram");
+        return SuccessorOutcome::Refused(
+            "native occurrence endpoint absent from imported diagram",
+        );
     }
 
     SuccessorOutcome::SuccessorVerified
