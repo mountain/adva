@@ -204,3 +204,79 @@ submitted through Mingli Yuan's GitHub account (mountain) as an authorized
 proxy. Account use is not his authorship, review, endorsement or correctness
 guarantee. Original first-party contribution under Unknown v0.3; no external
 text, code or data is imported.
+
+## 2026-11-02 accepted-fixture native successor gate
+
+Main commit `334a85f9e981d81c026841d9b6954f144ae23d79` merged PR
+[#230](https://github.com/mountain/adva/pull/230), including the exact
+bounded-acceptance path repair. With no open PR remaining, a fresh contract
+froze one narrower question: after the exact opaque request has returned
+`AcceptedCurrentFixture`, can a second Rust stage complete the existing native
+diagram-import obligations without allowing either inherited refusal case to
+enter that stage?
+
+The successor does not modify the frozen fixture or consumer. It reads the
+same 4,464 bytes, requires byte equality with the checked-in fixture, imports
+both embedded diagrams through `adva_lisp::import_diagram_json`, requires both
+returned `DiagramValidationCertificate` values to report fully certified,
+rechecks their node, source-partition and history-count snapshots against the
+returned diagrams, and verifies that the one declared source and target
+endpoint exists exactly in the imported occurrence collections with its
+context, `SourceId`, `OccurrenceId` and path. A changed-byte control is refused
+before it can reuse this gate.
+
+The first remote run
+[`41462185788`](https://github.com/mountain/adva/actions/runs/41462185788)
+stopped before compilation because `rustfmt --check` required one long return
+line to be split. The sole implementation-correction allowance applied exactly
+that mechanical layout and changed no test or expected outcome. The correction
+run
+[`41462412137`](https://github.com/mountain/adva/actions/runs/41462412137)
+then completed:
+
+| Consumer case | Consumer result | Native successor |
+| --- | --- | --- |
+| `matching` | `AcceptedCurrentFixture` | `SuccessorVerified` |
+| `renamed-module` | `Refused("module mismatch")` | `NotRun` |
+| `changed-profile` | `Refused("profile mismatch")` | `NotRun` |
+
+The successor target passed both tests: the exact fixture completed the two
+native imports and mapping checks, while changed bytes were refused at the
+accepted-fixture boundary. The run used exactly five Cargo invocations: one
+Clippy invocation, three consumer invocations and one successor invocation.
+Clippy took 13.54 seconds with a 265,428 KiB process-tree peak RSS. The
+successor Cargo test took 0.27 seconds with a 155,052 KiB process-tree peak RSS.
+The complete three-case execution step took approximately 6.95 seconds from
+its first retained case marker to its final marker; individual consumer Cargo
+wall times and RSS were not measured. The four file reads consumed 17,856
+fixture bytes in total. No serialization or search ran. The test harness
+reported four consumer/successor test invocations containing five passing Rust
+tests; internal importer instruction counts and isolated receiver memory remain
+unmeasured.
+
+This is a workflow-level permitted-continuation gate, not an in-language
+composition theorem. `AcceptedCurrentFixture` still grants no effect, execution,
+retry, `free`, identity transport or general acceptance authority. The
+successor reuses this repository's native importer and is not an independent
+`adva-machine` implementation. Byte equality supplies integrity for this one
+fixture, not authentication. Local images and one exact occurrence pair do not
+construct an M6 filler. Research 0090 coverage remains open; Research 0092
+promotion remains blocked; `arithmetic-universality` and
+`hypothesized-arithmetic-truth` remain Proposed. The literal `1/1` remains data,
+not a multiplicative-unit or inverse theorem.
+
+No word was formed or revised. Existing `receive`, `accept`, `Refused`,
+`Unknown`, certificate and permitted-continuation vocabulary already separates
+the stages. `SuccessorVerified` is only a local finite outcome label.
+
+The result helps Mingli Yuan and later agents keep envelope acceptance,
+semantic import and permission to continue as three separate obligations. It
+does not yet demonstrate practical value for Jiamin Zhao. The next minimum
+step is to move this exact post-accept obligation to the pinned
+`adva-machine` receiving boundary, or retain `Unknown` if that profile does not
+exist; no new request family is needed.
+
+Contract, implementation and report authored by Codex (OpenAI), submitted
+through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
+his authorship, review, endorsement or correctness guarantee. Original
+first-party contribution under Unknown v0.3; no external content is imported.
