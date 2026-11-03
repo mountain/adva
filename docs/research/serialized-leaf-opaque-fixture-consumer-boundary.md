@@ -280,3 +280,58 @@ Contract, implementation and report authored by Codex (OpenAI), submitted
 through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
 his authorship, review, endorsement or correctness guarantee. Original
 first-party contribution under Unknown v0.3; no external content is imported.
+
+## 2026-11-03 pinned-machine receiving-profile inventory
+
+PR #231 remains an unmerged draft, while main remains at
+`334a85f9e981d81c026841d9b6954f144ae23d79`. The fixed executable dependency is
+therefore still `mountain/adva-machine` commit
+`a0b710a2517f06f2fe03cc463e855548adf418ac`. A fresh contract froze one route:
+enumerate that exact committed tree and determine whether its versioned command
+or profile surface already declares the post-`AcceptedCurrentFixture` relation
+witnessed by the PR: two native diagram admissions, the qualified endpoint-pair
+check and a receiver outcome. Later machine commits, new implementation and a
+general build were excluded.
+
+The route ended `Unknown / BudgetViolation`. The frozen byte ceiling was
+100,000,000 bytes. Preflight observed 23,262 tracked files and 181,982,554
+tracked bytes, but the inventory script printed the over-limit value without
+gating the following `git grep`. The grep completed with return code zero in
+1,532,160,635 ns, within the 30-second wall limit, but after the byte contract
+had already been violated by 81,982,554 bytes. No narrowed replay, correction or
+semantic execution was permitted or performed.
+
+The invalidated search reported the primitive
+`adva_lisp::import_diagram_json`, `DiagramValidationCertificate`, its existing
+tests and documentary occurrence-mapping language. It reported no exact
+`AcceptedCurrentFixture`, opaque-successor or native-input-binding profile
+identifier. These observations are retained only as partial matches: they do
+not certify absence of a suitable profile in the pinned machine, because the
+declared complete-tree input bound was exceeded.
+
+Python `resource.getrusage(RUSAGE_CHILDREN)` reported 117,192 KiB after the one
+inventory subprocess. This is not isolated receiver memory or a complete
+process-tree peak; `/usr/bin/time` was unavailable. There were zero fixture
+reads, zero request bytes consumed, zero serialization bytes, zero semantic
+cases, zero candidate generation, zero implementation changes and zero replay.
+
+No word was formed or revised. Existing `BudgetViolation`, `Unknown`, partial
+match, `receive` and `Refused` vocabulary states the outcome. In particular,
+this failed inventory supplies no Research 0090 coverage, Research 0092
+promotion, M6 filler, native `free` or `Close`, hypothesized arithmetic truth,
+arithmetic universality, authentication, effect authority or practical value
+for Jiamin Zhao.
+
+The retained failure helps Mingli Yuan and later agents by exposing a missing
+preflight rule: a resource declaration is ineffective if the checker measures
+the input but does not stop before consuming it. The next minimum continuation
+is not another grep. Freeze a smaller admitted subtree from committed command,
+profile, schema and specification registries (with exact file and byte pins),
+and require the inventory driver to refuse before search when either count
+exceeds its cap. Only that fresh bounded route may answer whether an exact
+pinned receiving profile exists.
+
+Contract, outcome and report continuation authored by Codex (OpenAI), submitted
+through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
+his authorship, review, endorsement or correctness guarantee. Original
+first-party contribution under Unknown v0.3; no external content is imported.
