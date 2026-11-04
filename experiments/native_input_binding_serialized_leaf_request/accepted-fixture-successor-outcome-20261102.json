@@ -1,0 +1,91 @@
+{
+  "profile": "adva.research.accepted-opaque-fixture-successor.outcome.v0",
+  "status": "FiniteWorkflowGatePassed",
+  "date": "2026-11-02",
+  "base_commit": "334a85f9e981d81c026841d9b6954f144ae23d79",
+  "pull_request": 231,
+  "tested_head": "7f602abf2d953fca2178504b6feb94b739f581c3",
+  "fixture": {
+    "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+    "bytes": 4464,
+    "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d"
+  },
+  "consumer": {
+    "path": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+    "bytes": 4836,
+    "sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3"
+  },
+  "cases": [
+    {
+      "name": "matching",
+      "consumer": "AcceptedCurrentFixture",
+      "successor": "SuccessorVerified"
+    },
+    {
+      "name": "renamed-module",
+      "consumer": "Refused(module mismatch)",
+      "successor": "NotRun"
+    },
+    {
+      "name": "changed-profile",
+      "consumer": "Refused(profile mismatch)",
+      "successor": "NotRun"
+    }
+  ],
+  "successor_checks": {
+    "native_imports": 2,
+    "certificates_certified": 2,
+    "certificate_snapshots_rechecked": [
+      "node_ids",
+      "source_partition_snapshot",
+      "history_event_count"
+    ],
+    "qualified_occurrence_endpoints_found": 2,
+    "changed_bytes_refused_before_reuse": true,
+    "effect_or_execution_authority": false
+  },
+  "runs": {
+    "presemantic_format_failure": {
+      "run_id": 41462185788,
+      "job_id": 125333780388,
+      "outcome": "InvalidContext",
+      "residual": "rustfmt required one long return line to be split; compile and semantic steps NotRun"
+    },
+    "single_correction_replay": {
+      "run_id": 41462412137,
+      "job_id": 125334547099,
+      "outcome": "Passed"
+    }
+  },
+  "cost": {
+    "routes": 1,
+    "search_candidates": 0,
+    "cargo_invocations": 5,
+    "consumer_invocations": 3,
+    "successor_invocations": 1,
+    "rust_tests_passed_across_case_commands": 5,
+    "clippy_wall_seconds": 13.54,
+    "clippy_process_tree_peak_rss_kib": 265428,
+    "successor_cargo_wall_seconds": 0.27,
+    "successor_process_tree_peak_rss_kib": 155052,
+    "three_case_step_wall_seconds_approx": 6.95,
+    "fixture_file_reads": 4,
+    "fixture_bytes_read_total": 17856,
+    "serialization_invocations": 0,
+    "implementation_corrections": 1,
+    "consumer_per_case_wall_and_rss": "missing",
+    "isolated_importer_memory": "missing",
+    "internal_importer_instruction_count": "missing",
+    "local_native_execution": "NotRun: Rust toolchain unavailable"
+  },
+  "integration_checks_at_recording": {
+    "publication_boundary": "Passed",
+    "bounded_acceptance_calibrations": "Passed",
+    "complete_ci": "InProgressNotAwaited",
+    "machine_dependency_continuity": "InProgressNotAwaited"
+  },
+  "new_vocabulary": [],
+  "claim_boundary": "One exact workflow-level continuation from AcceptedCurrentFixture to two native diagram imports and one exact qualified occurrence-map check. Not a native composed acceptance certificate, independent machine implementation, authentication result, general request receiver, 0090 coverage, 0092 promotion, M6 filler, arithmetic theorem, native free or social trust result.",
+  "next_minimum_step": "Attempt the same exact post-accept obligation at the pinned adva-machine receiving boundary without creating a new request family; retain Unknown if no receiving profile exists.",
+  "authorship": "Codex (OpenAI), through Mingli Yuan's GitHub account as authorized proxy; not his authorship, review, endorsement or correctness guarantee. Original first-party contribution under Unknown v0.3."
+}

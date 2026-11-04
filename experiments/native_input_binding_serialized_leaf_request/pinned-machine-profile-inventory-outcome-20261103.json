@@ -1,0 +1,76 @@
+{
+  "profile": "adva.research.pinned-machine-opaque-successor-inventory.v0",
+  "date": "2026-11-03",
+  "status": "Unknown",
+  "reason": "BudgetViolation",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/pinned-machine-profile-inventory-contract-20261103.json",
+  "machine": {
+    "repository": "https://github.com/mountain/adva-machine.git",
+    "revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+    "checkout_commit": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+    "tracked_files_observed": 23262,
+    "tracked_bytes_observed": 181982554
+  },
+  "declared_limits": {
+    "tracked_files_max": 100000,
+    "tracked_bytes_max": 100000000,
+    "search_wall_seconds_max": 30,
+    "candidate_or_node_limit": 100000,
+    "semantic_executions_max": 1,
+    "implementation_changes_max": 0,
+    "implementation_corrections_max": 0,
+    "manual_reruns_max": 0
+  },
+  "execution": {
+    "route_count": 1,
+    "inventory_attempts": 1,
+    "semantic_executions": 0,
+    "implementation_changes": 0,
+    "correction_replays": 0,
+    "manual_reruns": 0,
+    "wall_nanoseconds": 1532160635,
+    "timeout_seconds": 30,
+    "return_code": 0,
+    "child_ru_maxrss_kib": 117192,
+    "memory_measurement": "Python resource.getrusage(RUSAGE_CHILDREN).ru_maxrss after the one inventory subprocess; this is not an isolated receiver or complete process-tree peak",
+    "usr_bin_time": "unavailable",
+    "serialization_bytes": 0,
+    "fixture_reads": 0,
+    "request_bytes_consumed": 0
+  },
+  "budget_violation": {
+    "dimension": "tracked_bytes",
+    "declared_max": 100000000,
+    "observed_tree_bytes": 181982554,
+    "excess_bytes": 81982554,
+    "cause": "The inventory script printed the complete-tree size but failed to gate the subsequent git grep on that value.",
+    "disposition": "Stop the route. Preserve the output as a failed preflight observation, issue no exhaustive absence certificate, and do not rerun a narrowed search in this round."
+  },
+  "observations_before_stop": {
+    "exact_successor_profile_identifiers_reported": [],
+    "primitive_examples_reported": [
+      "crates/adva-lisp/src/lib.rs exports import_diagram_json and validate_diagram",
+      "crates/adva-ir/src/certificate.rs defines DiagramValidationCertificate",
+      "crates/adva-lisp/tests/diagram_validation.rs exercises checked diagram import",
+      "spec/framework/repository-exchange-registration-v0.1.md mentions occurrence mapping"
+    ],
+    "interpretation": "These are partial-match observations only. Because the declared byte cap was exceeded, absence of an exact profile string in the completed grep is not accepted as an exhaustive machine-capability result."
+  },
+  "receiver_outcome": {
+    "matching_request": "NotRun",
+    "renamed_module": "NotRun",
+    "changed_profile": "NotRun"
+  },
+  "word": {
+    "formed_or_revised": false,
+    "candidate": null,
+    "reason": "BudgetViolation, Unknown and partial match already express the result; a failed inventory is not a learned word."
+  },
+  "residuals": [
+    "Whether the pinned machine exposes an exact receiving profile remains Unknown.",
+    "A future contract must first choose an admitted finite subtree or raise the byte ceiling with justification, and its checker must stop before searching when the preflight size exceeds the limit.",
+    "The unmerged adva workflow successor is not an independent machine implementation or native composed certificate.",
+    "No Research 0090 coverage, Research 0092 promotion, M6 filler, native free or Close, hypothesized arithmetic truth, arithmetic universality, authentication, effect authority or measured practical benefit follows."
+  ],
+  "authorship": "Codex (OpenAI), through Mingli Yuan's GitHub account as authorized proxy; not his authorship, review, endorsement or correctness guarantee. Original first-party contribution under Unknown v0.3."
+}

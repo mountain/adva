@@ -204,3 +204,197 @@ submitted through Mingli Yuan's GitHub account (mountain) as an authorized
 proxy. Account use is not his authorship, review, endorsement or correctness
 guarantee. Original first-party contribution under Unknown v0.3; no external
 text, code or data is imported.
+
+## 2026-11-02 accepted-fixture native successor gate
+
+Main commit `334a85f9e981d81c026841d9b6954f144ae23d79` merged PR
+[#230](https://github.com/mountain/adva/pull/230), including the exact
+bounded-acceptance path repair. With no open PR remaining, a fresh contract
+froze one narrower question: after the exact opaque request has returned
+`AcceptedCurrentFixture`, can a second Rust stage complete the existing native
+diagram-import obligations without allowing either inherited refusal case to
+enter that stage?
+
+The successor does not modify the frozen fixture or consumer. It reads the
+same 4,464 bytes, requires byte equality with the checked-in fixture, imports
+both embedded diagrams through `adva_lisp::import_diagram_json`, requires both
+returned `DiagramValidationCertificate` values to report fully certified,
+rechecks their node, source-partition and history-count snapshots against the
+returned diagrams, and verifies that the one declared source and target
+endpoint exists exactly in the imported occurrence collections with its
+context, `SourceId`, `OccurrenceId` and path. A changed-byte control is refused
+before it can reuse this gate.
+
+The first remote run
+[`41462185788`](https://github.com/mountain/adva/actions/runs/41462185788)
+stopped before compilation because `rustfmt --check` required one long return
+line to be split. The sole implementation-correction allowance applied exactly
+that mechanical layout and changed no test or expected outcome. The correction
+run
+[`41462412137`](https://github.com/mountain/adva/actions/runs/41462412137)
+then completed:
+
+| Consumer case | Consumer result | Native successor |
+| --- | --- | --- |
+| `matching` | `AcceptedCurrentFixture` | `SuccessorVerified` |
+| `renamed-module` | `Refused("module mismatch")` | `NotRun` |
+| `changed-profile` | `Refused("profile mismatch")` | `NotRun` |
+
+The successor target passed both tests: the exact fixture completed the two
+native imports and mapping checks, while changed bytes were refused at the
+accepted-fixture boundary. The run used exactly five Cargo invocations: one
+Clippy invocation, three consumer invocations and one successor invocation.
+Clippy took 13.54 seconds with a 265,428 KiB process-tree peak RSS. The
+successor Cargo test took 0.27 seconds with a 155,052 KiB process-tree peak RSS.
+The complete three-case execution step took approximately 6.95 seconds from
+its first retained case marker to its final marker; individual consumer Cargo
+wall times and RSS were not measured. The four file reads consumed 17,856
+fixture bytes in total. No serialization or search ran. The test harness
+reported four consumer/successor test invocations containing five passing Rust
+tests; internal importer instruction counts and isolated receiver memory remain
+unmeasured.
+
+This is a workflow-level permitted-continuation gate, not an in-language
+composition theorem. `AcceptedCurrentFixture` still grants no effect, execution,
+retry, `free`, identity transport or general acceptance authority. The
+successor reuses this repository's native importer and is not an independent
+`adva-machine` implementation. Byte equality supplies integrity for this one
+fixture, not authentication. Local images and one exact occurrence pair do not
+construct an M6 filler. Research 0090 coverage remains open; Research 0092
+promotion remains blocked; `arithmetic-universality` and
+`hypothesized-arithmetic-truth` remain Proposed. The literal `1/1` remains data,
+not a multiplicative-unit or inverse theorem.
+
+No word was formed or revised. Existing `receive`, `accept`, `Refused`,
+`Unknown`, certificate and permitted-continuation vocabulary already separates
+the stages. `SuccessorVerified` is only a local finite outcome label.
+
+The result helps Mingli Yuan and later agents keep envelope acceptance,
+semantic import and permission to continue as three separate obligations. It
+does not yet demonstrate practical value for Jiamin Zhao. The next minimum
+step is to move this exact post-accept obligation to the pinned
+`adva-machine` receiving boundary, or retain `Unknown` if that profile does not
+exist; no new request family is needed.
+
+Contract, implementation and report authored by Codex (OpenAI), submitted
+through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
+his authorship, review, endorsement or correctness guarantee. Original
+first-party contribution under Unknown v0.3; no external content is imported.
+
+## 2026-11-03 pinned-machine receiving-profile inventory
+
+PR #231 remains an unmerged draft, while main remains at
+`334a85f9e981d81c026841d9b6954f144ae23d79`. The fixed executable dependency is
+therefore still `mountain/adva-machine` commit
+`a0b710a2517f06f2fe03cc463e855548adf418ac`. A fresh contract froze one route:
+enumerate that exact committed tree and determine whether its versioned command
+or profile surface already declares the post-`AcceptedCurrentFixture` relation
+witnessed by the PR: two native diagram admissions, the qualified endpoint-pair
+check and a receiver outcome. Later machine commits, new implementation and a
+general build were excluded.
+
+The route ended `Unknown / BudgetViolation`. The frozen byte ceiling was
+100,000,000 bytes. Preflight observed 23,262 tracked files and 181,982,554
+tracked bytes, but the inventory script printed the over-limit value without
+gating the following `git grep`. The grep completed with return code zero in
+1,532,160,635 ns, within the 30-second wall limit, but after the byte contract
+had already been violated by 81,982,554 bytes. No narrowed replay, correction or
+semantic execution was permitted or performed.
+
+The invalidated search reported the primitive
+`adva_lisp::import_diagram_json`, `DiagramValidationCertificate`, its existing
+tests and documentary occurrence-mapping language. It reported no exact
+`AcceptedCurrentFixture`, opaque-successor or native-input-binding profile
+identifier. These observations are retained only as partial matches: they do
+not certify absence of a suitable profile in the pinned machine, because the
+declared complete-tree input bound was exceeded.
+
+Python `resource.getrusage(RUSAGE_CHILDREN)` reported 117,192 KiB after the one
+inventory subprocess. This is not isolated receiver memory or a complete
+process-tree peak; `/usr/bin/time` was unavailable. There were zero fixture
+reads, zero request bytes consumed, zero serialization bytes, zero semantic
+cases, zero candidate generation, zero implementation changes and zero replay.
+
+No word was formed or revised. Existing `BudgetViolation`, `Unknown`, partial
+match, `receive` and `Refused` vocabulary states the outcome. In particular,
+this failed inventory supplies no Research 0090 coverage, Research 0092
+promotion, M6 filler, native `free` or `Close`, hypothesized arithmetic truth,
+arithmetic universality, authentication, effect authority or practical value
+for Jiamin Zhao.
+
+The retained failure helps Mingli Yuan and later agents by exposing a missing
+preflight rule: a resource declaration is ineffective if the checker measures
+the input but does not stop before consuming it. The next minimum continuation
+is not another grep. Freeze a smaller admitted subtree from committed command,
+profile, schema and specification registries (with exact file and byte pins),
+and require the inventory driver to refuse before search when either count
+exceeds its cap. Only that fresh bounded route may answer whether an exact
+pinned receiving profile exists.
+
+Contract, outcome and report continuation authored by Codex (OpenAI), submitted
+through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
+his authorship, review, endorsement or correctness guarantee. Original
+first-party contribution under Unknown v0.3; no external content is imported.
+
+## 2026-11-04 fail-closed declaration-surface continuation
+
+Main remains at `334a85f9e981d81c026841d9b6954f144ae23d79`; PR #231
+remains the sole open pull request and is an unmerged draft at
+`6471626f0c99653f2f19d4fb1b153a1d0bb132e3`. The fixed executable dependency
+therefore remains `mountain/adva-machine` commit
+`a0b710a2517f06f2fe03cc463e855548adf418ac`.
+
+Following the previous whole-tree byte violation, a fresh contract selected a
+much smaller declaration surface: fixed root manifests and entry points,
+top-level toolchain/exchange files, framework specifications and schemas,
+workspace/experiment binary entry points, and every file explicitly named by
+`spec/catalog.json`. The driver had to verify the exact revision, clean tree,
+regular tracked files, at most 1,000 files, at most 5,000,000 total bytes, at
+most 1,000,000 bytes per file and all SHA-256 values before content search. The
+search itself was limited to 30 seconds and 100,000 candidate lines. No
+semantic execution was allowed.
+
+The result is `Unknown / CorrectionBudgetExhausted`, with both failures retained.
+On attempt one, Python `fnmatch` allowed `toolchain/*` to cross slash boundaries,
+selected `toolchain/evidence/local-01/complete.tar.gz`, and reached a UTF-8 decode
+refusal after an unreported preflight and partial content reads. The driver
+incorrectly labelled this during-search failure `RefusedBeforeSearch`. It used
+467,585,526 ns internally and 535,322,018 ns supervisor wall time; child
+`ru_maxrss` was 21,544 KiB.
+
+The sole correction replaced `fnmatch` with `PurePosixPath.match` and added an
+explicit evidence-path refusal. The correction replay refused during selection
+preflight, before content search, because suffix matching still admitted six
+archived source paths:
+
+- `experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/Cargo.toml`
+- `experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/src/bin/adva.rs`
+- the same two paths under `bounded_self_compiler/evidence/attempt-1/sources/`
+- the same two paths under `bounded_self_compiler/evidence/attempt-2/sources/`
+
+That replay used 4,231,597,903 ns internally and 4,339,744,616 ns supervisor
+wall time; child `ru_maxrss` was 21,556 KiB. The correction allowance was then
+exhausted, so no root-anchored matcher was implemented and no third execution
+was made. Selected file/byte counts, a complete manifest and candidate count
+remain missing. There were zero semantic executions, fixture reads, consumed
+request bytes and serialization bytes.
+
+No word was formed or revised. Existing `Unknown`, `Refused`, correction budget
+and partial-search vocabulary is sufficient. The failed driver does not answer
+whether the pinned machine declares the required route, and it supplies no
+Research 0090 coverage, Research 0092 promotion, M6 filler, native `free` or
+`Close`, hypothesized arithmetic truth, arithmetic universality, authentication,
+effect authority or practical value for Jiamin Zhao.
+
+The useful result is a narrower tool obligation: path selection must be anchored
+at the repository root, and the outcome grammar must distinguish a preflight
+refusal from a decode failure after partial search. The next minimum continuation
+is one fresh contract that changes only those two mechanics, retains both failed
+attempts, and runs the same declaration-surface inventory once. It must not add
+files, widen budgets or execute the request.
+
+Contract, failed driver, outcome and report continuation authored by Codex
+(OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy.
+Account use is not his authorship, review, endorsement or correctness guarantee.
+Original first-party contribution under Unknown v0.3; no external content is
+imported.
