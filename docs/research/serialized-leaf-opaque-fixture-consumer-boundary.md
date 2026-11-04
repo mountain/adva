@@ -335,3 +335,66 @@ Contract, outcome and report continuation authored by Codex (OpenAI), submitted
 through Mingli Yuan's GitHub account as an authorized proxy. Account use is not
 his authorship, review, endorsement or correctness guarantee. Original
 first-party contribution under Unknown v0.3; no external content is imported.
+
+## 2026-11-04 fail-closed declaration-surface continuation
+
+Main remains at `334a85f9e981d81c026841d9b6954f144ae23d79`; PR #231
+remains the sole open pull request and is an unmerged draft at
+`6471626f0c99653f2f19d4fb1b153a1d0bb132e3`. The fixed executable dependency
+therefore remains `mountain/adva-machine` commit
+`a0b710a2517f06f2fe03cc463e855548adf418ac`.
+
+Following the previous whole-tree byte violation, a fresh contract selected a
+much smaller declaration surface: fixed root manifests and entry points,
+top-level toolchain/exchange files, framework specifications and schemas,
+workspace/experiment binary entry points, and every file explicitly named by
+`spec/catalog.json`. The driver had to verify the exact revision, clean tree,
+regular tracked files, at most 1,000 files, at most 5,000,000 total bytes, at
+most 1,000,000 bytes per file and all SHA-256 values before content search. The
+search itself was limited to 30 seconds and 100,000 candidate lines. No
+semantic execution was allowed.
+
+The result is `Unknown / CorrectionBudgetExhausted`, with both failures retained.
+On attempt one, Python `fnmatch` allowed `toolchain/*` to cross slash boundaries,
+selected `toolchain/evidence/local-01/complete.tar.gz`, and reached a UTF-8 decode
+refusal after an unreported preflight and partial content reads. The driver
+incorrectly labelled this during-search failure `RefusedBeforeSearch`. It used
+467,585,526 ns internally and 535,322,018 ns supervisor wall time; child
+`ru_maxrss` was 21,544 KiB.
+
+The sole correction replaced `fnmatch` with `PurePosixPath.match` and added an
+explicit evidence-path refusal. The correction replay refused during selection
+preflight, before content search, because suffix matching still admitted six
+archived source paths:
+
+- `experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/Cargo.toml`
+- `experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/src/bin/adva.rs`
+- the same two paths under `bounded_self_compiler/evidence/attempt-1/sources/`
+- the same two paths under `bounded_self_compiler/evidence/attempt-2/sources/`
+
+That replay used 4,231,597,903 ns internally and 4,339,744,616 ns supervisor
+wall time; child `ru_maxrss` was 21,556 KiB. The correction allowance was then
+exhausted, so no root-anchored matcher was implemented and no third execution
+was made. Selected file/byte counts, a complete manifest and candidate count
+remain missing. There were zero semantic executions, fixture reads, consumed
+request bytes and serialization bytes.
+
+No word was formed or revised. Existing `Unknown`, `Refused`, correction budget
+and partial-search vocabulary is sufficient. The failed driver does not answer
+whether the pinned machine declares the required route, and it supplies no
+Research 0090 coverage, Research 0092 promotion, M6 filler, native `free` or
+`Close`, hypothesized arithmetic truth, arithmetic universality, authentication,
+effect authority or practical value for Jiamin Zhao.
+
+The useful result is a narrower tool obligation: path selection must be anchored
+at the repository root, and the outcome grammar must distinguish a preflight
+refusal from a decode failure after partial search. The next minimum continuation
+is one fresh contract that changes only those two mechanics, retains both failed
+attempts, and runs the same declaration-surface inventory once. It must not add
+files, widen budgets or execute the request.
+
+Contract, failed driver, outcome and report continuation authored by Codex
+(OpenAI), submitted through Mingli Yuan's GitHub account as an authorized proxy.
+Account use is not his authorship, review, endorsement or correctness guarantee.
+Original first-party contribution under Unknown v0.3; no external content is
+imported.
