@@ -1,0 +1,83 @@
+{
+  "profile": "adva.research.pinned-machine-declaration-surface.v0",
+  "date": "2026-11-04",
+  "status": "Unknown",
+  "reason": "CorrectionBudgetExhausted",
+  "contract": "experiments/native_input_binding_serialized_leaf_request/pinned-machine-declaration-surface-contract-20261104.json",
+  "driver": "scripts/inventory_pinned_machine_declaration_surface.py",
+  "machine": {
+    "repository": "https://github.com/mountain/adva-machine.git",
+    "revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+    "checkout_commit": "a0b710a2517f06f2fe03cc463e855548adf418ac"
+  },
+  "attempts": [
+    {
+      "attempt": 1,
+      "supervisor_return_code": 2,
+      "reported_status": "RefusedBeforeSearch",
+      "actual_stage": "partial content search after a completed but unreported preflight",
+      "reason": "selected file is not UTF-8: toolchain/evidence/local-01/complete.tar.gz",
+      "implementation_error": "fnmatch allowed the toolchain/* selector to cross slash boundaries and include nested evidence files; the common exception handler also mislabeled this during-search decode refusal as RefusedBeforeSearch",
+      "driver_nanoseconds": 467585526,
+      "supervisor_wall_nanoseconds": 535322018,
+      "child_ru_maxrss_kib": 21544,
+      "content_search_complete": false,
+      "manifest_retained": false
+    },
+    {
+      "attempt": 2,
+      "kind": "sole correction replay",
+      "correction": "Replace fnmatch with PurePosixPath.match and add an explicit refusal when an evidence path is selected.",
+      "supervisor_return_code": 2,
+      "reported_status": "RefusedBeforeSearch",
+      "actual_stage": "selection preflight before content search",
+      "reason": "selection unexpectedly contains an evidence path",
+      "implementation_error": "PurePosixPath.match anchors the crate patterns at a matching suffix, so archived source snapshots under experiments/*/evidence/* still matched crates/*/Cargo.toml and crates/*/src/bin/*.",
+      "offending_paths": [
+        "experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/Cargo.toml",
+        "experiments/bounded_native_interpreter/evidence/attempt-1/sources/crates/adva-witness/src/bin/adva.rs",
+        "experiments/bounded_self_compiler/evidence/attempt-1/sources/crates/adva-witness/Cargo.toml",
+        "experiments/bounded_self_compiler/evidence/attempt-1/sources/crates/adva-witness/src/bin/adva.rs",
+        "experiments/bounded_self_compiler/evidence/attempt-2/sources/crates/adva-witness/Cargo.toml",
+        "experiments/bounded_self_compiler/evidence/attempt-2/sources/crates/adva-witness/src/bin/adva.rs"
+      ],
+      "driver_nanoseconds": 4231597903,
+      "supervisor_wall_nanoseconds": 4339744616,
+      "child_ru_maxrss_kib": 21556,
+      "content_search_complete": false,
+      "manifest_retained": false
+    }
+  ],
+  "cost": {
+    "routes": 1,
+    "inventory_attempts": 2,
+    "correction_replays": 1,
+    "manual_reruns": 0,
+    "semantic_executions": 0,
+    "fixture_reads": 0,
+    "request_bytes_consumed": 0,
+    "serialization_bytes": 0,
+    "candidate_lines_checked": null,
+    "selected_files": null,
+    "selected_bytes": null,
+    "memory_note": "ru_maxrss is Python RUSAGE_CHILDREN for each supervised driver, not isolated receiver or complete process-tree memory"
+  },
+  "receiver_outcome": {
+    "exact_route_with_all_four_obligations": "NotDetermined",
+    "matching_request": "NotRun",
+    "renamed_module": "NotRun",
+    "changed_profile": "NotRun"
+  },
+  "word": {
+    "formed_or_revised": false,
+    "candidate": null,
+    "reason": "Existing Unknown, Refused and correction-budget vocabulary already states the result; a failed declaration inventory is not word learning."
+  },
+  "residuals": [
+    "Whether the selected declaration surface contains an exact receiving route remains Unknown.",
+    "The driver needs a repository-root-anchored path matcher rather than suffix matching, and its exception status must distinguish preflight refusal from a decode refusal after partial search.",
+    "A fresh continuation must retain both failed attempts and refuse before reading any selected content when a forbidden path is present.",
+    "No Research 0090 coverage, Research 0092 promotion, M6 filler, native free or Close, hypothesized arithmetic truth, arithmetic universality, authentication, effect authority or measured practical benefit follows."
+  ],
+  "authorship": "Codex (OpenAI), through Mingli Yuan's GitHub account as authorized proxy; not his authorship, review, endorsement or correctness guarantee. Original first-party contribution under Unknown v0.3."
+}
