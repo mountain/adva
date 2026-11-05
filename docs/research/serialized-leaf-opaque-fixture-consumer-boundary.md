@@ -398,3 +398,67 @@ Contract, failed driver, outcome and report continuation authored by Codex
 Account use is not his authorship, review, endorsement or correctness guarantee.
 Original first-party contribution under Unknown v0.3; no external content is
 imported.
+
+## 2026-11-05 root-anchored declaration-surface continuation
+
+PR #231 was merged as main commit
+`17e1842addcd9f9262eef87bd19c5eabcdc843e1` on 2026-11-04, and no pull request
+was open before this continuation. The fixed executable dependency remains
+`mountain/adva-machine` commit
+`a0b710a2517f06f2fe03cc463e855548adf418ac`.
+
+The fresh contract retained the previous question, selected declaration
+surface, arithmetic boundary and resource caps. It changed only two mechanics:
+patterns now match the same number of path segments from the repository root,
+and preflight refusals are typed separately from refusals after a completed
+manifest. One inventory run and no manual rerun were permitted. No semantic
+execution or request read was allowed.
+
+The one inventory returned `InventoryComplete`. Root-anchored selection covered
+71 tracked regular files and 673,385 bytes; its manifest digest was
+`accee123f7a2849ef38610f172713cce4caa3ee88cd7a10124e62794e7a59983`.
+Preflight used 6,117,489,593 ns, content search used 37,696,215 ns, and the
+driver total was 6,155,185,808 ns. Supervisor wall time was 6,282,528,231 ns.
+Python `RUSAGE_CHILDREN` reported 21,656 KiB `ru_maxrss`; this is not isolated
+receiver or complete process-tree memory. The driver emitted 430 candidate
+lines. There were zero semantic executions, fixture reads, consumed request
+bytes, serializations through the receiver, corrections and reruns.
+
+The research outcome nevertheless remains `Unknown / EvidenceCaptureFailure`.
+The driver emitted its full manifest and candidate payload only to stdout, and
+the outer tool channel truncated the long output before a replayable candidate
+ledger could be retained. The contract allowed only one inventory run, so the
+search was not repeated. Partial visible references include generic request,
+native-admission/reception and outcome machinery in `toolchain/execute.py`, the
+`communicate receive` command surface, and the documentary
+`DiagramValidationCertificate` boundary. None can be upgraded to the required
+composed receiver from this incomplete record. In particular,
+`NoExactRouteWithinSelectedSurface` is not issued.
+
+No dependency source line is copied into this repository. The retained outcome
+uses full repository/commit/path references, counts and digests. This preserves
+the dependency and publication boundaries rather than treating the inventory
+as permission to vendor machine content. The serialized stdout byte count was
+not measured; an outer line/token estimate is explicitly not used as bytes.
+
+No word was formed or revised. Existing `Unknown`, evidence-capture failure,
+partial-route and bounded-inventory vocabulary is sufficient. This result does
+not change the Proposed status of `arithmetic-universality` or
+`hypothesized-arithmetic-truth`; it supplies no Research 0090 coverage,
+Research 0092 promotion, M6 filler, native `free` or `Close`, mathematical
+universality, authentication, effect authority, social trust or measured
+practical benefit for Jiamin Zhao.
+
+The result helps Mingli Yuan and later agents in two narrower ways: the former
+cross-slash/suffix selector error is removed on one complete finite surface,
+and the next boundary is now evidence retention rather than path selection.
+The minimum continuation is a fresh contract that keeps the same surface and
+limits, emits an atomic reference-only ledger containing path, line number and
+matched terms but no dependency source text, and classifies every retained
+reference. It must not execute the request or infer a global absence result.
+
+Contract, driver, outcome and report continuation authored by Codex (OpenAI),
+submitted through Mingli Yuan's GitHub account as an authorized proxy. Account
+use is not his authorship, review, endorsement or correctness guarantee.
+Original first-party contribution under Unknown v0.3; no external content is
+imported.
