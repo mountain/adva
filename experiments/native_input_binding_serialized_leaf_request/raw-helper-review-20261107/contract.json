@@ -1,0 +1,109 @@
+{
+  "schema": "adva.raw-helper-review.contract.v1",
+  "date": "2026-11-07",
+  "author": "Codex (OpenAI)",
+  "phase": "Frozen reproduction contract after manual call-path scoping; not a retrospective pre-registration of the source review.",
+  "machine_repository": "mountain/adva-machine",
+  "machine_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+  "adva_review_base": "9a070f610cebf782bcb1a64edd94c312a1073b85",
+  "question": "Does the delegated raw-evidence CLI at this pin supply the frozen request identity, checked admission of its two supplied diagrams, and their qualified endpoint relation on one receiving route?",
+  "source_paths": [
+    "experiments/native_evidence_intake/src/main.rs",
+    "experiments/native_evidence_intake/src/intake.rs",
+    "experiments/native_evidence_intake/src/native.rs",
+    "experiments/native_evidence_intake/Cargo.toml",
+    "experiments/native_evidence_intake/Cargo.lock",
+    "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+    "crates/adva-witness/src/witness.rs",
+    "crates/adva-lisp/src/compile.rs",
+    "crates/adva-lisp/src/validate.rs",
+    "rust-toolchain.toml",
+    "docs/kpb/native-evidence-intake-v0.md"
+  ],
+  "reference_ids": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08",
+    "R09",
+    "R10",
+    "R11",
+    "R12",
+    "R13",
+    "R14",
+    "R15",
+    "R16",
+    "R17",
+    "R18",
+    "R19",
+    "R20",
+    "R21",
+    "R22",
+    "R23",
+    "R24",
+    "R25",
+    "R26",
+    "R27"
+  ],
+  "artifact_pins": {
+    "source-manifest.json": {
+      "bytes": 2925,
+      "sha256": "97c6a8e0034007528b18e21e13c8f70d755b004c5fb694ca629b88f757a214c6"
+    },
+    "references.json": {
+      "bytes": 13287,
+      "sha256": "f1dfa34fef8a701a767f49bfcd8c32e91d66ffbafd0c47ec35b3e5c26ebcc06f"
+    },
+    "dependency-boundary.json": {
+      "bytes": 11507,
+      "sha256": "ae37cc884def065ced9a7aa78b7545d33ba15e19dac93387acc39efca69f045e"
+    },
+    "predecessor.json": {
+      "bytes": 1635,
+      "sha256": "d57486895054e21339a21bd3adac24e7e7074a63c1138d9e689cee4aeafdf10d"
+    },
+    "native-plan.json": {
+      "bytes": 4741,
+      "sha256": "2ba47256497688f1a87ee5c3db55c500558dacfa758d664bbce32cd03d7c5f3f"
+    },
+    "verify.py": {
+      "bytes": 5580,
+      "sha256": "17d81f0f94d5f75a4387fc53407527d35fe7d238cde250346af775607862f60f"
+    },
+    "test_verify.py": {
+      "bytes": 3989,
+      "sha256": "0c48ec8f4ee2073d32c7f84cd3ad3dee18ce70d1e1da9c40264626a152d5990c"
+    }
+  },
+  "limits": {
+    "source_files": 11,
+    "single_source_bytes": 65536,
+    "total_source_bytes": 262144,
+    "references": 32,
+    "verification_attempts": 1,
+    "verification_wall_seconds": 15,
+    "verification_cpu_seconds": 10,
+    "verification_address_space_mib": 256,
+    "verification_output_bytes": 65536,
+    "synthetic_test_invocations": 1,
+    "synthetic_test_cases": 14,
+    "synthetic_tests_wall_seconds": 10
+  },
+  "enforcement": "Fresh attempt guard; per-git-call 3 s timeout; source size checked before reading; parent wall timeout; Linux RLIMIT_CPU, RLIMIT_AS and RLIMIT_FSIZE; retained outcomes/logs. Source-size and range caps are code checks. Manual preparation is outside measured reproduction.",
+  "prohibited": [
+    "Repeat declaration-surface search",
+    "Read or execute the frozen opaque request",
+    "Execute successor workload",
+    "Fetch/build/run Rust in this verification",
+    "Mutate machine source or dependency pins",
+    "Push or post GitHub content"
+  ],
+  "interpretation": "Passing Python checks establishes reference integrity only. Capability judgments are attributed static source review. Native positive/negative controls and the three original request receiver cases remain NotRun.",
+  "stop_rule": "One verification attempt and one synthetic control invocation; preserve failure or timeout as UnknownOrInvalidEvidence; no automatic widening, retry or fuel reset.",
+  "preparation_observation": "Before freezing, one range-generation assertion failed: requested final line 1175 exceeded the 1173-line retained file. Corrected to 1173 before any verification attempt; no source or semantic test was executed by this correction.",
+  "publication": "Original review text/tooling under Unknown v0.3; references and hashes only, no machine source or opaque payload copied into the proposed publication unit. Dependencies retain their own terms."
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "adva.raw-helper-review.receipt.v1",
+  "created_utc": "2026-11-07T04:14:07.406346+00:00",
+  "contract_sha256": "91f97bdaaa351962f9706da3dfd740dbf7b4f55fb8360780ff07f8e65cbb2752",
+  "verification": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "verify.py",
+      "--machine",
+      "/workspace/scratch/1ee294a179e8/adva-machine-20261106",
+      "--contract-sha256",
+      "91f97bdaaa351962f9706da3dfd740dbf7b4f55fb8360780ff07f8e65cbb2752"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "elapsed_ns": 370497611,
+    "child_user_seconds_delta": 0.22661799999999999,
+    "child_system_seconds_delta": 0.137207,
+    "children_cumulative_maxrss_kib_linux": 11776,
+    "stdout": {
+      "bytes": 201,
+      "sha256": "eb452a5154392dc202ebb9b27d9bd311ce8eec048f0ce0fb74a9be5c20cb05f7"
+    },
+    "stderr": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "synthetic_reference_controls": {
+    "argv": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-B",
+      "-m",
+      "unittest",
+      "-v",
+      "test_verify"
+    ],
+    "exit_code": 0,
+    "timeout": false,
+    "elapsed_ns": 218722002,
+    "child_user_seconds_delta": 0.21297899999999997,
+    "child_system_seconds_delta": 0.0035159999999999914,
+    "children_cumulative_maxrss_kib_linux": 13952,
+    "stdout": {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    "stderr": {
+      "bytes": 1285,
+      "sha256": "cb8b4375d2f65cfdf5633fc2a393ef9921e238cc1ceb0e9f628a93df1ce57f19"
+    }
+  },
+  "environment": {
+    "python": "3.12.14 (main, Aug 25 2026, 14:00:49) [Clang 22.1.3 ]",
+    "platform": "linux",
+    "cargo_path": null,
+    "rustc_path": null
+  },
+  "native_tests": {
+    "status": "NotRun",
+    "reason": "cargo and rustc not found on PATH; no compiler install or registry download attempted",
+    "planned_cases": 14
+  },
+  "opaque_request_reads": 0,
+  "opaque_request_executions": 0,
+  "original_three_receiver_cases": "NotRun",
+  "production_reference_attempts": 1,
+  "manual_production_reruns": 0,
+  "github_writes": 0,
+  "status": "ReferenceIntegrityVerified",
+  "authority_limit": "No native semantic execution; no automated proof of static source interpretation; no human review claimed."
+}
