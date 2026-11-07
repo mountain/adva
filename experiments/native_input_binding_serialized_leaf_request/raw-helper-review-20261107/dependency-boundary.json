@@ -1,0 +1,372 @@
+{
+  "schema": "adva.raw-helper-review.dependencies.v1",
+  "route": [
+    "main::check",
+    "intake::check_paths",
+    "intake::check_bytes",
+    "intake::validate_raw",
+    "native::run_received",
+    "retained first_check / Checked::hit / Hit::fresh_use"
+  ],
+  "called_native_boundaries": [
+    {
+      "callee": "WitnessStoreV0::insert / CellTemplateV0::form",
+      "reference": "R12",
+      "scope": "fixed witness graph"
+    },
+    {
+      "callee": "parse_module / link_modules / compile_function",
+      "reference": "R13",
+      "scope": "locally generated pass-through source; parser/linker internals outside review"
+    },
+    {
+      "callee": "compile_function -> validate_diagram_ref / validate_graft_trace",
+      "reference": "R19",
+      "scope": "internally generated diagram and trace; only named boundary inspected"
+    },
+    {
+      "callee": "FormedCellV0::instantiate_from_graft",
+      "reference": "R16",
+      "scope": "one local compilation; no caller-supplied endpoint relation"
+    },
+    {
+      "callee": "CellInstanceV0::execute",
+      "reference": "R22",
+      "scope": "fixed local integer environments; arithmetic implementation outside review"
+    }
+  ],
+  "adjacent_apis_not_reached_from_this_cli": [
+    "FormedCellV0::instantiate with caller-built HoleBindingV0",
+    "import_diagram_json for externally supplied diagram JSON",
+    "validate_dependency_graph_v0 for external proof graph"
+  ],
+  "declared_source_fingerprint_inputs": [
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 244
+      },
+      "target": "experiments/native_evidence_intake/src/main.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 245
+      },
+      "target": "experiments/native_evidence_intake/src/intake.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 246
+      },
+      "target": "experiments/native_evidence_intake/src/native.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 247
+      },
+      "target": "experiments/native_evidence_intake/Cargo.toml",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 248
+      },
+      "target": "experiments/native_evidence_intake/Cargo.lock",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 249
+      },
+      "target": "docs/kpb/native-evidence-intake-v0.md",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 252
+      },
+      "target": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/native_evidence_intake/src/intake.rs",
+        "line": 253
+      },
+      "target": "experiments/checked_roundtrip_reuse/src/main.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 290
+      },
+      "target": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 291
+      },
+      "target": "experiments/checked_roundtrip_reuse/src/main.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 292
+      },
+      "target": "docs/kpb/checked-roundtrip-reuse-v0.1.md",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 293
+      },
+      "target": "Cargo.lock",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 294
+      },
+      "target": "Cargo.toml",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 295
+      },
+      "target": "crates/adva-witness/Cargo.toml",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 296
+      },
+      "target": "experiments/checked_roundtrip_reuse/Cargo.toml",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 297
+      },
+      "target": "experiments/checked_roundtrip_reuse/Cargo.lock",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 298
+      },
+      "target": "rust-toolchain.toml",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 299
+      },
+      "target": "crates/adva-witness/src/lib.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 300
+      },
+      "target": "crates/adva-witness/src/witness.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 301
+      },
+      "target": "crates/adva-witness/src/arithmetic.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 302
+      },
+      "target": "crates/adva-witness/src/boundary.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 303
+      },
+      "target": "crates/adva-witness/src/seed.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 304
+      },
+      "target": "crates/adva-ir/Cargo.toml",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 305
+      },
+      "target": "crates/adva-ir/src/certificate.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 306
+      },
+      "target": "crates/adva-ir/src/diagram.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 307
+      },
+      "target": "crates/adva-ir/src/graft.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 308
+      },
+      "target": "crates/adva-ir/src/ids.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 309
+      },
+      "target": "crates/adva-ir/src/lib.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 310
+      },
+      "target": "crates/adva-ir/src/numeric_serialization.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 311
+      },
+      "target": "crates/adva-ir/src/process.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 312
+      },
+      "target": "crates/adva-ir/src/term.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 313
+      },
+      "target": "crates/adva-lisp/Cargo.toml",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 314
+      },
+      "target": "crates/adva-lisp/src/compile.rs",
+      "status": "BytePinnedHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 315
+      },
+      "target": "crates/adva-lisp/src/eval.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 316
+      },
+      "target": "crates/adva-lisp/src/lib.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 317
+      },
+      "target": "crates/adva-lisp/src/module.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 318
+      },
+      "target": "crates/adva-lisp/src/operation.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 319
+      },
+      "target": "crates/adva-lisp/src/parser.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 320
+      },
+      "target": "crates/adva-lisp/src/process.rs",
+      "status": "DeclarationOnlyNotReadHere"
+    },
+    {
+      "declared_at": {
+        "path": "experiments/checked_roundtrip_reuse/src/checked_roundtrip.rs",
+        "line": 321
+      },
+      "target": "crates/adva-lisp/src/validate.rs",
+      "status": "BytePinnedHere"
+    }
+  ],
+  "unreviewed_dependencies": [
+    "adva-witness arithmetic.rs, boundary.rs and seed.rs implementations",
+    "adva-lisp parser, linker, operation and other compiler/validator internals",
+    "adva-ir type and certificate implementations",
+    "registry packages and compiler/standard-library/OS"
+  ],
+  "closure_limit": "Declared source fingerprint inputs are not asserted to be a complete transitive compiler or binary dependency closure. No expansion to other research modules."
+}
