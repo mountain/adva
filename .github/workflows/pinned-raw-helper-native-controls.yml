@@ -42,21 +42,25 @@ jobs:
             --machine "$machine" \
             --contract-sha256 91f97bdaaa351962f9706da3dfd740dbf7b4f55fb8360780ff07f8e65cbb2752 \
             > "$evidence/reference-verification.json"
-          python - <<'PY' "$review/native-plan.json" "$evidence/plan-check.json"
+          python - <<'PY' "$review/native-plan.json" "$evidence/plan-check.json" "$review/native-execution-contract-20261108.json"
           import json, pathlib, sys
-          source, target = map(pathlib.Path, sys.argv[1:])
+          source, target, execution_contract = map(pathlib.Path, sys.argv[1:])
           plan = json.loads(source.read_text())
+          execution = json.loads(execution_contract.read_text())
           assert plan['machine_revision'] == 'a0b710a2517f06f2fe03cc463e855548adf418ac'
           assert plan['limits']['build_attempts'] == 1
           assert plan['limits']['network'] is False
           assert plan['limits']['retry'] is False
+          assert execution['limits']['file_size_limit_blocks_of_512_bytes'] == 262144
+          assert execution['limits']['implementation_correction_replays'] == 1
           selected = [
               'intake::tests::received_fixed_proof_checks_and_reuses_independently',
               'intake::tests::every_semantic_and_origin_dimension_is_exactly_bound',
               'intake::tests::altered_receiver_binding_cannot_authorize_itself_even_when_repinned',
           ]
           assert [row['selector'] for row in plan['tests'] if row['selector'] in selected] == selected
-          target.write_text(json.dumps({'status':'PlanVerified','selectors':selected}, indent=2)+'\n')
+          target.write_text(json.dumps({'status':'PlanVerified','selectors':selected,
+              'execution_contract':execution_contract.name}, indent=2)+'\n')
           PY
           rustc -vV > "$evidence/rustc.txt"
           cargo --version > "$evidence/cargo.txt"
@@ -70,7 +74,7 @@ jobs:
           set +e
           (
             ulimit -v 2097152
-            ulimit -f 2048
+            ulimit -f 262144
             /usr/bin/time -v -o "$EVIDENCE/build.time" \
               timeout 180 cargo test --locked --offline \
                 --manifest-path "$MACHINE/experiments/native_evidence_intake/Cargo.toml" \
@@ -130,7 +134,7 @@ jobs:
             set +e
             (
               ulimit -v 2097152
-              ulimit -f 2048
+              ulimit -f 262144
               /usr/bin/time -v -o "$EVIDENCE/test-$index.time" \
                 timeout 10 "$executable" "$selector" --exact --nocapture --test-threads=1 \
                 > "$EVIDENCE/test-$index.stdout" 2> "$EVIDENCE/test-$index.stderr"

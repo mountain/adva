@@ -18,12 +18,14 @@
     "semantic_tests": 3,
     "per_test_wall_seconds": 10,
     "address_space_mib": 2048,
-    "file_size_limit_blocks_of_512_bytes": 2048,
-    "retries": 0
+    "file_size_limit_blocks_of_512_bytes": 262144,
+    "retries": 0,
+    "implementation_correction_replays": 1
   },
   "network_boundary": "The existing dependency checker may fetch the exact pinned Git object. Cargo build and test execution set --offline/CARGO_NET_OFFLINE and may not download dependencies.",
   "success": "One offline build resolves exactly one test executable, and each full selector runs exactly one passing test.",
   "unavailable": "Missing locked dependency, compiler, linker or supported host resource prevents the sole offline build; retain Unavailable without changing the pin, enabling network, or retrying.",
+  "implementation_correction": "Run 42492311898 applied the original 2048-block file cap to linker outputs, causing signal 25 before any semantic test. One permitted correction replay raises only that per-file cap to 262144 512-byte blocks; all semantic scope, pins, offline rules, selectors and time/address-space limits remain unchanged.",
   "refusal_boundary": "A passing result concerns the fixed helper's own synthetic profile. It neither accepts the frozen opaque request nor supplies its two diagrams or cross-diagram qualified endpoint relation.",
   "prohibited": [
     "Read or execute the frozen opaque request",

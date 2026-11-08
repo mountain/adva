@@ -1,0 +1,19 @@
+{
+  "schema": "adva.pinned-raw-helper-native-controls.attempt.v1",
+  "date": "2026-11-08",
+  "run_id": 42492311898,
+  "run_url": "https://github.com/mountain/adva/actions/runs/42492311898",
+  "artifact_id": 13621887989,
+  "artifact_sha256": "51d637d9a52f420d2e7fe1001f0f5a76e553dc90fd31fbf76bd442d0d63e1553",
+  "status": "ImplementationLimitError",
+  "stage": "offline_build",
+  "build_exit_code": 101,
+  "semantic_tests_run": 0,
+  "wall_clock": "0:00.89",
+  "max_rss_kib": 151576,
+  "cause": "The 2048-block RLIMIT_FSIZE applied to linker outputs. rust-lld terminated with signal 25 (File size limit exceeded).",
+  "scope_effect": "No helper behavior was observed. This is neither a semantic counterexample nor dependency unavailability.",
+  "correction": "One permitted implementation-correction replay changes only RLIMIT_FSIZE to 262144 512-byte blocks. No network, pin, selector, semantic scope, wall limit or address-space limit changes.",
+  "retry": false,
+  "implementation_correction_replay_permitted": true
+}
