@@ -1,0 +1,56 @@
+{
+  "schema": "adva.target-relation-selection-gate.contract.v0",
+  "date": "2026-11-10",
+  "author": "Codex (OpenAI)",
+  "status": "FrozenBeforeExecution",
+  "predecessor": "target-adapter-contract-review-20261109",
+  "independent_review_input": "adva232-contract-review-2d5b6c1-20261110.zip",
+  "question": "Can a finite relation-selection gate separate same-side native endpoint binding from the selected cross-side claim, preserve native OccurrencePath typing, and prevent Accepted when the target relation, checker, or durable receipt is unavailable?",
+  "objects": [
+    "one independently pinned request-bound ordered endpoint pair",
+    "two ordered diagram admission statuses",
+    "zero or one selected relation profile",
+    "one relation-checker disposition where applicable",
+    "one receipt-persistence disposition"
+  ],
+  "types": {
+    "qualified_selector": "(slot, diagram_sha256, context, source_id, occurrence_id, occurrence_path:Array<u32>)",
+    "selected_relation": "null | PinnedPairMembershipV1 | CertifiedRelationV1",
+    "outcome": "Accepted | Refused | Unknown"
+  },
+  "quantification": "Exactly eight declared finite cases over one synthetic same-digest/distinct-slot instance; no enumeration outside those cases.",
+  "arithmetic_domain": {
+    "role": "No arithmetic is evaluated by this gate.",
+    "additive_zero": "A-B=0 remains separately typed.",
+    "multiplicative_unit": "A/B=1 remains separately typed and requires all declared nonzero/invertibility/definedness guards.",
+    "zero_zero": "A=B=0 does not admit quotient cancellation.",
+    "history": "Scalar equality cannot erase source, occurrence, slot, context, order, or history."
+  },
+  "candidate_grammar": {
+    "cases": 8,
+    "search_candidates": 0,
+    "search_nodes": 0,
+    "new_instance": "Both diagram digests are equal while slots, contexts, sources and occurrences remain distinct."
+  },
+  "success": "The gate returns the predeclared outcome and reason for all eight cases, including Accepted for exact pair membership on the new same-digest instance and Unknown for an unspecified relation or persistence failure.",
+  "refusal": "Finite model outcomes do not establish a Rust adapter, native occurrence existence, a transport theorem, Research 0090 coverage, Research 0092 promotion, M6 filling, arithmetic universality, or hypothesized arithmetic truth.",
+  "limits": {
+    "routes": 1,
+    "process_invocations": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 10,
+    "address_space_mib": 256,
+    "output_bytes": 1048576,
+    "cases": 8,
+    "correction_replays": 1
+  },
+  "stop_rule": "One bounded evaluator/test invocation. Preserve any failure as Unknown. Use at most one correction replay for a specific implementation error without changing cases, meanings, or limits.",
+  "prohibited": [
+    "read the opaque target request or native diagram bytes",
+    "invoke adva-machine or Rust semantic execution",
+    "repeat the predecessor thirteen-case structure suite",
+    "repeat the independent review's sixteen-case model run",
+    "infer a target relation from pair membership, digest equality, value equality, or local-image equality",
+    "promote any interface label to a learned word"
+  ]
+}

@@ -1,0 +1,127 @@
+{
+  "cases": [
+    {
+      "expected": {
+        "outcome": "Accepted",
+        "reason": "QualifiedPairLocatedOnly"
+      },
+      "id": "G00-membership-same-digest-distinct-slots",
+      "observed": {
+        "outcome": "Accepted",
+        "permitted_use": "QualifiedPairLocatedOnly",
+        "reason": "QualifiedPairLocatedOnly"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Unknown",
+        "reason": "TargetRelationUnderspecified"
+      },
+      "id": "G01-target-relation-unspecified",
+      "observed": {
+        "outcome": "Unknown",
+        "permitted_use": null,
+        "reason": "TargetRelationUnderspecified"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Refused",
+        "reason": "EndpointBindingMismatch"
+      },
+      "id": "G02-coherent-wrong-root-path",
+      "observed": {
+        "outcome": "Refused",
+        "permitted_use": null,
+        "reason": "EndpointBindingMismatch"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Refused",
+        "reason": "EndpointBindingMismatch"
+      },
+      "id": "G03-same-value-different-origin-substitution",
+      "observed": {
+        "outcome": "Refused",
+        "permitted_use": null,
+        "reason": "EndpointBindingMismatch"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Unknown",
+        "reason": "RelationCheckerUnavailable"
+      },
+      "id": "G04-certified-checker-unavailable",
+      "observed": {
+        "outcome": "Unknown",
+        "permitted_use": null,
+        "reason": "RelationCheckerUnavailable"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Refused",
+        "reason": "CertifiedRelationFalse"
+      },
+      "id": "G05-certified-scoped-false",
+      "observed": {
+        "outcome": "Refused",
+        "permitted_use": null,
+        "reason": "CertifiedRelationFalse"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Unknown",
+        "reason": "ReceiptPersistenceFailure"
+      },
+      "id": "G06-certified-true-recording-failure",
+      "observed": {
+        "outcome": "Unknown",
+        "permitted_use": null,
+        "reason": "ReceiptPersistenceFailure"
+      },
+      "passed": true
+    },
+    {
+      "expected": {
+        "outcome": "Refused",
+        "reason": "MalformedOccurrencePath"
+      },
+      "id": "G07-boolean-is-not-u32-path",
+      "observed": {
+        "outcome": "Refused",
+        "permitted_use": null,
+        "reason": "MalformedOccurrencePath"
+      },
+      "passed": true
+    }
+  ],
+  "cases_passed": 8,
+  "cases_run": 8,
+  "correction_replays": 0,
+  "memory_scope": "Linux RUSAGE_SELF for this Python process only.",
+  "native_diagram_byte_reads": 0,
+  "native_executions": 0,
+  "new_instance_reuse": "same diagram digest with distinct ordered slots, contexts, sources and occurrences",
+  "opaque_request_reads": 0,
+  "process_elapsed_ns_before_serialization": 375619,
+  "process_ru_maxrss_kib": 9088,
+  "residual": "The target relation and real request mapping remain unspecified; Rust admission, native controls, certified relation checking and durable receipt implementation are NotRun.",
+  "schema": "adva.target-relation-selection-gate.outcome.v0",
+  "search_candidates": 0,
+  "search_nodes": 0,
+  "semantic_authority": false,
+  "serialization_ns": 145800,
+  "serialized_bytes": 3515,
+  "status": "PassedFiniteRelationSelectionGate",
+  "words_formed_or_revised": 0
+}
