@@ -5,7 +5,7 @@
     "linux-required-entry": 8,
     "mock-only": 1,
     "refusal-recorded": 3,
-    "unguarded-installation": 89
+    "unguarded-installation": 90
   },
   "files": [
     {
@@ -1033,6 +1033,18 @@
         {
           "function": "main",
           "line": 59
+        }
+      ]
+    },
+    {
+      "category": "unguarded-installation",
+      "path": "experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/reproduce.py",
+      "reason": "No Darwin platform guard or local refusal-recording around this installation. Reaching it on a refusing host aborts the limiter; an outer handler may classify failure. Preserve contract until separately scoped.",
+      "sha256": "93573b5039da173139b5b04ff11eb06abbae1357386c5a9ad5069e1edd18afad",
+      "sites": [
+        {
+          "function": "<module>",
+          "line": 20
         }
       ]
     },
