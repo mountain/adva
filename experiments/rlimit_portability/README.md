@@ -452,3 +452,45 @@ removed from the acceptance history.
 Authored and reviewed by Codex (OpenAI), project-original under Unknown v0.3,
 through Mingli Yuan's authorized account proxy; not his authorship, review,
 endorsement or correctness guarantee.
+
+## 2026-11-11 current-tree registration for the independent contract review (PR #233)
+
+The first PR head, `65707acdeb776cf9d97b994558a491c5a59c3d6c`, omitted
+the new review script from this inventory. The unchanged Python 3.12 CI suite
+reported one failure, 3466 passes and five skips: `test_inventory_and_pins`
+rejected that omission. The original failure remains in
+[CI job 130303727249](https://github.com/mountain/adva/actions/runs/42953708571/job/130303727249).
+This was an integration bookkeeping error, not a counterexample to the
+review model or a native receiving result.
+
+The unchanged audit finds exactly one additional row:
+
+- File: `experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/reproduce.py`
+- SHA-256: `93573b5039da173139b5b04ff11eb06abbae1357386c5a9ad5069e1edd18afad`
+- AST reference: line 20, module scope; `unguarded-installation`.
+
+The frozen script installs a 256 MiB address-space limit at module entry,
+before reading its inputs. It has no platform gate or local installation
+refusal handler, so a host refusing the limit aborts before producing model
+results. Its CPU, address-space and file-size limits remain unchanged. The
+outer replay command supplies the wall timeout. This registration does not
+claim Darwin execution or a portable memory guarantee.
+
+All 120 previous rows are exactly equal, with no removals or changed source
+digests, classifications, reasons or AST sites. The successor contains
+121 files and 126 AST references, including 90 unguarded installations; all
+other category counts are unchanged. The previous inventory SHA-256 was
+`878749f720a9c7a106742c2e53ede82f080744f522f6216ba9d8b9a7f46c62c6`;
+the successor SHA-256 is
+`b76b82e4afe5c9c0a8e88e3bcff616de274868b6ad072718412c4db1033bd9f7`.
+Regeneration uses the existing audit command above. Audit rules, strict test
+equality, native code, the frozen review package and historical verification
+records remain unchanged. No review-model replay is required by this repair.
+
+Local validation: all ten unchanged portability tests pass under Python 3.12
+using `python3 -m unittest discover -s tests/python -p test_rlimit_portability.py -v`.
+The full Python matrix remains a separate remote CI gate on the revised head.
+
+Authored and reviewed by Codex (OpenAI), project-original under Unknown v0.3,
+through Mingli Yuan's authorized account proxy; not his authorship, review,
+endorsement or correctness guarantee.

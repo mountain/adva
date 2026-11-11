@@ -1,0 +1,17 @@
+{
+  "schema": "adva.independent-contract-review.integration-first-attempt.v1",
+  "date": "2026-11-11",
+  "semantic_replay_exit_code": 0,
+  "semantic_replay_repeated": false,
+  "packaging_error": {
+    "kind": "ArtifactOrderingError",
+    "detail": "The local link audit checked README's integration-validation.json link before that new report had been written.",
+    "correction": "Write the report, then audit the completed package links; keep the original semantic replay output."
+  },
+  "whitespace_observation": {
+    "kind": "IntentionalFrozenMarkdownHardBreaks",
+    "files": [{"path": "REVIEW.md", "lines": [3, 4]}],
+    "detail": "git diff --check reports the original Markdown two-space hard breaks. Original manifest bytes are retained; scoped validation allows exactly these two frozen lines and checks all other changed lines normally."
+  },
+  "scope": "Packaging diagnostics only. No model family, result, source snapshot, budget or native boundary changed."
+}

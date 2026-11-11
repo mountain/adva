@@ -5,6 +5,13 @@ Status: predecessor **Unknown/paused** retained; 2026-11-01 path continuation is
 Frozen contracts: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-contract-20261031.json` and its sole-correction overlay `opaque-consumer-contract-20261031-v1.json`  
 Outcome: `experiments/native_input_binding_serialized_leaf_request/opaque-consumer-outcome-20261031.json`
 
+Later contract review: the [2026-11-11 independent adapter revision](../../experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/README.md)
+separates request-bound native endpoint location from an explicitly selected
+cross-diagram predicate and a recorded receiver outcome. It retains the original
+finite countermodels and a proposed JSON interface. The real target relation
+remains unselected, the Rust adapter remains unimplemented, and no historical
+structural or membership result is upgraded to transport or M6 evidence.
+
 ## Dependency and status reading
 
 The run began from main commit

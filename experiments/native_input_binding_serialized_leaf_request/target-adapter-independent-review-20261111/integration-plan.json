@@ -1,0 +1,28 @@
+{
+  "schema": "adva.independent-contract-review.integration-plan.v1",
+  "date": "2026-11-11",
+  "status": "FrozenBeforePackagingReplay",
+  "main_base": "17e1842addcd9f9262eef87bd19c5eabcdc843e1",
+  "reviewed_v0_commit": "2d5b6c18a7446d4f0aa3834c521cd7ad57a600a8",
+  "compatibility_checked_draft_head": "f2406dae6851ba4c0727176d0028394a6f97a8a8",
+  "purpose": "Integrate the previously reviewed contract and unchanged finite evidence without changing the selected target relation or merging unrelated draft research.",
+  "preserve": ["all original manifest member bytes", "v0 structural-only interpretation", "native authority boundary", "unselected real target relation", "Accepted/Refused/Unknown scope"],
+  "local_replay": {
+    "program": "reproduce.py",
+    "invocations": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 10,
+    "address_space_mib": 256,
+    "output_bytes": 1048576,
+    "structural_calls": 7,
+    "new_declaration_mutations": 6,
+    "finite_model_cases": 16,
+    "search_candidates": 0,
+    "native_executions": 0,
+    "correction_replays": 0,
+    "comparison": "Compare every retained output field except elapsed_ns_before_output and process_ru_maxrss_kib with the frozen result. Verify original manifest hashes separately."
+  },
+  "repository_checks": ["staged diff inspection", "known-withdrawal scan with --history", "research index check", "local link and JSON syntax checks", "required remote PR checks"],
+  "stop": "Retain failure and do not claim integration validation passed if replay or required checks fail. No automatic research-family expansion or native-control replay.",
+  "attribution": "Codex (OpenAI), through Mingli Yuan's authorized account proxy; not his technical signoff."
+}

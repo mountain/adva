@@ -1,0 +1,265 @@
+{
+  "schema": "adva.proposed.two-diagram-qualified-endpoint-adapter.v1-review",
+  "status": "ProposedIndependentRevisionNotImplemented",
+  "predecessor": {
+    "repository": "mountain/adva",
+    "commit": "2d5b6c18a7446d4f0aa3834c521cd7ad57a600a8",
+    "path": "experiments/native_input_binding_serialized_leaf_request/target-adapter-contract-review-20261109/adapter-obligation-v0.json",
+    "sha256": "2cb19dff7fc86ce0940ce6877e5b3be2c570cd7e8667e4bac0bcfed2c795f8f3"
+  },
+  "purpose": "Make request binding, native endpoint resolution, the selected binary predicate and the receiver record separately checkable. Preserve v0 as historical evidence.",
+  "target_selection": {
+    "status": "Unresolved",
+    "selected_relation": null,
+    "consequence": "Unknown/TargetRelationUnderspecified. PinnedPairMembership must be selected explicitly if the legacy membership-only result is the intended target; no default strengthens or weakens the caller's claim."
+  },
+  "trust_boundary": {
+    "semantic_authority": "Pinned Rust importer and relation checker only; a supplied success flag or Python record is never a certificate.",
+    "external_anchor": "The caller's expected request, receiver context, profile and permitted purpose are fixed independently of the candidate payload before execution.",
+    "profile_pins": [
+      "contract version and bytes",
+      "request decoder version",
+      "native importer source revision and build identity",
+      "relation checker source revision and build identity",
+      "dependency pins"
+    ],
+    "unavailable_pin": "Unknown/CheckerOrEvidenceUnavailable",
+    "hashes": "Integrity relative to a separately selected reference; neither native identity nor authentication."
+  },
+  "types": {
+    "DiagramSlot": {
+      "enum": [
+        "left",
+        "right"
+      ],
+      "meaning": "Ordered protocol slot; not a semantic identity."
+    },
+    "DiagramRef": {
+      "slot": "DiagramSlot",
+      "serialized_sha256": "Sha256"
+    },
+    "QualifiedOccurrenceSelector": {
+      "diagram": "DiagramRef",
+      "context": "Exact context string preserved from the request and checked against the imported diagram function context",
+      "source_id": "Exact native SourceId string",
+      "occurrence_id": "Exact native OccurrenceId string",
+      "occurrence_path": "Array<u32>; including []; native OccurrencePath. Not a boundary port or a textual filesystem/graph path."
+    },
+    "BoundaryPort": "If separately required, add a distinct versioned input/output port selector and validate its WireRef-to-occurrence relation; never encode it into occurrence_path.",
+    "RequestBinding": {
+      "request_profile": "Registered, exact version",
+      "original_request_sha256": "Sha256",
+      "receiver_context_sha256": "Sha256",
+      "representation": {
+        "variant": "ExactOriginalBytes | CheckedLosslessVersionedEquivalent"
+      },
+      "ordered_pair": "[QualifiedOccurrenceSelector(left), QualifiedOccurrenceSelector(right)] derived from the bound request",
+      "relation_claim": "SelectedRelation derived from the bound request or independently pinned receiving contract; candidate cannot choose a weaker one",
+      "interpretation_change": "A request that contains only a pair cannot silently be decoded as claiming a stronger transport law."
+    },
+    "SelectedRelation": {
+      "discriminator": "kind",
+      "variants": {
+        "PinnedPairMembershipV1": {
+          "statement": "The two exact caller-designated occurrences exist, jointly matched field-for-field, in their respective independently admitted diagrams.",
+          "quantification": "One ordered pair, not all occurrences or histories.",
+          "certificate_scope": "QualifiedPairLocatedOnly",
+          "no_entailment": [
+            "value equality",
+            "shared origin",
+            "source-to-residual transport",
+            "graph equivalence",
+            "M6 filler"
+          ]
+        },
+        "CertifiedRelationV1": {
+          "fields": [
+            "relation_profile_id",
+            "relation_profile_sha256",
+            "typed_parameters",
+            "quantifier_and_domain",
+            "claim_sha256",
+            "evidence_reference"
+          ],
+          "statement": "A separately selected, versioned Rust checker establishes the declared binary predicate on this exact resolved ordered pair under its retained premises.",
+          "certificate_subject": [
+            "request binding",
+            "receiver context",
+            "checker/profile pins",
+            "ordered admitted diagrams",
+            "both resolved selectors",
+            "relation kind and parameters",
+            "quantifier/domain",
+            "evidence and guards"
+          ],
+          "no_fallback": "Unknown if the applicable checker or evidence is unavailable; never replace by tuple equality, membership or observed-value equality.",
+          "transport_requirement": "If the predicate is source-to-residual transport, bind a native derivation/correspondence witness to this ordered diagram pair and check all preservation, guard and residual obligations that this relation profile requires. Do not infer transport from an arbitrary map row."
+        }
+      }
+    }
+  },
+  "A": {
+    "exact_bytes": "Hash and compare the exact supplied request bytes against the independently fixed reference before interpreting them. Do not silently normalize first.",
+    "schema": "Use an allowlisted versioned decoder; reject duplicate JSON keys, unrecognized/missing fields as prescribed by that profile, invalid numeric path items including booleans, negatives and values greater than u32::MAX.",
+    "embedded_diagram_hash_domain": "SHA-256 over UTF-8 bytes of the decoded source_diagram_json/residual_diagram_json string value, not its outer JSON escape representation. Native import receives those same bytes.",
+    "lossless_equivalent": "Bind original and replacement profiles, exact bytes and a checked correspondence preserving diagram bytes, contexts, ordered selectors, claim, guards, residuals and permissions. A label or a reserialized hash alone is insufficient.",
+    "legacy_mapping": {
+      "source_diagram_json": "left diagram serialized bytes",
+      "residual_diagram_json": "right diagram serialized bytes",
+      "native_occurrence_map[0].source": "left context/source/occurrence/path, all preserved exactly",
+      "native_occurrence_map[0].target": "right context/source/occurrence/path, all preserved exactly",
+      "map_cardinality": 1,
+      "other_request_fields": "Preserve and validate profile and external_leaf under the pinned original decoder; do not drop them during conversion.",
+      "proposed_v0_port_strings": "No implicit conversion of output/0 or input/0 to a native OccurrencePath. The mapping is unprovided."
+    }
+  },
+  "B": {
+    "steps": [
+      "Independently import both exact supplied serialized diagrams through the pinned Rust validation boundary.",
+      "Check certificate validity/completeness and correspondence to each actual returned diagram, profile and context; Serde decoding alone is insufficient.",
+      "Retain the two ordered admission records even when serialized bytes happen to be equal.",
+      "Never substitute receiver-generated pass-through diagrams for the supplied pair."
+    ]
+  },
+  "C": {
+    "C_binding": [
+      "For each side, find the occurrence in its CheckedDiagram using native occurrence identity; require uniqueness as guaranteed or checked by the pinned native profile.",
+      "Construct the actual tuple from that occurrence's source, occurrence and OccurrencePath, plus the native diagram function context and the receipt's exact slot/digest.",
+      "Compare this actual tuple with the independently request-bound expected selector on THAT SAME SIDE.",
+      "Validate joint incidence in a single occurrence record, not separate membership of source, occurrence and path. A path alone is not a unique lookup key.",
+      "If a separate boundary port is requested, check its exact native WireRef/incidence binding too."
+    ],
+    "C_relation": "Check SelectedRelation against both resolved endpoints after C_binding. PinnedPairMembershipV1 has exactly the declared weaker statement; CertifiedRelationV1 requires its own applicable checker.",
+    "same_side_exact_equality_fields": [
+      "slot",
+      "serialized diagram digest",
+      "context",
+      "source_id",
+      "occurrence_id",
+      "occurrence_path"
+    ],
+    "across_sides": {
+      "operation": "Apply the selected binary predicate; never generic equality of the full selectors.",
+      "slot": "left and right remain different protocol roles.",
+      "identity": "Keep both qualified identities separately. Digests, source strings, occurrence strings and paths may coincide or differ; neither equality nor inequality alone decides the relation.",
+      "correspondence": "A checked mapping may relate different identities without identifying or replacing them.",
+      "substitution": "Changing a caller-pinned source/occurrence/path is refused even if the replacement has the same value. A separately bound value-equality request may relate different origins while preserving both identities."
+    }
+  },
+  "D": {
+    "receipt_body_required": [
+      "schema and contract pin",
+      "request/profile and receiver-context pins",
+      "checker/importer build and dependency pins",
+      "both ordered diagram bindings",
+      "both expected and resolved selectors",
+      "selected relation, typed parameters and quantifier/domain",
+      "checked evidence references and retained premises",
+      "per-obligation statuses and named failure/unavailable reasons",
+      "outcome and precise permitted use/continuation",
+      "spent budget, stop reason and residuals"
+    ],
+    "per_obligation_status": [
+      "Checked",
+      "Failed",
+      "Unavailable",
+      "NotRun"
+    ],
+    "record_order": [
+      "Complete the applicable A/B/C judgments.",
+      "Construct a receipt body with no self-hash; calculate its digest outside the body.",
+      "Complete the required record write and verify its success.",
+      "Only then emit Accepted referring to the committed receipt."
+    ],
+    "recording_failure": "Unknown/ReceiptPersistenceFailure; preserve available partial diagnostics and do not claim a durable receipt or successful acceptance.",
+    "scope": "D binds the one A–C chain to the same receiving route. Independent receipts cannot be spliced by matching their status strings."
+  },
+  "outcomes": {
+    "Accepted": "All obligations required by the SELECTED, exact claim and use are actually checked and the required receipt is recorded. No broader conclusion.",
+    "Refused": "A checked mismatch, malformed material, failed guard, invalid presented witness, or incompatible requested profile is identified. Not a proof that no valid relation/witness can ever exist.",
+    "Unknown": "The relation is unspecified, its applicable checker/evidence/admission is unavailable, budget is exhausted, or recording cannot be completed; report the unresolved obligation and cost. No automatic retry.",
+    "proof_failure_distinction": "An invalid supplied proof can be refused locally; absence of a proof is Unknown. Failure to find a witness never proves nonexistence unless a separately justified complete decision procedure establishes it."
+  },
+  "arithmetic_boundaries": {
+    "additive_zero": "A-B=0 only in its separately declared additive carrier.",
+    "multiplicative_unit": "A/B=1 only in its separately declared multiplicative domain, with denominator nonzero and all profile-specific invertibility/definedness guards.",
+    "zero_zero_quotient": "Undefined; never accepted by cancellation.",
+    "identity_history": "No interchange, origin erasure, contraction or M6 permission follows from either scalar equation."
+  },
+  "required_native_controls": [
+    {
+      "id": "N01-distinct-identities-valid",
+      "expected": "Accepted",
+      "scope": "For one explicitly selected relation and supplied valid native witness where required."
+    },
+    {
+      "id": "N02-coherent-wrong-path",
+      "expected": "Refused",
+      "scope": "Mutate all candidate copies consistently; expected request stays independently fixed, or query a nonexistent path in a newly fixed request."
+    },
+    {
+      "id": "N03-tuple-splice",
+      "expected": "Refused",
+      "scope": "Every field appears somewhere, but no one native occurrence has the full tuple."
+    },
+    {
+      "id": "N04-same-value-origin-substitution",
+      "expected": "Refused",
+      "scope": "Substitute a different valid occurrence against the original pinned request."
+    },
+    {
+      "id": "N05-wrong-diagram-or-context",
+      "expected": "Refused",
+      "scope": "Reject borrowed selector/admission even if scalar values match."
+    },
+    {
+      "id": "N06-equal-image-missing-proof",
+      "expected": "Unknown",
+      "scope": "Do not infer transport or M6 from observation equality."
+    },
+    {
+      "id": "N07-checked-false-relation",
+      "expected": "Refused",
+      "scope": "Only where the applicable checker supplies a scoped counterexample/decision."
+    },
+    {
+      "id": "N08-reversed-order",
+      "expected": "Refused",
+      "scope": "Under the unchanged ordered request."
+    },
+    {
+      "id": "N09-foreign-receipt",
+      "expected": "Refused",
+      "scope": "Mismatch in request, pair, profile, claim or receiver context."
+    },
+    {
+      "id": "N10-unavailable-or-exhausted",
+      "expected": "Unknown",
+      "scope": "Missing native check/evidence or exhausted fixed budget; no retry."
+    },
+    {
+      "id": "N11-recording-failure",
+      "expected": "Unknown",
+      "scope": "No durable Accepted receipt."
+    },
+    {
+      "id": "N12-value-equality-purpose",
+      "expected": "Accepted",
+      "scope": "Only under a separately versioned value-equality relation with exact domain checks; no source identity equality or transport permission."
+    }
+  ],
+  "execution_status": {
+    "rust_adapter": "NotImplemented",
+    "native_controls": "NotRun",
+    "real_target_request_read": false,
+    "real_target_diagrams_read": false
+  },
+  "residuals": [
+    "Select the intended target relation without strengthening legacy evidence.",
+    "Freeze concrete native request-to-selector and context mappings.",
+    "Pin and implement the Rust relation checker and receipt boundary.",
+    "Run native controls on actual supplied diagrams under a separate finite contract.",
+    "Research 0090 coverage and Research 0092 promotion remain open/blocked; no M6, native free/Close or arithmetic universality follows."
+  ],
+  "authorship": "Original independent review proposal by Codex (OpenAI), offered under Unknown v0.3. No GitHub submission; Mingli Yuan has not been represented as technical reviewer."
+}
