@@ -1,0 +1,56 @@
+{
+  "schema": "adva.target-adapter-obligation-review.contract.v0",
+  "date": "2026-11-09",
+  "author": "Codex (OpenAI)",
+  "status": "FrozenBeforeExecution",
+  "question": "Can a machine-checkable structural contract state the missing target adapter's A+B+C+D receiving obligations and reject finite premature-closure mutations without implementing or executing the adapter?",
+  "objects": [
+    "one opaque request identity represented only by schema and SHA-256 pins",
+    "two ordered serialized-diagram slots, each with its own required Rust-authoritative admission",
+    "one qualified source/occurrence/path endpoint per diagram",
+    "one ordered cross-diagram endpoint relation",
+    "three typed receiver outcomes with explicit residuals"
+  ],
+  "types": {
+    "request_identity": "(request_schema, canonical_bytes_sha256, receiver_context_sha256)",
+    "diagram_slot": "(role, serialized_sha256, required_native_boundary, qualified_endpoint)",
+    "qualified_endpoint": "(source_id, occurrence_id, path)",
+    "cross_diagram_relation": "ordered pair of diagram-qualified endpoints",
+    "receiver_outcome": "Accepted | Refused | Unknown"
+  },
+  "quantification": "One canonical proposed interface and exactly twelve declared structural mutations; no candidate enumeration and no claim about other interfaces.",
+  "arithmetic_domain": {
+    "additive_zero": "A-B=0 on its declared typed additive carrier",
+    "multiplicative_unit": "A/B=1 only on its separately declared multiplicative carrier with B nonzero",
+    "separation": "No quotient at A=B=0; no exchange of additive and multiplicative types; noncommutative order and history remain explicit."
+  },
+  "candidate_grammar": {
+    "canonical_documents": 1,
+    "mutations": 12,
+    "search_candidates": 0,
+    "search_nodes": 0
+  },
+  "success": "The canonical document passes once and all twelve finite mutations are rejected with their declared error classes.",
+  "refusal": "A pass establishes structural completeness of this proposed interface only. It does not implement a Rust receiver, validate either diagram, read the opaque request, prove 0090 coverage, authorize 0092 promotion, construct M6, or prove either Research 0123 word.",
+  "limits": {
+    "routes": 1,
+    "process_invocations": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 20,
+    "address_space_mib": 256,
+    "output_bytes": 1048576,
+    "canonical_documents": 1,
+    "mutation_cases": 12,
+    "correction_replays": 1
+  },
+  "stop_rule": "Run the checker and finite mutation suite in one bounded process. Preserve failure as Unknown; make at most one correction replay only for a specific implementation error; do not widen the interface or budgets.",
+  "prohibited": [
+    "read or execute the opaque request",
+    "read or execute serialized diagram bytes",
+    "invoke or modify adva-machine",
+    "treat the Python checker as Rust semantic authority",
+    "infer M6 from local-image equality",
+    "promote arithmetic-universality or hypothesized-arithmetic-truth",
+    "claim Research 0090 coverage or Research 0092 vocabulary promotion"
+  ]
+}
