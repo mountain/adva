@@ -1,0 +1,21 @@
+{
+  "schema": "adva.research.request-relation-projection-attempt.v0",
+  "attempt": 2,
+  "status": "ImplementationFailureBeforeEnumeration",
+  "command": "timeout 30s python3 -B experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/run.py --output experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/outcome.json",
+  "exit_code": 1,
+  "observed_error": "serializer certificate dependency changed",
+  "cause": "The corrected extractor filters against declared field names but still recognizes only contiguous certificate.field syntax. The pinned Rust source writes certificate followed by a newline and then .occurrence_map inside only_dynamic_pair, so the extractor reports no serializer field.",
+  "work_completed": {
+    "candidate_completions_enumerated": 0,
+    "native_executions": 0,
+    "output_written": false
+  },
+  "correction_budget": {
+    "allowed": 1,
+    "used": 1,
+    "remaining": 0
+  },
+  "next_minimum_change": "In a new contract, tokenize Rust member access across whitespace or freeze the exact only_dynamic_pair source interval and compare its parsed dependency list. Keep all current input pins, ten dimensions, 2048 candidates and zero-native-execution rule unchanged.",
+  "timing_and_peak_memory": "Outer tool wall time was approximately 0.4 seconds. Peak memory was not independently measured."
+}
