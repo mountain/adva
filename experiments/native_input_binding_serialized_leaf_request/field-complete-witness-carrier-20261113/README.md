@@ -107,3 +107,10 @@ Original model, implementation and report by Codex (OpenAI), offered under
 Unknown v0.3 and submitted through Mingli Yuan's GitHub account as authorized
 proxy. Account use is not his authorship, review, endorsement or a correctness
 guarantee.
+
+## Integration status
+
+The branch also registers this script and the two predecessor scripts in the
+repository's exact RLIMIT portability inventory. That repair preserves the
+inventory check; it is engineering reproducibility evidence, not support for
+the mathematical result.
