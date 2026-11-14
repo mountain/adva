@@ -1,0 +1,76 @@
+{
+  "schema": "adva.research.request-relation-projection-contract.v0",
+  "status": "FrozenBeforeExecution",
+  "date": "2026-11-11",
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "question": "Does the exact canonical request carry enough information by itself to decide the legacy native input-binding certificate relation, or does it only carry the ordered qualified endpoint pair while leaving certificate obligations outside the serialized projection?",
+  "objects": {
+    "canonical_request": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+      "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d"
+    },
+    "legacy_contract": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/contract.json",
+      "sha256": "25688b5de630ac456c807e5617d1ef8e3d9c9c99a0da9ddfc50751d3b92ea83b"
+    },
+    "rust_certificate_source": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+      "sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b"
+    },
+    "merged_relation_contract": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/adapter-obligation-v1-proposed.json",
+      "sha256": "484dd1f3a7c50bdc1741e3779b149e3735477ee3c67c448195889d6b551f53d8"
+    }
+  },
+  "types": {
+    "request_projection": "Exact canonical JSON bytes with two embedded diagram strings, one external leaf tuple, and one ordered qualified native occurrence pair",
+    "certificate_completion": "A ten-bit finite model over the ResearchCertificate fields checked by the frozen Rust receiver; occurrence_map means complete coverage beyond the one emitted dynamic pair",
+    "relation_options": [
+      "PinnedPairMembershipV1",
+      "LegacyResearchNativeInputBindingCertificateV0"
+    ],
+    "result": [
+      "ProjectionDeterminesCertificateWithinFrozenModel",
+      "ProjectionUnderdeterminesCertificateWithinFrozenModel",
+      "Unknown"
+    ]
+  },
+  "quantifiers": {
+    "request_instances": 2,
+    "canonical_instances": 1,
+    "synthetic_reuse_instances": 1,
+    "certificate_dimensions": 10,
+    "completions_per_instance": 1024,
+    "total_candidates": 2048
+  },
+  "arithmetic_domain": "No arithmetic equality is decided. The canonical 1/1 literal is only retained input data. Additive A-B=0 and guarded multiplicative A/B=1 remain different typed questions; 0/0 is undefined, and no commutation, inversion, history erasure or M6 conclusion is permitted.",
+  "candidate_grammar": {
+    "completion": "One Boolean validity bit for each exact ResearchCertificate field checked by Rust: source_snapshot, residual_snapshot, static_value, bound_source, dynamic_source, event_map, occurrence_map, forgotten_static_occurrences, forgotten_static_history, binding_node",
+    "projection": "The exact request serializer receives source and residual artifacts separately and reads only the certificate occurrence_map through only_dynamic_pair; it emits one dynamic pair, not the complete certificate",
+    "checker_model": "A completion is valid exactly when all ten declared certificate obligations are valid. This is a dependency-separation model, not an execution of the Rust checker."
+  },
+  "evaluation": {
+    "success": "Source dependency extraction matches the frozen expected field sets; every completion for an instance has the same request projection; exactly one completion satisfies all ten obligations and at least one indistinguishable completion does not.",
+    "refutation": "The request serializer reads every certificate obligation needed by the checker, the exact request carries an applicable certificate witness, or the enumerated projection separates valid from invalid completions.",
+    "unknown": "A source pin mismatch, extraction mismatch, malformed request, timeout, budget exhaustion, or output persistence failure.",
+    "claim_boundary": "A finite non-injectivity certificate for one serializer/checker dependency model. It does not prove that no future adapter can reconstruct or receive a separately supplied native certificate."
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 10,
+    "address_space_bytes": 268435456,
+    "file_bytes": 1048576,
+    "candidate_limit": 100000,
+    "implementation_correction_replays": 1,
+    "native_executions": 0,
+    "opaque_request_reads": 1,
+    "diagram_imports": 0
+  },
+  "residuals": [
+    "The exact strong relation still needs a versioned witness carrier or a separately pinned reconstruction route over native compilation artifacts.",
+    "The synthetic reuse instance is not a native-valid request and tests only reuse of the dependency separation.",
+    "Research 0090 coverage remains open and Research 0092 promotion remains blocked.",
+    "No M6 filler, native free or Close, arithmetic universality, hypothesized arithmetic truth, authentication, social trust or practical-use result follows."
+  ]
+}

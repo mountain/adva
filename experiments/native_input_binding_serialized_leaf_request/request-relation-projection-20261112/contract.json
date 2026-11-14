@@ -1,0 +1,94 @@
+{
+  "schema": "adva.research.request-relation-projection-contract.v1",
+  "status": "FrozenBeforeExecution",
+  "date": "2026-11-12",
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "predecessor": {
+    "branch_commit": "db731db488b02cb247ca78375a8a5562065bab32",
+    "outcome_path": "experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/outcome.json",
+    "outcome_sha256": "a6aeaa362e720273dc9b1ae7224f543264c966a50045ac95d33152c65b71ac3d",
+    "status": "Unknown/CorrectionBudgetExhausted",
+    "retained_change": "Only make Rust member extraction whitespace-aware."
+  },
+  "question": "Within one pinned finite field-dependency model, do the exact canonical request bytes determine the legacy native input-binding certificate, or do one valid and at least one invalid certificate completion share the same serialized request projection?",
+  "objects": {
+    "canonical_request": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+      "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d"
+    },
+    "legacy_contract": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/contract.json",
+      "sha256": "25688b5de630ac456c807e5617d1ef8e3d9c9c99a0da9ddfc50751d3b92ea83b"
+    },
+    "rust_certificate_source": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+      "sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b"
+    },
+    "merged_relation_contract": {
+      "path": "experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/adapter-obligation-v1-proposed.json",
+      "sha256": "484dd1f3a7c50bdc1741e3779b149e3735477ee3c67c448195889d6b551f53d8"
+    }
+  },
+  "types": {
+    "request_projection": "Exact serialized request coordinate; certificate completions retain the same emitted diagrams, external tuple and unique dynamic pair",
+    "certificate_completion": "Ten Boolean obligations corresponding to the ten ResearchCertificate fields consumed by the pinned Rust check",
+    "strong_relation": "LegacyResearchNativeInputBindingCertificateV0: the existing finite Rust certificate relation named by the legacy contract",
+    "weak_relation": "PinnedPairMembershipV1: the two exact request-designated occurrences are jointly located in their independently admitted diagrams",
+    "outcomes": [
+      "ProjectionUnderdeterminesCertificateWithinFrozenFieldModel",
+      "ProjectionDeterminesCertificateWithinFrozenFieldModel",
+      "Unknown"
+    ]
+  },
+  "quantifiers": {
+    "instances": 2,
+    "canonical_instances": 1,
+    "synthetic_reuse_instances": 1,
+    "certificate_dimensions": 10,
+    "completions_per_instance": 1024,
+    "total_candidates": 2048
+  },
+  "arithmetic_domain": "No arithmetic judgment. The canonical 1/1 literal remains retained input only. Additive A-B=0 and multiplicative A/B=1 keep separate typed domains and guards; 0/0 is undefined. No scalar equality erases order, source or history.",
+  "candidate_grammar": {
+    "dimensions": [
+      "source_snapshot",
+      "residual_snapshot",
+      "static_value",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "occurrence_map",
+      "forgotten_static_occurrences",
+      "forgotten_static_history",
+      "binding_node"
+    ],
+    "invalid_completion": "At least one dimension is changed while the separately supplied source/residual serializer arguments and the unique dynamic pair remain fixed.",
+    "projection": "The pinned serializer reads certificate occurrence_map only through only_dynamic_pair; all ten dimensions are consumed by the strong check, while the request emits only the unique dynamic pair from occurrence_map.",
+    "fresh_reuse": "A synthetic coordinate changes the profile and endpoint contexts but uses the same dependency projection. It is not claimed native-valid."
+  },
+  "evaluation": {
+    "success": "Whitespace-aware extraction returns exactly the ten strong-check fields and occurrence_map as the sole serializer certificate dependency. For each instance all 1024 completions share one request projection, exactly one completion satisfies all ten obligations, and 1023 do not.",
+    "refutation": "The source dependency sets differ, the request carries an applicable explicit strong-relation witness, or the finite projection separates every valid completion from invalid completions.",
+    "unknown": "Pin mismatch, malformed input, extraction mismatch, budget exhaustion, timeout or persistence failure.",
+    "scope": "Finite dependency and non-injectivity model only; not Rust execution, not proof that no separately pinned native reconstruction exists."
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 10,
+    "address_space_bytes": 268435456,
+    "file_bytes": 1048576,
+    "candidate_limit": 100000,
+    "implementation_correction_replays": 1,
+    "native_executions": 0,
+    "canonical_request_reads": 1,
+    "diagram_imports": 0
+  },
+  "residuals": [
+    "A strong adapter must carry an applicable versioned witness or specify a separately pinned native reconstruction route.",
+    "Choosing weak pair membership instead requires an explicit scope change; it cannot silently replace the legacy certificate target.",
+    "The model does not execute actual invalid Rust certificates and does not rule out hidden derivability among certificate fields.",
+    "Research 0090 coverage remains open; Research 0092 promotion remains blocked.",
+    "No M6 filler, native free/Close, arithmetic universality, hypothesized arithmetic truth, authentication, social trust or practical benefit follows."
+  ]
+}
