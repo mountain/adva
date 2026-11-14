@@ -1,0 +1,42 @@
+{
+  "schema": "adva.research.native-certificate-encoding-audit.attempts.v0",
+  "date": "2026-11-14",
+  "final_status": "Unknown/SerializationFailureAfterCorrectionLimit",
+  "attempts": [
+    {
+      "attempt": 1,
+      "kind": "initial",
+      "command": "timeout 30s python3 run.py --source source.rs",
+      "exit_code": 1,
+      "stderr": "refused: source hash c8caf39b36e9dbb0ac3262a96028abacf4fbcbac8fc431cfd6a5dfa90ca92a82 != 096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b",
+      "analysis_entered": false,
+      "cause": "a prior checker-source SHA was mistakenly used for the selected Rust source, and the local source copy had one extra trailing newline"
+    },
+    {
+      "attempt": 2,
+      "kind": "sole implementation-correction replay",
+      "command": "timeout 30s python3 run.py --source source.rs",
+      "exit_code": 1,
+      "stderr": "NameError: name 'false' is not defined",
+      "analysis_entered": true,
+      "actual_source_audit_completed": true,
+      "fresh_positive_control_audit_completed": true,
+      "all_pre-serialization_assertions_passed": true,
+      "serialized_outcome_retained": false,
+      "cause": "lowercase JSON boolean literals were used in a Python dictionary after the assertions"
+    }
+  ],
+  "post_limit_action": {
+    "source_change": "lowercase booleans were changed to Python booleans for a future continuation",
+    "executed_after_change": false,
+    "reason_not_executed": "the one permitted implementation-correction replay was already consumed"
+  },
+  "measured_costs": {
+    "native_executions": 0,
+    "correction_replays": 1,
+    "successful_serializations": 0,
+    "peak_memory_kib": null,
+    "search_or_verification_timings_ns": null,
+    "note": "the failed process did not retain its in-process measurements; filesystem size is not used as a memory proxy"
+  }
+}
