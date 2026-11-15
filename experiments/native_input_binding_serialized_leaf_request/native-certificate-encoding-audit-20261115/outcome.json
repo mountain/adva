@@ -1,0 +1,151 @@
+{
+  "actual": {
+    "accepted_request_root_keys": [
+      "external_leaf",
+      "native_occurrence_map",
+      "profile",
+      "residual_diagram_json",
+      "source_diagram_json"
+    ],
+    "classification": "Unknown/NativeEncodingAbsentAtPinnedSourceSurface",
+    "declaration_count": 1,
+    "derives": [
+      "Clone",
+      "Debug",
+      "Eq",
+      "PartialEq"
+    ],
+    "field_root_membership": {
+      "binding_node": false,
+      "bound_source": false,
+      "dynamic_source": false,
+      "event_map": false,
+      "forgotten_static_history": false,
+      "forgotten_static_occurrences": false,
+      "occurrence_map": false,
+      "residual_snapshot": false,
+      "source_snapshot": false,
+      "static_value": false
+    },
+    "fields": [
+      {
+        "name": "source_snapshot",
+        "rust_type": "SharedProgramDiagram"
+      },
+      {
+        "name": "residual_snapshot",
+        "rust_type": "SharedProgramDiagram"
+      },
+      {
+        "name": "static_value",
+        "rust_type": "Rational"
+      },
+      {
+        "name": "bound_source",
+        "rust_type": "SourceId"
+      },
+      {
+        "name": "dynamic_source",
+        "rust_type": "(SourceId, SourceId)"
+      },
+      {
+        "name": "event_map",
+        "rust_type": "Vec<(NodeId, NodeId)>"
+      },
+      {
+        "name": "occurrence_map",
+        "rust_type": "Vec<(QualifiedOccurrence, Option<QualifiedOccurrence>)>"
+      },
+      {
+        "name": "forgotten_static_occurrences",
+        "rust_type": "Vec<Occurrence>"
+      },
+      {
+        "name": "forgotten_static_history",
+        "rust_type": "Vec<HistoryEvent>"
+      },
+      {
+        "name": "binding_node",
+        "rust_type": "NodeId"
+      }
+    ],
+    "has_deserialize_direction": false,
+    "has_receiver_reconstruction": false,
+    "has_serialize_direction": false,
+    "line_witnesses": {
+      "accepted_root": 693,
+      "certificate_declaration": 46,
+      "external_certificate_delegation": 745,
+      "receiver": 672,
+      "serializer": 649
+    },
+    "receiver_delegates_external_certificate_to_receive": true,
+    "receiver_rechecks_one_dynamic_pair_from_external_certificate": true,
+    "receiver_requires_external_certificate": true,
+    "serializer_projects_one_dynamic_pair": true
+  },
+  "claim_boundaries": {
+    "arithmetic_universality": false,
+    "hypothesized_arithmetic_truth": false,
+    "m6_filler": false,
+    "measured_practical_value": false,
+    "native_runtime_result": false,
+    "new_word": false,
+    "reconstruction_impossibility": false,
+    "social_trust": false
+  },
+  "control": {
+    "accepted_root_fields": 10,
+    "classification": "PassedExplicitFieldCompleteEncodingShape",
+    "fields": 10,
+    "purpose": "fresh synthetic field-complete shape; parser discrimination only, not a compiling adapter",
+    "receiver_requires_external_certificate": false
+  },
+  "cost": {
+    "actual_audit_ns": 1422750,
+    "address_space_limit": "not installed",
+    "candidates": 2,
+    "control_audit_ns": 69417,
+    "control_formation_ns": 21999,
+    "implementation_correction_replays": 1,
+    "native_executions": 0,
+    "routes": 1,
+    "ru_maxrss_kib": 11008,
+    "selected_sources": 1,
+    "serialization_ns": 255087,
+    "serialized_bytes": 5408,
+    "source_lines_examined": 1388,
+    "source_read_ns": 1148882,
+    "structural_controls": 1,
+    "verification_ns": 5167,
+    "whole_run_before_serialization_ns": 3782480
+  },
+  "field_status": {
+    "binding_node": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "bound_source": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "dynamic_source": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "event_map": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "forgotten_static_history": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "forgotten_static_occurrences": "no explicit certificate field member or reconstruction on the selected wire surface",
+    "occurrence_map": "one dynamic pair is projected and rechecked; the full ordered map is not carried",
+    "residual_snapshot": "diagram bytes are present and compared, but no certificate field is reconstructed",
+    "source_snapshot": "diagram bytes are present and compared, but no certificate field is reconstructed",
+    "static_value": "no explicit certificate field member or reconstruction on the selected wire surface"
+  },
+  "residuals": [
+    "No explicit native lossless certificate codec or decoder exists on the pinned file surface.",
+    "A separately versioned carrier or pinned native reconstruction route remains to be designed and executed.",
+    "Repository-wide codec absence was not searched or proved.",
+    "Research 0090 coverage is open; Research 0092 promotion remains blocked.",
+    "The resource-inventory CI mismatch on draft PR #234 remains an independent engineering residual."
+  ],
+  "schema": "adva.research.native-certificate-encoding-audit.outcome.v0",
+  "scope": "one pinned Rust source file; static source audit only",
+  "source": {
+    "bytes": 50649,
+    "lines": 1388,
+    "path": "source.rs",
+    "sha256": "391c6eef4df0f63a7cbd8d19dbc0967fd717ef26b3a70342aaa19c5e4c90c8bb"
+  },
+  "status": "Unknown/NativeEncodingAbsentAtPinnedSourceSurface"
+}
