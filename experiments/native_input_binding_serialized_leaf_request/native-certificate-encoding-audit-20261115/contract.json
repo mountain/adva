@@ -1,0 +1,26 @@
+{
+  "schema": "adva.research.native-certificate-encoding-audit.replay-contract.v0",
+  "date": "2026-11-15",
+  "predecessor_contract": "../native-certificate-encoding-audit-20261114/contract.json",
+  "question": "Can the already corrected bounded audit retain a replayable result for the frozen ten-field native certificate encoding question?",
+  "object": {
+    "source_path": "../../native_input_binding_certificate/native_input_binding_certificate.rs",
+    "source_sha256": "391c6eef4df0f63a7cbd8d19dbc0967fd717ef26b3a70342aaa19c5e4c90c8bb",
+    "audit_path": "../native-certificate-encoding-audit-20261114/run.py"
+  },
+  "types_quantifiers_arithmetic_and_grammar": "Unchanged from the predecessor contract. Rational remains opaque; no additive-zero, multiplicative-unit, inverse, commutation, or M6 operation is performed.",
+  "evaluation": {
+    "tool_success": "exit zero, all assertions pass, and one JSON outcome is retained",
+    "semantic_success": "the source exposes the predecessor contract's explicit field-complete encoding shape",
+    "unknown": "the tool succeeds but one or more semantic-success obligations is absent",
+    "refusal": "the pinned source hash or source structure differs"
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "candidate_or_node_limit": 100000,
+    "executions": 1,
+    "implementation_correction_replays_this_round": 0,
+    "address_space_limit": "not installed; supervisor timeout only"
+  }
+}
