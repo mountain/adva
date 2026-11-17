@@ -1,0 +1,139 @@
+{
+  "claim_boundaries": {
+    "arithmetic_universality": false,
+    "external_reference_imported": false,
+    "finite_structural_model_only": true,
+    "hypothesized_arithmetic_truth": false,
+    "m6_filler": false,
+    "measured_practical_adoption": false,
+    "native_adapter": false,
+    "research_0090_coverage": false,
+    "research_0092_promotion": false,
+    "semantic_certificate_acceptance": false,
+    "social_trust": false,
+    "word_promoted": false
+  },
+  "comparison": {
+    "carried_reconstructed_invariant_checks": 4096,
+    "evidence_shapes": 2048,
+    "newly_ready_shape_count": 1,
+    "newly_ready_shapes": [
+      2040
+    ],
+    "nodes_per_grammar": 6144,
+    "target_shape": 2040,
+    "three_branch_ready_shape_count": 3,
+    "three_branch_status_counts": {
+      "CertificateObstruction/MissingAuthorityPin": 4,
+      "CertificateObstruction/MissingCarriedFields": 2,
+      "CertificateObstruction/MissingContentDigest": 8,
+      "CertificateObstruction/MissingRecipe": 4,
+      "CertificateObstruction/MissingReconstructionInputs": 2,
+      "CertificateObstruction/MissingReferenceLocator": 16,
+      "CertificateObstruction/MissingRetrievalReceipt": 2,
+      "Refused/CheckerPinMismatch": 1536,
+      "Refused/MixedCustodyShape": 724,
+      "Refused/NoncommutativeOrderMismatch": 768,
+      "Refused/ReferenceDigestMismatch": 1,
+      "Refused/RequestPinMismatch": 3072,
+      "StructurallyReady/CarriedFieldsPresent": 2,
+      "StructurallyReady/ReferencedReceiptPresent": 1,
+      "Unknown/NativeReconstructionNotRun": 2
+    },
+    "three_branch_target_statuses": {
+      "carried": "Refused/MixedCustodyShape",
+      "reconstructed": "Refused/MixedCustodyShape",
+      "referenced": "StructurallyReady/ReferencedReceiptPresent"
+    },
+    "total_nodes": 12288,
+    "two_branch_ready_shape_count": 2,
+    "two_branch_status_counts": {
+      "CertificateObstruction/MissingCarriedFields": 2,
+      "CertificateObstruction/MissingRecipe": 4,
+      "CertificateObstruction/MissingReconstructionInputs": 2,
+      "Refused/CheckerPinMismatch": 1536,
+      "Refused/MixedCustodyShape": 500,
+      "Refused/NoncommutativeOrderMismatch": 768,
+      "Refused/RequestPinMismatch": 3072,
+      "StructurallyReady/CarriedFieldsPresent": 2,
+      "Unknown/NativeReconstructionNotRun": 2,
+      "Unknown/UnexpressedCustodyMode": 256
+    },
+    "two_branch_target_statuses": {
+      "carried": "Refused/MixedCustodyShape",
+      "reconstructed": "Refused/MixedCustodyShape",
+      "reserved-unexpressed": "Unknown/UnexpressedCustodyMode"
+    }
+  },
+  "controls": {
+    "carried_three_branch": "StructurallyReady/CarriedFieldsPresent",
+    "carried_two_branch": "StructurallyReady/CarriedFieldsPresent",
+    "referenced_digest_mismatch": "Refused/ReferenceDigestMismatch",
+    "referenced_missing_authority": "CertificateObstruction/MissingAuthorityPin",
+    "referenced_missing_receipt": "CertificateObstruction/MissingRetrievalReceipt",
+    "target_three_branch": {
+      "carried": "Refused/MixedCustodyShape",
+      "reconstructed": "Refused/MixedCustodyShape",
+      "referenced": "StructurallyReady/ReferencedReceiptPresent"
+    },
+    "target_two_branch": {
+      "carried": "Refused/MixedCustodyShape",
+      "reconstructed": "Refused/MixedCustodyShape",
+      "reserved-unexpressed": "Unknown/UnexpressedCustodyMode"
+    }
+  },
+  "cost": {
+    "evaluation_nodes": 12288,
+    "evaluation_ns": 61091577,
+    "external_fetches": 0,
+    "implementation_correction_replays": 0,
+    "native_executions": 0,
+    "reuse_ns": 7701,
+    "routes": 1,
+    "ru_maxrss_kib": 9344,
+    "serialization_ns": 168493,
+    "serialized_bytes": 5569,
+    "three_branch_bytes": 65,
+    "three_branch_formation_ns": 10172,
+    "two_branch_bytes": 52,
+    "two_branch_formation_ns": 52316,
+    "verification_ns": 25742,
+    "vocabulary_byte_delta": 13,
+    "whole_run_before_serialization_ns": 61253621
+  },
+  "reuse": {
+    "changed_digest": "Refused/ReferenceDigestMismatch",
+    "complete_reference": "StructurallyReady/ReferencedReceiptPresent",
+    "instance": "external TransportCertificate manifest",
+    "missing_authority": "CertificateObstruction/MissingAuthorityPin",
+    "missing_receipt": "CertificateObstruction/MissingRetrievalReceipt"
+  },
+  "schema": "adva.research.referenced-witness-custody.outcome.v0",
+  "status": "PassedFiniteReferencedCustodyNeed",
+  "vocabulary_revision": {
+    "applicability": "witness bytes are held outside the request and are neither carried fields nor reconstructed from a recipe",
+    "expansion": "resolve the pinned locator, verify authority and digest against the receipt, import bytes, then run native semantic validation",
+    "output_relation": "StructurallyReady/ReferencedReceiptPresent with semantic import still residual",
+    "previous_values": [
+      "carried",
+      "reconstructed"
+    ],
+    "referenced_input": "locator, content digest, authority pin, retrieval receipt, request/checker pins, preserved order",
+    "refusal_conditions": [
+      "custody members mixed",
+      "locator, digest, authority pin, or receipt absent",
+      "retrieved digest mismatches",
+      "request/checker pin mismatch",
+      "noncommutative order changed"
+    ],
+    "residual": "no network fetch, external byte import, or native certificate validation was executed",
+    "revised_values": [
+      "carried",
+      "reconstructed",
+      "referenced"
+    ],
+    "state": "Proposed",
+    "witness": "equal-budget 12,288-node comparison and fresh external TransportCertificate reuse",
+    "word": "witness-custody mode"
+  }
+}
