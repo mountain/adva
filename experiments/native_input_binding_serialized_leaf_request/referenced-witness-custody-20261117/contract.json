@@ -1,0 +1,49 @@
+{
+  "schema": "adva.research.referenced-witness-custody.contract.v0",
+  "date": "2026-11-17",
+  "question": "Within one frozen finite evidence universe and equal evaluation budgets, does adding a referenced branch to the Proposed witness-custody mode express a structurally complete external-reference witness that carried/reconstructed alone cannot express?",
+  "object": {
+    "grammars": {
+      "two_branch": ["carried", "reconstructed", "reserved-unexpressed"],
+      "three_branch": ["carried", "reconstructed", "referenced"]
+    },
+    "evidence_bits": [
+      "carried_fields_complete",
+      "recipe_present",
+      "reconstruction_inputs_present",
+      "reference_locator_present",
+      "content_digest_present",
+      "authority_pin_present",
+      "retrieval_receipt_present",
+      "request_pin_matches",
+      "checker_pin_matches",
+      "noncommutative_order_preserved",
+      "reference_digest_matches"
+    ]
+  },
+  "types": {
+    "evidence_shape": "11-bit record",
+    "custody_branch": "carried | reconstructed | referenced",
+    "result": "StructurallyReady | Unknown | CertificateObstruction | Refused"
+  },
+  "quantifiers": "For each grammar, evaluate exactly three branch slots against all 2^11 evidence shapes: 6,144 nodes per grammar and 12,288 total. Preserve carried/reconstructed classifications and test one fresh external TransportCertificate instance.",
+  "arithmetic_domain": "Opaque exact identifiers and digests only. No additive-zero, multiplicative-unit, quotient, inverse, commutation, or M6 calculation is performed; order is a Boolean preservation obligation.",
+  "candidate_grammar": {
+    "existing_proposed_word": "witness-custody mode",
+    "tested_revision": "carried | reconstructed | referenced",
+    "referenced": "no carried fields or reconstruction members; locator, digest, authority pin and retrieval receipt are present, and the retrieved digest matches"
+  },
+  "evaluation": {
+    "success": "under equal 6,144-node budgets, carried/reconstructed behavior is invariant; the complete external-reference shape is not structurally ready in the two-branch grammar and is uniquely structurally ready under referenced; refusal controls and fresh reuse pass",
+    "refusal": "mixed custody, missing reference member, digest mismatch, pin mismatch, or altered order",
+    "claim_boundary": "finite structural expressivity only; no fetch, native import, semantic certificate validation, universality, trust, or word promotion"
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "candidate_or_node_limit": 100000,
+    "evaluation_nodes": 12288,
+    "implementation_correction_replays": 0,
+    "address_space_limit": "not installed; peak RSS measured"
+  }
+}
