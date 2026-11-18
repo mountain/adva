@@ -1,0 +1,79 @@
+{
+  "schema": "adva.research.reference-handoff-receipt.contract.v0",
+  "date": "2026-11-18",
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "predecessor": {
+    "pr": 234,
+    "head_commit": "54a6d79bf4da7558ae460f034364d39b3f6e8e05",
+    "status": "PassedFiniteReferencedCustodyNeed",
+    "outcome_sha256": "b97456304cfaa4486e20e225f334572e859081711420cdf0fe4619094d063e43"
+  },
+  "question": "Can a pinned locator, authority tuple and content digest produce a replayable receipt for the exact bytes expected at one existing native consumer boundary, while successful byte retrieval remains distinct from native semantic acceptance?",
+  "objects": {
+    "reference_locator": {
+      "scheme": "git-blob",
+      "repository": "mountain/adva",
+      "commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+      "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+      "git_blob_sha1": "c36ccf64108cce740f36a2c2d56765dacbe9318f"
+    },
+    "content_digest": {
+      "algorithm": "sha256",
+      "value": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+      "bytes": 4464
+    },
+    "native_boundary": {
+      "path": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+      "git_blob_sha1": "c7683e2eae755eb6e7d77672e166fc6dd22928d5",
+      "source_sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+      "entry_test": "opaque_consumer_accepts_only_the_current_fixture",
+      "path_environment": "ADVA_SERIALIZED_LEAF_REQUEST_PATH",
+      "byte_budget": 65536,
+      "work_budget": 512
+    },
+    "local_transport": "base64 packaging of the exact pinned fixture bytes"
+  },
+  "types": {
+    "authority_pin": "exact (repository, commit, path, git_blob_sha1) tuple",
+    "retrieval_receipt": "locator, authority pin, expected and observed SHA-256, byte count, byte budget and retrieval medium",
+    "native_handoff": "receipt-bound bytes offered to the pinned Rust consumer; native outcome is a separate field"
+  },
+  "quantifiers": {
+    "route": "one fixed resolver over five declared instances",
+    "instances": [
+      "canonical matching reference",
+      "canonical wrong authority",
+      "canonical wrong digest",
+      "canonical byte-budget refusal",
+      "fresh synthetic payload reuse"
+    ],
+    "receipt_controls": [
+      "valid receipt",
+      "missing receipt",
+      "altered receipt digest"
+    ],
+    "source_surface": "all declared native-boundary source patterns must be present in the pinned source"
+  },
+  "arithmetic_domain": "empty; additive zero and multiplicative unity are neither identified nor evaluated",
+  "candidate_grammar": {
+    "word": "reference-handoff receipt",
+    "state": "Proposed",
+    "baseline": "raw bytes or digest without authority and retrieval history",
+    "explicit": "receipt-bound bytes with locator, authority, digest, size and budget"
+  },
+  "evaluation": {
+    "success": "exact pinned bytes are retrieved, controls refuse distinctly, a fresh payload reuses the resolver, and the native outcome is not inferred when the Rust toolchain is unavailable",
+    "refusal": "authority mismatch, content digest mismatch, byte budget exhaustion, missing receipt or altered receipt",
+    "residual": "native Rust execution and semantic certificate acceptance remain separate"
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "candidate_or_node_limit": 100000,
+    "counted_units": 12,
+    "planned_implementation_correction_replays": 0,
+    "maximum_implementation_correction_replays": 1,
+    "external_network_fetches_during_execution": 0,
+    "address_space_limit": "not installed; peak RSS measured"
+  }
+}
