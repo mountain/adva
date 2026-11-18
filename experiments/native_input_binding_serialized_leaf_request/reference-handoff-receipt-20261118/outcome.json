@@ -1,0 +1,115 @@
+{
+  "byte_retrieval_result": "PassedBoundedReferenceRetrieval",
+  "claim_boundaries": {
+    "arithmetic_universality": false,
+    "finite_receipt_checks_only": true,
+    "hypothesized_arithmetic_truth": false,
+    "m6_filler": false,
+    "measured_practical_adoption": false,
+    "native_consumer_executed": false,
+    "research_0090_coverage": false,
+    "research_0092_promotion": false,
+    "semantic_certificate_accepted": false,
+    "social_trust": false,
+    "three_custody_modes_exhaustive": false,
+    "word_promoted": false
+  },
+  "comparison": {
+    "baseline_bytes": 96,
+    "baseline_formation_ns": 7051,
+    "claim": "the explicit form carries authority and retrieval history that the byte-only form omits; no global expressivity or efficiency theorem is claimed",
+    "explicit_formation_ns": 8924,
+    "explicit_receipt_bytes": 699,
+    "formation_byte_delta": 603
+  },
+  "cost": {
+    "consumer_source_read_ns": 16615,
+    "counted_units": 12,
+    "evaluation_and_verification_ns": 235134,
+    "external_network_fetches_during_execution": 0,
+    "fixture_decode_and_read_ns": 42023,
+    "implementation_correction_replays": 1,
+    "native_executions": 0,
+    "routes": 1,
+    "ru_maxrss_kib": 10368,
+    "serialization_ns": 117487,
+    "serialized_bytes": 4853,
+    "whole_run_before_serialization_ns": 406783
+  },
+  "fresh_receipt": {
+    "byte_budget": 1024,
+    "bytes": 70,
+    "expected_sha256": "a7cc6b111efb6a85f2e75d40652e6975d222221eff4f3063b8d279333f87cd28",
+    "locator": {
+      "name": "fresh-reference-control",
+      "scheme": "synthetic",
+      "version": 0
+    },
+    "observed_sha256": "a7cc6b111efb6a85f2e75d40652e6975d222221eff4f3063b8d279333f87cd28",
+    "retrieval_medium": "synthetic-in-memory",
+    "schema": "adva.research.reference-handoff-receipt.v0"
+  },
+  "instances": {
+    "canonical_byte_budget": "Refused/ByteBudgetExceeded",
+    "canonical_matching": "Retrieved/ByteExact",
+    "canonical_wrong_authority": "Refused/AuthorityPinMismatch",
+    "canonical_wrong_digest": "Refused/ContentDigestMismatch",
+    "fresh_reuse": "Retrieved/ByteExact"
+  },
+  "native_consumer_result": "NotRun/RustToolchainUnavailable",
+  "proposed_word": {
+    "applicability": "the witness-custody mode is referenced and the receiver must hand external bytes to a separately pinned consumer",
+    "expansion": "resolve bounded bytes, compare the exact authority tuple, check length and digest, serialize the receipt with the bytes, then invoke the separately pinned native consumer",
+    "input": "pinned locator and authority, expected digest, byte budget and retrieved bytes",
+    "output_relation": "Retrieved/ByteExact followed by StructurallyReady/ReceiptBoundBytes",
+    "refusal_conditions": [
+      "authority tuple differs",
+      "byte budget is exceeded",
+      "content digest differs",
+      "receipt is missing",
+      "receipt digest or length differs"
+    ],
+    "residual": "cargo/rustc are unavailable here, so native consumer execution and semantic certificate acceptance were not performed",
+    "role": "bind exact retrieved bytes to a locator, authority tuple, digest and bounded retrieval event without granting semantic acceptance",
+    "state": "Proposed",
+    "witness": "five fixed instances, three receipt controls, a pinned Rust source-surface check and one fresh payload reuse",
+    "word": "reference-handoff receipt"
+  },
+  "receipt": {
+    "byte_budget": 65536,
+    "bytes": 4464,
+    "expected_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "locator": {
+      "commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+      "git_blob_sha1": "c36ccf64108cce740f36a2c2d56765dacbe9318f",
+      "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+      "repository": "mountain/adva",
+      "scheme": "git-blob"
+    },
+    "observed_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "retrieval_medium": "checked-in-base64-mirror",
+    "schema": "adva.research.reference-handoff-receipt.v0"
+  },
+  "receipt_controls": {
+    "altered_digest": "Refused/ReceiptDigestMismatch",
+    "fresh": "StructurallyReady/ReceiptBoundBytes",
+    "missing": "CertificateObstruction/MissingRetrievalReceipt",
+    "valid": "StructurallyReady/ReceiptBoundBytes"
+  },
+  "schema": "adva.research.reference-handoff-receipt.outcome.v0",
+  "source_surface": {
+    "patterns": {
+      "calls_receiver_with_frozen_budgets": true,
+      "matching_case_names_native_acceptance": true,
+      "reads_path_from_environment": true,
+      "reads_utf8_file": true,
+      "requires_canonical_bytes": true
+    },
+    "source_sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3"
+  },
+  "status": "RetrievedExactBytes/NativeAcceptanceUnknown",
+  "toolchain": {
+    "cargo": null,
+    "rustc": null
+  }
+}
