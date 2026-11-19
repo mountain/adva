@@ -1,0 +1,101 @@
+{
+  "checks": {
+    "all_expected": true,
+    "digest_projection_false_coalescences": 6,
+    "never_current_acceptance": true
+  },
+  "claim": "The canonical retrieval receipt joins to one pinned historical native success; this is not current execution or current acceptance.",
+  "claim_boundary": "Finite evidence plumbing only. Additive-zero and multiplicative-unit normalization are untouched; no arithmetic theorem or global universality claim is made.",
+  "cost": {
+    "construction_ns": 162690,
+    "counted_cases": 10,
+    "evaluation_and_verification_ns": 239590,
+    "implementation_correction_replays": 1,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 10112,
+    "search_candidates": 0,
+    "serialization_ns": 181880,
+    "serialized_bytes": 4426
+  },
+  "fresh_reuse": {
+    "bytes": 51,
+    "negative": "Refused/WorkflowNotSuccessful",
+    "positive": "HistoricallyJoined/NativeAcceptedAtPinnedRun",
+    "sha256": "4c408e80e6cc7b7892fc994190df265bddc778f72e370b49e10d7d8743532d5a"
+  },
+  "instances": [
+    {
+      "coordinate_join": "HistoricallyJoined/NativeAcceptedAtPinnedRun",
+      "digest_only": "DigestProjection/Match",
+      "name": "exact"
+    },
+    {
+      "coordinate_join": "Refused/FixtureDigestMismatch",
+      "digest_only": "DigestProjection/Mismatch",
+      "name": "wrong-fixture-digest"
+    },
+    {
+      "coordinate_join": "Refused/NativeConsumerPinMismatch",
+      "digest_only": "DigestProjection/Match",
+      "name": "wrong-consumer-digest"
+    },
+    {
+      "coordinate_join": "Refused/ByteBudgetMismatch",
+      "digest_only": "DigestProjection/Match",
+      "name": "wrong-byte-budget"
+    },
+    {
+      "coordinate_join": "Refused/WorkflowNotSuccessful",
+      "digest_only": "DigestProjection/Match",
+      "name": "failed-workflow"
+    },
+    {
+      "coordinate_join": "Refused/CaseMismatch",
+      "digest_only": "DigestProjection/Match",
+      "name": "wrong-case"
+    },
+    {
+      "coordinate_join": "Refused/NativeOutcomeMismatch",
+      "digest_only": "DigestProjection/Match",
+      "name": "wrong-native-outcome"
+    },
+    {
+      "coordinate_join": "CertificateObstruction/MissingRetrievalReceipt",
+      "digest_only": "DigestProjection/MissingSide",
+      "name": "missing-reference"
+    },
+    {
+      "coordinate_join": "HistoricallyJoined/NativeAcceptedAtPinnedRun",
+      "digest_only": "DigestProjection/Match",
+      "name": "fresh-exact-reuse"
+    },
+    {
+      "coordinate_join": "Refused/WorkflowNotSuccessful",
+      "digest_only": "DigestProjection/Match",
+      "name": "fresh-failed-run-reuse"
+    }
+  ],
+  "proposed_word": {
+    "applicability": "both records expose the exact shared fixture coordinates and the native record exposes a complete consumer and successful run coordinate",
+    "counterexample": "the same fixture digest paired with a failed workflow remains DigestProjection/Match but is Refused/WorkflowNotSuccessful",
+    "expansion": "compare the six shared retrieval/fixture coordinates, verify the independently pinned consumer and its byte/work budgets, verify run/job success and the matching-case native outcome, then emit only the pinned historical relation",
+    "input": "reference-handoff receipt plus pinned consumer, budgets, workflow run/job, case and native outcome",
+    "output_relation": "HistoricallyJoined/NativeAcceptedAtPinnedRun or a coordinate-specific refusal/obstruction",
+    "refusal_conditions": [
+      "repository, fixture path/blob/length/digest, or byte budget differs",
+      "retrieval is not exact",
+      "native evidence lacks a complete consumer or workflow coordinate",
+      "workflow conclusion is not success",
+      "case or consumer/native outcome differs",
+      "either evidence side is missing"
+    ],
+    "replay": "python3 run.py",
+    "residual": "no current Rust execution, no temporal freshness theorem, no independent implementation, no semantic ResearchCertificate acceptance, no 0090 coverage, no 0092 promotion and no M6 filler",
+    "role": "join an exact retrieval receipt to a separately pinned successful native run without upgrading historical evidence to current acceptance",
+    "state": "Proposed",
+    "witness": "eight canonical fixed cases plus one fresh positive and one fresh failed-run reuse",
+    "word": "historical acceptance join"
+  },
+  "schema": "adva.research.historical-acceptance-join.outcome.v0",
+  "status": "PassedBoundedHistoricalJoin"
+}
