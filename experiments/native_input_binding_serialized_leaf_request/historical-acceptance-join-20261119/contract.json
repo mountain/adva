@@ -1,0 +1,34 @@
+{
+  "schema": "adva.research.historical-acceptance-join.contract.v0",
+  "question": "Can a bounded reference-handoff receipt be joined to an already completed native workflow without turning historical acceptance into current acceptance?",
+  "objects": [
+    "reference-handoff receipt",
+    "pinned native workflow evidence",
+    "historical acceptance relation"
+  ],
+  "types": {
+    "retrieval": "exact external bytes with authority, length, digest, and byte budget",
+    "native": "pinned consumer source, byte/work budgets, run/job conclusion, case, and native outcome",
+    "result": "HistoricallyJoined | Refused | CertificateObstruction"
+  },
+  "quantifier": "all eight fixed canonical cases plus one fresh positive and one fresh negative reuse",
+  "arithmetic_domain": "finite nonnegative byte/work counts and exact string/digest equality only",
+  "candidate_grammar": [
+    "digest-only projection",
+    "historical acceptance join"
+  ],
+  "evaluation": [
+    "the exact pair joins",
+    "each changed coordinate is refused by a specific reason",
+    "missing evidence remains an obstruction",
+    "a fresh exact pair reuses the relation",
+    "the result never says AcceptedNow"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_cases": 10,
+    "max_wall_seconds": 30,
+    "max_candidates_or_nodes": 100000,
+    "implementation_correction_replays": 0
+  }
+}
