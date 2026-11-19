@@ -1,0 +1,51 @@
+{
+  "schema": "adva.research.pinned-native-workflow-evidence.v0",
+  "repository": "mountain/adva",
+  "commit": "0d17fa7ca8fa240c3c478840975f0b7a241170b7",
+  "fixture": {
+    "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+    "git_blob_sha1": "c36ccf64108cce740f36a2c2d56765dacbe9318f",
+    "bytes": 4464,
+    "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d"
+  },
+  "consumer": {
+    "path": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+    "git_blob_sha1": "c7683e2eae755eb6e7d77672e166fc6dd22928d5",
+    "bytes": 4836,
+    "sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "byte_budget": 65536,
+    "work_budget": 512
+  },
+  "verified_pins": {
+    "fixture_git_blob_sha1": "c36ccf64108cce740f36a2c2d56765dacbe9318f",
+    "fixture_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "consumer_path": "experiments/native_input_binding_certificate/native_input_binding_serialized_consumer.rs",
+    "consumer_sha256": "ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "consumer_byte_budget": 65536,
+    "consumer_work_budget": 512
+  },
+  "workflow": {
+    "name": "Accepted opaque fixture successor",
+    "run_id": 41854211677,
+    "job_id": 126658300901,
+    "job_name": "accepted-then-native-successor",
+    "conclusion": "success",
+    "url": "https://github.com/mountain/adva/actions/runs/41854211677"
+  },
+  "case": "matching",
+  "consumer_outcome": "AcceptedCurrentFixture",
+  "native_outcome": "SuccessorVerified",
+  "log_witness": [
+    "PIN canonical request bytes=4464 sha256=d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+    "PIN consumer bytes=4836 sha256=ee07ea03ba1d9f451186a5e8a5eb3356da11d20faaa09e113381f958cfd4e1d3",
+    "CONSUMER_CASE=matching",
+    "opaque_consumer_accepts_only_the_current_fixture ... ok",
+    "accepted_opaque_fixture_completes_the_native_successor ... ok",
+    "SUCCESSOR_CASE=matching outcome=SuccessorVerified"
+  ],
+  "source_record": {
+    "path": "experiments/native_input_binding_serialized_leaf_request/accepted-fixture-successor-outcome-20261102.json",
+    "git_blob_sha1": "ad81ad11cf30cdce67088f4a964891e77b487478",
+    "status": "FiniteWorkflowGatePassed"
+  }
+}
