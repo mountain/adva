@@ -1,0 +1,166 @@
+{
+  "checks": {
+    "all_expected": true,
+    "canonical_commit_changed_but_frontier_empty": true,
+    "false_coalescences_under_historical_only": 7,
+    "never_current_acceptance": true
+  },
+  "claim": "Current main preserves the pinned fixture, consumer, workflow and budgets of the historical native run, so its replay-obligation frontier is empty; current native acceptance remains NotEstablished.",
+  "claim_boundary": "Finite evidence plumbing only. Additive-zero and multiplicative-unit normalization are untouched and their histories remain separate.",
+  "comparison": {
+    "baseline_bytes": 88,
+    "baseline_formation_ns": 42860,
+    "claim_boundary": "The explicit form distinguishes these ten cases; no global expressivity or efficiency theorem is claimed.",
+    "explicit_bytes": 1013,
+    "explicit_formation_ns": 44308,
+    "formation_byte_delta": 925
+  },
+  "cost": {
+    "construction_ns": 845351,
+    "counted_cases": 10,
+    "evaluation_and_verification_ns": 239146,
+    "implementation_correction_replays": 0,
+    "native_executions": 0,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 10112,
+    "search_candidates": 0,
+    "serialization_ns": 188444,
+    "serialized_bytes": 6555
+  },
+  "instances": [
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [],
+        "snapshot_commit_changed": true,
+        "status": "ContinuityChecked/HistoricalEvidenceReusable"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "canonical-current"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "fixture.git_blob_sha1"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "fixture-drift"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "consumer.git_blob_sha1"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "consumer-drift"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "workflow.git_blob_sha1"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "workflow-drift"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "consumer.byte_budget"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "byte-budget-drift"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "consumer.work_budget"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "work-budget-drift"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "current_snapshot"
+        ],
+        "status": "CertificateObstruction/MissingCurrentSnapshot"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "missing-current"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [],
+        "status": "Refused/HistoricalAcceptanceInvalid"
+      },
+      "historical_only": "HistoricalOnly/Invalid",
+      "name": "failed-historical"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [],
+        "snapshot_commit_changed": true,
+        "status": "ContinuityChecked/HistoricalEvidenceReusable"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "fresh-exact"
+    },
+    {
+      "explicit_frontier": {
+        "current_acceptance": "NotEstablished",
+        "frontier": [
+          "consumer.git_blob_sha1",
+          "workflow.git_blob_sha1"
+        ],
+        "snapshot_commit_changed": true,
+        "status": "ReplayRequired/DependencyDrift"
+      },
+      "historical_only": "HistoricalOnly/AcceptedAtPinnedRun",
+      "name": "fresh-multi-drift"
+    }
+  ],
+  "proposed_word": {
+    "applicability": "historical acceptance is valid and both records use the same repository and declared dependency family",
+    "counterexample": "main commit differs from the historical run commit while all eleven dependency coordinates agree; forcing replay from commit inequality alone would be overbroad",
+    "expansion": "verify historical success, compare the eleven declared dependency coordinates in order, retain every differing coordinate in the frontier, and keep current acceptance NotEstablished",
+    "input": "pinned historical native evidence and a current snapshot of fixture, consumer, workflow and byte/work budgets",
+    "output_relation": "ContinuityChecked/HistoricalEvidenceReusable with an empty frontier, ReplayRequired/DependencyDrift with an ordered frontier, or a refusal/obstruction",
+    "refusal_conditions": [
+      "historical workflow, case, consumer outcome or native outcome is not successful",
+      "repository differs",
+      "current snapshot is missing"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "an empty frontier proves only pin continuity, not current execution, environment continuity, semantic certificate acceptance, social trust, 0090 coverage, 0092 promotion, arithmetic universality or an M6 filler",
+    "role": "name the exact finite dependency coordinates that must be revalidated or replayed before historical acceptance can inform a changed current snapshot",
+    "state": "Proposed",
+    "witness": "eight canonical controls plus one fresh exact and one fresh two-coordinate drift reuse",
+    "word": "replay-obligation frontier"
+  },
+  "public_scope": "Only public artifact coordinates are serialized; motivations or private narratives for earlier isolation are deliberately outside this record.",
+  "schema": "adva.research.replay-obligation-frontier.outcome.v0",
+  "status": "PassedBoundedReplayObligationFrontier"
+}
