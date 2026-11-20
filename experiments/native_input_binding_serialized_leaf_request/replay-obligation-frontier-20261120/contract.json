@@ -1,0 +1,36 @@
+{
+  "schema": "adva.research.replay-obligation-frontier.contract.v0",
+  "question": "Which current dependency changes require replay before pinned historical native acceptance can inform later work, without claiming current acceptance?",
+  "objects": [
+    "historical acceptance join evidence",
+    "current dependency snapshot",
+    "replay-obligation frontier"
+  ],
+  "types": {
+    "historical": "pinned successful run with fixture, consumer, workflow and budget coordinates",
+    "current": "current ref snapshot of the same dependency coordinate family",
+    "frontier": "finite ordered list of changed dependency coordinates",
+    "result": "ContinuityChecked | ReplayRequired | Refused | CertificateObstruction"
+  },
+  "quantifier": "all eight fixed canonical controls plus one fresh exact and one fresh multi-drift reuse",
+  "arithmetic_domain": "finite nonnegative byte/work budgets and exact string/blob equality only",
+  "candidate_grammar": [
+    "historical-success-only projection",
+    "explicit replay-obligation frontier"
+  ],
+  "evaluation": [
+    "an unrelated commit change with identical dependency pins leaves the frontier empty",
+    "fixture, consumer, workflow and budget drift are reported separately",
+    "missing current evidence remains an obstruction",
+    "invalid historical success is refused",
+    "a fresh dependency family reuses the relation",
+    "no result says AcceptedNow"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_cases": 10,
+    "max_wall_seconds": 30,
+    "max_candidates_or_nodes": 100000,
+    "implementation_correction_replays": 1
+  }
+}
