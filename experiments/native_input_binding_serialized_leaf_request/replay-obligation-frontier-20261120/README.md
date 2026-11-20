@@ -23,7 +23,7 @@ Research 0090 still requires complete coverage before exact closure. Research 00
 
 The historical record is [`historical-evidence.json`](historical-evidence.json); the current record is [`current-snapshot.json`](current-snapshot.json).
 
-The historical workflow ran at commit `0d17fa7ca8fa240c3c478840975f0b7a241170b7`; current `main` is a different commit. Nevertheless, all eleven declared dependency coordinates agree:
+The historical workflow ran at commit `0d17fa7c7bab22a07c5ea1b919532ec32c034e46`; current `main` is a different commit. Nevertheless, all eleven declared dependency coordinates agree:
 
 - fixture path, git blob, byte count and SHA-256;
 - consumer path, git blob and SHA-256;
@@ -109,3 +109,7 @@ The machine-readable result is [`outcome.json`](outcome.json).
 This is finite evidence plumbing. Additive-zero and multiplicative-unit normalization are untouched and their domains and histories remain separate. Local image equality does not produce an M6 filler.
 
 The minimum continuation is to add one environment/toolchain coordinate only if a downstream consumer actually needs a stronger reuse policy. Otherwise the empty dependency frontier should remain a historical-context result, not trigger another native rerun or a claim of current acceptance.
+
+### Historical source verification
+
+The evidence `commit` is the [PR head recorded by Actions](https://github.com/mountain/adva/commit/0d17fa7c7bab22a07c5ea1b919532ec32c034e46). The [successful job](https://github.com/mountain/adva/actions/runs/41854211677/job/126658300901) checked out the [test merge commit](https://github.com/mountain/adva/commit/d80a7d46f06cd1ab1c4ec791f9424b6a83b126bc). The fixture, consumer and workflow blobs match at both commits. The November 2 source record documents an earlier run. Job 126658300901 is the source for the matching native result recorded here.

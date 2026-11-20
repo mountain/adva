@@ -10,7 +10,7 @@ The frozen objects, types, quantifier, arithmetic domain, grammars, criteria, an
 
 The latest `main` inspected for this run was `8fc38427f2a479b4e8e84802e1873cff14d54566`.
 
-- Merged finite evidence: PR #231's accepted-fixture successor gate. Its final head `0d17fa7ca8fa240c3c478840975f0b7a241170b7` has successful workflow run [41854211677](https://github.com/mountain/adva/actions/runs/41854211677), job `126658300901`. The job verified the exact fixture and consumer pins, compiled both stages, accepted the matching case, and reported `SuccessorVerified`. The source record remains `FiniteWorkflowGatePassed`, not a general theorem.
+- Merged finite evidence: PR #231's accepted-fixture successor gate. Its final head `0d17fa7c7bab22a07c5ea1b919532ec32c034e46` has successful workflow run [41854211677](https://github.com/mountain/adva/actions/runs/41854211677), job `126658300901`. The job verified the exact fixture and consumer pins, compiled both stages, accepted the matching case, and reported `SuccessorVerified`. The source record remains `FiniteWorkflowGatePassed`, not a general theorem.
 - Unmerged proposal: the 2026-11-18 `reference-handoff receipt` is on draft PR #234. It retrieved exact bytes but did not execute Rust locally.
 - Proved mathematics: none added here.
 - This record: one finite join experiment over ten fixed cases.
@@ -85,3 +85,7 @@ Observed final replay:
 - `/usr/bin/time` was unavailable, so no independent process-tree memory measurement was obtained. File size is not used as a memory proxy.
 
 The machine-readable result is [`outcome.json`](outcome.json).
+
+### Historical source verification
+
+The evidence `commit` is the [PR head recorded by Actions](https://github.com/mountain/adva/commit/0d17fa7c7bab22a07c5ea1b919532ec32c034e46). The [successful job](https://github.com/mountain/adva/actions/runs/41854211677/job/126658300901) checked out the [test merge commit](https://github.com/mountain/adva/commit/d80a7d46f06cd1ab1c4ec791f9424b6a83b126bc). The fixture, consumer and workflow blobs match at both commits. The November 2 source record documents an earlier run. Job 126658300901 is the source for the matching native result recorded here.
