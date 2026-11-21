@@ -1,0 +1,55 @@
+{
+  "schema": "adva.research.witness-custody-mode.contract.v0",
+  "date": "2026-11-16",
+  "question": "Within a frozen finite carrier/reconstruction model, does an explicit witness-custody mode separate structural obligations that are ambiguous when the mode is projected away?",
+  "object": {
+    "certificate_fields": [
+      "source_snapshot",
+      "residual_snapshot",
+      "static_value",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "occurrence_map",
+      "forgotten_static_occurrences",
+      "forgotten_static_history",
+      "binding_node"
+    ],
+    "custody_modes": ["omitted", "carried", "reconstructed"],
+    "auxiliary_bits": [
+      "recipe_present",
+      "reconstruction_inputs_present",
+      "request_pin_matches",
+      "checker_pin_matches",
+      "noncommutative_order_preserved"
+    ]
+  },
+  "types": {
+    "field_mask": "10-bit subset of carried certificate fields",
+    "mode": "omitted | carried | reconstructed",
+    "pins_and_order": "Boolean structural guards",
+    "result": "StructurallyReady | Unknown | CertificateObstruction | Refused"
+  },
+  "quantifiers": "Exhaust all 3 * 2^10 * 2^5 = 98,304 frozen records. Compare equivalence classes after projecting mode away with classes retaining mode. Then reuse the same relation on one fresh three-field TransportCertificate instance.",
+  "arithmetic_domain": "Rational is opaque. No additive-zero, multiplicative-unit, quotient, inverse, commutation, or M6 calculation is performed. Noncommutative order is only a preserved Boolean obligation.",
+  "candidate_grammar": {
+    "proposed_word": "witness-custody mode",
+    "carried": "all declared fields are present; reconstruction recipe/input members are absent",
+    "reconstructed": "carried fields are absent; pinned recipe and reconstruction inputs are present",
+    "omitted": "the document does not say which obligation family applies"
+  },
+  "evaluation": {
+    "success": "the mode-free projection has at least one mixed-status equivalence class, retaining mode has none, all declared refusal controls pass, and the relation reuses on the fresh instance",
+    "refusal": "request pin, checker pin, noncommutative order, or exclusive custody shape fails",
+    "unknown": "mode is omitted or native reconstruction is structurally prepared but not executed",
+    "claim_boundary": "structural discrimination only; no native adapter, semantic certificate acceptance, universality, trust, or word promotion"
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "candidate_or_node_limit": 100000,
+    "candidate_count": 98304,
+    "implementation_correction_replays": 0,
+    "address_space_limit": "not installed; peak RSS measured"
+  }
+}

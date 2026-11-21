@@ -1,0 +1,53 @@
+{
+  "schema": "adva.research.native-certificate-encoding-audit.contract.v0",
+  "date": "2026-11-14",
+  "question": "Does the pinned research-local Rust source expose an explicit, field-complete, replayable encoding and reconstruction route for ResearchCertificate, rather than only a request projection checked against a separately supplied certificate?",
+  "object": {
+    "repository": "mountain/adva",
+    "branch_head": "d48b385483888565c922770026f1974dcd1ae702",
+    "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+    "sha256": "391c6eef4df0f63a7cbd8d19dbc0967fd717ef26b3a70342aaa19c5e4c90c8bb"
+  },
+  "types": {
+    "certificate": "ResearchCertificate with the ten declared Rust fields",
+    "wire_request": "the exact five-key JSON object accepted by receive_serialized_leaf_request",
+    "result": "PassedExplicitFieldCompleteEncodingShape or Unknown/NativeEncodingAbsentAtPinnedSourceSurface"
+  },
+  "quantifiers": "For the entire pinned 1,389-line Rust file, inspect the unique ResearchCertificate declaration, the unique serialized_leaf_request function, the unique receive_serialized_leaf_request function, and explicit codec markers in that same file. No repository-wide absence claim is made.",
+  "arithmetic_domain": "Rational is treated as an opaque exact field type. No additive-zero or multiplicative-unit normalization is performed; no quotient, inverse, commutation, or M6 claim is in scope.",
+  "candidate_grammar": {
+    "explicit_codec_markers": [
+      "Serialize and Deserialize derives or explicit implementations",
+      "all ten certificate field names at the accepted wire root",
+      "a reconstruction expression for ResearchCertificate",
+      "no separately supplied ResearchCertificate parameter in the wire receiver"
+    ],
+    "request_projection_markers": [
+      "the five accepted request-root keys",
+      "one dynamic occurrence pair",
+      "a ResearchCertificate parameter supplied separately from encoded bytes"
+    ]
+  },
+  "evaluation": {
+    "success": "all ten field names are explicit wire members, both codec directions are declared, reconstruction is present, and the receiver does not require an external certificate",
+    "unknown": "one or more success obligations is absent on the pinned source surface",
+    "refusal": "source hash, declaration uniqueness, field list, accepted request-root keys, or expected receiver structure differs from the frozen contract"
+  },
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "candidate_or_node_limit": 100000,
+    "selected_sources": 1,
+    "structural_controls": 1,
+    "implementation_correction_replays": 1,
+    "address_space_limit": "not installed; supervisor timeout only"
+  },
+  "correction_record": "The first invocation refused before analysis because a prior checker-source SHA was mistakenly used for this Rust source. The sole correction changed only that pin and the line parser needed for comma-bearing Rust types; the research question, source bytes, quantifier, success criteria and budgets were unchanged.",
+  "boundaries": [
+    "A missing codec on this one research file is not a theorem that no adapter can exist elsewhere.",
+    "Diagram JSON equality does not reconstruct forgotten history, event mapping, or binding-node history.",
+    "Local image equality does not produce an M6 filler.",
+    "Research 0090 coverage remains open and Research 0092 word promotion remains blocked.",
+    "Arithmetic universality and hypothesized arithmetic truth remain Proposed."
+  ]
+}

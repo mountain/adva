@@ -1,0 +1,106 @@
+{
+  "claim_boundaries": {
+    "arithmetic_universality": false,
+    "hypothesized_arithmetic_truth": false,
+    "m6_filler": false,
+    "measured_practical_adoption": false,
+    "native_adapter": false,
+    "research_0090_coverage": false,
+    "research_0092_promotion": false,
+    "semantic_certificate_acceptance": false,
+    "social_trust": false,
+    "structural_model_only": true,
+    "word_promoted": false
+  },
+  "comparison": {
+    "candidate_count": 98304,
+    "explicit_mode_classes": 98304,
+    "explicit_mode_mixed_status_classes": 0,
+    "mode_free_mixed_status_classes": 4096,
+    "mode_free_projection_classes": 32768,
+    "representative_mode_free_projection": {
+      "auxiliary": 28,
+      "field_mask": 1023,
+      "statuses": [
+        "Refused/MixedCustodyShape",
+        "StructurallyReady/CarriedFieldsPresent",
+        "Unknown/CustodyModeOmitted"
+      ]
+    },
+    "status_counts": {
+      "CertificateObstruction/IncompleteWitness": 3069,
+      "CertificateObstruction/MissingCarriedFields": 1023,
+      "CertificateObstruction/MissingRecipe": 2,
+      "CertificateObstruction/MissingReconstructionInputs": 1,
+      "Refused/CheckerPinMismatch": 24576,
+      "Refused/MixedCustodyShape": 7164,
+      "Refused/NoncommutativeOrderMismatch": 12288,
+      "Refused/RequestPinMismatch": 49152,
+      "StructurallyReady/CarriedFieldsPresent": 1,
+      "Unknown/CustodyModeOmitted": 1027,
+      "Unknown/NativeReconstructionNotRun": 1
+    }
+  },
+  "controls": {
+    "altered_order": "Refused/NoncommutativeOrderMismatch",
+    "carried_complete": "StructurallyReady/CarriedFieldsPresent",
+    "carried_missing_history": "CertificateObstruction/MissingCarriedFields",
+    "carried_mixed_recipe": "Refused/MixedCustodyShape",
+    "checker_pin_mismatch": "Refused/CheckerPinMismatch",
+    "mode_omitted_complete_fields": "Unknown/CustodyModeOmitted",
+    "reconstructed_missing_recipe": "CertificateObstruction/MissingRecipe",
+    "reconstructed_ready_but_unexecuted": "Unknown/NativeReconstructionNotRun",
+    "request_pin_mismatch": "Refused/RequestPinMismatch"
+  },
+  "cost": {
+    "baseline_bytes": 115,
+    "baseline_formation_ns": 78467,
+    "candidates": 98304,
+    "enumeration_ns": 249640285,
+    "explicit_bytes": 148,
+    "explicit_formation_ns": 12749,
+    "implementation_correction_replays": 0,
+    "native_executions": 0,
+    "reuse_ns": 4026,
+    "routes": 1,
+    "ru_maxrss_kib": 53696,
+    "serialization_ns": 128842,
+    "serialized_bytes": 4235,
+    "verification_ns": 7425738,
+    "whole_run_before_serialization_ns": 257182245,
+    "word_byte_delta": 33
+  },
+  "proposed_word": {
+    "applicability": "a witness may be supplied as fields or produced by a pinned reconstruction route",
+    "expansion": "branch on the tag, replay only that branch's structural checks, then retain semantic/native residuals",
+    "input": "request/checker pins, ordered field carrier or reconstruction recipe/inputs, and an explicit carried|reconstructed tag",
+    "name": "witness-custody mode",
+    "output_relation": "a typed structural status and remaining native validation obligation",
+    "refusal_conditions": [
+      "mode omitted",
+      "carried and reconstructed members mixed",
+      "required carried field absent",
+      "recipe or reconstruction inputs absent",
+      "request/checker pin mismatch",
+      "noncommutative order changed"
+    ],
+    "residual": "no native field codec or reconstruction route was implemented or executed",
+    "role": "select exactly one obligation family before semantic certificate validation",
+    "state": "Proposed",
+    "witness": "98,304-record exhaustive finite comparison plus a fresh three-field reuse"
+  },
+  "reuse": {
+    "altered_order": "Refused/NoncommutativeOrderMismatch",
+    "carried_complete": "StructurallyReady/CarriedFieldsPresent",
+    "carried_missing_history": "CertificateObstruction/MissingCarriedFields",
+    "fields": [
+      "source",
+      "ordered_history",
+      "binding_node"
+    ],
+    "omitted_complete": "Unknown/CustodyModeOmitted",
+    "reconstructed_ready_but_unexecuted": "Unknown/NativeReconstructionNotRun"
+  },
+  "schema": "adva.research.witness-custody-mode.outcome.v0",
+  "status": "PassedFiniteCustodyDiscrimination"
+}

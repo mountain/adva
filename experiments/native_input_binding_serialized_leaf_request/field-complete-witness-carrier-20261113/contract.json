@@ -1,0 +1,84 @@
+{
+  "schema": "adva.research.field-complete-witness-carrier-contract.v1",
+  "date": "2026-11-13",
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "predecessor": {
+    "pr": 234,
+    "head_commit": "c649ce2f8754c8b61a0e58ffbe4d38c897a7bc33",
+    "outcome_sha256": "e495eba33b6de8c2e535c17c40fcbb7f0a445b62b111c81ab1093973b887ae78",
+    "status": "ProjectionUnderdeterminesCertificateWithinFrozenFieldModel"
+  },
+  "question": "Within the frozen ten-obligation dependency model, does a request-bound field-complete carrier separate the one complete certificate obligation assignment from every incomplete assignment, while every one-field omission remains ambiguous?",
+  "objects": {
+    "certificate_dimensions": [
+      "source_snapshot",
+      "residual_snapshot",
+      "static_value",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "occurrence_map",
+      "forgotten_static_occurrences",
+      "forgotten_static_history",
+      "binding_node"
+    ],
+    "instances": [
+      {
+        "id": "canonical-request",
+        "request_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+        "scope": "FrozenCanonicalBytes"
+      },
+      {
+        "id": "fresh-coordinate-reuse",
+        "request_sha256": "3bf179884a940803ad0a72038e2d20873c4501c0915c2360208eec0a27f642ad",
+        "scope": "SyntheticDependencyModelOnly"
+      }
+    ],
+    "checker_source_sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b",
+    "carrier_version": "adva.research.field-complete-witness-carrier.v0-proposed"
+  },
+  "quantifiers": {
+    "per_instance": "all Boolean assignments to the ten frozen certificate obligations",
+    "candidate_count": 1024,
+    "validity": "all ten obligations are true",
+    "request_only_projection": "request coordinate; no certificate obligation field",
+    "complete_carrier_projection": "request and checker pins plus all ten obligation fields"
+  },
+  "controls": [
+    "omit_event_map",
+    "omit_forgotten_static_history",
+    "alter_binding_node",
+    "mismatch_request_pin",
+    "mismatch_checker_pin"
+  ],
+  "success_criteria": [
+    "request-only projection contains both valid and invalid completions",
+    "complete-carrier projection classes are singleton",
+    "every one-field omission leaves one class containing the valid completion and exactly one invalid completion",
+    "all five controls return their predeclared typed result",
+    "the complete comparison is reused on the fresh coordinate"
+  ],
+  "budget": {
+    "routes": 1,
+    "wall_seconds": 30,
+    "cpu_seconds": 10,
+    "address_space_bytes": 268435456,
+    "file_size_bytes": 1048576,
+    "candidate_limit": 100000,
+    "planned_candidates": 2048,
+    "correction_replays": 1,
+    "native_executions": 0
+  },
+  "claim_boundary": {
+    "carrier_status": "ProposedStructuralCarrierOnly",
+    "no_claims": [
+      "native certificate serialization or acceptance",
+      "certificate reconstruction impossibility",
+      "Research 0090 coverage",
+      "Research 0092 vocabulary promotion",
+      "M6 filler or native free/Close",
+      "arithmetic universality or hypothesized arithmetic truth",
+      "authentication, social trust, or measured practical benefit"
+    ]
+  }
+}

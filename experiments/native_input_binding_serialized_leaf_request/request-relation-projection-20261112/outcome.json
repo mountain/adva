@@ -1,0 +1,139 @@
+{
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "cost": {
+    "canonical_request_reads": 1,
+    "correction_replays": 0,
+    "embedded_diagram_json_parses": 0,
+    "evaluation_ns_before_serialization": 7858672,
+    "final_output_bytes": 5507,
+    "input_bytes": 73059,
+    "input_files_read": 4,
+    "measured_payload_bytes": 5390,
+    "measured_payload_serialization_ns": 335831,
+    "native_executions": 0,
+    "output_write_time": "unmeasured",
+    "ru_maxrss_kib": 11264
+  },
+  "finite_model": {
+    "candidate_limit": 100000,
+    "candidates_enumerated": 2048,
+    "dimensions": [
+      "source_snapshot",
+      "residual_snapshot",
+      "static_value",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "occurrence_map",
+      "forgotten_static_occurrences",
+      "forgotten_static_history",
+      "binding_node"
+    ],
+    "instances": [
+      {
+        "candidate_completions": 1024,
+        "distinct_request_projections": 1,
+        "id": "canonical-request",
+        "invalid_completions": 1023,
+        "projection_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+        "scope": "FrozenCanonicalBytes",
+        "valid_and_invalid_share_projection": true,
+        "valid_completions": 1
+      },
+      {
+        "candidate_completions": 1024,
+        "distinct_request_projections": 1,
+        "id": "fresh-coordinate-reuse",
+        "invalid_completions": 1023,
+        "projection_sha256": "3bf179884a940803ad0a72038e2d20873c4501c0915c2360208eec0a27f642ad",
+        "scope": "SyntheticDependencyModelOnly",
+        "valid_and_invalid_share_projection": true,
+        "valid_completions": 1
+      }
+    ]
+  },
+  "inputs": {
+    "canonical_request": {
+      "bytes": 4464,
+      "path": "experiments/native_input_binding_serialized_leaf_request/canonical-request-20261031.json",
+      "sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d"
+    },
+    "legacy_contract": {
+      "bytes": 3101,
+      "path": "experiments/native_input_binding_serialized_leaf_request/contract.json",
+      "sha256": "25688b5de630ac456c807e5617d1ef8e3d9c9c99a0da9ddfc50751d3b92ea83b"
+    },
+    "merged_relation_contract": {
+      "bytes": 14845,
+      "path": "experiments/native_input_binding_serialized_leaf_request/target-adapter-independent-review-20261111/adapter-obligation-v1-proposed.json",
+      "sha256": "484dd1f3a7c50bdc1741e3779b149e3735477ee3c67c448195889d6b551f53d8"
+    },
+    "rust_certificate_source": {
+      "bytes": 50649,
+      "path": "experiments/native_input_binding_certificate/native_input_binding_certificate.rs",
+      "sha256": "096ea35d381ed281075c2b157945a5b16cee406ba2f2ff04334917a740d80e0b"
+    }
+  },
+  "new_words": [],
+  "predecessor": {
+    "branch_commit": "db731db488b02cb247ca78375a8a5562065bab32",
+    "outcome_path": "experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/outcome.json",
+    "outcome_sha256": "a6aeaa362e720273dc9b1ae7224f543264c966a50045ac95d33152c65b71ac3d",
+    "retained_change": "Only make Rust member extraction whitespace-aware.",
+    "status": "Unknown/CorrectionBudgetExhausted"
+  },
+  "residuals": [
+    "A strong adapter must carry an applicable versioned witness or specify a separately pinned native reconstruction route.",
+    "Choosing weak pair membership instead requires an explicit scope change; it cannot silently replace the legacy certificate target.",
+    "The model does not execute actual invalid Rust certificates and does not rule out hidden derivability among certificate fields.",
+    "Research 0090 coverage remains open; Research 0092 promotion remains blocked.",
+    "No M6 filler, native free/Close, arithmetic universality, hypothesized arithmetic truth, authentication, social trust or practical benefit follows."
+  ],
+  "schema": "adva.research.request-relation-projection-outcome.v1",
+  "source_dependency": {
+    "certificate_fields_checked": [
+      "binding_node",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "forgotten_static_history",
+      "forgotten_static_occurrences",
+      "occurrence_map",
+      "residual_snapshot",
+      "source_snapshot",
+      "static_value"
+    ],
+    "certificate_fields_declared": [
+      "source_snapshot",
+      "residual_snapshot",
+      "static_value",
+      "bound_source",
+      "dynamic_source",
+      "event_map",
+      "occurrence_map",
+      "forgotten_static_occurrences",
+      "forgotten_static_history",
+      "binding_node"
+    ],
+    "explicit_relation_witness_fields": [],
+    "occurrence_map_projection": "One unique dynamic pair; full occurrence-map coverage is not emitted.",
+    "request_root_fields": [
+      "external_leaf",
+      "native_occurrence_map",
+      "profile",
+      "residual_diagram_json",
+      "source_diagram_json"
+    ],
+    "serializer_certificate_fields": [
+      "occurrence_map"
+    ],
+    "strong_checker_uses_native_graft_material": true
+  },
+  "status": "ProjectionUnderdeterminesCertificateWithinFrozenFieldModel",
+  "target_decision": {
+    "legacy_target": "LegacyResearchNativeInputBindingCertificateV0",
+    "request_projection_directly_carries": "PinnedPairMembershipV1 inputs",
+    "required_continuation": "Carry an applicable versioned witness or pin a native reconstruction route; otherwise remain Unknown. Do not silently downgrade the legacy target to pair membership.",
+    "strong_relation_from_request_bytes_alone": "UnderdeterminedWithinFrozenFieldModel"
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "assertions": {
+    "complete_carrier_classes_are_singleton": true,
+    "controls_match": true,
+    "each_field_is_necessary_within_model": true,
+    "fresh_coordinate_reused": true,
+    "request_only_is_ambiguous": true
+  },
+  "base_commit": "8fc38427f2a479b4e8e84802e1873cff14d54566",
+  "comparison": {
+    "interpretation": "The proposed carrier increases structural discrimination in this finite model; no native certificate acceptance follows.",
+    "with_complete_carrier_maximum_equivalence_class": 1,
+    "without_carrier_maximum_equivalence_class": 1024
+  },
+  "contract_sha256": "6ad4a0eb4f93844b5fc5a7aeea847aa469068edc0dfac6b5151198995ff6d383",
+  "controls": [
+    {
+      "expected": "CertificateObstruction/MissingField",
+      "id": "omit_event_map",
+      "observed": "CertificateObstruction/MissingField"
+    },
+    {
+      "expected": "CertificateObstruction/MissingField",
+      "id": "omit_forgotten_static_history",
+      "observed": "CertificateObstruction/MissingField"
+    },
+    {
+      "expected": "Refused/FieldMismatch",
+      "id": "alter_binding_node",
+      "observed": "Refused/FieldMismatch"
+    },
+    {
+      "expected": "Refused/ApplicabilityMismatch",
+      "id": "mismatch_request_pin",
+      "observed": "Refused/ApplicabilityMismatch"
+    },
+    {
+      "expected": "Refused/ApplicabilityMismatch",
+      "id": "mismatch_checker_pin",
+      "observed": "Refused/ApplicabilityMismatch"
+    }
+  ],
+  "cost": {
+    "baseline_serialization_ns": 39625,
+    "baseline_serialized_bytes": 148,
+    "candidates_enumerated": 2048,
+    "carrier_formation_ns": 2671,
+    "carrier_serialization_ns": 70812,
+    "carrier_serialized_bytes": 1000,
+    "contract_bytes_read": 3256,
+    "contract_reads": 1,
+    "correction_replays": 0,
+    "evaluation_ns_before_serialization": 32503582,
+    "native_executions": 0,
+    "outcome_serialization_ns": 258961,
+    "outcome_serialized_bytes_before_cost_insertion": 8465,
+    "output_write_time": "unmeasured",
+    "ru_maxrss_kib": 11648
+  },
+  "instances": [
+    {
+      "candidate_completions": 1024,
+      "field_complete_carrier": {
+        "classes": 1024,
+        "maximum_class_size": 1,
+        "minimum_class_size": 1,
+        "mixed_validity_classes": 0
+      },
+      "id": "canonical-request",
+      "invalid_completions": 1023,
+      "one_field_omissions": [
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "source_snapshot"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "residual_snapshot"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "static_value"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "bound_source"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "dynamic_source"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "event_map"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "occurrence_map"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "forgotten_static_occurrences"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "forgotten_static_history"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "binding_node"
+        }
+      ],
+      "request_only": {
+        "classes": 1,
+        "maximum_class_size": 1024,
+        "minimum_class_size": 1024,
+        "mixed_validity_classes": 1
+      },
+      "request_sha256": "d4d619a621ac7fd2943daa9c6eb0757acc79023314ecf9ed7dcf2f9cb0c84d4d",
+      "scope": "FrozenCanonicalBytes",
+      "valid_completions": 1
+    },
+    {
+      "candidate_completions": 1024,
+      "field_complete_carrier": {
+        "classes": 1024,
+        "maximum_class_size": 1,
+        "minimum_class_size": 1,
+        "mixed_validity_classes": 0
+      },
+      "id": "fresh-coordinate-reuse",
+      "invalid_completions": 1023,
+      "one_field_omissions": [
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "source_snapshot"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "residual_snapshot"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "static_value"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "bound_source"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "dynamic_source"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "event_map"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "occurrence_map"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "forgotten_static_occurrences"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "forgotten_static_history"
+        },
+        {
+          "all_projection_classes": 512,
+          "critical_class_has_invalid": true,
+          "critical_class_has_valid": true,
+          "critical_class_size": 2,
+          "omitted": "binding_node"
+        }
+      ],
+      "request_only": {
+        "classes": 1,
+        "maximum_class_size": 1024,
+        "minimum_class_size": 1024,
+        "mixed_validity_classes": 1
+      },
+      "request_sha256": "3bf179884a940803ad0a72038e2d20873c4501c0915c2360208eec0a27f642ad",
+      "scope": "SyntheticDependencyModelOnly",
+      "valid_completions": 1
+    }
+  ],
+  "new_words": [],
+  "residuals": [
+    "The carrier contains Boolean obligation coordinates, not actual serialized Rust certificate values.",
+    "Native field encoding, checker applicability, diagram reconstruction, and Rust acceptance remain unimplemented.",
+    "Research 0090 coverage remains open and Research 0092 promotion remains blocked.",
+    "No M6 filler, native free/Close, arithmetic universality, hypothesized arithmetic truth, authentication, social trust, or measured practical benefit follows."
+  ],
+  "schema": "adva.research.field-complete-witness-carrier-outcome.v1",
+  "status": "UniqueFieldCompleteSeparationWithinFrozenDependencyModel"
+}

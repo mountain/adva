@@ -1,0 +1,17 @@
+{
+  "schema": "adva.research.request-relation-projection-attempt.v0",
+  "attempt": 1,
+  "status": "ImplementationFailureBeforeEnumeration",
+  "command": "timeout 30s python3 -B experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/run.py --output experiments/native_input_binding_serialized_leaf_request/request-relation-projection-20261111/outcome.json",
+  "exit_code": 1,
+  "observed_error": "Rust check dependency set changed",
+  "cause": "The lexical extractor treated source_slice.certificate.certified() as a ResearchCertificate field access and added the method name certified to the field set.",
+  "work_completed": {
+    "candidate_completions_enumerated": 0,
+    "native_executions": 0,
+    "output_written": false
+  },
+  "correction": "Restrict certificate member extraction to the ten fields declared by the pinned ResearchCertificate struct. No input pin, candidate grammar, model, budget or expected result changed.",
+  "correction_replays_remaining_after_next_run": 0,
+  "timing_and_peak_memory": "Not separately measured for the failed attempt."
+}
