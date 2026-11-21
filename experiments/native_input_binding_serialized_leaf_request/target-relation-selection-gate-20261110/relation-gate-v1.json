@@ -1,0 +1,63 @@
+{
+  "schema": "adva.proposed.target-relation-selection-gate.v1",
+  "status": "ProposedRefinementOnly",
+  "native_type_alignment": {
+    "occurrence_path": "Array<u32>",
+    "root_path": [],
+    "boundary_port_is_occurrence_path": false
+  },
+  "same_side_binding": {
+    "required_fields": [
+      "slot",
+      "diagram_sha256",
+      "context",
+      "source_id",
+      "occurrence_id",
+      "occurrence_path"
+    ],
+    "comparison": "The independently request-bound expected selector must equal one complete actual occurrence record on that same admitted diagram.",
+    "separate_membership_is_sufficient": false
+  },
+  "selected_relations": {
+    "PinnedPairMembershipV1": {
+      "statement": "Both exact caller-designated occurrences are jointly located in their respective independently admitted diagrams.",
+      "certificate_scope": "QualifiedPairLocatedOnly",
+      "does_not_entail": [
+        "value equality",
+        "shared origin",
+        "source-to-residual transport",
+        "graph equivalence",
+        "M6 filler"
+      ]
+    },
+    "CertifiedRelationV1": {
+      "statement": "A separately pinned applicable checker decides the named predicate on the exact resolved ordered pair.",
+      "required": [
+        "checker_profile_sha256",
+        "claim_sha256",
+        "typed_parameters",
+        "quantifier_and_domain",
+        "evidence_reference"
+      ],
+      "no_fallback": "Unavailable checker or evidence yields Unknown; pair membership, value equality, digest equality and local-image equality are not substitutes."
+    }
+  },
+  "outcome_rules": {
+    "Accepted": "Both same-side bindings and the selected claim pass, and its receipt is durably recorded.",
+    "Refused": "A checked malformed input, binding mismatch, incompatible profile, invalid witness, or scoped false decision is identified.",
+    "Unknown": "The target relation is unspecified, native admission/checker/evidence is unavailable, budget is exhausted, or receipt persistence fails."
+  },
+  "receipt_order": [
+    "finish applicable binding and relation checks",
+    "construct non-self-hashed receipt body",
+    "persist and verify the record",
+    "only then return Accepted with the receipt reference"
+  ],
+  "execution_status": {
+    "rust_adapter": "NotImplemented",
+    "native_controls": "NotRun",
+    "real_request_read": false,
+    "real_diagram_bytes_read": false
+  },
+  "claim_boundary": "This document is a proposed decision boundary, not a native certificate, mathematical theorem, learned word, or permission to erase identity/history."
+}

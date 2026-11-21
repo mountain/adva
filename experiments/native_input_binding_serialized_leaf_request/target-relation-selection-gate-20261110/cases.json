@@ -1,0 +1,97 @@
+{
+  "schema": "adva.target-relation-selection-gate.cases.v0",
+  "base_instance": {
+    "name": "same-digest-distinct-slot-root-path",
+    "diagram_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "expected_left": {
+      "slot": "left",
+      "diagram_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "context": "module/source",
+      "source_id": "source:left",
+      "occurrence_id": "occ:left:0",
+      "occurrence_path": []
+    },
+    "expected_right": {
+      "slot": "right",
+      "diagram_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "context": "module/residual",
+      "source_id": "source:right",
+      "occurrence_id": "occ:right:0",
+      "occurrence_path": []
+    }
+  },
+  "cases": [
+    {
+      "id": "G00-membership-same-digest-distinct-slots",
+      "mutation": "none",
+      "selected_relation": "PinnedPairMembershipV1",
+      "checker": "not-applicable",
+      "receipt_persisted": true,
+      "expected_outcome": "Accepted",
+      "expected_reason": "QualifiedPairLocatedOnly"
+    },
+    {
+      "id": "G01-target-relation-unspecified",
+      "mutation": "none",
+      "selected_relation": null,
+      "checker": "not-applicable",
+      "receipt_persisted": true,
+      "expected_outcome": "Unknown",
+      "expected_reason": "TargetRelationUnderspecified"
+    },
+    {
+      "id": "G02-coherent-wrong-root-path",
+      "mutation": "actual-left-path-[1]",
+      "selected_relation": "PinnedPairMembershipV1",
+      "checker": "not-applicable",
+      "receipt_persisted": true,
+      "expected_outcome": "Refused",
+      "expected_reason": "EndpointBindingMismatch"
+    },
+    {
+      "id": "G03-same-value-different-origin-substitution",
+      "mutation": "actual-right-origin-substitution",
+      "selected_relation": "PinnedPairMembershipV1",
+      "checker": "not-applicable",
+      "receipt_persisted": true,
+      "expected_outcome": "Refused",
+      "expected_reason": "EndpointBindingMismatch"
+    },
+    {
+      "id": "G04-certified-checker-unavailable",
+      "mutation": "none",
+      "selected_relation": "CertifiedRelationV1",
+      "checker": "unavailable",
+      "receipt_persisted": true,
+      "expected_outcome": "Unknown",
+      "expected_reason": "RelationCheckerUnavailable"
+    },
+    {
+      "id": "G05-certified-scoped-false",
+      "mutation": "none",
+      "selected_relation": "CertifiedRelationV1",
+      "checker": "false",
+      "receipt_persisted": true,
+      "expected_outcome": "Refused",
+      "expected_reason": "CertifiedRelationFalse"
+    },
+    {
+      "id": "G06-certified-true-recording-failure",
+      "mutation": "none",
+      "selected_relation": "CertifiedRelationV1",
+      "checker": "true",
+      "receipt_persisted": false,
+      "expected_outcome": "Unknown",
+      "expected_reason": "ReceiptPersistenceFailure"
+    },
+    {
+      "id": "G07-boolean-is-not-u32-path",
+      "mutation": "expected-left-path-[true]",
+      "selected_relation": "PinnedPairMembershipV1",
+      "checker": "not-applicable",
+      "receipt_persisted": true,
+      "expected_outcome": "Refused",
+      "expected_reason": "MalformedOccurrencePath"
+    }
+  ]
+}

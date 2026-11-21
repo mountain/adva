@@ -1,0 +1,1195 @@
+{
+  "schema": "adva.research.machine-reference-ledger.static-review.v1",
+  "repository": "mountain/adva-machine",
+  "revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+  "contract_sha256": "3130a81a4933af62cc35b2c980fe2fdd3cbc2f197f055c58524891c495eafe47",
+  "receipt_sha256": "3a0b97db6ae274f03503fe583b901608a88d0bb4c8b95aa9086dbb328e86f421",
+  "ledger_sha256": "f31bd194761e9bb3bd536f9a2e8ebf9ce7a8bc9e5fc4d107fcc9569e0a04ef2d",
+  "rows_reviewed": 430,
+  "candidate_files": 45,
+  "selected_files": 71,
+  "reviewer": "Codex (OpenAI); static technical review, no independent human signoff.",
+  "unit": "Every explicitly listed line is a distinct ledger reference. ABCD grades characterize the indicated declaration/profile in context; a row need not implement all the behavior of its context.",
+  "obligations": [
+    "A: frozen opaque request or lossless versioned equivalent",
+    "B: checked admission of both native diagrams",
+    "C: qualified source/occurrence/path endpoint relation",
+    "D: receiver outcome on the same route"
+  ],
+  "grade_key": {
+    ".": "No support here for the target obligation.",
+    "other": "An analogous input, check or result exists on a different subject/profile.",
+    "related": "A partial diagram or identity primitive, without the required composition.",
+    "unexposed": "The selected interface delegates or leaves this obligation unspecified. Internal behavior outside the surface is unresolved."
+  },
+  "basis": {
+    "prime": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "A bounded prime-extension JSON input goes to the arithmetic verifier and returns its result. These types belong to the prime-checking profile."
+    },
+    "exchange": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "The entry, pinned envelope and documentary-library contract lead to a receipt for named documentary use. Repeat receive is idempotent. Receiver name and context identify a store; they do not check diagram endpoints."
+    },
+    "card": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "The request field is prose on a structure card. Shape checking, rendering and comparison provide documentary observations."
+    },
+    "reveal": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "The requested fuel count belongs to a reveal witness for a single input program."
+    },
+    "identity": {
+      "ABCD": [
+        ".",
+        ".",
+        "related",
+        "."
+      ],
+      "reason": "Templates, incidence projections and wire/cut descriptions use source and occurrence identities on an existing carrier. They provide no serialized two-input receiver with the required endpoint validation."
+    },
+    "frontier": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "These requests concern inquiry, refinement, rejection of discharge or a library stability question. They have a different domain."
+    },
+    "compiler": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "A compiler, specializer or reference VM receives structural correspondences or a bounded data-machine trace. Local replay has a compiler/VM input and output contract."
+    },
+    "program": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "This is an architecture limit or a bounded native program-entry decision. Its capability or fuel wording supplies no receiver entry for the target request."
+    },
+    "diagram": {
+      "ABCD": [
+        ".",
+        "related",
+        ".",
+        "."
+      ],
+      "reason": "Semantic JSON import has an individual validation certificate. No pair of admissions under one frozen opaque request is declared here."
+    },
+    "iota": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "The Iota spelling, renaming, reduction and comparison contract binds its own files. The declared report compares finite reductions, with native admission outside that profile."
+    },
+    "intake": {
+      "ABCD": [
+        "unexposed",
+        "unexposed",
+        "unexposed",
+        "other"
+      ],
+      "reason": "The selected main exposes a bound raw payload checker, a receiver-binding emitter and a local outcome. Its intake helper is outside this manifest. The interface supplies no declaration tying that payload to the frozen request, importing its two diagrams, or checking the qualified endpoints."
+    },
+    "rename": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "The rename checker and its controls compare named declaration results, algebra profiles and relation sets. A JSON pointer into such a result does not select a source/occurrence/path endpoint in a pair of admitted diagrams."
+    },
+    "carrier": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "This is a finite matrix-unit/carrier interpretation and rules for its reuse."
+    },
+    "terms": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "This framework text specifies vocabulary, role, outcomes, examples or obligations for profiles. It contributes no executable binding to the target request."
+    },
+    "free": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "The finite free-process calibration has its own premises, continuation and residuals."
+    },
+    "iotaframe": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "The frame gives an interpretation and bounded Iota laws, including conditions for reuse."
+    },
+    "iotaledger": {
+      "ABCD": [
+        ".",
+        ".",
+        "related",
+        "."
+      ],
+      "reason": "These rows concern projected Iota event/cut correspondence on two documentary ledgers. Source/occurrence identity construction is excluded from this profile."
+    },
+    "package": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "Package premises, verification cuts and reporting categories constrain future receivers; no target request/profile is implemented by these clauses."
+    },
+    "registration": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "Repository exchanges, registration and Iota examples separate transport, checked use and adoption. These architecture clauses supply no target executable route."
+    },
+    "vm": {
+      "ABCD": [
+        "other",
+        "other",
+        ".",
+        "other"
+      ],
+      "reason": "The data-machine envelope selects a program, tagged input and engine. Rust admits one program and rechecks its execution trace; the result or refusal describes that VM run."
+    },
+    "library": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "A pinned library receipt grants documentary integrity and withholds native admission."
+    },
+    "archive": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "Archive receipt compares an existing report and archive/member bytes. This is post-run evidence integrity with no diagram import or endpoint check."
+    },
+    "conform": {
+      "ABCD": [
+        "other",
+        "other",
+        ".",
+        "other"
+      ],
+      "reason": "The engineering comparison feeds the same VM request to two engines and compares their outcomes, profiles, states and trace replay. The pair consists of engine reports."
+    },
+    "corpus": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "A request field or constructor belongs to a fixed data-machine test family. The case entries are data; they add no target receiver implementation."
+    },
+    "process": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "A subprocess signal is reported as resource exhaustion. It makes no receiving declaration."
+    },
+    "worker": {
+      "ABCD": [
+        "other",
+        "other",
+        ".",
+        "."
+      ],
+      "reason": "This Python step model consumes one already-admitted VM program and input. The native replay belongs to the outer VM profile."
+    },
+    "intake_binding": {
+      "ABCD": [
+        "unexposed",
+        "unexposed",
+        "unexposed",
+        "."
+      ],
+      "reason": "This command emits receiver-binding bytes. Emitting that metadata declares no paired diagram check."
+    },
+    "vm_transport": {
+      "ABCD": [
+        "other",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "A transport header, file reader, profile whitelist or envelope check describes the VM request family. The versioned wrapper supplies no lossless translation of the frozen two-diagram request."
+    },
+    "iota_adapter": {
+      "ABCD": [
+        "other",
+        "other",
+        ".",
+        "other"
+      ],
+      "reason": "Three-domain/cut Iota experiments issue requests to the existing VM runner. Their external cut observations and documentary receipt introduce no new VM receiving profile."
+    },
+    "historical_library": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "The vocabulary registry cites a different historical library acknowledgment. The cited receiver has documentary scope."
+    },
+    "iota_lock": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "The Iota package manifest records a dependency lock shared with earlier documentary exchanges."
+    },
+    "triadic": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "."
+      ],
+      "reason": "A theoretical allocation or continuation condition for the triadic model supplies no executable request checker."
+    },
+    "cli_error": {
+      "ABCD": [
+        ".",
+        ".",
+        ".",
+        "other"
+      ],
+      "reason": "The exchange supervisor reports a refusal and withholds native admission; a CLI error is not a typed two-diagram outcome."
+    }
+  },
+  "reference_groups": [
+    {
+      "path": "crates/adva-witness/src/bin/adva-prime-verify.rs",
+      "lines": [
+        11,
+        53,
+        61,
+        62,
+        63,
+        79
+      ],
+      "basis": "prime"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/adva.rs",
+      "lines": [
+        47
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "crates/adva-witness/src/bin/adva.rs",
+      "lines": [
+        482
+      ],
+      "basis": "reveal"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "lines": [
+        106,
+        107,
+        351,
+        435
+      ],
+      "basis": "identity"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "lines": [
+        411,
+        469
+      ],
+      "basis": "frontier"
+    },
+    {
+      "path": "docs/ARCHITECTURE.md",
+      "lines": [
+        499,
+        507,
+        508,
+        514
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "docs/PROGRAM_PROCESS_CORE.md",
+      "lines": [
+        95
+      ],
+      "basis": "identity"
+    },
+    {
+      "path": "docs/SEMANTIC_SCOPE.md",
+      "lines": [
+        10,
+        11,
+        439
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "docs/SEMANTIC_SCOPE.md",
+      "lines": [
+        282
+      ],
+      "basis": "diagram"
+    },
+    {
+      "path": "docs/SEMANTIC_SCOPE.md",
+      "lines": [
+        327
+      ],
+      "basis": "frontier"
+    },
+    {
+      "path": "docs/adr/0035-bounded-native-program-entry.md",
+      "lines": [
+        9,
+        49
+      ],
+      "basis": "program"
+    },
+    {
+      "path": "docs/adr/bounded-mix-self-application.md",
+      "lines": [
+        6,
+        8,
+        11
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "docs/adr/bounded-self-compiler-research.md",
+      "lines": [
+        4,
+        35,
+        44
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "exchange_routine/README.md",
+      "lines": [
+        30,
+        47,
+        102,
+        105,
+        108,
+        112,
+        116,
+        121,
+        126,
+        130,
+        139,
+        140,
+        145,
+        148,
+        158,
+        163,
+        174
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "exchange_routine/README.md",
+      "lines": [
+        88,
+        98
+      ],
+      "basis": "card"
+    },
+    {
+      "path": "exchange_routine/cli.py",
+      "lines": [
+        22,
+        23,
+        29
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "exchange_routine/cli.py",
+      "lines": [
+        45
+      ],
+      "basis": "cli_error"
+    },
+    {
+      "path": "exchange_routine/run.py",
+      "lines": [
+        18,
+        21,
+        22,
+        42,
+        43,
+        44,
+        46,
+        48,
+        52,
+        56,
+        61,
+        65,
+        80,
+        90,
+        91,
+        120,
+        129,
+        130,
+        135,
+        136,
+        140,
+        146,
+        147,
+        148,
+        168,
+        169,
+        184,
+        195
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "exchange_routine/structure.py",
+      "lines": [
+        49,
+        52,
+        94,
+        111,
+        127
+      ],
+      "basis": "card"
+    },
+    {
+      "path": "experiments/bounded_native_interpreter/reference.py",
+      "lines": [
+        189
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "experiments/bounded_self_compiler/reference.py",
+      "lines": [
+        210,
+        243
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "experiments/iota-substrate/Cargo.toml",
+      "lines": [
+        14
+      ],
+      "basis": "iota_lock"
+    },
+    {
+      "path": "experiments/iota-substrate/src/lib.rs",
+      "lines": [
+        216,
+        222,
+        295,
+        799,
+        998,
+        1039,
+        1069,
+        1097,
+        1359,
+        1361,
+        1411,
+        1427,
+        1605,
+        2408,
+        2443,
+        2486,
+        2505,
+        2507
+      ],
+      "basis": "iota"
+    },
+    {
+      "path": "experiments/iota-substrate/src/main.rs",
+      "lines": [
+        83,
+        84,
+        136
+      ],
+      "basis": "iota"
+    },
+    {
+      "path": "experiments/native_evidence_intake/src/main.rs",
+      "lines": [
+        15
+      ],
+      "basis": "intake_binding"
+    },
+    {
+      "path": "experiments/native_evidence_intake/src/main.rs",
+      "lines": [
+        19,
+        20,
+        21,
+        23,
+        25
+      ],
+      "basis": "intake"
+    },
+    {
+      "path": "experiments/rename-declaration/src/main.rs",
+      "lines": [
+        61,
+        62,
+        67,
+        87,
+        88,
+        283,
+        292,
+        294,
+        304,
+        319,
+        320,
+        344,
+        347,
+        348,
+        349,
+        352,
+        374,
+        383,
+        387,
+        389,
+        394,
+        396,
+        398,
+        400,
+        401,
+        402,
+        407,
+        415,
+        421,
+        434,
+        448,
+        452,
+        454,
+        460,
+        467
+      ],
+      "basis": "rename"
+    },
+    {
+      "path": "spec/framework/carrier-matrix-v0.md",
+      "lines": [
+        8,
+        43,
+        44,
+        210,
+        211
+      ],
+      "basis": "carrier"
+    },
+    {
+      "path": "spec/framework/communication-v1.md",
+      "lines": [
+        4,
+        12,
+        35,
+        37,
+        38,
+        39,
+        66,
+        67,
+        69,
+        73,
+        76,
+        77,
+        82,
+        91,
+        92,
+        97,
+        101,
+        106,
+        146,
+        150,
+        152,
+        165,
+        194,
+        197,
+        198,
+        200,
+        210,
+        219
+      ],
+      "basis": "terms"
+    },
+    {
+      "path": "spec/framework/documentary-exchange-v1.md",
+      "lines": [
+        12,
+        15,
+        23,
+        27,
+        50,
+        71,
+        91,
+        92,
+        93,
+        100,
+        101,
+        111,
+        117,
+        121,
+        132,
+        140
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "spec/framework/free-process-v0.md",
+      "lines": [
+        6,
+        98,
+        139,
+        201,
+        210
+      ],
+      "basis": "free"
+    },
+    {
+      "path": "spec/framework/iota-frame-v1.md",
+      "lines": [
+        7,
+        23,
+        24,
+        54,
+        59,
+        66,
+        67
+      ],
+      "basis": "iotaframe"
+    },
+    {
+      "path": "spec/framework/iota-ledger-structural-matching-v0.1.md",
+      "lines": [
+        14,
+        30,
+        38,
+        41,
+        42,
+        56,
+        108
+      ],
+      "basis": "iotaledger"
+    },
+    {
+      "path": "spec/framework/iota-substrate-v0.md",
+      "lines": [
+        33,
+        34,
+        61,
+        64,
+        85,
+        116,
+        119,
+        130,
+        168
+      ],
+      "basis": "iota"
+    },
+    {
+      "path": "spec/framework/kernel-package-boundary-v0.1.md",
+      "lines": [
+        138,
+        148,
+        157,
+        163,
+        167,
+        202,
+        204,
+        208,
+        211,
+        212,
+        269,
+        358
+      ],
+      "basis": "package"
+    },
+    {
+      "path": "spec/framework/repository-exchange-registration-v0.1.md",
+      "lines": [
+        97,
+        98,
+        116,
+        125,
+        127,
+        165,
+        193,
+        194,
+        202,
+        215,
+        217,
+        230,
+        232,
+        238,
+        257,
+        338,
+        353,
+        385,
+        409,
+        475,
+        480,
+        481,
+        485,
+        489,
+        502,
+        540,
+        541,
+        615
+      ],
+      "basis": "registration"
+    },
+    {
+      "path": "spec/framework/transport-communication-v2.md",
+      "lines": [
+        20,
+        21,
+        35,
+        66,
+        81,
+        152,
+        153
+      ],
+      "basis": "terms"
+    },
+    {
+      "path": "spec/framework/triadic-context-v0.md",
+      "lines": [
+        104
+      ],
+      "basis": "triadic"
+    },
+    {
+      "path": "spec/framework/triadic-free-theory-v0.md",
+      "lines": [
+        241
+      ],
+      "basis": "triadic"
+    },
+    {
+      "path": "spec/framework/vocabulary-v1.json",
+      "lines": [
+        24,
+        32,
+        33,
+        34,
+        39,
+        44
+      ],
+      "basis": "terms"
+    },
+    {
+      "path": "spec/framework/vocabulary-v1.json",
+      "lines": [
+        52,
+        57
+      ],
+      "basis": "historical_library"
+    },
+    {
+      "path": "spec/framework/vocabulary-v2.json",
+      "lines": [
+        20
+      ],
+      "basis": "exchange"
+    },
+    {
+      "path": "spec/framework/vocabulary-v2.json",
+      "lines": [
+        35,
+        40
+      ],
+      "basis": "terms"
+    },
+    {
+      "path": "toolchain/README.md",
+      "lines": [
+        23,
+        25,
+        31,
+        36,
+        38,
+        42,
+        50,
+        51,
+        56,
+        57,
+        62,
+        65,
+        69,
+        74
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/README.md",
+      "lines": [
+        93
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/README.md",
+      "lines": [
+        112,
+        119,
+        122
+      ],
+      "basis": "iota_adapter"
+    },
+    {
+      "path": "toolchain/archive.py",
+      "lines": [
+        13,
+        64
+      ],
+      "basis": "archive"
+    },
+    {
+      "path": "toolchain/boundary.py",
+      "lines": [
+        14,
+        31,
+        37,
+        40,
+        67,
+        68,
+        71,
+        72,
+        73,
+        74,
+        76,
+        78,
+        81
+      ],
+      "basis": "vm_transport"
+    },
+    {
+      "path": "toolchain/boundary.py",
+      "lines": [
+        124
+      ],
+      "basis": "library"
+    },
+    {
+      "path": "toolchain/boundary.py",
+      "lines": [
+        136
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/capabilities.json",
+      "lines": [
+        6
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/capabilities.json",
+      "lines": [
+        10
+      ],
+      "basis": "compiler"
+    },
+    {
+      "path": "toolchain/capabilities.json",
+      "lines": [
+        13
+      ],
+      "basis": "iota"
+    },
+    {
+      "path": "toolchain/cli.py",
+      "lines": [
+        8,
+        21,
+        22,
+        61,
+        62,
+        63,
+        64
+      ],
+      "basis": "vm_transport"
+    },
+    {
+      "path": "toolchain/cli.py",
+      "lines": [
+        66,
+        70,
+        72,
+        81,
+        82
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/conformance.contract.json",
+      "lines": [
+        4,
+        8,
+        20,
+        35
+      ],
+      "basis": "conform"
+    },
+    {
+      "path": "toolchain/conformance.py",
+      "lines": [
+        1,
+        9,
+        10,
+        11,
+        12,
+        49,
+        51,
+        56,
+        57,
+        58,
+        63
+      ],
+      "basis": "conform"
+    },
+    {
+      "path": "toolchain/corpus.json",
+      "lines": [
+        4,
+        5,
+        54,
+        55,
+        117,
+        118,
+        151,
+        152,
+        184,
+        185,
+        231,
+        232,
+        278,
+        279,
+        315,
+        316,
+        352,
+        353,
+        727,
+        728,
+        1084,
+        1085,
+        1202,
+        1203,
+        1308,
+        1309,
+        1424,
+        1425,
+        1499,
+        1500,
+        1536,
+        1537
+      ],
+      "basis": "corpus"
+    },
+    {
+      "path": "toolchain/execute.py",
+      "lines": [
+        1,
+        5,
+        8,
+        9,
+        10,
+        11,
+        12,
+        14,
+        16,
+        19,
+        22,
+        25,
+        26,
+        47,
+        50,
+        64,
+        65,
+        67,
+        70,
+        74
+      ],
+      "basis": "vm"
+    },
+    {
+      "path": "toolchain/fixtures.py",
+      "lines": [
+        5,
+        21,
+        23,
+        31,
+        41,
+        48,
+        49,
+        50,
+        51,
+        52,
+        56,
+        57,
+        60,
+        62,
+        72,
+        75,
+        79,
+        80,
+        81,
+        84
+      ],
+      "basis": "corpus"
+    },
+    {
+      "path": "toolchain/process.py",
+      "lines": [
+        111
+      ],
+      "basis": "process"
+    },
+    {
+      "path": "toolchain/python_worker.py",
+      "lines": [
+        1
+      ],
+      "basis": "worker"
+    }
+  ],
+  "decision": "NoExactRouteWithinSelectedSurface",
+  "boundary": "No complete declaration of one A+B+C+D route was identified on this fixed surface under this candidate grammar. This is a static, bounded review. In particular the intake helper body is out of surface. Runtime availability and whole-repository absence remain undetermined.",
+  "actual_receiver_outcomes": {
+    "matching_request": "NotRun",
+    "renamed_module": "NotRun",
+    "changed_profile": "NotRun"
+  },
+  "account": {
+    "production_captures": 1,
+    "manual_reruns": 0,
+    "production_corrections": 0,
+    "semantic_executions": 0,
+    "opaque_fixture_reads": 0,
+    "opaque_request_bytes_consumed": 0,
+    "capture_stdout_bytes": 0,
+    "capture_stderr_bytes": 0,
+    "reference_locations_checked_against_pinned_bytes": 430
+  },
+  "composition_checks": [
+    {
+      "route": "VM CLI to boundary.check_request, execute.run and native trace reception",
+      "refs": [
+        "toolchain/cli.py:61-66",
+        "toolchain/boundary.py:14-24,67-83",
+        "toolchain/execute.py:25-32,47-74",
+        "toolchain/conformance.py:9-20"
+      ],
+      "finding": "Only data-machine v0/v1/v2 dispatch. The second native check consumes the first execution's trace. Comparing two engine reports does not create two diagram admissions."
+    },
+    {
+      "route": "Communication CLI and exchange routine",
+      "refs": [
+        "crates/adva-witness/src/bin/adva.rs:43-47,116",
+        "exchange_routine/run.py:42-56,83-92,140-151,168-174,182-185",
+        "spec/framework/documentary-exchange-v1.md:10-24,100-114"
+      ],
+      "finding": "The selected executable profile checks an envelope and produces a documentary receipt. The repeat receive reuses the same exchange. The receipt explicitly withholds native admission."
+    },
+    {
+      "route": "Raw evidence intake",
+      "refs": [
+        "experiments/native_evidence_intake/src/main.rs:1-6,11-25",
+        "experiments/native_evidence_intake/Cargo.toml:13-19"
+      ],
+      "finding": "The selected main binds payload, binding digest, receiver and context; its result has a local disposition. Neither this CLI signature nor a crate dependency declares that the frozen request is decoded, both diagrams admitted and their qualified endpoints compared. The delegated module is excluded by the grammar; no claim about its internal capabilities."
+    },
+    {
+      "route": "Native diagram import and provenance",
+      "refs": [
+        "docs/SEMANTIC_SCOPE.md:270-284",
+        "docs/ARCHITECTURE.md:99-107,343-353,430-438",
+        "docs/PROGRAM_PROCESS_CORE.md:89-98"
+      ],
+      "finding": "A diagram import certificate and source/occurrence bindings in templates, slices and projections are documented. No selected dispatch ties two such admissions and qualified endpoint equality to the same versioned request and receiver outcome."
+    },
+    {
+      "route": "Other executable candidates and zero-hit command neighbors",
+      "refs": [
+        "crates/adva-witness/src/bin/adva-prime-verify.rs:53-65,68-86",
+        "experiments/rename-declaration/src/main.rs:283-325",
+        "experiments/iota-substrate/src/main.rs:63-81,129-139",
+        "experiments/checked_roundtrip_reuse/src/main.rs:5-19",
+        "experiments/labs-search/src/main.rs:1-14"
+      ],
+      "finding": "Prime verification, rename controls, Iota reduction, a no-argument checked-cache pilot and the LABS search CLI have distinct subjects. None declares an adapter from the frozen request into the target relation."
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "schema": "adva.proposed.two-diagram-qualified-endpoint-adapter.v0",
+  "status": "ProposedInterfaceOnly",
+  "request_binding": {
+    "request_schema": "adva.native-input-binding.request.v0",
+    "canonical_bytes_sha256": "1111111111111111111111111111111111111111111111111111111111111111",
+    "receiver_context_sha256": "2222222222222222222222222222222222222222222222222222222222222222",
+    "opaque_bytes_present": false
+  },
+  "ordered_diagrams": [
+    {
+      "role": "left",
+      "serialized_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "native_admission": {
+        "authority": "Rust",
+        "obligation": "semantic import and validation of this exact serialized diagram",
+        "status": "RequiredNotImplemented"
+      },
+      "qualified_endpoint": {
+        "source_id": "source:left:0",
+        "occurrence_id": "occurrence:left:0",
+        "path": "output/0"
+      }
+    },
+    {
+      "role": "right",
+      "serialized_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "native_admission": {
+        "authority": "Rust",
+        "obligation": "semantic import and validation of this exact serialized diagram",
+        "status": "RequiredNotImplemented"
+      },
+      "qualified_endpoint": {
+        "source_id": "source:right:0",
+        "occurrence_id": "occurrence:right:0",
+        "path": "input/0"
+      }
+    }
+  ],
+  "relation": {
+    "kind": "ordered_qualified_endpoint_pair",
+    "order": [
+      "left",
+      "right"
+    ],
+    "left": {
+      "diagram_role": "left",
+      "diagram_sha256": "3333333333333333333333333333333333333333333333333333333333333333",
+      "source_id": "source:left:0",
+      "occurrence_id": "occurrence:left:0",
+      "path": "output/0"
+    },
+    "right": {
+      "diagram_role": "right",
+      "diagram_sha256": "4444444444444444444444444444444444444444444444444444444444444444",
+      "source_id": "source:right:0",
+      "occurrence_id": "occurrence:right:0",
+      "path": "input/0"
+    },
+    "comparison": "exact tuple equality after each independent native admission",
+    "local_image_equality_sufficient_for_m6": false
+  },
+  "controls": [
+    {
+      "id": "canonical-valid",
+      "expected": "Accepted"
+    },
+    {
+      "id": "wrong-diagram-pin",
+      "expected": "Refused"
+    },
+    {
+      "id": "wrong-path",
+      "expected": "Refused"
+    },
+    {
+      "id": "same-value-different-origin",
+      "expected": "Refused"
+    },
+    {
+      "id": "reversed-order",
+      "expected": "Refused"
+    }
+  ],
+  "outcomes": {
+    "Accepted": {
+      "requires": [
+        "A-request-binding",
+        "B-left-native-admission",
+        "B-right-native-admission",
+        "C-qualified-cross-diagram-relation",
+        "D-recorded-receiver-outcome"
+      ],
+      "interpretation": "All listed checks passed for the exact request and ordered diagram pair.",
+      "residual": "No generalization beyond the exact admitted pair; no permission to erase identity or history."
+    },
+    "Refused": {
+      "interpretation": "A named obligation or negative control failed.",
+      "residual": "Refusal is local to the supplied request, pair and receiver context; semantic nonexistence is not proved."
+    },
+    "Unknown": {
+      "interpretation": "Execution, evidence or resource limits did not support Accepted or Refused.",
+      "residual": "The unsatisfied obligation and consumed budget must be retained; no retry is implied."
+    }
+  },
+  "arithmetic_boundaries": {
+    "additive_zero": {
+      "equation": "A-B=0",
+      "carrier": "typed additive carrier",
+      "zero_is_typed": true
+    },
+    "multiplicative_unit": {
+      "equation": "A/B=1",
+      "carrier": "typed multiplicative carrier",
+      "denominator_nonzero_required": true,
+      "undefined_at_A_eq_B_eq_0": true,
+      "order_and_history_preserved": true
+    },
+    "interchange_authorized": false
+  },
+  "prohibitions": {
+    "m6_from_local_image_equality": false,
+    "research_0090_coverage": false,
+    "research_0092_promotion": false,
+    "arithmetic_universality_proved": false,
+    "hypothesized_arithmetic_truth_proved": false,
+    "authentication_proved": false,
+    "practical_value_proved": false
+  },
+  "residual_obligations": [
+    "adapter-implementation",
+    "native-receiver-execution",
+    "independent-review",
+    "research-0090-coverage"
+  ]
+}

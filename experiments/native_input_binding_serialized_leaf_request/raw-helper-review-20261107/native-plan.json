@@ -1,0 +1,109 @@
+{
+  "schema": "adva.raw-helper-review.native-plan.v1",
+  "status": "NotRun",
+  "reason": "cargo and rustc unavailable in review environment",
+  "machine_revision": "a0b710a2517f06f2fe03cc463e855548adf418ac",
+  "manifest_path": "experiments/native_evidence_intake/Cargo.toml",
+  "inputs": "Only the pinned implementation's own synthetic fixed-roundtrip fixtures and listed mutations; never the frozen opaque request.",
+  "limits": {
+    "build_attempts": 1,
+    "build_wall_seconds": 180,
+    "tests_wall_seconds_total": 90,
+    "per_test_wall_seconds": 10,
+    "address_space_mib": 2048,
+    "stdout_stderr_bytes_total": 1048576,
+    "network": false,
+    "retry": false
+  },
+  "build_argv": [
+    "cargo",
+    "test",
+    "--locked",
+    "--offline",
+    "--manifest-path",
+    "experiments/native_evidence_intake/Cargo.toml",
+    "--no-run",
+    "--message-format=json"
+  ],
+  "test_execution": "Resolve exactly the executable of the native-evidence-intake test target from Cargo compiler-artifact JSON; hash it; run each listed selector with --exact --nocapture --test-threads=1. Require exactly one executed test per selector, not merely exit 0.",
+  "tests": [
+    {
+      "selector": "intake::tests::received_fixed_proof_checks_and_reuses_independently",
+      "expected": "Positive fixed synthetic fixture: 8 proof insertions, 2 uses, values 14/11 and distinct local programs",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::receipt_or_serialized_native_authority_is_not_a_raw_proof",
+      "expected": "Reject receipt / producer authority shapes before native check",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::strict_input_rejects_unknown_duplicate_float_deep_and_missing_history",
+      "expected": "Reject unknown/duplicate fields, malformed integer/history/seed input",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::every_semantic_and_origin_dimension_is_exactly_bound",
+      "expected": "Reject 12 identity, endpoint, boundary, role and history mutations",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::altered_receiver_binding_cannot_authorize_itself_even_when_repinned",
+      "expected": "Reject 7 locally repinned binding mutations",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::equivalent_json_is_not_exact_source_bytes",
+      "expected": "Reject whitespace-only raw byte mutation",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::fresh_guard_failure_and_partial_native_prefix_remain_visible",
+      "expected": "Reject fresh zero guards; depth exhaustion Unknown with prefix",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::unavailable_input_and_budget_never_start_native_check",
+      "expected": "Unknown for absent or over-budget inputs; no native invocation",
+      "status": "NotRun"
+    },
+    {
+      "selector": "intake::tests::exhausted_nested_source_hash_retains_actual_spending",
+      "expected": "Unknown retains nested source-hash spending",
+      "status": "NotRun"
+    },
+    {
+      "selector": "native::intake_failure_tests::exhausted_native_setup_returns_structured_unknown",
+      "expected": "Unknown retains failed setup",
+      "status": "NotRun"
+    },
+    {
+      "selector": "native::intake_failure_tests::exhausted_pre_hit_account_retains_checked_prefix",
+      "expected": "Unknown retains 8-node prefix before use",
+      "status": "NotRun"
+    },
+    {
+      "selector": "native::tests::literal_endpoints_reject_disconnected_cancelling_ratios",
+      "expected": "Reject disconnected literal expressions despite cancelling ratios",
+      "status": "NotRun"
+    },
+    {
+      "selector": "native::tests::opposite_unformed_boundaries_cannot_cancel",
+      "expected": "Reject opposite child defects",
+      "status": "NotRun"
+    },
+    {
+      "selector": "native::tests::replayed_native_context_is_refused_even_after_internal_counter_fault",
+      "expected": "Reject repeated program/source/occurrence tuple",
+      "status": "NotRun"
+    }
+  ],
+  "preflight": "Require clean detached machine pin, log rustc -vV and cargo --version, new isolated CARGO_TARGET_DIR, no dependency downloads. If toolchain or locked dependencies absent, record Unavailable and stop; no pin or budget change.",
+  "remaining_request_cases": [
+    "target positive",
+    "wrong qualified endpoint",
+    "same-value/different-origin"
+  ],
+  "remaining_request_cases_status": "NotRun",
+  "next_minimum": "Run these existing synthetic controls on a Rust-equipped host. After that, a separate versioned adapter contract is needed to accept two supplied diagrams and their endpoint relation; no inference from local fixture success."
+}

@@ -1,0 +1,57 @@
+{
+  "schema": "adva.target-adapter-obligation-review.consolidated-outcome.v0",
+  "date": "2026-11-09",
+  "status": "PassedFiniteStructuralContractReview",
+  "scope": "One proposed interface document and twelve declared structural mutations only.",
+  "canonical_positive_cases": 1,
+  "declared_mutation_cases": 12,
+  "mutations_rejected": 12,
+  "tests_run": 13,
+  "process_invocations": 2,
+  "correction_replays": 1,
+  "correction_scope": "Final serialized-byte fixed-point calculation only; no interface, test, semantic or budget change.",
+  "corrected_run": {
+    "exit_code": 0,
+    "direct_verification_ns": 114623,
+    "finite_control_suite_ns": 1194737,
+    "process_elapsed_ns_before_serialization": 1394419,
+    "serialization_ns": 172120,
+    "process_ru_maxrss_kib": 12288,
+    "external_wall_seconds": 0.05,
+    "external_user_seconds": 0.03,
+    "external_system_seconds": 0.01,
+    "stdout_bytes": 1465,
+    "stdout_sha256": "b99b1ad2b7f0c163815c7255c2585525ca22d89631a632028769f9f92a6bb84c",
+    "stderr_bytes": 0
+  },
+  "first_attempt": {
+    "status": "MeasurementImplementationError",
+    "semantic_checks_passed": true,
+    "reported_serialized_bytes": 1437,
+    "observed_stdout_bytes": 1465,
+    "record": "first-attempt.json"
+  },
+  "limits": {
+    "wall_seconds_each": 30,
+    "cpu_seconds_each": 20,
+    "address_space_mib_each": 256,
+    "output_bytes_each": 1048576,
+    "correction_replays": 1
+  },
+  "search_candidates": 0,
+  "search_nodes": 0,
+  "opaque_request_reads": 0,
+  "diagram_byte_reads": 0,
+  "native_executions": 0,
+  "words_formed_or_revised": 0,
+  "interpretation": "The document is structurally sufficient to state A+B+B+C+D and the finite refusal controls. This is a formulation and tooling result, not an implemented adapter, native acceptance certificate or mathematical theorem.",
+  "residual": [
+    "Implement a versioned adapter at a Rust-authoritative receiving boundary.",
+    "Bind the real target request without exposing or replacing its opaque bytes.",
+    "Import and validate both real serialized diagrams independently.",
+    "Check the real ordered source/occurrence/path relation and the three minimum refusal controls.",
+    "Obtain independent review.",
+    "Research 0090 coverage and Research 0092 promotion remain open."
+  ],
+  "claim_boundary": "No M6 filler, native free or Close, arithmetic universality, hypothesized arithmetic truth, authentication, social trust or demonstrated practical value follows."
+}
