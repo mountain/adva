@@ -1,7 +1,7 @@
 # Research notes, calibrations and the bounded record
 
 This directory holds the research record of the repository: **281 numbered
-notes, 70 named notes and 26 supporting directories**. Nothing here is a stable
+notes, 73 named notes and 26 supporting directories**. Nothing here is a stable
 API, a native admission, a Seal, or a proof beyond the finite scope each note
 declares for itself.
 
@@ -942,6 +942,10 @@ Every file in this directory, so that no note is reachable only through a summar
 - [compiler-size-curve-and-bootstrapping-budget.md](compiler-size-curve-and-bootstrapping-budget.md): the in-language compiler size curve — each extra opcode costs 45 to 63 instructions and each extra source instruction 32, an extra slot costs nothing because slot indices travel as data, and a compiler for the machine's whole instruction language is a measured 201-instruction lower bound against 128.
 
 - [serialized-leaf-opaque-fixture-consumer-boundary.md](serialized-leaf-opaque-fixture-consumer-boundary.md): freezes the 4,464-byte canonical request and compiles a producer-independent minimal consumer; the predecessor pause is retained, while the 2026-11-01 absolute-path continuation accepts the current fixture and preserves the renamed-module and changed-profile refusals in one finite three-case run.
+
+- [Two ordered lifts of a Pascal incidence](pascal-ordered-incidence-lifts.md): two exact matrix assignments separate the literal incidence and its commutatively rewritten display in both directions.
+- [When does a finite observation carry the action?](observer-action-refinement.md): the coarsest deterministic refinement has a sharp observation-horizon bound and is invariant under compatible surjective presentations.
+- [The boundary of the A3 permutohedron in two reduced-expression paths](to24-reduced-expression-boundary.md): two explicit galleries of rank-two rewrites recover the signed fourteen-face boundary and isolate the rank-three cycle.
 
 ### Supporting directories
 
