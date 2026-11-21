@@ -1,0 +1,39 @@
+{
+  "schema": "adva.research.signed-face-sweep-receipt.contract.v0",
+  "question": "Can the two merged A3 reduced-expression paths be independently checked as one signed fourteen-face boundary while retaining every rewrite occurrence, without manufacturing a typed comparison or M6 filler?",
+  "objects": [
+    "S4 adjacent-transposition galleries",
+    "Q4 and M6 rank-two faces",
+    "signed face chain",
+    "ordered rewrite occurrences"
+  ],
+  "types": {
+    "word": "length-six word over generators 1,2,3",
+    "gallery": "seven S4 vertices from identity to w0",
+    "occurrence": "path side, step ordinal, before/after word, local relation, face id and orientation",
+    "receipt": "ordered occurrences plus signed face coefficients and edge-boundary check",
+    "result": "VerifiedFundamentalBoundary | Refused"
+  },
+  "quantifier": "all 3^6 words for the reduced-expression graph plus eight fixed receipt cases",
+  "arithmetic_domain": "integers in {-1,0,1}, finite S4 permutations and exact ordered-word equality",
+  "candidate_grammar": [
+    "signed face-chain projection",
+    "occurrence-preserving signed face-sweep receipt"
+  ],
+  "evaluation": [
+    "enumerate exactly 16 reduced expressions and 18 rewrite edges",
+    "verify seven local rewrites on each side",
+    "cover all six Q4 and eight M6 faces once",
+    "verify the signed face chain has zero edge boundary",
+    "refuse altered, omitted, relabelled, reordered and sign-tampered occurrences",
+    "reuse the checker on both paths reversed",
+    "emit no typed comparison and no filler"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_wall_seconds": 30,
+    "max_candidates_or_nodes": 100000,
+    "max_receipt_cases": 8,
+    "implementation_correction_replays": 1
+  }
+}
