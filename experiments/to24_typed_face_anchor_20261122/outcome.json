@@ -1,0 +1,197 @@
+{
+  "canonical_anchor": {
+    "generating_two_cell": "f:1234:121>212",
+    "global_source_object": "1234",
+    "global_target_object": "4321",
+    "higher_cell": "NotConstructed",
+    "occurrence": {
+      "after": "212321",
+      "before": "121321",
+      "face_id": "H_12(4)",
+      "face_type": "M6",
+      "local_source_object": "1234",
+      "local_target_object": "3214",
+      "occurrence_id": "canonical-m6",
+      "offset": 0,
+      "prefix": "",
+      "relation": "121->212",
+      "suffix": "321"
+    },
+    "prefix_whisker": [],
+    "schema": "adva.research.typed-face-anchor.v0",
+    "source_path": [
+      "e:1234:s1",
+      "e:2134:s2",
+      "e:2314:s1",
+      "e:3214:s3",
+      "e:3241:s2",
+      "e:3421:s1"
+    ],
+    "suffix_whisker": [
+      "e:3214:s3",
+      "e:3241:s2",
+      "e:3421:s1"
+    ],
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "target_path": [
+      "e:1234:s2",
+      "e:1324:s1",
+      "e:3124:s2",
+      "e:3214:s3",
+      "e:3241:s2",
+      "e:3421:s1"
+    ]
+  },
+  "cases": [
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "TypedLocalComparisonAnchored",
+      "matched": true,
+      "name": "canonical-m6",
+      "result": "TypedLocalComparisonAnchored"
+    },
+    {
+      "baseline_equal_to_canonical": false,
+      "expected": "TypedLocalComparisonAnchored",
+      "matched": true,
+      "name": "fresh-q4-reuse",
+      "result": "TypedLocalComparisonAnchored"
+    },
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "Refused/TargetComputadMismatch",
+      "matched": true,
+      "name": "changed-target",
+      "result": "Refused/TargetComputadMismatch"
+    },
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "Refused/TwoCellMismatch",
+      "matched": true,
+      "name": "wrong-two-cell",
+      "result": "Refused/TwoCellMismatch"
+    },
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "Refused/ObjectAnchorMismatch",
+      "matched": true,
+      "name": "wrong-object-anchor",
+      "result": "Refused/ObjectAnchorMismatch"
+    },
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "Refused/WhiskerTypeMismatch",
+      "matched": true,
+      "name": "broken-suffix-whisker",
+      "result": "Refused/WhiskerTypeMismatch"
+    },
+    {
+      "baseline_equal_to_canonical": true,
+      "expected": "Refused/PrematureHigherCell",
+      "matched": true,
+      "name": "premature-higher-cell",
+      "result": "Refused/PrematureHigherCell"
+    }
+  ],
+  "claim": "One M6 and one Q4 occurrence are well-typed generating 2-cell comparisons in the declared finite A3 computad syntax, with exact prefix and suffix whiskers.",
+  "claim_boundary": "External finite syntax result only. It creates no native Adva semantic identity, composes no fourteen-face pasting, and supplies no 3-cell or Q4/M6 filler.",
+  "comparison": {
+    "anchor_bytes": 946,
+    "baseline_bytes": 268,
+    "baseline_projection_sha256": "34e402f7cb90fe5dbebfd3d91216cbc73c5dc84c5b2754227c48a27f8d451d2d",
+    "changed_target_baseline_sha256": "34e402f7cb90fe5dbebfd3d91216cbc73c5dc84c5b2754227c48a27f8d451d2d",
+    "claim_boundary": "No general expressivity or asymptotic efficiency theorem is claimed.",
+    "finite_distinction": "the occurrence-only projection is identical after changing the target digest, but the typed anchor refuses the changed target",
+    "formation_byte_delta": 678
+  },
+  "cost": {
+    "anchor_cases": 7,
+    "anchor_formation_ns": 104217,
+    "baseline_formation_ns": 24724,
+    "case_validation_ns": 286876,
+    "implementation_correction_replays": 0,
+    "reuse_formation_and_validation_ns": 63845,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 10880,
+    "serialization_ns": 182651,
+    "serialized_bytes": 7029,
+    "target_formation_ns": 1994651,
+    "target_nodes": 240,
+    "whole_run_before_serialization_ns": 6161037
+  },
+  "extra_missing_history_control": "Refused/OccurrenceHistoryMissing",
+  "proposed_word": {
+    "applicability": "the occurrence is one declared Q4/M6 rank-two rewrite and the target presentation contains its parallel local paths with exact global whiskers",
+    "counterexample": "changing only the target digest leaves the untyped occurrence projection identical but is refused by the anchor",
+    "expansion": "rebuild the target presentation, replay the prefix to the local source, verify the two-cell boundary, replay the common suffix from the local target, and compare all stored ids and paths",
+    "input": "one signed-face occurrence, a finite target computad descriptor, exact before/after words, and the retained prefix/suffix history",
+    "output_relation": "TypedLocalComparisonAnchored or a target-, object-, 2-cell-, whisker-, history-, path-, or promotion-specific refusal",
+    "refusal_conditions": [
+      "target computad digest mismatch",
+      "wrong object or generating two-cell",
+      "noncomposable prefix or suffix whisker",
+      "missing or altered occurrence history or full path",
+      "claim of a higher cell or filler"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "no comparison between the two seven-step pastings, no native relation-witness composition, no 3-cell, no Q4/M6 filler, no arbitrary A_n coherence, and no arithmetic-universality result",
+    "role": "bind one retained rewrite occurrence to a versioned target computad and an explicit whiskered generating 2-cell",
+    "state": "Proposed",
+    "witness": "the target digest, global endpoints, ordered prefix and suffix one-cell paths, the generating two-cell id, and both full boundary paths",
+    "word": "typed face anchor"
+  },
+  "reuse_anchor": {
+    "generating_two_cell": "f:1324:13>31",
+    "global_source_object": "1234",
+    "global_target_object": "4321",
+    "higher_cell": "NotConstructed",
+    "occurrence": {
+      "after": "231231",
+      "before": "213231",
+      "face_id": "Q_13",
+      "face_type": "Q4",
+      "local_source_object": "1324",
+      "local_target_object": "3142",
+      "occurrence_id": "fresh-q4-reuse",
+      "offset": 1,
+      "prefix": "2",
+      "relation": "13->31",
+      "suffix": "231"
+    },
+    "prefix_whisker": [
+      "e:1234:s2"
+    ],
+    "schema": "adva.research.typed-face-anchor.v0",
+    "source_path": [
+      "e:1234:s2",
+      "e:1324:s1",
+      "e:3124:s3",
+      "e:3142:s2",
+      "e:3412:s3",
+      "e:3421:s1"
+    ],
+    "suffix_whisker": [
+      "e:3142:s2",
+      "e:3412:s3",
+      "e:3421:s1"
+    ],
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "target_path": [
+      "e:1234:s2",
+      "e:1324:s3",
+      "e:1342:s1",
+      "e:3142:s2",
+      "e:3412:s3",
+      "e:3421:s1"
+    ]
+  },
+  "schema": "adva.research.typed-face-anchor.outcome.v0",
+  "status": "PassedBoundedTypedFaceAnchor",
+  "target": {
+    "digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "nodes": 240,
+    "objects": 24,
+    "one_cells": 72,
+    "two_cells": 144
+  }
+}
