@@ -1,0 +1,410 @@
+{
+  "cases": [
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "TypedComparisonSegmentComposed",
+      "matched": true,
+      "name": "route-a",
+      "result": "TypedComparisonSegmentComposed"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "TypedComparisonSegmentComposed",
+      "matched": true,
+      "name": "route-b-reuse",
+      "result": "TypedComparisonSegmentComposed"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/FactorOrderMismatch",
+      "matched": true,
+      "name": "reordered-factors-without-retyping",
+      "result": "Refused/FactorOrderMismatch"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/FactorCountMismatch",
+      "matched": true,
+      "name": "missing-factor",
+      "result": "Refused/FactorCountMismatch"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/DuplicateOccurrenceHistory",
+      "matched": true,
+      "name": "duplicate-occurrence-history",
+      "result": "Refused/DuplicateOccurrenceHistory"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/TargetComputadMismatch",
+      "matched": true,
+      "name": "changed-target",
+      "result": "Refused/TargetComputadMismatch"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/PrematureInterchangeIdentification",
+      "matched": true,
+      "name": "premature-interchange-identification",
+      "result": "Refused/PrematureInterchangeIdentification"
+    },
+    {
+      "endpoint_projection_equal_to_route_a": true,
+      "expected": "Refused/PrematureHigherCell",
+      "matched": true,
+      "name": "premature-higher-cell",
+      "result": "Refused/PrematureHigherCell"
+    }
+  ],
+  "claim": "Each two-anchor route has a well-typed intermediate boundary; the two routes share endpoint projection and reversed disjoint factor cells while retaining distinct histories.",
+  "claim_boundary": "Finite external syntax result only. Eligibility for a disjoint interchange boundary is not an equality proof, common 3-cell, filler, or native Adva semantic judgment.",
+  "comparison": {
+    "claim_boundary": "No general expressivity, equality, confluence, or asymptotic efficiency theorem is claimed.",
+    "endpoint_projection_bytes": 408,
+    "endpoint_projection_equal": true,
+    "endpoint_projection_sha256": "8dffa21e2801e0eb377b2be78f797811fe48ec1fcdb415175f9787726914295f",
+    "factor_cell_multisets_equal": true,
+    "factor_orders_reversed": true,
+    "finite_distinction": "the two valid routes have the same endpoint-only projection but distinct intermediate galleries and reversed ordered factors",
+    "formation_byte_delta": 2816,
+    "histories_distinct": true,
+    "route_a_segment_sha256": "1c3e0837421cf02f1f30eb7589deb91e90c5aa15278632f4f9aa09b3a183b964",
+    "route_b_segment_sha256": "44153799ba0ad4dff790a4b3e64e19c6f8fe3ade9e73a9e6c213df426d246ad9",
+    "segment_bytes": 3224
+  },
+  "cost": {
+    "case_validation_ns": 781881,
+    "constructed_nodes": 246,
+    "endpoint_projection_formation_ns": 1062,
+    "implementation_correction_replays": 0,
+    "interchange_eligibility_ns": 95865,
+    "predecessor_verification_ns": 10494643,
+    "route_a_segment_formation_ns": 108088,
+    "route_b_reuse_formation_ns": 58477,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 11904,
+    "segment_cases": 8,
+    "serialization_ns": 264248,
+    "serialized_bytes": 12930,
+    "target_formation_ns": 3411938,
+    "whole_run_before_serialization_ns": 15078100
+  },
+  "interchange_result": "EligibleDisjointInterchangeBoundary/HistoriesRetained",
+  "predecessor": {
+    "path_used": "run.py",
+    "run_sha256": "b154ed0a3de9b73f3968bb363ee553a47bac9b9424b9dbe25753755c9a70d9b0",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "proposed_word": {
+    "applicability": "both anchors validate against one target digest and the first target path equals the second source path exactly",
+    "counterexample": "the two commuting-square routes have identical endpoint projection but distinct intermediate paths and reverse factor order; endpoint-only data cannot retain which route was used",
+    "expansion": "validate each anchor, compare the shared intermediate path, replay the ordered factors, and retain the endpoint projection without erasing the intermediate history",
+    "input": "a versioned target, exactly two adjacent typed face anchors, their ordered occurrence identities, and a declared source/intermediate/target gallery chain",
+    "output_relation": "TypedComparisonSegmentComposed or a target-, factor-, history-, intermediate-boundary-, or promotion-specific refusal",
+    "refusal_conditions": [
+      "target digest mismatch",
+      "missing, reordered, invalid, or duplicate factor",
+      "intermediate target/source path mismatch",
+      "altered occurrence or factor history",
+      "premature composite equality, interchange identification, higher cell, or filler"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "no semantic equality of the two routes, no native vertical/horizontal composition, no 3-cell or Q4/M6 filler, no fourteen-face pasting comparison, and no arithmetic-universality result",
+    "role": "compose a short ordered sequence of typed face anchors while retaining the exact intermediate gallery and factor history",
+    "state": "Proposed",
+    "witness": "the two complete anchors, ordered occurrence ids and 2-cell ids, rewrite intervals, and source/intermediate/target paths",
+    "word": "typed comparison segment"
+  },
+  "route_a_segment": {
+    "factor_occurrence_ids": [
+      "a-q13",
+      "a-q34"
+    ],
+    "factor_two_cells": [
+      "f:1324:13>31",
+      "f:3412:31>13"
+    ],
+    "factors": [
+      {
+        "generating_two_cell": "f:1324:13>31",
+        "global_source_object": "1234",
+        "global_target_object": "4321",
+        "higher_cell": "NotConstructed",
+        "occurrence": {
+          "after": "231231",
+          "before": "213231",
+          "face_id": "Q_13",
+          "face_type": "Q4",
+          "local_source_object": "1324",
+          "local_target_object": "3142",
+          "occurrence_id": "a-q13",
+          "offset": 1,
+          "prefix": "2",
+          "relation": "13->31",
+          "suffix": "231"
+        },
+        "prefix_whisker": [
+          "e:1234:s2"
+        ],
+        "schema": "adva.research.typed-face-anchor.v0",
+        "source_path": [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ],
+        "suffix_whisker": [
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ],
+        "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+        "target_path": [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ]
+      },
+      {
+        "generating_two_cell": "f:3412:31>13",
+        "global_source_object": "1234",
+        "global_target_object": "4321",
+        "higher_cell": "NotConstructed",
+        "occurrence": {
+          "after": "231213",
+          "before": "231231",
+          "face_id": "Q_34",
+          "face_type": "Q4",
+          "local_source_object": "3412",
+          "local_target_object": "4321",
+          "occurrence_id": "a-q34",
+          "offset": 4,
+          "prefix": "2312",
+          "relation": "31->13",
+          "suffix": ""
+        },
+        "prefix_whisker": [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2"
+        ],
+        "schema": "adva.research.typed-face-anchor.v0",
+        "source_path": [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ],
+        "suffix_whisker": [],
+        "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+        "target_path": [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ]
+      }
+    ],
+    "global_source_object": "1234",
+    "global_target_object": "4321",
+    "higher_cell": "NotConstructed",
+    "interchange_identification": "NotClaimed",
+    "intermediate_paths": [
+      [
+        "e:1234:s2",
+        "e:1324:s3",
+        "e:1342:s1",
+        "e:3142:s2",
+        "e:3412:s3",
+        "e:3421:s1"
+      ]
+    ],
+    "rewrite_intervals": [
+      [
+        1,
+        3
+      ],
+      [
+        4,
+        6
+      ]
+    ],
+    "schema": "adva.research.typed-comparison-segment.v0",
+    "segment_id": "route-a",
+    "source_path": [
+      "e:1234:s2",
+      "e:1324:s1",
+      "e:3124:s3",
+      "e:3142:s2",
+      "e:3412:s3",
+      "e:3421:s1"
+    ],
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "target_path": [
+      "e:1234:s2",
+      "e:1324:s3",
+      "e:1342:s1",
+      "e:3142:s2",
+      "e:3412:s1",
+      "e:4312:s3"
+    ]
+  },
+  "route_b_segment": {
+    "factor_occurrence_ids": [
+      "b-q34",
+      "b-q13"
+    ],
+    "factor_two_cells": [
+      "f:3412:31>13",
+      "f:1324:13>31"
+    ],
+    "factors": [
+      {
+        "generating_two_cell": "f:3412:31>13",
+        "global_source_object": "1234",
+        "global_target_object": "4321",
+        "higher_cell": "NotConstructed",
+        "occurrence": {
+          "after": "213213",
+          "before": "213231",
+          "face_id": "Q_34",
+          "face_type": "Q4",
+          "local_source_object": "3412",
+          "local_target_object": "4321",
+          "occurrence_id": "b-q34",
+          "offset": 4,
+          "prefix": "2132",
+          "relation": "31->13",
+          "suffix": ""
+        },
+        "prefix_whisker": [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2"
+        ],
+        "schema": "adva.research.typed-face-anchor.v0",
+        "source_path": [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ],
+        "suffix_whisker": [],
+        "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+        "target_path": [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ]
+      },
+      {
+        "generating_two_cell": "f:1324:13>31",
+        "global_source_object": "1234",
+        "global_target_object": "4321",
+        "higher_cell": "NotConstructed",
+        "occurrence": {
+          "after": "231213",
+          "before": "213213",
+          "face_id": "Q_13",
+          "face_type": "Q4",
+          "local_source_object": "1324",
+          "local_target_object": "3142",
+          "occurrence_id": "b-q13",
+          "offset": 1,
+          "prefix": "2",
+          "relation": "13->31",
+          "suffix": "213"
+        },
+        "prefix_whisker": [
+          "e:1234:s2"
+        ],
+        "schema": "adva.research.typed-face-anchor.v0",
+        "source_path": [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ],
+        "suffix_whisker": [
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ],
+        "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+        "target_path": [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ]
+      }
+    ],
+    "global_source_object": "1234",
+    "global_target_object": "4321",
+    "higher_cell": "NotConstructed",
+    "interchange_identification": "NotClaimed",
+    "intermediate_paths": [
+      [
+        "e:1234:s2",
+        "e:1324:s1",
+        "e:3124:s3",
+        "e:3142:s2",
+        "e:3412:s1",
+        "e:4312:s3"
+      ]
+    ],
+    "rewrite_intervals": [
+      [
+        4,
+        6
+      ],
+      [
+        1,
+        3
+      ]
+    ],
+    "schema": "adva.research.typed-comparison-segment.v0",
+    "segment_id": "route-b-reuse",
+    "source_path": [
+      "e:1234:s2",
+      "e:1324:s1",
+      "e:3124:s3",
+      "e:3142:s2",
+      "e:3412:s3",
+      "e:3421:s1"
+    ],
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "target_path": [
+      "e:1234:s2",
+      "e:1324:s3",
+      "e:1342:s1",
+      "e:3142:s2",
+      "e:3412:s1",
+      "e:4312:s3"
+    ]
+  },
+  "schema": "adva.research.typed-comparison-segment.outcome.v0",
+  "status": "PassedBoundedTypedComparisonSegment",
+  "target_nodes": 240
+}
