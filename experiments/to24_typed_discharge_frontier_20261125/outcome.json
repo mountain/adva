@@ -1,0 +1,307 @@
+{
+  "cases": [
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "UnknownDischarge/NoRegisteredHigherConstructor",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "primary-no-registry",
+      "result": "UnknownDischarge/NoRegisteredHigherConstructor"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "UnknownDischarge/NoRegisteredHigherConstructor",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "fresh-obligation-reuse",
+      "result": "UnknownDischarge/NoRegisteredHigherConstructor"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "target_admission_receipt",
+        "discharge_receipt"
+      ],
+      "expected_result": "UnknownDischarge/ExternalConstructorUnadmitted",
+      "frontier": [
+        "higher_constructor_registry",
+        "target_admission_receipt",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "external-proposal-unadmitted",
+      "result": "UnknownDischarge/ExternalConstructorUnadmitted"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/ConstructorBoundaryMismatch",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "wrong-constructor-boundary",
+      "result": "Refused/ConstructorBoundaryMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/AdmissionNotBackedByTarget",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "unbacked-target-admission",
+      "result": "Refused/AdmissionNotBackedByTarget"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/PrematureDischargeClaim",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "premature-discharge",
+      "result": "Refused/PrematureDischargeClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/PrematureSemanticEquality",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "premature-equality",
+      "result": "Refused/PrematureSemanticEquality"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/PrematureFiller",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "premature-filler",
+      "result": "Refused/PrematureFiller"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/TargetDigestMismatch",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "changed-target",
+      "result": "Refused/TargetDigestMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected_frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "expected_result": "Refused/ObligationDigestMismatch",
+      "frontier": [
+        "higher_constructor_registry",
+        "applicable_constructor",
+        "target_admission_receipt",
+        "boundary_witness",
+        "discharge_receipt"
+      ],
+      "matched": true,
+      "name": "changed-obligation",
+      "result": "Refused/ObligationDigestMismatch"
+    }
+  ],
+  "claim": "The exact pinned 240-node target declares no higher-constructor registry, so both checked interchange obligations remain UnknownDischarge with the same five-coordinate frontier.",
+  "claim_boundary": "This is an exhaustive inventory result for one finite target representation, not a mathematical nonexistence theorem for 3-cells, an impossibility theorem, or a discharged obligation.",
+  "comparison": {
+    "base_projection_collisions_beyond_primary": 6,
+    "checked_obligation_projection_bytes": 215,
+    "claim_boundary": "No general expressivity, minimality, completeness, or asymptotic efficiency theorem is claimed.",
+    "finite_distinction": "the checked-obligation-only projection cannot state whether registry, applicability, admission, boundary, or discharge evidence is missing",
+    "formation_byte_delta": 478,
+    "typed_frontier_record_bytes": 693
+  },
+  "cost": {
+    "case_validation_ns": 1769458,
+    "cases": 10,
+    "constructed_nodes": 264,
+    "fresh_reuse_formation_ns": 110766,
+    "implementation_correction_replays": 1,
+    "predecessor_verification_ns": 2513446,
+    "primary_obligation_formation_ns": 149354,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 11008,
+    "serialization_ns": 382544,
+    "serialized_bytes": 11311,
+    "target_formation_ns": 4723486,
+    "whole_run_before_serialization_ns": 11099553
+  },
+  "fresh_obligation_digest": "11ee2d78f42c2b06c5f402f45658ae2d7e389d704069100b9a2fce1640ca9d9b",
+  "predecessor": {
+    "anchor_run_path": "run.py",
+    "anchor_run_sha256": "b154ed0a3de9b73f3968bb363ee553a47bac9b9424b9dbe25753755c9a70d9b0",
+    "run_path": "run.py",
+    "run_sha256": "7552c8daf4fdc004babe7eefb9499cecd639c49236a8ca29cdaa035ebe251dd0",
+    "segment_run_path": "run.py",
+    "segment_run_sha256": "4b1c01f6b307cb0ee8572a25327041e54f2e14fe0d9cc8c9f3e5114dc30606ab"
+  },
+  "primary_record": {
+    "frontier": [
+      "higher_constructor_registry",
+      "applicable_constructor",
+      "target_admission_receipt",
+      "boundary_witness",
+      "discharge_receipt"
+    ],
+    "obligation_digest": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c",
+    "result": "UnknownDischarge/NoRegisteredHigherConstructor",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "target_inventory": {
+      "higher_constructor_count": null,
+      "higher_constructor_registry_declared": false,
+      "objects": 24,
+      "one_cells": 72,
+      "top_level_keys": [
+        "descriptor",
+        "objects",
+        "one_cells",
+        "two_cells"
+      ],
+      "two_cells": 144
+    }
+  },
+  "proposed_word": {
+    "applicability": "the checked obligation and target are exactly pinned and the audit is restricted to explicitly declared target registries and receipts",
+    "counterexample": "a structurally plausible external constructor proposal with the correct boundary remains unadmitted because the target has no registry; claiming target admission without such a registry is refused",
+    "expansion": "validate the obligation; inventory the target; locate an explicit higher-constructor registry; match boundary and applicability; require target-backed admission and a discharge receipt; otherwise return the remaining ordered frontier",
+    "input": "one target digest and complete finite target inventory, one checked typed obligation, and an optional external constructor proposal",
+    "output_relation": "UnknownDischarge with an ordered frontier, or a target-, obligation-, boundary-, admission-, or promotion-specific refusal",
+    "refusal_conditions": [
+      "target or obligation digest mismatch",
+      "constructor boundary mismatch",
+      "claimed target admission without registry support",
+      "premature equality, higher cell, filler, or discharge"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "no search outside the exact target representation, no theorem that a 3-cell cannot exist, no admitted constructor, no discharge, equality, confluence, filler, Research 0090 coverage, Research 0092 promotion, or arithmetic-universality result",
+    "role": "retain the ordered target capabilities still missing between a checked higher obligation and an admissible discharge",
+    "state": "Proposed",
+    "witness": "the target top-level key inventory and node counts, target and obligation digests, optional candidate digest, result, and ordered missing-capability list",
+    "word": "typed discharge frontier"
+  },
+  "schema": "adva.research.typed-discharge-frontier.outcome.v0",
+  "status": "PassedBoundedTypedDischargeFrontier",
+  "target": {
+    "digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "inventory": {
+      "higher_constructor_count": null,
+      "higher_constructor_registry_declared": false,
+      "objects": 24,
+      "one_cells": 72,
+      "top_level_keys": [
+        "descriptor",
+        "objects",
+        "one_cells",
+        "two_cells"
+      ],
+      "two_cells": 144
+    },
+    "nodes": 240
+  }
+}

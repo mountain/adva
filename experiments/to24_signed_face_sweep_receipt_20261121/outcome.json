@@ -1,0 +1,272 @@
+{
+  "canonical_receipt": {
+    "edge_boundary_nonzero": [],
+    "end_word": "321323",
+    "face_coefficients": {
+      "H_12(1)": 1,
+      "H_12(2)": -1,
+      "H_12(3)": 1,
+      "H_12(4)": -1,
+      "H_23(1)": -1,
+      "H_23(2)": 1,
+      "H_23(3)": -1,
+      "H_23(4)": 1,
+      "Q_12": 1,
+      "Q_13": -1,
+      "Q_14": 1,
+      "Q_23": 1,
+      "Q_24": -1,
+      "Q_34": 1
+    },
+    "m6_filler": "NotConstructed",
+    "occurrences": [
+      {
+        "after": "212321",
+        "before": "121321",
+        "face_id": "H_12(4)",
+        "offset": 0,
+        "ordinal": 0,
+        "orientation": -1,
+        "relation": "121->212",
+        "side": "L"
+      },
+      {
+        "after": "213231",
+        "before": "212321",
+        "face_id": "H_23(3)",
+        "offset": 2,
+        "ordinal": 1,
+        "orientation": -1,
+        "relation": "232->323",
+        "side": "L"
+      },
+      {
+        "after": "231231",
+        "before": "213231",
+        "face_id": "Q_13",
+        "offset": 1,
+        "ordinal": 2,
+        "orientation": -1,
+        "relation": "13->31",
+        "side": "L"
+      },
+      {
+        "after": "231213",
+        "before": "231231",
+        "face_id": "Q_34",
+        "offset": 4,
+        "ordinal": 3,
+        "orientation": 1,
+        "relation": "31->13",
+        "side": "L"
+      },
+      {
+        "after": "232123",
+        "before": "231213",
+        "face_id": "H_12(2)",
+        "offset": 2,
+        "ordinal": 4,
+        "orientation": -1,
+        "relation": "121->212",
+        "side": "L"
+      },
+      {
+        "after": "323123",
+        "before": "232123",
+        "face_id": "H_23(1)",
+        "offset": 0,
+        "ordinal": 5,
+        "orientation": -1,
+        "relation": "232->323",
+        "side": "L"
+      },
+      {
+        "after": "321323",
+        "before": "323123",
+        "face_id": "Q_14",
+        "offset": 2,
+        "ordinal": 6,
+        "orientation": 1,
+        "relation": "31->13",
+        "side": "L"
+      },
+      {
+        "after": "123121",
+        "before": "121321",
+        "face_id": "Q_23",
+        "offset": 2,
+        "ordinal": 0,
+        "orientation": -1,
+        "relation": "13->31",
+        "side": "R"
+      },
+      {
+        "after": "123212",
+        "before": "123121",
+        "face_id": "H_12(1)",
+        "offset": 3,
+        "ordinal": 1,
+        "orientation": -1,
+        "relation": "121->212",
+        "side": "R"
+      },
+      {
+        "after": "132312",
+        "before": "123212",
+        "face_id": "H_23(2)",
+        "offset": 1,
+        "ordinal": 2,
+        "orientation": -1,
+        "relation": "232->323",
+        "side": "R"
+      },
+      {
+        "after": "132132",
+        "before": "132312",
+        "face_id": "Q_24",
+        "offset": 3,
+        "ordinal": 3,
+        "orientation": 1,
+        "relation": "31->13",
+        "side": "R"
+      },
+      {
+        "after": "312132",
+        "before": "132132",
+        "face_id": "Q_12",
+        "offset": 0,
+        "ordinal": 4,
+        "orientation": -1,
+        "relation": "13->31",
+        "side": "R"
+      },
+      {
+        "after": "321232",
+        "before": "312132",
+        "face_id": "H_12(3)",
+        "offset": 1,
+        "ordinal": 5,
+        "orientation": -1,
+        "relation": "121->212",
+        "side": "R"
+      },
+      {
+        "after": "321323",
+        "before": "321232",
+        "face_id": "H_23(4)",
+        "offset": 3,
+        "ordinal": 6,
+        "orientation": -1,
+        "relation": "232->323",
+        "side": "R"
+      }
+    ],
+    "schema": "adva.research.signed-face-sweep-receipt.v0",
+    "start_word": "121321",
+    "typed_comparison": "NotConstructed"
+  },
+  "checks": {
+    "all_expected": true,
+    "bad_path_result": "Refused/NonLocalRewrite",
+    "canonical_zero_edge_boundary": true,
+    "enumerated_words": 729,
+    "m6_faces": 8,
+    "no_semantic_promotion": true,
+    "q4_faces": 6,
+    "reduced_expression_edges": 18,
+    "reduced_expression_vertices": 16,
+    "reordered_history_invisible_to_chain_only": true
+  },
+  "claim": "The two supplied A3 rewrite paths independently enumerate one signed fundamental boundary with six Q4 and eight M6 face occurrences while retaining each occurrence history.",
+  "claim_boundary": "This independently checks the finite A3 cellular calculation only. Additive-zero and multiplicative-unit domains are untouched; no arithmetic-universality or hypothesized-arithmetic-truth evidence follows.",
+  "comparison": {
+    "baseline_chain_only_bytes": 303,
+    "baseline_formation_ns": 64250,
+    "claim_boundary": "No global expressivity or efficiency theorem is claimed.",
+    "explicit_formation_ns": 165193,
+    "explicit_receipt_bytes": 3330,
+    "finite_distinction": "the reordered occurrence history has the same chain-only projection but the full receipt refuses it",
+    "formation_byte_delta": 3027
+  },
+  "cost": {
+    "construction_ns": 117033,
+    "enumeration_evaluation_verification_ns": 7620942,
+    "implementation_correction_replays": 0,
+    "receipt_cases": 8,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 10624,
+    "search_candidates": 729,
+    "serialization_ns": 239314,
+    "serialized_bytes": 8511
+  },
+  "extra_bad_path_control": "Refused/NonLocalRewrite",
+  "graph": {
+    "reduced_expression_vertices": 16,
+    "rewrite_edges": 18,
+    "words_examined": 729
+  },
+  "instances": [
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "canonical",
+      "receipt_result": "VerifiedFundamentalBoundary/OccurrenceHistoryRetained"
+    },
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "reordered-occurrences",
+      "receipt_result": "Refused/OccurrenceOrderMismatch"
+    },
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "relabelled-face",
+      "receipt_result": "Refused/FaceLabelMismatch"
+    },
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "sign-tampered",
+      "receipt_result": "Refused/FaceOrientationMismatch"
+    },
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "omitted-occurrence",
+      "receipt_result": "Refused/OccurrenceCountMismatch"
+    },
+    {
+      "chain_only_equal_to_canonical": false,
+      "name": "coefficient-tampered",
+      "receipt_result": "Refused/FaceCoefficientMismatch"
+    },
+    {
+      "chain_only_equal_to_canonical": true,
+      "name": "premature-filler",
+      "receipt_result": "Refused/PrematureSemanticPromotion"
+    },
+    {
+      "chain_only_equal_to_canonical": false,
+      "name": "fresh-reversed-paths",
+      "receipt_result": "VerifiedFundamentalBoundary/OccurrenceHistoryRetained"
+    }
+  ],
+  "proposed_word": {
+    "applicability": "every adjacent pair is one declared rank-two rewrite and both paths share endpoints in the finite A3 reduced-expression graph",
+    "counterexample": "swapping two stored occurrences leaves the chain-only projection byte-identical but breaks path order and is refused",
+    "expansion": "replay each gallery, identify its rank-two coset face from the prefix permutation, orient the face from the local path difference, telescope both path sweeps, check all fourteen face coefficients and zero edge boundary, and retain every step occurrence",
+    "input": "two finite paths of reduced expressions with common endpoints and declared Q4/M6 local rewrite grammar",
+    "output_relation": "VerifiedFundamentalBoundary/OccurrenceHistoryRetained or an occurrence-, face-, sign-, coverage- or promotion-specific refusal",
+    "refusal_conditions": [
+      "nonlocal rewrite or unequal path endpoints",
+      "missing or reordered occurrence",
+      "face label, orientation or coefficient mismatch",
+      "nonzero edge boundary or incomplete fourteen-face coverage",
+      "typed comparison or M6 filler claimed by the receipt"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "the receipt does not construct a common typed comparison in a target category, compose relation witnesses natively, prove arbitrary A_n coherence, or supply any Q4/M6 filler",
+    "role": "bind a signed cellular face chain to the ordered local rewrite occurrences that produced it",
+    "state": "Proposed",
+    "witness": "the 16-vertex, 18-edge graph; fourteen canonical occurrences; six fixed negative receipts; one nonlocal path control; and one reversed-path reuse",
+    "word": "signed face-sweep receipt"
+  },
+  "schema": "adva.research.signed-face-sweep-receipt.outcome.v0",
+  "status": "PassedBoundedSignedFaceSweepReceipt"
+}

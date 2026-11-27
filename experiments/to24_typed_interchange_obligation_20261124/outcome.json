@@ -1,0 +1,799 @@
+{
+  "cases": [
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "TypedInterchangeObligationChecked/NoHigherCellConstructed",
+      "matched": true,
+      "name": "primary-square",
+      "result": "TypedInterchangeObligationChecked/NoHigherCellConstructed"
+    },
+    {
+      "bare_projection_equal_to_primary": false,
+      "expected": "TypedInterchangeObligationChecked/NoHigherCellConstructed",
+      "matched": true,
+      "name": "fresh-square-reuse",
+      "result": "TypedInterchangeObligationChecked/NoHigherCellConstructed"
+    },
+    {
+      "bare_projection_equal_to_primary": false,
+      "expected": "Refused/TargetComputadMismatch",
+      "matched": true,
+      "name": "changed-target",
+      "result": "Refused/TargetComputadMismatch"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/RuleIdentifierMismatch",
+      "matched": true,
+      "name": "unknown-rule",
+      "result": "Refused/RuleIdentifierMismatch"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/FactorCorrespondenceMismatch",
+      "matched": true,
+      "name": "wrong-factor-correspondence",
+      "result": "Refused/FactorCorrespondenceMismatch"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/ReplayWitnessMismatch",
+      "matched": true,
+      "name": "wrong-replay-witness",
+      "result": "Refused/ReplayWitnessMismatch"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureSemanticEquality",
+      "matched": true,
+      "name": "premature-semantic-equality",
+      "result": "Refused/PrematureSemanticEquality"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureHigherCell",
+      "matched": true,
+      "name": "premature-higher-cell",
+      "result": "Refused/PrematureHigherCell"
+    },
+    {
+      "bare_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureFiller",
+      "matched": true,
+      "name": "premature-filler",
+      "result": "Refused/PrematureFiller"
+    },
+    {
+      "bare_projection_equal_to_primary": false,
+      "expected": "Refused/DistinctSegmentsRequired",
+      "matched": true,
+      "name": "duplicated-segment",
+      "result": "Refused/DistinctSegmentsRequired"
+    },
+    {
+      "bare_projection_equal_to_primary": false,
+      "expected": "Refused/LeftSegmentInvalid/Refused/rewrite_intervalsMismatch",
+      "matched": true,
+      "name": "overlapping-declared-interval",
+      "result": "Refused/LeftSegmentInvalid/Refused/rewrite_intervalsMismatch"
+    }
+  ],
+  "claim": "Two fixed disjoint squares each admit a rule-bound, exactly replayable interchange obligation while their composite equality and every higher cell remain unclaimed and unconstructed.",
+  "claim_boundary": "Finite external syntax evidence only. A checked obligation is a boundary-plus-rule witness, not the discharge of that obligation, semantic equality, confluence, a 3-cell, or a filler.",
+  "comparison": {
+    "bare_projection_bytes": 351,
+    "bare_projection_collisions_with_refused_controls": 6,
+    "bare_projection_sha256": "99a511abd9b14fa642f11195aa3860ee8f2d62ceaac3f14e15091f23678e3887",
+    "claim_boundary": "No general expressivity, completeness, equality, or asymptotic efficiency theorem is claimed.",
+    "finite_distinction": "the bare eligibility projection omits the rule, factor correspondence, replay witness, and promotion guards; six refused mutations preserve it exactly",
+    "formation_byte_delta": 8203,
+    "obligation_bytes": 8554,
+    "obligation_sha256": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c"
+  },
+  "cost": {
+    "case_validation_ns": 5954254,
+    "cases": 11,
+    "constructed_nodes": 254,
+    "fresh_reuse_obligation_formation_ns": 128045,
+    "implementation_correction_replays": 1,
+    "predecessor_verification_ns": 1083826,
+    "primary_obligation_formation_ns": 198240,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 11008,
+    "serialization_ns": 399814,
+    "serialized_bytes": 25337,
+    "squares": 2,
+    "target_formation_ns": 5326289,
+    "whole_run_before_serialization_ns": 12705497
+  },
+  "fresh_reuse_obligation": {
+    "factor_correspondence": [
+      {
+        "generating_two_cell": "f:1234:13>31",
+        "left_index": 0,
+        "offset": 0,
+        "relation": "13->31",
+        "right_index": 1
+      },
+      {
+        "generating_two_cell": "f:2413:13>31",
+        "left_index": 1,
+        "offset": 3,
+        "relation": "13->31",
+        "right_index": 0
+      }
+    ],
+    "filler": "NotConstructed",
+    "higher_cell": "NotConstructed",
+    "left_segment": {
+      "factor_occurrence_ids": [
+        "fresh-left-q0",
+        "fresh-left-q3"
+      ],
+      "factor_two_cells": [
+        "f:1234:13>31",
+        "f:2413:13>31"
+      ],
+      "factors": [
+        {
+          "generating_two_cell": "f:1234:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "312132",
+            "before": "132132",
+            "face_id": "Q_0",
+            "face_type": "Q4",
+            "local_source_object": "1234",
+            "local_target_object": "2143",
+            "occurrence_id": "fresh-left-q0",
+            "offset": 0,
+            "prefix": "",
+            "relation": "13->31",
+            "suffix": "2132"
+          },
+          "prefix_whisker": [],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s1",
+            "e:2134:s3",
+            "e:2143:s2",
+            "e:2413:s1",
+            "e:4213:s3",
+            "e:4231:s2"
+          ],
+          "suffix_whisker": [
+            "e:2143:s2",
+            "e:2413:s1",
+            "e:4213:s3",
+            "e:4231:s2"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s3",
+            "e:1243:s1",
+            "e:2143:s2",
+            "e:2413:s1",
+            "e:4213:s3",
+            "e:4231:s2"
+          ]
+        },
+        {
+          "generating_two_cell": "f:2413:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "312312",
+            "before": "312132",
+            "face_id": "Q_3",
+            "face_type": "Q4",
+            "local_source_object": "2413",
+            "local_target_object": "4231",
+            "occurrence_id": "fresh-left-q3",
+            "offset": 3,
+            "prefix": "312",
+            "relation": "13->31",
+            "suffix": "2"
+          },
+          "prefix_whisker": [
+            "e:1234:s3",
+            "e:1243:s1",
+            "e:2143:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s3",
+            "e:1243:s1",
+            "e:2143:s2",
+            "e:2413:s1",
+            "e:4213:s3",
+            "e:4231:s2"
+          ],
+          "suffix_whisker": [
+            "e:4231:s2"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s3",
+            "e:1243:s1",
+            "e:2143:s2",
+            "e:2413:s3",
+            "e:2431:s1",
+            "e:4231:s2"
+          ]
+        }
+      ],
+      "global_source_object": "1234",
+      "global_target_object": "4321",
+      "higher_cell": "NotConstructed",
+      "interchange_identification": "NotClaimed",
+      "intermediate_paths": [
+        [
+          "e:1234:s3",
+          "e:1243:s1",
+          "e:2143:s2",
+          "e:2413:s1",
+          "e:4213:s3",
+          "e:4231:s2"
+        ]
+      ],
+      "rewrite_intervals": [
+        [
+          0,
+          2
+        ],
+        [
+          3,
+          5
+        ]
+      ],
+      "schema": "adva.research.typed-comparison-segment.v0",
+      "segment_id": "fresh-left",
+      "source_path": [
+        "e:1234:s1",
+        "e:2134:s3",
+        "e:2143:s2",
+        "e:2413:s1",
+        "e:4213:s3",
+        "e:4231:s2"
+      ],
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+      "target_path": [
+        "e:1234:s3",
+        "e:1243:s1",
+        "e:2143:s2",
+        "e:2413:s3",
+        "e:2431:s1",
+        "e:4231:s2"
+      ]
+    },
+    "obligation_id": "fresh-square-reuse",
+    "replay_witness": {
+      "left_intermediate_word": "312132",
+      "right_intermediate_word": "132312",
+      "source_word": "132132",
+      "target_word": "312312"
+    },
+    "right_segment": {
+      "factor_occurrence_ids": [
+        "fresh-right-q3",
+        "fresh-right-q0"
+      ],
+      "factor_two_cells": [
+        "f:2413:13>31",
+        "f:1234:13>31"
+      ],
+      "factors": [
+        {
+          "generating_two_cell": "f:2413:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "132312",
+            "before": "132132",
+            "face_id": "Q_3",
+            "face_type": "Q4",
+            "local_source_object": "2413",
+            "local_target_object": "4231",
+            "occurrence_id": "fresh-right-q3",
+            "offset": 3,
+            "prefix": "132",
+            "relation": "13->31",
+            "suffix": "2"
+          },
+          "prefix_whisker": [
+            "e:1234:s1",
+            "e:2134:s3",
+            "e:2143:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s1",
+            "e:2134:s3",
+            "e:2143:s2",
+            "e:2413:s1",
+            "e:4213:s3",
+            "e:4231:s2"
+          ],
+          "suffix_whisker": [
+            "e:4231:s2"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s1",
+            "e:2134:s3",
+            "e:2143:s2",
+            "e:2413:s3",
+            "e:2431:s1",
+            "e:4231:s2"
+          ]
+        },
+        {
+          "generating_two_cell": "f:1234:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "312312",
+            "before": "132312",
+            "face_id": "Q_0",
+            "face_type": "Q4",
+            "local_source_object": "1234",
+            "local_target_object": "2143",
+            "occurrence_id": "fresh-right-q0",
+            "offset": 0,
+            "prefix": "",
+            "relation": "13->31",
+            "suffix": "2312"
+          },
+          "prefix_whisker": [],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s1",
+            "e:2134:s3",
+            "e:2143:s2",
+            "e:2413:s3",
+            "e:2431:s1",
+            "e:4231:s2"
+          ],
+          "suffix_whisker": [
+            "e:2143:s2",
+            "e:2413:s3",
+            "e:2431:s1",
+            "e:4231:s2"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s3",
+            "e:1243:s1",
+            "e:2143:s2",
+            "e:2413:s3",
+            "e:2431:s1",
+            "e:4231:s2"
+          ]
+        }
+      ],
+      "global_source_object": "1234",
+      "global_target_object": "4321",
+      "higher_cell": "NotConstructed",
+      "interchange_identification": "NotClaimed",
+      "intermediate_paths": [
+        [
+          "e:1234:s1",
+          "e:2134:s3",
+          "e:2143:s2",
+          "e:2413:s3",
+          "e:2431:s1",
+          "e:4231:s2"
+        ]
+      ],
+      "rewrite_intervals": [
+        [
+          3,
+          5
+        ],
+        [
+          0,
+          2
+        ]
+      ],
+      "schema": "adva.research.typed-comparison-segment.v0",
+      "segment_id": "fresh-right",
+      "source_path": [
+        "e:1234:s1",
+        "e:2134:s3",
+        "e:2143:s2",
+        "e:2413:s1",
+        "e:4213:s3",
+        "e:4231:s2"
+      ],
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+      "target_path": [
+        "e:1234:s3",
+        "e:1243:s1",
+        "e:2143:s2",
+        "e:2413:s3",
+        "e:2431:s1",
+        "e:4231:s2"
+      ]
+    },
+    "rule": {
+      "grants": "a checked finite interchange obligation only; no equality, higher cell, or filler",
+      "id": "disjoint-equal-length-local-rewrite-swap.v0",
+      "requires": [
+        "the two segment endpoint projections are equal",
+        "both segment histories are retained and distinct",
+        "the same two generating 2-cells occur in reverse order",
+        "the matched rewrite relations and offsets agree",
+        "both rewrites preserve the other redex at its original offset"
+      ],
+      "scope": "exactly two local rewrites on disjoint half-open intervals in one fixed-length word"
+    },
+    "schema": "adva.research.typed-interchange-obligation.v0",
+    "semantic_equality": "NotClaimed",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "predecessor": {
+    "anchor_path_used": "run.py",
+    "anchor_run_sha256": "b154ed0a3de9b73f3968bb363ee553a47bac9b9424b9dbe25753755c9a70d9b0",
+    "path_used": "run.py",
+    "run_sha256": "4b1c01f6b307cb0ee8572a25327041e54f2e14fe0d9cc8c9f3e5114dc30606ab",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "primary_obligation": {
+    "factor_correspondence": [
+      {
+        "generating_two_cell": "f:1324:13>31",
+        "left_index": 0,
+        "offset": 1,
+        "relation": "13->31",
+        "right_index": 1
+      },
+      {
+        "generating_two_cell": "f:3412:31>13",
+        "left_index": 1,
+        "offset": 4,
+        "relation": "31->13",
+        "right_index": 0
+      }
+    ],
+    "filler": "NotConstructed",
+    "higher_cell": "NotConstructed",
+    "left_segment": {
+      "factor_occurrence_ids": [
+        "primary-left-q13",
+        "primary-left-q34"
+      ],
+      "factor_two_cells": [
+        "f:1324:13>31",
+        "f:3412:31>13"
+      ],
+      "factors": [
+        {
+          "generating_two_cell": "f:1324:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "231231",
+            "before": "213231",
+            "face_id": "Q_13",
+            "face_type": "Q4",
+            "local_source_object": "1324",
+            "local_target_object": "3142",
+            "occurrence_id": "primary-left-q13",
+            "offset": 1,
+            "prefix": "2",
+            "relation": "13->31",
+            "suffix": "231"
+          },
+          "prefix_whisker": [
+            "e:1234:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s2",
+            "e:1324:s1",
+            "e:3124:s3",
+            "e:3142:s2",
+            "e:3412:s3",
+            "e:3421:s1"
+          ],
+          "suffix_whisker": [
+            "e:3142:s2",
+            "e:3412:s3",
+            "e:3421:s1"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s2",
+            "e:1324:s3",
+            "e:1342:s1",
+            "e:3142:s2",
+            "e:3412:s3",
+            "e:3421:s1"
+          ]
+        },
+        {
+          "generating_two_cell": "f:3412:31>13",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "231213",
+            "before": "231231",
+            "face_id": "Q_34",
+            "face_type": "Q4",
+            "local_source_object": "3412",
+            "local_target_object": "4321",
+            "occurrence_id": "primary-left-q34",
+            "offset": 4,
+            "prefix": "2312",
+            "relation": "31->13",
+            "suffix": ""
+          },
+          "prefix_whisker": [
+            "e:1234:s2",
+            "e:1324:s3",
+            "e:1342:s1",
+            "e:3142:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s2",
+            "e:1324:s3",
+            "e:1342:s1",
+            "e:3142:s2",
+            "e:3412:s3",
+            "e:3421:s1"
+          ],
+          "suffix_whisker": [],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s2",
+            "e:1324:s3",
+            "e:1342:s1",
+            "e:3142:s2",
+            "e:3412:s1",
+            "e:4312:s3"
+          ]
+        }
+      ],
+      "global_source_object": "1234",
+      "global_target_object": "4321",
+      "higher_cell": "NotConstructed",
+      "interchange_identification": "NotClaimed",
+      "intermediate_paths": [
+        [
+          "e:1234:s2",
+          "e:1324:s3",
+          "e:1342:s1",
+          "e:3142:s2",
+          "e:3412:s3",
+          "e:3421:s1"
+        ]
+      ],
+      "rewrite_intervals": [
+        [
+          1,
+          3
+        ],
+        [
+          4,
+          6
+        ]
+      ],
+      "schema": "adva.research.typed-comparison-segment.v0",
+      "segment_id": "primary-left",
+      "source_path": [
+        "e:1234:s2",
+        "e:1324:s1",
+        "e:3124:s3",
+        "e:3142:s2",
+        "e:3412:s3",
+        "e:3421:s1"
+      ],
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+      "target_path": [
+        "e:1234:s2",
+        "e:1324:s3",
+        "e:1342:s1",
+        "e:3142:s2",
+        "e:3412:s1",
+        "e:4312:s3"
+      ]
+    },
+    "obligation_id": "primary-square",
+    "replay_witness": {
+      "left_intermediate_word": "231231",
+      "right_intermediate_word": "213213",
+      "source_word": "213231",
+      "target_word": "231213"
+    },
+    "right_segment": {
+      "factor_occurrence_ids": [
+        "primary-right-q34",
+        "primary-right-q13"
+      ],
+      "factor_two_cells": [
+        "f:3412:31>13",
+        "f:1324:13>31"
+      ],
+      "factors": [
+        {
+          "generating_two_cell": "f:3412:31>13",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "213213",
+            "before": "213231",
+            "face_id": "Q_34",
+            "face_type": "Q4",
+            "local_source_object": "3412",
+            "local_target_object": "4321",
+            "occurrence_id": "primary-right-q34",
+            "offset": 4,
+            "prefix": "2132",
+            "relation": "31->13",
+            "suffix": ""
+          },
+          "prefix_whisker": [
+            "e:1234:s2",
+            "e:1324:s1",
+            "e:3124:s3",
+            "e:3142:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s2",
+            "e:1324:s1",
+            "e:3124:s3",
+            "e:3142:s2",
+            "e:3412:s3",
+            "e:3421:s1"
+          ],
+          "suffix_whisker": [],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s2",
+            "e:1324:s1",
+            "e:3124:s3",
+            "e:3142:s2",
+            "e:3412:s1",
+            "e:4312:s3"
+          ]
+        },
+        {
+          "generating_two_cell": "f:1324:13>31",
+          "global_source_object": "1234",
+          "global_target_object": "4321",
+          "higher_cell": "NotConstructed",
+          "occurrence": {
+            "after": "231213",
+            "before": "213213",
+            "face_id": "Q_13",
+            "face_type": "Q4",
+            "local_source_object": "1324",
+            "local_target_object": "3142",
+            "occurrence_id": "primary-right-q13",
+            "offset": 1,
+            "prefix": "2",
+            "relation": "13->31",
+            "suffix": "213"
+          },
+          "prefix_whisker": [
+            "e:1234:s2"
+          ],
+          "schema": "adva.research.typed-face-anchor.v0",
+          "source_path": [
+            "e:1234:s2",
+            "e:1324:s1",
+            "e:3124:s3",
+            "e:3142:s2",
+            "e:3412:s1",
+            "e:4312:s3"
+          ],
+          "suffix_whisker": [
+            "e:3142:s2",
+            "e:3412:s1",
+            "e:4312:s3"
+          ],
+          "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+          "target_path": [
+            "e:1234:s2",
+            "e:1324:s3",
+            "e:1342:s1",
+            "e:3142:s2",
+            "e:3412:s1",
+            "e:4312:s3"
+          ]
+        }
+      ],
+      "global_source_object": "1234",
+      "global_target_object": "4321",
+      "higher_cell": "NotConstructed",
+      "interchange_identification": "NotClaimed",
+      "intermediate_paths": [
+        [
+          "e:1234:s2",
+          "e:1324:s1",
+          "e:3124:s3",
+          "e:3142:s2",
+          "e:3412:s1",
+          "e:4312:s3"
+        ]
+      ],
+      "rewrite_intervals": [
+        [
+          4,
+          6
+        ],
+        [
+          1,
+          3
+        ]
+      ],
+      "schema": "adva.research.typed-comparison-segment.v0",
+      "segment_id": "primary-right",
+      "source_path": [
+        "e:1234:s2",
+        "e:1324:s1",
+        "e:3124:s3",
+        "e:3142:s2",
+        "e:3412:s3",
+        "e:3421:s1"
+      ],
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+      "target_path": [
+        "e:1234:s2",
+        "e:1324:s3",
+        "e:1342:s1",
+        "e:3142:s2",
+        "e:3412:s1",
+        "e:4312:s3"
+      ]
+    },
+    "rule": {
+      "grants": "a checked finite interchange obligation only; no equality, higher cell, or filler",
+      "id": "disjoint-equal-length-local-rewrite-swap.v0",
+      "requires": [
+        "the two segment endpoint projections are equal",
+        "both segment histories are retained and distinct",
+        "the same two generating 2-cells occur in reverse order",
+        "the matched rewrite relations and offsets agree",
+        "both rewrites preserve the other redex at its original offset"
+      ],
+      "scope": "exactly two local rewrites on disjoint half-open intervals in one fixed-length word"
+    },
+    "schema": "adva.research.typed-interchange-obligation.v0",
+    "semantic_equality": "NotClaimed",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "proposed_word": {
+    "applicability": "exactly two equal-length local rewrites occur on disjoint half-open sites, both orders retain valid typed segments, and applying either first leaves the other redex available at the same site",
+    "counterexample": "changing the rule, factor correspondence, replay witness, equality flag, higher-cell flag, or filler flag preserves the bare eligibility projection but is specifically refused",
+    "expansion": "validate both segments; reconstruct the unique reversed factor correspondence; replay left then right and right then left from the shared source; verify the common target and preserved other redex; retain all promotion guards",
+    "input": "one versioned target, two valid typed comparison segments with common endpoints, one declared rule id, an explicit factor correspondence, and source/intermediate/target replay words",
+    "output_relation": "TypedInterchangeObligationChecked/NoHigherCellConstructed or a rule-, segment-, correspondence-, replay-, target-, independence-, or promotion-specific refusal",
+    "refusal_conditions": [
+      "target or rule mismatch",
+      "invalid, duplicated, overlapping, endpoint-mismatched, or history-erased segment",
+      "nonunique or altered factor correspondence",
+      "redex unavailable or two-order replay mismatch",
+      "premature semantic equality, higher cell, or filler"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "no discharge of the interchange obligation, semantic equality, native horizontal or vertical composition, common 3-cell, Q4/M6 filler, fourteen-face pasting comparison, arbitrary A_n coherence, Research 0090 coverage, or arithmetic-universality result",
+    "role": "bind two retained comparison segments to one explicit admissible local-swap rule, factor correspondence, and two-order replay witness without discharging the higher comparison",
+    "state": "Proposed",
+    "witness": "both complete segments, target digest, registered rule payload, reversed factor-index correspondence, matched offsets/relations/2-cells, and both exact word replays",
+    "word": "typed interchange obligation"
+  },
+  "schema": "adva.research.typed-interchange-obligation.outcome.v0",
+  "status": "PassedBoundedTypedInterchangeObligation",
+  "target_nodes": 240
+}

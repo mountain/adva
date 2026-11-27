@@ -1,0 +1,120 @@
+{
+  "schema": "adva.research.scoped-constructor-authority-gap.input.v0",
+  "repository": "mountain/adva",
+  "main_commit": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+  "predecessor": {
+    "pr": 235,
+    "head_commit": "9c7fa3647c8501e679743fdc665de060de9910ec",
+    "run_sha256": "8a17a2bd07d672706da72ce51e88acbeb2788ae600fa1f272c8b38c5628ed2d4",
+    "outcome_sha256": "60b4761457a661f79d45aaed64a8841696d8208c8ea1975e015acb4945a7db20",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "primary_obligation_digest": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c",
+    "fresh_obligation_digest": "11ee2d78f42c2b06c5f402f45658ae2d7e389d704069100b9a2fce1640ca9d9b",
+    "word": "typed constructor admission slot"
+  },
+  "required_capabilities": [
+    "exact_a3_target_binding",
+    "versioned_entry_identity",
+    "higher_constructor_entry_kind",
+    "higher_constructor_boundary_applicability",
+    "target_authority_issuer",
+    "target_admission_receipt",
+    "obligation_discharge_receipt",
+    "runtime_semantic_authority"
+  ],
+  "sources": [
+    {
+      "source_id": "operation-rust",
+      "path": "crates/adva-lisp/src/operation.rs",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "1bdacdd98ed52e8e7518afd1438240bfb1d987bf",
+      "evidence": "OperationSpec is a versioned scalar operation declaration with namespace, name, version, typed input/output boundary, lineage rule and evaluator; resolution uses BUILTIN_OPERATIONS."
+    },
+    {
+      "source_id": "operation-adr",
+      "path": "docs/adr/0003-single-operation-registry.md",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "e8d2084046c49ba94659be2f842099998df3406d",
+      "evidence": "The single registry governs stable builtin parsing, typed lowering, evaluation and forward differentiation; frontier remains an ordered boundary constructor, not a scalar operation node."
+    },
+    {
+      "source_id": "witness-seed",
+      "path": "crates/adva-witness/src/seed.rs",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "1fcd7ac08472676e1bbd489d575aa2aabaed9317",
+      "evidence": "SeedRegistryV0 is the single source of truth for six corrected initial declarations."
+    },
+    {
+      "source_id": "witness-seal",
+      "path": "crates/adva-witness/src/witness.rs",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "059523e2011d5536b629e1caa1daaa1ef501c4f9",
+      "evidence": "WitnessProofV0::Seal requires a formed body and multiplicatively closed residual; it is not an A3 higher-constructor admission or discharge receipt."
+    },
+    {
+      "source_id": "claims-registry",
+      "path": "docs/claims.toml",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "d60c1a775a696b70f509a0018cf76085aa3e5b64",
+      "evidence": "The exact builtin-operation-registry claim is scoped to adva.builtin version 1 scalar Real operations and explicitly excludes future operation versions and entry-derived optimization authority."
+    },
+    {
+      "source_id": "publication-boundary",
+      "path": "PUBLICATION_BOUNDARY.md",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "19a6fd34bb947881dfc2e3467010cef7e0351037",
+      "evidence": "Publication admission establishes public-domain contribution basis and explicitly remains a contribution/publication policy."
+    },
+    {
+      "source_id": "math-catalog-boundary",
+      "path": "docs/adr/0042-math-topic-catalog-without-semantic-authority.md",
+      "ref": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+      "blob_sha": "5581ff577bb459ca466d4b309cff0ab6b9b6678a",
+      "evidence": "Documentary checks add no Rust semantic code or registry operation; native Seal is NotIssued and discharge Open."
+    },
+    {
+      "source_id": "external-a3-slot",
+      "path": "experiments/to24_typed_constructor_admission_slot_20261126/README.md",
+      "ref": "9c7fa3647c8501e679743fdc665de060de9910ec",
+      "blob_sha": "ec9b64f330b7cf2574647611b86bd5e615da79a6",
+      "evidence": "The versioned A3 slot binds the exact target and higher-constructor fields but is ExternalInterfaceOnly, empty, and lacks target authority and admission/discharge receipts."
+    }
+  ],
+  "candidates": [
+    {
+      "candidate_id": "builtin-operation-registry",
+      "source_ids": ["operation-rust", "operation-adr", "claims-registry"],
+      "scope": "versioned scalar Real builtin operations",
+      "supported_capabilities": ["versioned_entry_identity", "runtime_semantic_authority"]
+    },
+    {
+      "candidate_id": "witness-seed-and-seal",
+      "source_ids": ["witness-seed", "witness-seal", "math-catalog-boundary"],
+      "scope": "six-word witness seeds and arithmetic multiplicative closure",
+      "supported_capabilities": ["versioned_entry_identity", "runtime_semantic_authority"]
+    },
+    {
+      "candidate_id": "claims-registry",
+      "source_ids": ["claims-registry"],
+      "scope": "documentary claim identity, scope and evidence metadata",
+      "supported_capabilities": ["versioned_entry_identity"]
+    },
+    {
+      "candidate_id": "publication-admission",
+      "source_ids": ["publication-boundary"],
+      "scope": "rights and public-repository publication eligibility",
+      "supported_capabilities": ["versioned_entry_identity"]
+    },
+    {
+      "candidate_id": "external-a3-admission-slot",
+      "source_ids": ["external-a3-slot"],
+      "scope": "external exact A3 higher-constructor interface without target authority",
+      "supported_capabilities": [
+        "exact_a3_target_binding",
+        "versioned_entry_identity",
+        "higher_constructor_entry_kind",
+        "higher_constructor_boundary_applicability"
+      ]
+    }
+  ]
+}

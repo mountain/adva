@@ -1,0 +1,40 @@
+{
+  "schema": "adva.research.typed-face-anchor.contract.v0",
+  "question": "Can one retained signed face occurrence be bound to an explicit generating 2-cell in a finite A3 computad, including typed prefix and suffix whiskers, and then reused on the other face type without claiming a common 3-cell or filler?",
+  "objects": [
+    "the 24 S4 permutations as 0-cells",
+    "72 directed adjacent-swap generators as 1-cells",
+    "144 directed rank-two rewrite generators as 2-cells",
+    "one retained M6 occurrence and one fresh Q4 occurrence"
+  ],
+  "types": {
+    "object": "one-line permutation of 1,2,3,4",
+    "one_cell": "directed adjacent swap with exact source and target objects",
+    "two_cell": "directed local Q4 or M6 relation between parallel one-cell paths",
+    "anchor": "target digest, occurrence history, prefix whisker, generating 2-cell, suffix whisker, and global typed boundary",
+    "result": "TypedLocalComparisonAnchored | Refused"
+  },
+  "quantifier": "the complete declared 24/72/144 target presentation and seven fixed anchor cases",
+  "arithmetic_domain": "finite S4 permutations, exact ordered words, SHA-256 pins, and equality of typed path endpoints",
+  "candidate_grammar": [
+    "untyped signed-face occurrence projection",
+    "typed face anchor"
+  ],
+  "evaluation": [
+    "construct the complete finite target presentation deterministically",
+    "verify the local 2-cell has the declared parallel source and target paths",
+    "verify prefix and suffix whiskers compose at exact objects",
+    "retain the before/after occurrence history",
+    "reuse on a Q4 occurrence after the canonical M6 occurrence",
+    "refuse changed target, wrong 2-cell, wrong object, broken whisker, missing history, and premature higher cell",
+    "emit no common comparison of the two seven-step pastings and no filler"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_wall_seconds": 30,
+    "max_candidates_or_nodes": 100000,
+    "planned_target_nodes": 240,
+    "max_anchor_cases": 7,
+    "implementation_correction_replays": 1
+  }
+}

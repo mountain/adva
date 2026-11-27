@@ -1,0 +1,38 @@
+{
+  "schema": "adva.research.typed-comparison-segment.contract.v0",
+  "question": "Can exactly two adjacent typed face anchors be composed with their intermediate gallery and factor order retained, and can the construction be reused on the other route around one disjoint commuting square without identifying the two composites or adding a 3-cell?",
+  "objects": [
+    "the pinned 240-node A3 target computad",
+    "four typed face anchors",
+    "two length-two comparison segments around one commuting square"
+  ],
+  "types": {
+    "anchor": "one target-pinned whiskered generating 2-cell",
+    "segment": "ordered anchors with exact source, intermediate, and target gallery paths",
+    "interchange_boundary": "two valid segments with equal endpoints, reversed disjoint factor order, and retained distinct histories",
+    "result": "TypedComparisonSegmentComposed | Refused"
+  },
+  "quantifier": "all four declared occurrences, both declared routes, eight segment cases, and one disjoint-interchange eligibility check",
+  "arithmetic_domain": "finite S4 words, exact path and object equality, ordered factor lists, half-open rewrite intervals, and SHA-256 pins",
+  "candidate_grammar": [
+    "endpoint-only comparison projection",
+    "typed comparison segment"
+  ],
+  "evaluation": [
+    "verify the pinned predecessor implementation digest",
+    "reconstruct and validate each factor anchor",
+    "check exact target/source path equality at the intermediate gallery",
+    "retain distinct occurrence ids and ordered factor history",
+    "reuse on the second route around the same commuting square",
+    "verify only eligibility for a disjoint interchange boundary",
+    "refuse changed target, reordered or missing factors, duplicate history, broken intermediate, and premature equality or higher cell"
+  ],
+  "budget": {
+    "routes": 1,
+    "max_wall_seconds": 30,
+    "max_candidates_or_nodes": 100000,
+    "planned_constructed_nodes": 246,
+    "max_segment_cases": 8,
+    "implementation_correction_replays": 1
+  }
+}

@@ -1,0 +1,214 @@
+{
+  "cases": [
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "OpenAdmissionSlot/EmptyExternalInterface",
+      "matched": true,
+      "name": "primary-empty-interface",
+      "result": "OpenAdmissionSlot/EmptyExternalInterface"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected": "OpenAdmissionSlot/EmptyExternalInterface",
+      "matched": true,
+      "name": "fresh-obligation-reuse",
+      "result": "OpenAdmissionSlot/EmptyExternalInterface"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "UnknownAdmission/ExternalCandidateOnly",
+      "matched": true,
+      "name": "complete-external-candidate",
+      "result": "UnknownAdmission/ExternalCandidateOnly"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/CandidateBoundaryMismatch",
+      "matched": true,
+      "name": "wrong-candidate-boundary",
+      "result": "Refused/CandidateBoundaryMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected": "Refused/TargetDigestMismatch",
+      "matched": true,
+      "name": "changed-target",
+      "result": "Refused/TargetDigestMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected": "Refused/ObligationDigestMismatch",
+      "matched": true,
+      "name": "changed-obligation",
+      "result": "Refused/ObligationDigestMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnverifiableTargetAuthority",
+      "matched": true,
+      "name": "forged-target-authority",
+      "result": "Refused/UnverifiableTargetAuthority"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/ExternalInterfaceCannotAdmitEntry",
+      "matched": true,
+      "name": "direct-external-entry-insertion",
+      "result": "Refused/ExternalInterfaceCannotAdmitEntry"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureDischargeReceipt",
+      "matched": true,
+      "name": "premature-discharge-receipt",
+      "result": "Refused/PrematureDischargeReceipt"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/RegistryInterfaceFieldSetMismatch",
+      "matched": true,
+      "name": "changed-interface-field-set",
+      "result": "Refused/RegistryInterfaceFieldSetMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureSemanticEquality",
+      "matched": true,
+      "name": "premature-semantic-equality",
+      "result": "Refused/PrematureSemanticEquality"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/PrematureFiller",
+      "matched": true,
+      "name": "premature-filler",
+      "result": "Refused/PrematureFiller"
+    }
+  ],
+  "claim": "One exact external registry interface can retain an explicitly empty admission slot for each checked obligation, while a complete external proposal remains outside target authority and each declared direct self-admission route is refused.",
+  "claim_boundary": "This is a finite interface and refusal result. The external registry contract does not modify the target, admit a constructor, discharge an obligation, or construct a 3-cell.",
+  "comparison": {
+    "base_projection_collisions_beyond_primary": 8,
+    "claim_boundary": "No general expressivity, minimality, completeness, admission, or efficiency theorem is claimed.",
+    "finite_distinction": "the untyped projection says only that an interface is declared; it cannot distinguish empty, external-only, forged-authority, direct-insertion, field-set, equality, filler, or discharge states",
+    "formation_byte_delta": 1577,
+    "typed_slot_record_bytes": 1797,
+    "untyped_projection_bytes": 220
+  },
+  "cost": {
+    "case_validation_ns": 1296778,
+    "cases": 12,
+    "constructed_nodes": 270,
+    "fresh_obligation_formation_ns": 94210,
+    "fresh_slot_reuse_ns": 106819,
+    "implementation_correction": "The first passing output said every direct self-admission route; the sole correction narrowed this to each declared route. The interface, cases, budget and decisions were unchanged.",
+    "implementation_correction_replays": 1,
+    "predecessor_verification_ns": 1103258,
+    "primary_obligation_formation_ns": 130965,
+    "primary_slot_formation_ns": 203034,
+    "registry_interface_formation_ns": 11878,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 11008,
+    "serialization_ns": 400779,
+    "serialized_bytes": 9818,
+    "target_formation_ns": 3170517,
+    "whole_run_before_serialization_ns": 7066298
+  },
+  "fresh_obligation_digest": "11ee2d78f42c2b06c5f402f45658ae2d7e389d704069100b9a2fce1640ca9d9b",
+  "predecessor": {
+    "anchor_run_sha256": "b154ed0a3de9b73f3968bb363ee553a47bac9b9424b9dbe25753755c9a70d9b0",
+    "interchange_run_path": "run.py",
+    "interchange_run_sha256": "7552c8daf4fdc004babe7eefb9499cecd639c49236a8ca29cdaa035ebe251dd0",
+    "run_path": "run.py",
+    "run_sha256": "26f9eeecd5d0fee6926c40bca36ef8c74edb2cabc4d16c14f5f2588416d479b1",
+    "segment_run_sha256": "4b1c01f6b307cb0ee8572a25327041e54f2e14fe0d9cc8c9f3e5114dc30606ab"
+  },
+  "primary_record": {
+    "obligation_digest": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c",
+    "registry_interface": {
+      "authority": "ExternalInterfaceOnly",
+      "entries": [],
+      "filler": "NotConstructed",
+      "higher_cell": "NotConstructed",
+      "registry_id": "a3-external-higher-constructor-interface",
+      "registry_version": 0,
+      "required_entry_fields": [
+        "constructor_id",
+        "boundary_digest",
+        "applicability_scope",
+        "constructor_witness_digest",
+        "target_admission_receipt",
+        "discharge_rule_id"
+      ],
+      "schema": "adva.research.higher-constructor-registry-interface.v0",
+      "semantic_equality": "NotClaimed",
+      "target_authority_receipt": null,
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+      "transition_order": [
+        "Open",
+        "ExternalCandidate",
+        "TargetAdmitted",
+        "Discharged"
+      ]
+    },
+    "residual": [
+      "target-owned registry authority",
+      "one admitted applicable constructor entry",
+      "one target-backed discharge receipt"
+    ],
+    "result": "OpenAdmissionSlot/EmptyExternalInterface",
+    "slot": {
+      "candidate": null,
+      "discharge_receipt": null,
+      "filler": "NotConstructed",
+      "higher_cell": "NotConstructed",
+      "obligation_digest": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c",
+      "registry_interface_digest": "ccedb0da5ffffc2b917d73bf83323e82ce0c6d12c69771ac5c67985505cf9bc6",
+      "schema": "adva.research.typed-constructor-admission-slot.v0",
+      "semantic_equality": "NotClaimed",
+      "slot_state": "Open",
+      "target_admission_receipt": null,
+      "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+    },
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "proposed_word": {
+    "applicability": "the target and obligation are exactly pinned, the registry interface is external and empty, and no target authority receipt exists",
+    "counterexample": "a complete boundary-matching external proposal remains UnknownAdmission; self-issued target authority and direct insertion into the external interface are refused",
+    "expansion": "verify the predecessor obligation; validate the registry schema, target pin, authority, field set, transition order and empty entries; bind one open slot; validate any candidate boundary; stop at Unknown unless a separately supplied target-owned registry and admission receipt exist",
+    "input": "one exact target digest, one checked typed obligation, one validated external empty registry interface, and an optional external constructor candidate",
+    "output_relation": "OpenAdmissionSlot, UnknownAdmission, or a registry-, target-, obligation-, boundary-, authority-, discharge-, equality-, or filler-specific refusal",
+    "refusal_conditions": [
+      "target, obligation, registry digest, schema, field-set or transition mismatch",
+      "boundary mismatch or unverifiable target authority",
+      "direct entry insertion into an external-only interface",
+      "premature discharge, equality, higher cell or filler"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "no target-owned registry, admitted constructor, discharge receipt, semantic equality, higher cell, filler, Research 0090 coverage, Research 0092 promotion, arithmetic-universality or hypothesized-arithmetic-truth result",
+    "role": "retain one explicit open target-and-obligation coordinate in a versioned external registry interface without granting registry membership or discharge",
+    "state": "Proposed",
+    "witness": "the registry interface digest and exact fields, target and obligation digests, open slot state, optional candidate, result, and residual authority/admission/discharge requirements",
+    "word": "typed constructor admission slot"
+  },
+  "registry_interface_digest": "ccedb0da5ffffc2b917d73bf83323e82ce0c6d12c69771ac5c67985505cf9bc6",
+  "schema": "adva.research.typed-constructor-admission-slot.outcome.v0",
+  "status": "PassedBoundedTypedConstructorAdmissionSlot",
+  "target": {
+    "digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "inventory": {
+      "higher_constructor_count": null,
+      "higher_constructor_registry_declared": false,
+      "objects": 24,
+      "one_cells": 72,
+      "top_level_keys": [
+        "descriptor",
+        "objects",
+        "one_cells",
+        "two_cells"
+      ],
+      "two_cells": 144
+    },
+    "nodes": 240
+  }
+}

@@ -1,0 +1,73 @@
+{
+  "schema": "adva.research.typed-interchange-obligation.input.v0",
+  "repository": "mountain/adva",
+  "main_commit": "6930599aa6132cdc5ec7165e0d1c8d8d09f3dee9",
+  "predecessor": {
+    "pr": 235,
+    "head_commit": "2b3b8f3795b0c4f3aa509bd8ccd459ca4ee0792c",
+    "run_sha256": "4b1c01f6b307cb0ee8572a25327041e54f2e14fe0d9cc8c9f3e5114dc30606ab",
+    "anchor_run_sha256": "b154ed0a3de9b73f3968bb363ee553a47bac9b9424b9dbe25753755c9a70d9b0",
+    "outcome_sha256": "4412836d89ba5e11790adbf471036421aa0c734f1a8af0bbd780e053180b3a36",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c",
+    "word": "typed comparison segment"
+  },
+  "target_descriptor": {
+    "schema": "adva.research.a3-rank-two-computad.v0",
+    "object_rule": "all permutations of 1234",
+    "one_cell_rule": "one directed generator for each object and adjacent swap 1,2,3",
+    "two_cell_rule": "one directed generator for each object and each of 13->31, 31->13, 121->212, 212->121, 232->323, 323->232",
+    "semantic_boundary": "finite external syntax presentation; not a native Adva identity or admitted filler"
+  },
+  "rule": {
+    "id": "disjoint-equal-length-local-rewrite-swap.v0",
+    "scope": "exactly two local rewrites on disjoint half-open intervals in one fixed-length word",
+    "requires": [
+      "the two segment endpoint projections are equal",
+      "both segment histories are retained and distinct",
+      "the same two generating 2-cells occur in reverse order",
+      "the matched rewrite relations and offsets agree",
+      "both rewrites preserve the other redex at its original offset"
+    ],
+    "grants": "a checked finite interchange obligation only; no equality, higher cell, or filler"
+  },
+  "squares": [
+    {
+      "id": "primary-square",
+      "left": {
+        "id": "primary-left",
+        "words": ["213231", "231231", "231213"],
+        "occurrences": [
+          {"id": "primary-left-q13", "before": "213231", "after": "231231", "offset": 1, "face_id": "Q_13"},
+          {"id": "primary-left-q34", "before": "231231", "after": "231213", "offset": 4, "face_id": "Q_34"}
+        ]
+      },
+      "right": {
+        "id": "primary-right",
+        "words": ["213231", "213213", "231213"],
+        "occurrences": [
+          {"id": "primary-right-q34", "before": "213231", "after": "213213", "offset": 4, "face_id": "Q_34"},
+          {"id": "primary-right-q13", "before": "213213", "after": "231213", "offset": 1, "face_id": "Q_13"}
+        ]
+      }
+    },
+    {
+      "id": "fresh-square-reuse",
+      "left": {
+        "id": "fresh-left",
+        "words": ["132132", "312132", "312312"],
+        "occurrences": [
+          {"id": "fresh-left-q0", "before": "132132", "after": "312132", "offset": 0, "face_id": "Q_0"},
+          {"id": "fresh-left-q3", "before": "312132", "after": "312312", "offset": 3, "face_id": "Q_3"}
+        ]
+      },
+      "right": {
+        "id": "fresh-right",
+        "words": ["132132", "132312", "312312"],
+        "occurrences": [
+          {"id": "fresh-right-q3", "before": "132132", "after": "132312", "offset": 3, "face_id": "Q_3"},
+          {"id": "fresh-right-q0", "before": "132312", "after": "312312", "offset": 0, "face_id": "Q_0"}
+        ]
+      }
+    }
+  ]
+}
