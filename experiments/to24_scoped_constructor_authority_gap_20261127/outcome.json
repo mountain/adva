@@ -1,0 +1,273 @@
+{
+  "cases": [
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "AuthorityGap/NoCandidateCoversAll",
+      "matched": true,
+      "name": "primary-five-surface-audit",
+      "result": "AuthorityGap/NoCandidateCoversAll"
+    },
+    {
+      "base_projection_equal_to_primary": false,
+      "expected": "AuthorityGap/NoCandidateCoversAll",
+      "matched": true,
+      "name": "fresh-obligation-reuse",
+      "result": "AuthorityGap/NoCandidateCoversAll"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnsupportedCapabilityClaim",
+      "matched": true,
+      "name": "operation-registry-scope-conflation",
+      "result": "Refused/UnsupportedCapabilityClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnsupportedCapabilityClaim",
+      "matched": true,
+      "name": "witness-seal-scope-conflation",
+      "result": "Refused/UnsupportedCapabilityClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnsupportedCapabilityClaim",
+      "matched": true,
+      "name": "claims-registry-authority-conflation",
+      "result": "Refused/UnsupportedCapabilityClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnsupportedCapabilityClaim",
+      "matched": true,
+      "name": "publication-admission-authority-conflation",
+      "result": "Refused/UnsupportedCapabilityClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnsupportedCapabilityClaim",
+      "matched": true,
+      "name": "external-slot-self-authority",
+      "result": "Refused/UnsupportedCapabilityClaim"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/SourcePinMismatch",
+      "matched": true,
+      "name": "source-pin-drift",
+      "result": "Refused/SourcePinMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/RequiredCapabilitySetMismatch",
+      "matched": true,
+      "name": "required-capability-omission",
+      "result": "Refused/RequiredCapabilitySetMismatch"
+    },
+    {
+      "base_projection_equal_to_primary": true,
+      "expected": "Refused/UnauthorizedCrossSurfaceUnion",
+      "matched": true,
+      "name": "unauthorized-cross-surface-union",
+      "result": "Refused/UnauthorizedCrossSurfaceUnion"
+    }
+  ],
+  "claim": "Within five exact source-pinned Adva surfaces, no single candidate covers all eight A3 higher-constructor authority capabilities; even their unauthorized union lacks target authority issuance, a target-admission receipt and an obligation-discharge receipt.",
+  "claim_boundary": "This is an exhaustive finite result over the five declared surfaces, not a whole-repository absence theorem, a proof that no future mechanism can exist, or authority to compose the candidates.",
+  "comparison": {
+    "base_projection_collisions_beyond_primary": 8,
+    "candidate_name_projection_bytes": 355,
+    "claim_boundary": "No general expressivity, minimality, completeness, global source inventory or efficiency theorem is claimed.",
+    "finite_distinction": "candidate names alone do not retain per-capability support, source scope, missing sets, union residual or the prohibition on cross-surface authority composition",
+    "formation_byte_delta": 3471,
+    "typed_authority_gap_record_bytes": 3826
+  },
+  "cost": {
+    "candidates": 5,
+    "case_validation_ns": 204823,
+    "cases": 10,
+    "constructed_nodes": 25,
+    "fresh_reuse_ns": 15991,
+    "implementation_correction_replays": 0,
+    "predecessor_verification_ns": 9739771,
+    "primary_analysis_ns": 23639,
+    "routes": 1,
+    "ru_maxrss_kib_before_serialization": 11904,
+    "serialization_ns": 483563,
+    "serialized_bytes": 11442,
+    "source_inventory_formation_ns": 85015,
+    "source_records": 8,
+    "whole_run_before_serialization_ns": 10354820
+  },
+  "fresh_record": {
+    "declared_union_missing": [
+      "target_authority_issuer",
+      "target_admission_receipt",
+      "obligation_discharge_receipt"
+    ],
+    "obligation_digest": "11ee2d78f42c2b06c5f402f45658ae2d7e389d704069100b9a2fce1640ca9d9b",
+    "result": "AuthorityGap/NoCandidateCoversAll"
+  },
+  "predecessor": {
+    "outcome_sha256": "60b4761457a661f79d45aaed64a8841696d8208c8ea1975e015acb4945a7db20",
+    "path": "run.py",
+    "run_sha256": "8a17a2bd07d672706da72ce51e88acbeb2788ae600fa1f272c8b38c5628ed2d4"
+  },
+  "primary_record": {
+    "candidate_rows": [
+      {
+        "candidate_id": "builtin-operation-registry",
+        "covers_all": false,
+        "missing": [
+          "exact_a3_target_binding",
+          "higher_constructor_entry_kind",
+          "higher_constructor_boundary_applicability",
+          "target_authority_issuer",
+          "target_admission_receipt",
+          "obligation_discharge_receipt"
+        ],
+        "scope": "versioned scalar Real builtin operations",
+        "source_ids": [
+          "operation-rust",
+          "operation-adr",
+          "claims-registry"
+        ],
+        "supported": [
+          "versioned_entry_identity",
+          "runtime_semantic_authority"
+        ]
+      },
+      {
+        "candidate_id": "witness-seed-and-seal",
+        "covers_all": false,
+        "missing": [
+          "exact_a3_target_binding",
+          "higher_constructor_entry_kind",
+          "higher_constructor_boundary_applicability",
+          "target_authority_issuer",
+          "target_admission_receipt",
+          "obligation_discharge_receipt"
+        ],
+        "scope": "six-word witness seeds and arithmetic multiplicative closure",
+        "source_ids": [
+          "witness-seed",
+          "witness-seal",
+          "math-catalog-boundary"
+        ],
+        "supported": [
+          "versioned_entry_identity",
+          "runtime_semantic_authority"
+        ]
+      },
+      {
+        "candidate_id": "claims-registry",
+        "covers_all": false,
+        "missing": [
+          "exact_a3_target_binding",
+          "higher_constructor_entry_kind",
+          "higher_constructor_boundary_applicability",
+          "target_authority_issuer",
+          "target_admission_receipt",
+          "obligation_discharge_receipt",
+          "runtime_semantic_authority"
+        ],
+        "scope": "documentary claim identity, scope and evidence metadata",
+        "source_ids": [
+          "claims-registry"
+        ],
+        "supported": [
+          "versioned_entry_identity"
+        ]
+      },
+      {
+        "candidate_id": "publication-admission",
+        "covers_all": false,
+        "missing": [
+          "exact_a3_target_binding",
+          "higher_constructor_entry_kind",
+          "higher_constructor_boundary_applicability",
+          "target_authority_issuer",
+          "target_admission_receipt",
+          "obligation_discharge_receipt",
+          "runtime_semantic_authority"
+        ],
+        "scope": "rights and public-repository publication eligibility",
+        "source_ids": [
+          "publication-boundary"
+        ],
+        "supported": [
+          "versioned_entry_identity"
+        ]
+      },
+      {
+        "candidate_id": "external-a3-admission-slot",
+        "covers_all": false,
+        "missing": [
+          "target_authority_issuer",
+          "target_admission_receipt",
+          "obligation_discharge_receipt",
+          "runtime_semantic_authority"
+        ],
+        "scope": "external exact A3 higher-constructor interface without target authority",
+        "source_ids": [
+          "external-a3-slot"
+        ],
+        "supported": [
+          "exact_a3_target_binding",
+          "versioned_entry_identity",
+          "higher_constructor_entry_kind",
+          "higher_constructor_boundary_applicability"
+        ]
+      }
+    ],
+    "declared_union_missing": [
+      "target_authority_issuer",
+      "target_admission_receipt",
+      "obligation_discharge_receipt"
+    ],
+    "obligation_digest": "b04f386e4a0155c4f9afb299f769f22d6ecb48c5f4be35330c0cfba5caea416c",
+    "required_capabilities": [
+      "exact_a3_target_binding",
+      "versioned_entry_identity",
+      "higher_constructor_entry_kind",
+      "higher_constructor_boundary_applicability",
+      "target_authority_issuer",
+      "target_admission_receipt",
+      "obligation_discharge_receipt",
+      "runtime_semantic_authority"
+    ],
+    "result": "AuthorityGap/NoCandidateCoversAll",
+    "scope_boundary": "the five declared source-pinned surfaces only",
+    "target_digest": "114c136690b27063a8e7b3da111e699b8fe437cac488122079110d9bd54a275c"
+  },
+  "proposed_word": {
+    "applicability": "the candidate inventory, source pins, capability meanings and no-cross-surface-composition rule are frozen before evaluation",
+    "counterexample": "promoting OperationSpec, WitnessProofV0::Seal, claim registration, publication admission or an external slot to full A3 constructor authority is refused because each crosses its pinned scope",
+    "expansion": "verify source pins and the predecessor coordinate; validate the exact candidate inventory and supported sets; subtract each set from the required profile; require a single full candidate; compute but do not authorize the union; retain both residuals",
+    "input": "one target and obligation coordinate, one ordered required-capability profile, and finitely many source-pinned candidate surfaces with scoped supported-capability sets",
+    "output_relation": "AuthorityGap with per-candidate and declared-union residuals, CandidateFound, or a source-, inventory-, scope-, capability-, target-, obligation-, or union-specific refusal",
+    "refusal_conditions": [
+      "source-pin or candidate-inventory drift",
+      "required-capability omission or unsupported capability claim",
+      "operation, arithmetic Seal, documentary claim, publication or external-interface scope conflated with A3 constructor authority",
+      "unauthorized composition of authority across surfaces"
+    ],
+    "replay": "timeout 30s python3 run.py",
+    "residual": "the inventory is not a whole-repository absence theorem; no target authority issuer, admission receipt, discharge receipt, admitted constructor, higher cell, filler, Research 0090 coverage, Research 0092 promotion, arithmetic-universality or hypothesized-arithmetic-truth result is obtained",
+    "role": "retain the exact missing authority capabilities after a declared finite inventory of possible constructor-owning surfaces has been checked",
+    "state": "Proposed",
+    "witness": "all source pins, the required profile, one row of supported and missing capabilities per candidate, the declared-union residual, target and obligation digests, and the scope boundary",
+    "word": "scoped constructor authority gap"
+  },
+  "schema": "adva.research.scoped-constructor-authority-gap.outcome.v0",
+  "source_pins": {
+    "claims-registry": "d60c1a775a696b70f509a0018cf76085aa3e5b64",
+    "external-a3-slot": "ec9b64f330b7cf2574647611b86bd5e615da79a6",
+    "math-catalog-boundary": "5581ff577bb459ca466d4b309cff0ab6b9b6678a",
+    "operation-adr": "e8d2084046c49ba94659be2f842099998df3406d",
+    "operation-rust": "1bdacdd98ed52e8e7518afd1438240bfb1d987bf",
+    "publication-boundary": "19a6fd34bb947881dfc2e3467010cef7e0351037",
+    "witness-seal": "059523e2011d5536b629e1caa1daaa1ef501c4f9",
+    "witness-seed": "1fcd7ac08472676e1bbd489d575aa2aabaed9317"
+  },
+  "status": "PassedBoundedScopedConstructorAuthorityGap"
+}
